@@ -34,13 +34,13 @@ function wheel(array $items): void {
 }
 $path=rawurldecode(parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/');
 $method=$_SERVER['REQUEST_METHOD'];
-$routes=['/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/criar'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/clubes'=>['GET']];
+$routes=['/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/criar'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET']];
 $status=200; $error=null; $g=null; $clubs=[];
 try {
     if(!isset($routes[$path])) { $status=404; throw new InvalidArgumentException('Página não encontrada.'); }
     if(!in_array($method,$routes[$path],true)) { $status=405; header('Allow: '.implode(', ',$routes[$path])); throw new InvalidArgumentException('Método não permitido.'); }
     if($method==='POST' && (!is_string($_POST['csrf']??null) || !hash_equals($_SESSION['csrf'],$_POST['csrf']))) { $status=403; throw new InvalidArgumentException('Sessão de formulário inválida. Recarregue a página.'); }
-    $public=in_array($path,['/','/login','/register','/clubes'],true);
+    $public=in_array($path,['/','/login','/register'],true);
     if(!$public && !isset($_SESSION['account'])) { if(str_starts_with($path,'/api/')) { $status=401; throw new InvalidArgumentException('Entre na sua conta.'); } redirect('/login'); }
     if($method==='POST' && in_array($path,['/login','/register'],true)) {
         $r=new Repository(Database::connect());
@@ -71,10 +71,7 @@ try {
         }
     }
     if($path==='/api/carreira/estado') { header('Content-Type: application/json; charset=utf-8'); echo json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE); exit; }
-    if($path==='/clubes') {
-        $catalog=new Repository(Database::connect());
-        $clubs=$catalog->query('SELECT * FROM rumo10_clubes WHERE origem=? ORDER BY nome',['real'])->fetchAll();
-    }
+
 } catch(InvalidArgumentException $ex) { if($status===200) $status=422; $error=$ex->getMessage(); }
 catch(Throwable $ex) { $status=503; $error='Aplicação indisponível. Verifique a instalação e a conexão local com o banco.'; error_log('rumo10: '.$ex::class.' code='.$ex->getCode()); }
 http_response_code($status);

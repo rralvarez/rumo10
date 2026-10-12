@@ -80,3 +80,5 @@ Repita o roteiro HTTP de `tests/http-smoke.ps1 -BaseUrl https://seu-dominio`. N�
 Evidências de execução e pendências estão em [Docs/10_Testes_Executados.md](Docs/10_Testes_Executados.md). Documentos 01–09 detalham regras e escolhas provisórias.
 
 A interface da carreira mostra resultado verde/vermelho com apresentação breve; detalhes de sorteio podem ser expandidos. Durante a partida, acompanhe seus gols no card de desempenho. Após o jogo, consulte Seus gols no campeonato e Gols por rodada antes de continuar o fim de semana. No celular, o menu fica na parte inferior e as habilidades ficam recolhidas. Para verificar os componentes sem MySQL: `php tests/presentation.php`.
+
+Durante a partida, a tela concentra resultado, efeitos já aplicados, placar, gols/assistências pessoais e a decisão atual. Rádio e estatísticas completas ficam no pós-jogo. O catálogo de clubes é configuração interna via seed/CLI; não há menu nem rota pública /clubes.

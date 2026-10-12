@@ -43,6 +43,18 @@ foreach(Rules::POSITIONS as $position) {
     }
 }
 echo "OK: $checks verificações; 30 temporadas completas em seis posições.\n";
+$highlights=['goal'=>0,'assist'=>0];
+for($i=0;$i<200;$i++) {
+    $sample=Game::create('Teste de Lance','São Paulo','SP','centroavante'); $sample['stage']='partida';
+    $index=Game::currentIndex($sample); $sample['matches'][$index]['status']='em_andamento'; $sample['matches'][$index]['minute']=15; $sample['matches'][$index]['exit']=90; $sample['matches'][$index]['lineup']='titular';
+    $sample=Game::command($sample,'choice',['option'=>($i%2?'1':'0')]); $stats=$sample['matches'][$index]['stats']; $highlight=$sample['feedback']['highlight']??null;
+    check(($stats['goals']===1)===($highlight==='goal'),'Destaque corresponde a gol do personagem');
+    check(($stats['assists']===1)===($highlight==='assist'),'Destaque corresponde a assistência do personagem');
+    check(($sample['feedback']['effects']['energia']??0)===-3,'Custo de campo visível no resultado');
+    if($highlight) $highlights[$highlight]++;
+}
+check($highlights['goal']>0 && $highlights['assist']>0,'Eventos pessoais observados no teste');
+echo "OK: destaques pessoais correspondem às estatísticas e não aos gols coletivos.\n";
 if(in_array('--mysql',$argv,true)) {
     $r=new Repository(Database::connect()); $account=null; $account2=null;
     try {

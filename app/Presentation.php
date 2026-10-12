@@ -6,11 +6,28 @@ final class Presentation {
         $rolled=isset($f['success']); $success=$rolled && $f['success'];
         $tone=$rolled?($success?'success':'failure'):'neutral';
         $title=$rolled?($success?($f['class']==='excepcional'?'Jogada excepcional!':'Deu certo!'):($f['class']==='falha_grave'?'Não foi desta vez':'Não deu certo')):'Novo capítulo';
-        echo '<aside class="action-result result-'.$tone.'" data-result-id="'.e($g['id'].':'.$g['version']).'" aria-live="polite">';
-        echo '<div class="result-icon" aria-hidden="true">'.($rolled?($success?'✓':'×'):'★').'</div><div class="result-copy"><small class="result-status">Resultado salvo</small><h2>'.e($title).'</h2><p>'.e($f['text']).'</p>';
-        echo '<button type="button" class="skip-result" hidden>Pular animação</button><details class="result-details"><summary>Ver efeitos</summary>';
-        foreach($f['effects']??[] as $k=>$v) echo '<span class="effect-chip">'.e(str_replace('_',' ',$k)).' '.e($v>=0?'+'.$v:$v).'</span>';
-        echo '</details></div></aside>';
+        $highlight=$f['highlight']??null;
+        if($highlight==='goal') $title='GOOOL! Você marcou!';
+        if($highlight==='assist') $title='Assistência sua!';
+        $text=str_replace([': a intenção deu certo.',': a intenção não teve o efeito esperado.'],'.',$f['text']);
+        echo '<aside class="action-result result-'.$tone.($highlight==='goal'?' result-goal':($highlight==='assist'?' result-assist':'')).'" data-result-id="'.e($g['id'].':'.$g['version']).'" aria-live="polite">';
+        echo '<div class="result-icon" aria-hidden="true">'.($highlight==='goal'?'⚽':($rolled?($success?'✓':'×'):'★')).'</div><div class="result-copy"><small class="result-status">Resultado salvo</small><h2>'.e($title).'</h2><p>'.e($text).'</p>';
+        echo '<button type="button" class="skip-result" hidden>Pular animação</button><div class="result-effects">';
+        foreach($f['effects']??[] as $k=>$v) echo '<span class="effect-chip">'.e(self::label($k)).' '.e($v>=0?'+'.$v:$v).'</span>';
+        echo '</div></div></aside>';
+    }
+    private static function label(string $k): string {
+        return strtr(ucfirst(str_replace('_',' ',$k)),['Confianca'=>'Confiança','Finalizacao'=>'Finalização','Visao'=>'Visão','Resistencia'=>'Resistência','Forca'=>'Força','lesao'=>'lesão','polemica'=>'polêmica','cartao'=>'cartão']);
+    }
+    public static function score(array $g,array $m): void {
+        echo '<article class="panel match compact-score"><div class="match-time">'.e(str_replace('_',' ',strtoupper($m['status']))).' · '.e($m['minute']).'′</div><div class="score-row"><span>'.e($m['home']).'</span><strong>'.e($m['hg']).' <small>×</small> '.e($m['ag']).'</strong><span>'.e($m['away']).'</span></div>';
+        echo '<div class="live-player-stats"><span>⚽ <b data-stat="goals">'.e($m['stats']['goals']).'</b> seus gols</span><span>↗ <b data-stat="assists">'.e($m['stats']['assists']).'</b> assistências</span></div></article>';
+    }
+    public static function radio(array $m): void {
+        if($m['status']!=='finalizada') return;
+        echo '<details class="panel match-radio"><summary>Rádio do jogo · resumo dos lances</summary>';
+        foreach($m['log'] as $l) echo '<p><b>'.e($l['minute']).'′</b> '.e($l['text']).'</p>';
+        echo '</details>';
     }
     public static function matchStats(array $g,array $m): void {
         $s=$m['stats'];

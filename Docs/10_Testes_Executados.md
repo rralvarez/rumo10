@@ -49,3 +49,11 @@ Executados: lint das views/helper, tests/presentation.php (totais finalizados, r
 Removida a referência redundante à posição no lance genérico: agora O adversário se aproxima. O que você faz? Todas as escolhas de partida, treino, pré-jogo e fim de semana exibem somente o nome da ação, sem probabilidades ou deltas de atributos/XP previstos. O resultado também não mostra chance nem número bruto do sorteio; efeitos efetivamente aplicados continuam disponíveis em Ver efeitos. Cálculos e auditoria no servidor foram preservados.
 
 Executados: lint da view, tests/presentation.php incluindo ausência de chance/sorteio/posição redundante e de metadados nas escolhas; tests/http.php com 29 verificações no IIS.
+
+## Partida compacta e configuração interna
+
+Efeitos efetivamente aplicados aparecem diretamente no resultado (sem Ver efeitos). Placar horizontal e contadores de gols/assistências do personagem em um único card; dados extras e histórico ficam fora da tela de partida em andamento. Rádio removido da partida e disponível apenas após finalizar, recolhido no pós-jogo. Menu reduzido a Carreira/Tabela/Sair; rota /clubes removida (404), catálogo mantido apenas como configuração/seed/CLI.
+
+Corrigida a propagação do texto dos lances para feedback persistido: gol e assistência pessoais agora geram destaque explícito. Gols coletivos não geram destaque pessoal. Custos reais de energia e XP extra do lance agora também constam nos efeitos mostrados; regras e probabilidades mantidas, sem migration ou reset de carreira.
+
+Executados: 30 temporadas nas seis posições; 200 lances de teste comparando highlights com gols/assistências nas estatísticas; temporada inteira com MySQL, replay, isolamento de contas e transferência; testes de apresentação para efeitos diretos, ausência do rádio ao vivo e destaque de gol/assistência; 29 verificações HTTP IIS e smoke com /clubes=404. Prévia fictícia 390×844: quatro escolhas inteiramente acima do menu, sem overflow horizontal (último botão em 575 px; menu em 779 px). Layout de 320×640 também ajustado mantendo botões com pelo menos 44 px; narrativas longas, fontes ampliadas ou telas menores ainda podem precisar de rolagem. Sem teste em dispositivo físico.

@@ -119,12 +119,12 @@ final class Game {
     private static function fieldDecision(array &$g,array $o,array $roll,int $sid,int $choice): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
         $type=$o['action']; $onBall=$sid===0 || $sid===7;
-        $text=$g['feedback']['text'];
+        $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
-            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if(random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $text.=' O companheiro marca: assistência!'; } } }
-            if($type==='chute') { $st['shots']++; if($roll['success'] && random_int(1,100)<=60) { $m[$own]++; $st['goals']++; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
+            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if(random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
+            if($type==='chute') { $st['shots']++; if($roll['success'] && random_int(1,100)<=60) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
-            if($type==='drible' && $roll['success']) self::effects(['drible'=>2],$roll,$g);
+            if($type==='drible' && $roll['success']) foreach(self::effects(['drible'=>2],$roll,$g) as $k=>$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
             // Simulação e agressão podem gerar falta/cartão; nunca dão gol automático.
             if($sid===7 && $choice===3) { $st['fouls']++; $st['cards']++; $text.=' O árbitro pune a simulação com cartão.'; }
         }
@@ -134,7 +134,7 @@ final class Game {
         if($st['cards']>=2) { $m['exit']=$m['minute']; $text.=' Expulso: segundo cartão.'; }
         elseif(random_int(1,1000)<=$g['states']['risco_lesao']) { $m['exit']=$m['minute']; $text.=' Lesão: você deixa o campo.'; }
         elseif($g['states']['energia']<15) { $m['exit']=$m['minute']; $text.=' Substituído por desgaste.'; }
-        $m['log'][]=['minute'=>$m['minute'],'text'=>$text]; self::nextSegment($g);
+        $g['feedback']['text']=$text; foreach($beforeStates as $k=>$v) if($g['states'][$k]!==$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$g['states'][$k]-$v; $m['log'][]=['minute'=>$m['minute'],'text'=>$text]; self::nextSegment($g);
     }
     private static function nextSegment(array &$g): void {
         $m=$g['matches'][self::currentIndex($g)]; $next=match($m['minute']) {15=>35,35=>45,60=>70,70=>80,80=>90,default=>90};
