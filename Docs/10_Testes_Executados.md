@@ -33,3 +33,13 @@ Comandos de reprodução completos no README. Para teste local HTTP com modo CLI
 O botão Criar conta compartilhava o formulário de login: clicar sem senha acionava a validação nativa, sem abrir uma tela de registro. Agora GET /register tem formulário próprio e Criar conta é um link de navegação. A senha mínima de 8 caracteres está visível; erro de cadastro preserva formulário/e-mail, sem preencher senha.
 
 Validação executada no IIS: tests/http.php passou com 26 verificações, incluindo GET /register, navegação independente de formulário, senha inválida com cadastro preservado e cadastro válido. Smoke HTTP passou incluindo /register=200. No navegador, clicar Criar conta com login vazio abriu a página Crie sua conta. Nenhuma conta pessoal foi alterada.
+
+## Interface mobile e desempenho do jogador
+
+Resultado decisório substituído por card com ícone e cores verde/vermelha, animação de apresentação de 650 ms, botão para pular e respeito a movimento reduzido. O número bruto do sorteio e os efeitos ficam em detalhes recolhidos; os sorteios continuam somente no PHP. SessionStorage marca a apresentação já vista; refresh não gera novo sorteio nem repete animação quando o armazenamento está disponível. Sem JS, o resultado permanece visível.
+
+Durante partidas: gols, assistências, finalizações e passes certos em faixa compacta; habilidades e estados recolhidos. Após partida: nota/minutos, total de gols/assistências/jogos na temporada e lista por rodada/adversário, antes da escolha de fim de semana. Total do campeonato inclui apenas partidas finalizadas; contador da partida mostra os lances em andamento. Estatísticas e regras existentes não foram alteradas, sem migration.
+
+Mobile: navegação inferior fixa, alvos de toque de pelo menos 44 px, cabeçalho compacto e cards responsivos. Estilos e JS recebem versão baseada no arquivo para evitar cache antigo após atualização.
+
+Executados: lint das views/helper, tests/presentation.php (totais finalizados, resultado de falha, escaping, ordenação do histórico), tests/http.php com 29 verificações no IIS incluindo comparação dos gols exibidos com o estado persistido, smoke HTTP de segurança. Prévia visual isolada com dados fictícios em largura 390×844 (largura DOM 375 sem overflow) e 1280×900. Refresh da prévia manteve total 4 e não repetiu animação. Nenhuma carreira pessoal foi usada na revisão visual.

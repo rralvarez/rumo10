@@ -78,3 +78,5 @@ Repita o roteiro HTTP de `tests/http-smoke.ps1 -BaseUrl https://seu-dominio`. N�
 - Migrations DDL MySQL não são transacionais; comandos CREATE IF NOT EXISTS permitem retomar uma instalação interrompida. A migration 001 é aditiva; futuras mudanças exigem novas versões. Sem downgrade automático.
 
 Evidências de execução e pendências estão em [Docs/10_Testes_Executados.md](Docs/10_Testes_Executados.md). Documentos 01–09 detalham regras e escolhas provisórias.
+
+A interface da carreira mostra resultado verde/vermelho com apresentação breve; detalhes de sorteio podem ser expandidos. Durante a partida, acompanhe seus gols no card de desempenho. Após o jogo, consulte Seus gols no campeonato e Gols por rodada antes de continuar o fim de semana. No celular, o menu fica na parte inferior e as habilidades ficam recolhidas. Para verificar os componentes sem MySQL: `php tests/presentation.php`.

@@ -35,12 +35,16 @@ try {
     $page=request('/carreira/handicap',$t); $replay=json_decode(request('/api/carreira/estado')['body'],true); verify($state===$replay,'Replay HTTP idempotente');
     $page=request('/decisao/registrar',tokens($page['body'],'/decisao/registrar')+['option'=>'1']); verify($page['status']===200,'Treino HTTP');
     $page=request('/decisao/registrar',tokens($page['body'],'/decisao/registrar')+['option'=>'1']); verify($page['status']===200,'Pré-jogo HTTP');
+    verify(str_contains($page['body'],'data-stat="goals">0'),'Contador de gols inicia na partida');
     for($i=0;$i<15;$i++) {
         $state=json_decode(request('/api/carreira/estado')['body'],true); if($state['stage']!=='partida') break;
         $path=str_contains($page['body'],'action="/partida/avancar"')?'/partida/avancar':'/partida/decidir';
         $page=request($path,tokens($page['body'],$path)+($path==='/partida/decidir'?['option'=>'1']:[])); verify($page['status']===200,'Partida HTTP');
     }
     $state=json_decode(request('/api/carreira/estado')['body'],true); verify($state['stage']==='fim_semana','Partida finalizada HTTP');
+    $match=$state['matches'][Game::currentIndex($state)];
+    verify(str_contains($page['body'],'data-stat="goals">'.$match['stats']['goals']), 'Gols mostrados correspondem ao banco');
+    verify(str_contains($page['body'],'data-stat="season-goals">'.Game::summary($state)['goals']), 'Histórico mostra total persistido do campeonato');
     $page=request('/decisao/registrar',tokens($page['body'],'/decisao/registrar')+['option'=>'1']); $state=json_decode(request('/api/carreira/estado')['body'],true); verify($state['round']===2 && $state['stage']==='treino','Rodada completa HTTP');
     $page=request('/classificacao'); verify($page['status']===200 && str_contains($page['body'],'Classificação'),'Tabela HTTP');
     $page=request('/carreira'); $t=tokens($page['body'],'/logout'); request('/logout',$t);
