@@ -27,3 +27,9 @@ IIS inicialmente retornou 500.0/0x80070003 por monitorChangesTo e depois 0x80070
 Apache/mod_rewrite/AllowOverride e HTTPS/Secure/HSTS de produção, concorrência simultânea em múltiplos processos, pentest, carga e dispositivos móveis reais não foram testados. NPCs/posse/estratégias são simplificados; S10/S11 continuam inelegíveis por ausência de patrocinador/rival, sem remoção do seed. Cores podem ser editadas via CLI, não existe painel web administrativo. Sem animação longa: roletas mostram fatias proporcionais e resultado imediato persistido.
 
 Comandos de reprodução completos no README. Para teste local HTTP com modo CLI isolado, carregue `pdo_mysql`, `mbstring` e `curl`; para motor/MySQL, apenas as duas primeiras. Não declare sucesso de produção a partir destas evidências locais.
+
+## Correção do cadastro
+
+O botão Criar conta compartilhava o formulário de login: clicar sem senha acionava a validação nativa, sem abrir uma tela de registro. Agora GET /register tem formulário próprio e Criar conta é um link de navegação. A senha mínima de 8 caracteres está visível; erro de cadastro preserva formulário/e-mail, sem preencher senha.
+
+Validação executada no IIS: tests/http.php passou com 26 verificações, incluindo GET /register, navegação independente de formulário, senha inválida com cadastro preservado e cadastro válido. Smoke HTTP passou incluindo /register=200. No navegador, clicar Criar conta com login vazio abriu a página Crie sua conta. Nenhuma conta pessoal foi alterada.

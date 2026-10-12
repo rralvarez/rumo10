@@ -23,7 +23,11 @@ $r=new Repository(Database::connect());
 try {
     $page=request('/login'); verify($page['status']===200,'Tela login');
     verify(str_contains(strtolower($page['headers']),'httponly') && str_contains(strtolower($page['headers']),'samesite=lax'),'Flags de cookie');
-    $t=tokens($page['body'],'/login');
+    verify(str_contains($page['body'],'href="/register"') && !str_contains($page['body'],'formaction="/register"'),'Criar conta navega sem validar o login');
+    $page=request('/register'); verify($page['status']===200 && str_contains($page['body'],'Crie sua conta'),'Tela própria de cadastro');
+    $t=tokens($page['body'],'/register');
+    $invalid=request('/register',$t+['email'=>$email,'password'=>'abc']);
+    verify($invalid['status']===422 && str_contains($invalid['body'],'action="/register"') && str_contains($invalid['body'],$email),'Erro mantém cadastro e e-mail');
     $page=request('/register',$t+['email'=>$email,'password'=>$password]); verify($page['status']===200,'Registro/login HTTP');
     $page=request('/carreira/criar',tokens($page['body'],'/carreira/criar')+['name'=>'Teste HTTP','city'=>'São Paulo','uf'=>'SP','position'=>'meia']); verify($page['status']===200,'Criação HTTP');
     $t=tokens($page['body'],'/carreira/handicap'); $page=request('/carreira/handicap',$t); verify($page['status']===200,'Handicap HTTP');
