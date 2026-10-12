@@ -1,0 +1,14 @@
+.env
+/storage/*
+!/storage/sessions/
+!/storage/logs/
+/storage/sessions/*
+/storage/logs/*
+!/storage/sessions/.gitkeep
+!/storage/logs/.gitkeep
+/vendor/
+*.log
+*.bak
+*.dump
+.idea/
+.vscode/

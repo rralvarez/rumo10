@@ -1,0 +1,29 @@
+# Evidências de execução — 12/10/2026
+
+Ambiente acessado de fato: Windows local, IIS 10 no site rumo10, PHP 8.4.26 FastCGI/CLI, MySQL local com banco ecohub. Apache/produção/HTTPS não foram acessados e **não foram testados**.
+
+## Executados
+
+- Leitura do briefing v0.2 e inspeção do repositório remoto: vazio, branch main. Pasta local inicial continha somente web.config; checkout posteriormente instalado nela.
+- Confirmação do binding `*:80:rumo10.local`, pool rumo10, módulo URL Rewrite e PHP 8.4.26 via FastCGI. Raiz pública ajustada para public/ pelo usuário em PowerShell administrativo.
+- Conexão com configuração local de UcronIA, sem imprimir credenciais. MySQL inicialmente retornou 1049 para ecohub. Banco criado após autorização explícita; inventário inicial zero tabelas externas. Migration 001 e seed executados; segunda instalação idempotente concluída, sem dados dos demais projetos alterados.
+- Lint de todos os 15 arquivos PHP finais, sem erro sintático. Warnings antigos de php_gd2/php_xmlrpc existem no php.ini global; CLI de verificação executada com `-n` e somente extensões necessárias, sem alterar configuração compartilhada.
+- `tests/run.php`: aproximadamente 28 mil verificações, 30 temporadas completas (cinco por cada uma das seis posições). Faixas, limites/monotonicidade, 20 mil sorteios empíricos, 56 jogos/14 rodadas, pares/mando, todos os times uma vez por rodada, tabela, stats de campo, handicap/proposta não repetíveis, 12×4 opções e 21 clubes/HEX.
+- `tests/run.php --mysql`: carreira descartável completou 14 rodadas com reload após cada comando, replay sem duplicação, token com payload alterado rejeitado, versão obsoleta rejeitada, proposta e transferência persistidas. Segunda conta preservada enquanto a primeira avançava. Cleanup limitado às contas descartáveis dessa execução.
+- `tests/http-smoke.ps1 -BaseUrl http://rumo10.local`: GET /, /login, /clubes e três assets retornam 200; API sem login 401; rota inexistente e /.env, /.git/config, /app/Config, /database/migrations, /tests/run.php e /README.md retornam 404; POST sem CSRF 403; PUT /login 405.
+- `tests/http.php http://rumo10.local`: 23 verificações de cadastro/login, cookie HttpOnly/SameSite, criação, handicap, replay via POST real, treino/pré-jogo/partida/fim de semana, rodada 2, classificação, logout, novo login com estado preservado, CSRF inválido sem alteração. Conta gerada e removida pelo próprio teste; não há credencial demo pública.
+- Servidor PHP local em loopback 127.0.0.1:8010: mesma lista de rotas/proteções passou. Isso não substitui teste Apache.
+- Inspeção visual no navegador in-app: landing em largura desktop 1280×900 e override mobile 390×844, com leitura DOM de largura efetiva 375/scrollWidth 375, sem overflow horizontal na landing. Overrides restaurados. Não houve teste em dispositivo físico nem inspeção de todas as etapas visuais.
+- `.env` confirmado ignorado; storage de sessões/logs ignorado, apenas .gitkeep versionado. Assets Bootstrap locais sem dependência de CDN durante execução.
+
+## Problemas observados e corrigidos
+
+O retorno de comando em memória tinha ordenação/tipos diferentes do estado recarregado: corrigido para retornar estado canônico lido dentro da transação. S9 verificava só a última linha do log, que era placar; agora detecta gol adversário no segmento atual. Tier final não oferece academia acima do teto.
+
+IIS inicialmente retornou 500.0/0x80070003 por monitorChangesTo e depois 0x80070005 por execução negada. Handler do jogo foi associado à instância PHP 8.4 alternativa já registrada, pelo usuário com `-RepairFastCgi`. ACLs confirmavam apenas UcronIAPool na pasta PHP; foi acrescentado RX a rumo10, sem remover ACLs existentes. Sessões/logs passaram a storage fora de public, com M limitado para pool/IUSR (impersonação FastCGI local). O diagnóstico detalhado temporário do IIS foi removido; respostas finais usam PassThrough e mensagens da aplicação sem stack trace.
+
+## Pendentes / limites
+
+Apache/mod_rewrite/AllowOverride e HTTPS/Secure/HSTS de produção, concorrência simultânea em múltiplos processos, pentest, carga e dispositivos móveis reais não foram testados. NPCs/posse/estratégias são simplificados; S10/S11 continuam inelegíveis por ausência de patrocinador/rival, sem remoção do seed. Cores podem ser editadas via CLI, não existe painel web administrativo. Sem animação longa: roletas mostram fatias proporcionais e resultado imediato persistido.
+
+Comandos de reprodução completos no README. Para teste local HTTP com modo CLI isolado, carregue `pdo_mysql`, `mbstring` e `curl`; para motor/MySQL, apenas as duas primeiras. Não declare sucesso de produção a partir destas evidências locais.

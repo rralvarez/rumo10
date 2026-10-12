@@ -1,0 +1,11 @@
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+RewriteEngine On
+RewriteRule (^|/)\. - [F,L]
+RewriteRule ^(app|database|tests|bin|storage|vendor|Docs)(/|$) - [F,L,NC]
+RewriteRule \.(env|ini|log|sql|bak|ya?ml|md|txt|config)$ - [F,L,NC]
+RewriteCond %{REQUEST_URI} !^/index\.php$
+RewriteRule \.php(/|$) - [F,L,NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
