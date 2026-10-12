@@ -22,7 +22,10 @@ if(in_array('--render',$argv??[],true)) { echo renderSample(in_array('--finished
 $g=sampleGame();
 if(Game::summary($g)['goals']!==2) throw new RuntimeException('Resumo inclui gol de partida em andamento.');
 $html=renderSample();
-foreach(['result-success','data-stat="goals">2','data-stat="season-goals">2','Habilidades e evolução','Ver efeitos e detalhes do sorteio'] as $text) if(!str_contains($html,$text)) throw new RuntimeException('Componente ausente: '.$text);
+foreach(['result-success','data-stat="goals">2','data-stat="season-goals">2','Habilidades e evolução','Ver efeitos','O adversário se aproxima. O que você faz?'] as $text) if(!str_contains($html,$text)) throw new RuntimeException('Componente ausente: '.$text);
+if(str_contains($html,'Chance') || str_contains($html,'/10000') || str_contains($html,'oportunidade como')) throw new RuntimeException('Detalhes técnicos ou posição redundante na narrativa.');
+preg_match_all('/<button class="choice"[^>]*>(.*?)<\/button>/s',$html,$choices);
+foreach($choices[1] as $choice) if(str_contains($choice,'<small>') || str_contains($choice,'XP ')) throw new RuntimeException('Escolha mostra atributos previstos.');
 $g['feedback']['success']=false; $g['feedback']['class']='falha'; $g['feedback']['text']='<script>alert(1)</script>';
 ob_start(); Presentation::feedback($g); $failure=ob_get_clean();
 if(!str_contains($failure,'result-failure') || str_contains($failure,'<script>')) throw new RuntimeException('Falha ou escaping do resultado incorreto.');

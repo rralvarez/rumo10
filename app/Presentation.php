@@ -8,9 +8,7 @@ final class Presentation {
         $title=$rolled?($success?($f['class']==='excepcional'?'Jogada excepcional!':'Deu certo!'):($f['class']==='falha_grave'?'Não foi desta vez':'Não deu certo')):'Novo capítulo';
         echo '<aside class="action-result result-'.$tone.'" data-result-id="'.e($g['id'].':'.$g['version']).'" aria-live="polite">';
         echo '<div class="result-icon" aria-hidden="true">'.($rolled?($success?'✓':'×'):'★').'</div><div class="result-copy"><small class="result-status">Resultado salvo</small><h2>'.e($title).'</h2><p>'.e($f['text']).'</p>';
-        if(isset($f['chance'])) echo '<span class="chance-pill">Chance desta ação: '.e($f['chance']).'%</span>';
-        echo '<button type="button" class="skip-result" hidden>Pular animação</button><details class="result-details"><summary>Ver efeitos'.($rolled?' e detalhes do sorteio':'').'</summary>';
-        if($rolled) echo '<p>Chance '.e($f['chance']).'% · sorteio '.e($f['roll']).'/10000 · '.e(str_replace('_',' ',$f['class'])).'</p>';
+        echo '<button type="button" class="skip-result" hidden>Pular animação</button><details class="result-details"><summary>Ver efeitos</summary>';
         foreach($f['effects']??[] as $k=>$v) echo '<span class="effect-chip">'.e(str_replace('_',' ',$k)).' '.e($v>=0?'+'.$v:$v).'</span>';
         echo '</details></div></aside>';
     }

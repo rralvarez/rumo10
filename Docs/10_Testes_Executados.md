@@ -43,3 +43,9 @@ Durante partidas: gols, assistências, finalizações e passes certos em faixa c
 Mobile: navegação inferior fixa, alvos de toque de pelo menos 44 px, cabeçalho compacto e cards responsivos. Estilos e JS recebem versão baseada no arquivo para evitar cache antigo após atualização.
 
 Executados: lint das views/helper, tests/presentation.php (totais finalizados, resultado de falha, escaping, ordenação do histórico), tests/http.php com 29 verificações no IIS incluindo comparação dos gols exibidos com o estado persistido, smoke HTTP de segurança. Prévia visual isolada com dados fictícios em largura 390×844 (largura DOM 375 sem overflow) e 1280×900. Refresh da prévia manteve total 4 e não repetiu animação. Nenhuma carreira pessoal foi usada na revisão visual.
+
+## Escolhas com narrativa direta
+
+Removida a referência redundante à posição no lance genérico: agora O adversário se aproxima. O que você faz? Todas as escolhas de partida, treino, pré-jogo e fim de semana exibem somente o nome da ação, sem probabilidades ou deltas de atributos/XP previstos. O resultado também não mostra chance nem número bruto do sorteio; efeitos efetivamente aplicados continuam disponíveis em Ver efeitos. Cálculos e auditoria no servidor foram preservados.
+
+Executados: lint da view, tests/presentation.php incluindo ausência de chance/sorteio/posição redundante e de metadados nas escolhas; tests/http.php com 29 verificações no IIS.
