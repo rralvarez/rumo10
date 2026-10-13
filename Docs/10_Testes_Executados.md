@@ -144,3 +144,10 @@ Verificado: lint PHP de PlayerProfile/view/index; teste de apresentação existe
 A pedido do usuário, as opções de partida exibem a porcentagem real de Game::chance, com duas casas decimais. Não há mudança de probabilidade ou de sorteio. Uma legenda esclarece que sucesso da ação não garante gol. Treinos, pré-jogo e fim de semana continuam sem porcentagens e sem atributos previstos.
 
 Verificado: lint da view e teste de apresentação, incluindo correspondência entre valor exibido e cálculo do motor nas quatro opções, além da ausência de chances nas três etapas fora de campo. Prévia GET isolada inspecionada no navegador em 390 × 844: quatro porcentagens visíveis, sem overflow horizontal. Evidência local storage/chances-partida-mobile.jpg. Não se simulou a carreira pessoal.
+
+
+## 13/10/2026 — ação única na roleta inicial
+
+O centro da roleta inicial passou a ser um botão submit real com o texto GIRAR / MEU PERFIL, dentro do formulário protegido de sorteio. Foram retirados o painel Pronto para girar e o botão separado abaixo. A instrução aparece como texto simples. Roletas com resultado salvo não oferecem novo botão de giro; animação, persistência e regras permanecem iguais.
+
+Verificado: lint de Wheel/view, testes de roleta e apresentação, 44 verificações HTTP no IIS local incluindo sorteio e replay. Prévia isolada em 390 × 844 conferida no navegador: único submit no formulário, botão no centro e nenhum overflow horizontal. Evidência storage/roleta-inicial-botao-mobile.jpg. Nenhuma carreira pessoal foi iniciada ou reiniciada para a verificação.

@@ -12,4 +12,7 @@ ob_start(); Wheel::render(Rules::HANDICAPS,'Disciplina de base','test-profile');
 if(!str_contains($html,'data-wheel-selected="1"') || !str_contains($html,'data-wheel-angle="216"') || !str_contains($html,'Disciplina de base')) throw new RuntimeException('Resultado persistido não renderizado.');
 ob_start(); Wheel::render([['nome'=>'<script>unsafe</script>','peso'=>1],['nome'=>'Outro','peso'=>1]],'<script>unsafe</script>','test'); $escaped=ob_get_clean();
 if(str_contains($escaped,'<script>')) throw new RuntimeException('Nome não escapado.');
+ob_start();Wheel::render(Rules::HANDICAPS,null,null,true);$idle=ob_get_clean();
+if(substr_count($idle,'type="submit"')!==1 || !str_contains($idle,'aria-label="Girar roleta e sortear meu perfil"') || str_contains($idle,'Pronto para girar') || str_contains($idle,'wheel-outcome'))throw new RuntimeException('Roleta inicial deve ter apenas um botão claro no centro.');
+if(str_contains($html,'wheel-trigger'))throw new RuntimeException('Resultado salvo não pode apresentar botão de novo sorteio.');
 echo "OK: setores proporcionais, orientação do ponteiro, resultado persistido e escaping.\n";

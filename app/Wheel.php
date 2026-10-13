@@ -12,10 +12,11 @@ final class Wheel {
         }
         return $out;
     }
-    public static function render(array $items,?string $selected=null,?string $id=null): void {
+    public static function render(array $items,?string $selected=null,?string $id=null,bool $interactive=false): void {
         $segments=self::segments($items,$selected); $winner=null;
         foreach($segments as $s) if($s['selected']) $winner=$s;
         if($selected!==null && !$winner) throw new InvalidArgumentException('Resultado não pertence à roleta.');
+        if($interactive && $winner)throw new InvalidArgumentException('Roleta já sorteada não pode ter botão de giro.');
         $target=$winner?fmod(360-$winner['mid']+360,360):0;
         $palette=['#234d48','#2c3f59','#4b4058','#4d4938','#284a59','#493d43','#304e42','#3d465c'];
         echo '<section class="career-wheel" data-wheel-id="'.e($id??'idle').'" data-wheel-angle="'.e($target).'" data-wheel-selected="'.($winner?'1':'0').'">';
@@ -27,8 +28,13 @@ final class Wheel {
             echo '<path d="'.e($d).'" fill="'.$color.'" stroke="#b2c9c3" stroke-opacity=".28" stroke-width="1.5"><title>'.e($s['name']).'</title></path>';
             echo '<text x="'.e(180+115*cos($mid)).'" y="'.e(180+115*sin($mid)).'" fill="#edf5ed" font-size="19" font-weight="700" text-anchor="middle" dominant-baseline="central">'.e(sprintf('%02d',$s['number'])).'</text>';
         }
-        echo '<circle cx="180" cy="180" r="164" fill="url(#wheel-light)"/><circle cx="180" cy="180" r="161" fill="none" stroke="#ebf4de" stroke-opacity=".15"/></g></svg><div class="wheel-hub" aria-hidden="true"><strong>R10</strong><span>CARREIRA</span></div></div></div>';
-        echo '<div class="wheel-outcome" aria-live="polite"><small class="wheel-status">'.($winner?'RESULTADO CONFIRMADO':'SEU PRÓXIMO CAPÍTULO').'</small><h3 class="wheel-winner">'.e($winner?$winner['name']:'Pronto para girar').'</h3><button class="wheel-skip" type="button" hidden>Pular animação</button></div><details class="wheel-candidates"><summary>Ver opções da roleta</summary><ol class="wheel-legend">';
+        echo '<circle cx="180" cy="180" r="164" fill="url(#wheel-light)"/><circle cx="180" cy="180" r="161" fill="none" stroke="#ebf4de" stroke-opacity=".15"/></g></svg>';
+        if($interactive)echo '<button class="wheel-hub wheel-trigger" type="submit" aria-label="Girar roleta e sortear meu perfil"><strong>GIRAR</strong><span>MEU PERFIL</span></button>';
+        else echo '<div class="wheel-hub" aria-hidden="true"><strong>R10</strong><span>CARREIRA</span></div>';
+        echo '</div></div>';
+        if($interactive)echo '<p class="wheel-hint">Toque em <b>GIRAR</b>, no centro da roleta.</p>';
+        else echo '<div class="wheel-outcome" aria-live="polite"><small class="wheel-status">'.($winner?'RESULTADO CONFIRMADO':'SEU PRÓXIMO CAPÍTULO').'</small><h3 class="wheel-winner">'.e($winner?$winner['name']:'Pronto para girar').'</h3><button class="wheel-skip" type="button" hidden>Pular animação</button></div>';
+        echo '<details class="wheel-candidates"><summary>Ver opções da roleta</summary><ol class="wheel-legend">';
         foreach($segments as $s) echo '<li class="'.($s['selected']?'wheel-winning-item':'').'"><span>'.e(sprintf('%02d',$s['number'])).'</span><b>'.e($s['name']).'</b></li>';
         echo '</ol></details></section>';
     }

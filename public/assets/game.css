@@ -28,6 +28,9 @@ header nav .new-career-link{color:var(--lime);font-weight:700}
 
 .entry-draw.wheel-drawing + .entry-offers{display:none}
 
+/* O centro é o único botão para sortear o perfil inicial. */
+.wheel-trigger{cursor:pointer;padding:0;color:#14241a;background:radial-gradient(circle at 30% 25%,#ecffae,#bbdc64 75%);border-color:#e5ffaf;transition:box-shadow .15s,background .15s}.wheel-trigger strong{font-size:17px;letter-spacing:.5px}.wheel-trigger span{font-size:7px;color:#355020;font-weight:700;letter-spacing:1px;margin-top:4px}.wheel-trigger:hover{background:#e4ffa3;box-shadow:0 0 0 5px #d2f36b22,0 4px 12px #0008}.wheel-trigger:focus-visible{outline:3px solid #f1ffc9;outline-offset:5px}.wheel-trigger:disabled{cursor:wait;opacity:.7}.wheel-hint{text-align:center;font-size:12px;color:var(--muted);margin:8px 0 14px;line-height:1.5}.wheel-hint b{color:var(--lime)}
+
 /* A probabilidade é exibida somente nas decisões em campo. */
 .choice-text{min-width:0;flex:1}.choice-chance{flex:0 0 auto;min-width:66px;text-align:right;margin-left:auto;line-height:1.2}.choice-chance strong{font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}.choice-chance small{font-size:9px;margin-top:3px}.chance-high strong{color:#a9e9aa}.chance-medium strong{color:#e8cb82}.chance-low strong{color:#f1a79d}.chance-caption{font-size:11px;color:var(--muted);margin:0 0 9px;line-height:1.4}.in-match .choice-chance small{font-size:9px}.in-match .choice-chance strong{font-size:13px}.in-match .chance-caption{font-size:10px;margin-bottom:6px}.in-match .choice-text{line-height:1.35}
 
