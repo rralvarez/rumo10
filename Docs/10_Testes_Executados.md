@@ -172,3 +172,12 @@ O teste inicial no IIS atingiu o limite de memória de 128 MiB ao manter cópias
 
 Reexecução final de `tests/europe.php`: 28.858 verificações aprovadas após ajustes de chaveamento e destino pós-acesso. PHP lint e apresentação aprovados.
 Regressão final: 8.750 verificações oficiais brasileiras e 27.980 verificações do motor regional (30 temporadas completas em seis posições), aprovadas.
+
+
+## 13/10/2026 — histórico geral e análise temporal/premiações
+
+A ficha `/jogador` agora soma jogos, gols e assistências da carreira inteira e mostra agrupamento por clube e linhas por temporada, incluindo temporada atual uma vez e preservando retornos ao mesmo clube. Arquivos de personagens diferentes não são somados. Resumos futuros conservam resultados de competições, sem concessão automática de prêmios.
+
+Verificado: nove testes de `tests/career-stats.php` (total, agregação, preservação após contrato, ausência de mutação, início sem clube e escaping); apresentação aprovada; lint PHP; 56 verificações HTTP no IIS/MySQL local, incluindo totalizador depois de contrato e estado intacto ao abrir a ficha. Conta descartável removida ao final.
+
+Análise em `Docs/15_Calendario_Historico_e_Premiacoes.md`: fontes CBF, Premier League/EFL, FIFA, AUF e LPF; diferença de temporadas, duas janelas, requisitos de data global e plantéis CPU para premiações justas. Calendário global, transferência de meio de ano e autoria de gols de NPCs ainda não implementados, e não foram declarados como testados. Apache/produção não acessados.

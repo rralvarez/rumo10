@@ -99,6 +99,9 @@ try {
     $page=request('/transferencia/responder',tokens($page['body'],'/transferencia/responder')+['accept'=>'no']);
     $state=json_decode(request('/api/carreira/estado')['body'],true);
     verify($page['status']===200 && $state['season']===2 && PlayMode::name($state)==='expresso' && !isset($state['pace_report']),'Nova temporada conserva modo e limpa resumo');
+    $profile=request('/jogador');$careerTotals=CareerStats::collect($state)['totals'];
+    verify($profile['status']===200 && str_contains($profile['body'],'data-career-stat="goals">'.$careerTotals['goals']) && str_contains($profile['body'],'data-career-stat="assists">'.$careerTotals['assists']),'Histórico geral exibido após contrato');
+    verify(json_decode(request('/api/carreira/estado')['body'],true)===$state,'Abrir histórico não altera carreira');
     echo "OK: $checks verificações HTTP em $base — conta, rodada, replay, refresh, tabela, logout/login e CSRF.\n";
 } finally {
     // Cleanup estritamente da conta descartável criada nesta execução.

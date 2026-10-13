@@ -17,7 +17,7 @@ final class PlayerProfile {
         $energy=$g['states']['energia'];$description=$g['states']['risco_lesao']>85?'Seu risco de lesão está alto. Priorize a recuperação antes da próxima rodada.':($energy<35?'O desgaste está alto. Vale priorizar sua recuperação.':($energy<65?'Você tem disposição, mas precisa administrar o esforço.':'Você está com boa disposição para a próxima rodada.'));
         echo '<p class="condition-caption">'.e($description).'</p></section></div><section class="profile-performance"><div class="profile-section-heading"><h2>Sua temporada</h2><span>EM CAMPO</span></div><div class="profile-stat-grid">';
         foreach(['games'=>'Jogos','goals'=>'Gols','assists'=>'Assistências','average'=>'Nota média'] as $key=>$label)echo '<div><strong>'.e($key==='average' && !$summary['games']?'—':$summary[$key]).'</strong><span>'.e($label).'</span></div>';
-        echo '</div></section><section class="profile-abilities"><div class="profile-section-heading"><h2>Habilidades e evolução</h2><span>SEU POTENCIAL</span></div><div class="ability-groups">';
+        echo '</div></section>';CareerStats::render($g);echo '<section class="profile-abilities"><div class="profile-section-heading"><h2>Habilidades e evolução</h2><span>SEU POTENCIAL</span></div><div class="ability-groups">';
         foreach(['Técnica'=>['passe','finalizacao','drible','desarme'],'Físico'=>['velocidade','resistencia','forca'],'Leitura de jogo'=>['visao_jogo','posicionamento']] as $title=>$keys){
             $group=(int)round(array_sum(array_map(fn($k)=>$g['skills'][$k]['value'],$keys))/count($keys));
             echo '<details class="ability-group"><summary><span>'.e($title).'</span><b>'.e($group).'</b></summary><div class="ability-body">';

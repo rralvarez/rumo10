@@ -119,6 +119,7 @@ final class Game {
             unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
             $summary['technical_average']=array_sum(array_column($g['skills'],'value'))/9;
+            if(!empty($g['official']))$summary['competitions']=$g['competition_results'];
             $selected=current(array_filter($g['offers'],fn($o)=>$o['selected']));
             if($input['accept']==='yes') { $g['club']=$selected['club']; $g['tier']=$selected['tier']; }
             $summary['next_club']=$g['club']; $g['history'][]=$summary;

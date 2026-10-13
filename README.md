@@ -34,6 +34,10 @@ Nesta máquina, a instância original FastCGI apresentou erro de monitoramento e
 ```
 
 Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação anônima com identidade do pool em produção, evitando compartilhamento de IUSR entre sites.
+## Histórico da carreira e próxima evolução
+
+A ficha `/jogador` mostra **Carreira inteira**, com jogos, gols e assistências acumulados, além de números por clube e temporada. [Análise de calendários, duas janelas de transferência e premiações](Docs/15_Calendario_Historico_e_Premiacoes.md). A sincronização de datas Brasil–Europa e as premiações individuais competitivas ainda dependem da evolução do motor; não confundir essa análise com funcionalidades implementadas.
+
 ## Europa e mercado internacional
 
 Incluídas duas divisões de Inglaterra, Espanha, Alemanha, Itália, França, Portugal, Países Baixos, Bélgica, Turquia e Escócia: 365 clubes com escudos locais e cores aproximadas. As propostas internacionais nas carreiras oficiais consideram desempenho, minutos, evolução e nível do clube. Aceitar uma proposta muda o campeonato no ano seguinte e preserva a carreira. A Europa entra no fechamento da temporada sem reset. [Funcionamento, fontes e adaptações dos regulamentos](Docs/14_Europa_e_Mercado_Internacional.md).
