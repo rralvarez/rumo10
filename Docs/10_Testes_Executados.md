@@ -137,3 +137,10 @@ Não executado: Apache de produção, telefone físico, certificação manual de
 Criada a página autenticada `/jogador`, acessível pelo nome do personagem e pelo cartão Habilidades e evolução. Cartão de identidade com escudo, nível técnico derivado da média das nove habilidades, condição física em barras, números da temporada, grupos de habilidades com XP e reputação/riscos recolhidos. Não altera regras, valores, carreira ou decisões pendentes.
 
 Verificado: lint PHP de PlayerProfile/view/index; teste de apresentação existente; 44 verificações HTTP no IIS local, incluindo abertura autenticada da ficha e estado da carreira intacto antes/depois. Prévia GET isolada conferida no navegador em desktop e 390 × 844: sem imagens quebradas ou overflow horizontal, expansão de Técnica com valores e barras de XP. Evidências locais em storage/jogador-mobile.jpg e storage/jogador-desktop.jpg. Não houve teste em telefone físico ou Apache.
+
+
+## 13/10/2026 — chance de sucesso somente em campo
+
+A pedido do usuário, as opções de partida exibem a porcentagem real de Game::chance, com duas casas decimais. Não há mudança de probabilidade ou de sorteio. Uma legenda esclarece que sucesso da ação não garante gol. Treinos, pré-jogo e fim de semana continuam sem porcentagens e sem atributos previstos.
+
+Verificado: lint da view e teste de apresentação, incluindo correspondência entre valor exibido e cálculo do motor nas quatro opções, além da ausência de chances nas três etapas fora de campo. Prévia GET isolada inspecionada no navegador em 390 × 844: quatro porcentagens visíveis, sem overflow horizontal. Evidência local storage/chances-partida-mobile.jpg. Não se simulou a carreira pessoal.

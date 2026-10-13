@@ -10,7 +10,7 @@ O motor usa 214 situações e 856 alternativas: 12 anteriores, 200 novas situaç
 
 A seleção ocorre no servidor, após o comando anterior, a partir de uma semente por carreira e uma chave com temporada, rodada, etapa e minuto. O ID ativo, a semente e a memória são persistidos no snapshot transacional. Recarregar não troca a situação. Uma carreira anterior mantém a decisão pendente e passa a receber as novas situações após a próxima ação. A auditoria dos novos comandos registra regras `0.5.0`.
 
-Alternativas usam mecânicas compartilhadas, mas textos e contextos são próprios. Não se criaram centenas de combinações artificiais do mesmo enunciado. As consequências continuam probabilísticas, com limites de atributos, XP, fadiga e riscos. Há nove famílias de textos de sucesso e um texto básico de falha; a variedade das consequências narradas pode ser ampliada futuramente. Chances e atributos das alternativas permanecem ocultos antes da escolha; somente efeitos efetivos aparecem depois.
+Alternativas usam mecânicas compartilhadas, mas textos e contextos são próprios. Não se criaram centenas de combinações artificiais do mesmo enunciado. As consequências continuam probabilísticas, com limites de atributos, XP, fadiga e riscos. Há nove famílias de textos de sucesso e um texto básico de falha; a variedade das consequências narradas pode ser ampliada futuramente. Durante a partida, cada alternativa exibe a chance de sucesso calculada pelo motor, com duas casas decimais. Isso indica execução da ação, não garantia de gol. Treino, pré-jogo e fim de semana continuam sem porcentagens. Os atributos previstos permanecem ocultos em todas as escolhas; somente efeitos efetivos aparecem depois.
 
 ## Overall: modelo de jogo
 
