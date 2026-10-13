@@ -2331,9 +2331,9 @@
     "badge_url": "https://fbf.com.bo/wp-content/uploads/2025/12/1-14-400x400.png",
     "colors_status": "approximate_badge_palette",
     "colors": [
-      "#204060",
-      "#E0E0E0",
-      "#60A080"
+      "#004060",
+      "#A00020",
+      "#00A0A0"
     ],
     "colors_source": "https://fbf.com.bo/torneos/division-profesional/"
   },
