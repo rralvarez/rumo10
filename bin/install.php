@@ -26,3 +26,5 @@ try {
     $after=$db->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN); if(array_diff($before,$after)) throw new RuntimeException('Inventário inesperado.');
     echo "Migration 001 e seed: 21 clubes, 12 situações e 48 opções. Nenhuma conta demo com senha pública. Registre sua conta na interface.\n";
 } catch(Throwable $e) { if(isset($db) && $db->inTransaction()) $db->rollBack(); fwrite(STDERR,'Instalação não concluída. Código: '.$e->getCode().'. Confira conexão e privilégios locais; sem credenciais no log.'.PHP_EOL); exit(1); }
+
+require __DIR__.'/install-official.php';

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require dirname(__DIR__).'/app/bootstrap.php';
 function sampleGame(bool $finished=false): array {
-    $g=Game::create('Jogador de teste','São Paulo','SP','meia'); $g['id']=0; $g['version']=42; $g['round']=2; $g['stage']=$finished?'fim_semana':'partida';
+    $g=Game::legacyCreate('Jogador de teste','São Paulo','SP','meia'); $g['id']=0; $g['version']=42; $g['round']=2; $g['stage']=$finished?'fim_semana':'partida';
     foreach($g['matches'] as &$match) if(in_array($g['club'],[$match['home'],$match['away']],true) && $match['round']<=2) {
         $match['status']=$match['round']===1 || $finished?'finalizada':'em_andamento';
         $match['minute']=$match['status']==='finalizada'?90:70; $match['lineup']='titular'; $match['entry']=0; $match['exit']=90;
@@ -36,6 +36,9 @@ if(!str_contains($goal,'GOOOL! Você marcou!')) throw new RuntimeException('Gol 
 $g['feedback']['highlight']='assist';
 ob_start(); Presentation::feedback($g); $assist=ob_get_clean();
 if(!str_contains($assist,'Assistência sua!')) throw new RuntimeException('Assistência sem destaque');
+$g['feedback']['effects']=['energia'=>-3,'confianca'=>5,'entrosamento'=>0];
+ob_start(); Presentation::feedback($g); $effects=ob_get_clean();
+if(str_contains($effects,'Entrosamento') || str_contains($effects,'Pular animação') || !str_contains($effects,'Confiança +5') || !str_contains($effects,'Energia -3')) throw new RuntimeException('Efeitos devem aparecer diretamente, sem zero ou botão de animação.');
 $finished=renderSample(true);
 if(!str_contains($finished,'data-stat="season-goals">4') || !str_contains($finished,'<details open>')) throw new RuntimeException('Histórico pós-jogo incorreto.');
 if(!str_contains($finished,'Rádio do jogo')) throw new RuntimeException('Pós-jogo sem rádio');

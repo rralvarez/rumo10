@@ -27,7 +27,7 @@ $clubs=json_decode(file_get_contents(dirname(__DIR__).'/database/clubs.json'),tr
 foreach($clubs as $c) foreach(['cor_primaria_hex','cor_secundaria_hex'] as $k) check((bool)preg_match('/^#[0-9A-F]{6}$/',$c[$k]),'HEX válido');
 foreach(Rules::POSITIONS as $position) {
     for($trial=0;$trial<5;$trial++) {
-        $g=Game::create('Jogador Teste','São Paulo','SP',$position); $g=Game::command($g,'handicap'); $profile=$g['handicap'];
+        $g=Game::legacyCreate('Jogador Teste','São Paulo','SP',$position); $g=Game::command($g,'handicap'); $profile=$g['handicap'];
         try { Game::command($g,'handicap'); check(false,'Roleta repetida proibida'); } catch(InvalidArgumentException) { check(true,'Roleta protegida'); }
         $steps=0;
         while($g['stage']!=='resumo' && $steps++<300) { [$cmd,$input]=nextCommand($g); $g=Game::command($g,$cmd,$input); }
@@ -45,7 +45,7 @@ foreach(Rules::POSITIONS as $position) {
 echo "OK: $checks verificações; 30 temporadas completas em seis posições.\n";
 $highlights=['goal'=>0,'assist'=>0];
 for($i=0;$i<200;$i++) {
-    $sample=Game::create('Teste de Lance','São Paulo','SP','centroavante'); $sample['stage']='partida';
+    $sample=Game::legacyCreate('Teste de Lance','São Paulo','SP','centroavante'); $sample['stage']='partida';
     $index=Game::currentIndex($sample); $sample['matches'][$index]['status']='em_andamento'; $sample['matches'][$index]['minute']=15; $sample['matches'][$index]['exit']=90; $sample['matches'][$index]['lineup']='titular';
     $sample=Game::command($sample,'choice',['option'=>($i%2?'1':'0')]); $stats=$sample['matches'][$index]['stats']; $highlight=$sample['feedback']['highlight']??null;
     check(($stats['goals']===1)===($highlight==='goal'),'Destaque corresponde a gol do personagem');
@@ -59,9 +59,9 @@ if(in_array('--mysql',$argv,true)) {
     $r=new Repository(Database::connect()); $account=null; $account2=null;
     try {
         $r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',['teste-'.bin2hex(random_bytes(8)).'@example.invalid',password_hash(bin2hex(random_bytes(16)),PASSWORD_DEFAULT)]); $account=(int)$r->db->lastInsertId();
-        $r->create($account,Game::create('Integração Teste','São Paulo','SP','meia')); $g=$r->load($account); $key=bin2hex(random_bytes(32));
+        $r->create($account,Game::legacyCreate('Integração Teste','São Paulo','SP','meia')); $g=$r->load($account); $key=bin2hex(random_bytes(32));
         $r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',['teste-isolamento-'.bin2hex(random_bytes(8)).'@example.invalid',password_hash(bin2hex(random_bytes(16)),PASSWORD_DEFAULT)]); $account2=(int)$r->db->lastInsertId();
-        $r->create($account2,Game::create('Outra Carreira','Santos','SP','zagueiro')); $untouched=$r->load($account2);
+        $r->create($account2,Game::legacyCreate('Outra Carreira','Santos','SP','zagueiro')); $untouched=$r->load($account2);
         $g=$r->command($account,'handicap',[],$key,0); $again=$r->command($account,'handicap',[],$key,0); check($g===$again,'Replay idempotente no banco');
         try { $r->command($account,'choice',['option'=>'1'],$key,0); check(false,'Payload diferente com mesma chave'); } catch(InvalidArgumentException) { check(true,'Hash de payload protegido'); }
         try { $r->command($account,'choice',['option'=>'1'],bin2hex(random_bytes(32)),0); check(false,'Versão obsoleta'); } catch(InvalidArgumentException) { check(true,'Versão protegida'); }

@@ -1,0 +1,993 @@
+[
+  {
+    "id": "br-a",
+    "name": "Brasileirão Série A",
+    "edition": 2026,
+    "tier": 4,
+    "family": "br",
+    "format": "league",
+    "teams": [
+      "Athletico-PR",
+      "Atlético-MG",
+      "Bahia-BA",
+      "Botafogo-RJ",
+      "Chapecoense-SC",
+      "Corinthians-SP",
+      "Coritiba-PR",
+      "Cruzeiro-MG",
+      "Flamengo-RJ",
+      "Fluminense-RJ",
+      "Grêmio-RS",
+      "Internacional-RS",
+      "Mirassol-SP",
+      "Palmeiras-SP",
+      "Red Bull Bragantino-SP",
+      "Remo-PA",
+      "Santos-SP",
+      "São Paulo-SP",
+      "Vasco-RJ",
+      "Vitória-BA"
+    ],
+    "groups": [
+      [
+        "Athletico-PR",
+        "Atlético-MG",
+        "Bahia-BA",
+        "Botafogo-RJ",
+        "Chapecoense-SC",
+        "Corinthians-SP",
+        "Coritiba-PR",
+        "Cruzeiro-MG",
+        "Flamengo-RJ",
+        "Fluminense-RJ",
+        "Grêmio-RS",
+        "Internacional-RS",
+        "Mirassol-SP",
+        "Palmeiras-SP",
+        "Red Bull Bragantino-SP",
+        "Remo-PA",
+        "Santos-SP",
+        "São Paulo-SP",
+        "Vasco-RJ",
+        "Vitória-BA"
+      ]
+    ],
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "verified_at": "2026-10-12"
+  },
+  {
+    "id": "br-b",
+    "name": "Brasileirão Série B",
+    "edition": 2026,
+    "tier": 3,
+    "family": "br",
+    "format": "b_playoff",
+    "teams": [
+      "América-MG",
+      "Athletic-MG",
+      "Atlético-GO",
+      "Avaí-SC",
+      "Botafogo-SP",
+      "Ceará-CE",
+      "CRB-AL",
+      "Criciúma-SC",
+      "Cuiabá-MT",
+      "Fortaleza-CE",
+      "Goiás-GO",
+      "Juventude-RS",
+      "Londrina-PR",
+      "Náutico-PE",
+      "Novorizontino-SP",
+      "Operário-PR",
+      "Ponte Preta-SP",
+      "São Bernardo FC-SP",
+      "Sport-PE",
+      "Vila Nova-GO"
+    ],
+    "groups": [
+      [
+        "América-MG",
+        "Athletic-MG",
+        "Atlético-GO",
+        "Avaí-SC",
+        "Botafogo-SP",
+        "Ceará-CE",
+        "CRB-AL",
+        "Criciúma-SC",
+        "Cuiabá-MT",
+        "Fortaleza-CE",
+        "Goiás-GO",
+        "Juventude-RS",
+        "Londrina-PR",
+        "Náutico-PE",
+        "Novorizontino-SP",
+        "Operário-PR",
+        "Ponte Preta-SP",
+        "São Bernardo FC-SP",
+        "Sport-PE",
+        "Vila Nova-GO"
+      ]
+    ],
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "verified_at": "2026-10-12"
+  },
+  {
+    "id": "br-c",
+    "name": "Brasileirão Série C",
+    "edition": 2026,
+    "tier": 2,
+    "family": "br",
+    "format": "quadrangular",
+    "teams": [
+      "Amazonas-AM",
+      "Anápolis-GO",
+      "Barra-SC",
+      "Botafogo-PB",
+      "Brusque-SC",
+      "Caxias-RS",
+      "Confiança-SE",
+      "Ferroviária-SP",
+      "Figueirense-SC",
+      "Floresta-CE",
+      "Guarani-SP",
+      "Inter de Limeira-SP",
+      "Itabaiana-SE",
+      "Ituano-SP",
+      "Maranhão-MA",
+      "Maringá-PR",
+      "Paysandu-PA",
+      "Santa Cruz-PE",
+      "Volta Redonda-RJ",
+      "Ypiranga-RS"
+    ],
+    "groups": [
+      [
+        "Amazonas-AM",
+        "Anápolis-GO",
+        "Barra-SC",
+        "Botafogo-PB",
+        "Brusque-SC",
+        "Caxias-RS",
+        "Confiança-SE",
+        "Ferroviária-SP",
+        "Figueirense-SC",
+        "Floresta-CE",
+        "Guarani-SP",
+        "Inter de Limeira-SP",
+        "Itabaiana-SE",
+        "Ituano-SP",
+        "Maranhão-MA",
+        "Maringá-PR",
+        "Paysandu-PA",
+        "Santa Cruz-PE",
+        "Volta Redonda-RJ",
+        "Ypiranga-RS"
+      ]
+    ],
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "verified_at": "2026-10-12"
+  },
+  {
+    "id": "br-d",
+    "name": "Brasileirão Série D",
+    "edition": 2026,
+    "tier": 1,
+    "family": "br",
+    "format": "d_knockout",
+    "teams": [
+      "Nacional-AM",
+      "Manaus-AM",
+      "Manauara-AM",
+      "GAS-RR",
+      "Monte Roraima-RR",
+      "São Raimundo-RR",
+      "Independência-AC",
+      "Galvez-AC",
+      "Humaitá-AC",
+      "Porto Velho-RO",
+      "Guaporé-RO",
+      "Araguaína-TO",
+      "Gama-DF",
+      "Brasiliense-DF",
+      "Luverdense-MT",
+      "Primavera-MT",
+      "Inhumas-GO",
+      "Aparecidense-GO",
+      "Capital-DF",
+      "Ceilândia-DF",
+      "Mixto-MT",
+      "Operário-MT",
+      "União-MT",
+      "Goiatuba-GO",
+      "Trem-AP",
+      "Oratório-AP",
+      "Tuna Luso-PA",
+      "Águia de Marabá-PA",
+      "Tocantinópolis-TO",
+      "Imperatriz-MA",
+      "Sampaio Corrêa-MA",
+      "Moto Club-MA",
+      "IAPE-MA",
+      "Maracanã-CE",
+      "Iguatu-CE",
+      "Parnahyba-PI",
+      "Ferroviário-CE",
+      "Tirol-CE",
+      "Atlético-CE",
+      "Altos-PI",
+      "Piauí-PI",
+      "Fluminense-PI",
+      "ABC-RN",
+      "América-RN",
+      "Laguna-RN",
+      "Sousa-PB",
+      "Maguary-PE",
+      "Central-PE",
+      "Retrô-PE",
+      "Decisão-PE",
+      "Serra Branca-PB",
+      "Treze-PB",
+      "Lagarto-SE",
+      "Sergipe-SE",
+      "ASA-AL",
+      "CSA-AL",
+      "CSE-AL",
+      "Jacuipense-BA",
+      "Atlético-BA",
+      "Juazeirense-BA",
+      "Uberlândia-MG",
+      "Betim-MG",
+      "CRAC-GO",
+      "ABECAT-GO",
+      "Operário-MS",
+      "Ivinhema-MS",
+      "Porto-BA",
+      "Rio Branco-ES",
+      "Vitória-ES",
+      "Real Noroeste-ES",
+      "Tombense-MG",
+      "Democrata GV-MG",
+      "Madureira-RJ",
+      "Portuguesa-RJ",
+      "America-RJ",
+      "Portuguesa-SP",
+      "Água Santa-SP",
+      "Pouso Alegre-MG",
+      "Nova Iguaçu-RJ",
+      "Sampaio Corrêa-RJ",
+      "Maricá-RJ",
+      "XV de Piracicaba-SP",
+      "Noroeste-SP",
+      "Velo Clube-SP",
+      "Cianorte-PR",
+      "FC Cascavel-PR",
+      "Santa Catarina-SC",
+      "Joinville-SC",
+      "Guarany de Bagé-RS",
+      "São Luiz-RS",
+      "Blumenau-SC",
+      "Marcílio Dias-SC",
+      "São Joseense-PR",
+      "Azuriz-PR",
+      "São José-RS",
+      "Brasil de Pelotas-RS"
+    ],
+    "groups": [
+      [
+        "Nacional-AM",
+        "Manaus-AM",
+        "Manauara-AM",
+        "GAS-RR",
+        "Monte Roraima-RR",
+        "São Raimundo-RR"
+      ],
+      [
+        "Independência-AC",
+        "Galvez-AC",
+        "Humaitá-AC",
+        "Porto Velho-RO",
+        "Guaporé-RO",
+        "Araguaína-TO"
+      ],
+      [
+        "Gama-DF",
+        "Brasiliense-DF",
+        "Luverdense-MT",
+        "Primavera-MT",
+        "Inhumas-GO",
+        "Aparecidense-GO"
+      ],
+      [
+        "Capital-DF",
+        "Ceilândia-DF",
+        "Mixto-MT",
+        "Operário-MT",
+        "União-MT",
+        "Goiatuba-GO"
+      ],
+      [
+        "Trem-AP",
+        "Oratório-AP",
+        "Tuna Luso-PA",
+        "Águia de Marabá-PA",
+        "Tocantinópolis-TO",
+        "Imperatriz-MA"
+      ],
+      [
+        "Sampaio Corrêa-MA",
+        "Moto Club-MA",
+        "IAPE-MA",
+        "Maracanã-CE",
+        "Iguatu-CE",
+        "Parnahyba-PI"
+      ],
+      [
+        "Ferroviário-CE",
+        "Tirol-CE",
+        "Atlético-CE",
+        "Altos-PI",
+        "Piauí-PI",
+        "Fluminense-PI"
+      ],
+      [
+        "ABC-RN",
+        "América-RN",
+        "Laguna-RN",
+        "Sousa-PB",
+        "Maguary-PE",
+        "Central-PE"
+      ],
+      [
+        "Retrô-PE",
+        "Decisão-PE",
+        "Serra Branca-PB",
+        "Treze-PB",
+        "Lagarto-SE",
+        "Sergipe-SE"
+      ],
+      [
+        "ASA-AL",
+        "CSA-AL",
+        "CSE-AL",
+        "Jacuipense-BA",
+        "Atlético-BA",
+        "Juazeirense-BA"
+      ],
+      [
+        "Uberlândia-MG",
+        "Betim-MG",
+        "CRAC-GO",
+        "ABECAT-GO",
+        "Operário-MS",
+        "Ivinhema-MS"
+      ],
+      [
+        "Porto-BA",
+        "Rio Branco-ES",
+        "Vitória-ES",
+        "Real Noroeste-ES",
+        "Tombense-MG",
+        "Democrata GV-MG"
+      ],
+      [
+        "Madureira-RJ",
+        "Portuguesa-RJ",
+        "America-RJ",
+        "Portuguesa-SP",
+        "Água Santa-SP",
+        "Pouso Alegre-MG"
+      ],
+      [
+        "Nova Iguaçu-RJ",
+        "Sampaio Corrêa-RJ",
+        "Maricá-RJ",
+        "XV de Piracicaba-SP",
+        "Noroeste-SP",
+        "Velo Clube-SP"
+      ],
+      [
+        "Cianorte-PR",
+        "FC Cascavel-PR",
+        "Santa Catarina-SC",
+        "Joinville-SC",
+        "Guarany de Bagé-RS",
+        "São Luiz-RS"
+      ],
+      [
+        "Blumenau-SC",
+        "Marcílio Dias-SC",
+        "São Joseense-PR",
+        "Azuriz-PR",
+        "São José-RS",
+        "Brasil de Pelotas-RS"
+      ]
+    ],
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "verified_at": "2026-10-12"
+  },
+  {
+    "id": "sp-a1",
+    "name": "Paulistão A1",
+    "edition": 2026,
+    "tier": 4,
+    "family": "sp",
+    "format": "paulista_swiss",
+    "teams": [
+      "Corinthians-SP",
+      "Palmeiras-SP",
+      "São Paulo-SP",
+      "Santos-SP",
+      "São Bernardo FC-SP",
+      "Novorizontino-SP",
+      "Red Bull Bragantino-SP",
+      "Mirassol-SP",
+      "Ponte Preta-SP",
+      "Guarani-SP",
+      "Velo Clube-SP",
+      "Portuguesa-SP",
+      "Botafogo-SP",
+      "Noroeste-SP",
+      "Capivariano-SP",
+      "Primavera-SP"
+    ],
+    "groups": [
+      [
+        "Corinthians-SP",
+        "Palmeiras-SP",
+        "São Paulo-SP",
+        "Santos-SP",
+        "São Bernardo FC-SP",
+        "Novorizontino-SP",
+        "Red Bull Bragantino-SP",
+        "Mirassol-SP",
+        "Ponte Preta-SP",
+        "Guarani-SP",
+        "Velo Clube-SP",
+        "Portuguesa-SP",
+        "Botafogo-SP",
+        "Noroeste-SP",
+        "Capivariano-SP",
+        "Primavera-SP"
+      ]
+    ],
+    "source": "https://futebolpaulista.com.br/Repositorio/Competicao/Regulamento/1551/1551_639002025107690404.pdf",
+    "verified_at": "2026-10-12",
+    "fixtures": [
+      {
+        "round": 1,
+        "home": "Velo Clube-SP",
+        "away": "Corinthians-SP"
+      },
+      {
+        "round": 1,
+        "home": "Santos-SP",
+        "away": "Palmeiras-SP"
+      },
+      {
+        "round": 1,
+        "home": "São Paulo-SP",
+        "away": "Primavera-SP"
+      },
+      {
+        "round": 1,
+        "home": "Portuguesa-SP",
+        "away": "Guarani-SP"
+      },
+      {
+        "round": 1,
+        "home": "Ponte Preta-SP",
+        "away": "Capivariano-SP"
+      },
+      {
+        "round": 1,
+        "home": "Mirassol-SP",
+        "away": "São Bernardo FC-SP"
+      },
+      {
+        "round": 1,
+        "home": "Noroeste-SP",
+        "away": "Botafogo-SP"
+      },
+      {
+        "round": 1,
+        "home": "Novorizontino-SP",
+        "away": "Red Bull Bragantino-SP"
+      },
+      {
+        "round": 2,
+        "home": "Corinthians-SP",
+        "away": "Palmeiras-SP"
+      },
+      {
+        "round": 2,
+        "home": "Ponte Preta-SP",
+        "away": "São Paulo-SP"
+      },
+      {
+        "round": 2,
+        "home": "Capivariano-SP",
+        "away": "São Bernardo FC-SP"
+      },
+      {
+        "round": 2,
+        "home": "Mirassol-SP",
+        "away": "Portuguesa-SP"
+      },
+      {
+        "round": 2,
+        "home": "Santos-SP",
+        "away": "Novorizontino-SP"
+      },
+      {
+        "round": 2,
+        "home": "Noroeste-SP",
+        "away": "Red Bull Bragantino-SP"
+      },
+      {
+        "round": 2,
+        "home": "Guarani-SP",
+        "away": "Velo Clube-SP"
+      },
+      {
+        "round": 2,
+        "home": "Botafogo-SP",
+        "away": "Primavera-SP"
+      },
+      {
+        "round": 3,
+        "home": "Ponte Preta-SP",
+        "away": "Corinthians-SP"
+      },
+      {
+        "round": 3,
+        "home": "São Bernardo FC-SP",
+        "away": "Noroeste-SP"
+      },
+      {
+        "round": 3,
+        "home": "São Paulo-SP",
+        "away": "Palmeiras-SP"
+      },
+      {
+        "round": 3,
+        "home": "Red Bull Bragantino-SP",
+        "away": "Santos-SP"
+      },
+      {
+        "round": 3,
+        "home": "Botafogo-SP",
+        "away": "Velo Clube-SP"
+      },
+      {
+        "round": 3,
+        "home": "Primavera-SP",
+        "away": "Guarani-SP"
+      },
+      {
+        "round": 3,
+        "home": "Capivariano-SP",
+        "away": "Portuguesa-SP"
+      },
+      {
+        "round": 3,
+        "home": "Novorizontino-SP",
+        "away": "Mirassol-SP"
+      },
+      {
+        "round": 4,
+        "home": "Corinthians-SP",
+        "away": "Capivariano-SP"
+      },
+      {
+        "round": 4,
+        "home": "Mirassol-SP",
+        "away": "São Paulo-SP"
+      },
+      {
+        "round": 4,
+        "home": "Santos-SP",
+        "away": "Noroeste-SP"
+      },
+      {
+        "round": 4,
+        "home": "Portuguesa-SP",
+        "away": "Primavera-SP"
+      },
+      {
+        "round": 4,
+        "home": "Velo Clube-SP",
+        "away": "Red Bull Bragantino-SP"
+      },
+      {
+        "round": 4,
+        "home": "São Bernardo FC-SP",
+        "away": "Novorizontino-SP"
+      },
+      {
+        "round": 4,
+        "home": "Guarani-SP",
+        "away": "Ponte Preta-SP"
+      },
+      {
+        "round": 4,
+        "home": "Palmeiras-SP",
+        "away": "Botafogo-SP"
+      },
+      {
+        "round": 5,
+        "home": "Corinthians-SP",
+        "away": "São Paulo-SP"
+      },
+      {
+        "round": 5,
+        "home": "Guarani-SP",
+        "away": "Santos-SP"
+      },
+      {
+        "round": 5,
+        "home": "Red Bull Bragantino-SP",
+        "away": "São Bernardo FC-SP"
+      },
+      {
+        "round": 5,
+        "home": "Novorizontino-SP",
+        "away": "Botafogo-SP"
+      },
+      {
+        "round": 5,
+        "home": "Palmeiras-SP",
+        "away": "Mirassol-SP"
+      },
+      {
+        "round": 5,
+        "home": "Velo Clube-SP",
+        "away": "Portuguesa-SP"
+      },
+      {
+        "round": 5,
+        "home": "Noroeste-SP",
+        "away": "Ponte Preta-SP"
+      },
+      {
+        "round": 5,
+        "home": "Primavera-SP",
+        "away": "Capivariano-SP"
+      },
+      {
+        "round": 6,
+        "home": "Corinthians-SP",
+        "away": "Santos-SP"
+      },
+      {
+        "round": 6,
+        "home": "São Paulo-SP",
+        "away": "Portuguesa-SP"
+      },
+      {
+        "round": 6,
+        "home": "São Bernardo FC-SP",
+        "away": "Ponte Preta-SP"
+      },
+      {
+        "round": 6,
+        "home": "Noroeste-SP",
+        "away": "Velo Clube-SP"
+      },
+      {
+        "round": 6,
+        "home": "Palmeiras-SP",
+        "away": "Guarani-SP"
+      },
+      {
+        "round": 6,
+        "home": "Primavera-SP",
+        "away": "Novorizontino-SP"
+      },
+      {
+        "round": 6,
+        "home": "Botafogo-SP",
+        "away": "Red Bull Bragantino-SP"
+      },
+      {
+        "round": 6,
+        "home": "Capivariano-SP",
+        "away": "Mirassol-SP"
+      },
+      {
+        "round": 7,
+        "home": "São Bernardo FC-SP",
+        "away": "Corinthians-SP"
+      },
+      {
+        "round": 7,
+        "home": "Santos-SP",
+        "away": "São Paulo-SP"
+      },
+      {
+        "round": 7,
+        "home": "Red Bull Bragantino-SP",
+        "away": "Mirassol-SP"
+      },
+      {
+        "round": 7,
+        "home": "Ponte Preta-SP",
+        "away": "Velo Clube-SP"
+      },
+      {
+        "round": 7,
+        "home": "Portuguesa-SP",
+        "away": "Palmeiras-SP"
+      },
+      {
+        "round": 7,
+        "home": "Novorizontino-SP",
+        "away": "Guarani-SP"
+      },
+      {
+        "round": 7,
+        "home": "Botafogo-SP",
+        "away": "Capivariano-SP"
+      },
+      {
+        "round": 7,
+        "home": "Primavera-SP",
+        "away": "Noroeste-SP"
+      },
+      {
+        "round": 8,
+        "home": "Red Bull Bragantino-SP",
+        "away": "Corinthians-SP"
+      },
+      {
+        "round": 8,
+        "home": "Palmeiras-SP",
+        "away": "Novorizontino-SP"
+      },
+      {
+        "round": 8,
+        "home": "São Paulo-SP",
+        "away": "São Bernardo FC-SP"
+      },
+      {
+        "round": 8,
+        "home": "Velo Clube-SP",
+        "away": "Santos-SP"
+      },
+      {
+        "round": 8,
+        "home": "Mirassol-SP",
+        "away": "Primavera-SP"
+      },
+      {
+        "round": 8,
+        "home": "Portuguesa-SP",
+        "away": "Ponte Preta-SP"
+      },
+      {
+        "round": 8,
+        "home": "Guarani-SP",
+        "away": "Botafogo-SP"
+      },
+      {
+        "round": 8,
+        "home": "Capivariano-SP",
+        "away": "Noroeste-SP"
+      }
+    ],
+    "calendar_note": "Adversários oficiais do sorteio de 2026; ordem das rodadas e mandos balanceados gerados para a simulação."
+  },
+  {
+    "id": "sp-a2",
+    "name": "Paulistão A2",
+    "edition": 2026,
+    "tier": 3,
+    "family": "sp",
+    "format": "quadrangular",
+    "teams": [
+      "Água Santa-SP",
+      "Inter de Limeira-SP",
+      "Ituano-SP",
+      "Taubaté-SP",
+      "Ferroviária-SP",
+      "XV de Piracicaba-SP",
+      "São José-SP",
+      "Santo André-SP",
+      "Grêmio Prudente-SP",
+      "Oeste-SP",
+      "Juventus-SP",
+      "Linense-SP",
+      "Votuporanguense-SP",
+      "São Bento-SP",
+      "Sertãozinho-SP",
+      "Monte Azul-SP"
+    ],
+    "groups": [
+      [
+        "Água Santa-SP",
+        "Inter de Limeira-SP",
+        "Ituano-SP",
+        "Taubaté-SP",
+        "Ferroviária-SP",
+        "XV de Piracicaba-SP",
+        "São José-SP",
+        "Santo André-SP",
+        "Grêmio Prudente-SP",
+        "Oeste-SP",
+        "Juventus-SP",
+        "Linense-SP",
+        "Votuporanguense-SP",
+        "São Bento-SP",
+        "Sertãozinho-SP",
+        "Monte Azul-SP"
+      ]
+    ],
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "verified_at": "2026-10-12"
+  },
+  {
+    "id": "sp-a3",
+    "name": "Paulistão A3",
+    "edition": 2026,
+    "tier": 2,
+    "family": "sp",
+    "format": "sp_knockout",
+    "teams": [
+      "Portuguesa Santista-SP",
+      "Rio Claro-SP",
+      "Marília-SP",
+      "Rio Branco-SP",
+      "Desportivo Brasil-SP",
+      "União São João-SP",
+      "Catanduva-SP",
+      "Itapirense-SP",
+      "Rio Preto-SP",
+      "União Suzano-SP",
+      "XV de Jaú-SP",
+      "Francana-SP",
+      "EC São Bernardo-SP",
+      "Bandeirante-SP",
+      "União Barbarense-SP",
+      "Paulista-SP"
+    ],
+    "groups": [
+      [
+        "Portuguesa Santista-SP",
+        "Rio Claro-SP",
+        "Marília-SP",
+        "Rio Branco-SP",
+        "Desportivo Brasil-SP",
+        "União São João-SP",
+        "Catanduva-SP",
+        "Itapirense-SP",
+        "Rio Preto-SP",
+        "União Suzano-SP",
+        "XV de Jaú-SP",
+        "Francana-SP",
+        "EC São Bernardo-SP",
+        "Bandeirante-SP",
+        "União Barbarense-SP",
+        "Paulista-SP"
+      ]
+    ],
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "verified_at": "2026-10-12"
+  },
+  {
+    "id": "sp-a4",
+    "name": "Paulistão A4",
+    "edition": 2026,
+    "tier": 1,
+    "family": "sp",
+    "format": "sp_advantage",
+    "teams": [
+      "Lemense-SP",
+      "Comercial-SP",
+      "Araçatuba-SP",
+      "Nacional-SP",
+      "Taquaritinga-SP",
+      "Jacareí-SP",
+      "São Caetano-SP",
+      "Colorado Caieiras-SP",
+      "Inter de Bebedouro-SP",
+      "VOCEM-SP",
+      "Jabaquara-SP",
+      "Penapolense-SP",
+      "Barretos-SP",
+      "Grêmio São-Carlense-SP",
+      "Tanabi-SP",
+      "ECUS-SP"
+    ],
+    "groups": [
+      [
+        "Lemense-SP",
+        "Comercial-SP",
+        "Araçatuba-SP",
+        "Nacional-SP",
+        "Taquaritinga-SP",
+        "Jacareí-SP",
+        "São Caetano-SP",
+        "Colorado Caieiras-SP",
+        "Inter de Bebedouro-SP",
+        "VOCEM-SP",
+        "Jabaquara-SP",
+        "Penapolense-SP",
+        "Barretos-SP",
+        "Grêmio São-Carlense-SP",
+        "Tanabi-SP",
+        "ECUS-SP"
+      ]
+    ],
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "verified_at": "2026-10-12"
+  },
+  {
+    "id": "sp-segunda",
+    "name": "Paulista Segunda Divisão Sub-23",
+    "edition": 2026,
+    "tier": 1,
+    "family": "sp",
+    "format": "sp_groups",
+    "teams": [
+      "América-SP",
+      "Assisense-SP",
+      "José Bonifácio-SP",
+      "Riopretano-SP",
+      "Santa Fé-SP",
+      "Tupã-SP",
+      "Santacruzense-SP",
+      "Grêmio Catanduvense-SP",
+      "Independente-SP",
+      "Mogi Mirim-SP",
+      "São Carlos-SP",
+      "Matonense-SP",
+      "Flamengo de Guarulhos-SP",
+      "AD Guarulhos-SP",
+      "Audax-SP",
+      "Paulínia FU-SP",
+      "Sporting Club Paulinense-SP",
+      "Votoraty-SP",
+      "Manthiqueira-SP",
+      "Barcelona Capela-SP",
+      "Mauaense-SP",
+      "Itaquaquecetuba-SP",
+      "Mauá-SP",
+      "União Mogi-SP"
+    ],
+    "groups": [
+      [
+        "América-SP",
+        "Assisense-SP",
+        "José Bonifácio-SP",
+        "Riopretano-SP",
+        "Santa Fé-SP",
+        "Tupã-SP"
+      ],
+      [
+        "Santacruzense-SP",
+        "Grêmio Catanduvense-SP",
+        "Independente-SP",
+        "Mogi Mirim-SP",
+        "São Carlos-SP",
+        "Matonense-SP"
+      ],
+      [
+        "Flamengo de Guarulhos-SP",
+        "AD Guarulhos-SP",
+        "Audax-SP",
+        "Paulínia FU-SP",
+        "Sporting Club Paulinense-SP",
+        "Votoraty-SP"
+      ],
+      [
+        "Manthiqueira-SP",
+        "Barcelona Capela-SP",
+        "Mauaense-SP",
+        "Itaquaquecetuba-SP",
+        "Mauá-SP",
+        "União Mogi-SP"
+      ]
+    ],
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "verified_at": "2026-10-12"
+  }
+]

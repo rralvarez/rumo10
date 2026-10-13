@@ -1,6 +1,8 @@
-# Rumo à Camisa 10 — protótipo 0.2
+# Rumo à Camisa 10 — protótipo 0.3
 
-RPG textual em português, PHP 8.2+, PDO MySQL, Bootstrap 5.3.3 local e JavaScript nativo. A liga regional é **fictícia**. Os 21 clubes reais são catálogo de referências, sem escudos e sem afirmações de divisão vigente. Nenhuma probabilidade ou alteração definitiva é decidida no navegador.
+RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **225 clubes participantes de 2026**, no Brasileirão A/B/C/D e Paulista A1/A2/A3/A4/Segunda Divisão. Clubes e formatos de 2026 têm fontes oficiais; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
+
+Para começar outra carreira na conta atual, abra **/carreira/nova**. A anterior será arquivada ao enviar o formulário; pode ser retomada em **/carreira/arquivadas**. Criar outra carreira não apaga a anterior.
 
 ## Instalação Windows / IIS
 
@@ -35,10 +37,10 @@ Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação
 ## Jogar e testar
 
 1. Abra [http://rumo10.local](http://rumo10.local), escolha começar e crie uma conta com senha exclusiva (8–72 caracteres). Não existem credenciais demo públicas; o cadastro local é o modo de teste rápido.
-2. Crie jogador, cidade/UF e posição. Sorteie o perfil inicial, recarregue e confirme que ele não muda.
+2. Crie jogador, cidade/UF, posição e escolha o clube de início. Sorteie o perfil inicial, recarregue e confirme que ele não muda.
 3. Escolha uma opção de treino e de pré-jogo. Inicie a partida. Resolva as oportunidades; avance o intervalo e, se estiver no banco ou fora de campo, os segmentos automáticos.
 4. Confira placar, estatísticas e `/classificacao`. Resolva o fim de semana para avançar a rodada. A recuperação semanal é mostrada separadamente do sorteio social.
-5. Repita até a rodada 14. Sorteie a proposta, aceite ou permaneça. A temporada seguinte inicia com novo calendário e mantém o jogador/XP/histórico.
+5. Complete a competição; fases classificatórias e mata-matas avançam conforme seus resultados. Se o clube também tiver competição nacional, use Continuar para jogá-la. Ao encerrar o ano, sorteie a proposta e aceite ou permaneça. A nova temporada aplica os acessos/rebaixamentos simulados e mantém jogador, XP e histórico.
 6. Saia e entre novamente. Crie outra conta para confirmar carreiras independentes. `/api/carreira/estado` retorna apenas a carreira da sessão.
 
 Não há botão que pula rodadas. Para concluir rapidamente a temporada, faça as escolhas sem animação (os resultados são imediatos). Para validar automaticamente 30 temporadas nas seis posições, rode:
@@ -71,15 +73,15 @@ Repita o roteiro HTTP de `tests/http-smoke.ps1 -BaseUrl https://seu-dominio`. N�
 ## Limitações atuais
 
 - NPCs usam placares simplificados; posse, estratégias coletivas e estatísticas completas das equipes ainda não são simuladas. Cinco oportunidades por titular (15, 35, 60, 70 e 80 minutos), menos para reserva/lesão/expulsão.
-- S10 e S11 estão preservadas no seed, porém ficam inelegíveis no universo piloto sem patrocinador/rival cadastrado. S12 é o fim de semana válido. A edição de cores é feita via CLI local (bin/club-colors.php), sem painel web administrativo. O catálogo público lê os registros MySQL.
-- Transferências são regionais/fictícias e admitem um nível por vez, sem salto para elite. Não há contratos financeiros, goleiros jogáveis, ligas oficiais, recuperação de senha ou verificação de e-mail.
+- S10 e S11 estão preservadas no seed, porém ficam inelegíveis sem patrocinador/rival cadastrado. S12 é o fim de semana válido. A edição de cores é feita via CLI local (bin/club-colors.php), sem painel web administrativo. Não existe catálogo público de configuração.
+- Transferências usam clubes reais e desempenho; não há contratos financeiros, goleiros jogáveis, recuperação de senha ou verificação de e-mail. Copa do Brasil, Copa Paulista, outras federações estaduais, competições femininas e de base estão fora do escopo desta versão.
 - Sessões e logs usam storage/sessions e storage/logs fora da raiz pública; configure permissões e garbage collection. Sem uploads. URLs supõem instalação na raiz do domínio; APP_URL registra a base por ambiente, links são relativos à raiz.
-- Schema concentra identidade de jogador em carreira e usa tabelas de atributos/estados por chave com CHECK/FKs; não há blob opaco de estado. JSON é reservado a efeitos configuráveis, auditoria e resumos históricos.
+- Migration 002 adiciona catálogo oficial e um snapshot JSON transacional por carreira para o universo de competições. Atributos/estados e auditoria continuam consultáveis em tabelas relacionais. O snapshot inclui fases, jogos, classificação, mercado e participações; é validado pelo motor no servidor.
 - Migrations DDL MySQL não são transacionais; comandos CREATE IF NOT EXISTS permitem retomar uma instalação interrompida. A migration 001 é aditiva; futuras mudanças exigem novas versões. Sem downgrade automático.
 
 Evidências de execução e pendências estão em [Docs/10_Testes_Executados.md](Docs/10_Testes_Executados.md). Documentos 01–09 detalham regras e escolhas provisórias.
 
-A interface da carreira mostra resultado verde/vermelho com apresentação breve; detalhes de sorteio podem ser expandidos. Durante a partida, acompanhe seus gols no card de desempenho. Após o jogo, consulte Seus gols no campeonato e Gols por rodada antes de continuar o fim de semana. No celular, o menu fica na parte inferior e as habilidades ficam recolhidas. Para verificar os componentes sem MySQL: `php tests/presentation.php`.
+A interface mostra o resultado e somente os efeitos efetivos, sem +0 nem botão de pular nos resultados comuns. Durante a partida, acompanhe gols e assistências. Após o jogo, a próxima decisão precede o histórico recolhido. No celular, o menu fica na parte inferior e as habilidades ficam recolhidas. Teste: `php tests/presentation.php`.
 
 Durante a partida, a tela concentra resultado, efeitos já aplicados, placar, gols/assistências pessoais e a decisão atual. Rádio e estatísticas completas ficam no pós-jogo. O catálogo de clubes é configuração interna via seed/CLI; não há menu nem rota pública /clubes.
 
@@ -88,3 +90,16 @@ Durante a partida, a tela concentra resultado, efeitos já aplicados, placar, go
 A roleta apresenta o resultado salvo pelo servidor com giro e desaceleração. É possível pular a animação; recarregar não sorteia novamente. Preferência por movimento reduzido mostra o resultado diretamente. No pós-jogo e no encerramento, a próxima decisão vem antes dos detalhes recolhidos. O resumo da temporada usa os pontos, posição, gols e assistências da carreira.
 
 Testes adicionais de apresentação: `php tests/wheel.php` e `php tests/season-presentation.php`.
+
+
+### Competições e testes da versão 0.3
+
+Consulte [clubes, formatos, fontes e simplificações](Docs/05_Clubes_e_Competicoes.md). O estadual e o nacional são jogados em sequência; a agenda não reproduz datas/horários oficiais nem sobreposição de torneios. Edições seguintes seguem um universo de carreira, com regras simplificadas para expansão da Série C e reposição de vagas da Série D, não listas oficiais de 2027 em diante.
+
+Em instalação existente, execute `php bin/install-official.php`; numa instalação nova, `php bin/install.php` já aplica 001 e 002. Não há necessidade de refazer o IIS.
+
+- `php tests/official.php`: nove formatos, calendário, acessos, anos completos e mercado.
+- `php tests/official-mysql.php`: carreira descartável, persistência de duas competições, transferência, arquivo e restauração.
+- `php tests/http.php http://rumo10.local`: fluxo HTTP real no IIS, incluindo nova carreira e restauração.
+
+Os testes usam contas descartáveis e preservam sua conta e sua campanha.

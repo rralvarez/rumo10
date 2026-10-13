@@ -1,0 +1,1821 @@
+[
+  {
+    "name": "Athletico-PR",
+    "uf": "PR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Atlético-MG",
+    "uf": "MG",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Bahia-BA",
+    "uf": "BA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Botafogo-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Chapecoense-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Corinthians-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Coritiba-PR",
+    "uf": "PR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Cruzeiro-MG",
+    "uf": "MG",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Flamengo-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Fluminense-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Grêmio-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Internacional-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Mirassol-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Palmeiras-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Red Bull Bragantino-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Remo-PA",
+    "uf": "PA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Santos-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "São Paulo-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Vasco-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "Vitória-BA",
+    "uf": "BA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+    "competitions": [
+      "br-a"
+    ]
+  },
+  {
+    "name": "América-MG",
+    "uf": "MG",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Athletic-MG",
+    "uf": "MG",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Atlético-GO",
+    "uf": "GO",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Avaí-SC",
+    "uf": "SC",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Botafogo-SP",
+    "uf": "SP",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Ceará-CE",
+    "uf": "CE",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "CRB-AL",
+    "uf": "AL",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Criciúma-SC",
+    "uf": "SC",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Cuiabá-MT",
+    "uf": "MT",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Fortaleza-CE",
+    "uf": "CE",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Goiás-GO",
+    "uf": "GO",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Juventude-RS",
+    "uf": "RS",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Londrina-PR",
+    "uf": "PR",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Náutico-PE",
+    "uf": "PE",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Novorizontino-SP",
+    "uf": "SP",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Operário-PR",
+    "uf": "PR",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Ponte Preta-SP",
+    "uf": "SP",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "São Bernardo FC-SP",
+    "uf": "SP",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Sport-PE",
+    "uf": "PE",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Vila Nova-GO",
+    "uf": "GO",
+    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "competitions": [
+      "br-b"
+    ]
+  },
+  {
+    "name": "Amazonas-AM",
+    "uf": "AM",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Anápolis-GO",
+    "uf": "GO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Barra-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Botafogo-PB",
+    "uf": "PB",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Brusque-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Caxias-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Confiança-SE",
+    "uf": "SE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Ferroviária-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c",
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Figueirense-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Floresta-CE",
+    "uf": "CE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Guarani-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Inter de Limeira-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c",
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Itabaiana-SE",
+    "uf": "SE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Ituano-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c",
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Maranhão-MA",
+    "uf": "MA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Maringá-PR",
+    "uf": "PR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Paysandu-PA",
+    "uf": "PA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Santa Cruz-PE",
+    "uf": "PE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Volta Redonda-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Ypiranga-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+    "competitions": [
+      "br-c"
+    ]
+  },
+  {
+    "name": "Nacional-AM",
+    "uf": "AM",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Manaus-AM",
+    "uf": "AM",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Manauara-AM",
+    "uf": "AM",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "GAS-RR",
+    "uf": "RR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Monte Roraima-RR",
+    "uf": "RR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "São Raimundo-RR",
+    "uf": "RR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Independência-AC",
+    "uf": "AC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Galvez-AC",
+    "uf": "AC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Humaitá-AC",
+    "uf": "AC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Porto Velho-RO",
+    "uf": "RO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Guaporé-RO",
+    "uf": "RO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Araguaína-TO",
+    "uf": "TO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Gama-DF",
+    "uf": "DF",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Brasiliense-DF",
+    "uf": "DF",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Luverdense-MT",
+    "uf": "MT",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Primavera-MT",
+    "uf": "MT",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Inhumas-GO",
+    "uf": "GO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Aparecidense-GO",
+    "uf": "GO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Capital-DF",
+    "uf": "DF",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Ceilândia-DF",
+    "uf": "DF",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Mixto-MT",
+    "uf": "MT",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Operário-MT",
+    "uf": "MT",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "União-MT",
+    "uf": "MT",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Goiatuba-GO",
+    "uf": "GO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Trem-AP",
+    "uf": "AP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Oratório-AP",
+    "uf": "AP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Tuna Luso-PA",
+    "uf": "PA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Águia de Marabá-PA",
+    "uf": "PA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Tocantinópolis-TO",
+    "uf": "TO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Imperatriz-MA",
+    "uf": "MA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Sampaio Corrêa-MA",
+    "uf": "MA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Moto Club-MA",
+    "uf": "MA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "IAPE-MA",
+    "uf": "MA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Maracanã-CE",
+    "uf": "CE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Iguatu-CE",
+    "uf": "CE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Parnahyba-PI",
+    "uf": "PI",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Ferroviário-CE",
+    "uf": "CE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Tirol-CE",
+    "uf": "CE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Atlético-CE",
+    "uf": "CE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Altos-PI",
+    "uf": "PI",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Piauí-PI",
+    "uf": "PI",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Fluminense-PI",
+    "uf": "PI",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "ABC-RN",
+    "uf": "RN",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "América-RN",
+    "uf": "RN",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Laguna-RN",
+    "uf": "RN",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Sousa-PB",
+    "uf": "PB",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Maguary-PE",
+    "uf": "PE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Central-PE",
+    "uf": "PE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Retrô-PE",
+    "uf": "PE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Decisão-PE",
+    "uf": "PE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Serra Branca-PB",
+    "uf": "PB",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Treze-PB",
+    "uf": "PB",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Lagarto-SE",
+    "uf": "SE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Sergipe-SE",
+    "uf": "SE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "ASA-AL",
+    "uf": "AL",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "CSA-AL",
+    "uf": "AL",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "CSE-AL",
+    "uf": "AL",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Jacuipense-BA",
+    "uf": "BA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Atlético-BA",
+    "uf": "BA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Juazeirense-BA",
+    "uf": "BA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Uberlândia-MG",
+    "uf": "MG",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Betim-MG",
+    "uf": "MG",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "CRAC-GO",
+    "uf": "GO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "ABECAT-GO",
+    "uf": "GO",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Operário-MS",
+    "uf": "MS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Ivinhema-MS",
+    "uf": "MS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Porto-BA",
+    "uf": "BA",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Rio Branco-ES",
+    "uf": "ES",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Vitória-ES",
+    "uf": "ES",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Real Noroeste-ES",
+    "uf": "ES",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Tombense-MG",
+    "uf": "MG",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Democrata GV-MG",
+    "uf": "MG",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Madureira-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Portuguesa-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "America-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Portuguesa-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Água Santa-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Pouso Alegre-MG",
+    "uf": "MG",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Nova Iguaçu-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Sampaio Corrêa-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Maricá-RJ",
+    "uf": "RJ",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "XV de Piracicaba-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Noroeste-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Velo Clube-SP",
+    "uf": "SP",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Cianorte-PR",
+    "uf": "PR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "FC Cascavel-PR",
+    "uf": "PR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Santa Catarina-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Joinville-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Guarany de Bagé-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "São Luiz-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Blumenau-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Marcílio Dias-SC",
+    "uf": "SC",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "São Joseense-PR",
+    "uf": "PR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Azuriz-PR",
+    "uf": "PR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "São José-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Brasil de Pelotas-RS",
+    "uf": "RS",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d"
+    ]
+  },
+  {
+    "name": "Capivariano-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Competicao/Regulamento/1551/1551_639002025107690404.pdf",
+    "competitions": [
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Primavera-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Competicao/Regulamento/1551/1551_639002025107690404.pdf",
+    "competitions": [
+      "sp-a1"
+    ]
+  },
+  {
+    "name": "Taubaté-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "São José-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Santo André-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Grêmio Prudente-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Oeste-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Juventus-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Linense-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Votuporanguense-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "São Bento-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Sertãozinho-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Monte Azul-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+    "competitions": [
+      "sp-a2"
+    ]
+  },
+  {
+    "name": "Portuguesa Santista-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Rio Claro-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Marília-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Rio Branco-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Desportivo Brasil-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "União São João-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Catanduva-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Itapirense-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Rio Preto-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "União Suzano-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "XV de Jaú-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Francana-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "EC São Bernardo-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Bandeirante-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "União Barbarense-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Paulista-SP",
+    "uf": "SP",
+    "source": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+    "competitions": [
+      "sp-a3"
+    ]
+  },
+  {
+    "name": "Lemense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Comercial-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Araçatuba-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Nacional-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Taquaritinga-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Jacareí-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "São Caetano-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Colorado Caieiras-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Inter de Bebedouro-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "VOCEM-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Jabaquara-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Penapolense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Barretos-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Grêmio São-Carlense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "Tanabi-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "ECUS-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+    "competitions": [
+      "sp-a4"
+    ]
+  },
+  {
+    "name": "América-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Assisense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "José Bonifácio-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Riopretano-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Santa Fé-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Tupã-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Santacruzense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Grêmio Catanduvense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Independente-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Mogi Mirim-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "São Carlos-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Matonense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Flamengo de Guarulhos-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "AD Guarulhos-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Audax-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Paulínia FU-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Sporting Club Paulinense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Votoraty-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Manthiqueira-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Barcelona Capela-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Mauaense-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Itaquaquecetuba-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "Mauá-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  },
+  {
+    "name": "União Mogi-SP",
+    "uf": "SP",
+    "source": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+    "competitions": [
+      "sp-segunda"
+    ]
+  }
+]

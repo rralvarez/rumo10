@@ -67,3 +67,23 @@ Pós-jogo: resultado e decisão antes do histórico/radio. Encerramento: próxim
 Executado: PHP lint dos arquivos alterados; tests/presentation.php, tests/wheel.php, tests/season-presentation.php; tests/run.php (27.979 verificações, 30 temporadas em seis posições); tests/http.php (29 verificações no IIS em http://rumo10.local). Verificação visual de propostas, resumo e pós-jogo em navegador com viewport 390 × 844 usando fixtures isoladas sem banco. Confirmado término natural do giro e botões visíveis acima do menu. Pular e recarregar foram conferidos durante o desenvolvimento anterior desta mesma alteração.
 
 Limites: Apache e aparelho celular físico não testados. A animação apresenta o sorteio previamente salvo; o realismo adicional nesta rodada é narrativo e de fluxo, sem novos contratos, salários ou agentes.
+
+## 12/10/2026 — clubes e campeonatos de 2026, versão 0.3
+
+Recorte confirmado pelo usuário: participantes masculinos profissionais de 2026 no Brasileiro A/B/C/D e Paulista A1/A2/A3/A4/Segunda Divisão. Cadastro: 225 clubes distintos, 244 participações e nove competições, fontes registradas em Docs/05_Clubes_e_Competicoes.md e no catálogo JSON. Não foram incluídos clubes inativos. Jacareí FC utiliza a vaga do ex-Joseense; ECUS é outro clube.
+
+Implementação: calendário variável, grupos, quadrangulares, mata-matas, pênaltis, playoffs de B/D, títulos, acesso/descenso, mercado com clubes reais, estadual/nacional em sequência, snapshot transacional e carreira nova com arquivo/restauração por conta. Migration 002 executada em ecohub somente para rumo10_*. Carreira pessoal existente preservada, sem simulação ou conversão nesta atualização.
+
+Executado nesta rodada:
+
+- PHP lint de app, index, instaladores e testes novos; node --check public/assets/game.js.
+- tests/official.php: 8.534 verificações; competições concluídas com 380 jogos A, 384 B, 216 C, 610 D, 72 A1, 150 A2, 134 A3, 134 A4 e 150 Segunda; anos completos de São Caetano, Água Santa, Corinthians e Nacional-AM, com mercado e próxima temporada.
+- tests/official-mysql.php: 381 verificações na execução final; ano completo de Água Santa com A2 e D, reload exato, replay, transferência, arquivo/restauração e isolamento por conta. Conta temporária descartada pelo próprio teste.
+- tests/http.php: 34 verificações reais no IIS em http://rumo10.local; cadastro, rodada, persistência, CSRF, criação de segunda carreira e restauração da primeira.
+- tests/http-smoke.ps1: rotas, arquivos privados bloqueados, API protegida, CSRF e método inválido.
+- tests/run.php: 30 temporadas completas legadas em seis posições, preservando compatibilidade.
+- tests/presentation.php e tests/season-presentation.php: resultado e efeitos diretos; +0 oculto; sem botão Pular animação no feedback comum; ordem da continuação antes dos detalhes.
+- tests/wheel.php: setores, alinhamento e resultado persistido preservados.
+- Navegador: criação com 225 opções, encerramento de campeonato com ação em destaque, tabela A4 e feedback sem efeito zero; viewport 390 × 844, fixtures sem banco.
+
+Limitações verificáveis: sem acesso/teste em Apache ou celular físico. Datas/horários e simultaneidade real não reproduzidos; formatos e participantes iniciais de 2026 são a base. Temporadas posteriores e reposição de vagas D usam adaptações documentadas; não se afirma regulamentação integral de 2027/2028. Identidade visual dos 225 clubes não foi certificada.

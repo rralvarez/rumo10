@@ -1,7 +1,10 @@
 <?php
 declare(strict_types=1);
 final class Game {
-    public static function create(string $name,string $city,string $uf,string $position): array {
+    public static function create(string $name,string $city,string $uf,string $position,?string $club=null): array {
+        return Competition::attach(self::legacyCreate($name,$city,$uf,$position),$club??'São Caetano-SP');
+    }
+    public static function legacyCreate(string $name,string $city,string $uf,string $position): array {
         if(!in_array($position,Rules::POSITIONS,true) || mb_strlen($name)<2 || mb_strlen($name)>60 || mb_strlen($city)<2 || mb_strlen($city)>80 || !in_array($uf,explode(' ','AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'),true)) throw new InvalidArgumentException('Confira nome, cidade, UF e posição.');
         $skills=[]; foreach(Rules::SKILLS as $k) $skills[$k]=['value'=>45,'xp'=>0];
         $main=['zagueiro'=>'desarme','lateral'=>'velocidade','volante'=>'posicionamento','meia'=>'passe','ponta'=>'drible','centroavante'=>'finalizacao'][$position]; $skills[$main]['value']=55;
@@ -72,7 +75,8 @@ final class Game {
                 $m['entry']=$absent?90:($bench?60:0); $m['exit']=90; $m['status']='pre_jogo'; $g['stage']='partida';
             } elseif($g['stage']==='fim_semana') {
                 $g['states']['energia']=self::clamp($g['states']['energia']+20); $g['states']['risco_lesao']=self::clamp($g['states']['risco_lesao']-10); $g['states']['risco_cartao']=self::clamp($g['states']['risco_cartao']-10);
-                if($g['round']===14) $g['stage']='resumo'; else { $g['round']++; $g['stage']='treino'; }
+                if(!empty($g['official'])) Competition::afterWeekend($g);
+                elseif($g['round']===14) $g['stage']='resumo'; else { $g['round']++; $g['stage']='treino'; }
             } else self::fieldDecision($g,$o,$roll,$s['id']??0,$n);
         } elseif($action==='advance' && $g['stage']==='partida') {
             $i=self::currentIndex($g); $m=&$g['matches'][$i];
@@ -82,8 +86,11 @@ final class Game {
             else throw new InvalidArgumentException('Resolva a decisão em campo.');
         } elseif($action==='offers' && $g['stage']==='resumo') {
             $performance=self::summary($g); $pool=[];
+            if(!empty($g['official'])) $pool=Competition::offerPool($g);
+            else {
             foreach(Rules::TEAMS as $t) if($t!==$g['club']) $pool[]=['club'=>$t,'tier'=>$g['tier'],'peso'=>30];
             if($g['tier']<4 && $performance['average']>=6 && array_sum(array_column($g['skills'],'value'))/9>=45) $pool[]=['club'=>'Academia Regional '.($g['tier']+1),'tier'=>$g['tier']+1,'peso'=>max(5,(int)(($performance['average']-5)*20+$g['states']['apoio_torcida']/5))];
+            }
             $chosen=Probability::weighted($pool); $g['offers']=$pool;
             foreach($g['offers'] as &$offer) $offer['selected']=($offer['club']===$chosen['club']); unset($offer);
             $g['stage']='oferta'; $g['feedback']=['text'=>'Proposta recebida: '.$chosen['club'],'weights'=>$pool];
@@ -94,7 +101,10 @@ final class Game {
             $summary['next_club']=$g['club']; $g['history'][]=$summary;
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
             $g['teams']=$teams; $g['season']++; $g['age']++; $g['round']=1; $g['stage']='treino'; $g['matches']=Schedule::generate($teams); $g['offers']=[]; $g['states']['energia']=85;
+            if(!empty($g['official']))Competition::newSeason($g);
             $g['feedback']=['text'=>'Contrato renovado para a temporada '.$g['season'].'. Clube: '.$g['club']];
+        } elseif($action==='continue' && $g['stage']==='competicao_resumo' && !empty($g['official'])) {
+            Competition::continueSeason($g);
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
         $g['version']++; return $g;
     }
@@ -154,13 +164,18 @@ final class Game {
             $s=&$m['stats']; $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
             $s['rating']=$s['minutes']===0?0:round(max(0,min(10,6+$s['goals']*.7+$s['assists']*.5+$s['tackles']*($def?.35:.15)+$s['completed']*.1-($s['passes']-$s['completed'])*.15-$s['cards']*.6)),1);
             unset($m,$s);
-            foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') { $other['hg']=random_int(0,3); $other['ag']=random_int(0,3); $other['minute']=90; $other['status']='finalizada'; } unset($other);
+            if(!empty($g['official'])) {
+                $ownIndex=self::currentIndex($g);$played=&$g['matches'][$ownIndex];
+                foreach(['home','away'] as $side) {$played[$side.'_yellow']=random_int(0,4);$played[$side.'_red']=0;}
+                $side=$played['home']===$g['club']?'home':'away';$played[$side.'_yellow']+=$played['stats']['cards'];$played[$side.'_red']+=(int)($played['stats']['cards']>=2);unset($played);
+            }
+            foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') Competition::simulate($other); unset($other);
             $g['stage']='fim_semana'; $g['states']['ritmo_jogo']=self::clamp($g['states']['ritmo_jogo']+3);
         }
     }
     public static function summary(array $g): array {
         $out=['goals'=>0,'assists'=>0,'minutes'=>0,'games'=>0,'average'=>0]; $sum=0;
-        foreach($g['matches'] as $m) if(in_array($g['club'],[$m['home'],$m['away']],true) && $m['status']==='finalizada') {
+        foreach(Competition::playerMatches($g) as $m) if(in_array($g['club'],[$m['home'],$m['away']],true) && $m['status']==='finalizada') {
             foreach(['goals','assists','minutes'] as $k) $out[$k]+=$m['stats'][$k]; if($m['stats']['minutes']>0) { $out['games']++; $sum+=$m['stats']['rating']; }
         }
         $out['average']=$out['games']?round($sum/$out['games'],2):0; return $out;

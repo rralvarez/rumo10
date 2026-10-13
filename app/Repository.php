@@ -5,6 +5,8 @@ final class Repository {
     public function query(string $sql,array $args=[]): PDOStatement { $s=$this->db->prepare($sql); $s->execute($args); return $s; }
     public function load(int $account,bool $lock=false): ?array {
         $c=$this->query('SELECT * FROM rumo10_carreiras WHERE conta_id=?'.($lock?' FOR UPDATE':''),[$account])->fetch(); if(!$c) return null;
+        $snapshot=$this->query('SELECT estado_json FROM rumo10_universos WHERE carreira_id=?',[$c['id']])->fetchColumn();
+        if($snapshot) return json_decode($snapshot,true,512,JSON_THROW_ON_ERROR);
         $g=['id'=>(int)$c['id'],'name'=>$c['nome'],'city'=>$c['cidade'],'uf'=>$c['uf'],'position'=>$c['posicao'],'age'=>(int)$c['idade'],'season'=>(int)$c['temporada'],'round'=>(int)$c['rodada'],'stage'=>$c['etapa'],'club'=>$c['clube'],'tier'=>(int)$c['tier'],'handicap'=>$c['handicap'],'version'=>(int)$c['versao'],'feedback'=>json_decode($c['feedback_json']??'null',true),'skills'=>[],'states'=>[],'matches'=>[],'history'=>[],'offers'=>[],'teams'=>[]];
         foreach($this->query('SELECT * FROM rumo10_atributos WHERE carreira_id=?',[$g['id']]) as $a) $g['skills'][$a['habilidade']]=['value'=>(int)$a['valor'],'xp'=>(int)$a['xp']];
         foreach($this->query('SELECT * FROM rumo10_estados WHERE carreira_id=?',[$g['id']]) as $a) $g['states'][$a['indicador']]=(int)$a['valor'];
@@ -20,13 +22,31 @@ final class Repository {
         return $g;
     }
     private static function statMap(): array { return ['minutes'=>'minutos','goals'=>'gols','assists'=>'assistencias','passes'=>'passes','completed'=>'passes_certos','shots'=>'finalizacoes','tackles'=>'desarmes','fouls'=>'faltas','cards'=>'cartoes','rating'=>'nota']; }
-    public function create(int $account,array $g): void {
+    public function create(int $account,array $g,bool $replace=false): void {
         $this->db->beginTransaction(); try {
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
-            if($this->load($account)) throw new InvalidArgumentException('Você já tem uma carreira.');
+            $old=$this->load($account,true);
+            if($old && !$replace) throw new InvalidArgumentException('Você já tem uma carreira.');
+            if($old) $this->archive($account,$old['id']);
             $this->query('INSERT INTO rumo10_carreiras(conta_id,nome,cidade,uf,posicao,idade,etapa,clube) VALUES(?,?,?,?,?,?,?,?)',[$account,$g['name'],$g['city'],$g['uf'],$g['position'],$g['age'],$g['stage'],$g['club']]);
             $g['id']=(int)$this->db->lastInsertId(); $this->save($g); $this->db->commit();
         } catch(Throwable $e) { if($this->db->inTransaction()) $this->db->rollBack(); throw $e; }
+    }
+    private function archive(int $account,int $id): void {
+        $this->query('INSERT INTO rumo10_carreiras_arquivadas(carreira_id,conta_id) VALUES(?,?) ON DUPLICATE KEY UPDATE arquivada_em=CURRENT_TIMESTAMP',[$id,$account]);
+        $this->query('UPDATE rumo10_carreiras SET conta_id=NULL WHERE id=? AND conta_id=?',[$id,$account]);
+    }
+    public function archives(int $account): array {
+        return $this->query('SELECT c.id,c.nome,c.clube,c.temporada,a.arquivada_em FROM rumo10_carreiras_arquivadas a JOIN rumo10_carreiras c ON c.id=a.carreira_id WHERE a.conta_id=? AND c.conta_id IS NULL ORDER BY a.arquivada_em DESC',[$account])->fetchAll();
+    }
+    public function restore(int $account,int $id): void {
+        $this->db->beginTransaction();try {
+            $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
+            $target=$this->query('SELECT c.id FROM rumo10_carreiras_arquivadas a JOIN rumo10_carreiras c ON c.id=a.carreira_id WHERE a.conta_id=? AND a.carreira_id=? AND c.conta_id IS NULL FOR UPDATE',[$account,$id])->fetchColumn();
+            if(!$target)throw new InvalidArgumentException('Carreira arquivada não encontrada.');
+            $current=$this->load($account,true);if($current)$this->archive($account,$current['id']);
+            $this->query('UPDATE rumo10_carreiras SET conta_id=? WHERE id=?',[$account,$id]);$this->db->commit();
+        }catch(Throwable $e){if($this->db->inTransaction())$this->db->rollBack();throw $e;}
     }
     public function command(int $account,string $action,array $input,string $key,int $version): array {
         if(!preg_match('/^[a-f0-9]{64}$/',$key)) throw new InvalidArgumentException('Token inválido.');
@@ -48,6 +68,11 @@ final class Repository {
         $this->query('UPDATE rumo10_carreiras SET idade=?,temporada=?,rodada=?,etapa=?,clube=?,tier=?,handicap=?,versao=?,feedback_json=? WHERE id=?',[$g['age'],$g['season'],$g['round'],$g['stage'],$g['club'],$g['tier'],$g['handicap'],$g['version'],json_encode($g['feedback'],JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE),$id]);
         foreach($g['skills'] as $k=>$a) $this->query('INSERT INTO rumo10_atributos VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE valor=?,xp=?',[$id,$k,$a['value'],$a['xp'],$a['value'],$a['xp']]);
         foreach($g['states'] as $k=>$v) $this->query('INSERT INTO rumo10_estados VALUES(?,?,?) ON DUPLICATE KEY UPDATE valor=?',[$id,$k,$v,$v]);
+        if(!empty($g['official'])) {
+            $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);
+            $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=?',[$id,$json,$json]);
+            return;
+        }
         $this->query('INSERT IGNORE INTO rumo10_temporadas(carreira_id,numero,clube) VALUES(?,?,?)',[$id,$g['season'],$g['club']]);
         $season=$this->query('SELECT id FROM rumo10_temporadas WHERE carreira_id=? AND numero=?',[$id,$g['season']])->fetchColumn();
         foreach($g['teams'] as $t) $this->query('INSERT IGNORE INTO rumo10_times VALUES(?,?)',[$season,$t]);

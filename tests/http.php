@@ -53,13 +53,21 @@ try {
     $reload=json_decode(request('/api/carreira/estado')['body'],true); verify($reload===$state,'Persistência após novo login');
     $invalid=request('/decisao/registrar',['csrf'=>'invalid','option'=>'1']); verify($invalid['status']===403,'CSRF inválido bloqueado');
     verify(json_decode(request('/api/carreira/estado')['body'],true)===$state,'CSRF não muda estado');
+    verify(!empty($state['official']) && $state['competition_id']==='sp-a4','Nova conta usa competição oficial');
+    $page=request('/carreira/nova'); verify($page['status']===200 && str_contains($page['body'],'São Caetano-SP'),'Nova carreira oferece clubes reais');
+    $page=request('/carreira/nova',tokens($page['body'],'/carreira/nova')+['name'=>'Outra Teste HTTP','city'=>'Santos','uf'=>'SP','position'=>'meia','club'=>'Jabaquara-SP']);
+    $newState=json_decode(request('/api/carreira/estado')['body'],true); verify($page['status']===200 && $newState['id']!==$state['id'],'Nova carreira HTTP');
+    $page=request('/carreira/arquivadas'); verify($page['status']===200 && str_contains($page['body'],'Retomar esta carreira'),'Arquivo HTTP');
+    $page=request('/carreira/restaurar',tokens($page['body'],'/carreira/restaurar')+['career'=>$state['id']]);
+    verify($page['status']===200 && json_decode(request('/api/carreira/estado')['body'],true)===$state,'Restauração HTTP preserva campanha');
     echo "OK: $checks verificações HTTP em $base — conta, rodada, replay, refresh, tabela, logout/login e CSRF.\n";
 } finally {
     // Cleanup estritamente da conta descartável criada nesta execução.
     $account=$r->query('SELECT id FROM rumo10_contas WHERE email=?',[$email])->fetchColumn();
     if($account) {
-        $id=$r->query('SELECT id FROM rumo10_carreiras WHERE conta_id=?',[$account])->fetchColumn();
-        if($id) {
+        $ids=$r->query('SELECT id FROM rumo10_carreiras WHERE conta_id=? UNION SELECT carreira_id FROM rumo10_carreiras_arquivadas WHERE conta_id=?',[$account,$account])->fetchAll(PDO::FETCH_COLUMN);
+        foreach($ids as $id) {
+            $r->query('DELETE FROM rumo10_carreiras_arquivadas WHERE carreira_id=? AND conta_id=?',[$id,$account]);
             foreach(['rumo10_eventos_partida','rumo10_estatisticas'] as $table) $r->query("DELETE x FROM $table x JOIN rumo10_partidas p ON p.id=x.partida_id JOIN rumo10_temporadas t ON t.id=p.temporada_id WHERE t.carreira_id=?",[$id]);
             $r->query('DELETE p FROM rumo10_partidas p JOIN rumo10_temporadas t ON t.id=p.temporada_id WHERE t.carreira_id=?',[$id]);
             foreach(['rumo10_times','rumo10_ofertas'] as $table) $r->query("DELETE x FROM $table x JOIN rumo10_temporadas t ON t.id=x.temporada_id WHERE t.carreira_id=?",[$id]);

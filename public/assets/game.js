@@ -50,16 +50,9 @@ document.querySelectorAll('.action-result[data-result-id]').forEach(result => {
   let seen = true;
   try { seen = sessionStorage.getItem(key) === '1'; sessionStorage.setItem(key, '1'); } catch (_) { /* Resultado permanece legível sem storage. */ }
   if (seen || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const skip = result.querySelector('.skip-result');
-  const status = result.querySelector('.result-status');
   const finish = () => {
     result.classList.remove('is-revealing');
-    status.textContent = 'Resultado salvo';
-    skip.hidden = true;
   };
   result.classList.add('is-revealing');
-  status.textContent = 'Resolvendo a ação…';
-  skip.hidden = false;
-  const timer = setTimeout(finish, 650);
-  skip.addEventListener('click', () => { clearTimeout(timer); finish(); }, { once: true });
+  setTimeout(finish, 650);
 });
