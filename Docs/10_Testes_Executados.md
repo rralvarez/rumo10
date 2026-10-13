@@ -87,3 +87,9 @@ Executado nesta rodada:
 - Navegador: criação com 225 opções, encerramento de campeonato com ação em destaque, tabela A4 e feedback sem efeito zero; viewport 390 × 844, fixtures sem banco.
 
 Limitações verificáveis: sem acesso/teste em Apache ou celular físico. Datas/horários e simultaneidade real não reproduzidos; formatos e participantes iniciais de 2026 são a base. Temporadas posteriores e reposição de vagas D usam adaptações documentadas; não se afirma regulamentação integral de 2027/2028. Identidade visual dos 225 clubes não foi certificada.
+
+## 12/10/2026 — acesso visível a Nova carreira
+
+O atalho antes ficava em Minha carreira, dentro do painel oculto durante partidas. Agora Nova carreira faz parte do menu principal de todas as páginas autenticadas: topo no desktop, barra inferior de quatro itens no celular. A criação continua arquivando a carreira anterior somente após enviar o formulário.
+
+Verificado: PHP lint, teste de apresentação com link no menu durante partida, 34 verificações HTTP no IIS e clique no menu da prévia em 390 × 844 abrindo Quem entra em campo. Nenhuma carreira pessoal foi criada ou arquivada nesta correção.
