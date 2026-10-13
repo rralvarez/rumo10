@@ -1,0 +1,1180 @@
+[
+  {
+    "id": "ac-entrada",
+    "name": "Acreano Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "AC",
+    "format": "state",
+    "teams": [
+      "Andirá-AC",
+      "Atlético Acreano-AC",
+      "Náuas-AC",
+      "Plácido de Castro-AC"
+    ],
+    "source": "https://ge.globo.com/ac/futebol/acreano-segunda-divisao/noticia/2026/08/11/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": true,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 2,
+      "mode": "turn_winners"
+    },
+    "groups": [
+      [
+        "Andirá-AC",
+        "Atlético Acreano-AC",
+        "Náuas-AC",
+        "Plácido de Castro-AC"
+      ]
+    ]
+  },
+  {
+    "id": "al-entrada",
+    "name": "Alagoano Segunda Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "AL",
+    "format": "state",
+    "teams": [
+      "São Domingos-AL",
+      "Desportivo Aliança-AL",
+      "Jaciobá-AL",
+      "Miguelense-AL",
+      "Sporting-AL",
+      "Zumbi-AL"
+    ],
+    "source": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 1
+    },
+    "groups": [
+      [
+        "São Domingos-AL",
+        "Desportivo Aliança-AL",
+        "Jaciobá-AL",
+        "Miguelense-AL",
+        "Sporting-AL",
+        "Zumbi-AL"
+      ]
+    ]
+  },
+  {
+    "id": "am-entrada",
+    "name": "Amazonense Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "AM",
+    "format": "state",
+    "teams": [
+      "Unidos do Alvorada-AM",
+      "CDC da Amazônia-AM",
+      "Clipper-AM",
+      "Fast Clube-AM",
+      "RB do Norte-AM",
+      "Penarol-AM",
+      "Operário-AM"
+    ],
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 1,
+      "final_legs": 1,
+      "access": 1
+    },
+    "groups": [
+      [
+        "Unidos do Alvorada-AM",
+        "CDC da Amazônia-AM",
+        "Clipper-AM",
+        "Fast Clube-AM",
+        "RB do Norte-AM",
+        "Penarol-AM",
+        "Operário-AM"
+      ]
+    ]
+  },
+  {
+    "id": "ap-entrada",
+    "name": "Amapaense Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "AP",
+    "format": "state",
+    "teams": [
+      "Portuguesa-AP",
+      "Cruzeiro-AP",
+      "Santana-AP",
+      "Latitude Zero-AP",
+      "Lagoa-AP",
+      "Renovação-AP",
+      "Rio Norte-AP",
+      "São Paulo-AP",
+      "Canário-AP",
+      "Mazagão-AP",
+      "ADEC-AP",
+      "BARE-AP"
+    ],
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 1,
+      "final_legs": 1,
+      "access": 2,
+      "cross": true,
+      "per_group": 2,
+      "same_group_pairs": true
+    },
+    "groups": [
+      [
+        "Portuguesa-AP",
+        "Cruzeiro-AP",
+        "Santana-AP",
+        "Latitude Zero-AP",
+        "Lagoa-AP",
+        "Renovação-AP"
+      ],
+      [
+        "Rio Norte-AP",
+        "São Paulo-AP",
+        "Canário-AP",
+        "Mazagão-AP",
+        "ADEC-AP",
+        "BARE-AP"
+      ]
+    ]
+  },
+  {
+    "id": "ba-entrada",
+    "name": "Baiano Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "BA",
+    "format": "state",
+    "teams": [
+      "Leônico-BA",
+      "Barreiras-BA",
+      "Camaçari-BA",
+      "Vitória da Conquista-BA",
+      "Feira FC-BA",
+      "Fluminense de Feira-BA",
+      "Grapiúna-BA",
+      "Jacobina-BA",
+      "Redenção-BA",
+      "SSA FC-BA"
+    ],
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2
+    },
+    "groups": [
+      [
+        "Leônico-BA",
+        "Barreiras-BA",
+        "Camaçari-BA",
+        "Vitória da Conquista-BA",
+        "Feira FC-BA",
+        "Fluminense de Feira-BA",
+        "Grapiúna-BA",
+        "Jacobina-BA",
+        "Redenção-BA",
+        "SSA FC-BA"
+      ]
+    ]
+  },
+  {
+    "id": "ce-entrada",
+    "name": "Cearense Série C",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "CE",
+    "format": "state",
+    "teams": [
+      "Pacatuba-CE",
+      "Esporte Limoeiro-CE",
+      "Vila Real-CE",
+      "Tianguá-CE",
+      "Calouros do Ar-CE",
+      "FC Acopiara-CE",
+      "Palmácia-CE"
+    ],
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 2
+    },
+    "groups": [
+      [
+        "Pacatuba-CE",
+        "Esporte Limoeiro-CE",
+        "Vila Real-CE",
+        "Tianguá-CE",
+        "Calouros do Ar-CE",
+        "FC Acopiara-CE",
+        "Palmácia-CE"
+      ]
+    ]
+  },
+  {
+    "id": "df-entrada",
+    "name": "Candangão Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "DF",
+    "format": "state",
+    "teams": [
+      "Canaã-DF",
+      "Candango-DF",
+      "GREVAL-DF",
+      "Legião-DF",
+      "Luziânia-DF",
+      "Planaltina EC-DF",
+      "Taguatinga-DF"
+    ],
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 2,
+      "tie_rule": "advantage"
+    },
+    "groups": [
+      [
+        "Canaã-DF",
+        "Candango-DF",
+        "GREVAL-DF",
+        "Legião-DF",
+        "Luziânia-DF",
+        "Planaltina EC-DF",
+        "Taguatinga-DF"
+      ]
+    ]
+  },
+  {
+    "id": "es-entrada",
+    "name": "Capixaba Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "ES",
+    "format": "state",
+    "teams": [
+      "Linhares FC-ES",
+      "Doze-ES",
+      "CTE Colatina-ES",
+      "GEL-ES",
+      "Audax São Mateus-ES",
+      "Rive-ES",
+      "Estrela do Norte-ES",
+      "Tupy-ES",
+      "Pinheiros-ES",
+      "SC Brasil Capixaba-ES"
+    ],
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": true,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 2,
+      "per_group": 2
+    },
+    "groups": [
+      [
+        "Linhares FC-ES",
+        "Doze-ES",
+        "CTE Colatina-ES",
+        "GEL-ES",
+        "Audax São Mateus-ES"
+      ],
+      [
+        "Rive-ES",
+        "Estrela do Norte-ES",
+        "Tupy-ES",
+        "Pinheiros-ES",
+        "SC Brasil Capixaba-ES"
+      ]
+    ]
+  },
+  {
+    "id": "go-entrada",
+    "name": "Goiano Terceira Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "GO",
+    "format": "state",
+    "teams": [
+      "América de Morrinhos-GO",
+      "Rioverdense-GO",
+      "Atlético Itumbiara-GO",
+      "Itumbiara EC-GO",
+      "Novo Horizonte-GO",
+      "Real Clube-GO",
+      "Royal-GO"
+    ],
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 0,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2
+    },
+    "groups": [
+      [
+        "América de Morrinhos-GO",
+        "Rioverdense-GO",
+        "Atlético Itumbiara-GO",
+        "Itumbiara EC-GO",
+        "Novo Horizonte-GO",
+        "Real Clube-GO",
+        "Royal-GO"
+      ]
+    ]
+  },
+  {
+    "id": "ma-entrada",
+    "name": "Maranhense Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "MA",
+    "format": "state",
+    "teams": [
+      "Americano-MA",
+      "Araioses-MA",
+      "Expressinho-MA",
+      "São José de Ribamar-MA",
+      "São Luís FC-MA",
+      "Tupan-MA",
+      "Lago Verde-MA",
+      "Pinheiro-MA",
+      "Viana-MA",
+      "Timon-MA",
+      "Cordino-MA",
+      "Balsas-MA"
+    ],
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2,
+      "group_returns": [
+        false,
+        true,
+        true
+      ],
+      "per_group": [
+        4,
+        2,
+        2
+      ]
+    },
+    "groups": [
+      [
+        "Americano-MA",
+        "Araioses-MA",
+        "Expressinho-MA",
+        "São José de Ribamar-MA",
+        "São Luís FC-MA",
+        "Tupan-MA"
+      ],
+      [
+        "Lago Verde-MA",
+        "Pinheiro-MA",
+        "Viana-MA"
+      ],
+      [
+        "Timon-MA",
+        "Cordino-MA",
+        "Balsas-MA"
+      ]
+    ]
+  },
+  {
+    "id": "mt-entrada",
+    "name": "Mato-grossense Segunda Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "MT",
+    "format": "state",
+    "teams": [
+      "Sinop-MT",
+      "Sorriso EC-MT",
+      "Santa Cruz-MT",
+      "Sorriso FC-MT",
+      "Campo Novo-MT",
+      "Uirapuru-MT",
+      "Ação-MT",
+      "Cacerense-MT",
+      "Paulistano-MT",
+      "Atlético Matogrossense-MT"
+    ],
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2,
+      "mode": "group_playoff",
+      "per_group": 3,
+      "playoff_legs": 1
+    },
+    "groups": [
+      [
+        "Sinop-MT",
+        "Sorriso EC-MT",
+        "Santa Cruz-MT",
+        "Sorriso FC-MT",
+        "Campo Novo-MT"
+      ],
+      [
+        "Uirapuru-MT",
+        "Ação-MT",
+        "Cacerense-MT",
+        "Paulistano-MT",
+        "Atlético Matogrossense-MT"
+      ]
+    ]
+  },
+  {
+    "id": "ms-entrada",
+    "name": "Sul-Mato-Grossense Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "MS",
+    "format": "state",
+    "teams": [
+      "Sete de Setembro-MS",
+      "Aquidauanense-MS",
+      "Campo Grande-MS",
+      "Comercial-MS",
+      "Misto-MS",
+      "São Gabriel-MS",
+      "Taveirópolis-MS",
+      "União ABC-MS"
+    ],
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 0,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2
+    },
+    "groups": [
+      [
+        "Sete de Setembro-MS",
+        "Aquidauanense-MS",
+        "Campo Grande-MS",
+        "Comercial-MS",
+        "Misto-MS",
+        "São Gabriel-MS",
+        "Taveirópolis-MS",
+        "União ABC-MS"
+      ]
+    ]
+  },
+  {
+    "id": "mg-entrada",
+    "name": "Mineiro Segunda Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "MG",
+    "format": "state",
+    "teams": [
+      "Inter de Minas-MG",
+      "Nacional de Muriaé-MG",
+      "Nova Lavras-MG",
+      "Novo Esporte Itabirinha-MG",
+      "Santarritense-MG",
+      "Venda Nova-MG",
+      "Araxá-MG",
+      "Betim B-MG",
+      "Funorte-MG",
+      "Paracatu-MG",
+      "São João del Rei-MG",
+      "Siderúrgica-MG"
+    ],
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2,
+      "per_group": 3,
+      "mode": "final_league"
+    },
+    "groups": [
+      [
+        "Inter de Minas-MG",
+        "Nacional de Muriaé-MG",
+        "Nova Lavras-MG",
+        "Novo Esporte Itabirinha-MG",
+        "Santarritense-MG",
+        "Venda Nova-MG"
+      ],
+      [
+        "Araxá-MG",
+        "Betim B-MG",
+        "Funorte-MG",
+        "Paracatu-MG",
+        "São João del Rei-MG",
+        "Siderúrgica-MG"
+      ]
+    ]
+  },
+  {
+    "id": "pa-entrada",
+    "name": "Paraense Série A3",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "PA",
+    "format": "state",
+    "teams": [
+      "ESMAC-PA",
+      "Vênus-PA",
+      "Pedreira-PA",
+      "Paraense-PA",
+      "Pinheirense-PA",
+      "Tesla-PA",
+      "Sport Belém-PA",
+      "Belenense-PA",
+      "Vila Rica-PA",
+      "Parauapebas-PA",
+      "Gavião Kyikatejê-PA",
+      "Altamira-PA"
+    ],
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": true,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2,
+      "per_group": 2
+    },
+    "groups": [
+      [
+        "ESMAC-PA",
+        "Vênus-PA",
+        "Pedreira-PA"
+      ],
+      [
+        "Paraense-PA",
+        "Pinheirense-PA",
+        "Tesla-PA"
+      ],
+      [
+        "Sport Belém-PA",
+        "Belenense-PA",
+        "Vila Rica-PA"
+      ],
+      [
+        "Parauapebas-PA",
+        "Gavião Kyikatejê-PA",
+        "Altamira-PA"
+      ]
+    ]
+  },
+  {
+    "id": "pb-entrada",
+    "name": "Paraibano Segunda Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "PB",
+    "format": "state",
+    "teams": [
+      "Atlético Santa Rita-PB",
+      "Auto Esporte-PB",
+      "Cruzeiro-PB",
+      "Desportiva Guarabira-PB",
+      "Femar-PB",
+      "Picuiense-PB",
+      "São Paulo Crystal-PB",
+      "Serrano-PB",
+      "Spartax-PB",
+      "Sport Lucena-PB"
+    ],
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 2,
+      "mode": "playoff",
+      "playoff_legs": 1
+    },
+    "groups": [
+      [
+        "Atlético Santa Rita-PB",
+        "Auto Esporte-PB",
+        "Cruzeiro-PB",
+        "Desportiva Guarabira-PB",
+        "Femar-PB",
+        "Picuiense-PB",
+        "São Paulo Crystal-PB",
+        "Serrano-PB",
+        "Spartax-PB",
+        "Sport Lucena-PB"
+      ]
+    ]
+  },
+  {
+    "id": "pr-entrada",
+    "name": "Paranaense Terceira Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "PR",
+    "format": "state",
+    "teams": [
+      "Hope Internacional-PR",
+      "Samas-PR",
+      "Iraty-PR",
+      "Iguaçu-PR",
+      "Cambé-PR",
+      "City London-PR",
+      "Portuguesa Londrinense-PR",
+      "PSTC-PR",
+      "Oeste Brasil-PR",
+      "Sport Campo Mourão-PR",
+      "União Beltrão-PR"
+    ],
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": true,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2,
+      "per_group": 2,
+      "best_thirds": 2
+    },
+    "groups": [
+      [
+        "Hope Internacional-PR",
+        "Samas-PR",
+        "Iraty-PR",
+        "Iguaçu-PR"
+      ],
+      [
+        "Cambé-PR",
+        "City London-PR",
+        "Portuguesa Londrinense-PR",
+        "PSTC-PR"
+      ],
+      [
+        "Oeste Brasil-PR",
+        "Sport Campo Mourão-PR",
+        "União Beltrão-PR"
+      ]
+    ]
+  },
+  {
+    "id": "rj-entrada",
+    "name": "Carioca Série C",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "RJ",
+    "format": "state",
+    "teams": [
+      "Cardoso Moreira-RJ",
+      "Tigres do Brasil-RJ",
+      "Campos-RJ",
+      "Brescia Barra-RJ",
+      "Mageense-RJ",
+      "Barcelona-RJ",
+      "Itaboraí Profute-RJ",
+      "Vera Cruz-RJ",
+      "Barra Mansa-RJ",
+      "Búzios-RJ",
+      "Rio Barra-RJ",
+      "Uni Souza-RJ",
+      "União Central-RJ",
+      "Ceres-RJ",
+      "Independente-RJ",
+      "CAAC Brasil-RJ"
+    ],
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 4,
+      "cross": true,
+      "per_group": 4,
+      "same_group_pairs": true,
+      "tie_rule": "advantage"
+    },
+    "groups": [
+      [
+        "Cardoso Moreira-RJ",
+        "Tigres do Brasil-RJ",
+        "Campos-RJ",
+        "Brescia Barra-RJ",
+        "Mageense-RJ",
+        "Barcelona-RJ",
+        "Itaboraí Profute-RJ",
+        "Vera Cruz-RJ"
+      ],
+      [
+        "Barra Mansa-RJ",
+        "Búzios-RJ",
+        "Rio Barra-RJ",
+        "Uni Souza-RJ",
+        "União Central-RJ",
+        "Ceres-RJ",
+        "Independente-RJ",
+        "CAAC Brasil-RJ"
+      ]
+    ]
+  },
+  {
+    "id": "rn-entrada",
+    "name": "Potiguar Segunda Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "RN",
+    "format": "state",
+    "teams": [
+      "Alecrim-RN",
+      "Baraúnas-RN",
+      "Mossoró-RN",
+      "Palmeira-RN",
+      "Visão Celeste-RN"
+    ],
+    "source": "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": true,
+      "qualify": 0,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2
+    },
+    "groups": [
+      [
+        "Alecrim-RN",
+        "Baraúnas-RN",
+        "Mossoró-RN",
+        "Palmeira-RN",
+        "Visão Celeste-RN"
+      ]
+    ]
+  },
+  {
+    "id": "rs-entrada",
+    "name": "Gaúcho Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "RS",
+    "format": "state",
+    "teams": [
+      "1992 Clube-RS",
+      "Cruz Alta-RS",
+      "Farroupilha-RS",
+      "Futebol com Vida-RS",
+      "Novo Horizonte-RS",
+      "Panambi-RS",
+      "Real Sport-RS",
+      "Rio Grande-RS",
+      "Riograndense RG-RS",
+      "São Paulo-RS"
+    ],
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2,
+      "mode": "playoff",
+      "playoff_legs": 1
+    },
+    "groups": [
+      [
+        "1992 Clube-RS",
+        "Cruz Alta-RS",
+        "Farroupilha-RS",
+        "Futebol com Vida-RS",
+        "Novo Horizonte-RS",
+        "Panambi-RS",
+        "Real Sport-RS",
+        "Rio Grande-RS",
+        "Riograndense RG-RS",
+        "São Paulo-RS"
+      ]
+    ]
+  },
+  {
+    "id": "sc-entrada",
+    "name": "Catarinense Série C",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "SC",
+    "format": "state",
+    "teams": [
+      "Caçador-SC",
+      "Porto-SC",
+      "Manchester Catarinense-SC",
+      "Inter de Lages-SC"
+    ],
+    "source": "https://fcf.com.br/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense/",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": true,
+      "qualify": 2,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 1
+    },
+    "groups": [
+      [
+        "Caçador-SC",
+        "Porto-SC",
+        "Manchester Catarinense-SC",
+        "Inter de Lages-SC"
+      ]
+    ]
+  },
+  {
+    "id": "se-entrada",
+    "name": "Sergipano Série A2",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "SE",
+    "format": "state",
+    "teams": [
+      "América de Pedrinhas-SE",
+      "Canindé-SE",
+      "Carmópolis-SE",
+      "Flamengo-SE",
+      "Olímpico-SE",
+      "Socorrense-SE",
+      "Barra-SE",
+      "Estanciano-SE",
+      "Frei Paulistano-SE",
+      "Independente-SE",
+      "Maruinense-SE",
+      "Sport Socorro-SE"
+    ],
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 2,
+      "per_group": 2,
+      "note": "Entrada provisória pela A2 confirmada. A A3 de 2026 ainda está em inscrições.",
+      "pending_source": "https://fsf-se.com.br/serie-a3-inscricoes-para-o-campeonato-sergipano-estao-abertas/"
+    },
+    "groups": [
+      [
+        "América de Pedrinhas-SE",
+        "Canindé-SE",
+        "Carmópolis-SE",
+        "Flamengo-SE",
+        "Olímpico-SE",
+        "Socorrense-SE"
+      ],
+      [
+        "Barra-SE",
+        "Estanciano-SE",
+        "Frei Paulistano-SE",
+        "Independente-SE",
+        "Maruinense-SE",
+        "Sport Socorro-SE"
+      ]
+    ]
+  },
+  {
+    "id": "to-entrada",
+    "name": "Tocantinense Segunda Divisão",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "TO",
+    "format": "state",
+    "teams": [
+      "Araguaia-TO",
+      "União de Palmas-TO",
+      "Guaraí-TO",
+      "São José-TO",
+      "Paraíso-TO",
+      "Batalhão-TO",
+      "Interporto-TO",
+      "Taquarussu-TO"
+    ],
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 1,
+      "access": 2
+    },
+    "groups": [
+      [
+        "Araguaia-TO",
+        "União de Palmas-TO",
+        "Guaraí-TO",
+        "São José-TO",
+        "Paraíso-TO",
+        "Batalhão-TO",
+        "Interporto-TO",
+        "Taquarussu-TO"
+      ]
+    ]
+  },
+  {
+    "id": "ro-entrada",
+    "name": "Rondoniense Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "RO",
+    "format": "state",
+    "teams": [
+      "Rolim de Moura-RO",
+      "Vilhena EC-RO"
+    ],
+    "source": "https://ge.globo.com/ro/futebol/campeonato-rondoniense/noticia/2026/08/31/rolim-de-moura-goleia-vec-por-4-a-1-e-conquista-titulo-inedito-da-serie-b.ghtml",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 2,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2,
+      "mode": "direct_final"
+    },
+    "groups": [
+      [
+        "Rolim de Moura-RO",
+        "Vilhena EC-RO"
+      ]
+    ]
+  },
+  {
+    "id": "rr-entrada",
+    "name": "Roraimense",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "RR",
+    "format": "state",
+    "teams": [
+      "Baré-RR",
+      "GAS-RR",
+      "Monte Roraima-RR",
+      "Náutico-RR",
+      "Progresso-RR",
+      "Rio Negro-RR",
+      "River-RR",
+      "Roraima-RR",
+      "São Raimundo-RR"
+    ],
+    "source": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 1,
+      "final_legs": 1,
+      "access": 0,
+      "note": "Roraima possui uma única divisão profissional nesta edição."
+    },
+    "groups": [
+      [
+        "Baré-RR",
+        "GAS-RR",
+        "Monte Roraima-RR",
+        "Náutico-RR",
+        "Progresso-RR",
+        "Rio Negro-RR",
+        "River-RR",
+        "Roraima-RR",
+        "São Raimundo-RR"
+      ]
+    ]
+  },
+  {
+    "id": "pi-entrada",
+    "name": "Piauiense Série B",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "PI",
+    "format": "state",
+    "teams": [
+      "4 de Julho-PI",
+      "Caiçara-PI",
+      "River-PI",
+      "Picos-PI",
+      "Comercial-PI",
+      "Flamengo-PI"
+    ],
+    "source": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 2,
+      "final_legs": 2,
+      "access": 2
+    },
+    "groups": [
+      [
+        "4 de Julho-PI",
+        "Caiçara-PI",
+        "River-PI",
+        "Picos-PI",
+        "Comercial-PI",
+        "Flamengo-PI"
+      ]
+    ]
+  },
+  {
+    "id": "pe-entrada",
+    "name": "Pernambucano 2026/27 — primeiro turno",
+    "edition": 2026,
+    "tier": 1,
+    "family": "state",
+    "uf": "PE",
+    "format": "state",
+    "teams": [
+      "1º de Maio-PE",
+      "Afogados-PE",
+      "FacilNet-PE",
+      "Ferroviário do Cabo-PE",
+      "Petrolina-PE",
+      "Salgueiro-PE",
+      "Belo Jardim-PE",
+      "Central-PE",
+      "Chã Grande-PE",
+      "Pesqueira-PE",
+      "Porto-PE",
+      "Ypiranga-PE",
+      "Águia de Cumaru-PE",
+      "Atlético Pernambucano-PE",
+      "Centro Limoeirense-PE",
+      "Jaguar-PE",
+      "Santa Fé-PE",
+      "Serrano-PE",
+      "América-PE",
+      "Guarany-PE",
+      "Íbis-PE",
+      "Ipojuca-PE",
+      "Sete de Setembro-PE",
+      "Vera Cruz-PE"
+    ],
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "checked": "2026-10-12",
+    "rules": {
+      "return": false,
+      "qualify": 4,
+      "legs": 1,
+      "final_legs": 2,
+      "access": 0,
+      "per_group": 4,
+      "mode": "pe_first",
+      "note": "Entrada pelo primeiro turno do estadual unificado de 2026/27. A etapa decisiva de 2027 ainda não é simulada neste protótipo."
+    },
+    "groups": [
+      [
+        "1º de Maio-PE",
+        "Afogados-PE",
+        "FacilNet-PE",
+        "Ferroviário do Cabo-PE",
+        "Petrolina-PE",
+        "Salgueiro-PE"
+      ],
+      [
+        "Belo Jardim-PE",
+        "Central-PE",
+        "Chã Grande-PE",
+        "Pesqueira-PE",
+        "Porto-PE",
+        "Ypiranga-PE"
+      ],
+      [
+        "Águia de Cumaru-PE",
+        "Atlético Pernambucano-PE",
+        "Centro Limoeirense-PE",
+        "Jaguar-PE",
+        "Santa Fé-PE",
+        "Serrano-PE"
+      ],
+      [
+        "América-PE",
+        "Guarany-PE",
+        "Íbis-PE",
+        "Ipojuca-PE",
+        "Sete de Setembro-PE",
+        "Vera Cruz-PE"
+      ]
+    ]
+  }
+]

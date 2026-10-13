@@ -1,0 +1,2175 @@
+[
+  {
+    "name": "GAS-RR",
+    "uf": "RR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "Monte Roraima-RR",
+    "uf": "RR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "São Raimundo-RR",
+    "uf": "RR",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "Central-PE",
+    "uf": "PE",
+    "source": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+    "competitions": [
+      "br-d",
+      "pe-entrada"
+    ],
+    "city": "Caruaru"
+  },
+  {
+    "name": "Andirá-AC",
+    "uf": "AC",
+    "source": "https://ge.globo.com/ac/futebol/acreano-segunda-divisao/noticia/2026/08/11/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml",
+    "competitions": [
+      "ac-entrada"
+    ],
+    "city": "Rio Branco"
+  },
+  {
+    "name": "Atlético Acreano-AC",
+    "uf": "AC",
+    "source": "https://ge.globo.com/ac/futebol/acreano-segunda-divisao/noticia/2026/08/11/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml",
+    "competitions": [
+      "ac-entrada"
+    ],
+    "city": "Rio Branco"
+  },
+  {
+    "name": "Náuas-AC",
+    "uf": "AC",
+    "source": "https://ge.globo.com/ac/futebol/acreano-segunda-divisao/noticia/2026/08/11/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml",
+    "competitions": [
+      "ac-entrada"
+    ],
+    "city": "Cruzeiro do Sul"
+  },
+  {
+    "name": "Plácido de Castro-AC",
+    "uf": "AC",
+    "source": "https://ge.globo.com/ac/futebol/acreano-segunda-divisao/noticia/2026/08/11/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml",
+    "competitions": [
+      "ac-entrada"
+    ],
+    "city": "Plácido de Castro"
+  },
+  {
+    "name": "São Domingos-AL",
+    "uf": "AL",
+    "source": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "competitions": [
+      "al-entrada"
+    ],
+    "city": "Maceió"
+  },
+  {
+    "name": "Desportivo Aliança-AL",
+    "uf": "AL",
+    "source": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "competitions": [
+      "al-entrada"
+    ],
+    "city": "Pilar"
+  },
+  {
+    "name": "Jaciobá-AL",
+    "uf": "AL",
+    "source": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "competitions": [
+      "al-entrada"
+    ],
+    "city": "Pão de Açúcar"
+  },
+  {
+    "name": "Miguelense-AL",
+    "uf": "AL",
+    "source": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "competitions": [
+      "al-entrada"
+    ],
+    "city": "São Miguel dos Campos"
+  },
+  {
+    "name": "Sporting-AL",
+    "uf": "AL",
+    "source": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "competitions": [
+      "al-entrada"
+    ],
+    "city": "Teotônio Vilela"
+  },
+  {
+    "name": "Zumbi-AL",
+    "uf": "AL",
+    "source": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "competitions": [
+      "al-entrada"
+    ],
+    "city": "União dos Palmares"
+  },
+  {
+    "name": "Unidos do Alvorada-AM",
+    "uf": "AM",
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "competitions": [
+      "am-entrada"
+    ],
+    "city": "Manaus"
+  },
+  {
+    "name": "CDC da Amazônia-AM",
+    "uf": "AM",
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "competitions": [
+      "am-entrada"
+    ],
+    "city": "Manicoré"
+  },
+  {
+    "name": "Clipper-AM",
+    "uf": "AM",
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "competitions": [
+      "am-entrada"
+    ],
+    "city": "Manaus"
+  },
+  {
+    "name": "Fast Clube-AM",
+    "uf": "AM",
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "competitions": [
+      "am-entrada"
+    ],
+    "city": "Manaus"
+  },
+  {
+    "name": "RB do Norte-AM",
+    "uf": "AM",
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "competitions": [
+      "am-entrada"
+    ],
+    "city": "Manaus"
+  },
+  {
+    "name": "Penarol-AM",
+    "uf": "AM",
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "competitions": [
+      "am-entrada"
+    ],
+    "city": "Itacoatiara"
+  },
+  {
+    "name": "Operário-AM",
+    "uf": "AM",
+    "source": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+    "competitions": [
+      "am-entrada"
+    ],
+    "city": "Manacapuru"
+  },
+  {
+    "name": "Portuguesa-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "Cruzeiro-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "Santana-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Santana"
+  },
+  {
+    "name": "Latitude Zero-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "Lagoa-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "Renovação-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "Rio Norte-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "São Paulo-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "Canário-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Macapá"
+  },
+  {
+    "name": "Mazagão-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Mazagão"
+  },
+  {
+    "name": "ADEC-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Calçoene"
+  },
+  {
+    "name": "BARE-AP",
+    "uf": "AP",
+    "source": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+    "competitions": [
+      "ap-entrada"
+    ],
+    "city": "Ferreira Gomes"
+  },
+  {
+    "name": "Leônico-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Salvador"
+  },
+  {
+    "name": "Barreiras-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Barreiras"
+  },
+  {
+    "name": "Camaçari-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Camaçari"
+  },
+  {
+    "name": "Vitória da Conquista-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Vitória da Conquista"
+  },
+  {
+    "name": "Feira FC-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Feira de Santana"
+  },
+  {
+    "name": "Fluminense de Feira-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Feira de Santana"
+  },
+  {
+    "name": "Grapiúna-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Itabuna"
+  },
+  {
+    "name": "Jacobina-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Jacobina"
+  },
+  {
+    "name": "Redenção-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Salvador"
+  },
+  {
+    "name": "SSA FC-BA",
+    "uf": "BA",
+    "source": "https://www.fbf.org.br/noticias/detalhe/12835",
+    "competitions": [
+      "ba-entrada"
+    ],
+    "city": "Salvador"
+  },
+  {
+    "name": "Pacatuba-CE",
+    "uf": "CE",
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "competitions": [
+      "ce-entrada"
+    ],
+    "city": "Pacatuba"
+  },
+  {
+    "name": "Esporte Limoeiro-CE",
+    "uf": "CE",
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "competitions": [
+      "ce-entrada"
+    ],
+    "city": "Limoeiro do Norte"
+  },
+  {
+    "name": "Vila Real-CE",
+    "uf": "CE",
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "competitions": [
+      "ce-entrada"
+    ],
+    "city": "Sobral"
+  },
+  {
+    "name": "Tianguá-CE",
+    "uf": "CE",
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "competitions": [
+      "ce-entrada"
+    ],
+    "city": "Tianguá"
+  },
+  {
+    "name": "Calouros do Ar-CE",
+    "uf": "CE",
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "competitions": [
+      "ce-entrada"
+    ],
+    "city": "Fortaleza"
+  },
+  {
+    "name": "FC Acopiara-CE",
+    "uf": "CE",
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "competitions": [
+      "ce-entrada"
+    ],
+    "city": "Acopiara"
+  },
+  {
+    "name": "Palmácia-CE",
+    "uf": "CE",
+    "source": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+    "competitions": [
+      "ce-entrada"
+    ],
+    "city": "Palmácia"
+  },
+  {
+    "name": "Canaã-DF",
+    "uf": "DF",
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "competitions": [
+      "df-entrada"
+    ],
+    "city": "Brasília"
+  },
+  {
+    "name": "Candango-DF",
+    "uf": "DF",
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "competitions": [
+      "df-entrada"
+    ],
+    "city": "Brasília"
+  },
+  {
+    "name": "GREVAL-DF",
+    "uf": "DF",
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "competitions": [
+      "df-entrada"
+    ],
+    "city": "Valparaíso de Goiás"
+  },
+  {
+    "name": "Legião-DF",
+    "uf": "DF",
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "competitions": [
+      "df-entrada"
+    ],
+    "city": "Brasília"
+  },
+  {
+    "name": "Luziânia-DF",
+    "uf": "DF",
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "competitions": [
+      "df-entrada"
+    ],
+    "city": "Luziânia"
+  },
+  {
+    "name": "Planaltina EC-DF",
+    "uf": "DF",
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "competitions": [
+      "df-entrada"
+    ],
+    "city": "Brasília"
+  },
+  {
+    "name": "Taguatinga-DF",
+    "uf": "DF",
+    "source": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+    "competitions": [
+      "df-entrada"
+    ],
+    "city": "Brasília"
+  },
+  {
+    "name": "Linhares FC-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Linhares"
+  },
+  {
+    "name": "Doze-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Vitória"
+  },
+  {
+    "name": "CTE Colatina-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Colatina"
+  },
+  {
+    "name": "GEL-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Serra"
+  },
+  {
+    "name": "Audax São Mateus-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "São Mateus"
+  },
+  {
+    "name": "Rive-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Alegre"
+  },
+  {
+    "name": "Estrela do Norte-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Cachoeiro de Itapemirim"
+  },
+  {
+    "name": "Tupy-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Vila Velha"
+  },
+  {
+    "name": "Pinheiros-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Pinheiros"
+  },
+  {
+    "name": "SC Brasil Capixaba-ES",
+    "uf": "ES",
+    "source": "https://futebolcapixaba.com/2026/04/51396/",
+    "competitions": [
+      "es-entrada"
+    ],
+    "city": "Serra"
+  },
+  {
+    "name": "América de Morrinhos-GO",
+    "uf": "GO",
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "competitions": [
+      "go-entrada"
+    ],
+    "city": "Morrinhos"
+  },
+  {
+    "name": "Rioverdense-GO",
+    "uf": "GO",
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "competitions": [
+      "go-entrada"
+    ],
+    "city": "Rio Verde"
+  },
+  {
+    "name": "Atlético Itumbiara-GO",
+    "uf": "GO",
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "competitions": [
+      "go-entrada"
+    ],
+    "city": "Itumbiara"
+  },
+  {
+    "name": "Itumbiara EC-GO",
+    "uf": "GO",
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "competitions": [
+      "go-entrada"
+    ],
+    "city": "Itumbiara"
+  },
+  {
+    "name": "Novo Horizonte-GO",
+    "uf": "GO",
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "competitions": [
+      "go-entrada"
+    ],
+    "city": "Ipameri"
+  },
+  {
+    "name": "Real Clube-GO",
+    "uf": "GO",
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "competitions": [
+      "go-entrada"
+    ],
+    "city": "Itumbiara"
+  },
+  {
+    "name": "Royal-GO",
+    "uf": "GO",
+    "source": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+    "competitions": [
+      "go-entrada"
+    ],
+    "city": "Luziânia"
+  },
+  {
+    "name": "Americano-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Bacabal"
+  },
+  {
+    "name": "Araioses-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Araioses"
+  },
+  {
+    "name": "Expressinho-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "São Luís"
+  },
+  {
+    "name": "São José de Ribamar-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "São José de Ribamar"
+  },
+  {
+    "name": "São Luís FC-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "São Luís"
+  },
+  {
+    "name": "Tupan-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "São Luís"
+  },
+  {
+    "name": "Lago Verde-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Lago Verde"
+  },
+  {
+    "name": "Pinheiro-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Pinheiro"
+  },
+  {
+    "name": "Viana-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Viana"
+  },
+  {
+    "name": "Timon-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Timon"
+  },
+  {
+    "name": "Cordino-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Barra do Corda"
+  },
+  {
+    "name": "Balsas-MA",
+    "uf": "MA",
+    "source": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+    "competitions": [
+      "ma-entrada"
+    ],
+    "city": "Balsas"
+  },
+  {
+    "name": "Sinop-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Sinop"
+  },
+  {
+    "name": "Sorriso EC-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Sorriso"
+  },
+  {
+    "name": "Santa Cruz-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Barra do Bugres"
+  },
+  {
+    "name": "Sorriso FC-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Sorriso"
+  },
+  {
+    "name": "Campo Novo-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Campo Novo do Parecis"
+  },
+  {
+    "name": "Uirapuru-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Campo Verde"
+  },
+  {
+    "name": "Ação-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Várzea Grande"
+  },
+  {
+    "name": "Cacerense-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Cáceres"
+  },
+  {
+    "name": "Paulistano-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Cuiabá"
+  },
+  {
+    "name": "Atlético Matogrossense-MT",
+    "uf": "MT",
+    "source": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+    "competitions": [
+      "mt-entrada"
+    ],
+    "city": "Cuiabá"
+  },
+  {
+    "name": "Sete de Setembro-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "Dourados"
+  },
+  {
+    "name": "Aquidauanense-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "Aquidauana"
+  },
+  {
+    "name": "Campo Grande-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "Campo Grande"
+  },
+  {
+    "name": "Comercial-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "Campo Grande"
+  },
+  {
+    "name": "Misto-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "Três Lagoas"
+  },
+  {
+    "name": "São Gabriel-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "São Gabriel do Oeste"
+  },
+  {
+    "name": "Taveirópolis-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "Campo Grande"
+  },
+  {
+    "name": "União ABC-MS",
+    "uf": "MS",
+    "source": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+    "competitions": [
+      "ms-entrada"
+    ],
+    "city": "Campo Grande"
+  },
+  {
+    "name": "Inter de Minas-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Itaúna"
+  },
+  {
+    "name": "Nacional de Muriaé-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Muriaé"
+  },
+  {
+    "name": "Nova Lavras-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Lavras"
+  },
+  {
+    "name": "Novo Esporte Itabirinha-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Itabirinha"
+  },
+  {
+    "name": "Santarritense-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Santa Rita do Sapucaí"
+  },
+  {
+    "name": "Venda Nova-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Belo Horizonte"
+  },
+  {
+    "name": "Araxá-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Araxá"
+  },
+  {
+    "name": "Betim B-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Betim"
+  },
+  {
+    "name": "Funorte-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Montes Claros"
+  },
+  {
+    "name": "Paracatu-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Paracatu"
+  },
+  {
+    "name": "São João del Rei-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "São João del Rei"
+  },
+  {
+    "name": "Siderúrgica-MG",
+    "uf": "MG",
+    "source": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+    "competitions": [
+      "mg-entrada"
+    ],
+    "city": "Sabará"
+  },
+  {
+    "name": "ESMAC-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Ananindeua"
+  },
+  {
+    "name": "Vênus-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Abaetetuba"
+  },
+  {
+    "name": "Pedreira-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Belém"
+  },
+  {
+    "name": "Paraense-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Marituba"
+  },
+  {
+    "name": "Pinheirense-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Belém"
+  },
+  {
+    "name": "Tesla-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Belém"
+  },
+  {
+    "name": "Sport Belém-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Belém"
+  },
+  {
+    "name": "Belenense-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Belém"
+  },
+  {
+    "name": "Vila Rica-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Belém"
+  },
+  {
+    "name": "Parauapebas-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Parauapebas"
+  },
+  {
+    "name": "Gavião Kyikatejê-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Bom Jesus do Tocantins"
+  },
+  {
+    "name": "Altamira-PA",
+    "uf": "PA",
+    "source": "https://www.fpfpara.com.br/competicao/112",
+    "competitions": [
+      "pa-entrada"
+    ],
+    "city": "Altamira"
+  },
+  {
+    "name": "Atlético Santa Rita-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Santa Rita"
+  },
+  {
+    "name": "Auto Esporte-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "João Pessoa"
+  },
+  {
+    "name": "Cruzeiro-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Itaporanga"
+  },
+  {
+    "name": "Desportiva Guarabira-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Guarabira"
+  },
+  {
+    "name": "Femar-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Pedras de Fogo"
+  },
+  {
+    "name": "Picuiense-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Picuí"
+  },
+  {
+    "name": "São Paulo Crystal-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Cruz do Espírito Santo"
+  },
+  {
+    "name": "Serrano-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Campina Grande"
+  },
+  {
+    "name": "Spartax-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "João Pessoa"
+  },
+  {
+    "name": "Sport Lucena-PB",
+    "uf": "PB",
+    "source": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+    "competitions": [
+      "pb-entrada"
+    ],
+    "city": "Lucena"
+  },
+  {
+    "name": "Hope Internacional-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Campo Largo"
+  },
+  {
+    "name": "Samas-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "São Mateus do Sul"
+  },
+  {
+    "name": "Iraty-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Irati"
+  },
+  {
+    "name": "Iguaçu-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "União da Vitória"
+  },
+  {
+    "name": "Cambé-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Cambé"
+  },
+  {
+    "name": "City London-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Londrina"
+  },
+  {
+    "name": "Portuguesa Londrinense-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Londrina"
+  },
+  {
+    "name": "PSTC-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Alvorada do Sul"
+  },
+  {
+    "name": "Oeste Brasil-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Toledo"
+  },
+  {
+    "name": "Sport Campo Mourão-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Campo Mourão"
+  },
+  {
+    "name": "União Beltrão-PR",
+    "uf": "PR",
+    "source": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+    "competitions": [
+      "pr-entrada"
+    ],
+    "city": "Francisco Beltrão"
+  },
+  {
+    "name": "Cardoso Moreira-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Cardoso Moreira"
+  },
+  {
+    "name": "Tigres do Brasil-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Duque de Caxias"
+  },
+  {
+    "name": "Campos-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Campos dos Goytacazes"
+  },
+  {
+    "name": "Brescia Barra-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Rio de Janeiro"
+  },
+  {
+    "name": "Mageense-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Magé"
+  },
+  {
+    "name": "Barcelona-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Rio de Janeiro"
+  },
+  {
+    "name": "Itaboraí Profute-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Tanguá"
+  },
+  {
+    "name": "Vera Cruz-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Petrópolis"
+  },
+  {
+    "name": "Barra Mansa-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Barra Mansa"
+  },
+  {
+    "name": "Búzios-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Armação dos Búzios"
+  },
+  {
+    "name": "Rio Barra-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Resende"
+  },
+  {
+    "name": "Uni Souza-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Rio de Janeiro"
+  },
+  {
+    "name": "União Central-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Rio de Janeiro"
+  },
+  {
+    "name": "Ceres-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Rio de Janeiro"
+  },
+  {
+    "name": "Independente-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Macaé"
+  },
+  {
+    "name": "CAAC Brasil-RJ",
+    "uf": "RJ",
+    "source": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+    "competitions": [
+      "rj-entrada"
+    ],
+    "city": "Rio de Janeiro"
+  },
+  {
+    "name": "Alecrim-RN",
+    "uf": "RN",
+    "source": "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro",
+    "competitions": [
+      "rn-entrada"
+    ],
+    "city": "Natal"
+  },
+  {
+    "name": "Baraúnas-RN",
+    "uf": "RN",
+    "source": "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro",
+    "competitions": [
+      "rn-entrada"
+    ],
+    "city": "Mossoró"
+  },
+  {
+    "name": "Mossoró-RN",
+    "uf": "RN",
+    "source": "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro",
+    "competitions": [
+      "rn-entrada"
+    ],
+    "city": "Mossoró"
+  },
+  {
+    "name": "Palmeira-RN",
+    "uf": "RN",
+    "source": "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro",
+    "competitions": [
+      "rn-entrada"
+    ],
+    "city": "Goianinha"
+  },
+  {
+    "name": "Visão Celeste-RN",
+    "uf": "RN",
+    "source": "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro",
+    "competitions": [
+      "rn-entrada"
+    ],
+    "city": "Parnamirim"
+  },
+  {
+    "name": "1992 Clube-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Carazinho"
+  },
+  {
+    "name": "Cruz Alta-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Cruz Alta"
+  },
+  {
+    "name": "Farroupilha-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Pelotas"
+  },
+  {
+    "name": "Futebol com Vida-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Viamão"
+  },
+  {
+    "name": "Novo Horizonte-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Esteio"
+  },
+  {
+    "name": "Panambi-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Panambi"
+  },
+  {
+    "name": "Real Sport-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Tramandaí"
+  },
+  {
+    "name": "Rio Grande-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Rio Grande"
+  },
+  {
+    "name": "Riograndense RG-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Rio Grande"
+  },
+  {
+    "name": "São Paulo-RS",
+    "uf": "RS",
+    "source": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+    "competitions": [
+      "rs-entrada"
+    ],
+    "city": "Rio Grande"
+  },
+  {
+    "name": "Caçador-SC",
+    "uf": "SC",
+    "source": "https://fcf.com.br/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense/",
+    "competitions": [
+      "sc-entrada"
+    ],
+    "city": "Caçador"
+  },
+  {
+    "name": "Porto-SC",
+    "uf": "SC",
+    "source": "https://fcf.com.br/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense/",
+    "competitions": [
+      "sc-entrada"
+    ],
+    "city": "Porto União"
+  },
+  {
+    "name": "Manchester Catarinense-SC",
+    "uf": "SC",
+    "source": "https://fcf.com.br/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense/",
+    "competitions": [
+      "sc-entrada"
+    ],
+    "city": "Joinville"
+  },
+  {
+    "name": "Inter de Lages-SC",
+    "uf": "SC",
+    "source": "https://fcf.com.br/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense/",
+    "competitions": [
+      "sc-entrada"
+    ],
+    "city": "Lages"
+  },
+  {
+    "name": "América de Pedrinhas-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Pedrinhas"
+  },
+  {
+    "name": "Canindé-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Canindé de São Francisco"
+  },
+  {
+    "name": "Carmópolis-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Carmópolis"
+  },
+  {
+    "name": "Flamengo-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Japaratuba"
+  },
+  {
+    "name": "Olímpico-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Itabaianinha"
+  },
+  {
+    "name": "Socorrense-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Nossa Senhora do Socorro"
+  },
+  {
+    "name": "Barra-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Barra dos Coqueiros"
+  },
+  {
+    "name": "Estanciano-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Estância"
+  },
+  {
+    "name": "Frei Paulistano-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Frei Paulo"
+  },
+  {
+    "name": "Independente-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Simão Dias"
+  },
+  {
+    "name": "Maruinense-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Maruim"
+  },
+  {
+    "name": "Sport Socorro-SE",
+    "uf": "SE",
+    "source": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+    "competitions": [
+      "se-entrada"
+    ],
+    "city": "Nossa Senhora do Socorro"
+  },
+  {
+    "name": "Araguaia-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Palmas"
+  },
+  {
+    "name": "União de Palmas-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Palmas"
+  },
+  {
+    "name": "Guaraí-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Guaraí"
+  },
+  {
+    "name": "São José-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Palmas"
+  },
+  {
+    "name": "Paraíso-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Paraíso do Tocantins"
+  },
+  {
+    "name": "Batalhão-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Palmas"
+  },
+  {
+    "name": "Interporto-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Porto Nacional"
+  },
+  {
+    "name": "Taquarussu-TO",
+    "uf": "TO",
+    "source": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+    "competitions": [
+      "to-entrada"
+    ],
+    "city": "Palmas"
+  },
+  {
+    "name": "Rolim de Moura-RO",
+    "uf": "RO",
+    "source": "https://ge.globo.com/ro/futebol/campeonato-rondoniense/noticia/2026/08/31/rolim-de-moura-goleia-vec-por-4-a-1-e-conquista-titulo-inedito-da-serie-b.ghtml",
+    "competitions": [
+      "ro-entrada"
+    ],
+    "city": "Rolim de Moura"
+  },
+  {
+    "name": "Vilhena EC-RO",
+    "uf": "RO",
+    "source": "https://ge.globo.com/ro/futebol/campeonato-rondoniense/noticia/2026/08/31/rolim-de-moura-goleia-vec-por-4-a-1-e-conquista-titulo-inedito-da-serie-b.ghtml",
+    "competitions": [
+      "ro-entrada"
+    ],
+    "city": "Vilhena"
+  },
+  {
+    "name": "Baré-RR",
+    "uf": "RR",
+    "source": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+    "competitions": [
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "Náutico-RR",
+    "uf": "RR",
+    "source": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+    "competitions": [
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "Progresso-RR",
+    "uf": "RR",
+    "source": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+    "competitions": [
+      "rr-entrada"
+    ],
+    "city": "Mucajaí"
+  },
+  {
+    "name": "Rio Negro-RR",
+    "uf": "RR",
+    "source": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+    "competitions": [
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "River-RR",
+    "uf": "RR",
+    "source": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+    "competitions": [
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "Roraima-RR",
+    "uf": "RR",
+    "source": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+    "competitions": [
+      "rr-entrada"
+    ],
+    "city": "Boa Vista"
+  },
+  {
+    "name": "4 de Julho-PI",
+    "uf": "PI",
+    "source": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+    "competitions": [
+      "pi-entrada"
+    ],
+    "city": "Piripiri"
+  },
+  {
+    "name": "Caiçara-PI",
+    "uf": "PI",
+    "source": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+    "competitions": [
+      "pi-entrada"
+    ],
+    "city": "Campo Maior"
+  },
+  {
+    "name": "River-PI",
+    "uf": "PI",
+    "source": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+    "competitions": [
+      "pi-entrada"
+    ],
+    "city": "Teresina"
+  },
+  {
+    "name": "Picos-PI",
+    "uf": "PI",
+    "source": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+    "competitions": [
+      "pi-entrada"
+    ],
+    "city": "Picos"
+  },
+  {
+    "name": "Comercial-PI",
+    "uf": "PI",
+    "source": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+    "competitions": [
+      "pi-entrada"
+    ],
+    "city": "Campo Maior"
+  },
+  {
+    "name": "Flamengo-PI",
+    "uf": "PI",
+    "source": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+    "competitions": [
+      "pi-entrada"
+    ],
+    "city": "Teresina"
+  },
+  {
+    "name": "1º de Maio-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Petrolina"
+  },
+  {
+    "name": "Afogados-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Afogados da Ingazeira"
+  },
+  {
+    "name": "FacilNet-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Garanhuns"
+  },
+  {
+    "name": "Ferroviário do Cabo-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Cabo de Santo Agostinho"
+  },
+  {
+    "name": "Petrolina-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Petrolina"
+  },
+  {
+    "name": "Salgueiro-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Salgueiro"
+  },
+  {
+    "name": "Belo Jardim-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Belo Jardim"
+  },
+  {
+    "name": "Chã Grande-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Chã Grande"
+  },
+  {
+    "name": "Pesqueira-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Pesqueira"
+  },
+  {
+    "name": "Porto-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Caruaru"
+  },
+  {
+    "name": "Ypiranga-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Santa Cruz do Capibaribe"
+  },
+  {
+    "name": "Águia de Cumaru-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Cumaru"
+  },
+  {
+    "name": "Atlético Pernambucano-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Carpina"
+  },
+  {
+    "name": "Centro Limoeirense-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Limoeiro"
+  },
+  {
+    "name": "Jaguar-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Jaboatão dos Guararapes"
+  },
+  {
+    "name": "Santa Fé-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Recife"
+  },
+  {
+    "name": "Serrano-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Serra Talhada"
+  },
+  {
+    "name": "América-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Recife"
+  },
+  {
+    "name": "Guarany-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Camaragibe"
+  },
+  {
+    "name": "Íbis-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Paulista"
+  },
+  {
+    "name": "Ipojuca-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Ipojuca"
+  },
+  {
+    "name": "Sete de Setembro-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Garanhuns"
+  },
+  {
+    "name": "Vera Cruz-PE",
+    "uf": "PE",
+    "source": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+    "competitions": [
+      "pe-entrada"
+    ],
+    "city": "Vitória de Santo Antão"
+  }
+]

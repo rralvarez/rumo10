@@ -93,3 +93,22 @@ Limitações verificáveis: sem acesso/teste em Apache ou celular físico. Datas
 O atalho antes ficava em Minha carreira, dentro do painel oculto durante partidas. Agora Nova carreira faz parte do menu principal de todas as páginas autenticadas: topo no desktop, barra inferior de quatro itens no celular. A criação continua arquivando a carreira anterior somente após enviar o formulário.
 
 Verificado: PHP lint, teste de apresentação com link no menu durante partida, 34 verificações HTTP no IIS e clique no menu da prévia em 390 × 844 abrindo Quem entra em campo. Nenhuma carreira pessoal foi criada ou arquivada nesta correção.
+
+## 13/10/2026 — entrada por roleta e clubes próximos, versão 0.4
+
+Executado no checkout do IIS local, PHP 8.4.26:
+
+- tests/run.php: 27.981 verificações, 30 temporadas legadas completas nas seis posições.
+- tests/official.php: 8.638 verificações na execução desta rodada; nove formatos nacionais/paulistas, ano, propostas e próxima temporada.
+- tests/onboarding.php: 88 verificações de SP, proximidade, escolhas inválidas e escudos.
+- tests/state-entry.php: 5.833 verificações; ofertas geográficas nas outras 26 UFs, três simulações de cada campeonato, uma carreira inteira até o fim do ano em cada UF, progressão e segunda temporada. Verificado também que um universo oficial anterior conserva suas nove competições.
+- tests/official-mysql.php: 401 verificações na execução desta rodada, ano estadual/nacional completo, reload, mercado, arquivo/restauração.
+- tests/entry-mysql.php: 24 verificações de entrada em SE/RO/PR, com roleta e propostas persistidas, replay, contrato e treino. A limpeza inclui as carreiras arquivadas da conta temporária; nenhum registro de conta pessoal foi excluído.
+- tests/http.php: 42 verificações no IIS em http://rumo10.local; inclui cadastro sem seletor de clube, roleta, escolha, formulário com clube forjado ignorado, municípios por UF, erro de município sem arquivar carreira anterior, partida, replay e restauração.
+- tests/http-smoke.ps1: rotas, método, CSRF, API protegida e bloqueio de .env/.git/app/database/tests/README.
+- tests/presentation.php, tests/season-presentation.php e tests/wheel.php: concluídos com sucesso. PHP lint de app/bin/tests/public, node --check e git diff --check concluídos.
+- 462 escudos: arquivos válidos por getimagesize; HEAD no IIS respondeu HTTP 200 com MIME de imagem para todos.
+- bin/install-official.php: upserts do catálogo de 462 clubes e 35 competições/etapas em ecohub, exclusivamente rumo10_*. Registros antigos não são apagados.
+- Navegador: prévia GET isolada sem banco em 390 × 844; três propostas de SP com escudos, nenhuma imagem quebrada, nenhum overflow horizontal. Verificados dois clubes em RO e aviso A2 provisória de SE. A versão desktop foi inspecionada antes do ajuste de viewport. Evidência mobile em storage/inicio-mobile.png (arquivo local ignorado pelo Git).
+
+Não executado: Apache em produção, telefone físico ou certificação visual manual dos 462 escudos. Os campeonatos estaduais usam adaptações documentadas de calendário/desempate. Pirâmides superiores dos novos estaduais e turno decisivo de PE em 2027 permanecem limitações explícitas em Docs/11_Inicio_Estadual_e_Escudos.md e na interface pertinente.

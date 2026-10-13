@@ -23,6 +23,7 @@ final class Schedule {
         $rows=[]; foreach($teams as $t) $rows[$t]=['team'=>$t,'played'=>0,'points'=>0,'wins'=>0,'draws'=>0,'losses'=>0,'gf'=>0,'ga'=>0,'gd'=>0];
         foreach($matches as $m) if($m['status']==='finalizada') {
             foreach([[$m['home'],$m['hg'],$m['ag']],[$m['away'],$m['ag'],$m['hg']]] as [$t,$gf,$ga]) {
+                if(!isset($rows[$t]))continue;
                 $rows[$t]['played']++; $rows[$t]['gf']+=$gf; $rows[$t]['ga']+=$ga; $rows[$t]['gd']+=$gf-$ga;
                 $key=$gf>$ga?'wins':($gf===$ga?'draws':'losses'); $rows[$t][$key]++; $rows[$t]['points']+=($gf>$ga?3:($gf===$ga?1:0));
             }

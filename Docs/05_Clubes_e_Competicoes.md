@@ -39,3 +39,7 @@ Temporadas seguintes aplicam os acessos e descensos do mundo do jogador, não os
 A carreira antiga permanece com sua liga de 14 rodadas. Criar nova carreira arquiva a anterior sem apagar dados; restaurá-la arquiva a atual. Não há conversão de partidas antigas para clubes reais.
 
 Cores do catálogo anterior de 21 clubes são preservadas como referências separadas. A versão 0.3 prioriza nomes, participações e competição jogável; identidade visual dos 225 clubes ainda não foi pesquisada/certificada e não foi inventada.
+
+## Ampliação 0.4
+
+O cadastro de entrada pelas outras 26 UFs, os 462 escudos locais e as limitações de continuidade estadual estão descritos em [Início estadual e escudos](11_Inicio_Estadual_e_Escudos.md). A referência de 225 clubes acima descreve a base anterior.

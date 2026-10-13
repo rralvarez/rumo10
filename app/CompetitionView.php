@@ -13,7 +13,7 @@ final class CompetitionView {
     public static function table(array $rows,string $club): void {
         echo '<div class="table-responsive"><table class="table"><thead><tr><th>Clube</th><th>PTS</th><th>J</th><th>V</th><th>SG</th></tr></thead><tbody>';
         foreach($rows as $i=>$row) {
-            echo '<tr><td>'.e(($i+1).'. '.$row['team']).($row['team']===$club?' ★':'').'</td>';
+            echo '<tr><td>';ClubBadge::render($row['team']);echo ' '.e(($i+1).'. '.$row['team']).($row['team']===$club?' ★':'').'</td>';
             foreach(['points','played','wins','gd'] as $key)echo '<td>'.e($row[$key]).'</td>';
             echo '</tr>';
         }echo '</tbody></table></div>';
@@ -50,7 +50,7 @@ final class CompetitionView {
         $s=$r['name'].': ';
         if($r['champion']===$club)$s.='seu clube conquistou o título! ';
         else $s.='campeão '.$r['champion'].'. ';
-        if($r['promoted'])$s.='Acesso conquistado.';
+        if($r['promoted'])$s.='Acesso conquistado.'.(!empty($r['access_pending'])?' A divisão seguinte deste estado ainda não está disponível no protótipo.':'');
         elseif($r['relegated'])$s.='Seu clube foi rebaixado.';
         else $s.='Seu clube terminou em '.$r['position'].'º '.(!empty($r['group'])?'no grupo '.$r['group']:'na primeira fase').'.';
         return $s;
@@ -58,6 +58,9 @@ final class CompetitionView {
     public static function recap(array $g): void {
         $r=$g['competition_results'][$g['competition_id']];
         echo '<article class="panel"><p class="tag">COMPETIÇÃO ENCERRADA</p><h2>'.e($r['champion']===$g['club']?'É campeão!':'O campeonato terminou').'</h2><p>'.e(self::resultText($r,$g['club'])).'</p>';
+        if(!empty($r['access_pending']))echo '<p class="subtle">Se permanecer neste clube, a próxima temporada repetirá a divisão cadastrada. Você também poderá avaliar propostas de outros clubes.</p>';
+        $note=Competition::catalog()[$g['competition_id']]['rules']['note']??null;
+        if($note)echo '<p class="subtle">'.e($note).'</p>';
         $next=$g['season_competitions'][$g['competition_cursor']+1]??null;
         if($next)echo '<p>Agora vem o '.e(Competition::catalog()[$next]['name']).'. Seu clube continua contando com você.</p>';
         echo '<form method="post" action="/competicao/continuar"><input type="hidden" name="csrf" value="'.e($_SESSION['csrf']).'"><input type="hidden" name="version" value="'.e($g['version']).'"><input type="hidden" name="key" value="'.bin2hex(random_bytes(32)).'"><button class="btn btn-primary btn-lg">'.($next?'Começar próximo campeonato →':'Continuar minha carreira →').'</button></form></article><details class="panel"><summary>Ver campanha</summary>';

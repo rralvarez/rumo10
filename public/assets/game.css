@@ -15,3 +15,15 @@
 /* Nova carreira permanece acessível inclusive enquanto o jogador está em campo. */
 header nav .new-career-link{color:var(--lime);font-weight:700}
 @media(max-width:760px){header nav.authenticated{grid-template-columns:repeat(4,minmax(0,1fr))}header nav .new-career-link{background:#25362c;font-size:12px;text-align:center;line-height:1.2}}
+
+/* Primeiro contrato: opções próximas e compactas. */
+.club-badge{width:48px;height:48px;object-fit:contain;flex-shrink:0;display:inline-block;vertical-align:middle}
+.badge-pending{display:inline-flex;align-items:center;justify-content:center;border:1px solid #49625f;border-radius:50%;font-size:.7rem;color:#9dafb3}
+.club-choice{align-items:center;gap:14px;padding:12px}.club-choice strong{display:block;font-size:1rem}.club-choice small{display:block;margin-top:4px;color:#a7bcc6}
+.onboarding .career-extras{display:none}.onboarding .game-layout{grid-template-columns:1fr;max-width:640px;margin:auto}.onboarding .career-head{max-width:640px;margin:0 auto 18px}.onboarding .eyebrow{display:none}
+.entry-draw{margin-bottom:16px}.entry-draw.draw-complete .wheel-stage,.entry-draw.draw-complete .wheel-candidates{display:none}.entry-draw.draw-complete .career-wheel{padding:8px}.entry-draw.draw-complete .wheel-outcome{margin:0}.entry-draw.draw-complete .wheel-winner{font-size:1.1rem}
+@media(max-width:600px){.onboarding .career-head h1{font-size:1.5rem}.onboarding .competition-name{display:none}.onboarding .career-head{margin-bottom:12px}.onboarding .panel{padding:16px}.onboarding .panel h2{font-size:1.3rem}.club-choice{margin:8px 0}.club-choice strong{font-size:.93rem}.club-choice small{font-size:.76rem}}
+
+.score-team{display:flex;align-items:center;justify-content:center;gap:8px}.score-team .club-badge{width:28px;height:28px}.table .club-badge{width:24px;height:24px}.club-line .club-badge{width:30px;height:30px}@media(max-width:600px){.score-team{flex-direction:column;gap:4px}.score-team .club-badge{width:24px;height:24px}}
+
+.entry-draw.wheel-drawing + .entry-offers{display:none}

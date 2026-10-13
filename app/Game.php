@@ -2,7 +2,8 @@
 declare(strict_types=1);
 final class Game {
     public static function create(string $name,string $city,string $uf,string $position,?string $club=null): array {
-        return Competition::attach(self::legacyCreate($name,$city,$uf,$position),$club??'São Caetano-SP');
+        $g=self::legacyCreate($name,$city,$uf,$position);
+        return $club!==null?Competition::attach($g,$club):Onboarding::prepare($g);
     }
     public static function legacyCreate(string $name,string $city,string $uf,string $position): array {
         if(!in_array($position,Rules::POSITIONS,true) || mb_strlen($name)<2 || mb_strlen($name)>60 || mb_strlen($city)<2 || mb_strlen($city)>80 || !in_array($uf,explode(' ','AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'),true)) throw new InvalidArgumentException('Confira nome, cidade, UF e posição.');
@@ -57,6 +58,17 @@ final class Game {
                 if(isset($g['skills'][$k])) $g['skills'][$k]['value']=self::clamp($g['skills'][$k]['value']+$v); else $g['states'][$k]=self::clamp($g['states'][$k]+$v);
             }
             $g['feedback']=['text'=>'Perfil inicial: '.$h['nome'],'effects'=>$h['efeitos']]; $g['stage']='treino';
+            if(!empty($g['starting'])) {
+                $g['entry_division']=Onboarding::division($g['uf'],$h['nome']);
+                $g['initial_candidates']=Onboarding::candidates($g['origin'],$g['entry_division']);
+                $g['stage']='clube_inicio';
+            }
+        } elseif($action==='join' && $g['stage']==='clube_inicio' && !empty($g['starting'])) {
+            $n=filter_var($input['option']??null,FILTER_VALIDATE_INT);
+            if($n===false || !isset($g['initial_candidates'][$n]))throw new InvalidArgumentException('Escolha um dos clubes oferecidos.');
+            $g=Competition::attach($g,$g['initial_candidates'][$n]['club']);
+            $g['starting']=false;$g['stage']='treino';
+            $g['feedback']=['text'=>'Você chegou ao '.$g['club'].'. É hora de conquistar seu espaço.'];
         } elseif($action==='choice' && in_array($g['stage'],['treino','pre_jogo','fim_semana','partida'],true)) {
             $choices=self::choices($g); $n=filter_var($input['option']??null,FILTER_VALIDATE_INT);
             if($n===false || !isset($choices[$n])) throw new InvalidArgumentException('Escolha inválida.');

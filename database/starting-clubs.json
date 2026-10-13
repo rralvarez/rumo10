@@ -1,0 +1,1640 @@
+{
+  "Portuguesa Santista-SP": {
+    "name": "Santos",
+    "uf": "SP",
+    "lat": -23.9535,
+    "lon": -46.335
+  },
+  "Rio Claro-SP": {
+    "name": "Rio Claro",
+    "uf": "SP",
+    "lat": -22.3984,
+    "lon": -47.5546
+  },
+  "Marília-SP": {
+    "name": "Marília",
+    "uf": "SP",
+    "lat": -22.2171,
+    "lon": -49.9501
+  },
+  "Rio Branco-SP": {
+    "name": "Americana",
+    "uf": "SP",
+    "lat": -22.7374,
+    "lon": -47.3331
+  },
+  "Desportivo Brasil-SP": {
+    "name": "Porto Feliz",
+    "uf": "SP",
+    "lat": -23.2093,
+    "lon": -47.5251
+  },
+  "União São João-SP": {
+    "name": "Araras",
+    "uf": "SP",
+    "lat": -22.3572,
+    "lon": -47.3842
+  },
+  "Catanduva-SP": {
+    "name": "Catanduva",
+    "uf": "SP",
+    "lat": -21.1314,
+    "lon": -48.977
+  },
+  "Itapirense-SP": {
+    "name": "Itapira",
+    "uf": "SP",
+    "lat": -22.4357,
+    "lon": -46.8224
+  },
+  "Rio Preto-SP": {
+    "name": "São José do Rio Preto",
+    "uf": "SP",
+    "lat": -20.8113,
+    "lon": -49.3758
+  },
+  "União Suzano-SP": {
+    "name": "Suzano",
+    "uf": "SP",
+    "lat": -23.5448,
+    "lon": -46.3112
+  },
+  "XV de Jaú-SP": {
+    "name": "Jaú",
+    "uf": "SP",
+    "lat": -22.2936,
+    "lon": -48.5592
+  },
+  "Francana-SP": {
+    "name": "Franca",
+    "uf": "SP",
+    "lat": -20.5352,
+    "lon": -47.4039
+  },
+  "EC São Bernardo-SP": {
+    "name": "São Bernardo do Campo",
+    "uf": "SP",
+    "lat": -23.6914,
+    "lon": -46.5646
+  },
+  "Bandeirante-SP": {
+    "name": "Birigui",
+    "uf": "SP",
+    "lat": -21.291,
+    "lon": -50.3432
+  },
+  "União Barbarense-SP": {
+    "name": "Santa Bárbara d'Oeste",
+    "uf": "SP",
+    "lat": -22.7553,
+    "lon": -47.4143
+  },
+  "Paulista-SP": {
+    "name": "Jundiaí",
+    "uf": "SP",
+    "lat": -23.1852,
+    "lon": -46.8974
+  },
+  "Lemense-SP": {
+    "name": "Leme",
+    "uf": "SP",
+    "lat": -22.1809,
+    "lon": -47.3841
+  },
+  "Comercial-SP": {
+    "name": "Ribeirão Preto",
+    "uf": "SP",
+    "lat": -21.1699,
+    "lon": -47.8099
+  },
+  "Araçatuba-SP": {
+    "name": "Araçatuba",
+    "uf": "SP",
+    "lat": -21.2076,
+    "lon": -50.4401
+  },
+  "Nacional-SP": {
+    "name": "São Paulo",
+    "uf": "SP",
+    "lat": -23.5329,
+    "lon": -46.6395
+  },
+  "Taquaritinga-SP": {
+    "name": "Taquaritinga",
+    "uf": "SP",
+    "lat": -21.4049,
+    "lon": -48.5103
+  },
+  "Jacareí-SP": {
+    "name": "Jacareí",
+    "uf": "SP",
+    "lat": -23.2983,
+    "lon": -45.9658
+  },
+  "São Caetano-SP": {
+    "name": "São Caetano do Sul",
+    "uf": "SP",
+    "lat": -23.6229,
+    "lon": -46.5548
+  },
+  "Colorado Caieiras-SP": {
+    "name": "Caieiras",
+    "uf": "SP",
+    "lat": -23.3607,
+    "lon": -46.7397
+  },
+  "Inter de Bebedouro-SP": {
+    "name": "Bebedouro",
+    "uf": "SP",
+    "lat": -20.9491,
+    "lon": -48.4791
+  },
+  "VOCEM-SP": {
+    "name": "Assis",
+    "uf": "SP",
+    "lat": -22.66,
+    "lon": -50.4183
+  },
+  "Jabaquara-SP": {
+    "name": "Santos",
+    "uf": "SP",
+    "lat": -23.9535,
+    "lon": -46.335
+  },
+  "Penapolense-SP": {
+    "name": "Penápolis",
+    "uf": "SP",
+    "lat": -21.4148,
+    "lon": -50.0769
+  },
+  "Barretos-SP": {
+    "name": "Barretos",
+    "uf": "SP",
+    "lat": -20.5531,
+    "lon": -48.5698
+  },
+  "Grêmio São-Carlense-SP": {
+    "name": "São Carlos",
+    "uf": "SP",
+    "lat": -22.0174,
+    "lon": -47.886
+  },
+  "Tanabi-SP": {
+    "name": "Tanabi",
+    "uf": "SP",
+    "lat": -20.6228,
+    "lon": -49.6563
+  },
+  "ECUS-SP": {
+    "name": "Suzano",
+    "uf": "SP",
+    "lat": -23.5448,
+    "lon": -46.3112
+  },
+  "Andirá-AC": {
+    "name": "Rio Branco",
+    "uf": "AC",
+    "lat": -9.97499,
+    "lon": -67.8243
+  },
+  "Atlético Acreano-AC": {
+    "name": "Rio Branco",
+    "uf": "AC",
+    "lat": -9.97499,
+    "lon": -67.8243
+  },
+  "Náuas-AC": {
+    "name": "Cruzeiro do Sul",
+    "uf": "AC",
+    "lat": -7.62762,
+    "lon": -72.6756
+  },
+  "Plácido de Castro-AC": {
+    "name": "Plácido de Castro",
+    "uf": "AC",
+    "lat": -10.2806,
+    "lon": -67.1371
+  },
+  "São Domingos-AL": {
+    "name": "Maceió",
+    "uf": "AL",
+    "lat": -9.66599,
+    "lon": -35.735
+  },
+  "Desportivo Aliança-AL": {
+    "name": "Pilar",
+    "uf": "AL",
+    "lat": -9.60135,
+    "lon": -35.9543
+  },
+  "Jaciobá-AL": {
+    "name": "Pão de Açúcar",
+    "uf": "AL",
+    "lat": -9.74032,
+    "lon": -37.4403
+  },
+  "Miguelense-AL": {
+    "name": "São Miguel dos Campos",
+    "uf": "AL",
+    "lat": -9.78301,
+    "lon": -36.0971
+  },
+  "Sporting-AL": {
+    "name": "Teotônio Vilela",
+    "uf": "AL",
+    "lat": -9.91656,
+    "lon": -36.3492
+  },
+  "Zumbi-AL": {
+    "name": "União dos Palmares",
+    "uf": "AL",
+    "lat": -9.15921,
+    "lon": -36.0223
+  },
+  "Unidos do Alvorada-AM": {
+    "name": "Manaus",
+    "uf": "AM",
+    "lat": -3.11866,
+    "lon": -60.0212
+  },
+  "CDC da Amazônia-AM": {
+    "name": "Manicoré",
+    "uf": "AM",
+    "lat": -5.80462,
+    "lon": -61.2895
+  },
+  "Clipper-AM": {
+    "name": "Manaus",
+    "uf": "AM",
+    "lat": -3.11866,
+    "lon": -60.0212
+  },
+  "Fast Clube-AM": {
+    "name": "Manaus",
+    "uf": "AM",
+    "lat": -3.11866,
+    "lon": -60.0212
+  },
+  "RB do Norte-AM": {
+    "name": "Manaus",
+    "uf": "AM",
+    "lat": -3.11866,
+    "lon": -60.0212
+  },
+  "Penarol-AM": {
+    "name": "Itacoatiara",
+    "uf": "AM",
+    "lat": -3.13861,
+    "lon": -58.4449
+  },
+  "Operário-AM": {
+    "name": "Manacapuru",
+    "uf": "AM",
+    "lat": -3.29066,
+    "lon": -60.6216
+  },
+  "Portuguesa-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "Cruzeiro-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "Santana-AP": {
+    "name": "Santana",
+    "uf": "AP",
+    "lat": -0.045434,
+    "lon": -51.1729
+  },
+  "Latitude Zero-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "Lagoa-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "Renovação-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "Rio Norte-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "São Paulo-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "Canário-AP": {
+    "name": "Macapá",
+    "uf": "AP",
+    "lat": 0.034934,
+    "lon": -51.0694
+  },
+  "Mazagão-AP": {
+    "name": "Mazagão",
+    "uf": "AP",
+    "lat": -0.11336,
+    "lon": -51.2891
+  },
+  "ADEC-AP": {
+    "name": "Calçoene",
+    "uf": "AP",
+    "lat": 2.50475,
+    "lon": -50.9512
+  },
+  "BARE-AP": {
+    "name": "Ferreira Gomes",
+    "uf": "AP",
+    "lat": 0.857256,
+    "lon": -51.1795
+  },
+  "Leônico-BA": {
+    "name": "Salvador",
+    "uf": "BA",
+    "lat": -12.9718,
+    "lon": -38.5011
+  },
+  "Barreiras-BA": {
+    "name": "Barreiras",
+    "uf": "BA",
+    "lat": -12.1439,
+    "lon": -44.9968
+  },
+  "Camaçari-BA": {
+    "name": "Camaçari",
+    "uf": "BA",
+    "lat": -12.6996,
+    "lon": -38.3263
+  },
+  "Vitória da Conquista-BA": {
+    "name": "Vitória da Conquista",
+    "uf": "BA",
+    "lat": -14.8615,
+    "lon": -40.8442
+  },
+  "Feira FC-BA": {
+    "name": "Feira de Santana",
+    "uf": "BA",
+    "lat": -12.2664,
+    "lon": -38.9663
+  },
+  "Fluminense de Feira-BA": {
+    "name": "Feira de Santana",
+    "uf": "BA",
+    "lat": -12.2664,
+    "lon": -38.9663
+  },
+  "Grapiúna-BA": {
+    "name": "Itabuna",
+    "uf": "BA",
+    "lat": -14.7876,
+    "lon": -39.2781
+  },
+  "Jacobina-BA": {
+    "name": "Jacobina",
+    "uf": "BA",
+    "lat": -11.1812,
+    "lon": -40.5117
+  },
+  "Redenção-BA": {
+    "name": "Salvador",
+    "uf": "BA",
+    "lat": -12.9718,
+    "lon": -38.5011
+  },
+  "SSA FC-BA": {
+    "name": "Salvador",
+    "uf": "BA",
+    "lat": -12.9718,
+    "lon": -38.5011
+  },
+  "Pacatuba-CE": {
+    "name": "Pacatuba",
+    "uf": "CE",
+    "lat": -3.9784,
+    "lon": -38.6183
+  },
+  "Esporte Limoeiro-CE": {
+    "name": "Limoeiro do Norte",
+    "uf": "CE",
+    "lat": -5.14392,
+    "lon": -38.0847
+  },
+  "Vila Real-CE": {
+    "name": "Sobral",
+    "uf": "CE",
+    "lat": -3.68913,
+    "lon": -40.3482
+  },
+  "Tianguá-CE": {
+    "name": "Tianguá",
+    "uf": "CE",
+    "lat": -3.72965,
+    "lon": -40.9923
+  },
+  "Calouros do Ar-CE": {
+    "name": "Fortaleza",
+    "uf": "CE",
+    "lat": -3.71664,
+    "lon": -38.5423
+  },
+  "FC Acopiara-CE": {
+    "name": "Acopiara",
+    "uf": "CE",
+    "lat": -6.08911,
+    "lon": -39.448
+  },
+  "Palmácia-CE": {
+    "name": "Palmácia",
+    "uf": "CE",
+    "lat": -4.13831,
+    "lon": -38.8446
+  },
+  "Canaã-DF": {
+    "name": "Brasília",
+    "uf": "DF",
+    "lat": -15.7795,
+    "lon": -47.9297
+  },
+  "Candango-DF": {
+    "name": "Brasília",
+    "uf": "DF",
+    "lat": -15.7795,
+    "lon": -47.9297
+  },
+  "GREVAL-DF": {
+    "name": "Valparaíso de Goiás",
+    "uf": "GO",
+    "lat": -16.0651,
+    "lon": -47.9757
+  },
+  "Legião-DF": {
+    "name": "Brasília",
+    "uf": "DF",
+    "lat": -15.7795,
+    "lon": -47.9297
+  },
+  "Luziânia-DF": {
+    "name": "Luziânia",
+    "uf": "GO",
+    "lat": -16.253,
+    "lon": -47.95
+  },
+  "Planaltina EC-DF": {
+    "name": "Brasília",
+    "uf": "DF",
+    "lat": -15.7795,
+    "lon": -47.9297
+  },
+  "Taguatinga-DF": {
+    "name": "Brasília",
+    "uf": "DF",
+    "lat": -15.7795,
+    "lon": -47.9297
+  },
+  "Linhares FC-ES": {
+    "name": "Linhares",
+    "uf": "ES",
+    "lat": -19.3946,
+    "lon": -40.0643
+  },
+  "Doze-ES": {
+    "name": "Vitória",
+    "uf": "ES",
+    "lat": -20.3155,
+    "lon": -40.3128
+  },
+  "CTE Colatina-ES": {
+    "name": "Colatina",
+    "uf": "ES",
+    "lat": -19.5493,
+    "lon": -40.6269
+  },
+  "GEL-ES": {
+    "name": "Serra",
+    "uf": "ES",
+    "lat": -20.121,
+    "lon": -40.3074
+  },
+  "Audax São Mateus-ES": {
+    "name": "São Mateus",
+    "uf": "ES",
+    "lat": -18.7214,
+    "lon": -39.8579
+  },
+  "Rive-ES": {
+    "name": "Alegre",
+    "uf": "ES",
+    "lat": -20.758,
+    "lon": -41.5382
+  },
+  "Estrela do Norte-ES": {
+    "name": "Cachoeiro de Itapemirim",
+    "uf": "ES",
+    "lat": -20.8462,
+    "lon": -41.1198
+  },
+  "Tupy-ES": {
+    "name": "Vila Velha",
+    "uf": "ES",
+    "lat": -20.3417,
+    "lon": -40.2875
+  },
+  "Pinheiros-ES": {
+    "name": "Pinheiros",
+    "uf": "ES",
+    "lat": -18.4141,
+    "lon": -40.2171
+  },
+  "SC Brasil Capixaba-ES": {
+    "name": "Serra",
+    "uf": "ES",
+    "lat": -20.121,
+    "lon": -40.3074
+  },
+  "América de Morrinhos-GO": {
+    "name": "Morrinhos",
+    "uf": "GO",
+    "lat": -17.7334,
+    "lon": -49.1059
+  },
+  "Rioverdense-GO": {
+    "name": "Rio Verde",
+    "uf": "GO",
+    "lat": -17.7923,
+    "lon": -50.9192
+  },
+  "Atlético Itumbiara-GO": {
+    "name": "Itumbiara",
+    "uf": "GO",
+    "lat": -18.4093,
+    "lon": -49.2158
+  },
+  "Itumbiara EC-GO": {
+    "name": "Itumbiara",
+    "uf": "GO",
+    "lat": -18.4093,
+    "lon": -49.2158
+  },
+  "Novo Horizonte-GO": {
+    "name": "Ipameri",
+    "uf": "GO",
+    "lat": -17.7215,
+    "lon": -48.1581
+  },
+  "Real Clube-GO": {
+    "name": "Itumbiara",
+    "uf": "GO",
+    "lat": -18.4093,
+    "lon": -49.2158
+  },
+  "Royal-GO": {
+    "name": "Luziânia",
+    "uf": "GO",
+    "lat": -16.253,
+    "lon": -47.95
+  },
+  "Americano-MA": {
+    "name": "Bacabal",
+    "uf": "MA",
+    "lat": -4.22447,
+    "lon": -44.7832
+  },
+  "Araioses-MA": {
+    "name": "Araioses",
+    "uf": "MA",
+    "lat": -2.89091,
+    "lon": -41.905
+  },
+  "Expressinho-MA": {
+    "name": "São Luís",
+    "uf": "MA",
+    "lat": -2.53874,
+    "lon": -44.2825
+  },
+  "São José de Ribamar-MA": {
+    "name": "São José de Ribamar",
+    "uf": "MA",
+    "lat": -2.54704,
+    "lon": -44.0597
+  },
+  "São Luís FC-MA": {
+    "name": "São Luís",
+    "uf": "MA",
+    "lat": -2.53874,
+    "lon": -44.2825
+  },
+  "Tupan-MA": {
+    "name": "São Luís",
+    "uf": "MA",
+    "lat": -2.53874,
+    "lon": -44.2825
+  },
+  "Lago Verde-MA": {
+    "name": "Lago Verde",
+    "uf": "MA",
+    "lat": -3.94661,
+    "lon": -44.826
+  },
+  "Pinheiro-MA": {
+    "name": "Pinheiro",
+    "uf": "MA",
+    "lat": -2.52224,
+    "lon": -45.0788
+  },
+  "Viana-MA": {
+    "name": "Viana",
+    "uf": "MA",
+    "lat": -3.20451,
+    "lon": -44.9912
+  },
+  "Timon-MA": {
+    "name": "Timon",
+    "uf": "MA",
+    "lat": -5.09769,
+    "lon": -42.8329
+  },
+  "Cordino-MA": {
+    "name": "Barra do Corda",
+    "uf": "MA",
+    "lat": -5.49682,
+    "lon": -45.2485
+  },
+  "Balsas-MA": {
+    "name": "Balsas",
+    "uf": "MA",
+    "lat": -7.53214,
+    "lon": -46.0372
+  },
+  "Sinop-MT": {
+    "name": "Sinop",
+    "uf": "MT",
+    "lat": -11.8604,
+    "lon": -55.5091
+  },
+  "Sorriso EC-MT": {
+    "name": "Sorriso",
+    "uf": "MT",
+    "lat": -12.5425,
+    "lon": -55.7211
+  },
+  "Santa Cruz-MT": {
+    "name": "Barra do Bugres",
+    "uf": "MT",
+    "lat": -15.0702,
+    "lon": -57.1878
+  },
+  "Sorriso FC-MT": {
+    "name": "Sorriso",
+    "uf": "MT",
+    "lat": -12.5425,
+    "lon": -55.7211
+  },
+  "Campo Novo-MT": {
+    "name": "Campo Novo do Parecis",
+    "uf": "MT",
+    "lat": -13.6587,
+    "lon": -57.8907
+  },
+  "Uirapuru-MT": {
+    "name": "Campo Verde",
+    "uf": "MT",
+    "lat": -15.545,
+    "lon": -55.1626
+  },
+  "Ação-MT": {
+    "name": "Várzea Grande",
+    "uf": "MT",
+    "lat": -15.6458,
+    "lon": -56.1322
+  },
+  "Cacerense-MT": {
+    "name": "Cáceres",
+    "uf": "MT",
+    "lat": -16.0764,
+    "lon": -57.6818
+  },
+  "Paulistano-MT": {
+    "name": "Cuiabá",
+    "uf": "MT",
+    "lat": -15.601,
+    "lon": -56.0974
+  },
+  "Atlético Matogrossense-MT": {
+    "name": "Cuiabá",
+    "uf": "MT",
+    "lat": -15.601,
+    "lon": -56.0974
+  },
+  "Sete de Setembro-MS": {
+    "name": "Dourados",
+    "uf": "MS",
+    "lat": -22.2231,
+    "lon": -54.812
+  },
+  "Aquidauanense-MS": {
+    "name": "Aquidauana",
+    "uf": "MS",
+    "lat": -20.4666,
+    "lon": -55.7868
+  },
+  "Campo Grande-MS": {
+    "name": "Campo Grande",
+    "uf": "MS",
+    "lat": -20.4486,
+    "lon": -54.6295
+  },
+  "Comercial-MS": {
+    "name": "Campo Grande",
+    "uf": "MS",
+    "lat": -20.4486,
+    "lon": -54.6295
+  },
+  "Misto-MS": {
+    "name": "Três Lagoas",
+    "uf": "MS",
+    "lat": -20.7849,
+    "lon": -51.7007
+  },
+  "São Gabriel-MS": {
+    "name": "São Gabriel do Oeste",
+    "uf": "MS",
+    "lat": -19.3889,
+    "lon": -54.5507
+  },
+  "Taveirópolis-MS": {
+    "name": "Campo Grande",
+    "uf": "MS",
+    "lat": -20.4486,
+    "lon": -54.6295
+  },
+  "União ABC-MS": {
+    "name": "Campo Grande",
+    "uf": "MS",
+    "lat": -20.4486,
+    "lon": -54.6295
+  },
+  "Inter de Minas-MG": {
+    "name": "Itaúna",
+    "uf": "MG",
+    "lat": -20.0818,
+    "lon": -44.5801
+  },
+  "Nacional de Muriaé-MG": {
+    "name": "Muriaé",
+    "uf": "MG",
+    "lat": -21.13,
+    "lon": -42.3693
+  },
+  "Nova Lavras-MG": {
+    "name": "Lavras",
+    "uf": "MG",
+    "lat": -21.248,
+    "lon": -45.0009
+  },
+  "Novo Esporte Itabirinha-MG": {
+    "name": "Itabirinha",
+    "uf": "MG",
+    "lat": -18.5712,
+    "lon": -41.234
+  },
+  "Santarritense-MG": {
+    "name": "Santa Rita do Sapucaí",
+    "uf": "MG",
+    "lat": -22.2461,
+    "lon": -45.7034
+  },
+  "Venda Nova-MG": {
+    "name": "Belo Horizonte",
+    "uf": "MG",
+    "lat": -19.9102,
+    "lon": -43.9266
+  },
+  "Araxá-MG": {
+    "name": "Araxá",
+    "uf": "MG",
+    "lat": -19.5902,
+    "lon": -46.9438
+  },
+  "Betim B-MG": {
+    "name": "Betim",
+    "uf": "MG",
+    "lat": -19.9668,
+    "lon": -44.2008
+  },
+  "Funorte-MG": {
+    "name": "Montes Claros",
+    "uf": "MG",
+    "lat": -16.7282,
+    "lon": -43.8578
+  },
+  "Paracatu-MG": {
+    "name": "Paracatu",
+    "uf": "MG",
+    "lat": -17.2252,
+    "lon": -46.8711
+  },
+  "São João del Rei-MG": {
+    "name": "São João del Rei",
+    "uf": "MG",
+    "lat": -21.1311,
+    "lon": -44.2526
+  },
+  "Siderúrgica-MG": {
+    "name": "Sabará",
+    "uf": "MG",
+    "lat": -19.884,
+    "lon": -43.8263
+  },
+  "ESMAC-PA": {
+    "name": "Ananindeua",
+    "uf": "PA",
+    "lat": -1.36391,
+    "lon": -48.3743
+  },
+  "Vênus-PA": {
+    "name": "Abaetetuba",
+    "uf": "PA",
+    "lat": -1.72183,
+    "lon": -48.8788
+  },
+  "Pedreira-PA": {
+    "name": "Belém",
+    "uf": "PA",
+    "lat": -1.4554,
+    "lon": -48.4898
+  },
+  "Paraense-PA": {
+    "name": "Marituba",
+    "uf": "PA",
+    "lat": -1.36002,
+    "lon": -48.3421
+  },
+  "Pinheirense-PA": {
+    "name": "Belém",
+    "uf": "PA",
+    "lat": -1.4554,
+    "lon": -48.4898
+  },
+  "Tesla-PA": {
+    "name": "Belém",
+    "uf": "PA",
+    "lat": -1.4554,
+    "lon": -48.4898
+  },
+  "Sport Belém-PA": {
+    "name": "Belém",
+    "uf": "PA",
+    "lat": -1.4554,
+    "lon": -48.4898
+  },
+  "Belenense-PA": {
+    "name": "Belém",
+    "uf": "PA",
+    "lat": -1.4554,
+    "lon": -48.4898
+  },
+  "Vila Rica-PA": {
+    "name": "Belém",
+    "uf": "PA",
+    "lat": -1.4554,
+    "lon": -48.4898
+  },
+  "Parauapebas-PA": {
+    "name": "Parauapebas",
+    "uf": "PA",
+    "lat": -6.06781,
+    "lon": -49.9037
+  },
+  "Gavião Kyikatejê-PA": {
+    "name": "Bom Jesus do Tocantins",
+    "uf": "PA",
+    "lat": -5.0424,
+    "lon": -48.6047
+  },
+  "Altamira-PA": {
+    "name": "Altamira",
+    "uf": "PA",
+    "lat": -3.20407,
+    "lon": -52.21
+  },
+  "Atlético Santa Rita-PB": {
+    "name": "Santa Rita",
+    "uf": "PB",
+    "lat": -7.11724,
+    "lon": -34.9753
+  },
+  "Auto Esporte-PB": {
+    "name": "João Pessoa",
+    "uf": "PB",
+    "lat": -7.11509,
+    "lon": -34.8641
+  },
+  "Cruzeiro-PB": {
+    "name": "Itaporanga",
+    "uf": "PB",
+    "lat": -7.30202,
+    "lon": -38.1504
+  },
+  "Desportiva Guarabira-PB": {
+    "name": "Guarabira",
+    "uf": "PB",
+    "lat": -6.85064,
+    "lon": -35.485
+  },
+  "Femar-PB": {
+    "name": "Pedras de Fogo",
+    "uf": "PB",
+    "lat": -7.39107,
+    "lon": -35.1065
+  },
+  "Picuiense-PB": {
+    "name": "Picuí",
+    "uf": "PB",
+    "lat": -6.50845,
+    "lon": -36.3497
+  },
+  "São Paulo Crystal-PB": {
+    "name": "Cruz do Espírito Santo",
+    "uf": "PB",
+    "lat": -7.13902,
+    "lon": -35.0857
+  },
+  "Serrano-PB": {
+    "name": "Campina Grande",
+    "uf": "PB",
+    "lat": -7.22196,
+    "lon": -35.8731
+  },
+  "Spartax-PB": {
+    "name": "João Pessoa",
+    "uf": "PB",
+    "lat": -7.11509,
+    "lon": -34.8641
+  },
+  "Sport Lucena-PB": {
+    "name": "Lucena",
+    "uf": "PB",
+    "lat": -6.90258,
+    "lon": -34.8748
+  },
+  "Hope Internacional-PR": {
+    "name": "Campo Largo",
+    "uf": "PR",
+    "lat": -25.4525,
+    "lon": -49.529
+  },
+  "Samas-PR": {
+    "name": "São Mateus do Sul",
+    "uf": "PR",
+    "lat": -25.8677,
+    "lon": -50.384
+  },
+  "Iraty-PR": {
+    "name": "Irati",
+    "uf": "PR",
+    "lat": -25.4697,
+    "lon": -50.6493
+  },
+  "Iguaçu-PR": {
+    "name": "União da Vitória",
+    "uf": "PR",
+    "lat": -26.2273,
+    "lon": -51.0873
+  },
+  "Cambé-PR": {
+    "name": "Cambé",
+    "uf": "PR",
+    "lat": -23.2766,
+    "lon": -51.2798
+  },
+  "City London-PR": {
+    "name": "Londrina",
+    "uf": "PR",
+    "lat": -23.304,
+    "lon": -51.1691
+  },
+  "Portuguesa Londrinense-PR": {
+    "name": "Londrina",
+    "uf": "PR",
+    "lat": -23.304,
+    "lon": -51.1691
+  },
+  "PSTC-PR": {
+    "name": "Alvorada do Sul",
+    "uf": "PR",
+    "lat": -22.7813,
+    "lon": -51.2297
+  },
+  "Oeste Brasil-PR": {
+    "name": "Toledo",
+    "uf": "PR",
+    "lat": -24.7246,
+    "lon": -53.7412
+  },
+  "Sport Campo Mourão-PR": {
+    "name": "Campo Mourão",
+    "uf": "PR",
+    "lat": -24.0463,
+    "lon": -52.378
+  },
+  "União Beltrão-PR": {
+    "name": "Francisco Beltrão",
+    "uf": "PR",
+    "lat": -26.0817,
+    "lon": -53.0535
+  },
+  "Cardoso Moreira-RJ": {
+    "name": "Cardoso Moreira",
+    "uf": "RJ",
+    "lat": -21.4846,
+    "lon": -41.6165
+  },
+  "Tigres do Brasil-RJ": {
+    "name": "Duque de Caxias",
+    "uf": "RJ",
+    "lat": -22.7858,
+    "lon": -43.3049
+  },
+  "Campos-RJ": {
+    "name": "Campos dos Goytacazes",
+    "uf": "RJ",
+    "lat": -21.7622,
+    "lon": -41.3181
+  },
+  "Brescia Barra-RJ": {
+    "name": "Rio de Janeiro",
+    "uf": "RJ",
+    "lat": -22.9129,
+    "lon": -43.2003
+  },
+  "Mageense-RJ": {
+    "name": "Magé",
+    "uf": "RJ",
+    "lat": -22.6632,
+    "lon": -43.0315
+  },
+  "Barcelona-RJ": {
+    "name": "Rio de Janeiro",
+    "uf": "RJ",
+    "lat": -22.9129,
+    "lon": -43.2003
+  },
+  "Itaboraí Profute-RJ": {
+    "name": "Tanguá",
+    "uf": "RJ",
+    "lat": -22.7423,
+    "lon": -42.7202
+  },
+  "Vera Cruz-RJ": {
+    "name": "Petrópolis",
+    "uf": "RJ",
+    "lat": -22.52,
+    "lon": -43.1926
+  },
+  "Barra Mansa-RJ": {
+    "name": "Barra Mansa",
+    "uf": "RJ",
+    "lat": -22.5481,
+    "lon": -44.1752
+  },
+  "Búzios-RJ": {
+    "name": "Armação dos Búzios",
+    "uf": "RJ",
+    "lat": -22.7528,
+    "lon": -41.8846
+  },
+  "Rio Barra-RJ": {
+    "name": "Resende",
+    "uf": "RJ",
+    "lat": -22.4705,
+    "lon": -44.4509
+  },
+  "Uni Souza-RJ": {
+    "name": "Rio de Janeiro",
+    "uf": "RJ",
+    "lat": -22.9129,
+    "lon": -43.2003
+  },
+  "União Central-RJ": {
+    "name": "Rio de Janeiro",
+    "uf": "RJ",
+    "lat": -22.9129,
+    "lon": -43.2003
+  },
+  "Ceres-RJ": {
+    "name": "Rio de Janeiro",
+    "uf": "RJ",
+    "lat": -22.9129,
+    "lon": -43.2003
+  },
+  "Independente-RJ": {
+    "name": "Macaé",
+    "uf": "RJ",
+    "lat": -22.3768,
+    "lon": -41.7848
+  },
+  "CAAC Brasil-RJ": {
+    "name": "Rio de Janeiro",
+    "uf": "RJ",
+    "lat": -22.9129,
+    "lon": -43.2003
+  },
+  "Alecrim-RN": {
+    "name": "Natal",
+    "uf": "RN",
+    "lat": -5.79357,
+    "lon": -35.1986
+  },
+  "Baraúnas-RN": {
+    "name": "Mossoró",
+    "uf": "RN",
+    "lat": -5.18374,
+    "lon": -37.3474
+  },
+  "Mossoró-RN": {
+    "name": "Mossoró",
+    "uf": "RN",
+    "lat": -5.18374,
+    "lon": -37.3474
+  },
+  "Palmeira-RN": {
+    "name": "Goianinha",
+    "uf": "RN",
+    "lat": -6.26486,
+    "lon": -35.1943
+  },
+  "Visão Celeste-RN": {
+    "name": "Parnamirim",
+    "uf": "RN",
+    "lat": -5.91116,
+    "lon": -35.271
+  },
+  "1992 Clube-RS": {
+    "name": "Carazinho",
+    "uf": "RS",
+    "lat": -28.2958,
+    "lon": -52.7933
+  },
+  "Cruz Alta-RS": {
+    "name": "Cruz Alta",
+    "uf": "RS",
+    "lat": -28.645,
+    "lon": -53.6048
+  },
+  "Farroupilha-RS": {
+    "name": "Pelotas",
+    "uf": "RS",
+    "lat": -31.7649,
+    "lon": -52.3371
+  },
+  "Futebol com Vida-RS": {
+    "name": "Viamão",
+    "uf": "RS",
+    "lat": -30.0819,
+    "lon": -51.0194
+  },
+  "Novo Horizonte-RS": {
+    "name": "Esteio",
+    "uf": "RS",
+    "lat": -29.852,
+    "lon": -51.1841
+  },
+  "Panambi-RS": {
+    "name": "Panambi",
+    "uf": "RS",
+    "lat": -28.2833,
+    "lon": -53.5023
+  },
+  "Real Sport-RS": {
+    "name": "Tramandaí",
+    "uf": "RS",
+    "lat": -29.9841,
+    "lon": -50.1322
+  },
+  "Rio Grande-RS": {
+    "name": "Rio Grande",
+    "uf": "RS",
+    "lat": -32.0349,
+    "lon": -52.1071
+  },
+  "Riograndense RG-RS": {
+    "name": "Rio Grande",
+    "uf": "RS",
+    "lat": -32.0349,
+    "lon": -52.1071
+  },
+  "São Paulo-RS": {
+    "name": "Rio Grande",
+    "uf": "RS",
+    "lat": -32.0349,
+    "lon": -52.1071
+  },
+  "Caçador-SC": {
+    "name": "Caçador",
+    "uf": "SC",
+    "lat": -26.7757,
+    "lon": -51.012
+  },
+  "Porto-SC": {
+    "name": "Porto União",
+    "uf": "SC",
+    "lat": -26.2451,
+    "lon": -51.0759
+  },
+  "Manchester Catarinense-SC": {
+    "name": "Joinville",
+    "uf": "SC",
+    "lat": -26.3045,
+    "lon": -48.8487
+  },
+  "Inter de Lages-SC": {
+    "name": "Lages",
+    "uf": "SC",
+    "lat": -27.815,
+    "lon": -50.3259
+  },
+  "América de Pedrinhas-SE": {
+    "name": "Pedrinhas",
+    "uf": "SE",
+    "lat": -11.1902,
+    "lon": -37.6775
+  },
+  "Canindé-SE": {
+    "name": "Canindé de São Francisco",
+    "uf": "SE",
+    "lat": -9.64882,
+    "lon": -37.7923
+  },
+  "Carmópolis-SE": {
+    "name": "Carmópolis",
+    "uf": "SE",
+    "lat": -10.6449,
+    "lon": -36.9887
+  },
+  "Flamengo-SE": {
+    "name": "Japaratuba",
+    "uf": "SE",
+    "lat": -10.5849,
+    "lon": -36.9418
+  },
+  "Olímpico-SE": {
+    "name": "Itabaianinha",
+    "uf": "SE",
+    "lat": -11.2693,
+    "lon": -37.7875
+  },
+  "Socorrense-SE": {
+    "name": "Nossa Senhora do Socorro",
+    "uf": "SE",
+    "lat": -10.8468,
+    "lon": -37.1231
+  },
+  "Barra-SE": {
+    "name": "Barra dos Coqueiros",
+    "uf": "SE",
+    "lat": -10.8996,
+    "lon": -37.0323
+  },
+  "Estanciano-SE": {
+    "name": "Estância",
+    "uf": "SE",
+    "lat": -11.2659,
+    "lon": -37.4484
+  },
+  "Frei Paulistano-SE": {
+    "name": "Frei Paulo",
+    "uf": "SE",
+    "lat": -10.5513,
+    "lon": -37.5279
+  },
+  "Independente-SE": {
+    "name": "Simão Dias",
+    "uf": "SE",
+    "lat": -10.7387,
+    "lon": -37.8097
+  },
+  "Maruinense-SE": {
+    "name": "Maruim",
+    "uf": "SE",
+    "lat": -10.7308,
+    "lon": -37.0856
+  },
+  "Sport Socorro-SE": {
+    "name": "Nossa Senhora do Socorro",
+    "uf": "SE",
+    "lat": -10.8468,
+    "lon": -37.1231
+  },
+  "Araguaia-TO": {
+    "name": "Palmas",
+    "uf": "TO",
+    "lat": -10.24,
+    "lon": -48.3558
+  },
+  "União de Palmas-TO": {
+    "name": "Palmas",
+    "uf": "TO",
+    "lat": -10.24,
+    "lon": -48.3558
+  },
+  "Guaraí-TO": {
+    "name": "Guaraí",
+    "uf": "TO",
+    "lat": -8.83543,
+    "lon": -48.5114
+  },
+  "São José-TO": {
+    "name": "Palmas",
+    "uf": "TO",
+    "lat": -10.24,
+    "lon": -48.3558
+  },
+  "Paraíso-TO": {
+    "name": "Paraíso do Tocantins",
+    "uf": "TO",
+    "lat": -10.175,
+    "lon": -48.8823
+  },
+  "Batalhão-TO": {
+    "name": "Palmas",
+    "uf": "TO",
+    "lat": -10.24,
+    "lon": -48.3558
+  },
+  "Interporto-TO": {
+    "name": "Porto Nacional",
+    "uf": "TO",
+    "lat": -10.7027,
+    "lon": -48.408
+  },
+  "Taquarussu-TO": {
+    "name": "Palmas",
+    "uf": "TO",
+    "lat": -10.24,
+    "lon": -48.3558
+  },
+  "Rolim de Moura-RO": {
+    "name": "Rolim de Moura",
+    "uf": "RO",
+    "lat": -11.7271,
+    "lon": -61.7714
+  },
+  "Vilhena EC-RO": {
+    "name": "Vilhena",
+    "uf": "RO",
+    "lat": -12.7502,
+    "lon": -60.1488
+  },
+  "Baré-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "GAS-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "Monte Roraima-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "Náutico-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "Progresso-RR": {
+    "name": "Mucajaí",
+    "uf": "RR",
+    "lat": 2.43998,
+    "lon": -60.9096
+  },
+  "Rio Negro-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "River-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "Roraima-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "São Raimundo-RR": {
+    "name": "Boa Vista",
+    "uf": "RR",
+    "lat": 2.82384,
+    "lon": -60.6753
+  },
+  "4 de Julho-PI": {
+    "name": "Piripiri",
+    "uf": "PI",
+    "lat": -4.27157,
+    "lon": -41.7716
+  },
+  "Caiçara-PI": {
+    "name": "Campo Maior",
+    "uf": "PI",
+    "lat": -4.8217,
+    "lon": -42.1641
+  },
+  "River-PI": {
+    "name": "Teresina",
+    "uf": "PI",
+    "lat": -5.09194,
+    "lon": -42.8034
+  },
+  "Picos-PI": {
+    "name": "Picos",
+    "uf": "PI",
+    "lat": -7.07721,
+    "lon": -41.467
+  },
+  "Comercial-PI": {
+    "name": "Campo Maior",
+    "uf": "PI",
+    "lat": -4.8217,
+    "lon": -42.1641
+  },
+  "Flamengo-PI": {
+    "name": "Teresina",
+    "uf": "PI",
+    "lat": -5.09194,
+    "lon": -42.8034
+  },
+  "1º de Maio-PE": {
+    "name": "Petrolina",
+    "uf": "PE",
+    "lat": -9.38866,
+    "lon": -40.5027
+  },
+  "Afogados-PE": {
+    "name": "Afogados da Ingazeira",
+    "uf": "PE",
+    "lat": -7.74312,
+    "lon": -37.631
+  },
+  "FacilNet-PE": {
+    "name": "Garanhuns",
+    "uf": "PE",
+    "lat": -8.88243,
+    "lon": -36.4966
+  },
+  "Ferroviário do Cabo-PE": {
+    "name": "Cabo de Santo Agostinho",
+    "uf": "PE",
+    "lat": -8.28218,
+    "lon": -35.0253
+  },
+  "Petrolina-PE": {
+    "name": "Petrolina",
+    "uf": "PE",
+    "lat": -9.38866,
+    "lon": -40.5027
+  },
+  "Salgueiro-PE": {
+    "name": "Salgueiro",
+    "uf": "PE",
+    "lat": -8.07373,
+    "lon": -39.1247
+  },
+  "Belo Jardim-PE": {
+    "name": "Belo Jardim",
+    "uf": "PE",
+    "lat": -8.3313,
+    "lon": -36.4258
+  },
+  "Central-PE": {
+    "name": "Caruaru",
+    "uf": "PE",
+    "lat": -8.28455,
+    "lon": -35.9699
+  },
+  "Chã Grande-PE": {
+    "name": "Chã Grande",
+    "uf": "PE",
+    "lat": -8.23827,
+    "lon": -35.4571
+  },
+  "Pesqueira-PE": {
+    "name": "Pesqueira",
+    "uf": "PE",
+    "lat": -8.35797,
+    "lon": -36.6978
+  },
+  "Porto-PE": {
+    "name": "Caruaru",
+    "uf": "PE",
+    "lat": -8.28455,
+    "lon": -35.9699
+  },
+  "Ypiranga-PE": {
+    "name": "Santa Cruz do Capibaribe",
+    "uf": "PE",
+    "lat": -7.94802,
+    "lon": -36.2061
+  },
+  "Águia de Cumaru-PE": {
+    "name": "Cumaru",
+    "uf": "PE",
+    "lat": -8.00827,
+    "lon": -35.6957
+  },
+  "Atlético Pernambucano-PE": {
+    "name": "Carpina",
+    "uf": "PE",
+    "lat": -7.84566,
+    "lon": -35.2514
+  },
+  "Centro Limoeirense-PE": {
+    "name": "Limoeiro",
+    "uf": "PE",
+    "lat": -7.8726,
+    "lon": -35.4402
+  },
+  "Jaguar-PE": {
+    "name": "Jaboatão dos Guararapes",
+    "uf": "PE",
+    "lat": -8.11298,
+    "lon": -35.015
+  },
+  "Santa Fé-PE": {
+    "name": "Recife",
+    "uf": "PE",
+    "lat": -8.04666,
+    "lon": -34.8771
+  },
+  "Serrano-PE": {
+    "name": "Serra Talhada",
+    "uf": "PE",
+    "lat": -7.98178,
+    "lon": -38.289
+  },
+  "América-PE": {
+    "name": "Recife",
+    "uf": "PE",
+    "lat": -8.04666,
+    "lon": -34.8771
+  },
+  "Guarany-PE": {
+    "name": "Camaragibe",
+    "uf": "PE",
+    "lat": -8.02351,
+    "lon": -34.9782
+  },
+  "Íbis-PE": {
+    "name": "Paulista",
+    "uf": "PE",
+    "lat": -7.93401,
+    "lon": -34.8684
+  },
+  "Ipojuca-PE": {
+    "name": "Ipojuca",
+    "uf": "PE",
+    "lat": -8.39303,
+    "lon": -35.0609
+  },
+  "Sete de Setembro-PE": {
+    "name": "Garanhuns",
+    "uf": "PE",
+    "lat": -8.88243,
+    "lon": -36.4966
+  },
+  "Vera Cruz-PE": {
+    "name": "Vitória de Santo Antão",
+    "uf": "PE",
+    "lat": -8.12819,
+    "lon": -35.2976
+  }
+}

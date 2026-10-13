@@ -1,0 +1,2774 @@
+{
+  "Botafogo-SP": {
+    "path": "/assets/clubs/fpf-42.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=42",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/42/escudo?v=5473bd64-0290-4bce-836c-43a04f163e8e?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Capivariano-SP": {
+    "path": "/assets/clubs/fpf-58.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=58",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/58/escudo?v=a2fdd03d-e0ae-418c-8517-86eacda86fc5?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Corinthians-SP": {
+    "path": "/assets/clubs/fpf-78.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=78",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/78/escudo?v=235e7ac0-42b1-4966-9642-0111e83c2ec1?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Guarani-SP": {
+    "path": "/assets/clubs/fpf-242.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=242",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/242/escudo?v=405223c0-3a7e-4089-b2d2-ac6a14ecf140?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Mirassol-SP": {
+    "path": "/assets/clubs/fpf-3293.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3293",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3293/escudo?v=8486ac3b-b018-415c-9954-9ce1844587d8?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Noroeste-SP": {
+    "path": "/assets/clubs/fpf-3303.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3303",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3303/escudo?v=6a1691a6-8cda-4e2f-86c1-f5f5db203b2c?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Palmeiras-SP": {
+    "path": "/assets/clubs/fpf-3320.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3320",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3320/escudo?v=584545c0-af7f-484d-ab88-bf87a8bd695e?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Ponte Preta-SP": {
+    "path": "/assets/clubs/fpf-3344.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3344",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3344/escudo?v=cd571d45-1664-49d0-a827-51396b6f07d7?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Red Bull Bragantino-SP": {
+    "path": "/assets/clubs/fpf-45.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=45",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/45/escudo?v=8d35fd9e-3006-46d5-91a8-97a458c203ec?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Santos-SP": {
+    "path": "/assets/clubs/fpf-3383.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3383",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3383/escudo?v=cb9c6dfb-53de-4e30-b699-c48678c2ffd2?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "São Bernardo FC-SP": {
+    "path": "/assets/clubs/fpf-3388.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3388",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3388/escudo?v=a761388a-28fe-41e3-9372-5dd5bcd5c4f6?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "São Paulo-SP": {
+    "path": "/assets/clubs/fpf-3395.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3395",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3395/escudo?v=00a7f71d-c6a4-48b5-8cc5-a9964e887652?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Velo Clube-SP": {
+    "path": "/assets/clubs/fpf-3448.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3448",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3448/escudo?v=9b0290c1-1c30-48c8-93a4-42069737a62a?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Portuguesa Santista-SP": {
+    "path": "/assets/clubs/fpf-3.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3/escudo?v=3fdebf24-e428-4f25-9bfe-ab5cfd046d45?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Bandeirante-SP": {
+    "path": "/assets/clubs/fpf-32.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=32",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/32/escudo?v=8b586d32-46d8-42b7-866d-5a0443e74b5b?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Catanduva-SP": {
+    "path": "/assets/clubs/fpf-13411.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=13411",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/13411/escudo?v=aabc0fa2-7ba4-43d6-9ec9-bcf722b57072?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Desportivo Brasil-SP": {
+    "path": "/assets/clubs/fpf-6278.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=6278",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/6278/escudo?v=af1a1573-c934-4b75-8326-a9f551cd3d5b?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "EC São Bernardo-SP": {
+    "path": "/assets/clubs/fpf-5916.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=5916",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/5916/escudo?v=55e815a4-3a73-4a34-8282-4fc29d69fd61?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Francana-SP": {
+    "path": "/assets/clubs/fpf-220.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=220",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/220/escudo?v=0b65de89-e839-4fe9-b73a-6f767f122629?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Itapirense-SP": {
+    "path": "/assets/clubs/fpf-6162.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=6162",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/6162/escudo?v=7f0cadb8-6c8a-4b9c-8692-39719f3e94a2?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Marília-SP": {
+    "path": "/assets/clubs/fpf-3290.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3290",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3290/escudo?v=0873f19f-f9ab-429c-8e79-956c90ac522c?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Paulista-SP": {
+    "path": "/assets/clubs/fpf-107.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=107",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/107/escudo?v=6c50ec58-97b4-4ec8-8fe2-29c1cefa18df?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Branco-SP": {
+    "path": "/assets/clubs/fpf-3357.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3357",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3357/escudo?v=756ada82-d8b7-4ccc-bce2-75870317c794?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Claro-SP": {
+    "path": "/assets/clubs/fpf-3362.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3362",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3362/escudo?v=4d5fe73b-5b12-46c1-9b40-01d7efba61d4?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Preto-SP": {
+    "path": "/assets/clubs/fpf-3365.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3365",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3365/escudo?v=b752438e-31ee-44af-985d-2d9711ce74fe?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "União Suzano-SP": {
+    "path": "/assets/clubs/fpf-3412.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3412",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3412/escudo?v=66162bcc-679f-4a7a-8470-85b623165b3b?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "União Barbarense-SP": {
+    "path": "/assets/clubs/fpf-3428.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3428",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3428/escudo?v=b5cc9c4a-3890-4e42-a10c-9ea20e92436e?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "União São João-SP": {
+    "path": "/assets/clubs/fpf-3427.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3427",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3427/escudo?v=78148c2c-856d-4cfc-8a18-a10270b836c9?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "XV de Jaú-SP": {
+    "path": "/assets/clubs/fpf-3462.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3462",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3462/escudo?v=800a5fe7-bdf1-4182-8d04-9ca09de460cb?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Araçatuba-SP": {
+    "path": "/assets/clubs/fpf-20.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=20",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/20/escudo?v=d0b190e3-0adc-4efc-a51c-15275563ef98?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Barretos-SP": {
+    "path": "/assets/clubs/fpf-37.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=37",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/37/escudo?v=7daeee07-d17e-4749-83a7-efc9acb45b7f?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Colorado Caieiras-SP": {
+    "path": "/assets/clubs/fpf-14770.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=14770",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/14770/escudo?v=00a3fd90-be21-4307-b914-bb61d7843628?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Comercial-SP": {
+    "path": "/assets/clubs/fpf-74.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=74",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/74/escudo?v=49a1e094-f689-445a-b01f-a089829cb264?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "ECUS-SP": {
+    "path": "/assets/clubs/fpf-100.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=100",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/100/escudo?v=ca44ecaa-0522-4be8-b284-f5e19853d9ab?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Grêmio São-Carlense-SP": {
+    "path": "/assets/clubs/fpf-13410.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=13410",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/13410/escudo?v=239aaff7-3473-4b5d-bba3-14f28b9618da?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Inter de Bebedouro-SP": {
+    "path": "/assets/clubs/fpf-256.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=256",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/256/escudo?v=048a4348-1b11-4fa0-8043-81ee5b3f8a76?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Jabaquara-SP": {
+    "path": "/assets/clubs/fpf-274.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=274",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/274/escudo?v=bb50eccf-d746-4ee5-89a6-4eba01465740?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Jacareí-SP": {
+    "path": "/assets/clubs/fpf-281.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=281",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/281/escudo?v=17908b52-84a4-45ee-81b8-fbe9ae2e74ab?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Lemense-SP": {
+    "path": "/assets/clubs/fpf-6263.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=6263",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/6263/escudo?v=02925341-15ce-4d7f-b312-8f80b0bf77d5?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Nacional-SP": {
+    "path": "/assets/clubs/fpf-3299.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3299",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3299/escudo?v=f3f9e9b1-793e-4c8a-8ee6-87330d1a171d?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Penapolense-SP": {
+    "path": "/assets/clubs/fpf-3333.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3333",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3333/escudo?v=72c4b20a-57cb-40bf-afcc-e43331670ae0?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "São Caetano-SP": {
+    "path": "/assets/clubs/fpf-3389.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3389",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3389/escudo?v=3cd1c588-cb60-44f5-9108-4da607a19203?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Tanabi-SP": {
+    "path": "/assets/clubs/fpf-3413.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3413",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3413/escudo?v=473b8ba4-d066-4f1a-9b56-923ea426ed35?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Taquaritinga-SP": {
+    "path": "/assets/clubs/fpf-3414.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3414",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3414/escudo?v=782c1ed7-1d75-4c10-8845-a61bb70d69a0?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "VOCEM-SP": {
+    "path": "/assets/clubs/fpf-3458.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3458",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3458/escudo?v=d3a176eb-b25e-40c2-9fa9-9620a7fe9aac?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Flamengo de Guarulhos-SP": {
+    "path": "/assets/clubs/fpf-211.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=211",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/211/escudo?v=c81a7b83-0c0c-4453-866a-09fe287ff362?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "AD Guarulhos-SP": {
+    "path": "/assets/clubs/fpf-249.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=249",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/249/escudo?v=3a08e17a-022b-4019-9573-264b92d4c7c3?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "América-SP": {
+    "path": "/assets/clubs/fpf-9.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=9",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/9/escudo?v=c20862a9-be9a-4ba8-aa94-43744d2637e1?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Assisense-SP": {
+    "path": "/assets/clubs/fpf-5355.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=5355",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/5355/escudo?v=0fa633e2-c82c-45b7-91bf-1ba0c189b5bd?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Audax-SP": {
+    "path": "/assets/clubs/fpf-5728.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=5728",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/5728/escudo?v=02526aea-c8bf-4417-a9f8-bde295752f0f?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Barcelona Capela-SP": {
+    "path": "/assets/clubs/fpf-5686.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=5686",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/5686/escudo?v=e39a9fa4-a5db-45d7-8978-2a9f31e7e91f?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Grêmio Catanduvense-SP": {
+    "path": "/assets/clubs/fpf-61.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=61",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/61/escudo?v=a82afeb2-a931-4084-b1b3-87a5c7b322d6?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Independente-SP": {
+    "path": "/assets/clubs/fpf-254.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=254",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/254/escudo?v=5159fee2-52d2-44df-805f-5782da89040c?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Itaquaquecetuba-SP": {
+    "path": "/assets/clubs/fpf-16464.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=16464",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/16464/escudo?v=315728f9-bbe9-4a26-b7b8-8ab57c2f6471?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "José Bonifácio-SP": {
+    "path": "/assets/clubs/fpf-280.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=280",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/280/escudo?v=e9349522-eed4-4782-8e77-2d9921f847d6?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Manthiqueira-SP": {
+    "path": "/assets/clubs/fpf-10105.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=10105",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/10105/escudo?v=7dec5e08-c97d-40ed-ace0-84aa90516ea1?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Matonense-SP": {
+    "path": "/assets/clubs/fpf-3291.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3291",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3291/escudo?v=1c2f62ac-fe58-4401-a3f6-f2ef16a07e88?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Mauá-SP": {
+    "path": "/assets/clubs/fpf-13417.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=13417",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/13417/escudo?v=7bfa4252-1df5-49b1-9fc5-bb8144c31c63?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Mauaense-SP": {
+    "path": "/assets/clubs/fpf-3292.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3292",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3292/escudo?v=b2291006-631b-4915-a509-b56c17b0652e?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Mogi Mirim-SP": {
+    "path": "/assets/clubs/fpf-3295.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3295",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3295/escudo?v=f28129a7-1005-4968-9b46-377aadc2e866?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Paulínia FU-SP": {
+    "path": "/assets/clubs/fpf-5953.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=5953",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/5953/escudo?v=0ef29e05-d436-4c46-bcaf-916246e6e460?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Riopretano-SP": {
+    "path": "/assets/clubs/fpf-16766.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=16766",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/16766/escudo?v=25b25706-250b-4728-9550-0ccf2f4bd182?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Santa Fé-SP": {
+    "path": "/assets/clubs/fpf-15973.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=15973",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/15973/escudo?v=7167c0ba-abb7-44c9-beb6-2aa8dbf93a5c?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Santacruzense-SP": {
+    "path": "/assets/clubs/fpf-3380.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3380",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3380/escudo?v=3cd8a6e4-dd1c-412f-a8ba-0280e00197b7?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "São Carlos-SP": {
+    "path": "/assets/clubs/fpf-5955.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=5955",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/5955/escudo?v=f7f76951-b41e-4c73-a41e-2031b412d150?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Sporting Club Paulinense-SP": {
+    "path": "/assets/clubs/fpf-16315.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=16315",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/16315/escudo?v=9bc11882-4067-46f6-b0e1-47966c599d5d?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Tupã-SP": {
+    "path": "/assets/clubs/fpf-3422.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3422",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3422/escudo?v=93a64a12-88f7-4afb-8b5e-1ab408ca3fa7?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "União Mogi-SP": {
+    "path": "/assets/clubs/fpf-3426.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3426",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3426/escudo?v=f62a96e0-e526-4c59-8f38-33b234ad2027?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Votoraty-SP": {
+    "path": "/assets/clubs/fpf-6164.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=6164",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/6164/escudo?v=0c47ad6b-a306-433d-991a-d51ca21387e2?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Água Santa-SP": {
+    "path": "/assets/clubs/fpf-7212.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=7212",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/7212/escudo?v=aff51fcc-7f61-497a-b0a3-8796f86993c8?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Ferroviária-SP": {
+    "path": "/assets/clubs/fpf-4564.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=4564",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/4564/escudo?v=f3f4d5d0-4cf4-47cc-981e-788b4fc6d5b3?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Grêmio Prudente-SP": {
+    "path": "/assets/clubs/fpf-6261.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=6261",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/6261/escudo?v=95bb935f-8da6-45c6-93ca-bcfcdad42685?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Inter de Limeira-SP": {
+    "path": "/assets/clubs/fpf-257.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=257",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/257/escudo?v=e3cfbe63-bb4d-4d27-917d-f4eafaaa6356?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Ituano-SP": {
+    "path": "/assets/clubs/fpf-271.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=271",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/271/escudo?v=c300e8b7-8df9-4f3b-8c09-dc70e95aa646?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Juventus-SP": {
+    "path": "/assets/clubs/fpf-287.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=287",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/287/escudo?v=d33557b9-249a-489c-8210-668f885b05c7?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Linense-SP": {
+    "path": "/assets/clubs/fpf-3281.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3281",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3281/escudo?v=fd210760-c701-4290-b3af-6bb5b23f298b?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Monte Azul-SP": {
+    "path": "/assets/clubs/fpf-3296.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3296",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3296/escudo?v=20b0788b-d669-4bc9-a9b7-2fc5ed8ec1c9?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Oeste-SP": {
+    "path": "/assets/clubs/fpf-3307.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3307",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3307/escudo?v=2bf5abea-2b02-427b-b139-16916ece1a42?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Santo André-SP": {
+    "path": "/assets/clubs/fpf-3381.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3381",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3381/escudo?v=9d07f3b7-deee-4a1d-bc0d-ca76266c4e9b?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "São Bento-SP": {
+    "path": "/assets/clubs/fpf-3387.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3387",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3387/escudo?v=3e2d7219-e79a-4b62-88c4-658c56dee99d?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "São José-SP": {
+    "path": "/assets/clubs/fpf-15677.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=15677",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/15677/escudo?v=7f870bb5-cf2e-4e2e-9929-5ef150e3c014?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Sertãozinho-SP": {
+    "path": "/assets/clubs/fpf-3407.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3407",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3407/escudo?v=9999947b-44ac-48d9-a216-cc2c3f3667c6?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Taubaté-SP": {
+    "path": "/assets/clubs/fpf-3415.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3415",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3415/escudo?v=a61dc429-7335-47e6-b711-439b320fdf5c?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Votuporanguense-SP": {
+    "path": "/assets/clubs/fpf-9500.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=9500",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/9500/escudo?v=2118ad14-f246-474c-850a-322afc3bbbb1?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "XV de Piracicaba-SP": {
+    "path": "/assets/clubs/fpf-3464.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3464",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3464/escudo?v=12bb84a0-1764-407e-99d0-9421ea7d06b5?v=639274423130488327",
+    "retrieved": "2026-10-12"
+  },
+  "Novorizontino-SP": {
+    "path": "/assets/clubs/fpf-9541.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=9541",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/9541/escudo?v=f713a354-2c33-4db1-a300-54af238a12f3?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Portuguesa-SP": {
+    "path": "/assets/clubs/fpf-3347.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=3347",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/3347/escudo?v=86dd8575-1f16-4f1c-902c-1d9b9b08d7bb?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Primavera-SP": {
+    "path": "/assets/clubs/fpf-15915.png",
+    "source": "https://www.futebolpaulista.com.br/Clubes/OClube.aspx?IdClube=15915",
+    "download_url": "https://api.fpf.org.br/filiacao/v1/entidades/CLUBE/15915/escudo?v=f138da4e-f428-4704-bfe1-5a6eb47bb966?v=639274422016023614",
+    "retrieved": "2026-10-12"
+  },
+  "Bahia-BA": {
+    "path": "/assets/clubs/club-1edc68fba873.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/bahia.png",
+    "retrieved": "2026-10-12"
+  },
+  "Botafogo-RJ": {
+    "path": "/assets/clubs/club-a4e8680af549.gif",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/botafogo.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Chapecoense-SC": {
+    "path": "/assets/clubs/club-0825d48a6eee.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/chapeco.png",
+    "retrieved": "2026-10-12"
+  },
+  "Coritiba-PR": {
+    "path": "/assets/clubs/club-46cbbac6f1c2.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/coritiba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cruzeiro-MG": {
+    "path": "/assets/clubs/club-f89227300ef2.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/cruzeiro.png",
+    "retrieved": "2026-10-12"
+  },
+  "Flamengo-RJ": {
+    "path": "/assets/clubs/club-042d6557e41b.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/fla.png",
+    "retrieved": "2026-10-12"
+  },
+  "Fluminense-RJ": {
+    "path": "/assets/clubs/club-fd3ee61a0503.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/fluminense.png",
+    "retrieved": "2026-10-12"
+  },
+  "Grêmio-RS": {
+    "path": "/assets/clubs/club-27cfb490a5c7.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/gremio.png",
+    "retrieved": "2026-10-12"
+  },
+  "Internacional-RS": {
+    "path": "/assets/clubs/club-32060f5ec0e6.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/interrs.png",
+    "retrieved": "2026-10-12"
+  },
+  "Remo-PA": {
+    "path": "/assets/clubs/club-7bce161859a7.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/remo.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vitória-BA": {
+    "path": "/assets/clubs/club-5184d1ed1667.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/vitoria.png",
+    "retrieved": "2026-10-12"
+  },
+  "América-MG": {
+    "path": "/assets/clubs/club-ff36581f4889.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/ammg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Athletic-MG": {
+    "path": "/assets/clubs/club-9cb03a5f5086.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/aletico_del_rey_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Avaí-SC": {
+    "path": "/assets/clubs/club-e826de436522.gif",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/avai.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Ceará-CE": {
+    "path": "/assets/clubs/club-3b9a4f45a47f.png",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/ceara.png",
+    "retrieved": "2026-10-12"
+  },
+  "CRB-AL": {
+    "path": "/assets/clubs/club-7920fd137d5f.gif",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/crb.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Criciúma-SC": {
+    "path": "/assets/clubs/club-baa5f630067f.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/criciuma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cuiabá-MT": {
+    "path": "/assets/clubs/club-3f0965c4976b.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/cuiaba_mt.png",
+    "retrieved": "2026-10-12"
+  },
+  "Fortaleza-CE": {
+    "path": "/assets/clubs/club-cbb78edcd108.png",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/fortaleza.png",
+    "retrieved": "2026-10-12"
+  },
+  "Goiás-GO": {
+    "path": "/assets/clubs/club-bf2858550e97.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/goias.png",
+    "retrieved": "2026-10-12"
+  },
+  "Juventude-RS": {
+    "path": "/assets/clubs/club-528fd7601137.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/juventude.png",
+    "retrieved": "2026-10-12"
+  },
+  "Londrina-PR": {
+    "path": "/assets/clubs/club-623d207ec889.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/londrina_pr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Náutico-PE": {
+    "path": "/assets/clubs/club-9a271b91e8d0.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/nautico.png",
+    "retrieved": "2026-10-12"
+  },
+  "Operário-PR": {
+    "path": "/assets/clubs/club-abe8185f5e43.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/operario_pr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sport-PE": {
+    "path": "/assets/clubs/club-c664a398c292.gif",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/sport.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Vila Nova-GO": {
+    "path": "/assets/clubs/club-becf39d4acd4.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/vilanova.png",
+    "retrieved": "2026-10-12"
+  },
+  "Amazonas-AM": {
+    "path": "/assets/clubs/club-a022d55bd5e2.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/amazonas_fc_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "Anápolis-GO": {
+    "path": "/assets/clubs/club-5ac9839672d8.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/anapolis.png",
+    "retrieved": "2026-10-12"
+  },
+  "Barra-SC": {
+    "path": "/assets/clubs/club-5febd5fc9bd0.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/barra_sc.png",
+    "retrieved": "2026-10-12"
+  },
+  "Botafogo-PB": {
+    "path": "/assets/clubs/club-5d23388f6024.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/botapb.png",
+    "retrieved": "2026-10-12"
+  },
+  "Brusque-SC": {
+    "path": "/assets/clubs/club-f7dccc9f31fe.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/brusque.png",
+    "retrieved": "2026-10-12"
+  },
+  "Caxias-RS": {
+    "path": "/assets/clubs/club-d9b69bec9abe.gif",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/caxias.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Confiança-SE": {
+    "path": "/assets/clubs/club-5106b308cc4c.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/confianca_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Figueirense-SC": {
+    "path": "/assets/clubs/club-f3bee6a455a6.gif",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/figue.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Floresta-CE": {
+    "path": "/assets/clubs/club-b2820ce6f06b.png",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/floresta_ce.png",
+    "retrieved": "2026-10-12"
+  },
+  "Itabaiana-SE": {
+    "path": "/assets/clubs/club-2c6cde3e89d5.gif",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/itabaiana.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Maranhão-MA": {
+    "path": "/assets/clubs/club-361f7dd6f4f0.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/maranhao.png",
+    "retrieved": "2026-10-12"
+  },
+  "Maringá-PR": {
+    "path": "/assets/clubs/club-00492481da19.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/gremio_maringa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Paysandu-PA": {
+    "path": "/assets/clubs/club-26bf5030dc1b.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/paysandu_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Santa Cruz-PE": {
+    "path": "/assets/clubs/club-e3b23732c88d.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/santacruz.png",
+    "retrieved": "2026-10-12"
+  },
+  "Volta Redonda-RJ": {
+    "path": "/assets/clubs/club-933b531b9437.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/volta.png",
+    "retrieved": "2026-10-12"
+  },
+  "Ypiranga-RS": {
+    "path": "/assets/clubs/club-701468d3767b.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/ypiranga_rs.png",
+    "retrieved": "2026-10-12"
+  },
+  "Nacional-AM": {
+    "path": "/assets/clubs/club-8ebfb2cf1a85.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/nacionalam.png",
+    "retrieved": "2026-10-12"
+  },
+  "Manaus-AM": {
+    "path": "/assets/clubs/club-1084c183c627.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/manaus_fc.png",
+    "retrieved": "2026-10-12"
+  },
+  "Manauara-AM": {
+    "path": "/assets/clubs/club-78d1fd1058bb.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/manauara_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "GAS-RR": {
+    "path": "/assets/clubs/club-f8b57cee73ec.png",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/gas_rr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Monte Roraima-RR": {
+    "path": "/assets/clubs/club-e6f42ac68711.png",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/monteroraima_rr.png",
+    "retrieved": "2026-10-12"
+  },
+  "São Raimundo-RR": {
+    "path": "/assets/clubs/club-4eebd1325605.jpg",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/saoraimundo_rr.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Independência-AC": {
+    "path": "/assets/clubs/club-fcb9ef03ff3a.png",
+    "source": "https://escudosfc.com.br/ac.htm",
+    "download_url": "https://escudosfc.com.br/images/independencia_ac.png",
+    "retrieved": "2026-10-12"
+  },
+  "Galvez-AC": {
+    "path": "/assets/clubs/club-ab83e05ff6ac.png",
+    "source": "https://escudosfc.com.br/ac.htm",
+    "download_url": "https://escudosfc.com.br/images/galvez_ac.png",
+    "retrieved": "2026-10-12"
+  },
+  "Humaitá-AC": {
+    "path": "/assets/clubs/club-c0f85d166a4d.png",
+    "source": "https://escudosfc.com.br/ac.htm",
+    "download_url": "https://escudosfc.com.br/images/humaita_ac.png",
+    "retrieved": "2026-10-12"
+  },
+  "Porto Velho-RO": {
+    "path": "/assets/clubs/club-ba708b2f5ae2.png",
+    "source": "https://escudosfc.com.br/ro.htm",
+    "download_url": "https://escudosfc.com.br/images/porto_velho_ro.png",
+    "retrieved": "2026-10-12"
+  },
+  "Guaporé-RO": {
+    "path": "/assets/clubs/club-8eed2997bcf1.png",
+    "source": "https://escudosfc.com.br/ro.htm",
+    "download_url": "https://escudosfc.com.br/images/guapore_ro.png",
+    "retrieved": "2026-10-12"
+  },
+  "Gama-DF": {
+    "path": "/assets/clubs/club-0b68dc58b03e.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/gama.png",
+    "retrieved": "2026-10-12"
+  },
+  "Brasiliense-DF": {
+    "path": "/assets/clubs/club-8bdbbaa9d4f7.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/brasiliense.png",
+    "retrieved": "2026-10-12"
+  },
+  "Luverdense-MT": {
+    "path": "/assets/clubs/club-bc2412a88c21.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/uverdense_mt.png",
+    "retrieved": "2026-10-12"
+  },
+  "Primavera-MT": {
+    "path": "/assets/clubs/club-796136a1a354.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/primavera_mt.png",
+    "retrieved": "2026-10-12"
+  },
+  "Inhumas-GO": {
+    "path": "/assets/clubs/club-45883b6306f7.jpg",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/inhumas_ec.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Aparecidense-GO": {
+    "path": "/assets/clubs/club-57d3dd98f815.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/aparecidense_go.png",
+    "retrieved": "2026-10-12"
+  },
+  "Capital-DF": {
+    "path": "/assets/clubs/club-0b21eb078fa5.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/capital_df.png",
+    "retrieved": "2026-10-12"
+  },
+  "Ceilândia-DF": {
+    "path": "/assets/clubs/club-d76d280942f4.jpg",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/ceilandia_df.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Mixto-MT": {
+    "path": "/assets/clubs/club-55f3d0219343.gif",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/mixto.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Trem-AP": {
+    "path": "/assets/clubs/club-04ba8dc23f66.jpg",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/trem_ap.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Oratório-AP": {
+    "path": "/assets/clubs/club-27cc3a570fb6.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/oratorio_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "Tuna Luso-PA": {
+    "path": "/assets/clubs/club-023fab7190a7.jpg",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/tuna.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Imperatriz-MA": {
+    "path": "/assets/clubs/club-e2d094492e28.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/imperatriz_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sampaio Corrêa-MA": {
+    "path": "/assets/clubs/club-ff2956abb29b.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/sampaio.png",
+    "retrieved": "2026-10-12"
+  },
+  "Moto Club-MA": {
+    "path": "/assets/clubs/club-5cd837d5e145.jpg",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/moto.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "IAPE-MA": {
+    "path": "/assets/clubs/club-a7bb92963aab.gif",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/iape_ma.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Maracanã-CE": {
+    "path": "/assets/clubs/club-56c1988367a3.png",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/maracanau.png",
+    "retrieved": "2026-10-12"
+  },
+  "Iguatu-CE": {
+    "path": "/assets/clubs/club-ef4e130ced5a.png",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/iguatu_ce.png",
+    "retrieved": "2026-10-12"
+  },
+  "Parnahyba-PI": {
+    "path": "/assets/clubs/club-fb84e268a9c4.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/parnaiba_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "Ferroviário-CE": {
+    "path": "/assets/clubs/club-180d33fada7b.gif",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/ferroviario.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Altos-PI": {
+    "path": "/assets/clubs/club-4d254d62e592.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/altos_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "Piauí-PI": {
+    "path": "/assets/clubs/club-263969bf5d9a.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/piaui.png",
+    "retrieved": "2026-10-12"
+  },
+  "Fluminense-PI": {
+    "path": "/assets/clubs/club-4e68a27a8c2b.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/fluminense_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "ABC-RN": {
+    "path": "/assets/clubs/club-d9fca5875aa7.jpg",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/abc.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "América-RN": {
+    "path": "/assets/clubs/club-4974ae651d56.png",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/america.png",
+    "retrieved": "2026-10-12"
+  },
+  "Laguna-RN": {
+    "path": "/assets/clubs/club-df6f7d5828f7.jpg",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/laguna_rn.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Sousa-PB": {
+    "path": "/assets/clubs/club-e2a8fc50e2f2.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/sousa_pb3.png",
+    "retrieved": "2026-10-12"
+  },
+  "Maguary-PE": {
+    "path": "/assets/clubs/club-f8ac5c599b59.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/pe_maguary.png",
+    "retrieved": "2026-10-12"
+  },
+  "Central-PE": {
+    "path": "/assets/clubs/club-ba813cbfd806.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/central_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Retrô-PE": {
+    "path": "/assets/clubs/club-35450d284b6d.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/retro_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Decisão-PE": {
+    "path": "/assets/clubs/club-897a48e0024d.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/decisao_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Serra Branca-PB": {
+    "path": "/assets/clubs/club-e224188a4827.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/paraiba_pb.png",
+    "retrieved": "2026-10-12"
+  },
+  "Treze-PB": {
+    "path": "/assets/clubs/club-b1eba30bce2d.jpg",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/treze.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Lagarto-SE": {
+    "path": "/assets/clubs/club-d4d1b74a5dc3.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/lagarto_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sergipe-SE": {
+    "path": "/assets/clubs/club-8bec57b85ad8.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/sergipe.png",
+    "retrieved": "2026-10-12"
+  },
+  "ASA-AL": {
+    "path": "/assets/clubs/club-b77824a772ec.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/asa_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "CSA-AL": {
+    "path": "/assets/clubs/club-41d2133c87d0.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/csa.png",
+    "retrieved": "2026-10-12"
+  },
+  "CSE-AL": {
+    "path": "/assets/clubs/club-f3016924ff06.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/cse_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "Jacuipense-BA": {
+    "path": "/assets/clubs/club-432b40f3df33.jpg",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/jacuipense_ba.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético-BA": {
+    "path": "/assets/clubs/club-8a8e42bff44b.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/atletico_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Juazeirense-BA": {
+    "path": "/assets/clubs/club-6fb45a4c79fb.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/juazeirense_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Uberlândia-MG": {
+    "path": "/assets/clubs/club-f5f75f6dbf78.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/uberlandia.png",
+    "retrieved": "2026-10-12"
+  },
+  "Betim-MG": {
+    "path": "/assets/clubs/club-6b58a55fd5d2.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/betim2_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "CRAC-GO": {
+    "path": "/assets/clubs/club-f324424dc4dd.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/crac_go.png",
+    "retrieved": "2026-10-12"
+  },
+  "Operário-MS": {
+    "path": "/assets/clubs/club-27f4a2017012.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/operario_ms.png",
+    "retrieved": "2026-10-12"
+  },
+  "Porto-BA": {
+    "path": "/assets/clubs/club-641694cda7c2.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/porto_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Branco-ES": {
+    "path": "/assets/clubs/club-b94c2f7014e7.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/riobranco.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vitória-ES": {
+    "path": "/assets/clubs/club-4e9d50c55369.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/vitoria_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Real Noroeste-ES": {
+    "path": "/assets/clubs/club-100b5838073b.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/real_noroeste_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Tombense-MG": {
+    "path": "/assets/clubs/club-cb8c4fcb40b8.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/tombense_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Madureira-RJ": {
+    "path": "/assets/clubs/club-53971bbc5e98.jpg",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/madureira.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Portuguesa-RJ": {
+    "path": "/assets/clubs/club-66bffedf4acf.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/portuguesa_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "America-RJ": {
+    "path": "/assets/clubs/club-c3b3ea1bcf22.gif",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/america_rj.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Pouso Alegre-MG": {
+    "path": "/assets/clubs/club-f7dbdfc5c8c3.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/pouso_alegre_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Nova Iguaçu-RJ": {
+    "path": "/assets/clubs/club-ac373e780303.jpg",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/novaiguacu_rj.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Sampaio Corrêa-RJ": {
+    "path": "/assets/clubs/club-82266f3e96fa.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/sampaio_correa_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Maricá-RJ": {
+    "path": "/assets/clubs/club-272e7f76384c.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/marica_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cianorte-PR": {
+    "path": "/assets/clubs/club-3d5742f9cb40.jpg",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/cianorte.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Santa Catarina-SC": {
+    "path": "/assets/clubs/club-99cda09b77e6.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/santacatarina.png",
+    "retrieved": "2026-10-12"
+  },
+  "Joinville-SC": {
+    "path": "/assets/clubs/club-84ce6b74bef4.gif",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/jec.gif",
+    "retrieved": "2026-10-12"
+  },
+  "São Luiz-RS": {
+    "path": "/assets/clubs/club-5577bd8b5c91.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/saoluiz_rs.png",
+    "retrieved": "2026-10-12"
+  },
+  "Blumenau-SC": {
+    "path": "/assets/clubs/club-629edcabf3b4.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/blumenau_sc.png",
+    "retrieved": "2026-10-12"
+  },
+  "Marcílio Dias-SC": {
+    "path": "/assets/clubs/club-d116a52f965f.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/marcilio_dias_sc.png",
+    "retrieved": "2026-10-12"
+  },
+  "Azuriz-PR": {
+    "path": "/assets/clubs/club-7e2b3a04dde9.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/azuriz_pr.png",
+    "retrieved": "2026-10-12"
+  },
+  "São José-RS": {
+    "path": "/assets/clubs/club-2bcd47c5c8ed.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/saojose_rs.png",
+    "retrieved": "2026-10-12"
+  },
+  "Athletico-PR": {
+    "path": "/assets/clubs/club-5c6f24541b3d.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/atlpr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético-MG": {
+    "path": "/assets/clubs/club-2fbedfe2d885.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/atletico.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vasco-RJ": {
+    "path": "/assets/clubs/club-5ddc60cfe7fd.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/vasco.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético-GO": {
+    "path": "/assets/clubs/club-c48ff4159108.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/atlego.png",
+    "retrieved": "2026-10-12"
+  },
+  "Araguaína-TO": {
+    "path": "/assets/clubs/club-dd875f89b332.jpg",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/araguaina.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Goiatuba-GO": {
+    "path": "/assets/clubs/club-9b50b7db7528.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/goiatuba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Tocantinópolis-TO": {
+    "path": "/assets/clubs/club-9e2720b61024.png",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/tocantinopolis.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético-CE": {
+    "path": "/assets/clubs/club-301a106fbdf7.jpg",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/uniclinic.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "ABECAT-GO": {
+    "path": "/assets/clubs/club-61c0b43d39a4.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/abecat_go.png",
+    "retrieved": "2026-10-12"
+  },
+  "Ivinhema-MS": {
+    "path": "/assets/clubs/club-94d43e4acc1a.gif",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/ivinhema_ms.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Democrata GV-MG": {
+    "path": "/assets/clubs/club-92a89ee40954.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/democrata_gv.png",
+    "retrieved": "2026-10-12"
+  },
+  "FC Cascavel-PR": {
+    "path": "/assets/clubs/club-32ded1d73fc2.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/fc_cascavel_pr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Guarany de Bagé-RS": {
+    "path": "/assets/clubs/club-2e7ccf34b6f0.jpg",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/gbage_rs.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "São Joseense-PR": {
+    "path": "/assets/clubs/club-aa2817af91b4.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/independente_pr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Brasil de Pelotas-RS": {
+    "path": "/assets/clubs/club-f81cac639ddf.gif",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/gebrasil.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Operário-MT": {
+    "path": "/assets/clubs/club-751904f465a9.jpg",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/ceov_mt.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "União-MT": {
+    "path": "/assets/clubs/club-10abea038653.jpg",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/rondonopolis.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Águia de Marabá-PA": {
+    "path": "/assets/clubs/club-038370f8a7a5.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/aguia_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Andirá-AC": {
+    "path": "/assets/clubs/3b9d69a745116aec.png",
+    "source": "https://escudosfc.com.br/ac.htm",
+    "download_url": "https://escudosfc.com.br/images/andira_ac.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético Acreano-AC": {
+    "path": "/assets/clubs/0275010d976e3d61.png",
+    "source": "https://escudosfc.com.br/ac.htm",
+    "download_url": "https://escudosfc.com.br/images/atleticoacreano_ac.png",
+    "retrieved": "2026-10-12"
+  },
+  "Náuas-AC": {
+    "path": "/assets/clubs/d4d4743dabd0144d.jpg",
+    "source": "https://escudosfc.com.br/ac.htm",
+    "download_url": "https://escudosfc.com.br/images/nauas_ac.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Plácido de Castro-AC": {
+    "path": "/assets/clubs/4731ae197d14659b.png",
+    "source": "https://escudosfc.com.br/ac.htm",
+    "download_url": "https://escudosfc.com.br/images/placido_de_castro_ac.png",
+    "retrieved": "2026-10-12"
+  },
+  "São Domingos-AL": {
+    "path": "/assets/clubs/3b7d174604a52354.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/sao_domingos_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "Zumbi-AL": {
+    "path": "/assets/clubs/ed1b522a972dad80.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/zumbi_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "Unidos do Alvorada-AM": {
+    "path": "/assets/clubs/a48aeddfb2790dbc.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/unidos_alvorada_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "CDC da Amazônia-AM": {
+    "path": "/assets/clubs/2a2cfa85e70695b4.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/manicore_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "RB do Norte-AM": {
+    "path": "/assets/clubs/4198b41deeff9d44.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/rb_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "Penarol-AM": {
+    "path": "/assets/clubs/5a28ce78d41396a7.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/penharol_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "Operário-AM": {
+    "path": "/assets/clubs/007d366a795c113c.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/operario_manacapuru_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "Portuguesa-AP": {
+    "path": "/assets/clubs/f76e025564fb5e07.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/portuguesa_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cruzeiro-AP": {
+    "path": "/assets/clubs/1a75f4640c6baf5b.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/cruzeiro_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "Santana-AP": {
+    "path": "/assets/clubs/06337ee0e4b8513e.jpg",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/santana_ap.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Latitude Zero-AP": {
+    "path": "/assets/clubs/c50e28adbfc9bdf4.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/latitude_zero_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "Lagoa-AP": {
+    "path": "/assets/clubs/a69f4b5534b2b4c8.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/lagoa_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "Renovação-AP": {
+    "path": "/assets/clubs/f4f2f32100497bf8.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/renovacao_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Norte-AP": {
+    "path": "/assets/clubs/8e6366d19ff8c8b9.jpg",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/rio_norte_ap.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "São Paulo-AP": {
+    "path": "/assets/clubs/02319b6fe8935b2f.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/sao_paulo_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "Canário-AP": {
+    "path": "/assets/clubs/cc6932cef35fd1ee.jpg",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/canario_ap.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Mazagão-AP": {
+    "path": "/assets/clubs/a2d4a757b0e94b87.png",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/mazagao_ap.png",
+    "retrieved": "2026-10-12"
+  },
+  "ADEC-AP": {
+    "path": "/assets/clubs/b25ff8cbdc3e5c8a.jpg",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/adec_ap.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "BARE-AP": {
+    "path": "/assets/clubs/f0b7ed57e63a9d3c.jpg",
+    "source": "https://escudosfc.com.br/ap.htm",
+    "download_url": "https://escudosfc.com.br/images/bare_ap.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Leônico-BA": {
+    "path": "/assets/clubs/ae5750b711e811c8.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/leonico.png",
+    "retrieved": "2026-10-12"
+  },
+  "Camaçari-BA": {
+    "path": "/assets/clubs/9ebcacd8861c3c00.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/camacari_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Grapiúna-BA": {
+    "path": "/assets/clubs/7ee2f21568e2ae2b.jpg",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/ba_grapiuna.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Jacobina-BA": {
+    "path": "/assets/clubs/d0b53145a0b5ed12.gif",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/jacobina_ba.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Redenção-BA": {
+    "path": "/assets/clubs/b882ddb697b412bd.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/redencao_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Pacatuba-CE": {
+    "path": "/assets/clubs/7978c00d64a2e915.jpg",
+    "source": "https://www.futebolcearense.com.br/2011/clube.asp?id=252",
+    "download_url": "https://www.futebolcearense.com.br/2011/escudos/Pacatuba.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Tianguá-CE": {
+    "path": "/assets/clubs/6ddce1c3fd1d59f9.jpg",
+    "source": "https://www.futebolcearense.com.br/2011/clube.asp?id=252",
+    "download_url": "https://www.futebolcearense.com.br/2011/escudos/Tiangua.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Calouros do Ar-CE": {
+    "path": "/assets/clubs/c25beee06a93be86.jpg",
+    "source": "https://www.futebolcearense.com.br/2011/clube.asp?id=252",
+    "download_url": "https://www.futebolcearense.com.br/2011/escudos/Calouros_do_Ar.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Canaã-DF": {
+    "path": "/assets/clubs/56351546b0af629f.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/canaa_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Candango-DF": {
+    "path": "/assets/clubs/6e6573284303b370.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/cfzdf.png",
+    "retrieved": "2026-10-12"
+  },
+  "GREVAL-DF": {
+    "path": "/assets/clubs/49f9a201225913c7.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/greval_go.png",
+    "retrieved": "2026-10-12"
+  },
+  "Legião-DF": {
+    "path": "/assets/clubs/721bfc622e9f4908.jpg",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/legiao_df.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Luziânia-DF": {
+    "path": "/assets/clubs/75ba2cb989c10208.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/luziania.png",
+    "retrieved": "2026-10-12"
+  },
+  "Taguatinga-DF": {
+    "path": "/assets/clubs/3b3697265acac28d.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/taguatinga_df.png",
+    "retrieved": "2026-10-12"
+  },
+  "Doze-ES": {
+    "path": "/assets/clubs/8b5dde7703cb7dd0.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/doze_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Audax São Mateus-ES": {
+    "path": "/assets/clubs/2de38f4956c86ce2.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/audax_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Rive-ES": {
+    "path": "/assets/clubs/17f1413249419db8.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/glatas_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Estrela do Norte-ES": {
+    "path": "/assets/clubs/18898548f69b4a37.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/estrela_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Tupy-ES": {
+    "path": "/assets/clubs/4aa6dfc772318d2c.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/tupy_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Pinheiros-ES": {
+    "path": "/assets/clubs/0e5d3db19f6d6ad4.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/pinheiro_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "Rioverdense-GO": {
+    "path": "/assets/clubs/5326e5b122d58b5b.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/rioverdense.png",
+    "retrieved": "2026-10-12"
+  },
+  "Itumbiara EC-GO": {
+    "path": "/assets/clubs/5328bbe7df92c322.jpg",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/itumbiara.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Novo Horizonte-GO": {
+    "path": "/assets/clubs/b9d22486b0940f54.jpg",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/novohorizonte_go.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Real Clube-GO": {
+    "path": "/assets/clubs/7bf975eb9ed65511.gif",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/real_go.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Royal-GO": {
+    "path": "/assets/clubs/d917f49356ddb81d.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/royal_go.png",
+    "retrieved": "2026-10-12"
+  },
+  "Americano-MA": {
+    "path": "/assets/clubs/f60bf81bac4a714d.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/americano_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Araioses-MA": {
+    "path": "/assets/clubs/c5e77a622c68aef5.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/araioses_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Expressinho-MA": {
+    "path": "/assets/clubs/0232b37b790727ac.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/expressinho_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Tupan-MA": {
+    "path": "/assets/clubs/58821fd1d9b41f96.jpg",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/tupan_ma.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Lago Verde-MA": {
+    "path": "/assets/clubs/e9037f521209366b.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/boavontade_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Pinheiro-MA": {
+    "path": "/assets/clubs/4030cb1af448592a.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/pinheiro_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Viana-MA": {
+    "path": "/assets/clubs/5b9d84453c451ea6.gif",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/viana_ma.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Timon-MA": {
+    "path": "/assets/clubs/4f01fd4b5e54e39e.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/timon_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cordino-MA": {
+    "path": "/assets/clubs/5077e1017f23937a.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/cordino_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Balsas-MA": {
+    "path": "/assets/clubs/65b77029aaad5311.png",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/balsas_ma.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sinop-MT": {
+    "path": "/assets/clubs/782c044088e5d1d0.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/sinop.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sorriso EC-MT": {
+    "path": "/assets/clubs/ce569225e052f678.jpg",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/sorriso_mt.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Santa Cruz-MT": {
+    "path": "/assets/clubs/d43499827352a42a.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/santacruz_mt.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sorriso FC-MT": {
+    "path": "/assets/clubs/dded4c3ff4170254.jpg",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/sorriso_ms.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Campo Novo-MT": {
+    "path": "/assets/clubs/0f2ab5eaa1fe5c02.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/cnpar_mt.png",
+    "retrieved": "2026-10-12"
+  },
+  "Uirapuru-MT": {
+    "path": "/assets/clubs/0f2558101536effb.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/uirapuru_mt.png",
+    "retrieved": "2026-10-12"
+  },
+  "Ação-MT": {
+    "path": "/assets/clubs/2ad8262a18d760c9.jpg",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/acao_mt.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Cacerense-MT": {
+    "path": "/assets/clubs/08d92512429aad0a.jpg",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/cacerense.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Paulistano-MT": {
+    "path": "/assets/clubs/7809e70512ae2b85.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/paulistano_norte_mt.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético Matogrossense-MT": {
+    "path": "/assets/clubs/ab215624aa5e9373.png",
+    "source": "https://escudosfc.com.br/mt.htm",
+    "download_url": "https://escudosfc.com.br/images/atletico_cuiaba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sete de Setembro-MS": {
+    "path": "/assets/clubs/6425d3fb00ce7f39.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/setedesetembro_ms.png",
+    "retrieved": "2026-10-12"
+  },
+  "Aquidauanense-MS": {
+    "path": "/assets/clubs/5fc5ee4838c16c87.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/aquidauanense_ms.png",
+    "retrieved": "2026-10-12"
+  },
+  "Campo Grande-MS": {
+    "path": "/assets/clubs/d6051b6a2776ea9a.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/campo_grande_ms.png",
+    "retrieved": "2026-10-12"
+  },
+  "Comercial-MS": {
+    "path": "/assets/clubs/24b7117073a04e0c.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/comercial_ms.png",
+    "retrieved": "2026-10-12"
+  },
+  "Misto-MS": {
+    "path": "/assets/clubs/ebf381030cd51c20.gif",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/misto_ms.gif",
+    "retrieved": "2026-10-12"
+  },
+  "São Gabriel-MS": {
+    "path": "/assets/clubs/85e883349cc7490d.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/saogabriel_ms.png",
+    "retrieved": "2026-10-12"
+  },
+  "Taveirópolis-MS": {
+    "path": "/assets/clubs/431c03c456784071.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/taveiropolis_ms.png",
+    "retrieved": "2026-10-12"
+  },
+  "União ABC-MS": {
+    "path": "/assets/clubs/da534eed65d69e0e.png",
+    "source": "https://escudosfc.com.br/ms.htm",
+    "download_url": "https://escudosfc.com.br/images/uniao_abc_mas.png",
+    "retrieved": "2026-10-12"
+  },
+  "Inter de Minas-MG": {
+    "path": "/assets/clubs/b8fbb781025f4a93.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/inter_minas_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Nova Lavras-MG": {
+    "path": "/assets/clubs/230369c3815539d7.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/novalavras_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Santarritense-MG": {
+    "path": "/assets/clubs/783cf878422ee555.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/santarritense_2_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Venda Nova-MG": {
+    "path": "/assets/clubs/2e5b0edc44131738.gif",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/vendanova_minas.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Araxá-MG": {
+    "path": "/assets/clubs/6c984da1af6c0802.jpg",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/araxa_mg.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Betim B-MG": {
+    "path": "/assets/clubs/559f74448d517ee1.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/betim2_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Funorte-MG": {
+    "path": "/assets/clubs/b9fc019db259c001.jpg",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/furnorte_mg.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Paracatu-MG": {
+    "path": "/assets/clubs/b3472fd03f3972a2.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/paracatu_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "São João del Rei-MG": {
+    "path": "/assets/clubs/37fb422a59822b1a.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/sjdr_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Siderúrgica-MG": {
+    "path": "/assets/clubs/ae7eb06865f1f0f9.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/siderurgica.png",
+    "retrieved": "2026-10-12"
+  },
+  "ESMAC-PA": {
+    "path": "/assets/clubs/5e8e5a83cd025ce8.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/esmac_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vênus-PA": {
+    "path": "/assets/clubs/a5822d728b244c46.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/venus_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Pedreira-PA": {
+    "path": "/assets/clubs/6a3c6e8958181775.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/pedreira_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Paraense-PA": {
+    "path": "/assets/clubs/d36905b33d82160e.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/paraense_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Pinheirense-PA": {
+    "path": "/assets/clubs/4de4d56e4d2e0313.jpg",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/pineirense_pa.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Tesla-PA": {
+    "path": "/assets/clubs/0878ee3a76320575.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/tesla_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sport Belém-PA": {
+    "path": "/assets/clubs/1702c6a61ef151b3.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/sport_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Belenense-PA": {
+    "path": "/assets/clubs/1ce414e255190817.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/belenenense_2_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vila Rica-PA": {
+    "path": "/assets/clubs/269f7f4e17ef2f65.jpg",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/vilarica_pa.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Parauapebas-PA": {
+    "path": "/assets/clubs/db5b4a1b00818e23.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/parauapebas_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Gavião Kyikatejê-PA": {
+    "path": "/assets/clubs/08e89fffb2b5617b.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/gaviao_pa.png",
+    "retrieved": "2026-10-12"
+  },
+  "Altamira-PA": {
+    "path": "/assets/clubs/f31814fcbfdb495b.png",
+    "source": "https://escudosfc.com.br/pa.htm",
+    "download_url": "https://escudosfc.com.br/images/altamira2_pa.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Auto Esporte-PB": {
+    "path": "/assets/clubs/eb815aeeaf5113d3.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/autoesporte_pb.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cruzeiro-PB": {
+    "path": "/assets/clubs/75f017922471ec3c.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/cruzeiro_pb.png",
+    "retrieved": "2026-10-12"
+  },
+  "Femar-PB": {
+    "path": "/assets/clubs/382cc516130e6a7a.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/femar_pb.png",
+    "retrieved": "2026-10-12"
+  },
+  "Picuiense-PB": {
+    "path": "/assets/clubs/52b9c0c4128ae494.jpg",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/picuiense_pb.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "São Paulo Crystal-PB": {
+    "path": "/assets/clubs/b331978e9bc9732b.jpg",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/sao_paulo_crystal.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Serrano-PB": {
+    "path": "/assets/clubs/be182b9dce5a9d0b.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/serrano_pb.png",
+    "retrieved": "2026-10-12"
+  },
+  "Spartax-PB": {
+    "path": "/assets/clubs/54990bc6343604f7.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/spartak_pb.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sport Lucena-PB": {
+    "path": "/assets/clubs/ea7550b0fd9244dd.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/lucena_por.png",
+    "retrieved": "2026-10-12"
+  },
+  "Hope Internacional-PR": {
+    "path": "/assets/clubs/a2337fa1842ac372.jpg",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/grecal_pr.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Iraty-PR": {
+    "path": "/assets/clubs/2f760a20242e46c2.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/iraty.png",
+    "retrieved": "2026-10-12"
+  },
+  "Iguaçu-PR": {
+    "path": "/assets/clubs/46242639fedd3614.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/iguacu.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cambé-PR": {
+    "path": "/assets/clubs/e32132852b8812bf.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/cambe_fc.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cardoso Moreira-RJ": {
+    "path": "/assets/clubs/e26fc1322123ea6f.jpg",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/cardosomoreira_rj.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Tigres do Brasil-RJ": {
+    "path": "/assets/clubs/cb068c2078e10544.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/tigres_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Campos-RJ": {
+    "path": "/assets/clubs/c8794927493ff152.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/campos_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Mageense-RJ": {
+    "path": "/assets/clubs/6c7b990f090c514e.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/magense_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Barcelona-RJ": {
+    "path": "/assets/clubs/9bca0afabb8a9626.jpg",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/barcelona_rj.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Itaboraí Profute-RJ": {
+    "path": "/assets/clubs/b254b44ec86395c7.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/profute_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vera Cruz-RJ": {
+    "path": "/assets/clubs/38d201e936464a3f.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/vera_cruz_pter_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Barra Mansa-RJ": {
+    "path": "/assets/clubs/20d7e5912224c70a.gif",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/barra_mansa_rj.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Búzios-RJ": {
+    "path": "/assets/clubs/b6d5a0a4577d00fd.gif",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/buzios_rj.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Barra-RJ": {
+    "path": "/assets/clubs/c5ec04a7f741a33d.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/riobarra_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Uni Souza-RJ": {
+    "path": "/assets/clubs/e7bf69796e2c8295.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/unisouz_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "União Central-RJ": {
+    "path": "/assets/clubs/e19eb64d9c9f90e3.jpg",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/uniao_central_rj.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Ceres-RJ": {
+    "path": "/assets/clubs/c38ca4c9970c4d53.gif",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/ceres_rj.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Independente-RJ": {
+    "path": "/assets/clubs/d6c3342c84ebca8a.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/independente_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "CAAC Brasil-RJ": {
+    "path": "/assets/clubs/0bdd49f63fc39635.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/caac_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "Alecrim-RN": {
+    "path": "/assets/clubs/1c7bdc155a120767.png",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/alecrim_rn.png",
+    "retrieved": "2026-10-12"
+  },
+  "Baraúnas-RN": {
+    "path": "/assets/clubs/1f0cc3f54029ed8a.png",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/baraunas_rn.png",
+    "retrieved": "2026-10-12"
+  },
+  "Mossoró-RN": {
+    "path": "/assets/clubs/6e37e053c913b254.png",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/mossoro_rn.png",
+    "retrieved": "2026-10-12"
+  },
+  "Palmeira-RN": {
+    "path": "/assets/clubs/e5e9c95e6779ac30.png",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/palmeira_rn.png",
+    "retrieved": "2026-10-12"
+  },
+  "Visão Celeste-RN": {
+    "path": "/assets/clubs/2114e55d95334f8a.png",
+    "source": "https://escudosfc.com.br/rn.htm",
+    "download_url": "https://escudosfc.com.br/images/visao_celeste_rn.png",
+    "retrieved": "2026-10-12"
+  },
+  "Cruz Alta-RS": {
+    "path": "/assets/clubs/de7b682043a7fbb2.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/cruz_alta_rs.png",
+    "retrieved": "2026-10-12"
+  },
+  "Farroupilha-RS": {
+    "path": "/assets/clubs/32a029a8bc021731.gif",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/farroupilha.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Futebol com Vida-RS": {
+    "path": "/assets/clubs/df726068d3a427c0.jpg",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/fut_com_vida_rs.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Novo Horizonte-RS": {
+    "path": "/assets/clubs/846c444925e87926.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/novo_horizonte_rs.png",
+    "retrieved": "2026-10-12"
+  },
+  "Panambi-RS": {
+    "path": "/assets/clubs/7c67cc9c66f07984.gif",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/panambi_rs.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Grande-RS": {
+    "path": "/assets/clubs/7acebab642a3db14.jpg",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/riogrande.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "São Paulo-RS": {
+    "path": "/assets/clubs/ea20d7f2e114a73e.gif",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/saopaulo_rs.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Porto-SC": {
+    "path": "/assets/clubs/4a7c240f5baef468.png",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/porto_sc.png",
+    "retrieved": "2026-10-12"
+  },
+  "Canindé-SE": {
+    "path": "/assets/clubs/8e001842158d1117.jpg",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/caninde_se.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Carmópolis-SE": {
+    "path": "/assets/clubs/543df568ade98e97.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/carmopolis_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Flamengo-SE": {
+    "path": "/assets/clubs/fe7224e14994e68e.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/fla2_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Olímpico-SE": {
+    "path": "/assets/clubs/2f037608bbfff341.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/olimpico_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Socorrense-SE": {
+    "path": "/assets/clubs/04eb7e4e6a5125ad.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/socorrense_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Barra-SE": {
+    "path": "/assets/clubs/edd046ad0834b810.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/barra_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Estanciano-SE": {
+    "path": "/assets/clubs/1ccfa93358708fea.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/estanciano.png",
+    "retrieved": "2026-10-12"
+  },
+  "Frei Paulistano-SE": {
+    "path": "/assets/clubs/9c4c3ff874b8c78a.jpg",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/frei_paulistano_se.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Independente-SE": {
+    "path": "/assets/clubs/6da26ee0a5e7d0ab.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/independente_se.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Maruinense-SE": {
+    "path": "/assets/clubs/44a277daf8205213.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/maruinense.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sport Socorro-SE": {
+    "path": "/assets/clubs/975e55cbf066a19d.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/socorro_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Rolim de Moura-RO": {
+    "path": "/assets/clubs/7bd38e427be8fa77.png",
+    "source": "https://escudosfc.com.br/ro.htm",
+    "download_url": "https://escudosfc.com.br/images/rolimdemoura.png",
+    "retrieved": "2026-10-12"
+  },
+  "Baré-RR": {
+    "path": "/assets/clubs/0a82aa6bdac9a581.png",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/bare_rr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Náutico-RR": {
+    "path": "/assets/clubs/648106a6eb3b8235.png",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/nautico_rr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Progresso-RR": {
+    "path": "/assets/clubs/941a177d71cea931.png",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/progresso_rr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Rio Negro-RR": {
+    "path": "/assets/clubs/47f7968cde4970cd.png",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/rionegro_rr.png",
+    "retrieved": "2026-10-12"
+  },
+  "River-RR": {
+    "path": "/assets/clubs/7ede256eb1dbd6c1.png",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/river_rr.png",
+    "retrieved": "2026-10-12"
+  },
+  "4 de Julho-PI": {
+    "path": "/assets/clubs/888ecd2f83f9244e.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/4dejulho.png",
+    "retrieved": "2026-10-12"
+  },
+  "Caiçara-PI": {
+    "path": "/assets/clubs/5141b7fdcb3947a4.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/caicara.png",
+    "retrieved": "2026-10-12"
+  },
+  "River-PI": {
+    "path": "/assets/clubs/82b794e639149866.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/river_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "Picos-PI": {
+    "path": "/assets/clubs/0fa2f601fc22ac7e.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/picos_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "Comercial-PI": {
+    "path": "/assets/clubs/78dd576e814da217.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/comercial_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "Flamengo-PI": {
+    "path": "/assets/clubs/3072867951bc0d69.png",
+    "source": "https://escudosfc.com.br/pi.htm",
+    "download_url": "https://escudosfc.com.br/images/flamengo_pi.png",
+    "retrieved": "2026-10-12"
+  },
+  "1º de Maio-PE": {
+    "path": "/assets/clubs/cfefea811b6d31be.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/primeirodemaio_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Afogados-PE": {
+    "path": "/assets/clubs/f39b469a97ce200f.jpg",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/afogados_pe.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "FacilNet-PE": {
+    "path": "/assets/clubs/a3e6cba8e6fd1e07.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/barreiros_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Petrolina-PE": {
+    "path": "/assets/clubs/d722900737ef1305.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/petrolina.png",
+    "retrieved": "2026-10-12"
+  },
+  "Salgueiro-PE": {
+    "path": "/assets/clubs/e851ce677a9f5bf3.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/salgueiro.png",
+    "retrieved": "2026-10-12"
+  },
+  "Belo Jardim-PE": {
+    "path": "/assets/clubs/251842a6f68fec4f.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/belojardim.png",
+    "retrieved": "2026-10-12"
+  },
+  "Chã Grande-PE": {
+    "path": "/assets/clubs/4cd15c9ebb98cfe4.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/chagrande_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Pesqueira-PE": {
+    "path": "/assets/clubs/f7efa1e20b1cfb45.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/pesqueira_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Porto-PE": {
+    "path": "/assets/clubs/a06ba3a196fbb2e8.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/porto_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Ypiranga-PE": {
+    "path": "/assets/clubs/35a03a4b579c7b19.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/ypiranga_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético Pernambucano-PE": {
+    "path": "/assets/clubs/0a68644125609646.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/atletico_pernambucano.png",
+    "retrieved": "2026-10-12"
+  },
+  "Jaguar-PE": {
+    "path": "/assets/clubs/a71f5c935ba6fc0f.jpg",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/jaguar_pe.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Santa Fé-PE": {
+    "path": "/assets/clubs/a79e090bd3e59400.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/santafe_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Serrano-PE": {
+    "path": "/assets/clubs/69b8e63493f422d2.jpg",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/serrano_pe.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "América-PE": {
+    "path": "/assets/clubs/326c763d1d792eef.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/america_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Guarany-PE": {
+    "path": "/assets/clubs/2cfab3fd3b9925cf.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/guarany_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Íbis-PE": {
+    "path": "/assets/clubs/52e6aa7c01b79d5f.jpg",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/ibis_pe.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Ipojuca-PE": {
+    "path": "/assets/clubs/33e333319417cc46.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/ipojuca_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sete de Setembro-PE": {
+    "path": "/assets/clubs/530d6d820805e3e0.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/setedesetembro_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vera Cruz-PE": {
+    "path": "/assets/clubs/88bff208dfcd77e1.jpg",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/vera_cruz_pe.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Desportivo Aliança-AL": {
+    "path": "/assets/clubs/58dbfefe34eab74c.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/alianca_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "Jaciobá-AL": {
+    "path": "/assets/clubs/22bf2ecb48797767.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/jaciona_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "Miguelense-AL": {
+    "path": "/assets/clubs/ba5c63b737657501.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/miguelense_fc_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "Clipper-AM": {
+    "path": "/assets/clubs/292e5ba013151d7f.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/cliper_am.png",
+    "retrieved": "2026-10-12"
+  },
+  "Fast Clube-AM": {
+    "path": "/assets/clubs/8f8a5d73476487a9.png",
+    "source": "https://escudosfc.com.br/am.htm",
+    "download_url": "https://escudosfc.com.br/images/fast.png",
+    "retrieved": "2026-10-12"
+  },
+  "Barreiras-BA": {
+    "path": "/assets/clubs/501d93a8ed01fb16.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/barreiras_fc_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vitória da Conquista-BA": {
+    "path": "/assets/clubs/45d62ec413997eda.jpg",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/primeiro_passo_ba.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Feira FC-BA": {
+    "path": "/assets/clubs/54f74ea1e2f2db08.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/feira_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Fluminense de Feira-BA": {
+    "path": "/assets/clubs/68025a69b71059e9.gif",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/flu_ba.gif",
+    "retrieved": "2026-10-12"
+  },
+  "SSA FC-BA": {
+    "path": "/assets/clubs/b71dcbd15e581c25.png",
+    "source": "https://escudosfc.com.br/ba.htm",
+    "download_url": "https://escudosfc.com.br/images/ssa_ba.png",
+    "retrieved": "2026-10-12"
+  },
+  "Planaltina EC-DF": {
+    "path": "/assets/clubs/5b8ce7e163918453.png",
+    "source": "https://escudosfc.com.br/df.htm",
+    "download_url": "https://escudosfc.com.br/images/planaltina_df.png",
+    "retrieved": "2026-10-12"
+  },
+  "Linhares FC-ES": {
+    "path": "/assets/clubs/e72c3ac10f6a9b08.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/linhares.png",
+    "retrieved": "2026-10-12"
+  },
+  "CTE Colatina-ES": {
+    "path": "/assets/clubs/fa40413cc23448cc.jpg",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/ctecolatina.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "GEL-ES": {
+    "path": "/assets/clubs/d7cde079d107205e.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/laranjeiras_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "SC Brasil Capixaba-ES": {
+    "path": "/assets/clubs/eedab10194feb1e4.png",
+    "source": "https://escudosfc.com.br/es.htm",
+    "download_url": "https://escudosfc.com.br/images/colatina_sc_es.png",
+    "retrieved": "2026-10-12"
+  },
+  "América de Morrinhos-GO": {
+    "path": "/assets/clubs/b61e3f59ff092c1d.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/america_go.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético Itumbiara-GO": {
+    "path": "/assets/clubs/67b6fcbf5fdfe4ce.png",
+    "source": "https://escudosfc.com.br/go.htm",
+    "download_url": "https://escudosfc.com.br/images/itumbiara_fc_go.png",
+    "retrieved": "2026-10-12"
+  },
+  "São José de Ribamar-MA": {
+    "path": "/assets/clubs/b08d1c059d139a00.gif",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/ribamar_ma.gif",
+    "retrieved": "2026-10-12"
+  },
+  "São Luís FC-MA": {
+    "path": "/assets/clubs/cd6a5d2b210b0a5e.jpg",
+    "source": "https://escudosfc.com.br/ma.htm",
+    "download_url": "https://escudosfc.com.br/images/sao_luis_ma.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Nacional de Muriaé-MG": {
+    "path": "/assets/clubs/e56d1f6d652a2be5.gif",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/nacional_mg.gif",
+    "retrieved": "2026-10-12"
+  },
+  "Novo Esporte Itabirinha-MG": {
+    "path": "/assets/clubs/1e494a4c21140a3c.png",
+    "source": "https://escudosfc.com.br/mg.htm",
+    "download_url": "https://escudosfc.com.br/images/novo_ipatinga_mg.png",
+    "retrieved": "2026-10-12"
+  },
+  "Desportiva Guarabira-PB": {
+    "path": "/assets/clubs/3438245dd53b6677.png",
+    "source": "https://escudosfc.com.br/pb.htm",
+    "download_url": "https://escudosfc.com.br/images/guarabira_pb.png",
+    "retrieved": "2026-10-12"
+  },
+  "União Beltrão-PR": {
+    "path": "/assets/clubs/eec27098f90c9477.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/uniaofb_pr.png",
+    "retrieved": "2026-10-12"
+  },
+  "1992 Clube-RS": {
+    "path": "/assets/clubs/49e4a94a718dbc8b.png",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/rs_1992.png",
+    "retrieved": "2026-10-12"
+  },
+  "Riograndense RG-RS": {
+    "path": "/assets/clubs/90cf7fb0acfe92a2.jpg",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/riograndense_fb.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Caçador-SC": {
+    "path": "/assets/clubs/ed403d5e9292d63a.jpg",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/cacador_sc.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Manchester Catarinense-SC": {
+    "path": "/assets/clubs/16f74a52ef2344a3.jpg",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/manchester_sc.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Inter de Lages-SC": {
+    "path": "/assets/clubs/2f068fdca65a6e3b.gif",
+    "source": "https://escudosfc.com.br/sc.htm",
+    "download_url": "https://escudosfc.com.br/images/inter_lages.gif",
+    "retrieved": "2026-10-12"
+  },
+  "América de Pedrinhas-SE": {
+    "path": "/assets/clubs/7a57fb8204c49db9.png",
+    "source": "https://escudosfc.com.br/se.htm",
+    "download_url": "https://escudosfc.com.br/images/america_ped_se.png",
+    "retrieved": "2026-10-12"
+  },
+  "Vilhena EC-RO": {
+    "path": "/assets/clubs/1a879143fa33306c.png",
+    "source": "https://escudosfc.com.br/ro.htm",
+    "download_url": "https://escudosfc.com.br/images/vilhena_ro.png",
+    "retrieved": "2026-10-12"
+  },
+  "Roraima-RR": {
+    "path": "/assets/clubs/fcfbb2f6d590ddb4.jpg",
+    "source": "https://escudosfc.com.br/rr.htm",
+    "download_url": "https://escudosfc.com.br/images/roraima_rr.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Ferroviário do Cabo-PE": {
+    "path": "/assets/clubs/923eadac33f71391.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/ferroviario_cabo.png",
+    "retrieved": "2026-10-12"
+  },
+  "Águia de Cumaru-PE": {
+    "path": "/assets/clubs/cafc841d6efa5a02.jpg",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/aguia_pe.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Centro Limoeirense-PE": {
+    "path": "/assets/clubs/6e4c3ffb32f3e42f.png",
+    "source": "https://escudosfc.com.br/pe.htm",
+    "download_url": "https://escudosfc.com.br/images/centro_pe.png",
+    "retrieved": "2026-10-12"
+  },
+  "Araguaia-TO": {
+    "path": "/assets/clubs/23c4794f94759d72.jpg",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/araguaia_to.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "União de Palmas-TO": {
+    "path": "/assets/clubs/cb6a3c65e44f4117.jpg",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/uniao_de_palmas_to.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Guaraí-TO": {
+    "path": "/assets/clubs/4e447b456c5a37a6.jpg",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/guarai_to.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "São José-TO": {
+    "path": "/assets/clubs/3230f8878f002a25.png",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/sao_jose_to.png",
+    "retrieved": "2026-10-12"
+  },
+  "Paraíso-TO": {
+    "path": "/assets/clubs/a17cdb6d5bf5596e.png",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/paraiso_to.png",
+    "retrieved": "2026-10-12"
+  },
+  "Batalhão-TO": {
+    "path": "/assets/clubs/bd175b2db9a2b9d1.png",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/alhao_to.png",
+    "retrieved": "2026-10-12"
+  },
+  "Interporto-TO": {
+    "path": "/assets/clubs/27de1ec5eb61706a.png",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/interporto.png",
+    "retrieved": "2026-10-12"
+  },
+  "Taquarussu-TO": {
+    "path": "/assets/clubs/3fc79063105b5c0d.png",
+    "source": "https://escudosfc.com.br/to.htm",
+    "download_url": "https://escudosfc.com.br/images/taquarussu_to.png",
+    "retrieved": "2026-10-12"
+  },
+  "Tirol-CE": {
+    "path": "/assets/clubs/2f67665813b5ee20.png",
+    "source": "https://www.futebolcearense.com.br/2011/clube.asp?id=252",
+    "download_url": "https://www.futebolcearense.com.br/adm/clubes/escudos/logo_252.png",
+    "retrieved": "2026-10-12"
+  },
+  "FC Acopiara-CE": {
+    "path": "/assets/clubs/71e40f31b63def64.jpg",
+    "source": "https://www.futebolcearense.com.br/2011/clube.asp?id=228",
+    "download_url": "https://www.futebolcearense.com.br/adm/clubes/escudos/logo_228.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Esporte Limoeiro-CE": {
+    "path": "/assets/clubs/8192846e3a1670e8.png",
+    "source": "https://www.futebolcearense.com.br/2011/clube.asp?id=159",
+    "download_url": "https://www.futebolcearense.com.br/adm/clubes/escudos/logo_159.png",
+    "retrieved": "2026-10-12"
+  },
+  "Atlético Santa Rita-PB": {
+    "path": "/assets/clubs/d1217306822e0a10.png",
+    "source": "https://federacaopbfutebol.com.br/competicoes/clubes",
+    "download_url": "https://s3.federacaopbfutebol.com.br/fpfonline-site/clubs/logos/01KRHEXG7MT9SJ1NDG8ZPKG6JQ.png",
+    "retrieved": "2026-10-12"
+  },
+  "Portuguesa Londrinense-PR": {
+    "path": "/assets/clubs/7b5a7d18fb7b210a.jpg",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/portuguesa_pr.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "PSTC-PR": {
+    "path": "/assets/clubs/12b93bfdb6655e0e.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/pstc_pr.png",
+    "retrieved": "2026-10-12"
+  },
+  "Brescia Barra-RJ": {
+    "path": "/assets/clubs/572f933ca271fbae.png",
+    "source": "https://escudosfc.com.br/rj.htm",
+    "download_url": "https://escudosfc.com.br/images/brescia_rj.png",
+    "retrieved": "2026-10-12"
+  },
+  "City London-PR": {
+    "path": "/assets/clubs/c96e14351d4a19c3.png",
+    "source": "https://federacaopr.com.br/filiados/profissionais/city-london/",
+    "download_url": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2025/04/24112916/citylondon.webp",
+    "retrieved": "2026-10-12"
+  },
+  "Oeste Brasil-PR": {
+    "path": "/assets/clubs/327f53177f454273.png",
+    "source": "https://federacaopr.com.br/filiados/profissionais/cascavel-cr/",
+    "download_url": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2024/08/21153128/Oeste-logo.png",
+    "retrieved": "2026-10-12"
+  },
+  "Sport Campo Mourão-PR": {
+    "path": "/assets/clubs/bf3fc5f27adf758e.png",
+    "source": "https://federacaopr.com.br/filiados/profissionais/sport-club/",
+    "download_url": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2026/05/08153116/SportClub.webp",
+    "retrieved": "2026-10-12"
+  },
+  "Vila Real-CE": {
+    "path": "/assets/clubs/93880977dc061208.png",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/uniao_2_ce.png",
+    "retrieved": "2026-10-12"
+  },
+  "Palmácia-CE": {
+    "path": "/assets/clubs/4bdf801465871576.jpg",
+    "source": "https://escudosfc.com.br/ce.htm",
+    "download_url": "https://escudosfc.com.br/images/palmacia_ce.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Sporting-AL": {
+    "path": "/assets/clubs/4a0863c94ea66a9c.png",
+    "source": "https://escudosfc.com.br/al.htm",
+    "download_url": "https://escudosfc.com.br/images/sete_de_setembro_al.png",
+    "retrieved": "2026-10-12"
+  },
+  "Real Sport-RS": {
+    "path": "/assets/clubs/926290513b3b7fa1.jpg",
+    "source": "https://escudosfc.com.br/rs.htm",
+    "download_url": "https://escudosfc.com.br/images/real_capao_rs.jpg",
+    "retrieved": "2026-10-12"
+  },
+  "Samas-PR": {
+    "path": "/assets/clubs/d362c4e0cc01dd29.png",
+    "source": "https://escudosfc.com.br/pr.htm",
+    "download_url": "https://escudosfc.com.br/images/samas_rolandia_pr.png",
+    "retrieved": "2026-10-12"
+  }
+}

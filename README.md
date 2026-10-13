@@ -1,6 +1,6 @@
-# Rumo à Camisa 10 — protótipo 0.3
+# Rumo à Camisa 10 — protótipo 0.4
 
-RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **225 clubes participantes de 2026**, no Brasileirão A/B/C/D e Paulista A1/A2/A3/A4/Segunda Divisão. Clubes e formatos de 2026 têm fontes oficiais; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
+RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **462 clubes**, no Brasileirão A/B/C/D, Paulista A1/A2/A3/A4/Segunda Divisão e divisões de entrada das outras 26 UFs (cadastro pesquisado em 12/10/2026). São **35 competições/etapas**. Participantes e formatos têm fontes registradas; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
 
 Para começar outra carreira na conta atual, abra **/carreira/nova**. A anterior será arquivada ao enviar o formulário; pode ser retomada em **/carreira/arquivadas**. Criar outra carreira não apaga a anterior.
 
@@ -37,10 +37,10 @@ Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação
 ## Jogar e testar
 
 1. Abra [http://rumo10.local](http://rumo10.local), escolha começar e crie uma conta com senha exclusiva (8–72 caracteres). Não existem credenciais demo públicas; o cadastro local é o modo de teste rápido.
-2. Crie jogador, cidade/UF, posição e escolha o clube de início. Sorteie o perfil inicial, recarregue e confirme que ele não muda.
+2. Crie o jogador informando nome, UF, município e posição. Gire a roleta de perfil. Em SP, o resultado abre a A4 ou A3; nas outras UFs, a divisão inferior disponível. Escolha um dos três clubes oferecidos por proximidade da cidade (dois em RO). Recarregar conserva o sorteio e as ofertas.
 3. Escolha uma opção de treino e de pré-jogo. Inicie a partida. Resolva as oportunidades; avance o intervalo e, se estiver no banco ou fora de campo, os segmentos automáticos.
 4. Confira placar, estatísticas e `/classificacao`. Resolva o fim de semana para avançar a rodada. A recuperação semanal é mostrada separadamente do sorteio social.
-5. Complete a competição; fases classificatórias e mata-matas avançam conforme seus resultados. Se o clube também tiver competição nacional, use Continuar para jogá-la. Ao encerrar o ano, sorteie a proposta e aceite ou permaneça. A nova temporada aplica os acessos/rebaixamentos simulados e mantém jogador, XP e histórico.
+5. Complete a competição; fases classificatórias e mata-matas avançam conforme seus resultados. Se o clube também tiver competição nacional, use Continuar para jogá-la. Ao encerrar o ano, sorteie a proposta e aceite ou permaneça. A nova temporada aplica os acessos/rebaixamentos da pirâmide nacional/paulista e mantém jogador, XP e histórico. Nos outros estaduais, consulte a limitação de continuidade descrita abaixo.
 6. Saia e entre novamente. Crie outra conta para confirmar carreiras independentes. `/api/carreira/estado` retorna apenas a carreira da sessão.
 
 Não há botão que pula rodadas. Para concluir rapidamente a temporada, faça as escolhas sem animação (os resultados são imediatos). Para validar automaticamente 30 temporadas nas seis posições, rode:
@@ -74,7 +74,7 @@ Repita o roteiro HTTP de `tests/http-smoke.ps1 -BaseUrl https://seu-dominio`. N�
 
 - NPCs usam placares simplificados; posse, estratégias coletivas e estatísticas completas das equipes ainda não são simuladas. Cinco oportunidades por titular (15, 35, 60, 70 e 80 minutos), menos para reserva/lesão/expulsão.
 - S10 e S11 estão preservadas no seed, porém ficam inelegíveis sem patrocinador/rival cadastrado. S12 é o fim de semana válido. A edição de cores é feita via CLI local (bin/club-colors.php), sem painel web administrativo. Não existe catálogo público de configuração.
-- Transferências usam clubes reais e desempenho; não há contratos financeiros, goleiros jogáveis, recuperação de senha ou verificação de e-mail. Copa do Brasil, Copa Paulista, outras federações estaduais, competições femininas e de base estão fora do escopo desta versão.
+- Transferências usam clubes reais e desempenho; não há contratos financeiros, goleiros jogáveis, recuperação de senha ou verificação de e-mail. Copa do Brasil, Copa Paulista, competições femininas e de base estão fora do escopo desta versão. As divisões superiores dos estaduais adicionados fora de SP ainda não estão conectadas: os acessos são registrados, mas permanecer no clube repete a divisão disponível.
 - Sessões e logs usam storage/sessions e storage/logs fora da raiz pública; configure permissões e garbage collection. Sem uploads. URLs supõem instalação na raiz do domínio; APP_URL registra a base por ambiente, links são relativos à raiz.
 - Migration 002 adiciona catálogo oficial e um snapshot JSON transacional por carreira para o universo de competições. Atributos/estados e auditoria continuam consultáveis em tabelas relacionais. O snapshot inclui fases, jogos, classificação, mercado e participações; é validado pelo motor no servidor.
 - Migrations DDL MySQL não são transacionais; comandos CREATE IF NOT EXISTS permitem retomar uma instalação interrompida. A migration 001 é aditiva; futuras mudanças exigem novas versões. Sem downgrade automático.
@@ -103,3 +103,19 @@ Em instalação existente, execute `php bin/install-official.php`; numa instala�
 - `php tests/http.php http://rumo10.local`: fluxo HTTP real no IIS, incluindo nova carreira e restauração.
 
 Os testes usam contas descartáveis e preservam sua conta e sua campanha.
+
+### Início da carreira, cidades e escudos — versão 0.4
+
+Abra [Nova carreira](http://rumo10.local/carreira/nova) no menu. O formulário não permite escolher clube antecipadamente. A carreira anterior só é arquivada após um formulário válido e pode ser retomada pelo site. A roleta sorteia o perfil uma única vez; depois aparecem propostas com escudo, município e distância aproximada, e a escolha inicia o calendário do clube.
+
+Sergipe usa provisoriamente a **A2 confirmada**, por autorização do usuário; a A3 ainda recebia inscrições na data da pesquisa. Rondônia tem **duas** opções porque apenas dois clubes participaram da Série B. Roraima tem uma única divisão profissional. Pernambuco usa o **primeiro turno do estadual unificado 2026/27**, com os 24 clubes que entram nessa etapa; o turno decisivo de 2027 não está simulado. Em SP permanece a entrada A4/A3 solicitada, embora exista a Segunda Divisão abaixo delas.
+
+Proximidade é calculada no servidor pela fórmula de Haversine entre centros dos municípios; não representa trajeto rodoviário nem distância a estádios. A lista de municípios por UF é local. Escudos são arquivos locais com fonte e URL original registrados, sem dependência de sites externos durante o jogo. Marcas pertencem aos respectivos clubes; o cadastro de fontes não constitui licença comercial nem certificação de identidade visual.
+
+Detalhes, fontes e limites dos novos estaduais: [Docs/11_Inicio_Estadual_e_Escudos.md](Docs/11_Inicio_Estadual_e_Escudos.md).
+
+```powershell
+& C:\PHP\php-8.4.26\php.exe -n -d extension_dir=C:\PHP\php-8.4.26\ext -d extension=mbstring tests/onboarding.php
+& C:\PHP\php-8.4.26\php.exe -n -d extension_dir=C:\PHP\php-8.4.26\ext -d extension=mbstring tests/state-entry.php
+& C:\PHP\php-8.4.26\php.exe -n -d extension_dir=C:\PHP\php-8.4.26\ext -d extension=mbstring -d extension=pdo_mysql tests/entry-mysql.php
+```
