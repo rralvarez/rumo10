@@ -39,5 +39,5 @@ if(!str_contains($assist,'Assistência sua!')) throw new RuntimeException('Assis
 $finished=renderSample(true);
 if(!str_contains($finished,'data-stat="season-goals">4') || !str_contains($finished,'<details open>')) throw new RuntimeException('Histórico pós-jogo incorreto.');
 if(!str_contains($finished,'Rádio do jogo')) throw new RuntimeException('Pós-jogo sem rádio');
-if(strpos($finished,'Seus gols no campeonato')>strpos($finished,'Ex-treinador')) throw new RuntimeException('Histórico não precede decisão de fim de semana.');
+if(strpos($finished,'Seus gols no campeonato')<strpos($finished,'Ex-treinador')) throw new RuntimeException('Decisão deve preceder o histórico detalhado.');
 echo "OK: estatísticas ao vivo, histórico por rodada, totais finalizados, resultado verde/vermelho e escaping.\n";

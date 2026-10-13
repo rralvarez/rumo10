@@ -82,3 +82,9 @@ Evidências de execução e pendências estão em [Docs/10_Testes_Executados.md]
 A interface da carreira mostra resultado verde/vermelho com apresentação breve; detalhes de sorteio podem ser expandidos. Durante a partida, acompanhe seus gols no card de desempenho. Após o jogo, consulte Seus gols no campeonato e Gols por rodada antes de continuar o fim de semana. No celular, o menu fica na parte inferior e as habilidades ficam recolhidas. Para verificar os componentes sem MySQL: `php tests/presentation.php`.
 
 Durante a partida, a tela concentra resultado, efeitos já aplicados, placar, gols/assistências pessoais e a decisão atual. Rádio e estatísticas completas ficam no pós-jogo. O catálogo de clubes é configuração interna via seed/CLI; não há menu nem rota pública /clubes.
+
+### Interface de carreira
+
+A roleta apresenta o resultado salvo pelo servidor com giro e desaceleração. É possível pular a animação; recarregar não sorteia novamente. Preferência por movimento reduzido mostra o resultado diretamente. No pós-jogo e no encerramento, a próxima decisão vem antes dos detalhes recolhidos. O resumo da temporada usa os pontos, posição, gols e assistências da carreira.
+
+Testes adicionais de apresentação: `php tests/wheel.php` e `php tests/season-presentation.php`.

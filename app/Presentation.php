@@ -1,6 +1,14 @@
 <?php
 declare(strict_types=1);
 final class Presentation {
+    public static function seasonStory(array $g): string {
+        $summary=Game::summary($g);
+        foreach(Schedule::table($g['matches'],$g['teams']) as $i=>$row) if($row['team']===$g['club']) {
+            $opening=$i===0?'Seu clube terminou na liderança.':$g['club'].' terminou em '.($i+1).'º lugar.';
+            return $opening.' Foram '.$row['points'].' pontos. Você entrou em campo em '.$summary['games'].' jogos, marcou '.$summary['goals'].' gols e deu '.$summary['assists'].' assistências.';
+        }
+        return 'A temporada terminou. É hora de decidir seu próximo passo.';
+    }
     public static function feedback(array $g): void {
         $f=$g['feedback']; if(!$f) return;
         $rolled=isset($f['success']); $success=$rolled && $f['success'];

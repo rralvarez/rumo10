@@ -19,19 +19,6 @@ function form(string $path,?array $g=null): void {
     echo '<form method="post" action="'.e($path).'"><input type="hidden" name="csrf" value="'.e($_SESSION['csrf']).'">';
     if($g) echo '<input type="hidden" name="version" value="'.e($g['version']).'"><input type="hidden" name="key" value="'.bin2hex(random_bytes(32)).'">';
 }
-function wheel(array $items): void {
-    $sum=array_sum(array_column($items,'peso')); $angle=-M_PI/2;
-    echo '<svg class="offer-wheel" viewBox="0 0 200 200" role="img" aria-label="Fatias proporcionais aos pesos das propostas">';
-    foreach($items as $i=>$item) {
-        $span=2*M_PI*$item['peso']/$sum; $end=$angle+$span;
-        $x1=100+90*cos($angle); $y1=100+90*sin($angle); $x2=100+90*cos($end); $y2=100+90*sin($end);
-        $color=isset($item['tier']) && $item['tier']>1?'#d2f36b':['#67baa6','#858bc0','#cfaa6a','#85a6b8'][$i%4];
-        $d=sprintf('M100 100 L%.3f %.3f A90 90 0 %d 1 %.3f %.3f Z',$x1,$y1,$span>M_PI?1:0,$x2,$y2);
-        echo '<path d="'.e($d).'" fill="'.$color.'" stroke="#0e171b" stroke-width="2"><title>'.e(($item['club']??$item['nome']).' · '.round($item['peso']/$sum*100,1).'%').'</title></path>';
-        $angle=$end;
-    }
-    echo '<circle cx="100" cy="100" r="25" fill="#0e171b"/><text x="100" y="108" text-anchor="middle" fill="#edf1e9" font-size="24">10</text></svg>';
-}
 $path=rawurldecode(parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/');
 $method=$_SERVER['REQUEST_METHOD'];
 $routes=['/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/criar'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET']];

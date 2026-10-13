@@ -57,3 +57,13 @@ Efeitos efetivamente aplicados aparecem diretamente no resultado (sem Ver efeito
 Corrigida a propagação do texto dos lances para feedback persistido: gol e assistência pessoais agora geram destaque explícito. Gols coletivos não geram destaque pessoal. Custos reais de energia e XP extra do lance agora também constam nos efeitos mostrados; regras e probabilidades mantidas, sem migration ou reset de carreira.
 
 Executados: 30 temporadas nas seis posições; 200 lances de teste comparando highlights com gols/assistências nas estatísticas; temporada inteira com MySQL, replay, isolamento de contas e transferência; testes de apresentação para efeitos diretos, ausência do rádio ao vivo e destaque de gol/assistência; 29 verificações HTTP IIS e smoke com /clubes=404. Prévia fictícia 390×844: quatro escolhas inteiramente acima do menu, sem overflow horizontal (último botão em 575 px; menu em 779 px). Layout de 320×640 também ajustado mantendo botões com pelo menos 44 px; narrativas longas, fontes ampliadas ou telas menores ainda podem precisar de rolagem. Sem teste em dispositivo físico.
+
+## 12/10/2026 — roleta e continuação compacta
+
+Roleta em SVG com setores ponderados, giro de 3,8 segundos e desaceleração, ponteiro fixo e resultado alinhado ao setor salvo no servidor. Pular animação, recarregar e preferência por movimento reduzido preservam a proposta. Os botões de resposta ficam bloqueados durante o giro.
+
+Pós-jogo: resultado e decisão antes do histórico/radio. Encerramento: próxima proposta antes dos detalhes recolhidos da temporada. Narrativa baseada em classificação, pontos, jogos, gols e assistências reais da carreira. Nenhuma carreira do usuário foi avançada nesta alteração.
+
+Executado: PHP lint dos arquivos alterados; tests/presentation.php, tests/wheel.php, tests/season-presentation.php; tests/run.php (27.979 verificações, 30 temporadas em seis posições); tests/http.php (29 verificações no IIS em http://rumo10.local). Verificação visual de propostas, resumo e pós-jogo em navegador com viewport 390 × 844 usando fixtures isoladas sem banco. Confirmado término natural do giro e botões visíveis acima do menu. Pular e recarregar foram conferidos durante o desenvolvimento anterior desta mesma alteração.
+
+Limites: Apache e aparelho celular físico não testados. A animação apresenta o sorteio previamente salvo; o realismo adicional nesta rodada é narrativo e de fluxo, sem novos contratos, salários ou agentes.
