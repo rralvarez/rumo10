@@ -59,6 +59,8 @@ final class Repository {
             $before=['skills'=>$g['skills'],'states'=>$g['states'],'season'=>$g['season'],'round'=>$g['round'],'stage'=>$g['stage']];
             $next=Game::command($g,$action,$input); $this->save($next); $f=$next['feedback']??[];
             $audit=['before'=>$before,'after'=>['skills'=>$next['skills'],'states'=>$next['states']],'feedback'=>$f];
+            if($action==='simulate')$audit['simulation']=$next['pace_report'];
+            if($action==='mode')$audit['mode']=PlayMode::name($next);
             $this->query('INSERT INTO rumo10_decisoes(carreira_id,chave,comando,request_hash,versao_anterior,chance,sorteio,classe,regras,resultado_json) VALUES(?,?,?,?,?,?,?,?,?,?)',[$g['id'],$key,$action,$hash,$version,$f['chance']??null,$f['roll']??null,$f['class']??null,Rules::VERSION,json_encode($audit,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE)]);
             $persisted=$this->load($account); $this->db->commit(); return $persisted;
         } catch(Throwable $e) { if($this->db->inTransaction()) $this->db->rollBack(); throw $e; }
@@ -90,7 +92,7 @@ final class Repository {
             $this->query('UPDATE rumo10_temporadas SET finalizada=1,resumo_json=? WHERE carreira_id=? AND numero=?',[json_encode($h,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE),$id,$h['season']]);
             $this->query('INSERT IGNORE INTO rumo10_transferencias(carreira_id,temporada,origem,destino) VALUES(?,?,?,?)',[$id,$h['season'],$h['club'],$h['next_club']]);
         }
-        if(isset($g['story_seed'])) {
+        if(isset($g['story_seed']) || isset($g['play_mode'])) {
             $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
             $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=?',[$id,$json,$json]);
         }

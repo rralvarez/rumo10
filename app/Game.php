@@ -53,7 +53,10 @@ final class Game {
         if($g['stage']==='partida'){$m=$g['matches'][self::currentIndex($g)];$side=$m['home']===$g['club']?'away':'home';$opponent=$m[$side.'_overall']??TeamStrength::rating($m[$side],$g);}
         return Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
     }
-    public static function command(array $g,string $action,array $input=[]): array {
+    public static function command(array $g,string $action,array $input=[],bool $automated=false): array {
+        if($action==='mode')return PlayMode::change($g,(string)($input['mode']??''));
+        if($action==='simulate')return PlayMode::simulate($g,(string)($input['plan']??''));
+        if(!$automated && PlayMode::name($g)!=='normal' && in_array($action,['choice','advance'],true))throw new InvalidArgumentException('Escolha a estratégia do seu modo de jogo.');
         $g['feedback']=null;
         if($action==='handicap' && $g['stage']==='handicap') {
             $h=Probability::weighted(Rules::HANDICAPS); $g['handicap']=$h['nome'];
@@ -112,6 +115,7 @@ final class Game {
             foreach($g['offers'] as &$offer) $offer['selected']=($offer['club']===$chosen['club']); unset($offer);
             $g['stage']='oferta'; $g['feedback']=['text'=>'Proposta recebida: '.$chosen['club'],'weights'=>$pool];
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
+            unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
             $selected=current(array_filter($g['offers'],fn($o)=>$o['selected']));
             if($input['accept']==='yes') { $g['club']=$selected['club']; $g['tier']=$selected['tier']; }

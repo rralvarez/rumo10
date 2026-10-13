@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 final class Rules {
-    public const VERSION = '0.5.0';
+    public const VERSION = '0.6.0';
     public const AGE = 18;
     public const SKILLS = ['velocidade','resistencia','forca','visao_jogo','passe','finalizacao','drible','desarme','posicionamento'];
     public const STATES = ['energia','ritmo_jogo','confianca','entrosamento','confianca_treinador','confianca_diretoria','apoio_torcida','confianca_imprensa','lideranca','foco','moral_pessoal','risco_lesao','risco_cartao','risco_polemica','risco_encontrar_rivais'];

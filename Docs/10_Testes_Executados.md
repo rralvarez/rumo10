@@ -151,3 +151,12 @@ Verificado: lint da view e teste de apresentação, incluindo correspondência e
 O centro da roleta inicial passou a ser um botão submit real com o texto GIRAR / MEU PERFIL, dentro do formulário protegido de sorteio. Foram retirados o painel Pronto para girar e o botão separado abaixo. A instrução aparece como texto simples. Roletas com resultado salvo não oferecem novo botão de giro; animação, persistência e regras permanecem iguais.
 
 Verificado: lint de Wheel/view, testes de roleta e apresentação, 44 verificações HTTP no IIS local incluindo sorteio e replay. Prévia isolada em 390 × 844 conferida no navegador: único submit no formulário, botão no centro e nenhum overflow horizontal. Evidência storage/roleta-inicial-botao-mobile.jpg. Nenhuma carreira pessoal foi iniciada ou reiniciada para a verificação.
+
+
+## 13/10/2026 — modos Normal, Rápido e Expresso
+
+Implementados os três ritmos pelo mesmo motor de situações, probabilidades, overall e evolução. Escolha no cadastro ou troca na carreira antes do treino; sem reset. Rápido resolve um jogo completo por estratégia; Expresso resolve o restante de todas as competições da temporada. Contratos continuam manuais. Resumos preservam jogos, gols, assistências, notas e evolução; destaque pessoal recolhido para reduzir scroll.
+
+Verificado: 523 verificações registradas de `tests/play-modes.php`, seis posições e quatro estratégias, temporadas completas no Brasil/Argentina/Uruguai/Paraguai/Bolívia, entrada por roleta, ausência em campo e mata-matas no rápido. `tests/run.php`: 27.979 verificações e 30 temporadas do modo normal. Testes de apresentação e roleta aprovados. `tests/http.php`: 54 verificações no IIS local/MySQL, incluindo cadastro com modo, troca, resultado salvo, replay de rápida e expressa, rejeição de token reutilizado com estratégia diferente, contratos e próxima temporada. Conta descartável limpa ao final; carreira pessoal preservada.
+
+Prévia isolada 390×844: quatro alternativas visíveis e nenhuma largura horizontal excedente; contrato acessível no fechamento e relatório dentro de Ver minha temporada. Evidência `storage/modo-rapido-mobile.jpg`. Limites e instruções em `Docs/13_Modos_de_Jogo.md`. Não testado em Apache, produção ou telefone físico.

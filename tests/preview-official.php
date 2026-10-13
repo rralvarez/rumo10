@@ -1,7 +1,7 @@
 <?php
 // Prévia isolada, somente GET; nenhuma conta ou carreira real é modificada.
 declare(strict_types=1);
-$path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
+$path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);$previewPath=$path;
 if(preg_match('#^/assets/[\w./-]+\.(css|js|png|jpg|gif|webp)$#',$path) && is_file(dirname(__DIR__).'/public'.$path))return false;
 if($_SERVER['REQUEST_METHOD']!=='GET'){http_response_code(405);exit;}
 require dirname(__DIR__).'/app/bootstrap.php';
@@ -22,4 +22,9 @@ elseif($path==='/classificacao'){foreach($g['matches'] as &$m)if($m['round']===1
 elseif($path==='/recap'){
  $id=$g['competition_id'];$t=&$g['competitions'][$id];Competition::finish($t);$g['matches']=$t['matches'];$g['competition_results'][$id]=Competition::result($t,$g['club']);$g['stage']='competicao_resumo';$path='/carreira';
 }elseif($path!=='/jogador') $path='/carreira';
+if(in_array($previewPath,['/rapido','/expresso','/rapido-resultado','/expresso-resultado'],true)){
+ $g=Game::command($g,'mode',['mode'=>str_starts_with($previewPath,'/rapido')?'rapido':'expresso']);
+ if(str_ends_with($previewPath,'-resultado'))$g=Game::command($g,'simulate',['plan'=>'coletivo']);
+ $path='/carreira';
+}
 require dirname(__DIR__).'/app/view.php';

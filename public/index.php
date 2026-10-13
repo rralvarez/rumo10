@@ -21,7 +21,7 @@ function form(string $path,?array $g=null): void {
 }
 $path=rawurldecode(parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/');
 $method=$_SERVER['REQUEST_METHOD'];
-$routes=['/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
+$routes=['/carreira/modo'=>['POST'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
 $status=200; $error=null; $g=null; $clubs=[];
 try {
     if(!isset($routes[$path])) { $status=404; throw new InvalidArgumentException('Página não encontrada.'); }
@@ -53,12 +53,16 @@ try {
         $r=new Repository(Database::connect()); $g=$r->load($_SESSION['account']);
         if($method==='POST') {
             if(in_array($path,['/carreira/criar','/carreira/nova'],true)) {
-                $r->create($_SESSION['account'],Game::create(trim((string)($_POST['name']??'')),trim((string)($_POST['city']??'')),strtoupper((string)($_POST['uf']??'')),(string)($_POST['position']??'')),$path==='/carreira/nova');
+                $newGame=Game::create(trim((string)($_POST['name']??'')),trim((string)($_POST['city']??'')),strtoupper((string)($_POST['uf']??'')),(string)($_POST['position']??''));
+                $newGame['play_mode']=PlayMode::validate((string)($_POST['mode']??'normal'));
+                $r->create($_SESSION['account'],$newGame,$path==='/carreira/nova');
             } elseif($path==='/carreira/restaurar') {
                 $r->restore($_SESSION['account'],(int)($_POST['career']??0));
             } else {
-                $action=match($path) {'/carreira/clube-inicial'=>'join','/competicao/continuar'=>'continue','/carreira/handicap'=>'handicap','/decisao/registrar','/partida/decidir'=>'choice','/partida/avancar'=>'advance','/transferencia/roleta'=>'offers','/transferencia/responder'=>'transfer',default=>throw new InvalidArgumentException('Ação inválida.')};
+                $action=match($path) {'/carreira/modo'=>'mode','/carreira/simular'=>'simulate','/carreira/clube-inicial'=>'join','/competicao/continuar'=>'continue','/carreira/handicap'=>'handicap','/decisao/registrar','/partida/decidir'=>'choice','/partida/avancar'=>'advance','/transferencia/roleta'=>'offers','/transferencia/responder'=>'transfer',default=>throw new InvalidArgumentException('Ação inválida.')};
                 $input=in_array($action,['choice','join'],true)?['option'=>(string)($_POST['option']??'')]:($action==='transfer'?['accept'=>(string)($_POST['accept']??'')]:[]);
+                if($action==='mode')$input=['mode'=>(string)($_POST['mode']??'')];
+                if($action==='simulate')$input=['plan'=>(string)($_POST['plan']??'')];
                 $r->command($_SESSION['account'],$action,$input,(string)($_POST['key']??''),(int)($_POST['version']??-1));
             }
             redirect('/carreira');

@@ -1,4 +1,4 @@
-# Rumo à Camisa 10 — protótipo 0.5
+# Rumo à Camisa 10 — protótipo 0.6
 
 RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **671 clubes**, no Brasileirão A/B/C/D, Paulista A1/A2/A3/A4/Segunda Divisão e divisões de entrada das outras 26 UFs (cadastro ampliado em 13/10/2026). São **43 competições/etapas**, incluindo as duas principais divisões de Argentina, Uruguai, Paraguai e Bolívia. Participantes e formatos têm fontes registradas; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
 
@@ -34,6 +34,12 @@ Nesta máquina, a instância original FastCGI apresentou erro de monitoramento e
 ```
 
 Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação anônima com identidade do pool em produção, evitando compartilhamento de IUSR entre sites.
+## Modos de jogo
+
+Escolha **Normal**, **Rápido** ou **Expresso** na criação do jogador ou abra **Modo · alterar ritmo** na carreira antes de um jogo. Normal mantém as decisões por situação; Rápido pede uma abordagem por partida; Expresso pede uma estratégia e simula toda a temporada restante. Contratos são escolhidos por você em todos os modos. Nenhuma carreira precisa ser reiniciada e nenhuma migração de banco é necessária. [Funcionamento e limites](Docs/13_Modos_de_Jogo.md).
+
+Para validar o motor dos modos, execute `tests/play-modes.php` com PHP e mbstring. `tests/http.php` testa também os modos no IIS e MySQL locais com uma conta descartável.
+
 ## Jogar e testar
 
 1. Abra [http://rumo10.local](http://rumo10.local), escolha começar e crie uma conta com senha exclusiva (8–72 caracteres). Não existem credenciais demo públicas; o cadastro local é o modo de teste rápido.
