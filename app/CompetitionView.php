@@ -51,7 +51,7 @@ final class CompetitionView {
         if($r['champion']===$club)$s.='seu clube conquistou o título! ';
         else $s.='campeão '.$r['champion'].'. ';
         if($r['promoted'])$s.='Acesso conquistado.'.(!empty($r['access_pending'])?' A divisão seguinte deste estado ainda não está disponível no protótipo.':'');
-        elseif($r['relegated'])$s.='Seu clube foi rebaixado.';
+        elseif($r['relegated'])$s.=!empty($r['relegation_pending'])?'Seu clube terminou na zona de rebaixamento. A terceira divisão ainda não está disponível; permanecer no clube repete a divisão cadastrada.':'Seu clube foi rebaixado.';
         else $s.='Seu clube terminou em '.$r['position'].'º '.(!empty($r['group'])?'no grupo '.$r['group']:'na primeira fase').'.';
         return $s;
     }
@@ -65,5 +65,6 @@ final class CompetitionView {
         if($next)echo '<p>Agora vem o '.e(Competition::catalog()[$next]['name']).'. Seu clube continua contando com você.</p>';
         echo '<form method="post" action="/competicao/continuar"><input type="hidden" name="csrf" value="'.e($_SESSION['csrf']).'"><input type="hidden" name="version" value="'.e($g['version']).'"><input type="hidden" name="key" value="'.bin2hex(random_bytes(32)).'"><button class="btn btn-primary btn-lg">'.($next?'Começar próximo campeonato →':'Continuar minha carreira →').'</button></form></article><details class="panel"><summary>Ver campanha</summary>';
         self::standings($g);Presentation::goalHistory($g);echo '</details>';
+        if(!empty($r['titles'])){echo '<details class="panel"><summary>Campeões dos torneios</summary>';foreach($r['titles'] as $title=>$champion)echo '<p>'.e($title).': <b>'.e($champion).'</b></p>';echo '</details>';}
     }
 }

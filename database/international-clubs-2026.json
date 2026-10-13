@@ -1,0 +1,3743 @@
+[
+  {
+    "name": "Boca Juniors-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/bocc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202040",
+      "#FFC040",
+      "#A08040"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Central Córdoba Santiago del Estero-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/central_cord_santiago_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#808080",
+      "#C0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Defensa y Justicia-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/defensayjusticia.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#408040",
+      "#FFE040",
+      "#C0A040"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Deportivo Riestra-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/deportivo_riestra_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#E0E0E0",
+      "#808080"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Estudiantes La Plata-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/estudic.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E00020",
+      "#C0A080",
+      "#E06060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Gimnasia Mendoza-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/gimnasia_mendoza.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#404040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Independiente-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/indepc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E00020",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Instituto Córdoba-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/instituto.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0000",
+      "#FFE0E0",
+      "#FF6060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Lanús-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/lanusc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#A02040",
+      "#FFE0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Newell’s Old Boys-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/newelsc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FF2020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Platense-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/platensc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#806040",
+      "#FFFFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "San Lorenzo-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/san_loc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204060",
+      "#E00020",
+      "#602040"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Talleres Córdoba-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/talleres.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002040",
+      "#FFFFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Unión Santa Fe-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/union_santa_fe.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E00020",
+      "#FFC0C0",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Vélez Sarsfield-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/velez.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0060A0",
+      "#4080C0",
+      "#E0E0FF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Aldosivi-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/aldosivi_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFE000",
+      "#40A020",
+      "#202020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Argentinos Juniors-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/argentinos.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#004080",
+      "#FF0000",
+      "#4060A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Atlético Tucumán-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/attucuman.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#60C0FF",
+      "#C0A060",
+      "#E0E0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Banfield-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/banfield.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#008040",
+      "#C0A060",
+      "#E0E0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Barracas Central-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/barracas_central_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E0E0E0",
+      "#C00000",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Belgrano Córdoba-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/belgrano.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A0E0",
+      "#A0A0A0",
+      "#202020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Estudiantes Río Cuarto-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/estudiantes_riocuarto.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E0E0E0",
+      "#00A0C0",
+      "#202020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Gimnasia La Plata-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/glaplatc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#004060",
+      "#C0C060",
+      "#A0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Huracán-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/huracanc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0000",
+      "#FF4040",
+      "#FFE0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Independiente Rivadavia-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/indepe_rivadavia.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#200020",
+      "#E0E0E0",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Racing Club-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/racingc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A0E0",
+      "#002040",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "River Plate-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/riverc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E02020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Rosario Central-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/rosarioc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204060",
+      "#FFE060",
+      "#A0A060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Sarmiento Junín-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/sarmiento_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#408040",
+      "#204020",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Tigre-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-1"
+    ],
+    "source": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/tigre_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202080",
+      "#C02020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Acassuso-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/acassuso_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#2040A0",
+      "#202020",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "All Boys-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/allboys_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#E0E0E0",
+      "#606060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Almirante Brown-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/almirantebrown_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FFE000",
+      "#C0A000"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Central Norte Salta-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/centralnorte_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E0E0E0",
+      "#606060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Chaco For Ever-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/chacoforever_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#A0A0A0",
+      "#606060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Ciudad de Bolívar-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/ciudad_bolivar_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0020FF",
+      "#8080FF",
+      "#C0C0FF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Colón Santa Fe-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/colon.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#402020",
+      "#E02020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Defensores de Belgrano-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/defensores_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FF0000"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Deportivo Madryn-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/deportivo_madryn_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FFC000",
+      "#604000"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Deportivo Morón-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/deportivomoron_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#FFE0E0",
+      "#FFA0A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Estudiantes Caseros-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/estudiantes_ba.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#C0C0C0",
+      "#808080"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Ferro Carril Oeste-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/ferroc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#406040",
+      "#C0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Godoy Cruz-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/godoycruz.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C0C0C0",
+      "#0060C0",
+      "#606060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Los Andes-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/losandes.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#FFC0C0",
+      "#FF6060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Mitre Santiago del Estero-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/mitre_sant_est_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FFC000",
+      "#404000"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Racing Córdoba-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/raccordoba_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A0E0",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "San Miguel-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/san_miguel_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A040",
+      "#FFFFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "San Telmo-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/santelmo_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000060",
+      "#40C0FF",
+      "#2080C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Agropecuario Argentino-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/agropecuario_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A040",
+      "#E00020",
+      "#A04020"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Almagro-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/almagro.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#6080C0",
+      "#C0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Atlanta-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/atlanta_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFFF40",
+      "#4040C0",
+      "#C0C060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Atlético Rafaela-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/atrafaela.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0080C0",
+      "#E0A020",
+      "#FFE0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Chacarita Juniors-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/chacarita.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E02020",
+      "#808080"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Colegiales-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/colegiales_arg.gif",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#804080",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Deportivo Maipú-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/deportivo_maipu.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E00020",
+      "#00A040"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Ferro Carril Midland-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/ferrocarril_midland_arg.gif",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#400060",
+      "#E0E0E0",
+      "#604080"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Gimnasia Jujuy-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/gjujuyc.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#20A0E0",
+      "#000000",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Gimnasia y Tiro-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/gimnasyatiro.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#20C0E0",
+      "#E0FFFF",
+      "#80C0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Güemes Santiago del Estero-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/guemes_arg.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#4020A0",
+      "#FF0020",
+      "#800080"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Nueva Chicago-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/nueva_chicago.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#20A040",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Patronato-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/patronato_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#C00000"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Quilmes-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/quilmes.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202060",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "San Martín San Juan-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/sanmartinsj.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#006040",
+      "#C0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "San Martín Tucumán-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/sanmartintuc_arg.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#FFE0E0",
+      "#E06060"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Temperley-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/temperley.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#20C0E0",
+      "#E0FFFF",
+      "#80E0FF"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Tristán Suárez-AR",
+    "uf": "AR",
+    "country": "AR",
+    "competitions": [
+      "ar-2"
+    ],
+    "source": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+    "badge_source": "https://escudosfc.com.br/arg.htm",
+    "badge_url": "https://escudosfc.com.br/images/tristan_suarez.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204080",
+      "#C0C0E0",
+      "#8080A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/arg.htm"
+  },
+  {
+    "name": "Albion-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/albion_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C02020",
+      "#004060",
+      "#808060"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Boston River-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/boston_river_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#006020",
+      "#E04040",
+      "#604040"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Central Español-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/central_uru.gif",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0000",
+      "#000040",
+      "#FF4040"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Cerro-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/cerro_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A0E0",
+      "#202020",
+      "#40C0FF"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Cerro Largo-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/cerrolargo_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204080",
+      "#A0A0C0",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Danubio-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/danubio_uru.gif",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#404040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Defensor Sporting-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/defensor.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E0E0E0",
+      "#602060",
+      "#A080A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Deportivo Maldonado-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/deportivo_maldonado.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#008000",
+      "#C00000",
+      "#E0C020"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Juventud Las Piedras-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/juventud_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#2060A0",
+      "#FFFFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Liverpool Montevideo-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/liverpool_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#204080",
+      "#60A040"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Montevideo City Torque-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/torque_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#60A0E0",
+      "#002060",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Montevideo Wanderers-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/wanderers_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E0E0E0",
+      "#804000"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Nacional Montevideo-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/naciouru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#004060",
+      "#FF0020"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Peñarol-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/penarol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FFE000",
+      "#404000"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Progreso-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/progreso_uru.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFE020",
+      "#C02020",
+      "#E08020"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Racing Montevideo-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-1"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/racing_uru.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#206040",
+      "#A0C0A0",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Atenas San Carlos-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/atenas_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204060",
+      "#E04040"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Cerrito-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/cerrito_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFFF00",
+      "#008020",
+      "#80C000"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Colón Montevideo-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/colon_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A020",
+      "#FFE0E0",
+      "#FF4040"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Fénix-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/fenix_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#604080",
+      "#C0A080",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Huracán FC-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/huracan_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#2040A0",
+      "#E0E0FF",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "La Luz-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/laluz_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#008000",
+      "#E0E0E0",
+      "#202020"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Miramar Misiones-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/miramar_uru.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E02020",
+      "#802020"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Oriental La Paz-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/oriental_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#80C0FF",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Paysandú FC-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/paysandu2_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000060",
+      "#FF0000",
+      "#C0A000"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Plaza Colonia-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/plazacolonia.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A060",
+      "#40C080",
+      "#A0E0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Rentistas-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/rentistas.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF2020",
+      "#FFE0E0",
+      "#E08080"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "River Plate Montevideo-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/river_uru.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C02020",
+      "#402020"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Tacuarembó-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/tacuarembo_uru.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C04040",
+      "#E0A0A0",
+      "#FFE0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "Uruguay Montevideo-UY",
+    "uf": "UY",
+    "country": "UY",
+    "competitions": [
+      "uy-2"
+    ],
+    "source": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+    "badge_source": "https://escudosfc.com.br/uru.htm",
+    "badge_url": "https://escudosfc.com.br/images/uruguay_montevideu_uru.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00C0E0",
+      "#202020",
+      "#C0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/uru.htm"
+  },
+  {
+    "name": "2 de Mayo-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/2demayo_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204080",
+      "#C0C0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Sportivo Ameliano-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/ameliano_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#4080A0",
+      "#004080",
+      "#80A0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Cerro Porteño-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/cerropor.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#004080",
+      "#FF0000",
+      "#C02040"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Guaraní-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/guarani_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FFE000",
+      "#606020"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Libertad-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/libertad.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#404040",
+      "#808080"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Nacional Asunción-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/nacional_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204080",
+      "#C02020"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Olimpia-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/olimpia.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#A0A0A0",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Recoleta-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/recoleta_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E0C060",
+      "#FFFFA0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Rubio Ñu-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/rubionu_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C0C080",
+      "#404040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Sportivo San Lorenzo-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/sanlorenzo_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E00020",
+      "#FFC0C0",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Sportivo Luqueño-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/luqueno.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002080",
+      "#FFC000",
+      "#404060"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Sportivo Trinidense-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-1"
+    ],
+    "source": "https://www.apf.org.py/copa-de-primera",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/trinidense_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#404080",
+      "#E0E040",
+      "#C0C0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "3 de Noviembre-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/3_noviembre_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#204080",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "12 de Junio Villa Hayes-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/12junho_hayes_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204080",
+      "#FFC020",
+      "#C0A040"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Benjamín Aceval-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/benja_aceval_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#2020FF",
+      "#FF2000",
+      "#C0C0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Deportivo Capiatá-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/dep_capiata_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFE020",
+      "#204060",
+      "#808040"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Deportivo Santaní-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/deportivo_santani_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#404040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Encarnación FC-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/encarnacion_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#2040A0",
+      "#E02020",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Fernando de la Mora-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/fernandodelamora_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#E0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "General Caballero JLM-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/general_jlm_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0000",
+      "#000000",
+      "#E08080"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Guaireña-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/guairena_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#40C0E0",
+      "#A0E0E0",
+      "#A0A0A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Independiente Campo Grande-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/independiente_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0060A0",
+      "#FFE0E0",
+      "#C04040"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Paraguarí AC-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/paraguari_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0000",
+      "#E08080",
+      "#FFC0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Resistencia-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/resistencia_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00C0E0",
+      "#E0C000",
+      "#FF0020"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Sol de América-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/soldeamerica_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0080C0",
+      "#80C0E0",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Sportivo Carapeguá-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/carapegua_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E00000",
+      "#000000",
+      "#FFE0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Tacuary-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/tacuary_par.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FFFFE0",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "Atlético Tembetary-PY",
+    "uf": "PY",
+    "country": "PY",
+    "competitions": [
+      "py-2"
+    ],
+    "source": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+    "badge_source": "https://escudosfc.com.br/par.htm",
+    "badge_url": "https://escudosfc.com.br/images/tembetary_par.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C02040",
+      "#008060",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/par.htm"
+  },
+  {
+    "name": "ABB-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/abb_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFE000",
+      "#0020A0",
+      "#FFFFE0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Always Ready-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/always_ready_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#000000",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Aurora-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/aurora_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#40C0E0",
+      "#FFC000",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Blooming-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/blooming.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#4080C0",
+      "#C0C040",
+      "#E02020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Bolívar-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/bolivar.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#40A0E0",
+      "#004080",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Guabirá-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/guabira_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C00000",
+      "#002080",
+      "#E04040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "GV San José-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_url": "https://fbf.com.bo/wp-content/uploads/2025/12/1-14-400x400.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204060",
+      "#E0E0E0",
+      "#60A080"
+    ],
+    "colors_source": "https://fbf.com.bo/torneos/division-profesional/"
+  },
+  {
+    "name": "Independiente Petrolero-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/indeppetrobol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E00000",
+      "#E08080",
+      "#FFE0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Nacional Potosí-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/nacional_potosi_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E00000",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Oriente Petrolero-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/oriente.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#408020",
+      "#80A080",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Real Potosí-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/realpotosi_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFC000",
+      "#402080",
+      "#C0A020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Real Tomayapo-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/real_toma_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#208040",
+      "#C0E0C0",
+      "#FF8080"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "San Antonio Bulo Bulo-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/sant_ant_bulo_bulo_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204080",
+      "#000040",
+      "#608020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "The Strongest-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/strongest.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FFE000",
+      "#C0A000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Totora Real Oruro-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/realoruro_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E02020",
+      "#E0A040",
+      "#602020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Universitario de Vinto-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-1"
+    ],
+    "source": "https://fbf.com.bo/torneos/division-profesional/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/universitario_vinto_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#A02020",
+      "#000000",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo A y B-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/ayb_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00C0FF",
+      "#000000",
+      "#006080"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Germán Busch-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/germanbusch_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#808080",
+      "#C0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo The Strongest Guayaramerín-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/strong_guaya_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#C0C020",
+      "#404020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Universitario del Beni-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/universitario_de_beni_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0000",
+      "#004060",
+      "#602040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "1º de Mayo Beni-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/1d_maiobeni_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#204020",
+      "#E0E0E0",
+      "#608060"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Atlético del Beni-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/atl_beni_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#208020",
+      "#E0E020",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo Kivón-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/kivon_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E02020",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Atlético Junior Yotala-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/atljuniors_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002040",
+      "#E0C040",
+      "#A08020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Flamengo Sucre-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/flamengo_sucre_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FF2020",
+      "#802020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Nacional Sucre-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/cans_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#4060C0",
+      "#E0E0FF",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Universitario Sucre-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/universitario_la_paz_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0020A0",
+      "#E00000",
+      "#FFE0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Atlético Sucre-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/atletico_sucre_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000040",
+      "#E00000",
+      "#404060"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Fancesa-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/bolivia_fancesa.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#C02020",
+      "#808080"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Impacto Deportivo-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/impacto_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202020",
+      "#C0C0C0",
+      "#604040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Tomina Lions-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/tomina_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#806040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Cultural Amanecer-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/amanecer_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#008040",
+      "#808080"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo Libertad Quillacollo-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/libertad_coc_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E0E0E0",
+      "#006040",
+      "#A0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Olympic-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/olympic_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E08040",
+      "#000000",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Tiquipaya-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/tiquipaya_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#404040",
+      "#006020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Atlético Independiente Cochabamba-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/indep_cbba_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202060",
+      "#E0E0E0",
+      "#E02000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Israel University-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/univ_cocha_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202060",
+      "#C02020",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Mi Llajta-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/llajta_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#00C0FF",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo Tigres-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/tigrescbba_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFC020",
+      "#204080",
+      "#C0A040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Chaco Petrolero-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/chaco_petrolero.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#408020",
+      "#E0E0E0",
+      "#A0A080"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Hiska Nacional-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/hiska_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002060",
+      "#000000",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Pucarani-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/pucarani_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#006000",
+      "#60A060",
+      "#C0E0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Torrez El Alto-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/torres_elalto_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202080",
+      "#FFE000",
+      "#0060C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "26 de Febrero-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/26febrero_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0020FF",
+      "#E0E0FF",
+      "#8080FF"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "FATIC-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/fatic_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFFF00",
+      "#0040A0",
+      "#406060"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Ingenio-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/ingenio_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#A02020",
+      "#A06060",
+      "#C0A0A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Virgen de Chijipata-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/virgen_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E0A060",
+      "#FFC000",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "22 de Octubre Caracollo-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/caracollo_2210_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0080E0",
+      "#002060",
+      "#FFFF40"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo Shalón-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/shalon_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002060",
+      "#FFC000",
+      "#C0A020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Ingenieros-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/ingenieros_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002060",
+      "#E0E0E0",
+      "#406080"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Oruro Royal-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/oruro_royal_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E0FFE0",
+      "#000000",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "AFIZ-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/afiz_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FF0000",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo Escara-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/escara_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002080",
+      "#C0C0E0",
+      "#6060A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Empresa Minera Huanuni-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/huanini_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0040A0",
+      "#FFE000",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Guadalajara Qaqachaca-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/guadalajara_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#202060",
+      "#E0E0E0",
+      "#606080"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Independiente Unificada-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/inedp_uni_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0000",
+      "#000040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Juan Aurich Alcatuyo-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/aurich_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF2020",
+      "#404040",
+      "#C0C0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo Mineros Potosí-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/mineros_pot_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF0040",
+      "#806060",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Río San Juan Humi-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/riosanjuan_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E04040",
+      "#2060A0",
+      "#80A0C0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Atlético Minero Amayapampa-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/atletico_amaya_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FFE020",
+      "#202060",
+      "#008040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Highland Players-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/highland_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002020",
+      "#C0C0C0",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Wilstermann Cooperativas-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/willsterman_coop_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#002040",
+      "#E0E0E0",
+      "#C00000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Bilbao Rioja-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/bilbaorioja_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#FF0000",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Nacional La Pampa-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/nacional_tarija_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E0E0E0",
+      "#C0A060"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Unión Tarija-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/union_tarija_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#208040",
+      "#E0FFE0",
+      "#A0C0A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Universitario Tarija-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/univ_tarija_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0060C0",
+      "#E00000",
+      "#E0C060"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "García Agreda-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/garcia_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0040A0",
+      "#FFE020",
+      "#E0E0FF"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Municipal Tarija-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/municipal_tar_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#FF2020",
+      "#E0E0E0",
+      "#E06060"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Nacional SENAC-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/nacionalsenac_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#008040",
+      "#FFFF00",
+      "#40A020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo San Martín Yacuiba-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/sanmartin_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#2020E0",
+      "#FFE000",
+      "#FFE0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Astros de Pando-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/astros_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#80C040",
+      "#E0E0E0",
+      "#204000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Chaco FC-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/chaco_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E0E0E0",
+      "#404040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo El Sena-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/sena_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#4080C0",
+      "#204040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Universitario de Pando-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/univ_cobija_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#2040A0",
+      "#E0E0E0",
+      "#E00000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Filadelfia-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/filadelfia_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C0E040",
+      "#808080",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Libertad Pando-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/libertad_cob_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#0060A0",
+      "#00A0E0",
+      "#E0FFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Noroeste Santa Nelly-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/noroeste_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#800000",
+      "#C0A060",
+      "#000000"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Nueva Santa Cruz-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/nueva_santacruz_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#404020",
+      "#806040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Real Santa Cruz-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/santacruz_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#808080",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Royal Pari-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/royal_pari_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C00020",
+      "#204080",
+      "#FFFFFF"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "San Juan FC-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/sanjuan_sc_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#E06020",
+      "#20A040",
+      "#E0E0E0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Ciudad Nueva Santa Cruz Academia-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/nueva_sc_bol.png",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#C08040",
+      "#E0C060",
+      "#604020"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Deportivo Esperanza-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/esperanza_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#00A0E0",
+      "#C0C0C0",
+      "#002060"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Los Ángeles Cotoca-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/angeles_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#402020",
+      "#806040"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  },
+  {
+    "name": "Virginia USC-BO",
+    "uf": "BO",
+    "country": "BO",
+    "competitions": [
+      "bo-2"
+    ],
+    "source": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+    "badge_source": "https://escudosfc.com.br/bol.htm",
+    "badge_url": "https://escudosfc.com.br/images/virginia_bol.jpg",
+    "colors_status": "approximate_badge_palette",
+    "colors": [
+      "#000000",
+      "#E0E0E0",
+      "#A0A0A0"
+    ],
+    "colors_source": "https://escudosfc.com.br/bol.htm"
+  }
+]

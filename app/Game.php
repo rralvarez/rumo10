@@ -18,6 +18,7 @@ final class Game {
         throw new LogicException('Partida não encontrada.');
     }
     public static function situation(array $g): ?array {
+        if($scene=Scenes::current($g))return $scene;
         $all=require dirname(__DIR__).'/database/situations.php'; $r=$g['round'];
         $id=match($g['stage']) {
             'treino'=>1+(($r-1)%3),
@@ -48,7 +49,9 @@ final class Game {
     }
     public static function chance(array $g,array $o): float {
         $type=$o['action']; $d=['social'=>42,'passe'=>43,'chute'=>65,'drible'=>60,'desarme'=>53][$type];
-        return Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$g['stage']==='partida'?45+$g['tier']*3:50);
+        $opponent=50;
+        if($g['stage']==='partida'){$m=$g['matches'][self::currentIndex($g)];$side=$m['home']===$g['club']?'away':'home';$opponent=$m[$side.'_overall']??TeamStrength::rating($m[$side],$g);}
+        return Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
     }
     public static function command(array $g,string $action,array $input=[]): array {
         $g['feedback']=null;
@@ -78,11 +81,13 @@ final class Game {
             }
             $o=$choices[$n]; $roll=Probability::roll(self::chance($g,$o)); $effects=self::effects($o['effects'],$roll,$g);
             $s=self::situation($g); if($s && $s['id']===7 && $n===0 && !$roll['success']) { $g['states']['entrosamento']=self::clamp($g['states']['entrosamento']-10); $effects['entrosamento']=-10; }
-            $g['feedback']=$roll+['text'=>$o['text'].': '.($roll['success']?'a intenção deu certo.':'a intenção não teve o efeito esperado.'),'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
+            Scenes::remember($g,$s);
+            $g['feedback']=$roll+['text'=>$o['text'].': '.($roll['success']?($o['success_text']??'a intenção deu certo.'):($o['failure_text']??'a intenção não teve o efeito esperado.')),'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
             if($g['stage']==='treino') $g['stage']='pre_jogo';
             elseif($g['stage']==='pre_jogo') {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i];
-                $bench=($s['id']===6); $absent=$g['states']['energia']<15 || $g['states']['risco_lesao']>85;
+                TeamStrength::snapshot($m,$g);
+                $bench=($s['bench']??($s['id']===6)); $absent=$g['states']['energia']<15 || $g['states']['risco_lesao']>85;
                 $m['lineup']=$absent?'não relacionado':($bench?'reserva':'titular');
                 $m['entry']=$absent?90:($bench?60:0); $m['exit']=90; $m['status']='pre_jogo'; $g['stage']='partida';
             } elseif($g['stage']==='fim_semana') {
@@ -118,7 +123,7 @@ final class Game {
         } elseif($action==='continue' && $g['stage']==='competicao_resumo' && !empty($g['official'])) {
             Competition::continueSeason($g);
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
-        $g['version']++; return $g;
+        $g['version']++;Scenes::prepare($g); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }
     private static function effects(array $effects,array $roll,array &$g): array {
@@ -140,7 +145,7 @@ final class Game {
     }
     private static function fieldDecision(array &$g,array $o,array $roll,int $sid,int $choice): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
-        $type=$o['action']; $onBall=$sid===0 || $sid===7;
+        $type=$o['action']; $onBall=$sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
             if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if(random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
@@ -165,9 +170,10 @@ final class Game {
     private static function segment(array &$g,int $next): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $span=$next-$m['minute'];
         $own=$m['home']===$g['club']?'hg':'ag';
-        foreach(['hg','ag'] as $side) {
-            $chance=(int)round($span*1.2+($side==='hg'?3:0)+($side===$own?($g['tier']-1)*2:0));
-            if(random_int(1,100)<=$chance) { $m[$side]++; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
+        TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
+        foreach(['hg','ag'] as $index=>$side) {
+            $goals=TeamStrength::goals($means[$index]*$span/90);
+            for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
         }
         $m['minute']=$next; $m['log'][]=['minute'=>$next,'text'=>'Placar: '.$m['hg'].' × '.$m['ag'].'.'];
         if($next===45) $m['status']='intervalo';
@@ -181,7 +187,7 @@ final class Game {
                 foreach(['home','away'] as $side) {$played[$side.'_yellow']=random_int(0,4);$played[$side.'_red']=0;}
                 $side=$played['home']===$g['club']?'home':'away';$played[$side.'_yellow']+=$played['stats']['cards'];$played[$side.'_red']+=(int)($played['stats']['cards']>=2);unset($played);
             }
-            foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') Competition::simulate($other); unset($other);
+            foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') Competition::simulate($other,$g); unset($other);
             $g['stage']='fim_semana'; $g['states']['ritmo_jogo']=self::clamp($g['states']['ritmo_jogo']+3);
         }
     }

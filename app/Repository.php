@@ -69,7 +69,7 @@ final class Repository {
         foreach($g['skills'] as $k=>$a) $this->query('INSERT INTO rumo10_atributos VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE valor=?,xp=?',[$id,$k,$a['value'],$a['xp'],$a['value'],$a['xp']]);
         foreach($g['states'] as $k=>$v) $this->query('INSERT INTO rumo10_estados VALUES(?,?,?) ON DUPLICATE KEY UPDATE valor=?',[$id,$k,$v,$v]);
         if(!empty($g['official'])) {
-            $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);
+            $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
             $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=?',[$id,$json,$json]);
             return;
         }
@@ -89,6 +89,10 @@ final class Repository {
         foreach($g['history'] as $h) {
             $this->query('UPDATE rumo10_temporadas SET finalizada=1,resumo_json=? WHERE carreira_id=? AND numero=?',[json_encode($h,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE),$id,$h['season']]);
             $this->query('INSERT IGNORE INTO rumo10_transferencias(carreira_id,temporada,origem,destino) VALUES(?,?,?,?)',[$id,$h['season'],$h['club'],$h['next_club']]);
+        }
+        if(isset($g['story_seed'])) {
+            $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
+            $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=?',[$id,$json,$json]);
         }
     }
 }

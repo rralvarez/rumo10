@@ -7,6 +7,9 @@ if($_SERVER['REQUEST_METHOD']!=='GET'){http_response_code(405);exit;}
 require dirname(__DIR__).'/app/bootstrap.php';
 $g=Game::create('Jogador de teste','São Paulo','SP','centroavante','São Caetano-SP');$g['id']=0;$g['version']=1;$g['stage']='treino';$g['feedback']=null;$error=null;$_SESSION=['account'=>0,'csrf'=>'preview'];
 function form(string $path,?array $g=null):void{echo '<form method="post" action="'.e($path).'">';}
+if($path==='/internacional'){
+    $g=Game::create('Jogador de teste','São Paulo','SP','meia','Bolívar-BO');$g['id']=0;$g=Game::command($g,'handicap');$g=Game::command($g,'choice',['option'=>1]);$g=Game::command($g,'choice',['option'=>0]);$g=Game::command($g,'advance');$g['feedback']=null;$path='/carreira';
+}
 if($path==='/api/cidades') {header('Content-Type: application/json; charset=utf-8');echo json_encode(array_values(array_column(array_filter(Onboarding::municipalities(),fn($m)=>$m['uf']===($_GET['uf']??'SP')),'name')),JSON_UNESCAPED_UNICODE);exit;}
 if(in_array($path,['/clubes-se','/clubes-ro'],true)) {
     [$city,$uf]=$path==='/clubes-se'?['Aracaju','SE']:['Vilhena','RO'];

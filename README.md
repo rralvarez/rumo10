@@ -1,6 +1,6 @@
-# Rumo à Camisa 10 — protótipo 0.4
+# Rumo à Camisa 10 — protótipo 0.5
 
-RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **462 clubes**, no Brasileirão A/B/C/D, Paulista A1/A2/A3/A4/Segunda Divisão e divisões de entrada das outras 26 UFs (cadastro pesquisado em 12/10/2026). São **35 competições/etapas**. Participantes e formatos têm fontes registradas; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
+RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **671 clubes**, no Brasileirão A/B/C/D, Paulista A1/A2/A3/A4/Segunda Divisão e divisões de entrada das outras 26 UFs (cadastro ampliado em 13/10/2026). São **43 competições/etapas**, incluindo as duas principais divisões de Argentina, Uruguai, Paraguai e Bolívia. Participantes e formatos têm fontes registradas; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
 
 Para começar outra carreira na conta atual, abra **/carreira/nova**. A anterior será arquivada ao enviar o formulário; pode ser retomada em **/carreira/arquivadas**. Criar outra carreira não apaga a anterior.
 
@@ -72,8 +72,8 @@ Repita o roteiro HTTP de `tests/http-smoke.ps1 -BaseUrl https://seu-dominio`. N�
 
 ## Limitações atuais
 
-- NPCs usam placares simplificados; posse, estratégias coletivas e estatísticas completas das equipes ainda não são simuladas. Cinco oportunidades por titular (15, 35, 60, 70 e 80 minutos), menos para reserva/lesão/expulsão.
-- S10 e S11 estão preservadas no seed, porém ficam inelegíveis sem patrocinador/rival cadastrado. S12 é o fim de semana válido. A edição de cores é feita via CLI local (bin/club-colors.php), sem painel web administrativo. Não existe catálogo público de configuração.
+- Overall usa nível da divisão, campanha anterior verificada quando disponível e forma recente. Gols coletivos/NPCs usam distribuição de Poisson com mando; posse, estratégias coletivas e estatísticas completas das equipes ainda não são simuladas. Cinco oportunidades por titular (15, 35, 60, 70 e 80 minutos), menos para reserva/lesão/expulsão.
+- S10 e S11 estão preservadas no seed, porém ficam inelegíveis sem patrocinador/rival cadastrado. O catálogo ampliado tem 214 situações e 856 alternativas, com contexto e memória para reduzir repetição. A edição de cores é feita via CLI local (bin/club-colors.php), sem painel web administrativo. Não existe catálogo público de configuração.
 - Transferências usam clubes reais e desempenho; não há contratos financeiros, goleiros jogáveis, recuperação de senha ou verificação de e-mail. Copa do Brasil, Copa Paulista, competições femininas e de base estão fora do escopo desta versão. As divisões superiores dos estaduais adicionados fora de SP ainda não estão conectadas: os acessos são registrados, mas permanecer no clube repete a divisão disponível.
 - Sessões e logs usam storage/sessions e storage/logs fora da raiz pública; configure permissões e garbage collection. Sem uploads. URLs supõem instalação na raiz do domínio; APP_URL registra a base por ambiente, links são relativos à raiz.
 - Migration 002 adiciona catálogo oficial e um snapshot JSON transacional por carreira para o universo de competições. Atributos/estados e auditoria continuam consultáveis em tabelas relacionais. O snapshot inclui fases, jogos, classificação, mercado e participações; é validado pelo motor no servidor.
@@ -119,3 +119,6 @@ Detalhes, fontes e limites dos novos estaduais: [Docs/11_Inicio_Estadual_e_Escud
 & C:\PHP\php-8.4.26\php.exe -n -d extension_dir=C:\PHP\php-8.4.26\ext -d extension=mbstring tests/state-entry.php
 & C:\PHP\php-8.4.26\php.exe -n -d extension_dir=C:\PHP\php-8.4.26\ext -d extension=mbstring -d extension=pdo_mysql tests/entry-mysql.php
 ```
+
+
+A versão 0.5 está detalhada em [Docs/12_Situacoes_Overall_e_Mercosul.md](Docs/12_Situacoes_Overall_e_Mercosul.md): fontes, fórmula do overall, cobertura provisória de campanhas anteriores, escudos, paletas aproximadas e regras internacionais simplificadas. Novos testes: `php tests/scenes-strength.php` e `php tests/international.php`.

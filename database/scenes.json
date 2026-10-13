@@ -1,0 +1,4602 @@
+[
+  {
+    "id": 1000,
+    "stage": "treino",
+    "text": "O auxiliar montou um circuito de condução em espaço curto.",
+    "options": [
+      {
+        "code": "drible",
+        "text": "Usar a perna menos habitual"
+      },
+      {
+        "code": "velocidade",
+        "text": "Aumentar o ritmo"
+      },
+      {
+        "code": "tatico",
+        "text": "Pedir uma demonstração"
+      },
+      {
+        "code": "apoio",
+        "text": "Trabalhar em dupla"
+      }
+    ]
+  },
+  {
+    "id": 1001,
+    "stage": "treino",
+    "text": "A análise mostra atrasos na disputa da segunda bola.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Estudar a queda do rebote"
+      },
+      {
+        "code": "resistencia",
+        "text": "Repetir as arrancadas"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar a cobertura"
+      },
+      {
+        "code": "disciplina",
+        "text": "Anotar os lances"
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "stage": "treino",
+    "text": "O coletivo tem limite de dois toques.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Dar ritmo à circulação"
+      },
+      {
+        "code": "visao",
+        "text": "Antecipar o próximo passe"
+      },
+      {
+        "code": "tecnica",
+        "text": "Receber com o corpo orientado"
+      },
+      {
+        "code": "apoio",
+        "text": "Orientar quem está sem a bola"
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "stage": "treino",
+    "text": "O campo seco faz a bola quicar mais que o habitual.",
+    "options": [
+      {
+        "code": "tecnica",
+        "text": "Ajustar o primeiro toque"
+      },
+      {
+        "code": "passe",
+        "text": "Rever a força dos passes"
+      },
+      {
+        "code": "tatico",
+        "text": "Jogar simples até se adaptar"
+      },
+      {
+        "code": "reclamar",
+        "text": "Pedir para encerrar o exercício"
+      }
+    ]
+  },
+  {
+    "id": 1004,
+    "stage": "treino",
+    "text": "O preparador percebe rigidez muscular no aquecimento.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Reduzir a carga"
+      },
+      {
+        "code": "disciplina",
+        "text": "Relatar o desconforto"
+      },
+      {
+        "code": "resistencia",
+        "text": "Fazer uma versão leve"
+      },
+      {
+        "code": "ousar",
+        "text": "Insistir na carga completa"
+      }
+    ]
+  },
+  {
+    "id": 1005,
+    "stage": "treino",
+    "text": "Um recém-chegado ainda não entende a rotina do treino.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Explicar o exercício"
+      },
+      {
+        "code": "liderar",
+        "text": "Organizar uma dupla de apoio"
+      },
+      {
+        "code": "disciplina",
+        "text": "Avisar ao auxiliar"
+      },
+      {
+        "code": "lazer",
+        "text": "Deixar que se adapte sozinho"
+      }
+    ]
+  },
+  {
+    "id": 1006,
+    "stage": "treino",
+    "text": "O goleiro fecha bem o primeiro poste nas finalizações.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Buscar o canto oposto"
+      },
+      {
+        "code": "passe",
+        "text": "Devolver para quem chega atrás"
+      },
+      {
+        "code": "tecnica",
+        "text": "Treinar o toque por baixo"
+      },
+      {
+        "code": "visao",
+        "text": "Observar antes de concluir"
+      }
+    ]
+  },
+  {
+    "id": 1007,
+    "stage": "treino",
+    "text": "A equipe trabalha a saída curta sob pressão.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Circular de primeira"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Oferecer apoio atrás da pressão"
+      },
+      {
+        "code": "drible",
+        "text": "Atrair o primeiro marcador"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar o sinal da saída longa"
+      }
+    ]
+  },
+  {
+    "id": 1008,
+    "stage": "treino",
+    "text": "O treinador interrompe o coletivo por falta de compactação.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Rever a distância entre setores"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar quando subir a linha"
+      },
+      {
+        "code": "disciplina",
+        "text": "Ouvir e repetir o lance"
+      },
+      {
+        "code": "reclamar",
+        "text": "Culpar o outro setor"
+      }
+    ]
+  },
+  {
+    "id": 1009,
+    "stage": "treino",
+    "text": "Há um bloco extra de bolas paradas após o treino.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Praticar faltas diretas"
+      },
+      {
+        "code": "passe",
+        "text": "Praticar bolas levantadas"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Ensaiar o ataque à bola"
+      },
+      {
+        "code": "recuperar",
+        "text": "Priorizar a recuperação"
+      }
+    ]
+  },
+  {
+    "id": 1010,
+    "stage": "treino",
+    "text": "Seus passes verticais têm sido interceptados.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Ajustar o momento do passe"
+      },
+      {
+        "code": "visao",
+        "text": "Procurar uma terceira opção"
+      },
+      {
+        "code": "tecnica",
+        "text": "Treinar o passe disfarçado"
+      },
+      {
+        "code": "disciplina",
+        "text": "Rever o vídeo com o analista"
+      }
+    ]
+  },
+  {
+    "id": 1011,
+    "stage": "treino",
+    "text": "A academia está cheia e sua série será reorganizada.",
+    "options": [
+      {
+        "code": "forca",
+        "text": "Adaptar a série com supervisão"
+      },
+      {
+        "code": "recuperar",
+        "text": "Fazer mobilidade enquanto espera"
+      },
+      {
+        "code": "apoio",
+        "text": "Revezar os aparelhos"
+      },
+      {
+        "code": "reclamar",
+        "text": "Discutir a ordem de utilização"
+      }
+    ]
+  },
+  {
+    "id": 1012,
+    "stage": "treino",
+    "text": "Um colega domina as disputas usando o corpo.",
+    "options": [
+      {
+        "code": "forca",
+        "text": "Treinar proteção da bola"
+      },
+      {
+        "code": "desarme",
+        "text": "Antecipar a chegada"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Receber longe do contato"
+      },
+      {
+        "code": "ousar",
+        "text": "Entrar mais forte na disputa"
+      }
+    ]
+  },
+  {
+    "id": 1013,
+    "stage": "treino",
+    "text": "O auxiliar pede que você experimente outra função.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Entender a movimentação"
+      },
+      {
+        "code": "passe",
+        "text": "Começar com passes seguros"
+      },
+      {
+        "code": "apoio",
+        "text": "Pedir orientação a um colega"
+      },
+      {
+        "code": "reclamar",
+        "text": "Recusar a nova tarefa"
+      }
+    ]
+  },
+  {
+    "id": 1014,
+    "stage": "treino",
+    "text": "A comissão quer uma reação rápida após perder a bola.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Pressionar o primeiro passe"
+      },
+      {
+        "code": "resistencia",
+        "text": "Repetir a recomposição"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Fechar a linha perigosa"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar o primeiro combate"
+      }
+    ]
+  },
+  {
+    "id": 1015,
+    "stage": "treino",
+    "text": "Você erra o tempo do salto nos cruzamentos.",
+    "options": [
+      {
+        "code": "tecnica",
+        "text": "Ajustar a coordenação"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Rever o ponto de encontro"
+      },
+      {
+        "code": "forca",
+        "text": "Trabalhar a impulsão"
+      },
+      {
+        "code": "passe",
+        "text": "Pedir trajetórias diferentes"
+      }
+    ]
+  },
+  {
+    "id": 1016,
+    "stage": "treino",
+    "text": "O treino começa cedo depois de uma viagem longa.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Chegar antes para aquecer"
+      },
+      {
+        "code": "recuperar",
+        "text": "Relatar o cansaço"
+      },
+      {
+        "code": "resistencia",
+        "text": "Cumprir o bloco programado"
+      },
+      {
+        "code": "lazer",
+        "text": "Economizar esforço no coletivo"
+      }
+    ]
+  },
+  {
+    "id": 1017,
+    "stage": "treino",
+    "text": "Uma câmera do clube acompanha a sessão.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Manter a rotina"
+      },
+      {
+        "code": "tecnica",
+        "text": "Executar o exercício com capricho"
+      },
+      {
+        "code": "imprensa",
+        "text": "Explicar o trabalho se solicitado"
+      },
+      {
+        "code": "ousar",
+        "text": "Tentar uma jogada vistosa"
+      }
+    ]
+  },
+  {
+    "id": 1018,
+    "stage": "treino",
+    "text": "O jogo reduzido usa metas pequenas sem goleiros.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Construir com tabelas"
+      },
+      {
+        "code": "chute",
+        "text": "Buscar precisão na conclusão"
+      },
+      {
+        "code": "drible",
+        "text": "Criar espaço antes de concluir"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Encontrar os corredores livres"
+      }
+    ]
+  },
+  {
+    "id": 1019,
+    "stage": "treino",
+    "text": "Seu parceiro de setor se irrita com uma correção sua.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Conversar em particular"
+      },
+      {
+        "code": "disciplina",
+        "text": "Pedir orientação conjunta"
+      },
+      {
+        "code": "liderar",
+        "text": "Explicar sem cobrar em público"
+      },
+      {
+        "code": "reclamar",
+        "text": "Insistir diante do grupo"
+      }
+    ]
+  },
+  {
+    "id": 1020,
+    "stage": "treino",
+    "text": "A chuva obriga a trocar o treino de campo por trabalho coberto.",
+    "options": [
+      {
+        "code": "tecnica",
+        "text": "Praticar domínio em espaço curto"
+      },
+      {
+        "code": "forca",
+        "text": "Trabalhar estabilidade"
+      },
+      {
+        "code": "tatico",
+        "text": "Rever movimentos em vídeo"
+      },
+      {
+        "code": "recuperar",
+        "text": "Recuperar a musculatura"
+      }
+    ]
+  },
+  {
+    "id": 1021,
+    "stage": "treino",
+    "text": "O analista identifica uma brecha no próximo adversário.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Estudar como reconhecer a brecha"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Ensaiar a ocupação"
+      },
+      {
+        "code": "passe",
+        "text": "Praticar o passe no corredor"
+      },
+      {
+        "code": "liderar",
+        "text": "Compartilhar a leitura"
+      }
+    ]
+  },
+  {
+    "id": 1022,
+    "stage": "treino",
+    "text": "Você perde uma disputa e precisa repetir o lance.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Ajustar o tempo da abordagem"
+      },
+      {
+        "code": "forca",
+        "text": "Melhorar a base de apoio"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Entrar por outro ângulo"
+      },
+      {
+        "code": "reclamar",
+        "text": "Questionar o auxiliar"
+      }
+    ]
+  },
+  {
+    "id": 1023,
+    "stage": "treino",
+    "text": "Um juvenil completa o treino profissional.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Incluí-lo na roda de passes"
+      },
+      {
+        "code": "liderar",
+        "text": "Explicar a organização do setor"
+      },
+      {
+        "code": "disciplina",
+        "text": "Dar espaço para ele jogar"
+      },
+      {
+        "code": "ousar",
+        "text": "Exigir seu ritmo máximo"
+      }
+    ]
+  },
+  {
+    "id": 1024,
+    "stage": "treino",
+    "text": "Seu pé de apoio escorrega em duas finalizações.",
+    "options": [
+      {
+        "code": "tecnica",
+        "text": "Corrigir a posição do apoio"
+      },
+      {
+        "code": "disciplina",
+        "text": "Rever as chuteiras"
+      },
+      {
+        "code": "chute",
+        "text": "Reduzir a força"
+      },
+      {
+        "code": "recuperar",
+        "text": "Fazer uma pausa"
+      }
+    ]
+  },
+  {
+    "id": 1025,
+    "stage": "treino",
+    "text": "O preparador aplica um teste de aceleração curta.",
+    "options": [
+      {
+        "code": "velocidade",
+        "text": "Focar na saída"
+      },
+      {
+        "code": "forca",
+        "text": "Ajustar a postura de impulso"
+      },
+      {
+        "code": "disciplina",
+        "text": "Seguir a progressão de carga"
+      },
+      {
+        "code": "ousar",
+        "text": "Buscar a melhor marca de imediato"
+      }
+    ]
+  },
+  {
+    "id": 1026,
+    "stage": "treino",
+    "text": "O adversário de treino muda de direção constantemente.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Esperar o toque longo"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Fechar o lado perigoso"
+      },
+      {
+        "code": "velocidade",
+        "text": "Treinar a recuperação"
+      },
+      {
+        "code": "visao",
+        "text": "Observar os sinais antes do corte"
+      }
+    ]
+  },
+  {
+    "id": 1027,
+    "stage": "treino",
+    "text": "A comissão ensaia como proteger uma vantagem.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Fechar espaços entre as linhas"
+      },
+      {
+        "code": "passe",
+        "text": "Conservar a posse"
+      },
+      {
+        "code": "liderar",
+        "text": "Organizar a comunicação"
+      },
+      {
+        "code": "resistencia",
+        "text": "Treinar os retornos"
+      }
+    ]
+  },
+  {
+    "id": 1028,
+    "stage": "treino",
+    "text": "O exercício exige finalizar após grande esforço.",
+    "options": [
+      {
+        "code": "resistencia",
+        "text": "Controlar a respiração"
+      },
+      {
+        "code": "chute",
+        "text": "Priorizar a técnica"
+      },
+      {
+        "code": "passe",
+        "text": "Preparar a conclusão com um toque"
+      },
+      {
+        "code": "recuperar",
+        "text": "Pedir pausa entre as séries"
+      }
+    ]
+  },
+  {
+    "id": 1029,
+    "stage": "treino",
+    "text": "Você deve escolher melhor quando arrancar.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Identificar o espaço real"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Ajustar o ponto de partida"
+      },
+      {
+        "code": "disciplina",
+        "text": "Seguir o limite de repetições"
+      },
+      {
+        "code": "velocidade",
+        "text": "Treinar uma arrancada curta"
+      }
+    ]
+  },
+  {
+    "id": 1030,
+    "stage": "treino",
+    "text": "O grupo escolhe um representante para discutir os treinos.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Ouvir e representar o setor"
+      },
+      {
+        "code": "apoio",
+        "text": "Apoiar um colega experiente"
+      },
+      {
+        "code": "disciplina",
+        "text": "Levar sugestões por escrito"
+      },
+      {
+        "code": "lazer",
+        "text": "Ficar fora da conversa"
+      }
+    ]
+  },
+  {
+    "id": 1031,
+    "stage": "treino",
+    "text": "Seu domínio é bom, mas atrasa a circulação.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Preparar o passe na recepção"
+      },
+      {
+        "code": "visao",
+        "text": "Olhar ao redor antes de receber"
+      },
+      {
+        "code": "tecnica",
+        "text": "Usar a outra perna"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Rever sua posição na roda"
+      }
+    ]
+  },
+  {
+    "id": 1032,
+    "stage": "treino",
+    "text": "O auxiliar propõe situações de inferioridade numérica.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Proteger o centro"
+      },
+      {
+        "code": "desarme",
+        "text": "Escolher o momento da abordagem"
+      },
+      {
+        "code": "liderar",
+        "text": "Organizar a cobertura"
+      },
+      {
+        "code": "resistencia",
+        "text": "Repetir a recuperação"
+      }
+    ]
+  },
+  {
+    "id": 1033,
+    "stage": "treino",
+    "text": "O coletivo terá três blocos curtos de alta intensidade.",
+    "options": [
+      {
+        "code": "resistencia",
+        "text": "Distribuir o esforço"
+      },
+      {
+        "code": "velocidade",
+        "text": "Recuperar a explosão nas pausas"
+      },
+      {
+        "code": "tatico",
+        "text": "Resolver com menos deslocamento"
+      },
+      {
+        "code": "recuperar",
+        "text": "Pedir carga reduzida"
+      }
+    ]
+  },
+  {
+    "id": 1034,
+    "stage": "treino",
+    "text": "O clube testa bolas com uma trajetória diferente.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Testar a finalização"
+      },
+      {
+        "code": "passe",
+        "text": "Ajustar os lançamentos"
+      },
+      {
+        "code": "tecnica",
+        "text": "Repetir domínios altos"
+      },
+      {
+        "code": "visao",
+        "text": "Observar a perda de velocidade"
+      }
+    ]
+  },
+  {
+    "id": 1035,
+    "stage": "treino",
+    "text": "O auxiliar pede que você explique uma boa jogada que fez.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Mostrar sua leitura do lance"
+      },
+      {
+        "code": "apoio",
+        "text": "Repetir com um colega"
+      },
+      {
+        "code": "tatico",
+        "text": "Desenhar o movimento"
+      },
+      {
+        "code": "disciplina",
+        "text": "Ouvir a avaliação dele"
+      }
+    ]
+  },
+  {
+    "id": 1036,
+    "stage": "treino",
+    "text": "Seu setor deve trocar posições durante a construção.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Ensaiar a troca"
+      },
+      {
+        "code": "passe",
+        "text": "Sincronizar o passe"
+      },
+      {
+        "code": "visao",
+        "text": "Observar o espaço deixado"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar um sinal"
+      }
+    ]
+  },
+  {
+    "id": 1037,
+    "stage": "treino",
+    "text": "Uma discussão interrompe o treino de pênaltis.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Acalmar os colegas"
+      },
+      {
+        "code": "disciplina",
+        "text": "Devolver a organização ao auxiliar"
+      },
+      {
+        "code": "chute",
+        "text": "Manter o foco na cobrança"
+      },
+      {
+        "code": "reclamar",
+        "text": "Cobrar que parem de atrapalhar"
+      }
+    ]
+  },
+  {
+    "id": 1038,
+    "stage": "treino",
+    "text": "A comissão quer que você perca menos bolas de costas.",
+    "options": [
+      {
+        "code": "forca",
+        "text": "Proteger com o corpo"
+      },
+      {
+        "code": "passe",
+        "text": "Praticar o passe de primeira"
+      },
+      {
+        "code": "visao",
+        "text": "Checar a pressão antes de receber"
+      },
+      {
+        "code": "drible",
+        "text": "Treinar a saída pelo lado livre"
+      }
+    ]
+  },
+  {
+    "id": 1039,
+    "stage": "treino",
+    "text": "O trabalho envolve rebotes na entrada da área.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Antecipar o rebote"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir antes da recomposição"
+      },
+      {
+        "code": "passe",
+        "text": "Servir quem chega livre"
+      },
+      {
+        "code": "desarme",
+        "text": "Bloquear a saída se perder a disputa"
+      }
+    ]
+  },
+  {
+    "id": 1040,
+    "stage": "treino",
+    "text": "Há um bloco opcional de prevenção de lesões.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Fazer exercícios de estabilidade"
+      },
+      {
+        "code": "disciplina",
+        "text": "Rever seu aquecimento"
+      },
+      {
+        "code": "forca",
+        "text": "Trabalhar carga controlada"
+      },
+      {
+        "code": "lazer",
+        "text": "Encerrar a sessão agora"
+      }
+    ]
+  },
+  {
+    "id": 1041,
+    "stage": "treino",
+    "text": "O treinador cobra mais comunicação nas jogadas defensivas.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Usar instruções curtas"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Mostrar a cobertura necessária"
+      },
+      {
+        "code": "apoio",
+        "text": "Ouvir a preferência dos colegas"
+      },
+      {
+        "code": "disciplina",
+        "text": "Ensaiar os comandos"
+      }
+    ]
+  },
+  {
+    "id": 1042,
+    "stage": "treino",
+    "text": "Seu domínio de lançamentos está irregular.",
+    "options": [
+      {
+        "code": "tecnica",
+        "text": "Praticar o toque orientado"
+      },
+      {
+        "code": "passe",
+        "text": "Pedir bolas de alturas diferentes"
+      },
+      {
+        "code": "forca",
+        "text": "Estabilizar a recepção"
+      },
+      {
+        "code": "visao",
+        "text": "Checar o espaço antes de dominar"
+      }
+    ]
+  },
+  {
+    "id": 1043,
+    "stage": "treino",
+    "text": "O elenco ensaia uma reposição rápida.",
+    "options": [
+      {
+        "code": "velocidade",
+        "text": "Acelerar para oferecer saída"
+      },
+      {
+        "code": "passe",
+        "text": "Colocar a bola no espaço"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Cuidar do impedimento"
+      },
+      {
+        "code": "tatico",
+        "text": "Rever quando adiar a reposição"
+      }
+    ]
+  },
+  {
+    "id": 1044,
+    "stage": "treino",
+    "text": "O exercício proíbe sua perna dominante.",
+    "options": [
+      {
+        "code": "tecnica",
+        "text": "Aceitar com paciência"
+      },
+      {
+        "code": "passe",
+        "text": "Começar pelos passes curtos"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir com menos força"
+      },
+      {
+        "code": "reclamar",
+        "text": "Pedir o exercício normal"
+      }
+    ]
+  },
+  {
+    "id": 1045,
+    "stage": "treino",
+    "text": "Você pensa em repetir a série física depois do treino.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Consultar o preparador"
+      },
+      {
+        "code": "recuperar",
+        "text": "Cumprir a recuperação planejada"
+      },
+      {
+        "code": "resistencia",
+        "text": "Fazer um bloco supervisionado"
+      },
+      {
+        "code": "ousar",
+        "text": "Repetir sozinho a série completa"
+      }
+    ]
+  },
+  {
+    "id": 1046,
+    "stage": "treino",
+    "text": "O apoio está muito distante de quem recebe no setor.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Reformar o triângulo"
+      },
+      {
+        "code": "passe",
+        "text": "Ajustar a força no passe curto"
+      },
+      {
+        "code": "visao",
+        "text": "Reconhecer a terceira opção"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar os movimentos"
+      }
+    ]
+  },
+  {
+    "id": 1047,
+    "stage": "treino",
+    "text": "A comissão simula um adversário com duas linhas recuadas.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Circular até abrir espaço"
+      },
+      {
+        "code": "drible",
+        "text": "Atrair um marcador"
+      },
+      {
+        "code": "chute",
+        "text": "Treinar a conclusão após a sobra"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Atacar o intervalo da linha"
+      }
+    ]
+  },
+  {
+    "id": 1048,
+    "stage": "treino",
+    "text": "Você recebe uma correção específica para disputas aéreas.",
+    "options": [
+      {
+        "code": "forca",
+        "text": "Fortalecer o apoio"
+      },
+      {
+        "code": "tecnica",
+        "text": "Ajustar o movimento de cabeça"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Chegar antes à bola"
+      },
+      {
+        "code": "disciplina",
+        "text": "Pedir feedback a cada repetição"
+      }
+    ]
+  },
+  {
+    "id": 1049,
+    "stage": "treino",
+    "text": "O treinador pede um objetivo técnico para sua semana.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Melhorar a precisão"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Ajustar a leitura dos espaços"
+      },
+      {
+        "code": "resistencia",
+        "text": "Ganhar regularidade física"
+      },
+      {
+        "code": "tecnica",
+        "text": "Melhorar o primeiro toque"
+      }
+    ]
+  },
+  {
+    "id": 1050,
+    "stage": "pre_jogo",
+    "text": "O adversário deve pressionar nos primeiros minutos.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Rever a rota de saída"
+      },
+      {
+        "code": "passe",
+        "text": "Aquecer passes de primeira"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar os apoios"
+      },
+      {
+        "code": "disciplina",
+        "text": "Concentrar-se no plano"
+      }
+    ]
+  },
+  {
+    "id": 1051,
+    "stage": "pre_jogo",
+    "text": "O vestiário está silencioso após resultados ruins.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Conversar com quem está abatido"
+      },
+      {
+        "code": "liderar",
+        "text": "Falar da próxima ação"
+      },
+      {
+        "code": "disciplina",
+        "text": "Seguir sua rotina"
+      },
+      {
+        "code": "ousar",
+        "text": "Prometer uma atuação decisiva"
+      }
+    ]
+  },
+  {
+    "id": 1052,
+    "stage": "pre_jogo",
+    "text": "A torcida faz barulho do lado de fora.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Usar o som para se concentrar"
+      },
+      {
+        "code": "liderar",
+        "text": "Organizar a união do grupo"
+      },
+      {
+        "code": "imprensa",
+        "text": "Acenar brevemente"
+      },
+      {
+        "code": "recuperar",
+        "text": "Controlar a respiração"
+      }
+    ]
+  },
+  {
+    "id": 1053,
+    "stage": "pre_jogo",
+    "text": "O rival costuma lançar nas costas da defesa.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Rever a cobertura"
+      },
+      {
+        "code": "velocidade",
+        "text": "Preparar a recuperação"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar os avisos da linha"
+      },
+      {
+        "code": "tatico",
+        "text": "Estudar o lançador"
+      }
+    ]
+  },
+  {
+    "id": 1054,
+    "stage": "pre_jogo",
+    "text": "Seu parceiro de setor volta após semanas fora.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Perguntar como se sente"
+      },
+      {
+        "code": "passe",
+        "text": "Aquecer junto"
+      },
+      {
+        "code": "liderar",
+        "text": "Recombinar as coberturas"
+      },
+      {
+        "code": "disciplina",
+        "text": "Evitar cobranças antes da entrada"
+      }
+    ]
+  },
+  {
+    "id": 1055,
+    "stage": "pre_jogo",
+    "text": "O vento altera a trajetória da bola no aquecimento.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Ajustar os lançamentos"
+      },
+      {
+        "code": "chute",
+        "text": "Testar uma conclusão rasteira"
+      },
+      {
+        "code": "tecnica",
+        "text": "Repetir recepções altas"
+      },
+      {
+        "code": "tatico",
+        "text": "Preferir construção curta"
+      }
+    ]
+  },
+  {
+    "id": 1056,
+    "stage": "pre_jogo",
+    "text": "Um repórter tenta arrancar uma provocação.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Falar da preparação"
+      },
+      {
+        "code": "disciplina",
+        "text": "Recusar a provocação"
+      },
+      {
+        "code": "liderar",
+        "text": "Valorizar os companheiros"
+      },
+      {
+        "code": "ousar",
+        "text": "Prometer impor seu jogo"
+      }
+    ]
+  },
+  {
+    "id": 1057,
+    "stage": "pre_jogo",
+    "text": "O treinador pede que você não se esconda entre marcadores.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Rever onde oferecer apoio"
+      },
+      {
+        "code": "visao",
+        "text": "Observar o corredor livre"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar a movimentação"
+      },
+      {
+        "code": "passe",
+        "text": "Aquecer a tabela do plano"
+      }
+    ]
+  },
+  {
+    "id": 1058,
+    "stage": "pre_jogo",
+    "text": "O adversário escalou alguém diferente do previsto.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Pedir atualização ao analista"
+      },
+      {
+        "code": "visao",
+        "text": "Observar seu aquecimento"
+      },
+      {
+        "code": "liderar",
+        "text": "Avisar ao setor"
+      },
+      {
+        "code": "disciplina",
+        "text": "Manter as instruções válidas"
+      }
+    ]
+  },
+  {
+    "id": 1059,
+    "stage": "pre_jogo",
+    "text": "O nervosismo acelera sua respiração.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Controlar a respiração"
+      },
+      {
+        "code": "disciplina",
+        "text": "Retomar o ritual de concentração"
+      },
+      {
+        "code": "apoio",
+        "text": "Conversar com um colega"
+      },
+      {
+        "code": "velocidade",
+        "text": "Canalizar a tensão no aquecimento"
+      }
+    ]
+  },
+  {
+    "id": 1060,
+    "stage": "pre_jogo",
+    "text": "Há familiares do elenco na arquibancada.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Deixar o encontro para depois"
+      },
+      {
+        "code": "apoio",
+        "text": "Dividir a motivação"
+      },
+      {
+        "code": "imprensa",
+        "text": "Mandar um cumprimento"
+      },
+      {
+        "code": "ousar",
+        "text": "Prometer dedicar a atuação"
+      }
+    ]
+  },
+  {
+    "id": 1061,
+    "stage": "pre_jogo",
+    "text": "A comissão cobra atenção às sobras de bola parada.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Rever a cobertura"
+      },
+      {
+        "code": "desarme",
+        "text": "Preparar a abordagem ao rebote"
+      },
+      {
+        "code": "liderar",
+        "text": "Confirmar os responsáveis"
+      },
+      {
+        "code": "visao",
+        "text": "Observar o cobrador"
+      }
+    ]
+  },
+  {
+    "id": 1062,
+    "stage": "pre_jogo",
+    "text": "Um colega quer atacar mais do que o plano indica.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Ouvir a preocupação"
+      },
+      {
+        "code": "tatico",
+        "text": "Conferir com o auxiliar"
+      },
+      {
+        "code": "liderar",
+        "text": "Explicar o equilíbrio do plano"
+      },
+      {
+        "code": "reclamar",
+        "text": "Discutir diante do grupo"
+      }
+    ]
+  },
+  {
+    "id": 1063,
+    "stage": "pre_jogo",
+    "text": "O treinador oferece mais responsabilidade a você.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Aceitar com objetivos claros"
+      },
+      {
+        "code": "disciplina",
+        "text": "Confirmar as expectativas"
+      },
+      {
+        "code": "apoio",
+        "text": "Dividir a tarefa com o setor"
+      },
+      {
+        "code": "ousar",
+        "text": "Prometer resolver os lances decisivos"
+      }
+    ]
+  },
+  {
+    "id": 1064,
+    "stage": "pre_jogo",
+    "text": "A bola do jogo é diferente da usada no último treino.",
+    "options": [
+      {
+        "code": "tecnica",
+        "text": "Testar o domínio"
+      },
+      {
+        "code": "passe",
+        "text": "Ajustar o peso dos passes"
+      },
+      {
+        "code": "chute",
+        "text": "Experimentar as conclusões"
+      },
+      {
+        "code": "disciplina",
+        "text": "Rever os detalhes com calma"
+      }
+    ]
+  },
+  {
+    "id": 1065,
+    "stage": "pre_jogo",
+    "text": "Uma criança entrega uma carta de apoio.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Agradecer e guardar"
+      },
+      {
+        "code": "imprensa",
+        "text": "Cumprimentar a arquibancada"
+      },
+      {
+        "code": "disciplina",
+        "text": "Retomar a concentração"
+      },
+      {
+        "code": "liderar",
+        "text": "Compartilhar a mensagem"
+      }
+    ]
+  },
+  {
+    "id": 1066,
+    "stage": "pre_jogo",
+    "text": "Alguns colegas parecem resignados diante do favorito.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Definir um objetivo inicial possível"
+      },
+      {
+        "code": "tatico",
+        "text": "Relembrar as brechas do rival"
+      },
+      {
+        "code": "apoio",
+        "text": "Apoiar os mais inseguros"
+      },
+      {
+        "code": "disciplina",
+        "text": "Focar nas tarefas"
+      }
+    ]
+  },
+  {
+    "id": 1067,
+    "stage": "pre_jogo",
+    "text": "O gramado parece mais estreito que o habitual.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Ajustar a ocupação"
+      },
+      {
+        "code": "passe",
+        "text": "Aquecer tabelas curtas"
+      },
+      {
+        "code": "drible",
+        "text": "Testar mudanças curtas de direção"
+      },
+      {
+        "code": "tatico",
+        "text": "Rever o plano"
+      }
+    ]
+  },
+  {
+    "id": 1068,
+    "stage": "pre_jogo",
+    "text": "A comissão pede menos faltas perto da área.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Rever o tempo da abordagem"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Fechar sem contato"
+      },
+      {
+        "code": "liderar",
+        "text": "Repassar o alerta"
+      },
+      {
+        "code": "disciplina",
+        "text": "Controlar a intensidade"
+      }
+    ]
+  },
+  {
+    "id": 1069,
+    "stage": "pre_jogo",
+    "text": "Você participa de uma jogada ensaiada hoje.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Rever seu movimento"
+      },
+      {
+        "code": "passe",
+        "text": "Ensaiar o passe de preparação"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Marcar o ponto de partida"
+      },
+      {
+        "code": "liderar",
+        "text": "Confirmar o sinal"
+      }
+    ]
+  },
+  {
+    "id": 1070,
+    "stage": "pre_jogo",
+    "text": "O treinador pede sua ajuda com os mais jovens.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Conversar individualmente"
+      },
+      {
+        "code": "liderar",
+        "text": "Repassar instruções simples"
+      },
+      {
+        "code": "disciplina",
+        "text": "Dar exemplo na preparação"
+      },
+      {
+        "code": "ousar",
+        "text": "Fazer um discurso para o grupo"
+      }
+    ]
+  },
+  {
+    "id": 1071,
+    "stage": "pre_jogo",
+    "text": "Um atraso no transporte encurta o aquecimento.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Seguir o bloco prioritário"
+      },
+      {
+        "code": "recuperar",
+        "text": "Preparar os músculos com calma"
+      },
+      {
+        "code": "velocidade",
+        "text": "Fazer poucas arrancadas"
+      },
+      {
+        "code": "reclamar",
+        "text": "Cobrar a organização"
+      }
+    ]
+  },
+  {
+    "id": 1072,
+    "stage": "pre_jogo",
+    "text": "O uniforme novo deixa a torcida animada.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Valorizar os torcedores"
+      },
+      {
+        "code": "disciplina",
+        "text": "Manter a concentração"
+      },
+      {
+        "code": "apoio",
+        "text": "Usar a animação para unir o grupo"
+      },
+      {
+        "code": "ousar",
+        "text": "Propor uma entrada empolgada"
+      }
+    ]
+  },
+  {
+    "id": 1073,
+    "stage": "pre_jogo",
+    "text": "O cobrador de faltas pede sua opinião.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Apontar um corredor vulnerável"
+      },
+      {
+        "code": "passe",
+        "text": "Sugerir uma cobrança curta"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Combinar a segunda bola"
+      },
+      {
+        "code": "apoio",
+        "text": "Reforçar a confiança dele"
+      }
+    ]
+  },
+  {
+    "id": 1074,
+    "stage": "pre_jogo",
+    "text": "O rival faz muitas trocas de posição.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Rever quando passar a marcação"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar os avisos"
+      },
+      {
+        "code": "desarme",
+        "text": "Priorizar o tempo de combate"
+      },
+      {
+        "code": "visao",
+        "text": "Observar os espaços"
+      }
+    ]
+  },
+  {
+    "id": 1075,
+    "stage": "pre_jogo",
+    "text": "Você busca confiança após uma atuação ruim.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Definir uma primeira ação simples"
+      },
+      {
+        "code": "apoio",
+        "text": "Ouvir um colega de confiança"
+      },
+      {
+        "code": "passe",
+        "text": "Aquecer passes que domina"
+      },
+      {
+        "code": "ousar",
+        "text": "Tentar um lance difícil cedo"
+      }
+    ]
+  },
+  {
+    "id": 1076,
+    "stage": "pre_jogo",
+    "text": "Rumores de transferência distraem o grupo.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Guardar o assunto para depois"
+      },
+      {
+        "code": "liderar",
+        "text": "Trazer a conversa ao jogo"
+      },
+      {
+        "code": "apoio",
+        "text": "Falar em particular com o colega citado"
+      },
+      {
+        "code": "imprensa",
+        "text": "Evitar comentar rumores"
+      }
+    ]
+  },
+  {
+    "id": 1077,
+    "stage": "pre_jogo",
+    "text": "Vocês sofreram gols no fim dos últimos jogos.",
+    "options": [
+      {
+        "code": "resistencia",
+        "text": "Distribuir melhor o esforço"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Rever as brechas do fim"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar como controlar a reta final"
+      },
+      {
+        "code": "tatico",
+        "text": "Estudar as mudanças do rival"
+      }
+    ]
+  },
+  {
+    "id": 1078,
+    "stage": "pre_jogo",
+    "text": "A área está mais escorregadia.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Rever as travas"
+      },
+      {
+        "code": "tecnica",
+        "text": "Testar o apoio"
+      },
+      {
+        "code": "chute",
+        "text": "Aquecer sem forçar o pé de apoio"
+      },
+      {
+        "code": "recuperar",
+        "text": "Priorizar a estabilidade"
+      }
+    ]
+  },
+  {
+    "id": 1079,
+    "stage": "pre_jogo",
+    "text": "O auxiliar quer conversar sobre suas decisões com a bola.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Ouvir os critérios"
+      },
+      {
+        "code": "passe",
+        "text": "Combinar quando acelerar"
+      },
+      {
+        "code": "drible",
+        "text": "Definir onde arriscar"
+      },
+      {
+        "code": "disciplina",
+        "text": "Pedir uma orientação objetiva"
+      }
+    ]
+  },
+  {
+    "id": 1080,
+    "stage": "pre_jogo",
+    "text": "Um colega recebe críticas duras antes da partida.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Dar apoio sem insistir nas críticas"
+      },
+      {
+        "code": "disciplina",
+        "text": "Preservar o aquecimento"
+      },
+      {
+        "code": "liderar",
+        "text": "Mostrar a união do grupo"
+      },
+      {
+        "code": "imprensa",
+        "text": "Pedir respeito brevemente"
+      }
+    ]
+  },
+  {
+    "id": 1081,
+    "stage": "pre_jogo",
+    "text": "O adversário deve recuar e explorar transições.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Rever a proteção da posse"
+      },
+      {
+        "code": "passe",
+        "text": "Circular sem precipitação"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Combinar quem fica atrás da bola"
+      },
+      {
+        "code": "liderar",
+        "text": "Definir quem avisa sobre as brechas"
+      }
+    ]
+  },
+  {
+    "id": 1082,
+    "stage": "pre_jogo",
+    "text": "A arbitragem orienta sobre reclamações.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Ouvir os limites"
+      },
+      {
+        "code": "liderar",
+        "text": "Repassar ao elenco"
+      },
+      {
+        "code": "apoio",
+        "text": "Deixar o capitão centralizar as conversas"
+      },
+      {
+        "code": "ousar",
+        "text": "Questionar um critério"
+      }
+    ]
+  },
+  {
+    "id": 1083,
+    "stage": "pre_jogo",
+    "text": "O treinador cobra reação após erros individuais.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Recuperar o foco na próxima ação"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar uma palavra de apoio"
+      },
+      {
+        "code": "resistencia",
+        "text": "Aquecer a reação à perda"
+      },
+      {
+        "code": "apoio",
+        "text": "Reforçar o apoio aos colegas"
+      }
+    ]
+  },
+  {
+    "id": 1084,
+    "stage": "pre_jogo",
+    "text": "Seu marcador prefere o contato físico.",
+    "options": [
+      {
+        "code": "forca",
+        "text": "Aquecer a proteção"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Receber longe do contato"
+      },
+      {
+        "code": "passe",
+        "text": "Preparar tabelas para escapar"
+      },
+      {
+        "code": "drible",
+        "text": "Testar um corte curto"
+      }
+    ]
+  },
+  {
+    "id": 1085,
+    "stage": "pre_jogo",
+    "text": "O auxiliar destaca o primeiro passe após recuperar.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Localizar opções antes da disputa"
+      },
+      {
+        "code": "passe",
+        "text": "Aquecer o passe vertical seguro"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Oferecer a saída"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar o aviso do lado livre"
+      }
+    ]
+  },
+  {
+    "id": 1086,
+    "stage": "pre_jogo",
+    "text": "Uma homenagem antecederá o início da partida.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Participar e retomar o foco"
+      },
+      {
+        "code": "imprensa",
+        "text": "Valorizar a homenagem"
+      },
+      {
+        "code": "apoio",
+        "text": "Compartilhar a motivação"
+      },
+      {
+        "code": "recuperar",
+        "text": "Controlar a espera"
+      }
+    ]
+  },
+  {
+    "id": 1087,
+    "stage": "pre_jogo",
+    "text": "O treinador pode mudar a estratégia no meio do jogo.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Rever os sinais de mudança"
+      },
+      {
+        "code": "liderar",
+        "text": "Confirmar quem repassa instruções"
+      },
+      {
+        "code": "visao",
+        "text": "Entender o que observar"
+      },
+      {
+        "code": "disciplina",
+        "text": "Memorizar as tarefas principais"
+      }
+    ]
+  },
+  {
+    "id": 1088,
+    "stage": "pre_jogo",
+    "text": "Seu novo parceiro tem características diferentes.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Aquecer para conhecer seu ritmo"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Recombinar os apoios"
+      },
+      {
+        "code": "apoio",
+        "text": "Ouvir onde prefere receber"
+      },
+      {
+        "code": "liderar",
+        "text": "Definir uma comunicação simples"
+      }
+    ]
+  },
+  {
+    "id": 1089,
+    "stage": "pre_jogo",
+    "text": "A comissão pergunta como está sua disposição.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Relatar com sinceridade"
+      },
+      {
+        "code": "recuperar",
+        "text": "Pedir ajuste no aquecimento"
+      },
+      {
+        "code": "resistencia",
+        "text": "Fazer a avaliação proposta"
+      },
+      {
+        "code": "ousar",
+        "text": "Declarar que pode jogar no limite"
+      }
+    ]
+  },
+  {
+    "id": 1090,
+    "stage": "pre_jogo",
+    "text": "O início será adiado depois do aquecimento.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Manter os músculos ativos"
+      },
+      {
+        "code": "disciplina",
+        "text": "Seguir o preparador"
+      },
+      {
+        "code": "apoio",
+        "text": "Conversar sem perder o foco"
+      },
+      {
+        "code": "velocidade",
+        "text": "Fazer uma última arrancada curta"
+      }
+    ]
+  },
+  {
+    "id": 1091,
+    "stage": "pre_jogo",
+    "text": "O rival tenta conduzir a posse para seu lado congestionado.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Reconhecer a armadilha"
+      },
+      {
+        "code": "passe",
+        "text": "Combinar uma inversão"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Oferecer saída pelo centro"
+      },
+      {
+        "code": "liderar",
+        "text": "Avisar quando a pressão chegar"
+      }
+    ]
+  },
+  {
+    "id": 1092,
+    "stage": "pre_jogo",
+    "text": "Você está entre as opções para cobrar pênalti.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Repetir sua rotina"
+      },
+      {
+        "code": "disciplina",
+        "text": "Confirmar a ordem dos cobradores"
+      },
+      {
+        "code": "recuperar",
+        "text": "Controlar a respiração"
+      },
+      {
+        "code": "apoio",
+        "text": "Conversar com o cobrador principal"
+      }
+    ]
+  },
+  {
+    "id": 1093,
+    "stage": "pre_jogo",
+    "text": "Começa uma sequência de jogos em poucos dias.",
+    "options": [
+      {
+        "code": "resistencia",
+        "text": "Planejar o esforço"
+      },
+      {
+        "code": "recuperar",
+        "text": "Reforçar a recuperação"
+      },
+      {
+        "code": "disciplina",
+        "text": "Ouvir o limite de carga"
+      },
+      {
+        "code": "tatico",
+        "text": "Resolver mais lances pela posição"
+      }
+    ]
+  },
+  {
+    "id": 1094,
+    "stage": "pre_jogo",
+    "text": "Um adversário costuma provocar seus marcadores.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Decidir não responder"
+      },
+      {
+        "code": "liderar",
+        "text": "Deixar o capitão falar com o árbitro"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Focar na movimentação dele"
+      },
+      {
+        "code": "ousar",
+        "text": "Prometer superá-lo em campo"
+      }
+    ]
+  },
+  {
+    "id": 1095,
+    "stage": "pre_jogo",
+    "text": "O plano exige aproveitar os laterais ofensivos.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Aquecer a tabela pelo corredor"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Rever a cobertura"
+      },
+      {
+        "code": "visao",
+        "text": "Escolher quando inverter"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar o sinal do avanço"
+      }
+    ]
+  },
+  {
+    "id": 1096,
+    "stage": "pre_jogo",
+    "text": "A concentração cai perto da entrada.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Reunir o setor com um objetivo"
+      },
+      {
+        "code": "disciplina",
+        "text": "Retomar seu ritual"
+      },
+      {
+        "code": "apoio",
+        "text": "Chamar discretamente quem se dispersou"
+      },
+      {
+        "code": "ousar",
+        "text": "Puxar um grito de união"
+      }
+    ]
+  },
+  {
+    "id": 1097,
+    "stage": "pre_jogo",
+    "text": "O treinador quer proteção da bola quando o time precisar respirar.",
+    "options": [
+      {
+        "code": "forca",
+        "text": "Aquecer a proteção de costas"
+      },
+      {
+        "code": "passe",
+        "text": "Combinar apoios curtos"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Receber com segurança"
+      },
+      {
+        "code": "visao",
+        "text": "Identificar quando acelerar"
+      }
+    ]
+  },
+  {
+    "id": 1098,
+    "stage": "pre_jogo",
+    "text": "A comissão abre espaço para dúvidas sobre o plano.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Perguntar sobre um lance específico"
+      },
+      {
+        "code": "liderar",
+        "text": "Confirmar as coberturas"
+      },
+      {
+        "code": "disciplina",
+        "text": "Anotar a principal instrução"
+      },
+      {
+        "code": "apoio",
+        "text": "Ajudar um colega a formular sua dúvida"
+      }
+    ]
+  },
+  {
+    "id": 1099,
+    "stage": "pre_jogo",
+    "text": "O jogo fora promete forte pressão da arquibancada.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Focar nas tarefas"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar comunicação acima do barulho"
+      },
+      {
+        "code": "recuperar",
+        "text": "Controlar a ansiedade"
+      },
+      {
+        "code": "apoio",
+        "text": "Acompanhar os colegas mais jovens"
+      }
+    ]
+  },
+  {
+    "id": 1100,
+    "stage": "partida",
+    "text": "Você recebe entre duas linhas e um colega dispara pelo corredor.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Servir a corrida"
+      },
+      {
+        "code": "drible",
+        "text": "Atrair o marcador"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir antes da aproximação"
+      },
+      {
+        "code": "social",
+        "text": "Devolver e reorganizar"
+      }
+    ]
+  },
+  {
+    "id": 1101,
+    "stage": "partida",
+    "text": "A bola sobra perto da área após um corte incompleto.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Finalizar de primeira"
+      },
+      {
+        "code": "passe",
+        "text": "Servir quem chega de frente"
+      },
+      {
+        "code": "drible",
+        "text": "Escapar do primeiro combate"
+      },
+      {
+        "code": "social",
+        "text": "Proteger e esperar apoio"
+      }
+    ]
+  },
+  {
+    "id": 1102,
+    "stage": "partida",
+    "text": "O marcador fecha por dentro, deixando espaço junto à linha.",
+    "options": [
+      {
+        "code": "drible",
+        "text": "Atacar a linha"
+      },
+      {
+        "code": "passe",
+        "text": "Tabelar com o apoio"
+      },
+      {
+        "code": "chute",
+        "text": "Buscar a conclusão rápida"
+      },
+      {
+        "code": "social",
+        "text": "Segurar para o time subir"
+      }
+    ]
+  },
+  {
+    "id": 1103,
+    "stage": "partida",
+    "text": "Um passe forte chega enquanto um adversário se aproxima.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Soltar de primeira"
+      },
+      {
+        "code": "drible",
+        "text": "Orientar o domínio para fora"
+      },
+      {
+        "code": "social",
+        "text": "Proteger com o corpo"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir após o domínio"
+      }
+    ]
+  },
+  {
+    "id": 1104,
+    "stage": "partida",
+    "text": "O rival perde a bola na construção.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Acionar a corrida do colega"
+      },
+      {
+        "code": "drible",
+        "text": "Conduzir o contra-ataque"
+      },
+      {
+        "code": "chute",
+        "text": "Surpreender de longe"
+      },
+      {
+        "code": "social",
+        "text": "Juntar o time com a posse"
+      }
+    ]
+  },
+  {
+    "id": 1105,
+    "stage": "partida",
+    "text": "Dois colegas pedem a bola em direções diferentes.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Escolher quem está livre"
+      },
+      {
+        "code": "drible",
+        "text": "Atrair antes de decidir"
+      },
+      {
+        "code": "chute",
+        "text": "Aproveitar o espaço atual"
+      },
+      {
+        "code": "social",
+        "text": "Esperar a movimentação"
+      }
+    ]
+  },
+  {
+    "id": 1106,
+    "stage": "partida",
+    "text": "O goleiro adversário está adiantado.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Tentar a cobertura"
+      },
+      {
+        "code": "passe",
+        "text": "Servir quem entra atrás da linha"
+      },
+      {
+        "code": "drible",
+        "text": "Aproximar-se antes de concluir"
+      },
+      {
+        "code": "social",
+        "text": "Reiniciar sem pressa"
+      }
+    ]
+  },
+  {
+    "id": 1107,
+    "stage": "partida",
+    "text": "A defesa recua e fecha o centro.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Inverter para o lado livre"
+      },
+      {
+        "code": "drible",
+        "text": "Provocar a saída de um marcador"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir de fora"
+      },
+      {
+        "code": "social",
+        "text": "Esperar novo apoio"
+      }
+    ]
+  },
+  {
+    "id": 1108,
+    "stage": "partida",
+    "text": "Um colega faz a ultrapassagem durante seu domínio.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Soltar na ultrapassagem"
+      },
+      {
+        "code": "drible",
+        "text": "Usar a corrida como distração"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir no espaço aberto"
+      },
+      {
+        "code": "social",
+        "text": "Sincronizar o ataque"
+      }
+    ]
+  },
+  {
+    "id": 1109,
+    "stage": "partida",
+    "text": "Você recebe de costas e o marcador tenta antecipar.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Devolver e girar"
+      },
+      {
+        "code": "drible",
+        "text": "Girar pelo lado livre"
+      },
+      {
+        "code": "social",
+        "text": "Proteger até receber apoio"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir de meia-volta"
+      }
+    ]
+  },
+  {
+    "id": 1110,
+    "stage": "partida",
+    "text": "A bola fica viva após uma defesa parcial.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Atacar o rebote"
+      },
+      {
+        "code": "passe",
+        "text": "Servir quem tem melhor ângulo"
+      },
+      {
+        "code": "drible",
+        "text": "Tirar do alcance do goleiro"
+      },
+      {
+        "code": "social",
+        "text": "Proteger a sobra"
+      }
+    ]
+  },
+  {
+    "id": 1111,
+    "stage": "partida",
+    "text": "Você entra na área por um corredor estreito.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Concluir antes de perder o ângulo"
+      },
+      {
+        "code": "passe",
+        "text": "Tocar rasteiro para trás"
+      },
+      {
+        "code": "drible",
+        "text": "Mudar rapidamente de direção"
+      },
+      {
+        "code": "social",
+        "text": "Recuar e conservar a jogada"
+      }
+    ]
+  },
+  {
+    "id": 1112,
+    "stage": "partida",
+    "text": "Um colega segura o ataque aguardando sua movimentação.",
+    "options": [
+      {
+        "code": "social",
+        "text": "Levar o marcador para abrir espaço"
+      },
+      {
+        "code": "passe",
+        "text": "Aproximar-se para tabelar"
+      },
+      {
+        "code": "drible",
+        "text": "Pedir a bola e enfrentar o defensor"
+      },
+      {
+        "code": "chute",
+        "text": "Preparar a conclusão rápida"
+      }
+    ]
+  },
+  {
+    "id": 1113,
+    "stage": "partida",
+    "text": "A bola chega perto da linha de fundo.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Tocar rasteiro para trás"
+      },
+      {
+        "code": "drible",
+        "text": "Escapar pela linha"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir pelo ângulo curto"
+      },
+      {
+        "code": "social",
+        "text": "Proteger e esperar ajuda"
+      }
+    ]
+  },
+  {
+    "id": 1114,
+    "stage": "partida",
+    "text": "A defesa se desorganiza após uma troca de passes.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Explorar o corredor aberto"
+      },
+      {
+        "code": "drible",
+        "text": "Entrar no espaço"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir antes da recomposição"
+      },
+      {
+        "code": "social",
+        "text": "Esperar apoio para não se isolar"
+      }
+    ]
+  },
+  {
+    "id": 1115,
+    "stage": "partida",
+    "text": "A corrida do colega está no limite do impedimento.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Soltar no instante da arrancada"
+      },
+      {
+        "code": "social",
+        "text": "Esperar que refaça a corrida"
+      },
+      {
+        "code": "drible",
+        "text": "Atrair antes de passar"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir de longe"
+      }
+    ]
+  },
+  {
+    "id": 1116,
+    "stage": "partida",
+    "text": "Um defensor escorrega e abre um caminho até a área.",
+    "options": [
+      {
+        "code": "drible",
+        "text": "Acelerar pelo espaço"
+      },
+      {
+        "code": "passe",
+        "text": "Servir quem tem melhor ângulo"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir antes da cobertura"
+      },
+      {
+        "code": "social",
+        "text": "Controlar e esperar apoio"
+      }
+    ]
+  },
+  {
+    "id": 1117,
+    "stage": "partida",
+    "text": "A bola chega no seu lado menos confortável.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Tocar curto com segurança"
+      },
+      {
+        "code": "drible",
+        "text": "Orientar para a outra perna"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir com a perna disponível"
+      },
+      {
+        "code": "social",
+        "text": "Proteger e reorganizar"
+      }
+    ]
+  },
+  {
+    "id": 1118,
+    "stage": "partida",
+    "text": "Seu marcador olha para a bola e perde sua movimentação.",
+    "options": [
+      {
+        "code": "social",
+        "text": "Atacar as costas dele"
+      },
+      {
+        "code": "passe",
+        "text": "Pedir a tabela"
+      },
+      {
+        "code": "drible",
+        "text": "Receber e acelerar"
+      },
+      {
+        "code": "chute",
+        "text": "Preparar a conclusão de primeira"
+      }
+    ]
+  },
+  {
+    "id": 1119,
+    "stage": "partida",
+    "text": "Um colega está livre na área, mas o corredor é estreito.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Passar entre os defensores"
+      },
+      {
+        "code": "drible",
+        "text": "Melhorar o ângulo"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir pelo espaço atual"
+      },
+      {
+        "code": "social",
+        "text": "Reciclar a posse"
+      }
+    ]
+  },
+  {
+    "id": 1120,
+    "stage": "partida",
+    "text": "Você domina perto da área e o treinador pede calma.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Procurar uma opção clara"
+      },
+      {
+        "code": "social",
+        "text": "Esperar a linha subir"
+      },
+      {
+        "code": "drible",
+        "text": "Atacar o primeiro espaço"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir antes da organização"
+      }
+    ]
+  },
+  {
+    "id": 1121,
+    "stage": "partida",
+    "text": "O adversário dobra a marcação quando você recebe.",
+    "options": [
+      {
+        "code": "passe",
+        "text": "Servir quem ficou livre"
+      },
+      {
+        "code": "drible",
+        "text": "Escapar entre os dois"
+      },
+      {
+        "code": "social",
+        "text": "Recuar o domínio"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir antes do segundo marcador"
+      }
+    ]
+  },
+  {
+    "id": 1122,
+    "stage": "partida",
+    "text": "Um cruzamento baixo passa diante da defesa em recuo.",
+    "options": [
+      {
+        "code": "chute",
+        "text": "Atacar a bola para concluir"
+      },
+      {
+        "code": "passe",
+        "text": "Desviar para quem chega atrás"
+      },
+      {
+        "code": "social",
+        "text": "Ocupar o possível rebote"
+      },
+      {
+        "code": "drible",
+        "text": "Dominar e criar espaço"
+      }
+    ]
+  },
+  {
+    "id": 1123,
+    "stage": "partida",
+    "text": "Você recebe um lançamento com um defensor à frente.",
+    "options": [
+      {
+        "code": "drible",
+        "text": "Ganhar o toque no espaço"
+      },
+      {
+        "code": "passe",
+        "text": "Amortecer para o apoio"
+      },
+      {
+        "code": "social",
+        "text": "Proteger até receber ajuda"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir antes de a bola baixar"
+      }
+    ]
+  },
+  {
+    "id": 1124,
+    "stage": "partida",
+    "text": "O passe mais óbvio do contra-ataque está marcado.",
+    "options": [
+      {
+        "code": "social",
+        "text": "Reorganizar e buscar outra linha"
+      },
+      {
+        "code": "drible",
+        "text": "Tirar o marcador da posição"
+      },
+      {
+        "code": "passe",
+        "text": "Usar o corredor estreito"
+      },
+      {
+        "code": "chute",
+        "text": "Concluir com a defesa recuando"
+      }
+    ]
+  },
+  {
+    "id": 1125,
+    "stage": "partida",
+    "text": "O rival avança com a bola pelo seu setor.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Antecipar o próximo toque"
+      },
+      {
+        "code": "social",
+        "text": "Proteger o corredor"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e tocar para o apoio"
+      },
+      {
+        "code": "drible",
+        "text": "Recuperar e sair da pressão"
+      }
+    ]
+  },
+  {
+    "id": 1126,
+    "stage": "partida",
+    "text": "Um atacante recebe entre sua linha e a defesa.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Abordar antes do giro"
+      },
+      {
+        "code": "social",
+        "text": "Fechar o caminho da área"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e tocar curto"
+      },
+      {
+        "code": "drible",
+        "text": "Recuperar para conduzir"
+      }
+    ]
+  },
+  {
+    "id": 1127,
+    "stage": "partida",
+    "text": "Um rival prepara um passe vertical diante do seu setor.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Atacar a linha de passe"
+      },
+      {
+        "code": "social",
+        "text": "Proteger o espaço atrás"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e iniciar a saída"
+      },
+      {
+        "code": "drible",
+        "text": "Recuperar e avançar"
+      }
+    ]
+  },
+  {
+    "id": 1128,
+    "stage": "partida",
+    "text": "O rival ganha velocidade junto à lateral.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Dar o bote no toque longo"
+      },
+      {
+        "code": "social",
+        "text": "Fechar o caminho por dentro"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e servir a cobertura"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar para acelerar"
+      }
+    ]
+  },
+  {
+    "id": 1129,
+    "stage": "partida",
+    "text": "Uma bola longa cai na direção do seu setor.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Antecipar a queda"
+      },
+      {
+        "code": "social",
+        "text": "Esperar a cobertura protegendo a zona"
+      },
+      {
+        "code": "passe",
+        "text": "Controlar a sobra e tocar"
+      },
+      {
+        "code": "drible",
+        "text": "Ganhar a sobra para conduzir"
+      }
+    ]
+  },
+  {
+    "id": 1130,
+    "stage": "partida",
+    "text": "O ataque adversário tenta uma tabela curta.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Interceptar o retorno"
+      },
+      {
+        "code": "social",
+        "text": "Acompanhar sem abandonar a zona"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e servir o lado livre"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar para sair pelo corredor"
+      }
+    ]
+  },
+  {
+    "id": 1131,
+    "stage": "partida",
+    "text": "Um colega perdeu a disputa e você chega para cobrir.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Abordar o portador"
+      },
+      {
+        "code": "social",
+        "text": "Fechar primeiro o caminho do gol"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e acionar o apoio"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar e iniciar a transição"
+      }
+    ]
+  },
+  {
+    "id": 1132,
+    "stage": "partida",
+    "text": "O rival fica sem apoio, mas protege bem a bola.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Esperar o toque favorável"
+      },
+      {
+        "code": "social",
+        "text": "Marcar sem oferecer falta"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e tocar em dupla"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar e acelerar"
+      }
+    ]
+  },
+  {
+    "id": 1133,
+    "stage": "partida",
+    "text": "O ataque tenta atrair você para fora da sua zona.",
+    "options": [
+      {
+        "code": "social",
+        "text": "Manter a posição e avisar"
+      },
+      {
+        "code": "desarme",
+        "text": "Cortar a jogada cedo"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e inverter o lado"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar para conduzir"
+      }
+    ]
+  },
+  {
+    "id": 1134,
+    "stage": "partida",
+    "text": "Você acompanha um adversário que recebe de costas.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Antecipar a recepção"
+      },
+      {
+        "code": "social",
+        "text": "Impedir o giro sem contato"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e tocar seguro"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar e avançar"
+      }
+    ]
+  },
+  {
+    "id": 1135,
+    "stage": "partida",
+    "text": "O passe adversário sai mais lento que o esperado.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Chegar antes do recebedor"
+      },
+      {
+        "code": "passe",
+        "text": "Interceptar e tocar de primeira"
+      },
+      {
+        "code": "drible",
+        "text": "Interceptar e acelerar"
+      },
+      {
+        "code": "social",
+        "text": "Manter a posição para a cobertura"
+      }
+    ]
+  },
+  {
+    "id": 1136,
+    "stage": "partida",
+    "text": "A bola fica disputada perto da sua área.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Ganhar no tempo do toque"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar para um companheiro"
+      },
+      {
+        "code": "social",
+        "text": "Proteger sem entrar de qualquer jeito"
+      },
+      {
+        "code": "drible",
+        "text": "Recuperar e sair jogando"
+      }
+    ]
+  },
+  {
+    "id": 1137,
+    "stage": "partida",
+    "text": "Seu time perde a posse quando você ainda está avançado.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Pressionar para recuperar"
+      },
+      {
+        "code": "social",
+        "text": "Recompor pelo centro"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e reorganizar a saída"
+      },
+      {
+        "code": "drible",
+        "text": "Apostar no roubo perto do portador"
+      }
+    ]
+  },
+  {
+    "id": 1138,
+    "stage": "partida",
+    "text": "O rival prepara um cruzamento perto de você.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Bloquear a chegada à bola"
+      },
+      {
+        "code": "social",
+        "text": "Fechar o ângulo"
+      },
+      {
+        "code": "passe",
+        "text": "Recuperar e servir o apoio"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar e escapar pela linha"
+      }
+    ]
+  },
+  {
+    "id": 1139,
+    "stage": "partida",
+    "text": "Um domínio ruim do rival oferece uma recuperação curta.",
+    "options": [
+      {
+        "code": "desarme",
+        "text": "Atacar o toque longo"
+      },
+      {
+        "code": "passe",
+        "text": "Interceptar preparando o passe"
+      },
+      {
+        "code": "drible",
+        "text": "Roubar para avançar"
+      },
+      {
+        "code": "social",
+        "text": "Manter a marcação e esperar"
+      }
+    ]
+  },
+  {
+    "id": 1140,
+    "stage": "partida",
+    "text": "Um colega irritado com o árbitro perde o foco.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Conversar longe do árbitro"
+      },
+      {
+        "code": "liderar",
+        "text": "Reorganizar o setor"
+      },
+      {
+        "code": "disciplina",
+        "text": "Retomar sua concentração"
+      },
+      {
+        "code": "reclamar",
+        "text": "Somar-se à reclamação"
+      }
+    ]
+  },
+  {
+    "id": 1141,
+    "stage": "partida",
+    "text": "A arquibancada aumenta as vaias após uma jogada ruim.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Buscar uma ação simples"
+      },
+      {
+        "code": "apoio",
+        "text": "Trocar uma palavra de apoio"
+      },
+      {
+        "code": "liderar",
+        "text": "Chamar o time à organização"
+      },
+      {
+        "code": "ousar",
+        "text": "Procurar um lance de destaque"
+      }
+    ]
+  },
+  {
+    "id": 1142,
+    "stage": "partida",
+    "text": "O treinador sinaliza uma mudança de posicionamento.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Aplicar o ajuste"
+      },
+      {
+        "code": "tatico",
+        "text": "Confirmar com o auxiliar"
+      },
+      {
+        "code": "liderar",
+        "text": "Repassar ao colega próximo"
+      },
+      {
+        "code": "reclamar",
+        "text": "Questionar durante o jogo"
+      }
+    ]
+  },
+  {
+    "id": 1143,
+    "stage": "partida",
+    "text": "Você sente uma fisgada leve após uma corrida.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Sinalizar à comissão"
+      },
+      {
+        "code": "disciplina",
+        "text": "Reduzir o esforço enquanto aguarda"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Ajudar com menos deslocamento"
+      },
+      {
+        "code": "ousar",
+        "text": "Continuar no ritmo máximo"
+      }
+    ]
+  },
+  {
+    "id": 1144,
+    "stage": "partida",
+    "text": "Um colega jovem erra e parece abatido.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Apoiá-lo antes do próximo lance"
+      },
+      {
+        "code": "liderar",
+        "text": "Oferecer uma tarefa simples"
+      },
+      {
+        "code": "disciplina",
+        "text": "Focar na recomposição"
+      },
+      {
+        "code": "reclamar",
+        "text": "Cobrar imediatamente"
+      }
+    ]
+  },
+  {
+    "id": 1145,
+    "stage": "partida",
+    "text": "O árbitro adverte sobre reclamações excessivas.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Evitar a discussão"
+      },
+      {
+        "code": "liderar",
+        "text": "Deixar o capitão conversar"
+      },
+      {
+        "code": "apoio",
+        "text": "Afastar o colega da confusão"
+      },
+      {
+        "code": "reclamar",
+        "text": "Insistir na explicação"
+      }
+    ]
+  },
+  {
+    "id": 1146,
+    "stage": "partida",
+    "text": "Seu time perde organização ao acelerar toda jogada.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Pedir calma ao setor"
+      },
+      {
+        "code": "tatico",
+        "text": "Rever os espaços"
+      },
+      {
+        "code": "apoio",
+        "text": "Orientar quem se precipita"
+      },
+      {
+        "code": "ousar",
+        "text": "Tentar resolver individualmente"
+      }
+    ]
+  },
+  {
+    "id": 1147,
+    "stage": "partida",
+    "text": "O auxiliar aponta espaço entre você e seu colega de setor.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "text": "Aproximar a linha"
+      },
+      {
+        "code": "liderar",
+        "text": "Combinar o ajuste"
+      },
+      {
+        "code": "resistencia",
+        "text": "Recompor rapidamente"
+      },
+      {
+        "code": "reclamar",
+        "text": "Cobrar a aproximação do colega"
+      }
+    ]
+  },
+  {
+    "id": 1148,
+    "stage": "partida",
+    "text": "Um adversário provoca você longe da bola.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Ignorar e seguir o lance"
+      },
+      {
+        "code": "apoio",
+        "text": "Pedir ajuda ao capitão"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Ocupar outro espaço"
+      },
+      {
+        "code": "reclamar",
+        "text": "Responder à provocação"
+      }
+    ]
+  },
+  {
+    "id": 1149,
+    "stage": "partida",
+    "text": "Uma substituição exige reorganizar seu setor.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Passar as referências ao colega"
+      },
+      {
+        "code": "tatico",
+        "text": "Ajustar sua tarefa"
+      },
+      {
+        "code": "apoio",
+        "text": "Dar confiança a quem entra"
+      },
+      {
+        "code": "disciplina",
+        "text": "Focar na primeira ação após a troca"
+      }
+    ]
+  },
+  {
+    "id": 1150,
+    "stage": "fim_semana",
+    "text": "Um antigo professor convida você para conversar com alunos.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Aceitar uma conversa curta"
+      },
+      {
+        "code": "disciplina",
+        "text": "Combinar um horário viável"
+      },
+      {
+        "code": "liderar",
+        "text": "Falar de trabalho em equipe"
+      },
+      {
+        "code": "recuperar",
+        "text": "Priorizar o descanso hoje"
+      }
+    ]
+  },
+  {
+    "id": 1151,
+    "stage": "fim_semana",
+    "text": "A família organiza um almoço na sua folga.",
+    "options": [
+      {
+        "code": "lazer",
+        "text": "Aproveitar o encontro"
+      },
+      {
+        "code": "disciplina",
+        "text": "Combinar um horário de retorno"
+      },
+      {
+        "code": "apoio",
+        "text": "Ajudar na organização"
+      },
+      {
+        "code": "recuperar",
+        "text": "Fazer uma visita breve"
+      }
+    ]
+  },
+  {
+    "id": 1152,
+    "stage": "fim_semana",
+    "text": "Um colega convida para uma recuperação leve juntos.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Fazer a atividade proposta"
+      },
+      {
+        "code": "apoio",
+        "text": "Fortalecer a parceria"
+      },
+      {
+        "code": "disciplina",
+        "text": "Conferir o plano do preparador"
+      },
+      {
+        "code": "lazer",
+        "text": "Preferir descansar em casa"
+      }
+    ]
+  },
+  {
+    "id": 1153,
+    "stage": "fim_semana",
+    "text": "Seu agente quer conversar sobre objetivos de carreira.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Rever o que precisa evoluir"
+      },
+      {
+        "code": "disciplina",
+        "text": "Definir prioridades concretas"
+      },
+      {
+        "code": "imprensa",
+        "text": "Pedir que evite promessas públicas"
+      },
+      {
+        "code": "ousar",
+        "text": "Cobrar uma oportunidade maior"
+      }
+    ]
+  },
+  {
+    "id": 1154,
+    "stage": "fim_semana",
+    "text": "Um vídeo da sua jogada circula nas redes.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Agradecer sem alimentar comparações"
+      },
+      {
+        "code": "disciplina",
+        "text": "Evitar acompanhar todos os comentários"
+      },
+      {
+        "code": "apoio",
+        "text": "Dividir o mérito"
+      },
+      {
+        "code": "ousar",
+        "text": "Publicar uma mensagem de confiança"
+      }
+    ]
+  },
+  {
+    "id": 1155,
+    "stage": "fim_semana",
+    "text": "O analista enviou seus lances da semana.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Rever decisões antes da recepção"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Estudar movimentos sem a bola"
+      },
+      {
+        "code": "disciplina",
+        "text": "Definir dois pontos de melhoria"
+      },
+      {
+        "code": "recuperar",
+        "text": "Analisar após o descanso"
+      }
+    ]
+  },
+  {
+    "id": 1156,
+    "stage": "fim_semana",
+    "text": "Um torcedor pede foto enquanto você está com familiares.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Atender rapidamente"
+      },
+      {
+        "code": "disciplina",
+        "text": "Explicar que está com a família"
+      },
+      {
+        "code": "apoio",
+        "text": "Conversar por alguns minutos"
+      },
+      {
+        "code": "lazer",
+        "text": "Seguir seu passeio"
+      }
+    ]
+  },
+  {
+    "id": 1157,
+    "stage": "fim_semana",
+    "text": "Seu bairro organiza esporte para crianças.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Participar brevemente"
+      },
+      {
+        "code": "liderar",
+        "text": "Orientar um exercício simples"
+      },
+      {
+        "code": "disciplina",
+        "text": "Combinar presença sem sobrecarga"
+      },
+      {
+        "code": "recuperar",
+        "text": "Apoiar sem participar fisicamente"
+      }
+    ]
+  },
+  {
+    "id": 1158,
+    "stage": "fim_semana",
+    "text": "Amigos convidam você para um jogo recreativo.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Recusar o esforço extra"
+      },
+      {
+        "code": "lazer",
+        "text": "Ir apenas acompanhar"
+      },
+      {
+        "code": "apoio",
+        "text": "Encontrá-los depois"
+      },
+      {
+        "code": "ousar",
+        "text": "Participar por alguns minutos"
+      }
+    ]
+  },
+  {
+    "id": 1159,
+    "stage": "fim_semana",
+    "text": "O preparador enviou mobilidade opcional.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Seguir a rotina"
+      },
+      {
+        "code": "disciplina",
+        "text": "Registrar como se sentiu"
+      },
+      {
+        "code": "apoio",
+        "text": "Convidar um colega"
+      },
+      {
+        "code": "lazer",
+        "text": "Preferir repouso completo"
+      }
+    ]
+  },
+  {
+    "id": 1160,
+    "stage": "fim_semana",
+    "text": "Uma entrevista antiga circula fora de contexto.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Esclarecer objetivamente"
+      },
+      {
+        "code": "disciplina",
+        "text": "Consultar o clube"
+      },
+      {
+        "code": "apoio",
+        "text": "Falar com os colegas citados"
+      },
+      {
+        "code": "ousar",
+        "text": "Responder diretamente nas redes"
+      }
+    ]
+  },
+  {
+    "id": 1161,
+    "stage": "fim_semana",
+    "text": "Seu sono ficou irregular durante as viagens.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Priorizar uma noite tranquila"
+      },
+      {
+        "code": "disciplina",
+        "text": "Organizar os horários"
+      },
+      {
+        "code": "lazer",
+        "text": "Reduzir atividades da folga"
+      },
+      {
+        "code": "apoio",
+        "text": "Conversar sobre a rotina"
+      }
+    ]
+  },
+  {
+    "id": 1162,
+    "stage": "fim_semana",
+    "text": "Um amigo pede ajuda para montar um treino básico.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Explicar cuidados gerais"
+      },
+      {
+        "code": "liderar",
+        "text": "Indicar orientação apropriada"
+      },
+      {
+        "code": "disciplina",
+        "text": "Combinar outro horário"
+      },
+      {
+        "code": "recuperar",
+        "text": "Preservar o descanso"
+      }
+    ]
+  },
+  {
+    "id": 1163,
+    "stage": "fim_semana",
+    "text": "Um colega teve uma semana difícil fora do futebol.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Ouvir sem pressionar"
+      },
+      {
+        "code": "liderar",
+        "text": "Oferecer companhia"
+      },
+      {
+        "code": "disciplina",
+        "text": "Respeitar o espaço dele"
+      },
+      {
+        "code": "lazer",
+        "text": "Convidar para algo tranquilo"
+      }
+    ]
+  },
+  {
+    "id": 1164,
+    "stage": "fim_semana",
+    "text": "O clube grava histórias do elenco.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Participar sem expor a vida privada"
+      },
+      {
+        "code": "apoio",
+        "text": "Valorizar quem ajudou você"
+      },
+      {
+        "code": "disciplina",
+        "text": "Combinar os limites da gravação"
+      },
+      {
+        "code": "liderar",
+        "text": "Falar da parceria no grupo"
+      }
+    ]
+  },
+  {
+    "id": 1165,
+    "stage": "fim_semana",
+    "text": "Uma ação beneficente coincide com a recuperação.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Propor presença curta"
+      },
+      {
+        "code": "apoio",
+        "text": "Ajudar na organização à distância"
+      },
+      {
+        "code": "imprensa",
+        "text": "Gravar uma mensagem"
+      },
+      {
+        "code": "recuperar",
+        "text": "Manter o descanso planejado"
+      }
+    ]
+  },
+  {
+    "id": 1166,
+    "stage": "fim_semana",
+    "text": "Você encontra uma partida antiga gravada pela família.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Observar como suas decisões mudaram"
+      },
+      {
+        "code": "lazer",
+        "text": "Recordar o começo"
+      },
+      {
+        "code": "apoio",
+        "text": "Compartilhar a lembrança"
+      },
+      {
+        "code": "disciplina",
+        "text": "Anotar uma melhoria possível"
+      }
+    ]
+  },
+  {
+    "id": 1167,
+    "stage": "fim_semana",
+    "text": "Seu agente recebe uma sondagem sem proposta formal.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Manter a rotina"
+      },
+      {
+        "code": "imprensa",
+        "text": "Pedir discrição"
+      },
+      {
+        "code": "tatico",
+        "text": "Entender o projeto mencionado"
+      },
+      {
+        "code": "ousar",
+        "text": "Solicitar uma negociação"
+      }
+    ]
+  },
+  {
+    "id": 1168,
+    "stage": "fim_semana",
+    "text": "Um colega convida você para conhecer a cidade.",
+    "options": [
+      {
+        "code": "lazer",
+        "text": "Fazer um passeio tranquilo"
+      },
+      {
+        "code": "apoio",
+        "text": "Fortalecer a parceria"
+      },
+      {
+        "code": "disciplina",
+        "text": "Planejar um retorno cedo"
+      },
+      {
+        "code": "recuperar",
+        "text": "Deixar para outra folga"
+      }
+    ]
+  },
+  {
+    "id": 1169,
+    "stage": "fim_semana",
+    "text": "O clube pede ideias para se aproximar da comunidade.",
+    "options": [
+      {
+        "code": "liderar",
+        "text": "Propor uma atividade planejada"
+      },
+      {
+        "code": "apoio",
+        "text": "Ouvir os moradores"
+      },
+      {
+        "code": "imprensa",
+        "text": "Participar de uma conversa pública"
+      },
+      {
+        "code": "disciplina",
+        "text": "Oferecer ajuda compatível com a agenda"
+      }
+    ]
+  },
+  {
+    "id": 1170,
+    "stage": "fim_semana",
+    "text": "Uma discussão sobre o time começa num grupo de mensagens.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Não prolongar a discussão"
+      },
+      {
+        "code": "apoio",
+        "text": "Responder sem atacar"
+      },
+      {
+        "code": "liderar",
+        "text": "Trazer algo construtivo"
+      },
+      {
+        "code": "reclamar",
+        "text": "Rebater as críticas duramente"
+      }
+    ]
+  },
+  {
+    "id": 1171,
+    "stage": "fim_semana",
+    "text": "Você precisa se adaptar a equipamentos novos.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Testar na sessão apropriada"
+      },
+      {
+        "code": "tecnica",
+        "text": "Fazer adaptação leve"
+      },
+      {
+        "code": "apoio",
+        "text": "Pedir a experiência de um colega"
+      },
+      {
+        "code": "recuperar",
+        "text": "Testar depois da recuperação"
+      }
+    ]
+  },
+  {
+    "id": 1172,
+    "stage": "fim_semana",
+    "text": "O analista nota decisões precipitadas quando você se cansa.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Estudar os sinais"
+      },
+      {
+        "code": "resistencia",
+        "text": "Planejar um bloco físico com a comissão"
+      },
+      {
+        "code": "disciplina",
+        "text": "Definir uma ação simples nesses momentos"
+      },
+      {
+        "code": "recuperar",
+        "text": "Rever a rotina de descanso"
+      }
+    ]
+  },
+  {
+    "id": 1173,
+    "stage": "fim_semana",
+    "text": "Um familiar pergunta como apoiar sua nova rotina.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Explicar as necessidades práticas"
+      },
+      {
+        "code": "disciplina",
+        "text": "Organizar os horários juntos"
+      },
+      {
+        "code": "lazer",
+        "text": "Separar tempo sem falar de futebol"
+      },
+      {
+        "code": "recuperar",
+        "text": "Pedir ajuda para preservar o descanso"
+      }
+    ]
+  },
+  {
+    "id": 1174,
+    "stage": "fim_semana",
+    "text": "Um colega quer ensaiar uma jogada durante a folga.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Rever sem esforço físico"
+      },
+      {
+        "code": "passe",
+        "text": "Fazer uma sessão curta autorizada"
+      },
+      {
+        "code": "disciplina",
+        "text": "Consultar o auxiliar"
+      },
+      {
+        "code": "recuperar",
+        "text": "Reservar para o próximo treino"
+      }
+    ]
+  },
+  {
+    "id": 1175,
+    "stage": "fim_semana",
+    "text": "Você tem evitado seus amigos por causa do calendário.",
+    "options": [
+      {
+        "code": "lazer",
+        "text": "Marcar um encontro tranquilo"
+      },
+      {
+        "code": "apoio",
+        "text": "Retomar uma conversa importante"
+      },
+      {
+        "code": "disciplina",
+        "text": "Separar um horário viável"
+      },
+      {
+        "code": "recuperar",
+        "text": "Organizar descanso e companhia"
+      }
+    ]
+  },
+  {
+    "id": 1176,
+    "stage": "fim_semana",
+    "text": "Ex-atletas que ajudaram o clube visitam o elenco.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Ouvir suas experiências"
+      },
+      {
+        "code": "liderar",
+        "text": "Perguntar sobre decisões de carreira"
+      },
+      {
+        "code": "imprensa",
+        "text": "Participar da homenagem"
+      },
+      {
+        "code": "disciplina",
+        "text": "Levar um aprendizado à semana"
+      }
+    ]
+  },
+  {
+    "id": 1177,
+    "stage": "fim_semana",
+    "text": "Uma gravação exigiria muito deslocamento na folga.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Conferir o impacto nos horários"
+      },
+      {
+        "code": "imprensa",
+        "text": "Propor participação curta"
+      },
+      {
+        "code": "recuperar",
+        "text": "Preferir não viajar"
+      },
+      {
+        "code": "ousar",
+        "text": "Aceitar pela exposição"
+      }
+    ]
+  },
+  {
+    "id": 1178,
+    "stage": "fim_semana",
+    "text": "Você tem algumas horas livres antes de voltar ao clube.",
+    "options": [
+      {
+        "code": "recuperar",
+        "text": "Recuperar a musculatura"
+      },
+      {
+        "code": "visao",
+        "text": "Rever um trecho de vídeo"
+      },
+      {
+        "code": "lazer",
+        "text": "Fazer algo fora do futebol"
+      },
+      {
+        "code": "apoio",
+        "text": "Passar o tempo com alguém próximo"
+      }
+    ]
+  },
+  {
+    "id": 1179,
+    "stage": "fim_semana",
+    "text": "Um jornalista pede que você compare dois colegas.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Destacar características sem favorito"
+      },
+      {
+        "code": "disciplina",
+        "text": "Recusar a comparação"
+      },
+      {
+        "code": "apoio",
+        "text": "Valorizar os dois"
+      },
+      {
+        "code": "ousar",
+        "text": "Dar sua opinião diretamente"
+      }
+    ]
+  },
+  {
+    "id": 1180,
+    "stage": "fim_semana",
+    "text": "Um companheiro comemora o nascimento de um filho.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Enviar apoio e respeitar o momento"
+      },
+      {
+        "code": "lazer",
+        "text": "Fazer uma visita quando convidado"
+      },
+      {
+        "code": "liderar",
+        "text": "Organizar uma lembrança do grupo"
+      },
+      {
+        "code": "disciplina",
+        "text": "Não expor a notícia sem autorização"
+      }
+    ]
+  },
+  {
+    "id": 1181,
+    "stage": "fim_semana",
+    "text": "As viagens desorganizaram sua alimentação.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Planejar com a equipe do clube"
+      },
+      {
+        "code": "recuperar",
+        "text": "Organizar bem a folga"
+      },
+      {
+        "code": "apoio",
+        "text": "Pedir dicas práticas a um colega"
+      },
+      {
+        "code": "lazer",
+        "text": "Preparar as próximas refeições"
+      }
+    ]
+  },
+  {
+    "id": 1182,
+    "stage": "fim_semana",
+    "text": "A comissão oferece uma conversa individual.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Levar dúvidas objetivas"
+      },
+      {
+        "code": "visao",
+        "text": "Rever decisões que quer melhorar"
+      },
+      {
+        "code": "apoio",
+        "text": "Explicar como se sente no grupo"
+      },
+      {
+        "code": "ousar",
+        "text": "Pedir mais responsabilidade"
+      }
+    ]
+  },
+  {
+    "id": 1183,
+    "stage": "fim_semana",
+    "text": "Um rumor sobre você chega pelos torcedores.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Esclarecer apenas o que sabe"
+      },
+      {
+        "code": "disciplina",
+        "text": "Consultar o clube primeiro"
+      },
+      {
+        "code": "apoio",
+        "text": "Falar com o colega envolvido"
+      },
+      {
+        "code": "recuperar",
+        "text": "Desligar as notificações"
+      }
+    ]
+  },
+  {
+    "id": 1184,
+    "stage": "fim_semana",
+    "text": "A região do centro de treino organiza uma campanha de doação.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Contribuir como puder"
+      },
+      {
+        "code": "imprensa",
+        "text": "Divulgar a campanha"
+      },
+      {
+        "code": "liderar",
+        "text": "Convidar o elenco"
+      },
+      {
+        "code": "disciplina",
+        "text": "Confirmar uma ajuda compatível com a rotina"
+      }
+    ]
+  },
+  {
+    "id": 1185,
+    "stage": "fim_semana",
+    "text": "Um colega pede conselhos sobre ficar no banco.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Ouvir a frustração"
+      },
+      {
+        "code": "liderar",
+        "text": "Falar de manter-se preparado"
+      },
+      {
+        "code": "disciplina",
+        "text": "Sugerir conversar com a comissão"
+      },
+      {
+        "code": "tatico",
+        "text": "Rever tarefas que ele pode treinar"
+      }
+    ]
+  },
+  {
+    "id": 1186,
+    "stage": "fim_semana",
+    "text": "O agente sugere comunicar melhor seus objetivos.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Preparar respostas claras"
+      },
+      {
+        "code": "disciplina",
+        "text": "Definir o que manter privado"
+      },
+      {
+        "code": "liderar",
+        "text": "Valorizar as metas coletivas"
+      },
+      {
+        "code": "ousar",
+        "text": "Assumir uma meta pessoal em público"
+      }
+    ]
+  },
+  {
+    "id": 1187,
+    "stage": "fim_semana",
+    "text": "Você reencontra alguém que deixou o futebol profissional.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Ouvir sobre a nova rotina"
+      },
+      {
+        "code": "lazer",
+        "text": "Recordar o que viveram"
+      },
+      {
+        "code": "liderar",
+        "text": "Conversar sobre possibilidades futuras"
+      },
+      {
+        "code": "disciplina",
+        "text": "Evitar promessas que não pode cumprir"
+      }
+    ]
+  },
+  {
+    "id": 1188,
+    "stage": "fim_semana",
+    "text": "O clube oferece material de estudo tático.",
+    "options": [
+      {
+        "code": "visao",
+        "text": "Estudar como reconhecer a pressão"
+      },
+      {
+        "code": "posicionamento",
+        "text": "Rever a ocupação dos espaços"
+      },
+      {
+        "code": "disciplina",
+        "text": "Definir um horário de estudo"
+      },
+      {
+        "code": "recuperar",
+        "text": "Começar depois de descansar"
+      }
+    ]
+  },
+  {
+    "id": 1189,
+    "stage": "fim_semana",
+    "text": "Torcedores querem enviar perguntas para você.",
+    "options": [
+      {
+        "code": "imprensa",
+        "text": "Responder pelo canal do clube"
+      },
+      {
+        "code": "disciplina",
+        "text": "Escolher perguntas sobre futebol"
+      },
+      {
+        "code": "apoio",
+        "text": "Agradecer a presença no estádio"
+      },
+      {
+        "code": "liderar",
+        "text": "Valorizar todo o elenco"
+      }
+    ]
+  },
+  {
+    "id": 1190,
+    "stage": "fim_semana",
+    "text": "Você acumulou pequenos compromissos no dia livre.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Reorganizar a agenda"
+      },
+      {
+        "code": "recuperar",
+        "text": "Adiar o esforço dispensável"
+      },
+      {
+        "code": "apoio",
+        "text": "Pedir ajuda numa tarefa"
+      },
+      {
+        "code": "lazer",
+        "text": "Reservar tempo sem compromissos"
+      }
+    ]
+  },
+  {
+    "id": 1191,
+    "stage": "fim_semana",
+    "text": "Um colega pede conselhos para se mudar para a cidade.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Contar o que ajudou sua adaptação"
+      },
+      {
+        "code": "lazer",
+        "text": "Mostrar a região numa visita breve"
+      },
+      {
+        "code": "disciplina",
+        "text": "Falar de conciliar mudança e treino"
+      },
+      {
+        "code": "liderar",
+        "text": "Apresentar quem pode orientá-lo"
+      }
+    ]
+  },
+  {
+    "id": 1192,
+    "stage": "fim_semana",
+    "text": "A comissão elogia sua evolução, mas aponta uma irregularidade.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Definir uma meta realista"
+      },
+      {
+        "code": "tecnica",
+        "text": "Preparar trabalho específico"
+      },
+      {
+        "code": "visao",
+        "text": "Rever onde o problema aparece"
+      },
+      {
+        "code": "recuperar",
+        "text": "Planejar sem excesso de carga"
+      }
+    ]
+  },
+  {
+    "id": 1193,
+    "stage": "fim_semana",
+    "text": "Um amigo oferece ingresso para um evento até tarde.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Recusar para preservar o sono"
+      },
+      {
+        "code": "lazer",
+        "text": "Ir apenas ao começo"
+      },
+      {
+        "code": "apoio",
+        "text": "Propor outro encontro"
+      },
+      {
+        "code": "ousar",
+        "text": "Aceitar a programação completa"
+      }
+    ]
+  },
+  {
+    "id": 1194,
+    "stage": "fim_semana",
+    "text": "Seu antigo clube organiza uma homenagem à base.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Enviar agradecimento"
+      },
+      {
+        "code": "imprensa",
+        "text": "Gravar uma mensagem curta"
+      },
+      {
+        "code": "liderar",
+        "text": "Valorizar quem formou sua geração"
+      },
+      {
+        "code": "disciplina",
+        "text": "Combinar uma presença viável"
+      }
+    ]
+  },
+  {
+    "id": 1195,
+    "stage": "fim_semana",
+    "text": "Você quer recuperar a confiança durante a folga.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Rever ações bem executadas"
+      },
+      {
+        "code": "apoio",
+        "text": "Conversar com quem acompanha você"
+      },
+      {
+        "code": "lazer",
+        "text": "Fazer algo relaxante"
+      },
+      {
+        "code": "visao",
+        "text": "Extrair um aprendizado do último jogo"
+      }
+    ]
+  },
+  {
+    "id": 1196,
+    "stage": "fim_semana",
+    "text": "Um colega pergunta como você administra o tempo fora do campo.",
+    "options": [
+      {
+        "code": "disciplina",
+        "text": "Mostrar uma rotina sustentável"
+      },
+      {
+        "code": "recuperar",
+        "text": "Explicar como prioriza o descanso"
+      },
+      {
+        "code": "apoio",
+        "text": "Ouvir também a experiência dele"
+      },
+      {
+        "code": "lazer",
+        "text": "Propor descanso em grupo"
+      }
+    ]
+  },
+  {
+    "id": 1197,
+    "stage": "fim_semana",
+    "text": "O clube planeja visitar um projeto esportivo local.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Conversar com os participantes"
+      },
+      {
+        "code": "liderar",
+        "text": "Orientar uma atividade leve"
+      },
+      {
+        "code": "imprensa",
+        "text": "Valorizar o projeto"
+      },
+      {
+        "code": "disciplina",
+        "text": "Ajustar a presença à carga da semana"
+      }
+    ]
+  },
+  {
+    "id": 1198,
+    "stage": "fim_semana",
+    "text": "Chega uma mensagem de quem viu seu primeiro jogo.",
+    "options": [
+      {
+        "code": "apoio",
+        "text": "Agradecer e conversar"
+      },
+      {
+        "code": "lazer",
+        "text": "Recordar o início"
+      },
+      {
+        "code": "disciplina",
+        "text": "Usar a lembrança como motivação"
+      },
+      {
+        "code": "imprensa",
+        "text": "Compartilhar sem expor quem escreveu"
+      }
+    ]
+  },
+  {
+    "id": 1199,
+    "stage": "fim_semana",
+    "text": "A próxima semana terá um desafio importante para seu setor.",
+    "options": [
+      {
+        "code": "tatico",
+        "text": "Estudar o tipo de confronto"
+      },
+      {
+        "code": "disciplina",
+        "text": "Organizar descanso e preparação"
+      },
+      {
+        "code": "apoio",
+        "text": "Combinar uma conversa com o setor"
+      },
+      {
+        "code": "visao",
+        "text": "Rever um lance que pode se repetir"
+      }
+    ]
+  }
+]

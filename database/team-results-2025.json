@@ -1,0 +1,202 @@
+{
+  "Flamengo-RJ": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 1,
+    "teams": 20,
+    "points": 79,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Palmeiras-SP": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 2,
+    "teams": 20,
+    "points": 76,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Cruzeiro-MG": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 3,
+    "teams": 20,
+    "points": 70,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Mirassol-SP": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 4,
+    "teams": 20,
+    "points": 67,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Fluminense-RJ": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 5,
+    "teams": 20,
+    "points": 64,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Botafogo-RJ": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 6,
+    "teams": 20,
+    "points": 63,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Bahia-BA": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 7,
+    "teams": 20,
+    "points": 60,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "São Paulo-SP": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 8,
+    "teams": 20,
+    "points": 51,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Grêmio-RS": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 9,
+    "teams": 20,
+    "points": 49,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Red Bull Bragantino-SP": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 10,
+    "teams": 20,
+    "points": 48,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Atlético-MG": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 11,
+    "teams": 20,
+    "points": 48,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Santos-SP": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 12,
+    "teams": 20,
+    "points": 47,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Corinthians-SP": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 13,
+    "teams": 20,
+    "points": 47,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Vasco-RJ": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 14,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Vitória-BA": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 15,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Internacional-RS": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 16,
+    "teams": 20,
+    "points": 44,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Ceará-CE": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 17,
+    "teams": 20,
+    "points": 43,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Fortaleza-CE": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 18,
+    "teams": 20,
+    "points": 43,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Juventude-RS": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 19,
+    "teams": 20,
+    "points": 35,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  },
+  "Sport-PE": {
+    "season": 2025,
+    "competition": "Brasileirão Série A",
+    "position": 20,
+    "teams": 20,
+    "points": 17,
+    "games": 38,
+    "source": "https://www.futebolinterior.com.br/campeonato/brasileirao-serie-a-2025/",
+    "verified": "2026-10-13"
+  }
+}
