@@ -21,5 +21,5 @@ elseif(in_array($path,['/nova','/carreira/nova'],true)){$g=null;$path='/carreira
 elseif($path==='/classificacao'){foreach($g['matches'] as &$m)if($m['round']===1)Competition::simulate($m);unset($m);}
 elseif($path==='/recap'){
  $id=$g['competition_id'];$t=&$g['competitions'][$id];Competition::finish($t);$g['matches']=$t['matches'];$g['competition_results'][$id]=Competition::result($t,$g['club']);$g['stage']='competicao_resumo';$path='/carreira';
-}else $path='/carreira';
+}elseif($path!=='/jogador') $path='/carreira';
 require dirname(__DIR__).'/app/view.php';

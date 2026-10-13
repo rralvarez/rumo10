@@ -122,3 +122,6 @@ Detalhes, fontes e limites dos novos estaduais: [Docs/11_Inicio_Estadual_e_Escud
 
 
 A versão 0.5 está detalhada em [Docs/12_Situacoes_Overall_e_Mercosul.md](Docs/12_Situacoes_Overall_e_Mercosul.md): fontes, fórmula do overall, cobertura provisória de campanhas anteriores, escudos, paletas aproximadas e regras internacionais simplificadas. Novos testes: `php tests/scenes-strength.php` e `php tests/international.php`.
+
+
+A ficha gráfica do personagem está em **/jogador**: clique no nome na tela de carreira ou em Habilidades e evolução. Mostra nível técnico, condição física, desempenho da temporada e progresso de XP, com detalhes recolhidos para celular. Consultar a ficha não modifica o jogo.

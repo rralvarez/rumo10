@@ -36,6 +36,8 @@ try {
     verify(request('/classificacao')['status']===200,'Tabela antes de escolher clube');
     $page=request('/carreira/clube-inicial',tokens($page['body'],'/carreira/clube-inicial')+['option'=>'0']); verify($page['status']===200,'Escolha do primeiro clube');
     $joined=json_decode(request('/api/carreira/estado')['body'],true);verify($joined['club']===$state['initial_candidates'][0]['club'] && $joined['stage']==='treino','Clube oferecido salvo');
+    $profile=request('/jogador');verify($profile['status']===200 && str_contains($profile['body'],'NÍVEL TÉCNICO') && str_contains($profile['body'],'Habilidades e evolução'),'Ficha do jogador autenticada');
+    verify(json_decode(request('/api/carreira/estado')['body'],true)===$joined,'Abrir ficha não modifica carreira nem sorteia situação');
     $page=request('/decisao/registrar',tokens($page['body'],'/decisao/registrar')+['option'=>'1']); verify($page['status']===200,'Treino HTTP');
     $page=request('/decisao/registrar',tokens($page['body'],'/decisao/registrar')+['option'=>'1']); verify($page['status']===200,'Pré-jogo HTTP');
     verify(str_contains($page['body'],'data-stat="goals">0'),'Contador de gols inicia na partida');

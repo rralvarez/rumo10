@@ -130,3 +130,10 @@ Executado em PHP 8.4.26 no checkout usado pelo IIS local:
 - Navegador: prévia GET isolada de uma partida da Bolívia, 390 × 844; nenhuma imagem quebrada, largura do documento 390, placar, estatísticas pessoais e quatro opções visíveis na mesma tela. Evidência em `storage/internacional-mobile.jpg`, ignorada pelo Git. Nenhuma conta ou carreira real foi alterada nessa inspeção.
 
 Não executado: Apache de produção, telefone físico, certificação manual de todos os escudos/cores, importação de todas as classificações históricas ou homologação integral dos regulamentos internacionais. Regras adaptadas, fonte das paletas e cobertura provisória de overall estão em `Docs/12_Situacoes_Overall_e_Mercosul.md`.
+
+
+## 13/10/2026 — ficha gráfica do jogador
+
+Criada a página autenticada `/jogador`, acessível pelo nome do personagem e pelo cartão Habilidades e evolução. Cartão de identidade com escudo, nível técnico derivado da média das nove habilidades, condição física em barras, números da temporada, grupos de habilidades com XP e reputação/riscos recolhidos. Não altera regras, valores, carreira ou decisões pendentes.
+
+Verificado: lint PHP de PlayerProfile/view/index; teste de apresentação existente; 44 verificações HTTP no IIS local, incluindo abertura autenticada da ficha e estado da carreira intacto antes/depois. Prévia GET isolada conferida no navegador em desktop e 390 × 844: sem imagens quebradas ou overflow horizontal, expansão de Técnica com valores e barras de XP. Evidências locais em storage/jogador-mobile.jpg e storage/jogador-desktop.jpg. Não houve teste em telefone físico ou Apache.
