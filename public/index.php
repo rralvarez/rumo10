@@ -63,6 +63,7 @@ try {
                 $input=in_array($action,['choice','join'],true)?['option'=>(string)($_POST['option']??'')]:($action==='transfer'?['accept'=>(string)($_POST['accept']??'')]:[]);
                 if($action==='mode')$input=['mode'=>(string)($_POST['mode']??'')];
                 if($action==='simulate')$input=['plan'=>(string)($_POST['plan']??'')];
+                $g=null; // O repositório carrega a carreira sob lock; evite manter outro universo completo na memória.
                 $r->command($_SESSION['account'],$action,$input,(string)($_POST['key']??''),(int)($_POST['version']??-1));
             }
             redirect('/carreira');

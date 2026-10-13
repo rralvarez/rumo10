@@ -3,7 +3,7 @@ declare(strict_types=1);
 /** Universo independente por carreira. Cadastro de 2026; resultados sempre simulados. */
 final class Competition {
     public static function catalog(): array {
-        static $data; return $data??=array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id');
+        static $data; return $data??=array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id');
     }
     public static function clubs(): array {
         static $data;
@@ -13,7 +13,7 @@ final class Competition {
                 $old=$data[$club['name']]??[];$club['competitions']=array_values(array_unique(array_merge($old['competitions']??[],$club['competitions'])));
                 $data[$club['name']]=array_replace($old,$club);
             }
-            foreach(json_decode(file_get_contents(dirname(__DIR__).'/database/international-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR) as $club)$data[$club['name']]=$club;
+            foreach(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/international-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR)) as $club)$data[$club['name']]=$club;
         }return $data;
     }
     public static function attach(array $g,string $club): array {
@@ -38,6 +38,7 @@ final class Competition {
     public static function tournament(string $id,?array $teams=null): array {
         $c=self::catalog()[$id]; $teams??=$c['teams'];
         if($c['format']==='state')return StateCompetition::create($c,$teams);
+        if($c['format']==='european')return EuropeanCompetition::create($c,$teams);
         if($c['format']==='international')return InternationalCompetition::create($c,$teams);
         $groups=[$teams];
         if(in_array($c['format'],['d_knockout','sp_groups'],true)) {
@@ -65,7 +66,8 @@ final class Competition {
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null): array {
         $teams??=$t['teams'];$cross=($t['format']==='state' && !empty(self::catalog()[$t['id']]['rules']['cross'])) || ($t['format']==='international' && str_starts_with($t['id'],'ar-'));
-        $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase || $m['phase']===$phase) && ($cross?(in_array($m['home'],$teams,true) || in_array($m['away'],$teams,true)):(in_array($m['home'],$teams,true) && in_array($m['away'],$teams,true)))));
+        $split=$t['id']==='sc-1' && $phase==='split';if($split)$cross=true;
+        $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase || $m['phase']===$phase || ($split && $m['phase']==='liga')) && ($cross?(in_array($m['home'],$teams,true) || in_array($m['away'],$teams,true)):(in_array($m['home'],$teams,true) && in_array($m['away'],$teams,true)))));
         $rows=Schedule::table($matches,$teams);
         $overall=$phase==='quadrangular' && $t['id']==='sp-a2'?array_column(self::standings($t),null,'team'):[];
         foreach($rows as &$row) {
@@ -150,6 +152,7 @@ final class Competition {
         foreach($t['matches'] as $m) if($m['status']!=='finalizada')throw new LogicException('Fase incompleta.');
         if($t['format']==='state'){StateCompetition::next($t);return;}
         if($t['format']==='international'){InternationalCompetition::next($t);return;}
+        if($t['format']==='european'){EuropeanCompetition::next($t);return;}
         $format=$t['format'];$phase=$t['phase'];
         if($phase==='liga') {
             $ranking=self::rank($t,$t['teams'],'liga');$t['initial_ranking']=$ranking;
@@ -262,9 +265,10 @@ final class Competition {
             self::finish($g['competitions'][$id],$g);
         }
         if(count($g['memberships']['br-c'])>=28)$g['competitions']['br-c']['relegated']=array_slice($g['competitions']['br-c']['initial_ranking'],-6);
+        EuropeanCompetition::barrages($g);
         foreach($g['season_competitions'] as $id)$g['competition_results'][$id]=self::result($g['competitions'][$id],$g['club']);
         $g['next_memberships']=$g['memberships'];
-        foreach([['sp-a1','sp-a2'],['sp-a2','sp-a3'],['sp-a3','sp-a4'],['sp-a4','sp-segunda'],['br-a','br-b'],['br-b','br-c'],['br-c','br-d'],['ar-1','ar-2'],['uy-1','uy-2'],['py-1','py-2'],['bo-1','bo-2']] as [$upper,$lower]) {
+        foreach(array_merge([['sp-a1','sp-a2'],['sp-a2','sp-a3'],['sp-a3','sp-a4'],['sp-a4','sp-segunda'],['br-a','br-b'],['br-b','br-c'],['br-c','br-d'],['ar-1','ar-2'],['uy-1','uy-2'],['py-1','py-2'],['bo-1','bo-2']],EuropeanCompetition::pairs()) as [$upper,$lower]) {
             if(!isset($g['competitions'][$upper],$g['competitions'][$lower]))continue;
             $down=$g['competitions'][$upper]['relegated'];$up=$g['competitions'][$lower]['promoted'];
             $g['next_memberships'][$upper]=array_values(array_diff($g['next_memberships'][$upper],$down));
@@ -282,17 +286,7 @@ final class Competition {
         TeamStrength::nextSeason($g);
     }
     public static function offerPool(array $g): array {
-        $pool=[];$rating=Game::summary($g)['average'];$skills=array_sum(array_column($g['skills'],'value'))/9;
-        $members=$g['next_memberships']??$g['memberships'];
-        $currentTier=1;foreach(self::catalog() as $id=>$c)if(in_array($g['club'],($members[$id]??[]),true))$currentTier=max($currentTier,$c['tier']);
-        foreach(self::clubs() as $club=>$c) {
-            if($club===$g['club'])continue;$tier=1;
-            $eligible=false;foreach(self::catalog() as $id=>$comp)if(in_array($club,$members[$id]??[],true)){$tier=max($tier,$comp['tier']);$eligible=true;}
-            if(!$eligible)continue;
-            if($tier>$currentTier+1 || ($tier>$currentTier && ($rating<6 || $skills<45)))continue;
-            $pool[]=['club'=>$club,'tier'=>$tier,'peso'=>$tier>$currentTier?max(5,(int)(($rating-5)*20)):30];
-        }
-        shuffle($pool);return array_slice($pool,0,8);
+        return TransferMarket::pool($g);
     }
     public static function newSeason(array &$g): void {
         $g['club_strengths']=$g['next_club_strengths']??($g['club_strengths']??[]);unset($g['next_club_strengths']);

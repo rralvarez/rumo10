@@ -1,0 +1,2226 @@
+{
+  "Arsenal-EN": {
+    "position": 1,
+    "teams": 20,
+    "points": 85,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Manchester City-EN": {
+    "position": 2,
+    "teams": 20,
+    "points": 78,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Manchester United-EN": {
+    "position": 3,
+    "teams": 20,
+    "points": 71,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Aston Villa-EN": {
+    "position": 4,
+    "teams": 20,
+    "points": 65,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Liverpool-EN": {
+    "position": 5,
+    "teams": 20,
+    "points": 60,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "AFC Bournemouth-EN": {
+    "position": 6,
+    "teams": 20,
+    "points": 57,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Sunderland-EN": {
+    "position": 7,
+    "teams": 20,
+    "points": 54,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Brighton & Hove Albion-EN": {
+    "position": 8,
+    "teams": 20,
+    "points": 53,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Brentford-EN": {
+    "position": 9,
+    "teams": 20,
+    "points": 53,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Chelsea-EN": {
+    "position": 10,
+    "teams": 20,
+    "points": 52,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Fulham-EN": {
+    "position": 11,
+    "teams": 20,
+    "points": 52,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Newcastle United-EN": {
+    "position": 12,
+    "teams": 20,
+    "points": 49,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Everton-EN": {
+    "position": 13,
+    "teams": 20,
+    "points": 49,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Leeds United-EN": {
+    "position": 14,
+    "teams": 20,
+    "points": 47,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Crystal Palace-EN": {
+    "position": 15,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Nottingham Forest-EN": {
+    "position": 16,
+    "teams": 20,
+    "points": 44,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Tottenham Hotspur-EN": {
+    "position": 17,
+    "teams": 20,
+    "points": 41,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "West Ham United-EN": {
+    "position": 18,
+    "teams": 20,
+    "points": 39,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Burnley-EN": {
+    "position": 19,
+    "teams": 20,
+    "points": 22,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Wolverhampton Wanderers-EN": {
+    "position": 20,
+    "teams": 20,
+    "points": 20,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.1/season/2025"
+  },
+  "Coventry City-EN": {
+    "position": 1,
+    "teams": 24,
+    "points": 95,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Ipswich Town-EN": {
+    "position": 2,
+    "teams": 24,
+    "points": 84,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Millwall-EN": {
+    "position": 3,
+    "teams": 24,
+    "points": 83,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Southampton-EN": {
+    "position": 4,
+    "teams": 24,
+    "points": 80,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Middlesbrough-EN": {
+    "position": 5,
+    "teams": 24,
+    "points": 80,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Hull City-EN": {
+    "position": 6,
+    "teams": 24,
+    "points": 73,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Wrexham-EN": {
+    "position": 7,
+    "teams": 24,
+    "points": 71,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Derby County-EN": {
+    "position": 8,
+    "teams": 24,
+    "points": 69,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Norwich City-EN": {
+    "position": 9,
+    "teams": 24,
+    "points": 65,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Birmingham City-EN": {
+    "position": 10,
+    "teams": 24,
+    "points": 64,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Swansea City-EN": {
+    "position": 11,
+    "teams": 24,
+    "points": 64,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Bristol City-EN": {
+    "position": 12,
+    "teams": 24,
+    "points": 62,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Sheffield United-EN": {
+    "position": 13,
+    "teams": 24,
+    "points": 60,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Preston North End-EN": {
+    "position": 14,
+    "teams": 24,
+    "points": 60,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Queens Park Rangers-EN": {
+    "position": 15,
+    "teams": 24,
+    "points": 58,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Watford-EN": {
+    "position": 16,
+    "teams": 24,
+    "points": 57,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Stoke City-EN": {
+    "position": 17,
+    "teams": 24,
+    "points": 55,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Portsmouth-EN": {
+    "position": 18,
+    "teams": 24,
+    "points": 55,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Charlton Athletic-EN": {
+    "position": 19,
+    "teams": 24,
+    "points": 53,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Blackburn Rovers-EN": {
+    "position": 20,
+    "teams": 24,
+    "points": 52,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "West Bromwich Albion-EN": {
+    "position": 21,
+    "teams": 24,
+    "points": 51,
+    "games": 46,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/eng.2/season/2025"
+  },
+  "Barcelona-ES": {
+    "position": 1,
+    "teams": 20,
+    "points": 94,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Real Madrid-ES": {
+    "position": 2,
+    "teams": 20,
+    "points": 86,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Villarreal-ES": {
+    "position": 3,
+    "teams": 20,
+    "points": 72,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Atlético Madrid-ES": {
+    "position": 4,
+    "teams": 20,
+    "points": 69,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Real Betis-ES": {
+    "position": 5,
+    "teams": 20,
+    "points": 60,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Celta Vigo-ES": {
+    "position": 6,
+    "teams": 20,
+    "points": 54,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Getafe-ES": {
+    "position": 7,
+    "teams": 20,
+    "points": 51,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Rayo Vallecano-ES": {
+    "position": 8,
+    "teams": 20,
+    "points": 50,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Valencia-ES": {
+    "position": 9,
+    "teams": 20,
+    "points": 49,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Real Sociedad-ES": {
+    "position": 10,
+    "teams": 20,
+    "points": 46,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Espanyol-ES": {
+    "position": 11,
+    "teams": 20,
+    "points": 46,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Athletic Club-ES": {
+    "position": 12,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Sevilla-ES": {
+    "position": 13,
+    "teams": 20,
+    "points": 43,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Alavés-ES": {
+    "position": 14,
+    "teams": 20,
+    "points": 43,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Elche-ES": {
+    "position": 15,
+    "teams": 20,
+    "points": 43,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Levante-ES": {
+    "position": 16,
+    "teams": 20,
+    "points": 42,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Osasuna-ES": {
+    "position": 17,
+    "teams": 20,
+    "points": 42,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Mallorca-ES": {
+    "position": 18,
+    "teams": 20,
+    "points": 42,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Girona-ES": {
+    "position": 19,
+    "teams": 20,
+    "points": 41,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Real Oviedo-ES": {
+    "position": 20,
+    "teams": 20,
+    "points": 29,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.1/season/2025"
+  },
+  "Racing Santander-ES": {
+    "position": 1,
+    "teams": 22,
+    "points": 82,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Deportivo-ES": {
+    "position": 2,
+    "teams": 22,
+    "points": 77,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Almería-ES": {
+    "position": 3,
+    "teams": 22,
+    "points": 74,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Málaga-ES": {
+    "position": 4,
+    "teams": 22,
+    "points": 73,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Las Palmas-ES": {
+    "position": 5,
+    "teams": 22,
+    "points": 73,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Castellón-ES": {
+    "position": 6,
+    "teams": 22,
+    "points": 72,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Burgos-ES": {
+    "position": 7,
+    "teams": 22,
+    "points": 72,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Eibar-ES": {
+    "position": 8,
+    "teams": 22,
+    "points": 67,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Córdoba-ES": {
+    "position": 9,
+    "teams": 22,
+    "points": 61,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Sporting Gijón-ES": {
+    "position": 10,
+    "teams": 22,
+    "points": 61,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Ceuta-ES": {
+    "position": 11,
+    "teams": 22,
+    "points": 61,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Albacete-ES": {
+    "position": 12,
+    "teams": 22,
+    "points": 59,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "FC Andorra-ES": {
+    "position": 13,
+    "teams": 22,
+    "points": 58,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Granada-ES": {
+    "position": 14,
+    "teams": 22,
+    "points": 48,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Real Sociedad II-ES": {
+    "position": 15,
+    "teams": 22,
+    "points": 47,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Leganés-ES": {
+    "position": 16,
+    "teams": 22,
+    "points": 46,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Real Valladolid-ES": {
+    "position": 17,
+    "teams": 22,
+    "points": 46,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Cádiz-ES": {
+    "position": 18,
+    "teams": 22,
+    "points": 43,
+    "games": 42,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/esp.2/season/2025"
+  },
+  "Bayern Munich-DE": {
+    "position": 1,
+    "teams": 18,
+    "points": 89,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Borussia Dortmund-DE": {
+    "position": 2,
+    "teams": 18,
+    "points": 73,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "RB Leipzig-DE": {
+    "position": 3,
+    "teams": 18,
+    "points": 65,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "VfB Stuttgart-DE": {
+    "position": 4,
+    "teams": 18,
+    "points": 62,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "TSG Hoffenheim-DE": {
+    "position": 5,
+    "teams": 18,
+    "points": 61,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Bayer Leverkusen-DE": {
+    "position": 6,
+    "teams": 18,
+    "points": 59,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "SC Freiburg-DE": {
+    "position": 7,
+    "teams": 18,
+    "points": 47,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Eintracht Frankfurt-DE": {
+    "position": 8,
+    "teams": 18,
+    "points": 44,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "FC Augsburg-DE": {
+    "position": 9,
+    "teams": 18,
+    "points": 43,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Mainz-DE": {
+    "position": 10,
+    "teams": 18,
+    "points": 40,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "1. FC Union Berlin-DE": {
+    "position": 11,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Borussia Mönchengladbach-DE": {
+    "position": 12,
+    "teams": 18,
+    "points": 38,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Hamburg SV-DE": {
+    "position": 13,
+    "teams": 18,
+    "points": 38,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "FC Cologne-DE": {
+    "position": 14,
+    "teams": 18,
+    "points": 32,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Werder Bremen-DE": {
+    "position": 15,
+    "teams": 18,
+    "points": 32,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "VfL Wolfsburg-DE": {
+    "position": 16,
+    "teams": 18,
+    "points": 29,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "1. FC Heidenheim 1846-DE": {
+    "position": 17,
+    "teams": 18,
+    "points": 26,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "St. Pauli-DE": {
+    "position": 18,
+    "teams": 18,
+    "points": 26,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.1/season/2025"
+  },
+  "Schalke 04-DE": {
+    "position": 1,
+    "teams": 18,
+    "points": 70,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "SV Elversberg-DE": {
+    "position": 2,
+    "teams": 18,
+    "points": 62,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "SC Paderborn 07-DE": {
+    "position": 3,
+    "teams": 18,
+    "points": 62,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Hannover 96-DE": {
+    "position": 4,
+    "teams": 18,
+    "points": 60,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "SV Darmstadt 98-DE": {
+    "position": 5,
+    "teams": 18,
+    "points": 52,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Kaiserslautern-DE": {
+    "position": 6,
+    "teams": 18,
+    "points": 52,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Hertha Berlin-DE": {
+    "position": 7,
+    "teams": 18,
+    "points": 51,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "1. FC Nürnberg-DE": {
+    "position": 8,
+    "teams": 18,
+    "points": 46,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "VfL Bochum-DE": {
+    "position": 9,
+    "teams": 18,
+    "points": 44,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Karlsruher SC-DE": {
+    "position": 10,
+    "teams": 18,
+    "points": 44,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Dynamo Dresden-DE": {
+    "position": 11,
+    "teams": 18,
+    "points": 41,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Holstein Kiel-DE": {
+    "position": 12,
+    "teams": 18,
+    "points": 41,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Arminia Bielefeld-DE": {
+    "position": 13,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "1. FC Magdeburg-DE": {
+    "position": 14,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "TSV Eintracht Braunschweig-DE": {
+    "position": 15,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "SpVgg Greuther Fürth-DE": {
+    "position": 16,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ger.2/season/2025"
+  },
+  "Internazionale-IT": {
+    "position": 1,
+    "teams": 20,
+    "points": 87,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Napoli-IT": {
+    "position": 2,
+    "teams": 20,
+    "points": 76,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "AS Roma-IT": {
+    "position": 3,
+    "teams": 20,
+    "points": 73,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Como-IT": {
+    "position": 4,
+    "teams": 20,
+    "points": 71,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "AC Milan-IT": {
+    "position": 5,
+    "teams": 20,
+    "points": 70,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Juventus-IT": {
+    "position": 6,
+    "teams": 20,
+    "points": 69,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Atalanta-IT": {
+    "position": 7,
+    "teams": 20,
+    "points": 59,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Bologna-IT": {
+    "position": 8,
+    "teams": 20,
+    "points": 56,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Lazio-IT": {
+    "position": 9,
+    "teams": 20,
+    "points": 54,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Udinese-IT": {
+    "position": 10,
+    "teams": 20,
+    "points": 50,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Sassuolo-IT": {
+    "position": 11,
+    "teams": 20,
+    "points": 49,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Torino-IT": {
+    "position": 12,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Parma-IT": {
+    "position": 13,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Cagliari-IT": {
+    "position": 14,
+    "teams": 20,
+    "points": 43,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Fiorentina-IT": {
+    "position": 15,
+    "teams": 20,
+    "points": 42,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Genoa-IT": {
+    "position": 16,
+    "teams": 20,
+    "points": 41,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Lecce-IT": {
+    "position": 17,
+    "teams": 20,
+    "points": 38,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Cremonese-IT": {
+    "position": 18,
+    "teams": 20,
+    "points": 34,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Hellas Verona-IT": {
+    "position": 19,
+    "teams": 20,
+    "points": 21,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Pisa-IT": {
+    "position": 20,
+    "teams": 20,
+    "points": 18,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.1/season/2025"
+  },
+  "Venezia-IT": {
+    "position": 1,
+    "teams": 20,
+    "points": 82,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Frosinone-IT": {
+    "position": 2,
+    "teams": 20,
+    "points": 81,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Monza-IT": {
+    "position": 3,
+    "teams": 20,
+    "points": 76,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Palermo-IT": {
+    "position": 4,
+    "teams": 20,
+    "points": 72,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Catanzaro-IT": {
+    "position": 5,
+    "teams": 20,
+    "points": 59,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Modena-IT": {
+    "position": 6,
+    "teams": 20,
+    "points": 55,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Juve Stabia-IT": {
+    "position": 7,
+    "teams": 20,
+    "points": 51,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "US Avellino-IT": {
+    "position": 8,
+    "teams": 20,
+    "points": 49,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Mantova-IT": {
+    "position": 9,
+    "teams": 20,
+    "points": 46,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Padova-IT": {
+    "position": 10,
+    "teams": 20,
+    "points": 46,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Cesena-IT": {
+    "position": 11,
+    "teams": 20,
+    "points": 46,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Carrarese-IT": {
+    "position": 12,
+    "teams": 20,
+    "points": 44,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Sampdoria-IT": {
+    "position": 13,
+    "teams": 20,
+    "points": 44,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Virtus Entella-IT": {
+    "position": 14,
+    "teams": 20,
+    "points": 42,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Empoli-IT": {
+    "position": 15,
+    "teams": 20,
+    "points": 41,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Sudtirol-IT": {
+    "position": 16,
+    "teams": 20,
+    "points": 41,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ita.2/season/2025"
+  },
+  "Paris Saint-Germain-FR": {
+    "position": 1,
+    "teams": 18,
+    "points": 76,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Lens-FR": {
+    "position": 2,
+    "teams": 18,
+    "points": 70,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Lille-FR": {
+    "position": 3,
+    "teams": 18,
+    "points": 61,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Lyon-FR": {
+    "position": 4,
+    "teams": 18,
+    "points": 60,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Marseille-FR": {
+    "position": 5,
+    "teams": 18,
+    "points": 59,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Stade Rennais-FR": {
+    "position": 6,
+    "teams": 18,
+    "points": 59,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "AS Monaco-FR": {
+    "position": 7,
+    "teams": 18,
+    "points": 54,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Strasbourg-FR": {
+    "position": 8,
+    "teams": 18,
+    "points": 53,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Lorient-FR": {
+    "position": 9,
+    "teams": 18,
+    "points": 45,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Toulouse-FR": {
+    "position": 10,
+    "teams": 18,
+    "points": 44,
+    "games": 33,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Paris FC-FR": {
+    "position": 11,
+    "teams": 18,
+    "points": 44,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Brest-FR": {
+    "position": 12,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Angers-FR": {
+    "position": 13,
+    "teams": 18,
+    "points": 36,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Le Havre AC-FR": {
+    "position": 14,
+    "teams": 18,
+    "points": 35,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "AJ Auxerre-FR": {
+    "position": 15,
+    "teams": 18,
+    "points": 34,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Nice-FR": {
+    "position": 16,
+    "teams": 18,
+    "points": 32,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Nantes-FR": {
+    "position": 17,
+    "teams": 18,
+    "points": 23,
+    "games": 33,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Metz-FR": {
+    "position": 18,
+    "teams": 18,
+    "points": 17,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.1/season/2025"
+  },
+  "Troyes-FR": {
+    "position": 1,
+    "teams": 18,
+    "points": 67,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Le Mans-FR": {
+    "position": 2,
+    "teams": 18,
+    "points": 62,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Saint-Étienne-FR": {
+    "position": 3,
+    "teams": 18,
+    "points": 60,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Red Star FC 93-FR": {
+    "position": 4,
+    "teams": 18,
+    "points": 58,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Rodez Aveyron-FR": {
+    "position": 5,
+    "teams": 18,
+    "points": 58,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Stade de Reims-FR": {
+    "position": 6,
+    "teams": 18,
+    "points": 56,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Annecy-FR": {
+    "position": 7,
+    "teams": 18,
+    "points": 52,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Montpellier-FR": {
+    "position": 8,
+    "teams": 18,
+    "points": 51,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Pau-FR": {
+    "position": 9,
+    "teams": 18,
+    "points": 45,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Dunkerque-FR": {
+    "position": 10,
+    "teams": 18,
+    "points": 43,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Guingamp-FR": {
+    "position": 11,
+    "teams": 18,
+    "points": 40,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Grenoble-FR": {
+    "position": 12,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Clermont Foot-FR": {
+    "position": 13,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "AS Nancy Lorraine-FR": {
+    "position": 14,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Boulogne-FR": {
+    "position": 15,
+    "teams": 18,
+    "points": 36,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "Stade Laval-FR": {
+    "position": 16,
+    "teams": 18,
+    "points": 32,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/fra.2/season/2025"
+  },
+  "FC Porto-PT": {
+    "position": 1,
+    "teams": 18,
+    "points": 88,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Sporting CP-PT": {
+    "position": 2,
+    "teams": 18,
+    "points": 82,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Benfica-PT": {
+    "position": 3,
+    "teams": 18,
+    "points": 80,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Braga-PT": {
+    "position": 4,
+    "teams": 18,
+    "points": 59,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "FC Famalicao-PT": {
+    "position": 5,
+    "teams": 18,
+    "points": 56,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Gil Vicente-PT": {
+    "position": 6,
+    "teams": 18,
+    "points": 50,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Moreirense-PT": {
+    "position": 7,
+    "teams": 18,
+    "points": 43,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Arouca-PT": {
+    "position": 8,
+    "teams": 18,
+    "points": 42,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Vitória de Guimaraes-PT": {
+    "position": 9,
+    "teams": 18,
+    "points": 42,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Estoril-PT": {
+    "position": 10,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Alverca-PT": {
+    "position": 11,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Rio Ave-PT": {
+    "position": 12,
+    "teams": 18,
+    "points": 36,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Santa Clara-PT": {
+    "position": 13,
+    "teams": 18,
+    "points": 36,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "C.D. Nacional-PT": {
+    "position": 14,
+    "teams": 18,
+    "points": 34,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Estrela-PT": {
+    "position": 15,
+    "teams": 18,
+    "points": 30,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "Casa Pia-PT": {
+    "position": 16,
+    "teams": 18,
+    "points": 30,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025"
+  },
+  "PSV Eindhoven-NL": {
+    "position": 1,
+    "teams": 18,
+    "points": 84,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Feyenoord Rotterdam-NL": {
+    "position": 2,
+    "teams": 18,
+    "points": 65,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "NEC Nijmegen-NL": {
+    "position": 3,
+    "teams": 18,
+    "points": 59,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "FC Twente-NL": {
+    "position": 4,
+    "teams": 18,
+    "points": 58,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Ajax Amsterdam-NL": {
+    "position": 5,
+    "teams": 18,
+    "points": 56,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "FC Utrecht-NL": {
+    "position": 6,
+    "teams": 18,
+    "points": 53,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "AZ Alkmaar-NL": {
+    "position": 7,
+    "teams": 18,
+    "points": 52,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Heerenveen-NL": {
+    "position": 8,
+    "teams": 18,
+    "points": 51,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "FC Groningen-NL": {
+    "position": 9,
+    "teams": 18,
+    "points": 48,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Sparta Rotterdam-NL": {
+    "position": 10,
+    "teams": 18,
+    "points": 43,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Fortuna Sittard-NL": {
+    "position": 11,
+    "teams": 18,
+    "points": 39,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Go Ahead Eagles-NL": {
+    "position": 12,
+    "teams": 18,
+    "points": 38,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Excelsior-NL": {
+    "position": 13,
+    "teams": 18,
+    "points": 38,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Telstar-NL": {
+    "position": 14,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "PEC Zwolle-NL": {
+    "position": 15,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "FC Volendam-NL": {
+    "position": 16,
+    "teams": 18,
+    "points": 32,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "NAC Breda-NL": {
+    "position": 17,
+    "teams": 18,
+    "points": 29,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "Heracles Almelo-NL": {
+    "position": 18,
+    "teams": 18,
+    "points": 19,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.1/season/2025"
+  },
+  "ADO Den Haag-NL": {
+    "position": 1,
+    "teams": 20,
+    "points": 89,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "SC Cambuur-NL": {
+    "position": 2,
+    "teams": 20,
+    "points": 78,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Willem II-NL": {
+    "position": 3,
+    "teams": 20,
+    "points": 68,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "De Graafschap-NL": {
+    "position": 4,
+    "teams": 20,
+    "points": 63,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Almere City-NL": {
+    "position": 5,
+    "teams": 20,
+    "points": 58,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "RKC Waalwijk-NL": {
+    "position": 6,
+    "teams": 20,
+    "points": 58,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Jong PSV-NL": {
+    "position": 7,
+    "teams": 20,
+    "points": 56,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Roda JC Kerkrade-NL": {
+    "position": 8,
+    "teams": 20,
+    "points": 55,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "FC Den Bosch-NL": {
+    "position": 9,
+    "teams": 20,
+    "points": 51,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "FC Dordrecht-NL": {
+    "position": 10,
+    "teams": 20,
+    "points": 47,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "FC Eindhoven-NL": {
+    "position": 11,
+    "teams": 20,
+    "points": 47,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Jong FC Utrecht-NL": {
+    "position": 12,
+    "teams": 20,
+    "points": 46,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "VVV-Venlo-NL": {
+    "position": 13,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "FC Emmen-NL": {
+    "position": 14,
+    "teams": 20,
+    "points": 45,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Vitesse-NL": {
+    "position": 15,
+    "teams": 20,
+    "points": 44,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "TOP Oss-NL": {
+    "position": 16,
+    "teams": 20,
+    "points": 44,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Jong AZ-NL": {
+    "position": 17,
+    "teams": 20,
+    "points": 40,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Helmond Sport-NL": {
+    "position": 18,
+    "teams": 20,
+    "points": 39,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "MVV Maastricht-NL": {
+    "position": 19,
+    "teams": 20,
+    "points": 38,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Jong Ajax-NL": {
+    "position": 20,
+    "teams": 20,
+    "points": 35,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/ned.2/season/2025"
+  },
+  "Anderlecht-BE": {
+    "position": 4,
+    "teams": 6,
+    "points": 33,
+    "games": 40,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/bel.1/season/2025"
+  },
+  "Club Brugge-BE": {
+    "position": 1,
+    "teams": 6,
+    "points": 57,
+    "games": 40,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/bel.1/season/2025"
+  },
+  "Sint-Truidense-BE": {
+    "position": 3,
+    "teams": 6,
+    "points": 43,
+    "games": 40,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/bel.1/season/2025"
+  },
+  "KAA Gent-BE": {
+    "position": 5,
+    "teams": 6,
+    "points": 29,
+    "games": 40,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/bel.1/season/2025"
+  },
+  "Union St.-Gilloise-BE": {
+    "position": 2,
+    "teams": 6,
+    "points": 53,
+    "games": 40,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/bel.1/season/2025"
+  },
+  "KV Mechelen-BE": {
+    "position": 6,
+    "teams": 6,
+    "points": 29,
+    "games": 40,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/bel.1/season/2025"
+  },
+  "Galatasaray-TR": {
+    "position": 1,
+    "teams": 18,
+    "points": 77,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Fenerbahce-TR": {
+    "position": 2,
+    "teams": 18,
+    "points": 74,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Trabzonspor-TR": {
+    "position": 3,
+    "teams": 18,
+    "points": 69,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Besiktas-TR": {
+    "position": 4,
+    "teams": 18,
+    "points": 60,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Istanbul Basaksehir-TR": {
+    "position": 5,
+    "teams": 18,
+    "points": 57,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Goztepe-TR": {
+    "position": 6,
+    "teams": 18,
+    "points": 55,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Samsunspor-TR": {
+    "position": 7,
+    "teams": 18,
+    "points": 51,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Caykur Rizespor-TR": {
+    "position": 8,
+    "teams": 18,
+    "points": 41,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Konyaspor-TR": {
+    "position": 9,
+    "teams": 18,
+    "points": 40,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Kocaelispor-TR": {
+    "position": 10,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Alanyaspor-TR": {
+    "position": 11,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Gaziantep FK-TR": {
+    "position": 12,
+    "teams": 18,
+    "points": 37,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Kasimpasa-TR": {
+    "position": 13,
+    "teams": 18,
+    "points": 35,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Genclerbirligi-TR": {
+    "position": 14,
+    "teams": 18,
+    "points": 34,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Eyupspor-TR": {
+    "position": 15,
+    "teams": 18,
+    "points": 33,
+    "games": 34,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/tur.1/season/2025"
+  },
+  "Celtic-SC": {
+    "position": 1,
+    "teams": 12,
+    "points": 82,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Heart of Midlothian-SC": {
+    "position": 2,
+    "teams": 12,
+    "points": 80,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Rangers-SC": {
+    "position": 3,
+    "teams": 12,
+    "points": 72,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Motherwell-SC": {
+    "position": 4,
+    "teams": 12,
+    "points": 61,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Hibernian-SC": {
+    "position": 5,
+    "teams": 12,
+    "points": 57,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Falkirk-SC": {
+    "position": 6,
+    "teams": 12,
+    "points": 49,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Dundee United-SC": {
+    "position": 7,
+    "teams": 12,
+    "points": 45,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Dundee-SC": {
+    "position": 8,
+    "teams": 12,
+    "points": 42,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Aberdeen-SC": {
+    "position": 9,
+    "teams": 12,
+    "points": 40,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Kilmarnock-SC": {
+    "position": 10,
+    "teams": 12,
+    "points": 40,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "St Mirren-SC": {
+    "position": 11,
+    "teams": 12,
+    "points": 34,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "Livingston-SC": {
+    "position": 12,
+    "teams": 12,
+    "points": 21,
+    "games": 38,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.1/season/2025"
+  },
+  "St Johnstone-SC": {
+    "position": 1,
+    "teams": 10,
+    "points": 77,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  },
+  "Partick Thistle-SC": {
+    "position": 2,
+    "teams": 10,
+    "points": 66,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  },
+  "Arbroath-SC": {
+    "position": 3,
+    "teams": 10,
+    "points": 52,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  },
+  "Dunfermline Athletic-SC": {
+    "position": 4,
+    "teams": 10,
+    "points": 51,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  },
+  "Raith Rovers-SC": {
+    "position": 5,
+    "teams": 10,
+    "points": 45,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  },
+  "Queen's Park-SC": {
+    "position": 6,
+    "teams": 10,
+    "points": 41,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  },
+  "Ayr United-SC": {
+    "position": 7,
+    "teams": 10,
+    "points": 39,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  },
+  "Greenock Morton-SC": {
+    "position": 8,
+    "teams": 10,
+    "points": 38,
+    "games": 36,
+    "edition": "2025/26",
+    "source": "https://www.espn.com/soccer/standings/_/league/sco.2/season/2025"
+  }
+}

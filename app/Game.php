@@ -64,6 +64,7 @@ final class Game {
                 if(isset($g['skills'][$k])) $g['skills'][$k]['value']=self::clamp($g['skills'][$k]['value']+$v); else $g['states'][$k]=self::clamp($g['states'][$k]+$v);
             }
             $g['feedback']=['text'=>'Perfil inicial: '.$h['nome'],'effects'=>$h['efeitos']]; $g['stage']='treino';
+            $g['season_skill_baseline']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['starting'])) {
                 $g['entry_division']=Onboarding::division($g['uf'],$h['nome']);
                 $g['initial_candidates']=Onboarding::candidates($g['origin'],$g['entry_division']);
@@ -117,12 +118,14 @@ final class Game {
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
             unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
+            $summary['technical_average']=array_sum(array_column($g['skills'],'value'))/9;
             $selected=current(array_filter($g['offers'],fn($o)=>$o['selected']));
             if($input['accept']==='yes') { $g['club']=$selected['club']; $g['tier']=$selected['tier']; }
             $summary['next_club']=$g['club']; $g['history'][]=$summary;
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
             $g['teams']=$teams; $g['season']++; $g['age']++; $g['round']=1; $g['stage']='treino'; $g['matches']=Schedule::generate($teams); $g['offers']=[]; $g['states']['energia']=85;
             if(!empty($g['official']))Competition::newSeason($g);
+            $g['season_skill_baseline']=array_sum(array_column($g['skills'],'value'))/9;
             $g['feedback']=['text'=>'Contrato renovado para a temporada '.$g['season'].'. Clube: '.$g['club']];
         } elseif($action==='continue' && $g['stage']==='competicao_resumo' && !empty($g['official'])) {
             Competition::continueSeason($g);

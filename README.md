@@ -1,6 +1,6 @@
-# Rumo à Camisa 10 — protótipo 0.6
+# Rumo à Camisa 10 — protótipo 0.7
 
-RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **671 clubes**, no Brasileirão A/B/C/D, Paulista A1/A2/A3/A4/Segunda Divisão e divisões de entrada das outras 26 UFs (cadastro ampliado em 13/10/2026). São **43 competições/etapas**, incluindo as duas principais divisões de Argentina, Uruguai, Paraguai e Bolívia. Participantes e formatos têm fontes registradas; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
+RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **1.036 clubes**, no Brasileirão A/B/C/D, Paulista A1/A2/A3/A4/Segunda Divisão e divisões de entrada das outras 26 UFs (cadastro ampliado em 13/10/2026). São **63 competições/etapas**, incluindo as duas principais divisões de Argentina, Uruguai, Paraguai e Bolívia e de dez mercados europeus (2026/27). Participantes e formatos têm fontes registradas; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
 
 Para começar outra carreira na conta atual, abra **/carreira/nova**. A anterior será arquivada ao enviar o formulário; pode ser retomada em **/carreira/arquivadas**. Criar outra carreira não apaga a anterior.
 
@@ -34,6 +34,10 @@ Nesta máquina, a instância original FastCGI apresentou erro de monitoramento e
 ```
 
 Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação anônima com identidade do pool em produção, evitando compartilhamento de IUSR entre sites.
+## Europa e mercado internacional
+
+Incluídas duas divisões de Inglaterra, Espanha, Alemanha, Itália, França, Portugal, Países Baixos, Bélgica, Turquia e Escócia: 365 clubes com escudos locais e cores aproximadas. As propostas internacionais nas carreiras oficiais consideram desempenho, minutos, evolução e nível do clube. Aceitar uma proposta muda o campeonato no ano seguinte e preserva a carreira. A Europa entra no fechamento da temporada sem reset. [Funcionamento, fontes e adaptações dos regulamentos](Docs/14_Europa_e_Mercado_Internacional.md).
+
 ## Modos de jogo
 
 Escolha **Normal**, **Rápido** ou **Expresso** na criação do jogador ou abra **Modo · alterar ritmo** na carreira antes de um jogo. Normal mantém as decisões por situação; Rápido pede uma abordagem por partida; Expresso pede uma estratégia e simula toda a temporada restante. Contratos são escolhidos por você em todos os modos. Nenhuma carreira precisa ser reiniciada e nenhuma migração de banco é necessária. [Funcionamento e limites](Docs/13_Modos_de_Jogo.md).

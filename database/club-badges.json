@@ -4233,5 +4233,2560 @@
     "download_url": "https://escudosfc.com.br/images/filadelfia_bol.png",
     "retrieved": "2026-10-13",
     "identity_status": "community_archive"
+  },
+  "Aston Villa-EN": {
+    "path": "/assets/clubs/eu-e7abb796719a1a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/362/aston-villa",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/362.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Arsenal-EN": {
+    "path": "/assets/clubs/eu-e2181ce78042a0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/359/arsenal",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Chelsea-EN": {
+    "path": "/assets/clubs/eu-df9375a921d737.png",
+    "source": "https://www.espn.com/soccer/club/_/id/363/chelsea",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Crystal Palace-EN": {
+    "path": "/assets/clubs/eu-cd6cf228420c46.png",
+    "source": "https://www.espn.com/soccer/club/_/id/384/crystal-palace",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fulham-EN": {
+    "path": "/assets/clubs/eu-e428befb67e4b6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/370/fulham",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/370.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AFC Bournemouth-EN": {
+    "path": "/assets/clubs/eu-6cc932e13b79f6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/349/afc-bournemouth",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hull City-EN": {
+    "path": "/assets/clubs/eu-0a3f610933d133.png",
+    "source": "https://www.espn.com/soccer/club/_/id/306/hull-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Liverpool-EN": {
+    "path": "/assets/clubs/eu-bcd7fa1d4d0271.png",
+    "source": "https://www.espn.com/soccer/club/_/id/364/liverpool",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Brighton & Hove Albion-EN": {
+    "path": "/assets/clubs/eu-089b43899bd838.png",
+    "source": "https://www.espn.com/soccer/club/_/id/331/brighton-hove-albion",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Manchester City-EN": {
+    "path": "/assets/clubs/eu-2017eb59250ebf.png",
+    "source": "https://www.espn.com/soccer/club/_/id/382/manchester-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Brentford-EN": {
+    "path": "/assets/clubs/eu-42e214775f193d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/337/brentford",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Manchester United-EN": {
+    "path": "/assets/clubs/eu-c7814943fc21e6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/360/manchester-united",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Coventry City-EN": {
+    "path": "/assets/clubs/eu-99de5ba2c6cf9c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/388/coventry-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/388.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ipswich Town-EN": {
+    "path": "/assets/clubs/eu-b4cf8ce9d49947.png",
+    "source": "https://www.espn.com/soccer/club/_/id/373/ipswich-town",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Newcastle United-EN": {
+    "path": "/assets/clubs/eu-f663c8e94ff17a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/361/newcastle-united",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/361.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Everton-EN": {
+    "path": "/assets/clubs/eu-9d6892f935d1f8.png",
+    "source": "https://www.espn.com/soccer/club/_/id/368/everton",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Birmingham City-EN": {
+    "path": "/assets/clubs/eu-2213cc8dda931e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/392/birmingham-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Blackburn Rovers-EN": {
+    "path": "/assets/clubs/eu-53cb2ba918acfa.png",
+    "source": "https://www.espn.com/soccer/club/_/id/365/blackburn-rovers",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bolton Wanderers-EN": {
+    "path": "/assets/clubs/eu-6e6b211aabe5b3.png",
+    "source": "https://www.espn.com/soccer/club/_/id/358/bolton-wanderers",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/358.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bristol City-EN": {
+    "path": "/assets/clubs/eu-d9a761da3d486a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/333/bristol-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Leeds United-EN": {
+    "path": "/assets/clubs/eu-e8f242e05c3c7a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/357/leeds-united",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/357.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cardiff City-EN": {
+    "path": "/assets/clubs/eu-f2e882fc809471.png",
+    "source": "https://www.espn.com/soccer/club/_/id/347/cardiff-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Burnley-EN": {
+    "path": "/assets/clubs/eu-b2b9a1ba3d5a17.png",
+    "source": "https://www.espn.com/soccer/club/_/id/379/burnley",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Middlesbrough-EN": {
+    "path": "/assets/clubs/eu-c0ccfe2650cd9a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/369/middlesbrough",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sunderland-EN": {
+    "path": "/assets/clubs/eu-b38b43eb498a21.png",
+    "source": "https://www.espn.com/soccer/club/_/id/366/sunderland",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Tottenham Hotspur-EN": {
+    "path": "/assets/clubs/eu-342087d6273b8c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/367/tottenham-hotspur",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/367.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Nottingham Forest-EN": {
+    "path": "/assets/clubs/eu-33f4a8d17ac484.png",
+    "source": "https://www.espn.com/soccer/club/_/id/393/nottingham-forest",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/393.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Charlton Athletic-EN": {
+    "path": "/assets/clubs/eu-ed6fd7d07313f0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/372/charlton-athletic",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Norwich City-EN": {
+    "path": "/assets/clubs/eu-e1be0888d301c5.png",
+    "source": "https://www.espn.com/soccer/club/_/id/381/norwich-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/381.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Preston North End-EN": {
+    "path": "/assets/clubs/eu-64053c574f525e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/394/preston-north-end",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lincoln City-EN": {
+    "path": "/assets/clubs/eu-dbceececf33834.png",
+    "source": "https://www.espn.com/soccer/club/_/id/314/lincoln-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/314.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stoke City-EN": {
+    "path": "/assets/clubs/eu-3c70e34a8d5162.png",
+    "source": "https://www.espn.com/soccer/club/_/id/336/stoke-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Swansea City-EN": {
+    "path": "/assets/clubs/eu-000d9e27cbdcda.png",
+    "source": "https://www.espn.com/soccer/club/_/id/318/swansea-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Millwall-EN": {
+    "path": "/assets/clubs/eu-790bb69b232f55.png",
+    "source": "https://www.espn.com/soccer/club/_/id/391/millwall",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Derby County-EN": {
+    "path": "/assets/clubs/eu-21a6a254255490.png",
+    "source": "https://www.espn.com/soccer/club/_/id/374/derby-county",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/374.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Watford-EN": {
+    "path": "/assets/clubs/eu-383d17f856a7b9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/395/watford",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Wolverhampton Wanderers-EN": {
+    "path": "/assets/clubs/eu-0cf7b16d755620.png",
+    "source": "https://www.espn.com/soccer/club/_/id/380/wolverhampton-wanderers",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/380.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "West Bromwich Albion-EN": {
+    "path": "/assets/clubs/eu-e99fa58caa79e9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/383/west-bromwich-albion",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Queens Park Rangers-EN": {
+    "path": "/assets/clubs/eu-b12e2e5ab7ba28.png",
+    "source": "https://www.espn.com/soccer/club/_/id/334/queens-park-rangers",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/334.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alavés-ES": {
+    "path": "/assets/clubs/eu-ab342ada418e09.png",
+    "source": "https://www.espn.com/soccer/club/_/id/96/alaves",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/96.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sheffield United-EN": {
+    "path": "/assets/clubs/eu-b70169739f7975.png",
+    "source": "https://www.espn.com/soccer/club/_/id/398/sheffield-united",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/398.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Southampton-EN": {
+    "path": "/assets/clubs/eu-bdc4dbd65ab1d9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/376/southampton",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/376.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Athletic Club-ES": {
+    "path": "/assets/clubs/eu-45507cf79baaff.png",
+    "source": "https://www.espn.com/soccer/club/_/id/93/athletic-club",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Wrexham-EN": {
+    "path": "/assets/clubs/eu-71441093fa3d7a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/352/wrexham",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Barcelona-ES": {
+    "path": "/assets/clubs/eu-79f13d82eaa416.png",
+    "source": "https://www.espn.com/soccer/club/_/id/83/barcelona",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlético Madrid-ES": {
+    "path": "/assets/clubs/eu-518b67787ed96e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/1068/atletico-madrid",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Portsmouth-EN": {
+    "path": "/assets/clubs/eu-4d09a8f7ab339c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/385/portsmouth",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/385.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "West Ham United-EN": {
+    "path": "/assets/clubs/eu-57e073b282b05d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/371/west-ham-united",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/371.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Celta Vigo-ES": {
+    "path": "/assets/clubs/eu-2c8e47f6360be8.png",
+    "source": "https://www.espn.com/soccer/club/_/id/85/celta-vigo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/85.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo-ES": {
+    "path": "/assets/clubs/eu-77e920d4f6543c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/90/deportivo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Espanyol-ES": {
+    "path": "/assets/clubs/eu-d5717b6c805b35.png",
+    "source": "https://www.espn.com/soccer/club/_/id/88/espanyol",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/88.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Getafe-ES": {
+    "path": "/assets/clubs/eu-94fe44633c46bf.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2922/getafe",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Levante-ES": {
+    "path": "/assets/clubs/eu-860d22fb5857a1.png",
+    "source": "https://www.espn.com/soccer/club/_/id/1538/levante",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1538.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Osasuna-ES": {
+    "path": "/assets/clubs/eu-759cb4a2ca674f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/97/osasuna",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Málaga-ES": {
+    "path": "/assets/clubs/eu-c49f7ed072ad54.png",
+    "source": "https://www.espn.com/soccer/club/_/id/99/malaga",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Betis-ES": {
+    "path": "/assets/clubs/eu-9c02281dccf072.png",
+    "source": "https://www.espn.com/soccer/club/_/id/244/real-betis",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rayo Vallecano-ES": {
+    "path": "/assets/clubs/eu-8e126ea9549985.png",
+    "source": "https://www.espn.com/soccer/club/_/id/101/rayo-vallecano",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/101.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Sociedad-ES": {
+    "path": "/assets/clubs/eu-e3113bc2b1a09c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/89/real-sociedad",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Madrid-ES": {
+    "path": "/assets/clubs/eu-884d6c13cfc42b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/86/real-madrid",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Valencia-ES": {
+    "path": "/assets/clubs/eu-6cdd38ff6104b5.png",
+    "source": "https://www.espn.com/soccer/club/_/id/94/valencia",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/94.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Villarreal-ES": {
+    "path": "/assets/clubs/eu-a7052ee4b9137c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/102/villarreal",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Elche-ES": {
+    "path": "/assets/clubs/eu-7bc876253525d8.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3751/elche",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Racing Santander-ES": {
+    "path": "/assets/clubs/eu-028d5dd281492d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/87/racing-santander",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/87.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD Sabadell-ES": {
+    "path": "/assets/clubs/eu-24d66763f5c6cb.png",
+    "source": "https://www.espn.com/soccer/club/_/id/11487/cd-sabadell",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11487.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sevilla-ES": {
+    "path": "/assets/clubs/eu-4b7775a4b2369e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/243/sevilla",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/243.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cádiz-ES": {
+    "path": "/assets/clubs/eu-e9316af925b2e1.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3842/cadiz",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3842.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Albacete-ES": {
+    "path": "/assets/clubs/eu-d7357e554b5a93.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2737/albacete",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2737.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Almería-ES": {
+    "path": "/assets/clubs/eu-483bc5e4077948.png",
+    "source": "https://www.espn.com/soccer/club/_/id/6832/almeria",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6832.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Castellón-ES": {
+    "path": "/assets/clubs/eu-1de9d85bd35382.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4438/castellon",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4438.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Burgos-ES": {
+    "path": "/assets/clubs/eu-8894d725287946.png",
+    "source": "https://www.espn.com/soccer/club/_/id/12597/burgos",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/12597.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ceuta-ES": {
+    "path": "/assets/clubs/eu-d0c9e32046b370.png",
+    "source": "https://www.espn.com/soccer/club/_/id/5404/ceuta",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5404.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Córdoba-ES": {
+    "path": "/assets/clubs/eu-e73447741f9b43.png",
+    "source": "https://www.espn.com/soccer/club/_/id/8447/cordoba",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8447.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Leganés-ES": {
+    "path": "/assets/clubs/eu-a5902d0028f517.png",
+    "source": "https://www.espn.com/soccer/club/_/id/17534/leganes",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17534.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Eibar-ES": {
+    "path": "/assets/clubs/eu-549264a682b53f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3752/eibar",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3752.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Andorra-ES": {
+    "path": "/assets/clubs/eu-fa16bf3ff918f6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/20179/fc-andorra",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20179.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Granada-ES": {
+    "path": "/assets/clubs/eu-56e164eafbba57.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3747/granada",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3747.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Eldense-ES": {
+    "path": "/assets/clubs/eu-c7f1613799d944.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7320/eldense",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7320.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "RC Celta Fortuna-ES": {
+    "path": "/assets/clubs/eu-d3f59f8f35418a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/131858/rc-celta-fortuna",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131858.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Girona-ES": {
+    "path": "/assets/clubs/eu-cd48c96acbe150.png",
+    "source": "https://www.espn.com/soccer/club/_/id/9812/girona",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9812.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Las Palmas-ES": {
+    "path": "/assets/clubs/eu-256af4bd0a18f6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/98/las-palmas",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/98.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Mallorca-ES": {
+    "path": "/assets/clubs/eu-a5a3ef92ef49e7.png",
+    "source": "https://www.espn.com/soccer/club/_/id/84/mallorca",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/84.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "1. FC Union Berlin-DE": {
+    "path": "/assets/clubs/eu-85dd29f6f11c4d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/598/1-fc-union-berlin",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/598.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bayer Leverkusen-DE": {
+    "path": "/assets/clubs/eu-d78c05dfa53fdb.png",
+    "source": "https://www.espn.com/soccer/club/_/id/131/bayer-leverkusen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Tenerife-ES": {
+    "path": "/assets/clubs/eu-7a8be7c4e6a434.png",
+    "source": "https://www.espn.com/soccer/club/_/id/245/tenerife",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/245.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Oviedo-ES": {
+    "path": "/assets/clubs/eu-e2c6ff9b04c61f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/92/real-oviedo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/92.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bayern Munich-DE": {
+    "path": "/assets/clubs/eu-ede98330695196.png",
+    "source": "https://www.espn.com/soccer/club/_/id/132/bayern-munich",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Borussia Dortmund-DE": {
+    "path": "/assets/clubs/eu-404ef1501b7441.png",
+    "source": "https://www.espn.com/soccer/club/_/id/124/borussia-dortmund",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/124.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Borussia Mönchengladbach-DE": {
+    "path": "/assets/clubs/eu-120721546ba99a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/268/borussia-monchengladbach",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/268.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Augsburg-DE": {
+    "path": "/assets/clubs/eu-a44586b1dd7bbd.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3841/fc-augsburg",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3841.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Sociedad II-ES": {
+    "path": "/assets/clubs/eu-e93dcef6318cec.png",
+    "source": "https://www.espn.com/soccer/club/_/id/20983/real-sociedad-ii",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20983.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Eintracht Frankfurt-DE": {
+    "path": "/assets/clubs/eu-b4d95f9f681c7b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/125/eintracht-frankfurt",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/125.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Cologne-DE": {
+    "path": "/assets/clubs/eu-e085ced6b0b4ec.png",
+    "source": "https://www.espn.com/soccer/club/_/id/122/fc-cologne",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sporting Gijón-ES": {
+    "path": "/assets/clubs/eu-8a646e95d93f31.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3788/sporting-gijon",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3788.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Valladolid-ES": {
+    "path": "/assets/clubs/eu-31de7423cd8073.png",
+    "source": "https://www.espn.com/soccer/club/_/id/95/real-valladolid",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/95.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Mainz-DE": {
+    "path": "/assets/clubs/eu-b01cb1266ed8ae.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2950/mainz",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2950.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "RB Leipzig-DE": {
+    "path": "/assets/clubs/eu-832284ac7ce5e9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/11420/rb-leipzig",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11420.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SC Freiburg-DE": {
+    "path": "/assets/clubs/eu-15e491355c56fc.png",
+    "source": "https://www.espn.com/soccer/club/_/id/126/sc-freiburg",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/126.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SV Elversberg-DE": {
+    "path": "/assets/clubs/eu-23ccc40bac1175.png",
+    "source": "https://www.espn.com/soccer/club/_/id/10388/sv-elversberg",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10388.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "TSG Hoffenheim-DE": {
+    "path": "/assets/clubs/eu-ab203ae473bf50.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7911/tsg-hoffenheim",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Schalke 04-DE": {
+    "path": "/assets/clubs/eu-5088a73ee32e8d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/133/schalke-04",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/133.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "VfB Stuttgart-DE": {
+    "path": "/assets/clubs/eu-fc57976bdf00af.png",
+    "source": "https://www.espn.com/soccer/club/_/id/134/vfb-stuttgart",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SC Paderborn 07-DE": {
+    "path": "/assets/clubs/eu-9baa0181cd7bdd.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3307/sc-paderborn-07",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3307.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Werder Bremen-DE": {
+    "path": "/assets/clubs/eu-1f27b2cc735695.png",
+    "source": "https://www.espn.com/soccer/club/_/id/137/werder-bremen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/137.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hamburg SV-DE": {
+    "path": "/assets/clubs/eu-b8edb0a3d6dedf.png",
+    "source": "https://www.espn.com/soccer/club/_/id/127/hamburg-sv",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/127.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "1. FC Magdeburg-DE": {
+    "path": "/assets/clubs/eu-e57df127926910.png",
+    "source": "https://www.espn.com/soccer/club/_/id/10382/1-fc-magdeburg",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10382.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hannover 96-DE": {
+    "path": "/assets/clubs/eu-fde8b78bbc2425.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2428/hannover-96",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2428.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "1. FC Nürnberg-DE": {
+    "path": "/assets/clubs/eu-f830d562911a40.png",
+    "source": "https://www.espn.com/soccer/club/_/id/269/1-fc-nurnberg",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/269.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "1. FC Heidenheim 1846-DE": {
+    "path": "/assets/clubs/eu-e5708e775402a0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/6418/1-fc-heidenheim-1846",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6418.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Energie Cottbus-DE": {
+    "path": "/assets/clubs/eu-d29de5764263b4.png",
+    "source": "https://www.espn.com/soccer/club/_/id/123/energie-cottbus",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/123.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hertha Berlin-DE": {
+    "path": "/assets/clubs/eu-6235287c36081f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/129/hertha-berlin",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/129.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Arminia Bielefeld-DE": {
+    "path": "/assets/clubs/eu-b3692efa92c238.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2506/arminia-bielefeld",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2506.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kaiserslautern-DE": {
+    "path": "/assets/clubs/eu-d9046b3883a1df.png",
+    "source": "https://www.espn.com/soccer/club/_/id/130/kaiserslautern",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/130.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Holstein Kiel-DE": {
+    "path": "/assets/clubs/eu-7530ee7fc6854c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7884/holstein-kiel",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7884.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Karlsruher SC-DE": {
+    "path": "/assets/clubs/eu-f04363693fe533.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4471/karlsruher-sc",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4471.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dynamo Dresden-DE": {
+    "path": "/assets/clubs/eu-b1e1554980f8a0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7017/dynamo-dresden",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7017.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AC Milan-IT": {
+    "path": "/assets/clubs/eu-a802a86f4a431e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/103/ac-milan",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AS Roma-IT": {
+    "path": "/assets/clubs/eu-f2c8fcd63944b7.png",
+    "source": "https://www.espn.com/soccer/club/_/id/104/as-roma",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/104.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "St. Pauli-DE": {
+    "path": "/assets/clubs/eu-71f239f74d2f1a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/270/st-pauli",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/270.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "VfL Osnabruck-DE": {
+    "path": "/assets/clubs/eu-e4b7c5c6231522.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7013/vfl-osnabruck",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7013.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "VfL Bochum-DE": {
+    "path": "/assets/clubs/eu-50befae98b49a3.png",
+    "source": "https://www.espn.com/soccer/club/_/id/121/vfl-bochum",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/121.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SV Darmstadt 98-DE": {
+    "path": "/assets/clubs/eu-edf928ab468af4.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3812/sv-darmstadt-98",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3812.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "TSV Eintracht Braunschweig-DE": {
+    "path": "/assets/clubs/eu-f4d557c7abf336.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3067/tsv-eintracht-braunschweig",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3067.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bologna-IT": {
+    "path": "/assets/clubs/eu-d74939c87b7210.png",
+    "source": "https://www.espn.com/soccer/club/_/id/107/bologna",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/107.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atalanta-IT": {
+    "path": "/assets/clubs/eu-5fc75a4bff424d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/105/atalanta",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SpVgg Greuther Fürth-DE": {
+    "path": "/assets/clubs/eu-445150dbf78fb8.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3070/spvgg-greuther-furth",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3070.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Como-IT": {
+    "path": "/assets/clubs/eu-66b565645c924e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2572/como",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cagliari-IT": {
+    "path": "/assets/clubs/eu-8bfdace7c372e8.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2925/cagliari",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2925.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fiorentina-IT": {
+    "path": "/assets/clubs/eu-d78b5ffc85caad.png",
+    "source": "https://www.espn.com/soccer/club/_/id/109/fiorentina",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/109.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "VfL Wolfsburg-DE": {
+    "path": "/assets/clubs/eu-268f325bdce3f7.png",
+    "source": "https://www.espn.com/soccer/club/_/id/138/vfl-wolfsburg",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/138.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Frosinone-IT": {
+    "path": "/assets/clubs/eu-45870df91a1a45.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4057/frosinone",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4057.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Internazionale-IT": {
+    "path": "/assets/clubs/eu-32ee0adbc1ba12.png",
+    "source": "https://www.espn.com/soccer/club/_/id/110/internazionale",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/110.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Juventus-IT": {
+    "path": "/assets/clubs/eu-1099f94026159e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/111/juventus",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lecce-IT": {
+    "path": "/assets/clubs/eu-712ba55ad85a48.png",
+    "source": "https://www.espn.com/soccer/club/_/id/113/lecce",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/113.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Napoli-IT": {
+    "path": "/assets/clubs/eu-3cdb0fcd28b360.png",
+    "source": "https://www.espn.com/soccer/club/_/id/114/napoli",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Venezia-IT": {
+    "path": "/assets/clubs/eu-b77d8d6555d5e0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/17530/venezia",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17530.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Monza-IT": {
+    "path": "/assets/clubs/eu-9a7028e67d8f30.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4007/monza",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4007.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Genoa-IT": {
+    "path": "/assets/clubs/eu-57af38c78bcfca.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3263/genoa",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sassuolo-IT": {
+    "path": "/assets/clubs/eu-93eb42366e0cd7.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3997/sassuolo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3997.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lazio-IT": {
+    "path": "/assets/clubs/eu-b7d0cd2748eecd.png",
+    "source": "https://www.espn.com/soccer/club/_/id/112/lazio",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/112.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Benevento-IT": {
+    "path": "/assets/clubs/eu-a8543b84525cab.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4059/benevento",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4059.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Parma-IT": {
+    "path": "/assets/clubs/eu-33217db2ab2225.png",
+    "source": "https://www.espn.com/soccer/club/_/id/115/parma",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/115.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Torino-IT": {
+    "path": "/assets/clubs/eu-20326caa09c46f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/239/torino",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/239.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Carrarese-IT": {
+    "path": "/assets/clubs/eu-c0b5c1d67ffb66.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3988/carrarese",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3988.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Udinese-IT": {
+    "path": "/assets/clubs/eu-e3a1dd87b5c94c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/118/udinese",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/118.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Arezzo-IT": {
+    "path": "/assets/clubs/eu-3787ce15713326.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3345/arezzo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3345.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ascoli-IT": {
+    "path": "/assets/clubs/eu-421f63aa8fb369.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3346/ascoli",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3346.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cesena-IT": {
+    "path": "/assets/clubs/eu-f3ad090491ce81.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3337/cesena",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3337.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cremonese-IT": {
+    "path": "/assets/clubs/eu-8e5bd2b6050db2.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4050/cremonese",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4050.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Catanzaro-IT": {
+    "path": "/assets/clubs/eu-9aac0e68d68484.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3257/catanzaro",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3257.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Empoli-IT": {
+    "path": "/assets/clubs/eu-e288cfbc1669d5.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2574/empoli",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2574.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hellas Verona-IT": {
+    "path": "/assets/clubs/eu-d3ad4533fb12b0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/119/hellas-verona",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/119.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Juve Stabia-IT": {
+    "path": "/assets/clubs/eu-870838233d6b35.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3975/juve-stabia",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3975.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Padova-IT": {
+    "path": "/assets/clubs/eu-8fb7d3ccd0e352.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3952/padova",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3952.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Modena-IT": {
+    "path": "/assets/clubs/eu-2d229e21bfd9c8.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2573/modena",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2573.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Mantova-IT": {
+    "path": "/assets/clubs/eu-fbde44e2b8441c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3991/mantova",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3991.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Palermo-IT": {
+    "path": "/assets/clubs/eu-a13085af6d387b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2923/palermo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2923.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pisa-IT": {
+    "path": "/assets/clubs/eu-4758382fe5672f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3956/pisa",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3956.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AS Monaco-FR": {
+    "path": "/assets/clubs/eu-982e99746cb3ed.png",
+    "source": "https://www.espn.com/soccer/club/_/id/174/as-monaco",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Angers-FR": {
+    "path": "/assets/clubs/eu-a1d88f7901cc03.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7868/angers",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Brest-FR": {
+    "path": "/assets/clubs/eu-e352758920726a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/6997/brest",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Le Havre AC-FR": {
+    "path": "/assets/clubs/eu-bfd630edf1bb75.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3236/le-havre-ac",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AJ Auxerre-FR": {
+    "path": "/assets/clubs/eu-e06cf2c946ae3e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/172/aj-auxerre",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Le Mans-FR": {
+    "path": "/assets/clubs/eu-7eae846c754e7b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2697/le-mans",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lens-FR": {
+    "path": "/assets/clubs/eu-1ac4621154bf78.png",
+    "source": "https://www.espn.com/soccer/club/_/id/175/lens",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vicenza-IT": {
+    "path": "/assets/clubs/eu-61e15cb0ff9a41.png",
+    "source": "https://www.espn.com/soccer/club/_/id/120/vicenza",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/120.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "US Avellino-IT": {
+    "path": "/assets/clubs/eu-a3d79262e6f04e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4055/us-avellino",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4055.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Virtus Entella-IT": {
+    "path": "/assets/clubs/eu-410978122abf1c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/11137/virtus-entella",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11137.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lille-FR": {
+    "path": "/assets/clubs/eu-0c0cb53d63d0b0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/166/lille",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lorient-FR": {
+    "path": "/assets/clubs/eu-9258a8fa86333d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/273/lorient",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sudtirol-IT": {
+    "path": "/assets/clubs/eu-d08e22a88ff5c5.png",
+    "source": "https://www.espn.com/soccer/club/_/id/11139/sudtirol",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11139.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lyon-FR": {
+    "path": "/assets/clubs/eu-4824be53a35b83.png",
+    "source": "https://www.espn.com/soccer/club/_/id/167/lyon",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Marseille-FR": {
+    "path": "/assets/clubs/eu-4baa66af7ed1f9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/176/marseille",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Paris FC-FR": {
+    "path": "/assets/clubs/eu-13ccd963578798.png",
+    "source": "https://www.espn.com/soccer/club/_/id/6851/paris-fc",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Nice-FR": {
+    "path": "/assets/clubs/eu-96a6425aea3f1e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2502/nice",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Paris Saint-Germain-FR": {
+    "path": "/assets/clubs/eu-47e07bc31b1450.png",
+    "source": "https://www.espn.com/soccer/club/_/id/160/paris-saint-germain",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Strasbourg-FR": {
+    "path": "/assets/clubs/eu-50a1993dccb683.png",
+    "source": "https://www.espn.com/soccer/club/_/id/180/strasbourg",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stade Rennais-FR": {
+    "path": "/assets/clubs/eu-5857d8dd490444.png",
+    "source": "https://www.espn.com/soccer/club/_/id/169/stade-rennais",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Toulouse-FR": {
+    "path": "/assets/clubs/eu-51d5a80bf5e3fb.png",
+    "source": "https://www.espn.com/soccer/club/_/id/179/toulouse",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AS Nancy Lorraine-FR": {
+    "path": "/assets/clubs/eu-7df2030b5c7030.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3267/as-nancy-lorraine",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3267.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Boulogne-FR": {
+    "path": "/assets/clubs/eu-6b45767711ea48.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7869/boulogne",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7869.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Clermont Foot-FR": {
+    "path": "/assets/clubs/eu-4cd2fefbbebdba.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3171/clermont-foot",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3171.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Annecy-FR": {
+    "path": "/assets/clubs/eu-72d07d61d5518f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/18066/annecy",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18066.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Troyes-FR": {
+    "path": "/assets/clubs/eu-319315893fb4bd.png",
+    "source": "https://www.espn.com/soccer/club/_/id/170/troyes",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Grenoble-FR": {
+    "path": "/assets/clubs/eu-a9ac0de20f7b18.png",
+    "source": "https://www.espn.com/soccer/club/_/id/6994/grenoble",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6994.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dunkerque-FR": {
+    "path": "/assets/clubs/eu-68f798c9c77438.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7732/dunkerque",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7732.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dijon FCO-FR": {
+    "path": "/assets/clubs/eu-2ab4b6ec18f10d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3170/dijon-fco",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3170.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Guingamp-FR": {
+    "path": "/assets/clubs/eu-a756883fea7efb.png",
+    "source": "https://www.espn.com/soccer/club/_/id/171/guingamp",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/171.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Red Star FC 93-FR": {
+    "path": "/assets/clubs/eu-207c1e6912ef6b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/11884/red-star-fc-93",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11884.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sampdoria-IT": {
+    "path": "/assets/clubs/eu-daf5c632fbb250.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2734/sampdoria",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2734.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Metz-FR": {
+    "path": "/assets/clubs/eu-8d43185da89f1e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/177/metz",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/177.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pau-FR": {
+    "path": "/assets/clubs/eu-da0fb80e1c035c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/10678/pau",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10678.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Montpellier-FR": {
+    "path": "/assets/clubs/eu-58e089093ede65.png",
+    "source": "https://www.espn.com/soccer/club/_/id/274/montpellier",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/274.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rodez Aveyron-FR": {
+    "path": "/assets/clubs/eu-196c6632c65fb4.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7719/rodez-aveyron",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7719.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Nantes-FR": {
+    "path": "/assets/clubs/eu-277890b7c4a958.png",
+    "source": "https://www.espn.com/soccer/club/_/id/165/nantes",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/165.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sochaux-FR": {
+    "path": "/assets/clubs/eu-49aee5f4ca89f7.png",
+    "source": "https://www.espn.com/soccer/club/_/id/272/sochaux",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/272.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Saint-Étienne-FR": {
+    "path": "/assets/clubs/eu-3695a8cb06ba45.png",
+    "source": "https://www.espn.com/soccer/club/_/id/178/saint-etienne",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/178.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stade de Reims-FR": {
+    "path": "/assets/clubs/eu-97eda9e3f1724b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3243/stade-de-reims",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3243.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Benfica-PT": {
+    "path": "/assets/clubs/eu-7cfc2b8956f23c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/1929/benfica",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1929.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Braga-PT": {
+    "path": "/assets/clubs/eu-ea448dc3729c7d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2994/braga",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2994.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stade Laval-FR": {
+    "path": "/assets/clubs/eu-37685a7a7ea671.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3266/stade-laval",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3266.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Académico de Viseu-PT": {
+    "path": "/assets/clubs/eu-1c573c4f709ed6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/21607/academico-de-viseu",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21607.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alverca-PT": {
+    "path": "/assets/clubs/eu-264fb6ac971116.png",
+    "source": "https://www.espn.com/soccer/club/_/id/21613/alverca",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21613.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Arouca-PT": {
+    "path": "/assets/clubs/eu-43e101bae48021.png",
+    "source": "https://www.espn.com/soccer/club/_/id/15784/arouca",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/15784.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Porto-PT": {
+    "path": "/assets/clubs/eu-c00e9976530cca.png",
+    "source": "https://www.espn.com/soccer/club/_/id/437/fc-porto",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "C.D. Nacional-PT": {
+    "path": "/assets/clubs/eu-f76d92d3c0d279.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3472/cd-nacional",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3472.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Famalicao-PT": {
+    "path": "/assets/clubs/eu-4cbae490aa1d70.png",
+    "source": "https://www.espn.com/soccer/club/_/id/12698/fc-famalicao",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/12698.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Casa Pia-PT": {
+    "path": "/assets/clubs/eu-a6f9aa1daf944e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/21581/casa-pia",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21581.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Gil Vicente-PT": {
+    "path": "/assets/clubs/eu-5414fa1b6aba5f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3699/gil-vicente",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3699.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Maritimo-PT": {
+    "path": "/assets/clubs/eu-657785b162455c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/552/maritimo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/552.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Estoril-PT": {
+    "path": "/assets/clubs/eu-d34e800fc80209.png",
+    "source": "https://www.espn.com/soccer/club/_/id/12216/estoril",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/12216.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Moreirense-PT": {
+    "path": "/assets/clubs/eu-0af45e9322e685.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3696/moreirense",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3696.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sporting CP-PT": {
+    "path": "/assets/clubs/eu-062d8a1d7d0f4b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2250/sporting-cp",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2250.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Estrela-PT": {
+    "path": "/assets/clubs/eu-a7f2a4a49c65cf.png",
+    "source": "https://www.espn.com/soccer/club/_/id/21610/estrela",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21610.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Santa Clara-PT": {
+    "path": "/assets/clubs/eu-1944abcbd1ab69.png",
+    "source": "https://www.espn.com/soccer/club/_/id/12215/santa-clara",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/12215.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rio Ave-PT": {
+    "path": "/assets/clubs/eu-d787eb5977dac9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3822/rio-ave",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3822.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AFS-PT": {
+    "path": "/assets/clubs/eu-b9a6119f12403a.png",
+    "source": "https://www.espn.com/soccer/standings/_/league/por.1/season/2025",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22064.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vitória de Guimaraes-PT": {
+    "path": "/assets/clubs/eu-56a784fc5fcc37.png",
+    "source": "https://www.espn.com/soccer/club/_/id/5309/vitoria-de-guimaraes",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5309.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Académica Coimbra-PT": {
+    "path": "/assets/clubs/eu-2efcd736227e9a.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/academica.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Farense-PT": {
+    "path": "/assets/clubs/eu-f57b88dfbd0225.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/farense.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Amarante-PT": {
+    "path": "/assets/clubs/eu-eff6e91897938b.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/amarante_por.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Leixões-PT": {
+    "path": "/assets/clubs/eu-a8d113778a6503.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/leixoes_por.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Lusitânia Lourosa-PT": {
+    "path": "/assets/clubs/eu-4dde122fe1e78d.png",
+    "source": "https://www.ligaportugal.pt/team/219/l.-lourosa-fc/20262027",
+    "download_url": "https://www.ligaportugal.pt/backoffice/assets/small_Lusitania_e11dda0d6f.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "federation_source"
+  },
+  "Chaves-PT": {
+    "path": "/assets/clubs/eu-0c9747ddf6064e.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/chaves.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Feirense-PT": {
+    "path": "/assets/clubs/eu-0649c670faf583.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/feirense_por.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Felgueiras-PT": {
+    "path": "/assets/clubs/eu-63bb100e44934c.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/felgueiras_1932_por.jpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Penafiel-PT": {
+    "path": "/assets/clubs/eu-034104ae31acda.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/penafiel_pt.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Benfica B-PT": {
+    "path": "/assets/clubs/eu-66806a2d1b8d80.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/benfica.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Portimonense-PT": {
+    "path": "/assets/clubs/eu-f25d6eff1eb04c.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/portimonense.jpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "AZ Alkmaar-NL": {
+    "path": "/assets/clubs/eu-9948232e2e1598.png",
+    "source": "https://www.espn.com/soccer/club/_/id/140/az-alkmaar",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/140.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "União de Leiria-PT": {
+    "path": "/assets/clubs/eu-ced0262ee5f93c.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/leiria.jpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Torreense-PT": {
+    "path": "/assets/clubs/eu-20c618d372c8e8.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/torreense_por.gif",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Sporting CP B-PT": {
+    "path": "/assets/clubs/eu-3a62b97d684bd4.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/sporting.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Tondela-PT": {
+    "path": "/assets/clubs/eu-8b7969beaab3b9.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/tondela_por.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "ADO Den Haag-NL": {
+    "path": "/assets/clubs/eu-96597e48a8936c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2726/ado-den-haag",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2726.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vizela-PT": {
+    "path": "/assets/clubs/eu-369031ae33655b.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/vizela.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Ajax Amsterdam-NL": {
+    "path": "/assets/clubs/eu-7c93cf4396c860.png",
+    "source": "https://www.espn.com/soccer/club/_/id/139/ajax-amsterdam",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/139.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Excelsior-NL": {
+    "path": "/assets/clubs/eu-035eb8ede4e5af.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2566/excelsior",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2566.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Feyenoord Rotterdam-NL": {
+    "path": "/assets/clubs/eu-a4cb223700ba23.png",
+    "source": "https://www.espn.com/soccer/club/_/id/142/feyenoord-rotterdam",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/142.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Groningen-NL": {
+    "path": "/assets/clubs/eu-65da4794b118ba.png",
+    "source": "https://www.espn.com/soccer/club/_/id/145/fc-groningen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/145.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fortuna Sittard-NL": {
+    "path": "/assets/clubs/eu-a0b45d40541d4c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/143/fortuna-sittard",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/143.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Utrecht-NL": {
+    "path": "/assets/clubs/eu-515b16937944b4.png",
+    "source": "https://www.espn.com/soccer/club/_/id/153/fc-utrecht",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/153.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Twente-NL": {
+    "path": "/assets/clubs/eu-b205f6b6fde6b0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/152/fc-twente",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/152.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "PSV Eindhoven-NL": {
+    "path": "/assets/clubs/eu-525c3ef30a3a27.png",
+    "source": "https://www.espn.com/soccer/club/_/id/148/psv-eindhoven",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/148.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Heerenveen-NL": {
+    "path": "/assets/clubs/eu-9c9cb6dd8c3426.png",
+    "source": "https://www.espn.com/soccer/club/_/id/146/heerenveen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/146.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Go Ahead Eagles-NL": {
+    "path": "/assets/clubs/eu-654f8e4725c756.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3706/go-ahead-eagles",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3706.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "NEC Nijmegen-NL": {
+    "path": "/assets/clubs/eu-405883652e2e78.png",
+    "source": "https://www.espn.com/soccer/club/_/id/147/nec-nijmegen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/147.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "PEC Zwolle-NL": {
+    "path": "/assets/clubs/eu-8313151f16f8de.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2565/pec-zwolle",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2565.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sparta Rotterdam-NL": {
+    "path": "/assets/clubs/eu-bb3e4fc3f9968e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/151/sparta-rotterdam",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/151.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Willem II-NL": {
+    "path": "/assets/clubs/eu-dd827f4838974f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/156/willem-ii",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/156.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SC Cambuur-NL": {
+    "path": "/assets/clubs/eu-8b6b41e4967d07.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3736/sc-cambuur",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3736.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Emmen-NL": {
+    "path": "/assets/clubs/eu-5098d7b7345db0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3707/fc-emmen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3707.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Den Bosch-NL": {
+    "path": "/assets/clubs/eu-3df6d90e710604.png",
+    "source": "https://www.espn.com/soccer/club/_/id/271/fc-den-bosch",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/271.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Almere City-NL": {
+    "path": "/assets/clubs/eu-6f8163370dfa40.png",
+    "source": "https://www.espn.com/soccer/club/_/id/5291/almere-city",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5291.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Dordrecht-NL": {
+    "path": "/assets/clubs/eu-9ab606471c7c7b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4426/fc-dordrecht",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4426.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "De Graafschap-NL": {
+    "path": "/assets/clubs/eu-76e05ba2ba07d7.png",
+    "source": "https://www.espn.com/soccer/club/_/id/144/de-graafschap",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/144.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Telstar-NL": {
+    "path": "/assets/clubs/eu-b49f670c0b972f.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3735/telstar",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3735.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Porto B-PT": {
+    "path": "/assets/clubs/eu-03b5238a989442.png",
+    "source": "https://escudosfc.com.br/por.htm",
+    "download_url": "https://escudosfc.com.br/images/porto.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "FC Eindhoven-NL": {
+    "path": "/assets/clubs/eu-616f5b380aae00.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3732/fc-eindhoven",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3732.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Jong AZ-NL": {
+    "path": "/assets/clubs/eu-a294f9ce9d17e2.png",
+    "source": "https://www.espn.com/soccer/club/_/id/18748/jong-az",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18748.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Helmond Sport-NL": {
+    "path": "/assets/clubs/eu-b8bb380a80a37e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3775/helmond-sport",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3775.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Heracles Almelo-NL": {
+    "path": "/assets/clubs/eu-e3559dbc118f0a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3708/heracles-almelo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3708.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Volendam-NL": {
+    "path": "/assets/clubs/eu-da6b04b8967dce.png",
+    "source": "https://www.espn.com/soccer/club/_/id/2727/fc-volendam",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2727.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Jong Ajax-NL": {
+    "path": "/assets/clubs/eu-4e275107e320cf.png",
+    "source": "https://www.espn.com/soccer/club/_/id/10597/jong-ajax",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10597.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Jong FC Utrecht-NL": {
+    "path": "/assets/clubs/eu-a8e1f1ca567545.png",
+    "source": "https://www.espn.com/soccer/club/_/id/18278/jong-fc-utrecht",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18278.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "MVV Maastricht-NL": {
+    "path": "/assets/clubs/eu-7c4e6b5bbcb604.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3730/mvv-maastricht",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3730.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Jong PSV-NL": {
+    "path": "/assets/clubs/eu-4f6e545c960742.png",
+    "source": "https://www.espn.com/soccer/club/_/id/9983/jong-psv",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9983.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "NAC Breda-NL": {
+    "path": "/assets/clubs/eu-08fb684906175b.png",
+    "source": "https://www.espn.com/soccer/club/_/id/141/nac-breda",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/141.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Anderlecht-BE": {
+    "path": "/assets/clubs/eu-1fd376e74b6a50.png",
+    "source": "https://www.espn.com/soccer/club/_/id/441/anderlecht",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/441.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "VVV-Venlo-NL": {
+    "path": "/assets/clubs/eu-81d537ff82d37a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3731/vvv-venlo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3731.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "RKC Waalwijk-NL": {
+    "path": "/assets/clubs/eu-af85d8f6c7dd8c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/155/rkc-waalwijk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/155.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Roda JC Kerkrade-NL": {
+    "path": "/assets/clubs/eu-c3d6f61ab9dc5a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/149/roda-jc-kerkrade",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/149.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Antwerp-BE": {
+    "path": "/assets/clubs/eu-5f9b42f5db3f9c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/17544/antwerp",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17544.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "TOP Oss-NL": {
+    "path": "/assets/clubs/eu-095ce7816e9bbc.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3728/top-oss",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3728.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vitesse-NL": {
+    "path": "/assets/clubs/eu-fb92d5e627f568.png",
+    "source": "https://www.espn.com/soccer/club/_/id/154/vitesse",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/154.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Club Brugge-BE": {
+    "path": "/assets/clubs/eu-cbcad539ef9618.png",
+    "source": "https://www.espn.com/soccer/club/_/id/570/club-brugge",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/570.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "KV Kortrijk-BE": {
+    "path": "/assets/clubs/eu-4534036568dd43.png",
+    "source": "https://www.espn.com/soccer/club/_/id/5786/kv-kortrijk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5786.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "KV Mechelen-BE": {
+    "path": "/assets/clubs/eu-4f5d13bf3178c1.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7879/kv-mechelen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7879.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "KVC Westerlo-BE": {
+    "path": "/assets/clubs/eu-0a6489ffbb305e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/606/kvc-westerlo",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/606.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Racing Genk-BE": {
+    "path": "/assets/clubs/eu-c41f6426cc4337.png",
+    "source": "https://www.espn.com/soccer/club/_/id/938/racing-genk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/938.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lommel SK-BE": {
+    "path": "/assets/clubs/eu-f20022e71434ed.png",
+    "source": "https://www.espn.com/soccer/club/_/id/22269/lommel-sk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22269.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cercle Brugge KSV-BE": {
+    "path": "/assets/clubs/eu-fc1353d488d691.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3610/cercle-brugge-ksv",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3610.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "KAA Gent-BE": {
+    "path": "/assets/clubs/eu-fdaeef6302abd1.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3611/kaa-gent",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3611.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "RAAL La Louvière-BE": {
+    "path": "/assets/clubs/eu-c8b2657c2fac50.png",
+    "source": "https://www.espn.com/soccer/club/_/id/131235/raal-la-louviere",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131235.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "OH Leuven-BE": {
+    "path": "/assets/clubs/eu-6d7131a9f68510.png",
+    "source": "https://www.espn.com/soccer/club/_/id/5579/oud-heverlee-leuven",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5579.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Union St.-Gilloise-BE": {
+    "path": "/assets/clubs/eu-7e3fb548d22874.png",
+    "source": "https://www.espn.com/soccer/club/_/id/5807/union-st-gilloise",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5807.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Royal Charleroi SC-BE": {
+    "path": "/assets/clubs/eu-765306f7ca52d1.png",
+    "source": "https://www.espn.com/soccer/club/_/id/3616/royal-charleroi-sc",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3616.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sint-Truidense-BE": {
+    "path": "/assets/clubs/eu-cca8a6ff763f38.png",
+    "source": "https://www.espn.com/soccer/club/_/id/936/sint-truidense",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/936.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Zulte-Waregem-BE": {
+    "path": "/assets/clubs/eu-6119add11398cc.png",
+    "source": "https://www.espn.com/soccer/club/_/id/4691/zulte-waregem",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4691.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Standard Liege-BE": {
+    "path": "/assets/clubs/eu-89a40893c4b9a6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/559/standard-liege",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/559.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Club NXT-BE": {
+    "path": "/assets/clubs/eu-122673feb676d0.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/nxt_bel.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Dender EH-BE": {
+    "path": "/assets/clubs/eu-b2bdbe3e39f0d6.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/dender_bel.gif",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Waasland-Beveren-BE": {
+    "path": "/assets/clubs/eu-82f46310998cda.png",
+    "source": "https://www.espn.com/soccer/club/_/id/13450/waasland-beveren",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13450.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Eupen-BE": {
+    "path": "/assets/clubs/eu-8169d4a06b6e55.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/ase_eupen.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Excelsior Virton-BE": {
+    "path": "/assets/clubs/eu-26e629cbc61bc7.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/excelsior_virton.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "RSCA Futures-BE": {
+    "path": "/assets/clubs/eu-f7ea09b7e080fe.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/anderlecht.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Beerschot-BE": {
+    "path": "/assets/clubs/eu-8f7ab27d95e122.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/beerschot_new.jpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Lierse-BE": {
+    "path": "/assets/clubs/eu-5ccee77e65c3f6.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/lierse.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Jong Genk-BE": {
+    "path": "/assets/clubs/eu-ec80f0363d96bd.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/genk_bel.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Lokeren-BE": {
+    "path": "/assets/clubs/eu-624c80c2bc10c3.png",
+    "source": "https://kassiesa.net/uefa/clubs/html/KSC-Lokeren.html",
+    "download_url": "https://kassiesa.net/uefa/clubs/images/KSC-Lokeren%402.-new-logo.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Patro Eisden-BE": {
+    "path": "/assets/clubs/eu-60ff67d062090b.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/patro_eisden_bel.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "RFC Liège-BE": {
+    "path": "/assets/clubs/eu-a5b5f69db222b5.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/liege_bel.gif",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Francs Borains-BE": {
+    "path": "/assets/clubs/eu-5dab0a345300a0.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/francs_borains_bel.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Besiktas-TR": {
+    "path": "/assets/clubs/eu-99d5812384c1ef.png",
+    "source": "https://www.espn.com/soccer/club/_/id/1895/besiktas",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1895.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sporting Hasselt-BE": {
+    "path": "/assets/clubs/eu-2d5b4b18b94690.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/kermt_hasselt_bel.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Alanyaspor-TR": {
+    "path": "/assets/clubs/eu-21d7821d7e133e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/9078/alanyaspor",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9078.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Erzurum BB-TR": {
+    "path": "/assets/clubs/eu-a0e5ec9055a987.png",
+    "source": "https://www.espn.com/soccer/club/_/id/19267/erzurum-bb",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/19267.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Amed SFK-TR": {
+    "path": "/assets/clubs/eu-984c211d2b72f7.png",
+    "source": "https://www.espn.com/soccer/club/_/id/132335/amed-sfk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132335.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Jong KAA Gent-BE": {
+    "path": "/assets/clubs/eu-2150c99a95f376.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/gent.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Caykur Rizespor-TR": {
+    "path": "/assets/clubs/eu-0721a68c9200ac.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7656/caykur-rizespor",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7656.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Seraing-BE": {
+    "path": "/assets/clubs/eu-e1ff1ac7f99e31.png",
+    "source": "https://escudosfc.com.br/bel.htm",
+    "download_url": "https://escudosfc.com.br/images/seraing_bel.jpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Galatasaray-TR": {
+    "path": "/assets/clubs/eu-29d2cd7b98b1a6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/432/galatasaray",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fenerbahce-TR": {
+    "path": "/assets/clubs/eu-af45c628664cc9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/436/fenerbahce",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/436.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Eyupspor-TR": {
+    "path": "/assets/clubs/eu-966ce92c1ab313.png",
+    "source": "https://www.espn.com/soccer/club/_/id/20729/eyupspor",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20729.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Istanbul Basaksehir-TR": {
+    "path": "/assets/clubs/eu-d4e0cc9396188e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7914/istanbul-basaksehir",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7914.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Goztepe-TR": {
+    "path": "/assets/clubs/eu-f1d40cdf41570d.png",
+    "source": "https://www.espn.com/soccer/club/_/id/789/goztepe",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/789.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kasimpasa-TR": {
+    "path": "/assets/clubs/eu-b598c847601b65.png",
+    "source": "https://www.espn.com/soccer/club/_/id/6870/kasimpasa",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6870.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kocaelispor-TR": {
+    "path": "/assets/clubs/eu-338110491bf5eb.png",
+    "source": "https://www.espn.com/soccer/club/_/id/995/kocaelispor",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/995.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Gaziantep FK-TR": {
+    "path": "/assets/clubs/eu-04945adf00dbbd.png",
+    "source": "https://www.espn.com/soccer/club/_/id/20070/gaziantep-fk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20070.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Genclerbirligi-TR": {
+    "path": "/assets/clubs/eu-e269cc4b45905a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/996/genclerbirligi",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/996.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Konyaspor-TR": {
+    "path": "/assets/clubs/eu-45bd09d91efee1.png",
+    "source": "https://www.espn.com/soccer/club/_/id/7648/konyaspor",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7648.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Samsunspor-TR": {
+    "path": "/assets/clubs/eu-f633bf17a54b02.png",
+    "source": "https://www.espn.com/soccer/club/_/id/11429/samsunspor",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11429.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Çorum FK-TR": {
+    "path": "/assets/clubs/eu-b6a8125d8caf3a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/132334/corum-fk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132334.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Trabzonspor-TR": {
+    "path": "/assets/clubs/eu-0be20f463121be.png",
+    "source": "https://www.espn.com/soccer/club/_/id/997/trabzonspor",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/997.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Antalyaspor-TR": {
+    "path": "/assets/clubs/eu-25d0a117fe825d.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/antalyaspor.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Bodrum FK-TR": {
+    "path": "/assets/clubs/eu-23ba2054f3bb26.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/bodrumspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Bandırmaspor-TR": {
+    "path": "/assets/clubs/eu-c742873f2c5ef2.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/bandirmaspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Fatih Karagümrük-TR": {
+    "path": "/assets/clubs/eu-549eaf332253ee.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/fatih_karagumruk.jpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Boluspor-TR": {
+    "path": "/assets/clubs/eu-95b3a94a67d94c.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/boluspor_tur.gif",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Esenler Erokspor-TR": {
+    "path": "/assets/clubs/eu-2b148d1fc34b8a.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/erokspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "İstanbulspor-TR": {
+    "path": "/assets/clubs/eu-7a0c6f8246e12d.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/istspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Bursaspor-TR": {
+    "path": "/assets/clubs/eu-2e6a8f60d781fe.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/bursaspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Kayserispor-TR": {
+    "path": "/assets/clubs/eu-8840fb2963fed9.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/kayserispor.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Iğdır FK-TR": {
+    "path": "/assets/clubs/eu-ad1dc93cdcf45f.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/igdir_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Batman Petrolspor-TR": {
+    "path": "/assets/clubs/eu-1fbb7538931494.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/batman_petrolspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Keçiörengücü-TR": {
+    "path": "/assets/clubs/eu-75837d6df62fb3.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/keciorengucu_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Manisa FK-TR": {
+    "path": "/assets/clubs/eu-8a3e2e24595d7f.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/manisa_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Mardin 1969-TR": {
+    "path": "/assets/clubs/eu-2e34005872be1e.png",
+    "source": "https://www.futbollogo.com/takim.php?id=3607",
+    "download_url": "https://www.futbollogo.com/resimler/logolar/mardin1969spor1.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Muğlaspor-TR": {
+    "path": "/assets/clubs/eu-c7e75f1ad54909.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/mugla_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Sarıyer-TR": {
+    "path": "/assets/clubs/eu-988e07b824d23d.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/sariyer_tur.gif",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Celtic-SC": {
+    "path": "/assets/clubs/eu-9a4f1eead84884.png",
+    "source": "https://www.espn.com/soccer/club/_/id/256/celtic",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/256.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ümraniyespor-TR": {
+    "path": "/assets/clubs/eu-65eee2c7831bb8.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/umraniyespor_tur.jpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Aberdeen-SC": {
+    "path": "/assets/clubs/eu-3715d48809e5cb.png",
+    "source": "https://www.espn.com/soccer/club/_/id/263/aberdeen",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/263.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sivasspor-TR": {
+    "path": "/assets/clubs/eu-d6b8b2bb16fc84.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/sivasspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Pendikspor-TR": {
+    "path": "/assets/clubs/eu-3fb59c9cf19b97.png",
+    "source": "https://escudosfc.com.br/tur.htm",
+    "download_url": "https://escudosfc.com.br/images/pendikspor_tur.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Van Spor-TR": {
+    "path": "/assets/clubs/eu-08c50bb1e8b4f0.png",
+    "source": "https://en.wikipedia.org/wiki/Vanspor_FK",
+    "download_url": "https://upload.wikimedia.org/wikipedia/en/4/4d/Belediye_Vanspor.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Kilmarnock-SC": {
+    "path": "/assets/clubs/eu-1c6222792a645e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/260/kilmarnock",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/260.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dundee United-SC": {
+    "path": "/assets/clubs/eu-b9efa8f5bc4220.png",
+    "source": "https://www.espn.com/soccer/club/_/id/264/dundee-united",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/264.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Motherwell-SC": {
+    "path": "/assets/clubs/eu-fa6f75603805bc.png",
+    "source": "https://www.espn.com/soccer/club/_/id/266/motherwell",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/266.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dundee-SC": {
+    "path": "/assets/clubs/eu-e7f54d314bfa37.png",
+    "source": "https://www.espn.com/soccer/club/_/id/261/dundee",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/261.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Arbroath-SC": {
+    "path": "/assets/clubs/eu-113236344b8f86.png",
+    "source": "https://www.espn.com/soccer/club/_/id/252/arbroath",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/252.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Heart of Midlothian-SC": {
+    "path": "/assets/clubs/eu-7b2cc803db4bf9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/262/heart-of-midlothian",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/262.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Falkirk-SC": {
+    "path": "/assets/clubs/eu-7f879334fbd239.png",
+    "source": "https://www.espn.com/soccer/club/_/id/254/falkirk",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/254.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hibernian-SC": {
+    "path": "/assets/clubs/eu-4b84526efb9839.png",
+    "source": "https://www.espn.com/soccer/club/_/id/258/hibernian",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/258.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "St Mirren-SC": {
+    "path": "/assets/clubs/eu-9d77638d8b4cb6.png",
+    "source": "https://www.espn.com/soccer/club/_/id/250/st-mirren",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/250.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Greenock Morton-SC": {
+    "path": "/assets/clubs/eu-c9bd30c16a959c.png",
+    "source": "https://www.espn.com/soccer/club/_/id/411/greenock-morton",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/411.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dunfermline Athletic-SC": {
+    "path": "/assets/clubs/eu-173fc802f7a663.png",
+    "source": "https://www.espn.com/soccer/club/_/id/265/dunfermline-athletic",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/265.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ayr United-SC": {
+    "path": "/assets/clubs/eu-b273952ab2f3a0.png",
+    "source": "https://www.espn.com/soccer/club/_/id/248/ayr-united",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/248.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rangers-SC": {
+    "path": "/assets/clubs/eu-5554851bb419be.png",
+    "source": "https://www.espn.com/soccer/club/_/id/257/rangers",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/257.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Raith Rovers-SC": {
+    "path": "/assets/clubs/eu-cd197d8df40174.png",
+    "source": "https://www.espn.com/soccer/club/_/id/249/raith-rovers",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/249.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stenhousemuir-SC": {
+    "path": "/assets/clubs/eu-a0b4de144eab41.png",
+    "source": "https://www.espn.com/soccer/club/_/id/405/stenhousemuir",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/405.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "St Johnstone-SC": {
+    "path": "/assets/clubs/eu-8fda616a38177e.png",
+    "source": "https://www.espn.com/soccer/club/_/id/267/st-johnstone",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/267.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Partick Thistle-SC": {
+    "path": "/assets/clubs/eu-7e7d964ca417f9.png",
+    "source": "https://www.espn.com/soccer/club/_/id/247/partick-thistle",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/247.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Livingston-SC": {
+    "path": "/assets/clubs/eu-56fe8db932e0f3.png",
+    "source": "https://www.espn.com/soccer/club/_/id/259/livingston",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/259.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Inverness Caledonian Thistle-SC": {
+    "path": "/assets/clubs/eu-93833edd67387a.png",
+    "source": "https://www.espn.com/soccer/club/_/id/253/inverness-caledonian-thistle",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/253.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Queen's Park-SC": {
+    "path": "/assets/clubs/eu-5d06de4fbcfdfa.png",
+    "source": "https://www.espn.com/soccer/club/_/id/422/queens-park",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/422.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
   }
 }

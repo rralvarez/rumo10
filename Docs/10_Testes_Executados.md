@@ -160,3 +160,15 @@ Implementados os três ritmos pelo mesmo motor de situações, probabilidades, o
 Verificado: 523 verificações registradas de `tests/play-modes.php`, seis posições e quatro estratégias, temporadas completas no Brasil/Argentina/Uruguai/Paraguai/Bolívia, entrada por roleta, ausência em campo e mata-matas no rápido. `tests/run.php`: 27.979 verificações e 30 temporadas do modo normal. Testes de apresentação e roleta aprovados. `tests/http.php`: 54 verificações no IIS local/MySQL, incluindo cadastro com modo, troca, resultado salvo, replay de rápida e expressa, rejeição de token reutilizado com estratégia diferente, contratos e próxima temporada. Conta descartável limpa ao final; carreira pessoal preservada.
 
 Prévia isolada 390×844: quatro alternativas visíveis e nenhuma largura horizontal excedente; contrato acessível no fechamento e relatório dentro de Ver minha temporada. Evidência `storage/modo-rapido-mobile.jpg`. Limites e instruções em `Docs/13_Modos_de_Jogo.md`. Não testado em Apache, produção ou telefone físico.
+
+
+## 13/10/2026 — Europa e propostas internacionais
+
+Cadastro de 365 clubes / 20 divisões 2026/27 em dez países; 278 campanhas de 2025/26 para overall. Universo com 1.036 clubes e 63 competições. Instalado no ecohub apenas em rumo10_, sem reset. Mercado internacional usa desempenho, minutos, evolução técnica e overall do destino; destinos estrangeiros têm vagas no conjunto da roleta, sem garantia de clube específico. Transferência conserva história e modo e usa novo campeonato no ano seguinte.
+
+Verificado: `tests/europe.php` (28.858 verificações na primeira execução), vinte formatos, calendário completo, acesso/rebaixamento, reservas, tamanho das divisões e carreiras até a segunda temporada; interesse e transferência Brasil–Portugal com atleta sintético. `tests/europe-mysql.php`: sete verificações, propostas salvas, replay e aceitação internacional. `tests/scenes-mysql.php`: vinte verificações de persistência e overall. `tests/http.php`: 54 verificações IIS/MySQL após otimização de memória. Os 365 escudos europeus responderam HTTP 200 com MIME de imagem.
+
+O teste inicial no IIS atingiu o limite de memória de 128 MiB ao manter cópias simultâneas do universo. Corrigido liberando o estado anterior e as cópias antes de recarregar; repetição aprovada sem alterar PHP/IIS. A normalização dos objetos JSON pelo MySQL foi preservada e verificada por reload estrito. Testes usaram contas descartáveis com cleanup. Sem acesso a Apache/produção. Fontes, adaptação dos playoffs holandeses, barragens automáticas, limites de terceiras divisões e escudos não certificados integralmente estão em `Docs/14_Europa_e_Mercado_Internacional.md`.
+
+Reexecução final de `tests/europe.php`: 28.858 verificações aprovadas após ajustes de chaveamento e destino pós-acesso. PHP lint e apresentação aprovados.
+Regressão final: 8.750 verificações oficiais brasileiras e 27.980 verificações do motor regional (30 temporadas completas em seis posições), aprovadas.
