@@ -181,3 +181,12 @@ A ficha `/jogador` agora soma jogos, gols e assistências da carreira inteira e 
 Verificado: nove testes de `tests/career-stats.php` (total, agregação, preservação após contrato, ausência de mutação, início sem clube e escaping); apresentação aprovada; lint PHP; 56 verificações HTTP no IIS/MySQL local, incluindo totalizador depois de contrato e estado intacto ao abrir a ficha. Conta descartável removida ao final.
 
 Análise em `Docs/15_Calendario_Historico_e_Premiacoes.md`: fontes CBF, Premier League/EFL, FIFA, AUF e LPF; diferença de temporadas, duas janelas, requisitos de data global e plantéis CPU para premiações justas. Calendário global, transferência de meio de ano e autoria de gols de NPCs ainda não implementados, e não foram declarados como testados. Apache/produção não acessados.
+
+
+## 13/10/2026 — elencos reais, notas publicadas e fictícios
+
+Catálogo de 1.036 clubes: 14.437 reais em 448 clubes, 14.126 fictícios, 3.949 ratings publicados EA FC27 e 24.614 estimados. Séries A/B brasileiras com os 40 elencos reais. Dados de fonte e edição identificados; IDs ambíguos excluídos. Persistido apenas em rumo10_elencos_catalogo no ecohub, sem alteração de carreiras. Consulta /elenco autenticada pelo link na ficha.
+
+Verificado: `tests/player-catalog.php`, 150.913 checks na execução final; todos os clubes, identidade única, contadores, posição, intervalo, fonte, goleiros, repetição e render sem mutação. Testes de apresentação e lint aprovados. `tests/http.php`: 58 verificações IIS/MySQL, incluindo elenco do próprio clube e estado intacto após consulta. Prévia GET isolada 390×844, sem overflow horizontal/imagem quebrada; evidência storage/elenco-mobile.jpg. Apache, produção e telefone físico não acessados.
+
+Limite explícito: importação/persistência/consulta de plantéis de referência, ainda sem autoria de gols, estatísticas ou premiações individuais dos NPCs no motor. Calendário global/duas janelas continuam pendentes. Origem e modelo estimado em Docs/16_Elencos_Reais_e_Ficticios.md.

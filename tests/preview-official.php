@@ -27,4 +27,5 @@ if(in_array($previewPath,['/rapido','/expresso','/rapido-resultado','/expresso-r
  if(str_ends_with($previewPath,'-resultado'))$g=Game::command($g,'simulate',['plan'=>'coletivo']);
  $path='/carreira';
 }
+if($previewPath==='/elenco'){$g=Game::create('Jogador de teste','São Paulo','SP','meia','Arsenal-EN');$g['id']=0;$path='/elenco';}
 require dirname(__DIR__).'/app/view.php';

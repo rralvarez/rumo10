@@ -34,6 +34,12 @@ Nesta máquina, a instância original FastCGI apresentou erro de monitoramento e
 ```
 
 Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação anônima com identidade do pool em produção, evitando compartilhamento de IUSR entre sites.
+## Companheiros reais e fictícios
+
+Em `/jogador`, abra **Ver companheiros de elenco**. O catálogo cobre os 1.036 clubes: 14.437 atletas reais em 448 equipes, 14.126 fictícios e 3.949 notas publicadas do EA SPORTS FC 27. Os demais overalls são estimados e identificados. [Procedência, instalação e limites da integração](Docs/16_Elencos_Reais_e_Ficticios.md). Os elencos são a base de referência; autoria de gols e premiações dos NPCs ainda serão integradas ao motor.
+
+Para instalar o catálogo, execute `bin/install-players.php` com a conexão local configurada. A tabela criada é exclusivamente `rumo10_elencos_catalogo`, sem reset de carreira.
+
 ## Histórico da carreira e próxima evolução
 
 A ficha `/jogador` mostra **Carreira inteira**, com jogos, gols e assistências acumulados, além de números por clube e temporada. [Análise de calendários, duas janelas de transferência e premiações](Docs/15_Calendario_Historico_e_Premiacoes.md). A sincronização de datas Brasil–Europa e as premiações individuais competitivas ainda dependem da evolução do motor; não confundir essa análise com funcionalidades implementadas.

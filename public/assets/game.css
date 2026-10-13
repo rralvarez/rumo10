@@ -41,3 +41,7 @@ header nav .new-career-link{color:var(--lime);font-weight:700}
 @media(max-width:600px){.pace-decision{padding:16px}.pace-decision>p:not(.tag){font-size:12px;line-height:1.45;margin-bottom:12px}.pace-decision .choice{padding:11px 12px;min-height:60px;margin-bottom:8px}.pace-decision .choice small{font-size:10px;line-height:1.3;margin-top:3px}.pace-decision .choice strong{font-size:13px}.pace-report{padding:16px}.pace-report p{font-size:12px}}
 
 .profile-career-history{margin-top:14px;font-size:12px}.profile-career-history>summary{cursor:pointer;min-height:44px;padding:12px 0}.profile-career-history .club-badge{width:24px;height:24px}.profile-career-history td{vertical-align:middle}.profile-season-list{list-style:none;padding:0}.profile-season-list li{padding:10px 0;border-bottom:1px solid var(--border)}.profile-season-list span{display:block;color:var(--muted);margin-top:4px}.profile-season-list small{color:var(--lime)}
+
+.squad-link{font-size:11px;display:block;margin-top:10px}.squad-table{font-size:13px}.squad-table td{vertical-align:middle}.squad-table small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.squad-table td:last-child b{font-size:20px;color:var(--lime)}.squad-reference h1{font-size:30px}.squad-reference{max-width:800px;margin:auto}
+
+.athlete-club{flex-wrap:wrap}.athlete-club .squad-link{flex-basis:100%;margin-top:0}
