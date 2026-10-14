@@ -1,0 +1,170 @@
+[
+  {
+    "country": "CL",
+    "nation": "Chile",
+    "clubs": 16,
+    "coverage": "publisher_participants",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "country": "PE",
+    "nation": "Peru",
+    "clubs": 18,
+    "coverage": "publisher_participants",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "country": "VE",
+    "nation": "Venezuela",
+    "clubs": 14,
+    "coverage": "publisher_participants",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "country": "GY",
+    "nation": "Guyana",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "ZA",
+    "nation": "South Africa",
+    "clubs": 16,
+    "coverage": "publisher_participants",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "country": "NG",
+    "nation": "Nigeria",
+    "clubs": 20,
+    "coverage": "publisher_participants",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "country": "GH",
+    "nation": "Ghana",
+    "clubs": 18,
+    "coverage": "publisher_participants",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "country": "KE",
+    "nation": "Kenya",
+    "clubs": 18,
+    "coverage": "publisher_participants",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026"
+  },
+  {
+    "country": "MA",
+    "nation": "Morocco",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "EG",
+    "nation": "Egypt",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "DZ",
+    "nation": "Algeria",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "TN",
+    "nation": "Tunisia",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "TZ",
+    "nation": "Tanzania",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "CD",
+    "nation": "Congo DR",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "AO",
+    "nation": "Angola",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "CI",
+    "nation": "Côte d'Ivoire",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "ZM",
+    "nation": "Zambia",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "UG",
+    "nation": "Uganda",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "RW",
+    "nation": "Rwanda",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "CM",
+    "nation": "Cameroon",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "SN",
+    "nation": "Senegal",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "ML",
+    "nation": "Mali",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "ET",
+    "nation": "Ethiopia",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "country": "LY",
+    "nation": "Libya",
+    "clubs": 4,
+    "coverage": "reference_circuit",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  }
+]

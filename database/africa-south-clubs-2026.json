@@ -1,0 +1,4589 @@
+[
+  {
+    "name": "Audax Italiano-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4138.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 77.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#0020A0",
+      "#FFE000",
+      "#008060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Cobresal-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4133.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 74.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF8000",
+      "#FFE000",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Colo Colo-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2688.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 82.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#2060A0",
+      "#000000",
+      "#C04020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Coquimbo Unido-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8186.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 80.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#FFE000",
+      "#808080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Deportes Concepcion-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8110.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#602080",
+      "#FFA020",
+      "#A080C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Deportes Limache-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/19195.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 77.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#E00000",
+      "#FFC060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Everton CD-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4129.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#204060",
+      "#FFC000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Huachipato-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4134.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 76.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#0080C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "La Serena-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4137.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 75.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#006000",
+      "#FF0000",
+      "#FFFF00"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "O'Higgins-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6072.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 78.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#20A040",
+      "#FFE000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Palestino-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4422.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 78.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#008060",
+      "#000000",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Universidad Católica-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/885.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 82.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#6080C0",
+      "#2060A0",
+      "#A0C0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Universidad de Chile-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4139.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 82.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#204080",
+      "#E00020",
+      "#A0A0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Universidad de Concepción-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5362.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#FFE000",
+      "#0040A0",
+      "#808060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Unión La Calera-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10144.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 75.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202060",
+      "#006040",
+      "#E04020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Ñublense-CL",
+    "country": "CL",
+    "uf": "CL",
+    "competitions": [
+      "cl-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.anfp.cl/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7427.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 76.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#C02020",
+      "#000000",
+      "#606060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "ADT-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21314.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 72.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#00C0FF",
+      "#FFE000",
+      "#E00000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Alianza Atlético-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5267.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 77.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202060",
+      "#E0E0E0",
+      "#A0A0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Alianza Lima-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2680.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 80.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#002040",
+      "#E0E0E0",
+      "#404060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Atlético Grau-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20293.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 74.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF0020",
+      "#FFFF00",
+      "#FFA000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Cienciano del Cusco-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3372.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#202060",
+      "#FFE000",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Comerciantes Unidos-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18153.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 73.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#6040A0",
+      "#00A060",
+      "#202080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Cusco FC-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11995.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#C0A060",
+      "#202020",
+      "#806040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Deportivo Garcilaso-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21819.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 77.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#FFFFFF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Deportivo Moquegua-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131654.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 70.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#C0A040",
+      "#402020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "FC Cajamarca-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131655.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 71.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#0020A0",
+      "#C06020",
+      "#FFE080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Juan Pablo II-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22534.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#200080",
+      "#00C0FF",
+      "#FFE0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Los Chankas-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22168.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 73.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#802020",
+      "#FFE020",
+      "#C08080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Melgar-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7312.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 79.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202020",
+      "#E02020",
+      "#FFC000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Sport Boys-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5570.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 74.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFA0C0",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Sport Huancayo-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10318.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 76.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF0020",
+      "#FFA040",
+      "#FFE0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Sporting Cristal-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2673.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 78.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#60C0E0",
+      "#FFFF00",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "UTC-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10122.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#800000",
+      "#E0E0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Universitario-PE",
+    "country": "PE",
+    "uf": "PE",
+    "competitions": [
+      "pe-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "federation_source": "https://liga1.pe/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2685.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 79.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#802020",
+      "#FFFFFF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Academia Puerto Cabello-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18995.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 77.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#002060",
+      "#FF4000",
+      "#FFA000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Anzoátegui FC-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13783.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#404040",
+      "#C0E0FF",
+      "#40C0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Carabobo-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6037.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 79.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#402060",
+      "#FFC000",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Caracas FC-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4811.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#E00020",
+      "#000000",
+      "#0060A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Deportivo La Guaira-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17090.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 75.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202060",
+      "#FF8020",
+      "#4080C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Deportivo Táchira-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4818.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 78.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE000",
+      "#000000",
+      "#404000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Estudiantes de Mérida-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6038.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 73.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000040",
+      "#E0E0E0",
+      "#8080A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Metropolitanos-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13481.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 78.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#402060",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Monagas SC-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6041.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#204060",
+      "#FFA000",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Portuguesa-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6762.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 74.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202020",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Rayo Zuliano-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21850.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 70.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#0020A0",
+      "#FFE000",
+      "#A0A0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Trujillanos-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5268.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 69.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE000",
+      "#C04000",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "UCV FC-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10094.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#FFE000",
+      "#002060",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Zamora FC-VE",
+    "country": "VE",
+    "uf": "VE",
+    "competitions": [
+      "ve-1"
+    ],
+    "edition": "2026",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "federation_source": "https://ligafutve.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6763.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#000000",
+      "#A0A0A0",
+      "#606060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Slingerz-GY",
+    "country": "GY",
+    "uf": "GY",
+    "competitions": [
+      "gy-1"
+    ],
+    "edition": "2026",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.guyanafootball.org/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ck4z6eycs26fxq9fxd25vap61",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 61.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#FF6000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Guyana Defence Force-GY",
+    "country": "GY",
+    "uf": "GY",
+    "competitions": [
+      "gy-1"
+    ],
+    "edition": "2026",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.guyanafootball.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Guyana_Defence_Force_FC",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c3/Guyana_Defense_Force.svg/250px-Guyana_Defense_Force.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 61.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#FFE000",
+      "#808000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Guyana_Defence_Force_FC"
+  },
+  {
+    "name": "Police-GY",
+    "country": "GY",
+    "uf": "GY",
+    "competitions": [
+      "gy-1"
+    ],
+    "edition": "2026",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.guyanafootball.org/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dm61q4k664y4tydxrzahgsfoq",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 55.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Western Tigers-GY",
+    "country": "GY",
+    "uf": "GY",
+    "competitions": [
+      "gy-1"
+    ],
+    "edition": "2026",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.guyanafootball.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Western_Tigers_FC",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c8/Western_Tigers_FC_logo.png/250px-Western_Tigers_FC_logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 55.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#E0C000",
+      "#404040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Western_Tigers_FC"
+  },
+  {
+    "name": "AmaZulu-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7079.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 73.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#20C040",
+      "#80E0A0",
+      "#E0FFE0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Chippa United-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11913.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000060",
+      "#FF0000",
+      "#4000C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Durban City-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22348.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 71.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#20A0E0",
+      "#FFFFFF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Golden Arrows-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7077.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 72.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#208040",
+      "#FFE000",
+      "#80C0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Kaizer Chiefs-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7081.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 75.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#FFA040",
+      "#C08020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Kruger United-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22350.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#E0E0FF",
+      "#C0C0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Mamelodi Sundowns-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7084.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 80.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFFF00",
+      "#00A060",
+      "#A0E020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Marumo Gallants-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13317.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 67.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#0000E0",
+      "#FFE020",
+      "#4040C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Milford FC-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21990.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#0000C0",
+      "#E0E0E0",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Orlando Pirates-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7085.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 80.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#808080",
+      "#404040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Polokwane City FC-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7099.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#000000",
+      "#A0A0A0",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Richards Bay FC-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18825.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#202060",
+      "#60C0E0",
+      "#2060A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Sekhukhune United FC-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20814.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#A04040",
+      "#FFFFFF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Siwelele-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131361.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 70.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#008040",
+      "#80C0A0",
+      "#C0E0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Stellenbosch-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18615.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 71.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#C08020",
+      "#E0E0C0",
+      "#C0C080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "TS Galaxy FC-ZA",
+    "country": "ZA",
+    "uf": "ZA",
+    "competitions": [
+      "za-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.psl.co.za/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/19298.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#202020",
+      "#E02040",
+      "#802040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Abia Warriors-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17792.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#402020",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Barau-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3z3d5burqmmwzlqzud12shno4",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 70.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000060",
+      "#00A0E0",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Bayelsa United-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://en.wikipedia.org/wiki/Bayelsa_United_F.C.",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/76/Bayelsa_United_F.C._logo.png/250px-Bayelsa_United_F.C._logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 67.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#204080",
+      "#A02040",
+      "#E0C0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Bayelsa_United_F.C."
+  },
+  {
+    "name": "Bendel Insurance FC-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3ckx9sysl6jw4ufrm9lfgtwrw",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#008020",
+      "#FFE000",
+      "#806040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "El Kanemi Warriors-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17796.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 66.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#20A060",
+      "#FFFF00",
+      "#80C0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Enyimba-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2227.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 67.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#002080",
+      "#00A0E0",
+      "#A0C0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Ikorodu City-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=61puofds2bt8xhkmpbj08cd90",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 70.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#A00000",
+      "#FFE000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Kano Pillars-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17802.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFFF00",
+      "#00A040",
+      "#202020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Katsina United-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=49vn39m9ibz1iwbqxsfnxlfxl",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#00A040",
+      "#FFFF00",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Kun Khalifat FC-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=au6ljs8hyt3z44u808gx6upec",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#000000",
+      "#FF0000",
+      "#FFC000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Kwara United-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17803.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE040",
+      "#C04040",
+      "#202020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Nasarawa United-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17805.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 69.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#A0C080",
+      "#FFFFC0",
+      "#808060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Niger Tornadoes-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18184.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 67.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#C0E0FF",
+      "#E02020",
+      "#202080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Plateau United-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18181.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 70.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#A0C060",
+      "#FFFF00",
+      "#00A040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Rangers International-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17797.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#E00000",
+      "#404040",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Remo Stars-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=kc8w6ymv2pi6kxhqdx9kqqjt",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000020",
+      "#FF0000",
+      "#FFC000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Rivers United FC-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=aqg0pzg5bs6wizwkjl6wkjnc9",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#E04040",
+      "#E0E0FF",
+      "#808080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Shooting Stars SC-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17807.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#4060A0",
+      "#C0A060",
+      "#A0A0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Warri Wolves-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=54j80mjjkqe2iue7i9e0gzufd",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 67.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#0080E0",
+      "#002060",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Wikki Tourists-NG",
+    "country": "NG",
+    "uf": "NG",
+    "competitions": [
+      "ng-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "federation_source": "https://npfl.com.ng/",
+    "badge_source": "https://en.wikipedia.org/wiki/Wikki_Tourists_F.C.",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/45/Wikki_Tourists_F.C._logo.png/250px-Wikki_Tourists_F.C._logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 66.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E04040",
+      "#E0E000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Wikki_Tourists_F.C."
+  },
+  {
+    "name": "Aduana Stars-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18603.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#006000",
+      "#408040",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Asante Kotoko-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c3um65ybq4lr72xgyfuurlr6a",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 69.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE000",
+      "#000000",
+      "#40A060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Basake Holy Stars-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ckdxpba5dof28uqxak5mi5ono",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 67.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#00A000",
+      "#00FF00"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Bechem United-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18602.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 69.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#200060",
+      "#E0E0FF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Berekum Chelsea-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18604.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 69.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFA000",
+      "#000060",
+      "#FFFFE0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Bibiani Gold Stars-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dvfjgm0w62k399ug2pag8ww2y",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 69.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE020",
+      "#008040",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Dreams F.C.-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18990.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#40A000",
+      "#A0C080",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Eleven Wonders-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18991.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 56.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E00000",
+      "#00A000",
+      "#E0FFFF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Heart of Lions-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dt84qbaofrfsj65hhn3p3gy7s",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 69.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#802020",
+      "#002040",
+      "#C0A000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Hearts of Oak-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18597.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 71.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE000",
+      "#0080C0",
+      "#00A060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Hohoe United-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c0doy6qt250o4xe1uvuy7tg5w",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 65.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202060",
+      "#E00020",
+      "#808060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Karela-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18992.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#FF0020",
+      "#208000",
+      "#808080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Medeama-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18601.png",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 72.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#200060",
+      "#E0E0E0",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Nations-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cm1by4und8addih2twplbqgpg",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 61.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#002040",
+      "#E0E0E0",
+      "#FFA040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Samartex-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=792e60uaef3im2qo7q4zgab1m",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 70.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#008040",
+      "#000000",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Swedru All Blacks-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ad4mv3pwn87bvkwpdt9vdnwow",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#C0C0C0",
+      "#606060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Vision FC-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9y6f4xolwgurzpbp0hvjuhd6",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#A00080",
+      "#C040E0",
+      "#2000A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Young Apostles-GH",
+    "country": "GH",
+    "uf": "GH",
+    "competitions": [
+      "gh-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "federation_source": "https://www.ghanafa.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3114pial4vumnzocmwg5xdi7e",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 67.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#204080",
+      "#A0A0C0",
+      "#FFC020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "AFC Leopards-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/A.F.C._Leopards",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/93/AFC_Leopards.png/250px-AFC_Leopards.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#2040A0",
+      "#C0C0E0",
+      "#8080C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/A.F.C._Leopards"
+  },
+  {
+    "name": "APS Bomet-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=x336bylr96mkuqivi7erouay",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 63.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Bandari Mtwara-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Bandari_F.C._%28Kenya%29",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/2c/Bandari_FC_Kenya_logo.jpg/250px-Bandari_FC_Kenya_logo.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#002080",
+      "#FFFFFF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Bandari_F.C._%28Kenya%29"
+  },
+  {
+    "name": "Bidco United-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Bidco_United_F.C.",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/1/1f/Bidco_FC_logo.gif/250px-Bidco_FC_logo.gif?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 57.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202080",
+      "#C0C0E0",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Bidco_United_F.C."
+  },
+  {
+    "name": "Gor Mahia-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a5b4if5fvar17mo2ph307ipob",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 68.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#006040",
+      "#E0E0E0",
+      "#204080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "KCB-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2wz7ovrug58eehv4ys1ilxxve",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 62.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Kakamega Homeboyz-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Kakamega_Homeboyz_F.C.",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/d/d4/Kakamega_Homeboyz_F.C._logo.jpg/250px-Kakamega_Homeboyz_F.C._logo.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#FFE020",
+      "#FFFFE0",
+      "#2020E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Kakamega_Homeboyz_F.C."
+  },
+  {
+    "name": "Kariobangi Sharks-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/F.C._Kariobangi_Sharks",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/1/1b/F.C._Kariobangi_Sharks_logo.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 61.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Kenya Police-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=azh1rbgn3ed64odglxq0vjy3u",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#FFE040",
+      "#E0E0E0",
+      "#FF2020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Mara Sugar-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Mara_Sugar_F.C.",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Marasugar.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 61.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#206040",
+      "#E0E0E0",
+      "#E0FF40"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Mara_Sugar_F.C."
+  },
+  {
+    "name": "Mathare United-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Mathare_United_F.C.",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/4/4c/MathareUnited.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 60.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#006040",
+      "#FFFF00",
+      "#408020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Mathare_United_F.C."
+  },
+  {
+    "name": "Murang'a Seal FC-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1d3i80tmwhan00mwoe29zihyi",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Nairobi United-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9gdd0oat5vnwa787awy2xnc44",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 63.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#006020",
+      "#A0C0C0",
+      "#80A080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Posta Rangers-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Posta_Rangers_F.C.",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/e/eb/Posta_Rangers_F.C._logo.png/250px-Posta_Rangers_F.C._logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 59.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#20A0E0",
+      "#C0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Posta_Rangers_F.C."
+  },
+  {
+    "name": "Shabana-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Shabana_F.C.",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/f/f9/Shabana_FC_%28logo%29.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 63.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Sofapaka-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Sofapaka_F.C.",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/0/0e/Sofapaka_F.C._logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 57.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Tusker FC-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5ryct1n8uo3kg3qqvhwqgq3wg",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "colors": [
+      "#FFC020",
+      "#000000",
+      "#A08020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026"
+  },
+  {
+    "name": "Ulinzi Stars-KE",
+    "country": "KE",
+    "uf": "KE",
+    "competitions": [
+      "ke-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "federation_source": "https://footballkenya.org/",
+    "badge_source": "https://en.wikipedia.org/wiki/Ulinzi_Stars_F.C.",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/8d/Ulinzi_Stars_FC_logo.png/250px-Ulinzi_Stars_FC_logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "publisher_current_season",
+    "reference_overall": 61.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E0A040",
+      "#402080",
+      "#E04020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Ulinzi_Stars_F.C."
+  },
+  {
+    "name": "FAR Rabat-MA",
+    "country": "MA",
+    "uf": "MA",
+    "competitions": [
+      "ma-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://frmf.ma/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=x0mbz2vi8eyejsx1jc729svv",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 80.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#006020",
+      "#E0A040",
+      "#000000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "RSB Berkane-MA",
+    "country": "MA",
+    "uf": "MA",
+    "competitions": [
+      "ma-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://frmf.ma/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5iuuccvbznfqyibcx96knhysc",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 80.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF8000",
+      "#606000",
+      "#202000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Raja Casablanca-MA",
+    "country": "MA",
+    "uf": "MA",
+    "competitions": [
+      "ma-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://frmf.ma/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3l9kyuwcn5wgjz5b1e3qrazqz",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 80.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#00A040",
+      "#80C0A0",
+      "#C0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Maghreb Fès-MA",
+    "country": "MA",
+    "uf": "MA",
+    "competitions": [
+      "ma-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://frmf.ma/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9ifkcwn9mt2as1ctfpinwwj91",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 78.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFFF00",
+      "#000000",
+      "#A0A000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Al Ahly-EG",
+    "country": "EG",
+    "uf": "EG",
+    "competitions": [
+      "eg-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.efa.com.eg/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1q2hx9pw8c7x88utqunk4e6xl",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 82.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E00020",
+      "#202020",
+      "#E0C060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Pyramids-EG",
+    "country": "EG",
+    "uf": "EG",
+    "competitions": [
+      "eg-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.efa.com.eg/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a5hh43fi88rchrm37263600hu",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 82.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#204060",
+      "#80A0E0",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Zamalek-EG",
+    "country": "EG",
+    "uf": "EG",
+    "competitions": [
+      "eg-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.efa.com.eg/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2c1lvho9eqtqfqf4t3cv0f237",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 78.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#C02000",
+      "#000000",
+      "#FFE0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Ceramica Cleopatra-EG",
+    "country": "EG",
+    "uf": "EG",
+    "competitions": [
+      "eg-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.efa.com.eg/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3kcimq8ylw8950rl7mn9euzqi",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 76.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E0A040",
+      "#C00000",
+      "#202060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Belouizdad-DZ",
+    "country": "DZ",
+    "uf": "DZ",
+    "competitions": [
+      "dz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faf.dz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8vldgq3nu5tcnv2xyq01pfru7",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 79.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF0000",
+      "#FFE0E0",
+      "#FFA0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "MC Alger-DZ",
+    "country": "DZ",
+    "uf": "DZ",
+    "competitions": [
+      "dz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faf.dz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3hjibr4pt10o0ifk7tbl7si6i",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 79.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#008060",
+      "#E0C060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Kabylie-DZ",
+    "country": "DZ",
+    "uf": "DZ",
+    "competitions": [
+      "dz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faf.dz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1p0vptu3654utj37hbudw9d5j",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 76.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE020",
+      "#00A040",
+      "#80C020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "USM Alger-DZ",
+    "country": "DZ",
+    "uf": "DZ",
+    "competitions": [
+      "dz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faf.dz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8yto6v12sv1yrpg8ad5eaq62c",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 75.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#A00020",
+      "#A08060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "ES Tunis-TN",
+    "country": "TN",
+    "uf": "TN",
+    "competitions": [
+      "tn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ftf.org.tn/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3s830ae09zdviu2cnqxixflq1",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 78.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202020",
+      "#FFE000",
+      "#E00020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Club Africain-TN",
+    "country": "TN",
+    "uf": "TN",
+    "competitions": [
+      "tn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ftf.org.tn/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9s0ojv8sdlnx3g7ugpyddejlz",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 75.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E00020",
+      "#FFE0E0",
+      "#FFA0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "CS Sfaxien-TN",
+    "country": "TN",
+    "uf": "TN",
+    "competitions": [
+      "tn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ftf.org.tn/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1owjf2cxeccbbsfcus5g9nsqr",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 73.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#E0E0E0",
+      "#808080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Monastir-TN",
+    "country": "TN",
+    "uf": "TN",
+    "competitions": [
+      "tn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ftf.org.tn/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d9agxbf1cgeg20ktaa1j5arj4",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 72.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#2000FF",
+      "#E0E0FF",
+      "#A0A0FF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Young Africans-TZ",
+    "country": "TZ",
+    "uf": "TZ",
+    "competitions": [
+      "tz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.tff.or.tz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=es0todg3ftqeg5ml6lfq55rof",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 80.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#406040",
+      "#FFE000",
+      "#C0C020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Simba-TZ",
+    "country": "TZ",
+    "uf": "TZ",
+    "competitions": [
+      "tz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.tff.or.tz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=649j6ge70givt65ltkwro9645",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 80.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#FFE0E0",
+      "#FF8080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Azam-TZ",
+    "country": "TZ",
+    "uf": "TZ",
+    "competitions": [
+      "tz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.tff.or.tz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8tckb0ww3fnddmvsdo5f1l5y7",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 74.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#2060A0",
+      "#C0A060",
+      "#6080C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Singida Black Stars-TZ",
+    "country": "TZ",
+    "uf": "TZ",
+    "competitions": [
+      "tz-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.tff.or.tz/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3937hay1g0ohrue2m0hgj3j10",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#20A0E0",
+      "#00A060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "TP Mazembe-CD",
+    "country": "CD",
+    "uf": "CD",
+    "competitions": [
+      "cd-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fecofa.cd/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=egds8x98qpscniqorqg52obs6",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 76.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#404040",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Saint Eloi Lupopo-CD",
+    "country": "CD",
+    "uf": "CD",
+    "competitions": [
+      "cd-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fecofa.cd/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=16245tyzivgxs6snosv45qbs5",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 71.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#0060C0",
+      "#FFE040",
+      "#A0C060"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Maniema Union-CD",
+    "country": "CD",
+    "uf": "CD",
+    "competitions": [
+      "cd-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fecofa.cd/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d3d6m7d5zfdyo3xf5li133m34",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 71.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#FFE020",
+      "#60C040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Aigles du Congo-CD",
+    "country": "CD",
+    "uf": "CD",
+    "competitions": [
+      "cd-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fecofa.cd/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=wk0dt3dyyisxpe6tkqxepkic",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202060",
+      "#A0A0C0",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Petro de Luanda-AO",
+    "country": "AO",
+    "uf": "AO",
+    "competitions": [
+      "ao-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a29xzt037ts7jcubdkm0gzqns",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 77.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE000",
+      "#0040A0",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "1º de Agosto-AO",
+    "country": "AO",
+    "uf": "AO",
+    "competitions": [
+      "ao-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=e5sfuvzi782x67ajtxu6r5ppy",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 73.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#000000",
+      "#2040A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Wiliete-AO",
+    "country": "AO",
+    "uf": "AO",
+    "competitions": [
+      "ao-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2eqqqko6bqom608ah7prxcxnu",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 73.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFE000",
+      "#00A000",
+      "#C0E0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Desportivo Huíla-AO",
+    "country": "AO",
+    "uf": "AO",
+    "competitions": [
+      "ao-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=30vlpy7usglh8ojidvy9nojcs",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF2040",
+      "#FFFF00",
+      "#60A080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "ASEC Mimosas-CI",
+    "country": "CI",
+    "uf": "CI",
+    "competitions": [
+      "ci-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fif.ci/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=52z7foxzla2qzsh6exgu1l9qv",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 73.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#FFE000",
+      "#404000"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "San-Pédro-CI",
+    "country": "CI",
+    "uf": "CI",
+    "competitions": [
+      "ci-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fif.ci/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2pgvconoyesc87ys7evjauf8l",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 70.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF6000",
+      "#000000",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "AFAD-CI",
+    "country": "CI",
+    "uf": "CI",
+    "competitions": [
+      "ci-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fif.ci/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=84cmokm61uh9ngaujr99fwfxv",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000040",
+      "#408040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Stade d'Abidjan-CI",
+    "country": "CI",
+    "uf": "CI",
+    "competitions": [
+      "ci-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fif.ci/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8pqv2369l93kfbgewpjsqwjit",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 68.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#202080",
+      "#E02020",
+      "#FFE0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Power Dynamos-ZM",
+    "country": "ZM",
+    "uf": "ZM",
+    "competitions": [
+      "zm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faz.co.zm/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=f1io9xzqmqb9jj1qxbfebi888",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 74.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#E0A020",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Red Arrows-ZM",
+    "country": "ZM",
+    "uf": "ZM",
+    "competitions": [
+      "zm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faz.co.zm/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d6fxdmtcqkhvzz523s9pqq5ec",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 72.9,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#FF6000",
+      "#E0E0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "ZESCO United-ZM",
+    "country": "ZM",
+    "uf": "ZM",
+    "competitions": [
+      "zm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faz.co.zm/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2nb51v7p1p2n5j9872nb6qyzx",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#80A080",
+      "#E0E0E0",
+      "#408040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Green Eagles-ZM",
+    "country": "ZM",
+    "uf": "ZM",
+    "competitions": [
+      "zm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.faz.co.zm/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4rey0nl2sjswn5botn62u9p8h",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#008040",
+      "#E08000",
+      "#C00020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Vipers-UG",
+    "country": "UG",
+    "uf": "UG",
+    "competitions": [
+      "ug-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fufa.co.ug/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bi084dnzwxqicamwpeyo99yj8",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 73.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#404060",
+      "#E0E0E0",
+      "#A0A0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "SC Villa-UG",
+    "country": "UG",
+    "uf": "UG",
+    "competitions": [
+      "ug-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fufa.co.ug/",
+    "badge_source": "https://en.wikipedia.org/wiki/SC_Villa",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/1/15/Sc_villa_logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 70.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#2040A0",
+      "#E02020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/SC_Villa"
+  },
+  {
+    "name": "NEC-UG",
+    "country": "UG",
+    "uf": "UG",
+    "competitions": [
+      "ug-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fufa.co.ug/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7wmoofgmdh15v3hakw2oocw7o",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "KCCA-UG",
+    "country": "UG",
+    "uf": "UG",
+    "competitions": [
+      "ug-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.fufa.co.ug/",
+    "badge_source": "https://en.wikipedia.org/wiki/Kampala_Capital_City_Authority_FC",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/c/cd/Kampala_Capital_City_Authority_FC.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "APR-RW",
+    "country": "RW",
+    "uf": "RW",
+    "competitions": [
+      "rw-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ferwafa.rw/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9cg3bcpcoxz5ipcx7atcnxcgc",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 70.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#C0C0C0",
+      "#808080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Rayon Sports-RW",
+    "country": "RW",
+    "uf": "RW",
+    "competitions": [
+      "rw-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ferwafa.rw/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a49cjf4ahwfis0ooi8a33t1qk",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 66.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#0040A0",
+      "#6080C0",
+      "#A0C0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Kiyovu Sports-RW",
+    "country": "RW",
+    "uf": "RW",
+    "competitions": [
+      "rw-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ferwafa.rw/",
+    "badge_source": "https://en.wikipedia.org/wiki/S.C._Kiyovu_Sports",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/en/0/0b/SC_Kiyovu_Sport.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 63.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Police-RW",
+    "country": "RW",
+    "uf": "RW",
+    "competitions": [
+      "rw-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.ferwafa.rw/",
+    "badge_source": "https://en.wikipedia.org/wiki/Police_F.C._%28Rwanda%29",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Kit_left_arm.svg/40px-Kit_left_arm.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 63.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#C0C0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://en.wikipedia.org/wiki/Police_F.C._%28Rwanda%29"
+  },
+  {
+    "name": "Colombe-CM",
+    "country": "CM",
+    "uf": "CM",
+    "competitions": [
+      "cm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://fecafoot-officiel.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5l8i9lf9sdnkp29162zava0gx",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 70.1,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#C080A0",
+      "#E0E0E0",
+      "#A000A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Dynamo de Douala-CM",
+    "country": "CM",
+    "uf": "CM",
+    "competitions": [
+      "cm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://fecafoot-officiel.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6ghct9hel3icz8uei3l9982rc",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 66.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFA000",
+      "#2020A0",
+      "#C0C0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Cotonsport-CM",
+    "country": "CM",
+    "uf": "CM",
+    "competitions": [
+      "cm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://fecafoot-officiel.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1wfvjhxjqzfuyzeazh1e0xq5l",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 65.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E0E0C0",
+      "#00C060",
+      "#FFFF00"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Canon-CM",
+    "country": "CM",
+    "uf": "CM",
+    "competitions": [
+      "cm-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://fecafoot-officiel.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=283740118ugrqphpa8kd07vat",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 64.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#008060",
+      "#C02020",
+      "#FFC020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Teungueth-SN",
+    "country": "SN",
+    "uf": "SN",
+    "competitions": [
+      "sn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8ory43wvnbfsre7q9gtihes4b",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 70.8,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FFC000",
+      "#204080",
+      "#A0A040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Jaraaf-SN",
+    "country": "SN",
+    "uf": "SN",
+    "competitions": [
+      "sn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=88b0mskwk0ivz4yspdrllu4sf",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Génération Foot-SN",
+    "country": "SN",
+    "uf": "SN",
+    "competitions": [
+      "sn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5rgyzb6u7pjwzlnjnrx193xqr",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#600020",
+      "#C0A0A0",
+      "#804040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Gorée-SN",
+    "country": "SN",
+    "uf": "SN",
+    "competitions": [
+      "sn-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://en.wikipedia.org/wiki/US_Gor%C3%A9e",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Kit_left_arm_whiteborder.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 69.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://en.wikipedia.org/wiki/US_Gor%C3%A9e",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Djoliba-ML",
+    "country": "ML",
+    "uf": "ML",
+    "competitions": [
+      "ml-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cgvfyhqy5ke9e2q4qdkdbsj14",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 74.6,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#60C040",
+      "#FF0000",
+      "#C04020"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Stade Malien Bamako-ML",
+    "country": "ML",
+    "uf": "ML",
+    "competitions": [
+      "ml-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=b9gahpkle350pey4i63ybq48o",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 74.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#C0C0C0",
+      "#004060",
+      "#406080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Réal Bamako-ML",
+    "country": "ML",
+    "uf": "ML",
+    "competitions": [
+      "ml-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=40u8i3sbxoc3wmeijk7dykh2m",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 71.0,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#000000",
+      "#FFFF00",
+      "#C0C0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "USFAS Bamako-ML",
+    "country": "ML",
+    "uf": "ML",
+    "competitions": [
+      "ml-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2rkkat0yev975sdb314504sag",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 68.7,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#60A020",
+      "#E0E0E0",
+      "#E0E040"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Sidama Bunna-ET",
+    "country": "ET",
+    "uf": "ET",
+    "competitions": [
+      "et-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6mx6b4wrx1mo5a55xst934s94",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 65.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E0E0E0",
+      "#602020",
+      "#C0A0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Mekelakeya-ET",
+    "country": "ET",
+    "uf": "ET",
+    "competitions": [
+      "et-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://en.wikipedia.org/wiki/Defence_Force_S.C.",
+    "badge_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Kit_left_arm_yellowshoulders.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 65.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://en.wikipedia.org/wiki/Defence_Force_S.C.",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Ethiopian Medhin-ET",
+    "country": "ET",
+    "uf": "ET",
+    "competitions": [
+      "et-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5amsy3tiiqhcv07w96hnfqtd4",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 65.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#204080",
+      "#E0E0E0",
+      "#A0A0C0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Negele Arsi Ketema-ET",
+    "country": "ET",
+    "uf": "ET",
+    "competitions": [
+      "et-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://en.wikipedia.org/wiki/Negele_Arsi",
+    "badge_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Ethiopia_adm_location_map.svg/250px-Ethiopia_adm_location_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 64.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#808080",
+      "#FFFFFF"
+    ],
+    "colors_status": "pending",
+    "colors_source": "https://en.wikipedia.org/wiki/Negele_Arsi",
+    "badge_status": "pending_verified_asset"
+  },
+  {
+    "name": "Al Ahli Tripoli-LY",
+    "country": "LY",
+    "uf": "LY",
+    "competitions": [
+      "ly-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5nmmiguex5icfmzsfokqduihs",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 76.4,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#20A040",
+      "#006020",
+      "#A0C0A0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Asswehly-LY",
+    "country": "LY",
+    "uf": "LY",
+    "competitions": [
+      "ly-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=f3ml6cv9jqyfs7zwcv684o3jy",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 73.3,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#FF0000",
+      "#E08080",
+      "#FFE0E0"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Al Ahli Benghazi-LY",
+    "country": "LY",
+    "uf": "LY",
+    "competitions": [
+      "ly-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6hb666m9ccknyczz95bg9qf1f",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 72.5,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#E02020",
+      "#FFE0E0",
+      "#E08080"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  },
+  {
+    "name": "Al-Nasr-LY",
+    "country": "LY",
+    "uf": "LY",
+    "competitions": [
+      "ly-1"
+    ],
+    "edition": "2026/27",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "federation_source": "https://www.cafonline.com/",
+    "badge_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "badge_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=are70vfh9mt8x2xwpnpj0a11b",
+    "reserve": false,
+    "membership_status": "selected_reference_clubs",
+    "reference_overall": 72.2,
+    "overall_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "overall_method": "opta_public_snapshot_clamped_20_95",
+    "colors": [
+      "#408020",
+      "#FFFFFF"
+    ],
+    "colors_status": "approximate_badge_palette",
+    "colors_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings"
+  }
+]

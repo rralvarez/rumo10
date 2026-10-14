@@ -1,0 +1,954 @@
+[
+  {
+    "id": "cl-1",
+    "name": "Liga de Primera",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "CL",
+    "format": "world",
+    "teams": [
+      "Audax Italiano-CL",
+      "Cobresal-CL",
+      "Colo Colo-CL",
+      "Coquimbo Unido-CL",
+      "Deportes Concepcion-CL",
+      "Deportes Limache-CL",
+      "Everton CD-CL",
+      "Huachipato-CL",
+      "La Serena-CL",
+      "O'Higgins-CL",
+      "Palestino-CL",
+      "Universidad Católica-CL",
+      "Universidad de Chile-CL",
+      "Universidad de Concepción-CL",
+      "Unión La Calera-CL",
+      "Ñublense-CL"
+    ],
+    "groups": [
+      [
+        "Audax Italiano-CL",
+        "Cobresal-CL",
+        "Colo Colo-CL",
+        "Coquimbo Unido-CL",
+        "Deportes Concepcion-CL",
+        "Deportes Limache-CL",
+        "Everton CD-CL",
+        "Huachipato-CL",
+        "La Serena-CL",
+        "O'Higgins-CL",
+        "Palestino-CL",
+        "Universidad Católica-CL",
+        "Universidad de Chile-CL",
+        "Universidad de Concepción-CL",
+        "Unión La Calera-CL",
+        "Ñublense-CL"
+      ]
+    ],
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "checked": "2026-10-13",
+    "baseline": 71,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Participantes segundo publicador. Calendário de protótipo em ida/volta; fases especiais, vagas e acesso/rebaixamento não modelados."
+    }
+  },
+  {
+    "id": "pe-1",
+    "name": "Liga 1 (formato adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "PE",
+    "format": "world",
+    "teams": [
+      "ADT-PE",
+      "Alianza Atlético-PE",
+      "Alianza Lima-PE",
+      "Atlético Grau-PE",
+      "Cienciano del Cusco-PE",
+      "Comerciantes Unidos-PE",
+      "Cusco FC-PE",
+      "Deportivo Garcilaso-PE",
+      "Deportivo Moquegua-PE",
+      "FC Cajamarca-PE",
+      "Juan Pablo II-PE",
+      "Los Chankas-PE",
+      "Melgar-PE",
+      "Sport Boys-PE",
+      "Sport Huancayo-PE",
+      "Sporting Cristal-PE",
+      "UTC-PE",
+      "Universitario-PE"
+    ],
+    "groups": [
+      [
+        "ADT-PE",
+        "Alianza Atlético-PE",
+        "Alianza Lima-PE",
+        "Atlético Grau-PE",
+        "Cienciano del Cusco-PE",
+        "Comerciantes Unidos-PE",
+        "Cusco FC-PE",
+        "Deportivo Garcilaso-PE",
+        "Deportivo Moquegua-PE",
+        "FC Cajamarca-PE",
+        "Juan Pablo II-PE",
+        "Los Chankas-PE",
+        "Melgar-PE",
+        "Sport Boys-PE",
+        "Sport Huancayo-PE",
+        "Sporting Cristal-PE",
+        "UTC-PE",
+        "Universitario-PE"
+      ]
+    ],
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "checked": "2026-10-13",
+    "baseline": 63,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Participantes segundo publicador. Calendário de protótipo em ida/volta; fases especiais, vagas e acesso/rebaixamento não modelados."
+    }
+  },
+  {
+    "id": "ve-1",
+    "name": "Liga FUTVE (formato adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "VE",
+    "format": "world",
+    "teams": [
+      "Academia Puerto Cabello-VE",
+      "Anzoátegui FC-VE",
+      "Carabobo-VE",
+      "Caracas FC-VE",
+      "Deportivo La Guaira-VE",
+      "Deportivo Táchira-VE",
+      "Estudiantes de Mérida-VE",
+      "Metropolitanos-VE",
+      "Monagas SC-VE",
+      "Portuguesa-VE",
+      "Rayo Zuliano-VE",
+      "Trujillanos-VE",
+      "UCV FC-VE",
+      "Zamora FC-VE"
+    ],
+    "groups": [
+      [
+        "Academia Puerto Cabello-VE",
+        "Anzoátegui FC-VE",
+        "Carabobo-VE",
+        "Caracas FC-VE",
+        "Deportivo La Guaira-VE",
+        "Deportivo Táchira-VE",
+        "Estudiantes de Mérida-VE",
+        "Metropolitanos-VE",
+        "Monagas SC-VE",
+        "Portuguesa-VE",
+        "Rayo Zuliano-VE",
+        "Trujillanos-VE",
+        "UCV FC-VE",
+        "Zamora FC-VE"
+      ]
+    ],
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "checked": "2026-10-13",
+    "baseline": 59,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Participantes segundo publicador. Calendário de protótipo em ida/volta; fases especiais, vagas e acesso/rebaixamento não modelados."
+    }
+  },
+  {
+    "id": "gy-1",
+    "name": "Circuito Elite League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "GY",
+    "format": "world",
+    "teams": [
+      "Slingerz-GY",
+      "Guyana Defence Force-GY",
+      "Police-GY",
+      "Western Tigers-GY"
+    ],
+    "groups": [
+      [
+        "Slingerz-GY",
+        "Guyana Defence Force-GY",
+        "Police-GY",
+        "Western Tigers-GY"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 35,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "za-1",
+    "name": "Premiership",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "ZA",
+    "format": "world",
+    "teams": [
+      "AmaZulu-ZA",
+      "Chippa United-ZA",
+      "Durban City-ZA",
+      "Golden Arrows-ZA",
+      "Kaizer Chiefs-ZA",
+      "Kruger United-ZA",
+      "Mamelodi Sundowns-ZA",
+      "Marumo Gallants-ZA",
+      "Milford FC-ZA",
+      "Orlando Pirates-ZA",
+      "Polokwane City FC-ZA",
+      "Richards Bay FC-ZA",
+      "Sekhukhune United FC-ZA",
+      "Siwelele-ZA",
+      "Stellenbosch-ZA",
+      "TS Galaxy FC-ZA"
+    ],
+    "groups": [
+      [
+        "AmaZulu-ZA",
+        "Chippa United-ZA",
+        "Durban City-ZA",
+        "Golden Arrows-ZA",
+        "Kaizer Chiefs-ZA",
+        "Kruger United-ZA",
+        "Mamelodi Sundowns-ZA",
+        "Marumo Gallants-ZA",
+        "Milford FC-ZA",
+        "Orlando Pirates-ZA",
+        "Polokwane City FC-ZA",
+        "Richards Bay FC-ZA",
+        "Sekhukhune United FC-ZA",
+        "Siwelele-ZA",
+        "Stellenbosch-ZA",
+        "TS Galaxy FC-ZA"
+      ]
+    ],
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "checked": "2026-10-13",
+    "baseline": 66,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Participantes segundo publicador. Calendário de protótipo em ida/volta; fases especiais, vagas e acesso/rebaixamento não modelados."
+    }
+  },
+  {
+    "id": "ng-1",
+    "name": "NPFL",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "NG",
+    "format": "world",
+    "teams": [
+      "Abia Warriors-NG",
+      "Barau-NG",
+      "Bayelsa United-NG",
+      "Bendel Insurance FC-NG",
+      "El Kanemi Warriors-NG",
+      "Enyimba-NG",
+      "Ikorodu City-NG",
+      "Kano Pillars-NG",
+      "Katsina United-NG",
+      "Kun Khalifat FC-NG",
+      "Kwara United-NG",
+      "Nasarawa United-NG",
+      "Niger Tornadoes-NG",
+      "Plateau United-NG",
+      "Rangers International-NG",
+      "Remo Stars-NG",
+      "Rivers United FC-NG",
+      "Shooting Stars SC-NG",
+      "Warri Wolves-NG",
+      "Wikki Tourists-NG"
+    ],
+    "groups": [
+      [
+        "Abia Warriors-NG",
+        "Barau-NG",
+        "Bayelsa United-NG",
+        "Bendel Insurance FC-NG",
+        "El Kanemi Warriors-NG",
+        "Enyimba-NG",
+        "Ikorodu City-NG",
+        "Kano Pillars-NG",
+        "Katsina United-NG",
+        "Kun Khalifat FC-NG",
+        "Kwara United-NG",
+        "Nasarawa United-NG",
+        "Niger Tornadoes-NG",
+        "Plateau United-NG",
+        "Rangers International-NG",
+        "Remo Stars-NG",
+        "Rivers United FC-NG",
+        "Shooting Stars SC-NG",
+        "Warri Wolves-NG",
+        "Wikki Tourists-NG"
+      ]
+    ],
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "checked": "2026-10-13",
+    "baseline": 49,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Participantes segundo publicador. Calendário de protótipo em ida/volta; fases especiais, vagas e acesso/rebaixamento não modelados."
+    }
+  },
+  {
+    "id": "gh-1",
+    "name": "Premier League",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "GH",
+    "format": "world",
+    "teams": [
+      "Aduana Stars-GH",
+      "Asante Kotoko-GH",
+      "Basake Holy Stars-GH",
+      "Bechem United-GH",
+      "Berekum Chelsea-GH",
+      "Bibiani Gold Stars-GH",
+      "Dreams F.C.-GH",
+      "Eleven Wonders-GH",
+      "Heart of Lions-GH",
+      "Hearts of Oak-GH",
+      "Hohoe United-GH",
+      "Karela-GH",
+      "Medeama-GH",
+      "Nations-GH",
+      "Samartex-GH",
+      "Swedru All Blacks-GH",
+      "Vision FC-GH",
+      "Young Apostles-GH"
+    ],
+    "groups": [
+      [
+        "Aduana Stars-GH",
+        "Asante Kotoko-GH",
+        "Basake Holy Stars-GH",
+        "Bechem United-GH",
+        "Berekum Chelsea-GH",
+        "Bibiani Gold Stars-GH",
+        "Dreams F.C.-GH",
+        "Eleven Wonders-GH",
+        "Heart of Lions-GH",
+        "Hearts of Oak-GH",
+        "Hohoe United-GH",
+        "Karela-GH",
+        "Medeama-GH",
+        "Nations-GH",
+        "Samartex-GH",
+        "Swedru All Blacks-GH",
+        "Vision FC-GH",
+        "Young Apostles-GH"
+      ]
+    ],
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "checked": "2026-10-13",
+    "baseline": 46,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Participantes segundo publicador. Calendário de protótipo em ida/volta; fases especiais, vagas e acesso/rebaixamento não modelados."
+    }
+  },
+  {
+    "id": "ke-1",
+    "name": "Premier League",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "KE",
+    "format": "world",
+    "teams": [
+      "AFC Leopards-KE",
+      "APS Bomet-KE",
+      "Bandari Mtwara-KE",
+      "Bidco United-KE",
+      "Gor Mahia-KE",
+      "KCB-KE",
+      "Kakamega Homeboyz-KE",
+      "Kariobangi Sharks-KE",
+      "Kenya Police-KE",
+      "Mara Sugar-KE",
+      "Mathare United-KE",
+      "Murang'a Seal FC-KE",
+      "Nairobi United-KE",
+      "Posta Rangers-KE",
+      "Shabana-KE",
+      "Sofapaka-KE",
+      "Tusker FC-KE",
+      "Ulinzi Stars-KE"
+    ],
+    "groups": [
+      [
+        "AFC Leopards-KE",
+        "APS Bomet-KE",
+        "Bandari Mtwara-KE",
+        "Bidco United-KE",
+        "Gor Mahia-KE",
+        "KCB-KE",
+        "Kakamega Homeboyz-KE",
+        "Kariobangi Sharks-KE",
+        "Kenya Police-KE",
+        "Mara Sugar-KE",
+        "Mathare United-KE",
+        "Murang'a Seal FC-KE",
+        "Nairobi United-KE",
+        "Posta Rangers-KE",
+        "Shabana-KE",
+        "Sofapaka-KE",
+        "Tusker FC-KE",
+        "Ulinzi Stars-KE"
+      ]
+    ],
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "checked": "2026-10-13",
+    "baseline": 43,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Participantes segundo publicador. Calendário de protótipo em ida/volta; fases especiais, vagas e acesso/rebaixamento não modelados."
+    }
+  },
+  {
+    "id": "ma-1",
+    "name": "Circuito Botola (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "MA",
+    "format": "world",
+    "teams": [
+      "FAR Rabat-MA",
+      "RSB Berkane-MA",
+      "Raja Casablanca-MA",
+      "Maghreb Fès-MA"
+    ],
+    "groups": [
+      [
+        "FAR Rabat-MA",
+        "RSB Berkane-MA",
+        "Raja Casablanca-MA",
+        "Maghreb Fès-MA"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 68,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "eg-1",
+    "name": "Circuito Premier League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "EG",
+    "format": "world",
+    "teams": [
+      "Al Ahly-EG",
+      "Pyramids-EG",
+      "Zamalek-EG",
+      "Ceramica Cleopatra-EG"
+    ],
+    "groups": [
+      [
+        "Al Ahly-EG",
+        "Pyramids-EG",
+        "Zamalek-EG",
+        "Ceramica Cleopatra-EG"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 70,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "dz-1",
+    "name": "Circuito Ligue 1 (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "DZ",
+    "format": "world",
+    "teams": [
+      "Belouizdad-DZ",
+      "MC Alger-DZ",
+      "Kabylie-DZ",
+      "USM Alger-DZ"
+    ],
+    "groups": [
+      [
+        "Belouizdad-DZ",
+        "MC Alger-DZ",
+        "Kabylie-DZ",
+        "USM Alger-DZ"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 62,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "tn-1",
+    "name": "Circuito Ligue 1 (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "TN",
+    "format": "world",
+    "teams": [
+      "ES Tunis-TN",
+      "Club Africain-TN",
+      "CS Sfaxien-TN",
+      "Monastir-TN"
+    ],
+    "groups": [
+      [
+        "ES Tunis-TN",
+        "Club Africain-TN",
+        "CS Sfaxien-TN",
+        "Monastir-TN"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 65,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "tz-1",
+    "name": "Circuito Premier League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "TZ",
+    "format": "world",
+    "teams": [
+      "Young Africans-TZ",
+      "Simba-TZ",
+      "Azam-TZ",
+      "Singida Black Stars-TZ"
+    ],
+    "groups": [
+      [
+        "Young Africans-TZ",
+        "Simba-TZ",
+        "Azam-TZ",
+        "Singida Black Stars-TZ"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 52,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "cd-1",
+    "name": "Circuito Linafoot (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "CD",
+    "format": "world",
+    "teams": [
+      "TP Mazembe-CD",
+      "Saint Eloi Lupopo-CD",
+      "Maniema Union-CD",
+      "Aigles du Congo-CD"
+    ],
+    "groups": [
+      [
+        "TP Mazembe-CD",
+        "Saint Eloi Lupopo-CD",
+        "Maniema Union-CD",
+        "Aigles du Congo-CD"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 56,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "ao-1",
+    "name": "Circuito Girabola (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "AO",
+    "format": "world",
+    "teams": [
+      "Petro de Luanda-AO",
+      "1º de Agosto-AO",
+      "Wiliete-AO",
+      "Desportivo Huíla-AO"
+    ],
+    "groups": [
+      [
+        "Petro de Luanda-AO",
+        "1º de Agosto-AO",
+        "Wiliete-AO",
+        "Desportivo Huíla-AO"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 53,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "ci-1",
+    "name": "Circuito Ligue 1 (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "CI",
+    "format": "world",
+    "teams": [
+      "ASEC Mimosas-CI",
+      "San-Pédro-CI",
+      "AFAD-CI",
+      "Stade d'Abidjan-CI"
+    ],
+    "groups": [
+      [
+        "ASEC Mimosas-CI",
+        "San-Pédro-CI",
+        "AFAD-CI",
+        "Stade d'Abidjan-CI"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 49,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "zm-1",
+    "name": "Circuito Super League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "ZM",
+    "format": "world",
+    "teams": [
+      "Power Dynamos-ZM",
+      "Red Arrows-ZM",
+      "ZESCO United-ZM",
+      "Green Eagles-ZM"
+    ],
+    "groups": [
+      [
+        "Power Dynamos-ZM",
+        "Red Arrows-ZM",
+        "ZESCO United-ZM",
+        "Green Eagles-ZM"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 47,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "ug-1",
+    "name": "Circuito Premier League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "UG",
+    "format": "world",
+    "teams": [
+      "Vipers-UG",
+      "SC Villa-UG",
+      "NEC-UG",
+      "KCCA-UG"
+    ],
+    "groups": [
+      [
+        "Vipers-UG",
+        "SC Villa-UG",
+        "NEC-UG",
+        "KCCA-UG"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 43,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "rw-1",
+    "name": "Circuito Premier League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "RW",
+    "format": "world",
+    "teams": [
+      "APR-RW",
+      "Rayon Sports-RW",
+      "Kiyovu Sports-RW",
+      "Police-RW"
+    ],
+    "groups": [
+      [
+        "APR-RW",
+        "Rayon Sports-RW",
+        "Kiyovu Sports-RW",
+        "Police-RW"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 42,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "cm-1",
+    "name": "Circuito Elite One (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "CM",
+    "format": "world",
+    "teams": [
+      "Colombe-CM",
+      "Dynamo de Douala-CM",
+      "Cotonsport-CM",
+      "Canon-CM"
+    ],
+    "groups": [
+      [
+        "Colombe-CM",
+        "Dynamo de Douala-CM",
+        "Cotonsport-CM",
+        "Canon-CM"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 48,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "sn-1",
+    "name": "Circuito Ligue 1 (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "SN",
+    "format": "world",
+    "teams": [
+      "Teungueth-SN",
+      "Jaraaf-SN",
+      "Génération Foot-SN",
+      "Gorée-SN"
+    ],
+    "groups": [
+      [
+        "Teungueth-SN",
+        "Jaraaf-SN",
+        "Génération Foot-SN",
+        "Gorée-SN"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 45,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "ml-1",
+    "name": "Circuito Première Division (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "ML",
+    "format": "world",
+    "teams": [
+      "Djoliba-ML",
+      "Stade Malien Bamako-ML",
+      "Réal Bamako-ML",
+      "USFAS Bamako-ML"
+    ],
+    "groups": [
+      [
+        "Djoliba-ML",
+        "Stade Malien Bamako-ML",
+        "Réal Bamako-ML",
+        "USFAS Bamako-ML"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 45,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "et-1",
+    "name": "Circuito Premier League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "ET",
+    "format": "world",
+    "teams": [
+      "Sidama Bunna-ET",
+      "Mekelakeya-ET",
+      "Ethiopian Medhin-ET",
+      "Negele Arsi Ketema-ET"
+    ],
+    "groups": [
+      [
+        "Sidama Bunna-ET",
+        "Mekelakeya-ET",
+        "Ethiopian Medhin-ET",
+        "Negele Arsi Ketema-ET"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 41,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  },
+  {
+    "id": "ly-1",
+    "name": "Circuito Premier League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "LY",
+    "format": "world",
+    "teams": [
+      "Al Ahli Tripoli-LY",
+      "Asswehly-LY",
+      "Al Ahli Benghazi-LY",
+      "Al-Nasr-LY"
+    ],
+    "groups": [
+      [
+        "Al Ahli Tripoli-LY",
+        "Asswehly-LY",
+        "Al Ahli Benghazi-LY",
+        "Al-Nasr-LY"
+      ]
+    ],
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "checked": "2026-10-13",
+    "baseline": 47,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Circuito de clubes de referência; não representa a liga completa. Sem vagas continentais, acesso ou rebaixamento."
+    }
+  }
+]

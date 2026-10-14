@@ -4,7 +4,7 @@ declare(strict_types=1);
 final class TransferMarket {
     public const COUNTRIES=['EN'=>'Inglaterra','ES'=>'Espanha','DE'=>'Alemanha','IT'=>'Itália','FR'=>'França','PT'=>'Portugal','NL'=>'Países Baixos','BE'=>'Bélgica','TR'=>'Turquia','SC'=>'Escócia','AR'=>'Argentina','UY'=>'Uruguai','PY'=>'Paraguai','BO'=>'Bolívia','BR'=>'Brasil','US'=>'Estados Unidos','CA'=>'Canadá','MX'=>'México','CR'=>'Costa Rica','HN'=>'Honduras','GT'=>'Guatemala','SV'=>'El Salvador','NO'=>'Noruega','DK'=>'Dinamarca','GR'=>'Grécia','CY'=>'Chipre','RU'=>'Rússia','SA'=>'Arábia Saudita','EC'=>'Equador','CO'=>'Colômbia','CZ'=>'Tchéquia','PL'=>'Polônia','HU'=>'Hungria','HR'=>'Croácia'];
     public static function country(string $club):string {return Competition::clubs()[$club]['country']??'BR';}
-    public const EXTRA_COUNTRIES=['NI'=>'Nicarágua','PA'=>'Panamá','HT'=>'Haiti','JM'=>'Jamaica','DO'=>'República Dominicana','SR'=>'Suriname'];
+    public const EXTRA_COUNTRIES=['NI'=>'Nicarágua','PA'=>'Panamá','HT'=>'Haiti','JM'=>'Jamaica','DO'=>'República Dominicana','SR'=>'Suriname','CL'=>'Chile','PE'=>'Peru','VE'=>'Venezuela','GY'=>'Guiana','ZA'=>'África do Sul','NG'=>'Nigéria','GH'=>'Gana','KE'=>'Quênia','MA'=>'Marrocos','EG'=>'Egito','DZ'=>'Argélia','TN'=>'Tunísia','TZ'=>'Tanzânia','CD'=>'RD Congo','AO'=>'Angola','CI'=>'Costa do Marfim','ZM'=>'Zâmbia','UG'=>'Uganda','RW'=>'Ruanda','CM'=>'Camarões','SN'=>'Senegal','ML'=>'Mali','ET'=>'Etiópia','LY'=>'Líbia'];
     public const EUROPE=['EN','ES','DE','IT','FR','PT','NL','BE','TR','SC','NO','DK','GR','CY','CZ','PL','HU','HR','RU'];
     public static function profile(array $g):array {
         $summary=Game::summary($g);$technical=array_sum(array_column($g['skills'],'value'))/9;

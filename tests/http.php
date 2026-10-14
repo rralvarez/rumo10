@@ -104,6 +104,17 @@ try {
     $profile=request('/jogador');$careerTotals=CareerStats::collect($state)['totals'];
     verify($profile['status']===200 && str_contains($profile['body'],'data-career-stat="goals">'.$careerTotals['goals']) && str_contains($profile['body'],'data-career-stat="assists">'.$careerTotals['assists']),'Histórico geral exibido após contrato');
     verify(json_decode(request('/api/carreira/estado')['body'],true)===$state,'Abrir histórico não altera carreira');
+    // Apenas a conta descartável desta execução recebe a idade sintética de teste.
+    $owner=$r->query('SELECT c.conta_id FROM rumo10_carreiras c JOIN rumo10_contas a ON a.id=c.conta_id WHERE c.id=? AND a.email=?',[$state['id'],$email])->fetchColumn();
+    verify((bool)$owner,'Fixture pertence à conta de teste');
+    $r->query('UPDATE rumo10_universos SET estado_json=JSON_SET(estado_json,\'$.age\',35) WHERE carreira_id=?',[$state['id']]);
+    $state=json_decode(request('/api/carreira/estado')['body'],true);$totals=CareerStats::collect($state)['totals'];
+    $page=request('/carreira/aposentar');verify($page['status']===200 && str_contains($page['body'],'Confirmar aposentadoria'),'Confirmação disponível pelo site aos 35');
+    $t=tokens($page['body'],'/carreira/aposentar');$invalid=request('/carreira/aposentar',$t);verify($invalid['status']===422,'Não aposenta sem confirmação');
+    $page=request('/carreira/aposentar',$t+['confirm'=>'retire']);$state=json_decode(request('/api/carreira/estado')['body'],true);
+    verify($page['status']===200 && $state['stage']==='aposentado' && $state['retirement']['reason']==='voluntary','Aposentadoria persistida pelo IIS');
+    verify(CareerStats::collect($state)['totals']===$totals,'Aposentadoria mantém gols/assistências sem duplicação');
+    request('/carreira/aposentar',$t+['confirm'=>'retire']);verify(json_decode(request('/api/carreira/estado')['body'],true)===$state,'Replay da aposentadoria não altera histórico');
     echo "OK: $checks verificações HTTP em $base — conta, rodada, replay, refresh, tabela, logout/login e CSRF.\n";
 } finally {
     // Cleanup estritamente da conta descartável criada nesta execução.

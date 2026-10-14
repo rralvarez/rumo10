@@ -12,6 +12,8 @@ final class PlayerProfile {
         $position=['zagueiro'=>'ZAG','lateral'=>'LAT','volante'=>'VOL','meia'=>'MEI','ponta'=>'PON','centroavante'=>'CA'][$g['position']];
         echo '<section class="player-profile"><div class="profile-toolbar"><a href="/carreira">← Voltar ao jogo</a><span>MEU JOGADOR</span></div><div class="profile-overview"><article class="athlete-card"><div class="athlete-rating"><strong>'.e($overall).'</strong><span>NÍVEL TÉCNICO</span><b>'.e($position).'</b></div><div class="athlete-avatar" aria-hidden="true"><svg viewBox="0 0 180 200"><path d="M48 12 72 25H108L132 12 176 50 153 87 136 76V186H44V76L27 87 4 50Z"/></svg><span>'.e(mb_strtoupper($initials)).'</span></div><div class="athlete-identity"><p class="tag">TEMPORADA '.e($g['season']).'</p><h1>'.e($g['name']).'</h1><p>'.e(ucfirst($g['position'])).' · '.e($g['age']).' anos</p><div class="athlete-club">';
         if(empty($g['starting'])){ClubBadge::render($g['club']);echo '<b>'.e($g['club']).'</b>';}else echo '<b>À espera do primeiro contrato</b>';
+        echo '<p class="subtle">Auge potencial aos 32 anos · aposentadoria voluntária aos 35 · encerramento aos 40.</p>';
+        if($g['age']>=35 && $g['stage']!=='aposentado')echo '<a class="squad-link" href="/carreira/aposentar">Encerrar minha carreira →</a>';
         if(empty($g['starting']))echo '<a class="squad-link" href="/elenco">Ver companheiros de elenco ↗</a>';
         echo '</div><p class="athlete-origin">'.e($g['city'].' · '.$g['uf']).'</p></div></article><section class="profile-condition"><div class="profile-section-heading"><h2>Pronto para jogar?</h2><span>CONDIÇÃO ATUAL</span></div>';
         foreach(['energia','confianca','ritmo_jogo','entrosamento'] as $key)self::meter(self::LABELS[$key],$g['states'][$key]);

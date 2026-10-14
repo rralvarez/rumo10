@@ -54,6 +54,12 @@ final class Game {
         return Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false): array {
+        if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
+        if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');$g['version']++;return $g;}
+        if($action==='retire') {
+            if(!Retirement::eligible($g) || ($input['confirm']??'')!=='retire')throw new InvalidArgumentException('Aposentadoria exige 35 anos, partida concluída e confirmação.');
+            Retirement::close($g,'voluntary');$g['version']++;return $g;
+        }
         if($action==='mode')return PlayMode::change($g,(string)($input['mode']??''));
         if($action==='simulate')return PlayMode::simulate($g,(string)($input['plan']??''));
         if(!$automated && PlayMode::name($g)!=='normal' && in_array($action,['choice','advance'],true))throw new InvalidArgumentException('Escolha a estratégia do seu modo de jogo.');
@@ -126,26 +132,25 @@ final class Game {
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
             $g['teams']=$teams; $g['season']++; $g['age']++; $g['round']=1; $g['stage']='treino'; $g['matches']=Schedule::generate($teams); $g['offers']=[]; $g['states']['energia']=85;
             if(!empty($g['official']))Competition::newSeason($g);
+            $ageEffects=Evolution::birthday($g);
             $g['season_skill_baseline']=array_sum(array_column($g['skills'],'value'))/9;
-            $g['feedback']=['text'=>'Contrato renovado para a temporada '.$g['season'].'. Clube: '.$g['club']];
+            $g['feedback']=['text'=>'Contrato renovado para a temporada '.$g['season'].'. Clube: '.$g['club'],'effects'=>$ageEffects];
         } elseif($action==='continue' && $g['stage']==='competicao_resumo' && !empty($g['official'])) {
             Competition::continueSeason($g);
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
+        if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');}
         $g['version']++;Scenes::prepare($g); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }
     private static function effects(array $effects,array $roll,array &$g): array {
         $applied=[];
         foreach($effects as $k=>$v) {
-            $cost=($k==='energia' && $v<0) || (str_starts_with($k,'risco_') && $v>0);
+            $cost=($k==='energia' && $v<0) || (str_starts_with($k,'risco_') && $v>0) || (isset($g['skills'][$k]) && $v<0);
             if(!$cost && !$roll['success']) continue;
             $delta=$cost?$v:(int)round($v*($roll['class']==='excepcional'?1.25:1));
             if(isset($g['skills'][$k])) {
-                $delta=max(0,$delta); $g['skills'][$k]['xp']+=$delta;
-                while($g['skills'][$k]['value']<100 && $g['skills'][$k]['xp']>=Rules::xpThreshold($g['skills'][$k]['value'])) {
-                    $g['skills'][$k]['xp']-=Rules::xpThreshold($g['skills'][$k]['value']); $g['skills'][$k]['value']++;
-                }
-                $applied['XP '.$k]=$delta;
+                if($delta<0){$before=$g['skills'][$k]['value'];$g['skills'][$k]['value']=self::clamp($before+$delta);$applied[$k]=$g['skills'][$k]['value']-$before;}
+                else $applied['XP '.$k]=Evolution::gain($g,$k,$delta);
             } else { $before=$g['states'][$k]; $g['states'][$k]=self::clamp($before+$delta); $applied[$k]=$g['states'][$k]-$before; }
         }
         if(!$roll['success']) { $v=$roll['class']==='falha_grave'?-5:-2; $g['states']['confianca']=self::clamp($g['states']['confianca']+$v); $applied['confianca']=$v; }
@@ -167,7 +172,7 @@ final class Game {
         if(!$roll['success'] && $roll['class']==='falha_grave' && $onBall) { $st['fouls']++; if(random_int(1,100)<=30) $st['cards']++; }
         $g['states']['energia']=self::clamp($g['states']['energia']-3);
         if($st['cards']>=2) { $m['exit']=$m['minute']; $text.=' Expulso: segundo cartão.'; }
-        elseif(random_int(1,1000)<=$g['states']['risco_lesao']) { $m['exit']=$m['minute']; $text.=' Lesão: você deixa o campo.'; }
+        elseif(random_int(1,1000)<=$g['states']['risco_lesao']) { $m['exit']=$m['minute']; $text.=' Lesão: você deixa o campo.';$before=$g['skills']['resistencia']['value'];$g['skills']['resistencia']['value']=max(0,$before-1);$g['feedback']['effects']['resistencia']=($g['feedback']['effects']['resistencia']??0)+$g['skills']['resistencia']['value']-$before; }
         elseif($g['states']['energia']<15) { $m['exit']=$m['minute']; $text.=' Substituído por desgaste.'; }
         $g['feedback']['text']=$text; foreach($beforeStates as $k=>$v) if($g['states'][$k]!==$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$g['states'][$k]-$v; $m['log'][]=['minute'=>$m['minute'],'text'=>$text]; self::nextSegment($g);
     }

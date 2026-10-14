@@ -5,7 +5,7 @@ final class CareerStats {
     public static function collect(array $g):array {
         $rows=[];$clubs=[];$total=['games'=>0,'goals'=>0,'assists'=>0,'minutes'=>0];
         foreach($g['history']??[] as $h)$rows[]=['club'=>$h['club'],'season'=>$h['season'],'current'=>false]+array_intersect_key($h,$total);
-        if(empty($g['starting']))$rows[]=['club'=>$g['club'],'season'=>$g['season'],'current'=>true]+array_intersect_key(Game::summary($g),$total);
+        if(empty($g['starting']))$rows[]=['club'=>$g['club'],'season'=>$g['season'],'current'=>$g['stage']!=='aposentado']+array_intersect_key(Game::summary($g),$total);
         foreach($rows as $row) {
             $club=$row['club'];$clubs[$club]??=['club'=>$club,'games'=>0,'goals'=>0,'assists'=>0,'minutes'=>0];
             foreach($total as $key=>$_){$value=(int)($row[$key]??0);$total[$key]+=$value;$clubs[$club][$key]+=$value;}

@@ -8622,5 +8622,1223 @@
     "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2qg4xmt2ucl2o5osmurwagw5g",
     "retrieved": "2026-10-13",
     "identity_status": "publisher_source"
+  },
+  "Coquimbo Unido-CL": {
+    "path": "/assets/clubs/cc-e48f6dc76d467e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8186.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Audax Italiano-CL": {
+    "path": "/assets/clubs/cc-e577f725506029.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4138.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cobresal-CL": {
+    "path": "/assets/clubs/cc-d341a8852346f5.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4133.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Colo Colo-CL": {
+    "path": "/assets/clubs/cc-5d64f4ea88390c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2688.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Everton CD-CL": {
+    "path": "/assets/clubs/cc-3aca3be46c67d4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4129.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportes Limache-CL": {
+    "path": "/assets/clubs/cc-683af42fb2eda0.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/19195.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Huachipato-CL": {
+    "path": "/assets/clubs/cc-8271120dcee47e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4134.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportes Concepcion-CL": {
+    "path": "/assets/clubs/cc-3024326a5989bf.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8110.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Universidad Católica-CL": {
+    "path": "/assets/clubs/cc-521d34008478d2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/885.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "La Serena-CL": {
+    "path": "/assets/clubs/cc-6e4cb3e1e3890f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4137.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "O'Higgins-CL": {
+    "path": "/assets/clubs/cc-29cd575c719709.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6072.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Palestino-CL": {
+    "path": "/assets/clubs/cc-c95ce5a3ef62d3.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4422.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Universidad de Chile-CL": {
+    "path": "/assets/clubs/cc-22b5145b1af117.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4139.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ñublense-CL": {
+    "path": "/assets/clubs/cc-836f7234fd89f7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7427.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "ADT-PE": {
+    "path": "/assets/clubs/cc-e42979ee31b973.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21314.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Unión La Calera-CL": {
+    "path": "/assets/clubs/cc-f6ef2bd15ca01b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10144.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alianza Atlético-PE": {
+    "path": "/assets/clubs/cc-4349681b9609c7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5267.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Universidad de Concepción-CL": {
+    "path": "/assets/clubs/cc-d6416464373463.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5362.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlético Grau-PE": {
+    "path": "/assets/clubs/cc-67168ad6a9d252.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20293.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cienciano del Cusco-PE": {
+    "path": "/assets/clubs/cc-f4c52b529df360.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3372.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cusco FC-PE": {
+    "path": "/assets/clubs/cc-f0169abe4373c7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11995.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Moquegua-PE": {
+    "path": "/assets/clubs/cc-ddde9f5573ab7e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131654.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Cajamarca-PE": {
+    "path": "/assets/clubs/cc-19275d43a180da.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131655.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alianza Lima-PE": {
+    "path": "/assets/clubs/cc-cf38a13f041e3b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2680.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Comerciantes Unidos-PE": {
+    "path": "/assets/clubs/cc-e0e5576ca73582.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18153.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Garcilaso-PE": {
+    "path": "/assets/clubs/cc-462037162303ee.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21819.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sport Boys-PE": {
+    "path": "/assets/clubs/cc-99a1cb341bf424.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5570.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Juan Pablo II-PE": {
+    "path": "/assets/clubs/cc-88f02d58977558.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22534.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Melgar-PE": {
+    "path": "/assets/clubs/cc-f50e55bd5ab899.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7312.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sporting Cristal-PE": {
+    "path": "/assets/clubs/cc-5c2bd7493e3620.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2673.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Academia Puerto Cabello-VE": {
+    "path": "/assets/clubs/cc-df59363701ada5.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18995.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Universitario-PE": {
+    "path": "/assets/clubs/cc-6ef58cea5e3f2b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2685.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sport Huancayo-PE": {
+    "path": "/assets/clubs/cc-9b3dd6d30c399e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10318.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "UTC-PE": {
+    "path": "/assets/clubs/cc-a48f840a303bf8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10122.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Los Chankas-PE": {
+    "path": "/assets/clubs/cc-aaa9ba7dfaed74.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22168.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Táchira-VE": {
+    "path": "/assets/clubs/cc-edd9496094efaa.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4818.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Carabobo-VE": {
+    "path": "/assets/clubs/cc-2b49e864e2507b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6037.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Caracas FC-VE": {
+    "path": "/assets/clubs/cc-045fa90546d8a0.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4811.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo La Guaira-VE": {
+    "path": "/assets/clubs/cc-78a1dda2d8a4fd.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17090.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Anzoátegui FC-VE": {
+    "path": "/assets/clubs/cc-f4625ad44ef3d9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13783.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Metropolitanos-VE": {
+    "path": "/assets/clubs/cc-8357cd7c5b5756.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13481.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Estudiantes de Mérida-VE": {
+    "path": "/assets/clubs/cc-187cb6fb137735.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6038.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Portuguesa-VE": {
+    "path": "/assets/clubs/cc-59506cc024909b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6762.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Monagas SC-VE": {
+    "path": "/assets/clubs/cc-617e357d7d8fe2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6041.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Trujillanos-VE": {
+    "path": "/assets/clubs/cc-dbd3d3d3d67edf.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5268.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rayo Zuliano-VE": {
+    "path": "/assets/clubs/cc-71da752aa9685f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21850.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "UCV FC-VE": {
+    "path": "/assets/clubs/cc-145a0d023e90d7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10094.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Zamora FC-VE": {
+    "path": "/assets/clubs/cc-0a72c21a754403.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6763.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Guyana Defence Force-GY": {
+    "path": "/assets/clubs/cc-acf70146e5a7e6.png",
+    "source": "https://en.wikipedia.org/wiki/Guyana_Defence_Force_FC",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c3/Guyana_Defense_Force.svg/250px-Guyana_Defense_Force.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Chippa United-ZA": {
+    "path": "/assets/clubs/cc-b43bbb6b9d7e01.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11913.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Slingerz-GY": {
+    "path": "/assets/clubs/cc-e4d352cf6800fd.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ck4z6eycs26fxq9fxd25vap61",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AmaZulu-ZA": {
+    "path": "/assets/clubs/cc-d753d3cb1675dd.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7079.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Western Tigers-GY": {
+    "path": "/assets/clubs/cc-e80ccb9efd5681.png",
+    "source": "https://en.wikipedia.org/wiki/Western_Tigers_FC",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c8/Western_Tigers_FC_logo.png/250px-Western_Tigers_FC_logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Durban City-ZA": {
+    "path": "/assets/clubs/cc-afe6b70f2dfdda.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22348.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Golden Arrows-ZA": {
+    "path": "/assets/clubs/cc-bd9dcb6bba7467.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7077.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kaizer Chiefs-ZA": {
+    "path": "/assets/clubs/cc-2f2b3c982dc20f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7081.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Orlando Pirates-ZA": {
+    "path": "/assets/clubs/cc-4b28be48383e46.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7085.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kruger United-ZA": {
+    "path": "/assets/clubs/cc-83a0478edaa754.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22350.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Marumo Gallants-ZA": {
+    "path": "/assets/clubs/cc-8426787e6db78e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13317.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Mamelodi Sundowns-ZA": {
+    "path": "/assets/clubs/cc-0dc8bddcc4a2f9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7084.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sekhukhune United FC-ZA": {
+    "path": "/assets/clubs/cc-be7cc2962b9a45.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20814.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Siwelele-ZA": {
+    "path": "/assets/clubs/cc-6eaa9337ad1728.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131361.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "TS Galaxy FC-ZA": {
+    "path": "/assets/clubs/cc-0c56da423d7e00.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/19298.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stellenbosch-ZA": {
+    "path": "/assets/clubs/cc-1cabe5bc80c970.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18615.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Polokwane City FC-ZA": {
+    "path": "/assets/clubs/cc-3931fbbb3b56ae.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7099.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Milford FC-ZA": {
+    "path": "/assets/clubs/cc-7ac9f04f182589.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21990.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Richards Bay FC-ZA": {
+    "path": "/assets/clubs/cc-04453cf9abec98.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18825.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bayelsa United-NG": {
+    "path": "/assets/clubs/cc-cbabbe05d91ef4.png",
+    "source": "https://en.wikipedia.org/wiki/Bayelsa_United_F.C.",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/7/76/Bayelsa_United_F.C._logo.png/250px-Bayelsa_United_F.C._logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Barau-NG": {
+    "path": "/assets/clubs/cc-63574ffa1f1c82.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3z3d5burqmmwzlqzud12shno4",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Abia Warriors-NG": {
+    "path": "/assets/clubs/cc-852cebef6b081e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17792.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "El Kanemi Warriors-NG": {
+    "path": "/assets/clubs/cc-bef830ae18fe61.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17796.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bendel Insurance FC-NG": {
+    "path": "/assets/clubs/cc-f32940a68583ae.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3ckx9sysl6jw4ufrm9lfgtwrw",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kano Pillars-NG": {
+    "path": "/assets/clubs/cc-1bd01b904ebd63.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17802.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Enyimba-NG": {
+    "path": "/assets/clubs/cc-f2dff361734e2b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2227.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kwara United-NG": {
+    "path": "/assets/clubs/cc-abd2da77aab0fb.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17803.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ikorodu City-NG": {
+    "path": "/assets/clubs/cc-b2076de9ecfc57.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=61puofds2bt8xhkmpbj08cd90",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Nasarawa United-NG": {
+    "path": "/assets/clubs/cc-37018770ada585.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17805.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kun Khalifat FC-NG": {
+    "path": "/assets/clubs/cc-e6af93e553abbc.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=au6ljs8hyt3z44u808gx6upec",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Katsina United-NG": {
+    "path": "/assets/clubs/cc-9f7ca6c7d4badd.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=49vn39m9ibz1iwbqxsfnxlfxl",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Plateau United-NG": {
+    "path": "/assets/clubs/cc-d672190884d007.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18181.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Niger Tornadoes-NG": {
+    "path": "/assets/clubs/cc-ffc9582ab5706d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18184.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rangers International-NG": {
+    "path": "/assets/clubs/cc-bfbfe2b68ccca9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17797.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Shooting Stars SC-NG": {
+    "path": "/assets/clubs/cc-3559f7b01b9edb.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17807.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rivers United FC-NG": {
+    "path": "/assets/clubs/cc-f27917d941583e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=aqg0pzg5bs6wizwkjl6wkjnc9",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Remo Stars-NG": {
+    "path": "/assets/clubs/cc-71133f395bad7c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=kc8w6ymv2pi6kxhqdx9kqqjt",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Wikki Tourists-NG": {
+    "path": "/assets/clubs/cc-a228cb2d87564e.png",
+    "source": "https://en.wikipedia.org/wiki/Wikki_Tourists_F.C.",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/45/Wikki_Tourists_F.C._logo.png/250px-Wikki_Tourists_F.C._logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Asante Kotoko-GH": {
+    "path": "/assets/clubs/cc-77f283a294e612.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c3um65ybq4lr72xgyfuurlr6a",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Warri Wolves-NG": {
+    "path": "/assets/clubs/cc-f047db2a1d3d34.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=54j80mjjkqe2iue7i9e0gzufd",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Aduana Stars-GH": {
+    "path": "/assets/clubs/cc-0688dadf31eb1b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18603.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Basake Holy Stars-GH": {
+    "path": "/assets/clubs/cc-1e962d69bb359c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ckdxpba5dof28uqxak5mi5ono",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dreams F.C.-GH": {
+    "path": "/assets/clubs/cc-f825ad9fac07db.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18990.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bechem United-GH": {
+    "path": "/assets/clubs/cc-e38be5e8fd8ab4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18602.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Berekum Chelsea-GH": {
+    "path": "/assets/clubs/cc-b2594b50cc47b2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18604.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bibiani Gold Stars-GH": {
+    "path": "/assets/clubs/cc-98437fdc3aab02.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dvfjgm0w62k399ug2pag8ww2y",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hearts of Oak-GH": {
+    "path": "/assets/clubs/cc-4161f14502fc3f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18597.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Heart of Lions-GH": {
+    "path": "/assets/clubs/cc-4a78511d7f8519.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dt84qbaofrfsj65hhn3p3gy7s",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Karela-GH": {
+    "path": "/assets/clubs/cc-868b6399b459c4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18992.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hohoe United-GH": {
+    "path": "/assets/clubs/cc-c12affdec1fe8c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c0doy6qt250o4xe1uvuy7tg5w",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Eleven Wonders-GH": {
+    "path": "/assets/clubs/cc-3fcf65dcd49921.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18991.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Medeama-GH": {
+    "path": "/assets/clubs/cc-3a6746537448a8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18601.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Nations-GH": {
+    "path": "/assets/clubs/cc-7cb64a75fe60d1.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cm1by4und8addih2twplbqgpg",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Swedru All Blacks-GH": {
+    "path": "/assets/clubs/cc-af23f905af927b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ad4mv3pwn87bvkwpdt9vdnwow",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Samartex-GH": {
+    "path": "/assets/clubs/cc-59c981ae9ca7c9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=792e60uaef3im2qo7q4zgab1m",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Young Apostles-GH": {
+    "path": "/assets/clubs/cc-07a89af47b1b40.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3114pial4vumnzocmwg5xdi7e",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AFC Leopards-KE": {
+    "path": "/assets/clubs/cc-f1c32e455e47ef.png",
+    "source": "https://en.wikipedia.org/wiki/A.F.C._Leopards",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/93/AFC_Leopards.png/250px-AFC_Leopards.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Vision FC-GH": {
+    "path": "/assets/clubs/cc-a2cc2b46cd62e9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9y6f4xolwgurzpbp0hvjuhd6",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bandari Mtwara-KE": {
+    "path": "/assets/clubs/cc-07b293b98cc7b2.png",
+    "source": "https://en.wikipedia.org/wiki/Bandari_F.C._%28Kenya%29",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/2c/Bandari_FC_Kenya_logo.jpg/250px-Bandari_FC_Kenya_logo.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Bidco United-KE": {
+    "path": "/assets/clubs/cc-30fedb468d0af8.png",
+    "source": "https://en.wikipedia.org/wiki/Bidco_United_F.C.",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/1/1f/Bidco_FC_logo.gif/250px-Bidco_FC_logo.gif?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Gor Mahia-KE": {
+    "path": "/assets/clubs/cc-6e4ccd1f81f053.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a5b4if5fvar17mo2ph307ipob",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kakamega Homeboyz-KE": {
+    "path": "/assets/clubs/cc-f1eaa75876e99d.png",
+    "source": "https://en.wikipedia.org/wiki/Kakamega_Homeboyz_F.C.",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/d/d4/Kakamega_Homeboyz_F.C._logo.jpg/250px-Kakamega_Homeboyz_F.C._logo.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Mara Sugar-KE": {
+    "path": "/assets/clubs/cc-e201a629a0c136.png",
+    "source": "https://en.wikipedia.org/wiki/Mara_Sugar_F.C.",
+    "download_url": "https://upload.wikimedia.org/wikipedia/en/d/d6/Marasugar.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Mathare United-KE": {
+    "path": "/assets/clubs/cc-a87c3997bbd919.png",
+    "source": "https://en.wikipedia.org/wiki/Mathare_United_F.C.",
+    "download_url": "https://upload.wikimedia.org/wikipedia/en/4/4c/MathareUnited.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Kenya Police-KE": {
+    "path": "/assets/clubs/cc-fde941706166db.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=azh1rbgn3ed64odglxq0vjy3u",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Nairobi United-KE": {
+    "path": "/assets/clubs/cc-49bc392be282c6.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9gdd0oat5vnwa787awy2xnc44",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Posta Rangers-KE": {
+    "path": "/assets/clubs/cc-0b75aa398ac7fe.png",
+    "source": "https://en.wikipedia.org/wiki/Posta_Rangers_F.C.",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/e/eb/Posta_Rangers_F.C._logo.png/250px-Posta_Rangers_F.C._logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "RSB Berkane-MA": {
+    "path": "/assets/clubs/cc-8f1f9acd2a1a67.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5iuuccvbznfqyibcx96knhysc",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ulinzi Stars-KE": {
+    "path": "/assets/clubs/cc-25c87e9ef41c0c.png",
+    "source": "https://en.wikipedia.org/wiki/Ulinzi_Stars_F.C.",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/8d/Ulinzi_Stars_FC_logo.png/250px-Ulinzi_Stars_FC_logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Tusker FC-KE": {
+    "path": "/assets/clubs/cc-8f0d2797ae9449.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5ryct1n8uo3kg3qqvhwqgq3wg",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Raja Casablanca-MA": {
+    "path": "/assets/clubs/cc-a72f42adc46410.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3l9kyuwcn5wgjz5b1e3qrazqz",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pyramids-EG": {
+    "path": "/assets/clubs/cc-8caf3cdbf1c7cb.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a5hh43fi88rchrm37263600hu",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Maghreb Fès-MA": {
+    "path": "/assets/clubs/cc-6319c64821155e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9ifkcwn9mt2as1ctfpinwwj91",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Zamalek-EG": {
+    "path": "/assets/clubs/cc-83eccca8b14a8f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2c1lvho9eqtqfqf4t3cv0f237",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FAR Rabat-MA": {
+    "path": "/assets/clubs/cc-bc072de5d2c382.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=x0mbz2vi8eyejsx1jc729svv",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kabylie-DZ": {
+    "path": "/assets/clubs/cc-163b0f8dc95628.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1p0vptu3654utj37hbudw9d5j",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Ahly-EG": {
+    "path": "/assets/clubs/cc-95016f68d3d240.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1q2hx9pw8c7x88utqunk4e6xl",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ceramica Cleopatra-EG": {
+    "path": "/assets/clubs/cc-01a52a985110cf.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3kcimq8ylw8950rl7mn9euzqi",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Belouizdad-DZ": {
+    "path": "/assets/clubs/cc-431250eaa03d21.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8vldgq3nu5tcnv2xyq01pfru7",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "MC Alger-DZ": {
+    "path": "/assets/clubs/cc-f65a450d52a634.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3hjibr4pt10o0ifk7tbl7si6i",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "USM Alger-DZ": {
+    "path": "/assets/clubs/cc-5f15d52328c981.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8yto6v12sv1yrpg8ad5eaq62c",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Club Africain-TN": {
+    "path": "/assets/clubs/cc-43dadf1c0a2283.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9s0ojv8sdlnx3g7ugpyddejlz",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CS Sfaxien-TN": {
+    "path": "/assets/clubs/cc-f1dc23b069d7f1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1owjf2cxeccbbsfcus5g9nsqr",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "ES Tunis-TN": {
+    "path": "/assets/clubs/cc-790508231879ee.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3s830ae09zdviu2cnqxixflq1",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Monastir-TN": {
+    "path": "/assets/clubs/cc-ae165c05aaf48d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d9agxbf1cgeg20ktaa1j5arj4",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Young Africans-TZ": {
+    "path": "/assets/clubs/cc-f7dcd2ae48af01.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=es0todg3ftqeg5ml6lfq55rof",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Simba-TZ": {
+    "path": "/assets/clubs/cc-1ae6d228dd649e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=649j6ge70givt65ltkwro9645",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Azam-TZ": {
+    "path": "/assets/clubs/cc-bb1d8fdcdffeb6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8tckb0ww3fnddmvsdo5f1l5y7",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "TP Mazembe-CD": {
+    "path": "/assets/clubs/cc-43507d8c03a6e6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=egds8x98qpscniqorqg52obs6",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Singida Black Stars-TZ": {
+    "path": "/assets/clubs/cc-e960e2a4d33a55.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3937hay1g0ohrue2m0hgj3j10",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Saint Eloi Lupopo-CD": {
+    "path": "/assets/clubs/cc-fc3dd0ade804b7.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=16245tyzivgxs6snosv45qbs5",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Petro de Luanda-AO": {
+    "path": "/assets/clubs/cc-6760a33d21a744.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a29xzt037ts7jcubdkm0gzqns",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Aigles du Congo-CD": {
+    "path": "/assets/clubs/cc-41482eed2a8900.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=wk0dt3dyyisxpe6tkqxepkic",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "1º de Agosto-AO": {
+    "path": "/assets/clubs/cc-c5a8bfc5d48acf.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=e5sfuvzi782x67ajtxu6r5ppy",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Maniema Union-CD": {
+    "path": "/assets/clubs/cc-cfde8aec6b86f6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d3d6m7d5zfdyo3xf5li133m34",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Wiliete-AO": {
+    "path": "/assets/clubs/cc-987fa43f950433.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2eqqqko6bqom608ah7prxcxnu",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Desportivo Huíla-AO": {
+    "path": "/assets/clubs/cc-04ec5a9b3c21e6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=30vlpy7usglh8ojidvy9nojcs",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "San-Pédro-CI": {
+    "path": "/assets/clubs/cc-f6e33a917badda.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2pgvconoyesc87ys7evjauf8l",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AFAD-CI": {
+    "path": "/assets/clubs/cc-edaa2d60f3998c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=84cmokm61uh9ngaujr99fwfxv",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "ASEC Mimosas-CI": {
+    "path": "/assets/clubs/cc-5458a48648f347.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=52z7foxzla2qzsh6exgu1l9qv",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stade d'Abidjan-CI": {
+    "path": "/assets/clubs/cc-3e43b0c93042fb.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8pqv2369l93kfbgewpjsqwjit",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Power Dynamos-ZM": {
+    "path": "/assets/clubs/cc-937b2d2972f002.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=f1io9xzqmqb9jj1qxbfebi888",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vipers-UG": {
+    "path": "/assets/clubs/cc-f5874c57fe33c9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bi084dnzwxqicamwpeyo99yj8",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Red Arrows-ZM": {
+    "path": "/assets/clubs/cc-b14e31da162f8c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d6fxdmtcqkhvzz523s9pqq5ec",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Green Eagles-ZM": {
+    "path": "/assets/clubs/cc-7515d34114dc13.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4rey0nl2sjswn5botn62u9p8h",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "ZESCO United-ZM": {
+    "path": "/assets/clubs/cc-415e51ea409353.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2nb51v7p1p2n5j9872nb6qyzx",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SC Villa-UG": {
+    "path": "/assets/clubs/cc-750e962c3fa1b5.png",
+    "source": "https://en.wikipedia.org/wiki/SC_Villa",
+    "download_url": "https://upload.wikimedia.org/wikipedia/en/1/15/Sc_villa_logo.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "APR-RW": {
+    "path": "/assets/clubs/cc-7b921d52eddc9b.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9cg3bcpcoxz5ipcx7atcnxcgc",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rayon Sports-RW": {
+    "path": "/assets/clubs/cc-60c3336b311eb1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a49cjf4ahwfis0ooi8a33t1qk",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Police-RW": {
+    "path": "/assets/clubs/cc-9cc5539ee7bce1.png",
+    "source": "https://en.wikipedia.org/wiki/Police_F.C._%28Rwanda%29",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Kit_left_arm.svg/40px-Kit_left_arm.svg.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+    "retrieved": "2026-10-13",
+    "identity_status": "community_archive"
+  },
+  "Colombe-CM": {
+    "path": "/assets/clubs/cc-28c811a9bf9e0d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5l8i9lf9sdnkp29162zava0gx",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dynamo de Douala-CM": {
+    "path": "/assets/clubs/cc-fc6effb3aa941c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6ghct9hel3icz8uei3l9982rc",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cotonsport-CM": {
+    "path": "/assets/clubs/cc-1de25bbca80833.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1wfvjhxjqzfuyzeazh1e0xq5l",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Teungueth-SN": {
+    "path": "/assets/clubs/cc-d59d10904d2bdb.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8ory43wvnbfsre7q9gtihes4b",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Canon-CM": {
+    "path": "/assets/clubs/cc-49a9d81730887c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=283740118ugrqphpa8kd07vat",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Stade Malien Bamako-ML": {
+    "path": "/assets/clubs/cc-eb9b52d6c31e20.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=b9gahpkle350pey4i63ybq48o",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Djoliba-ML": {
+    "path": "/assets/clubs/cc-627a0d97b14ba3.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cgvfyhqy5ke9e2q4qdkdbsj14",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Génération Foot-SN": {
+    "path": "/assets/clubs/cc-2b98b1e6182f14.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5rgyzb6u7pjwzlnjnrx193xqr",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Réal Bamako-ML": {
+    "path": "/assets/clubs/cc-43806ddafa6619.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=40u8i3sbxoc3wmeijk7dykh2m",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Ahli Tripoli-LY": {
+    "path": "/assets/clubs/cc-c967ee35a1ec05.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5nmmiguex5icfmzsfokqduihs",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sidama Bunna-ET": {
+    "path": "/assets/clubs/cc-d8c7f9f71cb4d1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6mx6b4wrx1mo5a55xst934s94",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "USFAS Bamako-ML": {
+    "path": "/assets/clubs/cc-77ee891fd99b47.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2rkkat0yev975sdb314504sag",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ethiopian Medhin-ET": {
+    "path": "/assets/clubs/cc-c5dae93342e8d6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5amsy3tiiqhcv07w96hnfqtd4",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Asswehly-LY": {
+    "path": "/assets/clubs/cc-a049ebceb92f5d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=f3ml6cv9jqyfs7zwcv684o3jy",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al-Nasr-LY": {
+    "path": "/assets/clubs/cc-b65b296a71a3ca.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=are70vfh9mt8x2xwpnpj0a11b",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Ahli Benghazi-LY": {
+    "path": "/assets/clubs/cc-d0ca0f32ed4f92.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6hb666m9ccknyczz95bg9qf1f",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
   }
 }
