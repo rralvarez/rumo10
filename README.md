@@ -1,5 +1,7 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
+**Atualização do RumoHub (14/10):** página de jogos e administração, 2.160 clubes, 154 competições/circuitos, 19.789 ratings FC27 e 211 seleções com emblemas. [Acesso, cobertura, limites e testes](Docs/23_Administracao_RumoHub_e_Catalogo_EA.md). Convocações ainda não estão implementadas; a segunda divisão indiana está sinalizada como provisória e há 60 escudos de clubes pendentes.
+
 **Aposentadoria compacta:** novas aposentadorias preservam totais, clubes, temporadas e conquistas no histórico e liberam a vaga. Os detalhes são removidos definitivamente. Aposentadorias anteriores exigem confirmação em Minhas carreiras. [Funcionamento, instalação e testes](Docs/21_Aposentadoria_e_Historico_Compacto.md). Execute `bin/install-retirement-history.php` ao atualizar uma instalação existente.
 
 **Minhas carreiras:** abra [gerenciar carreiras](http://rumo10.local/carreiras). Limite total de 3 no gratuito e 10 no pago, contando arquivadas; exclusão exige confirmação permanente. [Preparação do Hub e próximos passos de armazenamento](Docs/20_Preparacao_RumoHub_e_Armazenamento.md). Em instalações existentes, execute `bin/install-career-limits.php` antes de atualizar a aplicação.

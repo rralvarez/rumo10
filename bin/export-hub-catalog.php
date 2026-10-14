@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require dirname(__DIR__).'/app/bootstrap.php';
+putenv('RUMOHUB_ENABLED=0'); // A exportação inicial usa exclusivamente o catálogo legado com IDs locais.
 // Exportação local: somente leitura do catálogo; nenhum dado de usuário ou carreira.
 $target=$argv[1]??'';
 if(realpath($target)!==realpath('C:/inetpub/wwwroot/rumohub'))throw new RuntimeException('Destino não autorizado.');

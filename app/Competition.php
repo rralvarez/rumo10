@@ -270,6 +270,7 @@ final class Competition {
         foreach($g['memberships'] as $id=>$teams) {
             if(!isset($g['competitions'][$id]))$g['competitions'][$id]=self::tournament($id,$g['memberships'][$id]);
             self::finish($g['competitions'][$id],$g);
+            self::compactResults($g['competitions'][$id],$g['club']);
         }
         if(count($g['memberships']['br-c'])>=28)$g['competitions']['br-c']['relegated']=array_slice($g['competitions']['br-c']['initial_ranking'],-6);
         EuropeanCompetition::barrages($g);
@@ -291,6 +292,16 @@ final class Competition {
             if(!in_array($club,$national,true)){$g['next_memberships']['br-d'][]=$club;$national[]=$club;}
         }
         TeamStrength::nextSeason($g);
+    }
+    /** Partidas alheias concluídas: manter resultados, eliminar somente estruturas vazias do personagem. */
+    public static function compactResults(array &$t,string $club):void {
+        if(empty($t['done']))return;
+        foreach($t['matches'] as &$match){
+            if(in_array($club,[$match['home'],$match['away']],true))continue;
+            // Dados futuros de NPCs não podem ser descartados pela compactação.
+            if(!empty($match['log']) || array_filter($match['stats']??[],fn($v)=>$v!==0 && $v!==0.0 && $v!==null))continue;
+            unset($match['stats'],$match['log'],$match['lineup'],$match['entry'],$match['exit'],$match['minute']);
+        }unset($match);
     }
     public static function offerPool(array $g): array {
         return TransferMarket::pool($g);

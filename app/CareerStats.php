@@ -25,9 +25,9 @@ final class CareerStats {
         if(!$data['clubs'])echo '<p>Seu histórico começa com o primeiro clube.</p>';
         else {
             echo '<div class="table-responsive"><table class="table"><thead><tr><th>Clube</th><th><abbr title="Jogos em campo">J</abbr></th><th><abbr title="Gols">G</abbr></th><th><abbr title="Assistências">A</abbr></th></tr></thead><tbody>';
-            foreach($data['clubs'] as $row){echo '<tr><td>';ClubBadge::render($row['club']);echo ' '.e($row['club']).'</td>';foreach(['games','goals','assists'] as $key)echo '<td>'.e($row[$key]).'</td>';echo '</tr>';}
+            foreach($data['clubs'] as $row){echo '<tr><td>';ClubBadge::render($row['club']);echo ' '.e(ClubBadge::name($row['club'])).'</td>';foreach(['games','goals','assists'] as $key)echo '<td>'.e($row[$key]).'</td>';echo '</tr>';}
             echo '</tbody></table></div><ol class="profile-season-list">';
-            foreach(array_reverse($data['seasons']) as $row)echo '<li><b>Temporada '.e($row['season']).' · '.e($row['club']).'</b>'.($row['current']?' <small>em andamento</small>':'').'<span>'.e($row['games']??0).' jogos · '.e($row['goals']??0).' gols · '.e($row['assists']??0).' assistências</span></li>';
+            foreach(array_reverse($data['seasons']) as $row)echo '<li><b>Temporada '.e($row['season']).' · '.e(ClubBadge::name($row['club'])).'</b>'.($row['current']?' <small>em andamento</small>':'').'<span>'.e($row['games']??0).' jogos · '.e($row['goals']??0).' gols · '.e($row['assists']??0).' assistências</span></li>';
             echo '</ol><p class="profile-footnote">Totais das temporadas salvas e da temporada atual. Carreiras arquivadas são personagens separados.</p>';
         }
         echo '</details></section>';

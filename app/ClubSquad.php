@@ -22,7 +22,7 @@ final class ClubSquad {
         if(count($cache)>=4)array_shift($cache);$cache[$club]=$players;return $players;
     }
     public static function render(array $g):void {
-        echo '<section class="panel squad-reference"><p class="tag">SEU CLUBE</p><h1>Companheiros de elenco</h1><p>';ClubBadge::render($g['club']);echo ' <strong>'.e($g['club']).'</strong></p>';
+        echo '<section class="panel squad-reference"><p class="tag">SEU CLUBE</p><h1>Companheiros de elenco</h1><p>';ClubBadge::render($g['club']);echo ' <strong>'.e(ClubBadge::name($g['club'])).'</strong></p>';
         $players=self::players($g['club']);$entry=self::catalog()['clubs'][$g['club']]??null;
         $checked=self::catalog()['summary']['checked']??'2026-10-14';$checked=implode('/',array_reverse(explode('-',$checked)));
         echo '<p class="subtle">Elenco de referência consultado em '.e($checked).'. '.e($entry['real']??0).' jogadores reais · '.e($entry['fictional']??count($players)).' fictícios.</p><p class="subtle">Notas publicadas usam EA SPORTS FC 27; estimativas usam o modelo do Rumo à Camisa 10. A nota e a origem de cada atleta estão identificadas.</p>';
@@ -31,7 +31,8 @@ final class ClubSquad {
         foreach($players as $p) {
             $positionLabel=['goleiro'=>'GOL','zagueiro'=>'ZAG','lateral'=>'LAT','volante'=>'VOL','meia'=>'MEI','ponta'=>'PON','centroavante'=>'CA'][$p['position']];
             if($p['overall_origin']!=='published_ea_fc27' && isset($p['source_position']))$positionLabel=['D'=>'DEF','M'=>'MEI','F'=>'ATA'][$p['source_position']]??$positionLabel;
-            echo '<tr><td><strong>'.e($p['name']).'</strong><small>'.($p['origin']==='real'?'Real':'Fictício').'</small></td><td>'.e($positionLabel).'</td><td><b>'.e($p['overall']).'</b><small>'.($p['overall_origin']==='published_ea_fc27'?'Publicado · FC 27':'Estimado').'</small></td></tr>';
+            $ratingLabel=match($p['overall_origin']){'published_ea_fc27'=>'Publicado · FC 27','manual_rumohub'=>'Ajuste manual',default=>'Estimado'};
+            echo '<tr><td><strong>'.e($p['name']).'</strong><small>'.($p['origin']==='real'?'Real':'Fictício').(!empty($p['reference_only'])?' · referência licenciada EA':'').'</small></td><td>'.e($positionLabel).'</td><td><b>'.e($p['overall']).'</b><small>'.e($ratingLabel).'</small></td></tr>';
         }
         echo '</tbody></table></div><p class="subtle">Referência inicial dos companheiros. Estatísticas de partidas ainda não estão disponíveis nesta página.</p><a class="btn btn-primary" href="/jogador">Voltar ao meu jogador</a></section>';
     }

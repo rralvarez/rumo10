@@ -32,7 +32,7 @@ final class Presentation {
         return strtr(ucfirst(str_replace('_',' ',$k)),['Confianca'=>'Confiança','Finalizacao'=>'Finalização','Visao'=>'Visão','Resistencia'=>'Resistência','Forca'=>'Força','lesao'=>'lesão','polemica'=>'polêmica','cartao'=>'cartão']);
     }
     public static function score(array $g,array $m): void {
-        echo '<article class="panel match compact-score"><div class="match-time">'.e(str_replace('_',' ',strtoupper($m['status']))).' · '.e($m['minute']).'′</div><div class="score-row"><span class="score-team">';ClubBadge::render($m['home']);echo '<span>'.e($m['home']).'</span></span><strong>'.e($m['hg']).' <small>×</small> '.e($m['ag']).'</strong><span class="score-team">';ClubBadge::render($m['away']);echo '<span>'.e($m['away']).'</span></span></div>';
+        echo '<article class="panel match compact-score"><div class="match-time">'.e(str_replace('_',' ',strtoupper($m['status']))).' · '.e($m['minute']).'′</div><div class="score-row"><span class="score-team">';ClubBadge::render($m['home']);echo '<span>'.e(ClubBadge::name($m['home'])).'</span></span><strong>'.e($m['hg']).' <small>×</small> '.e($m['ag']).'</strong><span class="score-team">';ClubBadge::render($m['away']);echo '<span>'.e(ClubBadge::name($m['away'])).'</span></span></div>';
         echo '<div class="live-player-stats"><span>⚽ <b data-stat="goals">'.e($m['stats']['goals']).'</b> seus gols</span><span>↗ <b data-stat="assists">'.e($m['stats']['assists']).'</b> assistências</span></div></article>';
     }
     public static function radio(array $m): void {

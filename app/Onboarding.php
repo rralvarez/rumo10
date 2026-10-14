@@ -46,7 +46,7 @@ final class Onboarding {
         form('/carreira/clube-inicial',$g);
         foreach($g['initial_candidates'] as $i=>$candidate) {
             echo '<button class="choice club-choice" name="option" value="'.e($i).'">';ClubBadge::render($candidate['club']);
-            echo '<span><strong>'.e($candidate['club']).'</strong><small>'.e($candidate['city']).' · cerca de '.e(round($candidate['distance_km'])).' km</small></span></button>';
+            echo '<span><strong>'.e(ClubBadge::name($candidate['club'])).'</strong><small>'.e($candidate['city']).' · cerca de '.e(round($candidate['distance_km'])).' km</small></span></button>';
         }
         echo '</form></article>';
     }

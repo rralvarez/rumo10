@@ -13,7 +13,7 @@ final class CompetitionView {
     public static function table(array $rows,string $club): void {
         echo '<div class="table-responsive"><table class="table"><thead><tr><th>Clube</th><th>PTS</th><th>J</th><th>V</th><th>SG</th></tr></thead><tbody>';
         foreach($rows as $i=>$row) {
-            echo '<tr><td>';ClubBadge::render($row['team']);echo ' '.e(($i+1).'. '.$row['team']).($row['team']===$club?' ★':'').'</td>';
+            echo '<tr><td>';ClubBadge::render($row['team']);echo ' '.e(($i+1).'. '.ClubBadge::name($row['team'])).($row['team']===$club?' ★':'').'</td>';
             foreach(['points','played','wins','gd'] as $key)echo '<td>'.e($row[$key]).'</td>';
             echo '</tr>';
         }echo '</tbody></table></div>';
@@ -25,7 +25,7 @@ final class CompetitionView {
             foreach($t['ties'] as $i=>$tie) {
                 echo '<article class="panel"><h3>'.e($tie['a'].' × '.$tie['b']).'</h3>';
                 foreach($t['matches'] as $m)if($m['phase']===$t['phase'] && ($m['tie']??null)===$i) {
-                    echo '<p>'.e($m['home']).' <b>'.($m['status']==='finalizada'?e($m['hg'].' × '.$m['ag']):'×').'</b> '.e($m['away']).'</p>';
+                    echo '<p>'.e(ClubBadge::name($m['home'])).' <b>'.($m['status']==='finalizada'?e($m['hg'].' × '.$m['ag']):'×').'</b> '.e(ClubBadge::name($m['away'])).'</p>';
                     if(isset($m['penalties']))echo '<p>Nos pênaltis: '.e(implode(' × ',$m['penalties'])).'</p>';
                 }
                 if($tie['winner'])echo '<p>Classificado: <b>'.e($tie['winner']).'</b></p>';
@@ -42,7 +42,7 @@ final class CompetitionView {
         }
         if($t['done'])echo '<p class="panel">Campeão: <b>'.e($t['champion']).'</b></p>';
         echo '<details class="panel"><summary>Calendário e resultados do meu clube</summary>';
-        foreach($t['matches'] as $m)if(in_array($g['club'],[$m['home'],$m['away']],true))echo '<p><small>'.e($m['phase'].' · '.$m['round']).'</small><br>'.e($m['home']).' <b>'.($m['status']==='finalizada'?e($m['hg'].' × '.$m['ag']):'×').'</b> '.e($m['away']).'</p>';
+        foreach($t['matches'] as $m)if(in_array($g['club'],[$m['home'],$m['away']],true))echo '<p><small>'.e($m['phase'].' · '.$m['round']).'</small><br>'.e(ClubBadge::name($m['home'])).' <b>'.($m['status']==='finalizada'?e($m['hg'].' × '.$m['ag']):'×').'</b> '.e(ClubBadge::name($m['away'])).'</p>';
         echo '</details>';
         foreach($g['competition_results'] as $result)echo '<p>'.e(self::resultText($result,$g['club'])).'</p>';
     }
