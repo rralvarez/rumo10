@@ -3456,7 +3456,12 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Aceitar uma conversa curta"
+        "text": "Aceitar uma conversa curta com os alunos",
+        "success_text": "Os alunos participam da conversa e você fica feliz por dividir sua experiência.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "disciplina",
@@ -3464,7 +3469,13 @@
       },
       {
         "code": "liderar",
-        "text": "Falar de trabalho em equipe"
+        "text": "Conversar com os alunos sobre trabalho em equipe",
+        "success_text": "Os alunos se interessam pelo que você conta sobre trabalhar em equipe.",
+        "effects": {
+          "lideranca": 5,
+          "moral_pessoal": 3,
+          "energia": -2
+        }
       },
       {
         "code": "recuperar",
@@ -3487,7 +3498,12 @@
       },
       {
         "code": "apoio",
-        "text": "Ajudar na organização"
+        "text": "Ajudar a família a organizar o almoço",
+        "success_text": "Você ajuda no almoço e aproveita esse tempo com a família.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "recuperar",
@@ -3506,7 +3522,8 @@
       },
       {
         "code": "apoio",
-        "text": "Fortalecer a parceria"
+        "text": "Fortalecer a parceria",
+        "success_text": "A atividade aproxima você do companheiro que convidou você."
       },
       {
         "code": "disciplina",
@@ -3556,7 +3573,8 @@
       },
       {
         "code": "apoio",
-        "text": "Dividir o mérito"
+        "text": "Dividir o mérito",
+        "success_text": "Os companheiros valorizam o crédito que você dá a eles pela jogada."
       },
       {
         "code": "ousar",
@@ -3602,7 +3620,12 @@
       },
       {
         "code": "apoio",
-        "text": "Conversar por alguns minutos"
+        "text": "Conversar por alguns minutos com o torcedor",
+        "success_text": "O torcedor agradece pela atenção e vocês têm uma boa conversa.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "lazer",
@@ -3617,11 +3640,22 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Participar brevemente"
+        "text": "Participar das atividades com as crianças",
+        "success_text": "Você participa das atividades e as crianças ficam animadas com sua presença.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "liderar",
-        "text": "Orientar um exercício simples"
+        "text": "Ensinar um exercício simples às crianças",
+        "success_text": "As crianças entendem o exercício e aproveitam a atividade.",
+        "effects": {
+          "lideranca": 5,
+          "moral_pessoal": 3,
+          "energia": -2
+        }
       },
       {
         "code": "disciplina",
@@ -3648,7 +3682,12 @@
       },
       {
         "code": "apoio",
-        "text": "Encontrá-los depois"
+        "text": "Encontrar os amigos depois do jogo",
+        "success_text": "Você encontra seus amigos e coloca a conversa em dia.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "ousar",
@@ -3671,7 +3710,8 @@
       },
       {
         "code": "apoio",
-        "text": "Convidar um companheiro"
+        "text": "Convidar um companheiro",
+        "success_text": "Seu companheiro aceita o convite e vocês fazem os exercícios juntos."
       },
       {
         "code": "lazer",
@@ -3694,7 +3734,8 @@
       },
       {
         "code": "apoio",
-        "text": "Falar com os companheiros citados"
+        "text": "Falar com os companheiros citados",
+        "success_text": "Os companheiros entendem o contexto da entrevista e vocês esclarecem o mal-entendido."
       },
       {
         "code": "ousar",
@@ -3721,7 +3762,12 @@
       },
       {
         "code": "apoio",
-        "text": "Conversar sobre a rotina"
+        "text": "Conversar com o preparador sobre sua rotina",
+        "success_text": "O preparador ajuda você a organizar uma rotina melhor para dormir.",
+        "effects": {
+          "foco": 3,
+          "moral_pessoal": 3
+        }
       }
     ]
   },
@@ -3732,11 +3778,22 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Explicar cuidados gerais"
+        "text": "Explicar ao amigo como começar sem exagerar",
+        "success_text": "Seu amigo entende os cuidados para começar a treinar com mais segurança.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "liderar",
-        "text": "Indicar alguém que possa orientar o treino"
+        "text": "Indicar um profissional para orientar seu amigo",
+        "success_text": "Seu amigo recebe uma indicação para procurar orientação profissional.",
+        "effects": {
+          "lideranca": 5,
+          "moral_pessoal": 3,
+          "energia": -2
+        }
       },
       {
         "code": "disciplina",
@@ -3755,7 +3812,8 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Ouvir sem pressionar"
+        "text": "Ouvir sem pressionar",
+        "success_text": "Seu companheiro consegue desabafar e agradece por você ouvir."
       },
       {
         "code": "liderar",
@@ -3805,7 +3863,12 @@
       },
       {
         "code": "apoio",
-        "text": "Ajudar na organização à distância"
+        "text": "Ajudar os organizadores à distância",
+        "success_text": "Os organizadores agradecem sua ajuda, mesmo sem sua presença no evento.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "imprensa",
@@ -3832,7 +3895,12 @@
       },
       {
         "code": "apoio",
-        "text": "Compartilhar a lembrança"
+        "text": "Rever o vídeo com a família",
+        "success_text": "Você divide a lembrança com a família e relembra o começo da carreira.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "disciplina",
@@ -3874,7 +3942,8 @@
       },
       {
         "code": "apoio",
-        "text": "Fortalecer a parceria"
+        "text": "Fortalecer a parceria",
+        "success_text": "Você conhece melhor a cidade e o companheiro que convidou você."
       },
       {
         "code": "disciplina",
@@ -3897,7 +3966,12 @@
       },
       {
         "code": "apoio",
-        "text": "Ouvir os moradores"
+        "text": "Ouvir o que os moradores esperam do clube",
+        "success_text": "Os moradores contam suas ideias e você entende melhor o que eles precisam.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "imprensa",
@@ -3947,7 +4021,8 @@
       },
       {
         "code": "apoio",
-        "text": "Pedir a experiência de um companheiro"
+        "text": "Pedir a experiência de um companheiro",
+        "success_text": "Seu companheiro compartilha dicas para se adaptar às chuteiras novas."
       },
       {
         "code": "recuperar",
@@ -3985,7 +4060,12 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Explicar as necessidades práticas"
+        "text": "Explicar ao familiar como pode ajudar",
+        "success_text": "Seu familiar entende melhor sua rotina e como apoiar você.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "disciplina",
@@ -4035,7 +4115,12 @@
       },
       {
         "code": "apoio",
-        "text": "Retomar uma conversa importante"
+        "text": "Retomar uma conversa com um amigo",
+        "success_text": "Você conversa com seu amigo e retoma o contato que estava faltando.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "disciplina",
@@ -4112,7 +4197,13 @@
       },
       {
         "code": "apoio",
-        "text": "Passar o tempo com alguém próximo"
+        "text": "Passar o tempo com um familiar",
+        "success_text": "Você aproveita a companhia da família e volta mais animado.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        },
+        "failure_text": "A visita não sai como você esperava e você não consegue aproveitar esse tempo com a família."
       }
     ]
   },
@@ -4131,7 +4222,8 @@
       },
       {
         "code": "apoio",
-        "text": "Valorizar os dois"
+        "text": "Valorizar os dois",
+        "success_text": "Os dois companheiros se sentem valorizados pelo que você diz."
       },
       {
         "code": "ousar",
@@ -4146,7 +4238,8 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Enviar apoio e respeitar o momento"
+        "text": "Enviar apoio e respeitar o momento",
+        "success_text": "Seu companheiro agradece pelo apoio à família dele."
       },
       {
         "code": "lazer",
@@ -4177,7 +4270,8 @@
       },
       {
         "code": "apoio",
-        "text": "Pedir dicas práticas a um companheiro"
+        "text": "Pedir dicas práticas a um companheiro",
+        "success_text": "Seu companheiro compartilha dicas que ajudam a organizar sua alimentação."
       },
       {
         "code": "lazer",
@@ -4200,7 +4294,8 @@
       },
       {
         "code": "apoio",
-        "text": "Explicar como se sente no grupo"
+        "text": "Explicar como se sente no grupo",
+        "success_text": "A comissão entende melhor como você está se sentindo no elenco."
       },
       {
         "code": "ousar",
@@ -4223,7 +4318,8 @@
       },
       {
         "code": "apoio",
-        "text": "Falar com o companheiro envolvido"
+        "text": "Falar com o companheiro envolvido",
+        "success_text": "Você e o companheiro envolvido esclarecem o rumor."
       },
       {
         "code": "recuperar",
@@ -4238,7 +4334,12 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Contribuir como puder"
+        "text": "Contribuir com a campanha de doação",
+        "success_text": "Sua contribuição ajuda a campanha e você fica contente por participar.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "imprensa",
@@ -4261,7 +4362,8 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Ouvir a frustração"
+        "text": "Ouvir a frustração",
+        "success_text": "Seu companheiro se sente ouvido e mais apoiado pelo elenco."
       },
       {
         "code": "liderar",
@@ -4307,7 +4409,12 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Ouvir sobre a nova rotina"
+        "text": "Ouvir o ex-jogador sobre sua nova rotina",
+        "success_text": "O ex-jogador conta como tem sido a vida depois dos gramados.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "lazer",
@@ -4315,7 +4422,13 @@
       },
       {
         "code": "liderar",
-        "text": "Conversar sobre possibilidades futuras"
+        "text": "Conversar com o ex-jogador sobre novos caminhos",
+        "success_text": "Você troca ideias com o ex-jogador sobre possibilidades depois do futebol.",
+        "effects": {
+          "lideranca": 5,
+          "moral_pessoal": 3,
+          "energia": -2
+        }
       },
       {
         "code": "disciplina",
@@ -4361,7 +4474,12 @@
       },
       {
         "code": "apoio",
-        "text": "Agradecer a presença no estádio"
+        "text": "Agradecer aos torcedores pela presença no estádio",
+        "success_text": "Os torcedores recebem bem seu agradecimento.",
+        "effects": {
+          "apoio_torcida": 5,
+          "moral_pessoal": 3
+        }
       },
       {
         "code": "liderar",
@@ -4384,7 +4502,12 @@
       },
       {
         "code": "apoio",
-        "text": "Pedir ajuda numa tarefa"
+        "text": "Pedir ajuda a um familiar em uma tarefa",
+        "success_text": "Seu familiar ajuda na tarefa e sua agenda fica mais tranquila.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "lazer",
@@ -4399,7 +4522,8 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Contar o que ajudou sua adaptação"
+        "text": "Contar o que ajudou sua adaptação",
+        "success_text": "Seu companheiro aproveita suas dicas para planejar a mudança."
       },
       {
         "code": "lazer",
@@ -4453,7 +4577,12 @@
       },
       {
         "code": "apoio",
-        "text": "Propor outro encontro"
+        "text": "Combinar outro encontro com o amigo",
+        "success_text": "Seu amigo aceita combinar outro encontro, e você consegue preservar seu descanso.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "ousar",
@@ -4495,7 +4624,12 @@
       },
       {
         "code": "apoio",
-        "text": "Conversar com quem acompanha você"
+        "text": "Conversar com um amigo de confiança",
+        "success_text": "Seu amigo ouve você e a conversa ajuda a recuperar a confiança.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "lazer",
@@ -4522,7 +4656,8 @@
       },
       {
         "code": "apoio",
-        "text": "Ouvir também a experiência dele"
+        "text": "Ouvir também a experiência dele",
+        "success_text": "Vocês trocam experiências sobre como organizar a rotina fora do campo."
       },
       {
         "code": "lazer",
@@ -4537,11 +4672,22 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Conversar com os participantes"
+        "text": "Conversar com os participantes do projeto",
+        "success_text": "Os participantes contam suas histórias e recebem bem sua atenção.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "liderar",
-        "text": "Orientar uma atividade leve"
+        "text": "Orientar uma atividade leve no projeto",
+        "success_text": "Os participantes entendem a atividade e se divertem com você.",
+        "effects": {
+          "lideranca": 5,
+          "moral_pessoal": 3,
+          "energia": -2
+        }
       },
       {
         "code": "imprensa",
@@ -4560,7 +4706,12 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Agradecer e conversar"
+        "text": "Agradecer à pessoa que mandou a mensagem",
+        "success_text": "Vocês conversam sobre aquele primeiro jogo e você se sente apoiado.",
+        "effects": {
+          "moral_pessoal": 5,
+          "confianca": 2
+        }
       },
       {
         "code": "lazer",
@@ -4591,7 +4742,8 @@
       },
       {
         "code": "apoio",
-        "text": "Combinar uma conversa com o setor"
+        "text": "Combinar uma conversa com o setor",
+        "success_text": "Os companheiros do setor aceitam conversar sobre a preparação para o próximo jogo."
       },
       {
         "code": "visao",

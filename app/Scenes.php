@@ -71,8 +71,9 @@ final class Scenes {
             'social'=>['social',['foco'=>3,'entrosamento'=>3]],
         ];
         [$action,$effects]=$presets[$o['code']]??throw new LogicException('Alternativa sem mecânica.');
+        $effects=$o['effects']??$effects;
         if($stage==='partida' && in_array($action,['passe','chute','drible','desarme'],true))$effects=[];
-        $success=match($o['code']){'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua atitude fortalece a relação com os companheiros.','liderar'=>'Os companheiros seguem sua orientação.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem foi bem recebida.','lazer'=>'Você consegue relaxar um pouco.',default=>'Você consegue fazer o que planejou.'};
-        return ['text'=>$o['text'],'action'=>$action,'effects'=>$effects,'success_text'=>$success,'failure_text'=>'A tentativa não sai como você esperava.'];
+        $success=$o['success_text']??match($o['code']){'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua iniciativa foi bem recebida.','liderar'=>'Sua iniciativa ajuda a organizar a situação.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem foi bem recebida.','lazer'=>'Você consegue relaxar um pouco.',default=>'Você consegue fazer o que planejou.'};
+        return ['text'=>$o['text'],'action'=>$action,'effects'=>$effects,'success_text'=>$success,'failure_text'=>$o['failure_text']??'A tentativa não sai como você esperava.'];
     }
 }
