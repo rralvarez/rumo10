@@ -29,6 +29,6 @@ final class PlayerProfile {
         }
         echo '</div><p class="profile-footnote">O nível técnico é a média das nove habilidades. Treinos e decisões acumulam XP para evoluir cada uma.</p></section><details class="profile-secondary"><summary>Vestiário, reputação e riscos</summary><div class="profile-secondary-grid">';
         foreach(['Vestiário'=>['confianca_treinador','confianca_diretoria','lideranca','foco','moral_pessoal'],'Reputação'=>['apoio_torcida','confianca_imprensa'],'Riscos'=>['risco_lesao','risco_cartao','risco_polemica','risco_encontrar_rivais']] as $title=>$keys){echo '<section><h3>'.e($title).'</h3>';foreach($keys as $key)self::meter(self::LABELS[$key],$g['states'][$key],str_starts_with($key,'risco_'));echo '</section>';}
-        echo '</div><p class="profile-footnote">Nos riscos, quanto menor o número, melhor.</p></details><details class="profile-secondary profile-lifecycle"><summary>Ciclo da carreira</summary><p>Auge potencial aos 32 anos · aposentadoria voluntária aos 35 · encerramento aos 40.</p></details><div class="profile-bottom"><span>Perfil inicial · '.e($g['handicap']??'a sortear').'</span><a href="/carreira">Continuar minha história →</a></div></section>';
+        echo '</div><p class="profile-footnote">Nos riscos, quanto menor o número, melhor.</p></details><div class="profile-bottom"><span>Perfil inicial · '.e($g['handicap']??'a sortear').'</span><a href="/carreira">Continuar minha história →</a></div></section>';
     }
 }

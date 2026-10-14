@@ -21,11 +21,11 @@ foreach([1160=>'entrevista',1183=>'rumor'] as $id=>$context){
     $g=$base;$g['stage']='fim_semana';$g['active_situation']=['id'=>$id,'key'=>Scenes::key($g)];
     $choice=Game::choices($g)[1];
     checkFailure(str_contains($choice['failure_text'],'comunicação do clube') && str_contains($choice['failure_text'],$context),'Consulta identifica responsável e motivo.');
-    checkFailure($choice['effects']===['foco'=>5,'confianca_treinador'=>3],'Consulta preserva efeitos.');
+    checkFailure($choice['effects']===['foco'=>3,'confianca_diretoria'=>2],'Consulta ao clube afeta foco e diretoria, sem bônus do treinador.');
     $failure=null;
     for($attempt=0;$attempt<100;$attempt++){$result=Game::command($g,'choice',['option'=>1]);if(!$result['feedback']['success']){$failure=$result;break;}}
     checkFailure($failure!==null,'Gerar uma falha para verificar o resultado exibido.');
     checkFailure($failure['feedback']['text']===$choice['text'].': '.$choice['failure_text'],'Resultado usa a resposta específica.');
-    checkFailure(in_array($failure['feedback']['effects']['confianca'],[-2,-5],true),'Penalidade de confiança preservada.');
+    checkFailure(in_array($failure['feedback']['effects']['confianca'],[-2,-4],true),'Penalidade de confiança condizente com a insegurança narrada.');
 }
 echo "OK: $checks verificações; falhas das 856 alternativas, consultas contextualizadas e efeitos preservados.\n";

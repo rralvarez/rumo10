@@ -163,3 +163,5 @@ A ficha gráfica do personagem está em **/jogador**: clique no nome na tela de 
 Logo, favicon, interface responsiva e resultados da revisão de 14/10/2026: [Identidade visual e verificação](Docs/26_Identidade_Visual_e_Verificacao.md). Os assets estão em `public/assets/brand/`; `php tests/brand.php http://rumo10.local` verifica a instalação no IIS.
 
 Duas boas ações seguidas com bola podem abrir uma chance clara de gol, nos três modos: [mecânica, probabilidades e testes](Docs/28_Chances_Construidas.md). A oportunidade funciona nas carreiras existentes; não exige migração.
+
+Revisão dos bônus e penalidades, XP em dobro no modo normal e retirada das regras de idade da interface: [Consequências, XP e interface](Docs/30_Consequencias_XP_e_Interface.md). As mudanças valem nas próximas decisões das carreiras existentes.

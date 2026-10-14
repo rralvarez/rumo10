@@ -21,7 +21,7 @@ final class PlayMode {
         $g['play_mode']=$mode;$g['version']++;$g['feedback']=null;Scenes::prepare($g);
         return $g;
     }
-    // Percorre os mesmos comandos do modo normal: sem multiplicar XP ou criar placares separados.
+    // Percorre os mesmos comandos; Evolution aplica o multiplicador do modo da carreira.
     public static function simulate(array $g,string $plan): array {
         $mode=self::name($g);
         if($mode==='normal' || $g['stage']!=='treino' || !isset(self::PLANS[$plan]))throw new InvalidArgumentException('Estratégia incompatível com a etapa atual.');
@@ -87,7 +87,7 @@ final class PlayMode {
         if(!self::canChange($g))return;
         echo '<details class="pace-settings"><summary>Modo '.e(self::TITLES[self::name($g)]).' · alterar ritmo</summary>';
         form('/carreira/modo',$g);self::selector(self::name($g));echo '<button class="btn btn-outline-light">Salvar modo</button></form>';
-        echo '<p class="subtle">Mesma carreira e regras de evolução. Transferências continuam sendo sua escolha.</p></details>';
+        echo '<p class="subtle">No modo normal, você recebe XP em dobro. Transferências continuam sendo sua escolha.</p></details>';
     }
     public static function report(array $g): void {
         $r=$g['pace_report']??null;if(!$r)return;

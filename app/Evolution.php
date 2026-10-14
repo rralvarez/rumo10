@@ -13,7 +13,9 @@ final class Evolution {
         // Legados acima do novo teto não são rebaixados retroativamente; também não ganham mais pontos acima dele.
         if($s['value']>=$ceiling){$s['xp']=min($s['xp'],Rules::xpThreshold($s['value'])-1);return 0;}
         $rate=$g['age']<=23?1.2:($g['age']<=28?1:($g['age']<=32?.8:($g['age']<=34?.6:.4)));
-        $earned=max(0,(int)round($xp*$rate));$s['xp']+=$earned;
+        $earned=max(0,(int)round($xp*$rate));
+        if(PlayMode::name($g)==='normal')$earned*=2;
+        $s['xp']+=$earned;
         while($s['value']<$ceiling && $s['xp']>=Rules::xpThreshold($s['value'])){$s['xp']-=Rules::xpThreshold($s['value']);$s['value']++;}
         if($s['value']===$ceiling)$s['xp']=min($s['xp'],Rules::xpThreshold($s['value'])-1);
         return $earned;

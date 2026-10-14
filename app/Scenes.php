@@ -53,14 +53,14 @@ final class Scenes {
         static $failures;$failures??=require dirname(__DIR__).'/database/scene-failures.php';
         if(isset($s['legacy'])) {
             $legacy=$s['legacy'];$options=[];
-            foreach($legacy[2] as $i=>$o)$options[]=['text'=>$o[0],'effects'=>$o[1],'failure_text'=>$failures[$s['id']][$i],'action'=>match($s['id']){7=>['chute','passe','drible','social'][$i],9=>['drible','social','social','desarme'][$i],1=>$i===1?'chute':'social',2=>'passe',default=>'social'}];
+            foreach($legacy[2] as $i=>$o)$options[]=SceneConsequences::option(['text'=>$o[0],'effects'=>$o[1],'failure_text'=>$failures[$s['id']][$i],'action'=>match($s['id']){7=>['chute','passe','drible','social'][$i],9=>['drible','social','social','desarme'][$i],1=>$i===1?'chute':'social',2=>'passe',default=>'social'}],$s['stage'],$s['id'],$i);
         } else {
             $options=[];
-            foreach($s['options'] as $i=>$o){$o['failure_text']??=$failures[$s['id']][$i]??null;$options[]=self::option($o,$s['stage']);}
+            foreach($s['options'] as $i=>$o){$o['failure_text']??=$failures[$s['id']][$i]??null;$options[]=self::option($o,$s['stage'],$s['id'],$i);}
         }
         return ['id'=>$s['id'],'text'=>$s['text'],'options'=>$options,'bench'=>(bool)($s['bench']??($s['id']===6))];
     }
-    private static function option(array $o,string $stage): array {
+    private static function option(array $o,string $stage,int $id,int $index): array {
         $presets=[
             'passe'=>['passe',['passe'=>3,'energia'=>-3]],'chute'=>['chute',['finalizacao'=>3,'energia'=>-5]],
             'drible'=>['drible',['drible'=>3,'energia'=>-5,'risco_lesao'=>2]],'desarme'=>['desarme',['desarme'=>3,'energia'=>-4]],
@@ -106,6 +106,8 @@ final class Scenes {
             'social'=>$stage==='partida'?'Você hesita ao ajustar a movimentação e a marcação fecha o espaço que pretendia usar.':'Você não consegue explicar sua ideia com clareza, e a conversa termina sem um acordo.',
             default=>throw new LogicException('Alternativa sem resposta de falha.'),
         };
-        return ['text'=>$o['text'],'action'=>$action,'effects'=>$effects,'success_text'=>$success,'failure_text'=>$failure];
+        $choice=['text'=>$o['text'],'code'=>$o['code'],'action'=>$action,'effects'=>$effects,'success_text'=>$success,'failure_text'=>$failure];
+        if(isset($o['effects']))$choice['custom_effects']=true;
+        return SceneConsequences::option($choice,$stage,$id,$index);
     }
 }

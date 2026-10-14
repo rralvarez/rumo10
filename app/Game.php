@@ -35,7 +35,8 @@ final class Game {
             elseif(array_filter($m['log'],fn($l)=>$l['minute']===$m['minute'] && str_contains($l['text'],'Gol adversário'))) $id=9;
         }
         if(!$id) return null; $s=$all[$id];
-        return ['id'=>$id,'text'=>$s[1],'options'=>array_map(fn($o,$i)=>['text'=>$o[0],'effects'=>$o[1],'action'=>self::optionType($id,$i)],$s[2],array_keys($s[2]))];
+        $failures=require dirname(__DIR__).'/database/scene-failures.php';
+        return ['id'=>$id,'text'=>$s[1],'options'=>array_map(fn($o,$i)=>SceneConsequences::option(['text'=>$o[0],'effects'=>$o[1],'failure_text'=>$failures[$id][$i],'action'=>self::optionType($id,$i)],$g['stage'],$id,$i),$s[2],array_keys($s[2]))];
     }
     private static function optionType(int $id,int $i): string {
         return match($id) {7=>['chute','passe','drible','social'][$i],9=>['drible','social','social','desarme'][$i],1=>$i===1?'chute':'social',2=>'passe',default=>'social'};
@@ -59,7 +60,7 @@ final class Game {
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
         if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');$g['version']++;return $g;}
         if($action==='retire') {
-            if(!Retirement::eligible($g) || ($input['confirm']??'')!=='retire')throw new InvalidArgumentException('Aposentadoria exige 35 anos, partida concluída e confirmação.');
+            if(!Retirement::eligible($g) || ($input['confirm']??'')!=='retire')throw new InvalidArgumentException('A aposentadoria não está disponível para esta carreira ou falta a confirmação.');
             Retirement::close($g,'voluntary');$g['version']++;return $g;
         }
         if($action==='mode')return PlayMode::change($g,(string)($input['mode']??''));
@@ -91,8 +92,8 @@ final class Game {
                 $m=$g['matches'][self::currentIndex($g)];
                 if($m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit']) throw new InvalidArgumentException('Você não está em campo.');
             }
-            $o=$choices[$n]; $roll=Probability::roll(self::chance($g,$o)); $effects=self::effects($o['effects'],$roll,$g);
-            $s=self::situation($g); if($s && $s['id']===7 && $n===0 && !$roll['success']) { $g['states']['entrosamento']=self::clamp($g['states']['entrosamento']-10); $effects['entrosamento']=-10; }
+            $o=$choices[$n]; $roll=Probability::roll(self::chance($g,$o)); $effects=self::effects($o['effects'],$roll,$g,$o);
+            $s=self::situation($g);
             Scenes::remember($g,$s);
             $g['feedback']=$roll+['text'=>$o['text'].': '.($roll['success']?($o['success_text']??'a intenção deu certo.'):($o['failure_text']??'a intenção não teve o efeito esperado.')),'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
             if($g['stage']==='treino') $g['stage']='pre_jogo';
@@ -144,10 +145,10 @@ final class Game {
         $g['version']++;Scenes::prepare($g); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }
-    private static function effects(array $effects,array $roll,array &$g): array {
+    private static function effects(array $effects,array $roll,array &$g,array $choice=[]): array {
         $applied=[];
         foreach($effects as $k=>$v) {
-            $cost=($k==='energia' && $v<0) || (str_starts_with($k,'risco_') && $v>0) || (isset($g['skills'][$k]) && $v<0);
+            $cost=($v<0 && !str_starts_with($k,'risco_')) || (str_starts_with($k,'risco_') && $v>0);
             if(!$cost && !$roll['success']) continue;
             $delta=$cost?$v:(int)round($v*($roll['class']==='excepcional'?1.25:1));
             if(isset($g['skills'][$k])) {
@@ -155,7 +156,11 @@ final class Game {
                 else $applied['XP '.$k]=Evolution::gain($g,$k,$delta);
             } else { $before=$g['states'][$k]; $g['states'][$k]=self::clamp($before+$delta); $applied[$k]=$g['states'][$k]-$before; }
         }
-        if(!$roll['success']) { $v=$roll['class']==='falha_grave'?-5:-2; $g['states']['confianca']=self::clamp($g['states']['confianca']+$v); $applied['confianca']=$v; }
+        if(!$roll['success']) {
+            $failure=$choice['failure_effects']??['confianca'=>$roll['class']==='falha_grave'?-5:-2];
+            if($roll['class']==='falha_grave')$failure=$choice['severe_failure_effects']??$failure;
+            foreach($failure as $key=>$value){$before=$g['states'][$key];$g['states'][$key]=self::clamp($before+$value);$applied[$key]=($applied[$key]??0)+$g['states'][$key]-$before;}
+        }
         return $applied;
     }
     private static function fieldDecision(array &$g,array $o,array $roll,int $sid,int $choice): void {
@@ -166,13 +171,23 @@ final class Game {
             if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if($clearChance || random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
             if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
-            if($type==='drible' && $roll['success']) foreach(self::effects(['drible'=>2],$roll,$g) as $k=>$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
+            if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
+                $st['tackles']++;foreach(self::effects(['desarme'=>1],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
+            }
+            if($roll['success'] && in_array($type,['passe','chute','drible','desarme'],true)){
+                $skill=['passe'=>'passe','chute'=>'finalizacao','drible'=>'drible','desarme'=>'desarme'][$type];
+                foreach(self::effects([$skill=>2],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
+            }
             if($clearChance && $type==='drible' && $roll['success']){$st['shots']++;$st['goals']++;$m[$own]++;$g['feedback']['highlight']='goal';$text.=' Gol do seu jogador!';}
             // Simulação e agressão podem gerar falta/cartão; nunca dão gol automático.
-            if($sid===7 && $choice===3) { $st['fouls']++; $st['cards']++; $text.=' O árbitro pune a simulação com cartão.'; }
+            if($sid===7 && $choice===3 && !$roll['success'] && ($roll['class']==='falha_grave' || random_int(1,100)<=25)) { $st['fouls']++; $st['cards']++; $text.=' O árbitro pune a simulação com cartão.'; }
         }
         if($sid===8 && in_array($choice,[0,2],true)) { $st['fouls']++; if(random_int(1,100)<=65) { $st['cards']++; $text.=' Cartão pela reação.'; } }
-        if(!$roll['success'] && $roll['class']==='falha_grave' && $onBall) { $st['fouls']++; if(random_int(1,100)<=30) $st['cards']++; }
+        if(!$roll['success'] && $roll['class']==='falha_grave' && $onBall && $type==='desarme') { $st['fouls']++;$text.=' Você chega atrasado e comete falta.'; if(random_int(1,100)<=30){$st['cards']++;$text.=' Cartão pelo desarme atrasado.';} }
+        if(!empty($o['card_risk']) && random_int(1,100)<=min(50,$o['card_risk']+intdiv($g['states']['risco_cartao'],5))){$st['cards']++;$text.=' Cartão pela discussão.';}
+        if(isset($g['feedback']['highlight'])){
+            $before=$g['states']['confianca'];$g['states']['confianca']=self::clamp($before+($g['feedback']['highlight']==='goal'?4:3));
+        }
         $g['states']['energia']=self::clamp($g['states']['energia']-3);
         if($st['cards']>=2) { $m['exit']=$m['minute']; $text.=' Expulso: segundo cartão.'; }
         elseif(random_int(1,1000)<=$g['states']['risco_lesao']) { $m['exit']=$m['minute']; $text.=' Lesão: você deixa o campo.';$before=$g['skills']['resistencia']['value'];$g['skills']['resistencia']['value']=max(0,$before-1);$g['feedback']['effects']['resistencia']=($g['feedback']['effects']['resistencia']??0)+$g['skills']['resistencia']['value']-$before; }
