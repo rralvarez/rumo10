@@ -5,7 +5,7 @@ final class Scenes {
         static $all;if($all!==null)return $all;$all=[];
         foreach(require dirname(__DIR__).'/database/situations.php' as $id=>$s)$all[$id]=['id'=>$id,'stage'=>$s[0],'text'=>$s[1],'legacy'=>$s];
         foreach(json_decode(file_get_contents(dirname(__DIR__).'/database/scenes.json'),true,512,JSON_THROW_ON_ERROR) as $s)$all[$s['id']]=$s;
-        foreach([1200=>'O treinador explica que você começa no banco e pode entrar para mudar o ritmo.',1201=>'A comissão reserva você para o segundo tempo e pede atenção ao aquecimento.'] as $id=>$text)$all[$id]=['id'=>$id,'stage'=>'pre_jogo','text'=>$text,'bench'=>true,'options'=>[['code'=>'apoio','text'=>'Apoiar quem começa jogando'],['code'=>'tatico','text'=>'Estudar o adversário do banco'],['code'=>'disciplina','text'=>'Seguir o aquecimento planejado'],['code'=>'reclamar','text'=>'Cobrar uma explicação sobre a reserva']]];
+        foreach([1200=>'Você começa no banco. O treinador diz que pode chamar você para mudar o ritmo do jogo.',1201=>'A comissão planeja colocar você no segundo tempo e pede que fique pronto para entrar.'] as $id=>$text)$all[$id]=['id'=>$id,'stage'=>'pre_jogo','text'=>$text,'bench'=>true,'options'=>[['code'=>'apoio','text'=>'Apoiar quem começa jogando'],['code'=>'tatico','text'=>'Observar o adversário enquanto espera'],['code'=>'disciplina','text'=>'Seguir o aquecimento combinado'],['code'=>'reclamar','text'=>'Reclamar por ter ficado no banco']]];
         return $all;
     }
     private static function bench(array $g): bool {return $g['states']['energia']<40 || $g['states']['confianca_treinador']<35 || $g['round']%4===0;}
@@ -72,7 +72,7 @@ final class Scenes {
         ];
         [$action,$effects]=$presets[$o['code']]??throw new LogicException('Alternativa sem mecânica.');
         if($stage==='partida' && in_array($action,['passe','chute','drible','desarme'],true))$effects=[];
-        $success=match($o['code']){'recuperar'=>'Você recupera disposição sem forçar o corpo.','apoio'=>'A conversa aproxima você do grupo.','liderar'=>'O grupo responde à sua orientação.','disciplina'=>'Você mantém o foco e cumpre o combinado.','reclamar'=>'Você consegue expor sua opinião, mas a abordagem cobra seu preço.','ousar'=>'Você ganha confiança com a iniciativa.','imprensa'=>'A mensagem é bem recebida.','lazer'=>'A pausa ajuda a aliviar a tensão.',default=>'Você executa a ação como planejou.'};
+        $success=match($o['code']){'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua atitude fortalece a relação com os companheiros.','liderar'=>'Os companheiros seguem sua orientação.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem foi bem recebida.','lazer'=>'Você consegue relaxar um pouco.',default=>'Você consegue fazer o que planejou.'};
         return ['text'=>$o['text'],'action'=>$action,'effects'=>$effects,'success_text'=>$success,'failure_text'=>'A tentativa não sai como você esperava.'];
     }
 }

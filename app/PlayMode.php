@@ -39,7 +39,7 @@ final class PlayMode {
                 $advance=$m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'];
                 $action=$advance?'advance':'choice';
             } elseif(in_array($g['stage'],['treino','pre_jogo','fim_semana'],true))$action='choice';
-            else throw new LogicException('Étape inesperada na simulação.');
+            else throw new LogicException('Etapa inesperada na simulação.');
             $input=[];
             if($action==='choice'){$input=['option'=>self::option($g,$plan)];$decisions++;}
             // Capture o jogo antes de afterWeekend mudar calendário/fase.

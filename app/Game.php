@@ -43,7 +43,7 @@ final class Game {
         $s=self::situation($g); if($s) return $s['options'];
         if($g['stage']==='partida') {
             $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
-            return [['text'=>$def?'Antecipar e desarmar':'Finalizar no canto','effects'=>[],'action'=>$def?'desarme':'chute'],['text'=>'Passe para o companheiro','effects'=>[],'action'=>'passe'],['text'=>'Avançar no drible','effects'=>[],'action'=>'drible'],['text'=>'Chutar de longe','effects'=>[],'action'=>'chute']];
+            return [['text'=>$def?'Antecipar e desarmar':'Finalizar no canto','effects'=>[],'action'=>$def?'desarme':'chute'],['text'=>'Passar para o companheiro','effects'=>[],'action'=>'passe'],['text'=>'Avançar no drible','effects'=>[],'action'=>'drible'],['text'=>'Chutar de longe','effects'=>[],'action'=>'chute']];
         }
         return [];
     }

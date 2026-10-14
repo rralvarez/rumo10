@@ -2,11 +2,11 @@
   {
     "id": 1000,
     "stage": "treino",
-    "text": "O auxiliar montou um circuito de condução em espaço curto.",
+    "text": "O auxiliar montou um treino para conduzir a bola em pouco espaço.",
     "options": [
       {
         "code": "drible",
-        "text": "Usar a perna menos habitual"
+        "text": "Usar o pé que você usa menos"
       },
       {
         "code": "velocidade",
@@ -29,7 +29,7 @@
     "options": [
       {
         "code": "posicionamento",
-        "text": "Estudar a queda do rebote"
+        "text": "Observar onde a bola sobra"
       },
       {
         "code": "resistencia",
@@ -52,7 +52,7 @@
     "options": [
       {
         "code": "passe",
-        "text": "Dar ritmo à circulação"
+        "text": "Fazer a bola circular mais rápido"
       },
       {
         "code": "visao",
@@ -60,7 +60,7 @@
       },
       {
         "code": "tecnica",
-        "text": "Receber com o corpo orientado"
+        "text": "Dominar já de frente para a jogada"
       },
       {
         "code": "apoio",
@@ -79,7 +79,7 @@
       },
       {
         "code": "passe",
-        "text": "Rever a força dos passes"
+        "text": "Ajustar a força dos passes"
       },
       {
         "code": "tatico",
@@ -140,7 +140,7 @@
   {
     "id": 1006,
     "stage": "treino",
-    "text": "O goleiro fecha bem o primeiro poste nas finalizações.",
+    "text": "O goleiro está fechando bem a primeira trave nos chutes.",
     "options": [
       {
         "code": "chute",
@@ -152,11 +152,11 @@
       },
       {
         "code": "tecnica",
-        "text": "Treinar o toque por baixo"
+        "text": "Treinar o toque rasteiro"
       },
       {
         "code": "visao",
-        "text": "Observar antes de concluir"
+        "text": "Olhar o gol antes de chutar"
       }
     ]
   },
@@ -167,7 +167,7 @@
     "options": [
       {
         "code": "passe",
-        "text": "Circular de primeira"
+        "text": "Trocar passes de primeira"
       },
       {
         "code": "posicionamento",
@@ -271,14 +271,14 @@
       },
       {
         "code": "reclamar",
-        "text": "Discutir a ordem de utilização"
+        "text": "Reclamar da ordem para usar os aparelhos"
       }
     ]
   },
   {
     "id": 1012,
     "stage": "treino",
-    "text": "Um colega domina as disputas usando o corpo.",
+    "text": "Um companheiro domina as disputas usando o corpo.",
     "options": [
       {
         "code": "forca",
@@ -313,7 +313,7 @@
       },
       {
         "code": "apoio",
-        "text": "Pedir orientação a um colega"
+        "text": "Pedir orientação a um companheiro"
       },
       {
         "code": "reclamar",
@@ -340,7 +340,7 @@
       },
       {
         "code": "liderar",
-        "text": "Combinar o primeiro combate"
+        "text": "Combinar quem pressiona primeiro"
       }
     ]
   },
@@ -393,7 +393,7 @@
   {
     "id": 1017,
     "stage": "treino",
-    "text": "Uma câmera do clube acompanha a sessão.",
+    "text": "O clube está filmando o treino.",
     "options": [
       {
         "code": "disciplina",
@@ -416,7 +416,7 @@
   {
     "id": 1018,
     "stage": "treino",
-    "text": "O jogo reduzido usa metas pequenas sem goleiros.",
+    "text": "O treino é em campo reduzido, com gols pequenos e sem goleiros.",
     "options": [
       {
         "code": "passe",
@@ -424,11 +424,11 @@
       },
       {
         "code": "chute",
-        "text": "Buscar precisão na conclusão"
+        "text": "Buscar precisão na finalização"
       },
       {
         "code": "drible",
-        "text": "Criar espaço antes de concluir"
+        "text": "Criar espaço antes de chutar"
       },
       {
         "code": "posicionamento",
@@ -493,7 +493,7 @@
       },
       {
         "code": "posicionamento",
-        "text": "Ensaiar a ocupação"
+        "text": "Treinar como ocupar o espaço"
       },
       {
         "code": "passe",
@@ -501,7 +501,7 @@
       },
       {
         "code": "liderar",
-        "text": "Compartilhar a leitura"
+        "text": "Contar aos companheiros o que você percebeu"
       }
     ]
   },
@@ -512,7 +512,7 @@
     "options": [
       {
         "code": "desarme",
-        "text": "Ajustar o tempo da abordagem"
+        "text": "Ajustar o momento do bote"
       },
       {
         "code": "forca",
@@ -531,7 +531,7 @@
   {
     "id": 1023,
     "stage": "treino",
-    "text": "Um juvenil completa o treino profissional.",
+    "text": "Um jogador da base foi chamado para completar o treino.",
     "options": [
       {
         "code": "apoio",
@@ -658,7 +658,7 @@
       },
       {
         "code": "passe",
-        "text": "Preparar a conclusão com um toque"
+        "text": "Preparar a finalização com um toque"
       },
       {
         "code": "recuperar",
@@ -700,7 +700,7 @@
       },
       {
         "code": "apoio",
-        "text": "Apoiar um colega experiente"
+        "text": "Apoiar um companheiro experiente"
       },
       {
         "code": "disciplina",
@@ -719,7 +719,7 @@
     "options": [
       {
         "code": "passe",
-        "text": "Preparar o passe na recepção"
+        "text": "Preparar o passe antes de dominar"
       },
       {
         "code": "visao",
@@ -746,7 +746,7 @@
       },
       {
         "code": "desarme",
-        "text": "Escolher o momento da abordagem"
+        "text": "Escolher a hora de dar o bote"
       },
       {
         "code": "liderar",
@@ -796,7 +796,7 @@
       },
       {
         "code": "tecnica",
-        "text": "Repetir domínios altos"
+        "text": "Treinar o domínio de bolas altas"
       },
       {
         "code": "visao",
@@ -815,7 +815,7 @@
       },
       {
         "code": "apoio",
-        "text": "Repetir com um colega"
+        "text": "Repetir com um companheiro"
       },
       {
         "code": "tatico",
@@ -857,7 +857,7 @@
     "options": [
       {
         "code": "apoio",
-        "text": "Acalmar os colegas"
+        "text": "Acalmar os companheiros"
       },
       {
         "code": "disciplina",
@@ -907,11 +907,11 @@
       },
       {
         "code": "chute",
-        "text": "Concluir antes da recomposição"
+        "text": "Chutar antes da recomposição"
       },
       {
         "code": "passe",
-        "text": "Servir quem chega livre"
+        "text": "Passar para quem chega livre"
       },
       {
         "code": "desarme",
@@ -938,7 +938,7 @@
       },
       {
         "code": "lazer",
-        "text": "Encerrar a sessão agora"
+        "text": "Encerrar o treino agora"
       }
     ]
   },
@@ -957,7 +957,7 @@
       },
       {
         "code": "apoio",
-        "text": "Ouvir a preferência dos colegas"
+        "text": "Ouvir a preferência dos companheiros"
       },
       {
         "code": "disciplina",
@@ -980,7 +980,7 @@
       },
       {
         "code": "forca",
-        "text": "Estabilizar a recepção"
+        "text": "Firmar o corpo ao dominar a bola"
       },
       {
         "code": "visao",
@@ -1026,7 +1026,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir com menos força"
+        "text": "Chutar com menos força"
       },
       {
         "code": "reclamar",
@@ -1064,7 +1064,7 @@
     "options": [
       {
         "code": "posicionamento",
-        "text": "Reformar o triângulo"
+        "text": "Se aproximar para dar opção de passe"
       },
       {
         "code": "passe",
@@ -1095,11 +1095,11 @@
       },
       {
         "code": "chute",
-        "text": "Treinar a conclusão após a sobra"
+        "text": "Treinar o chute no rebote"
       },
       {
         "code": "posicionamento",
-        "text": "Atacar o intervalo da linha"
+        "text": "Entrar no espaço entre os defensores"
       }
     ]
   },
@@ -1122,7 +1122,7 @@
       },
       {
         "code": "disciplina",
-        "text": "Pedir feedback a cada repetição"
+        "text": "Pedir uma avaliação depois de cada tentativa"
       }
     ]
   },
@@ -1206,7 +1206,7 @@
       },
       {
         "code": "liderar",
-        "text": "Organizar a união do grupo"
+        "text": "Reunir o time para se motivar"
       },
       {
         "code": "imprensa",
@@ -1256,7 +1256,7 @@
       },
       {
         "code": "liderar",
-        "text": "Recombinar as coberturas"
+        "text": "Combinar de novo quem faz a cobertura"
       },
       {
         "code": "disciplina",
@@ -1275,11 +1275,11 @@
       },
       {
         "code": "chute",
-        "text": "Testar uma conclusão rasteira"
+        "text": "Testar um chute rasteiro"
       },
       {
         "code": "tecnica",
-        "text": "Repetir recepções altas"
+        "text": "Treinar o domínio de bolas altas"
       },
       {
         "code": "tatico",
@@ -1329,7 +1329,7 @@
       },
       {
         "code": "passe",
-        "text": "Aquecer a tabela do plano"
+        "text": "Treinar a tabela combinada"
       }
     ]
   },
@@ -1371,7 +1371,7 @@
       },
       {
         "code": "apoio",
-        "text": "Conversar com um colega"
+        "text": "Conversar com um companheiro"
       },
       {
         "code": "velocidade",
@@ -1394,7 +1394,7 @@
       },
       {
         "code": "imprensa",
-        "text": "Mandar um cumprimento"
+        "text": "Acenar para a família"
       },
       {
         "code": "ousar",
@@ -1413,7 +1413,7 @@
       },
       {
         "code": "desarme",
-        "text": "Preparar a abordagem ao rebote"
+        "text": "Se preparar para disputar o rebote"
       },
       {
         "code": "liderar",
@@ -1428,7 +1428,7 @@
   {
     "id": 1062,
     "stage": "pre_jogo",
-    "text": "Um colega quer atacar mais do que o plano indica.",
+    "text": "Um companheiro quer atacar mais do que o plano indica.",
     "options": [
       {
         "code": "apoio",
@@ -1486,7 +1486,7 @@
       },
       {
         "code": "chute",
-        "text": "Experimentar as conclusões"
+        "text": "Testar os chutes"
       },
       {
         "code": "disciplina",
@@ -1520,7 +1520,7 @@
   {
     "id": 1066,
     "stage": "pre_jogo",
-    "text": "Alguns colegas parecem resignados diante do favorito.",
+    "text": "Alguns companheiros parecem resignados diante do favorito.",
     "options": [
       {
         "code": "liderar",
@@ -1543,7 +1543,7 @@
   {
     "id": 1067,
     "stage": "pre_jogo",
-    "text": "O gramado parece mais estreito que o habitual.",
+    "text": "O campo é mais estreito do que você está acostumado.",
     "options": [
       {
         "code": "posicionamento",
@@ -1570,7 +1570,7 @@
     "options": [
       {
         "code": "desarme",
-        "text": "Rever o tempo da abordagem"
+        "text": "Rever a hora de dar o bote"
       },
       {
         "code": "posicionamento",
@@ -1693,7 +1693,7 @@
       },
       {
         "code": "posicionamento",
-        "text": "Combinar a segunda bola"
+        "text": "Combinar quem fica com o rebote"
       },
       {
         "code": "apoio",
@@ -1716,7 +1716,7 @@
       },
       {
         "code": "desarme",
-        "text": "Priorizar o tempo de combate"
+        "text": "Escolher a hora de dar o bote"
       },
       {
         "code": "visao",
@@ -1735,7 +1735,7 @@
       },
       {
         "code": "apoio",
-        "text": "Ouvir um colega de confiança"
+        "text": "Ouvir um companheiro de confiança"
       },
       {
         "code": "passe",
@@ -1758,11 +1758,11 @@
       },
       {
         "code": "liderar",
-        "text": "Trazer a conversa ao jogo"
+        "text": "Trazer o foco de volta para a partida"
       },
       {
         "code": "apoio",
-        "text": "Falar em particular com o colega citado"
+        "text": "Falar em particular com o companheiro citado"
       },
       {
         "code": "imprensa",
@@ -1842,7 +1842,7 @@
   {
     "id": 1080,
     "stage": "pre_jogo",
-    "text": "Um colega recebe críticas duras antes da partida.",
+    "text": "Um companheiro recebe críticas duras antes da partida.",
     "options": [
       {
         "code": "apoio",
@@ -1869,7 +1869,7 @@
     "options": [
       {
         "code": "tatico",
-        "text": "Rever a proteção da posse"
+        "text": "Combinar como proteger a bola"
       },
       {
         "code": "passe",
@@ -1877,7 +1877,7 @@
       },
       {
         "code": "posicionamento",
-        "text": "Combinar quem fica atrás da bola"
+        "text": "Combinar quem segura a defesa"
       },
       {
         "code": "liderar",
@@ -1923,11 +1923,11 @@
       },
       {
         "code": "resistencia",
-        "text": "Aquecer a reação à perda"
+        "text": "Treinar a reação depois de perder a bola"
       },
       {
         "code": "apoio",
-        "text": "Reforçar o apoio aos colegas"
+        "text": "Reforçar o apoio aos companheiros"
       }
     ]
   },
@@ -1957,7 +1957,7 @@
   {
     "id": 1085,
     "stage": "pre_jogo",
-    "text": "O auxiliar destaca o primeiro passe após recuperar.",
+    "text": "O auxiliar pede atenção ao primeiro passe depois de recuperar a bola.",
     "options": [
       {
         "code": "visao",
@@ -2157,7 +2157,7 @@
       },
       {
         "code": "tatico",
-        "text": "Resolver mais lances pela posição"
+        "text": "Se posicionar melhor para correr menos"
       }
     ]
   },
@@ -2272,7 +2272,7 @@
       },
       {
         "code": "apoio",
-        "text": "Ajudar um colega a formular sua dúvida"
+        "text": "Ajudar um companheiro a formular sua dúvida"
       }
     ]
   },
@@ -2287,7 +2287,7 @@
       },
       {
         "code": "liderar",
-        "text": "Combinar comunicação acima do barulho"
+        "text": "Combinar como se comunicar com o estádio barulhento"
       },
       {
         "code": "recuperar",
@@ -2295,18 +2295,18 @@
       },
       {
         "code": "apoio",
-        "text": "Acompanhar os colegas mais jovens"
+        "text": "Acompanhar os companheiros mais jovens"
       }
     ]
   },
   {
     "id": 1100,
     "stage": "partida",
-    "text": "Você recebe entre duas linhas e um colega dispara pelo corredor.",
+    "text": "Você recebe entre duas linhas e um companheiro dispara pelo corredor.",
     "options": [
       {
         "code": "passe",
-        "text": "Servir a corrida"
+        "text": "Lançar o companheiro que está correndo"
       },
       {
         "code": "drible",
@@ -2314,7 +2314,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir antes da aproximação"
+        "text": "Chutar antes da aproximação"
       },
       {
         "code": "social",
@@ -2333,11 +2333,11 @@
       },
       {
         "code": "passe",
-        "text": "Servir quem chega de frente"
+        "text": "Passar para quem chega de frente"
       },
       {
         "code": "drible",
-        "text": "Escapar do primeiro combate"
+        "text": "Escapar do primeiro marcador"
       },
       {
         "code": "social",
@@ -2360,7 +2360,7 @@
       },
       {
         "code": "chute",
-        "text": "Buscar a conclusão rápida"
+        "text": "Chutar antes de a marcação chegar"
       },
       {
         "code": "social",
@@ -2379,7 +2379,7 @@
       },
       {
         "code": "drible",
-        "text": "Orientar o domínio para fora"
+        "text": "Dominar para o lado livre"
       },
       {
         "code": "social",
@@ -2387,18 +2387,18 @@
       },
       {
         "code": "chute",
-        "text": "Concluir após o domínio"
+        "text": "Chutar após o domínio"
       }
     ]
   },
   {
     "id": 1104,
     "stage": "partida",
-    "text": "O rival perde a bola na construção.",
+    "text": "O adversário perde a bola na saída de jogo.",
     "options": [
       {
         "code": "passe",
-        "text": "Acionar a corrida do colega"
+        "text": "Lançar o companheiro que arrancou"
       },
       {
         "code": "drible",
@@ -2410,14 +2410,14 @@
       },
       {
         "code": "social",
-        "text": "Juntar o time com a posse"
+        "text": "Segurar a bola para o time se aproximar"
       }
     ]
   },
   {
     "id": 1105,
     "stage": "partida",
-    "text": "Dois colegas pedem a bola em direções diferentes.",
+    "text": "Dois companheiros pedem a bola em direções diferentes.",
     "options": [
       {
         "code": "passe",
@@ -2448,11 +2448,11 @@
       },
       {
         "code": "passe",
-        "text": "Servir quem entra atrás da linha"
+        "text": "Passar para quem entra atrás da linha"
       },
       {
         "code": "drible",
-        "text": "Aproximar-se antes de concluir"
+        "text": "Chegar mais perto antes de chutar"
       },
       {
         "code": "social",
@@ -2471,11 +2471,11 @@
       },
       {
         "code": "drible",
-        "text": "Provocar a saída de um marcador"
+        "text": "Atrair um marcador para fora da posição"
       },
       {
         "code": "chute",
-        "text": "Concluir de fora"
+        "text": "Chutar de fora"
       },
       {
         "code": "social",
@@ -2486,7 +2486,7 @@
   {
     "id": 1108,
     "stage": "partida",
-    "text": "Um colega faz a ultrapassagem durante seu domínio.",
+    "text": "Um companheiro faz a ultrapassagem durante seu domínio.",
     "options": [
       {
         "code": "passe",
@@ -2498,11 +2498,11 @@
       },
       {
         "code": "chute",
-        "text": "Concluir no espaço aberto"
+        "text": "Chutar no espaço aberto"
       },
       {
         "code": "social",
-        "text": "Sincronizar o ataque"
+        "text": "Esperar o companheiro chegar para atacar junto"
       }
     ]
   },
@@ -2525,7 +2525,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir de meia-volta"
+        "text": "Girar o corpo e chutar"
       }
     ]
   },
@@ -2540,7 +2540,7 @@
       },
       {
         "code": "passe",
-        "text": "Servir quem tem melhor ângulo"
+        "text": "Passar para quem tem melhor ângulo"
       },
       {
         "code": "drible",
@@ -2559,7 +2559,7 @@
     "options": [
       {
         "code": "chute",
-        "text": "Concluir antes de perder o ângulo"
+        "text": "Chutar antes de perder o ângulo"
       },
       {
         "code": "passe",
@@ -2578,7 +2578,7 @@
   {
     "id": 1112,
     "stage": "partida",
-    "text": "Um colega segura o ataque aguardando sua movimentação.",
+    "text": "Um companheiro segura o ataque aguardando sua movimentação.",
     "options": [
       {
         "code": "social",
@@ -2594,7 +2594,7 @@
       },
       {
         "code": "chute",
-        "text": "Preparar a conclusão rápida"
+        "text": "Se preparar para chutar de primeira"
       }
     ]
   },
@@ -2613,7 +2613,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir pelo ângulo curto"
+        "text": "Chutar mesmo com pouco ângulo"
       },
       {
         "code": "social",
@@ -2636,7 +2636,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir antes da recomposição"
+        "text": "Chutar antes da recomposição"
       },
       {
         "code": "social",
@@ -2647,7 +2647,7 @@
   {
     "id": 1115,
     "stage": "partida",
-    "text": "A corrida do colega está no limite do impedimento.",
+    "text": "A corrida do companheiro está no limite do impedimento.",
     "options": [
       {
         "code": "passe",
@@ -2663,7 +2663,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir de longe"
+        "text": "Chutar de longe"
       }
     ]
   },
@@ -2678,11 +2678,11 @@
       },
       {
         "code": "passe",
-        "text": "Servir quem tem melhor ângulo"
+        "text": "Passar para quem tem melhor ângulo"
       },
       {
         "code": "chute",
-        "text": "Concluir antes da cobertura"
+        "text": "Chutar antes da cobertura"
       },
       {
         "code": "social",
@@ -2701,11 +2701,11 @@
       },
       {
         "code": "drible",
-        "text": "Orientar para a outra perna"
+        "text": "Levar a bola para o pé que você domina"
       },
       {
         "code": "chute",
-        "text": "Concluir com a perna disponível"
+        "text": "Chutar com o pé que estiver livre"
       },
       {
         "code": "social",
@@ -2732,14 +2732,14 @@
       },
       {
         "code": "chute",
-        "text": "Preparar a conclusão de primeira"
+        "text": "Se preparar para chutar sem dominar"
       }
     ]
   },
   {
     "id": 1119,
     "stage": "partida",
-    "text": "Um colega está livre na área, mas o corredor é estreito.",
+    "text": "Um companheiro está livre na área, mas o corredor é estreito.",
     "options": [
       {
         "code": "passe",
@@ -2751,11 +2751,11 @@
       },
       {
         "code": "chute",
-        "text": "Concluir pelo espaço atual"
+        "text": "Chutar pelo espaço atual"
       },
       {
         "code": "social",
-        "text": "Reciclar a posse"
+        "text": "Voltar o passe para manter a bola"
       }
     ]
   },
@@ -2778,7 +2778,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir antes da organização"
+        "text": "Chutar antes da organização"
       }
     ]
   },
@@ -2789,7 +2789,7 @@
     "options": [
       {
         "code": "passe",
-        "text": "Servir quem ficou livre"
+        "text": "Passar para quem ficou livre"
       },
       {
         "code": "drible",
@@ -2797,11 +2797,11 @@
       },
       {
         "code": "social",
-        "text": "Recuar o domínio"
+        "text": "Dominar puxando a bola para trás"
       },
       {
         "code": "chute",
-        "text": "Concluir antes do segundo marcador"
+        "text": "Chutar antes do segundo marcador"
       }
     ]
   },
@@ -2812,7 +2812,7 @@
     "options": [
       {
         "code": "chute",
-        "text": "Atacar a bola para concluir"
+        "text": "Atacar a bola para chutar"
       },
       {
         "code": "passe",
@@ -2835,7 +2835,7 @@
     "options": [
       {
         "code": "drible",
-        "text": "Ganhar o toque no espaço"
+        "text": "Tocar na frente para passar pelo defensor"
       },
       {
         "code": "passe",
@@ -2847,7 +2847,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir antes de a bola baixar"
+        "text": "Chutar antes de a bola baixar"
       }
     ]
   },
@@ -2858,7 +2858,7 @@
     "options": [
       {
         "code": "social",
-        "text": "Reorganizar e buscar outra linha"
+        "text": "Segurar a bola e procurar outra opção de passe"
       },
       {
         "code": "drible",
@@ -2870,7 +2870,7 @@
       },
       {
         "code": "chute",
-        "text": "Concluir com a defesa recuando"
+        "text": "Chutar com a defesa recuando"
       }
     ]
   },
@@ -2904,7 +2904,7 @@
     "options": [
       {
         "code": "desarme",
-        "text": "Abordar antes do giro"
+        "text": "Dar o bote antes de ele virar"
       },
       {
         "code": "social",
@@ -2958,7 +2958,7 @@
       },
       {
         "code": "passe",
-        "text": "Recuperar e servir a cobertura"
+        "text": "Roubar a bola e passar para quem está na cobertura"
       },
       {
         "code": "drible",
@@ -2977,7 +2977,7 @@
       },
       {
         "code": "social",
-        "text": "Esperar a cobertura protegendo a zona"
+        "text": "Fechar o espaço enquanto espera a cobertura"
       },
       {
         "code": "passe",
@@ -3000,11 +3000,11 @@
       },
       {
         "code": "social",
-        "text": "Acompanhar sem abandonar a zona"
+        "text": "Acompanhar sem sair da posição"
       },
       {
         "code": "passe",
-        "text": "Recuperar e servir o lado livre"
+        "text": "Roubar a bola e passar para o lado livre"
       },
       {
         "code": "drible",
@@ -3015,11 +3015,11 @@
   {
     "id": 1131,
     "stage": "partida",
-    "text": "Um colega perdeu a disputa e você chega para cobrir.",
+    "text": "Um companheiro perdeu a disputa e você chega para cobrir.",
     "options": [
       {
         "code": "desarme",
-        "text": "Abordar o portador"
+        "text": "Dar o bote em quem está com a bola"
       },
       {
         "code": "social",
@@ -3046,7 +3046,7 @@
       },
       {
         "code": "social",
-        "text": "Marcar sem oferecer falta"
+        "text": "Marcar sem fazer falta"
       },
       {
         "code": "passe",
@@ -3088,7 +3088,7 @@
     "options": [
       {
         "code": "desarme",
-        "text": "Antecipar a recepção"
+        "text": "Chegar antes de o adversário dominar"
       },
       {
         "code": "social",
@@ -3111,7 +3111,7 @@
     "options": [
       {
         "code": "desarme",
-        "text": "Chegar antes do recebedor"
+        "text": "Chegar antes de quem vai receber o passe"
       },
       {
         "code": "passe",
@@ -3134,11 +3134,11 @@
     "options": [
       {
         "code": "desarme",
-        "text": "Ganhar no tempo do toque"
+        "text": "Dar o bote na hora do toque"
       },
       {
         "code": "passe",
-        "text": "Recuperar para um companheiro"
+        "text": "Roubar a bola e tocar para um companheiro"
       },
       {
         "code": "social",
@@ -3169,7 +3169,7 @@
       },
       {
         "code": "drible",
-        "text": "Apostar no roubo perto do portador"
+        "text": "Tentar roubar a bola de quem está com ela"
       }
     ]
   },
@@ -3188,7 +3188,7 @@
       },
       {
         "code": "passe",
-        "text": "Recuperar e servir o apoio"
+        "text": "Roubar a bola e tocar para quem dá apoio"
       },
       {
         "code": "drible",
@@ -3222,7 +3222,7 @@
   {
     "id": 1140,
     "stage": "partida",
-    "text": "Um colega irritado com o árbitro perde o foco.",
+    "text": "Um companheiro irritado com o árbitro perde o foco.",
     "options": [
       {
         "code": "apoio",
@@ -3238,7 +3238,7 @@
       },
       {
         "code": "reclamar",
-        "text": "Somar-se à reclamação"
+        "text": "Reclamar junto com ele"
       }
     ]
   },
@@ -3257,7 +3257,7 @@
       },
       {
         "code": "liderar",
-        "text": "Chamar o time à organização"
+        "text": "Pedir para o time se organizar"
       },
       {
         "code": "ousar",
@@ -3280,7 +3280,7 @@
       },
       {
         "code": "liderar",
-        "text": "Repassar ao colega próximo"
+        "text": "Repassar ao companheiro próximo"
       },
       {
         "code": "reclamar",
@@ -3314,7 +3314,7 @@
   {
     "id": 1144,
     "stage": "partida",
-    "text": "Um colega jovem erra e parece abatido.",
+    "text": "Um companheiro jovem erra e parece abatido.",
     "options": [
       {
         "code": "apoio",
@@ -3349,7 +3349,7 @@
       },
       {
         "code": "apoio",
-        "text": "Afastar o colega da confusão"
+        "text": "Afastar o companheiro da confusão"
       },
       {
         "code": "reclamar",
@@ -3383,7 +3383,7 @@
   {
     "id": 1147,
     "stage": "partida",
-    "text": "O auxiliar aponta espaço entre você e seu colega de setor.",
+    "text": "O auxiliar aponta espaço entre você e seu companheiro de setor.",
     "options": [
       {
         "code": "posicionamento",
@@ -3399,7 +3399,7 @@
       },
       {
         "code": "reclamar",
-        "text": "Cobrar a aproximação do colega"
+        "text": "Cobrar a aproximação do companheiro"
       }
     ]
   },
@@ -3433,7 +3433,7 @@
     "options": [
       {
         "code": "liderar",
-        "text": "Passar as referências ao colega"
+        "text": "Explicar a marcação para quem entrou"
       },
       {
         "code": "tatico",
@@ -3498,7 +3498,7 @@
   {
     "id": 1152,
     "stage": "fim_semana",
-    "text": "Um colega convida para uma recuperação leve juntos.",
+    "text": "Um companheiro chama você para fazer uma atividade leve de recuperação.",
     "options": [
       {
         "code": "recuperar",
@@ -3571,7 +3571,7 @@
     "options": [
       {
         "code": "visao",
-        "text": "Rever decisões antes da recepção"
+        "text": "Rever suas decisões antes de receber a bola"
       },
       {
         "code": "posicionamento",
@@ -3613,7 +3613,7 @@
   {
     "id": 1157,
     "stage": "fim_semana",
-    "text": "Seu bairro organiza esporte para crianças.",
+    "text": "Seu bairro está organizando atividades esportivas para crianças.",
     "options": [
       {
         "code": "apoio",
@@ -3659,7 +3659,7 @@
   {
     "id": 1159,
     "stage": "fim_semana",
-    "text": "O preparador enviou mobilidade opcional.",
+    "text": "O preparador enviou exercícios opcionais para soltar o corpo.",
     "options": [
       {
         "code": "recuperar",
@@ -3671,7 +3671,7 @@
       },
       {
         "code": "apoio",
-        "text": "Convidar um colega"
+        "text": "Convidar um companheiro"
       },
       {
         "code": "lazer",
@@ -3694,7 +3694,7 @@
       },
       {
         "code": "apoio",
-        "text": "Falar com os colegas citados"
+        "text": "Falar com os companheiros citados"
       },
       {
         "code": "ousar",
@@ -3736,7 +3736,7 @@
       },
       {
         "code": "liderar",
-        "text": "Indicar orientação apropriada"
+        "text": "Indicar alguém que possa orientar o treino"
       },
       {
         "code": "disciplina",
@@ -3751,7 +3751,7 @@
   {
     "id": 1163,
     "stage": "fim_semana",
-    "text": "Um colega teve uma semana difícil fora do futebol.",
+    "text": "Um companheiro teve uma semana difícil fora do futebol.",
     "options": [
       {
         "code": "apoio",
@@ -3801,7 +3801,7 @@
     "options": [
       {
         "code": "disciplina",
-        "text": "Propor presença curta"
+        "text": "Combinar de passar por lá por alguns minutos"
       },
       {
         "code": "apoio",
@@ -3866,7 +3866,7 @@
   {
     "id": 1168,
     "stage": "fim_semana",
-    "text": "Um colega convida você para conhecer a cidade.",
+    "text": "Um companheiro convida você para conhecer a cidade.",
     "options": [
       {
         "code": "lazer",
@@ -3935,19 +3935,19 @@
   {
     "id": 1171,
     "stage": "fim_semana",
-    "text": "Você precisa se adaptar a equipamentos novos.",
+    "text": "Você vai estrear chuteiras novas no treino.",
     "options": [
       {
         "code": "disciplina",
-        "text": "Testar na sessão apropriada"
+        "text": "Testar durante o treino"
       },
       {
         "code": "tecnica",
-        "text": "Fazer adaptação leve"
+        "text": "Se acostumar com elas sem forçar"
       },
       {
         "code": "apoio",
-        "text": "Pedir a experiência de um colega"
+        "text": "Pedir a experiência de um companheiro"
       },
       {
         "code": "recuperar",
@@ -4004,7 +4004,7 @@
   {
     "id": 1174,
     "stage": "fim_semana",
-    "text": "Um colega quer ensaiar uma jogada durante a folga.",
+    "text": "Um companheiro quer ensaiar uma jogada durante a folga.",
     "options": [
       {
         "code": "tatico",
@@ -4073,7 +4073,7 @@
   {
     "id": 1177,
     "stage": "fim_semana",
-    "text": "Uma gravação exigiria muito deslocamento na folga.",
+    "text": "Você foi convidado para uma gravação longe de casa no seu dia de folga.",
     "options": [
       {
         "code": "disciplina",
@@ -4119,7 +4119,7 @@
   {
     "id": 1179,
     "stage": "fim_semana",
-    "text": "Um jornalista pede que você compare dois colegas.",
+    "text": "Um jornalista pede que você compare dois companheiros.",
     "options": [
       {
         "code": "imprensa",
@@ -4177,7 +4177,7 @@
       },
       {
         "code": "apoio",
-        "text": "Pedir dicas práticas a um colega"
+        "text": "Pedir dicas práticas a um companheiro"
       },
       {
         "code": "lazer",
@@ -4223,7 +4223,7 @@
       },
       {
         "code": "apoio",
-        "text": "Falar com o colega envolvido"
+        "text": "Falar com o companheiro envolvido"
       },
       {
         "code": "recuperar",
@@ -4234,7 +4234,7 @@
   {
     "id": 1184,
     "stage": "fim_semana",
-    "text": "A região do centro de treino organiza uma campanha de doação.",
+    "text": "A região do centro de treinamento organiza uma campanha de doação.",
     "options": [
       {
         "code": "apoio",
@@ -4257,7 +4257,7 @@
   {
     "id": 1185,
     "stage": "fim_semana",
-    "text": "Um colega pede conselhos sobre ficar no banco.",
+    "text": "Um companheiro pede conselhos sobre ficar no banco.",
     "options": [
       {
         "code": "apoio",
@@ -4265,7 +4265,7 @@
       },
       {
         "code": "liderar",
-        "text": "Falar de manter-se preparado"
+        "text": "Falar sobre continuar se preparando"
       },
       {
         "code": "disciplina",
@@ -4380,7 +4380,7 @@
       },
       {
         "code": "recuperar",
-        "text": "Adiar o esforço dispensável"
+        "text": "Adiar o que pode esperar"
       },
       {
         "code": "apoio",
@@ -4395,7 +4395,7 @@
   {
     "id": 1191,
     "stage": "fim_semana",
-    "text": "Um colega pede conselhos para se mudar para a cidade.",
+    "text": "Um companheiro pede conselhos para se mudar para a cidade.",
     "options": [
       {
         "code": "apoio",
@@ -4480,7 +4480,7 @@
       },
       {
         "code": "disciplina",
-        "text": "Combinar uma presença viável"
+        "text": "Combinar uma visita que caiba na sua agenda"
       }
     ]
   },
@@ -4510,7 +4510,7 @@
   {
     "id": 1196,
     "stage": "fim_semana",
-    "text": "Um colega pergunta como você administra o tempo fora do campo.",
+    "text": "Um companheiro pergunta como você administra o tempo fora do campo.",
     "options": [
       {
         "code": "disciplina",
