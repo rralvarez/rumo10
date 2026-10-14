@@ -13,6 +13,8 @@ def data(path,url):
  if not fetch:return None
  obj=json.loads(get(url));path.write_text(json.dumps(obj,ensure_ascii=False),encoding='utf-8');return obj
 leagues={**{code+'.'+str(n):country+'-'+str(n) for code,country in [('eng','en'),('esp','es'),('ger','de'),('ita','it'),('fra','fr'),('por','pt'),('ned','nl'),('bel','be'),('tur','tr'),('sco','sc')] for n in [1,2]},'bra.1':'br-a','bra.2':'br-b','bra.3':'br-c','bra.4':'br-d','arg.1':'ar-1','arg.2':'ar-2','uru.1':'uy-1','uru.2':'uy-2','par.1':'py-1','par.2':'py-2','bol.1':'bo-1','bol.2':'bo-2'}
+leagues.update({'usa.1':'us-1','mex.1':'mx-1'})
+leagues.update({code+'.1':country+'-1' for code,country in [('crc','cr'),('hon','hn'),('gua','gt'),('slv','sv'),('nor','no'),('den','dk'),('gre','gr'),('cyp','cy'),('rus','ru'),('ksa','sa'),('ecu','ec'),('col','co')]})
 aliases={'América-MG':'América Mineiro','Atlético-GO':'Atlético Goianiense','Operário-PR':'Operário PR','São Bernardo FC-SP':'São Bernardo','Bayern Munich-DE':'Bayern München','Internazionale-IT':'Inter','FC Cologne-DE':'1. FC Köln','Hertha Berlin-DE':'Hertha BSC','Borussia Mönchengladbach-DE':'Borussia Mgladbach','VfL Osnabruck-DE':'VfL Osnabrück','C.D. Nacional-PT':'Nacional','FC Famalicao-PT':'Famalicão','Vitória de Guimaraes-PT':'Vitória SC','Benfica-PT':'SL Benfica','FC Porto-PT':'FC Porto','AC Milan-IT':'Milan','AS Roma-IT':'Roma','Ajax Amsterdam-NL':'Ajax','AZ Alkmaar-NL':'AZ','Feyenoord Rotterdam-NL':'Feyenoord','Heerenveen-NL':'sc Heerenveen','Racing Genk-BE':'KRC Genk','Antwerp-BE':'Royal Antwerp FC','Anderlecht-BE':'RSC Anderlecht','Union St.-Gilloise-BE':'Union SG','Standard Liege-BE':'Standard Liège','Waasland-Beveren-BE':'SK Beveren','Galatasaray-TR':'Galatasaray','Besiktas-TR':'Beşiktaş','Fenerbahce-TR':'Fenerbahçe','Heart of Midlothian-SC':'Hearts','Alavés-ES':'Deportivo Alavés','Barcelona-ES':'FC Barcelona','Atlético Madrid-ES':'Atlético de Madrid','Deportivo-ES':'RC Deportivo','Racing Santander-ES':'Racing de Santander','Málaga-ES':'Málaga CF','Real Valladolid-ES':'Real Valladolid CF','Sporting Gijón-ES':'Real Sporting','Almería-ES':'UD Almería','Castellón-ES':'CD Castellón','Leganés-ES':'CD Leganés','CD Sabadell-ES':'CE Sabadell','Stade Rennais-FR':'Stade Rennais FC','Paris Saint-Germain-FR':'Paris SG','Brest-FR':'Stade Brestois 29','AJ Auxerre-FR':'AJ Auxerre','Stade de Reims-FR':'Stade de Reims','US Avellino-IT':'Avellino'}
 def names(club):
  # Remove apenas o sufixo cadastrado; seleção permanece restrita à competição/país.
@@ -42,11 +44,13 @@ if not (cache/'ea-filters.json').exists():
  (cache/'ea-filters.json').write_text(json.dumps(payload['ratingsFilters']['teamGroups']),encoding='utf-8')
 ea_filters=json.loads((cache/'ea-filters.json').read_bytes())
 ea_country={'13':'EN','14':'EN','53':'ES','54':'ES','19':'DE','20':'DE','31':'IT','32':'IT','16':'FR','17':'FR','308':'PT','10':'NL','4':'BE','68':'TR','50':'SC','353':'AR'}
+ea_country.update({'39':'US','341':'MX'})
+ea_country.update({'1':'DK','41':'NO','66':'PL','350':'SA'})
 ea_jobs=[]
 for group in ea_filters:
  country=ea_country.get(str(group['id']))
  if not country or group.get('gender',{}).get('id')!=0:continue
- candidates=[c for c,v in clubs.items() if v['country']==country]
+ candidates=[c for c,v in clubs.items() if v['country']==country or (str(group['id'])=='39' and 'us-1' in v['competitions'])]
  for team in group['teams']:
   matches=[c for c in candidates if norm(team['label']) in names(c)]
   if len(matches)==1:ea_jobs.append((matches[0],team['id'],team['label']))
@@ -130,6 +134,10 @@ first={'BR':['Rafael','Lucas','Bruno','Gabriel','Caio','Pedro','Diego','Felipe',
 last={'BR':['Silva','Souza','Costa','Oliveira','Santos','Pereira','Almeida','Ferreira','Rocha','Lima'],'ES':['García','Fernández','Martínez','López','González','Ruiz'],'FR':['Martin','Bernard','Dubois','Moreau','Laurent','Girard'],'EN':['Smith','Jones','Brown','Taylor','Wilson','Walker'],'DE':['Müller','Schmidt','Weber','Wagner','Becker','Schulz'],'IT':['Rossi','Russo','Ferrari','Romano','Conti','Marino'],'PT':['Silva','Costa','Ferreira','Pereira','Almeida','Ribeiro'],'NL':['de Jong','de Vries','van Dijk','Jansen','Bakker','Visser'],'BE':['Peeters','Janssens','Maes','Jacobs','Willems','Dubois'],'TR':['Yılmaz','Kaya','Demir','Şahin','Çelik','Yıldız'],'SC':['Campbell','Stewart','MacDonald','Fraser','Robertson','Murray']}
 roles=['goleiro']*2+['zagueiro']*4+['lateral']*4+['volante']*3+['meia']*4+['ponta']*4+['centroavante']*3
 index={};total_real=total_fake=total_rated=0
+for cc in ['US','CA','JM']:first[cc]=first['EN'];last[cc]=last['EN']
+for cc in ['HT']:first[cc]=first['FR'];last[cc]=last['FR']
+first.update({'SA':['Omar','Hassan','Ali','Fahad','Abdullah','Yasser'],'CZ':['Jan','Petr','Tomas','Pavel','Jakub','Lukas'],'PL':['Jan','Piotr','Pawel','Jakub','Kamil','Tomasz'],'HU':['Bence','Mate','Adam','Peter','Daniel','Laszlo'],'HR':['Luka','Ivan','Marko','Josip','Ante','Mateo'],'SR':['Daan','Ryan','Rico','Johan','Kevin','Brian']})
+last.update({'SA':['Al Salem','Al Harbi','Al Qahtani','Al Dossari','Al Ali','Al Ghamdi'],'CZ':['Novak','Svoboda','Novotny','Dvorak','Cerny','Prochazka'],'PL':['Nowak','Kowalski','Wisniewski','Wojcik','Kowalczyk','Kaminski'],'HU':['Nagy','Kovacs','Toth','Szabo','Horvath','Varga'],'HR':['Horvat','Kovacevic','Babic','Maric','Juric','Novak'],'SR':['Pinas','Buitenhuis','San A Jong','Vlijter','Buur','Mac Donald']})
 for club,meta in clubs.items():
  players=real.get(club,[]);used={p['name'] for p in players};country=meta['country'];pool_country=country if country in first else 'ES'
  slots=list(roles)
@@ -143,7 +151,7 @@ for club,meta in clubs.items():
   if name in used:name+=' '+last[pool_country][(seed//31+1)%len(last[pool_country])]
   used.add(name);players.append({'id':'fictional:'+digest(club+'|'+str(i))[:20],'name':name,'birthdate':None,'age_at_import':18+seed%16,'position':position,'origin':'fictional','overall':max(20,min(95,round(meta['overall']-5+seed%13-6))),'overall_origin':'estimated_rumo10_v1','rating_source':None,'source':None,'checked':today})
  real_count=sum(p['origin']=='real' for p in players);rated=sum(p['overall_origin']=='published_ea_fc27' for p in players);total_real+=real_count;total_fake+=len(players)-real_count;total_rated+=rated
- filename=digest(club)[:20]+'.json';payload={'club':club,'edition':'2026' if country in ['BR','AR','UY','PY','BO'] else '2026/27','checked':today,'players':players}
+ filename=digest(club)[:20]+'.json';payload={'club':club,'edition':meta.get('edition','2026' if country in ['BR','AR','UY','PY','BO','US','CA','MX','CR','HN','GT','SV','NO','EC','CO'] else '2026/27'),'checked':today,'players':players}
  (out/filename).write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
  index[club]={'file':filename,'real':real_count,'fictional':len(players)-real_count,'published_ratings':rated,'total':len(players),'status':'mixed' if real_count and len(players)>real_count else ('real' if real_count else 'fictional')}
 summary={'checked':today,'clubs':len(index),'clubs_with_real_players':sum(v['real']>0 for v in index.values()),'real_players':total_real,'fictional_players':total_fake,'published_ratings':total_rated,'estimated_ratings':total_real+total_fake-total_rated,'ambiguous_real_ids':sum(len(v)>1 for v in owners.values()),'failed_sources':errors}

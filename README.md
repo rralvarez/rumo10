@@ -1,6 +1,6 @@
-# Rumo à Camisa 10 — protótipo 0.7
+# Rumo à Camisa 10 — protótipo 0.8
 
-RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. Novas carreiras usam **1.036 clubes**, no Brasileirão A/B/C/D, Paulista A1/A2/A3/A4/Segunda Divisão e divisões de entrada das outras 26 UFs (cadastro ampliado em 13/10/2026). São **63 competições/etapas**, incluindo as duas principais divisões de Argentina, Uruguai, Paraguai e Bolívia e de dez mercados europeus (2026/27). Participantes e formatos têm fontes registradas; placares, jogador, propostas e temporadas seguintes são simulados. Nenhuma probabilidade é decidida no navegador. A carreira antiga da liga regional continua disponível, sem conversão automática.
+RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. O cadastro tem **1.298 clubes em 40 mercados**, **88 competições/etapas/circuitos**, incluindo o Brasil, Mercosul, Europa e 13 países da Concacaf. A seleção mundial de 100 clubes usa a fonte pública **Opta**, não um ranking FIFA. MLS e Canadá têm formatos próprios; mercados com cobertura parcial usam circuitos explicitamente adaptados. [Fontes, cobertura e limitações](Docs/17_Expansao_Mundial_e_Concacaf.md). Placares, jogador, propostas e temporadas seguintes são simulados no servidor. Carreiras anteriores permanecem disponíveis.
 
 Para começar outra carreira na conta atual, abra **/carreira/nova**. A anterior será arquivada ao enviar o formulário; pode ser retomada em **/carreira/arquivadas**. Criar outra carreira não apaga a anterior.
 
@@ -36,7 +36,7 @@ Nesta máquina, a instância original FastCGI apresentou erro de monitoramento e
 Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação anônima com identidade do pool em produção, evitando compartilhamento de IUSR entre sites.
 ## Companheiros reais e fictícios
 
-Em `/jogador`, abra **Ver companheiros de elenco**. O catálogo cobre os 1.036 clubes: 14.437 atletas reais em 448 equipes, 14.126 fictícios e 3.949 notas publicadas do EA SPORTS FC 27. Os demais overalls são estimados e identificados. [Procedência, instalação e limites da integração](Docs/16_Elencos_Reais_e_Ficticios.md). Os elencos são a base de referência; autoria de gols e premiações dos NPCs ainda serão integradas ao motor.
+Em `/jogador`, abra **Ver companheiros de elenco**. O catálogo cobre os 1.298 clubes: 21.121 atletas reais em 654 equipes, 15.471 fictícios e 4.883 notas publicadas do EA SPORTS FC 27. Messi consta no Inter Miami com nota publicada 89. Os demais overalls são estimados e identificados. [Procedência da integração inicial](Docs/16_Elencos_Reais_e_Ficticios.md) e [cobertura atual](Docs/17_Expansao_Mundial_e_Concacaf.md). Os elencos são a base de referência; autoria de gols e premiações dos NPCs ainda serão integradas ao motor.
 
 Para instalar o catálogo, execute `bin/install-players.php` com a conexão local configurada. A tabela criada é exclusivamente `rumo10_elencos_catalogo`, sem reset de carreira.
 

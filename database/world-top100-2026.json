@@ -1,0 +1,708 @@
+{
+  "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+  "retrieved": "2026-10-13",
+  "ranking_date": "Snapshot público consultado; sem data explícita no bundle",
+  "provider": "Opta (não FIFA)",
+  "clubs": [
+    {
+      "rank": 1,
+      "source_name": "Arsenal",
+      "club": "Arsenal-EN",
+      "country": "EN",
+      "rating": 100
+    },
+    {
+      "rank": 2,
+      "source_name": "Manchester City",
+      "club": "Manchester City-EN",
+      "country": "EN",
+      "rating": 99.3915046948
+    },
+    {
+      "rank": 3,
+      "source_name": "Bayern München",
+      "club": "Bayern Munich-DE",
+      "country": "DE",
+      "rating": 99.0170135253
+    },
+    {
+      "rank": 4,
+      "source_name": "Barcelona",
+      "club": "Barcelona-ES",
+      "country": "ES",
+      "rating": 96.9289871088
+    },
+    {
+      "rank": 5,
+      "source_name": "Paris Saint-Germain",
+      "club": "Paris Saint-Germain-FR",
+      "country": "FR",
+      "rating": 95.6902299132
+    },
+    {
+      "rank": 6,
+      "source_name": "Liverpool",
+      "club": "Liverpool-EN",
+      "country": "EN",
+      "rating": 95.2695798326
+    },
+    {
+      "rank": 7,
+      "source_name": "Brighton & Hove Albion",
+      "club": "Brighton & Hove Albion-EN",
+      "country": "EN",
+      "rating": 95.1570501913
+    },
+    {
+      "rank": 8,
+      "source_name": "Real Madrid",
+      "club": "Real Madrid-ES",
+      "country": "ES",
+      "rating": 94.3145002128
+    },
+    {
+      "rank": 9,
+      "source_name": "Internazionale",
+      "club": "Internazionale-IT",
+      "country": "IT",
+      "rating": 93.6709108875
+    },
+    {
+      "rank": 10,
+      "source_name": "Manchester United",
+      "club": "Manchester United-EN",
+      "country": "EN",
+      "rating": 93.6116713927
+    },
+    {
+      "rank": 11,
+      "source_name": "Chelsea",
+      "club": "Chelsea-EN",
+      "country": "EN",
+      "rating": 93.5946961113
+    },
+    {
+      "rank": 12,
+      "source_name": "Aston Villa",
+      "club": "Aston Villa-EN",
+      "country": "EN",
+      "rating": 93.5344157429
+    },
+    {
+      "rank": 13,
+      "source_name": "Brentford",
+      "club": "Brentford-EN",
+      "country": "EN",
+      "rating": 92.8826844802
+    },
+    {
+      "rank": 14,
+      "source_name": "Everton",
+      "club": "Everton-EN",
+      "country": "EN",
+      "rating": 92.6924386606
+    },
+    {
+      "rank": 15,
+      "source_name": "Borussia Dortmund",
+      "club": "Borussia Dortmund-DE",
+      "country": "DE",
+      "rating": 92.4307868801
+    },
+    {
+      "rank": 16,
+      "source_name": "Benfica",
+      "club": "Benfica-PT",
+      "country": "PT",
+      "rating": 92.3434488147
+    },
+    {
+      "rank": 17,
+      "source_name": "Newcastle United",
+      "club": "Newcastle United-EN",
+      "country": "EN",
+      "rating": 92.2370452888
+    },
+    {
+      "rank": 18,
+      "source_name": "Leeds United",
+      "club": "Leeds United-EN",
+      "country": "EN",
+      "rating": 91.8484829697
+    },
+    {
+      "rank": 19,
+      "source_name": "Sporting CP",
+      "club": "Sporting CP-PT",
+      "country": "PT",
+      "rating": 91.663368734
+    },
+    {
+      "rank": 20,
+      "source_name": "Bournemouth",
+      "club": "AFC Bournemouth-EN",
+      "country": "EN",
+      "rating": 91.5638735429
+    },
+    {
+      "rank": 21,
+      "source_name": "Atlético de Madrid",
+      "club": "Atlético Madrid-ES",
+      "country": "ES",
+      "rating": 91.536485756
+    },
+    {
+      "rank": 22,
+      "source_name": "Roma",
+      "club": "AS Roma-IT",
+      "country": "IT",
+      "rating": 91.5271253128
+    },
+    {
+      "rank": 23,
+      "source_name": "Tottenham Hotspur",
+      "club": "Tottenham Hotspur-EN",
+      "country": "EN",
+      "rating": 91.4772024301
+    },
+    {
+      "rank": 24,
+      "source_name": "Bayer 04 Leverkusen",
+      "club": "Bayer Leverkusen-DE",
+      "country": "DE",
+      "rating": 91.1741794852
+    },
+    {
+      "rank": 25,
+      "source_name": "Porto",
+      "club": "FC Porto-PT",
+      "country": "PT",
+      "rating": 91.078134578
+    },
+    {
+      "rank": 26,
+      "source_name": "Union Saint-Gilloise",
+      "club": "Union St.-Gilloise-BE",
+      "country": "BE",
+      "rating": 90.8576003857
+    },
+    {
+      "rank": 27,
+      "source_name": "Flamengo",
+      "club": "Flamengo-RJ",
+      "country": "BR",
+      "rating": 90.8524682535
+    },
+    {
+      "rank": 28,
+      "source_name": "Club Brugge",
+      "club": "Club Brugge-BE",
+      "country": "BE",
+      "rating": 90.7955287022
+    },
+    {
+      "rank": 29,
+      "source_name": "Nottingham Forest",
+      "club": "Nottingham Forest-EN",
+      "country": "EN",
+      "rating": 90.6994709524
+    },
+    {
+      "rank": 30,
+      "source_name": "Crystal Palace",
+      "club": "Crystal Palace-EN",
+      "country": "EN",
+      "rating": 90.6966966728
+    },
+    {
+      "rank": 31,
+      "source_name": "Como",
+      "club": "Como-IT",
+      "country": "IT",
+      "rating": 90.4442258123
+    },
+    {
+      "rank": 32,
+      "source_name": "Juventus",
+      "club": "Juventus-IT",
+      "country": "IT",
+      "rating": 90.3894283249
+    },
+    {
+      "rank": 33,
+      "source_name": "Sunderland",
+      "club": "Sunderland-EN",
+      "country": "EN",
+      "rating": 90.0762297806
+    },
+    {
+      "rank": 34,
+      "source_name": "Bodø / Glimt",
+      "club": "Bodo/Glimt-NO",
+      "country": "NO",
+      "rating": 89.9232596431
+    },
+    {
+      "rank": 35,
+      "source_name": "Ipswich Town",
+      "club": "Ipswich Town-EN",
+      "country": "EN",
+      "rating": 89.791788831
+    },
+    {
+      "rank": 36,
+      "source_name": "Fulham",
+      "club": "Fulham-EN",
+      "country": "EN",
+      "rating": 89.7175519202
+    },
+    {
+      "rank": 37,
+      "source_name": "Hull City",
+      "club": "Hull City-EN",
+      "country": "EN",
+      "rating": 89.7095730693
+    },
+    {
+      "rank": 38,
+      "source_name": "Coventry City",
+      "club": "Coventry City-EN",
+      "country": "EN",
+      "rating": 89.5333387188
+    },
+    {
+      "rank": 39,
+      "source_name": "Stuttgart",
+      "club": "VfB Stuttgart-DE",
+      "country": "DE",
+      "rating": 89.3879716817
+    },
+    {
+      "rank": 40,
+      "source_name": "Lens",
+      "club": "Lens-FR",
+      "country": "FR",
+      "rating": 89.2471075901
+    },
+    {
+      "rank": 41,
+      "source_name": "Napoli",
+      "club": "Napoli-IT",
+      "country": "IT",
+      "rating": 89.2113699972
+    },
+    {
+      "rank": 42,
+      "source_name": "Monaco",
+      "club": "AS Monaco-FR",
+      "country": "FR",
+      "rating": 89.1138699513
+    },
+    {
+      "rank": 43,
+      "source_name": "Real Betis",
+      "club": "Real Betis-ES",
+      "country": "ES",
+      "rating": 89.0184484364
+    },
+    {
+      "rank": 44,
+      "source_name": "RB Leipzig",
+      "club": "RB Leipzig-DE",
+      "country": "DE",
+      "rating": 88.9476608972
+    },
+    {
+      "rank": 45,
+      "source_name": "PSV",
+      "club": "PSV Eindhoven-NL",
+      "country": "NL",
+      "rating": 88.9400268388
+    },
+    {
+      "rank": 46,
+      "source_name": "Palmeiras",
+      "club": "Palmeiras-SP",
+      "country": "BR",
+      "rating": 88.8908213562
+    },
+    {
+      "rank": 47,
+      "source_name": "Freiburg",
+      "club": "SC Freiburg-DE",
+      "country": "DE",
+      "rating": 88.8723603992
+    },
+    {
+      "rank": 48,
+      "source_name": "Milan",
+      "club": "AC Milan-IT",
+      "country": "IT",
+      "rating": 88.7644376748
+    },
+    {
+      "rank": 49,
+      "source_name": "Slavia Praha",
+      "club": "Slavia Praha-CZ",
+      "country": "CZ",
+      "rating": 88.4552208931
+    },
+    {
+      "rank": 50,
+      "source_name": "Olympique Lyonnais",
+      "club": "Lyon-FR",
+      "country": "FR",
+      "rating": 88.3715771642
+    },
+    {
+      "rank": 51,
+      "source_name": "Villarreal",
+      "club": "Villarreal-ES",
+      "country": "ES",
+      "rating": 88.194216266
+    },
+    {
+      "rank": 52,
+      "source_name": "Fenerbahçe",
+      "club": "Fenerbahce-TR",
+      "country": "TR",
+      "rating": 87.8352943105
+    },
+    {
+      "rank": 53,
+      "source_name": "Independiente Valle",
+      "club": "Independiente del Valle-EC",
+      "country": "EC",
+      "rating": 87.6996275827
+    },
+    {
+      "rank": 54,
+      "source_name": "Lille",
+      "club": "Lille-FR",
+      "country": "FR",
+      "rating": 87.6488723275
+    },
+    {
+      "rank": 55,
+      "source_name": "Lazio",
+      "club": "Lazio-IT",
+      "country": "IT",
+      "rating": 87.5617321659
+    },
+    {
+      "rank": 56,
+      "source_name": "Boca Juniors",
+      "club": "Boca Juniors-AR",
+      "country": "AR",
+      "rating": 87.547220107
+    },
+    {
+      "rank": 57,
+      "source_name": "Rennes",
+      "club": "Stade Rennais-FR",
+      "country": "FR",
+      "rating": 87.4134833252
+    },
+    {
+      "rank": 58,
+      "source_name": "Atalanta",
+      "club": "Atalanta-IT",
+      "country": "IT",
+      "rating": 87.2766844763
+    },
+    {
+      "rank": 59,
+      "source_name": "AEK Athens",
+      "club": "AEK Athens-GR",
+      "country": "GR",
+      "rating": 87.0120945195
+    },
+    {
+      "rank": 60,
+      "source_name": "Viking",
+      "club": "Viking FK-NO",
+      "country": "NO",
+      "rating": 86.955839775
+    },
+    {
+      "rank": 61,
+      "source_name": "Galatasaray",
+      "club": "Galatasaray-TR",
+      "country": "TR",
+      "rating": 86.7867212309
+    },
+    {
+      "rank": 62,
+      "source_name": "Olympiakos Piraeus",
+      "club": "Olympiacos-GR",
+      "country": "GR",
+      "rating": 86.7519933179
+    },
+    {
+      "rank": 63,
+      "source_name": "Mainz 05",
+      "club": "Mainz-DE",
+      "country": "DE",
+      "rating": 86.5578560328
+    },
+    {
+      "rank": 64,
+      "source_name": "Omonia Nicosia",
+      "club": "Omonia Nicosia-CY",
+      "country": "CY",
+      "rating": 86.4498415634
+    },
+    {
+      "rank": 65,
+      "source_name": "Rayo Vallecano",
+      "club": "Rayo Vallecano-ES",
+      "country": "ES",
+      "rating": 86.3154252042
+    },
+    {
+      "rank": 66,
+      "source_name": "Feyenoord",
+      "club": "Feyenoord Rotterdam-NL",
+      "country": "NL",
+      "rating": 86.2991002778
+    },
+    {
+      "rank": 67,
+      "source_name": "Athletic Club",
+      "club": "Athletic Club-ES",
+      "country": "ES",
+      "rating": 86.1924648004
+    },
+    {
+      "rank": 68,
+      "source_name": "Olympique Marseille",
+      "club": "Marseille-FR",
+      "country": "FR",
+      "rating": 86.181002102
+    },
+    {
+      "rank": 69,
+      "source_name": "Toluca",
+      "club": "Toluca-MX",
+      "country": "MX",
+      "rating": 86.1769878627
+    },
+    {
+      "rank": 70,
+      "source_name": "Sporting Braga",
+      "club": "Braga-PT",
+      "country": "PT",
+      "rating": 86.1757917684
+    },
+    {
+      "rank": 71,
+      "source_name": "Lech Poznań",
+      "club": "Lech Poznań-PL",
+      "country": "PL",
+      "rating": 86.1674552134
+    },
+    {
+      "rank": 72,
+      "source_name": "Al Hilal",
+      "club": "Al Hilal-SA",
+      "country": "SA",
+      "rating": 86.078134343
+    },
+    {
+      "rank": 73,
+      "source_name": "Cruzeiro",
+      "club": "Cruzeiro-MG",
+      "country": "BR",
+      "rating": 86.0629681867
+    },
+    {
+      "rank": 74,
+      "source_name": "Fluminense",
+      "club": "Fluminense-RJ",
+      "country": "BR",
+      "rating": 85.7225232984
+    },
+    {
+      "rank": 75,
+      "source_name": "West Ham United",
+      "club": "West Ham United-EN",
+      "country": "EN",
+      "rating": 85.6880595128
+    },
+    {
+      "rank": 76,
+      "source_name": "Strasbourg",
+      "club": "Strasbourg-FR",
+      "country": "FR",
+      "rating": 85.6658245753
+    },
+    {
+      "rank": 77,
+      "source_name": "Bologna",
+      "club": "Bologna-IT",
+      "country": "IT",
+      "rating": 85.6522750691
+    },
+    {
+      "rank": 78,
+      "source_name": "Midtjylland",
+      "club": "FC Midtjylland-DK",
+      "country": "DK",
+      "rating": 85.6449791526
+    },
+    {
+      "rank": 79,
+      "source_name": "Celta de Vigo",
+      "club": "Celta Vigo-ES",
+      "country": "ES",
+      "rating": 85.6425471759
+    },
+    {
+      "rank": 80,
+      "source_name": "Real Sociedad",
+      "club": "Real Sociedad-ES",
+      "country": "ES",
+      "rating": 85.6421997505
+    },
+    {
+      "rank": 81,
+      "source_name": "Paris FC",
+      "club": "Paris FC-FR",
+      "country": "FR",
+      "rating": 85.6255232771
+    },
+    {
+      "rank": 82,
+      "source_name": "Ferencváros",
+      "club": "Ferencváros-HU",
+      "country": "HU",
+      "rating": 85.6251758495
+    },
+    {
+      "rank": 83,
+      "source_name": "Santos",
+      "club": "Santos-SP",
+      "country": "BR",
+      "rating": 85.4925246539
+    },
+    {
+      "rank": 84,
+      "source_name": "Hoffenheim",
+      "club": "TSG Hoffenheim-DE",
+      "country": "DE",
+      "rating": 85.4653543137
+    },
+    {
+      "rank": 85,
+      "source_name": "Augsburg",
+      "club": "FC Augsburg-DE",
+      "country": "DE",
+      "rating": 85.407329765
+    },
+    {
+      "rank": 86,
+      "source_name": "Dinamo Zagreb",
+      "club": "Dinamo Zagreb-HR",
+      "country": "HR",
+      "rating": 85.3993382606
+    },
+    {
+      "rank": 87,
+      "source_name": "Zenit",
+      "club": "Zenit St Petersburg-RU",
+      "country": "RU",
+      "rating": 85.3864823116
+    },
+    {
+      "rank": 88,
+      "source_name": "København",
+      "club": "F.C. København-DK",
+      "country": "DK",
+      "rating": 85.38300772
+    },
+    {
+      "rank": 89,
+      "source_name": "Rosario Central",
+      "club": "Rosario Central-AR",
+      "country": "AR",
+      "rating": 85.3809924549
+    },
+    {
+      "rank": 90,
+      "source_name": "Athletico Paranaense",
+      "club": "Athletico-PR",
+      "country": "BR",
+      "rating": 85.3806449952
+    },
+    {
+      "rank": 91,
+      "source_name": "Beşiktaş",
+      "club": "Besiktas-TR",
+      "country": "TR",
+      "rating": 85.2690385902
+    },
+    {
+      "rank": 92,
+      "source_name": "Atlético Nacional",
+      "club": "Atlético Nacional-CO",
+      "country": "CO",
+      "rating": 85.2645909149
+    },
+    {
+      "rank": 93,
+      "source_name": "Genk",
+      "club": "Racing Genk-BE",
+      "country": "BE",
+      "rating": 85.1880758293
+    },
+    {
+      "rank": 94,
+      "source_name": "Alavés",
+      "club": "Alavés-ES",
+      "country": "ES",
+      "rating": 85.1661841847
+    },
+    {
+      "rank": 95,
+      "source_name": "Toulouse",
+      "club": "Toulouse-FR",
+      "country": "FR",
+      "rating": 85.1415124314
+    },
+    {
+      "rank": 96,
+      "source_name": "Vasco da Gama",
+      "club": "Vasco-RJ",
+      "country": "BR",
+      "rating": 85.1342846064
+    },
+    {
+      "rank": 97,
+      "source_name": "Middlesbrough",
+      "club": "Middlesbrough-EN",
+      "country": "EN",
+      "rating": 85.1130180068
+    },
+    {
+      "rank": 98,
+      "source_name": "Southampton",
+      "club": "Southampton-EN",
+      "country": "EN",
+      "rating": 85.1053731089
+    },
+    {
+      "rank": 99,
+      "source_name": "Sevilla",
+      "club": "Sevilla-ES",
+      "country": "ES",
+      "rating": 85.0907782423
+    },
+    {
+      "rank": 100,
+      "source_name": "River Plate",
+      "club": "River Plate-AR",
+      "country": "AR",
+      "rating": 85.0376800465
+    }
+  ]
+}

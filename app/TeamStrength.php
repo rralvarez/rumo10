@@ -18,6 +18,7 @@ final class TeamStrength {
         return round(max(20,min(95,$base+.2*($performance-50))),1);
     }
     public static function initial(string $club): float {
+        if(isset(Competition::clubs()[$club]['reference_overall']))return (float)Competition::clubs()[$club]['reference_overall'];
         $r=self::results()[$club]??null;
         return $r?self::campaign(self::baseline($club),(int)$r['position'],(int)$r['teams'],(int)$r['points'],(int)$r['games']):self::baseline($club);
     }
@@ -43,7 +44,7 @@ final class TeamStrength {
     public static function nextSeason(array &$g): void {
         $scores=[];
         foreach($g['competitions'] as $id=>$t){
-            $rows=$t['format']==='international'?Schedule::table(array_values(array_filter($t['matches'],fn($m)=>in_array($m['phase'],['liga','clausura','intermedio','regular'],true))),$t['teams']):Competition::standings($t,null,'liga');$size=count($rows);
+            $rows=in_array($t['format'],['international','world'],true)?Schedule::table(array_values(array_filter($t['matches'],fn($m)=>in_array($m['phase'],['liga','clausura','intermedio','regular'],true))),$t['teams']):Competition::standings($t,null,'liga');$size=count($rows);
             foreach($rows as $i=>$row){
                 if(!$row['played'])continue;$club=$row['team'];
                 $score=self::campaign(self::baseline($club,$g['next_memberships']??$g['memberships']),$i+1,$size,(int)$row['points'],(int)$row['played']);

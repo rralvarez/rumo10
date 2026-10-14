@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require dirname(__DIR__).'/app/bootstrap.php';
 $checks=0;function verifyOfficial(bool $ok,string $message): void {global $checks;$checks++;if(!$ok)throw new RuntimeException($message);}
-$catalog=Competition::catalog();verifyOfficial(count($catalog)===63,'63 competições');verifyOfficial(count(Competition::clubs())===1036,'1036 clubes únicos');
+$catalog=Competition::catalog();verifyOfficial(count($catalog)===88,'88 competições/circuitos');verifyOfficial(count(Competition::clubs())===1298,'1298 clubes únicos');
 foreach(['br-a'=>20,'br-b'=>20,'br-c'=>20,'br-d'=>96,'sp-a1'=>16,'sp-a2'=>16,'sp-a3'=>16,'sp-a4'=>16,'sp-segunda'=>24] as $id=>$count) {
     $c=$catalog[$id];verifyOfficial(count($c['teams'])===$count,'Participantes '.$id);
     $t=Competition::tournament($id);$perTeam=[];

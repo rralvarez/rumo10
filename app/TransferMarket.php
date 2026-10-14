@@ -2,8 +2,10 @@
 declare(strict_types=1);
 /** Critérios de jogo, não regras reais de contratação ou visto. */
 final class TransferMarket {
-    public const COUNTRIES=['EN'=>'Inglaterra','ES'=>'Espanha','DE'=>'Alemanha','IT'=>'Itália','FR'=>'França','PT'=>'Portugal','NL'=>'Países Baixos','BE'=>'Bélgica','TR'=>'Turquia','SC'=>'Escócia','AR'=>'Argentina','UY'=>'Uruguai','PY'=>'Paraguai','BO'=>'Bolívia','BR'=>'Brasil'];
+    public const COUNTRIES=['EN'=>'Inglaterra','ES'=>'Espanha','DE'=>'Alemanha','IT'=>'Itália','FR'=>'França','PT'=>'Portugal','NL'=>'Países Baixos','BE'=>'Bélgica','TR'=>'Turquia','SC'=>'Escócia','AR'=>'Argentina','UY'=>'Uruguai','PY'=>'Paraguai','BO'=>'Bolívia','BR'=>'Brasil','US'=>'Estados Unidos','CA'=>'Canadá','MX'=>'México','CR'=>'Costa Rica','HN'=>'Honduras','GT'=>'Guatemala','SV'=>'El Salvador','NO'=>'Noruega','DK'=>'Dinamarca','GR'=>'Grécia','CY'=>'Chipre','RU'=>'Rússia','SA'=>'Arábia Saudita','EC'=>'Equador','CO'=>'Colômbia','CZ'=>'Tchéquia','PL'=>'Polônia','HU'=>'Hungria','HR'=>'Croácia'];
     public static function country(string $club):string {return Competition::clubs()[$club]['country']??'BR';}
+    public const EXTRA_COUNTRIES=['NI'=>'Nicarágua','PA'=>'Panamá','HT'=>'Haiti','JM'=>'Jamaica','DO'=>'República Dominicana','SR'=>'Suriname'];
+    public const EUROPE=['EN','ES','DE','IT','FR','PT','NL','BE','TR','SC','NO','DK','GR','CY','CZ','PL','HU','HR','RU'];
     public static function profile(array $g):array {
         $summary=Game::summary($g);$technical=array_sum(array_column($g['skills'],'value'))/9;
         $baseline=$g['season_skill_baseline']??null;
@@ -26,7 +28,7 @@ final class TransferMarket {
                 if(!$p['abroad'])continue;
                 $required=max(50,$overall-14);
                 if($p['technical']<$required || ($overall>=85 && $p['average']<7))continue;
-                if(isset(self::COUNTRIES[$country]) && !in_array($country,['BR','AR','UY','PY','BO'],true) && ($p['average']<6.7 || $p['minutes']<600))continue;
+                if(in_array($country,self::EUROPE,true) && ($p['average']<6.7 || $p['minutes']<600))continue;
                 $weight=max(15,min(70,(int)round(25+($p['average']-6.5)*20+$p['growth']*3)));
             } else {
                 if($tier>$currentTier+1 || ($tier>$currentTier && ($p['average']<6 || $p['technical']<45)))continue;
@@ -47,7 +49,7 @@ final class TransferMarket {
     }
     public static function describe(array $offer):void {
         $country=$offer['country']??self::country($offer['club']);
-        echo '<p class="offer-destination">';ClubBadge::render($offer['club']);echo ' <strong>'.e(self::COUNTRIES[$country]??$country).'</strong>';
+        echo '<p class="offer-destination">';ClubBadge::render($offer['club']);echo ' <strong>'.e((self::COUNTRIES+self::EXTRA_COUNTRIES)[$country]??$country).'</strong>';
         if(isset($offer['competition']))echo ' · '.e(Competition::catalog()[$offer['competition']]['name']);
         echo '</p>';if(!empty($offer['international']))echo '<p>'.e($offer['reason']).'</p>';
     }

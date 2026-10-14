@@ -3,7 +3,7 @@ declare(strict_types=1);
 /** Universo independente por carreira. Cadastro de 2026; resultados sempre simulados. */
 final class Competition {
     public static function catalog(): array {
-        static $data; return $data??=array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id');
+        static $data; return $data??=array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id');
     }
     public static function clubs(): array {
         static $data;
@@ -13,7 +13,7 @@ final class Competition {
                 $old=$data[$club['name']]??[];$club['competitions']=array_values(array_unique(array_merge($old['competitions']??[],$club['competitions'])));
                 $data[$club['name']]=array_replace($old,$club);
             }
-            foreach(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/international-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR)) as $club)$data[$club['name']]=$club;
+            foreach(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/international-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR)) as $club)$data[$club['name']]=$club;
         }return $data;
     }
     public static function attach(array $g,string $club): array {
@@ -38,6 +38,8 @@ final class Competition {
     public static function tournament(string $id,?array $teams=null): array {
         $c=self::catalog()[$id]; $teams??=$c['teams'];
         if($c['format']==='state')return StateCompetition::create($c,$teams);
+        if($c['format']==='concacaf')return ConcacafCompetition::create($c,$teams);
+        if($c['format']==='world')return WorldCompetition::create($c,$teams);
         if($c['format']==='european')return EuropeanCompetition::create($c,$teams);
         if($c['format']==='international')return InternationalCompetition::create($c,$teams);
         $groups=[$teams];
@@ -66,7 +68,8 @@ final class Competition {
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null): array {
         $teams??=$t['teams'];$cross=($t['format']==='state' && !empty(self::catalog()[$t['id']]['rules']['cross'])) || ($t['format']==='international' && str_starts_with($t['id'],'ar-'));
-        $split=$t['id']==='sc-1' && $phase==='split';if($split)$cross=true;
+        $split=($t['id']==='sc-1' || $t['format']==='world') && $phase==='split';if($split)$cross=true;
+        if($t['id']==='us-1')$cross=true;
         $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase || $m['phase']===$phase || ($split && $m['phase']==='liga')) && ($cross?(in_array($m['home'],$teams,true) || in_array($m['away'],$teams,true)):(in_array($m['home'],$teams,true) && in_array($m['away'],$teams,true)))));
         $rows=Schedule::table($matches,$teams);
         $overall=$phase==='quadrangular' && $t['id']==='sp-a2'?array_column(self::standings($t),null,'team'):[];
@@ -151,6 +154,8 @@ final class Competition {
     public static function nextPhase(array &$t): void {
         foreach($t['matches'] as $m) if($m['status']!=='finalizada')throw new LogicException('Fase incompleta.');
         if($t['format']==='state'){StateCompetition::next($t);return;}
+        if($t['format']==='concacaf'){ConcacafCompetition::next($t);return;}
+        if($t['format']==='world'){WorldCompetition::next($t);return;}
         if($t['format']==='international'){InternationalCompetition::next($t);return;}
         if($t['format']==='european'){EuropeanCompetition::next($t);return;}
         $format=$t['format'];$phase=$t['phase'];
@@ -304,7 +309,7 @@ final class Competition {
         if(!empty($g['starting']))return 'Início da carreira';
         $t=$g['competitions'][$g['competition_id']];
         if($t['done'])return 'Competição encerrada';
-        $phase=['liga'=>'Primeira fase','quadrangular'=>'Quadrangular','hexagonal'=>'Hexagonal final','segunda'=>'Segunda fase','terceira'=>'Terceira fase','oitavas'=>'Oitavas de final','quartas'=>'Quartas de final','semifinal'=>'Semifinais / playoffs','final'=>'Final','playoff'=>'Repescagem','clausura'=>'Clausura','intermedio'=>'Intermedio','intermedio_final'=>'Final do Intermedio','competencia_final'=>'Final do Competencia','regular'=>'Fase regular','nacional'=>'Grupos nacionais','acesso'=>'Final pelo acesso','reduzido'=>'Playoffs pelo segundo acesso'][$t['phase']];
+        $phase=['liga'=>'Primeira fase','quadrangular'=>'Quadrangular','hexagonal'=>'Hexagonal final','segunda'=>'Segunda fase','terceira'=>'Terceira fase','oitavas'=>'Oitavas de final','quartas'=>'Quartas de final','semifinal'=>'Semifinais / playoffs','final'=>'Final','playoff'=>'Repescagem','clausura'=>'Clausura','intermedio'=>'Intermedio','intermedio_final'=>'Final do Intermedio','competencia_final'=>'Final do Competencia','regular'=>'Fase regular','nacional'=>'Grupos nacionais','acesso'=>'Final pelo acesso','reduzido'=>'Playoffs pelo segundo acesso','wild_card'=>'Wild card','serie_1'=>'Série MLS · partida 1','serie_2'=>'Série MLS · partida 2','serie_3'=>'Série MLS · desempate','semifinal_conferencia'=>'Semifinal de conferência','final_conferencia'=>'Final de conferência','mls_cup'=>'MLS Cup','split'=>'Fase de grupos finais'][$t['phase']]??ucfirst(str_replace('_',' ',$t['phase']));
         return $phase.' · jogo '.($g['round']-$t['phase_start']+1).' de '.($t['phase_end']-$t['phase_start']+1);
     }
     public static function playerMatches(array $g): array {

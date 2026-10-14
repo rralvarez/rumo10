@@ -1,0 +1,1128 @@
+[
+  {
+    "id": "us-1",
+    "name": "Major League Soccer",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "US",
+    "format": "concacaf",
+    "teams": [
+      "Atlanta United FC-US",
+      "Austin FC-US",
+      "CF Montréal-CA",
+      "Charlotte FC-US",
+      "Chicago Fire FC-US",
+      "Colorado Rapids-US",
+      "Columbus Crew-US",
+      "D.C. United-US",
+      "FC Cincinnati-US",
+      "FC Dallas-US",
+      "Houston Dynamo FC-US",
+      "Inter Miami CF-US",
+      "LA Galaxy-US",
+      "LAFC-US",
+      "Minnesota United FC-US",
+      "Nashville SC-US",
+      "New England Revolution-US",
+      "New York City FC-US",
+      "Orlando City SC-US",
+      "Philadelphia Union-US",
+      "Portland Timbers-US",
+      "Real Salt Lake-US",
+      "Red Bull New York-US",
+      "San Diego FC-US",
+      "San Jose Earthquakes-US",
+      "Seattle Sounders FC-US",
+      "Sporting Kansas City-US",
+      "St. Louis CITY SC-US",
+      "Toronto FC-CA",
+      "Vancouver Whitecaps-CA"
+    ],
+    "groups": [
+      [
+        "Atlanta United FC-US",
+        "CF Montréal-CA",
+        "Charlotte FC-US",
+        "Chicago Fire FC-US",
+        "Columbus Crew-US",
+        "D.C. United-US",
+        "FC Cincinnati-US",
+        "Inter Miami CF-US",
+        "Nashville SC-US",
+        "New England Revolution-US",
+        "New York City FC-US",
+        "Orlando City SC-US",
+        "Philadelphia Union-US",
+        "Red Bull New York-US",
+        "Toronto FC-CA"
+      ],
+      [
+        "Austin FC-US",
+        "Colorado Rapids-US",
+        "FC Dallas-US",
+        "Houston Dynamo FC-US",
+        "LA Galaxy-US",
+        "LAFC-US",
+        "Minnesota United FC-US",
+        "Portland Timbers-US",
+        "Real Salt Lake-US",
+        "San Diego FC-US",
+        "San Jose Earthquakes-US",
+        "Seattle Sounders FC-US",
+        "Sporting Kansas City-US",
+        "St. Louis CITY SC-US",
+        "Vancouver Whitecaps-CA"
+      ]
+    ],
+    "source": "https://www.mlssoccer.com/league-reports/competition-guidelines/",
+    "checked": "2026-10-13",
+    "baseline": 73,
+    "rules": {
+      "system": "mls",
+      "relegations": 0,
+      "note": "34 jogos, conferências, wild card, melhor de três e MLS Cup. Adversários interconferência simulados; prorrogação e datas exatas não modeladas."
+    }
+  },
+  {
+    "id": "mx-1",
+    "name": "Liga MX",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "MX",
+    "format": "world",
+    "teams": [
+      "América-MX",
+      "Atlante-MX",
+      "Atlas-MX",
+      "Atlético de San Luis-MX",
+      "Cruz Azul-MX",
+      "FC Juárez-MX",
+      "Guadalajara-MX",
+      "León-MX",
+      "Monterrey-MX",
+      "Necaxa-MX",
+      "Pachuca-MX",
+      "Puebla-MX",
+      "Pumas UNAM-MX",
+      "Querétaro-MX",
+      "Santos-MX",
+      "Tigres UANL-MX",
+      "Tijuana-MX",
+      "Toluca-MX"
+    ],
+    "groups": [
+      [
+        "América-MX",
+        "Atlante-MX",
+        "Atlas-MX",
+        "Atlético de San Luis-MX",
+        "Cruz Azul-MX",
+        "FC Juárez-MX",
+        "Guadalajara-MX",
+        "León-MX",
+        "Monterrey-MX",
+        "Necaxa-MX",
+        "Pachuca-MX",
+        "Puebla-MX",
+        "Pumas UNAM-MX",
+        "Querétaro-MX",
+        "Santos-MX",
+        "Tigres UANL-MX",
+        "Tijuana-MX",
+        "Toluca-MX"
+      ]
+    ],
+    "source": "https://fmf.mx/justicia-deportiva/reglamentos",
+    "checked": "2026-10-13",
+    "baseline": 75,
+    "rules": {
+      "system": "short_cups",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "cr-1",
+    "name": "Primera División de Costa Rica",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "CR",
+    "format": "world",
+    "teams": [
+      "AD San Carlos-CR",
+      "Alajuelense-CR",
+      "Cartaginés-CR",
+      "Escorpiones Belén-CR",
+      "Herediano-CR",
+      "Inter de San Carlos-CR",
+      "Puntarenas FC-CR",
+      "Pérez Zeledón-CR",
+      "Saprissa-CR",
+      "Sporting San José-CR"
+    ],
+    "groups": [
+      [
+        "AD San Carlos-CR",
+        "Alajuelense-CR",
+        "Cartaginés-CR",
+        "Escorpiones Belén-CR",
+        "Herediano-CR",
+        "Inter de San Carlos-CR",
+        "Puntarenas FC-CR",
+        "Pérez Zeledón-CR",
+        "Saprissa-CR",
+        "Sporting San José-CR"
+      ]
+    ],
+    "source": "https://www.unafut.com/",
+    "checked": "2026-10-13",
+    "baseline": 59,
+    "rules": {
+      "system": "short_four",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "hn-1",
+    "name": "Liga Nacional de Honduras",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "HN",
+    "format": "world",
+    "teams": [
+      "CA Independiente Siguatepeque-HN",
+      "CD Choloma-HN",
+      "CD Estrella Roja-HN",
+      "Club Deportivo Marathón-HN",
+      "Club Deportivo Olimpia-HN",
+      "FC Motagua-HN",
+      "Génesis PN-HN",
+      "Juticalpa FC-HN",
+      "Olancho FC-HN",
+      "Platense-HN",
+      "Real España-HN",
+      "UPNFM-HN"
+    ],
+    "groups": [
+      [
+        "CA Independiente Siguatepeque-HN",
+        "CD Choloma-HN",
+        "CD Estrella Roja-HN",
+        "Club Deportivo Marathón-HN",
+        "Club Deportivo Olimpia-HN",
+        "FC Motagua-HN",
+        "Génesis PN-HN",
+        "Juticalpa FC-HN",
+        "Olancho FC-HN",
+        "Platense-HN",
+        "Real España-HN",
+        "UPNFM-HN"
+      ]
+    ],
+    "source": "https://www.lnphn.com/",
+    "checked": "2026-10-13",
+    "baseline": 56,
+    "rules": {
+      "system": "short_cups",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "gt-1",
+    "name": "Liga Nacional de Guatemala",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "GT",
+    "format": "world",
+    "teams": [
+      "Antigua GFC-GT",
+      "Aurora FC-GT",
+      "CD Guastatoya-GT",
+      "CD Malacateco-GT",
+      "Cobán Imperial-GT",
+      "Comunicaciones-GT",
+      "Deportivo Mixco-GT",
+      "Deportivo San Pedro-GT",
+      "Marquense-GT",
+      "Municipal-GT",
+      "Suchitepequez-GT",
+      "Xelajú MC-GT"
+    ],
+    "groups": [
+      [
+        "Antigua GFC-GT",
+        "Aurora FC-GT",
+        "CD Guastatoya-GT",
+        "CD Malacateco-GT",
+        "Cobán Imperial-GT",
+        "Comunicaciones-GT",
+        "Deportivo Mixco-GT",
+        "Deportivo San Pedro-GT",
+        "Marquense-GT",
+        "Municipal-GT",
+        "Suchitepequez-GT",
+        "Xelajú MC-GT"
+      ]
+    ],
+    "source": "https://ligagt.com/",
+    "checked": "2026-10-13",
+    "baseline": 54,
+    "rules": {
+      "system": "short_cups",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "sv-1",
+    "name": "Primera División de El Salvador",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "SV",
+    "format": "world",
+    "teams": [
+      "Alianza FC-SV",
+      "Atletico Balboa-SV",
+      "C.D. Platense-SV",
+      "CD FAS-SV",
+      "CD Municipal Limeño-SV",
+      "Cacahuatique-SV",
+      "Fuerte San Francisco-SV",
+      "Inca Aruba-SV",
+      "Internacional Santa Tecla-SV",
+      "Isidro Metapán-SV",
+      "Luis Ángel Firpo-SV",
+      "Águila-SV"
+    ],
+    "groups": [
+      [
+        "Alianza FC-SV",
+        "Atletico Balboa-SV",
+        "C.D. Platense-SV",
+        "CD FAS-SV",
+        "CD Municipal Limeño-SV",
+        "Cacahuatique-SV",
+        "Fuerte San Francisco-SV",
+        "Inca Aruba-SV",
+        "Internacional Santa Tecla-SV",
+        "Isidro Metapán-SV",
+        "Luis Ángel Firpo-SV",
+        "Águila-SV"
+      ]
+    ],
+    "source": "https://laprimera.com.sv/",
+    "checked": "2026-10-13",
+    "baseline": 50,
+    "rules": {
+      "system": "short_cups",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "no-1",
+    "name": "Eliteserien",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "NO",
+    "format": "world",
+    "teams": [
+      "Aalesund-NO",
+      "Bodo/Glimt-NO",
+      "Fredrikstad-NO",
+      "Hamarkameratene-NO",
+      "IK Start-NO",
+      "KFUM Oslo-NO",
+      "Kristiansund BK-NO",
+      "Lillestrom-NO",
+      "Molde-NO",
+      "Rosenborg-NO",
+      "SK Brann-NO",
+      "Sandefjord-NO",
+      "Sarpsborg FK-NO",
+      "Tromso-NO",
+      "Viking FK-NO",
+      "Vålerenga-NO"
+    ],
+    "groups": [
+      [
+        "Aalesund-NO",
+        "Bodo/Glimt-NO",
+        "Fredrikstad-NO",
+        "Hamarkameratene-NO",
+        "IK Start-NO",
+        "KFUM Oslo-NO",
+        "Kristiansund BK-NO",
+        "Lillestrom-NO",
+        "Molde-NO",
+        "Rosenborg-NO",
+        "SK Brann-NO",
+        "Sandefjord-NO",
+        "Sarpsborg FK-NO",
+        "Tromso-NO",
+        "Viking FK-NO",
+        "Vålerenga-NO"
+      ]
+    ],
+    "source": "https://www.eliteserien.no/",
+    "checked": "2026-10-13",
+    "baseline": 69,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "dk-1",
+    "name": "Superliga",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "DK",
+    "format": "world",
+    "teams": [
+      "AC Horsens-DK",
+      "AGF-DK",
+      "Brøndby IF-DK",
+      "F.C. København-DK",
+      "FC Midtjylland-DK",
+      "FC Nordsjælland-DK",
+      "Lyngby Boldklub-DK",
+      "Odense Boldklub-DK",
+      "Randers FC-DK",
+      "Silkeborg IF-DK",
+      "Sønderjyske Fodbold-DK",
+      "Viborg FF-DK"
+    ],
+    "groups": [
+      [
+        "AC Horsens-DK",
+        "AGF-DK",
+        "Brøndby IF-DK",
+        "F.C. København-DK",
+        "FC Midtjylland-DK",
+        "FC Nordsjælland-DK",
+        "Lyngby Boldklub-DK",
+        "Odense Boldklub-DK",
+        "Randers FC-DK",
+        "Silkeborg IF-DK",
+        "Sønderjyske Fodbold-DK",
+        "Viborg FF-DK"
+      ]
+    ],
+    "source": "https://www.superliga.dk/stats",
+    "checked": "2026-10-13",
+    "baseline": 70,
+    "rules": {
+      "system": "split",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "gr-1",
+    "name": "Super League Greece",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "GR",
+    "format": "world",
+    "teams": [
+      "AEK Athens-GR",
+      "Aris-GR",
+      "Asteras Tripoli-GR",
+      "Atromitos-GR",
+      "Iraklis-GR",
+      "Kalamata-GR",
+      "Kifisia-GR",
+      "Levadiakos-GR",
+      "OFI Crete-GR",
+      "Olympiacos-GR",
+      "PAOK-GR",
+      "Panathinaikos-GR",
+      "Panetolikos-GR",
+      "Volos NFC-GR"
+    ],
+    "groups": [
+      [
+        "AEK Athens-GR",
+        "Aris-GR",
+        "Asteras Tripoli-GR",
+        "Atromitos-GR",
+        "Iraklis-GR",
+        "Kalamata-GR",
+        "Kifisia-GR",
+        "Levadiakos-GR",
+        "OFI Crete-GR",
+        "Olympiacos-GR",
+        "PAOK-GR",
+        "Panathinaikos-GR",
+        "Panetolikos-GR",
+        "Volos NFC-GR"
+      ]
+    ],
+    "source": "https://www.slgr.gr/en/",
+    "checked": "2026-10-13",
+    "baseline": 72,
+    "rules": {
+      "system": "split_greece",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "cy-1",
+    "name": "Circuito Cyprus First Division (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "CY",
+    "format": "world",
+    "teams": [
+      "Omonia Nicosia-CY",
+      "AEK Larnaca-CY",
+      "Pafos-CY",
+      "Apollon-CY"
+    ],
+    "groups": [
+      [
+        "Omonia Nicosia-CY",
+        "AEK Larnaca-CY",
+        "Pafos-CY",
+        "Apollon-CY"
+      ]
+    ],
+    "source": "https://www.cfa.com.cy/",
+    "checked": "2026-10-13",
+    "baseline": 62,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "ru-1",
+    "name": "Russian Premier League",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "RU",
+    "format": "world",
+    "teams": [
+      "Akhmat Grozny-RU",
+      "Akron Tolyatti-RU",
+      "CSKA Moscow-RU",
+      "Dinamo Moscow-RU",
+      "Dynamo Makhachkala-RU",
+      "FC Baltika Kaliningrad-RU",
+      "Fakel Voronezh-RU",
+      "Gazovik Orenburg-RU",
+      "Krasnodar-RU",
+      "Krylia Sovetov-RU",
+      "Lokomotiv Moscow-RU",
+      "Rodina Moscow-RU",
+      "Rostov-RU",
+      "Rubin Kazan-RU",
+      "Spartak Moscow-RU",
+      "Zenit St Petersburg-RU"
+    ],
+    "groups": [
+      [
+        "Akhmat Grozny-RU",
+        "Akron Tolyatti-RU",
+        "CSKA Moscow-RU",
+        "Dinamo Moscow-RU",
+        "Dynamo Makhachkala-RU",
+        "FC Baltika Kaliningrad-RU",
+        "Fakel Voronezh-RU",
+        "Gazovik Orenburg-RU",
+        "Krasnodar-RU",
+        "Krylia Sovetov-RU",
+        "Lokomotiv Moscow-RU",
+        "Rodina Moscow-RU",
+        "Rostov-RU",
+        "Rubin Kazan-RU",
+        "Spartak Moscow-RU",
+        "Zenit St Petersburg-RU"
+      ]
+    ],
+    "source": "https://premierliga.ru/",
+    "checked": "2026-10-13",
+    "baseline": 74,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "sa-1",
+    "name": "Saudi Pro League",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "SA",
+    "format": "world",
+    "teams": [
+      "Abha-SA",
+      "Al Ahli-SA",
+      "Al Diriyah-SA",
+      "Al Ettifaq-SA",
+      "Al Faisaly-SA",
+      "Al Fateh-SA",
+      "Al Fayha-SA",
+      "Al Hazem-SA",
+      "Al Hilal-SA",
+      "Al Ittihad-SA",
+      "Al Khaleej-SA",
+      "Al Kholood-SA",
+      "Al Nassr-SA",
+      "Al Qadsiah-SA",
+      "Al Riyadh-SA",
+      "Al Shabab-SA",
+      "Al Taawoun-SA",
+      "Neom SC-SA"
+    ],
+    "groups": [
+      [
+        "Abha-SA",
+        "Al Ahli-SA",
+        "Al Diriyah-SA",
+        "Al Ettifaq-SA",
+        "Al Faisaly-SA",
+        "Al Fateh-SA",
+        "Al Fayha-SA",
+        "Al Hazem-SA",
+        "Al Hilal-SA",
+        "Al Ittihad-SA",
+        "Al Khaleej-SA",
+        "Al Kholood-SA",
+        "Al Nassr-SA",
+        "Al Qadsiah-SA",
+        "Al Riyadh-SA",
+        "Al Shabab-SA",
+        "Al Taawoun-SA",
+        "Neom SC-SA"
+      ]
+    ],
+    "source": "https://www.spl.com.sa/",
+    "checked": "2026-10-13",
+    "baseline": 74,
+    "rules": {
+      "system": "league",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "ec-1",
+    "name": "LigaPro Serie A",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "EC",
+    "format": "world",
+    "teams": [
+      "Aucas-EC",
+      "Barcelona SC-EC",
+      "Delfín-EC",
+      "Deportivo Cuenca-EC",
+      "Emelec-EC",
+      "Guayaquil City FC-EC",
+      "Independiente del Valle-EC",
+      "Leones-EC",
+      "Libertad (Ecuador)-EC",
+      "Liga de Quito-EC",
+      "Macará-EC",
+      "Manta F.C.-EC",
+      "Mushuc Runa-EC",
+      "Orense-EC",
+      "Técnico Universitario-EC",
+      "Universidad Católica (Quito)-EC"
+    ],
+    "groups": [
+      [
+        "Aucas-EC",
+        "Barcelona SC-EC",
+        "Delfín-EC",
+        "Deportivo Cuenca-EC",
+        "Emelec-EC",
+        "Guayaquil City FC-EC",
+        "Independiente del Valle-EC",
+        "Leones-EC",
+        "Libertad (Ecuador)-EC",
+        "Liga de Quito-EC",
+        "Macará-EC",
+        "Manta F.C.-EC",
+        "Mushuc Runa-EC",
+        "Orense-EC",
+        "Técnico Universitario-EC",
+        "Universidad Católica (Quito)-EC"
+      ]
+    ],
+    "source": "https://ligapro.ec/tabla-de-posiciones/",
+    "checked": "2026-10-13",
+    "baseline": 69,
+    "rules": {
+      "system": "split_ecuador",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "co-1",
+    "name": "Liga BetPlay",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "CO",
+    "format": "world",
+    "teams": [
+      "Alianza FC-CO",
+      "América de Cali-CO",
+      "Atlético Bucaramanga-CO",
+      "Atlético Junior-CO",
+      "Atlético Nacional-CO",
+      "Boyacá Chicó FC-CO",
+      "Cúcuta Deportivo-CO",
+      "Deportes Tolima-CO",
+      "Deportivo Cali-CO",
+      "Deportivo Pasto-CO",
+      "Deportivo Pereira-CO",
+      "Fortaleza CEIF-CO",
+      "Independiente Medellín-CO",
+      "Independiente Santa Fe-CO",
+      "Internacional de Bogotá-CO",
+      "Jaguares de Córdoba-CO",
+      "Llaneros FC-CO",
+      "Millonarios-CO",
+      "Once Caldas-CO",
+      "Águilas Doradas-CO"
+    ],
+    "groups": [
+      [
+        "Alianza FC-CO",
+        "América de Cali-CO",
+        "Atlético Bucaramanga-CO",
+        "Atlético Junior-CO",
+        "Atlético Nacional-CO",
+        "Boyacá Chicó FC-CO",
+        "Cúcuta Deportivo-CO",
+        "Deportes Tolima-CO",
+        "Deportivo Cali-CO",
+        "Deportivo Pasto-CO",
+        "Deportivo Pereira-CO",
+        "Fortaleza CEIF-CO",
+        "Independiente Medellín-CO",
+        "Independiente Santa Fe-CO",
+        "Internacional de Bogotá-CO",
+        "Jaguares de Córdoba-CO",
+        "Llaneros FC-CO",
+        "Millonarios-CO",
+        "Once Caldas-CO",
+        "Águilas Doradas-CO"
+      ]
+    ],
+    "source": "https://dimayor.com.co/estadisticas/",
+    "checked": "2026-10-13",
+    "baseline": 72,
+    "rules": {
+      "system": "short_cups",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "cz-1",
+    "name": "Circuito Chance Liga (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "CZ",
+    "format": "world",
+    "teams": [
+      "Slavia Praha-CZ",
+      "Sparta Praha-CZ",
+      "Viktoria Plzeň-CZ",
+      "Slovan Liberec-CZ"
+    ],
+    "groups": [
+      [
+        "Slavia Praha-CZ",
+        "Sparta Praha-CZ",
+        "Viktoria Plzeň-CZ",
+        "Slovan Liberec-CZ"
+      ]
+    ],
+    "source": "https://www.chanceliga.cz/",
+    "checked": "2026-10-13",
+    "baseline": 68,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "pl-1",
+    "name": "Circuito Ekstraklasa (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "PL",
+    "format": "world",
+    "teams": [
+      "Lech Poznań-PL",
+      "Górnik Zabrze-PL",
+      "Legia Warszawa-PL",
+      "Pogoń Szczecin-PL"
+    ],
+    "groups": [
+      [
+        "Lech Poznań-PL",
+        "Górnik Zabrze-PL",
+        "Legia Warszawa-PL",
+        "Pogoń Szczecin-PL"
+      ]
+    ],
+    "source": "https://www.ekstraklasa.org/",
+    "checked": "2026-10-13",
+    "baseline": 66,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "hu-1",
+    "name": "Circuito NB I (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "HU",
+    "format": "world",
+    "teams": [
+      "Ferencváros-HU",
+      "Győri ETO-HU",
+      "Puskás-HU",
+      "Paks-HU"
+    ],
+    "groups": [
+      [
+        "Ferencváros-HU",
+        "Győri ETO-HU",
+        "Puskás-HU",
+        "Paks-HU"
+      ]
+    ],
+    "source": "https://www.mlsz.hu/",
+    "checked": "2026-10-13",
+    "baseline": 60,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "hr-1",
+    "name": "Circuito HNL (adaptado)",
+    "edition": 2026,
+    "season_label": "2026/27",
+    "tier": 5,
+    "family": "international",
+    "country": "HR",
+    "format": "world",
+    "teams": [
+      "Dinamo Zagreb-HR",
+      "Hajduk Split-HR",
+      "Rijeka-HR",
+      "Varaždin-HR"
+    ],
+    "groups": [
+      [
+        "Dinamo Zagreb-HR",
+        "Hajduk Split-HR",
+        "Rijeka-HR",
+        "Varaždin-HR"
+      ]
+    ],
+    "source": "https://hnl.hr/",
+    "checked": "2026-10-13",
+    "baseline": 66,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "Calendário de protótipo; datas, acessos, regras administrativas e vagas continentais não modelados. Circuitos adaptados têm apenas clubes de referência, não a liga oficial completa."
+    }
+  },
+  {
+    "id": "ca-1",
+    "name": "Canadian Premier League",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "CA",
+    "format": "world",
+    "teams": [
+      "Cavalry FC-CA",
+      "Forge FC-CA",
+      "Atlético Ottawa-CA",
+      "FC Supra-CA",
+      "Halifax Wanderers-CA",
+      "Vancouver FC-CA",
+      "Inter Toronto-CA",
+      "Pacific FC-CA"
+    ],
+    "groups": [
+      [
+        "Cavalry FC-CA",
+        "Forge FC-CA",
+        "Atlético Ottawa-CA",
+        "FC Supra-CA",
+        "Halifax Wanderers-CA",
+        "Vancouver FC-CA",
+        "Inter Toronto-CA",
+        "Pacific FC-CA"
+      ]
+    ],
+    "source": "https://external-tags.canpl.ca/about-us",
+    "checked": "2026-10-13",
+    "baseline": 52,
+    "rules": {
+      "system": "cpl",
+      "relegations": 0,
+      "note": "CPL: 28 jogos, semifinal ida/volta e final única. Outros circuitos: seleção de clubes pelo ranking, não campeonato oficial completo."
+    }
+  },
+  {
+    "id": "ni-1",
+    "name": "Circuito Liga Primera (adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "NI",
+    "format": "world",
+    "teams": [
+      "Real Estelí FC-NI",
+      "Diriagén FC-NI",
+      "Managua FC-NI",
+      "Deportivo Sébaco-NI"
+    ],
+    "groups": [
+      [
+        "Real Estelí FC-NI",
+        "Diriagén FC-NI",
+        "Managua FC-NI",
+        "Deportivo Sébaco-NI"
+      ]
+    ],
+    "source": "https://www.concacaf.com/rankings/club",
+    "checked": "2026-10-13",
+    "baseline": 45,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "CPL: 28 jogos, semifinal ida/volta e final única. Outros circuitos: seleção de clubes pelo ranking, não campeonato oficial completo."
+    }
+  },
+  {
+    "id": "pa-1",
+    "name": "Circuito Liga Panameña (adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "PA",
+    "format": "world",
+    "teams": [
+      "CD Plaza Amador-PA",
+      "Sporting San Miguelito-PA",
+      "Alianza FC-PA",
+      "Deportivo Árabe Unido-PA",
+      "San Francisco FC-PA",
+      "Club Atlético Independiente-PA",
+      "Tauro FC-PA",
+      "Umecit FC-PA"
+    ],
+    "groups": [
+      [
+        "CD Plaza Amador-PA",
+        "Sporting San Miguelito-PA",
+        "Alianza FC-PA",
+        "Deportivo Árabe Unido-PA",
+        "San Francisco FC-PA",
+        "Club Atlético Independiente-PA",
+        "Tauro FC-PA",
+        "Umecit FC-PA"
+      ]
+    ],
+    "source": "https://www.concacaf.com/rankings/club",
+    "checked": "2026-10-13",
+    "baseline": 51,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "CPL: 28 jogos, semifinal ida/volta e final única. Outros circuitos: seleção de clubes pelo ranking, não campeonato oficial completo."
+    }
+  },
+  {
+    "id": "ht-1",
+    "name": "Circuito Ligue Haïtienne (adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "HT",
+    "format": "world",
+    "teams": [
+      "Violette AC-HT",
+      "Baltimore SC-HT",
+      "Real Hope FA-HT",
+      "AS Capoise-HT"
+    ],
+    "groups": [
+      [
+        "Violette AC-HT",
+        "Baltimore SC-HT",
+        "Real Hope FA-HT",
+        "AS Capoise-HT"
+      ]
+    ],
+    "source": "https://www.concacaf.com/rankings/club",
+    "checked": "2026-10-13",
+    "baseline": 42,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "CPL: 28 jogos, semifinal ida/volta e final única. Outros circuitos: seleção de clubes pelo ranking, não campeonato oficial completo."
+    }
+  },
+  {
+    "id": "jm-1",
+    "name": "Circuito Jamaica Premier League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "JM",
+    "format": "world",
+    "teams": [
+      "Mount Pleasant FA-JM",
+      "Portmore United FC-JM",
+      "Montego Bay United FC-JM",
+      "Cavalier FC-JM"
+    ],
+    "groups": [
+      [
+        "Mount Pleasant FA-JM",
+        "Portmore United FC-JM",
+        "Montego Bay United FC-JM",
+        "Cavalier FC-JM"
+      ]
+    ],
+    "source": "https://www.concacaf.com/rankings/club",
+    "checked": "2026-10-13",
+    "baseline": 44,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "CPL: 28 jogos, semifinal ida/volta e final única. Outros circuitos: seleção de clubes pelo ranking, não campeonato oficial completo."
+    }
+  },
+  {
+    "id": "do-1",
+    "name": "Circuito Liga Dominicana (adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "DO",
+    "format": "world",
+    "teams": [
+      "Cibao FC-DO",
+      "Salcedo FC-DO",
+      "Delfines del Este FC-DO",
+      "Moca FC-DO"
+    ],
+    "groups": [
+      [
+        "Cibao FC-DO",
+        "Salcedo FC-DO",
+        "Delfines del Este FC-DO",
+        "Moca FC-DO"
+      ]
+    ],
+    "source": "https://www.concacaf.com/rankings/club",
+    "checked": "2026-10-13",
+    "baseline": 40,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "CPL: 28 jogos, semifinal ida/volta e final única. Outros circuitos: seleção de clubes pelo ranking, não campeonato oficial completo."
+    }
+  },
+  {
+    "id": "sr-1",
+    "name": "Circuito Suriname Major League (adaptado)",
+    "edition": 2026,
+    "season_label": "2026",
+    "tier": 5,
+    "family": "international",
+    "country": "SR",
+    "format": "world",
+    "teams": [
+      "SV Robinhood-SR",
+      "Inter Moengotapoe-SR",
+      "SV Transvaal-SR",
+      "SV Voorwaarts-SR"
+    ],
+    "groups": [
+      [
+        "SV Robinhood-SR",
+        "Inter Moengotapoe-SR",
+        "SV Transvaal-SR",
+        "SV Voorwaarts-SR"
+      ]
+    ],
+    "source": "https://www.concacaf.com/rankings/club",
+    "checked": "2026-10-13",
+    "baseline": 39,
+    "rules": {
+      "system": "adapted",
+      "relegations": 0,
+      "note": "CPL: 28 jogos, semifinal ida/volta e final única. Outros circuitos: seleção de clubes pelo ranking, não campeonato oficial completo."
+    }
+  }
+]

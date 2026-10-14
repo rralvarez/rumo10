@@ -6788,5 +6788,1839 @@
     "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/422.png",
     "retrieved": "2026-10-13",
     "identity_status": "publisher_source"
+  },
+  "CF Montréal-CA": {
+    "path": "/assets/clubs/cc-b577ad60b7b5eb.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9720.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Chicago Fire FC-US": {
+    "path": "/assets/clubs/cc-997600b2e0b02e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/182.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Charlotte FC-US": {
+    "path": "/assets/clubs/cc-d0fe4234a89e74.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21300.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlanta United FC-US": {
+    "path": "/assets/clubs/cc-255190e39925ee.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18418.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Austin FC-US": {
+    "path": "/assets/clubs/cc-afffbc574ca1f3.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20906.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Cincinnati-US": {
+    "path": "/assets/clubs/cc-eb7d0e4ab7b95e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18267.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "D.C. United-US": {
+    "path": "/assets/clubs/cc-588dc750ce57df.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/193.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Houston Dynamo FC-US": {
+    "path": "/assets/clubs/cc-f9a044f8a44fd2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6077.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Dallas-US": {
+    "path": "/assets/clubs/cc-ad118e9b24bd37.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/185.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Colorado Rapids-US": {
+    "path": "/assets/clubs/cc-b3c11c7257e171.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/184.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Columbus Crew-US": {
+    "path": "/assets/clubs/cc-b76bd36d55f9f2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/183.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Minnesota United FC-US": {
+    "path": "/assets/clubs/cc-79d65dfffc78ef.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17362.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "New England Revolution-US": {
+    "path": "/assets/clubs/cc-b3eb4cc983a1b9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/189.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Inter Miami CF-US": {
+    "path": "/assets/clubs/cc-399aff8500d574.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20232.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Orlando City SC-US": {
+    "path": "/assets/clubs/cc-b3f571011c35d0.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/12011.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "LA Galaxy-US": {
+    "path": "/assets/clubs/cc-0b6fa1eae3463b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "LAFC-US": {
+    "path": "/assets/clubs/cc-ba5137fec9081f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18966.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "New York City FC-US": {
+    "path": "/assets/clubs/cc-0621086a0ecf3e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17606.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Salt Lake-US": {
+    "path": "/assets/clubs/cc-0bd57002f90bf5.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4771.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Nashville SC-US": {
+    "path": "/assets/clubs/cc-36bdfaa52b5759.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18986.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "San Jose Earthquakes-US": {
+    "path": "/assets/clubs/cc-235f7e99f87147.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/191.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Philadelphia Union-US": {
+    "path": "/assets/clubs/cc-b9d8e250a0c9bb.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10739.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Red Bull New York-US": {
+    "path": "/assets/clubs/cc-bab96e898b3ec8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/190.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Portland Timbers-US": {
+    "path": "/assets/clubs/cc-43ef7f3ab7c867.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9723.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "St. Louis CITY SC-US": {
+    "path": "/assets/clubs/cc-059a88430ba8c4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "San Diego FC-US": {
+    "path": "/assets/clubs/cc-700a71617e9b7e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22529.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sporting Kansas City-US": {
+    "path": "/assets/clubs/cc-1ad025ec778126.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/186.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Seattle Sounders FC-US": {
+    "path": "/assets/clubs/cc-59430da8ec4c8a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9726.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Toronto FC-CA": {
+    "path": "/assets/clubs/cc-d3cf4d0936a7fb.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7318.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vancouver Whitecaps-CA": {
+    "path": "/assets/clubs/cc-f187a9dc8d9792.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9727.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlante-MX": {
+    "path": "/assets/clubs/cc-99a6b08a483ceb.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/226.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cruz Azul-MX": {
+    "path": "/assets/clubs/cc-a6623d00d57617.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/218.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlético de San Luis-MX": {
+    "path": "/assets/clubs/cc-a2335934990db1.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/15720.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "América-MX": {
+    "path": "/assets/clubs/cc-b52b170b857e2c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/227.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Guadalajara-MX": {
+    "path": "/assets/clubs/cc-fd4e0bb92fb47e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/219.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "León-MX": {
+    "path": "/assets/clubs/cc-2bf68b4fdbd30f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/228.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlas-MX": {
+    "path": "/assets/clubs/cc-161902b7a74715.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/216.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Juárez-MX": {
+    "path": "/assets/clubs/cc-24d21949053c81.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17851.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Monterrey-MX": {
+    "path": "/assets/clubs/cc-34684a44fdeead.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/220.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Necaxa-MX": {
+    "path": "/assets/clubs/cc-a393fb4cc0187c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/229.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pachuca-MX": {
+    "path": "/assets/clubs/cc-6d95569d9eec6e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/234.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pumas UNAM-MX": {
+    "path": "/assets/clubs/cc-bbe9496cbe4c84.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/233.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Santos-MX": {
+    "path": "/assets/clubs/cc-7e6ec215161748.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/225.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Tigres UANL-MX": {
+    "path": "/assets/clubs/cc-8f24e8d78f2ebc.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/232.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Querétaro-MX": {
+    "path": "/assets/clubs/cc-a113211e1c082b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/222.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AD San Carlos-CR": {
+    "path": "/assets/clubs/cc-e39f2518b80e76.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/859.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Tijuana-MX": {
+    "path": "/assets/clubs/cc-99ae7c77a5a9f0.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10125.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Puebla-MX": {
+    "path": "/assets/clubs/cc-4b3c2563e6e04f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/231.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Toluca-MX": {
+    "path": "/assets/clubs/cc-ed8e38bec51704.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/mex.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/223.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alajuelense-CR": {
+    "path": "/assets/clubs/cc-066236203cf040.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2057.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cartaginés-CR": {
+    "path": "/assets/clubs/cc-eed7915ac3fa5c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7239.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Herediano-CR": {
+    "path": "/assets/clubs/cc-c2a662ee3ac7a2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/862.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pérez Zeledón-CR": {
+    "path": "/assets/clubs/cc-4889630d736001.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7234.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Puntarenas FC-CR": {
+    "path": "/assets/clubs/cc-39107d05c23a91.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7237.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Saprissa-CR": {
+    "path": "/assets/clubs/cc-680a6e6588a775.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/858.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Escorpiones Belén-CR": {
+    "path": "/assets/clubs/cc-d95fcf93ed969f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132447.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Inter de San Carlos-CR": {
+    "path": "/assets/clubs/cc-0432d0af87db16.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131790.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD Choloma-HN": {
+    "path": "/assets/clubs/cc-6b2df3d00dee6e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11677.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sporting San José-CR": {
+    "path": "/assets/clubs/cc-4b280dfe2918bc.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/crc.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20705.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CA Independiente Siguatepeque-HN": {
+    "path": "/assets/clubs/cc-9c7e60e1b3e884.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132448.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD Estrella Roja-HN": {
+    "path": "/assets/clubs/cc-4ea329a4499531.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132449.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Club Deportivo Marathón-HN": {
+    "path": "/assets/clubs/cc-10606b3dc3f911.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7249.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Club Deportivo Olimpia-HN": {
+    "path": "/assets/clubs/cc-4d5daa8840d01a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/884.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Motagua-HN": {
+    "path": "/assets/clubs/cc-04bad139ef83d2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7242.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Génesis PN-HN": {
+    "path": "/assets/clubs/cc-5ba9e7c5d2a21e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131282.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Olancho FC-HN": {
+    "path": "/assets/clubs/cc-b49b8e6224c575.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21583.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Platense-HN": {
+    "path": "/assets/clubs/cc-1e93c059385bce.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7243.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real España-HN": {
+    "path": "/assets/clubs/cc-dea668c156fc7a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7245.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Juticalpa FC-HN": {
+    "path": "/assets/clubs/cc-23b8d96dfcef80.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17939.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "UPNFM-HN": {
+    "path": "/assets/clubs/cc-8f1397434cdad4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/hon.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18809.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Antigua GFC-GT": {
+    "path": "/assets/clubs/cc-94ac814f7d3a56.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7253.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD Malacateco-GT": {
+    "path": "/assets/clubs/cc-1c4cb22dd23ca2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7870.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Aurora FC-GT": {
+    "path": "/assets/clubs/cc-8b9b453ba1b056.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131213.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Comunicaciones-GT": {
+    "path": "/assets/clubs/cc-eeeea57a512b4d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7257.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cobán Imperial-GT": {
+    "path": "/assets/clubs/cc-80776d4deacdd2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7254.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Mixco-GT": {
+    "path": "/assets/clubs/cc-7bc5b7cc2c6ba6.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20036.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Marquense-GT": {
+    "path": "/assets/clubs/cc-92fd51cac79ba3.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7252.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Suchitepequez-GT": {
+    "path": "/assets/clubs/cc-a18ae10354fdfa.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7251.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD Guastatoya-GT": {
+    "path": "/assets/clubs/cc-879c3516c64ca7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17516.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo San Pedro-GT": {
+    "path": "/assets/clubs/cc-0f50b3652a0af0.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131835.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atletico Balboa-SV": {
+    "path": "/assets/clubs/cc-415ec7febf215f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7369.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Municipal-GT": {
+    "path": "/assets/clubs/cc-6afe5ce78a3f74.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7258.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "C.D. Platense-SV": {
+    "path": "/assets/clubs/cc-08927933785776.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21092.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alianza FC-SV": {
+    "path": "/assets/clubs/cc-e31efb09c30858.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7225.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Xelajú MC-GT": {
+    "path": "/assets/clubs/cc-97b3e87a17ab11.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gua.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7259.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cacahuatique-SV": {
+    "path": "/assets/clubs/cc-eaeb9e161819ab.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22330.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD FAS-SV": {
+    "path": "/assets/clubs/cc-23f2945cac728f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7229.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD Municipal Limeño-SV": {
+    "path": "/assets/clubs/cc-575a28b45b088d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7231.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Inca Aruba-SV": {
+    "path": "/assets/clubs/cc-2b3fd63b21809b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132480.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Luis Ángel Firpo-SV": {
+    "path": "/assets/clubs/cc-ab9ca711c878ef.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7232.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Isidro Metapán-SV": {
+    "path": "/assets/clubs/cc-5c08a9f3fba2c3.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7224.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fuerte San Francisco-SV": {
+    "path": "/assets/clubs/cc-9184990ef00e7e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21987.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Águila-SV": {
+    "path": "/assets/clubs/cc-8e5248028119bc.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7226.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Bodo/Glimt-NO": {
+    "path": "/assets/clubs/cc-b849ffeb38fb7a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2980.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hamarkameratene-NO": {
+    "path": "/assets/clubs/cc-f983133f326ba2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21380.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Internacional Santa Tecla-SV": {
+    "path": "/assets/clubs/cc-5c19b245247bd6.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/slv.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131295.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Aalesund-NO": {
+    "path": "/assets/clubs/cc-0ded468017851a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3278.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "KFUM Oslo-NO": {
+    "path": "/assets/clubs/cc-6a4984fb4a0712.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22165.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fredrikstad-NO": {
+    "path": "/assets/clubs/cc-ab3752e285617a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3039.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "IK Start-NO": {
+    "path": "/assets/clubs/cc-70ea59d28afe1e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6750.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lillestrom-NO": {
+    "path": "/assets/clubs/cc-e56cbfe6141a64.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/987.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kristiansund BK-NO": {
+    "path": "/assets/clubs/cc-3e8fb6c4b046ec.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6672.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Molde-NO": {
+    "path": "/assets/clubs/cc-d4b38db3de455a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2715.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SK Brann-NO": {
+    "path": "/assets/clubs/cc-b4e0c9520c92ae.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/620.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Viking FK-NO": {
+    "path": "/assets/clubs/cc-fed37fcc8a57cc.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/510.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rosenborg-NO": {
+    "path": "/assets/clubs/cc-6dffeaef74e828.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/438.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Tromso-NO": {
+    "path": "/assets/clubs/cc-e8e7574c596c57.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5270.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sandefjord-NO": {
+    "path": "/assets/clubs/cc-4b756095dcdc70.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3279.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sarpsborg FK-NO": {
+    "path": "/assets/clubs/cc-1eb1e8e93b3115.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5002.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AGF-DK": {
+    "path": "/assets/clubs/cc-ab07c8bd948954.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7853.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vålerenga-NO": {
+    "path": "/assets/clubs/cc-7904cf9c5cc3ff.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2791.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AC Horsens-DK": {
+    "path": "/assets/clubs/cc-23bdc4841e23f8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3585.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Midtjylland-DK": {
+    "path": "/assets/clubs/cc-831a356b7f30fa.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/572.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Nordsjælland-DK": {
+    "path": "/assets/clubs/cc-28dabc8d66e906.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3101.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "F.C. København-DK": {
+    "path": "/assets/clubs/cc-da70e3f9923ac8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/909.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Brøndby IF-DK": {
+    "path": "/assets/clubs/cc-713db333d516cb.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/575.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Randers FC-DK": {
+    "path": "/assets/clubs/cc-8aa328ac23e280.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3132.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lyngby Boldklub-DK": {
+    "path": "/assets/clubs/cc-98f947bee752b7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7860.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AEK Athens-GR": {
+    "path": "/assets/clubs/cc-eebbacd2743d37.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/887.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Odense Boldklub-DK": {
+    "path": "/assets/clubs/cc-68ff77a8a6cb3c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11550.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sønderjyske Fodbold-DK": {
+    "path": "/assets/clubs/cc-9561af69ba3b35.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8118.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Silkeborg IF-DK": {
+    "path": "/assets/clubs/cc-c43144c4bc8943.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/607.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Viborg FF-DK": {
+    "path": "/assets/clubs/cc-73c611a73a25f9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3153.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Asteras Tripoli-GR": {
+    "path": "/assets/clubs/cc-cdb08fc6fd1694.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8354.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atromitos-GR": {
+    "path": "/assets/clubs/cc-9e2e6a12e647da.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6790.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kalamata-GR": {
+    "path": "/assets/clubs/cc-f42589c044a042.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/132429.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Iraklis-GR": {
+    "path": "/assets/clubs/cc-949d381b10f852.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2575.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Kifisia-GR": {
+    "path": "/assets/clubs/cc-b53a889703421c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21969.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Aris-GR": {
+    "path": "/assets/clubs/cc-5f476ad2850dc4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11553.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Olympiacos-GR": {
+    "path": "/assets/clubs/cc-599ba33149b43b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/435.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Panathinaikos-GR": {
+    "path": "/assets/clubs/cc-b4a880257195ac.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/443.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "OFI Crete-GR": {
+    "path": "/assets/clubs/cc-18ce97dff363ef.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1010.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AEK Larnaca-CY": {
+    "path": "/assets/clubs/cc-229ddcec6dc1ca.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=q4y48hs70h74p3waaxxjtdu5",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Volos NFC-GR": {
+    "path": "/assets/clubs/cc-e301294ffdd96b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20043.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Levadiakos-GR": {
+    "path": "/assets/clubs/cc-384c519e96d854.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5276.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Panetolikos-GR": {
+    "path": "/assets/clubs/cc-11dd0b85245364.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11431.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "PAOK-GR": {
+    "path": "/assets/clubs/cc-9bb99885e9e91d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/605.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Omonia Nicosia-CY": {
+    "path": "/assets/clubs/cc-df386f0f10b592.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1pf6zmsueuc9tr64ql67gynqc",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Akron Tolyatti-RU": {
+    "path": "/assets/clubs/cc-fd1ba9f28ec239.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22271.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CSKA Moscow-RU": {
+    "path": "/assets/clubs/cc-aaa16e88dda47d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1963.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pafos-CY": {
+    "path": "/assets/clubs/cc-f72f6f8b2aeec4.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d6e2elufz1jf4h68k21uahq7d",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dynamo Makhachkala-RU": {
+    "path": "/assets/clubs/cc-caddc8c320b81d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22300.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Akhmat Grozny-RU": {
+    "path": "/assets/clubs/cc-4a6333a91137c6.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2991.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Baltika Kaliningrad-RU": {
+    "path": "/assets/clubs/cc-66d3516145f6ec.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21949.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dinamo Moscow-RU": {
+    "path": "/assets/clubs/cc-26c971bf8720e2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/596.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fakel Voronezh-RU": {
+    "path": "/assets/clubs/cc-a032e3d0a2ef24.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21539.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Krasnodar-RU": {
+    "path": "/assets/clubs/cc-a3ba4f94052a55.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11336.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lokomotiv Moscow-RU": {
+    "path": "/assets/clubs/cc-20c6552e0e6dd9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/442.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Gazovik Orenburg-RU": {
+    "path": "/assets/clubs/cc-cc6ae691fb22e5.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18285.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rodina Moscow-RU": {
+    "path": "/assets/clubs/cc-b60876a53696c0.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21927.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rostov-RU": {
+    "path": "/assets/clubs/cc-1930aa3a95a80a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3852.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Abha-SA": {
+    "path": "/assets/clubs/cc-fc6a1a0fba7bb6.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21833.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Krylia Sovetov-RU": {
+    "path": "/assets/clubs/cc-36eabb1289b12b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3850.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Ahli-SA": {
+    "path": "/assets/clubs/cc-7d458789007b36.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8346.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rubin Kazan-RU": {
+    "path": "/assets/clubs/cc-9ed0023c9858b5.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/3851.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Diriyah-SA": {
+    "path": "/assets/clubs/cc-ad1a29ca97a7fd.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131746.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Faisaly-SA": {
+    "path": "/assets/clubs/cc-10901364775bcf.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21446.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Ettifaq-SA": {
+    "path": "/assets/clubs/cc-7fc7aab791a5f8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8363.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Zenit St Petersburg-RU": {
+    "path": "/assets/clubs/cc-f32af9336d158e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2533.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Spartak Moscow-RU": {
+    "path": "/assets/clubs/cc-9449412500996e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/rus.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1941.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Fateh-SA": {
+    "path": "/assets/clubs/cc-5053a8bbc9d1d2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/13033.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Hilal-SA": {
+    "path": "/assets/clubs/cc-5261bbb4651f50.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/929.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Ittihad-SA": {
+    "path": "/assets/clubs/cc-134648aa1b680e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2276.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Fayha-SA": {
+    "path": "/assets/clubs/cc-87d99c28f13060.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21827.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Khaleej-SA": {
+    "path": "/assets/clubs/cc-dd1d35ae4341ab.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21829.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Hazem-SA": {
+    "path": "/assets/clubs/cc-bd222b52d8be58.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21964.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Qadsiah-SA": {
+    "path": "/assets/clubs/cc-e3528fd1f3fd14.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22022.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Nassr-SA": {
+    "path": "/assets/clubs/cc-d11aa875802b81.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/817.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Riyadh-SA": {
+    "path": "/assets/clubs/cc-3a6068630a1b85.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21965.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Kholood-SA": {
+    "path": "/assets/clubs/cc-654d0cedbb0ab8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/22028.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Taawoun-SA": {
+    "path": "/assets/clubs/cc-10a17bf66127ef.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18459.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Al Shabab-SA": {
+    "path": "/assets/clubs/cc-ef0d58ba5911f4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/793.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Neom SC-SA": {
+    "path": "/assets/clubs/cc-2f385635a704f7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/130899.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Aucas-EC": {
+    "path": "/assets/clubs/cc-bdaa7beeb68697.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6017.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Barcelona SC-EC": {
+    "path": "/assets/clubs/cc-083a2762f1bfb5.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2686.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Independiente del Valle-EC": {
+    "path": "/assets/clubs/cc-52a089e41e2ca3.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17086.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Leones-EC": {
+    "path": "/assets/clubs/cc-8636db6f3a316c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/131702.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Emelec-EC": {
+    "path": "/assets/clubs/cc-99a6632e48496c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2668.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Liga de Quito-EC": {
+    "path": "/assets/clubs/cc-cf33d4e625fe90.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4816.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Delfín-EC": {
+    "path": "/assets/clubs/cc-51fc95c6d2dacc.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/1011.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Guayaquil City FC-EC": {
+    "path": "/assets/clubs/cc-2d31456d78017e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/11124.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Libertad (Ecuador)-EC": {
+    "path": "/assets/clubs/cc-6940652e586bc1.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/21843.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Cuenca-EC": {
+    "path": "/assets/clubs/cc-f0869d15e66221.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4812.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Macará-EC": {
+    "path": "/assets/clubs/cc-dc067bb1d33675.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/18439.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Manta F.C.-EC": {
+    "path": "/assets/clubs/cc-29f9416ef6dd4e.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10307.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Técnico Universitario-EC": {
+    "path": "/assets/clubs/cc-6964e1a1f64174.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9292.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "América de Cali-CO": {
+    "path": "/assets/clubs/cc-3e10846ea7704d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/8109.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Orense-EC": {
+    "path": "/assets/clubs/cc-e9648ebbbc17cf.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/20695.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alianza FC-CO": {
+    "path": "/assets/clubs/cc-ed53f53e76605a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9761.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Mushuc Runa-EC": {
+    "path": "/assets/clubs/cc-be7adb7ce41f36.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/17176.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlético Bucaramanga-CO": {
+    "path": "/assets/clubs/cc-23c2c74428b723.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6137.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlético Nacional-CO": {
+    "path": "/assets/clubs/cc-14c5bbb58c25a7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5264.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Universidad Católica (Quito)-EC": {
+    "path": "/assets/clubs/cc-5181df9ef7293f.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ecu.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9283.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cúcuta Deportivo-CO": {
+    "path": "/assets/clubs/cc-23bd99af1a14c2.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/6101.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportes Tolima-CO": {
+    "path": "/assets/clubs/cc-e762e4b61a2971.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5489.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Boyacá Chicó FC-CO": {
+    "path": "/assets/clubs/cc-27b4812f3e6ed1.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5480.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlético Junior-CO": {
+    "path": "/assets/clubs/cc-7376010db80b8b.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4815.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Cali-CO": {
+    "path": "/assets/clubs/cc-559fa66c8dd79d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2672.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Independiente Santa Fe-CO": {
+    "path": "/assets/clubs/cc-04d6acd41fe27c.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5488.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Pereira-CO": {
+    "path": "/assets/clubs/cc-039cae11afe8d4.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5486.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Independiente Medellín-CO": {
+    "path": "/assets/clubs/cc-43244ccb4ee95d.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2690.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Llaneros FC-CO": {
+    "path": "/assets/clubs/cc-c467c7486516fd.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7915.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Internacional de Bogotá-CO": {
+    "path": "/assets/clubs/cc-400ae4240d3bc0.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/7445.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Pasto-CO": {
+    "path": "/assets/clubs/cc-1ea694ad3d34c7.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5485.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Millonarios-CO": {
+    "path": "/assets/clubs/cc-bb4742c744452a.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/5484.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Fortaleza CEIF-CO": {
+    "path": "/assets/clubs/cc-1ca31ddaaeceb9.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/4928.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Slavia Praha-CZ": {
+    "path": "/assets/clubs/cc-a005faba573fa9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8kpapuorr6hf0vosnovbreqqd",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sparta Praha-CZ": {
+    "path": "/assets/clubs/cc-74264b0df35651.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5ocdn3a6s75u0d0dy0rbou0xc",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Once Caldas-CO": {
+    "path": "/assets/clubs/cc-f7c743d0157885.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/2919.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Viktoria Plzeň-CZ": {
+    "path": "/assets/clubs/cc-dffadee07e9658.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c6fx1460nlkawjgh67sp7a1hd",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Slovan Liberec-CZ": {
+    "path": "/assets/clubs/cc-5f5e89d99d1770.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2c4rs2vp0tyjiqa7y3gfttf24",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Lech Poznań-PL": {
+    "path": "/assets/clubs/cc-1071bcb245016d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=duvz7klp081jpg8fx5nze7ks7",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Águilas Doradas-CO": {
+    "path": "/assets/clubs/cc-251229ded7b8e8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/9762.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Jaguares de Córdoba-CO": {
+    "path": "/assets/clubs/cc-ced39de40ac2a8.png",
+    "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/col.1/teams?limit=100&season=2026",
+    "download_url": "https://a.espncdn.com/i/teamlogos/soccer/500/10309.png",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Ferencváros-HU": {
+    "path": "/assets/clubs/cc-63ef9f00e96eb2.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=b3o0wckz4w3fusytybpgxftgm",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Górnik Zabrze-PL": {
+    "path": "/assets/clubs/cc-555102ae0622cc.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=awc8tinkh5u7cy58a00ohg6al",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pogoń Szczecin-PL": {
+    "path": "/assets/clubs/cc-824d4b4830e2cd.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7r1d7xdgcjgp61qxshpho7xck",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Dinamo Zagreb-HR": {
+    "path": "/assets/clubs/cc-8a6c5498a37281.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7vyubxg6fnmwwyo2nnyhp6j5d",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Győri ETO-HU": {
+    "path": "/assets/clubs/cc-40420abe8e5891.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3jvgab7r5m1rqtyxvxrgyuwhd",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Legia Warszawa-PL": {
+    "path": "/assets/clubs/cc-fad726350960a7.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d7udukc1t631drge83p7ucqws",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Puskás-HU": {
+    "path": "/assets/clubs/cc-f1e289ed2b0f15.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7gmb3yf0l30i996xp4cqt5u9p",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Hajduk Split-HR": {
+    "path": "/assets/clubs/cc-3ee0fb5306d284.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6ouaoxrghzeqpzqk02xn3t4r9",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Paks-HU": {
+    "path": "/assets/clubs/cc-3fd9f7729538d8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=e86hbyj6fwyumuwoiaglh33r5",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Rijeka-HR": {
+    "path": "/assets/clubs/cc-27a08ac132862a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1ej3fkeq5d7359enihddsxzae",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Varaždin-HR": {
+    "path": "/assets/clubs/cc-e40859fab848ee.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=auws85cw488audeo1rdgbvs2z",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Halifax Wanderers-CA": {
+    "path": "/assets/clubs/cc-f2bb09a35a667c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5gmx3o5y2oc0i6rowjwtu7jvu",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cavalry FC-CA": {
+    "path": "/assets/clubs/cc-6297a0728eb85b.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=41ewt71n8fqwy6trsqta1bjvu",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Forge FC-CA": {
+    "path": "/assets/clubs/cc-9a50e6ef3e45d9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c2pdzdl3dgf5b0siidn2ay5ii",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "FC Supra-CA": {
+    "path": "/assets/clubs/cc-589f389604fd06.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4cz8qbw7adttnim8c2tfu5lhw",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Atlético Ottawa-CA": {
+    "path": "/assets/clubs/cc-286153446ca10d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dn8tjhuq0bax4dgixqvluhzze",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Vancouver FC-CA": {
+    "path": "/assets/clubs/cc-40f92cb2661a65.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=634fcc7n5o5gzu05biddx8yl0",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Pacific FC-CA": {
+    "path": "/assets/clubs/cc-2289611f3b757b.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=b3436h8h14zw7f1uv6w9vqf6y",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Diriagén FC-NI": {
+    "path": "/assets/clubs/cc-12e0034b2650d0.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115728.png?1777371003",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Estelí FC-NI": {
+    "path": "/assets/clubs/cc-628dba1c9b57cc.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115727.png?1777371003",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Inter Toronto-CA": {
+    "path": "/assets/clubs/cc-94d262ffb1b7ba.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cqthcpums3aas2tdy0qhlkuwa",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Sporting San Miguelito-PA": {
+    "path": "/assets/clubs/cc-d42b488de47565.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115167.png?1777371006",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Managua FC-NI": {
+    "path": "/assets/clubs/cc-aea4b362781c25.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/116814.png?1777371000",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "CD Plaza Amador-PA": {
+    "path": "/assets/clubs/cc-69f062451038c1.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115163.png?1786542114",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Árabe Unido-PA": {
+    "path": "/assets/clubs/cc-1f79fabb27e378.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115162.png?1684226194",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Deportivo Sébaco-NI": {
+    "path": "/assets/clubs/cc-502fffd1eadf95.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/122388.png?1777370996",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Alianza FC-PA": {
+    "path": "/assets/clubs/cc-35899c5f541c69.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115165.png?1777371006",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Umecit FC-PA": {
+    "path": "/assets/clubs/cc-e11b6cf943f188.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/126543.png?1684226204",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Club Atlético Independiente-PA": {
+    "path": "/assets/clubs/cc-8e2abd74da1479.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/120713.png?1777370998",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Tauro FC-PA": {
+    "path": "/assets/clubs/cc-cd3d734327846c.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115160.png?1684226194",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Baltimore SC-HT": {
+    "path": "/assets/clubs/cc-b85d8e170a9317.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115426.png?1684226195",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Violette AC-HT": {
+    "path": "/assets/clubs/cc-13b833ae7c9f47.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115435.png?1684226195",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Real Hope FA-HT": {
+    "path": "/assets/clubs/cc-f8c938789b674d.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/122028.png?1684226200",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "San Francisco FC-PA": {
+    "path": "/assets/clubs/cc-33edd33505c6c6.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115161.png?1777371007",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Portmore United FC-JM": {
+    "path": "/assets/clubs/cc-718589421fe9c9.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/103144.png?1684226190",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Mount Pleasant FA-JM": {
+    "path": "/assets/clubs/cc-519f6eb5dd0687.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/123372.png?1684226201",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "AS Capoise-HT": {
+    "path": "/assets/clubs/cc-12731a992074d9.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/115437.png?1684226195",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Salcedo FC-DO": {
+    "path": "/assets/clubs/cc-b45f4e21de4ace.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/132166.png?1776366296",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Delfines del Este FC-DO": {
+    "path": "/assets/clubs/cc-40828c5c5556a9.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/121582.png?1684226199",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cavalier FC-JM": {
+    "path": "/assets/clubs/cc-9e9a1a3ebb320d.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/120153.png?1777370999",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Moca FC-DO": {
+    "path": "/assets/clubs/cc-9af57c10bb306c.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/116071.png?1684226197",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Cibao FC-DO": {
+    "path": "/assets/clubs/cc-101e575c87e6f5.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/121580.png?1727772352",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SV Robinhood-SR": {
+    "path": "/assets/clubs/cc-72821f86189d22.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/104449.png?1748854244",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Montego Bay United FC-JM": {
+    "path": "/assets/clubs/cc-8c544d5258fa29.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/103143.png?1777371009",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Inter Moengotapoe-SR": {
+    "path": "/assets/clubs/cc-92a8fa5d45274e.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/104451.png?1748854238",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SV Voorwaarts-SR": {
+    "path": "/assets/clubs/cc-1554354d674689.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/104454.png?1748854238",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "SV Transvaal-SR": {
+    "path": "/assets/clubs/cc-dd179d3adc7994.png",
+    "source": "https://www.hypercube.nl/CCR/ranking.php?type=Club",
+    "download_url": "https://www.hypercube.nl/CCR/img/logos/104448.png?1748854237",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
+  },
+  "Apollon-CY": {
+    "path": "/assets/clubs/cc-86f7d59aaee997.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2qg4xmt2ucl2o5osmurwagw5g",
+    "retrieved": "2026-10-13",
+    "identity_status": "publisher_source"
   }
 }

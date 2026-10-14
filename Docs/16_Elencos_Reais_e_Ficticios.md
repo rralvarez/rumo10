@@ -1,5 +1,7 @@
 # Elencos reais, notas publicadas e complemento fictício
 
+Este documento registra a entrega inicial. Os números e mercados foram ampliados; consulte [a cobertura atual da expansão mundial](17_Expansao_Mundial_e_Concacaf.md).
+
 Catálogo de referência consultado em **13/10/2026**, para edições **2026** na América do Sul e **2026/27** na Europa.
 
 ## Entrega

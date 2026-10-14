@@ -1,0 +1,807 @@
+{
+  "source": "https://www.concacaf.com/rankings/club",
+  "ranking_date": "2026-10-12",
+  "retrieved": "2026-10-13",
+  "clubs": [
+    {
+      "rank": 1,
+      "name": "Deportivo Toluca FC",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1288,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103185.png?1684226190"
+    },
+    {
+      "rank": 2,
+      "name": "Tigres UANL",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1257,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103600.png?1684226191"
+    },
+    {
+      "rank": 3,
+      "name": "Cruz Azul",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1255,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103136.png?1684226190"
+    },
+    {
+      "rank": 4,
+      "name": "Club América",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1235,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103358.png?1684226191"
+    },
+    {
+      "rank": 5,
+      "name": "Nashville SC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1230,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/124120.png?1684226202"
+    },
+    {
+      "rank": 6,
+      "name": "CD Guadalajara",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1230,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103050.png?1684226189"
+    },
+    {
+      "rank": 7,
+      "name": "Los Angeles FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1229,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/122860.png?1684226201"
+    },
+    {
+      "rank": 8,
+      "name": "Inter Miami CF",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1219,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/124119.png?1684226202"
+    },
+    {
+      "rank": 9,
+      "name": "CF Monterrey",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1211,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103042.png?1684226189"
+    },
+    {
+      "rank": 10,
+      "name": "Seattle Sounders FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1209,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/104489.png?1727772353"
+    },
+    {
+      "rank": 11,
+      "name": "Club León",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1208,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103360.png?1684226191"
+    },
+    {
+      "rank": 12,
+      "name": "CF Pachuca",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1205,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/104465.png?1727772352"
+    },
+    {
+      "rank": 13,
+      "name": "Columbus Crew",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1199,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103331.png?1684226190"
+    },
+    {
+      "rank": 14,
+      "name": "Chicago Fire FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1197,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103404.png?1684226191"
+    },
+    {
+      "rank": 15,
+      "name": "Club Universidad Nacional",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1195,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103278.png?1684226190"
+    },
+    {
+      "rank": 16,
+      "name": "Vancouver Whitecaps FC",
+      "country": "Canada",
+      "league": "Major League Soccer",
+      "points": 1195,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/5061.png?1684226204"
+    },
+    {
+      "rank": 17,
+      "name": "FC Cincinnati",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1195,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123295.png?1684226201"
+    },
+    {
+      "rank": 18,
+      "name": "Charlotte FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1194,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/125343.png?1684226203"
+    },
+    {
+      "rank": 19,
+      "name": "FC Dallas",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1193,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/104469.png?1684226191"
+    },
+    {
+      "rank": 20,
+      "name": "Philadelphia Union",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1192,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/118587.png?1684226198"
+    },
+    {
+      "rank": 21,
+      "name": "Orlando City SC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1189,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/121509.png?1684226199"
+    },
+    {
+      "rank": 22,
+      "name": "St. Louis CITY SC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1182,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/126484.png?1684226204"
+    },
+    {
+      "rank": 23,
+      "name": "Club Olimpia",
+      "country": "Honduras",
+      "league": "Liga Nacional de Fútbol de Honduras",
+      "points": 1179,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/112357.png?1684226192"
+    },
+    {
+      "rank": 24,
+      "name": "Atlas FC",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1176,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103134.png?1684226190"
+    },
+    {
+      "rank": 25,
+      "name": "New York City FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1175,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/121153.png?1684226199"
+    },
+    {
+      "rank": 26,
+      "name": "San Diego FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1174,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/126923.png?1757062834"
+    },
+    {
+      "rank": 27,
+      "name": "Queretaro FC",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1173,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/112353.png?1684226192"
+    },
+    {
+      "rank": 28,
+      "name": "LA Galaxy",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1173,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103123.png?1684226189"
+    },
+    {
+      "rank": 29,
+      "name": "Club Tijuana",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1173,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/119305.png?1684226198"
+    },
+    {
+      "rank": 30,
+      "name": "New York Red Bulls",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1172,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103140.png?1684226190"
+    },
+    {
+      "rank": 31,
+      "name": "Houston Dynamo FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1168,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/116501.png?1684226197"
+    },
+    {
+      "rank": 32,
+      "name": "Portland Timbers",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1168,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/114574.png?1684226193"
+    },
+    {
+      "rank": 33,
+      "name": "FC Juárez",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1166,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123715.png?1684226202"
+    },
+    {
+      "rank": 34,
+      "name": "San Jose Earthquakes",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1164,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/105704.png?1684226191"
+    },
+    {
+      "rank": 35,
+      "name": "Minnesota United FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1164,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/122570.png?1684226200"
+    },
+    {
+      "rank": 36,
+      "name": "New England Revolution",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1163,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/100093.png?1684226189"
+    },
+    {
+      "rank": 37,
+      "name": "LD Alajuelense",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1162,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/100328.png?1684226189"
+    },
+    {
+      "rank": 38,
+      "name": "Austin FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1162,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/124118.png?1684226202"
+    },
+    {
+      "rank": 39,
+      "name": "Club Necaxa",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1161,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/100337.png?1684226189"
+    },
+    {
+      "rank": 40,
+      "name": "Atlético San Luis",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1157,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123714.png?1684226202"
+    },
+    {
+      "rank": 41,
+      "name": "Colorado Rapids",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1157,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103124.png?1684226189"
+    },
+    {
+      "rank": 42,
+      "name": "Real Salt Lake",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1157,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/114001.png?1684226192"
+    },
+    {
+      "rank": 43,
+      "name": "CSD Municipal",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1145,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/114538.png?1684226192"
+    },
+    {
+      "rank": 44,
+      "name": "Deportivo Saprissa",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1144,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/107286.png?1684226192"
+    },
+    {
+      "rank": 45,
+      "name": "Toronto FC",
+      "country": "Canada",
+      "league": "Major League Soccer",
+      "points": 1143,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/114947.png?1684226193"
+    },
+    {
+      "rank": 46,
+      "name": "Atlanta United FC",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1139,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/122569.png?1684226200"
+    },
+    {
+      "rank": 47,
+      "name": "D.C. United",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1137,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103122.png?1684226189"
+    },
+    {
+      "rank": 48,
+      "name": "Club Santos Laguna",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1132,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103277.png?1684226190"
+    },
+    {
+      "rank": 49,
+      "name": "CS Herediano",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1131,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/107287.png?1684226192"
+    },
+    {
+      "rank": 50,
+      "name": "Atlante",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1131,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103135.png?1786542112"
+    },
+    {
+      "rank": 51,
+      "name": "CF Montréal",
+      "country": "Canada",
+      "league": "Major League Soccer",
+      "points": 1130,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/104460.png?1684226191"
+    },
+    {
+      "rank": 52,
+      "name": "CS Cartaginés",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1130,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/114534.png?1777371008"
+    },
+    {
+      "rank": 53,
+      "name": "Forge FC",
+      "country": "Canada",
+      "league": "Canadian Premier League",
+      "points": 1129,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123620.png?1684226201"
+    },
+    {
+      "rank": 54,
+      "name": "Club Puebla",
+      "country": "Mexico",
+      "league": "Liga MX",
+      "points": 1129,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/104463.png?1684226191"
+    },
+    {
+      "rank": 55,
+      "name": "Cavalry FC",
+      "country": "Canada",
+      "league": "Canadian Premier League",
+      "points": 1127,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123619.png?1684226201"
+    },
+    {
+      "rank": 56,
+      "name": "FC Motagua",
+      "country": "Honduras",
+      "league": "Liga Nacional de Fútbol de Honduras",
+      "points": 1124,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115090.png?1684226193"
+    },
+    {
+      "rank": 57,
+      "name": "CD Plaza Amador",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1123,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115163.png?1786542114"
+    },
+    {
+      "rank": 58,
+      "name": "Sporting Kansas City",
+      "country": "United States",
+      "league": "Major League Soccer",
+      "points": 1112,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/103150.png?1684226190"
+    },
+    {
+      "rank": 59,
+      "name": "Real CD España",
+      "country": "Honduras",
+      "league": "Liga Nacional de Fútbol de Honduras",
+      "points": 1110,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/106219.png?1684226192"
+    },
+    {
+      "rank": 60,
+      "name": "CD Marathón",
+      "country": "Honduras",
+      "league": "Liga Nacional de Fútbol de Honduras",
+      "points": 1107,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115093.png?1684226194"
+    },
+    {
+      "rank": 61,
+      "name": "Violette AC",
+      "country": "Haiti",
+      "league": "Ligue Haïtienne",
+      "points": 1098,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115435.png?1684226195"
+    },
+    {
+      "rank": 62,
+      "name": "Atlético Ottawa",
+      "country": "Canada",
+      "league": "Canadian Premier League",
+      "points": 1095,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/124207.png?1684226203"
+    },
+    {
+      "rank": 63,
+      "name": "Antigua GFC",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1095,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/116089.png?1777371001"
+    },
+    {
+      "rank": 64,
+      "name": "Club Xelajú M.C.",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1095,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115301.png?1777371005"
+    },
+    {
+      "rank": 65,
+      "name": "Deportivo Mixco",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1089,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123738.png?1777370996"
+    },
+    {
+      "rank": 66,
+      "name": "Sporting FC",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1083,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/125356.png?1684226203"
+    },
+    {
+      "rank": 67,
+      "name": "CD LA Firpo",
+      "country": "El Salvador",
+      "league": "Primera División de Fútbol de El Salvador",
+      "points": 1082,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115720.png?1777371004"
+    },
+    {
+      "rank": 68,
+      "name": "CD Guastatoya",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1075,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/121157.png?1777370998"
+    },
+    {
+      "rank": 69,
+      "name": "Olancho FC",
+      "country": "Honduras",
+      "league": "Liga Nacional de Fútbol de Honduras",
+      "points": 1074,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/126146.png?1777370994"
+    },
+    {
+      "rank": 70,
+      "name": "CD FAS",
+      "country": "El Salvador",
+      "league": "Primera División de Fútbol de El Salvador",
+      "points": 1073,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115717.png?1684226195"
+    },
+    {
+      "rank": 71,
+      "name": "Inter San Carlos",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1073,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/128113.png?0"
+    },
+    {
+      "rank": 72,
+      "name": "AD San Carlos",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1073,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/107288.png?1684226192"
+    },
+    {
+      "rank": 73,
+      "name": "Real Estelí FC",
+      "country": "Nicaragua",
+      "league": "Liga Nicaragüense de Fútbol",
+      "points": 1072,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115727.png?1777371003"
+    },
+    {
+      "rank": 74,
+      "name": "Sporting San Miguelito",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1071,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115167.png?1777371006"
+    },
+    {
+      "rank": 75,
+      "name": "Comunicaciones FC",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1070,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/114539.png?1684226192"
+    },
+    {
+      "rank": 76,
+      "name": "CSD Cobán Imperial",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1066,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/116088.png?1684226197"
+    },
+    {
+      "rank": 77,
+      "name": "Alianza FC",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1064,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115165.png?1777371006"
+    },
+    {
+      "rank": 78,
+      "name": "Deportivo Árabe Unido",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1064,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115162.png?1684226194"
+    },
+    {
+      "rank": 79,
+      "name": "Puntarenas FC",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1062,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/114730.png?1684226193"
+    },
+    {
+      "rank": 80,
+      "name": "Diriagén FC",
+      "country": "Nicaragua",
+      "league": "Liga Nicaragüense de Fútbol",
+      "points": 1060,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115728.png?1777371003"
+    },
+    {
+      "rank": 81,
+      "name": "Alianza FC",
+      "country": "El Salvador",
+      "league": "Primera División de Fútbol de El Salvador",
+      "points": 1060,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115721.png?1727772354"
+    },
+    {
+      "rank": 82,
+      "name": "Mount Pleasant FA",
+      "country": "Jamaica",
+      "league": "Jamaica Premier League",
+      "points": 1058,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123372.png?1684226201"
+    },
+    {
+      "rank": 83,
+      "name": "Marquense",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1057,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115303.png?1727340008"
+    },
+    {
+      "rank": 84,
+      "name": "San Francisco FC",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1056,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115161.png?1777371007"
+    },
+    {
+      "rank": 85,
+      "name": "Club Atlético Independiente",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1055,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/120713.png?1777370998"
+    },
+    {
+      "rank": 86,
+      "name": "CD Águila",
+      "country": "El Salvador",
+      "league": "Primera División de Fútbol de El Salvador",
+      "points": 1055,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115719.png?1684226196"
+    },
+    {
+      "rank": 87,
+      "name": "Cibao FC",
+      "country": "Dominican Republic",
+      "league": "Liga Dominicana de Fútbol",
+      "points": 1055,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/121580.png?1727772352"
+    },
+    {
+      "rank": 88,
+      "name": "Escorpiones",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1054,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/132492.png?0"
+    },
+    {
+      "rank": 89,
+      "name": "York United FC",
+      "country": "Canada",
+      "league": "Canadian Premier League",
+      "points": 1052,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123625.png?1684226202"
+    },
+    {
+      "rank": 90,
+      "name": "San Pedro",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1052,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/128311.png?0"
+    },
+    {
+      "rank": 91,
+      "name": "CD Malacateco",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1051,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/116145.png?1777371001"
+    },
+    {
+      "rank": 92,
+      "name": "SV Robinhood",
+      "country": "Suriname",
+      "league": "Suriname Major League",
+      "points": 1049,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/104449.png?1748854244"
+    },
+    {
+      "rank": 93,
+      "name": "HFX Wanderers FC",
+      "country": "Canada",
+      "league": "Canadian Premier League",
+      "points": 1048,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/123621.png?1684226202"
+    },
+    {
+      "rank": 94,
+      "name": "Tauro FC",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1047,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115160.png?1684226194"
+    },
+    {
+      "rank": 95,
+      "name": "Aurora FC",
+      "country": "Guatemala",
+      "league": "Liga Nacional de Fútbol de Guatemala",
+      "points": 1047,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/127620.png?1757062835"
+    },
+    {
+      "rank": 96,
+      "name": "AD Municipal Pérez Zeledón",
+      "country": "Costa Rica",
+      "league": "Primera División de Costa Rica",
+      "points": 1044,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/115149.png?1684226194"
+    },
+    {
+      "rank": 97,
+      "name": "Supra du Québec",
+      "country": "Canada",
+      "league": "Canadian Premier League",
+      "points": 1044,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/133135.png?0"
+    },
+    {
+      "rank": 98,
+      "name": "Vancouver FC",
+      "country": "Canada",
+      "league": "Canadian Premier League",
+      "points": 1042,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/126597.png?1684226204"
+    },
+    {
+      "rank": 99,
+      "name": "CD Genesis",
+      "country": "Honduras",
+      "league": "Liga Nacional de Fútbol de Honduras",
+      "points": 1041,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/126814.png?1777370993"
+    },
+    {
+      "rank": 100,
+      "name": "Umecit FC",
+      "country": "Panama",
+      "league": "Liga Panameña de Fútbol",
+      "points": 1039,
+      "badge": "https://www.hypercube.nl/CCR/img/logos/126543.png?1684226204"
+    }
+  ]
+}
