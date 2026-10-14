@@ -165,3 +165,5 @@ Logo, favicon, interface responsiva e resultados da revisão de 14/10/2026: [Ide
 Duas boas ações seguidas com bola podem abrir uma chance clara de gol, nos três modos: [mecânica, probabilidades e testes](Docs/28_Chances_Construidas.md). A oportunidade funciona nas carreiras existentes; não exige migração.
 
 Revisão dos bônus e penalidades, XP em dobro no modo normal e retirada das regras de idade da interface: [Consequências, XP e interface](Docs/30_Consequencias_XP_e_Interface.md). As mudanças valem nas próximas decisões das carreiras existentes.
+
+Novas carreiras gratuitas começam no Brasil; contas pagas escolhem o país de estreia entre os mercados disponíveis. A escolha é validada no servidor e mantém jogador → roleta → ofertas: [País de estreia por plano](Docs/32_Pais_de_Estreia_por_Plano.md).

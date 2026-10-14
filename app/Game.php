@@ -75,8 +75,8 @@ final class Game {
             $g['feedback']=['text'=>'Perfil inicial: '.$h['nome'],'effects'=>$h['efeitos']]; $g['stage']='treino';
             $g['season_skill_baseline']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['starting'])) {
-                $g['entry_division']=Onboarding::division($g['uf'],$h['nome']);
-                $g['initial_candidates']=Onboarding::candidates($g['origin'],$g['entry_division']);
+                $country=$g['starting_country']??'BR';$g['entry_division']=Onboarding::division($g['uf'],$h['nome'],$country);
+                $g['initial_candidates']=$country==='BR'?Onboarding::candidates($g['origin'],$g['entry_division']):EntryCountries::candidates($country,$g['entry_division'],$g['entry_seed']??$g['name']);
                 $g['stage']='clube_inicio';
             }
         } elseif($action==='join' && $g['stage']==='clube_inicio' && !empty($g['starting'])) {

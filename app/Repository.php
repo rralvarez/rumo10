@@ -28,6 +28,7 @@ final class Repository {
         $this->db->beginTransaction(); try {
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
             $quota=CareerSlots::quota($this,$account);
+            if(!empty($g['starting']))EntryCountries::validate($g['starting_country']??'BR',$quota['plan']);
             if($quota['used']>=$quota['limit'])throw new InvalidArgumentException('Limite de '.$quota['limit'].' carreiras atingido. Abra Minhas carreiras e exclua uma para criar outra.');
             $old=$this->load($account,true);
             if($old && !$replace) throw new InvalidArgumentException('Você já tem uma carreira.');

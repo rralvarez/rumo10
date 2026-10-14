@@ -30,6 +30,9 @@ try {
     $invalid=request('/register',$t+['email'=>$email,'password'=>'abc']);
     verify($invalid['status']===422 && str_contains($invalid['body'],'action="/register"') && str_contains($invalid['body'],$email),'Erro mantém cadastro e e-mail');
     $page=request('/register',$t+['email'=>$email,'password'=>$password]); verify($page['status']===200,'Registro/login HTTP');
+    preg_match('/<select name="country".*?<\/select>/s',$page['body'],$countrySelect);verify(isset($countrySelect[0]) && substr_count($countrySelect[0],'<option')===1 && str_contains($countrySelect[0],'value="BR"'),'Gratuito vê somente Brasil');
+    $forged=request('/carreira/criar',tokens($page['body'],'/carreira/criar')+['name'=>'Tentativa externa','city'=>'São Paulo','uf'=>'SP','position'=>'meia','country'=>'EN','plan'=>'pago']);
+    verify($forged['status']===422 && json_decode(request('/api/carreira/estado')['body'],true)===null,'POST forjado não libera país estrangeiro nem cria carreira');
     if(RumoHub::enabled()){$badge=request('/escudo?club=Inter%20Miami%20CF-US');verify($badge['status']===200 && str_starts_with($badge['body'],"\x89PNG"),'Escudo autenticado via Hub');verify(request('/escudo?club=not-a-club')['status']===404,'Clube inexistente não entrega mídia');}
     $page=request('/carreira/criar',tokens($page['body'],'/carreira/criar')+['name'=>'Teste HTTP','city'=>'São Paulo','uf'=>'SP','position'=>'meia']); verify($page['status']===200,'Criação HTTP');
     $t=tokens($page['body'],'/carreira/handicap'); $page=request('/carreira/handicap',$t); verify($page['status']===200,'Handicap HTTP');
@@ -130,7 +133,24 @@ try {
     $invalid=request('/carreira/excluir',array_replace($deleteTokens,['career'=>'0','confirm'=>'delete']));verify($invalid['status']===422,'Não exclui ID não pertencente à conta');
     $deleted=request('/carreira/excluir',$deleteTokens+['career'=>$state['id'],'confirm'=>'delete']);verify($deleted['status']===200 && str_contains($deleted['body'],'Minhas carreiras'),'Exclusão retorna à lista');
     verify((int)$r->query('SELECT COUNT(*) FROM rumo10_universos WHERE carreira_id=?',[$state['id']])->fetchColumn()===0 && json_decode(request('/api/carreira/estado')['body'],true)===null,'Exclusão apaga universo e libera selecionada');
-    echo "OK: $checks verificações HTTP em $base — conta, rodada, replay, refresh, tabela, logout/login e CSRF.\n";
+    $r->query("INSERT INTO rumo10_conta_planos(conta_id,plano) VALUES(?,'pago') ON DUPLICATE KEY UPDATE plano='pago'",[$owner]);
+    $page=request('/carreira/nova');preg_match('/<select name="country".*?<\/select>/s',$page['body'],$countrySelect);
+    verify($page['status']===200 && str_contains($countrySelect[0],'value="EN"') && str_contains($countrySelect[0],'value="AR"'),'Pago vê países do catálogo');
+    $creation=tokens($page['body'],'/carreira/nova');$fields=['name'=>'Teste Inglaterra','city'=>'São Paulo','uf'=>'SP','position'=>'meia','country'=>'EN'];
+    verify(request('/carreira/nova',$creation+array_replace($fields,['country'=>'XX']))['status']===422,'Pago não inicia em país inexistente');
+    $page=request('/carreira/nova',$creation+$fields);$foreign=json_decode(request('/api/carreira/estado')['body'],true);
+    verify($page['status']===200 && $foreign['stage']==='handicap' && $foreign['starting_country']==='EN' && !$foreign['initial_candidates'],'Pago cria jogador antes da roleta, sem clube antecipado');
+    $page=request('/carreira/handicap',tokens($page['body'],'/carreira/handicap'));$foreign=json_decode(request('/api/carreira/estado')['body'],true);
+    verify($foreign['stage']==='clube_inicio' && count($foreign['initial_candidates'])===3 && !str_contains($page['body'],'Distâncias aproximadas'),'Três clubes estrangeiros sem distância inventada');
+    foreach($foreign['initial_candidates'] as $offer)verify(TransferMarket::country($offer['club'])==='EN','Oferta pertence ao país escolhido');
+    $page=request('/carreira/clube-inicial',tokens($page['body'],'/carreira/clube-inicial')+['option'=>0]);$foreign=json_decode(request('/api/carreira/estado')['body'],true);
+    verify($page['status']===200 && $foreign['stage']==='treino' && TransferMarket::country($foreign['club'])==='EN' && count($foreign['matches'])>0,'Primeiro clube inicia campeonato inglês');
+    $r->query("UPDATE rumo10_conta_planos SET plano='gratuito' WHERE conta_id=?",[$owner]);$page=request('/carreira/nova');
+    $forged=request('/carreira/nova',tokens($page['body'],'/carreira/nova')+array_replace($fields,['country'=>'AR','plan'=>'pago']));
+    verify($forged['status']===422 && json_decode(request('/api/carreira/estado')['body'],true)===$foreign,'Bloqueio de nova carreira não arquiva nem apaga carreira estrangeira existente');
+    $page=request('/carreira');$page=request('/decisao/registrar',tokens($page['body'],'/decisao/registrar')+['option'=>0]);
+    verify($page['status']===200 && json_decode(request('/api/carreira/estado')['body'],true)['stage']==='pre_jogo','Carreira existente continua após mudança de plano');
+    echo "OK: $checks verificações HTTP em $base — conta, países por plano, rodada, replay, refresh, tabela, logout/login e CSRF.\n";
 } finally {
     // Cleanup estritamente da conta descartável criada nesta execução.
     $account=$r->query('SELECT id FROM rumo10_contas WHERE email=?',[$email])->fetchColumn();
@@ -144,7 +164,7 @@ try {
             foreach(['rumo10_temporadas','rumo10_decisoes','rumo10_atributos','rumo10_estados','rumo10_transferencias'] as $table) $r->query("DELETE FROM $table WHERE carreira_id=?",[$id]);
             $r->query('DELETE FROM rumo10_carreiras WHERE id=?',[$id]);
         }
-        $r->query('DELETE FROM rumo10_contas WHERE id=?',[$account]);
+        $r->query('DELETE FROM rumo10_conta_planos WHERE conta_id=?',[$account]);$r->query('DELETE FROM rumo10_contas WHERE id=?',[$account]);
     }
     $r->query('DELETE FROM rumo10_login_limits WHERE fingerprint=?',[hash('sha256',gethostbyname('rumo10.local').'|'.$email)]);
     if(is_file($cookie)) unlink($cookie);

@@ -18,7 +18,7 @@ if(in_array($path,['/clubes-se','/clubes-ro'],true)) {
 }
 if(in_array($path,['/inicio','/clubes-iniciais'],true)){$g=Game::create('Jogador de teste','São Caetano do Sul','SP','centroavante');$g['id']=0;if($path==='/clubes-iniciais')$g=Game::command($g,'handicap');$path='/carreira';}
 elseif($path==='/resultado'){$g['feedback']=['success'=>true,'class'=>'sucesso','text'=>'Ajudar e acalmar.','effects'=>['energia'=>-3,'confianca'=>5,'entrosamento'=>0]];$path='/carreira';}
-elseif(in_array($path,['/nova','/carreira/nova'],true)){$g=null;$path='/carreira/nova';$existingCareer=['id'=>0];}
+elseif(in_array($path,['/nova','/nova-paga','/carreira/nova'],true)){$careerPlan=$path==='/nova-paga'?'pago':'gratuito';$g=null;$path='/carreira/nova';$existingCareer=['id'=>0];}
 elseif($path==='/classificacao'){foreach($g['matches'] as &$m)if($m['round']===1)Competition::simulate($m);unset($m);}
 elseif($path==='/recap'){
  $id=$g['competition_id'];$t=&$g['competitions'][$id];Competition::finish($t);$g['matches']=$t['matches'];$g['competition_results'][$id]=Competition::result($t,$g['club']);$g['stage']='competicao_resumo';$path='/carreira';

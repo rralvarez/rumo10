@@ -56,12 +56,12 @@ try {
         header('Content-Type: application/json; charset=utf-8');echo json_encode($cities,JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR);exit;
     }
     if(!$public) {
-        $r=new Repository(Database::connect()); if(!in_array($path,['/carreiras','/carreira/excluir','/carreira/resumo','/carreira/compactar'],true))$g=$r->load($_SESSION['account']);
+        $r=new Repository(Database::connect());$careerPlan=CareerSlots::quota($r,$_SESSION['account'])['plan']; if(!in_array($path,['/carreiras','/carreira/excluir','/carreira/resumo','/carreira/compactar'],true))$g=$r->load($_SESSION['account']);
         if($method==='POST') {
             if($path==='/carreira/compactar'){RetiredCareer::compactExisting($r,$_SESSION['account'],(int)($_POST['career']??0),(string)($_POST['confirm']??''));redirect('/carreira/resumo?career='.(int)$_POST['career']);}
             if($path==='/carreira/excluir'){CareerSlots::delete($r,$_SESSION['account'],(int)($_POST['career']??0),(string)($_POST['confirm']??''));redirect('/carreiras');}
             if(in_array($path,['/carreira/criar','/carreira/nova'],true)) {
-                $newGame=Game::create(trim((string)($_POST['name']??'')),trim((string)($_POST['city']??'')),strtoupper((string)($_POST['uf']??'')),(string)($_POST['position']??''));
+                $newGame=EntryCountries::create(trim((string)($_POST['name']??'')),trim((string)($_POST['city']??'')),strtoupper((string)($_POST['uf']??'')),(string)($_POST['position']??''),(string)($_POST['country']??'BR'),$careerPlan);
                 $newGame['play_mode']=PlayMode::validate((string)($_POST['mode']??'normal'));
                 $r->create($_SESSION['account'],$newGame,$path==='/carreira/nova');
             } elseif($path==='/carreira/restaurar') {
