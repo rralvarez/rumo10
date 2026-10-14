@@ -2,9 +2,10 @@
 // Prévia isolada, somente GET; nenhuma conta ou carreira real é modificada.
 declare(strict_types=1);
 $path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);$previewPath=$path;
-if(preg_match('#^/assets/[\w./-]+\.(css|js|png|jpg|gif|webp)$#',$path) && is_file(dirname(__DIR__).'/public'.$path))return false;
+if(preg_match('#^(/assets/(brand/|clubs/)?[\w.-]+\.(css|js|svg|png|jpg|gif|webp)|/favicon\.(ico|svg))$#',$path) && is_file(dirname(__DIR__).'/public'.$path))return false;
 if($_SERVER['REQUEST_METHOD']!=='GET'){http_response_code(405);exit;}
 require dirname(__DIR__).'/app/bootstrap.php';
+putenv('RUMOHUB_ENABLED=0'); // Prévia usa somente referências locais; sem acesso ao Hub.
 $g=Game::create('Jogador de teste','São Paulo','SP','centroavante','São Caetano-SP');$g['id']=0;$g['version']=1;$g['stage']='treino';$g['feedback']=null;$error=null;$_SESSION=['account'=>0,'csrf'=>'preview'];
 function form(string $path,?array $g=null):void{echo '<form method="post" action="'.e($path).'">';}
 if($path==='/internacional'){

@@ -1,0 +1,10 @@
+<?php
+declare(strict_types=1);
+$base=$argv[1]??'http://rumo10.local';if(!in_array(parse_url($base,PHP_URL_HOST),['rumo10.local','127.0.0.1','localhost'],true))throw new RuntimeException('Verificação somente local.');$checks=0;
+function brandCheck(bool $ok,string $why):void{global $checks;if(!$ok)throw new RuntimeException($why);$checks++;}
+function getBrand(string $path):array{global $base;$c=curl_init($base.$path);curl_setopt_array($c,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>15]);$body=curl_exec($c);if($body===false)throw new RuntimeException('Requisição falhou.');return ['status'=>curl_getinfo($c,CURLINFO_RESPONSE_CODE),'type'=>curl_getinfo($c,CURLINFO_CONTENT_TYPE),'body'=>$body];}
+foreach(['/','/login','/register'] as $path){$r=getBrand($path);brandCheck($r['status']===200,'Página indisponível: '.$path);foreach(['class="brand-logo"','/favicon.svg','/favicon.ico','apple-touch-icon','/assets/visual.css','id="conteudo"','name="viewport"'] as $text)brandCheck(str_contains($r['body'],$text),'Identidade/acessibilidade ausente: '.$text);brandCheck(!str_contains($r['body'],'href="/carreiras"'),'Menu anônimo mostra acesso de carreira');}
+foreach(['/assets/brand/logo.svg','/assets/brand/mark.svg','/favicon.svg'] as $path){$r=getBrand($path);brandCheck($r['status']===200 && str_starts_with($r['type'],'image/svg+xml'),'SVG não servido corretamente');brandCheck(str_contains($r['body'],'<svg') && !str_contains($r['body'],'<script'),'SVG inválido');}
+foreach(['favicon-32.png'=>32,'apple-touch-icon.png'=>180,'icon-192.png'=>192,'icon-512.png'=>512] as $file=>$size){$r=getBrand('/assets/brand/'.$file);$info=getimagesizefromstring($r['body']);brandCheck($r['status']===200 && $info[0]===$size && $info[1]===$size,'Ícone com tamanho incorreto: '.$file);}
+$r=getBrand('/favicon.ico');brandCheck($r['status']===200 && str_starts_with($r['body'],"\0\0\1\0") && unpack('v',substr($r['body'],4,2))[1]>=4,'ICO inválido');$r=getBrand('/assets/visual.css');brandCheck($r['status']===200 && str_contains($r['body'],'prefers-reduced-motion'),'CSS responsivo indisponível');
+echo "OK: $checks verificações da identidade, ícones e páginas públicas em $base.\n";

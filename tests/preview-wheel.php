@@ -1,7 +1,7 @@
 <?php
 // Prévia isolada da interface, sem conta real e sem acesso ao banco.
 $path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
-if(preg_match('#^/assets/[\w.-]+\.(css|js)$#',$path) && is_file(dirname(__DIR__).'/public'.$path)) return false;
+if(preg_match('#^(/assets/(brand/)?[\w.-]+\.(css|js|svg|png)|/favicon\.(ico|svg))$#',$path) && is_file(dirname(__DIR__).'/public'.$path)) return false;
 if($_SERVER['REQUEST_METHOD']!=='GET') {http_response_code(405);exit;}
 define('RUMO10_PREVIEW',true); require __DIR__.'/presentation.php';
 $g=sampleGame(true); $g['stage']=match($path) {'/resumo'=>'resumo','/fim-semana'=>'fim_semana',default=>'oferta'}; $g['feedback']=null;

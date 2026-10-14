@@ -48,7 +48,9 @@ foreach($catalog as $id=>$c)if($c['format']==='state') {
 }
 // Uma carreira salva antes da ampliação conserva seu universo, sem novos clubes invasivos.
 $g=Game::create('Universo antigo','São Paulo','SP','meia','São Caetano-SP');
-foreach(array_keys($g['memberships']) as $id)if(str_ends_with($id,'-entrada'))unset($g['memberships'][$id]);
-Competition::completeWorld($g);stateCheck(count($g['competitions'])===17,'Nove campeonatos antigos preservados e oito internacionais adicionados na janela seguinte');
+$original=array_intersect_key($g['memberships'],array_flip(['br-a','br-b','br-c','br-d','sp-a1','sp-a2','sp-a3','sp-a4','sp-segunda']));$g['memberships']=$original;
+$international=array_filter($catalog,fn($c)=>$c['family']==='international');$expected=array_keys($original+$international);sort($expected);
+Competition::completeWorld($g);$actual=array_keys($g['competitions']);sort($actual);stateCheck($actual===$expected,'Universo antigo recebe todos os mercados internacionais na janela seguinte');
+foreach($original as $id=>$teams)stateCheck($g['memberships'][$id]===$teams,'Participantes antigos preservados: '.$id);
 stateCheck(Onboarding::division('SE','Talento de rua')==='se-entrada','Sergipe usa A2 provisória autorizada');
 echo "OK: $checks verificações estaduais e geográficas.\n";

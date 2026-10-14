@@ -13,7 +13,6 @@ final class PlayerProfile {
         $position=['zagueiro'=>'ZAG','lateral'=>'LAT','volante'=>'VOL','meia'=>'MEI','ponta'=>'PON','centroavante'=>'CA'][$g['position']];
         echo '<section class="player-profile"><div class="profile-toolbar"><a href="/carreira">← Voltar ao jogo</a><span>MEU JOGADOR</span></div><div class="profile-overview"><article class="athlete-card"><div class="athlete-rating"><strong>'.e($overall).'</strong><span>NÍVEL TÉCNICO</span><b>'.e($position).'</b></div><div class="athlete-avatar" aria-hidden="true"><svg viewBox="0 0 180 200"><path d="M48 12 72 25H108L132 12 176 50 153 87 136 76V186H44V76L27 87 4 50Z"/></svg><span>'.e(mb_strtoupper($initials)).'</span></div><div class="athlete-identity"><p class="tag">TEMPORADA '.e($g['season']).'</p><h1>'.e($g['name']).'</h1><p>'.e(ucfirst($g['position'])).' · '.e($g['age']).' anos</p><div class="athlete-club">';
         if(empty($g['starting'])){ClubBadge::render($g['club']);echo '<b>'.e(ClubBadge::name($g['club'])).'</b>';}else echo '<b>À espera do primeiro contrato</b>';
-        echo '<p class="subtle">Auge potencial aos 32 anos · aposentadoria voluntária aos 35 · encerramento aos 40.</p>';
         if($g['age']>=35 && $g['stage']!=='aposentado')echo '<a class="squad-link" href="/carreira/aposentar">Encerrar minha carreira →</a>';
         if(empty($g['starting']))echo '<a class="squad-link" href="/elenco">Ver companheiros de elenco ↗</a>';
         echo '</div><p class="athlete-origin">'.e($g['city'].' · '.$g['uf']).'</p></div></article><section class="profile-condition"><div class="profile-section-heading"><h2>Pronto para jogar?</h2><span>CONDIÇÃO ATUAL</span></div>';
@@ -30,6 +29,6 @@ final class PlayerProfile {
         }
         echo '</div><p class="profile-footnote">O nível técnico é a média das nove habilidades. Treinos e decisões acumulam XP para evoluir cada uma.</p></section><details class="profile-secondary"><summary>Vestiário, reputação e riscos</summary><div class="profile-secondary-grid">';
         foreach(['Vestiário'=>['confianca_treinador','confianca_diretoria','lideranca','foco','moral_pessoal'],'Reputação'=>['apoio_torcida','confianca_imprensa'],'Riscos'=>['risco_lesao','risco_cartao','risco_polemica','risco_encontrar_rivais']] as $title=>$keys){echo '<section><h3>'.e($title).'</h3>';foreach($keys as $key)self::meter(self::LABELS[$key],$g['states'][$key],str_starts_with($key,'risco_'));echo '</section>';}
-        echo '</div><p class="profile-footnote">Nos riscos, quanto menor o número, melhor.</p></details><div class="profile-bottom"><span>Perfil inicial · '.e($g['handicap']??'a sortear').'</span><a href="/carreira">Continuar minha história →</a></div></section>';
+        echo '</div><p class="profile-footnote">Nos riscos, quanto menor o número, melhor.</p></details><details class="profile-secondary profile-lifecycle"><summary>Ciclo da carreira</summary><p>Auge potencial aos 32 anos · aposentadoria voluntária aos 35 · encerramento aos 40.</p></details><div class="profile-bottom"><span>Perfil inicial · '.e($g['handicap']??'a sortear').'</span><a href="/carreira">Continuar minha história →</a></div></section>';
     }
 }
