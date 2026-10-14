@@ -84,9 +84,9 @@ final class PlayMode {
         echo '</select></label>';
     }
     public static function controls(array $g): void {
+        if(!self::canChange($g))return;
         echo '<details class="pace-settings"><summary>Modo '.e(self::TITLES[self::name($g)]).' · alterar ritmo</summary>';
-        if(self::canChange($g)) {form('/carreira/modo',$g);self::selector(self::name($g));echo '<button class="btn btn-outline-light">Salvar modo</button></form>';}
-        else echo '<p>Você pode trocar o modo antes da próxima partida. Conclua as decisões pendentes.</p>';
+        form('/carreira/modo',$g);self::selector(self::name($g));echo '<button class="btn btn-outline-light">Salvar modo</button></form>';
         echo '<p class="subtle">Mesma carreira e regras de evolução. Transferências continuam sendo sua escolha.</p></details>';
     }
     public static function report(array $g): void {
