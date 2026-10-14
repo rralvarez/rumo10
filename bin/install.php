@@ -29,3 +29,4 @@ try {
 
 require __DIR__.'/install-official.php';
 require __DIR__.'/install-career-limits.php';
+require __DIR__.'/install-retirement-history.php';

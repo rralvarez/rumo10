@@ -7,6 +7,7 @@ final class PlayerProfile {
         echo '<div class="profile-meter tone-'.$tone.'"><div><span>'.e($label).'</span><b>'.e($value).'<small>/100</small></b></div><meter min="0" max="100" value="'.e($value).'" aria-label="'.e($label).'">'.e($value).'</meter></div>';
     }
     public static function render(array $g): void {
+        if(isset($g['retired_summary'])){RetiredCareer::render($g['retired_summary']);return;}
         $summary=Game::summary($g);$overall=(int)round(array_sum(array_column($g['skills'],'value'))/count($g['skills']));
         $names=preg_split('/\s+/u',trim($g['name']));$initials=mb_substr($names[0],0,1).(count($names)>1?mb_substr(end($names),0,1):'');
         $position=['zagueiro'=>'ZAG','lateral'=>'LAT','volante'=>'VOL','meia'=>'MEI','ponta'=>'PON','centroavante'=>'CA'][$g['position']];

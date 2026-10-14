@@ -16,9 +16,9 @@ A exclusão exige sessão, CSRF e confirmação explícita. A propriedade é con
 
 O conceito de limite será inicialmente aplicado ao Rumo à Camisa 10, único jogo existente. Antes de conectar os próximos jogos, definir se a assinatura concede 3/10 vagas por jogo ou um orçamento conjunto da plataforma. Não criar outros jogos para contornar o limite.
 
-## Próximos passos, ainda não implementados
+## Sequência de preparação
 
-1. **Histórico compacto de aposentadoria:** produzir e validar totais por clube, temporada e competição, títulos e premiações; salvar resumo permanente no histórico da conta e, na mesma transação, remover partidas, eventos, decisões e universo detalhado. Um resumo encerrado não é retomável. Definir sua exclusão pelo usuário e liberação da vaga. Não apagar retroativamente detalhes existentes sem uma migração específica validada.
+1. **Histórico compacto de aposentadoria — implementado:** resumo permanente, expurgo transacional, vaga liberada, leitura privada e exclusão explícita. Aposentadorias antigas exigem confirmação. Ver documento 21; premiações individuais e totais normalizados por competição ainda dependem da evolução do motor.
 2. **Estatísticas normalizadas:** uma linha por universo/carreira, edição da competição, clube e jogador, contendo jogos, minutos, gols e assistências. Chave única para impedir duplicação e fechamento de partida idempotente. IDs internos estáveis; não repetir nomes/cores/escudos nem criar linhas vazias para todos os atletas. Persistir campeões e premiações por edição. O motor atual ainda não simula a autoria individual de gols dos NPCs.
 3. **Calendário e renovação de elencos:** datas globais, aniversário/declínio individual e encerramentos locais de cada liga. Aposentar NPC somente naquele universo e criar substituto fictício com novo ID, nome, nascimento, perfil e potencial. Preservar o histórico do aposentado. O catálogo de referência não envelhece nem se modifica por uma carreira.
 4. **RumoHub separado:** migrar o catálogo para `rumohub`/`rh_*`, preservando IDs, e disponibilizar API de servidor para servidor. Escolher domínio, hospedagem, acesso MySQL e estratégia de backups antes do corte. A proposta de tabelas está no documento 19; nenhuma renomeação de banco foi aplicada.
@@ -38,4 +38,4 @@ Na passagem futura jogador→técnico, guardar apenas um registro de transição
 
 Validação local: **22 verificações de vagas/propriedade/exclusão** passaram no MySQL e **70 verificações HTTP** passaram no IIS, incluindo confirmação e remoção do universo da carreira descartável. O teste HTTP usou cliente PHP com 256 MiB; configuração do IIS preservada. `tests/presentation.php`, lint dos arquivos PHP alterados e `git diff --check` passaram. Os testes foram corrigidos quando necessário e repetidos; não foram contados resultados de execuções malsucedidas.
 
-A compactação de aposentadoria, estatísticas de NPCs, serviço remoto, pagamento e migração para `rumohub` continuam pendentes. Nesta primeira etapa, uma carreira aposentada ainda contém seu universo e conta no limite até a compactação ser implementada. Apache e hospedagens externas não foram acessados.
+Estatísticas de NPCs, serviço remoto, pagamento e migração para `rumohub` continuam pendentes. Após a atualização do documento 21, novas aposentadorias são compactadas e deixam de contar no limite. Aposentadorias anteriores continuam detalhadas e contam até confirmação da compactação. Apache e hospedagens externas não foram acessados.

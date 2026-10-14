@@ -5,6 +5,8 @@ final class Repository {
     public function query(string $sql,array $args=[]): PDOStatement { $s=$this->db->prepare($sql); $s->execute($args); return $s; }
     public function load(int $account,bool $lock=false): ?array {
         $c=$this->query('SELECT * FROM rumo10_carreiras WHERE conta_id=?'.($lock?' FOR UPDATE':''),[$account])->fetch(); if(!$c) return null;
+        $summary=$this->query('SELECT dados_json FROM rumo10_historico_encerrado WHERE carreira_id=? AND conta_id=?',[$c['id'],$account])->fetchColumn();
+        if($summary)return RetiredCareer::state(json_decode($summary,true,512,JSON_THROW_ON_ERROR));
         $snapshot=$this->query('SELECT estado_json FROM rumo10_universos WHERE carreira_id=?',[$c['id']])->fetchColumn();
         if($snapshot) return json_decode($snapshot,true,512,JSON_THROW_ON_ERROR);
         $g=['id'=>(int)$c['id'],'name'=>$c['nome'],'city'=>$c['cidade'],'uf'=>$c['uf'],'position'=>$c['posicao'],'age'=>(int)$c['idade'],'season'=>(int)$c['temporada'],'round'=>(int)$c['rodada'],'stage'=>$c['etapa'],'club'=>$c['clube'],'tier'=>(int)$c['tier'],'handicap'=>$c['handicap'],'version'=>(int)$c['versao'],'feedback'=>json_decode($c['feedback_json']??'null',true),'skills'=>[],'states'=>[],'matches'=>[],'history'=>[],'offers'=>[],'teams'=>[]];
@@ -39,13 +41,14 @@ final class Repository {
         $this->query('UPDATE rumo10_carreiras SET conta_id=NULL WHERE id=? AND conta_id=?',[$id,$account]);
     }
     public function archives(int $account): array {
-        return $this->query('SELECT c.id,c.nome,c.clube,c.temporada,a.arquivada_em FROM rumo10_carreiras_arquivadas a JOIN rumo10_carreiras c ON c.id=a.carreira_id WHERE a.conta_id=? AND c.conta_id IS NULL ORDER BY a.arquivada_em DESC',[$account])->fetchAll();
+        return $this->query('SELECT c.id,c.nome,c.clube,c.temporada,a.arquivada_em FROM rumo10_carreiras_arquivadas a JOIN rumo10_carreiras c ON c.id=a.carreira_id WHERE a.conta_id=? AND c.conta_id IS NULL AND NOT EXISTS(SELECT 1 FROM rumo10_historico_encerrado h WHERE h.carreira_id=c.id) ORDER BY a.arquivada_em DESC',[$account])->fetchAll();
     }
     public function restore(int $account,int $id): void {
         $this->db->beginTransaction();try {
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
             $target=$this->query('SELECT c.id FROM rumo10_carreiras_arquivadas a JOIN rumo10_carreiras c ON c.id=a.carreira_id WHERE a.conta_id=? AND a.carreira_id=? AND c.conta_id IS NULL FOR UPDATE',[$account,$id])->fetchColumn();
             if(!$target)throw new InvalidArgumentException('Carreira arquivada não encontrada.');
+            if($this->query('SELECT carreira_id FROM rumo10_historico_encerrado WHERE carreira_id=?',[$id])->fetchColumn())throw new InvalidArgumentException('Esta carreira tem apenas um resumo e não pode ser retomada.');
             $current=$this->load($account,true);if($current)$this->archive($account,$current['id']);
             $this->query('UPDATE rumo10_carreiras SET conta_id=? WHERE id=?',[$account,$id]);$this->db->commit();
         }catch(Throwable $e){if($this->db->inTransaction())$this->db->rollBack();throw $e;}
@@ -54,12 +57,19 @@ final class Repository {
         if(!preg_match('/^[a-f0-9]{64}$/',$key)) throw new InvalidArgumentException('Token inválido.');
         $hash=hash('sha256',json_encode([$action,$input],JSON_THROW_ON_ERROR));
         $this->db->beginTransaction(); try {
+            $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
             $g=$this->load($account,true); if(!$g) throw new InvalidArgumentException('Crie seu personagem.');
+            $closing=$g['retired_summary']['closing_command']??null;
+            if($closing && hash_equals($closing['key'],$key)) {if(!hash_equals($closing['hash'],$hash))throw new InvalidArgumentException('Token já usado para outra ação.');$this->db->commit();return $g;}
             $old=$this->query('SELECT request_hash FROM rumo10_decisoes WHERE carreira_id=? AND chave=?',[$g['id'],$key])->fetchColumn();
             if($old) { if(!hash_equals($old,$hash)) throw new InvalidArgumentException('Token já usado para outra ação.'); $this->db->commit(); return $g; }
             if($version!==$g['version']) throw new InvalidArgumentException('Esta tela ficou desatualizada. Recarregue antes de escolher.');
             $before=['skills'=>$g['skills'],'states'=>$g['states'],'season'=>$g['season'],'round'=>$g['round'],'stage'=>$g['stage']];
             $careerId=$g['id'];$next=Game::command($g,$action,$input);unset($g);
+            if($next['stage']==='aposentado' && $before['stage']!=='aposentado') {
+                RetiredCareer::persist($this,$account,$next,['key'=>$key,'hash'=>$hash]);unset($next);
+                $persisted=$this->load($account);$this->db->commit();return $persisted;
+            }
             $this->save($next); $f=$next['feedback']??[];
             $audit=['before'=>$before,'after'=>['skills'=>$next['skills'],'states'=>$next['states']],'feedback'=>$f];
             if($action==='simulate' && isset($next['pace_report']))$audit['simulation']=$next['pace_report'];

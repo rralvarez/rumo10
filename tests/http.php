@@ -110,11 +110,17 @@ try {
     $r->query('UPDATE rumo10_universos SET estado_json=JSON_SET(estado_json,\'$.age\',35) WHERE carreira_id=?',[$state['id']]);
     $state=json_decode(request('/api/carreira/estado')['body'],true);$totals=CareerStats::collect($state)['totals'];
     $page=request('/carreira/aposentar');verify($page['status']===200 && str_contains($page['body'],'Confirmar aposentadoria'),'Confirmação disponível pelo site aos 35');
-    $t=tokens($page['body'],'/carreira/aposentar');$invalid=request('/carreira/aposentar',$t);verify($invalid['status']===422,'Não aposenta sem confirmação');
+    $t=tokens($page['body'],'/carreira/aposentar');$invalid=request('/carreira/aposentar',$t);verify($invalid['status']===422,'Não aposenta sem confirmação');$slotsBefore=CareerSlots::quota($r,(int)$owner)['used'];
     $page=request('/carreira/aposentar',$t+['confirm'=>'retire']);$state=json_decode(request('/api/carreira/estado')['body'],true);
     verify($page['status']===200 && $state['stage']==='aposentado' && $state['retirement']['reason']==='voluntary','Aposentadoria persistida pelo IIS');
     verify(CareerStats::collect($state)['totals']===$totals,'Aposentadoria mantém gols/assistências sem duplicação');
     request('/carreira/aposentar',$t+['confirm'=>'retire']);verify(json_decode(request('/api/carreira/estado')['body'],true)===$state,'Replay da aposentadoria não altera histórico');
+    verify(isset($state['retired_summary']) && !isset($state['memberships']) && !$state['matches'],'API aposentada contém somente resumo');
+    verify((int)$r->query('SELECT COUNT(*) FROM rumo10_universos WHERE carreira_id=?',[$state['id']])->fetchColumn()===0,'Aposentadoria remove universo detalhado');
+    verify(CareerSlots::quota($r,(int)$owner)['used']===$slotsBefore-1,'Aposentadoria libera vaga pelo IIS');
+    $summaryPage=request('/carreira/resumo?career='.$state['id']);verify($summaryPage['status']===200 && str_contains($summaryPage['body'],'Resumo permanente') && str_contains($summaryPage['body'],'data-career-stat="goals">'.$totals['goals']),'Histórico compacto acessível pelo site');
+    verify(request('/carreira/resumo?career=0')['status']===422,'Resumo de ID não autorizado rejeitado');
+    $retiredProfile=request('/jogador');verify($retiredProfile['status']===200 && str_contains($retiredProfile['body'],'Resumo permanente'),'Ficha aposentada não exige atributos apagados');
     $manager=request('/carreiras');verify($manager['status']===200 && str_contains($manager['body'],'Minhas carreiras'),'Gerenciar carreiras pelo site');
     $confirmation=request('/carreira/excluir?career='.$state['id']);verify($confirmation['status']===200 && str_contains($confirmation['body'],'Excluir permanentemente'),'Confirmação explícita de exclusão');
     $deleteTokens=tokens($confirmation['body'],'/carreira/excluir');

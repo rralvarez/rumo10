@@ -3,6 +3,12 @@ declare(strict_types=1);
 final class CareerStats {
     /** Históricos concluídos + temporada atual exatamente uma vez. */
     public static function collect(array $g):array {
+        if(isset($g['retired_summary'])){
+            $data=$g['retired_summary']['statistics'];$keys=['games'=>0,'goals'=>0,'assists'=>0,'minutes'=>0];
+            $data['totals']=array_replace($keys,$data['totals']);
+            $data['clubs']=array_map(fn($r)=>['club'=>$r['club']]+array_replace($keys,array_intersect_key($r,$keys)),$data['clubs']);
+            $data['seasons']=array_map(fn($r)=>['club'=>$r['club'],'season'=>$r['season'],'current'=>false]+array_replace($keys,array_intersect_key($r,$keys)),$data['seasons']);return $data;
+        }
         $rows=[];$clubs=[];$total=['games'=>0,'goals'=>0,'assists'=>0,'minutes'=>0];
         foreach($g['history']??[] as $h)$rows[]=['club'=>$h['club'],'season'=>$h['season'],'current'=>false]+array_intersect_key($h,$total);
         if(empty($g['starting']))$rows[]=['club'=>$g['club'],'season'=>$g['season'],'current'=>$g['stage']!=='aposentado']+array_intersect_key(Game::summary($g),$total);
