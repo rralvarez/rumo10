@@ -4,7 +4,7 @@ Alternativa escolhida ao SSH: GitHub Actions com FTPS explícito (FTP + TLS), ce
 
 ## Contas e destinos
 
-As contas `rumo10git@rumoacamisa10.com.br` e `rumohubgit@rumohub.rumoacamisa10.com.br` têm diretório `/home/rumoacame144a99e`. Nesse FTP, `/` corresponde à pasta da conta; caminhos enviados pelo workflow são relativos a ela. As senhas fornecidas foram guardadas fora do Git, em arquivo local com ACL restrita ao usuário. Ainda precisam ser cadastradas como Secrets no GitHub; não estão no código nem no SQL.
+As contas `rumo10git@rumoacamisa10.com.br` e `rumohubgit@rumohub.rumoacamisa10.com.br` têm diretório `/home/rumoacame144a99e`. Nesse FTP, `/` corresponde à pasta da conta; caminhos enviados pelo workflow são relativos a ela. As senhas fornecidas foram guardadas fora do Git, em arquivo local com ACL restrita ao usuário. Após autorização explícita, os Secrets UOL_FTP_USERNAME/UOL_FTP_PASSWORD foram cadastrados e conferidos nos respectivos GitHubs. UOL_DEPLOY_ENABLED=false nos dois projetos; senhas não estão no código nem no SQL.
 
 | Projeto | Código privado | Raiz pública |
 |---|---|---|
@@ -35,7 +35,7 @@ Preparar manualmente pelo Gerenciador de Arquivos/FTPS:
 - `apps/rumohub/current/.env` e `apps/rumo10/current/.env`, usando os exemplos `deploy/production.env.example`, com banco/usuário/senha **de produção**. `APP_ENV=production`, URLs HTTPS e Hub habilitado no jogo. Nunca enviar `.env` ao GitHub.
 - `apps/rumohub/current/storage/private/clients.php`, com cliente `rumo10`, segredo hexadecimal aleatório de 64 caracteres, escopos `catalog.read`, `squads.read`, `media.read`, enabled true e **IP(s) de saída reais do PHP do jogo**, confirmados no ambiente. Mesmo segredo no `.env` privado do Rumo10. Autenticação/IP não será afrouxada para facilitar a publicação.
 - Pastas `storage/logs`, `storage/sessions`, `storage/private` em ambos e `storage/hub-cache` no jogo, com escrita para o PHP e acesso mínimo necessário; não 0777.
-- Revisar/guardar fora da raiz pública a página inicial padrão da hospedagem e seu .htaccess. O deploy recusa sobrescrever index.php sem sua marca e regras Apache divergentes. Preservar os blocos PHP gerados pelo cPanel em uma configuração revisada; não excluir sem entender o handler. TLS, mod_rewrite e leitura de apps/ precisam funcionar antes da liberação.
+- Revisar/guardar fora da raiz pública a página inicial padrão da hospedagem e seu .htaccess. O deploy recusa sobrescrever index.php sem sua marca e regras Apache não gerenciadas. Blocos de configuração PHP/handler delimitados pelos marcadores oficiais do cPanel são conservados junto às regras do projeto, sem duplicação. TLS, mod_rewrite e leitura de apps/ precisam funcionar antes da liberação. Antes de qualquer alteração pública, o script verifica DNS e certificado HTTPS do domínio; erro nessa etapa impede a publicação, sem ignorar a validação TLS.
 
 Para criar o administrador inicial **sem SSH**, executar localmente no Hub `php bin/prepare-admin-offline.php`. Importar o SQL privado gerado `storage/private/configurar-admin-producao.sql` no banco de produção. Depois abrir localmente `configurar-admin-producao.html` e seguir o link HTTPS para escolher a senha no Hub. Link único de 24 horas; administrador ativo impede novo cadastro inicial. Esses arquivos não são versionados e nunca vão para a raiz pública. Não gerar o link dias antes da instalação.
 
@@ -59,3 +59,11 @@ Primeira execução: Actions → Publicação UOL por FTPS → Run workflow. Dep
 Scripts: `bin/deploy-ftps.py` (Python 3.11+), `bin/build-release.php` e smoke GET HTTPS. Passaram os quatro testes de `tests/ftps-deployment.py`: preservação de configuração, manutenção em falha e recusa de sites PHP/HTML não gerenciados. Passaram os manifestos/hashes dos pacotes finais (1.877 arquivos do jogo, 2.360 do Hub), os dry-runs FTPS e a restauração integral do SQL no banco descartável, incluindo a idempotência do preparo de administrador offline. Esses testes não substituem upload, PHP/Apache, integração API e banco na UOL.
 
 Fontes: [cPanel — FTP com TLS](https://support.cpanel.net/hc/en-us/articles/4413517293719-Use-Web-Disk-or-FTPES-FTP-SSL-to-provide-secure-access-for-file-upload-management-without-sharing-cPanel-login-information), [Python FTP_TLS](https://docs.python.org/3/library/ftplib.html#ftplib.FTP_TLS).
+
+## Preparação efetiva na UOL — 14/10/2026
+
+- Usuário informou conclusão da importação inicial no phpMyAdmin (659 consultas) e concessão de SELECT/INSERT/UPDATE/DELETE ao usuário do banco `rumoacame144a99e_rumohub`. A conexão pelo PHP de produção ainda não foi validada; DB_HOST=localhost é o valor inicial a conferir.
+- Feito inventário e backup local das regras iniciais; os dois .htaccess continham somente diretivas PHP geradas pelo cPanel. A preservação/republicação desses blocos foi testada, assim como o bloqueio de publicação com certificado inválido: seis testes FTP simulados passaram.
+- Preparadas/enviadas por FTPS as configurações privadas para `apps/<projeto>/current/.env` e `apps/rumohub/current/storage/private/clients.php`, com permissão 0600. Nenhum arquivo público do aplicativo foi enviado. Cliente API permanece desativado e sem IPs autorizados até verificar a origem real das requisições do PHP; não foi afrouxada a autenticação.
+- DNS autoritativo da UOL: ns1.cpuh21.hospedagemuolhost.com.br / ns2.cpuh21.hospedagemuolhost.com.br. Domínio, www e rumohub respondem com 186.234.81.62 (www via CNAME para o domínio); houve cache antigo em um resolvedor público durante a mudança.
+- As verificações HTTPS dos três nomes ainda encontraram certificado autoassinado. Solicitar/rodar AutoSSL no cPanel, conferir novamente certificados e DNS, só depois publicar Hub e jogo. Não considerar testes FTPS como teste HTTPS, Apache, PHP ou da API em produção.

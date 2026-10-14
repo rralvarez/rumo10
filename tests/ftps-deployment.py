@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import runpy
 import sys
+import ssl
 import tarfile
 import tempfile
 import unittest
@@ -64,7 +65,7 @@ class DeploymentTests(unittest.TestCase):
     def tearDown(self): self.tmp.cleanup()
 
     def deploy(self):
-        with patch.object(sys, "argv", ["deploy-ftps.py", str(self.archive), "rumo10"]), patch.dict(os.environ, {"UOL_FTP_HOST": "test.invalid", "UOL_FTP_USERNAME": "test", "UOL_FTP_PASSWORD": "fixture-only"}), patch("ftplib.FTP_TLS", return_value=self.ftp), contextlib.redirect_stdout(io.StringIO()):
+        with patch.object(sys, "argv", ["deploy-ftps.py", str(self.archive), "rumo10"]), patch.dict(os.environ, {"UOL_FTP_HOST": "test.invalid", "UOL_FTP_USERNAME": "test", "UOL_FTP_PASSWORD": "fixture-only"}), patch("ftplib.FTP_TLS", return_value=self.ftp), patch("socket.create_connection"), patch("ssl.SSLContext.wrap_socket", side_effect=getattr(self, "tls_error", None)), contextlib.redirect_stdout(io.StringIO()):
             runpy.run_path(str(ROOT / "bin/deploy-ftps.py"), run_name="__main__")
 
     def test_preserves_private_configuration_and_only_deletes_owned_lock(self):
@@ -91,6 +92,21 @@ class DeploymentTests(unittest.TestCase):
         self.ftp.files["public_html/index.html"] = b"existing HTML website"
         previous = dict(self.ftp.files)
         with self.assertRaises(SystemExit): self.deploy()
+        self.assertEqual(self.ftp.files, previous)
+
+    def test_preserves_cpanel_generated_php_configuration(self):
+        block = b'# BEGIN cPanel-generated php ini directives, do not edit\n<IfModule php8_module>\n php_flag log_errors On\n</IfModule>\n# END cPanel-generated php ini directives, do not edit\n'
+        self.ftp.files['public_html/.htaccess'] = block
+        self.deploy()
+        self.assertIn(block.rstrip(), self.ftp.files['public_html/.htaccess'])
+        self.assertIn(b'RewriteEngine On', self.ftp.files['public_html/.htaccess'])
+        self.deploy()
+        self.assertEqual(self.ftp.files['public_html/.htaccess'].count(b'# BEGIN cPanel-generated'), 1)
+
+    def test_invalid_https_certificate_stops_before_remote_changes(self):
+        self.tls_error = ssl.SSLCertVerificationError('fixture-invalid-certificate')
+        previous = dict(self.ftp.files)
+        with self.assertRaises(ssl.SSLCertVerificationError): self.deploy()
         self.assertEqual(self.ftp.files, previous)
 
 

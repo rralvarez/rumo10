@@ -7,6 +7,7 @@ import json
 import os
 import re
 import ssl
+import socket
 import tarfile
 
 parser = argparse.ArgumentParser()
@@ -58,6 +59,12 @@ with tarfile.open(args.archive, "r:gz") as archive:
     port = int(os.environ.get("UOL_FTP_PORT") or "21")
     if not host or not user or not password:
         raise SystemExit("Configure servidor e credenciais FTPS nos Secrets do GitHub.")
+    # Não tocar na publicação enquanto o domínio ainda tem DNS/TLS inválido.
+    web_host = "www.rumoacamisa10.com.br" if args.project == "rumo10" else "rumohub.rumoacamisa10.com.br"
+    context = ssl.create_default_context()
+    with socket.create_connection((web_host, 443), timeout=20) as connection:
+        with context.wrap_socket(connection, server_hostname=web_host):
+            pass
     with ftplib.FTP_TLS(context=ssl.create_default_context(), timeout=30) as ftp:
         ftp.connect(host, port)
         ftp.auth()
@@ -88,8 +95,17 @@ with tarfile.open(args.archive, "r:gz") as archive:
             raise SystemExit("Página HTML inicial existente. Faça backup/revisão manual antes de publicar.")
         if old_index is not None and b"RUMO_FTPS_BRIDGE_V1" not in old_index:
             raise SystemExit("Index público existente não é desta implantação. Faça backup/revisão manual.")
-        if old_rules is not None and old_rules != htaccess:
-            raise SystemExit(".htaccess existente diverge. Preserve/revise handlers PHP antes do deploy.")
+        if old_rules is not None:
+            text = old_rules.decode("utf-8-sig").replace("\r\n", "\n")
+            pattern = r"(?ms)^# BEGIN cPanel-generated php ini directives[^\n]*\n.*?^# END cPanel-generated php ini directives[^\n]*$|^# php -- BEGIN cPanel-generated handler[^\n]*\n.*?^# php -- END cPanel-generated handler[^\n]*$"
+            blocks = re.findall(pattern, text)
+            remaining = re.sub(pattern, "", text).strip()
+            expected = htaccess.decode("utf-8-sig").replace("\r\n", "\n").strip()
+            if remaining and remaining != expected:
+                raise SystemExit("Regras Apache não gerenciadas encontradas. Faça backup/revisão manual.")
+            if blocks:
+                # Preserve os blocos efetivamente gerados pelo painel, inclusive seleção de PHP.
+                htaccess = (expected + "\n\n" + "\n\n".join(blocks) + "\n").encode("utf-8")
         created = set()
 
         def ensure_directory(path):
