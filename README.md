@@ -1,5 +1,7 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
+**Publicação por FTPS (sem SSH):** [SQL inicial único, destinos privados e Actions](Docs/34_Publicacao_FTPS_e_SQL_Inicial.md). As duas contas FTP autenticaram por TLS; nenhum arquivo foi enviado à UOL. SQL sanitizado disponível no repositório RumoHub; automação depende da configuração inicial e habilitação explícita.
+
 **Preparação UOL Host/cPanel:** [layout privado, catálogo sem contas locais, GitHub Actions e validação](Docs/33_Publicacao_UOL_Host.md). Workflow de publicação desativado até configurar e validar SSH. O IIS local permanece inalterado; produção ainda não publicada/testada.
 
 **Textos em português brasileiro:** revisão das 214 situações e 856 alternativas, com escolhas mais claras e termos de futebol mais naturais. [Alterações e verificação](Docs/24_Revisao_dos_Textos_ptBR.md).

@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   deploy:
-    if: vars.UOL_DEPLOY_ENABLED == 'true'
+    if: vars.UOL_DEPLOY_ENABLED == 'true' && vars.UOL_DEPLOY_METHOD == 'ssh'
     runs-on: ubuntu-24.04
     environment: production
     steps:

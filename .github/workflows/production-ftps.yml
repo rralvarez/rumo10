@@ -1,0 +1,33 @@
+name: Publicação UOL por FTPS
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: vars.UOL_DEPLOY_ENABLED == 'true' && vars.UOL_DEPLOY_METHOD == 'ftps'
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Verificar e preparar código
+        run: |
+          find app bin database public -name '*.php' -print0 | xargs -0 -n 1 php -l > /dev/null
+          php -d memory_limit=512M bin/build-release.php "$RUNNER_TEMP/release.tar"
+          php -d memory_limit=512M tests/deployment-package.php "$RUNNER_TEMP/release.tar.gz"
+          python3 bin/deploy-ftps.py "$RUNNER_TEMP/release.tar.gz" rumo10 --dry-run
+          python3 tests/ftps-deployment.py
+      - name: Publicar por FTPS com TLS validado
+        env:
+          UOL_FTP_HOST: ${{ vars.UOL_FTP_HOST }}
+          UOL_FTP_PORT: ${{ vars.UOL_FTP_PORT }}
+          UOL_FTP_USERNAME: ${{ secrets.UOL_FTP_USERNAME }}
+          UOL_FTP_PASSWORD: ${{ secrets.UOL_FTP_PASSWORD }}
+        run: python3 bin/deploy-ftps.py "$RUNNER_TEMP/release.tar.gz" rumo10
+      - name: Conferir HTTPS público
+        run: php bin/production-smoke.php https://www.rumoacamisa10.com.br rumo10

@@ -1,5 +1,7 @@
 # Publicação UOL Host / cPanel — preparação em 14/10/2026
 
+**Alternativa atual escolhida: [FTPS e SQL inicial sem SSH](34_Publicacao_FTPS_e_SQL_Inicial.md).** Este documento conserva o procedimento SSH opcional. Para executá-lo, definir UOL_DEPLOY_METHOD=ssh; FTPS usa método=ftps.
+
 Base: código, README e documentação atuais dos dois projetos. O IIS local mantém suas raízes `public/`, `.env`, banco e bindings. Esta preparação não publicou sites na UOL nem ativou o workflow.
 
 ## Atualização pelo GitHub

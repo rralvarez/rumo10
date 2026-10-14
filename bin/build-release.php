@@ -15,6 +15,7 @@ foreach(explode("\0",$list) as $path){
  if(!preg_match('#^(app|bin|database|public|deploy)/#',$path) && !($project==='rumohub' && str_starts_with($path,'storage/media/')))continue;
  // Escudos legados do jogo continuam privados no pacote e não são publicados por assets.
  if(str_starts_with($path,'public/assets/clubs/') || $path==='public/web.config' || str_ends_with($path,'.example'))continue;
+ if(str_starts_with($path,'database/production/'))continue; // SQL manual nunca é enviado pelo deploy.
  if(str_contains($path,'..') || is_link($root.'/'.$path) || !is_file($root.'/'.$path))throw new RuntimeException('Arquivo versionado inválido.');
  $files[$path]=$root.'/'.$path;$manifest[$path]=hash_file('sha256',$root.'/'.$path);
 }
