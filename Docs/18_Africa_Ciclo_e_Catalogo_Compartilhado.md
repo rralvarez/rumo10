@@ -2,7 +2,7 @@
 
 ## Cobertura em 13/10/2026
 
-Foram adicionados **188 clubes em 24 mercados**, sendo **20 africanos**: África do Sul, Nigéria, Gana, Quênia, Marrocos, Egito, Argélia, Tunísia, Tanzânia, RD Congo, Angola, Costa do Marfim, Zâmbia, Uganda, Ruanda, Camarões, Senegal, Mali, Etiópia e Líbia. Esta primeira etapa **não cobre todas as 54 federações da CAF**. A pergunta sobre ampliar a todas as federações foi enviada durante o trabalho; enquanto sem resposta, adotou-se a opção de principais mercados.
+Foram adicionados **188 clubes em 24 mercados**, sendo **20 africanos**: África do Sul, Nigéria, Gana, Quênia, Marrocos, Egito, Argélia, Tunísia, Tanzânia, RD Congo, Angola, Costa do Marfim, Zâmbia, Uganda, Ruanda, Camarões, Senegal, Mali, Etiópia e Líbia. O usuário confirmou o escopo de **principais mercados e clubes da CAF**. Esta etapa **não cobre todas as 54 federações** nem todos os participantes das copas continentais.
 
 Chile, Peru e Venezuela completam os dez países da CONMEBOL. Guiana foi incluída como circuito; Suriname já estava cadastrado na etapa Concacaf. Portanto os **12 países independentes da América do Sul** têm clubes no universo. Guiana Francesa e outros territórios não são países independentes e não foram acrescentados. “Todos” refere-se aqui a países, não a todos os clubes de todas as divisões do continente.
 
