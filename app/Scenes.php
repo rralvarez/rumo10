@@ -50,10 +50,14 @@ final class Scenes {
     public static function current(array $g): ?array {
         $active=$g['active_situation']??null;if(!$active || $active['key']!==self::key($g))return null;
         $s=self::catalog()[$active['id']];
+        static $failures;$failures??=require dirname(__DIR__).'/database/scene-failures.php';
         if(isset($s['legacy'])) {
             $legacy=$s['legacy'];$options=[];
-            foreach($legacy[2] as $i=>$o)$options[]=['text'=>$o[0],'effects'=>$o[1],'action'=>match($s['id']){7=>['chute','passe','drible','social'][$i],9=>['drible','social','social','desarme'][$i],1=>$i===1?'chute':'social',2=>'passe',default=>'social'}];
-        } else $options=array_map(fn($o)=>self::option($o,$s['stage']),$s['options']);
+            foreach($legacy[2] as $i=>$o)$options[]=['text'=>$o[0],'effects'=>$o[1],'failure_text'=>$failures[$s['id']][$i],'action'=>match($s['id']){7=>['chute','passe','drible','social'][$i],9=>['drible','social','social','desarme'][$i],1=>$i===1?'chute':'social',2=>'passe',default=>'social'}];
+        } else {
+            $options=[];
+            foreach($s['options'] as $i=>$o){$o['failure_text']??=$failures[$s['id']][$i]??null;$options[]=self::option($o,$s['stage']);}
+        }
         return ['id'=>$s['id'],'text'=>$s['text'],'options'=>$options,'bench'=>(bool)($s['bench']??($s['id']===6))];
     }
     private static function option(array $o,string $stage): array {
@@ -74,6 +78,29 @@ final class Scenes {
         $effects=$o['effects']??$effects;
         if($stage==='partida' && in_array($action,['passe','chute','drible','desarme'],true))$effects=[];
         $success=$o['success_text']??match($o['code']){'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua iniciativa foi bem recebida.','liderar'=>'Sua iniciativa ajuda a organizar a situação.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem foi bem recebida.','lazer'=>'Você consegue relaxar um pouco.',default=>'Você consegue fazer o que planejou.'};
-        return ['text'=>$o['text'],'action'=>$action,'effects'=>$effects,'success_text'=>$success,'failure_text'=>$o['failure_text']??'A tentativa não sai como você esperava.'];
+        $failure=$o['failure_text']??match($o['code']) {
+            'passe'=>$stage==='partida'?'Você erra a direção do passe e a bola não chega ao companheiro.':'Você erra a força dos passes e não consegue repetir o movimento com precisão.',
+            'chute'=>$stage==='partida'?'Você pega mal na bola e o chute sai sem a precisão que precisava.':'Os chutes saem imprecisos e você termina o exercício sem acertar o movimento.',
+            'drible'=>$stage==='partida'?'O marcador acompanha seu movimento e fecha o caminho do drible.':'Você perde o controle da bola nas mudanças de direção e não acerta a sequência.',
+            'desarme'=>$stage==='partida'?'Você chega atrasado no bote e não consegue tirar a bola do adversário.':'Você erra o tempo do bote e não consegue antecipar a bola no exercício.',
+            'tecnica'=>'Você não ajusta o toque na bola e continua errando o movimento.',
+            'tatico'=>'Você termina a análise sem entender como aplicar o ajuste na próxima jogada.',
+            'posicionamento'=>'Você erra a distância que precisava manter e não consegue ocupar o espaço a tempo.',
+            'visao'=>'Você não identifica o detalhe que precisava observar para decidir melhor.',
+            'forca'=>'Você perde a postura durante o exercício e não consegue trabalhar a força como planejou.',
+            'resistencia'=>'Você se cansa antes de manter a intensidade prevista para a atividade.',
+            'velocidade'=>'Você perde o ritmo nas arrancadas e não consegue sustentar a velocidade.',
+            'recuperar'=>'Você termina a pausa ainda cansado, sem a sensação de recuperação que buscava.',
+            'apoio'=>'Sua tentativa de ajudar não esclarece o que a outra pessoa precisava, e a conversa termina sem resolver isso.',
+            'liderar'=>'Você não consegue explicar sua orientação com clareza, e o grupo fica sem saber como seguir.',
+            'disciplina'=>'Você se distrai e termina sem organizar o que precisava fazer. Isso abala sua confiança.',
+            'imprensa'=>'Sua mensagem dá margem a outra interpretação e não esclarece o que você queria dizer.',
+            'lazer'=>'Você continua pensando nos compromissos e não consegue relaxar durante a folga.',
+            'ousar'=>'Você se precipita e não consegue executar o que tinha em mente. A tentativa abala sua confiança.',
+            'reclamar'=>'A reclamação não muda a situação e a conversa termina mais tensa.',
+            'social'=>$stage==='partida'?'Você hesita ao ajustar a movimentação e a marcação fecha o espaço que pretendia usar.':'Você não consegue explicar sua ideia com clareza, e a conversa termina sem um acordo.',
+            default=>throw new LogicException('Alternativa sem resposta de falha.'),
+        };
+        return ['text'=>$o['text'],'action'=>$action,'effects'=>$effects,'success_text'=>$success,'failure_text'=>$failure];
     }
 }
