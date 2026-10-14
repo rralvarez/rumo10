@@ -18,6 +18,7 @@ final class Game {
         throw new LogicException('Partida não encontrada.');
     }
     public static function situation(array $g): ?array {
+        if($chance=MatchMomentum::situation($g))return $chance;
         if($scene=Scenes::current($g))return $scene;
         $all=require dirname(__DIR__).'/database/situations.php'; $r=$g['round'];
         $id=match($g['stage']) {
@@ -48,10 +49,11 @@ final class Game {
         return [];
     }
     public static function chance(array $g,array $o): float {
-        $type=$o['action']; $d=['social'=>42,'passe'=>43,'chute'=>65,'drible'=>60,'desarme'=>53][$type];
+        $type=$o['action']; $d=$o['difficulty']??['social'=>42,'passe'=>43,'chute'=>65,'drible'=>60,'desarme'=>53][$type];
         $opponent=50;
         if($g['stage']==='partida'){$m=$g['matches'][self::currentIndex($g)];$side=$m['home']===$g['club']?'away':'home';$opponent=$m[$side.'_overall']??TeamStrength::rating($m[$side],$g);}
-        return Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
+        $chance=Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
+        return !empty($o['clear_chance'])?round(min(90,$chance+$o['chance_bonus']),2):$chance;
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false): array {
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
@@ -158,13 +160,14 @@ final class Game {
     }
     private static function fieldDecision(array &$g,array $o,array $roll,int $sid,int $choice): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
-        $type=$o['action']; $onBall=$sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139);
+        $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
-            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if(random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
-            if($type==='chute') { $st['shots']++; if($roll['success'] && random_int(1,100)<=60) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
+            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if($clearChance || random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
+            if($type==='chute') { $st['shots']++; if($roll['success'] && ($clearChance || random_int(1,100)<=60)) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($type==='drible' && $roll['success']) foreach(self::effects(['drible'=>2],$roll,$g) as $k=>$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
+            if($clearChance && $type==='drible' && $roll['success']){$st['shots']++;$st['goals']++;$m[$own]++;$g['feedback']['highlight']='goal';$text.=' Gol do seu jogador!';}
             // Simulação e agressão podem gerar falta/cartão; nunca dão gol automático.
             if($sid===7 && $choice===3) { $st['fouls']++; $st['cards']++; $text.=' O árbitro pune a simulação com cartão.'; }
         }
@@ -174,7 +177,12 @@ final class Game {
         if($st['cards']>=2) { $m['exit']=$m['minute']; $text.=' Expulso: segundo cartão.'; }
         elseif(random_int(1,1000)<=$g['states']['risco_lesao']) { $m['exit']=$m['minute']; $text.=' Lesão: você deixa o campo.';$before=$g['skills']['resistencia']['value'];$g['skills']['resistencia']['value']=max(0,$before-1);$g['feedback']['effects']['resistencia']=($g['feedback']['effects']['resistencia']??0)+$g['skills']['resistencia']['value']-$before; }
         elseif($g['states']['energia']<15) { $m['exit']=$m['minute']; $text.=' Substituído por desgaste.'; }
-        $g['feedback']['text']=$text; foreach($beforeStates as $k=>$v) if($g['states'][$k]!==$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$g['states'][$k]-$v; $m['log'][]=['minute'=>$m['minute'],'text'=>$text]; self::nextSegment($g);
+        $constructive=$onBall && in_array($type,['passe','drible','desarme','social'],true) && !($sid===7 && $choice===3);
+        $created=MatchMomentum::record($m,$roll['success'],$constructive,isset($g['feedback']['highlight']));
+        if($m['minute']>=$m['exit']){MatchMomentum::reset($m);$created=false;}
+        if($created)$text.=' A sequência abriu a defesa: você tem uma chance clara de gol!';
+        $g['feedback']['text']=$text; foreach($beforeStates as $k=>$v) if($g['states'][$k]!==$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$g['states'][$k]-$v; $m['log'][]=['minute'=>$m['minute'],'text'=>$text];
+        if(!$created)self::nextSegment($g);
     }
     private static function nextSegment(array &$g): void {
         $m=$g['matches'][self::currentIndex($g)]; $next=match($m['minute']) {15=>35,35=>45,60=>70,70=>80,80=>90,default=>90};
@@ -191,6 +199,7 @@ final class Game {
         $m['minute']=$next; $m['log'][]=['minute'=>$next,'text'=>'Placar: '.$m['hg'].' × '.$m['ag'].'.'];
         if($next===45) $m['status']='intervalo';
         if($next===90) {
+            MatchMomentum::reset($m);
             $m['status']='finalizada'; $m['stats']['minutes']=max(0,$m['exit']-$m['entry']);
             $s=&$m['stats']; $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
             $s['rating']=$s['minutes']===0?0:round(max(0,min(10,6+$s['goals']*.7+$s['assists']*.5+$s['tackles']*($def?.35:.15)+$s['completed']*.1-($s['passes']-$s['completed'])*.15-$s['cards']*.6)),1);

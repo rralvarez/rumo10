@@ -161,3 +161,5 @@ A versão 0.5 está detalhada em [Docs/12_Situacoes_Overall_e_Mercosul.md](Docs/
 A ficha gráfica do personagem está em **/jogador**: clique no nome na tela de carreira ou em Habilidades e evolução. Mostra nível técnico, condição física, desempenho da temporada e progresso de XP, com detalhes recolhidos para celular. Consultar a ficha não modifica o jogo.
 
 Logo, favicon, interface responsiva e resultados da revisão de 14/10/2026: [Identidade visual e verificação](Docs/26_Identidade_Visual_e_Verificacao.md). Os assets estão em `public/assets/brand/`; `php tests/brand.php http://rumo10.local` verifica a instalação no IIS.
+
+Duas boas ações seguidas com bola podem abrir uma chance clara de gol, nos três modos: [mecânica, probabilidades e testes](Docs/28_Chances_Construidas.md). A oportunidade funciona nas carreiras existentes; não exige migração.

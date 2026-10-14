@@ -13,7 +13,8 @@ foreach(Rules::POSITIONS as $position)foreach(array_keys(PlayMode::PLANS) as $pl
     $g=Game::command($g,'simulate',['plan'=>$plan]);
     modeCheck($g['round']===2 && $g['stage']==='treino','Rápido resolve só uma partida');
     modeCheck($g['version']===$v+1 && count($g['pace_report']['matches'])===1,'Uma versão por comando');
-    modeCheck($g['pace_report']['decisions']>=3 && $g['pace_report']['decisions']<=8,'Mesma quantidade de oportunidades por partida');
+    $clearChances=count(array_filter($g['pace_report']['matches'][0]['log'],fn($event)=>str_contains($event['text'],'A sequência abriu a defesa')));
+    modeCheck($clearChances<=2 && $g['pace_report']['decisions']>=3 && $g['pace_report']['decisions']<=8+$clearChances,'Oportunidades regulares e até duas chances construídas por partida');
     $played=$g['matches'];$skills=$g['skills'];
     $g=Game::command($g,'mode',['mode'=>'normal']);
     modeCheck($g['matches']===$played && $g['skills']===$skills,'Troca conserva campanha');

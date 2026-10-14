@@ -77,7 +77,12 @@ final class Scenes {
         [$action,$effects]=$presets[$o['code']]??throw new LogicException('Alternativa sem mecânica.');
         $effects=$o['effects']??$effects;
         if($stage==='partida' && in_array($action,['passe','chute','drible','desarme'],true))$effects=[];
-        $success=$o['success_text']??match($o['code']){'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua iniciativa foi bem recebida.','liderar'=>'Sua iniciativa ajuda a organizar a situação.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem foi bem recebida.','lazer'=>'Você consegue relaxar um pouco.',default=>'Você consegue fazer o que planejou.'};
+        $success=$o['success_text']??match($o['code']){
+            'passe'=>$stage==='partida'?($o['text']==='Pedir a tabela'?'Você toca para o companheiro, recebe a devolução e ganha espaço à frente.':'Seu passe chega ao companheiro e mantém a jogada em movimento.'):'Você acerta a força e a direção dos passes no exercício.',
+            'chute'=>$stage==='partida'?'Você acerta o movimento e consegue finalizar.':'Você acerta o movimento e melhora a precisão dos chutes.',
+            'drible'=>$stage==='partida'?'Você passa pelo marcador e ganha espaço para continuar a jogada.':'Você mantém o controle da bola nas mudanças de direção.',
+            'desarme'=>$stage==='partida'?'Você acerta o tempo do bote e recupera a bola.':'Você chega à bola no momento certo durante o exercício.',
+            'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua iniciativa foi bem recebida.','liderar'=>'Sua iniciativa ajuda a organizar a situação.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem foi bem recebida.','lazer'=>'Você consegue relaxar um pouco.',default=>'Você consegue fazer o que planejou.'};
         $failure=$o['failure_text']??match($o['code']) {
             'passe'=>$stage==='partida'?'Você erra a direção do passe e a bola não chega ao companheiro.':'Você erra a força dos passes e não consegue repetir o movimento com precisão.',
             'chute'=>$stage==='partida'?'Você pega mal na bola e o chute sai sem a precisão que precisava.':'Os chutes saem imprecisos e você termina o exercício sem acertar o movimento.',

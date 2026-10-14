@@ -5,4 +5,4 @@ if(preg_match('#^(/assets/(brand/)?[\w.-]+\.(css|js|svg|png)|/favicon\.(ico|svg)
 if($_SERVER['REQUEST_METHOD']!=='GET'){http_response_code(405);exit;}
 define('RUMO10_PREVIEW',true);
 require __DIR__.'/presentation.php';
-echo renderSample($path==='/fim-semana');
+echo renderSample($path==='/fim-semana',$path==='/chance-clara');

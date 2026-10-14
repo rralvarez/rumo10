@@ -12,8 +12,9 @@ function sampleGame(bool $finished=false): array {
     } unset($match);
     $g['feedback']=['chance'=>62.5,'roll'=>1234,'success'=>true,'class'=>'sucesso','highlight'=>'goal','text'=>'O chute entrou. Gol do seu jogador!','effects'=>['confianca'=>5]]; return $g;
 }
-function renderSample(bool $finished=false): string {
+function renderSample(bool $finished=false,bool $clearChance=false): string {
     $g=sampleGame($finished); $path='/carreira'; $error=null; $_SESSION=['account'=>0,'csrf'=>'preview'];
+    if($clearChance){$g['matches'][Game::currentIndex($g)]['clear_chance']=true;$g['feedback']=['success'=>true,'class'=>'sucesso','text'=>'A tabela deu certo e abriu a defesa: você tem uma chance clara de gol!','effects'=>['energia'=>-3]];}
     if(!function_exists('form')) { function form(string $path,?array $g=null): void { echo '<form method="post" action="'.e($path).'">'; } }
     ob_start(); require dirname(__DIR__).'/app/view.php'; return ob_get_clean();
 }
@@ -52,5 +53,8 @@ foreach(['treino','pre_jogo'] as $stage){
 }
 if(!str_contains($finished,'data-stat="season-goals">4') || !str_contains($finished,'<details open>')) throw new RuntimeException('Histórico pós-jogo incorreto.');
 if(!str_contains($finished,'Rádio do jogo')) throw new RuntimeException('Pós-jogo sem rádio');
+$clear=renderSample(false,true);
+foreach(['Chance clara!','sucesso significa gol ou assistência','Chance de gol:','Chance de assistência:'] as $text)if(!str_contains($clear,$text))throw new RuntimeException('Chance clara sem informação: '.$text);
+if(str_contains($clear,'não garante gol.') || substr_count($clear,'name="option"')!==4)throw new RuntimeException('Chance clara deve ter quatro escolhas e explicar a conversão direta.');
 if(strpos($finished,'Seus gols no campeonato')<strpos($finished,'Ex-treinador')) throw new RuntimeException('Decisão deve preceder o histórico detalhado.');
 echo "OK: estatísticas ao vivo, histórico por rodada, totais finalizados, resultado verde/vermelho e escaping.\n";
