@@ -164,7 +164,7 @@ final class Game {
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
             if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if($clearChance || random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
-            if($type==='chute') { $st['shots']++; if($roll['success'] && ($clearChance || random_int(1,100)<=60)) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
+            if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($type==='drible' && $roll['success']) foreach(self::effects(['drible'=>2],$roll,$g) as $k=>$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
             if($clearChance && $type==='drible' && $roll['success']){$st['shots']++;$st['goals']++;$m[$own]++;$g['feedback']['highlight']='goal';$text.=' Gol do seu jogador!';}

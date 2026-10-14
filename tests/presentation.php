@@ -30,7 +30,8 @@ if(str_contains($html,'/10000') || str_contains($html,'oportunidade como')) thro
 preg_match_all('/<button class="choice"[^>]*>(.*?)<\/button>/s',$html,$choices);
 foreach($choices[1] as $i=>$choice) {
     $expected=number_format(Game::chance($g,Game::choices($g)[$i]),2,',','');
-    if(!str_contains($choice,'Chance de sucesso: '.$expected.'%') || str_contains($choice,'XP ')) throw new RuntimeException('Chance exibida deve corresponder ao motor, sem atributos previstos.');
+    $outcome=Game::choices($g)[$i]['action']==='chute'?'gol':'sucesso';
+    if(!str_contains($choice,'Chance de '.$outcome.': '.$expected.'%') || str_contains($choice,'XP ')) throw new RuntimeException('Chance exibida deve corresponder ao motor e identificar chute como gol, sem atributos previstos.');
 }
 $g['feedback']['success']=false; $g['feedback']['class']='falha'; $g['feedback']['highlight']=null; $g['feedback']['text']='<script>alert(1)</script>';
 ob_start(); Presentation::feedback($g); $failure=ob_get_clean();
