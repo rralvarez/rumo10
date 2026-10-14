@@ -25,6 +25,8 @@ final class Repository {
     public function create(int $account,array $g,bool $replace=false): void {
         $this->db->beginTransaction(); try {
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
+            $quota=CareerSlots::quota($this,$account);
+            if($quota['used']>=$quota['limit'])throw new InvalidArgumentException('Limite de '.$quota['limit'].' carreiras atingido. Abra Minhas carreiras e exclua uma para criar outra.');
             $old=$this->load($account,true);
             if($old && !$replace) throw new InvalidArgumentException('Você já tem uma carreira.');
             if($old) $this->archive($account,$old['id']);

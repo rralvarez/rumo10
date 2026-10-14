@@ -115,6 +115,13 @@ try {
     verify($page['status']===200 && $state['stage']==='aposentado' && $state['retirement']['reason']==='voluntary','Aposentadoria persistida pelo IIS');
     verify(CareerStats::collect($state)['totals']===$totals,'Aposentadoria mantém gols/assistências sem duplicação');
     request('/carreira/aposentar',$t+['confirm'=>'retire']);verify(json_decode(request('/api/carreira/estado')['body'],true)===$state,'Replay da aposentadoria não altera histórico');
+    $manager=request('/carreiras');verify($manager['status']===200 && str_contains($manager['body'],'Minhas carreiras'),'Gerenciar carreiras pelo site');
+    $confirmation=request('/carreira/excluir?career='.$state['id']);verify($confirmation['status']===200 && str_contains($confirmation['body'],'Excluir permanentemente'),'Confirmação explícita de exclusão');
+    $deleteTokens=tokens($confirmation['body'],'/carreira/excluir');
+    $invalid=request('/carreira/excluir',$deleteTokens+['career'=>$state['id']]);verify($invalid['status']===422 && json_decode(request('/api/carreira/estado')['body'],true)===$state,'Não exclui sem confirmação');
+    $invalid=request('/carreira/excluir',array_replace($deleteTokens,['career'=>'0','confirm'=>'delete']));verify($invalid['status']===422,'Não exclui ID não pertencente à conta');
+    $deleted=request('/carreira/excluir',$deleteTokens+['career'=>$state['id'],'confirm'=>'delete']);verify($deleted['status']===200 && str_contains($deleted['body'],'Minhas carreiras'),'Exclusão retorna à lista');
+    verify((int)$r->query('SELECT COUNT(*) FROM rumo10_universos WHERE carreira_id=?',[$state['id']])->fetchColumn()===0 && json_decode(request('/api/carreira/estado')['body'],true)===null,'Exclusão apaga universo e libera selecionada');
     echo "OK: $checks verificações HTTP em $base — conta, rodada, replay, refresh, tabela, logout/login e CSRF.\n";
 } finally {
     // Cleanup estritamente da conta descartável criada nesta execução.

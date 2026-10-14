@@ -28,3 +28,4 @@ try {
 } catch(Throwable $e) { if(isset($db) && $db->inTransaction()) $db->rollBack(); fwrite(STDERR,'Instalação não concluída. Código: '.$e->getCode().'. Confira conexão e privilégios locais; sem credenciais no log.'.PHP_EOL); exit(1); }
 
 require __DIR__.'/install-official.php';
+require __DIR__.'/install-career-limits.php';
