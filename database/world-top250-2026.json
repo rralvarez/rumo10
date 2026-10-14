@@ -1,0 +1,2259 @@
+{
+  "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+  "data_source": "https://dataviz.theanalyst.com/opta-power-rankings/",
+  "retrieved": "2026-10-14",
+  "ranking_date": null,
+  "criterion": "Primeiros 250 do ranking mundial masculino Opta no bundle público consultado; não é ranking FIFA.",
+  "clubs": [
+    {
+      "rank": 1,
+      "source_name": "Arsenal",
+      "club": "Arsenal-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "4dsgumo7d4zupm2ugsvm4zm4d",
+      "rating": 100.0
+    },
+    {
+      "rank": 2,
+      "source_name": "Manchester City",
+      "club": "Manchester City-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "a3nyxabgsqlnqfkeg41m6tnpp",
+      "rating": 99.3506371277
+    },
+    {
+      "rank": 3,
+      "source_name": "Bayern München",
+      "club": "Bayern Munich-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "apoawtpvac4zqlancmvw4nk4o",
+      "rating": 99.0101814516
+    },
+    {
+      "rank": 4,
+      "source_name": "Barcelona",
+      "club": "Barcelona-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "agh9ifb2mw3ivjusgedj7c3fe",
+      "rating": 97.6258811633
+    },
+    {
+      "rank": 5,
+      "source_name": "Paris Saint-Germain",
+      "club": "Paris Saint-Germain-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "2b3mar72yy8d6uvat1ka6tn3r",
+      "rating": 95.6016285955
+    },
+    {
+      "rank": 6,
+      "source_name": "Liverpool",
+      "club": "Liverpool-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "c8h9bw1l82s06h77xxrelzhur",
+      "rating": 95.2310250881
+    },
+    {
+      "rank": 7,
+      "source_name": "Brighton & Hove Albion",
+      "club": "Brighton & Hove Albion-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "e5p0ehyguld7egzhiedpdnc3w",
+      "rating": 95.1185552886
+    },
+    {
+      "rank": 8,
+      "source_name": "Real Madrid",
+      "club": "Real Madrid-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "3kq9cckrnlogidldtdie2fkbl",
+      "rating": 94.6776357425
+    },
+    {
+      "rank": 9,
+      "source_name": "Chelsea",
+      "club": "Chelsea-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "9q0arba2kbnywth8bkxlhgmdr",
+      "rating": 93.556720223
+    },
+    {
+      "rank": 10,
+      "source_name": "Aston Villa",
+      "club": "Aston Villa-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "b496gs285it6bheuikox6z9mj",
+      "rating": 93.4968207694
+    },
+    {
+      "rank": 11,
+      "source_name": "Manchester United",
+      "club": "Manchester United-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "6eqit8ye8aomdsrrq0hk3v7gh",
+      "rating": 93.1692580023
+    },
+    {
+      "rank": 12,
+      "source_name": "Internazionale",
+      "club": "Internazionale-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "3vo5mpj7catp66nrwwqiuhuup",
+      "rating": 92.9829544762
+    },
+    {
+      "rank": 13,
+      "source_name": "Brentford",
+      "club": "Brentford-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "7yx5dqhhphyvfisohikodajhv",
+      "rating": 92.8454706314
+    },
+    {
+      "rank": 14,
+      "source_name": "Everton",
+      "club": "Everton-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "ehd2iemqmschhj2ec0vayztzz",
+      "rating": 92.6556845456
+    },
+    {
+      "rank": 15,
+      "source_name": "Benfica",
+      "club": "Benfica-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "9ldqu49smv1xg2va0n2cy28zl",
+      "rating": 92.551435836
+    },
+    {
+      "rank": 16,
+      "source_name": "Borussia Dortmund",
+      "club": "Borussia Dortmund-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "dt4pinj0vw0t0cvz7za6mhmzy",
+      "rating": 92.536196531
+    },
+    {
+      "rank": 17,
+      "source_name": "Sporting CP",
+      "club": "Sporting CP-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "7catg5lpivcmpf4xhggh6d8rk",
+      "rating": 92.3678665372
+    },
+    {
+      "rank": 18,
+      "source_name": "Atlético de Madrid",
+      "club": "Atlético Madrid-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "4ku8o6uf87yd8iecdalipo6wd",
+      "rating": 92.3062125407
+    },
+    {
+      "rank": 19,
+      "source_name": "Newcastle United",
+      "club": "Newcastle United-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "7vn2i2kd35zuetw6b38gw9jsz",
+      "rating": 92.1946780566
+    },
+    {
+      "rank": 20,
+      "source_name": "Leeds United",
+      "club": "Leeds United-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "48gk2hpqtsl6p9sx9kjhaydq4",
+      "rating": 91.8118973301
+    },
+    {
+      "rank": 21,
+      "source_name": "Club Brugge",
+      "club": "Club Brugge-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "1oyb7oym5nwzny8vxf03szd2h",
+      "rating": 91.5569149144
+    },
+    {
+      "rank": 22,
+      "source_name": "Bournemouth",
+      "club": "AFC Bournemouth-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "1pse9ta7a45pi2w2grjim70ge",
+      "rating": 91.5271194027
+    },
+    {
+      "rank": 23,
+      "source_name": "Tottenham Hotspur",
+      "club": "Tottenham Hotspur-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "22doj4sgsocqpxw45h607udje",
+      "rating": 91.4408493824
+    },
+    {
+      "rank": 24,
+      "source_name": "Roma",
+      "club": "AS Roma-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "2tk2l9sgktwc9jhzqdd4mpdtb",
+      "rating": 91.3694755761
+    },
+    {
+      "rank": 25,
+      "source_name": "Porto",
+      "club": "FC Porto-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "66bsnl0zjb7l5akwo00h0y5me",
+      "rating": 91.2963676841
+    },
+    {
+      "rank": 26,
+      "source_name": "Bayer 04 Leverkusen",
+      "club": "Bayer Leverkusen-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "7ad69ngbpjuyzv96drf8d9sn2",
+      "rating": 91.2804292406
+    },
+    {
+      "rank": 27,
+      "source_name": "Flamengo",
+      "club": "Flamengo-RJ",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "102ykb145wz6dtveg65nistwm",
+      "rating": 91.1064176506
+    },
+    {
+      "rank": 28,
+      "source_name": "Union Saint-Gilloise",
+      "club": "Union St.-Gilloise-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "ecj1gmc7pqcjo4sc9hvghj5u3",
+      "rating": 91.0600544798
+    },
+    {
+      "rank": 29,
+      "source_name": "Nottingham Forest",
+      "club": "Nottingham Forest-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "1qtaiy11gswx327s0vkibf70n",
+      "rating": 90.6636173176
+    },
+    {
+      "rank": 30,
+      "source_name": "Crystal Palace",
+      "club": "Crystal Palace-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "1c8m2ko0wxq1asfkuykurdr0y",
+      "rating": 90.6611914079
+    },
+    {
+      "rank": 31,
+      "source_name": "Como",
+      "club": "Como-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "6uzfw7ahyxg4wrrfxo5u7qt0n",
+      "rating": 90.2872317219
+    },
+    {
+      "rank": 32,
+      "source_name": "Juventus",
+      "club": "Juventus-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "bqbbqm98ud8obe45ds9ohgyrd",
+      "rating": 90.2328148606
+    },
+    {
+      "rank": 33,
+      "source_name": "Sunderland",
+      "club": "Sunderland-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "1r3545b2dzan8yqa80gtmcjch",
+      "rating": 90.0407883517
+    },
+    {
+      "rank": 34,
+      "source_name": "Bodø / Glimt",
+      "club": "Bodo/Glimt-NO",
+      "country_in_source": "Norway",
+      "league_in_source": "Norwegian Eliteserien",
+      "opta_id": "ctvzi2jbl1q6xzq0s3sexj73g",
+      "rating": 90.0290029362
+    },
+    {
+      "rank": 35,
+      "source_name": "Ipswich Town",
+      "club": "Ipswich Town-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "8b523ujgl21tbc01me65q0aoh",
+      "rating": 89.756539099
+    },
+    {
+      "rank": 36,
+      "source_name": "Fulham",
+      "club": "Fulham-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "hzqh7z0mdl3v7gwete66syxp",
+      "rating": 89.6823525892
+    },
+    {
+      "rank": 37,
+      "source_name": "Hull City",
+      "club": "Hull City-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "f0figafm2v9h8ofo6slajj7xf",
+      "rating": 89.6743791645
+    },
+    {
+      "rank": 38,
+      "source_name": "Coventry City",
+      "club": "Coventry City-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Premier League",
+      "opta_id": "dacoc20k0n3fxu4zek8wufmko",
+      "rating": 89.5038121723
+    },
+    {
+      "rank": 39,
+      "source_name": "Stuttgart",
+      "club": "VfB Stuttgart-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "3dwlvz6cl4lcavvrg0y2dycrt",
+      "rating": 89.4954915848
+    },
+    {
+      "rank": 40,
+      "source_name": "Real Betis",
+      "club": "Real Betis-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "ah8dala7suqqkj04n2l8xz4zd",
+      "rating": 89.3852416344
+    },
+    {
+      "rank": 41,
+      "source_name": "RB Leipzig",
+      "club": "RB Leipzig-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "9gefq4dz9b2hl8rqrxwrlrzmp",
+      "rating": 89.2777613859
+    },
+    {
+      "rank": 42,
+      "source_name": "Palmeiras",
+      "club": "Palmeiras-SP",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "b9d2xcvxxcwplyp4le9ulnlv9",
+      "rating": 89.1424695012
+    },
+    {
+      "rank": 43,
+      "source_name": "Monaco",
+      "club": "AS Monaco-FR",
+      "country_in_source": "Monaco",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "4t4hod56fsj7utpjdor8so5q6",
+      "rating": 89.0295020068
+    },
+    {
+      "rank": 44,
+      "source_name": "Freiburg",
+      "club": "SC Freiburg-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "6k5zscdm9ufw0tguvzyjlp5hq",
+      "rating": 88.980610521
+    },
+    {
+      "rank": 45,
+      "source_name": "Napoli",
+      "club": "Napoli-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "gi0l1habji5hpgar77dl5jqe",
+      "rating": 88.8207540703
+    },
+    {
+      "rank": 46,
+      "source_name": "Villarreal",
+      "club": "Villarreal-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "74mcjsm72vr3l9pw2i4qfjchj",
+      "rating": 88.7968268827
+    },
+    {
+      "rank": 47,
+      "source_name": "PSV",
+      "club": "PSV Eindhoven-NL",
+      "country_in_source": "Netherlands",
+      "league_in_source": "Dutch Eredivisie",
+      "opta_id": "24fvcruwqrqvqa3aonf8c3zuy",
+      "rating": 88.7253909527
+    },
+    {
+      "rank": 48,
+      "source_name": "Lens",
+      "club": "Lens-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "3xedluek08t2ka7oypwuullcn",
+      "rating": 88.67580093
+    },
+    {
+      "rank": 49,
+      "source_name": "Milan",
+      "club": "AC Milan-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "9dntj5dioj5ex52yrgwzxrq9l",
+      "rating": 88.6088704338
+    },
+    {
+      "rank": 50,
+      "source_name": "Olympique Lyonnais",
+      "club": "Lyon-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "121le8unjfzug3iu9pgkqa1c7",
+      "rating": 88.2877218814
+    },
+    {
+      "rank": 51,
+      "source_name": "Slavia Praha",
+      "club": "Slavia Praha-CZ",
+      "country_in_source": "Czechia",
+      "league_in_source": "Czech First League",
+      "opta_id": "8kpapuorr6hf0vosnovbreqqd",
+      "rating": 87.948154547
+    },
+    {
+      "rank": 52,
+      "source_name": "Independiente Valle",
+      "club": "Independiente del Valle-EC",
+      "country_in_source": "Ecuador",
+      "league_in_source": "Ecuador Liga Pro",
+      "opta_id": "ddkiejug4w4ri9ch2fnnen6yw",
+      "rating": 87.8367374665
+    },
+    {
+      "rank": 53,
+      "source_name": "Fenerbahçe",
+      "club": "Fenerbahce-TR",
+      "country_in_source": "Türkiye",
+      "league_in_source": "Turkish Super Lig",
+      "opta_id": "8lroq0cbhdxj8124qtxwrhvmm",
+      "rating": 87.809402872
+    },
+    {
+      "rank": 54,
+      "source_name": "Lille",
+      "club": "Lille-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "be2k34rut1lz79jxenabttqlc",
+      "rating": 87.5245946549
+    },
+    {
+      "rank": 55,
+      "source_name": "Lazio",
+      "club": "Lazio-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "btcy9nra9ak4m22ovr2ia6m5v",
+      "rating": 87.4066392278
+    },
+    {
+      "rank": 56,
+      "source_name": "Rennes",
+      "club": "Stade Rennais-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "z1wbqtd0fz5t5eezjvrbld3h",
+      "rating": 87.3299656656
+    },
+    {
+      "rank": 57,
+      "source_name": "Viking",
+      "club": "Viking FK-NO",
+      "country_in_source": "Norway",
+      "league_in_source": "Norwegian Eliteserien",
+      "opta_id": "bsykw9d70ffqe9atosc92n1e9",
+      "rating": 87.1734898832
+    },
+    {
+      "rank": 58,
+      "source_name": "Boca Juniors",
+      "club": "Boca Juniors-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "ciqt22ivoc48zj62detdyh1mm",
+      "rating": 87.1654403492
+    },
+    {
+      "rank": 59,
+      "source_name": "Atalanta",
+      "club": "Atalanta-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "e75syeuawg3ql8nwpi3vr2btz",
+      "rating": 87.1217920604
+    },
+    {
+      "rank": 60,
+      "source_name": "AEK Athens",
+      "club": "AEK Athens-GR",
+      "country_in_source": "Greece",
+      "league_in_source": "Greek Super League",
+      "opta_id": "7ruua9q5rtswwi5d6xtquuto5",
+      "rating": 87.085707134
+    },
+    {
+      "rank": 61,
+      "source_name": "Olympiakos Piraeus",
+      "club": "Olympiacos-GR",
+      "country_in_source": "Greece",
+      "league_in_source": "Greek Super League",
+      "opta_id": "9ghx7vbghs3628n5chm9r8ig3",
+      "rating": 86.8185260592
+    },
+    {
+      "rank": 62,
+      "source_name": "Rayo Vallecano",
+      "club": "Rayo Vallecano-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "3budh3j9xivsid3ptm8ptpy4k",
+      "rating": 86.6845793452
+    },
+    {
+      "rank": 63,
+      "source_name": "Mainz 05",
+      "club": "Mainz-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "1c7qokc1j5z50cjj4tcu32haa",
+      "rating": 86.6679223293
+    },
+    {
+      "rank": 64,
+      "source_name": "Athletic Club",
+      "club": "Athletic Club-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "3czravw89omgc9o4s0w3l1bg5",
+      "rating": 86.5613845808
+    },
+    {
+      "rank": 65,
+      "source_name": "Omonia Nicosia",
+      "club": "Omonia Nicosia-CY",
+      "country_in_source": "Cyprus",
+      "league_in_source": "Cypriot Division 1",
+      "opta_id": "1pf6zmsueuc9tr64ql67gynqc",
+      "rating": 86.5252927339
+    },
+    {
+      "rank": 66,
+      "source_name": "Galatasaray",
+      "club": "Galatasaray-TR",
+      "country_in_source": "Türkiye",
+      "league_in_source": "Turkish Super Lig",
+      "opta_id": "esa748l653sss1wurz5ps3228",
+      "rating": 86.424649643
+    },
+    {
+      "rank": 67,
+      "source_name": "Sporting Braga",
+      "club": "Braga-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "26t6lvlpql4w5wu1ih73qpy36",
+      "rating": 86.3982736364
+    },
+    {
+      "rank": 68,
+      "source_name": "Feyenoord",
+      "club": "Feyenoord Rotterdam-NL",
+      "country_in_source": "Netherlands",
+      "league_in_source": "Dutch Eredivisie",
+      "opta_id": "20vymiy7bo8wkyxai3ew494fz",
+      "rating": 86.3087322495
+    },
+    {
+      "rank": 69,
+      "source_name": "Cruzeiro",
+      "club": "Cruzeiro-MG",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "bd6vujl7jfv4wtc8gvo1o1t5y",
+      "rating": 86.3076216413
+    },
+    {
+      "rank": 70,
+      "source_name": "Al Hilal",
+      "club": "Al Hilal-SA",
+      "country_in_source": "Saudi Arabia",
+      "league_in_source": "Saudi Arabian League",
+      "opta_id": "c9swyor08g9pedxpe3n321svu",
+      "rating": 86.2951064461
+    },
+    {
+      "rank": 71,
+      "source_name": "Toluca",
+      "club": "Toluca-MX",
+      "country_in_source": "Mexico",
+      "league_in_source": "Mexican Primera",
+      "opta_id": "3390h9hdgoxzzofnrpyktanuz",
+      "rating": 86.2638853547
+    },
+    {
+      "rank": 72,
+      "source_name": "Lech Poznań",
+      "club": "Lech Poznań-PL",
+      "country_in_source": "Poland",
+      "league_in_source": "Polish Ekstraklasa",
+      "opta_id": "duvz7klp081jpg8fx5nze7ks7",
+      "rating": 86.2629193096
+    },
+    {
+      "rank": 73,
+      "source_name": "Olympique Marseille",
+      "club": "Marseille-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "27xvwccz8kpmqsefjv2b2sc0o",
+      "rating": 86.0984032432
+    },
+    {
+      "rank": 74,
+      "source_name": "Celta de Vigo",
+      "club": "Celta Vigo-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "6f27yvbqcngegwsg2ozxxdj4",
+      "rating": 86.0126707045
+    },
+    {
+      "rank": 75,
+      "source_name": "Real Sociedad",
+      "club": "Real Sociedad-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "63f5h8t5e9qm1fqmvfkb23ghh",
+      "rating": 86.011629403
+    },
+    {
+      "rank": 76,
+      "source_name": "Fluminense",
+      "club": "Fluminense-RJ",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "2ldx5vhhqfz2rllkgp7wpa744",
+      "rating": 85.9796265539
+    },
+    {
+      "rank": 77,
+      "source_name": "Vasco da Gama",
+      "club": "Vasco-RJ",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "5ponlslulpugdlvd93n9yqu2b",
+      "rating": 85.7932254772
+    },
+    {
+      "rank": 78,
+      "source_name": "Santos",
+      "club": "Santos-SP",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "1icvp50kgaw8oduqmhyt3iex0",
+      "rating": 85.7494871685
+    },
+    {
+      "rank": 79,
+      "source_name": "Midtjylland",
+      "club": "FC Midtjylland-DK",
+      "country_in_source": "Denmark",
+      "league_in_source": "Danish Superligaen",
+      "opta_id": "59as3grjvj19voay31j3yfgni",
+      "rating": 85.7214387611
+    },
+    {
+      "rank": 80,
+      "source_name": "Ferencváros",
+      "club": "Ferencváros-HU",
+      "country_in_source": "Hungary",
+      "league_in_source": "Hungarian Liga NB I",
+      "opta_id": "b3o0wckz4w3fusytybpgxftgm",
+      "rating": 85.7026933862
+    },
+    {
+      "rank": 81,
+      "source_name": "West Ham United",
+      "club": "West Ham United-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "4txjdaqveermfryvbfrr4taf7",
+      "rating": 85.6561765589
+    },
+    {
+      "rank": 82,
+      "source_name": "Athletico Paranaense",
+      "club": "Athletico-PR",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "5h3amvo8ykt01u4h3upw3c5qf",
+      "rating": 85.6366670391
+    },
+    {
+      "rank": 83,
+      "source_name": "Strasbourg",
+      "club": "Strasbourg-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "71ajatxnuhc5cnm3xvgdky49w",
+      "rating": 85.5836226941
+    },
+    {
+      "rank": 84,
+      "source_name": "Hoffenheim",
+      "club": "TSG Hoffenheim-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "4l9mrqzmajz5crzlz50mtbt6x",
+      "rating": 85.5763324918
+    },
+    {
+      "rank": 85,
+      "source_name": "Paris FC",
+      "club": "Paris FC-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "8v00fx2zwhiwm05tqqkt122p5",
+      "rating": 85.543699931
+    },
+    {
+      "rank": 86,
+      "source_name": "Alavés",
+      "club": "Alavés-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "4dtdjgnpdq9uw4sdutti0vaar",
+      "rating": 85.5364096275
+    },
+    {
+      "rank": 87,
+      "source_name": "Augsburg",
+      "club": "FC Augsburg-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "ex3psl8e3ajeypwjy4xfltpx6",
+      "rating": 85.5180102079
+    },
+    {
+      "rank": 88,
+      "source_name": "Bologna",
+      "club": "Bologna-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "ej5er0oyngdw138yuumwqbyqt",
+      "rating": 85.4985691838
+    },
+    {
+      "rank": 89,
+      "source_name": "Dinamo Zagreb",
+      "club": "Dinamo Zagreb-HR",
+      "country_in_source": "Croatia",
+      "league_in_source": "Croatia Prva HNL",
+      "opta_id": "7vyubxg6fnmwwyo2nnyhp6j5d",
+      "rating": 85.4770450395
+    },
+    {
+      "rank": 90,
+      "source_name": "Zenit",
+      "club": "Zenit St Petersburg-RU",
+      "country_in_source": "Russia",
+      "league_in_source": "Russian Premier League",
+      "opta_id": "1vd9iy5rcvl17r18piwwymg6q",
+      "rating": 85.4638527423
+    },
+    {
+      "rank": 91,
+      "source_name": "København",
+      "club": "F.C. København-DK",
+      "country_in_source": "Denmark",
+      "league_in_source": "Danish Superligaen",
+      "opta_id": "b3r6d8ydtmtjckam6pku9y400",
+      "rating": 85.4600339081
+    },
+    {
+      "rank": 92,
+      "source_name": "Atlético Nacional",
+      "club": "Atlético Nacional-CO",
+      "country_in_source": "Colombia",
+      "league_in_source": "Colombia Primera A",
+      "opta_id": "6j9bbun984g4ajwa5l7caidll",
+      "rating": 85.4464249306
+    },
+    {
+      "rank": 93,
+      "source_name": "Sevilla",
+      "club": "Sevilla-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "10eyb18v5puw4ez03ocaug09m",
+      "rating": 85.442675507
+    },
+    {
+      "rank": 94,
+      "source_name": "Middlesbrough",
+      "club": "Middlesbrough-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "cq0jd5ztepqjjeikk5trb15vr",
+      "rating": 85.4319132457
+    },
+    {
+      "rank": 95,
+      "source_name": "Genk",
+      "club": "Racing Genk-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "89xivtxk59uzvhdsd6miao6tm",
+      "rating": 85.4242754874
+    },
+    {
+      "rank": 96,
+      "source_name": "Rosario Central",
+      "club": "Rosario Central-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "e8ma1lonj51sqmwy00mwnw1ke",
+      "rating": 85.4033756994
+    },
+    {
+      "rank": 97,
+      "source_name": "Valencia",
+      "club": "Valencia-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "ba5e91hjacvma2sjvixn00pjo",
+      "rating": 85.3812259241
+    },
+    {
+      "rank": 98,
+      "source_name": "Atlético Mineiro",
+      "club": "Atlético-MG",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "1f6qzkdjh8fih5ii1eyqmkolq",
+      "rating": 85.2811679124
+    },
+    {
+      "rank": 99,
+      "source_name": "Beşiktaş",
+      "club": "Besiktas-TR",
+      "country_in_source": "Türkiye",
+      "league_in_source": "Turkish Super Lig",
+      "opta_id": "2ez9cvam9lp9jyhng3eh3znb4",
+      "rating": 85.2451295083
+    },
+    {
+      "rank": 100,
+      "source_name": "Gent",
+      "club": "KAA Gent-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "8y3iucyxguipljcmf87a11bk9",
+      "rating": 85.2187427208
+    },
+    {
+      "rank": 101,
+      "source_name": "Bahia",
+      "club": "Bahia-BA",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "e93fgat6j6g86zqul1m3m2kpn",
+      "rating": 85.2068685871
+    },
+    {
+      "rank": 102,
+      "source_name": "Sporting Charleroi",
+      "club": "Royal Charleroi SC-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "920raeoumft3q2wmvc296uceo",
+      "rating": 85.1611075764
+    },
+    {
+      "rank": 103,
+      "source_name": "Anderlecht",
+      "club": "Anderlecht-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "6vyr13j6kbwdtxjwm1m4m8nu2",
+      "rating": 85.16041317
+    },
+    {
+      "rank": 104,
+      "source_name": "Southampton",
+      "club": "Southampton-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "d5ydtvt96bv7fq04yqm2w2632",
+      "rating": 85.0739582565
+    },
+    {
+      "rank": 105,
+      "source_name": "Toulouse",
+      "club": "Toulouse-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "4aghw9tyi8ba3ju1ne83gmf9w",
+      "rating": 85.0597224579
+    },
+    {
+      "rank": 106,
+      "source_name": "River Plate",
+      "club": "River Plate-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "115foion8jwrvp2e7xif675kx",
+      "rating": 85.0502781817
+    },
+    {
+      "rank": 107,
+      "source_name": "Eintracht Frankfurt",
+      "club": "Eintracht Frankfurt-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "c5hderjlkcoaze51e5wgvptk",
+      "rating": 84.9552086923
+    },
+    {
+      "rank": 108,
+      "source_name": "Independiente Rivadavia",
+      "club": "Independiente Rivadavia-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "8inprqnxjps9ckiamn3cfoo8v",
+      "rating": 84.7912428419
+    },
+    {
+      "rank": 109,
+      "source_name": "Ajax",
+      "club": "Ajax Amsterdam-NL",
+      "country_in_source": "Netherlands",
+      "league_in_source": "Dutch Eredivisie",
+      "opta_id": "d0zdg647gvgc95xdtk1vpbkys",
+      "rating": 84.7680465727
+    },
+    {
+      "rank": 110,
+      "source_name": "Levante",
+      "club": "Levante-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "4grc9qgcvusllap8h5j6gc5h5",
+      "rating": 84.6781071555
+    },
+    {
+      "rank": 111,
+      "source_name": "Twente",
+      "club": "FC Twente-NL",
+      "country_in_source": "Netherlands",
+      "league_in_source": "Dutch Eredivisie",
+      "opta_id": "4tic29sox7m39fy1ztgv0jsiq",
+      "rating": 84.6524096572
+    },
+    {
+      "rank": 112,
+      "source_name": "Salzburg",
+      "club": "Salzburg-AT",
+      "country_in_source": "Austria",
+      "league_in_source": "Austrian Bundesliga",
+      "opta_id": "bonj6qc7po4anunhydmjmi6g5",
+      "rating": 84.6235865112
+    },
+    {
+      "rank": 113,
+      "source_name": "AZ",
+      "club": "AZ Alkmaar-NL",
+      "country_in_source": "Netherlands",
+      "league_in_source": "Dutch Eredivisie",
+      "opta_id": "3kfktv64h7kg7zryax1wktr5r",
+      "rating": 84.6093484638
+    },
+    {
+      "rank": 114,
+      "source_name": "Belgrano",
+      "club": "Belgrano Córdoba-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "2biw4all5ru5xiorgyqbevwr1",
+      "rating": 84.5422550463
+    },
+    {
+      "rank": 115,
+      "source_name": "Argentinos Juniors",
+      "club": "Argentinos Juniors-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "7tev5pifn8hdy4vlts0coha1b",
+      "rating": 84.5332257905
+    },
+    {
+      "rank": 116,
+      "source_name": "Instituto",
+      "club": "Instituto Córdoba-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "2zjoq67ogz8lmaoesxkubxhp6",
+      "rating": 84.5328785108
+    },
+    {
+      "rank": 117,
+      "source_name": "Werder Bremen",
+      "club": "Werder Bremen-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "cu0eztmjcsbydyp53aleznorw",
+      "rating": 84.5277387672
+    },
+    {
+      "rank": 118,
+      "source_name": "Deportivo de A Coruña",
+      "club": "Deportivo-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "1r541mega6d838hi0p44sv0h2",
+      "rating": 84.3714583328
+    },
+    {
+      "rank": 119,
+      "source_name": "Fiorentina",
+      "club": "Fiorentina-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "4raiad4l2j5lkfaz92pk4osb",
+      "rating": 84.3714583328
+    },
+    {
+      "rank": 120,
+      "source_name": "Górnik Zabrze",
+      "club": "Górnik Zabrze-PL",
+      "country_in_source": "Poland",
+      "league_in_source": "Polish Ekstraklasa",
+      "opta_id": "awc8tinkh5u7cy58a00ohg6al",
+      "rating": 84.3322132263
+    },
+    {
+      "rank": 121,
+      "source_name": "Panathinaikos",
+      "club": "Panathinaikos-GR",
+      "country_in_source": "Greece",
+      "league_in_source": "Greek Super League",
+      "opta_id": "4ws3k9155net1ydbvr8c940dy",
+      "rating": 84.3190156347
+    },
+    {
+      "rank": 122,
+      "source_name": "Osasuna",
+      "club": "Osasuna-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "2l0ldgiwsgb8d6y3z0sfgjzyj",
+      "rating": 84.2294093073
+    },
+    {
+      "rank": 123,
+      "source_name": "Sparta Praha",
+      "club": "Sparta Praha-CZ",
+      "country_in_source": "Czechia",
+      "league_in_source": "Czech First League",
+      "opta_id": "5ocdn3a6s75u0d0dy0rbou0xc",
+      "rating": 84.197803298
+    },
+    {
+      "rank": 124,
+      "source_name": "Sassuolo",
+      "club": "Sassuolo-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "6tuibxq39fdryu8ou06wcm0q3",
+      "rating": 84.173143419
+    },
+    {
+      "rank": 125,
+      "source_name": "RB Bragantino",
+      "club": "Red Bull Bragantino-SP",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "4ayjm36vlnc5j8jhwpsdwxuph",
+      "rating": 84.1393833485
+    },
+    {
+      "rank": 126,
+      "source_name": "Espanyol",
+      "club": "Espanyol-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "c8llrezkm3b3op4afrou6b487",
+      "rating": 84.1095824573
+    },
+    {
+      "rank": 127,
+      "source_name": "Brest",
+      "club": "Brest-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "3adj8hkws0z1al232bg2h6tk0",
+      "rating": 84.1002044895
+    },
+    {
+      "rank": 128,
+      "source_name": "Sabah",
+      "club": "Sabah-AZ",
+      "country_in_source": "Azerbaijan",
+      "league_in_source": "Azerbaijan Premier League",
+      "opta_id": "evvhmz4bq4dq1v9llaev1j97u",
+      "rating": 84.0710283904
+    },
+    {
+      "rank": 129,
+      "source_name": "Elche",
+      "club": "Elche-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "4yg9ttzw0m51048doksv8uq5r",
+      "rating": 84.0651236671
+    },
+    {
+      "rank": 130,
+      "source_name": "Lugano",
+      "club": "Lugano-CH",
+      "country_in_source": "Switzerland",
+      "league_in_source": "Brack Super League",
+      "opta_id": "btqfm8txcvhi29sddmc9nr68",
+      "rating": 84.0088545068
+    },
+    {
+      "rank": 131,
+      "source_name": "Estudiantes",
+      "club": "Estudiantes La Plata-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "91j32z6ga16tjj140ss2i24mt",
+      "rating": 83.9563356114
+    },
+    {
+      "rank": 132,
+      "source_name": "Lorient",
+      "club": "Lorient-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "70nn27vgkt6l48lvv5e66q7ww",
+      "rating": 83.9237539531
+    },
+    {
+      "rank": 133,
+      "source_name": "PAOK",
+      "club": "PAOK-GR",
+      "country_in_source": "Greece",
+      "league_in_source": "Greek Super League",
+      "opta_id": "deazflnflqmejndo05gviznzd",
+      "rating": 83.9119438774
+    },
+    {
+      "rank": 134,
+      "source_name": "Al Nassr",
+      "club": "Al Nassr-SA",
+      "country_in_source": "Saudi Arabia",
+      "league_in_source": "Saudi Arabian League",
+      "opta_id": "57jcqe38hakh2hfit2zsogsb",
+      "rating": 83.8930962834
+    },
+    {
+      "rank": 135,
+      "source_name": "Cagliari",
+      "club": "Cagliari-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "5rwlg5cfv1hu7yf0ek1zxpzy3",
+      "rating": 83.8841552686
+    },
+    {
+      "rank": 136,
+      "source_name": "Wolverhampton Wanderers",
+      "club": "Wolverhampton Wanderers-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "b9si1jn1lfxfund69e9ogcu2n",
+      "rating": 83.8678293331
+    },
+    {
+      "rank": 137,
+      "source_name": "Cruz Azul",
+      "club": "Cruz Azul-MX",
+      "country_in_source": "Mexico",
+      "league_in_source": "Mexican Primera",
+      "opta_id": "1aw67co8uut64yckd3wbhy9t2",
+      "rating": 83.8576806069
+    },
+    {
+      "rank": 138,
+      "source_name": "Elversberg",
+      "club": "SV Elversberg-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "cig09m7g3wx983agnqgovggoh",
+      "rating": 83.8473349397
+    },
+    {
+      "rank": 139,
+      "source_name": "Shakhtar Donetsk",
+      "club": "Shakhtar Donetsk-UA",
+      "country_in_source": "Ukraine",
+      "league_in_source": "Ukraine Premier League",
+      "opta_id": "cf8plcmeniaen0fc5emyb5j93",
+      "rating": 83.7903666895
+    },
+    {
+      "rank": 140,
+      "source_name": "Mirassol",
+      "club": "Mirassol-SP",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "cllomrn9h2sg6vmxy0pdnmups",
+      "rating": 83.7878656179
+    },
+    {
+      "rank": 141,
+      "source_name": "Getafe",
+      "club": "Getafe-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "1n1j0wsl763lq7ee1k0c11c02",
+      "rating": 83.745555487
+    },
+    {
+      "rank": 142,
+      "source_name": "Nashville SC",
+      "club": "Nashville SC-US",
+      "country_in_source": "USA",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "1oogd0fpwledjm2ycsuv7afze",
+      "rating": 83.7225533161
+    },
+    {
+      "rank": 143,
+      "source_name": "LASK",
+      "club": "LASK-AT",
+      "country_in_source": "Austria",
+      "league_in_source": "Austrian Bundesliga",
+      "opta_id": "boxkkgnpn38ywao4kzu7dx58h",
+      "rating": 83.6924063909
+    },
+    {
+      "rank": 144,
+      "source_name": "Nordsjælland",
+      "club": "FC Nordsjælland-DK",
+      "country_in_source": "Denmark",
+      "league_in_source": "Danish Superligaen",
+      "opta_id": "77tfx9me4aaqhzv78bmgsy9bg",
+      "rating": 83.6920590079
+    },
+    {
+      "rank": 145,
+      "source_name": "São Paulo",
+      "club": "São Paulo-SP",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "5p301ikmaba9gesscss3zo745",
+      "rating": 83.6589879477
+    },
+    {
+      "rank": 146,
+      "source_name": "Guadalajara",
+      "club": "Guadalajara-MX",
+      "country_in_source": "Mexico",
+      "league_in_source": "Mexican Primera",
+      "opta_id": "e603sojy77s4u0ypqds2v2a1g",
+      "rating": 83.6555083169
+    },
+    {
+      "rank": 147,
+      "source_name": "Swansea City",
+      "club": "Swansea City-EN",
+      "country_in_source": "Wales",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "410jti6axb01yhvbc0axsp8li",
+      "rating": 83.6489831806
+    },
+    {
+      "rank": 148,
+      "source_name": "Torino",
+      "club": "Torino-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "7gnly6999wao1xarwct4p8fe9",
+      "rating": 83.6253606722
+    },
+    {
+      "rank": 149,
+      "source_name": "Legia Warszawa",
+      "club": "Legia Warszawa-PL",
+      "country_in_source": "Poland",
+      "league_in_source": "Polish Ekstraklasa",
+      "opta_id": "d7udukc1t631drge83p7ucqws",
+      "rating": 83.6055592989
+    },
+    {
+      "rank": 150,
+      "source_name": "Vélez Sarsfield",
+      "club": "Vélez Sarsfield-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "a3kgi895b7b3ecfzmoyxbw2pl",
+      "rating": 83.601321092
+    },
+    {
+      "rank": 151,
+      "source_name": "Union Berlin",
+      "club": "1. FC Union Berlin-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "a8d2gb2nag8fy0itbuxmcibh2",
+      "rating": 83.5947900722
+    },
+    {
+      "rank": 152,
+      "source_name": "Racing de Santander",
+      "club": "Racing Santander-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "bzkwzatvwahmbzok1ymm5vqa1",
+      "rating": 83.5902739326
+    },
+    {
+      "rank": 153,
+      "source_name": "Lanús",
+      "club": "Lanús-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "19ij50t7wklqr3w2bye5r7tp4",
+      "rating": 83.5217666775
+    },
+    {
+      "rank": 154,
+      "source_name": "Crvena zvezda",
+      "club": "Crvena zvezda-RS",
+      "country_in_source": "Serbia",
+      "league_in_source": "Serbian Super Liga",
+      "opta_id": "81lpho34qr3dad0xzalq0abja",
+      "rating": 83.4905696142
+    },
+    {
+      "rank": 155,
+      "source_name": "Udinese",
+      "club": "Udinese-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "dxq76zcvnokq07cszdx0i6kve",
+      "rating": 83.4853584896
+    },
+    {
+      "rank": 156,
+      "source_name": "Peñarol",
+      "club": "Peñarol-UY",
+      "country_in_source": "Uruguay",
+      "league_in_source": "Uruguay Liga AUF",
+      "opta_id": "8wcbo8lv6tm0yvv7sa0do4ojb",
+      "rating": 83.425186669
+    },
+    {
+      "rank": 157,
+      "source_name": "LDU Quito",
+      "club": "Liga de Quito-EC",
+      "country_in_source": "Ecuador",
+      "league_in_source": "Ecuador Liga Pro",
+      "opta_id": "cxb4hqite921i36gwrezdts7c",
+      "rating": 83.407120974
+    },
+    {
+      "rank": 158,
+      "source_name": "Schalke 04",
+      "club": "Schalke 04-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "cz4a6wmzx2obyisadhgaccx7b",
+      "rating": 83.3953782097
+    },
+    {
+      "rank": 159,
+      "source_name": "AEK Larnaca",
+      "club": "AEK Larnaca-CY",
+      "country_in_source": "Cyprus",
+      "league_in_source": "Cypriot Division 1",
+      "opta_id": "q4y48hs70h74p3waaxxjtdu5",
+      "rating": 83.3804391189
+    },
+    {
+      "rank": 160,
+      "source_name": "Club América",
+      "club": "América-MX",
+      "country_in_source": "Mexico",
+      "league_in_source": "Mexican Primera",
+      "opta_id": "eu8c408f59yx7egaqossbv25e",
+      "rating": 83.3511803056
+    },
+    {
+      "rank": 161,
+      "source_name": "Gimnasia La Plata",
+      "club": "Gimnasia La Plata-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "1rio0xlpk4s2ttmchsqjs6eik",
+      "rating": 83.3296456136
+    },
+    {
+      "rank": 162,
+      "source_name": "Krasnodar",
+      "club": "Krasnodar-RU",
+      "country_in_source": "Russia",
+      "league_in_source": "Russian Premier League",
+      "opta_id": "17icf335ajx0bgofq41xsz8tv",
+      "rating": 83.3116487878
+    },
+    {
+      "rank": 163,
+      "source_name": "Sanfrecce Hiroshima",
+      "club": "Sanfrecce Hiroshima-JP",
+      "country_in_source": "Japan",
+      "league_in_source": "Japanese J1 League",
+      "opta_id": "89wr6p2dkh7wjxtbwhtsruu02",
+      "rating": 83.287359838
+    },
+    {
+      "rank": 164,
+      "source_name": "Hamburger SV",
+      "club": "Hamburg SV-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "75xi6hloabmnjn2kzgj1g8h1s",
+      "rating": 83.2366028601
+    },
+    {
+      "rank": 165,
+      "source_name": "Köln",
+      "club": "FC Cologne-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "8q1ul09cygzswb7tb456bmifv",
+      "rating": 83.2341707825
+    },
+    {
+      "rank": 166,
+      "source_name": "Botafogo",
+      "club": "Botafogo-RJ",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "2x94b2pn1o1tb5l1bbu8x9yu9",
+      "rating": 83.2219408741
+    },
+    {
+      "rank": 167,
+      "source_name": "Sint-Truiden",
+      "club": "Sint-Truidense-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "2989v3kho9h5jaboe1nr7lx21",
+      "rating": 83.1073523688
+    },
+    {
+      "rank": 168,
+      "source_name": "Bolívar",
+      "club": "Bolívar-BO",
+      "country_in_source": "Bolivia",
+      "league_in_source": "Bolivia Primera División",
+      "opta_id": "dj7mlv2txjphj4xtannqj8q6z",
+      "rating": 83.0763591567
+    },
+    {
+      "rank": 169,
+      "source_name": "Sturm Graz",
+      "club": "Sturm Graz-AT",
+      "country_in_source": "Austria",
+      "league_in_source": "Austrian Bundesliga",
+      "opta_id": "4lauow63npvttmvxgh2koqb0r",
+      "rating": 83.0243092427
+    },
+    {
+      "rank": 170,
+      "source_name": "Al Qadsiah",
+      "club": "Al Qadsiah-SA",
+      "country_in_source": "Saudi Arabia",
+      "league_in_source": "Saudi Arabian League",
+      "opta_id": "90k2kbbkk2cj55yhkivdqn0ym",
+      "rating": 83.0141423703
+    },
+    {
+      "rank": 171,
+      "source_name": "Hajduk Split",
+      "club": "Hajduk Split-HR",
+      "country_in_source": "Croatia",
+      "league_in_source": "Croatia Prva HNL",
+      "opta_id": "6ouaoxrghzeqpzqk02xn3t4r9",
+      "rating": 82.9916472514
+    },
+    {
+      "rank": 172,
+      "source_name": "Al Ahly",
+      "club": "Al Ahly-EG",
+      "country_in_source": "Egypt",
+      "league_in_source": "Egyptian Premier League",
+      "opta_id": "1q2hx9pw8c7x88utqunk4e6xl",
+      "rating": 82.9795858554
+    },
+    {
+      "rank": 173,
+      "source_name": "Birmingham City",
+      "club": "Birmingham City-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "8kreqtde5jdktcib0kg7dknac",
+      "rating": 82.9760110562
+    },
+    {
+      "rank": 174,
+      "source_name": "Corinthians",
+      "club": "Corinthians-SP",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "f0td6lvs326lppbwh1fj8v2ls",
+      "rating": 82.9759415618
+    },
+    {
+      "rank": 175,
+      "source_name": "St. Louis City",
+      "club": "St. Louis CITY SC-US",
+      "country_in_source": "USA",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "7rh4h3y77fl3s7rdqp61si49g",
+      "rating": 82.9738509703
+    },
+    {
+      "rank": 176,
+      "source_name": "Santa Clara",
+      "club": "Santa Clara-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "cmbqc74mshg77ra7mywec2a6b",
+      "rating": 82.9621121423
+    },
+    {
+      "rank": 177,
+      "source_name": "América de Cali",
+      "club": "América de Cali-CO",
+      "country_in_source": "Colombia",
+      "league_in_source": "Colombia Primera A",
+      "opta_id": "8ohqbddhjvcj22wgxxvcladcx",
+      "rating": 82.9509234661
+    },
+    {
+      "rank": 178,
+      "source_name": "Celtic",
+      "club": "Celtic-SC",
+      "country_in_source": "Scotland",
+      "league_in_source": "Scottish Premiership",
+      "opta_id": "dvnjvad3p09dugr79gktlrtll",
+      "rating": 82.9158977544
+    },
+    {
+      "rank": 179,
+      "source_name": "Millonarios",
+      "club": "Millonarios-CO",
+      "country_in_source": "Colombia",
+      "league_in_source": "Colombia Primera A",
+      "opta_id": "eqbww924pupg9vspauc0h7bt6",
+      "rating": 82.9085311796
+    },
+    {
+      "rank": 180,
+      "source_name": "Pyramids",
+      "club": "Pyramids-EG",
+      "country_in_source": "Egypt",
+      "league_in_source": "Egyptian Premier League",
+      "opta_id": "a5hh43fi88rchrm37263600hu",
+      "rating": 82.9034885491
+    },
+    {
+      "rank": 181,
+      "source_name": "Independiente Santa Fe",
+      "club": "Independiente Santa Fe-CO",
+      "country_in_source": "Colombia",
+      "league_in_source": "Colombia Primera A",
+      "opta_id": "5vtngmqlfpmuntxl9fw683ttc",
+      "rating": 82.8970643025
+    },
+    {
+      "rank": 182,
+      "source_name": "Philadelphia Union",
+      "club": "Philadelphia Union-US",
+      "country_in_source": "USA",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "aq0m4zmew7kkplbi7fa0pv45c",
+      "rating": 82.8807268492
+    },
+    {
+      "rank": 183,
+      "source_name": "Paderborn",
+      "club": "SC Paderborn 07-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "62ljqd4za2a6svd9wgctg8b53",
+      "rating": 82.8790646851
+    },
+    {
+      "rank": 184,
+      "source_name": "Borussia M'gladbach",
+      "club": "Borussia Mönchengladbach-DE",
+      "country_in_source": "Germany",
+      "league_in_source": "German Bundesliga",
+      "opta_id": "go76xxm0xyfgqt1h6tcrtimm",
+      "rating": 82.8769797798
+    },
+    {
+      "rank": 185,
+      "source_name": "Internacional",
+      "club": "Internacional-RS",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "c7n1isjmpyqt5pj51yekr08wo",
+      "rating": 82.8692656165
+    },
+    {
+      "rank": 186,
+      "source_name": "Trabzonspor",
+      "club": "Trabzonspor-TR",
+      "country_in_source": "Türkiye",
+      "league_in_source": "Turkish Super Lig",
+      "opta_id": "2yab38jdfl0gk2tei1mq40o06",
+      "rating": 82.8592580216
+    },
+    {
+      "rank": 187,
+      "source_name": "Inter Miami",
+      "club": "Inter Miami CF-US",
+      "country_in_source": "USA",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "7a7uyvix8axi28h7d3bwl4tbe",
+      "rating": 82.8529279999
+    },
+    {
+      "rank": 188,
+      "source_name": "Maccabi Tel Aviv",
+      "club": "Maccabi Tel Aviv-IL",
+      "country_in_source": "Israel",
+      "league_in_source": "Israeli Ligat Ha'al",
+      "opta_id": "ealjallt13942jb2q2hk4buxa",
+      "rating": 82.8220767107
+    },
+    {
+      "rank": 189,
+      "source_name": "Málaga",
+      "club": "Málaga-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish La Liga",
+      "opta_id": "7012hpp3p5vg4fzyn3h0yvf09",
+      "rating": 82.7991421961
+    },
+    {
+      "rank": 190,
+      "source_name": "Al Ahli",
+      "club": "Al Ahli-SA",
+      "country_in_source": "Saudi Arabia",
+      "league_in_source": "Saudi Arabian League",
+      "opta_id": "aj1bdyuwq8pdwycaa9kba8uni",
+      "rating": 82.7865420322
+    },
+    {
+      "rank": 191,
+      "source_name": "Westerlo",
+      "club": "KVC Westerlo-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "2nhn3ikl1ciq34w3hcp883d6p",
+      "rating": 82.7174798867
+    },
+    {
+      "rank": 192,
+      "source_name": "Frosinone",
+      "club": "Frosinone-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "5khizzei8z0qbb7exz622wxw3",
+      "rating": 82.7067072325
+    },
+    {
+      "rank": 193,
+      "source_name": "Independiente",
+      "club": "Independiente-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "ag3u5yhvyaxwtebl9xp5e2vaa",
+      "rating": 82.6871773462
+    },
+    {
+      "rank": 194,
+      "source_name": "Young Boys",
+      "club": "Young Boys-CH",
+      "country_in_source": "Switzerland",
+      "league_in_source": "Brack Super League",
+      "opta_id": "5fd9f9bti2cdgb6r1lf8l2bc7",
+      "rating": 82.6862043234
+    },
+    {
+      "rank": 195,
+      "source_name": "Macará",
+      "club": "Macará-EC",
+      "country_in_source": "Ecuador",
+      "league_in_source": "Ecuador Liga Pro",
+      "opta_id": "4c7u4ex3h310j2unfmd4uc18v",
+      "rating": 82.6722344579
+    },
+    {
+      "rank": 196,
+      "source_name": "Defensa y Justicia",
+      "club": "Defensa y Justicia-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "1n4ioqcbh1hemy9ezzu6v86n7",
+      "rating": 82.6406108705
+    },
+    {
+      "rank": 197,
+      "source_name": "Millwall",
+      "club": "Millwall-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "40d2qd8lr1tgsvmg5l1fzaf4o",
+      "rating": 82.6229571066
+    },
+    {
+      "rank": 198,
+      "source_name": "Qarabağ",
+      "club": "Qarabağ-AZ",
+      "country_in_source": "Azerbaijan",
+      "league_in_source": "Azerbaijan Premier League",
+      "opta_id": "dz0fc3304a30bzm9lht0bhpqt",
+      "rating": 82.601063503
+    },
+    {
+      "rank": 199,
+      "source_name": "Universidad Católica",
+      "club": "Universidad Católica (Quito)-EC",
+      "country_in_source": "Ecuador",
+      "league_in_source": "Ecuador Liga Pro",
+      "opta_id": "85tqel61vdk8sfz1vsb1jykk7",
+      "rating": 82.5919584931
+    },
+    {
+      "rank": 200,
+      "source_name": "Spartak Moskva",
+      "club": "Spartak Moscow-RU",
+      "country_in_source": "Russia",
+      "league_in_source": "Russian Premier League",
+      "opta_id": "42qvrbdkk5p9kqrhd0g9er2aq",
+      "rating": 82.579517248
+    },
+    {
+      "rank": 201,
+      "source_name": "Nice",
+      "club": "Nice-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "bx0cdmzr2gwr70ez72dorx82p",
+      "rating": 82.5736093746
+    },
+    {
+      "rank": 202,
+      "source_name": "Dinamo Moskva",
+      "club": "Dinamo Moscow-RU",
+      "country_in_source": "Russia",
+      "league_in_source": "Russian Premier League",
+      "opta_id": "8mrwjyt72h0oqpj24xi4f7e8s",
+      "rating": 82.5430272404
+    },
+    {
+      "rank": 203,
+      "source_name": "Viktoria Plzeň",
+      "club": "Viktoria Plzeň-CZ",
+      "country_in_source": "Czechia",
+      "league_in_source": "Czech First League",
+      "opta_id": "c6fx1460nlkawjgh67sp7a1hd",
+      "rating": 82.5131398283
+    },
+    {
+      "rank": 204,
+      "source_name": "Huracán",
+      "club": "Huracán-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "3rw8ouixzsh3x8dgy8ifev925",
+      "rating": 82.4362651412
+    },
+    {
+      "rank": 205,
+      "source_name": "Olimpia",
+      "club": "Olimpia-PY",
+      "country_in_source": "Paraguay",
+      "league_in_source": "Paraguay Primera División",
+      "opta_id": "ajjzd6ex2rqp70mwh5by9wdfb",
+      "rating": 82.4310520425
+    },
+    {
+      "rank": 206,
+      "source_name": "Genoa",
+      "club": "Genoa-IT",
+      "country_in_source": "Italy",
+      "league_in_source": "Italian Serie A",
+      "opta_id": "4kumqzwifv478caxed8zywlh3",
+      "rating": 82.423475655
+    },
+    {
+      "rank": 207,
+      "source_name": "Castellón",
+      "club": "Castellón-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish Segunda Division",
+      "opta_id": "5ziakdomggtzs5xqnb50jpi5o",
+      "rating": 82.3967148538
+    },
+    {
+      "rank": 208,
+      "source_name": "Auxerre",
+      "club": "AJ Auxerre-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "9bxav814mkuhueiyivyive82d",
+      "rating": 82.3946295857
+    },
+    {
+      "rank": 209,
+      "source_name": "Famalicão",
+      "club": "FC Famalicao-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "5c0sf1eaipcxvdw9o22of2jdp",
+      "rating": 82.3699537936
+    },
+    {
+      "rank": 210,
+      "source_name": "Universidad de Chile",
+      "club": "Universidad de Chile-CL",
+      "country_in_source": "Chile",
+      "league_in_source": "Chile Primera",
+      "opta_id": "cdj7tqbsake4a0ks5pwm23t23",
+      "rating": 82.3452082708
+    },
+    {
+      "rank": 211,
+      "source_name": "Vancouver Whitecaps",
+      "club": "Vancouver Whitecaps-CA",
+      "country_in_source": "Canada",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "cdmq2tqfwo5td2ztv1s62bqlf",
+      "rating": 82.3340808552
+    },
+    {
+      "rank": 212,
+      "source_name": "Colo Colo",
+      "club": "Colo Colo-CL",
+      "country_in_source": "Chile",
+      "league_in_source": "Chile Primera",
+      "opta_id": "ehsvy9m92bp6ktgoy6pwv8rdm",
+      "rating": 82.3121907251
+    },
+    {
+      "rank": 213,
+      "source_name": "Almería",
+      "club": "Almería-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish Segunda Division",
+      "opta_id": "cobffe32r7g4skka9m19qib63",
+      "rating": 82.295577537
+    },
+    {
+      "rank": 214,
+      "source_name": "Rapid",
+      "club": "Rapid-AT",
+      "country_in_source": "Austria",
+      "league_in_source": "Austrian Bundesliga",
+      "opta_id": "eljjik2vvlpy6d649mgwwivam",
+      "rating": 82.272638661
+    },
+    {
+      "rank": 215,
+      "source_name": "Universidad Católica",
+      "club": "Universidad Católica-CL",
+      "country_in_source": "Chile",
+      "league_in_source": "Chile Primera",
+      "opta_id": "7gkwmrw0cjz0m168ouw00z4gy",
+      "rating": 82.2506727707
+    },
+    {
+      "rank": 216,
+      "source_name": "Pafos",
+      "club": "Pafos-CY",
+      "country_in_source": "Cyprus",
+      "league_in_source": "Cypriot Division 1",
+      "opta_id": "d6e2elufz1jf4h68k21uahq7d",
+      "rating": 82.2496995943
+    },
+    {
+      "rank": 217,
+      "source_name": "Levski Sofia",
+      "club": "Levski Sofia-BG",
+      "country_in_source": "Bulgaria",
+      "league_in_source": "Bulgaria First League",
+      "opta_id": "c3yrcw3g5bj4rlmcxw9i8tale",
+      "rating": 82.2444861435
+    },
+    {
+      "rank": 218,
+      "source_name": "Rangers",
+      "club": "Rangers-SC",
+      "country_in_source": "Scotland",
+      "league_in_source": "Scottish Premiership",
+      "opta_id": "cnnku8uihko7u4th0fms4pvg6",
+      "rating": 82.2208517093
+    },
+    {
+      "rank": 219,
+      "source_name": "Chicago Fire",
+      "club": "Chicago Fire FC-US",
+      "country_in_source": "USA",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "apsqaaege20za4re5wm6bzq9a",
+      "rating": 82.0219611052
+    },
+    {
+      "rank": 220,
+      "source_name": "Independiente Medellín",
+      "club": "Independiente Medellín-CO",
+      "country_in_source": "Colombia",
+      "league_in_source": "Colombia Primera A",
+      "opta_id": "bzpygd5fja0tbb2x8daphil1l",
+      "rating": 81.9576616305
+    },
+    {
+      "rank": 221,
+      "source_name": "Tromsø",
+      "club": "Tromso-NO",
+      "country_in_source": "Norway",
+      "league_in_source": "Norwegian Eliteserien",
+      "opta_id": "80hgdmpkvdrhw1ge9nks2kxvy",
+      "rating": 81.9327038419
+    },
+    {
+      "rank": 222,
+      "source_name": "Eibar",
+      "club": "Eibar-ES",
+      "country_in_source": "Spain",
+      "league_in_source": "Spanish Segunda Division",
+      "opta_id": "bjltc68ihd23uu3svnq0o3qrs",
+      "rating": 81.9114999715
+    },
+    {
+      "rank": 223,
+      "source_name": "Tigres UANL",
+      "club": "Tigres UANL-MX",
+      "country_in_source": "Mexico",
+      "league_in_source": "Mexican Primera",
+      "opta_id": "6hmo9mrlz73nwxkshwuu5vsfm",
+      "rating": 81.9082962355
+    },
+    {
+      "rank": 224,
+      "source_name": "Rosenborg",
+      "club": "Rosenborg-NO",
+      "country_in_source": "Norway",
+      "league_in_source": "Norwegian Eliteserien",
+      "opta_id": "c7jgkxx1czv5etn7snf1r6p2m",
+      "rating": 81.8861246327
+    },
+    {
+      "rank": 225,
+      "source_name": "Coritiba",
+      "club": "Coritiba-PR",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "ewfcgj6z5nzaswg3n2qwtmut8",
+      "rating": 81.8648508802
+    },
+    {
+      "rank": 226,
+      "source_name": "Los Angeles",
+      "club": "LAFC-US",
+      "country_in_source": "USA",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "c6e7kqqrkt389ysrth6yy6puy",
+      "rating": 81.8478120938
+    },
+    {
+      "rank": 227,
+      "source_name": "Norwich City",
+      "club": "Norwich City-EN",
+      "country_in_source": "England",
+      "league_in_source": "English Football League - Championship",
+      "opta_id": "suz80crpy3anixyzccmu6jzp",
+      "rating": 81.8364160973
+    },
+    {
+      "rank": 228,
+      "source_name": "Standard Liège",
+      "club": "Standard Liege-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "5z1b7fuvpqe6vnigvopomvecu",
+      "rating": 81.8343304048
+    },
+    {
+      "rank": 229,
+      "source_name": "Viborg",
+      "club": "Viborg FF-DK",
+      "country_in_source": "Denmark",
+      "league_in_source": "Danish Superligaen",
+      "opta_id": "cftj6g399tknheudaxsdpfdgb",
+      "rating": 81.831549479
+    },
+    {
+      "rank": 230,
+      "source_name": "Gil Vicente",
+      "club": "Gil Vicente-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "bwt8yfk8rkcwiwyr0mopd7wqd",
+      "rating": 81.7877495258
+    },
+    {
+      "rank": 231,
+      "source_name": "Hapoel Be'er Sheva",
+      "club": "Hapoel Be'er Sheva-IL",
+      "country_in_source": "Israel",
+      "league_in_source": "Israeli Ligat Ha'al",
+      "opta_id": "9ppjmek1r3tb9yddebneaxj7i",
+      "rating": 81.7401249731
+    },
+    {
+      "rank": 232,
+      "source_name": "Hammarby",
+      "club": "Hammarby-SE",
+      "country_in_source": "Sweden",
+      "league_in_source": "Swedish Allsvenskan",
+      "opta_id": "2nnlsjfbcea40t4jeclcbw9lk",
+      "rating": 81.7175290929
+    },
+    {
+      "rank": 233,
+      "source_name": "Sion",
+      "club": "Sion-CH",
+      "country_in_source": "Switzerland",
+      "league_in_source": "Brack Super League",
+      "opta_id": "b9fc1umgats16gk6wr769wh8a",
+      "rating": 81.7168338321
+    },
+    {
+      "rank": 234,
+      "source_name": "Racing Club",
+      "club": "Racing Club-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "39acfbxikh52o6y9opfb0q0nb",
+      "rating": 81.7004256258
+    },
+    {
+      "rank": 235,
+      "source_name": "Le Mans",
+      "club": "Le Mans-FR",
+      "country_in_source": "France",
+      "league_in_source": "French Ligue 1",
+      "opta_id": "bj8hrmj01r3zit0x8r6qm2eu2",
+      "rating": 81.6977140907
+    },
+    {
+      "rank": 236,
+      "source_name": "Deportes Tolima",
+      "club": "Deportes Tolima-CO",
+      "country_in_source": "Colombia",
+      "league_in_source": "Colombia Primera A",
+      "opta_id": "epcjkyn8gazuywbotxwikc5kn",
+      "rating": 81.6966016653
+    },
+    {
+      "rank": 237,
+      "source_name": "Molde",
+      "club": "Molde-NO",
+      "country_in_source": "Norway",
+      "league_in_source": "Norwegian Eliteserien",
+      "opta_id": "45v50owpvshpijizwwlcw4lni",
+      "rating": 81.6876327187
+    },
+    {
+      "rank": 238,
+      "source_name": "Brann",
+      "club": "SK Brann-NO",
+      "country_in_source": "Norway",
+      "league_in_source": "Norwegian Eliteserien",
+      "opta_id": "6oxoag5c6zbnn09wx08vz4iak",
+      "rating": 81.683113471
+    },
+    {
+      "rank": 239,
+      "source_name": "Djurgården",
+      "club": "Djurgården-SE",
+      "country_in_source": "Sweden",
+      "league_in_source": "Swedish Allsvenskan",
+      "opta_id": "czkf5t3ai00ghwbga03i5aqxw",
+      "rating": 81.66677459
+    },
+    {
+      "rank": 240,
+      "source_name": "Tigre",
+      "club": "Tigre-AR",
+      "country_in_source": "Argentina",
+      "league_in_source": "Liga Profesional Argentina",
+      "opta_id": "cs3122cdx3g2nviltzfilmz5c",
+      "rating": 81.6430656573
+    },
+    {
+      "rank": 241,
+      "source_name": "Arouca",
+      "club": "Arouca-PT",
+      "country_in_source": "Portugal",
+      "league_in_source": "Portuguese Primeira Liga",
+      "opta_id": "dich5v7sw466smbqap0d9rbyj",
+      "rating": 81.6334012533
+    },
+    {
+      "rank": 242,
+      "source_name": "Apollon",
+      "club": "Apollon-CY",
+      "country_in_source": "Cyprus",
+      "league_in_source": "Cypriot Division 1",
+      "opta_id": "2qg4xmt2ucl2o5osmurwagw5g",
+      "rating": 81.6104568483
+    },
+    {
+      "rank": 243,
+      "source_name": "Cerro Porteño",
+      "club": "Cerro Porteño-PY",
+      "country_in_source": "Paraguay",
+      "league_in_source": "Paraguay Primera División",
+      "opta_id": "buyj9j0qwgbvx3v8wzikpjyzu",
+      "rating": 81.5863997805
+    },
+    {
+      "rank": 244,
+      "source_name": "Dallas",
+      "club": "FC Dallas-US",
+      "country_in_source": "USA",
+      "league_in_source": "US Major League Soccer",
+      "opta_id": "4gi4qw4gt6nfq0c6r8y574qgp",
+      "rating": 81.5860463718
+    },
+    {
+      "rank": 245,
+      "source_name": "Vitória",
+      "club": "Vitória-BA",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "436xob9epu7bzdu7c1zzjjdak",
+      "rating": 81.5790991834
+    },
+    {
+      "rank": 246,
+      "source_name": "Sirius",
+      "club": "Sirius-SE",
+      "country_in_source": "Sweden",
+      "league_in_source": "Swedish Allsvenskan",
+      "opta_id": "4jg5vd59i24chckyua90dr1lg",
+      "rating": 81.575344583
+    },
+    {
+      "rank": 247,
+      "source_name": "Nacional",
+      "club": "Nacional Montevideo-UY",
+      "country_in_source": "Uruguay",
+      "league_in_source": "Uruguay Liga AUF",
+      "opta_id": "27ia8tgma24uc864wpnbdwoxo",
+      "rating": 81.5328616157
+    },
+    {
+      "rank": 248,
+      "source_name": "Machida Zelvia",
+      "club": "Machida Zelvia-JP",
+      "country_in_source": "Japan",
+      "league_in_source": "Japanese J1 League",
+      "opta_id": "c893rjzz7makmez86fze25a2e",
+      "rating": 81.5041070164
+    },
+    {
+      "rank": 249,
+      "source_name": "Grêmio",
+      "club": "Grêmio-RS",
+      "country_in_source": "Brazil",
+      "league_in_source": "Brazilian Serie A",
+      "opta_id": "1yd80wg4djlmtgkei51x0x4t6",
+      "rating": 81.4647206159
+    },
+    {
+      "rank": 250,
+      "source_name": "Zulte Waregem",
+      "club": "Zulte-Waregem-BE",
+      "country_in_source": "Belgium",
+      "league_in_source": "Belgian Jupiler Pro League",
+      "opta_id": "547zzwqbiugzphhnrhj3z5k5i",
+      "rating": 81.4640948233
+    }
+  ]
+}

@@ -12,7 +12,7 @@ foreach($index['clubs'] as $club=>$entry) {
   squadCheck($p['overall']>=20 && $p['overall']<=99,'Overall válido');
   squadCheck(in_array($p['origin'],['real','fictional'],true),'Origem explícita');
   if($p['position']==='goleiro')$keepers++;
-  if($p['origin']==='real'){$rr++;$real++;squadCheck(str_starts_with($p['id'],'espn:') && str_starts_with($p['source'],'https://site.api.espn.com/'),'Real com fonte');}
+  if($p['origin']==='real'){$rr++;$real++;squadCheck((str_starts_with($p['id'],'espn:') && str_starts_with($p['source'],'https://site.api.espn.com/')) || (str_starts_with($p['id'],'premierleague:') && str_starts_with($p['source'],'https://www.premierleague.com/')),'Real com fonte');}
   else {$ff++;$fake++;squadCheck($p['source']===null && $p['overall_origin']==='estimated_rumo10_v1','Fictício não usa nota publicada');}
   if($p['overall_origin']==='published_ea_fc27'){$pp++;$rated++;squadCheck(str_starts_with($p['rating_source'],'https://www.ea.com/') && isset($p['rating_external_id']),'Nota publicada com origem');}
  }

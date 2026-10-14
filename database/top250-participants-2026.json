@@ -1,0 +1,360 @@
+{
+  "at-1": {
+    "source": "https://www.bundesliga.at/de/klubs",
+    "teams": [
+      "Salzburg-AT",
+      "LASK-AT",
+      "Sturm Graz-AT",
+      "Rapid-AT",
+      "Austria Wien-AT",
+      "Hartberg-AT",
+      "Ried-AT",
+      "Grazer AK-AT",
+      "SCR Altach-AT",
+      "WSG Tirol-AT",
+      "Austria Lustenau-AT",
+      "Wolfsberger AC-AT"
+    ]
+  },
+  "at-2": {
+    "source": "https://www.2liga.at/de/klubs",
+    "teams": [
+      "Blau-Weiß Linz-AT",
+      "First Vienna-AT",
+      "Admira Wacker-AT",
+      "St. Pölten-AT",
+      "Floridsdorfer AC-AT",
+      "Amstetten-AT",
+      "Liefering-AT",
+      "Austria Salzburg-AT",
+      "Austria Wien II-AT",
+      "Wacker Innsbruck-AT",
+      "Voitsberg-AT",
+      "Hertha Wels-AT",
+      "Schwarz-Weiß Bregenz-AT",
+      "Sturm Graz II-AT",
+      "Rapid Wien II-AT",
+      "Kapfenberger SV-AT"
+    ]
+  },
+  "az-1": {
+    "source": "https://pfl.az/turnir-cədvəli",
+    "teams": [
+      "Sabah-AZ",
+      "Qarabağ-AZ",
+      "Neftçi-AZ",
+      "Zira-AZ",
+      "Turan-AZ",
+      "Şamaxı-AZ",
+      "Araz Naxçıvan-AZ",
+      "İmişli-AZ",
+      "Sumqayıt-AZ",
+      "Safa-AZ",
+      "Kapaz-AZ",
+      "Qəbələ-AZ"
+    ]
+  },
+  "az-2": {
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "teams": [
+      "Səbail-AZ",
+      "Karvan-AZ",
+      "Şahdağ-AZ",
+      "Mingəçevir-AZ",
+      "MOIK-AZ",
+      "Baku Sportinq-AZ",
+      "Gəncəbasar-AZ",
+      "Zaqatala-AZ",
+      "Xankəndi-AZ",
+      "Şimal-AZ"
+    ]
+  },
+  "ch-1": {
+    "source": "https://sfl.ch/de/klubs-brack-super-league",
+    "teams": [
+      "Lugano-CH",
+      "Young Boys-CH",
+      "Sion-CH",
+      "St.Gallen-CH",
+      "Servette-CH",
+      "Luzern-CH",
+      "Basel-CH",
+      "Thun-CH",
+      "Zürich-CH",
+      "Lausanne-Sport-CH",
+      "Grasshoppers-CH",
+      "Vaduz-LI"
+    ]
+  },
+  "ch-2": {
+    "source": "https://sfl.ch/de/klubs-dieci-challenge-league",
+    "teams": [
+      "Stade-Lausanne-Ouchy-CH",
+      "Yverdon Sport-CH",
+      "Winterthur-CH",
+      "Aarau-CH",
+      "Xamax-CH",
+      "Kriens-CH",
+      "Wil-CH",
+      "Rapperswil-Jona-CH",
+      "Etoile Carouge-CH",
+      "Stade Nyonnais-CH"
+    ]
+  },
+  "ua-1": {
+    "source": "https://upl.ua/ua/tournaments/championship?id=432&tab=table",
+    "teams": [
+      "Shakhtar Donetsk-UA",
+      "Dynamo Kyiv-UA",
+      "Polissya-UA",
+      "Kharkiv-UA",
+      "Karpaty Lviv-UA",
+      "LNZ Cherkasy-UA",
+      "Zorya-UA",
+      "Kryvbas KR-UA",
+      "Kolos Kovalivka-UA",
+      "Bukovyna-UA",
+      "Veres Rivne-UA",
+      "Epitsentr-UA",
+      "Livyi Bereh-UA",
+      "Obolon Kyiv-UA",
+      "Chornomorets-UA",
+      "Kudrivka-UA"
+    ]
+  },
+  "ua-2": {
+    "source": "https://pfl.ua/news/1699",
+    "teams": [
+      "Oleksandria-UA",
+      "Ahrobiznes Volochysk-UA",
+      "SK Poltava-UA",
+      "Viktoriya Sumy-UA",
+      "Inhulets'-UA",
+      "FSC Mariupol-UA",
+      "FK Metalist Kharkiv-UA",
+      "Kulykiv-UA",
+      "Prykarpattia-UA",
+      "Nyva Ternopil-UA",
+      "Lokomotiv Kyiv-UA",
+      "Chernihiv-UA",
+      "UCSA-UA",
+      "Kolos Kovalivka II-UA",
+      "Polissya II-UA",
+      "Probiy Horodenka-UA"
+    ]
+  },
+  "rs-1": {
+    "source": "https://fss.rs/takmicenje/mozzart-bet-super-liga-srbije-26-27/?script=lat",
+    "teams": [
+      "Crvena zvezda-RS",
+      "Vojvodina-RS",
+      "Partizan-RS",
+      "Železničar Pančevo-RS",
+      "IMT-RS",
+      "Radnički 1923-RS",
+      "Novi Pazar-RS",
+      "Radnik Surdulica-RS",
+      "OFK Beograd-RS",
+      "Čukarički-RS",
+      "Radnički Niš-RS",
+      "Mladost Lučani-RS",
+      "Mačva Šabac-RS",
+      "Zemun-RS"
+    ]
+  },
+  "rs-2": {
+    "source": "https://fss.rs/takmicenje/mozzart-bet-prva-liga-srbije-26-27/?script=lat",
+    "teams": [
+      "TSC-RS",
+      "Javor-RS",
+      "Voždovac-RS",
+      "Borac Čačak-RS",
+      "Loznica-RS",
+      "Smederevo 1924-RS",
+      "OFK Vršac-RS",
+      "Napredak-RS",
+      "Spartak Subotica-RS",
+      "Proleter 023 Zrenjanin-RS",
+      "Grafičar-RS",
+      "Metalac GM-RS",
+      "Teleoptik-RS",
+      "Dubočica-RS",
+      "Jedinstvo Ub-RS",
+      "Bor-RS"
+    ]
+  },
+  "jp-1": {
+    "source": "https://www.jleague.jp/news/article/32852/?mode=pc",
+    "teams": [
+      "Sanfrecce Hiroshima-JP",
+      "Machida Zelvia-JP",
+      "Kashima Antlers-JP",
+      "Vissel Kobe-JP",
+      "Kashiwa Reysol-JP",
+      "Tokyo-JP",
+      "Yokohama F. Marinos-JP",
+      "Kawasaki Frontale-JP",
+      "Urawa Reds-JP",
+      "Cerezo Osaka-JP",
+      "Gamba Osaka-JP",
+      "Fagiano Okayama-JP",
+      "Kyoto Sanga-JP",
+      "Nagoya Grampus-JP",
+      "Shimizu S-Pulse-JP",
+      "Avispa Fukuoka-JP",
+      "V-Varen Nagasaki-JP",
+      "Mito Hollyhock-JP",
+      "Tokyo Verdy-JP",
+      "JEF United-JP"
+    ]
+  },
+  "jp-2": {
+    "source": "https://www.jleague.jp/news/article/32852/?mode=pc",
+    "teams": [
+      "Vegalta Sendai-JP",
+      "Yokohama-JP",
+      "Omiya Ardija-JP",
+      "Albirex Niigata-JP",
+      "Shonan Bellmare-JP",
+      "Kataller Toyama-JP",
+      "Júbilo Iwata-JP",
+      "Sagan Tosu-JP",
+      "Tokushima Vortis-JP",
+      "Tegevajaro Miyazaki-JP",
+      "Iwaki-JP",
+      "Blaublitz Akita-JP",
+      "Montedio Yamagata-JP",
+      "Fujieda MYFC-JP",
+      "Tochigi City-JP",
+      "Imabari-JP",
+      "Consadole Sapporo-JP",
+      "Oita Trinita-JP",
+      "Ventforet Kofu-JP",
+      "Vanraure Hachinohe-JP"
+    ]
+  },
+  "il-1": {
+    "source": "https://www.football.org.il/en/leagues/league/?league_id=40&season_id=28",
+    "teams": [
+      "Maccabi Tel Aviv-IL",
+      "Hapoel Be'er Sheva-IL",
+      "Hapoel Tel Aviv-IL",
+      "Beitar Jerusalem-IL",
+      "Maccabi Haifa-IL",
+      "Maccabi Netanya-IL",
+      "Hapoel Haifa-IL",
+      "Ironi Tiberias-IL",
+      "Hapoel Jerusalem-IL",
+      "Ironi Kiryat Shmona-IL",
+      "Hapoel Petah Tikva-IL",
+      "Hapoel Ramat Gan-IL",
+      "Maccabi Petah Tikva-IL",
+      "Bnei Sakhnin-IL"
+    ]
+  },
+  "il-2": {
+    "source": "https://www.football.org.il/en/leagues/league/?league_id=45&season_id=28",
+    "teams": [
+      "Bnei Yehuda-IL",
+      "Ashdod-IL",
+      "Kiryat Yam SC-IL",
+      "Hapoel Kfar Shalem-IL",
+      "Hapoel Rishon LeZion-IL",
+      "Maccabi Bnei Raina-IL",
+      "Hapoel Ra'anana-IL",
+      "Maccabi Herzliya-IL",
+      "Hapoel Afula-IL",
+      "Kafr Qasim-IL",
+      "Maccabi Kabilio Jaffa-IL",
+      "Hapoel Kfar Saba-IL",
+      "Maccabi Kiryat Gat-IL",
+      "Maccabi Ahi Nazareth-IL",
+      "Ironi Modi'in-IL",
+      "Hapoel Acre-IL"
+    ]
+  },
+  "bg-1": {
+    "source": "https://bpfl.bg/ranking",
+    "teams": [
+      "Levski Sofia-BG",
+      "Ludogorets Razgrad-BG",
+      "CSKA Sofia-BG",
+      "CSKA 1948 Sofia-BG",
+      "Arda Kardzhali-BG",
+      "Botev Plovdiv-BG",
+      "Lokomotiv Plovdiv-BG",
+      "Cherno more Varna-BG",
+      "Botev Vratsa-BG",
+      "Slavia Sofia-BG",
+      "Lokomotiv Sofia 1929-BG",
+      "Spartak Varna-BG",
+      "Dunav ot Ruse-BG",
+      "Septemvri Sofia-BG"
+    ]
+  },
+  "bg-2": {
+    "source": "https://bpfl.bg/ranking",
+    "teams": [
+      "Vihren Sandanski-BG",
+      "CSKA Sofia II-BG",
+      "Fratria-BG",
+      "Chernomorets Burgas-BG",
+      "Yantra 2019-BG",
+      "Beroe Stara Zagora-BG",
+      "Marek-BG",
+      "Hebar 1918-BG",
+      "Etar VT-BG",
+      "Ludogorets II-BG",
+      "Nesebar-BG",
+      "Rilski sportist-BG",
+      "Montana 1921-BG",
+      "Dobrudzha 1919-BG",
+      "Lokomotiv GO-BG",
+      "Spartak Pleven-BG",
+      "Sportist Svoge-BG",
+      "Pirin Blagoevgrad-BG"
+    ]
+  },
+  "se-1": {
+    "source": "https://www.svenskfotboll.se/4af842/globalassets/svff/dokumentdokumentblock/tavling/arsplaner--seriesammansattningar/2026/faststalld-seriesammansattning-allsvenskan-och-superettan-2026.pdf",
+    "teams": [
+      "Hammarby-SE",
+      "Djurgården-SE",
+      "Sirius-SE",
+      "Häcken-SE",
+      "GAIS-SE",
+      "Elfsborg-SE",
+      "Malmö FF-SE",
+      "IFK Göteborg-SE",
+      "Västerås-SE",
+      "AIK-SE",
+      "Mjällby-SE",
+      "Brommapojkarna-SE",
+      "Kalmar-SE",
+      "Degerfors-SE",
+      "Örgryte-SE",
+      "Halmstad-SE"
+    ]
+  },
+  "se-2": {
+    "source": "https://www.svenskfotboll.se/4af842/globalassets/svff/dokumentdokumentblock/tavling/arsplaner--seriesammansattningar/2026/faststalld-seriesammansattning-allsvenskan-och-superettan-2026.pdf",
+    "teams": [
+      "Norrköping-SE",
+      "Falkenberg-SE",
+      "Varberg-SE",
+      "Landskrona-SE",
+      "Oddevold-SE",
+      "Östersund-SE",
+      "Sandviken-SE",
+      "Öster-SE",
+      "Värnamo-SE",
+      "Nordic United-SE",
+      "Brage-SE",
+      "Helsingborg-SE",
+      "Norrby-SE",
+      "Ljungskile-SE",
+      "Örebro-SE",
+      "Sundsvall-SE"
+    ]
+  }
+}

@@ -1,8 +1,10 @@
-# Rumo à Camisa 10 — protótipo 0.9
+# Rumo à Camisa 10 — protótipo 0.10
+
+Top 250 mundial Opta e 250 jogadores masculinos FC 27 pesquisados; nove novos mercados com duas divisões e 268 clubes. [Proposta RumoHub, fontes, cobertura e limites](Docs/19_RumoHub_e_Top250.md). O banco ainda é `ecohub`: o desenho de nomes `rh_` compartilhados é uma proposta, sem migração aplicada.
 
 África e todos os países independentes da América do Sul, evolução com auge potencial aos 32, aposentadoria voluntária aos 35 e obrigatória aos 40, e catálogo global normalizado para outros jogos: [cobertura, fontes, instalação e estrutura das tabelas](Docs/18_Africa_Ciclo_e_Catalogo_Compartilhado.md).
 
-RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. O cadastro tem **1.486 clubes em 64 mercados**, **112 competições/etapas/circuitos**, incluindo o Brasil, Mercosul, Europa e 13 países da Concacaf. A seleção mundial de 100 clubes usa a fonte pública **Opta**, não um ranking FIFA. MLS e Canadá têm formatos próprios; mercados com cobertura parcial usam circuitos explicitamente adaptados. [Fontes, cobertura e limitações](Docs/17_Expansao_Mundial_e_Concacaf.md). Placares, jogador, propostas e temporadas seguintes são simulados no servidor. Carreiras anteriores permanecem disponíveis.
+RPG de carreira em português, PHP 8.2+, PDO MySQL, Bootstrap local e JavaScript nativo. O cadastro tem **1.754 clubes em 74 países/mercados**, **130 competições/etapas/circuitos**, incluindo o Brasil, América do Sul, Europa, África, Japão e Concacaf. A seleção mundial de 250 clubes usa a fonte pública **Opta**, não um ranking FIFA. MLS e Canadá têm formatos próprios; os nove mercados acrescentados têm todos os participantes de duas divisões e calendário de jogo adaptado. Outros mercados ainda têm cobertura parcial. [Fontes e limites atuais](Docs/19_RumoHub_e_Top250.md). Placares, jogador, propostas e temporadas seguintes são simulados no servidor. Carreiras anteriores permanecem disponíveis.
 
 Para começar outra carreira na conta atual, abra **/carreira/nova**. A anterior será arquivada ao enviar o formulário; pode ser retomada em **/carreira/arquivadas**. Criar outra carreira não apaga a anterior.
 
@@ -38,9 +40,9 @@ Nesta máquina, a instância original FastCGI apresentou erro de monitoramento e
 Em outro IIS, use a instância registrada nesse ambiente. Prefira autenticação anônima com identidade do pool em produção, evitando compartilhamento de IUSR entre sites.
 ## Companheiros reais e fictícios
 
-Em `/jogador`, abra **Ver companheiros de elenco**. O catálogo cobre os 1.486 clubes: 23.300 atletas reais em 718 equipes, 18.454 fictícios e 4.876 notas publicadas do EA SPORTS FC 27. Messi consta no Inter Miami com nota publicada 89. Os demais overalls são estimados e identificados. [Procedência da integração inicial](Docs/16_Elencos_Reais_e_Ficticios.md) e [cobertura atual](Docs/17_Expansao_Mundial_e_Concacaf.md). Os elencos são a base de referência; autoria de gols e premiações dos NPCs ainda serão integradas ao motor.
+Em `/jogador`, abra **Ver companheiros de elenco**. O catálogo cobre os 1.754 clubes: 24.547 atletas reais em 766 equipes, 23.807 fictícios e 5.325 notas publicadas do EA SPORTS FC 27. Os 250 homens do recorte EA estão conciliados com identidades reais. Messi consta no Inter Miami com nota publicada 89. Os demais overalls são estimados e identificados. [Procedência da integração inicial](Docs/16_Elencos_Reais_e_Ficticios.md) e [cobertura atual](Docs/19_RumoHub_e_Top250.md). Os elencos são a base de referência; autoria de gols e premiações dos NPCs ainda serão integradas ao motor.
 
-Para instalar o catálogo, execute `bin/install-players.php` com a conexão local configurada. A tabela criada é exclusivamente `rumo10_elencos_catalogo`, sem reset de carreira.
+Para instalar o catálogo, execute `bin/install-official.php` e depois `bin/install-players.php` com a conexão local configurada. Atualizam somente tabelas `rumo10_*`, incluindo clubes, jogadores e vínculos normalizados; sem reset de carreira ou renomeação de banco.
 
 ## Histórico da carreira e próxima evolução
 
@@ -56,6 +58,8 @@ Escolha **Normal**, **Rápido** ou **Expresso** na criação do jogador ou abra 
 
 Para validar o motor dos modos, execute `tests/play-modes.php` com PHP e mbstring. `tests/http.php` testa também os modos no IIS e MySQL locais com uma conta descartável.
 
+O recorte mundial e as 18 novas ligas são validados por `tests/top250.php`. Elencos e integridade compartilhada: `tests/player-catalog.php` e `tests/shared-catalog.php` (este acessa o MySQL local). O teste HTTP deve ser executado com `-d memory_limit=256M` no cliente de teste, que retém várias respostas completas; isso não altera o PHP do IIS.
+
 ## Jogar e testar
 
 1. Abra [http://rumo10.local](http://rumo10.local), escolha começar e crie uma conta com senha exclusiva (8–72 caracteres). Não existem credenciais demo públicas; o cadastro local é o modo de teste rápido.
@@ -65,7 +69,7 @@ Para validar o motor dos modos, execute `tests/play-modes.php` com PHP e mbstrin
 5. Complete a competição; fases classificatórias e mata-matas avançam conforme seus resultados. Se o clube também tiver competição nacional, use Continuar para jogá-la. Ao encerrar o ano, sorteie a proposta e aceite ou permaneça. A nova temporada aplica os acessos/rebaixamentos da pirâmide nacional/paulista e mantém jogador, XP e histórico. Nos outros estaduais, consulte a limitação de continuidade descrita abaixo.
 6. Saia e entre novamente. Crie outra conta para confirmar carreiras independentes. `/api/carreira/estado` retorna apenas a carreira da sessão.
 
-Não há botão que pula rodadas. Para concluir rapidamente a temporada, faça as escolhas sem animação (os resultados são imediatos). Para validar automaticamente 30 temporadas nas seis posições, rode:
+Para concluir rapidamente a temporada, escolha o modo Expresso antes de iniciar uma partida. Para validar automaticamente 30 temporadas de teste independentes nas seis posições, rode:
 
 ```powershell
 & C:\PHP\php-8.4.26\php.exe tests/run.php

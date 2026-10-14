@@ -1,0 +1,265 @@
+{
+  "checked": "2026-10-14",
+  "markets": [
+    {
+      "competition": "at-1",
+      "country": "AT",
+      "level": 1,
+      "clubs": 12,
+      "source": "https://www.bundesliga.at/de/klubs",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "at-2",
+      "country": "AT",
+      "level": 2,
+      "clubs": 16,
+      "source": "https://www.2liga.at/de/klubs",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": [
+        "Stripfing"
+      ]
+    },
+    {
+      "competition": "az-1",
+      "country": "AZ",
+      "level": 1,
+      "clubs": 12,
+      "source": "https://pfl.az/turnir-cədvəli",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "az-2",
+      "country": "AZ",
+      "level": 2,
+      "clubs": 10,
+      "source": "https://liqa1.pfl.az/turnir-cədvəli",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": [
+        "Difai Ağsu"
+      ]
+    },
+    {
+      "competition": "ch-1",
+      "country": "CH",
+      "level": 1,
+      "clubs": 12,
+      "source": "https://sfl.ch/de/klubs-brack-super-league",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "ch-2",
+      "country": "CH",
+      "level": 2,
+      "clubs": 10,
+      "source": "https://sfl.ch/de/klubs-dieci-challenge-league",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "ua-1",
+      "country": "UA",
+      "level": 1,
+      "clubs": 16,
+      "source": "https://upl.ua/ua/tournaments/championship?id=432&tab=table",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "ua-2",
+      "country": "UA",
+      "level": 2,
+      "clubs": 16,
+      "source": "https://pfl.ua/news/1699",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": [
+        "Vorskla"
+      ]
+    },
+    {
+      "competition": "rs-1",
+      "country": "RS",
+      "level": 1,
+      "clubs": 14,
+      "source": "https://fss.rs/takmicenje/mozzart-bet-super-liga-srbije-26-27/?script=lat",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "rs-2",
+      "country": "RS",
+      "level": 2,
+      "clubs": 16,
+      "source": "https://fss.rs/takmicenje/mozzart-bet-prva-liga-srbije-26-27/?script=lat",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": [
+        "Dinamo Jug"
+      ]
+    },
+    {
+      "competition": "jp-1",
+      "country": "JP",
+      "level": 1,
+      "clubs": 20,
+      "source": "https://www.jleague.jp/news/article/32852/?mode=pc",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "jp-2",
+      "country": "JP",
+      "level": 2,
+      "clubs": 20,
+      "source": "https://www.jleague.jp/news/article/32852/?mode=pc",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "il-1",
+      "country": "IL",
+      "level": 1,
+      "clubs": 14,
+      "source": "https://www.football.org.il/en/leagues/league/?league_id=40&season_id=28",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "il-2",
+      "country": "IL",
+      "level": 2,
+      "clubs": 16,
+      "source": "https://www.football.org.il/en/leagues/league/?league_id=45&season_id=28",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "bg-1",
+      "country": "BG",
+      "level": 1,
+      "clubs": 14,
+      "source": "https://bpfl.bg/ranking",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "bg-2",
+      "country": "BG",
+      "level": 2,
+      "clubs": 18,
+      "source": "https://bpfl.bg/ranking",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "se-1",
+      "country": "SE",
+      "level": 1,
+      "clubs": 16,
+      "source": "https://www.svenskfotboll.se/4af842/globalassets/svff/dokumentdokumentblock/tavling/arsplaner--seriesammansattningar/2026/faststalld-seriesammansattning-allsvenskan-och-superettan-2026.pdf",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    },
+    {
+      "competition": "se-2",
+      "country": "SE",
+      "level": 2,
+      "clubs": 16,
+      "source": "https://www.svenskfotboll.se/4af842/globalassets/svff/dokumentdokumentblock/tavling/arsplaner--seriesammansattningar/2026/faststalld-seriesammansattning-allsvenskan-och-superettan-2026.pdf",
+      "naming_source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+      "checked": "2026-10-14",
+      "excluded_stale_provider_entries": []
+    }
+  ],
+  "pending_badges": [
+    {
+      "club": "Proleter 023 Zrenjanin-RS",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Metalac GM-RS",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Bor-RS",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Kiryat Yam SC-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Hapoel Kfar Shalem-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Hapoel Rishon LeZion-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Hapoel Ra'anana-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Maccabi Herzliya-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Hapoel Afula-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Kafr Qasim-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Maccabi Kabilio Jaffa-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Hapoel Kfar Saba-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Maccabi Kiryat Gat-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Maccabi Ahi Nazareth-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Ironi Modi'in-IL",
+      "reason": "generic_provider_placeholder"
+    },
+    {
+      "club": "Hapoel Acre-IL",
+      "reason": "generic_provider_placeholder"
+    }
+  ],
+  "notes": [
+    "Listas completas nas 18 divisões acrescentadas; não significa todas as divisões do mundo.",
+    "Vaduz: clube de Liechtenstein na pirâmide suíça.",
+    "No Japão a edição 2026/27 sucedeu o torneio especial de transição de 2026.",
+    "Fontes ESPN antigas não substituem as listas atuais dos organizadores."
+  ]
+}

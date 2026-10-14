@@ -1,0 +1,38 @@
+{
+  "checked": "2026-10-14",
+  "moves": [
+    {
+      "id": "espn:146679",
+      "birthdate": "1996-05-26",
+      "club": "Nottingham Forest-EN",
+      "source": "https://www.nottinghamforest.co.uk/news/2026/october/07/mu-oz-helps-colombia-to-win-as-international-period-ends/"
+    }
+  ],
+  "additions": [
+    {
+      "club": "Newcastle United-EN",
+      "player": {
+        "id": "premierleague:487838",
+        "name": "Lewis Hall",
+        "full_name": "Lewis Hall",
+        "birthdate": "2004-09-08",
+        "age_at_import": 22,
+        "position": "lateral",
+        "source_position": "LB",
+        "origin": "real",
+        "overall": 83,
+        "overall_origin": "published_ea_fc27",
+        "rating_source": "https://www.ea.com/games/ea-sports-fc/ratings",
+        "rating_external_id": 266127,
+        "source": "https://www.premierleague.com/en/players/487838/lewis-hall/video",
+        "source_season": "2026/27 Premier League; identificação oficial",
+        "checked": "2026-10-14"
+      }
+    }
+  ],
+  "rating_aliases": [
+    {"ea_id": 203980, "player_id": "espn:160020", "birthdate": "1992-10-16", "source": "https://www.olympiacos.org/en/player/kostas-fortounis/"},
+    {"ea_id": 240225, "player_id": "espn:248699", "birthdate": "1999-02-25", "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/teams/160/roster?season=2026"},
+    {"ea_id": 227236, "player_id": "espn:215721", "birthdate": "1995-11-16", "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams/114/roster?season=2026"}
+  ]
+}

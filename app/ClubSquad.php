@@ -22,7 +22,8 @@ final class ClubSquad {
     public static function render(array $g):void {
         echo '<section class="panel squad-reference"><p class="tag">SEU CLUBE</p><h1>Companheiros de elenco</h1><p>';ClubBadge::render($g['club']);echo ' <strong>'.e($g['club']).'</strong></p>';
         $players=self::players($g['club']);$entry=self::catalog()['clubs'][$g['club']]??null;
-        echo '<p class="subtle">Elenco de referência consultado em 13/10/2026. '.e($entry['real']??0).' jogadores reais · '.e($entry['fictional']??count($players)).' fictícios.</p><p class="subtle">Notas publicadas usam EA SPORTS FC 27; estimativas usam o modelo do Rumo à Camisa 10. A nota e a origem de cada atleta estão identificadas.</p>';
+        $checked=self::catalog()['summary']['checked']??'2026-10-14';$checked=implode('/',array_reverse(explode('-',$checked)));
+        echo '<p class="subtle">Elenco de referência consultado em '.e($checked).'. '.e($entry['real']??0).' jogadores reais · '.e($entry['fictional']??count($players)).' fictícios.</p><p class="subtle">Notas publicadas usam EA SPORTS FC 27; estimativas usam o modelo do Rumo à Camisa 10. A nota e a origem de cada atleta estão identificadas.</p>';
         $order=['goleiro'=>0,'zagueiro'=>1,'lateral'=>2,'volante'=>3,'meia'=>4,'ponta'=>5,'centroavante'=>6];usort($players,fn($a,$b)=>($order[$a['position']]<=>$order[$b['position']])?:($b['overall']<=>$a['overall'])?:strcmp($a['name'],$b['name']));
         echo '<div class="table-responsive"><table class="table squad-table"><thead><tr><th>Jogador</th><th>Pos.</th><th>Overall</th></tr></thead><tbody>';
         foreach($players as $p) {

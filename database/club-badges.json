@@ -9840,5 +9840,1769 @@
     "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6hb666m9ccknyczz95bg9qf1f",
     "retrieved": "2026-10-13",
     "identity_status": "publisher_source"
+  },
+  "LASK-AT": {
+    "path": "/assets/clubs/cc-5515f0bde9d7be.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=boxkkgnpn38ywao4kzu7dx58h",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Salzburg-AT": {
+    "path": "/assets/clubs/cc-8172e4c8237295.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bonj6qc7po4anunhydmjmi6g5",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Austria Wien-AT": {
+    "path": "/assets/clubs/cc-c8552777777c58.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=84gk4ytf9vr8oml51cqyit78w",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sturm Graz-AT": {
+    "path": "/assets/clubs/cc-1639e09cc5f4b8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4lauow63npvttmvxgh2koqb0r",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hartberg-AT": {
+    "path": "/assets/clubs/cc-f53f1e35b76a98.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1vli32f09v65mc3vc6yh34z9f",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ried-AT": {
+    "path": "/assets/clubs/cc-6ca4470efccb87.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=do3l4dhs0ooog6se728jxc06z",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "WSG Tirol-AT": {
+    "path": "/assets/clubs/cc-de85e40d85d3ff.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7uh2y9tk3j8dk6zinfu38pygi",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Grazer AK-AT": {
+    "path": "/assets/clubs/cc-35530bb9703d19.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=39vgp5h6xs9igypqgqq2dobf9",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Austria Lustenau-AT": {
+    "path": "/assets/clubs/cc-54427afbaa25b5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9ws0f9wf5r8mdigwo0xpzv06v",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Wolfsberger AC-AT": {
+    "path": "/assets/clubs/cc-965e312cd49bd6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9pn4d8sj6pmqidrhhlvev437k",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Rapid-AT": {
+    "path": "/assets/clubs/cc-098ac06ea7d039.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=eljjik2vvlpy6d649mgwwivam",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "SCR Altach-AT": {
+    "path": "/assets/clubs/cc-5937aab29ddc56.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3lcvs7iiylixau81d0lruwsak",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "St. Pölten-AT": {
+    "path": "/assets/clubs/cc-adb598c5b894d0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5z4worzp3ahwy7w7o6q0z3fk",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Blau-Weiß Linz-AT": {
+    "path": "/assets/clubs/cc-a72d8bbb312830.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bm759tfjxbog9lhge0pbs219p",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Admira Wacker-AT": {
+    "path": "/assets/clubs/cc-decdec1d2e1cd7.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4l5d2ebcjlj5rsxqfzx3wc2nh",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "First Vienna-AT": {
+    "path": "/assets/clubs/cc-d4353505beae28.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1gurvegli2702alzniefj6e0t",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Amstetten-AT": {
+    "path": "/assets/clubs/cc-df533440c48207.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1xmid87fkbcqkezkukhggmuqz",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Austria Salzburg-AT": {
+    "path": "/assets/clubs/cc-243da3e9dfe206.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a9io8h96ezoam16femvkqsdci",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Austria Wien II-AT": {
+    "path": "/assets/clubs/cc-dbc2eb6f47d3d4.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dh84jb15hz28bucnz91mv1pzq",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Liefering-AT": {
+    "path": "/assets/clubs/cc-7d5d9ffd27e106.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bkrmyopzqndrathh3vwhr8plb",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Floridsdorfer AC-AT": {
+    "path": "/assets/clubs/cc-45c89b2ddd5182.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1ol9hddzir7o6zgcdp2rgatkw",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Wacker Innsbruck-AT": {
+    "path": "/assets/clubs/cc-ac542a0c42d75e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cxwf7r6qzcvnngne52adlzg2y",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Voitsberg-AT": {
+    "path": "/assets/clubs/cc-38c3b6c0eb992f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5xn6qbeq9jbmkgfk2zphzwhzp",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sabah-AZ": {
+    "path": "/assets/clubs/cc-d6f8a9998f85e9.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/681354337aba337.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hertha Wels-AT": {
+    "path": "/assets/clubs/cc-daec9601f379de.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2ijvxa3iwb72ntub8w0g3kk5w",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Schwarz-Weiß Bregenz-AT": {
+    "path": "/assets/clubs/cc-e2a7119825a448.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9b2huwrza7h693itw8cf17hr7",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sturm Graz II-AT": {
+    "path": "/assets/clubs/cc-9e731e5c5cbe1f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bkdfxcscvinu0k0r04f8zb2yg",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Rapid Wien II-AT": {
+    "path": "/assets/clubs/cc-256dd3c323caeb.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8vptjbbpyl30j22jw58psjjyt",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kapfenberger SV-AT": {
+    "path": "/assets/clubs/cc-4eecf695fa80c6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d2ct6l5jqdryxd2ozx5x3s5h",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Qarabağ-AZ": {
+    "path": "/assets/clubs/cc-89c620e079ee33.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6723f1150560675.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Neftçi-AZ": {
+    "path": "/assets/clubs/cc-a64a114f9e162d.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6722aa5bf3d1175.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Zira-AZ": {
+    "path": "/assets/clubs/cc-91fa695f7efeb1.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6722aaf13693f23.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Turan-AZ": {
+    "path": "/assets/clubs/cc-e87c3e6ffc8a71.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6722aad91856b48.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Şamaxı-AZ": {
+    "path": "/assets/clubs/cc-7414772e300fae.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6722ab13d9cb253.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Araz Naxçıvan-AZ": {
+    "path": "/assets/clubs/cc-39c55cc2a227b0.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6722aae7a85c983.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "İmişli-AZ": {
+    "path": "/assets/clubs/cc-4e8a49f5ce9dd6.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6a58c24dd03ca28.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sumqayıt-AZ": {
+    "path": "/assets/clubs/cc-78fe2077bd6832.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6722ab2064ccc85.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Safa-AZ": {
+    "path": "/assets/clubs/cc-1dc69ee8a93163.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6a7aca94e9bab97.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Qəbələ-AZ": {
+    "path": "/assets/clubs/cc-4f8efd10d4f9b7.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6724b5447470444.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Səbail-AZ": {
+    "path": "/assets/clubs/cc-70fb7e5e55ca6a.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6722ab30b49e465.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kapaz-AZ": {
+    "path": "/assets/clubs/cc-9beba7424ba4dc.png",
+    "source": "https://pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6a900679ca5ed56.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Karvan-AZ": {
+    "path": "/assets/clubs/cc-2537c32661515b.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6724b54f0240155.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Şahdağ-AZ": {
+    "path": "/assets/clubs/cc-409bb0517fdd1c.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/68c136b4861f637.PNG",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "MOIK-AZ": {
+    "path": "/assets/clubs/cc-3cac6fcf49d59f.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/67f3a3a694b1230.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Baku Sportinq-AZ": {
+    "path": "/assets/clubs/cc-794e2101180f51.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6a806296edc5956.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Mingəçevir-AZ": {
+    "path": "/assets/clubs/cc-e5e2b29f374baf.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6724b58315dc731.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Gəncəbasar-AZ": {
+    "path": "/assets/clubs/cc-a626767068918f.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6a806206537bb66.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Zaqatala-AZ": {
+    "path": "/assets/clubs/cc-87253928432bb8.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6724b532b05f174.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Xankəndi-AZ": {
+    "path": "/assets/clubs/cc-254bdf54c0e50c.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6a843b4bc6ee686.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Young Boys-CH": {
+    "path": "/assets/clubs/cc-2933f03e0c0591.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5fd9f9bti2cdgb6r1lf8l2bc7",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Şimal-AZ": {
+    "path": "/assets/clubs/cc-6296d7ad863d56.png",
+    "source": "https://liqa1.pfl.az/turnir-cədvəli",
+    "download_url": "https://pfl.az/storage/clubs/6724b5dc6423f27.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Lugano-CH": {
+    "path": "/assets/clubs/cc-eb3ada3ecc23fb.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=btqfm8txcvhi29sddmc9nr68",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "St.Gallen-CH": {
+    "path": "/assets/clubs/cc-daea59656c413d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dty3ktxspuo8ayudnf0egkvx5",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sion-CH": {
+    "path": "/assets/clubs/cc-f609d6cbc4e231.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=b9fc1umgats16gk6wr769wh8a",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Luzern-CH": {
+    "path": "/assets/clubs/cc-ccc9001a78d33c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dk531bvjn5bmeonqs9hbbmfgr",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Thun-CH": {
+    "path": "/assets/clubs/cc-9833c0ce4f77e7.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6u0uaryouca843tojxzgwulr2",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Zürich-CH": {
+    "path": "/assets/clubs/cc-b298107fc42563.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3sb3j9l7dbjcalwpirp3u2f9g",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Lausanne-Sport-CH": {
+    "path": "/assets/clubs/cc-c7fb1555764eb6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=96jxcq0onij7zd9rwwkal8q1l",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Basel-CH": {
+    "path": "/assets/clubs/cc-33692ed11a6a35.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5u18kvqiqhup2vd345dci1069",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Servette-CH": {
+    "path": "/assets/clubs/cc-f7d67a419d1b60.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ccwv4ymbs3u0q8xaby4hqb0jz",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Grasshoppers-CH": {
+    "path": "/assets/clubs/cc-c34baa43ca0a9c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9dqlf92t42brv71kvaet67tm4",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Vaduz-LI": {
+    "path": "/assets/clubs/cc-24300eec135851.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9kxht4usspzkeyosl567vjrs2",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Stade-Lausanne-Ouchy-CH": {
+    "path": "/assets/clubs/cc-95af2046ee265c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dw7wscihb8j6cj5r2maemstci",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Winterthur-CH": {
+    "path": "/assets/clubs/cc-c5644c2a0d9f3a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ag3mf21yz4g5ypnqr2j28crqb",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Yverdon Sport-CH": {
+    "path": "/assets/clubs/cc-03faa9bf1011b8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1zamjwj53fwzcw97cs9awc3hr",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Aarau-CH": {
+    "path": "/assets/clubs/cc-b4846df7e9310f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1fq3zowe5x1ush6qocmapudhr",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Wil-CH": {
+    "path": "/assets/clubs/cc-5209f03340a6b1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=988hdd0jedgyvm4978w95vma9",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Xamax-CH": {
+    "path": "/assets/clubs/cc-87dc24e3a203e2.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6298wfdiblmkqf747cilzuh8o",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kriens-CH": {
+    "path": "/assets/clubs/cc-759f355b9f93b3.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1vgws1udwanpz7n6x1ymhlj9c",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Shakhtar Donetsk-UA": {
+    "path": "/assets/clubs/cc-977fdea9dac5da.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cf8plcmeniaen0fc5emyb5j93",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Rapperswil-Jona-CH": {
+    "path": "/assets/clubs/cc-c50f1e9bae1b8c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=59viwky8c7g3bq3japwgwn4z4",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Etoile Carouge-CH": {
+    "path": "/assets/clubs/cc-3b96732b4a7a41.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c3njr6p0pl0j0bsvazdc1jffw",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Dynamo Kyiv-UA": {
+    "path": "/assets/clubs/cc-c3b835230e6f1c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7lgvcey3svf6k22vg5svdztmg",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Polissya-UA": {
+    "path": "/assets/clubs/cc-b6680279b55c1d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6473hce9r52khyh9ptc6i385c",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kharkiv-UA": {
+    "path": "/assets/clubs/cc-7f7788cede95a6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=civhw0lmsowhsafc0yfah9vu2",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Karpaty Lviv-UA": {
+    "path": "/assets/clubs/cc-5870b05691b48c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=102ypinhq4de7nqb2c01c6thf",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Stade Nyonnais-CH": {
+    "path": "/assets/clubs/cc-dbecd67726ee12.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7ojn2md1nwcl4ehjymylxflut",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "LNZ Cherkasy-UA": {
+    "path": "/assets/clubs/cc-8cfab6d5c1e3b4.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a6nfqzba025ru45ja9lju5uz8",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kryvbas KR-UA": {
+    "path": "/assets/clubs/cc-b39d3f42643a41.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5cha7mvdiuah487zu1e6sfmn7",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kolos Kovalivka-UA": {
+    "path": "/assets/clubs/cc-18f0eb2cd7546c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3b7ks0rmvl18grrlcitbbaew9",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Zorya-UA": {
+    "path": "/assets/clubs/cc-d29ff74ddd98ec.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1cyu16afh91e3c0uao2vi9xpk",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Epitsentr-UA": {
+    "path": "/assets/clubs/cc-34eecb2ebe7f48.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6aj67v16g603x3u3o60f0yn84",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Bukovyna-UA": {
+    "path": "/assets/clubs/cc-eec8dfc4e8bade.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4njgio80bzz5rdz8jiylt350e",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Obolon Kyiv-UA": {
+    "path": "/assets/clubs/cc-c0e3b653a109d9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2m7dohr9pm9rruwas5p8w5v6u",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Veres Rivne-UA": {
+    "path": "/assets/clubs/cc-58af69f09ffa8c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=93vmx55l1tyvrb8v60qmhsbje",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Livyi Bereh-UA": {
+    "path": "/assets/clubs/cc-a6900e2e52560a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=f26po6jmo5p0q8wv7ixx1spp0",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Chornomorets-UA": {
+    "path": "/assets/clubs/cc-9ea5cfd23c8025.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5wqr8iapykok5bt3vma8hibcl",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kudrivka-UA": {
+    "path": "/assets/clubs/cc-824a676cab8dd0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6jw0n5x5p28wdbnusb7abr21g",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Oleksandria-UA": {
+    "path": "/assets/clubs/cc-794e106d5c7f81.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=x5bf07g3gy7xj2zidytj28m3",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ahrobiznes Volochysk-UA": {
+    "path": "/assets/clubs/cc-16941c31f61061.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6f6eackw4ipdt16g0v7elcxnu",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Viktoriya Sumy-UA": {
+    "path": "/assets/clubs/cc-0d85f473238a0e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ewqhffgu622bytmbokt03cgoa",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "FSC Mariupol-UA": {
+    "path": "/assets/clubs/cc-f592667ec304ee.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=gzsx217o8ol9dxpsg92ri6tw",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "SK Poltava-UA": {
+    "path": "/assets/clubs/cc-bd0db22639c5b7.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=b13rjk6sx40rwh0utc34zz4t0",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Inhulets'-UA": {
+    "path": "/assets/clubs/cc-2dda6e641c7e88.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ap372stg64ifddndlskumr8bt",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "FK Metalist Kharkiv-UA": {
+    "path": "/assets/clubs/cc-caa19e9b980436.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=46k8um0kk7reh2zu721ckw8b8",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Lokomotiv Kyiv-UA": {
+    "path": "/assets/clubs/cc-b738380489e369.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4u9m8cw1ykw6m4q5wy4az2978",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Prykarpattia-UA": {
+    "path": "/assets/clubs/cc-2f5a28a9e2456f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=f2w1r50ngaeixdy8250ja3e0k",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kulykiv-UA": {
+    "path": "/assets/clubs/cc-55664953678f18.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2rweuh2dkces2u3mpoev3o3dg",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "UCSA-UA": {
+    "path": "/assets/clubs/cc-a7e8414d8da0d4.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ertwbkhlcimkojkhmv4uf2z9w",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Chernihiv-UA": {
+    "path": "/assets/clubs/cc-e56c8b5e320d7f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=er1fodm9vbxiyamfydqxwlyj8",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Nyva Ternopil-UA": {
+    "path": "/assets/clubs/cc-e40dd1f77bcf83.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9f8rjjqxuxp51emym0c1s0sx6",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Crvena zvezda-RS": {
+    "path": "/assets/clubs/cc-7c7a744a220ab8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=81lpho34qr3dad0xzalq0abja",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Vojvodina-RS": {
+    "path": "/assets/clubs/cc-fa17cb2f6f25fa.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5dogxolrtabaz69epd35liubg",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kolos Kovalivka II-UA": {
+    "path": "/assets/clubs/cc-a8298d2198796d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ajxkerzmvdmrzom44pvrxzv9w",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Partizan-RS": {
+    "path": "/assets/clubs/cc-5ab41252ff4eb6.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c0d1qca7kz0fi0ypx7aw4nusc",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Probiy Horodenka-UA": {
+    "path": "/assets/clubs/cc-75fa1ed9f3210a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5r5d8vfn9trxfotf0vucuao0k",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Polissya II-UA": {
+    "path": "/assets/clubs/cc-34e3df5108790d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4ipe07kwaau83cfz8s79dvkk",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Radnički 1923-RS": {
+    "path": "/assets/clubs/cc-dfb3126ac8c2f5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3z0tiyynmxdyozfrpasdbpm0p",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Železničar Pančevo-RS": {
+    "path": "/assets/clubs/cc-4fd60410ff15e0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=69yj0igv40jefp5ezs23ohmnd",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Novi Pazar-RS": {
+    "path": "/assets/clubs/cc-554e93e132efcb.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ctuzznbzdmug74ywjlq53frtf",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "IMT-RS": {
+    "path": "/assets/clubs/cc-18707a2972b6da.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bxdyd1x6lw23oh0k6ydzbvmis",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Radnik Surdulica-RS": {
+    "path": "/assets/clubs/cc-7fa8b840db660c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c3uvbv6uzqxzqqqm7hw86885g",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "OFK Beograd-RS": {
+    "path": "/assets/clubs/cc-8f8dc31bc9dd71.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7kto5aea8tybeo2qmspftn1nz",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Mladost Lučani-RS": {
+    "path": "/assets/clubs/cc-86498922d4c313.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=16agx0zka9x8hdd5t3xyn1goq",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Radnički Niš-RS": {
+    "path": "/assets/clubs/cc-808674d542c7a8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7p4uh0u9hdw8yf80y786lh1sa",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Čukarički-RS": {
+    "path": "/assets/clubs/cc-fa08c4b0858064.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c7o9hpr4axv7govpi4s5ohbnd",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Mačva Šabac-RS": {
+    "path": "/assets/clubs/cc-b5655967522bf9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ajxqiqjev2oopks7tsbxqx9ar",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Voždovac-RS": {
+    "path": "/assets/clubs/cc-180bbfcb92a625.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7ro142w8i4ebadkbtvou1kark",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "TSC-RS": {
+    "path": "/assets/clubs/cc-7d361133b11247.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ee85k7vpo1yzn2ecre71ebydx",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Zemun-RS": {
+    "path": "/assets/clubs/cc-717ae4e803521c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4ppegvbl5hgavq8ter9xctwes",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Javor-RS": {
+    "path": "/assets/clubs/cc-222641f00c7216.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9pro2wcaugw41qn4s7o9my85",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Borac Čačak-RS": {
+    "path": "/assets/clubs/cc-e4ec133e722228.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=62fwg7ipi8up4bncq9iujf6nn",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Spartak Subotica-RS": {
+    "path": "/assets/clubs/cc-4c6bbe45a960e4.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=e8wfdw7ttr59p4afuqctv3nad",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "OFK Vršac-RS": {
+    "path": "/assets/clubs/cc-27ba1f731f8c03.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5vjznskvfpak8cwzth9exuycq",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Loznica-RS": {
+    "path": "/assets/clubs/cc-f28c3eb0672c42.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=p08xod9r3iiof8ov66dmucrf",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Napredak-RS": {
+    "path": "/assets/clubs/cc-be11c4006384af.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=748d7hfcaxop9lx2mai8lnmn9",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Smederevo 1924-RS": {
+    "path": "/assets/clubs/cc-84042fbd86db88.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7qumm6ae9ayp04vcpo66yaock",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Dubočica-RS": {
+    "path": "/assets/clubs/cc-0f636279104f4c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=auv8gdgj5vvu9ftv3ca2d8593",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Jedinstvo Ub-RS": {
+    "path": "/assets/clubs/cc-2f8553b2749812.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=daa2roah2k4uc41yqiwzb6f17",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Grafičar-RS": {
+    "path": "/assets/clubs/cc-9fb682bf884294.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=19632ie12uehcbgmd21cudy7z",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Teleoptik-RS": {
+    "path": "/assets/clubs/cc-f506f100df5c2c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=47uf7nf60xhf6rsr7kh2dfn33",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Machida Zelvia-JP": {
+    "path": "/assets/clubs/cc-19eec50c9974f3.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c893rjzz7makmez86fze25a2e",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kashima Antlers-JP": {
+    "path": "/assets/clubs/cc-c323e6a2519266.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9s2g5k3dlmfii452t8edaeozh",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Tokyo-JP": {
+    "path": "/assets/clubs/cc-f8c58734b12e0c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=e90fnsgtnamze3yssxpg392eb",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kashiwa Reysol-JP": {
+    "path": "/assets/clubs/cc-cfcc007e54bf8a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3lyo0vqgndy4fuzlfo5l9ql30",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Vissel Kobe-JP": {
+    "path": "/assets/clubs/cc-7db5fb5e300289.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bbt5nqwufsne7r0zfa6pvpmfa",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kawasaki Frontale-JP": {
+    "path": "/assets/clubs/cc-83b75dd8212a35.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5pol481515zvirmk6t00kerbc",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Urawa Reds-JP": {
+    "path": "/assets/clubs/cc-a173b0013331b5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3vfso415vj7uitnunviuzdyg3",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sanfrecce Hiroshima-JP": {
+    "path": "/assets/clubs/cc-1ceb9821f0aca1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=89wr6p2dkh7wjxtbwhtsruu02",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Yokohama F. Marinos-JP": {
+    "path": "/assets/clubs/cc-dc086a6cae4826.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2cwez3hk2i75ope3qyu54cqh1",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Nagoya Grampus-JP": {
+    "path": "/assets/clubs/cc-2a2941e29efd5c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=18c8ibslzapz40lfb8y5vygcs",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kyoto Sanga-JP": {
+    "path": "/assets/clubs/cc-c9408bee62f4e5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6bus1cl4b6zdm93290r02o7cx",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Cerezo Osaka-JP": {
+    "path": "/assets/clubs/cc-76e899415c41f1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=90cc40yau7yv6n8r4xs361ofd",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Gamba Osaka-JP": {
+    "path": "/assets/clubs/cc-11fa052b8c2e94.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=92br3632xgmc25jvr0jesfvl6",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Fagiano Okayama-JP": {
+    "path": "/assets/clubs/cc-6d9295a34c57b3.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4rddupwnkxxcwou6iluymj29j",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Shimizu S-Pulse-JP": {
+    "path": "/assets/clubs/cc-1d31afdea67b65.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a1escgblmveduau3j1st0lbxn",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "V-Varen Nagasaki-JP": {
+    "path": "/assets/clubs/cc-c8712ae844e8c9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8o5yuhx32ra276o71dmwizq2d",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Avispa Fukuoka-JP": {
+    "path": "/assets/clubs/cc-423c9c56e4d647.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ydlnn8jofdkseegh42az3fpt",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Mito Hollyhock-JP": {
+    "path": "/assets/clubs/cc-857ad7631b3c1e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7xcx4olkp9vjsquxsrf2s3iba",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Tokyo Verdy-JP": {
+    "path": "/assets/clubs/cc-18d128917a746b.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6u7ltoz339il087ubf6rdtc2v",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "JEF United-JP": {
+    "path": "/assets/clubs/cc-d404eb80720651.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=29cmppm4tntuasdgyxjpck882",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Vegalta Sendai-JP": {
+    "path": "/assets/clubs/cc-d2b31b9173fac0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d56o9d2908hm2482deln4t9yi",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Albirex Niigata-JP": {
+    "path": "/assets/clubs/cc-bfbbd033a0e5b0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=12tyw9yomy9n5cjd5po2ajx1q",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Omiya Ardija-JP": {
+    "path": "/assets/clubs/cc-8fdd81a1818221.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=64szr28vw5kyi2ikzvwd4qvnc",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Yokohama-JP": {
+    "path": "/assets/clubs/cc-3b9b4ca4c410f5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ctm9as17rs95yhuz7qf53wfke",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Shonan Bellmare-JP": {
+    "path": "/assets/clubs/cc-adc6ddab20883e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=83d6z6wvkzs3dx9oy3mftixow",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kataller Toyama-JP": {
+    "path": "/assets/clubs/cc-ae2232184ce368.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dtjpkopknilpytvcelspishu4",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Júbilo Iwata-JP": {
+    "path": "/assets/clubs/cc-006992c11c0e7d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4hm0p4fs807r60m5cumrdn6w5",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Tokushima Vortis-JP": {
+    "path": "/assets/clubs/cc-6aba9e3482cb06.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6dq0duhp2l658aa8qiezr4fgf",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sagan Tosu-JP": {
+    "path": "/assets/clubs/cc-496e31e2f44356.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=27o8mdqno6jslcjb709sxjwyy",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Tegevajaro Miyazaki-JP": {
+    "path": "/assets/clubs/cc-71bcf2d5fb810c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3glkqxhg02onhp9rtqpsovkoa",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Iwaki-JP": {
+    "path": "/assets/clubs/cc-21a7cc93356ac9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cimycfmamkmp6cbkn70opnnqh",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Blaublitz Akita-JP": {
+    "path": "/assets/clubs/cc-ffcd372b628143.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=e7oi5pollofadw2silxqfy3va",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Montedio Yamagata-JP": {
+    "path": "/assets/clubs/cc-2f0d3432b16a0e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1nm96lsa5dm33vbu2jy56i9fk",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Tochigi City-JP": {
+    "path": "/assets/clubs/cc-1a64ad990bb3d5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1zi7f852mrohymv3votysk6lm",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Fujieda MYFC-JP": {
+    "path": "/assets/clubs/cc-4a531aaef96b8e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5o3cnx2qsla03c0n6m3175gfp",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Imabari-JP": {
+    "path": "/assets/clubs/cc-fb3811c1f889d0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=48pguz8h8nahrq8h5osz4uift",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Consadole Sapporo-JP": {
+    "path": "/assets/clubs/cc-9b60fda2cad301.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1f3ehp8p9yi8reamghry4p76t",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Maccabi Tel Aviv-IL": {
+    "path": "/assets/clubs/cc-e86a5faf6679e0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ealjallt13942jb2q2hk4buxa",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hapoel Be'er Sheva-IL": {
+    "path": "/assets/clubs/cc-6c64e1f84b8560.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9ppjmek1r3tb9yddebneaxj7i",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Oita Trinita-JP": {
+    "path": "/assets/clubs/cc-a38760b48e7692.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=rapx5gn6sbem92ad0sditvo5",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Maccabi Haifa-IL": {
+    "path": "/assets/clubs/cc-ddddf8e96ffb90.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bglyqy0awtu6lzvpab390rir2",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Vanraure Hachinohe-JP": {
+    "path": "/assets/clubs/cc-4a91d1bb18b193.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=f0sc3k6yd87tr2mad8isxh34s",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Maccabi Netanya-IL": {
+    "path": "/assets/clubs/cc-88761db72fa67b.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6j9xcfzg0gp8j84yaoidmspaw",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ventforet Kofu-JP": {
+    "path": "/assets/clubs/cc-aad3c9165d2a6c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6q120enombus8oq9gfxvdvggq",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hapoel Haifa-IL": {
+    "path": "/assets/clubs/cc-87147def77a9e0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7cd60mgte8skipavum0o6ecyo",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ironi Tiberias-IL": {
+    "path": "/assets/clubs/cc-03070fc13ed33f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8k3kbfzfqi2senhosaaimvgjm",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hapoel Petah Tikva-IL": {
+    "path": "/assets/clubs/cc-d8523c2d10760d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1f4f869ya31jh0biwiipqxpj2",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hapoel Ramat Gan-IL": {
+    "path": "/assets/clubs/cc-77c4f5a0ff0383.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4kgyjhvmaywlqqpi2kwxjwjge",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Beitar Jerusalem-IL": {
+    "path": "/assets/clubs/cc-1abece70cc34af.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cx0rucvdzkg1yd00vrueu2u7",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hapoel Tel Aviv-IL": {
+    "path": "/assets/clubs/cc-9a424c57d89f88.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dv6fn97f0kx4x988y86gkmwb8",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ironi Kiryat Shmona-IL": {
+    "path": "/assets/clubs/cc-3cd60dda2a2188.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=e2ryr6aied781hzc7hx9yntk8",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Maccabi Petah Tikva-IL": {
+    "path": "/assets/clubs/cc-6f3c12112721cd.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=salasr5qer65t60k1e4c0vxf",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Bnei Sakhnin-IL": {
+    "path": "/assets/clubs/cc-2c2f2d3e55a38c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=54hbubv11m3ygghs51uperow9",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hapoel Jerusalem-IL": {
+    "path": "/assets/clubs/cc-03130f6e1f2d56.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ehmuu62daxvzhvn2wfoe9t86y",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Bnei Yehuda-IL": {
+    "path": "/assets/clubs/cc-a1f0c00c8a6eb0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4b2pcnte15yq3idxwenrgxd4l",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ashdod-IL": {
+    "path": "/assets/clubs/cc-0f6f5434e94137.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3xbrfd77vj0zi8vbrnwqz54z",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Maccabi Bnei Raina-IL": {
+    "path": "/assets/clubs/cc-37ccf4d61009e8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bvgvmydv5tuf6lxvwvuwbrfje",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Levski Sofia-BG": {
+    "path": "/assets/clubs/cc-95fbad5da4a2a8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c3yrcw3g5bj4rlmcxw9i8tale",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "CSKA Sofia-BG": {
+    "path": "/assets/clubs/cc-092931783cef95.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3p57ay8255exmoe275uofnle9",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ludogorets Razgrad-BG": {
+    "path": "/assets/clubs/cc-d8acf6e14bb100.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6uhzci0mwrzly1e4trka6k4ea",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "CSKA 1948 Sofia-BG": {
+    "path": "/assets/clubs/cc-6b6e458a63e4e1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4kazatxv1xzxdg2470lxzbdyi",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Arda Kardzhali-BG": {
+    "path": "/assets/clubs/cc-fbe78b78506b4e.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5y0ugwe1fh4wt4nsen0n47cxl",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Slavia Sofia-BG": {
+    "path": "/assets/clubs/cc-db8b8cf2e3b6ab.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=eoktekjf13w5pah96wubgv5w0",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Lokomotiv Plovdiv-BG": {
+    "path": "/assets/clubs/cc-e636018cea64ab.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=3j83f5kj3zeed0f5qg85d3lws",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Botev Plovdiv-BG": {
+    "path": "/assets/clubs/cc-6b2b0933cedf8d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4410w9r2fza5ruwgcv0b2kz3",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Botev Vratsa-BG": {
+    "path": "/assets/clubs/cc-0170a548b34ec5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=a209967pc0sb0o2gocc4grf5s",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Cherno more Varna-BG": {
+    "path": "/assets/clubs/cc-a9ec9549c608a8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8dvknzmkpm7sdaxjpqoawxis",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Septemvri Sofia-BG": {
+    "path": "/assets/clubs/cc-f66acbb9cdcbd9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4c7h8bsug5a4unc8x6eo80kmt",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Lokomotiv Sofia 1929-BG": {
+    "path": "/assets/clubs/cc-2ffe2ebbad0348.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=aq7e6kamphe8xgeacluqpll28",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Dunav ot Ruse-BG": {
+    "path": "/assets/clubs/cc-5e38a6c13a18d8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dh8dclby3pro34ot9l49iflw",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Spartak Varna-BG": {
+    "path": "/assets/clubs/cc-fb6775e549057f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=58qugv325er2846lbm4gvjzlp",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Yantra 2019-BG": {
+    "path": "/assets/clubs/cc-2d8a65b2e7ceb5.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/ofk-iantra-2019",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/16e6a3326dd7d868cbc926602a61e4d0.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Beroe Stara Zagora-BG": {
+    "path": "/assets/clubs/cc-7af793773ebf48.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/pfk-beroe-stara-zagora",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/b8c37e33defde51cf91e1e03e51657da.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Montana 1921-BG": {
+    "path": "/assets/clubs/cc-eb28305a1312e4.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/pfk-montana-1921",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/5d616dd38211ebb5d6ec52986674b6e4.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Dobrudzha 1919-BG": {
+    "path": "/assets/clubs/cc-cd1bb5824af619.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/futbolen-klub-dobrudza-1919",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/IVDvbWPij5CnqYieqcazoTzisNxJTV-metaZG9icnUucG5n-.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hammarby-SE": {
+    "path": "/assets/clubs/cc-30a9661a2b5067.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=2nnlsjfbcea40t4jeclcbw9lk",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sirius-SE": {
+    "path": "/assets/clubs/cc-5c1e6a9f0a849c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4jg5vd59i24chckyua90dr1lg",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Djurgården-SE": {
+    "path": "/assets/clubs/cc-f3c8cfaff9174c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=czkf5t3ai00ghwbga03i5aqxw",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Häcken-SE": {
+    "path": "/assets/clubs/cc-255d27a9039235.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9zqn9ugvg64it0lr5z8cq4g9v",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "GAIS-SE": {
+    "path": "/assets/clubs/cc-4a7fa8c2725864.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=33hzf6j2rd9r50g2n4agsytkd",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Elfsborg-SE": {
+    "path": "/assets/clubs/cc-a2944ed16e6e75.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=1939bnru25svvgv15k2c7tw2y",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Mjällby-SE": {
+    "path": "/assets/clubs/cc-f57c70f8be0514.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=spvvjmk37iid7hsky9g3nce7",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Malmö FF-SE": {
+    "path": "/assets/clubs/cc-9a9fb02b74f54a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=93ohqui2qgqm8408viwmm1ken",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Västerås-SE": {
+    "path": "/assets/clubs/cc-d30e30c9b65c45.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=auq9e9zc85fm9nspagrjetg0",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "IFK Göteborg-SE": {
+    "path": "/assets/clubs/cc-1b6e084a14ddf1.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=evf5hhqgnjhwjsth1m6pawxdp",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "AIK-SE": {
+    "path": "/assets/clubs/cc-9180a94fd5a7c2.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=5mbo4f0vps12dr0fcvjn3wyp5",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Kalmar-SE": {
+    "path": "/assets/clubs/cc-71fb4fccbdc8d0.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=bqtquhot4yruw677rkc607lk6",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Degerfors-SE": {
+    "path": "/assets/clubs/cc-e3b03764bbea33.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=46yo78zak2j7kaxc5ak1fnm60",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Örgryte-SE": {
+    "path": "/assets/clubs/cc-4b5b2de5ccc9b8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dwh59i70ej2t39052zb719qp3",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Brommapojkarna-SE": {
+    "path": "/assets/clubs/cc-7d162eafb00f55.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=ac8jow4mdkvnsv5s0och4qqm",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Halmstad-SE": {
+    "path": "/assets/clubs/cc-f7ae5c8bf875b5.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6i936isoyj6d0uuxdj537uc97",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Norrköping-SE": {
+    "path": "/assets/clubs/cc-22bca679eb90c4.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=7hlumphk42363z3i2nry2wrzj",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Falkenberg-SE": {
+    "path": "/assets/clubs/cc-c0ecbbadf8b1e9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6y1lmgb8k00h3jwjaqwcvimiv",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Landskrona-SE": {
+    "path": "/assets/clubs/cc-44402122373d28.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=9373s5s5zain5mme8s7q3xyqa",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Varberg-SE": {
+    "path": "/assets/clubs/cc-8a7b7614d6606a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=4mo3tith28qu9za01e8siplsn",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Oddevold-SE": {
+    "path": "/assets/clubs/cc-f4a1b4ff1625f9.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8vakq7ttvfp1wbfnape1mfvfj",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Östersund-SE": {
+    "path": "/assets/clubs/cc-109978efbe446f.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=d3wbkwvyosv0k9iwrs269xydo",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Brage-SE": {
+    "path": "/assets/clubs/cc-35f2d6929d2f3a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cnjb9lg1xqd4c2lpl7lo6y47f",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Nordic United-SE": {
+    "path": "/assets/clubs/cc-1f9378585c7d4d.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=dejuj32hqejc9prnc72tbzok4",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sandviken-SE": {
+    "path": "/assets/clubs/cc-08f84b07e15c9a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=6gmmnqqkjtnd06ciw8plcoy3c",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Öster-SE": {
+    "path": "/assets/clubs/cc-ae5f5fb548829a.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=cfvya7igkhkas7wvsktwz6j8k",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Värnamo-SE": {
+    "path": "/assets/clubs/cc-836e55264451dd.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=durq4oppf7c08tnbzrlebt0uz",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Helsingborg-SE": {
+    "path": "/assets/clubs/cc-659a6282353f86.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=c5bb3fg49qwy2u1nju07rwm56",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Norrby-SE": {
+    "path": "/assets/clubs/cc-0870a78d7ff72c.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=30tyv36pg7giu6l38zd1pxj3f",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ljungskile-SE": {
+    "path": "/assets/clubs/cc-2d36e7221acaad.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=aq15dy00foztvzwm163ua46mt",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Örebro-SE": {
+    "path": "/assets/clubs/cc-d01134c7f8ccc8.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=diu1jw4b0icrjmc8dd8rds0sw",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sundsvall-SE": {
+    "path": "/assets/clubs/cc-94195ab23d097b.png",
+    "source": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+    "download_url": "https://omo.akamai.opta.net/image.php?secure=true&h=omo.akamai.opta.net&sport=football&entity=team&description=badges&dimensions=150&id=8iufjq2rthftmjgizzh3fqszu",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Chernomorets Burgas-BG": {
+    "path": "/assets/clubs/cc-897f32c4245a6e.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/futbolen-klub-cernomorec-1919-burgas",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/feab05aa91085b7a8012516bc3533958.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Fratria-BG": {
+    "path": "/assets/clubs/cc-9c5d6e1bac0e31.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/profesionalen-futbolen-klub-fratriia-ad",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/b147a61c1d07c1c999560f62add6dbc7.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Vihren Sandanski-BG": {
+    "path": "/assets/clubs/cc-b48dcaab5be527.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/ofk-vixren-sandanski",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/d6723e7cd6735df68d1ce4c704c29a04.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "CSKA Sofia II-BG": {
+    "path": "/assets/clubs/cc-da14d02c20a521.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/pfk-cska-ii-ead",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/mv99z2IQ14g8IKi12YIQYrx0PTD8sL-metaQ1NLQV9Tb2ZpYV9sb2dvLnN2Zy5wbmc=-.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Marek-BG": {
+    "path": "/assets/clubs/cc-68747b81376342.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/fk-marek-1915",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/766d856ef1a6b02f93d894415e6bfa0e.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Hebar 1918-BG": {
+    "path": "/assets/clubs/cc-6a2d25c94326d8.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/pfk-xebier-1918-ad",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/7c9d0b1f96aebd7b5eca8c3edaa19ebb.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Ludogorets II-BG": {
+    "path": "/assets/clubs/cc-79f4253f77d82c.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/pfk-ludogorec-1945-ii",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/24146db4eb48c718b84cae0a0799dcfc.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Nesebar-BG": {
+    "path": "/assets/clubs/cc-9548d0b91d1624.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/sdruzenie-obshhinski-futbolen-klub-nesebier",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/390e982518a50e280d8e2b535462ec1f.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Rilski sportist-BG": {
+    "path": "/assets/clubs/cc-5158dc6d4837ca.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/futbolen-klub-rilski-sportist-2011",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/69a5b5995110b36a9a347898d97a610e.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Etar VT-BG": {
+    "path": "/assets/clubs/cc-cb30a91a6f4fd8.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/fk-etier-vt",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/0nPvLGxhe8Mk4ASFHHGuM7LgOD5cJ0-metaZXRhci45MmE5ZDAyNS5wbmc=-.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Sportist Svoge-BG": {
+    "path": "/assets/clubs/cc-1eb281db46a018.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/sportist-2009",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/fd06b8ea02fe5b1c2496fe1700e9d16c.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Lokomotiv GO-BG": {
+    "path": "/assets/clubs/cc-21cd0643ed832b.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/ofk-lokomotiv-gorna-oriaxovica",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/ce5140df15d046a66883807d18d0264b.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Spartak Pleven-BG": {
+    "path": "/assets/clubs/cc-8707a674d26821.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/ofk-spartak-pl",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/Zh1iMwFesOsGDsvniSJDWvQQdpaHH5-metaU3BhcmF0UGxldmVuLnBuZw==-.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
+  },
+  "Pirin Blagoevgrad-BG": {
+    "path": "/assets/clubs/cc-b912edb904633d.png",
+    "source": "https://bpfl.bg/teams/vtora-liga/pfk-pirin-22-ad",
+    "download_url": "https://admin.bpfl.bg/storage/football_clubs_teams/ef50c335cca9f340bde656363ebd02fd.png",
+    "retrieved": "2026-10-14",
+    "identity_status": "opta_id"
   }
 }

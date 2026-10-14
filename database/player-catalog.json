@@ -1,13 +1,13 @@
 {
   "summary": {
-    "checked": "2026-10-13",
-    "clubs": 1486,
-    "clubs_with_real_players": 718,
-    "real_players": 23300,
-    "fictional_players": 18454,
-    "published_ratings": 4876,
-    "estimated_ratings": 36878,
-    "ambiguous_real_ids": 227,
+    "checked": "2026-10-14",
+    "clubs": 1754,
+    "clubs_with_real_players": 766,
+    "real_players": 24547,
+    "fictional_players": 23807,
+    "published_ratings": 5325,
+    "estimated_ratings": 43029,
+    "ambiguous_real_ids": 1,
     "failed_sources": []
   },
   "clubs": {
@@ -21,18 +21,18 @@
     },
     "Atlético-MG": {
       "file": "5b0622130b5f74f06103.json",
-      "real": 48,
+      "real": 49,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 48,
+      "total": 49,
       "status": "real"
     },
     "Bahia-BA": {
       "file": "c398d76ff44cbe334bff.json",
-      "real": 40,
+      "real": 41,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 40,
+      "total": 41,
       "status": "real"
     },
     "Botafogo-RJ": {
@@ -69,10 +69,10 @@
     },
     "Cruzeiro-MG": {
       "file": "eeeb179a1acc96c391b8.json",
-      "real": 41,
+      "real": 42,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 41,
+      "total": 42,
       "status": "real"
     },
     "Flamengo-RJ": {
@@ -101,10 +101,10 @@
     },
     "Internacional-RS": {
       "file": "e24aed56a2921b876687.json",
-      "real": 42,
+      "real": 41,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 42,
+      "total": 41,
       "status": "real"
     },
     "Mirassol-SP": {
@@ -181,10 +181,10 @@
     },
     "Athletic-MG": {
       "file": "717856f807306ea6ee9f.json",
-      "real": 44,
+      "real": 43,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 44,
+      "total": 43,
       "status": "real"
     },
     "Atlético-GO": {
@@ -253,10 +253,10 @@
     },
     "Goiás-GO": {
       "file": "2a0cf2a738387da6cfa3.json",
-      "real": 37,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 37,
+      "total": 36,
       "status": "real"
     },
     "Juventude-RS": {
@@ -3717,26 +3717,26 @@
     },
     "Central Córdoba Santiago del Estero-AR": {
       "file": "56a0b41d547077cbb18d.json",
-      "real": 31,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 33,
       "status": "real"
     },
     "Defensa y Justicia-AR": {
       "file": "c9f3335f79524ee8ea1a.json",
-      "real": 31,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 33,
       "status": "real"
     },
     "Deportivo Riestra-AR": {
       "file": "f31b572fcb68a99d5bf4.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "Estudiantes La Plata-AR": {
@@ -3749,17 +3749,17 @@
     },
     "Gimnasia Mendoza-AR": {
       "file": "804e8e607cdf27f11cf1.json",
-      "real": 29,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 28,
       "status": "real"
     },
     "Independiente-AR": {
       "file": "0787bd81b88ae28eee9f.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 15,
+      "published_ratings": 16,
       "total": 33,
       "status": "real"
     },
@@ -3773,10 +3773,10 @@
     },
     "Lanús-AR": {
       "file": "fc54afc19c3e3d37ee74.json",
-      "real": 43,
+      "real": 46,
       "fictional": 0,
-      "published_ratings": 21,
-      "total": 43,
+      "published_ratings": 22,
+      "total": 46,
       "status": "real"
     },
     "Newell’s Old Boys-AR": {
@@ -3813,18 +3813,18 @@
     },
     "Unión Santa Fe-AR": {
       "file": "951d88f1ea9cb9e575e1.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "Vélez Sarsfield-AR": {
       "file": "83277e8c77f8c78b5f4b.json",
-      "real": 30,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 19,
-      "total": 30,
+      "total": 31,
       "status": "real"
     },
     "Aldosivi-AR": {
@@ -3837,18 +3837,18 @@
     },
     "Argentinos Juniors-AR": {
       "file": "043aafe377fa5520db17.json",
-      "real": 32,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 30,
       "status": "real"
     },
     "Atlético Tucumán-AR": {
       "file": "14a72403dbaa3f0a3e3b.json",
-      "real": 33,
+      "real": 34,
       "fictional": 0,
-      "published_ratings": 24,
-      "total": 33,
+      "published_ratings": 25,
+      "total": 34,
       "status": "real"
     },
     "Banfield-AR": {
@@ -3885,10 +3885,10 @@
     },
     "Gimnasia La Plata-AR": {
       "file": "ce82fa3cd0ab768881a8.json",
-      "real": 37,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 37,
+      "total": 38,
       "status": "real"
     },
     "Huracán-AR": {
@@ -3901,49 +3901,49 @@
     },
     "Independiente Rivadavia-AR": {
       "file": "aa18957b01ba166a4e8a.json",
-      "real": 48,
+      "real": 49,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 48,
+      "total": 49,
       "status": "real"
     },
     "Racing Club-AR": {
       "file": "d0b6ee14504aa55f0f71.json",
-      "real": 34,
+      "real": 36,
       "fictional": 0,
-      "published_ratings": 23,
-      "total": 34,
+      "published_ratings": 25,
+      "total": 36,
       "status": "real"
     },
     "River Plate-AR": {
       "file": "df15beb2fcf48fc3a7b3.json",
-      "real": 37,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 23,
-      "total": 37,
+      "total": 38,
       "status": "real"
     },
     "Rosario Central-AR": {
       "file": "de259590db987d9d18b2.json",
-      "real": 34,
+      "real": 35,
       "fictional": 0,
-      "published_ratings": 27,
-      "total": 34,
+      "published_ratings": 29,
+      "total": 35,
       "status": "real"
     },
     "Sarmiento Junín-AR": {
       "file": "a6f82680a0641413fb09.json",
-      "real": 33,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 32,
       "status": "real"
     },
     "Tigre-AR": {
       "file": "1cfd15546edfd00b790e.json",
       "real": 45,
       "fictional": 0,
-      "published_ratings": 25,
+      "published_ratings": 26,
       "total": 45,
       "status": "real"
     },
@@ -3965,10 +3965,10 @@
     },
     "Almirante Brown-AR": {
       "file": "32635ed9450249d736ca.json",
-      "real": 36,
+      "real": 35,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 36,
+      "total": 35,
       "status": "real"
     },
     "Central Norte Salta-AR": {
@@ -3997,10 +3997,10 @@
     },
     "Colón Santa Fe-AR": {
       "file": "8fe96b4a49caf21cbcbc.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "Defensores de Belgrano-AR": {
@@ -4021,10 +4021,10 @@
     },
     "Deportivo Morón-AR": {
       "file": "1f69619d08390c2f5541.json",
-      "real": 26,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 28,
       "status": "real"
     },
     "Estudiantes Caseros-AR": {
@@ -4045,26 +4045,26 @@
     },
     "Godoy Cruz-AR": {
       "file": "92888fa12eed5dd7eaf1.json",
-      "real": 36,
+      "real": 37,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 36,
+      "total": 37,
       "status": "real"
     },
     "Los Andes-AR": {
       "file": "11b54c97579cd3b75d84.json",
-      "real": 32,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 29,
       "status": "real"
     },
     "Mitre Santiago del Estero-AR": {
       "file": "f553240a885c7b5ad705.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "Racing Córdoba-AR": {
@@ -4077,18 +4077,18 @@
     },
     "San Miguel-AR": {
       "file": "301d4cdd36c4b925252f.json",
-      "real": 29,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 27,
       "status": "real"
     },
     "San Telmo-AR": {
       "file": "3377f70133ba36308fed.json",
-      "real": 28,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 26,
       "status": "real"
     },
     "Agropecuario Argentino-AR": {
@@ -4101,26 +4101,26 @@
     },
     "Almagro-AR": {
       "file": "50447fc3a7cdcd3430d0.json",
-      "real": 34,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 34,
+      "total": 33,
       "status": "real"
     },
     "Atlanta-AR": {
       "file": "cb140eb3944196553f50.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "Atlético Rafaela-AR": {
       "file": "90b91cabf31d45ae25bc.json",
-      "real": 35,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 36,
       "status": "real"
     },
     "Chacarita Juniors-AR": {
@@ -4181,10 +4181,10 @@
     },
     "Nueva Chicago-AR": {
       "file": "c26239ae6816b5b5c044.json",
-      "real": 40,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 40,
+      "total": 38,
       "status": "real"
     },
     "Patronato-AR": {
@@ -4197,58 +4197,58 @@
     },
     "Quilmes-AR": {
       "file": "a244236a91be95de6e69.json",
-      "real": 28,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 30,
       "status": "real"
     },
     "San Martín San Juan-AR": {
       "file": "90fa5b5ff79d18c50791.json",
-      "real": 29,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 30,
       "status": "real"
     },
     "San Martín Tucumán-AR": {
       "file": "7c6ae86ecb2bcccb13f9.json",
-      "real": 35,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 36,
       "status": "real"
     },
     "Temperley-AR": {
       "file": "85792fe12cc06c67db19.json",
-      "real": 32,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 30,
       "status": "real"
     },
     "Tristán Suárez-AR": {
       "file": "b945f8257a67a622948d.json",
-      "real": 33,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 34,
       "status": "real"
     },
     "Albion-UY": {
       "file": "83750c590cf507010cd2.json",
-      "real": 35,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 36,
       "status": "real"
     },
     "Boston River-UY": {
       "file": "fcdeec716982399a95af.json",
-      "real": 29,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 28,
       "status": "real"
     },
     "Central Español-UY": {
@@ -4269,10 +4269,10 @@
     },
     "Cerro Largo-UY": {
       "file": "420c14b357ef90216264.json",
-      "real": 28,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 30,
       "status": "real"
     },
     "Danubio-UY": {
@@ -4285,10 +4285,10 @@
     },
     "Defensor Sporting-UY": {
       "file": "4a55032c12fa01f16695.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "Deportivo Maldonado-UY": {
@@ -4325,10 +4325,10 @@
     },
     "Montevideo Wanderers-UY": {
       "file": "20590372e56a9391978e.json",
-      "real": 30,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 27,
       "status": "real"
     },
     "Nacional Montevideo-UY": {
@@ -4485,18 +4485,18 @@
     },
     "Sportivo Ameliano-PY": {
       "file": "89f5bb7dce298c9aedba.json",
-      "real": 32,
+      "real": 35,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 35,
       "status": "real"
     },
     "Cerro Porteño-PY": {
       "file": "cdd91f7f0bfbb0ff3fc8.json",
-      "real": 45,
+      "real": 49,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 45,
+      "total": 49,
       "status": "real"
     },
     "Guaraní-PY": {
@@ -4509,26 +4509,26 @@
     },
     "Libertad-PY": {
       "file": "3a7ac72b740ad6e49be1.json",
-      "real": 34,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 34,
+      "total": 38,
       "status": "real"
     },
     "Nacional Asunción-PY": {
       "file": "eb040107e2788eb464bd.json",
-      "real": 30,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 31,
       "status": "real"
     },
     "Olimpia-PY": {
       "file": "47807bd9711b7d44353c.json",
-      "real": 44,
+      "real": 45,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 44,
+      "total": 45,
       "status": "real"
     },
     "Recoleta-PY": {
@@ -4549,26 +4549,26 @@
     },
     "Sportivo San Lorenzo-PY": {
       "file": "6a59c81a5825d84c9bb3.json",
-      "real": 34,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 34,
+      "total": 36,
       "status": "real"
     },
     "Sportivo Luqueño-PY": {
       "file": "67e988f22b8413be5852.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 32,
       "status": "real"
     },
     "Sportivo Trinidense-PY": {
       "file": "df7f5d72337c091cb5bd.json",
-      "real": 34,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 34,
+      "total": 36,
       "status": "real"
     },
     "3 de Noviembre-PY": {
@@ -4701,18 +4701,18 @@
     },
     "ABB-BO": {
       "file": "1b011fe2737c809c86ea.json",
-      "real": 43,
+      "real": 44,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 43,
+      "total": 44,
       "status": "real"
     },
     "Always Ready-BO": {
       "file": "6af9e39437f2bc139a94.json",
-      "real": 40,
+      "real": 39,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 40,
+      "total": 39,
       "status": "real"
     },
     "Aurora-BO": {
@@ -4749,10 +4749,10 @@
     },
     "GV San José-BO": {
       "file": "2ef85568ce8539090502.json",
-      "real": 38,
+      "real": 39,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 38,
+      "total": 39,
       "status": "real"
     },
     "Independiente Petrolero-BO": {
@@ -4765,10 +4765,10 @@
     },
     "Nacional Potosí-BO": {
       "file": "f892023677f88fbc3322.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "Oriente Petrolero-BO": {
@@ -4789,26 +4789,26 @@
     },
     "Real Tomayapo-BO": {
       "file": "2fb10d1f2a28adf6e294.json",
-      "real": 39,
+      "real": 40,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 39,
+      "total": 40,
       "status": "real"
     },
     "San Antonio Bulo Bulo-BO": {
       "file": "f76d4097301d4faddc3e.json",
-      "real": 35,
+      "real": 37,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 37,
       "status": "real"
     },
     "The Strongest-BO": {
       "file": "d91f4ff2ce53f9be5be5.json",
-      "real": 33,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 32,
       "status": "real"
     },
     "Totora Real Oruro-BO": {
@@ -4821,10 +4821,10 @@
     },
     "Universitario de Vinto-BO": {
       "file": "3ab81997e870451c4858.json",
-      "real": 41,
+      "real": 46,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 41,
+      "total": 46,
       "status": "real"
     },
     "Deportivo A y B-BO": {
@@ -5383,7 +5383,7 @@
       "file": "6cc932e13b79f619a2cb.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 22,
+      "published_ratings": 25,
       "total": 29,
       "status": "real"
     },
@@ -5399,40 +5399,40 @@
       "file": "e7abb796719a1a505483.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 22,
+      "published_ratings": 23,
       "total": 29,
       "status": "real"
     },
     "Brentford-EN": {
       "file": "42e214775f193df989fa.json",
-      "real": 29,
-      "fictional": 0,
-      "published_ratings": 27,
-      "total": 29,
-      "status": "real"
+      "real": 20,
+      "fictional": 4,
+      "published_ratings": 19,
+      "total": 24,
+      "status": "mixed"
     },
     "Brighton & Hove Albion-EN": {
       "file": "089b43899bd8387447f6.json",
-      "real": 33,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 30,
       "status": "real"
     },
     "Chelsea-EN": {
       "file": "df9375a921d7378af822.json",
-      "real": 30,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 22,
-      "total": 30,
+      "published_ratings": 25,
+      "total": 27,
       "status": "real"
     },
     "Coventry City-EN": {
       "file": "99de5ba2c6cf9c687c43.json",
-      "real": 29,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 25,
-      "total": 29,
+      "total": 28,
       "status": "real"
     },
     "Crystal Palace-EN": {
@@ -5447,16 +5447,16 @@
       "file": "9d6892f935d1f84cae03.json",
       "real": 24,
       "fictional": 0,
-      "published_ratings": 18,
+      "published_ratings": 19,
       "total": 24,
       "status": "real"
     },
     "Fulham-EN": {
       "file": "e428befb67e4b65c69e3.json",
-      "real": 29,
+      "real": 24,
       "fictional": 0,
       "published_ratings": 21,
-      "total": 29,
+      "total": 24,
       "status": "real"
     },
     "Hull City-EN": {
@@ -5469,10 +5469,10 @@
     },
     "Ipswich Town-EN": {
       "file": "b4cf8ce9d49947934fb3.json",
-      "real": 29,
+      "real": 25,
       "fictional": 0,
-      "published_ratings": 0,
-      "total": 29,
+      "published_ratings": 1,
+      "total": 25,
       "status": "real"
     },
     "Leeds United-EN": {
@@ -5487,7 +5487,7 @@
       "file": "bcd7fa1d4d02713bc46f.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 29,
+      "published_ratings": 30,
       "total": 33,
       "status": "real"
     },
@@ -5495,7 +5495,7 @@
       "file": "2017eb59250ebffb1c44.json",
       "real": 27,
       "fictional": 0,
-      "published_ratings": 19,
+      "published_ratings": 21,
       "total": 27,
       "status": "real"
     },
@@ -5503,7 +5503,7 @@
       "file": "c7814943fc21e657b3b9.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 8,
       "total": 31,
       "status": "real"
     },
@@ -5511,17 +5511,17 @@
       "file": "f663c8e94ff17a766bd2.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 1,
       "total": 31,
       "status": "real"
     },
     "Nottingham Forest-EN": {
       "file": "33f4a8d17ac4843e1493.json",
-      "real": 23,
-      "fictional": 1,
-      "published_ratings": 0,
+      "real": 24,
+      "fictional": 0,
+      "published_ratings": 3,
       "total": 24,
-      "status": "mixed"
+      "status": "real"
     },
     "Sunderland-EN": {
       "file": "b38b43eb498a21986f32.json",
@@ -5535,7 +5535,7 @@
       "file": "342087d6273b8cc90eb0.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 4,
       "total": 29,
       "status": "real"
     },
@@ -5543,7 +5543,7 @@
       "file": "2213cc8dda931ebfe014.json",
       "real": 26,
       "fictional": 0,
-      "published_ratings": 23,
+      "published_ratings": 24,
       "total": 26,
       "status": "real"
     },
@@ -5581,10 +5581,10 @@
     },
     "Cardiff City-EN": {
       "file": "f2e882fc8094717e6056.json",
-      "real": 28,
+      "real": 26,
       "fictional": 0,
-      "published_ratings": 22,
-      "total": 28,
+      "published_ratings": 21,
+      "total": 26,
       "status": "real"
     },
     "Charlton Athletic-EN": {
@@ -5597,42 +5597,42 @@
     },
     "Derby County-EN": {
       "file": "21a6a254255490595b7e.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 22,
-      "total": 30,
+      "total": 29,
       "status": "real"
     },
     "Lincoln City-EN": {
       "file": "dbceececf338343d3d75.json",
-      "real": 28,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 20,
-      "total": 28,
+      "published_ratings": 19,
+      "total": 27,
       "status": "real"
     },
     "Middlesbrough-EN": {
       "file": "c0ccfe2650cd9af14ae2.json",
       "real": 30,
       "fictional": 0,
-      "published_ratings": 23,
+      "published_ratings": 24,
       "total": 30,
       "status": "real"
     },
     "Millwall-EN": {
       "file": "790bb69b232f551c9ab8.json",
-      "real": 38,
+      "real": 35,
       "fictional": 0,
       "published_ratings": 26,
-      "total": 38,
+      "total": 35,
       "status": "real"
     },
     "Norwich City-EN": {
       "file": "e1be0888d301c51654ec.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "Portsmouth-EN": {
@@ -5645,10 +5645,10 @@
     },
     "Preston North End-EN": {
       "file": "64053c574f525ef1fb96.json",
-      "real": 27,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 26,
       "status": "real"
     },
     "Queens Park Rangers-EN": {
@@ -5661,34 +5661,34 @@
     },
     "Sheffield United-EN": {
       "file": "b70169739f79752ea4e4.json",
-      "real": 27,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 25,
       "status": "real"
     },
     "Southampton-EN": {
       "file": "bdc4dbd65ab1d9f16541.json",
-      "real": 28,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 17,
-      "total": 28,
+      "published_ratings": 18,
+      "total": 27,
       "status": "real"
     },
     "Stoke City-EN": {
       "file": "3c70e34a8d51622c17b2.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
-      "published_ratings": 21,
-      "total": 30,
+      "published_ratings": 22,
+      "total": 29,
       "status": "real"
     },
     "Swansea City-EN": {
       "file": "000d9e27cbdcda51cfe5.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
-      "published_ratings": 19,
-      "total": 30,
+      "published_ratings": 20,
+      "total": 29,
       "status": "real"
     },
     "Watford-EN": {
@@ -5711,24 +5711,24 @@
       "file": "57e073b282b05d732fbc.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 1,
       "total": 28,
       "status": "real"
     },
     "Wolverhampton Wanderers-EN": {
       "file": "0cf7b16d755620700b41.json",
-      "real": 31,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 28,
       "status": "real"
     },
     "Wrexham-EN": {
       "file": "71441093fa3d7aae6aae.json",
-      "real": 28,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 24,
-      "total": 28,
+      "total": 29,
       "status": "real"
     },
     "Alavés-ES": {
@@ -5743,39 +5743,39 @@
       "file": "45507cf79baaff1630a5.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 24,
+      "published_ratings": 27,
       "total": 31,
       "status": "real"
     },
     "Atlético Madrid-ES": {
       "file": "518b67787ed96e1b6125.json",
-      "real": 29,
+      "real": 24,
       "fictional": 0,
-      "published_ratings": 19,
-      "total": 29,
+      "published_ratings": 23,
+      "total": 24,
       "status": "real"
     },
     "Barcelona-ES": {
       "file": "79f13d82eaa416a1608d.json",
-      "real": 30,
+      "real": 26,
       "fictional": 0,
-      "published_ratings": 19,
-      "total": 30,
+      "published_ratings": 23,
+      "total": 26,
       "status": "real"
     },
     "Celta Vigo-ES": {
       "file": "2c8e47f6360be85434d1.json",
-      "real": 25,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 25,
+      "total": 28,
       "status": "real"
     },
     "Deportivo-ES": {
       "file": "77e920d4f6543c72118a.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 23,
       "total": 29,
       "status": "real"
     },
@@ -5789,10 +5789,10 @@
     },
     "Espanyol-ES": {
       "file": "d5717b6c805b356438d3.json",
-      "real": 29,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 25,
       "status": "real"
     },
     "Getafe-ES": {
@@ -5805,49 +5805,49 @@
     },
     "Levante-ES": {
       "file": "860d22fb5857a11694d3.json",
-      "real": 27,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 26,
       "status": "real"
     },
     "Málaga-ES": {
       "file": "c49f7ed072ad543a9b6b.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
-      "published_ratings": 22,
-      "total": 31,
+      "published_ratings": 24,
+      "total": 32,
       "status": "real"
     },
     "Osasuna-ES": {
       "file": "759cb4a2ca674f624962.json",
-      "real": 28,
-      "fictional": 0,
+      "real": 23,
+      "fictional": 1,
       "published_ratings": 0,
-      "total": 28,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Racing Santander-ES": {
       "file": "028d5dd281492d4a5d89.json",
-      "real": 29,
+      "real": 24,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 24,
       "status": "real"
     },
     "Rayo Vallecano-ES": {
       "file": "8e126ea95499854562a2.json",
-      "real": 33,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 20,
-      "total": 33,
+      "total": 27,
       "status": "real"
     },
     "Real Betis-ES": {
       "file": "9c02281dccf0727c1920.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 19,
+      "published_ratings": 25,
       "total": 28,
       "status": "real"
     },
@@ -5855,17 +5855,17 @@
       "file": "884d6c13cfc42b971a67.json",
       "real": 35,
       "fictional": 0,
-      "published_ratings": 28,
+      "published_ratings": 30,
       "total": 35,
       "status": "real"
     },
     "Real Sociedad-ES": {
       "file": "e3113bc2b1a09c4f0372.json",
-      "real": 24,
-      "fictional": 0,
-      "published_ratings": 21,
+      "real": 23,
+      "fictional": 1,
+      "published_ratings": 22,
       "total": 24,
-      "status": "real"
+      "status": "mixed"
     },
     "Sevilla-ES": {
       "file": "4b7775a4b2369e52d7a9.json",
@@ -5877,18 +5877,18 @@
     },
     "Valencia-ES": {
       "file": "6cdd38ff6104b56a39f8.json",
-      "real": 33,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 26,
       "status": "real"
     },
     "Villarreal-ES": {
       "file": "a7052ee4b9137cbf1a6b.json",
-      "real": 27,
+      "real": 28,
       "fictional": 0,
-      "published_ratings": 0,
-      "total": 27,
+      "published_ratings": 2,
+      "total": 28,
       "status": "real"
     },
     "Albacete-ES": {
@@ -5901,10 +5901,10 @@
     },
     "Almería-ES": {
       "file": "483bc5e4077948630817.json",
-      "real": 28,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 18,
-      "total": 28,
+      "published_ratings": 23,
+      "total": 27,
       "status": "real"
     },
     "Burgos-ES": {
@@ -5933,11 +5933,11 @@
     },
     "Ceuta-ES": {
       "file": "d0c9e32046b3706f639e.json",
-      "real": 30,
-      "fictional": 0,
+      "real": 23,
+      "fictional": 1,
       "published_ratings": 0,
-      "total": 30,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Cádiz-ES": {
       "file": "e9316af925b2e11ea314.json",
@@ -5949,18 +5949,18 @@
     },
     "Córdoba-ES": {
       "file": "e73447741f9b43f2d17a.json",
-      "real": 28,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 27,
       "status": "real"
     },
     "Eibar-ES": {
       "file": "549264a682b53fc06edf.json",
-      "real": 28,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 29,
       "status": "real"
     },
     "Eldense-ES": {
@@ -5973,18 +5973,18 @@
     },
     "FC Andorra-ES": {
       "file": "fa16bf3ff918f6209334.json",
-      "real": 28,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 19,
-      "total": 28,
+      "published_ratings": 21,
+      "total": 27,
       "status": "real"
     },
     "Girona-ES": {
       "file": "cd48c96acbe150c71012.json",
-      "real": 34,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 34,
+      "total": 25,
       "status": "real"
     },
     "Granada-ES": {
@@ -5997,26 +5997,26 @@
     },
     "Las Palmas-ES": {
       "file": "256af4bd0a18f6d5d3c1.json",
-      "real": 35,
+      "real": 37,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 37,
       "status": "real"
     },
     "Leganés-ES": {
       "file": "a5902d0028f5179b9055.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 16,
+      "published_ratings": 19,
       "total": 29,
       "status": "real"
     },
     "Mallorca-ES": {
       "file": "a5a3ef92ef49e76b87e7.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "RC Celta Fortuna-ES": {
@@ -6029,18 +6029,18 @@
     },
     "Real Oviedo-ES": {
       "file": "e2c6ff9b04c61f2ffde4.json",
-      "real": 30,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 25,
       "status": "real"
     },
     "Real Sociedad II-ES": {
       "file": "e93dcef6318cec23cad2.json",
-      "real": 27,
+      "real": 24,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 24,
       "status": "real"
     },
     "Real Valladolid-ES": {
@@ -6053,11 +6053,11 @@
     },
     "Sporting Gijón-ES": {
       "file": "8a646e95d93f31bc021b.json",
-      "real": 29,
-      "fictional": 0,
+      "real": 21,
+      "fictional": 3,
       "published_ratings": 0,
-      "total": 29,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Tenerife-ES": {
       "file": "7a8be7c4e6a434b9025c.json",
@@ -6069,17 +6069,17 @@
     },
     "1. FC Union Berlin-DE": {
       "file": "85dd29f6f11c4d9c5a3f.json",
-      "real": 32,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 31,
       "status": "real"
     },
     "Bayer Leverkusen-DE": {
       "file": "d78c05dfa53fdbd2319d.json",
       "real": 26,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 4,
       "total": 26,
       "status": "real"
     },
@@ -6087,48 +6087,48 @@
       "file": "ede9833069519641468e.json",
       "real": 26,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 25,
       "total": 26,
       "status": "real"
     },
     "Borussia Dortmund-DE": {
       "file": "404ef1501b7441934aa0.json",
-      "real": 32,
+      "real": 25,
       "fictional": 0,
-      "published_ratings": 28,
-      "total": 32,
+      "published_ratings": 22,
+      "total": 25,
       "status": "real"
     },
     "Borussia Mönchengladbach-DE": {
       "file": "120721546ba99ae60166.json",
-      "real": 30,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 25,
       "status": "real"
     },
     "Eintracht Frankfurt-DE": {
       "file": "b4d95f9f681c7bff312d.json",
-      "real": 27,
-      "fictional": 0,
-      "published_ratings": 0,
-      "total": 27,
-      "status": "real"
+      "real": 23,
+      "fictional": 1,
+      "published_ratings": 1,
+      "total": 24,
+      "status": "mixed"
     },
     "FC Augsburg-DE": {
       "file": "a44586b1dd7bbdff8751.json",
-      "real": 27,
-      "fictional": 0,
-      "published_ratings": 23,
-      "total": 27,
-      "status": "real"
+      "real": 22,
+      "fictional": 2,
+      "published_ratings": 19,
+      "total": 24,
+      "status": "mixed"
     },
     "FC Cologne-DE": {
       "file": "e085ced6b0b4ec24016b.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 24,
-      "total": 30,
+      "total": 29,
       "status": "real"
     },
     "Hamburg SV-DE": {
@@ -6151,16 +6151,16 @@
       "file": "832284ac7ce5e9151dde.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 25,
+      "published_ratings": 26,
       "total": 29,
       "status": "real"
     },
     "SC Freiburg-DE": {
       "file": "15e491355c56fc676cac.json",
-      "real": 28,
+      "real": 24,
       "fictional": 0,
-      "published_ratings": 24,
-      "total": 28,
+      "published_ratings": 21,
+      "total": 24,
       "status": "real"
     },
     "SC Paderborn 07-DE": {
@@ -6181,26 +6181,26 @@
     },
     "Schalke 04-DE": {
       "file": "5088a73ee32e8d080848.json",
-      "real": 27,
-      "fictional": 0,
+      "real": 22,
+      "fictional": 2,
       "published_ratings": 0,
-      "total": 27,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "TSG Hoffenheim-DE": {
       "file": "ab203ae473bf50fd67b5.json",
-      "real": 28,
-      "fictional": 0,
-      "published_ratings": 25,
-      "total": 28,
-      "status": "real"
+      "real": 21,
+      "fictional": 3,
+      "published_ratings": 21,
+      "total": 24,
+      "status": "mixed"
     },
     "VfB Stuttgart-DE": {
       "file": "fc57976bdf00afe57dba.json",
-      "real": 31,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 28,
-      "total": 31,
+      "published_ratings": 25,
+      "total": 27,
       "status": "real"
     },
     "Werder Bremen-DE": {
@@ -6223,24 +6223,24 @@
       "file": "e57df12792691053957d.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 22,
+      "published_ratings": 23,
       "total": 29,
       "status": "real"
     },
     "1. FC Nürnberg-DE": {
       "file": "f830d562911a402a0a4f.json",
-      "real": 30,
-      "fictional": 0,
-      "published_ratings": 25,
-      "total": 30,
-      "status": "real"
+      "real": 21,
+      "fictional": 3,
+      "published_ratings": 20,
+      "total": 24,
+      "status": "mixed"
     },
     "Arminia Bielefeld-DE": {
       "file": "b3692efa92c2380d41d5.json",
-      "real": 26,
+      "real": 25,
       "fictional": 0,
-      "published_ratings": 22,
-      "total": 26,
+      "published_ratings": 21,
+      "total": 25,
       "status": "real"
     },
     "Dynamo Dresden-DE": {
@@ -6253,10 +6253,10 @@
     },
     "Energie Cottbus-DE": {
       "file": "d29de5764263b40a4e4f.json",
-      "real": 27,
+      "real": 28,
       "fictional": 0,
-      "published_ratings": 22,
-      "total": 27,
+      "published_ratings": 23,
+      "total": 28,
       "status": "real"
     },
     "Hannover 96-DE": {
@@ -6287,23 +6287,23 @@
       "file": "d9046b3883a1df7161cb.json",
       "real": 30,
       "fictional": 0,
-      "published_ratings": 23,
+      "published_ratings": 24,
       "total": 30,
       "status": "real"
     },
     "Karlsruher SC-DE": {
       "file": "f04363693fe533b822f3.json",
-      "real": 26,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 20,
-      "total": 26,
+      "total": 25,
       "status": "real"
     },
     "SV Darmstadt 98-DE": {
       "file": "edf928ab468af467efe7.json",
       "real": 32,
       "fictional": 0,
-      "published_ratings": 26,
+      "published_ratings": 27,
       "total": 32,
       "status": "real"
     },
@@ -6317,10 +6317,10 @@
     },
     "St. Pauli-DE": {
       "file": "71f239f74d2f1a9d8880.json",
-      "real": 29,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 30,
       "status": "real"
     },
     "TSV Eintracht Braunschweig-DE": {
@@ -6349,17 +6349,17 @@
     },
     "VfL Wolfsburg-DE": {
       "file": "268f325bdce3f709bcb2.json",
-      "real": 29,
+      "real": 30,
       "fictional": 0,
-      "published_ratings": 24,
-      "total": 29,
+      "published_ratings": 27,
+      "total": 30,
       "status": "real"
     },
     "AC Milan-IT": {
       "file": "a802a86f4a431eed58dd.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 25,
       "total": 28,
       "status": "real"
     },
@@ -6367,7 +6367,7 @@
       "file": "f2c8fcd63944b7ba4a09.json",
       "real": 25,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 21,
       "total": 25,
       "status": "real"
     },
@@ -6375,7 +6375,7 @@
       "file": "5fc75a4bff424daa89be.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 22,
       "total": 33,
       "status": "real"
     },
@@ -6391,7 +6391,7 @@
       "file": "8bfdace7c372e81d93ee.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 21,
       "total": 31,
       "status": "real"
     },
@@ -6399,16 +6399,16 @@
       "file": "66b565645c924e5f83aa.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 22,
       "total": 28,
       "status": "real"
     },
     "Fiorentina-IT": {
       "file": "d78b5ffc85caad942136.json",
-      "real": 27,
+      "real": 25,
       "fictional": 0,
-      "published_ratings": 15,
-      "total": 27,
+      "published_ratings": 19,
+      "total": 25,
       "status": "real"
     },
     "Frosinone-IT": {
@@ -6423,7 +6423,7 @@
       "file": "57af38c78bcfcabc4395.json",
       "real": 35,
       "fictional": 0,
-      "published_ratings": 21,
+      "published_ratings": 22,
       "total": 35,
       "status": "real"
     },
@@ -6431,7 +6431,7 @@
       "file": "32ee0adbc1ba12caf47a.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 23,
       "total": 28,
       "status": "real"
     },
@@ -6439,7 +6439,7 @@
       "file": "1099f94026159e9e04d1.json",
       "real": 37,
       "fictional": 0,
-      "published_ratings": 23,
+      "published_ratings": 25,
       "total": 37,
       "status": "real"
     },
@@ -6447,31 +6447,31 @@
       "file": "b7d0cd2748eecd6b4f44.json",
       "real": 32,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 25,
       "total": 32,
       "status": "real"
     },
     "Lecce-IT": {
       "file": "712ba55ad85a4868f6d7.json",
-      "real": 33,
+      "real": 34,
       "fictional": 0,
-      "published_ratings": 21,
-      "total": 33,
+      "published_ratings": 22,
+      "total": 34,
       "status": "real"
     },
     "Monza-IT": {
       "file": "9a7028e67d8f30ec40ab.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
-      "published_ratings": 20,
-      "total": 31,
+      "published_ratings": 21,
+      "total": 32,
       "status": "real"
     },
     "Napoli-IT": {
       "file": "3cdb0fcd28b3605ccf26.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 26,
       "total": 28,
       "status": "real"
     },
@@ -6509,10 +6509,10 @@
     },
     "Venezia-IT": {
       "file": "b77d8d6555d5e0382bb8.json",
-      "real": 35,
+      "real": 36,
       "fictional": 0,
-      "published_ratings": 27,
-      "total": 35,
+      "published_ratings": 29,
+      "total": 36,
       "status": "real"
     },
     "Arezzo-IT": {
@@ -6533,10 +6533,10 @@
     },
     "Benevento-IT": {
       "file": "a8543b84525cabfacc83.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 17,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "Carrarese-IT": {
@@ -6605,10 +6605,10 @@
     },
     "Modena-IT": {
       "file": "2d229e21bfd9c8f4f65a.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 17,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "Padova-IT": {
@@ -6623,7 +6623,7 @@
       "file": "a13085af6d387bcea9a5.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 21,
       "total": 28,
       "status": "real"
     },
@@ -6637,10 +6637,10 @@
     },
     "Sampdoria-IT": {
       "file": "daf5c632fbb2506c38eb.json",
-      "real": 33,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 18,
-      "total": 33,
+      "total": 32,
       "status": "real"
     },
     "Sudtirol-IT": {
@@ -6669,10 +6669,10 @@
     },
     "Virtus Entella-IT": {
       "file": "410978122abf1cfef6d3.json",
-      "real": 25,
+      "real": 24,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 25,
+      "total": 24,
       "status": "real"
     },
     "AJ Auxerre-FR": {
@@ -6685,10 +6685,10 @@
     },
     "AS Monaco-FR": {
       "file": "982e99746cb3ed2d01da.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
-      "published_ratings": 21,
-      "total": 30,
+      "published_ratings": 24,
+      "total": 29,
       "status": "real"
     },
     "Angers-FR": {
@@ -6717,17 +6717,17 @@
     },
     "Le Mans-FR": {
       "file": "7eae846c754e7b93550c.json",
-      "real": 28,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 26,
       "status": "real"
     },
     "Lens-FR": {
       "file": "1ac4621154bf7885a4d3.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 1,
       "total": 29,
       "status": "real"
     },
@@ -6741,17 +6741,17 @@
     },
     "Lorient-FR": {
       "file": "9258a8fa86333df2f9dd.json",
-      "real": 27,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 28,
       "status": "real"
     },
     "Lyon-FR": {
       "file": "4824be53a35b83e646b3.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 1,
       "total": 31,
       "status": "real"
     },
@@ -6775,7 +6775,7 @@
       "file": "13ccd96357879896e3f4.json",
       "real": 25,
       "fictional": 0,
-      "published_ratings": 22,
+      "published_ratings": 23,
       "total": 25,
       "status": "real"
     },
@@ -6783,7 +6783,7 @@
       "file": "47e07bc31b1450b772c1.json",
       "real": 25,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 24,
       "total": 25,
       "status": "real"
     },
@@ -6805,34 +6805,34 @@
     },
     "Toulouse-FR": {
       "file": "51d5a80bf5e3fbf0f295.json",
-      "real": 26,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 25,
       "status": "real"
     },
     "Troyes-FR": {
       "file": "319315893fb4bd5ca93c.json",
-      "real": 29,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 28,
       "status": "real"
     },
     "AS Nancy Lorraine-FR": {
       "file": "7df2030b5c7030423e74.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
-      "published_ratings": 21,
-      "total": 31,
+      "published_ratings": 22,
+      "total": 32,
       "status": "real"
     },
     "Annecy-FR": {
       "file": "72d07d61d5518f124c3a.json",
-      "real": 26,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 27,
       "status": "real"
     },
     "Boulogne-FR": {
@@ -6861,10 +6861,10 @@
     },
     "Dunkerque-FR": {
       "file": "68f798c9c77438fb5b20.json",
-      "real": 28,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 29,
       "status": "real"
     },
     "Grenoble-FR": {
@@ -6885,18 +6885,18 @@
     },
     "Metz-FR": {
       "file": "8d43185da89f1ec4ff64.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 32,
       "status": "real"
     },
     "Montpellier-FR": {
       "file": "58e089093ede65243d1f.json",
-      "real": 31,
+      "real": 29,
       "fictional": 0,
-      "published_ratings": 13,
-      "total": 31,
+      "published_ratings": 12,
+      "total": 29,
       "status": "real"
     },
     "Nantes-FR": {
@@ -6909,18 +6909,18 @@
     },
     "Pau-FR": {
       "file": "da0fb80e1c035cadefc1.json",
-      "real": 28,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 29,
       "status": "real"
     },
     "Red Star FC 93-FR": {
       "file": "207c1e6912ef6b6e5728.json",
-      "real": 26,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 25,
       "status": "real"
     },
     "Rodez Aveyron-FR": {
@@ -6941,10 +6941,10 @@
     },
     "Sochaux-FR": {
       "file": "49aee5f4ca89f7fb4e92.json",
-      "real": 29,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 26,
       "status": "real"
     },
     "Stade Laval-FR": {
@@ -6981,25 +6981,25 @@
     },
     "Arouca-PT": {
       "file": "43e101bae48021b9d432.json",
-      "real": 29,
+      "real": 30,
       "fictional": 0,
-      "published_ratings": 18,
-      "total": 29,
+      "published_ratings": 22,
+      "total": 30,
       "status": "real"
     },
     "Benfica-PT": {
       "file": "7cfc2b8956f23c4caf54.json",
-      "real": 30,
-      "fictional": 0,
-      "published_ratings": 24,
-      "total": 30,
-      "status": "real"
+      "real": 23,
+      "fictional": 1,
+      "published_ratings": 20,
+      "total": 24,
+      "status": "mixed"
     },
     "Braga-PT": {
       "file": "ea448dc3729c7d907dbb.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 1,
       "total": 29,
       "status": "real"
     },
@@ -7007,7 +7007,7 @@
       "file": "f76d92d3c0d279b980a8.json",
       "real": 32,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 25,
       "total": 32,
       "status": "real"
     },
@@ -7039,7 +7039,7 @@
       "file": "4cbae490aa1d7061cd44.json",
       "real": 26,
       "fictional": 0,
-      "published_ratings": 22,
+      "published_ratings": 23,
       "total": 26,
       "status": "real"
     },
@@ -7047,7 +7047,7 @@
       "file": "c00e9976530ccabec0b2.json",
       "real": 34,
       "fictional": 0,
-      "published_ratings": 19,
+      "published_ratings": 23,
       "total": 34,
       "status": "real"
     },
@@ -7055,16 +7055,16 @@
       "file": "5414fa1b6aba5f6a1a43.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 17,
+      "published_ratings": 23,
       "total": 29,
       "status": "real"
     },
     "Maritimo-PT": {
       "file": "657785b162455c516f5a.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "Moreirense-PT": {
@@ -7087,24 +7087,24 @@
       "file": "1944abcbd1ab69895454.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 11,
+      "published_ratings": 17,
       "total": 29,
       "status": "real"
     },
     "Sporting CP-PT": {
       "file": "062d8a1d7d0f4b93be91.json",
-      "real": 31,
-      "fictional": 0,
-      "published_ratings": 23,
-      "total": 31,
-      "status": "real"
+      "real": 23,
+      "fictional": 1,
+      "published_ratings": 20,
+      "total": 24,
+      "status": "mixed"
     },
     "Vitória de Guimaraes-PT": {
       "file": "56a784fc5fcc3709c498.json",
-      "real": 31,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 19,
-      "total": 31,
+      "published_ratings": 21,
+      "total": 27,
       "status": "real"
     },
     "Académica Coimbra-PT": {
@@ -7261,18 +7261,18 @@
     },
     "AZ Alkmaar-NL": {
       "file": "9948232e2e1598e2da4d.json",
-      "real": 22,
-      "fictional": 2,
-      "published_ratings": 19,
-      "total": 24,
-      "status": "mixed"
+      "real": 31,
+      "fictional": 0,
+      "published_ratings": 27,
+      "total": 31,
+      "status": "real"
     },
     "Ajax Amsterdam-NL": {
       "file": "7c93cf4396c86022507d.json",
-      "real": 24,
+      "real": 31,
       "fictional": 0,
-      "published_ratings": 19,
-      "total": 24,
+      "published_ratings": 24,
+      "total": 31,
       "status": "real"
     },
     "Excelsior-NL": {
@@ -7301,17 +7301,17 @@
     },
     "FC Utrecht-NL": {
       "file": "515b16937944b4ec11c1.json",
-      "real": 24,
+      "real": 25,
       "fictional": 0,
-      "published_ratings": 19,
-      "total": 24,
+      "published_ratings": 20,
+      "total": 25,
       "status": "real"
     },
     "Feyenoord Rotterdam-NL": {
       "file": "a4cb223700ba23dd6b6c.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 23,
+      "published_ratings": 25,
       "total": 33,
       "status": "real"
     },
@@ -7357,27 +7357,27 @@
     },
     "PSV Eindhoven-NL": {
       "file": "525c3ef30a3a27b2d1a8.json",
-      "real": 20,
-      "fictional": 4,
+      "real": 31,
+      "fictional": 0,
       "published_ratings": 0,
-      "total": 24,
-      "status": "mixed"
+      "total": 31,
+      "status": "real"
     },
     "SC Cambuur-NL": {
       "file": "8b6b41e4967d072542a8.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 22,
+      "published_ratings": 21,
       "total": 29,
       "status": "real"
     },
     "Sparta Rotterdam-NL": {
       "file": "bb3e4fc3f9968e6f14d3.json",
-      "real": 26,
-      "fictional": 0,
-      "published_ratings": 20,
-      "total": 26,
-      "status": "real"
+      "real": 21,
+      "fictional": 3,
+      "published_ratings": 16,
+      "total": 24,
+      "status": "mixed"
     },
     "Telstar-NL": {
       "file": "b49f670c0b972f036809.json",
@@ -7421,10 +7421,10 @@
     },
     "FC Dordrecht-NL": {
       "file": "9ab606471c7c7bc042bf.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "FC Eindhoven-NL": {
@@ -7469,10 +7469,10 @@
     },
     "Jong AZ-NL": {
       "file": "a294f9ce9d17e204d653.json",
-      "real": 27,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 28,
       "status": "real"
     },
     "Jong Ajax-NL": {
@@ -7485,10 +7485,10 @@
     },
     "Jong FC Utrecht-NL": {
       "file": "a8e1f1ca567545351306.json",
-      "real": 24,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 24,
+      "total": 31,
       "status": "real"
     },
     "Jong PSV-NL": {
@@ -7509,10 +7509,10 @@
     },
     "NAC Breda-NL": {
       "file": "08fb684906175b3f8fcf.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "RKC Waalwijk-NL": {
@@ -7549,18 +7549,18 @@
     },
     "Vitesse-NL": {
       "file": "fb92d5e627f568e2c9fa.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "Anderlecht-BE": {
       "file": "1fd376e74b6a505425e4.json",
-      "real": 35,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 25,
-      "total": 35,
+      "published_ratings": 20,
+      "total": 27,
       "status": "real"
     },
     "Antwerp-BE": {
@@ -7583,7 +7583,7 @@
       "file": "cbcad539ef9618f03e46.json",
       "real": 32,
       "fictional": 0,
-      "published_ratings": 26,
+      "published_ratings": 27,
       "total": 32,
       "status": "real"
     },
@@ -7605,18 +7605,18 @@
     },
     "KV Mechelen-BE": {
       "file": "4f5d13bf3178c1817b5d.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 25,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "KVC Westerlo-BE": {
       "file": "0a6489ffbb305e694ec9.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
-      "published_ratings": 21,
-      "total": 31,
+      "published_ratings": 20,
+      "total": 30,
       "status": "real"
     },
     "Lommel SK-BE": {
@@ -7629,10 +7629,10 @@
     },
     "OH Leuven-BE": {
       "file": "6d7131a9f685107e6ed6.json",
-      "real": 34,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 23,
-      "total": 34,
+      "total": 27,
       "status": "real"
     },
     "RAAL La Louvière-BE": {
@@ -7645,11 +7645,11 @@
     },
     "Racing Genk-BE": {
       "file": "c41f6426cc4337c059a0.json",
-      "real": 31,
-      "fictional": 0,
-      "published_ratings": 20,
-      "total": 31,
-      "status": "real"
+      "real": 20,
+      "fictional": 4,
+      "published_ratings": 13,
+      "total": 24,
+      "status": "mixed"
     },
     "Royal Charleroi SC-BE": {
       "file": "765306f7ca52d1dd9a5a.json",
@@ -7677,26 +7677,26 @@
     },
     "Union St.-Gilloise-BE": {
       "file": "7e3fb548d22874db9904.json",
-      "real": 29,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 30,
       "status": "real"
     },
     "Waasland-Beveren-BE": {
       "file": "82f46310998cdafb72d1.json",
-      "real": 28,
-      "fictional": 0,
-      "published_ratings": 21,
-      "total": 28,
-      "status": "real"
-    },
-    "Zulte-Waregem-BE": {
-      "file": "6119add11398cc2c059e.json",
       "real": 29,
       "fictional": 0,
       "published_ratings": 21,
       "total": 29,
+      "status": "real"
+    },
+    "Zulte-Waregem-BE": {
+      "file": "6119add11398cc2c059e.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 20,
+      "total": 28,
       "status": "real"
     },
     "RSCA Futures-BE": {
@@ -7823,7 +7823,7 @@
       "file": "21d7821d7e133e883ddc.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 18,
+      "published_ratings": 21,
       "total": 28,
       "status": "real"
     },
@@ -7839,7 +7839,7 @@
       "file": "99d5812384c1efa9200d.json",
       "real": 30,
       "fictional": 0,
-      "published_ratings": 21,
+      "published_ratings": 25,
       "total": 30,
       "status": "real"
     },
@@ -7847,7 +7847,7 @@
       "file": "0721a68c9200ac1c4770.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 22,
       "total": 29,
       "status": "real"
     },
@@ -7863,7 +7863,7 @@
       "file": "966ce92c1ab313e28a02.json",
       "real": 27,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 22,
       "total": 27,
       "status": "real"
     },
@@ -7871,7 +7871,7 @@
       "file": "af45c628664cc9388e22.json",
       "real": 29,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 23,
       "total": 29,
       "status": "real"
     },
@@ -7879,23 +7879,23 @@
       "file": "29d2cd7b98b1a6427ffe.json",
       "real": 34,
       "fictional": 0,
-      "published_ratings": 18,
+      "published_ratings": 26,
       "total": 34,
       "status": "real"
     },
     "Gaziantep FK-TR": {
       "file": "04945adf00dbbd369348.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "Genclerbirligi-TR": {
       "file": "e269cc4b45905a3370ea.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 17,
+      "published_ratings": 18,
       "total": 31,
       "status": "real"
     },
@@ -7903,7 +7903,7 @@
       "file": "f1d40cdf41570dae2473.json",
       "real": 25,
       "fictional": 0,
-      "published_ratings": 15,
+      "published_ratings": 21,
       "total": 25,
       "status": "real"
     },
@@ -7927,7 +7927,7 @@
       "file": "338110491bf5eb5a2d55.json",
       "real": 30,
       "fictional": 0,
-      "published_ratings": 22,
+      "published_ratings": 24,
       "total": 30,
       "status": "real"
     },
@@ -7935,7 +7935,7 @@
       "file": "45bd09d91efee1d0f2c1.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 15,
+      "published_ratings": 16,
       "total": 28,
       "status": "real"
     },
@@ -7943,7 +7943,7 @@
       "file": "f633bf17a54b0220c163.json",
       "real": 28,
       "fictional": 0,
-      "published_ratings": 17,
+      "published_ratings": 19,
       "total": 28,
       "status": "real"
     },
@@ -7951,7 +7951,7 @@
       "file": "0be20f463121befe4ffd.json",
       "real": 30,
       "fictional": 0,
-      "published_ratings": 23,
+      "published_ratings": 26,
       "total": 30,
       "status": "real"
     },
@@ -8125,18 +8125,18 @@
     },
     "Aberdeen-SC": {
       "file": "3715d48809e5cbd2c509.json",
-      "real": 29,
-      "fictional": 0,
-      "published_ratings": 24,
-      "total": 29,
-      "status": "real"
+      "real": 15,
+      "fictional": 9,
+      "published_ratings": 15,
+      "total": 24,
+      "status": "mixed"
     },
     "Celtic-SC": {
       "file": "9a4f1eead8488433d4af.json",
-      "real": 29,
+      "real": 28,
       "fictional": 0,
-      "published_ratings": 20,
-      "total": 29,
+      "published_ratings": 21,
+      "total": 28,
       "status": "real"
     },
     "Dundee-SC": {
@@ -8149,18 +8149,18 @@
     },
     "Dundee United-SC": {
       "file": "b9efa8f5bc422059ea95.json",
-      "real": 25,
-      "fictional": 0,
+      "real": 23,
+      "fictional": 1,
       "published_ratings": 18,
-      "total": 25,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Falkirk-SC": {
       "file": "7f879334fbd239b7c9d7.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
-      "published_ratings": 23,
-      "total": 31,
+      "published_ratings": 24,
+      "total": 32,
       "status": "real"
     },
     "Heart of Midlothian-SC": {
@@ -8173,10 +8173,10 @@
     },
     "Hibernian-SC": {
       "file": "4b84526efb983926f7b9.json",
-      "real": 27,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 22,
-      "total": 27,
+      "total": 26,
       "status": "real"
     },
     "Kilmarnock-SC": {
@@ -8213,34 +8213,34 @@
     },
     "St Mirren-SC": {
       "file": "9d77638d8b4cb676be73.json",
-      "real": 31,
-      "fictional": 0,
-      "published_ratings": 22,
-      "total": 31,
-      "status": "real"
+      "real": 23,
+      "fictional": 1,
+      "published_ratings": 20,
+      "total": 24,
+      "status": "mixed"
     },
     "Arbroath-SC": {
       "file": "113236344b8f865a2877.json",
-      "real": 21,
-      "fictional": 3,
+      "real": 19,
+      "fictional": 5,
       "published_ratings": 0,
       "total": 24,
       "status": "mixed"
     },
     "Ayr United-SC": {
       "file": "b273952ab2f3a04dbde9.json",
-      "real": 25,
-      "fictional": 0,
+      "real": 22,
+      "fictional": 2,
       "published_ratings": 0,
-      "total": 25,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Dunfermline Athletic-SC": {
       "file": "173fc802f7a663b5e505.json",
-      "real": 26,
+      "real": 24,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 24,
       "status": "real"
     },
     "Greenock Morton-SC": {
@@ -8261,10 +8261,10 @@
     },
     "Livingston-SC": {
       "file": "56fe8db932e0f3aceba7.json",
-      "real": 30,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 28,
       "status": "real"
     },
     "Partick Thistle-SC": {
@@ -8277,16 +8277,16 @@
     },
     "Queen's Park-SC": {
       "file": "5d06de4fbcfdfa59fd23.json",
-      "real": 26,
-      "fictional": 0,
+      "real": 21,
+      "fictional": 3,
       "published_ratings": 0,
-      "total": 26,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Raith Rovers-SC": {
       "file": "cd197d8df40174595046.json",
-      "real": 22,
-      "fictional": 2,
+      "real": 21,
+      "fictional": 3,
       "published_ratings": 0,
       "total": 24,
       "status": "mixed"
@@ -8301,17 +8301,17 @@
     },
     "Atlanta United FC-US": {
       "file": "255190e39925eed1a4ae.json",
-      "real": 32,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 31,
       "status": "real"
     },
     "Austin FC-US": {
       "file": "afffbc574ca1f3aee142.json",
       "real": 27,
       "fictional": 0,
-      "published_ratings": 19,
+      "published_ratings": 20,
       "total": 27,
       "status": "real"
     },
@@ -8341,17 +8341,17 @@
     },
     "Colorado Rapids-US": {
       "file": "b3c11c7257e171482a03.json",
-      "real": 33,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 20,
-      "total": 33,
+      "total": 32,
       "status": "real"
     },
     "Columbus Crew-US": {
       "file": "b76bd36d55f9f22964b7.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 25,
+      "published_ratings": 26,
       "total": 31,
       "status": "real"
     },
@@ -8365,66 +8365,66 @@
     },
     "FC Cincinnati-US": {
       "file": "eb7d0e4ab7b95eac42ee.json",
-      "real": 30,
-      "fictional": 0,
-      "published_ratings": 22,
-      "total": 30,
-      "status": "real"
+      "real": 22,
+      "fictional": 2,
+      "published_ratings": 18,
+      "total": 24,
+      "status": "mixed"
     },
     "FC Dallas-US": {
       "file": "ad118e9b24bd37fc3836.json",
       "real": 35,
       "fictional": 0,
-      "published_ratings": 30,
+      "published_ratings": 32,
       "total": 35,
       "status": "real"
     },
     "Houston Dynamo FC-US": {
       "file": "f9a044f8a44fd226039e.json",
-      "real": 27,
-      "fictional": 0,
+      "real": 19,
+      "fictional": 5,
       "published_ratings": 0,
-      "total": 27,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Inter Miami CF-US": {
       "file": "399aff8500d5740c71bd.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 20,
+      "published_ratings": 23,
       "total": 33,
       "status": "real"
     },
     "LA Galaxy-US": {
       "file": "0b6fa1eae3463b68eee8.json",
-      "real": 33,
-      "fictional": 0,
-      "published_ratings": 22,
-      "total": 33,
-      "status": "real"
+      "real": 21,
+      "fictional": 3,
+      "published_ratings": 18,
+      "total": 24,
+      "status": "mixed"
     },
     "LAFC-US": {
       "file": "ba5137fec9081f0aaf79.json",
       "real": 32,
       "fictional": 0,
-      "published_ratings": 21,
+      "published_ratings": 22,
       "total": 32,
       "status": "real"
     },
     "Minnesota United FC-US": {
       "file": "79d65dfffc78efe9f51b.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 29,
       "status": "real"
     },
     "Nashville SC-US": {
       "file": "36bdfaa52b57590f532e.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 22,
-      "total": 30,
+      "total": 29,
       "status": "real"
     },
     "New England Revolution-US": {
@@ -8437,17 +8437,17 @@
     },
     "New York City FC-US": {
       "file": "0621086a0ecf3eacf13a.json",
-      "real": 36,
+      "real": 35,
       "fictional": 0,
       "published_ratings": 27,
-      "total": 36,
+      "total": 35,
       "status": "real"
     },
     "Orlando City SC-US": {
       "file": "b3f571011c35d0d1bcab.json",
       "real": 32,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 1,
       "total": 32,
       "status": "real"
     },
@@ -8461,26 +8461,26 @@
     },
     "Portland Timbers-US": {
       "file": "43ef7f3ab7c867e1d37c.json",
-      "real": 29,
+      "real": 27,
       "fictional": 0,
-      "published_ratings": 22,
-      "total": 29,
+      "published_ratings": 23,
+      "total": 27,
       "status": "real"
     },
     "Real Salt Lake-US": {
       "file": "0bd57002f90bf59c196b.json",
       "real": 41,
       "fictional": 0,
-      "published_ratings": 30,
+      "published_ratings": 32,
       "total": 41,
       "status": "real"
     },
     "Red Bull New York-US": {
       "file": "bab96e898b3ec813071c.json",
-      "real": 33,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 30,
       "status": "real"
     },
     "San Diego FC-US": {
@@ -8493,11 +8493,11 @@
     },
     "San Jose Earthquakes-US": {
       "file": "235f7e99f87147b3d60e.json",
-      "real": 33,
-      "fictional": 0,
+      "real": 20,
+      "fictional": 4,
       "published_ratings": 0,
-      "total": 33,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "Seattle Sounders FC-US": {
       "file": "59430da8ec4c8aed8cc6.json",
@@ -8519,16 +8519,16 @@
       "file": "059a88430ba8c43ec42b.json",
       "real": 35,
       "fictional": 0,
-      "published_ratings": 26,
+      "published_ratings": 27,
       "total": 35,
       "status": "real"
     },
     "Toronto FC-CA": {
       "file": "d3cf4d0936a7fba4d1dd.json",
-      "real": 37,
+      "real": 24,
       "fictional": 0,
-      "published_ratings": 25,
-      "total": 37,
+      "published_ratings": 20,
+      "total": 24,
       "status": "real"
     },
     "Vancouver Whitecaps-CA": {
@@ -8573,11 +8573,11 @@
     },
     "Cruz Azul-MX": {
       "file": "a6623d00d576177c8176.json",
-      "real": 40,
-      "fictional": 0,
+      "real": 22,
+      "fictional": 2,
       "published_ratings": 0,
-      "total": 40,
-      "status": "real"
+      "total": 24,
+      "status": "mixed"
     },
     "FC Juárez-MX": {
       "file": "24d21949053c81543596.json",
@@ -8589,18 +8589,18 @@
     },
     "Guadalajara-MX": {
       "file": "fd4e0bb92fb47e11782f.json",
-      "real": 29,
-      "fictional": 0,
-      "published_ratings": 0,
-      "total": 29,
-      "status": "real"
-    },
-    "León-MX": {
-      "file": "2bf68b4fdbd30f3ad0c7.json",
       "real": 30,
       "fictional": 0,
       "published_ratings": 0,
       "total": 30,
+      "status": "real"
+    },
+    "León-MX": {
+      "file": "2bf68b4fdbd30f3ad0c7.json",
+      "real": 32,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 32,
       "status": "real"
     },
     "Monterrey-MX": {
@@ -8613,10 +8613,10 @@
     },
     "Necaxa-MX": {
       "file": "a393fb4cc0187c7be19b.json",
-      "real": 26,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 27,
       "status": "real"
     },
     "Pachuca-MX": {
@@ -8637,10 +8637,10 @@
     },
     "Pumas UNAM-MX": {
       "file": "bbe9496cbe4c84472559.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 32,
       "status": "real"
     },
     "Querétaro-MX": {
@@ -8677,10 +8677,10 @@
     },
     "Toluca-MX": {
       "file": "ed8e38bec51704d33856.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 32,
       "status": "real"
     },
     "AD San Carlos-CR": {
@@ -8693,18 +8693,18 @@
     },
     "Alajuelense-CR": {
       "file": "066236203cf040775c49.json",
-      "real": 37,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 37,
+      "total": 38,
       "status": "real"
     },
     "Cartaginés-CR": {
       "file": "eed7915ac3fa5ceaef83.json",
-      "real": 36,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 36,
+      "total": 38,
       "status": "real"
     },
     "Escorpiones Belén-CR": {
@@ -8717,10 +8717,10 @@
     },
     "Herediano-CR": {
       "file": "c2a662ee3ac7a27193af.json",
-      "real": 35,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 36,
       "status": "real"
     },
     "Inter de San Carlos-CR": {
@@ -8853,26 +8853,26 @@
     },
     "UPNFM-HN": {
       "file": "8f1397434cdad4367c63.json",
-      "real": 44,
+      "real": 43,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 44,
+      "total": 43,
       "status": "real"
     },
     "Antigua GFC-GT": {
       "file": "94ac814f7d3a5641fe8c.json",
-      "real": 35,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 36,
       "status": "real"
     },
     "Aurora FC-GT": {
       "file": "8b9b453ba1b0563715ef.json",
-      "real": 39,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 39,
+      "total": 38,
       "status": "real"
     },
     "CD Guastatoya-GT": {
@@ -8901,18 +8901,18 @@
     },
     "Comunicaciones-GT": {
       "file": "eeeea57a512b4df584b6.json",
-      "real": 29,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 28,
       "status": "real"
     },
     "Deportivo Mixco-GT": {
       "file": "7bc5b7cc2c6ba68f6490.json",
-      "real": 33,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 34,
       "status": "real"
     },
     "Deportivo San Pedro-GT": {
@@ -8933,18 +8933,18 @@
     },
     "Municipal-GT": {
       "file": "6afe5ce78a3f74055917.json",
-      "real": 33,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 34,
       "status": "real"
     },
     "Suchitepequez-GT": {
       "file": "a18ae10354fdfa592804.json",
-      "real": 32,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 34,
       "status": "real"
     },
     "Xelajú MC-GT": {
@@ -8957,18 +8957,18 @@
     },
     "Alianza FC-SV": {
       "file": "e31efb09c308580ae792.json",
-      "real": 40,
+      "real": 42,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 40,
+      "total": 42,
       "status": "real"
     },
     "Atletico Balboa-SV": {
       "file": "415ec7febf215f870264.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 32,
       "status": "real"
     },
     "C.D. Platense-SV": {
@@ -9045,10 +9045,10 @@
     },
     "Águila-SV": {
       "file": "8e5248028119bc41e714.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "Aalesund-NO": {
@@ -9061,10 +9061,10 @@
     },
     "Bodo/Glimt-NO": {
       "file": "b849ffeb38fb7a046ecb.json",
-      "real": 36,
+      "real": 35,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 36,
+      "total": 35,
       "status": "real"
     },
     "Fredrikstad-NO": {
@@ -9077,10 +9077,10 @@
     },
     "Hamarkameratene-NO": {
       "file": "f983133f326ba2a9097a.json",
-      "real": 26,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 27,
       "status": "real"
     },
     "IK Start-NO": {
@@ -9101,10 +9101,10 @@
     },
     "Kristiansund BK-NO": {
       "file": "3e8fb6c4b046ec2d822d.json",
-      "real": 27,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 19,
-      "total": 27,
+      "total": 26,
       "status": "real"
     },
     "Lillestrom-NO": {
@@ -9181,10 +9181,10 @@
     },
     "AC Horsens-DK": {
       "file": "23bdc4841e23f8ef6473.json",
-      "real": 34,
+      "real": 32,
       "fictional": 0,
-      "published_ratings": 17,
-      "total": 34,
+      "published_ratings": 15,
+      "total": 32,
       "status": "real"
     },
     "AGF-DK": {
@@ -9205,17 +9205,17 @@
     },
     "F.C. København-DK": {
       "file": "da70e3f9923ac891cf81.json",
-      "real": 29,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 30,
       "status": "real"
     },
     "FC Midtjylland-DK": {
       "file": "831a356b7f30fae54df5.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 21,
+      "published_ratings": 23,
       "total": 31,
       "status": "real"
     },
@@ -9229,18 +9229,18 @@
     },
     "Lyngby Boldklub-DK": {
       "file": "98f947bee752b72c0015.json",
-      "real": 26,
+      "real": 25,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 26,
+      "total": 25,
       "status": "real"
     },
     "Odense Boldklub-DK": {
       "file": "68ff77a8a6cb3c098eaf.json",
-      "real": 30,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 29,
       "status": "real"
     },
     "Randers FC-DK": {
@@ -9253,10 +9253,10 @@
     },
     "Silkeborg IF-DK": {
       "file": "c43144c4bc8943f022c5.json",
-      "real": 27,
+      "real": 25,
       "fictional": 0,
-      "published_ratings": 18,
-      "total": 27,
+      "published_ratings": 17,
+      "total": 25,
       "status": "real"
     },
     "Sønderjyske Fodbold-DK": {
@@ -9277,10 +9277,10 @@
     },
     "AEK Athens-GR": {
       "file": "eebbacd2743d371f4f3c.json",
-      "real": 32,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 31,
       "status": "real"
     },
     "Aris-GR": {
@@ -9317,18 +9317,18 @@
     },
     "Kalamata-GR": {
       "file": "f42589c044a042ed0805.json",
-      "real": 32,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 31,
       "status": "real"
     },
     "Kifisia-GR": {
       "file": "b53a889703421c34216e.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "Levadiakos-GR": {
@@ -9351,16 +9351,16 @@
       "file": "599ba33149b43bb5be83.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 0,
+      "published_ratings": 1,
       "total": 33,
       "status": "real"
     },
     "PAOK-GR": {
       "file": "9bb99885e9e91d2d5fa3.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "Panathinaikos-GR": {
@@ -9437,18 +9437,18 @@
     },
     "CSKA Moscow-RU": {
       "file": "aaa16e88dda47d700a18.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "Dinamo Moscow-RU": {
       "file": "26c971bf8720e2995008.json",
-      "real": 27,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 28,
       "status": "real"
     },
     "Dynamo Makhachkala-RU": {
@@ -9485,34 +9485,34 @@
     },
     "Krasnodar-RU": {
       "file": "a3ba4f94052a559e46e6.json",
-      "real": 31,
-      "fictional": 0,
-      "published_ratings": 0,
-      "total": 31,
-      "status": "real"
-    },
-    "Krylia Sovetov-RU": {
-      "file": "36eabb1289b12bc7da3b.json",
-      "real": 31,
-      "fictional": 0,
-      "published_ratings": 0,
-      "total": 31,
-      "status": "real"
-    },
-    "Lokomotiv Moscow-RU": {
-      "file": "20c6552e0e6dd90a2584.json",
-      "real": 29,
-      "fictional": 0,
-      "published_ratings": 0,
-      "total": 29,
-      "status": "real"
-    },
-    "Rodina Moscow-RU": {
-      "file": "b60876a53696c04cbfb7.json",
       "real": 32,
       "fictional": 0,
       "published_ratings": 0,
       "total": 32,
+      "status": "real"
+    },
+    "Krylia Sovetov-RU": {
+      "file": "36eabb1289b12bc7da3b.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Lokomotiv Moscow-RU": {
+      "file": "20c6552e0e6dd90a2584.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Rodina Moscow-RU": {
+      "file": "b60876a53696c04cbfb7.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 28,
       "status": "real"
     },
     "Rostov-RU": {
@@ -9559,16 +9559,16 @@
       "file": "7d458789007b36f66bed.json",
       "real": 36,
       "fictional": 0,
-      "published_ratings": 21,
+      "published_ratings": 22,
       "total": 36,
       "status": "real"
     },
     "Al Diriyah-SA": {
       "file": "ad1a29ca97a7fd46a861.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
-      "published_ratings": 15,
-      "total": 31,
+      "published_ratings": 16,
+      "total": 32,
       "status": "real"
     },
     "Al Ettifaq-SA": {
@@ -9581,10 +9581,10 @@
     },
     "Al Faisaly-SA": {
       "file": "10901364775bcfbf5c84.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
-      "published_ratings": 16,
-      "total": 32,
+      "published_ratings": 17,
+      "total": 33,
       "status": "real"
     },
     "Al Fateh-SA": {
@@ -9599,7 +9599,7 @@
       "file": "87d99c28f1306088d23d.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 12,
+      "published_ratings": 15,
       "total": 33,
       "status": "real"
     },
@@ -9615,7 +9615,7 @@
       "file": "5261bbb4651f50a0a155.json",
       "real": 35,
       "fictional": 0,
-      "published_ratings": 19,
+      "published_ratings": 20,
       "total": 35,
       "status": "real"
     },
@@ -9629,17 +9629,17 @@
     },
     "Al Khaleej-SA": {
       "file": "dd1d35ae4341ab588f89.json",
-      "real": 39,
+      "real": 40,
       "fictional": 0,
-      "published_ratings": 16,
-      "total": 39,
+      "published_ratings": 17,
+      "total": 40,
       "status": "real"
     },
     "Al Kholood-SA": {
       "file": "654d0cedbb0ab882bec2.json",
       "real": 31,
       "fictional": 0,
-      "published_ratings": 13,
+      "published_ratings": 14,
       "total": 31,
       "status": "real"
     },
@@ -9647,7 +9647,7 @@
       "file": "d11aa875802b81e2753f.json",
       "real": 33,
       "fictional": 0,
-      "published_ratings": 18,
+      "published_ratings": 21,
       "total": 33,
       "status": "real"
     },
@@ -9663,7 +9663,7 @@
       "file": "3a6068630a1b8595454f.json",
       "real": 32,
       "fictional": 0,
-      "published_ratings": 9,
+      "published_ratings": 10,
       "total": 32,
       "status": "real"
     },
@@ -9679,7 +9679,7 @@
       "file": "10a17bf66127effb1359.json",
       "real": 34,
       "fictional": 0,
-      "published_ratings": 15,
+      "published_ratings": 16,
       "total": 34,
       "status": "real"
     },
@@ -9693,26 +9693,26 @@
     },
     "Aucas-EC": {
       "file": "bdaa7beeb68697ba171a.json",
-      "real": 33,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 31,
       "status": "real"
     },
     "Barcelona SC-EC": {
       "file": "083a2762f1bfb5935cb9.json",
-      "real": 43,
+      "real": 44,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 43,
+      "total": 44,
       "status": "real"
     },
     "Delfín-EC": {
       "file": "51fc95c6d2daccdc33e6.json",
-      "real": 34,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 34,
+      "total": 33,
       "status": "real"
     },
     "Deportivo Cuenca-EC": {
@@ -9725,18 +9725,18 @@
     },
     "Emelec-EC": {
       "file": "99a6632e48496c21db97.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "Guayaquil City FC-EC": {
       "file": "2d31456d78017e3cded1.json",
-      "real": 29,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 29,
+      "total": 30,
       "status": "real"
     },
     "Independiente del Valle-EC": {
@@ -9765,18 +9765,18 @@
     },
     "Liga de Quito-EC": {
       "file": "cf33d4e625fe90f1d381.json",
-      "real": 33,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 36,
       "status": "real"
     },
     "Macará-EC": {
       "file": "dc067bb1d33675648759.json",
-      "real": 31,
+      "real": 30,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "real"
     },
     "Manta F.C.-EC": {
@@ -9797,10 +9797,10 @@
     },
     "Orense-EC": {
       "file": "e9648ebbbc17cf7ec877.json",
-      "real": 42,
+      "real": 43,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 42,
+      "total": 43,
       "status": "real"
     },
     "Técnico Universitario-EC": {
@@ -9813,10 +9813,10 @@
     },
     "Universidad Católica (Quito)-EC": {
       "file": "5181df9ef7293f05d803.json",
-      "real": 39,
+      "real": 40,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 39,
+      "total": 40,
       "status": "real"
     },
     "Alianza FC-CO": {
@@ -9829,10 +9829,10 @@
     },
     "América de Cali-CO": {
       "file": "3e10846ea7704d3c12ec.json",
-      "real": 31,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 33,
       "status": "real"
     },
     "Atlético Bucaramanga-CO": {
@@ -9869,18 +9869,18 @@
     },
     "Cúcuta Deportivo-CO": {
       "file": "23bd99af1a14c2e6fc91.json",
-      "real": 28,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 29,
       "status": "real"
     },
     "Deportes Tolima-CO": {
       "file": "e762e4b61a2971ecbdb7.json",
-      "real": 37,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 37,
+      "total": 38,
       "status": "real"
     },
     "Deportivo Cali-CO": {
@@ -9893,26 +9893,26 @@
     },
     "Deportivo Pasto-CO": {
       "file": "1ea694ad3d34c7306edc.json",
-      "real": 34,
-      "fictional": 0,
-      "published_ratings": 0,
-      "total": 34,
-      "status": "real"
-    },
-    "Deportivo Pereira-CO": {
-      "file": "039cae11afe8d466643e.json",
       "real": 35,
       "fictional": 0,
       "published_ratings": 0,
       "total": 35,
       "status": "real"
     },
-    "Fortaleza CEIF-CO": {
-      "file": "1ca31ddaaeceb96dcc1f.json",
-      "real": 30,
+    "Deportivo Pereira-CO": {
+      "file": "039cae11afe8d466643e.json",
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 36,
+      "status": "real"
+    },
+    "Fortaleza CEIF-CO": {
+      "file": "1ca31ddaaeceb96dcc1f.json",
+      "real": 32,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 32,
       "status": "real"
     },
     "Independiente Medellín-CO": {
@@ -9925,10 +9925,10 @@
     },
     "Independiente Santa Fe-CO": {
       "file": "04d6acd41fe27c212670.json",
-      "real": 39,
+      "real": 41,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 39,
+      "total": 41,
       "status": "real"
     },
     "Internacional de Bogotá-CO": {
@@ -9957,26 +9957,26 @@
     },
     "Millonarios-CO": {
       "file": "bb4742c744452a9d5814.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "Once Caldas-CO": {
       "file": "f7c743d015788569c7e9.json",
-      "real": 27,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 28,
       "status": "real"
     },
     "Águilas Doradas-CO": {
       "file": "251229ded7b8e8665a21.json",
-      "real": 30,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 30,
+      "total": 28,
       "status": "real"
     },
     "Slavia Praha-CZ": {
@@ -10397,34 +10397,34 @@
     },
     "Audax Italiano-CL": {
       "file": "e577f7255060292a761a.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "Cobresal-CL": {
       "file": "d341a8852346f5957cfc.json",
-      "real": 38,
+      "real": 37,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 38,
+      "total": 37,
       "status": "real"
     },
     "Colo Colo-CL": {
       "file": "5d64f4ea88390c58e633.json",
-      "real": 42,
+      "real": 43,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 42,
+      "total": 43,
       "status": "real"
     },
     "Coquimbo Unido-CL": {
       "file": "e48f6dc76d467e07b821.json",
-      "real": 36,
+      "real": 37,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 36,
+      "total": 37,
       "status": "real"
     },
     "Deportes Concepcion-CL": {
@@ -10437,18 +10437,18 @@
     },
     "Deportes Limache-CL": {
       "file": "683af42fb2eda0e02e06.json",
-      "real": 32,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 29,
       "status": "real"
     },
     "Everton CD-CL": {
       "file": "3aca3be46c67d4fc003c.json",
-      "real": 28,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 29,
       "status": "real"
     },
     "Huachipato-CL": {
@@ -10461,10 +10461,10 @@
     },
     "La Serena-CL": {
       "file": "6e4cb3e1e3890fe53e02.json",
-      "real": 38,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 38,
+      "total": 36,
       "status": "real"
     },
     "O'Higgins-CL": {
@@ -10485,10 +10485,10 @@
     },
     "Universidad Católica-CL": {
       "file": "521d34008478d24851e5.json",
-      "real": 42,
+      "real": 41,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 42,
+      "total": 41,
       "status": "real"
     },
     "Universidad de Chile-CL": {
@@ -10501,10 +10501,10 @@
     },
     "Universidad de Concepción-CL": {
       "file": "d641646437346305fff6.json",
-      "real": 38,
+      "real": 36,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 38,
+      "total": 36,
       "status": "real"
     },
     "Unión La Calera-CL": {
@@ -10517,10 +10517,10 @@
     },
     "Ñublense-CL": {
       "file": "836f7234fd89f780db27.json",
-      "real": 35,
+      "real": 34,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 35,
+      "total": 34,
       "status": "real"
     },
     "ADT-PE": {
@@ -10541,10 +10541,10 @@
     },
     "Alianza Lima-PE": {
       "file": "cf38a13f041e3bf59338.json",
-      "real": 31,
+      "real": 29,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 29,
       "status": "real"
     },
     "Atlético Grau-PE": {
@@ -10565,18 +10565,18 @@
     },
     "Comerciantes Unidos-PE": {
       "file": "e0e5576ca73582ca8681.json",
-      "real": 27,
+      "real": 28,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 28,
       "status": "real"
     },
     "Cusco FC-PE": {
       "file": "f0169abe4373c7fdb4a5.json",
-      "real": 27,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 26,
       "status": "real"
     },
     "Deportivo Garcilaso-PE": {
@@ -10613,26 +10613,26 @@
     },
     "Los Chankas-PE": {
       "file": "aaa9ba7dfaed74a1c756.json",
-      "real": 23,
-      "fictional": 1,
+      "real": 24,
+      "fictional": 0,
       "published_ratings": 0,
       "total": 24,
-      "status": "mixed"
+      "status": "real"
     },
     "Melgar-PE": {
       "file": "f50e55bd5ab899005475.json",
-      "real": 28,
+      "real": 27,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 28,
+      "total": 27,
       "status": "real"
     },
     "Sport Boys-PE": {
       "file": "99a1cb341bf42471bb18.json",
-      "real": 31,
+      "real": 32,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 31,
+      "total": 32,
       "status": "real"
     },
     "Sport Huancayo-PE": {
@@ -10661,10 +10661,10 @@
     },
     "Universitario-PE": {
       "file": "6ef58cea5e3f2b748869.json",
-      "real": 27,
+      "real": 26,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 27,
+      "total": 26,
       "status": "real"
     },
     "Academia Puerto Cabello-VE": {
@@ -10685,18 +10685,18 @@
     },
     "Carabobo-VE": {
       "file": "2b49e864e2507b91f97b.json",
-      "real": 33,
+      "real": 31,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 33,
+      "total": 31,
       "status": "real"
     },
     "Caracas FC-VE": {
       "file": "045fa90546d8a09fef00.json",
-      "real": 38,
+      "real": 37,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 38,
+      "total": 37,
       "status": "real"
     },
     "Deportivo La Guaira-VE": {
@@ -10741,26 +10741,26 @@
     },
     "Portuguesa-VE": {
       "file": "59506cc024909b355072.json",
-      "real": 30,
+      "real": 29,
       "fictional": 1,
       "published_ratings": 0,
-      "total": 31,
+      "total": 30,
       "status": "mixed"
     },
     "Rayo Zuliano-VE": {
       "file": "71da752aa9685f6837bc.json",
-      "real": 44,
+      "real": 47,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 44,
+      "total": 47,
       "status": "real"
     },
     "Trujillanos-VE": {
       "file": "dbd3d3d3d67edfb15801.json",
-      "real": 32,
+      "real": 33,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 32,
+      "total": 33,
       "status": "real"
     },
     "UCV FC-VE": {
@@ -10813,10 +10813,10 @@
     },
     "AmaZulu-ZA": {
       "file": "d753d3cb1675dd965c4b.json",
-      "real": 39,
+      "real": 38,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 39,
+      "total": 38,
       "status": "real"
     },
     "Chippa United-ZA": {
@@ -10917,10 +10917,10 @@
     },
     "Siwelele-ZA": {
       "file": "6eaa9337ad1728d7a997.json",
-      "real": 38,
+      "real": 37,
       "fictional": 0,
       "published_ratings": 0,
-      "total": 38,
+      "total": 37,
       "status": "real"
     },
     "Stellenbosch-ZA": {
@@ -11893,6 +11893,2150 @@
     },
     "Al-Nasr-LY": {
       "file": "b65b296a71a3ca5a5dbf.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Salzburg-AT": {
+      "file": "8172e4c823729522e7dd.json",
+      "real": 25,
+      "fictional": 0,
+      "published_ratings": 24,
+      "total": 25,
+      "status": "real"
+    },
+    "LASK-AT": {
+      "file": "5515f0bde9d7be0406ae.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 21,
+      "total": 28,
+      "status": "real"
+    },
+    "Sturm Graz-AT": {
+      "file": "1639e09cc5f4b8722128.json",
+      "real": 32,
+      "fictional": 0,
+      "published_ratings": 20,
+      "total": 32,
+      "status": "real"
+    },
+    "Rapid-AT": {
+      "file": "098ac06ea7d03919db8b.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Austria Wien-AT": {
+      "file": "c8552777777c58725b3b.json",
+      "real": 20,
+      "fictional": 4,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "mixed"
+    },
+    "Hartberg-AT": {
+      "file": "f53f1e35b76a98f09886.json",
+      "real": 19,
+      "fictional": 5,
+      "published_ratings": 15,
+      "total": 24,
+      "status": "mixed"
+    },
+    "Ried-AT": {
+      "file": "6ca4470efccb87883fa0.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Grazer AK-AT": {
+      "file": "35530bb9703d19eef053.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 21,
+      "total": 30,
+      "status": "real"
+    },
+    "SCR Altach-AT": {
+      "file": "5937aab29ddc56ec65f2.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 21,
+      "total": 30,
+      "status": "real"
+    },
+    "WSG Tirol-AT": {
+      "file": "de85e40d85d3ff51e8e3.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 20,
+      "total": 28,
+      "status": "real"
+    },
+    "Austria Lustenau-AT": {
+      "file": "54427afbaa25b5f17b80.json",
+      "real": 24,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "real"
+    },
+    "Wolfsberger AC-AT": {
+      "file": "965e312cd49bd62e1037.json",
+      "real": 21,
+      "fictional": 3,
+      "published_ratings": 17,
+      "total": 24,
+      "status": "mixed"
+    },
+    "Blau-Weiß Linz-AT": {
+      "file": "a72d8bbb3128305496b9.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "First Vienna-AT": {
+      "file": "d4353505beae28a9e106.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Admira Wacker-AT": {
+      "file": "decdec1d2e1cd748626d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "St. Pölten-AT": {
+      "file": "adb598c5b894d0128100.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Floridsdorfer AC-AT": {
+      "file": "45c89b2ddd5182160fba.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Amstetten-AT": {
+      "file": "df533440c48207a6491c.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Liefering-AT": {
+      "file": "7d5d9ffd27e1061ae361.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Austria Salzburg-AT": {
+      "file": "243da3e9dfe206195c67.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Austria Wien II-AT": {
+      "file": "dbc2eb6f47d3d4eb25b8.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Wacker Innsbruck-AT": {
+      "file": "ac542a0c42d75e943f68.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Voitsberg-AT": {
+      "file": "38c3b6c0eb992f61c5e9.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hertha Wels-AT": {
+      "file": "daec9601f379deed1343.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Schwarz-Weiß Bregenz-AT": {
+      "file": "e2a7119825a4485abbea.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sturm Graz II-AT": {
+      "file": "9e731e5c5cbe1f46103d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Rapid Wien II-AT": {
+      "file": "256dd3c323caeb3758ca.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kapfenberger SV-AT": {
+      "file": "4eecf695fa80c6589230.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sabah-AZ": {
+      "file": "d6f8a9998f85e9e15fe1.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Qarabağ-AZ": {
+      "file": "89c620e079ee33048d56.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Neftçi-AZ": {
+      "file": "a64a114f9e162dc5f9d4.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Zira-AZ": {
+      "file": "91fa695f7efeb17e4896.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Turan-AZ": {
+      "file": "e87c3e6ffc8a71a503d4.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Şamaxı-AZ": {
+      "file": "7414772e300faef037ac.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Araz Naxçıvan-AZ": {
+      "file": "39c55cc2a227b0457fcc.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "İmişli-AZ": {
+      "file": "4e8a49f5ce9dd657162e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sumqayıt-AZ": {
+      "file": "78fe2077bd683285264d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Safa-AZ": {
+      "file": "1dc69ee8a931639d588f.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kapaz-AZ": {
+      "file": "9beba7424ba4dcfd9701.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Qəbələ-AZ": {
+      "file": "4f8efd10d4f9b71544c0.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Səbail-AZ": {
+      "file": "70fb7e5e55ca6ae46bdc.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Karvan-AZ": {
+      "file": "2537c32661515b939554.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Şahdağ-AZ": {
+      "file": "409bb0517fdd1c3951a2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Mingəçevir-AZ": {
+      "file": "e5e2b29f374baf015aa3.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "MOIK-AZ": {
+      "file": "3cac6fcf49d59f3903da.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Baku Sportinq-AZ": {
+      "file": "794e2101180f5192e5c1.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Gəncəbasar-AZ": {
+      "file": "a626767068918fdf1d5d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Zaqatala-AZ": {
+      "file": "87253928432bb89100f6.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Xankəndi-AZ": {
+      "file": "254bdf54c0e50cb6015b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Şimal-AZ": {
+      "file": "6296d7ad863d56d56acf.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Lugano-CH": {
+      "file": "eb3ada3ecc23fb84bfea.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Young Boys-CH": {
+      "file": "2933f03e0c059169a63e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sion-CH": {
+      "file": "f609d6cbc4e231b97ed3.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "St.Gallen-CH": {
+      "file": "daea59656c413d373ab8.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Servette-CH": {
+      "file": "f7d67a419d1b60db8eaf.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Luzern-CH": {
+      "file": "ccc9001a78d33c908a18.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Basel-CH": {
+      "file": "33692ed11a6a35ad7f61.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Thun-CH": {
+      "file": "9833c0ce4f77e7ec32f5.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Zürich-CH": {
+      "file": "b298107fc425638e3095.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Lausanne-Sport-CH": {
+      "file": "c7fb1555764eb67fe5b3.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Grasshoppers-CH": {
+      "file": "c34baa43ca0a9c0a6d79.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Vaduz-LI": {
+      "file": "24300eec135851ac6e13.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Stade-Lausanne-Ouchy-CH": {
+      "file": "95af2046ee265cf3fc22.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Yverdon Sport-CH": {
+      "file": "03faa9bf1011b8126154.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Winterthur-CH": {
+      "file": "c5644c2a0d9f3a9d80cd.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Aarau-CH": {
+      "file": "b4846df7e9310f678fb3.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Xamax-CH": {
+      "file": "87dc24e3a203e28202ca.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kriens-CH": {
+      "file": "759f355b9f93b3c8c6c9.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Wil-CH": {
+      "file": "5209f03340a6b1a37123.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Rapperswil-Jona-CH": {
+      "file": "c50f1e9bae1b8c085065.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Etoile Carouge-CH": {
+      "file": "3b96732b4a7a41d45304.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Stade Nyonnais-CH": {
+      "file": "dbecd67726ee12877bf8.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Shakhtar Donetsk-UA": {
+      "file": "977fdea9dac5da7ce159.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Dynamo Kyiv-UA": {
+      "file": "c3b835230e6f1cae64cb.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Polissya-UA": {
+      "file": "b6680279b55c1d95b25e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kharkiv-UA": {
+      "file": "7f7788cede95a66b30cf.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Karpaty Lviv-UA": {
+      "file": "5870b05691b48caba278.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "LNZ Cherkasy-UA": {
+      "file": "8cfab6d5c1e3b4138234.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Zorya-UA": {
+      "file": "d29ff74ddd98ec870c29.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kryvbas KR-UA": {
+      "file": "b39d3f42643a41226dbc.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kolos Kovalivka-UA": {
+      "file": "18f0eb2cd7546c57d365.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Bukovyna-UA": {
+      "file": "eec8dfc4e8bade9f8175.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Veres Rivne-UA": {
+      "file": "58af69f09ffa8c62201e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Epitsentr-UA": {
+      "file": "34eecb2ebe7f48aa82e8.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Livyi Bereh-UA": {
+      "file": "a6900e2e52560a26fa29.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Obolon Kyiv-UA": {
+      "file": "c0e3b653a109d95ced47.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Chornomorets-UA": {
+      "file": "9ea5cfd23c802548843b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kudrivka-UA": {
+      "file": "824a676cab8dd0848764.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Oleksandria-UA": {
+      "file": "794e106d5c7f819352d5.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ahrobiznes Volochysk-UA": {
+      "file": "16941c31f61061881419.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "SK Poltava-UA": {
+      "file": "bd0db22639c5b730eeed.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Viktoriya Sumy-UA": {
+      "file": "0d85f473238a0ec233f2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Inhulets'-UA": {
+      "file": "2dda6e641c7e888861b6.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "FSC Mariupol-UA": {
+      "file": "f592667ec304eeda9176.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "FK Metalist Kharkiv-UA": {
+      "file": "caa19e9b980436aee0c1.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kulykiv-UA": {
+      "file": "55664953678f18ec6766.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Prykarpattia-UA": {
+      "file": "2f5a28a9e2456f75062a.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Nyva Ternopil-UA": {
+      "file": "e40dd1f77bcf837f3f86.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Lokomotiv Kyiv-UA": {
+      "file": "b738380489e36951376f.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Chernihiv-UA": {
+      "file": "e56c8b5e320d7fc8b12e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "UCSA-UA": {
+      "file": "a7e8414d8da0d4765c3e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kolos Kovalivka II-UA": {
+      "file": "a8298d2198796d4628f6.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Polissya II-UA": {
+      "file": "34e3df5108790dafb695.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Probiy Horodenka-UA": {
+      "file": "75fa1ed9f3210a7435bb.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Crvena zvezda-RS": {
+      "file": "7c7a744a220ab8f5f0bd.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Vojvodina-RS": {
+      "file": "fa17cb2f6f25fa37fa31.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Partizan-RS": {
+      "file": "5ab41252ff4eb6fb40e8.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Železničar Pančevo-RS": {
+      "file": "4fd60410ff15e0a75646.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "IMT-RS": {
+      "file": "18707a2972b6da29e52f.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Radnički 1923-RS": {
+      "file": "dfb3126ac8c2f58c0284.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Novi Pazar-RS": {
+      "file": "554e93e132efcb01131e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Radnik Surdulica-RS": {
+      "file": "7fa8b840db660c4f0fd9.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "OFK Beograd-RS": {
+      "file": "8f8dc31bc9dd71aa928b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Čukarički-RS": {
+      "file": "fa08c4b0858064a6fb05.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Radnički Niš-RS": {
+      "file": "808674d542c7a82a1db4.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Mladost Lučani-RS": {
+      "file": "86498922d4c313ead31c.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Mačva Šabac-RS": {
+      "file": "b5655967522bf9de4c95.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Zemun-RS": {
+      "file": "717ae4e803521c01f470.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "TSC-RS": {
+      "file": "7d361133b1124797fe6b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Javor-RS": {
+      "file": "222641f00c7216a60f1e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Voždovac-RS": {
+      "file": "180bbfcb92a625b854b5.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Borac Čačak-RS": {
+      "file": "e4ec133e7222284e7586.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Loznica-RS": {
+      "file": "f28c3eb0672c42ca1ac2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Smederevo 1924-RS": {
+      "file": "84042fbd86db8839fa73.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "OFK Vršac-RS": {
+      "file": "27ba1f731f8c036d3186.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Napredak-RS": {
+      "file": "be11c4006384afd1752e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Spartak Subotica-RS": {
+      "file": "4c6bbe45a960e45d443c.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Proleter 023 Zrenjanin-RS": {
+      "file": "7959f05f02902b31a48c.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Grafičar-RS": {
+      "file": "9fb682bf8842942b2d11.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Metalac GM-RS": {
+      "file": "1d7b05bc90e58f5751b0.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Teleoptik-RS": {
+      "file": "f506f100df5c2cf12be8.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Dubočica-RS": {
+      "file": "0f636279104f4c06c8b3.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Jedinstvo Ub-RS": {
+      "file": "2f8553b27498128c6968.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Bor-RS": {
+      "file": "beb15cd26372230a2c26.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sanfrecce Hiroshima-JP": {
+      "file": "1ceb9821f0aca195b61f.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 28,
+      "status": "real"
+    },
+    "Machida Zelvia-JP": {
+      "file": "19eec50c9974f34712e2.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 28,
+      "status": "real"
+    },
+    "Kashima Antlers-JP": {
+      "file": "c323e6a2519266988095.json",
+      "real": 37,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 37,
+      "status": "real"
+    },
+    "Vissel Kobe-JP": {
+      "file": "7db5fb5e300289d1262e.json",
+      "real": 44,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 44,
+      "status": "real"
+    },
+    "Kashiwa Reysol-JP": {
+      "file": "cfcc007e54bf8a62c4d1.json",
+      "real": 46,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 46,
+      "status": "real"
+    },
+    "Tokyo-JP": {
+      "file": "f8c58734b12e0c56db2d.json",
+      "real": 32,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 32,
+      "status": "real"
+    },
+    "Yokohama F. Marinos-JP": {
+      "file": "dc086a6cae4826707f51.json",
+      "real": 34,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 34,
+      "status": "real"
+    },
+    "Kawasaki Frontale-JP": {
+      "file": "83b75dd8212a35eb1007.json",
+      "real": 36,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 36,
+      "status": "real"
+    },
+    "Urawa Reds-JP": {
+      "file": "a173b0013331b5559fe3.json",
+      "real": 33,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 33,
+      "status": "real"
+    },
+    "Cerezo Osaka-JP": {
+      "file": "76e899415c41f1a22e20.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Gamba Osaka-JP": {
+      "file": "11fa052b8c2e943be9e2.json",
+      "real": 55,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 55,
+      "status": "real"
+    },
+    "Fagiano Okayama-JP": {
+      "file": "6d9295a34c57b3dc4434.json",
+      "real": 36,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 36,
+      "status": "real"
+    },
+    "Kyoto Sanga-JP": {
+      "file": "c9408bee62f4e55b83e3.json",
+      "real": 42,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 42,
+      "status": "real"
+    },
+    "Nagoya Grampus-JP": {
+      "file": "2a2941e29efd5c8bcbb4.json",
+      "real": 34,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 34,
+      "status": "real"
+    },
+    "Shimizu S-Pulse-JP": {
+      "file": "1d31afdea67b65876f99.json",
+      "real": 36,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 36,
+      "status": "real"
+    },
+    "Avispa Fukuoka-JP": {
+      "file": "423c9c56e4d647a0c9ff.json",
+      "real": 39,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 39,
+      "status": "real"
+    },
+    "V-Varen Nagasaki-JP": {
+      "file": "c8712ae844e8c946ccae.json",
+      "real": 36,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 36,
+      "status": "real"
+    },
+    "Mito Hollyhock-JP": {
+      "file": "857ad7631b3c1e9f224e.json",
+      "real": 33,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 33,
+      "status": "real"
+    },
+    "Tokyo Verdy-JP": {
+      "file": "18d128917a746bcc59bd.json",
+      "real": 43,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 43,
+      "status": "real"
+    },
+    "JEF United-JP": {
+      "file": "d404eb80720651bbd156.json",
+      "real": 38,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 38,
+      "status": "real"
+    },
+    "Vegalta Sendai-JP": {
+      "file": "d2b31b9173fac00c961a.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Yokohama-JP": {
+      "file": "3b9b4ca4c410f5d8c5df.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Omiya Ardija-JP": {
+      "file": "8fdd81a1818221d15a4b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Albirex Niigata-JP": {
+      "file": "bfbbd033a0e5b0c85c5d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Shonan Bellmare-JP": {
+      "file": "adc6ddab20883efe8207.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kataller Toyama-JP": {
+      "file": "ae2232184ce3689ee59b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Júbilo Iwata-JP": {
+      "file": "006992c11c0e7dbdcb11.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sagan Tosu-JP": {
+      "file": "496e31e2f443561b1a19.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Tokushima Vortis-JP": {
+      "file": "6aba9e3482cb0633ec41.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Tegevajaro Miyazaki-JP": {
+      "file": "71bcf2d5fb810c408507.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Iwaki-JP": {
+      "file": "21a7cc93356ac9cb1fec.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Blaublitz Akita-JP": {
+      "file": "ffcd372b628143ba2673.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Montedio Yamagata-JP": {
+      "file": "2f0d3432b16a0e409e1b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Fujieda MYFC-JP": {
+      "file": "4a531aaef96b8e68989b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Tochigi City-JP": {
+      "file": "1a64ad990bb3d579ad0c.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Imabari-JP": {
+      "file": "fb3811c1f889d08b6b4b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Consadole Sapporo-JP": {
+      "file": "9b60fda2cad301ae74ac.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Oita Trinita-JP": {
+      "file": "a38760b48e7692e972ab.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ventforet Kofu-JP": {
+      "file": "aad3c9165d2a6c7a2004.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Vanraure Hachinohe-JP": {
+      "file": "4a91d1bb18b19388121d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Tel Aviv-IL": {
+      "file": "e86a5faf6679e072c660.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Be'er Sheva-IL": {
+      "file": "6c64e1f84b8560a10cea.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Tel Aviv-IL": {
+      "file": "9a424c57d89f88aa1ab3.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Beitar Jerusalem-IL": {
+      "file": "1abece70cc34af01c307.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Haifa-IL": {
+      "file": "ddddf8e96ffb90ca35eb.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Netanya-IL": {
+      "file": "88761db72fa67b8697ec.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Haifa-IL": {
+      "file": "87147def77a9e0f26fa4.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ironi Tiberias-IL": {
+      "file": "03070fc13ed33ff44ba4.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Jerusalem-IL": {
+      "file": "03130f6e1f2d5647b64d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ironi Kiryat Shmona-IL": {
+      "file": "3cd60dda2a21889ac522.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Petah Tikva-IL": {
+      "file": "d8523c2d10760dcb0ab8.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Ramat Gan-IL": {
+      "file": "77c4f5a0ff0383a766a4.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Petah Tikva-IL": {
+      "file": "6f3c12112721cdb84280.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Bnei Sakhnin-IL": {
+      "file": "2c2f2d3e55a38cd7519f.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Bnei Yehuda-IL": {
+      "file": "a1f0c00c8a6eb0708fc6.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ashdod-IL": {
+      "file": "0f6f5434e94137c70296.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kiryat Yam SC-IL": {
+      "file": "0c6ca47c02fa6208f826.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Kfar Shalem-IL": {
+      "file": "a46b0db4ead1d81d051a.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Rishon LeZion-IL": {
+      "file": "d022a9dbc3fb34955bf5.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Bnei Raina-IL": {
+      "file": "37ccf4d61009e8759763.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Ra'anana-IL": {
+      "file": "11ecce3b2d3de5e94d3d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Herzliya-IL": {
+      "file": "52a1d6d5c65488afae7e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Afula-IL": {
+      "file": "77c01e92e25292c20bc7.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Kafr Qasim-IL": {
+      "file": "ea9a23e035d341bbb6f2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Kabilio Jaffa-IL": {
+      "file": "f959f5fddfbcfc601287.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Kfar Saba-IL": {
+      "file": "23a6130c0959d8b0ce0e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Kiryat Gat-IL": {
+      "file": "27c8765d95740e7a90fb.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Maccabi Ahi Nazareth-IL": {
+      "file": "3696350db2b1ad266087.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ironi Modi'in-IL": {
+      "file": "09c4bde07a6b8233ce59.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hapoel Acre-IL": {
+      "file": "e174342e294798579b9e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Levski Sofia-BG": {
+      "file": "95fbad5da4a2a81de836.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ludogorets Razgrad-BG": {
+      "file": "d8acf6e14bb100cb1545.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "CSKA Sofia-BG": {
+      "file": "092931783cef95f12030.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "CSKA 1948 Sofia-BG": {
+      "file": "6b6e458a63e4e1cb0318.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Arda Kardzhali-BG": {
+      "file": "fbe78b78506b4ed35180.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Botev Plovdiv-BG": {
+      "file": "6b2b0933cedf8d207598.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Lokomotiv Plovdiv-BG": {
+      "file": "e636018cea64abbed285.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Cherno more Varna-BG": {
+      "file": "a9ec9549c608a8e236da.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Botev Vratsa-BG": {
+      "file": "0170a548b34ec5a71136.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Slavia Sofia-BG": {
+      "file": "db8b8cf2e3b6ab4433e0.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Lokomotiv Sofia 1929-BG": {
+      "file": "2ffe2ebbad0348c085a0.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Spartak Varna-BG": {
+      "file": "fb6775e549057fd0e65b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Dunav ot Ruse-BG": {
+      "file": "5e38a6c13a18d8715420.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Septemvri Sofia-BG": {
+      "file": "f66acbb9cdcbd9d7c772.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Vihren Sandanski-BG": {
+      "file": "b48dcaab5be527f3395e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "CSKA Sofia II-BG": {
+      "file": "da14d02c20a521c2da2d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Fratria-BG": {
+      "file": "9c5d6e1bac0e31e3e73c.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Chernomorets Burgas-BG": {
+      "file": "897f32c4245a6e5ad7d9.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Yantra 2019-BG": {
+      "file": "2d8a65b2e7ceb51fe59a.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Beroe Stara Zagora-BG": {
+      "file": "7af793773ebf48e39d23.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Marek-BG": {
+      "file": "68747b81376342550733.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hebar 1918-BG": {
+      "file": "6a2d25c94326d8eae6e5.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Etar VT-BG": {
+      "file": "cb30a91a6f4fd8ad766d.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ludogorets II-BG": {
+      "file": "79f4253f77d82c4b0558.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Nesebar-BG": {
+      "file": "9548d0b91d1624227ff2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Rilski sportist-BG": {
+      "file": "5158dc6d4837ca06d641.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Montana 1921-BG": {
+      "file": "eb28305a1312e44842e2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Dobrudzha 1919-BG": {
+      "file": "cd1bb5824af61900beb4.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Lokomotiv GO-BG": {
+      "file": "21cd0643ed832bef5725.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Spartak Pleven-BG": {
+      "file": "8707a674d26821208c7b.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sportist Svoge-BG": {
+      "file": "1eb281db46a018aef218.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Pirin Blagoevgrad-BG": {
+      "file": "b912edb904633da49bf0.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Hammarby-SE": {
+      "file": "30a9661a2b5067c39f63.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 28,
+      "status": "real"
+    },
+    "Djurgården-SE": {
+      "file": "f3c8cfaff9174cf63867.json",
+      "real": 27,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 27,
+      "status": "real"
+    },
+    "Sirius-SE": {
+      "file": "5c1e6a9f0a849ce64ce9.json",
+      "real": 21,
+      "fictional": 3,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "mixed"
+    },
+    "Häcken-SE": {
+      "file": "255d27a9039235c63921.json",
+      "real": 27,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 27,
+      "status": "real"
+    },
+    "GAIS-SE": {
+      "file": "4a7fa8c2725864a12dae.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 28,
+      "status": "real"
+    },
+    "Elfsborg-SE": {
+      "file": "a2944ed16e6e75c9b726.json",
+      "real": 26,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 26,
+      "status": "real"
+    },
+    "Malmö FF-SE": {
+      "file": "9a9fb02b74f54afa3fe3.json",
+      "real": 36,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 36,
+      "status": "real"
+    },
+    "IFK Göteborg-SE": {
+      "file": "1b6e084a14ddf1742952.json",
+      "real": 28,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 28,
+      "status": "real"
+    },
+    "Västerås-SE": {
+      "file": "d30e30c9b65c45fdc06f.json",
+      "real": 27,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 27,
+      "status": "real"
+    },
+    "AIK-SE": {
+      "file": "9180a94fd5a7c236758f.json",
+      "real": 37,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 37,
+      "status": "real"
+    },
+    "Mjällby-SE": {
+      "file": "f57c70f8be051439c124.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Brommapojkarna-SE": {
+      "file": "7d162eafb00f5575c7db.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Kalmar-SE": {
+      "file": "71fb4fccbdc8d018e8f0.json",
+      "real": 29,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 29,
+      "status": "real"
+    },
+    "Degerfors-SE": {
+      "file": "e3b03764bbea337a21e3.json",
+      "real": 23,
+      "fictional": 1,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "mixed"
+    },
+    "Örgryte-SE": {
+      "file": "4b5b2de5ccc9b8e1a055.json",
+      "real": 30,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 30,
+      "status": "real"
+    },
+    "Halmstad-SE": {
+      "file": "f7ae5c8bf875b5a04940.json",
+      "real": 24,
+      "fictional": 0,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "real"
+    },
+    "Norrköping-SE": {
+      "file": "22bca679eb90c4009a0e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Falkenberg-SE": {
+      "file": "c0ecbbadf8b1e9f27ba2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Varberg-SE": {
+      "file": "8a7b7614d6606ac12ad2.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Landskrona-SE": {
+      "file": "44402122373d28904fed.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Oddevold-SE": {
+      "file": "f4a1b4ff1625f9f2f849.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Östersund-SE": {
+      "file": "109978efbe446f0802ae.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sandviken-SE": {
+      "file": "08f84b07e15c9a21dc3e.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Öster-SE": {
+      "file": "ae5f5fb548829a1fd00a.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Värnamo-SE": {
+      "file": "836e55264451dd878877.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Nordic United-SE": {
+      "file": "1f9378585c7d4d86cba0.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Brage-SE": {
+      "file": "35f2d6929d2f3a7b9ee0.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Helsingborg-SE": {
+      "file": "659a6282353f86ab9a64.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Norrby-SE": {
+      "file": "0870a78d7ff72c210760.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Ljungskile-SE": {
+      "file": "2d36e7221acaad27b1b9.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Örebro-SE": {
+      "file": "d01134c7f8ccc8d3759a.json",
+      "real": 0,
+      "fictional": 24,
+      "published_ratings": 0,
+      "total": 24,
+      "status": "fictional"
+    },
+    "Sundsvall-SE": {
+      "file": "94195ab23d097bdd4c6b.json",
       "real": 0,
       "fictional": 24,
       "published_ratings": 0,

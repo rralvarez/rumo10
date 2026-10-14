@@ -74,7 +74,8 @@ final class Repository {
         foreach($g['states'] as $k=>$v) $this->query('INSERT INTO rumo10_estados VALUES(?,?,?) ON DUPLICATE KEY UPDATE valor=?',[$id,$k,$v,$v]);
         if(!empty($g['official']) || $g['stage']==='aposentado') {
             $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
-            $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=?',[$id,$json,$json]);
+            // O universo pode ter dezenas de MB: vincular o mesmo JSON duas vezes duplica buffers do PDO.
+            $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=VALUES(estado_json)',[$id,$json]);
             return;
         }
         $this->query('INSERT IGNORE INTO rumo10_temporadas(carreira_id,numero,clube) VALUES(?,?,?)',[$id,$g['season'],$g['club']]);
@@ -96,7 +97,7 @@ final class Repository {
         }
         if(isset($g['story_seed']) || isset($g['play_mode'])) {
             $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
-            $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=?',[$id,$json,$json]);
+            $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=VALUES(estado_json)',[$id,$json]);
         }
     }
 }
