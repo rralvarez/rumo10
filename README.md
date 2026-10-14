@@ -1,5 +1,7 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
+**Preparação UOL Host/cPanel:** [layout privado, catálogo sem contas locais, GitHub Actions e validação](Docs/33_Publicacao_UOL_Host.md). Workflow de publicação desativado até configurar e validar SSH. O IIS local permanece inalterado; produção ainda não publicada/testada.
+
 **Textos em português brasileiro:** revisão das 214 situações e 856 alternativas, com escolhas mais claras e termos de futebol mais naturais. [Alterações e verificação](Docs/24_Revisao_dos_Textos_ptBR.md).
 
 **Atualização do RumoHub (14/10):** página de jogos e administração, 2.160 clubes, 154 competições/circuitos, 19.789 ratings FC27 e 211 seleções com emblemas. [Acesso, cobertura, limites e testes](Docs/23_Administracao_RumoHub_e_Catalogo_EA.md). Convocações ainda não estão implementadas; a segunda divisão indiana está sinalizada como provisória e há 60 escudos de clubes pendentes.
@@ -90,7 +92,7 @@ Para concluir rapidamente a temporada, escolha o modo Expresso antes de iniciar 
 
 ## Apache / produção
 
-PHP 8.2+ com `pdo_mysql` e `mbstring`, MySQL 8+, `mod_rewrite`, HTTPS e `DocumentRoot /caminho/rumo10/public`. Exemplo dentro do VirtualHost TLS existente:
+PHP 8.2+ com `pdo_mysql`, `mbstring` e `curl`, MySQL 8+, `mod_rewrite`, HTTPS e `DocumentRoot /caminho/rumo10/public`. Exemplo dentro do VirtualHost TLS existente:
 
 ```apache
 DocumentRoot /srv/rumo10/public

@@ -1,0 +1,49 @@
+name: Publicação UOL Host
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: vars.UOL_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Preparar pacote privado
+        run: |
+          find app bin database public -name '*.php' -print0 | xargs -0 -n 1 php -l > /dev/null
+          php -d memory_limit=512M bin/build-release.php "$RUNNER_TEMP/release.tar"
+          php -d memory_limit=512M tests/deployment-package.php "$RUNNER_TEMP/release.tar.gz"
+          bash -n bin/deploy-cpanel.sh
+      - name: Configurar SSH
+        env:
+          SSH_KEY: ${{ secrets.UOL_SSH_PRIVATE_KEY }}
+          KNOWN_HOSTS: ${{ secrets.UOL_SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+      - name: Transferir e ativar código
+        env:
+          UOL_PORT: ${{ vars.UOL_SSH_PORT }}
+          UOL_PHP: ${{ vars.UOL_PHP_CLI }}
+        run: |
+          set -euo pipefail
+          project=rumo10
+          port=${UOL_PORT:-22}
+          php_cli=${UOL_PHP:-php}
+          [[ "$port" =~ ^[0-9]+$ && "$php_cli" =~ ^[/a-zA-Z0-9_.-]+$ ]]
+          remote=rumoacame144a99e@a16-asgard21.hospedagemuolhost.com.br
+          folder=/home/rumoacame144a99e/apps/$project/incoming/$GITHUB_SHA
+          ssh -p "$port" -o StrictHostKeyChecking=yes "$remote" "mkdir -p '$folder'"
+          scp -P "$port" -o StrictHostKeyChecking=yes "$RUNNER_TEMP/release.tar.gz" "$remote:$folder/release.tar.gz"
+          ssh -p "$port" -o StrictHostKeyChecking=yes "$remote" "tar -xzf '$folder/release.tar.gz' -C '$folder' && bash '$folder/bin/deploy-cpanel.sh' '$project' '$GITHUB_SHA' '$folder' '$php_cli'"
+      - name: Conferir HTTPS público
+        run: php bin/production-smoke.php https://www.rumoacamisa10.com.br rumo10
