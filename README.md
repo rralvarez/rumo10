@@ -4,7 +4,7 @@
 
 **Minhas carreiras:** abra [gerenciar carreiras](http://rumo10.local/carreiras). Limite total de 3 no gratuito e 10 no pago, contando arquivadas; exclusão exige confirmação permanente. [Preparação do Hub e próximos passos de armazenamento](Docs/20_Preparacao_RumoHub_e_Armazenamento.md). Em instalações existentes, execute `bin/install-career-limits.php` antes de atualizar a aplicação.
 
-Top 250 mundial Opta e 250 jogadores masculinos FC 27 pesquisados; nove novos mercados com duas divisões e 268 clubes. [Proposta RumoHub, fontes, cobertura e limites](Docs/19_RumoHub_e_Top250.md). O banco ainda é `ecohub`: o desenho de nomes `rh_` compartilhados é uma proposta, sem migração aplicada.
+Top 250 mundial Opta e 250 jogadores masculinos FC 27 pesquisados; nove novos mercados com duas divisões e 268 clubes. [Fontes, cobertura e limites](Docs/19_RumoHub_e_Top250.md). O catálogo compartilhado foi instalado em `rumohub.rh_*`; contas e carreiras permanecem em `ecohub.rumo10_*`. [Instalação e integração com o Hub](Docs/22_RumoHub_Instalacao_e_Integracao.md).
 
 África e todos os países independentes da América do Sul, evolução com auge potencial aos 32, aposentadoria voluntária aos 35 e obrigatória aos 40, e catálogo global normalizado para outros jogos: [cobertura, fontes, instalação e estrutura das tabelas](Docs/18_Africa_Ciclo_e_Catalogo_Compartilhado.md).
 

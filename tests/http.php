@@ -22,6 +22,7 @@ function tokens(string $html,string $path): array {
 $r=new Repository(Database::connect());
 try {
     $page=request('/login'); verify($page['status']===200,'Tela login');
+    if(RumoHub::enabled())verify(request('/escudo?club=Inter%20Miami%20CF-US')['status']===401,'Escudo do Hub exige sessão no jogo');
     verify(str_contains(strtolower($page['headers']),'httponly') && str_contains(strtolower($page['headers']),'samesite=lax'),'Flags de cookie');
     verify(str_contains($page['body'],'href="/register"') && !str_contains($page['body'],'formaction="/register"'),'Criar conta navega sem validar o login');
     $page=request('/register'); verify($page['status']===200 && str_contains($page['body'],'Crie sua conta'),'Tela própria de cadastro');
@@ -29,6 +30,7 @@ try {
     $invalid=request('/register',$t+['email'=>$email,'password'=>'abc']);
     verify($invalid['status']===422 && str_contains($invalid['body'],'action="/register"') && str_contains($invalid['body'],$email),'Erro mantém cadastro e e-mail');
     $page=request('/register',$t+['email'=>$email,'password'=>$password]); verify($page['status']===200,'Registro/login HTTP');
+    if(RumoHub::enabled()){$badge=request('/escudo?club=Inter%20Miami%20CF-US');verify($badge['status']===200 && str_starts_with($badge['body'],"\x89PNG"),'Escudo autenticado via Hub');verify(request('/escudo?club=not-a-club')['status']===404,'Clube inexistente não entrega mídia');}
     $page=request('/carreira/criar',tokens($page['body'],'/carreira/criar')+['name'=>'Teste HTTP','city'=>'São Paulo','uf'=>'SP','position'=>'meia']); verify($page['status']===200,'Criação HTTP');
     $t=tokens($page['body'],'/carreira/handicap'); $page=request('/carreira/handicap',$t); verify($page['status']===200,'Handicap HTTP');
     $state=json_decode(request('/api/carreira/estado')['body'],true); verify($state['stage']==='clube_inicio' && count($state['initial_candidates'])===3,'Três clubes após roleta');

@@ -3,9 +3,11 @@ declare(strict_types=1);
 /** Universo independente por carreira. Cadastro de 2026; resultados sempre simulados. */
 final class Competition {
     public static function catalog(): array {
+        if(RumoHub::enabled())return RumoHub::catalog()['competitions'];
         static $data; return $data??=array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/africa-south-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/top250-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id');
     }
     public static function clubs(): array {
+        if(RumoHub::enabled())return RumoHub::catalog()['clubs'];
         static $data;
         if($data===null) {
             $data=array_column(json_decode(file_get_contents(dirname(__DIR__).'/database/official-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),null,'name');
