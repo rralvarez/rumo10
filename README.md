@@ -8,7 +8,7 @@
 
 **Minhas carreiras:** abra [gerenciar carreiras](http://rumo10.local/carreiras). Limite total de 3 no gratuito e 10 no pago, contando arquivadas; exclusão exige confirmação permanente. [Preparação do Hub e próximos passos de armazenamento](Docs/20_Preparacao_RumoHub_e_Armazenamento.md). Em instalações existentes, execute `bin/install-career-limits.php` antes de atualizar a aplicação.
 
-Top 250 mundial Opta e 250 jogadores masculinos FC 27 pesquisados; nove novos mercados com duas divisões e 268 clubes. [Fontes, cobertura e limites](Docs/19_RumoHub_e_Top250.md). O catálogo compartilhado foi instalado em `rumohub.rh_*`; contas e carreiras permanecem em `ecohub.rumo10_*`. [Instalação e integração com o Hub](Docs/22_RumoHub_Instalacao_e_Integracao.md).
+Top 250 mundial Opta e 250 jogadores masculinos FC 27 pesquisados; nove novos mercados com duas divisões e 268 clubes. [Fontes, cobertura e limites](Docs/19_RumoHub_e_Top250.md). Todo o banco dos projetos de futebol está em `rumohub`: catálogo compartilhado em `rh_*`, contas e carreiras do Rumo10 em `rumo10_*`. [Migração e validação](Docs/31_Banco_Unificado_RumoHub.md).
 
 África e todos os países independentes da América do Sul, evolução com auge potencial aos 32, aposentadoria voluntária aos 35 e obrigatória aos 40, e catálogo global normalizado para outros jogos: [cobertura, fontes, instalação e estrutura das tabelas](Docs/18_Africa_Ciclo_e_Catalogo_Compartilhado.md).
 
@@ -30,7 +30,7 @@ Copy-Item .env.example .env # SOMENTE se .env ainda não existir
 Start-Process http://rumo10.local
 ```
 
-O instalador **não cria bancos**. Confirme/crie `ecohub` previamente com um administrador MySQL autorizado: `CREATE DATABASE IF NOT EXISTS ecohub CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`. A aplicação nunca executa DROP/ALTER/TRUNCATE em tabelas externas. `bin/install.php` faz migrations idempotentes e seed sem substituir cores já editadas. Faça backup apenas de `rumo10_*` antes de uma atualização. Não há reset global nem rollback destrutivo automático.
+O instalador **não cria bancos**. Confirme/crie `rumohub` previamente com um administrador MySQL autorizado: `CREATE DATABASE IF NOT EXISTS rumohub CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`. A aplicação nunca executa DROP/ALTER/TRUNCATE em tabelas externas. `bin/install.php` faz migrations idempotentes e seed sem substituir cores já editadas. Faça backup de `rumo10_*` antes de atualizar o jogo e de `rh_*` antes de atualizar o Hub. Não há reset global nem rollback destrutivo automático.
 
 Caso o PHP local emita avisos de extensões antigas, use o modo isolado, sem alterar o php.ini dos outros projetos:
 

@@ -26,7 +26,7 @@ Um resumo não pode ser retomado. Criar/selecionar outra carreira não apaga o h
 
 ## Instalação
 
-Banco permanece `ecohub`; apenas tabelas `rumo10_*` foram alteradas. Em uma instalação existente que já tem a migração 003:
+Banco atual: `rumohub`, com as tabelas do jogo sob `rumo10_*`. A mudança de banco está documentada em [Banco unificado](31_Banco_Unificado_RumoHub.md). Em uma instalação existente que já tem a migração 003:
 
 ```powershell
 & C:\PHP\php-8.4.26\php.exe -n -d extension_dir=C:\PHP\php-8.4.26\ext -d extension=pdo_mysql bin/install-retirement-history.php

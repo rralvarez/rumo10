@@ -22,7 +22,7 @@ Datas e formatos completos desses novos mercados não são reproduzidos: a simul
 
 ## Integração, instalação e armazenamento
 
-Os dados compartilhados usam `rumohub.rh_*`; usuários e carreiras continuam em `ecohub.rumo10_*`. Não houve migração ou exclusão das carreiras humanas. Cada jogo usa credencial HMAC própria e IP autorizado; CORS e Referer não substituem autenticação. O painel tem sessão própria, CSRF, limitação de login e histórico das edições. Em produção, configure HTTPS e a raiz `public/` no Apache; o IIS local já usa essa raiz. As regras de proteção dos diretórios internos existem nos dois servidores.
+Os dados compartilhados usam `rumohub.rh_*`; usuários e carreiras usam `rumohub.rumo10_*`, após a [migração de 14/10/2026](31_Banco_Unificado_RumoHub.md), sem exclusão ou reset de carreiras. Cada jogo usa credencial HMAC própria e IP autorizado; CORS e Referer não substituem autenticação. O painel tem sessão própria, CSRF, limitação de login e histórico das edições. Em produção, configure HTTPS e a raiz `public/` no Apache; o IIS local já usa essa raiz. As regras de proteção dos diretórios internos existem nos dois servidores.
 
 Rumo10 consulta a versão do Hub a cada 60 segundos por padrão (`RUMOHUB_CACHE_TTL`). Atualizações são gravadas atomicamente; cache anterior continua disponível quando o Hub está temporariamente offline. Escudos e elencos são buscados por clube; caches antigos gerados pela ponte são removidos na sincronização ou, após uma hora, na atualização automática. Nomes de exibição e notas manuais aparecem na interface sem renomear os códigos internos.
 

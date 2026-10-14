@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+if(is_file(dirname(__DIR__).'/storage/database-migration.lock')){http_response_code(503);header('Content-Type: text/plain; charset=utf-8');header('Cache-Control: no-store');header('Retry-After: 60');exit('Estamos atualizando o banco do jogo. Recarregue em instantes; sua carreira será preservada.');}
 require dirname(__DIR__).'/app/bootstrap.php';
 ini_set('display_errors','0');
 ini_set('log_errors','1');

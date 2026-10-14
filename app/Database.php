@@ -2,7 +2,7 @@
 declare(strict_types=1);
 final class Database {
     public static function connect(): PDO {
-        $db = config('DB_DATABASE', 'ecohub');
+        $db = config('DB_DATABASE', 'rumohub');
         $host = config('DB_HOST', '127.0.0.1');
         $port = config('DB_PORT', '3306');
         if (!preg_match('/^[a-zA-Z0-9_]+$/', $db) || !preg_match('/^[a-zA-Z0-9.:-]+$/', $host) || !ctype_digit($port)) throw new RuntimeException('Configuração de banco inválida.');

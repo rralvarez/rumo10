@@ -2,7 +2,7 @@
 
 O repositório independente está em `C:\inetpub\wwwroot\rumohub`, remoto `https://github.com/rralvarez/rumohub.git`. A raiz pública para IIS e Apache é `public/`; a documentação completa está no README desse repositório.
 
-Nesta etapa, o catálogo foi copiado para `rumohub.rh_*`, preservando IDs de clubes e jogadores. O `ecohub` e todas as tabelas atuais `rumo10_*` foram preservados. Contas, carreiras e aposentadorias continuam no banco atual do jogo. A migração futura dos dados de cada jogo exige etapa própria, com backup e validação; não foi feita silenciosamente nesta entrega.
+O banco único é **rumohub**. O catálogo usa `rh_*`; contas, carreiras e aposentadorias do Rumo10 usam `rumo10_*` no mesmo banco. As 27 tabelas do jogo foram movidas de `ecohub` em 14/10/2026, preservando IDs e conteúdo, com backup e validação. [Migração completa](31_Banco_Unificado_RumoHub.md). A separação entre repositórios e APIs continua válida mesmo compartilhando o banco.
 
 O Rumo10 pode consumir o Hub com:
 
