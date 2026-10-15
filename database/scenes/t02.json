@@ -1,0 +1,463 @@
+[
+  {
+    "id": 2005,
+    "stage": "treino",
+    "module": "T02",
+    "family": "T02.frenagem",
+    "tags": [
+      "coletivo"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O preparador organiza um circuito de desaceleração. A meta é parar com controle antes de mudar de direção.",
+    "options": [
+      {
+        "code": "velocidade",
+        "action": "social",
+        "text": "Reduzir a velocidade em passos curtos",
+        "effects": {
+          "velocidade": 3,
+          "energia": -6,
+          "risco_lesao": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você desacelera sem precisar de um salto para parar.",
+        "failure_text": "Seus passos ficam longos e dificultam a parada.",
+        "semantic_intent": "frear_progressivo",
+        "match_event": false
+      },
+      {
+        "code": "forca",
+        "action": "social",
+        "text": "Concentrar o esforço na base",
+        "effects": {
+          "forca": 3,
+          "energia": -6
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "A base estável ajuda a absorver a desaceleração.",
+        "failure_text": "Você inclina o tronco e perde estabilidade na parada.",
+        "semantic_intent": "base_estavel",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Pedir correção antes de acelerar",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "O preparador identifica o ajuste que faltava no apoio.",
+        "failure_text": "Você não consegue reproduzir a correção na tentativa seguinte.",
+        "semantic_intent": "orientacao",
+        "match_event": false
+      },
+      {
+        "code": "recuperar",
+        "action": "social",
+        "text": "Solicitar um intervalo entre as séries",
+        "effects": {
+          "energia": 8,
+          "risco_lesao": -4
+        },
+        "failure_effects": {},
+        "severe_failure_effects": {},
+        "success_text": "O intervalo permite retomar o circuito com controle.",
+        "failure_text": "O cansaço permanece e você precisa comunicar isso novamente.",
+        "semantic_intent": "reduzir_carga",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2006,
+    "stage": "treino",
+    "module": "T02",
+    "family": "T02.sombra_coletiva",
+    "tags": [
+      "coletivo"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Sem bola, o grupo ensaia deslocamentos em bloco. Seu movimento precisa acompanhar os colegas sem abrir um corredor.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Usar o colega mais próximo como referência",
+        "effects": {
+          "posicionamento": 3,
+          "ritmo_jogo": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você acompanha o deslocamento preservando a distância combinada.",
+        "failure_text": "Você acompanha a pessoa errada e abre um intervalo.",
+        "semantic_intent": "referencia",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar a linha antes de se mover",
+        "effects": {
+          "visao_jogo": 3,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "A leitura do conjunto evita um avanço isolado.",
+        "failure_text": "Você demora na observação e fica atrás do bloco.",
+        "semantic_intent": "linha_inteira",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Combinar uma palavra para o deslocamento",
+        "effects": {
+          "lideranca": 5,
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O sinal permite que o setor se mova junto.",
+        "failure_text": "O sinal chega depois de parte do setor se mover.",
+        "semantic_intent": "sinalizar",
+        "match_event": false
+      },
+      {
+        "code": "resistencia",
+        "action": "social",
+        "text": "Repetir o deslocamento no ritmo pedido",
+        "effects": {
+          "resistencia": 3,
+          "energia": -6
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você sustenta o ritmo sem perder a referência coletiva.",
+        "failure_text": "O cansaço faz sua distância aumentar a cada repetição.",
+        "semantic_intent": "repetir_bloco",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2007,
+    "stage": "treino",
+    "module": "T02",
+    "family": "T02.retencao_carga",
+    "tags": [
+      "coletivo"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A sessão inclui corrida contínua com ritmo controlado. O preparador pede que você evite transformar o treino em disputa.",
+    "options": [
+      {
+        "code": "resistencia",
+        "action": "social",
+        "text": "Manter o ritmo combinado",
+        "effects": {
+          "resistencia": 3,
+          "energia": -6
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você completa o bloco sem oscilações de esforço.",
+        "failure_text": "Você alterna demais o ritmo e não sustenta o bloco.",
+        "semantic_intent": "ritmo_constante",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Conferir o ritmo com o preparador",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "A conferência ajuda você a seguir a intensidade proposta.",
+        "failure_text": "Você recebe a orientação, mas volta a acelerar sem perceber.",
+        "semantic_intent": "controle",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar o ritmo com um companheiro",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês mantêm juntos a intensidade prevista.",
+        "failure_text": "Vocês tentam acompanhar um ao outro e aceleram demais.",
+        "semantic_intent": "dupla_ritmo",
+        "match_event": false
+      },
+      {
+        "code": "recuperar",
+        "action": "social",
+        "text": "Comunicar o cansaço e fazer uma pausa",
+        "effects": {
+          "energia": 8,
+          "risco_lesao": -4
+        },
+        "failure_effects": {},
+        "severe_failure_effects": {},
+        "success_text": "Você retoma o trabalho dentro do limite combinado.",
+        "failure_text": "A pausa não basta para recuperar sua disposição.",
+        "semantic_intent": "pausa_responsavel",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2008,
+    "stage": "treino",
+    "module": "T02",
+    "family": "T02.linha_passe_coletivo",
+    "tags": [
+      "coletivo"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "No coletivo, a equipe precisa oferecer duas linhas de apoio a quem recebe. Seu setor está trabalhando essa coordenação.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Abrir uma linha diagonal",
+        "effects": {
+          "posicionamento": 3,
+          "ritmo_jogo": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Sua diagonal oferece apoio sem ocupar o corredor do colega.",
+        "failure_text": "Você abre a diagonal para um espaço já ocupado.",
+        "semantic_intent": "diagonal",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Acompanhar o movimento do terceiro jogador",
+        "effects": {
+          "visao_jogo": 3,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica quando precisa substituir a linha de apoio.",
+        "failure_text": "Você acompanha a bola e perde o movimento do terceiro.",
+        "semantic_intent": "terceiro",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Combinar quem se aproxima primeiro",
+        "effects": {
+          "lideranca": 5,
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A combinação evita que os dois apoios façam a mesma corrida.",
+        "failure_text": "Vocês se aproximam juntos e deixam o lado oposto vazio.",
+        "semantic_intent": "alternar",
+        "match_event": false
+      },
+      {
+        "code": "passe",
+        "action": "passe",
+        "text": "Testar o passe para verificar a distância",
+        "effects": {
+          "passe": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "O passe confirma uma distância útil entre os apoios.",
+        "failure_text": "O passe fica curto e mostra que a distância ainda não funciona.",
+        "semantic_intent": "experimentar",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2009,
+    "stage": "treino",
+    "module": "T02",
+    "family": "T02.mobilidade_tornozelo",
+    "tags": [
+      "coletivo"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O preparador demonstra uma rotina preventiva de mobilidade. O exercício exige amplitude controlada, sem forçar o limite.",
+    "options": [
+      {
+        "code": "recuperar",
+        "action": "social",
+        "text": "Executar devagar, respeitando o limite",
+        "effects": {
+          "energia": 8,
+          "risco_lesao": -4
+        },
+        "failure_effects": {},
+        "severe_failure_effects": {},
+        "success_text": "Você completa o movimento sem precisar forçar a articulação.",
+        "failure_text": "Você não encontra uma amplitude confortável e avisa o preparador.",
+        "semantic_intent": "controle_amplitude",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Pedir que o preparador confira o apoio",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "A correção do apoio permite executar a rotina corretamente.",
+        "failure_text": "Você volta ao apoio anterior na repetição seguinte.",
+        "semantic_intent": "demonstracao",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Revezar a observação com um colega",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês percebem e corrigem compensações no movimento.",
+        "failure_text": "Vocês observam ângulos diferentes e não localizam a compensação.",
+        "semantic_intent": "observacao_dupla",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar o alinhamento antes da repetição",
+        "effects": {
+          "posicionamento": 3,
+          "ritmo_jogo": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "O alinhamento facilita manter o equilíbrio do exercício.",
+        "failure_text": "Você compensa com o tronco e perde o alinhamento.",
+        "semantic_intent": "equilibrio",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  }
+]

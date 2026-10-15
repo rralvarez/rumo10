@@ -1,0 +1,473 @@
+[
+  {
+    "id": 2090,
+    "stage": "fim_semana",
+    "module": "F01",
+    "family": "F01.entrevista_funcao",
+    "tags": [
+      "imprensa"
+    ],
+    "gating": {
+      "finished": true
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Depois da partida, a comunicação do clube pergunta como você explicaria sua função para quem acompanha de fora. Você pode responder sem expor instruções internas.",
+    "options": [
+      {
+        "code": "imprensa",
+        "action": "social",
+        "text": "Explicar sua tarefa em termos gerais",
+        "effects": {
+          "confianca_imprensa": 3
+        },
+        "failure_effects": {
+          "confianca_imprensa": -2,
+          "risco_polemica": 2
+        },
+        "severe_failure_effects": {
+          "confianca_imprensa": -4,
+          "risco_polemica": 2
+        },
+        "success_text": "Sua resposta descreve seu trabalho sem revelar o plano interno.",
+        "failure_text": "Você usa termos vagos e não esclarece sua função.",
+        "semantic_intent": "explicar_limite",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Reconhecer a colaboração dos companheiros",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Você mostra como seu trabalho depende do setor.",
+        "failure_text": "Sua resposta soa como uma lista pronta e não explica a colaboração.",
+        "semantic_intent": "reconhecer_setor",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Dar uma resposta curta sobre sua responsabilidade",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você comunica um ponto claro sem tentar avaliar todo o time.",
+        "failure_text": "Você encurta demais e deixa a resposta incompreensível.",
+        "semantic_intent": "resposta_curta",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Pedir um momento para organizar a resposta",
+        "effects": {
+          "confianca_imprensa": 2
+        },
+        "failure_effects": {
+          "confianca_imprensa": -1
+        },
+        "severe_failure_effects": {
+          "confianca_imprensa": -2
+        },
+        "success_text": "Você consegue responder com calma depois da pausa.",
+        "failure_text": "Você continua sem organizar o ponto que queria explicar.",
+        "semantic_intent": "pedir_tempo",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2091,
+    "stage": "fim_semana",
+    "module": "F01",
+    "family": "F01.revisao_lance",
+    "tags": [
+      "imprensa"
+    ],
+    "gating": {
+      "finished": true
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O analista convida você a rever uma decisão da partida encerrada. O foco é entender seu raciocínio, sem atribuir um erro a outra pessoa.",
+    "options": [
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Descrever o que você enxergou no instante",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "O analista entende sua leitura e consegue discutir o ajuste.",
+        "failure_text": "Você descreve o resultado, mas não explica o que havia percebido.",
+        "semantic_intent": "descrever_leitura",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Separar sua intenção do que realmente ocorreu",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a diferença sem inventar uma justificativa.",
+        "failure_text": "Você mistura intenção e resultado e mantém a análise confusa.",
+        "semantic_intent": "separar_fatos",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Pedir a leitura de um colega envolvido",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A outra leitura revela uma referência que você não tinha visto.",
+        "failure_text": "Vocês discutem conclusões sem esclarecer as referências do lance.",
+        "semantic_intent": "ouvir_outra_visao",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Admitir qual parte da decisão você não lembra bem",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -1
+        },
+        "severe_failure_effects": {
+          "foco": -2
+        },
+        "success_text": "Você delimita a dúvida e evita uma explicação inventada.",
+        "failure_text": "Você preenche a lacuna com suposições e precisa voltar atrás.",
+        "semantic_intent": "assumir_duvida",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2092,
+    "stage": "fim_semana",
+    "module": "F01",
+    "family": "F01.feedback_individual",
+    "tags": [
+      "imprensa"
+    ],
+    "gating": {
+      "finished": true
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Após o jogo, o auxiliar pede que você escolha um ponto para conversar. A ideia é sair com um foco de trabalho, não com uma promessa de escalação.",
+    "options": [
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Escolher uma decisão que quer compreender",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "A conversa termina com uma dúvida concreta para trabalhar.",
+        "failure_text": "Você escolhe um tema amplo demais para orientar o trabalho.",
+        "semantic_intent": "ponto_concreto",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Perguntar como pode ajudar melhor o setor",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O auxiliar aponta uma contribuição possível sem prometer titularidade.",
+        "failure_text": "Sua pergunta soa como cobrança de espaço e desvia a conversa.",
+        "semantic_intent": "perguntar_ajuda",
+        "match_event": false
+      },
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Conferir se entendeu a orientação recebida",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica um entendimento que precisava de ajuste.",
+        "failure_text": "Você repete a frase sem demonstrar que compreendeu a aplicação.",
+        "semantic_intent": "alinhar_interpretacao",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Ouvir a avaliação antes de responder",
+        "effects": {
+          "confianca_treinador": 2
+        },
+        "failure_effects": {
+          "foco": -1
+        },
+        "severe_failure_effects": {
+          "foco": -2
+        },
+        "success_text": "Você distingue a crítica ao gesto de uma avaliação pessoal.",
+        "failure_text": "Você se prepara para rebater e deixa de ouvir o ponto principal.",
+        "semantic_intent": "ouvir_primeiro",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2093,
+    "stage": "fim_semana",
+    "module": "F01",
+    "family": "F01.credito_coletivo",
+    "tags": [
+      "imprensa"
+    ],
+    "gating": {
+      "finished": true,
+      "score_state": "ganhando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A equipe venceu a partida encerrada. Ao conversar sobre o jogo, você quer valorizar a vitória sem transformar a análise em euforia antecipada.",
+    "options": [
+      {
+        "code": "imprensa",
+        "action": "social",
+        "text": "Falar do trabalho coletivo que sustentou o resultado",
+        "effects": {
+          "confianca_imprensa": 3
+        },
+        "failure_effects": {
+          "confianca_imprensa": -2,
+          "risco_polemica": 2
+        },
+        "severe_failure_effects": {
+          "confianca_imprensa": -4,
+          "risco_polemica": 2
+        },
+        "success_text": "Você reconhece a vitória sem prometer que ela se repetirá.",
+        "failure_text": "Sua resposta vira uma promessa que você não consegue sustentar.",
+        "semantic_intent": "reconhecer_trabalho",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Reconhecer quem colaborou sem aparecer tanto",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O reconhecimento aproxima você dos colegas citados.",
+        "failure_text": "Você se expressa de forma confusa e parece comparar os colegas.",
+        "semantic_intent": "lembrar_colegas",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Lembrar que a rotina precisa continuar",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Sua fala valoriza o resultado sem abandonar o trabalho seguinte.",
+        "failure_text": "Sua fala parece minimizar a vitória e não transmite o que pretendia.",
+        "semantic_intent": "manter_rotina",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Ouvir como os colegas enxergaram o jogo",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -1
+        },
+        "severe_failure_effects": {
+          "entrosamento": -2
+        },
+        "success_text": "Você entende percepções diferentes da mesma partida.",
+        "failure_text": "Você interrompe as falas e não consegue ouvir as outras percepções.",
+        "semantic_intent": "ouvir_grupo",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2094,
+    "stage": "fim_semana",
+    "module": "F01",
+    "family": "F01.derrota_sem_culpa",
+    "tags": [
+      "imprensa"
+    ],
+    "gating": {
+      "finished": true,
+      "score_state": "perdendo"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A partida encerrada terminou em derrota. Um companheiro quer conversar antes de voltar para casa, e você pode acolher sem escolher um culpado.",
+    "options": [
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Ouvir o que pesou para o companheiro",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Ele encontra espaço para falar sem ser reduzido ao resultado.",
+        "failure_text": "Você tenta explicar tudo cedo demais e não escuta a preocupação dele.",
+        "semantic_intent": "escutar",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Separar a frustração do julgamento pessoal",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A conversa reconhece a derrota sem desvalorizar a pessoa.",
+        "failure_text": "Sua fala parece ignorar a frustração e não acolhe o companheiro.",
+        "semantic_intent": "separar_resultado",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Combinar uma revisão com a cabeça mais fria",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Vocês definem outro momento sem fingir que a conversa resolveu tudo.",
+        "failure_text": "O combinado fica vago e não orienta o próximo passo.",
+        "semantic_intent": "revisao_depois",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Falar da parte que cabe a você",
+        "effects": {
+          "lideranca": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Você assume sua participação sem distribuir acusações.",
+        "failure_text": "Você tenta assumir tudo e impede uma conversa equilibrada.",
+        "semantic_intent": "responsabilidade",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  }
+]

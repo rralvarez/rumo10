@@ -30,7 +30,7 @@ foreach(Scenes::catalog() as $id=>$scene){
         }
     }
 }
-consequenceCheck($options===856,'Todas as alternativas revisadas.');
+consequenceCheck($options===4*count(Scenes::catalog()),'Todas as alternativas visitadas.');
 foreach([1051,1056,1060,1063,1070,1072,1082,1094,1096,1153,1154,1160,1167,1179,1182,1186] as $id){$g=consequenceGame($id<1100?'pre_jogo':'fim_semana',$id);$o=Game::choices($g)[3];consequenceCheck(!isset($o['effects']['risco_lesao']) && !isset($o['effects']['energia']),'Fala ou mensagem não causa desgaste físico '.$id);}
 $g=consequenceGame('fim_semana',1193);$party=Game::choices($g)[3];consequenceCheck($party['effects']['energia']<0 && !isset($party['effects']['risco_lesao']),'Evento até tarde custa energia, sem inventar lesão.');
 $g=consequenceGame('treino',1008);$complaint=Game::choices($g)[3];

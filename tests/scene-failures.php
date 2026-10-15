@@ -28,4 +28,4 @@ foreach([1160=>'entrevista',1183=>'rumor'] as $id=>$context){
     checkFailure($failure['feedback']['text']===$choice['text'].': '.$choice['failure_text'],'Resultado usa a resposta específica.');
     checkFailure(in_array($failure['feedback']['effects']['confianca'],[-2,-4],true),'Penalidade de confiança condizente com a insegurança narrada.');
 }
-echo "OK: $checks verificações; falhas das 856 alternativas, consultas contextualizadas e efeitos preservados.\n";
+echo "OK: $checks verificações; falhas de ".(4*count(Scenes::catalog()))." alternativas, consultas contextualizadas e efeitos preservados.\n";

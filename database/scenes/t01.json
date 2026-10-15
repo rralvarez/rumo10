@@ -1,0 +1,480 @@
+[
+  {
+    "id": 2000,
+    "stage": "treino",
+    "module": "T01",
+    "family": "T01.amortecer_lancamento",
+    "tags": [
+      "fundamento"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "No exercício de recepção, a bola lançada por cima chega à altura do peito. Você precisa prepará-la para o próximo toque.",
+    "options": [
+      {
+        "code": "tecnica",
+        "action": "social",
+        "text": "Amortecer com o peito",
+        "effects": {
+          "drible": 2,
+          "foco": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você deixa a bola cair perto do pé de apoio.",
+        "failure_text": "A bola escapa do peito e exige outro domínio.",
+        "semantic_intent": "amortecer",
+        "match_event": false
+      },
+      {
+        "code": "passe",
+        "action": "passe",
+        "text": "Devolver de primeira ao auxiliar",
+        "effects": {
+          "passe": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Sua devolução encontra o auxiliar sem interromper o exercício.",
+        "failure_text": "A devolução sai alta demais para o auxiliar.",
+        "semantic_intent": "devolver",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Recuar um passo antes de receber",
+        "effects": {
+          "posicionamento": 3,
+          "ritmo_jogo": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "O passo extra permite receber sem perder o equilíbrio.",
+        "failure_text": "Você recua tarde e recebe com o corpo inclinado.",
+        "semantic_intent": "ajustar_base",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Pedir uma repetição mais lenta",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "A repetição lenta ajuda a identificar seu erro de postura.",
+        "failure_text": "Você repete a postura anterior mesmo com a bola lenta.",
+        "semantic_intent": "fracionar",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2001,
+    "stage": "treino",
+    "module": "T01",
+    "family": "T01.efeito_bola",
+    "tags": [
+      "fundamento"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O auxiliar propõe passes que contornem uma pequena barreira de cones. A dificuldade é acertar a curva sem perder força.",
+    "options": [
+      {
+        "code": "passe",
+        "action": "passe",
+        "text": "Usar a parte interna do pé",
+        "effects": {
+          "passe": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "A bola contorna os cones e chega ao alvo.",
+        "failure_text": "A curva começa cedo e a bola para nos cones.",
+        "semantic_intent": "curvar",
+        "match_event": false
+      },
+      {
+        "code": "tecnica",
+        "action": "social",
+        "text": "Experimentar o lado externo",
+        "effects": {
+          "drible": 2,
+          "foco": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você encontra o contato que mantém a trajetória curva.",
+        "failure_text": "O contato de lado desvia a bola para fora do corredor.",
+        "semantic_intent": "externa",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar o percurso antes do toque",
+        "effects": {
+          "visao_jogo": 3,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica onde a bola precisa começar a virar.",
+        "failure_text": "Você olha apenas o alvo e ignora o espaço da curva.",
+        "semantic_intent": "medir",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Trocar observações com a dupla",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Sua dupla percebe um detalhe do apoio e vocês o corrigem.",
+        "failure_text": "Vocês dão orientações diferentes e deixam o ajuste confuso.",
+        "semantic_intent": "comparar",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2002,
+    "stage": "treino",
+    "module": "T01",
+    "family": "T01.alvo_rasteiro",
+    "tags": [
+      "fundamento"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O exercício de chute tem um alvo baixo, sem goleiro. A comissão pede precisão antes de aumentar a potência.",
+    "options": [
+      {
+        "code": "chute",
+        "action": "chute",
+        "text": "Bater com a parte interna",
+        "effects": {
+          "finalizacao": 3,
+          "energia": -5
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você acerta o alvo mantendo a bola baixa.",
+        "failure_text": "O pé passa por baixo da bola e ela sobe.",
+        "semantic_intent": "colocar",
+        "match_event": false
+      },
+      {
+        "code": "tecnica",
+        "action": "social",
+        "text": "Ajustar o pé de apoio",
+        "effects": {
+          "drible": 2,
+          "foco": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "O apoio firme permite repetir o gesto com controle.",
+        "failure_text": "O apoio fica distante e desequilibra a batida.",
+        "semantic_intent": "apoio",
+        "match_event": false
+      },
+      {
+        "code": "passe",
+        "action": "passe",
+        "text": "Começar com um passe ao alvo",
+        "effects": {
+          "passe": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você encontra a direção antes de voltar ao chute.",
+        "failure_text": "Mesmo com pouca força, a bola passa ao lado.",
+        "semantic_intent": "reduzir",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Marcar de onde saíram os melhores chutes",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "As marcas ajudam a reconhecer a distância de apoio.",
+        "failure_text": "As marcas ficam inconsistentes e não explicam o desvio.",
+        "semantic_intent": "registrar",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2003,
+    "stage": "treino",
+    "module": "T01",
+    "family": "T01.proteger_conducao",
+    "tags": [
+      "fundamento"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "No circuito, um parceiro tenta tocar sua bola sem usar o corpo. Você precisa conduzir mantendo-a protegida.",
+    "options": [
+      {
+        "code": "drible",
+        "action": "drible",
+        "text": "Trocar o pé de condução",
+        "effects": {
+          "drible": 3,
+          "energia": -5,
+          "risco_lesao": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você leva a bola para longe do alcance do parceiro.",
+        "failure_text": "A troca deixa a bola exposta ao toque dele.",
+        "semantic_intent": "trocar_pe",
+        "match_event": false
+      },
+      {
+        "code": "forca",
+        "action": "social",
+        "text": "Trabalhar a base de sustentação",
+        "effects": {
+          "forca": 3,
+          "energia": -6
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a base sem depender de empurrões.",
+        "failure_text": "A base fica rígida e dificulta a condução.",
+        "semantic_intent": "equilibrar",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Colocar o corpo entre parceiro e bola",
+        "effects": {
+          "posicionamento": 3,
+          "ritmo_jogo": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Seu posicionamento preserva um caminho para avançar.",
+        "failure_text": "Você fecha o próprio caminho ao girar o corpo.",
+        "semantic_intent": "angulacao",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Pedir ao parceiro que indique a abertura",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O retorno dele mostra quando você deixa a bola descoberta.",
+        "failure_text": "Vocês não conseguem identificar o mesmo instante da abertura.",
+        "semantic_intent": "retorno",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2004,
+    "stage": "treino",
+    "module": "T01",
+    "family": "T01.cabeca_erguida",
+    "tags": [
+      "fundamento"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O auxiliar ergue placas coloridas enquanto você conduz a bola. O desafio é reconhecer as placas sem perder o controle.",
+    "options": [
+      {
+        "code": "drible",
+        "action": "drible",
+        "text": "Alternar o olhar entre bola e placas",
+        "effects": {
+          "drible": 3,
+          "energia": -5,
+          "risco_lesao": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reconhece a placa e mantém a bola próxima.",
+        "failure_text": "Ao olhar a placa, você deixa a bola escapar.",
+        "semantic_intent": "alternar_olhar",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Procurar a placa antes do próximo toque",
+        "effects": {
+          "visao_jogo": 3,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você antecipa a leitura e ganha tempo para conduzir.",
+        "failure_text": "Sua leitura se atrasa e você confunde a placa.",
+        "semantic_intent": "antecipar_placa",
+        "match_event": false
+      },
+      {
+        "code": "tecnica",
+        "action": "social",
+        "text": "Encurtar os toques na bola",
+        "effects": {
+          "drible": 2,
+          "foco": 3,
+          "energia": -3
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Os toques curtos permitem levantar a cabeça com segurança.",
+        "failure_text": "Os toques ficam curtos demais e travam seu movimento.",
+        "semantic_intent": "encurtar_toque",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Recomeçar o circuito em menor velocidade",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você estabelece uma sequência que consegue repetir.",
+        "failure_text": "Você acelera antes de dominar a sequência proposta.",
+        "semantic_intent": "progressao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  }
+]

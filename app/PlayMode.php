@@ -46,7 +46,7 @@ final class PlayMode {
             }
             $context=['stage'=>$g['stage'],'round'=>$g['round'],'competition'=>$g['competition_id']??'legacy','minute'=>$g['stage']==='partida'?$g['matches'][Game::currentIndex($g)]['minute']:null];
             $g=Game::command($g,$action,$input,true);
-            if($action==='choice')$attempts[]=$context+array_intersect_key($g['feedback']??[],array_flip(['situation','option','chance','roll','intensity_roll','success','class','effects','rules','conversion_chance','conversion_roll']));
+            if($action==='choice')$attempts[]=$context+array_intersect_key($g['feedback']??[],array_flip(['situation','option','chance','roll','intensity_roll','success','class','effects','rules','conversion_chance','conversion_roll','narrative_selection']));
         }
         if($step===3000)throw new RuntimeException('A simulação excedeu o limite seguro; nada foi salvo.');
         $after=Game::summary($g);$growth=[];

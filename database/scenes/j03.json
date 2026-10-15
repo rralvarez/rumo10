@@ -1,0 +1,1405 @@
+[
+  {
+    "id": 2075,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.empate",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "empatando",
+      "minute_min": 70
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O placar está empatado e a partida avança para o fim. O setor precisa decidir como buscar espaço sem se desconectar.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Oferecer uma ligação entre os setores",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém uma linha de continuidade sem abandonar a organização.",
+        "failure_text": "Você fica distante dos dois setores e não oferece ligação.",
+        "semantic_intent": "guardar_ligacao",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Combinar corridas alternadas",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O combinado evita que todos avancem ao mesmo tempo.",
+        "failure_text": "O combinado é entendido de maneiras diferentes e as corridas se sobrepõem.",
+        "semantic_intent": "alternar_corridas",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar onde a cobertura fica mais distante",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica um espaço que merece atenção na próxima jogada.",
+        "failure_text": "Você confunde espaço livre com um corredor sem apoio.",
+        "semantic_intent": "ler_cobertura",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Manter a tarefa sem tentar resolver sozinho",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você preserva sua função mesmo com a urgência do placar.",
+        "failure_text": "A urgência faz você abandonar a tarefa no movimento seguinte.",
+        "semantic_intent": "conservar_plano",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2076,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.empate",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "empatando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Com o jogo empatado, um companheiro pede mais gente à frente. Você pode colaborar sem prometer que o ataque será recompensado.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Aproximar sem ocupar a última linha",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você oferece apoio mantendo uma distância para recompor.",
+        "failure_text": "Você aproxima demais e esvazia a ligação atrás.",
+        "semantic_intent": "aproximar_medida",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Combinar quem guarda o espaço antes de avançar",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A combinação permite uma aproximação mais organizada.",
+        "failure_text": "Ninguém confirma a cobertura e o movimento fica indeciso.",
+        "semantic_intent": "definir_cobertura",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir se já existe apoio suficiente à frente",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica onde sua presença acrescentaria uma opção.",
+        "failure_text": "Você conta jogadores sem perceber que estão todos na mesma faixa.",
+        "semantic_intent": "checar_opcoes",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Seguir sua referência enquanto aguarda a bola",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você evita somar mais um movimento descoordenado.",
+        "failure_text": "Você espera sem ajustar a posição e deixa de oferecer apoio.",
+        "semantic_intent": "manter_referencia",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2077,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.empate",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "empatando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "As equipes continuam empatadas. A pressa para tirar a diferença que ainda não existe começa a afastar os apoios do seu setor.",
+    "options": [
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Lembrar ao setor que o jogo segue aberto",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Sua fala reduz a urgência desnecessária sem pedir acomodação.",
+        "failure_text": "Sua fala parece pedir acomodação e não esclarece a intenção.",
+        "semantic_intent": "lembrar_placar",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Aproximar sua posição do apoio mais distante",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você diminui uma distância que prejudicava a continuidade.",
+        "failure_text": "Você se aproxima de um colega que não precisava de apoio.",
+        "semantic_intent": "encurtar_ligacao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Identificar a primeira linha que precisa ser reconstruída",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você encontra a ligação que falta entre os setores.",
+        "failure_text": "Você procura a ligação adiante e ignora a que falta perto da bola.",
+        "semantic_intent": "priorizar_linha",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Concentrar-se numa tarefa por jogada",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você acompanha a jogada sem trocar de função a cada toque.",
+        "failure_text": "Você tenta acompanhar todas as tarefas e não conclui a sua.",
+        "semantic_intent": "uma_tarefa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2078,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.empate",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "empatando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O jogo está empatado. Você percebe que o colega com a bola tem poucas opções perto, embora o time ocupe bastante espaço.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Oferecer apoio a uma distância alcançável",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você transforma uma posição distante em opção real de continuidade.",
+        "failure_text": "Você reduz a distância sem sair de trás da marcação.",
+        "semantic_intent": "apoio_util",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Pedir um movimento complementar ao seu",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Os dois movimentos criam opções diferentes para o portador.",
+        "failure_text": "O outro movimento repete o seu e mantém o problema.",
+        "semantic_intent": "chamar_movimento",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Identificar qual passagem está realmente aberta",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe uma janela que não depende de um passe improvável.",
+        "failure_text": "Você olha apenas a chegada e ignora o bloqueio no trajeto.",
+        "semantic_intent": "reconhecer_janela",
+        "match_event": false
+      },
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Manter uma referência enquanto outro colega aproxima",
+        "effects": {
+          "posicionamento": 1,
+          "ritmo_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você preserva largura e deixa a aproximação para o colega.",
+        "failure_text": "Você muda junto com ele e deixa de preservar a referência.",
+        "semantic_intent": "fixar_referencia",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2079,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.empate",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "empatando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O placar segue igual e você não está com a bola. Um ajuste seu pode preparar a próxima disputa sem antecipar o que ela vai produzir.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Guardar espaço para uma possível sobra",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você se prepara sem abandonar a distância do setor.",
+        "failure_text": "Você aposta numa sobra distante e se afasta da jogada.",
+        "semantic_intent": "preparar_sobra",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Alternar a observação entre bola e adversário próximo",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você acompanha a preparação sem perder sua referência.",
+        "failure_text": "Você acompanha a bola por tempo demais e perde o adversário.",
+        "semantic_intent": "acompanhar_dois",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Confirmar quem acompanha cada referência",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O setor evita disputar a mesma referência duas vezes.",
+        "failure_text": "A confirmação fica incompleta e uma referência permanece sem dono.",
+        "semantic_intent": "confirmar_divisao",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Esperar a continuação mantendo os apoios ativos",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você consegue reagir sem precisar recomeçar o movimento.",
+        "failure_text": "Você espera parado e precisa de passos extras para reagir.",
+        "semantic_intent": "aguardar_sem_parar",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2080,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.vantagem",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "ganhando",
+      "margin_max": 1
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Sua equipe vence por um gol. Você precisa ajudar na continuidade sem tratar a partida como se já tivesse acabado.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter uma linha de apoio próxima",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você oferece continuidade sem empurrar o setor inteiro para trás.",
+        "failure_text": "Você recua demais e deixa o portador sem apoio alcançável.",
+        "semantic_intent": "apoio_seguro",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Pedir que o setor não recue por impulso",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Sua orientação mantém referências úteis à frente da defesa.",
+        "failure_text": "A orientação é entendida como ordem de avançar sem cobertura.",
+        "semantic_intent": "evitar_recuo",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Identificar por onde o rival tenta pressionar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a passagem que o setor precisa proteger.",
+        "failure_text": "Você segue a primeira pressão e não vê o apoio que a completa.",
+        "semantic_intent": "ler_pressao",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Continuar cumprindo sua tarefa no mesmo ritmo",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você evita se desligar por causa da vantagem curta.",
+        "failure_text": "Você muda o ritmo cedo e perde uma referência de marcação.",
+        "semantic_intent": "manter_tarefa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2081,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.vantagem",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "ganhando",
+      "minute_min": 60
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O time está na frente depois dos 60 minutos. O portador precisa de ajuda para não transformar toda posse numa corrida isolada.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Oferecer uma saída curta e visível",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você cria uma alternativa que permite manter a organização.",
+        "failure_text": "Você se oferece perto, mas atrás de um marcador.",
+        "semantic_intent": "aproximar_saida",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Combinar quando acelerar e quando aproximar",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O setor entende que conservar a posse exige movimento.",
+        "failure_text": "A combinação fica vaga e cada um escolhe um ritmo.",
+        "semantic_intent": "alternar_ritmo",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar se os apoios conseguem acompanhar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você evita incentivar um avanço sem continuidade.",
+        "failure_text": "Você olha apenas quem está adiante e ignora quem ficou para trás.",
+        "semantic_intent": "avaliar_distancias",
+        "match_event": false
+      },
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Guardar largura para desafogar a pressão",
+        "effects": {
+          "posicionamento": 1,
+          "ritmo_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Sua posição mantém uma opção distante da aglomeração.",
+        "failure_text": "Você abre sem ajustar a profundidade e fica fora da jogada.",
+        "semantic_intent": "preservar_largura",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2082,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.vantagem",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "ganhando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Sua equipe está vencendo. A busca por mais um ataque precisa considerar o espaço que ficará disponível se a bola mudar de lado.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter uma distância que permita recompor",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ajuda o ataque sem se desligar da proteção.",
+        "failure_text": "Você avança junto de todos e deixa a proteção distante.",
+        "semantic_intent": "equilibrar_avanco",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar a primeira opção de saída adversária",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece quem precisará ser acompanhado numa perda.",
+        "failure_text": "Você segue o portador e não observa a opção de saída.",
+        "semantic_intent": "rastrear_saida_rival",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Combinar uma referência para quem não avança",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O setor define a proteção sem interromper o ataque.",
+        "failure_text": "A combinação não define quem assume a referência.",
+        "semantic_intent": "combinar_protecao",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Esperar o desenvolvimento sem forçar uma corrida extra",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você mantém sua função disponível para a continuação.",
+        "failure_text": "Você espera longe da ação e perde utilidade no lance.",
+        "semantic_intent": "evitar_atropelo",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2083,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.desvantagem",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "perdendo",
+      "margin_max": 1
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Sua equipe perde por um gol. Você pode ajudar a reagir sem fingir que uma corrida individual resolve o placar.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Aproximar os apoios ao redor da bola",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz as distâncias para uma reação organizada.",
+        "failure_text": "Você se aproxima pelo mesmo corredor de outro apoio.",
+        "semantic_intent": "reconectar",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Propor uma tarefa clara para o setor",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A proposta dá uma referência simples para a próxima jogada.",
+        "failure_text": "A proposta inclui tarefas demais e não organiza o setor.",
+        "semantic_intent": "organizar_tarefas",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Procurar a ligação que o rival deixa disponível",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica uma passagem para dar continuidade.",
+        "failure_text": "Você se fixa no gol e ignora as ligações necessárias.",
+        "semantic_intent": "escolher_espaco",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Seguir sua função apesar da pressa",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você evita abandonar uma responsabilidade por impulso.",
+        "failure_text": "A pressa faz você trocar de referência sem avisar.",
+        "semantic_intent": "manter_equilibrio",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2084,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.desvantagem",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "perdendo",
+      "minute_min": 60
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O time está atrás no placar depois dos 60 minutos. Você está sem a bola e quer participar mais sem encurtar o campo para os próprios colegas.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Abrir um corredor de apoio diferente",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você oferece uma opção que não disputa o espaço do colega.",
+        "failure_text": "Você corre para uma faixa já ocupada.",
+        "semantic_intent": "abrir_corredor",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Pedir movimentos em tempos diferentes",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O setor evita fazer todas as corridas no mesmo instante.",
+        "failure_text": "A orientação não é compreendida e os movimentos continuam juntos.",
+        "semantic_intent": "pedir_alternancia",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir onde o bloco adversário deixa intervalo",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você encontra um espaço entre referências, sem inventar uma passagem livre.",
+        "failure_text": "Você confunde distância entre rivais com uma linha de passe aberta.",
+        "semantic_intent": "observar_bloco",
+        "match_event": false
+      },
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Guardar apoio para a segunda tentativa",
+        "effects": {
+          "posicionamento": 1,
+          "ritmo_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você mantém uma ligação se o primeiro movimento não funcionar.",
+        "failure_text": "Você guarda apoio longe demais para participar da continuidade.",
+        "semantic_intent": "sustentar_continuidade",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2085,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.desvantagem",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "score_state": "perdendo"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Sua equipe está perdendo. Um companheiro começa a pedir a bola com muita urgência, e você precisa decidir como colaborar na próxima ação.",
+    "options": [
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Reconhecer a urgência e indicar uma opção concreta",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Sua indicação transforma a cobrança numa referência de apoio.",
+        "failure_text": "Sua indicação não é específica e a urgência continua sem direção.",
+        "semantic_intent": "acolher_pressa",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Combinar onde vocês vão se apresentar",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês definem referências diferentes para a mesma jogada.",
+        "failure_text": "Vocês entendem o mesmo lugar e duplicam a aproximação.",
+        "semantic_intent": "combinar_referencia",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Apresentar-se para dar continuidade",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Seu movimento oferece uma opção sem exigir um passe forçado.",
+        "failure_text": "Você se apresenta no ângulo que a marcação já controla.",
+        "semantic_intent": "oferecer_linha",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Concentrar-se na próxima tarefa, sem discutir o erro anterior",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você acompanha a sequência sem perder tempo com uma cobrança antiga.",
+        "failure_text": "Você continua pensando na cobrança e demora a retomar sua referência.",
+        "semantic_intent": "focar_proxima",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2086,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.disciplina",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "own_cards_min": 1
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você já tem um cartão nesta partida e continua em campo. O portador avança perto do seu setor; sua decisão precisa considerar esse limite.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Controlar a distância sem se lançar",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você dificulta o avanço preservando seus apoios.",
+        "failure_text": "Você concede distância demais e perde influência na jogada.",
+        "semantic_intent": "acompanhar_distancia",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Ler a linha antes de tentar alcançá-la",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você ajusta o espaço sem depender de um contato atrasado.",
+        "failure_text": "Você identifica a linha tarde e não consegue fechá-la.",
+        "semantic_intent": "antecipar_sem_contato",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Pedir que o colega assuma a aproximação",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O colega entende a divisão enquanto você protege o setor.",
+        "failure_text": "O pedido chega sem referência e ninguém assume a aproximação.",
+        "semantic_intent": "pedir_divisao",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Guardar a atenção para a bola",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você mantém o foco sem entrar em outra discussão.",
+        "failure_text": "Você se distrai com a cobrança e perde a referência da bola.",
+        "semantic_intent": "evitar_discussao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2087,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.protagonismo",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "own_goals_min": 1
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você já marcou nesta partida, que ainda está em andamento. É importante continuar oferecendo trabalho ao time sem viver só do gol anterior.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Voltar a oferecer linhas de apoio",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você continua participando sem esperar apenas outra finalização.",
+        "failure_text": "Você se aproxima sem olhar a marcação e fica escondido.",
+        "semantic_intent": "seguir_apoio",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Reforçar uma orientação de organização do setor",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Você ajuda a manter o setor atento à continuidade.",
+        "failure_text": "Sua fala vira celebração prolongada e não organiza o setor.",
+        "semantic_intent": "valorizar_coletivo",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar como a marcação reage à sua movimentação",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica uma mudança de referência e ajusta sua posição.",
+        "failure_text": "Você presume que tudo continua igual e perde a nova referência.",
+        "semantic_intent": "ler_ajuste",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Concentrar-se na tarefa da próxima jogada",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você retoma a função sem depender do resultado anterior.",
+        "failure_text": "Você tenta repetir o lance do gol sem ler o contexto atual.",
+        "semantic_intent": "proxima_tarefa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2088,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.cuidado_fisico",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "injury_risk_min": 35
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Seu risco de desgaste físico está elevado. Ainda em campo, você precisa escolher movimentos com atenção, sem presumir que esteja lesionado.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Antecipar a ocupação do espaço",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz a necessidade de uma corrida de correção.",
+        "failure_text": "Você ocupa o espaço errado e precisa corrigir de novo.",
+        "semantic_intent": "antecipar_espaco",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar antes de iniciar uma perseguição",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você distingue a corrida necessária da que só afastaria você.",
+        "failure_text": "Você observa tarde e precisa reagir sem preparação.",
+        "semantic_intent": "ler_antes",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Avisar que precisa dividir a cobertura",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O setor entende como dividir o próximo deslocamento.",
+        "failure_text": "O aviso não explica o deslocamento e a divisão não acontece.",
+        "semantic_intent": "pedir_cobertura_fisica",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Manter gestos controlados e atenção aos apoios",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você segue a tarefa sem aumentar os movimentos desnecessários.",
+        "failure_text": "Você acelera por impulso e perde o controle do apoio.",
+        "semantic_intent": "gesto_controlado",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2089,
+    "stage": "partida",
+    "module": "J03",
+    "family": "J03.boa_fase",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "recent_form": "boa"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Suas últimas atuações tiveram boas avaliações. Durante a partida atual, você quer aproveitar a confiança sem tratar qualquer escolha como garantida.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Ler a jogada antes de repetir uma solução antiga",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece uma diferença que exige outro posicionamento.",
+        "failure_text": "Você procura a solução anterior e ignora a diferença atual.",
+        "semantic_intent": "reler_contexto",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Passar uma orientação curta ao companheiro próximo",
+        "effects": {
+          "lideranca": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Sua orientação ajuda o colega sem transformar confiança em cobrança.",
+        "failure_text": "Sua fala parece uma cobrança e não ajuda o colega a se orientar.",
+        "semantic_intent": "dividir_confianca",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter-se disponível para a continuidade",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você preserva uma opção mesmo sem ser o centro da jogada.",
+        "failure_text": "Você espera a bola sem ajustar o ângulo de apoio.",
+        "semantic_intent": "oferta_constante",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Repetir a rotina de atenção aos movimentos",
+        "effects": {
+          "foco": 2
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você sustenta a concentração sem depender do elogio anterior.",
+        "failure_text": "Você se acomoda com as avaliações e perde uma referência.",
+        "semantic_intent": "rotina",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  }
+]

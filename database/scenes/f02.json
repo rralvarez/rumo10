@@ -1,0 +1,457 @@
+[
+  {
+    "id": 2095,
+    "stage": "fim_semana",
+    "module": "F02",
+    "family": "F02.moradia_rotina",
+    "tags": [
+      "vida_pessoal"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Na folga, você percebe que o trajeto entre casa e treino dificulta organizar o dia. Você quer pensar em ajustes sem tomar uma mudança de cidade por garantida.",
+    "options": [
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Anotar os horários que mais atrapalham",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica um ajuste possível na sua rotina.",
+        "failure_text": "Você anota compromissos demais sem identificar o problema principal.",
+        "semantic_intent": "mapear_horarios",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Conversar com quem divide a rotina com você",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "A conversa esclarece limites que precisam ser respeitados.",
+        "failure_text": "Vocês discutem soluções antes de concordar sobre o problema.",
+        "semantic_intent": "ouvir_familia",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Pedir dicas práticas a um companheiro",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "As dicas ajudam você a testar uma organização diferente.",
+        "failure_text": "As dicas não combinam com sua rotina e não resolvem o trajeto.",
+        "semantic_intent": "pedir_experiencia",
+        "match_event": false
+      },
+      {
+        "code": "lazer",
+        "action": "social",
+        "text": "Fazer uma pausa antes de decidir",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "Você volta ao planejamento sem a pressa do momento.",
+        "failure_text": "Você continua pensando no trajeto e não consegue aproveitar a pausa.",
+        "semantic_intent": "pausa_planejamento",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2096,
+    "stage": "fim_semana",
+    "module": "F02",
+    "family": "F02.estudo_autonomia",
+    "tags": [
+      "vida_pessoal"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você encontra um curso curto que cabe em parte do tempo livre. A decisão é como estudar sem assumir um compromisso maior do que consegue cumprir.",
+    "options": [
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Testar uma aula antes de assumir o curso",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você entende a carga e define uma meta possível.",
+        "failure_text": "Você inicia sem reservar tempo e não conclui a aula.",
+        "semantic_intent": "teste_carga",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Conversar com alguém que já fez o curso",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -1
+        },
+        "severe_failure_effects": {
+          "foco": -2
+        },
+        "success_text": "A experiência da pessoa ajuda a esclarecer sua dúvida.",
+        "failure_text": "A conversa trata de outra rotina e não esclarece sua escolha.",
+        "semantic_intent": "trocar_ideias",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar um horário de estudo com um colega interessado",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O horário combinado torna o compromisso mais fácil de organizar.",
+        "failure_text": "Vocês escolhem um horário que nenhum dos dois consegue manter.",
+        "semantic_intent": "estudo_dupla",
+        "match_event": false
+      },
+      {
+        "code": "lazer",
+        "action": "social",
+        "text": "Reservar primeiro seu tempo de descanso",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "Você organiza o estudo sem consumir toda a folga.",
+        "failure_text": "Você deixa a organização para depois e continua sem um limite claro.",
+        "semantic_intent": "preservar_descanso",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2097,
+    "stage": "fim_semana",
+    "module": "F02",
+    "family": "F02.limite_mensagem",
+    "tags": [
+      "vida_pessoal"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um familiar quer notícias suas durante uma semana ocupada. Você quer manter contato sem prometer disponibilidade a qualquer hora.",
+    "options": [
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Combinar um horário para conversar com calma",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "O familiar entende quando poderá contar com sua atenção.",
+        "failure_text": "Você sugere um horário sem conferir a rotina e não esclarece o combinado.",
+        "semantic_intent": "horario_combinado",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Explicar sua agenda em uma mensagem curta",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Sua explicação transmite disponibilidade com limites compreensíveis.",
+        "failure_text": "A mensagem fica seca e não explica por que o tempo está curto.",
+        "semantic_intent": "mensagem_clara",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Perguntar de que apoio a pessoa precisa agora",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "Você identifica uma necessidade concreta sem presumir o problema.",
+        "failure_text": "Você oferece uma solução antes de ouvir e não entende a necessidade.",
+        "semantic_intent": "ouvir_necessidade",
+        "match_event": false
+      },
+      {
+        "code": "lazer",
+        "action": "social",
+        "text": "Separar alguns minutos de conversa sem falar de futebol",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "A conversa permite uma pausa dos assuntos do clube.",
+        "failure_text": "Você retorna ao futebol o tempo todo e não consegue mudar o assunto.",
+        "semantic_intent": "conversa_leve",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2098,
+    "stage": "fim_semana",
+    "module": "F02",
+    "family": "F02.compromisso_social",
+    "tags": [
+      "vida_pessoal"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um projeto do bairro pede uma participação numa atividade futura. Você ainda precisa verificar se a data cabe na sua agenda.",
+    "options": [
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Conferir a agenda antes de confirmar",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você responde com uma disponibilidade que consegue cumprir.",
+        "failure_text": "Você deixa de conferir um compromisso e precisa corrigir a resposta.",
+        "semantic_intent": "checar_data",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Perguntar que outra contribuição seria útil",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "Você identifica uma ajuda que não depende de estar presente.",
+        "failure_text": "Você oferece algo que o projeto não consegue utilizar.",
+        "semantic_intent": "alternativa_util",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Explicar por que não pode prometer presença ainda",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -1
+        },
+        "severe_failure_effects": {
+          "foco": -2
+        },
+        "success_text": "A pessoa entende seu limite sem receber uma promessa vazia.",
+        "failure_text": "Sua explicação fica ambígua e parece uma confirmação.",
+        "semantic_intent": "explicar_limite",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Ajudar a organizar uma proposta menor e viável",
+        "effects": {
+          "lideranca": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A proposta respeita a agenda e o objetivo do projeto.",
+        "failure_text": "Você amplia a proposta em vez de torná-la viável.",
+        "semantic_intent": "construir_proposta",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2099,
+    "stage": "fim_semana",
+    "module": "F02",
+    "family": "F02.futuro_sem_contrato",
+    "tags": [
+      "vida_pessoal"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Na folga, você quer registrar o que procura na carreira. Não há proposta nova nesta conversa consigo mesmo; o foco é reconhecer prioridades.",
+    "options": [
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Escrever duas prioridades que dependem de você",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você distingue objetivos de trabalho de resultados que não controla.",
+        "failure_text": "Você registra só resultados e não encontra uma prioridade prática.",
+        "semantic_intent": "listar_prioridades",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Conversar com alguém de confiança sobre suas dúvidas",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "A conversa ajuda a formular a dúvida sem prometer uma transferência.",
+        "failure_text": "A conversa vira comparação com outras carreiras e não esclarece sua dúvida.",
+        "semantic_intent": "conversar_confianca",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Ouvir a experiência de um companheiro sem copiar o caminho",
+        "effects": {
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Você recolhe referências preservando suas próprias prioridades.",
+        "failure_text": "Você trata a experiência dele como uma regra para sua carreira.",
+        "semantic_intent": "ouvir_experiencia",
+        "match_event": false
+      },
+      {
+        "code": "lazer",
+        "action": "social",
+        "text": "Aproveitar a folga antes de fechar uma conclusão",
+        "effects": {
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "moral_pessoal": -1
+        },
+        "severe_failure_effects": {
+          "moral_pessoal": -2
+        },
+        "success_text": "A pausa permite voltar ao tema sem decidir por ansiedade.",
+        "failure_text": "Você passa a folga antecipando cenários e não encontra descanso.",
+        "semantic_intent": "dar_tempo",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  }
+]

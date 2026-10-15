@@ -105,7 +105,10 @@ final class Game {
             $o=$choices[$n]; $roll=Probability::roll(self::chance($g,$o)); $effects=self::effects($o['effects'],$roll,$g,$o);
             $s=self::situation($g);
             Scenes::remember($g,$s);
-            $g['feedback']=$roll+['text'=>$o['text'].': '.($roll['success']?($o['success_text']??'a intenção deu certo.'):($o['failure_text']??'a intenção não teve o efeito esperado.')),'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
+            $outcome=isset($o['success_text'],$o['failure_text'])?NarrativeCatalog::outcome($o,$roll):($roll['success']?'a intenção deu certo.':'a intenção não teve o efeito esperado.');
+            $g['feedback']=$roll+['text'=>$o['text'].': '.$outcome,'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
+            if(($g['active_situation']['id']??null)===($s['id']??0) && isset($g['active_situation']['selection']))$g['feedback']['narrative_selection']=$g['active_situation']['selection'];
+            elseif(($s['id']??0)===1300)$g['feedback']['narrative_selection']=['override'=>'momentum','situation'=>1300];
             if($g['stage']==='treino') $g['stage']='pre_jogo';
             elseif($g['stage']==='pre_jogo') {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i];
@@ -180,7 +183,7 @@ final class Game {
     }
     private static function fieldDecision(array &$g,array $o,array $roll,int $sid,int $choice): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
-        $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139);
+        $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139) || !empty($o['match_event']);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
             $conversion=$m['pass_conversion']??(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45))));

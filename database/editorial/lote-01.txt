@@ -1,0 +1,502 @@
+# Prosa literal do lote 01. IDs reservados a partir de 2000; ordem imutável após fechamento.
+# Nenhum gerador de sinônimos. Cada alternativa tem intenção, sucesso e falha próprios.
+@2000 T01.amortecer_lancamento|No exercício de recepção, a bola lançada por cima chega à altura do peito. Você precisa prepará-la para o próximo toque.|{}
+tecnica|amortecer|Amortecer com o peito|Você deixa a bola cair perto do pé de apoio.|A bola escapa do peito e exige outro domínio.
+passe|devolver|Devolver de primeira ao auxiliar|Sua devolução encontra o auxiliar sem interromper o exercício.|A devolução sai alta demais para o auxiliar.
+posicionamento|ajustar_base|Recuar um passo antes de receber|O passo extra permite receber sem perder o equilíbrio.|Você recua tarde e recebe com o corpo inclinado.
+disciplina|fracionar|Pedir uma repetição mais lenta|A repetição lenta ajuda a identificar seu erro de postura.|Você repete a postura anterior mesmo com a bola lenta.
+@2001 T01.efeito_bola|O auxiliar propõe passes que contornem uma pequena barreira de cones. A dificuldade é acertar a curva sem perder força.|{}
+passe|curvar|Usar a parte interna do pé|A bola contorna os cones e chega ao alvo.|A curva começa cedo e a bola para nos cones.
+tecnica|externa|Experimentar o lado externo|Você encontra o contato que mantém a trajetória curva.|O contato de lado desvia a bola para fora do corredor.
+visao|medir|Observar o percurso antes do toque|Você identifica onde a bola precisa começar a virar.|Você olha apenas o alvo e ignora o espaço da curva.
+apoio|comparar|Trocar observações com a dupla|Sua dupla percebe um detalhe do apoio e vocês o corrigem.|Vocês dão orientações diferentes e deixam o ajuste confuso.
+@2002 T01.alvo_rasteiro|O exercício de chute tem um alvo baixo, sem goleiro. A comissão pede precisão antes de aumentar a potência.|{}
+chute|colocar|Bater com a parte interna|Você acerta o alvo mantendo a bola baixa.|O pé passa por baixo da bola e ela sobe.
+tecnica|apoio|Ajustar o pé de apoio|O apoio firme permite repetir o gesto com controle.|O apoio fica distante e desequilibra a batida.
+passe|reduzir|Começar com um passe ao alvo|Você encontra a direção antes de voltar ao chute.|Mesmo com pouca força, a bola passa ao lado.
+disciplina|registrar|Marcar de onde saíram os melhores chutes|As marcas ajudam a reconhecer a distância de apoio.|As marcas ficam inconsistentes e não explicam o desvio.
+@2003 T01.proteger_conducao|No circuito, um parceiro tenta tocar sua bola sem usar o corpo. Você precisa conduzir mantendo-a protegida.|{}
+drible|trocar_pe|Trocar o pé de condução|Você leva a bola para longe do alcance do parceiro.|A troca deixa a bola exposta ao toque dele.
+forca|equilibrar|Trabalhar a base de sustentação|Você mantém a base sem depender de empurrões.|A base fica rígida e dificulta a condução.
+posicionamento|angulacao|Colocar o corpo entre parceiro e bola|Seu posicionamento preserva um caminho para avançar.|Você fecha o próprio caminho ao girar o corpo.
+apoio|retorno|Pedir ao parceiro que indique a abertura|O retorno dele mostra quando você deixa a bola descoberta.|Vocês não conseguem identificar o mesmo instante da abertura.
+@2004 T01.cabeca_erguida|O auxiliar ergue placas coloridas enquanto você conduz a bola. O desafio é reconhecer as placas sem perder o controle.|{}
+drible|alternar_olhar|Alternar o olhar entre bola e placas|Você reconhece a placa e mantém a bola próxima.|Ao olhar a placa, você deixa a bola escapar.
+visao|antecipar_placa|Procurar a placa antes do próximo toque|Você antecipa a leitura e ganha tempo para conduzir.|Sua leitura se atrasa e você confunde a placa.
+tecnica|encurtar_toque|Encurtar os toques na bola|Os toques curtos permitem levantar a cabeça com segurança.|Os toques ficam curtos demais e travam seu movimento.
+disciplina|progressao|Recomeçar o circuito em menor velocidade|Você estabelece uma sequência que consegue repetir.|Você acelera antes de dominar a sequência proposta.
+@2005 T02.frenagem|O preparador organiza um circuito de desaceleração. A meta é parar com controle antes de mudar de direção.|{}
+velocidade|frear_progressivo|Reduzir a velocidade em passos curtos|Você desacelera sem precisar de um salto para parar.|Seus passos ficam longos e dificultam a parada.
+forca|base_estavel|Concentrar o esforço na base|A base estável ajuda a absorver a desaceleração.|Você inclina o tronco e perde estabilidade na parada.
+disciplina|orientacao|Pedir correção antes de acelerar|O preparador identifica o ajuste que faltava no apoio.|Você não consegue reproduzir a correção na tentativa seguinte.
+recuperar|reduzir_carga|Solicitar um intervalo entre as séries|O intervalo permite retomar o circuito com controle.|O cansaço permanece e você precisa comunicar isso novamente.
+@2006 T02.sombra_coletiva|Sem bola, o grupo ensaia deslocamentos em bloco. Seu movimento precisa acompanhar os colegas sem abrir um corredor.|{}
+posicionamento|referencia|Usar o colega mais próximo como referência|Você acompanha o deslocamento preservando a distância combinada.|Você acompanha a pessoa errada e abre um intervalo.
+visao|linha_inteira|Observar a linha antes de se mover|A leitura do conjunto evita um avanço isolado.|Você demora na observação e fica atrás do bloco.
+liderar|sinalizar|Combinar uma palavra para o deslocamento|O sinal permite que o setor se mova junto.|O sinal chega depois de parte do setor se mover.
+resistencia|repetir_bloco|Repetir o deslocamento no ritmo pedido|Você sustenta o ritmo sem perder a referência coletiva.|O cansaço faz sua distância aumentar a cada repetição.
+@2007 T02.retencao_carga|A sessão inclui corrida contínua com ritmo controlado. O preparador pede que você evite transformar o treino em disputa.|{}
+resistencia|ritmo_constante|Manter o ritmo combinado|Você completa o bloco sem oscilações de esforço.|Você alterna demais o ritmo e não sustenta o bloco.
+disciplina|controle|Conferir o ritmo com o preparador|A conferência ajuda você a seguir a intensidade proposta.|Você recebe a orientação, mas volta a acelerar sem perceber.
+apoio|dupla_ritmo|Combinar o ritmo com um companheiro|Vocês mantêm juntos a intensidade prevista.|Vocês tentam acompanhar um ao outro e aceleram demais.
+recuperar|pausa_responsavel|Comunicar o cansaço e fazer uma pausa|Você retoma o trabalho dentro do limite combinado.|A pausa não basta para recuperar sua disposição.
+@2008 T02.linha_passe_coletivo|No coletivo, a equipe precisa oferecer duas linhas de apoio a quem recebe. Seu setor está trabalhando essa coordenação.|{}
+posicionamento|diagonal|Abrir uma linha diagonal|Sua diagonal oferece apoio sem ocupar o corredor do colega.|Você abre a diagonal para um espaço já ocupado.
+visao|terceiro|Acompanhar o movimento do terceiro jogador|Você identifica quando precisa substituir a linha de apoio.|Você acompanha a bola e perde o movimento do terceiro.
+liderar|alternar|Combinar quem se aproxima primeiro|A combinação evita que os dois apoios façam a mesma corrida.|Vocês se aproximam juntos e deixam o lado oposto vazio.
+passe|experimentar|Testar o passe para verificar a distância|O passe confirma uma distância útil entre os apoios.|O passe fica curto e mostra que a distância ainda não funciona.
+@2009 T02.mobilidade_tornozelo|O preparador demonstra uma rotina preventiva de mobilidade. O exercício exige amplitude controlada, sem forçar o limite.|{}
+recuperar|controle_amplitude|Executar devagar, respeitando o limite|Você completa o movimento sem precisar forçar a articulação.|Você não encontra uma amplitude confortável e avisa o preparador.
+disciplina|demonstracao|Pedir que o preparador confira o apoio|A correção do apoio permite executar a rotina corretamente.|Você volta ao apoio anterior na repetição seguinte.
+apoio|observacao_dupla|Revezar a observação com um colega|Vocês percebem e corrigem compensações no movimento.|Vocês observam ângulos diferentes e não localizam a compensação.
+posicionamento|equilibrio|Ajustar o alinhamento antes da repetição|O alinhamento facilita manter o equilíbrio do exercício.|Você compensa com o tronco e perde o alinhamento.
+@2010 P01.duvida_de_funcao|Antes de sair do vestiário, o auxiliar pede que cada jogador confirme sua função. Você quer evitar interpretações diferentes do plano.|{}
+tatico|confirmar_tarefa|Resumir sua função para o auxiliar|Ele confirma que seu entendimento coincide com o plano.|Seu resumo mistura duas tarefas que não eram simultâneas.
+apoio|alinhar_setor|Conferir o combinado com seu setor|Vocês identificam a mesma referência para começar o jogo.|Cada um entende uma referência e a dúvida permanece.
+disciplina|pergunta_objetiva|Fazer uma pergunta sobre sua principal dúvida|A resposta esclarece exatamente o ponto que faltava.|Sua pergunta fica ampla e não resolve a dúvida principal.
+visao|visualizar|Repassar mentalmente o primeiro movimento|Você reconhece onde deve se apresentar no início.|Você imagina a bola, mas esquece o espaço a proteger.
+@2011 P01.reserva_leitura|Você foi relacionado para começar no banco. O auxiliar pergunta o que pode observar enquanto aguarda uma eventual entrada.|{"bench":true,"bench_confirmed":true}
+tatico|observar_espacos|Acompanhar as distâncias entre os setores|Você define referências úteis para observar durante a espera.|Você escolhe referências demais e perde o foco da observação.
+apoio|disponibilidade|Combinar como avisar o auxiliar de uma abertura|Vocês acertam uma maneira simples de trocar observações.|A combinação fica vaga e vocês não definem quando conversar.
+disciplina|aquecimento|Confirmar a rotina de aquecimento dos reservas|Você sabe quando deve aquecer sem gastar energia à toa.|Você confunde a sequência e precisa pedir a orientação novamente.
+social|lidar_expectativa|Explicar com calma que quer contribuir|Você expressa sua disposição sem exigir uma entrada garantida.|A ansiedade faz sua fala soar como cobrança por uma promessa.
+@2012 P01.primeiro_contato|A entrada em campo se aproxima. Você prefere definir uma referência simples para não tentar resolver tudo no primeiro lance.|{"starter":true}
+disciplina|foco_inicial|Escolher uma tarefa simples para começar|Você organiza a atenção em uma tarefa compatível com sua função.|Você escolhe várias tarefas e continua sem uma prioridade.
+tatico|confirmar_sinal|Relembrar o sinal combinado com a comissão|Você reconhece o sinal que orientará seu primeiro ajuste.|Você mistura sinais e precisa confirmar o combinado.
+apoio|comunicar_apoio|Dizer ao colega onde vai oferecer apoio|O colega entende onde poderá encontrar você.|Sua indicação fica ambígua e ele pede que você repita.
+recuperar|respiracao|Fazer a respiração do aquecimento com calma|Você encontra um ritmo confortável antes da entrada.|Você força a respiração e não consegue desacelerar a ansiedade.
+@2013 P01.pergunta_limite|O auxiliar abre uma última rodada de dúvidas sobre o plano. Você quer entender o limite entre pressionar e preservar a organização.|{}
+tatico|limite_pressao|Perguntar qual é o sinal para recuar|Você entende quando interromper a pressão sem isolar o setor.|A resposta não fica clara e você precisa pedir um exemplo.
+visao|referencia_bola|Relacionar sua posição à localização da bola|Você identifica uma referência que consegue acompanhar.|Você considera só a bola e esquece a distância do setor.
+liderar|checar_colegas|Pedir que o setor repita o combinado|O setor percebe e resolve uma interpretação diferente.|A conversa fica atravessada e a diferença permanece.
+disciplina|anotar_chave|Guardar uma instrução curta do auxiliar|A instrução curta ajuda a organizar sua tomada de decisão.|Você decora a frase sem compreender quando aplicá-la.
+@2014 P01.cuidado_bola_parada|A comissão relembra as responsabilidades em bolas paradas. Você precisa saber o que fazer mesmo quando não participa da cobrança.|{}
+posicionamento|proteger_sobra|Confirmar onde deve proteger a sobra|Você identifica seu espaço sem disputar a mesma função do colega.|Você confunde a sobra com a segunda trave.
+apoio|troca_marcacao|Conferir com quem pode trocar a marcação|Vocês combinam como comunicar uma troca necessária.|Vocês não definem quem deve avisar primeiro.
+visao|observar_saida|Repassar a saída após um corte|Você sabe qual espaço procurar depois da primeira disputa.|Você pensa apenas na disputa e esquece a continuidade.
+disciplina|limite_contato|Relembrar a orientação sobre contatos|Você entende como disputar espaço sem depender de agarrões.|Você se concentra no contato e perde a referência da bola.
+@2015 J01.apoio|Seu companheiro segura a bola perto da lateral. Você pode oferecer uma saída sem ocupar o corredor que ele tenta usar.|{}
+posicionamento|diagonal_atras|Oferecer apoio na diagonal de trás|Sua diagonal mantém uma linha livre para ele sair da pressão.|Você se aproxima na mesma linha do marcador.
+visao|abrir_dentro|Procurar apoio por dentro|Você encontra um intervalo sem bloquear a condução do colega.|Você entra no espaço que outro companheiro já procurava.
+liderar|avisar_livre|Avisar qual lado está livre|O aviso ajuda o colega a perceber a saída disponível.|O aviso chega quando a marcação já fechou aquele lado.
+disciplina|sustentar|Manter a largura enquanto ele decide|Você preserva uma opção longe da pressão imediata.|Você espera parado e sua linha deixa de ser uma opção.
+@2016 J01.progressao|Você conduz pelo corredor e percebe um companheiro avançando para receber. O marcador tenta fechar a linha entre vocês.|{}
+passe|enfiar|Passar por fora do alcance do marcador|A bola atravessa a linha defensiva e encontra o companheiro.|O marcador estica a perna e corta o caminho do passe.
+drible|atrair|Conduzir para atrair o marcador|Você atrai a marcação e ganha espaço para continuar.|Você conduz perto demais e permite o bote.
+tatico|apoio_curto|Sinalizar uma aproximação antes de avançar|O apoio encurta a distância sem tirar a profundidade.|O sinal não é entendido e o apoio não se aproxima.
+posicionamento|abrir_trajeto|Mudar sua trajetória para liberar a linha|Seu deslocamento cria outro ângulo para a jogada.|Seu deslocamento fecha o ângulo que existia.
+@2017 J01.apoio|Um colega recebe pressionado no centro. Você está sem a bola e precisa decidir como ajudá-lo a manter uma saída.|{}
+posicionamento|recuar_apoio|Recuar para aparecer no campo de visão dele|Seu recuo oferece uma referência que ele consegue enxergar.|Você recua atrás do adversário e continua escondido.
+visao|abrir_oposto|Abrir no lado oposto da pressão|Seu movimento cria uma alternativa longe da aglomeração.|Você abre tarde e a marcação acompanha sem dificuldade.
+liderar|orientar_costas|Avisar sobre a marcação nas costas|Seu aviso permite que o colega proteja a bola a tempo.|Você avisa sem indicar o lado e ele demora a reagir.
+disciplina|nao_amontoar|Preservar espaço em vez de correr até a bola|Você evita levar mais um marcador ao colega.|Você fica distante demais para oferecer ajuda real.
+@2018 J01.cruzamento|Você chega com a bola à faixa lateral do ataque. Um companheiro procura espaço para receber por trás do primeiro marcador.|{}
+passe|cruzar_baixo|Buscar o companheiro com um passe rasteiro|O passe passa pelo primeiro marcador e chega ao companheiro.|O marcador fecha as pernas e bloqueia o passe rasteiro.
+drible|fundo|Tentar ganhar o fundo antes da entrega|Você ganha o fundo e mantém a bola sob controle.|O defensor acompanha a arrancada e impede sua passagem.
+tatico|esperar_movimento|Esperar um movimento claro antes de soltar|A espera evita que você entregue a bola em um espaço vazio.|A espera demora demais e o espaço desaparece.
+posicionamento|mudar_angulo|Ajustar o corpo para enxergar o lado oposto|O ajuste abre sua visão sem expor a bola.|Você gira com a bola longe do corpo e perde a proteção.
+@2019 J01.progressao|Você tem espaço para avançar, mas o companheiro à frente faz uma corrida que pode arrastar a marcação.|{}
+drible|usar_corredor|Conduzir pelo corredor deixado pela corrida|Você aproveita o corredor sem precisar enfrentar dois marcadores.|Você entra no corredor antes de a marcação sair.
+passe|achar_corrida|Servir o companheiro durante a corrida|Seu passe chega ao companheiro já em movimento.|O passe fica atrás e interrompe a corrida dele.
+visao|ler_defensor|Observar quem acompanha a corrida|Você identifica o defensor que precisa atrair.|Você olha apenas o corredor e ignora o defensor de cobertura.
+liderar|sincronizar|Combinar o tempo com um gesto|Seu gesto permite que a corrida e sua decisão coincidam.|Vocês interpretam o gesto em momentos diferentes.
+@2020 J01.receber_costas|Você recebe de costas para o ataque. Há pressão chegando, mas um companheiro se apresenta de frente para o jogo.|{}
+passe|escorar|Escorar para a chegada do companheiro|Você entrega a bola na trajetória de quem chega de frente.|A escorada fica forte e passa da trajetória do colega.
+drible|girar_lado|Girar pelo lado de menor contato|Você gira sem deixar a bola ao alcance do marcador.|O giro demora e o marcador fecha sua passagem.
+posicionamento|proteger_base|Ajustar a base antes de decidir|Sua base permite proteger a bola enquanto procura apoio.|Você aproxima demais os pés e fica sem equilíbrio.
+liderar|pedir_voz|Pedir ao companheiro que indique o lado|A indicação ajuda você a localizar o apoio sem girar à toa.|A indicação vem abafada e você não distingue o lado.
+@2021 J01.infiltracao|Você está sem a bola e vê um espaço entre dois defensores. Seu companheiro ainda procura uma opção de progressão.|{}
+posicionamento|diagonal_curta|Atacar o espaço com uma diagonal curta|Sua diagonal oferece uma opção sem atravessar a corrida do colega.|A diagonal coincide com outro movimento e congestiona o espaço.
+visao|esperar_olhar|Esperar o companheiro levantar a cabeça|Você começa a corrida quando ele consegue percebê-la.|Você espera demais e o espaço deixa de estar livre.
+liderar|sinal_discreto|Mostrar com a mão o espaço que procura|O sinal indica uma opção sem exigir que a bola venha.|O sinal fica escondido e não ajuda na leitura da jogada.
+tatico|abrir_para_outro|Arrastar seu marcador para liberar o colega|Seu movimento deixa uma linha de progressão para outro jogador.|O marcador não acompanha e sua corrida não altera o espaço.
+@2022 J01.apoio|O ataque se aproxima de um setor congestionado. Você pode ajudar a equipe a conservar uma opção fora da aglomeração.|{}
+posicionamento|largura|Permanecer aberto para oferecer largura|Sua posição mantém uma alternativa fora do bloqueio central.|Você abre sem ajustar a distância e fica desconectado.
+visao|lado_fraco|Identificar quem pode ocupar o lado oposto|Você percebe um caminho para deslocar o centro da jogada.|Você identifica o lado livre depois de ele ser fechado.
+liderar|pedir_paciencia|Pedir uma circulação antes da tentativa central|O pedido organiza a procura de um espaço melhor.|O pedido se perde no barulho e o setor continua desencontrado.
+tatico|fixar_defensor|Manter seu defensor longe da bola|Sua posição impede que ele ajude no bloqueio central.|Você segue a bola e permite que o defensor feche por dentro.
+@2023 J01.cruzamento|Uma bola alta se aproxima da área adversária. Você está fora da primeira disputa e precisa escolher onde apoiar a continuação.|{}
+posicionamento|segunda_bola|Buscar o espaço da possível segunda bola|Você se apresenta sem disputar a mesma zona de quem salta.|Você calcula mal a distância e fica longe da continuação.
+visao|vigiar_corte|Observar o defensor que prepara o corte|A leitura do corpo dele ajuda você a ajustar sua posição.|Você acompanha só a bola e perde a referência do corte.
+liderar|avisar_sobra|Avisar ao colega que protegerá a sobra|O aviso distribui as responsabilidades da continuação.|O aviso não é ouvido e vocês ocupam o mesmo espaço.
+tatico|proteger_retorno|Guardar uma linha para manter o ataque organizado|Você oferece uma referência se a disputa não gerar finalização.|Você fica entre duas funções e não oferece nenhuma linha clara.
+@2024 J01.progressao|A bola chega a você pelo lado direito do corpo. Um companheiro se desloca para receber antes de a cobertura fechar.|{}
+passe|primeiro_toque|Passar com o primeiro toque|Você aproveita a abertura e encontra o companheiro adiante.|A bola chega mal apoiada e seu passe sai sem direção.
+drible|orientar_dominio|Levar o domínio para o lado livre|Seu domínio afasta a bola da cobertura e preserva o avanço.|O domínio se alonga e aproxima a bola da cobertura.
+visao|conferir_apoio|Conferir a posição do apoio antes do toque|Você evita buscar um apoio que já estava marcado.|Você confere tarde e precisa interromper o movimento.
+posicionamento|abrir_corpo|Abrir o corpo para receber de frente|O ajuste permite enxergar o companheiro sem outro giro.|Você abre o corpo cedo e deixa a bola exposta.
+@2025 J01.infiltracao|O companheiro com a bola está perto da área. Você pode oferecer uma corrida de apoio sem exigir um passe arriscado.|{}
+posicionamento|diagonal_fora|Fazer uma diagonal por fora|A diagonal oferece uma saída sem fechar o espaço central.|Sua diagonal cruza a trajetória de outro companheiro.
+visao|marcar_tempo|Sincronizar a corrida com o domínio dele|Você se oferece no instante em que ele pode decidir.|Você começa antes do domínio e perde o tempo da aproximação.
+liderar|avisar_retorno|Avisar que continuará disponível atrás|O aviso dá ao colega uma alternativa de continuidade.|O aviso não deixa claro onde você ficará disponível.
+tatico|prender_cobertura|Fixar a cobertura sem se aproximar da bola|Você mantém um defensor ocupado longe do portador.|Você se afasta demais e deixa de influenciar a cobertura.
+@2026 J01.receber_costas|Um marcador encurta a distância enquanto você protege a bola. Há um colega entrando na jogada pelo lado que você enxerga.|{}
+passe|janela_curta|Tocar na passagem do companheiro|Seu toque aproveita a pequena janela antes do contato.|Seu toque sai depois da passagem e encontra a marcação.
+drible|finta_corpo|Usar uma finta de corpo antes do giro|A finta faz o marcador abrir o lado que você queria.|O marcador não acompanha a finta e fecha seu giro.
+posicionamento|afastar_bola|Manter a bola no pé mais distante do marcador|Você preserva espaço para decidir sem perder a proteção.|Você desloca a bola além do que consegue proteger.
+liderar|pedir_aproximacao|Pedir que o apoio chegue mais perto|A aproximação cria um ângulo de saída mais seguro.|O apoio se aproxima pela mesma linha do marcador.
+@2027 J01.progressao|Depois de uma recuperação, você encontra a equipe ainda espalhada. Um companheiro oferece profundidade, e outro pede organização.|{}
+passe|acelerar_profundidade|Buscar quem oferece profundidade|Seu passe encontra a corrida antes de a defesa se recompor.|Você calcula mal a distância e entrega a bola à cobertura.
+drible|carregar_espera|Conduzir enquanto os apoios se aproximam|Você avança sem se separar dos apoios.|Você carrega rápido demais e fica isolado.
+tatico|juntar_setores|Sinalizar que o setor deve se aproximar|O sinal ajuda a encurtar as distâncias para continuar.|O sinal é entendido como pedido de avanço e aumenta as distâncias.
+visao|checar_numeros|Conferir as opções antes de acelerar|Você reconhece qual lado tem apoio suficiente.|Você demora na conferência e perde a abertura inicial.
+@2028 J01.apoio|Você se oferece no corredor central, mas percebe outro companheiro procurando o mesmo espaço. A bola ainda está com um colega atrás.|{}
+posicionamento|trocar_faixa|Mudar para uma faixa vizinha|Sua mudança cria duas opções em vez de uma só.|Você muda para trás de um adversário e some da jogada.
+liderar|combinar_vez|Combinar quem fica e quem se afasta|Vocês dividem o espaço sem interromper a circulação.|Vocês sinalizam ao mesmo tempo e mantêm a dúvida.
+visao|observar_portador|Ajustar a posição ao campo de visão do portador|Você aparece onde o colega consegue enxergar seu apoio.|Você se ajusta ao olhar anterior e fica escondido.
+tatico|atrair_sem_bola|Levar seu marcador para outro corredor|O deslocamento abre espaço para o companheiro receber.|Seu marcador permanece e a faixa continua congestionada.
+@2029 J01.cruzamento|Perto da lateral, você pode lançar a bola para a movimentação de um companheiro. A primeira linha de marcação tenta fechar seu pé de apoio.|{}
+passe|bola_por_cima|Servir por cima da primeira linha|A bola supera o primeiro bloqueio e encontra o companheiro.|A bola sobe sem força e fica com o primeiro defensor.
+drible|cortar_para_dentro|Cortar para dentro antes de servir|O corte muda o ângulo e mantém a posse sob controle.|O defensor antecipa o corte e bloqueia seu caminho.
+visao|ler_corrida|Aguardar a mudança de direção do companheiro|Você distingue o espaço que ele realmente procura.|Você interpreta a mudança tarde e perde a referência.
+liderar|sinal_alvo|Indicar para onde pretende levar a jogada|O companheiro ajusta seu movimento ao sinal.|O companheiro interpreta outro destino e vocês se desencontram.
+@2030 J01.infiltracao|Seu companheiro se prepara para conduzir por dentro. Você pode abrir espaço para ele sem tocar na bola.|{}
+posicionamento|afastar_cobertura|Correr para afastar a cobertura|Sua corrida exige atenção de um defensor e abre o corredor.|A cobertura mantém a posição e o corredor não abre.
+tatico|apoio_curto|Oferecer uma linha curta de continuidade|Você preserva uma saída se a condução for bloqueada.|Você encurta demais e leva outro marcador ao lance.
+visao|ler_sequencia|Esperar o primeiro movimento antes de escolher a faixa|Você identifica onde sua corrida será mais útil.|Você espera sem se ajustar e perde o contato com a jogada.
+liderar|orientar_espaco|Avisar que há espaço na diagonal|O aviso ajuda o colega a enxergar o caminho disponível.|O aviso aponta um espaço que a cobertura já fechou.
+@2031 J01.progressao|Você recupera o controle de uma bola dividida. Um companheiro começa uma corrida em direção à área adversária.|{}
+passe|soltar_cedo|Soltar antes de o rival recuperar a posição|A bola chega ao companheiro antes da recomposição.|O toque apressado entrega a bola ao adversário.
+drible|separar_disputa|Sair da disputa conduzindo em diagonal|Você se afasta da confusão e mantém controle para avançar.|Você conduz para o lado da cobertura e perde a saída.
+posicionamento|proteger_apoio|Firmar o apoio antes do próximo gesto|Você estabiliza o corpo e consegue decidir de frente.|Você demora a firmar o apoio e permite a aproximação rival.
+liderar|pedir_opcao|Pedir uma opção além da primeira corrida|O pedido cria uma segunda linha para a continuação.|O pedido chega sem indicação e os apoios fazem a mesma corrida.
+@2032 J01.apoio|O colega com a bola precisa voltar o corpo para proteger a posse. Você está atrás da jogada e pode facilitar a reorganização.|{}
+posicionamento|janela_retorno|Abrir um ângulo visível de retorno|Seu ajuste oferece uma linha clara fora da pressão.|Você abre em linha reta com o adversário.
+liderar|avisar_tempo|Avisar quanto espaço ele tem|Seu aviso permite que ele decida sem pressa desnecessária.|Você calcula mal a aproximação e dá uma orientação tardia.
+visao|lado_seguinte|Observar para onde a jogada poderá seguir|Você identifica um setor livre para a sequência.|Você observa o setor livre sem notar o bloqueio entre vocês.
+tatico|equilibrar_setor|Manter uma posição que proteja a continuidade|Você evita que todo o setor se concentre no mesmo ponto.|Você fica entre o apoio e a proteção sem cumprir nenhum dos dois.
+@2033 J01.infiltracao|Um companheiro começa uma ultrapassagem. Você está sem a bola e pode ajustar sua posição para não bloquear essa corrida.|{}
+posicionamento|liberar_faixa|Sair da faixa da ultrapassagem|Seu deslocamento libera a passagem do companheiro.|Você demora a sair e a corrida precisa ser interrompida.
+visao|enxergar_cobertura|Observar quem pode acompanhar a ultrapassagem|Você identifica de onde virá a cobertura adversária.|Você acompanha a corrida e esquece o defensor que a cobre.
+liderar|indicar_tempo|Indicar quando a faixa fica livre|Seu aviso coincide com a abertura do corredor.|Você avisa antes de o corredor estar realmente livre.
+tatico|aproximar_por_dentro|Oferecer apoio por dentro da corrida|Você cria outra opção sem ocupar o mesmo trajeto.|Você cruza o trajeto da ultrapassagem ao buscar apoio.
+@2034 J01.cruzamento|O ataque prepara uma bola para a área. Você está mais distante e precisa decidir como participar sem abandonar a organização.|{}
+posicionamento|apoio_recuado|Oferecer apoio recuado para a segunda jogada|Sua posição mantém uma saída se a bola for afastada.|Você recua além da distância útil para a continuidade.
+visao|antecipar_afastamento|Ler a direção provável de um corte|Você ajusta seu espaço antes da disputa terminar.|Você aposta numa direção e fica sem cobertura da outra.
+liderar|dividir_sobra|Combinar com o colega quem protege cada lado|Vocês evitam deixar o mesmo lado sem apoio.|Vocês escolhem o mesmo lado e deixam o outro descoberto.
+tatico|guardar_equilibrio|Guardar uma distância que permita recompor|Você oferece apoio sem deixar o setor inteiro exposto.|Você se aproxima da área e perde a distância de proteção.
+@2035 J01.finalizacao|Você recebe dentro da área com um defensor fechando o lado forte. Há tempo para um gesto, mas o espaço diminui.|{"positions_allow":["meia","ponta","centroavante"]}
+chute|canto_livre|Bater no lado que o defensor deixou|Você encontra o canto sem acertar o bloqueio.|O chute esbarra no defensor antes de chegar ao alvo.
+passe|companheiro_frente|Servir quem chega de frente|Seu passe encontra o companheiro em condição de finalizar.|A marcação fecha o passe antes da chegada do colega.
+drible|mudar_perna|Levar a bola para a outra perna|Você troca o lado da disputa e mantém a bola próxima.|A troca de perna demora e entrega o espaço ao defensor.
+posicionamento|proteger_giro|Proteger o espaço antes de girar|Você mantém o corpo entre o defensor e a bola.|Você fecha demais o corpo e perde o ângulo de giro.
+@2036 J01.finalizacao|A bola chega rasteira perto da marca do pênalti, durante uma jogada normal. Um defensor tenta alcançar você pelo lado.|{"positions_allow":["meia","ponta","centroavante"]}
+chute|primeira_baixo|Finalizar de primeira mantendo a bola baixa|A batida de primeira sai na direção que você escolheu.|Você chega com o pé atrasado e pega mal na bola.
+passe|desviar_livre|Desviar para o companheiro sem marcação|O desvio deixa a bola na passada do companheiro.|O desvio fica atrás e permite a recuperação defensiva.
+drible|dominar_lado|Dominar para longe do defensor|Você leva o domínio para o lado contrário da pressão.|O domínio sai comprido e facilita o corte.
+visao|reconhecer_espaco|Ajustar o corpo ao espaço que ainda existe|Você percebe o bloqueio sem se precipitar no contato.|Você demora a reconhecer o espaço e precisa interromper o gesto.
+@2037 J01.finalizacao|Você alcança a bola num ângulo fechado da área. O companheiro que chega por dentro tenta se mostrar para você.|{"positions_allow":["meia","ponta","centroavante"]}
+chute|angulo_curto|Arriscar o chute pelo espaço curto|Seu chute passa pela abertura que restava.|Você força o ângulo e manda a bola para fora.
+passe|puxar_atras|Tocar para a chegada por dentro|O passe encontra o companheiro de frente para o gol.|O passe atravessa a chegada e termina sem destinatário.
+drible|ganhar_angulo|Conduzir para melhorar o ângulo|Você ganha um passo por dentro mantendo o controle.|O defensor fecha o passo por dentro e trava sua condução.
+tatico|esperar_apoio|Proteger a posse até enxergar o apoio|Você conserva espaço para incluir o companheiro na jogada.|Você espera sem proteger a bola e permite o desarme.
+@2038 J01.finalizacao|A bola chega com um pequeno quique na entrada da área. Um colega se aproxima para receber enquanto o bloqueio avança.|{"positions_allow":["meia","ponta","centroavante"]}
+chute|meia_altura|Ajustar o corpo e bater no quique|Você encontra o contato que mantém o chute na direção certa.|O quique pega você desequilibrado e desvia a batida.
+passe|servir_lado|Servir o colega antes do bloqueio|O passe libera o companheiro no lado da aproximação.|O bloqueio alcança a linha e intercepta sua entrega.
+drible|amortecer_girar|Amortecer a bola e mudar a direção|Você controla o quique e sai do primeiro bloqueio.|A bola pula no domínio e fica exposta ao bloqueio.
+posicionamento|corpo_protecao|Usar o corpo para ganhar um instante|Sua proteção permite decidir sem enfrentar o bloqueio de frente.|Você se apoia mal e não consegue proteger o quique.
+@2039 J01.finalizacao|Você encontra um intervalo para receber perto da área. O defensor tenta recuperar a posição antes do seu próximo toque.|{"positions_allow":["meia","ponta","centroavante"]}
+chute|finalizar_janela|Finalizar enquanto o intervalo está aberto|Você aproveita o intervalo antes de o defensor chegar.|Você acelera o gesto e perde a direção do chute.
+passe|ativar_parceiro|Acionar o companheiro no corredor ao lado|O passe deixa o companheiro avançar de frente para a área.|A bola sai na direção do defensor que fazia a cobertura.
+drible|usar_reacao|Esperar a reação e sair pelo outro lado|Você usa a reação do defensor para conservar o avanço.|O defensor não reage à finta e controla sua saída.
+visao|reavaliar_caminho|Conferir a cobertura antes do gesto|Você reconhece uma segunda marcação que não tinha percebido.|Você demora a conferir e deixa o intervalo se fechar.
+@2040 J02.pressao|O adversário recebe olhando para o próprio campo. Você se aproxima e precisa decidir como pressionar sem abrir uma saída simples.|{}
+desarme|bote_dominio|Atacar o primeiro domínio|Você alcança a bola enquanto ele tenta controlá-la.|Você chega depois do domínio e não tira a bola.
+posicionamento|fechar_retorno|Fechar a linha de devolução|Você obriga o portador a procurar outra saída.|Você fecha o ângulo errado e deixa a devolução livre.
+visao|esperar_giro|Ler o giro antes de encurtar|Você identifica o lado para o qual ele pretende sair.|Você espera demais e permite um giro confortável.
+liderar|pedir_cerco|Pedir que o colega feche o outro lado|Vocês reduzem as saídas sem disputar o mesmo espaço.|O pedido não é entendido e os dois fecham o mesmo lado.
+@2041 J02.cobertura|Você chega para ajudar um companheiro que está diante do portador. O apoio precisa ser próximo sem deixar os dois na mesma linha.|{}
+posicionamento|diagonal_cobertura|Ficar na diagonal do companheiro|Sua diagonal protege o espaço caso ele seja superado.|Você fica alinhado e deixa o espaço atrás dos dois.
+desarme|atacar_exposicao|Atacar a bola quando ela se afasta do rival|Você aproveita a exposição e recupera a bola.|Você confunde o toque de proteção com uma abertura.
+visao|vigiar_apoio|Observar o apoio que chega para o rival|Você identifica a linha que precisa proteger primeiro.|Você olha só o portador e perde a chegada do apoio.
+liderar|avisar_cobertura|Avisar ao colega qual lado você cobre|O colega sabe para onde pode orientar a disputa.|O aviso chega incompleto e ele protege o lado oposto.
+@2042 J02.intercepcao|Você vê o portador olhar para um companheiro entre os setores. A linha de passe passa perto do espaço que você ocupa.|{}
+desarme|entrar_linha|Entrar na linha quando o passe sai|Você chega à trajetória e intercepta a bola.|Você inicia o movimento tarde e a bola passa.
+posicionamento|encurtar_janela|Encurtar o espaço sem abandonar sua referência|Você reduz a janela de passe e mantém o setor protegido.|Você encurta demais e abre outra janela nas costas.
+visao|ler_pe_apoio|Ler o pé de apoio do portador|A leitura ajuda você a antecipar a direção da entrega.|Você interpreta a finta de passe como a entrega real.
+liderar|alertar_colega|Avisar quem está perto do destinatário|Seu alerta ajuda o colega a ajustar a distância.|O alerta vem depois de o destinatário mudar de posição.
+@2043 J02.lateral|O adversário conduz perto da linha lateral. Você consegue acompanhá-lo, mas um bote errado pode liberar o caminho por dentro.|{}
+posicionamento|orientar_fora|Orientar a condução para a linha|Você preserva o lado de dentro e limita o avanço.|Você abre o quadril cedo e permite o corte por dentro.
+desarme|toque_exposto|Tentar o desarme após um toque longo|Você alcança a bola antes de ele recuperar o controle.|Você tenta o bote num toque ainda protegido.
+disciplina|acompanhar|Acompanhar sem cruzar as pernas|Você sustenta a perseguição sem perder o equilíbrio.|Você cruza os apoios e demora a responder à mudança.
+liderar|dividir_cobertura|Pedir cobertura para o corredor interno|O colega protege o espaço que você não pode fechar sozinho.|O pedido não define o corredor e deixa a cobertura indecisa.
+@2044 J02.jogo_aereo|Uma bola alta se aproxima da sua zona, com um adversário disputando o espaço. Você precisa escolher sua referência antes da queda.|{}
+desarme|antecipar_queda|Disputar a bola antes do domínio rival|Você chega primeiro ao ponto de queda e afasta a bola.|Você calcula mal a queda e não alcança a disputa.
+posicionamento|proteger_frente|Proteger a frente do adversário|Sua posição dificulta que ele domine de frente.|Você protege o espaço errado e permite o domínio orientado.
+visao|ler_quique|Considerar onde a bola pode quicar|Você ajusta a distância para não ser surpreendido pelo quique.|Você espera um quique que não acontece daquela forma.
+liderar|avisar_sobra|Combinar quem acompanha a segunda bola|Vocês dividem a disputa e a proteção da sobra.|Vocês falam ao mesmo tempo e deixam a sobra sem referência.
+@2045 J02.pressao|O adversário conduz de frente, e você não tem apoio próximo. Sua primeira decisão pode atrasar o avanço ou abrir espaço para ele.|{}
+posicionamento|retardar|Recuar controlando a distância|Você reduz a velocidade do ataque sem oferecer um lado fácil.|Você recua demais e concede espaço para ele escolher.
+desarme|desarmar_frente|Tentar tirar a bola quando ela cruza sua frente|Você encontra o instante de exposição e toma a bola.|Você tenta alcançar a bola sem distância suficiente.
+visao|lado_menos_apoio|Identificar o lado com menos opções rivais|Você direciona sua atenção para a saída mais perigosa.|Você conta os apoios errados e protege a saída menos importante.
+liderar|chamar_recomposicao|Chamar um colega para recompor|O chamado torna claro onde você precisa de ajuda.|O chamado é amplo e ninguém identifica a ajuda necessária.
+@2046 J02.intercepcao|O rival tenta encontrar um jogador que se esconde atrás do seu ombro. Você pode vigiar a bola ou conferir esse deslocamento.|{}
+visao|checar_ombro|Conferir o movimento por cima do ombro|Você localiza o adversário sem perder a referência da bola.|Você vira por tempo demais e perde a saída do passe.
+posicionamento|linha_dupla|Ajustar o corpo para enxergar os dois|Seu ajuste permite vigiar portador e destinatário.|Você fecha o corpo e deixa um deles fora da visão.
+desarme|cortar_trajeto|Cortar a trajetória da entrega|Você alcança a bola antes de ela chegar nas costas.|Você parte antes da entrega e deixa o passe passar por outro lado.
+liderar|trocar_referencia|Avisar ao colega quem está saindo da sua visão|O aviso transfere a referência sem abandonar o setor.|O aviso não identifica o adversário e não resolve a marcação.
+@2047 J02.cobertura|Dois adversários aproximam suas corridas no seu setor. Você e um companheiro precisam evitar perseguir o mesmo jogador.|{}
+liderar|nomear_referencia|Indicar com clareza quem você acompanha|A indicação permite dividir as duas corridas.|Você indica tarde e os dois já acompanham a mesma corrida.
+posicionamento|proteger_meio|Guardar o espaço entre os corredores|Você preserva uma barreira para a entrada mais direta.|Você fica no meio sem distância para alcançar nenhuma corrida.
+desarme|antecipar_entrada|Atacar a bola antes da troca de corredor|Você recupera a bola antes de a troca ser completada.|Você tenta antecipar sem perceber o apoio que a recebe.
+visao|identificar_cruzamento|Acompanhar quem muda de corredor|Você percebe a troca sem abandonar sua referência cedo.|Você segue o primeiro movimento e perde a troca seguinte.
+@2048 J02.lateral|O adversário prepara um cruzamento no seu lado. Você está perto o bastante para influenciar a entrega, mas precisa escolher o ângulo.|{}
+posicionamento|fechar_pe|Fechar o lado do pé de cruzamento|Você obriga o rival a reorganizar o gesto.|Você fecha cedo demais e permite que ele mude de lado.
+desarme|bloqueio_bola|Tentar alcançar a bola antes da batida|Você toca a bola antes de o cruzamento sair.|Você chega depois da batida e não bloqueia a entrega.
+disciplina|sem_carrinho|Acompanhar de pé até o momento do gesto|Você mantém capacidade de reagir à finta.|Você espera longe demais para influenciar a batida.
+liderar|avisar_area|Alertar os colegas sobre a preparação|O alerta ajuda o setor a acompanhar as movimentações.|Você grita sem indicar a origem e confunde as referências.
+@2049 J02.transicao|Você está adiante da bola quando a posse passa ao adversário. O caminho mais curto de volta não é necessariamente o mais útil.|{}
+posicionamento|recompor_dentro|Recompor pelo corredor central|Você volta protegendo o caminho mais direto do avanço.|Você corre para a bola e deixa o centro aberto.
+desarme|pressao_imediata|Tentar recuperar antes de o rival levantar a cabeça|Você alcança a bola ainda perto do ponto da perda.|Você chega depois da primeira entrega e fica fora do lance.
+visao|medir_distancia|Comparar sua distância com a dos apoios|Você identifica onde sua recomposição terá efeito.|Você calcula mal a distância e escolhe um trajeto inútil.
+liderar|sinal_recuo|Pedir que o setor recue junto|O sinal ajuda a evitar uma perseguição isolada.|Parte do setor entende pressão e se move no sentido oposto.
+@2050 J02.pressao|O rival hesita entre conduzir e passar. Você pode pressionar sua decisão sem necessariamente partir para o bote.|{}
+posicionamento|mostrar_lado|Mostrar uma saída menos perigosa|Sua postura limita a alternativa mais direta do rival.|Você exagera a abertura e oferece um avanço livre.
+desarme|hesitacao|Aproveitar a hesitação para tomar a bola|Você chega à bola antes de o rival concluir a decisão.|A hesitação era uma finta e seu bote fica para trás.
+visao|vigiar_apoio_curto|Conferir o apoio curto antes de encurtar|Você percebe o passe que poderia tirar você da pressão.|Você olha o apoio tarde e perde a mudança de direção.
+liderar|fechar_segunda_saida|Combinar o fechamento da segunda saída|O colega entende a divisão e evita um passe simples.|A combinação não chega a tempo de fechar a saída.
+@2051 J02.jogo_aereo|A disputa aérea acontece à sua frente. Você está fora do salto e precisa se preparar para a continuação, sem presumir quem vai vencer.|{}
+posicionamento|zona_sobra|Ocupar um espaço para a sobra|Você fica em condição de disputar a continuação.|Você se aproxima demais e a bola passa por cima do seu espaço.
+visao|ler_contato|Observar o contato antes de correr|Você identifica a direção da continuação a tempo.|Você espera uma direção e reage tarde ao desvio.
+desarme|segunda_disputa|Atacar a bola quando ela cai ao alcance|Você ganha a segunda disputa e recupera o controle.|Você calcula mal a queda e chega depois do rival.
+liderar|guardar_retaguarda|Pedir ao colega que proteja atrás da disputa|O colega guarda espaço enquanto você acompanha a sobra.|O pedido não é ouvido e vocês avançam juntos.
+@2052 J02.intercepcao|O adversário pode passar entre você e um colega. A distância entre os dois decide quanto tempo haverá para reagir.|{}
+posicionamento|encurtar_intervalo|Encurtar o intervalo com o colega|Você fecha a passagem sem se colar ao companheiro.|Você encurta demais e abre o espaço do outro lado.
+desarme|cortar_bola|Tentar cortar o passe ao cruzar o intervalo|Você interrompe a entrega antes de ela passar pelo setor.|Você alcança a trajetória depois da bola.
+liderar|ajuste_conjunto|Pedir um ajuste conjunto de distância|O setor se move sem deixar um jogador isolado.|Cada um ajusta em um sentido e o intervalo continua aberto.
+visao|ver_destino|Identificar quem procura receber adiante|Você entende qual passagem precisa ser protegida.|Você olha o portador e não reconhece o destinatário.
+@2053 J02.cobertura|O colega à sua frente sai para pressionar. Você precisa decidir o que proteger enquanto ele se aproxima do portador.|{}
+posicionamento|cobrir_costas|Guardar o espaço deixado nas costas dele|Sua cobertura reduz a possibilidade de um passe direto.|Você segue o colega e abandona o espaço deixado.
+desarme|entrada_curta|Antecipar se a bola entrar no seu alcance|Você aproveita a bola descoberta sem disputar o mesmo bote.|Você tenta antecipar uma bola ainda protegida.
+liderar|orientar_pressao|Avisar qual lado tem sua cobertura|O colega pode orientar a pressão para o lado protegido.|Você avisa o lado quando ele já comprometeu o movimento.
+visao|segunda_corrida|Acompanhar a corrida que procura o espaço vazio|Você percebe quem pode aproveitar a saída do colega.|Você acompanha apenas o colega e perde a corrida adversária.
+@2054 J02.duelo|O rival protege a bola usando o corpo. O espaço está apertado e você precisa evitar uma disputa baseada apenas em empurrar.|{}
+desarme|toque_lateral|Buscar a bola pelo lado livre|Você toca a bola sem depender de tirar o rival do lugar.|Você tenta alcançar o lado que ele ainda protege.
+posicionamento|bloquear_giro|Impedir o giro mais curto|Sua base retira do rival a saída mais simples.|Você fecha o giro errado e ele passa pelo outro lado.
+disciplina|esperar_exposicao|Esperar a bola aparecer sem aumentar o contato|Você preserva o equilíbrio para reagir ao próximo toque.|Você espera passivamente e permite que ele se organize.
+liderar|pedir_dobra|Pedir apoio para fechar a saída restante|O apoio chega por outro ângulo sem repetir sua marcação.|O apoio vem pelo seu lado e não fecha a saída restante.
+@2055 J02.transicao|A bola muda de equipe perto de você. Um rival acelera, enquanto outro oferece uma saída curta ao portador.|{}
+visao|prioridade|Identificar qual saída ameaça o setor primeiro|Você distingue a corrida mais urgente da opção de apoio.|Você se prende à corrida mais vistosa e perde a ameaça próxima.
+desarme|recuperar_origem|Disputar a bola antes da primeira entrega|Você recupera a bola no início da transição.|O portador solta antes e deixa seu bote sem alvo.
+posicionamento|fechar_profundo|Proteger a linha de maior profundidade|Você retira do rival uma opção de avanço direto.|Você recua em linha errada e mantém o passe profundo aberto.
+liderar|dividir_duas|Combinar a divisão das duas referências|O colega entende qual opção precisa acompanhar.|Vocês nomeiam referências diferentes e duplicam a mesma tarefa.
+@2056 J02.pressao|Você alcança o adversário pela diagonal. A aproximação pode encurralá-lo ou deixar uma rota de saída nas suas costas.|{}
+posicionamento|curvar_corrida|Curvar a aproximação para fechar o retorno|Sua corrida limita a devolução sem perder contato com o portador.|Você faz a curva longe demais e deixa o portador avançar.
+desarme|bote_diagonal|Buscar a bola ao chegar pela diagonal|Você alcança o toque exposto durante a aproximação.|Você tenta o bote sem conseguir ajustar os apoios.
+visao|conferir_costas|Conferir o espaço que ficará atrás de você|Você percebe uma saída que precisa evitar antes de encurtar.|Você confere tarde e permite a saída que queria impedir.
+liderar|avisar_orientacao|Avisar para onde pretende levar o rival|O colega se posiciona de acordo com sua aproximação.|O colega entende a direção contrária e a pressão fica aberta.
+@2057 J02.intercepcao|O rival tenta inverter a jogada pelo chão. Você está entre a origem da entrega e o espaço que ele quer encontrar.|{}
+desarme|cortar_inversao|Atacar a trajetória da inversão|Você intercepta a bola antes de ela trocar de setor.|Você parte pelo caminho errado e não alcança a entrega.
+posicionamento|encurtar_recebedor|Reduzir a distância até quem pode receber|Você limita o espaço de domínio no outro setor.|Você corre até o destinatário sem proteger a passagem interior.
+visao|avaliar_forca|Ler a força da entrega antes de escolher o trajeto|Você ajusta a corrida à velocidade real da bola.|Você espera uma bola mais lenta e chega atrasado.
+liderar|avisar_lado_oposto|Alertar o setor para a mudança de lado|O alerta ajuda os colegas a deslocar juntos.|O alerta é tardio e o setor demora a acompanhar.
+@2058 J02.duelo|O portador reduz a velocidade diante de você e tenta provocar um bote precipitado. Seu apoio ainda está se aproximando.|{}
+disciplina|paciencia|Manter a postura sem responder à primeira finta|Você não compromete seus apoios na finta inicial.|Você fica rígido demais e perde a reação ao movimento seguinte.
+desarme|toque_decisivo|Atacar quando ele precisa afastar a bola|Você encontra o toque menos protegido e recupera.|Você toma um gesto de corpo por um toque na bola.
+posicionamento|distancia|Preservar a distância até o apoio chegar|Você retarda o lance sem deixar um corredor direto.|Você concede distância demais e facilita a aceleração.
+liderar|coordenar_chegada|Indicar ao apoio o lado que falta fechar|O apoio ocupa o lado que você não consegue proteger.|O apoio recebe uma indicação confusa e para no mesmo lado.
+@2059 J02.lateral|O adversário recebe colado à linha e tenta devolver para alguém que vem de trás. Você pode fechar a devolução ou apertar o domínio.|{}
+desarme|dominio_linha|Disputar o domínio junto à linha|Você chega à bola antes de ela ser protegida.|O domínio é mais curto do que você esperava e seu bote falha.
+posicionamento|cortar_devolucao|Ocupar o corredor de devolução|Você impede a saída curta e mantém o rival virado.|Você protege um corredor largo e deixa a devolução passar junto.
+visao|chegada_apoio|Observar o jogador que vem de trás|Você percebe o momento em que ele passa a ser opção.|Você acompanha a chegada sem notar a mudança do portador.
+liderar|marcar_retorno|Pedir ao colega que acompanhe a devolução|A divisão evita abandonar o portador para seguir o apoio.|O colega não identifica o apoio e a devolução segue livre.
+@2060 J02.jogo_aereo|Um lançamento vem na sua direção e há espaço para o rival dominar depois da queda. Sua decisão precisa considerar a bola e essa continuação.|{}
+desarme|afastar_antes|Intervir antes de o rival controlar|Você alcança a bola e interrompe o domínio dele.|Você calcula mal a altura e passa por baixo da bola.
+posicionamento|corpo_frente|Ganhar uma posição à frente da recepção|Sua posição obriga o rival a controlar sem avançar de frente.|Você tenta ganhar a frente tarde e abre a corrida dele.
+visao|conferir_profundidade|Conferir o espaço atrás antes da disputa|Você evita atacar a bola deixando um corredor desprotegido.|Você olha atrás por tempo demais e perde a queda.
+liderar|avisar_cobertura_alta|Combinar a proteção se a bola passar|O colega entende que precisa guardar a continuidade.|A combinação chega sem tempo para ajustar a proteção.
+@2061 J02.cobertura|O adversário tenta formar um triângulo ao redor de um companheiro seu. Você precisa ajudar sem abandonar a saída para seu próprio setor.|{}
+posicionamento|fechar_vertice|Ocupar o vértice que liga os dois apoios|Você corta uma ligação do triângulo adversário.|Você vai até a bola e deixa a ligação inteira livre.
+desarme|antecipar_curto|Antecipar a entrega mais curta|Você toma a bola antes de o triângulo completar a circulação.|A entrega muda de destino e você não consegue antecipar.
+visao|escolher_ligacao|Identificar qual ligação mantém a jogada viva|Você protege o passe que daria continuidade ao avanço.|Você protege um passe de retorno e deixa o avanço aberto.
+liderar|trocar_setor|Combinar a troca de referência com o colega|A troca mantém o setor protegido durante a aproximação.|A troca não é compreendida e ambos deixam a mesma referência.
+@2062 J02.transicao|Seu time tenta se reorganizar depois de perder a posse. Você está perto de um rival que pode receber a primeira bola da transição.|{}
+posicionamento|negar_recepcao|Ficar entre o portador e esse rival|Você retira uma opção imediata de progressão.|Você se aproxima da pessoa sem fechar a linha da bola.
+desarme|interceptar_inicio|Atacar a primeira entrega da transição|Você corta a bola e encerra o avanço inicial.|Você parte cedo e o passe encontra outro caminho.
+visao|acompanhar_outro|Observar quem procura uma corrida mais longa|Você reconhece a alternativa profunda antes de ela ficar livre.|Você acompanha uma corrida secundária e perde a principal.
+liderar|organizar_recuo|Pedir uma referência clara para o recuo|O setor entende quem protege o centro na volta.|O pedido não define responsabilidades e o recuo fica disperso.
+@2063 J02.duelo|O portador muda a bola de pé à sua frente. Você pode reagir à troca ou manter a referência do corpo para evitar uma finta.|{}
+desarme|entre_toques|Buscar a bola entre os dois toques|Você alcança o intervalo da troca e desarma.|Você tenta chegar depois de a troca estar concluída.
+posicionamento|quadril|Acompanhar o quadril sem seguir cada finta|Você mantém capacidade de fechar os dois lados.|Você se fixa no quadril e deixa a bola avançar sem pressão.
+visao|pe_recepcao|Ler para qual pé a bola vai chegar|Você reconhece o lado em que ele ficará menos protegido.|Você interpreta a direção inicial e é enganado pela troca.
+disciplina|evitar_impulso|Esperar sem jogar o corpo para a frente|Você mantém equilíbrio para responder ao toque seguinte.|Você espera longe e permite que ele ganhe velocidade.
+@2064 J02.intercepcao|O adversário ensaia um passe por dentro do seu setor. Um colega cobre atrás, mas não pode proteger todas as linhas ao mesmo tempo.|{}
+liderar|dividir_linhas|Indicar qual linha você vai fechar|O colega guarda a outra linha sem sobrepor sua tarefa.|A indicação se perde e vocês priorizam a mesma passagem.
+desarme|cortar_entrelinhas|Atacar a bola na passagem pelo setor|Você intercepta antes de ela alcançar quem recebe por dentro.|Você ataca uma linha que o passe não utiliza.
+posicionamento|deslocar_lado|Deslocar um passo para reduzir a janela|Seu ajuste fecha o caminho sem abandonar a cobertura.|Seu passo abre uma janela do outro lado.
+visao|ver_apoios|Conferir as duas opções antes da entrega|Você distingue o passe possível da movimentação de distração.|Você tenta observar tudo e não acompanha a saída da bola.
+@2065 J02.pressao|O adversário recua a bola para reorganizar o ataque. Você pode acompanhar a circulação ou guardar sua posição de origem.|{}
+posicionamento|fechar_avanco|Guardar a linha que permite avançar de novo|Você limita a progressão mesmo sem perseguir o passe para trás.|Você guarda uma linha distante e concede a progressão próxima.
+desarme|pressionar_destino|Chegar ao destinatário durante o domínio|Você alcança o domínio exposto e tira a bola.|Você chega com a bola já protegida e perde o bote.
+liderar|subir_junto|Pedir que o setor encurte junto|O setor reduz o espaço sem deixar você pressionando sozinho.|Só parte do setor encurta e aparece um intervalo.
+visao|reconhecer_isca|Observar se o recuo tenta atrair a marcação|Você percebe o espaço que o rival pretendia abrir.|Você acompanha o recuo e não percebe o espaço deixado.
+@2066 J02.jogo_aereo|A bola alta vai cair perto de mais de um adversário. Você precisa escolher entre disputar diretamente e proteger a continuação.|{}
+desarme|disputa_primeira|Atacar a bola antes da recepção|Você interrompe a primeira recepção adversária.|Você chega ao ponto errado e não participa do contato.
+posicionamento|proteger_segunda|Guardar o espaço da segunda recepção|Você limita a continuação caso a primeira disputa escape.|Você guarda longe demais e deixa uma recepção curta livre.
+visao|ler_agrupamento|Identificar quem está de frente para a sobra|Você reconhece o adversário com melhor condição de continuar.|Você segue quem salta e esquece quem espera a sobra.
+liderar|pedir_divisao|Pedir que um colega assuma a disputa inicial|A divisão evita que todos ataquem a mesma bola.|Vocês não confirmam a divisão e deixam a primeira disputa livre.
+@2067 J02.cobertura|Um adversário cruza por trás de você enquanto a bola permanece à frente. A corrida pode buscar uma recepção ou apenas tirar sua atenção.|{}
+visao|olhar_alternado|Alternar a referência entre bola e corrida|Você acompanha o deslocamento sem perder a entrega.|Você prende o olhar na corrida e perde a saída da bola.
+posicionamento|fechar_porta|Guardar a passagem entre você e o colega|Você protege o caminho que a corrida tentava abrir.|Você acompanha o corredor e deixa a passagem entre os dois.
+liderar|comunicar_cruzamento|Avisar que a referência mudou de lado|O colega reconhece quem entra no espaço dele.|O aviso vem sem indicar a mudança e não permite a troca.
+desarme|antecipar_recebedor|Atacar a bola se ela buscar a corrida|Você intercepta a entrega na direção do corredor.|Você parte na corrida antes do passe e deixa outra opção livre.
+@2068 J02.lateral|O portador tenta passar entre você e a linha. A margem é curta, e seu posicionamento pode ser mais útil que uma disputa longa.|{}
+posicionamento|reduzir_margem|Diminuir o corredor sem se lançar|Você retira o espaço de avanço junto à linha.|Você se aproxima em linha errada e mantém a passagem aberta.
+desarme|alcancar_adiantada|Buscar a bola quando ele a adianta|Você toca na bola antes de ele atravessar o corredor.|Ele adianta menos do que você espera e protege a bola.
+disciplina|guardar_apoio|Manter os apoios prontos para acompanhar|Você reage à aceleração sem precisar se reequilibrar.|Você para com os pés juntos e demora na reação.
+liderar|pedir_fechamento|Pedir que o colega guarde a saída por dentro|O colega protege o lado que permitiria escapar da linha.|O colega se aproxima da linha e deixa o lado interno aberto.
+@2069 J02.transicao|O rival tenta acelerar pelo lado oposto à perda da bola. Você está entre perseguir o portador e voltar para o caminho mais curto até seu setor.|{}
+posicionamento|recompor_diagonal|Voltar na diagonal para proteger o centro|Você retorna sem abrir um caminho direto pelo meio.|Você fecha a diagonal tarde e deixa o centro exposto.
+visao|comparar_trajetos|Conferir qual trajetória alcança a jogada|Você evita correr atrás de uma rota que já perdeu.|Você mede só a distância e ignora a velocidade do avanço.
+liderar|passar_referencia|Avisar quem deve assumir o portador|O colega recebe a referência enquanto você recompõe.|O aviso não chega e o portador continua sem pressão.
+desarme|ultima_janela|Tentar interceptar a entrega ainda ao alcance|Você interrompe o passe antes de ele mudar de setor.|Você estica o passo sem alcançar a trajetória.
+@2070 J02.duelo|O adversário domina uma bola que chega atravessada. Ele tenta usar o primeiro toque para colocar você fora da disputa.|{}
+desarme|erro_dominio|Atacar o espaço do primeiro toque|Você alcança a bola antes de ela ficar protegida.|Você calcula errado o toque e passa do ponto da disputa.
+posicionamento|acompanhar_corpo|Acompanhar o corpo sem morder o toque|Você impede que o primeiro gesto abra todo o caminho.|Você acompanha sem encurtar e deixa o rival de frente.
+visao|ler_velocidade|Observar a velocidade da bola que chega|Você escolhe o instante de aproximação de acordo com a recepção.|Você reage ao corpo sem notar que a bola veio mais rápida.
+liderar|cobertura_curta|Pedir cobertura curta para o lado do giro|O apoio fecha o lado que sua aproximação expõe.|O apoio fica distante e não consegue influenciar o giro.
+@2071 J02.intercepcao|Você está entre dois possíveis destinatários do passe adversário. Correr para um deles cedo pode liberar completamente o outro.|{}
+posicionamento|angulo_intermediario|Manter um ângulo que proteja as duas linhas|Você reduz as opções sem escolher uma referência cedo demais.|Você fica longe das duas linhas e não protege nenhuma.
+desarme|reagir_saida|Atacar a bola depois de identificar a entrega|Você reage à saída e alcança o passe.|Você identifica o destino tarde e fica fora da trajetória.
+visao|sinal_portador|Ler o corpo do portador antes da decisão|Você reconhece qual destinatário ele consegue alcançar.|Você segue o olhar usado como finta.
+liderar|dividir_destinos|Pedir ao colega que assuma uma das opções|A divisão permite que você encurte a outra linha.|A divisão fica indefinida e mantém os dois destinatários livres.
+@2072 J02.pressao|O rival recebe um passe para trás com o corpo fechado. Sua aproximação pode obrigá-lo a decidir antes de olhar para o ataque.|{}
+desarme|apertar_dominio|Disputar a bola durante o ajuste dele|Você ganha a bola enquanto o rival tenta se virar.|O ajuste dele é mais curto e seu bote chega atrasado.
+posicionamento|tirar_giro|Fechar o lado em que ele pode girar|Você impede que ele receba de frente no movimento seguinte.|Você fecha pelo lado errado e facilita o giro.
+liderar|pressao_coordenada|Chamar o colega para fechar a opção curta|O colega reduz o apoio que tiraria o rival da pressão.|O colega fecha outro apoio e mantém a saída curta livre.
+visao|vigiar_longo|Observar a preparação de um passe mais longo|Você reconhece o gesto que poderia superar sua aproximação.|Você olha longe e não reage à saída curta.
+@2073 J02.cobertura|O portador atrai seu companheiro para perto da bola. Você vê espaço surgindo no setor que ele deixou.|{}
+posicionamento|preencher_espaco|Ocupar temporariamente o espaço deixado|Você protege a passagem enquanto o colega pressiona.|Você chega ao espaço por uma rota que deixa outra passagem aberta.
+liderar|avisar_limite|Avisar até onde você consegue cobrir|O colega entende o limite da cobertura antes de avançar mais.|O aviso não é claro e ele presume uma cobertura maior.
+visao|rastrear_entrada|Acompanhar quem pode entrar nesse espaço|Você identifica a corrida que ameaça a cobertura.|Você acompanha só o vazio e perde quem o procura.
+desarme|cortar_acesso|Atacar a entrega que procura o espaço|Você intercepta a bola antes de o espaço ser utilizado.|Você reage ao primeiro gesto e não alcança a entrega real.
+@2074 J02.transicao|A equipe rival tenta sair em velocidade após recuperar a bola. Você está perto de um apoio curto e pode influenciar a primeira conexão.|{}
+posicionamento|negar_apoio_curto|Colocar-se na linha do apoio curto|Você dificulta a conexão que iniciaria o avanço.|Você segue o apoio sem fechar a linha de passe.
+desarme|pressionar_bola|Buscar a bola antes de ela sair da recuperação|Você recupera o controle enquanto a jogada ainda se organiza.|Você tenta chegar por um lado que o rival já protegeu.
+visao|enxergar_saida_longa|Conferir a opção longa antes de encurtar|Você reconhece a alternativa que contornaria sua pressão.|Você confere tarde e deixa a bola mudar de setor.
+liderar|pedir_protecao|Pedir que um colega guarde a profundidade|O colega entende que sua pressão precisa de proteção atrás.|O pedido não identifica o espaço e a proteção chega ao lugar errado.
+@2075 J03.empate|O placar está empatado e a partida avança para o fim. O setor precisa decidir como buscar espaço sem se desconectar.|{"score_state":"empatando","minute_min":70}
+posicionamento|guardar_ligacao|Oferecer uma ligação entre os setores|Você mantém uma linha de continuidade sem abandonar a organização.|Você fica distante dos dois setores e não oferece ligação.
+liderar|alternar_corridas|Combinar corridas alternadas|O combinado evita que todos avancem ao mesmo tempo.|O combinado é entendido de maneiras diferentes e as corridas se sobrepõem.
+visao|ler_cobertura|Observar onde a cobertura fica mais distante|Você identifica um espaço que merece atenção na próxima jogada.|Você confunde espaço livre com um corredor sem apoio.
+disciplina|conservar_plano|Manter a tarefa sem tentar resolver sozinho|Você preserva sua função mesmo com a urgência do placar.|A urgência faz você abandonar a tarefa no movimento seguinte.
+@2076 J03.empate|Com o jogo empatado, um companheiro pede mais gente à frente. Você pode colaborar sem prometer que o ataque será recompensado.|{"score_state":"empatando"}
+posicionamento|aproximar_medida|Aproximar sem ocupar a última linha|Você oferece apoio mantendo uma distância para recompor.|Você aproxima demais e esvazia a ligação atrás.
+liderar|definir_cobertura|Combinar quem guarda o espaço antes de avançar|A combinação permite uma aproximação mais organizada.|Ninguém confirma a cobertura e o movimento fica indeciso.
+visao|checar_opcoes|Conferir se já existe apoio suficiente à frente|Você identifica onde sua presença acrescentaria uma opção.|Você conta jogadores sem perceber que estão todos na mesma faixa.
+disciplina|manter_referencia|Seguir sua referência enquanto aguarda a bola|Você evita somar mais um movimento descoordenado.|Você espera sem ajustar a posição e deixa de oferecer apoio.
+@2077 J03.empate|As equipes continuam empatadas. A pressa para tirar a diferença que ainda não existe começa a afastar os apoios do seu setor.|{"score_state":"empatando"}
+liderar|lembrar_placar|Lembrar ao setor que o jogo segue aberto|Sua fala reduz a urgência desnecessária sem pedir acomodação.|Sua fala parece pedir acomodação e não esclarece a intenção.
+posicionamento|encurtar_ligacao|Aproximar sua posição do apoio mais distante|Você diminui uma distância que prejudicava a continuidade.|Você se aproxima de um colega que não precisava de apoio.
+visao|priorizar_linha|Identificar a primeira linha que precisa ser reconstruída|Você encontra a ligação que falta entre os setores.|Você procura a ligação adiante e ignora a que falta perto da bola.
+disciplina|uma_tarefa|Concentrar-se numa tarefa por jogada|Você acompanha a jogada sem trocar de função a cada toque.|Você tenta acompanhar todas as tarefas e não conclui a sua.
+@2078 J03.empate|O jogo está empatado. Você percebe que o colega com a bola tem poucas opções perto, embora o time ocupe bastante espaço.|{"score_state":"empatando"}
+posicionamento|apoio_util|Oferecer apoio a uma distância alcançável|Você transforma uma posição distante em opção real de continuidade.|Você reduz a distância sem sair de trás da marcação.
+liderar|chamar_movimento|Pedir um movimento complementar ao seu|Os dois movimentos criam opções diferentes para o portador.|O outro movimento repete o seu e mantém o problema.
+visao|reconhecer_janela|Identificar qual passagem está realmente aberta|Você percebe uma janela que não depende de um passe improvável.|Você olha apenas a chegada e ignora o bloqueio no trajeto.
+tatico|fixar_referencia|Manter uma referência enquanto outro colega aproxima|Você preserva largura e deixa a aproximação para o colega.|Você muda junto com ele e deixa de preservar a referência.
+@2079 J03.empate|O placar segue igual e você não está com a bola. Um ajuste seu pode preparar a próxima disputa sem antecipar o que ela vai produzir.|{"score_state":"empatando"}
+posicionamento|preparar_sobra|Guardar espaço para uma possível sobra|Você se prepara sem abandonar a distância do setor.|Você aposta numa sobra distante e se afasta da jogada.
+visao|acompanhar_dois|Alternar a observação entre bola e adversário próximo|Você acompanha a preparação sem perder sua referência.|Você acompanha a bola por tempo demais e perde o adversário.
+liderar|confirmar_divisao|Confirmar quem acompanha cada referência|O setor evita disputar a mesma referência duas vezes.|A confirmação fica incompleta e uma referência permanece sem dono.
+disciplina|aguardar_sem_parar|Esperar a continuação mantendo os apoios ativos|Você consegue reagir sem precisar recomeçar o movimento.|Você espera parado e precisa de passos extras para reagir.
+@2080 J03.vantagem|Sua equipe vence por um gol. Você precisa ajudar na continuidade sem tratar a partida como se já tivesse acabado.|{"score_state":"ganhando","margin_max":1}
+posicionamento|apoio_seguro|Manter uma linha de apoio próxima|Você oferece continuidade sem empurrar o setor inteiro para trás.|Você recua demais e deixa o portador sem apoio alcançável.
+liderar|evitar_recuo|Pedir que o setor não recue por impulso|Sua orientação mantém referências úteis à frente da defesa.|A orientação é entendida como ordem de avançar sem cobertura.
+visao|ler_pressao|Identificar por onde o rival tenta pressionar|Você reconhece a passagem que o setor precisa proteger.|Você segue a primeira pressão e não vê o apoio que a completa.
+disciplina|manter_tarefa|Continuar cumprindo sua tarefa no mesmo ritmo|Você evita se desligar por causa da vantagem curta.|Você muda o ritmo cedo e perde uma referência de marcação.
+@2081 J03.vantagem|O time está na frente depois dos 60 minutos. O portador precisa de ajuda para não transformar toda posse numa corrida isolada.|{"score_state":"ganhando","minute_min":60}
+posicionamento|aproximar_saida|Oferecer uma saída curta e visível|Você cria uma alternativa que permite manter a organização.|Você se oferece perto, mas atrás de um marcador.
+liderar|alternar_ritmo|Combinar quando acelerar e quando aproximar|O setor entende que conservar a posse exige movimento.|A combinação fica vaga e cada um escolhe um ritmo.
+visao|avaliar_distancias|Observar se os apoios conseguem acompanhar|Você evita incentivar um avanço sem continuidade.|Você olha apenas quem está adiante e ignora quem ficou para trás.
+tatico|preservar_largura|Guardar largura para desafogar a pressão|Sua posição mantém uma opção distante da aglomeração.|Você abre sem ajustar a profundidade e fica fora da jogada.
+@2082 J03.vantagem|Sua equipe está vencendo. A busca por mais um ataque precisa considerar o espaço que ficará disponível se a bola mudar de lado.|{"score_state":"ganhando"}
+posicionamento|equilibrar_avanco|Manter uma distância que permita recompor|Você ajuda o ataque sem se desligar da proteção.|Você avança junto de todos e deixa a proteção distante.
+visao|rastrear_saida_rival|Observar a primeira opção de saída adversária|Você reconhece quem precisará ser acompanhado numa perda.|Você segue o portador e não observa a opção de saída.
+liderar|combinar_protecao|Combinar uma referência para quem não avança|O setor define a proteção sem interromper o ataque.|A combinação não define quem assume a referência.
+disciplina|evitar_atropelo|Esperar o desenvolvimento sem forçar uma corrida extra|Você mantém sua função disponível para a continuação.|Você espera longe da ação e perde utilidade no lance.
+@2083 J03.desvantagem|Sua equipe perde por um gol. Você pode ajudar a reagir sem fingir que uma corrida individual resolve o placar.|{"score_state":"perdendo","margin_max":1}
+posicionamento|reconectar|Aproximar os apoios ao redor da bola|Você reduz as distâncias para uma reação organizada.|Você se aproxima pelo mesmo corredor de outro apoio.
+liderar|organizar_tarefas|Propor uma tarefa clara para o setor|A proposta dá uma referência simples para a próxima jogada.|A proposta inclui tarefas demais e não organiza o setor.
+visao|escolher_espaco|Procurar a ligação que o rival deixa disponível|Você identifica uma passagem para dar continuidade.|Você se fixa no gol e ignora as ligações necessárias.
+disciplina|manter_equilibrio|Seguir sua função apesar da pressa|Você evita abandonar uma responsabilidade por impulso.|A pressa faz você trocar de referência sem avisar.
+@2084 J03.desvantagem|O time está atrás no placar depois dos 60 minutos. Você está sem a bola e quer participar mais sem encurtar o campo para os próprios colegas.|{"score_state":"perdendo","minute_min":60}
+posicionamento|abrir_corredor|Abrir um corredor de apoio diferente|Você oferece uma opção que não disputa o espaço do colega.|Você corre para uma faixa já ocupada.
+liderar|pedir_alternancia|Pedir movimentos em tempos diferentes|O setor evita fazer todas as corridas no mesmo instante.|A orientação não é compreendida e os movimentos continuam juntos.
+visao|observar_bloco|Conferir onde o bloco adversário deixa intervalo|Você encontra um espaço entre referências, sem inventar uma passagem livre.|Você confunde distância entre rivais com uma linha de passe aberta.
+tatico|sustentar_continuidade|Guardar apoio para a segunda tentativa|Você mantém uma ligação se o primeiro movimento não funcionar.|Você guarda apoio longe demais para participar da continuidade.
+@2085 J03.desvantagem|Sua equipe está perdendo. Um companheiro começa a pedir a bola com muita urgência, e você precisa decidir como colaborar na próxima ação.|{"score_state":"perdendo"}
+apoio|acolher_pressa|Reconhecer a urgência e indicar uma opção concreta|Sua indicação transforma a cobrança numa referência de apoio.|Sua indicação não é específica e a urgência continua sem direção.
+liderar|combinar_referencia|Combinar onde vocês vão se apresentar|Vocês definem referências diferentes para a mesma jogada.|Vocês entendem o mesmo lugar e duplicam a aproximação.
+posicionamento|oferecer_linha|Apresentar-se para dar continuidade|Seu movimento oferece uma opção sem exigir um passe forçado.|Você se apresenta no ângulo que a marcação já controla.
+disciplina|focar_proxima|Concentrar-se na próxima tarefa, sem discutir o erro anterior|Você acompanha a sequência sem perder tempo com uma cobrança antiga.|Você continua pensando na cobrança e demora a retomar sua referência.
+@2086 J03.disciplina|Você já tem um cartão nesta partida e continua em campo. O portador avança perto do seu setor; sua decisão precisa considerar esse limite.|{"own_cards_min":1}
+posicionamento|acompanhar_distancia|Controlar a distância sem se lançar|Você dificulta o avanço preservando seus apoios.|Você concede distância demais e perde influência na jogada.
+visao|antecipar_sem_contato|Ler a linha antes de tentar alcançá-la|Você ajusta o espaço sem depender de um contato atrasado.|Você identifica a linha tarde e não consegue fechá-la.
+liderar|pedir_divisao|Pedir que o colega assuma a aproximação|O colega entende a divisão enquanto você protege o setor.|O pedido chega sem referência e ninguém assume a aproximação.
+disciplina|evitar_discussao|Guardar a atenção para a bola|Você mantém o foco sem entrar em outra discussão.|Você se distrai com a cobrança e perde a referência da bola.
+@2087 J03.protagonismo|Você já marcou nesta partida, que ainda está em andamento. É importante continuar oferecendo trabalho ao time sem viver só do gol anterior.|{"own_goals_min":1}
+posicionamento|seguir_apoio|Voltar a oferecer linhas de apoio|Você continua participando sem esperar apenas outra finalização.|Você se aproxima sem olhar a marcação e fica escondido.
+liderar|valorizar_coletivo|Reforçar uma orientação de organização do setor|Você ajuda a manter o setor atento à continuidade.|Sua fala vira celebração prolongada e não organiza o setor.
+visao|ler_ajuste|Observar como a marcação reage à sua movimentação|Você identifica uma mudança de referência e ajusta sua posição.|Você presume que tudo continua igual e perde a nova referência.
+disciplina|proxima_tarefa|Concentrar-se na tarefa da próxima jogada|Você retoma a função sem depender do resultado anterior.|Você tenta repetir o lance do gol sem ler o contexto atual.
+@2088 J03.cuidado_fisico|Seu risco de desgaste físico está elevado. Ainda em campo, você precisa escolher movimentos com atenção, sem presumir que esteja lesionado.|{"injury_risk_min":35}
+posicionamento|antecipar_espaco|Antecipar a ocupação do espaço|Você reduz a necessidade de uma corrida de correção.|Você ocupa o espaço errado e precisa corrigir de novo.
+visao|ler_antes|Observar antes de iniciar uma perseguição|Você distingue a corrida necessária da que só afastaria você.|Você observa tarde e precisa reagir sem preparação.
+liderar|pedir_cobertura_fisica|Avisar que precisa dividir a cobertura|O setor entende como dividir o próximo deslocamento.|O aviso não explica o deslocamento e a divisão não acontece.
+disciplina|gesto_controlado|Manter gestos controlados e atenção aos apoios|Você segue a tarefa sem aumentar os movimentos desnecessários.|Você acelera por impulso e perde o controle do apoio.
+@2089 J03.boa_fase|Suas últimas atuações tiveram boas avaliações. Durante a partida atual, você quer aproveitar a confiança sem tratar qualquer escolha como garantida.|{"recent_form":"boa"}
+visao|reler_contexto|Ler a jogada antes de repetir uma solução antiga|Você reconhece uma diferença que exige outro posicionamento.|Você procura a solução anterior e ignora a diferença atual.
+liderar|dividir_confianca|Passar uma orientação curta ao companheiro próximo|Sua orientação ajuda o colega sem transformar confiança em cobrança.|Sua fala parece uma cobrança e não ajuda o colega a se orientar.
+posicionamento|oferta_constante|Manter-se disponível para a continuidade|Você preserva uma opção mesmo sem ser o centro da jogada.|Você espera a bola sem ajustar o ângulo de apoio.
+disciplina|rotina|Repetir a rotina de atenção aos movimentos|Você sustenta a concentração sem depender do elogio anterior.|Você se acomoda com as avaliações e perde uma referência.
+@2090 F01.entrevista_funcao|Depois da partida, a comunicação do clube pergunta como você explicaria sua função para quem acompanha de fora. Você pode responder sem expor instruções internas.|{"finished":true}
+imprensa|explicar_limite|Explicar sua tarefa em termos gerais|Sua resposta descreve seu trabalho sem revelar o plano interno.|Você usa termos vagos e não esclarece sua função.
+apoio|reconhecer_setor|Reconhecer a colaboração dos companheiros|Você mostra como seu trabalho depende do setor.|Sua resposta soa como uma lista pronta e não explica a colaboração.
+disciplina|resposta_curta|Dar uma resposta curta sobre sua responsabilidade|Você comunica um ponto claro sem tentar avaliar todo o time.|Você encurta demais e deixa a resposta incompreensível.
+social|pedir_tempo|Pedir um momento para organizar a resposta|Você consegue responder com calma depois da pausa.|Você continua sem organizar o ponto que queria explicar.
+@2091 F01.revisao_lance|O analista convida você a rever uma decisão da partida encerrada. O foco é entender seu raciocínio, sem atribuir um erro a outra pessoa.|{"finished":true}
+tatico|descrever_leitura|Descrever o que você enxergou no instante|O analista entende sua leitura e consegue discutir o ajuste.|Você descreve o resultado, mas não explica o que havia percebido.
+disciplina|separar_fatos|Separar sua intenção do que realmente ocorreu|Você reconhece a diferença sem inventar uma justificativa.|Você mistura intenção e resultado e mantém a análise confusa.
+apoio|ouvir_outra_visao|Pedir a leitura de um colega envolvido|A outra leitura revela uma referência que você não tinha visto.|Vocês discutem conclusões sem esclarecer as referências do lance.
+social|assumir_duvida|Admitir qual parte da decisão você não lembra bem|Você delimita a dúvida e evita uma explicação inventada.|Você preenche a lacuna com suposições e precisa voltar atrás.
+@2092 F01.feedback_individual|Após o jogo, o auxiliar pede que você escolha um ponto para conversar. A ideia é sair com um foco de trabalho, não com uma promessa de escalação.|{"finished":true}
+disciplina|ponto_concreto|Escolher uma decisão que quer compreender|A conversa termina com uma dúvida concreta para trabalhar.|Você escolhe um tema amplo demais para orientar o trabalho.
+apoio|perguntar_ajuda|Perguntar como pode ajudar melhor o setor|O auxiliar aponta uma contribuição possível sem prometer titularidade.|Sua pergunta soa como cobrança de espaço e desvia a conversa.
+tatico|alinhar_interpretacao|Conferir se entendeu a orientação recebida|Você identifica um entendimento que precisava de ajuste.|Você repete a frase sem demonstrar que compreendeu a aplicação.
+social|ouvir_primeiro|Ouvir a avaliação antes de responder|Você distingue a crítica ao gesto de uma avaliação pessoal.|Você se prepara para rebater e deixa de ouvir o ponto principal.
+@2093 F01.credito_coletivo|A equipe venceu a partida encerrada. Ao conversar sobre o jogo, você quer valorizar a vitória sem transformar a análise em euforia antecipada.|{"finished":true,"score_state":"ganhando"}
+imprensa|reconhecer_trabalho|Falar do trabalho coletivo que sustentou o resultado|Você reconhece a vitória sem prometer que ela se repetirá.|Sua resposta vira uma promessa que você não consegue sustentar.
+apoio|lembrar_colegas|Reconhecer quem colaborou sem aparecer tanto|O reconhecimento aproxima você dos colegas citados.|Você se expressa de forma confusa e parece comparar os colegas.
+disciplina|manter_rotina|Lembrar que a rotina precisa continuar|Sua fala valoriza o resultado sem abandonar o trabalho seguinte.|Sua fala parece minimizar a vitória e não transmite o que pretendia.
+social|ouvir_grupo|Ouvir como os colegas enxergaram o jogo|Você entende percepções diferentes da mesma partida.|Você interrompe as falas e não consegue ouvir as outras percepções.
+@2094 F01.derrota_sem_culpa|A partida encerrada terminou em derrota. Um companheiro quer conversar antes de voltar para casa, e você pode acolher sem escolher um culpado.|{"finished":true,"score_state":"perdendo"}
+apoio|escutar|Ouvir o que pesou para o companheiro|Ele encontra espaço para falar sem ser reduzido ao resultado.|Você tenta explicar tudo cedo demais e não escuta a preocupação dele.
+social|separar_resultado|Separar a frustração do julgamento pessoal|A conversa reconhece a derrota sem desvalorizar a pessoa.|Sua fala parece ignorar a frustração e não acolhe o companheiro.
+disciplina|revisao_depois|Combinar uma revisão com a cabeça mais fria|Vocês definem outro momento sem fingir que a conversa resolveu tudo.|O combinado fica vago e não orienta o próximo passo.
+liderar|responsabilidade|Falar da parte que cabe a você|Você assume sua participação sem distribuir acusações.|Você tenta assumir tudo e impede uma conversa equilibrada.
+@2095 F02.moradia_rotina|Na folga, você percebe que o trajeto entre casa e treino dificulta organizar o dia. Você quer pensar em ajustes sem tomar uma mudança de cidade por garantida.|{}
+disciplina|mapear_horarios|Anotar os horários que mais atrapalham|Você identifica um ajuste possível na sua rotina.|Você anota compromissos demais sem identificar o problema principal.
+social|ouvir_familia|Conversar com quem divide a rotina com você|A conversa esclarece limites que precisam ser respeitados.|Vocês discutem soluções antes de concordar sobre o problema.
+apoio|pedir_experiencia|Pedir dicas práticas a um companheiro|As dicas ajudam você a testar uma organização diferente.|As dicas não combinam com sua rotina e não resolvem o trajeto.
+lazer|pausa_planejamento|Fazer uma pausa antes de decidir|Você volta ao planejamento sem a pressa do momento.|Você continua pensando no trajeto e não consegue aproveitar a pausa.
+@2096 F02.estudo_autonomia|Você encontra um curso curto que cabe em parte do tempo livre. A decisão é como estudar sem assumir um compromisso maior do que consegue cumprir.|{}
+disciplina|teste_carga|Testar uma aula antes de assumir o curso|Você entende a carga e define uma meta possível.|Você inicia sem reservar tempo e não conclui a aula.
+social|trocar_ideias|Conversar com alguém que já fez o curso|A experiência da pessoa ajuda a esclarecer sua dúvida.|A conversa trata de outra rotina e não esclarece sua escolha.
+apoio|estudo_dupla|Combinar um horário de estudo com um colega interessado|O horário combinado torna o compromisso mais fácil de organizar.|Vocês escolhem um horário que nenhum dos dois consegue manter.
+lazer|preservar_descanso|Reservar primeiro seu tempo de descanso|Você organiza o estudo sem consumir toda a folga.|Você deixa a organização para depois e continua sem um limite claro.
+@2097 F02.limite_mensagem|Um familiar quer notícias suas durante uma semana ocupada. Você quer manter contato sem prometer disponibilidade a qualquer hora.|{}
+social|horario_combinado|Combinar um horário para conversar com calma|O familiar entende quando poderá contar com sua atenção.|Você sugere um horário sem conferir a rotina e não esclarece o combinado.
+disciplina|mensagem_clara|Explicar sua agenda em uma mensagem curta|Sua explicação transmite disponibilidade com limites compreensíveis.|A mensagem fica seca e não explica por que o tempo está curto.
+apoio|ouvir_necessidade|Perguntar de que apoio a pessoa precisa agora|Você identifica uma necessidade concreta sem presumir o problema.|Você oferece uma solução antes de ouvir e não entende a necessidade.
+lazer|conversa_leve|Separar alguns minutos de conversa sem falar de futebol|A conversa permite uma pausa dos assuntos do clube.|Você retorna ao futebol o tempo todo e não consegue mudar o assunto.
+@2098 F02.compromisso_social|Um projeto do bairro pede uma participação numa atividade futura. Você ainda precisa verificar se a data cabe na sua agenda.|{}
+disciplina|checar_data|Conferir a agenda antes de confirmar|Você responde com uma disponibilidade que consegue cumprir.|Você deixa de conferir um compromisso e precisa corrigir a resposta.
+apoio|alternativa_util|Perguntar que outra contribuição seria útil|Você identifica uma ajuda que não depende de estar presente.|Você oferece algo que o projeto não consegue utilizar.
+social|explicar_limite|Explicar por que não pode prometer presença ainda|A pessoa entende seu limite sem receber uma promessa vazia.|Sua explicação fica ambígua e parece uma confirmação.
+liderar|construir_proposta|Ajudar a organizar uma proposta menor e viável|A proposta respeita a agenda e o objetivo do projeto.|Você amplia a proposta em vez de torná-la viável.
+@2099 F02.futuro_sem_contrato|Na folga, você quer registrar o que procura na carreira. Não há proposta nova nesta conversa consigo mesmo; o foco é reconhecer prioridades.|{}
+disciplina|listar_prioridades|Escrever duas prioridades que dependem de você|Você distingue objetivos de trabalho de resultados que não controla.|Você registra só resultados e não encontra uma prioridade prática.
+social|conversar_confianca|Conversar com alguém de confiança sobre suas dúvidas|A conversa ajuda a formular a dúvida sem prometer uma transferência.|A conversa vira comparação com outras carreiras e não esclarece sua dúvida.
+apoio|ouvir_experiencia|Ouvir a experiência de um companheiro sem copiar o caminho|Você recolhe referências preservando suas próprias prioridades.|Você trata a experiência dele como uma regra para sua carreira.
+lazer|dar_tempo|Aproveitar a folga antes de fechar uma conclusão|A pausa permite voltar ao tema sem decidir por ansiedade.|Você passa a folga antecipando cenários e não encontra descanso.

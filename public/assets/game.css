@@ -46,6 +46,9 @@ header nav .new-career-link{color:var(--lime);font-weight:700}
 
 .athlete-club{flex-wrap:wrap}.athlete-club .squad-link{flex-basis:100%;margin-top:0}
 
+/* Foco e scroll programático precisam considerar o menu fixo, além da reserva no fim. */
+@media(max-width:760px){html{scroll-padding-bottom:calc(var(--bottom-nav-space,112px) + 12px)}button.choice{scroll-margin-block:12px}}
+@media(max-width:760px){.narrative-scene h2{font-size:16px;line-height:1.4;margin-bottom:8px}.narrative-scene .choice{min-height:48px;padding:10px;font-size:14px;line-height:1.35;gap:10px}.narrative-scene .choice b{font-size:16px}.narrative-scene>p{font-size:13px}}
 /* Pacote 1.0: reserva real para navegação, inclusive zoom e safe area. */
 .table-return{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px}.table-return p{margin:0}.table-return .btn{min-height:44px}a:focus-visible,button:focus-visible{outline:3px solid var(--lime);outline-offset:3px}[hidden]{display:none!important}
 @media(max-width:760px){body{padding-bottom:var(--bottom-nav-space,calc(112px + env(safe-area-inset-bottom)))}header nav.authenticated{grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:max(8px,env(safe-area-inset-bottom))}header nav.authenticated .new-career-link{display:none}header nav.authenticated>a,header nav.authenticated form button{min-height:48px;font-size:12px;overflow-wrap:anywhere}footer{margin-bottom:16px}}

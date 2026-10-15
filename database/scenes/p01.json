@@ -1,0 +1,477 @@
+[
+  {
+    "id": 2010,
+    "stage": "pre_jogo",
+    "module": "P01",
+    "family": "P01.duvida_de_funcao",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Antes de sair do vestiário, o auxiliar pede que cada jogador confirme sua função. Você quer evitar interpretações diferentes do plano.",
+    "options": [
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Resumir sua função para o auxiliar",
+        "effects": {
+          "visao_jogo": 1,
+          "posicionamento": 1,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Ele confirma que seu entendimento coincide com o plano.",
+        "failure_text": "Seu resumo mistura duas tarefas que não eram simultâneas.",
+        "semantic_intent": "confirmar_tarefa",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Conferir o combinado com seu setor",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês identificam a mesma referência para começar o jogo.",
+        "failure_text": "Cada um entende uma referência e a dúvida permanece.",
+        "semantic_intent": "alinhar_setor",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Fazer uma pergunta sobre sua principal dúvida",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "A resposta esclarece exatamente o ponto que faltava.",
+        "failure_text": "Sua pergunta fica ampla e não resolve a dúvida principal.",
+        "semantic_intent": "pergunta_objetiva",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Repassar mentalmente o primeiro movimento",
+        "effects": {
+          "visao_jogo": 1,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece onde deve se apresentar no início.",
+        "failure_text": "Você imagina a bola, mas esquece o espaço a proteger.",
+        "semantic_intent": "visualizar",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2011,
+    "stage": "pre_jogo",
+    "module": "P01",
+    "family": "P01.reserva_leitura",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "bench": true,
+      "bench_confirmed": true
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você foi relacionado para começar no banco. O auxiliar pergunta o que pode observar enquanto aguarda uma eventual entrada.",
+    "options": [
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Acompanhar as distâncias entre os setores",
+        "effects": {
+          "visao_jogo": 1,
+          "posicionamento": 1,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você define referências úteis para observar durante a espera.",
+        "failure_text": "Você escolhe referências demais e perde o foco da observação.",
+        "semantic_intent": "observar_espacos",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar como avisar o auxiliar de uma abertura",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês acertam uma maneira simples de trocar observações.",
+        "failure_text": "A combinação fica vaga e vocês não definem quando conversar.",
+        "semantic_intent": "disponibilidade",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Confirmar a rotina de aquecimento dos reservas",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você sabe quando deve aquecer sem gastar energia à toa.",
+        "failure_text": "Você confunde a sequência e precisa pedir a orientação novamente.",
+        "semantic_intent": "aquecimento",
+        "match_event": false
+      },
+      {
+        "code": "social",
+        "action": "social",
+        "text": "Explicar com calma que quer contribuir",
+        "effects": {
+          "foco": 3,
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Você expressa sua disposição sem exigir uma entrada garantida.",
+        "failure_text": "A ansiedade faz sua fala soar como cobrança por uma promessa.",
+        "semantic_intent": "lidar_expectativa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2012,
+    "stage": "pre_jogo",
+    "module": "P01",
+    "family": "P01.primeiro_contato",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {
+      "starter": true
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A entrada em campo se aproxima. Você prefere definir uma referência simples para não tentar resolver tudo no primeiro lance.",
+    "options": [
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Escolher uma tarefa simples para começar",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você organiza a atenção em uma tarefa compatível com sua função.",
+        "failure_text": "Você escolhe várias tarefas e continua sem uma prioridade.",
+        "semantic_intent": "foco_inicial",
+        "match_event": false
+      },
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Relembrar o sinal combinado com a comissão",
+        "effects": {
+          "visao_jogo": 1,
+          "posicionamento": 1,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece o sinal que orientará seu primeiro ajuste.",
+        "failure_text": "Você mistura sinais e precisa confirmar o combinado.",
+        "semantic_intent": "confirmar_sinal",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Dizer ao colega onde vai oferecer apoio",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O colega entende onde poderá encontrar você.",
+        "failure_text": "Sua indicação fica ambígua e ele pede que você repita.",
+        "semantic_intent": "comunicar_apoio",
+        "match_event": false
+      },
+      {
+        "code": "recuperar",
+        "action": "social",
+        "text": "Fazer a respiração do aquecimento com calma",
+        "effects": {
+          "energia": 8,
+          "risco_lesao": -4
+        },
+        "failure_effects": {},
+        "severe_failure_effects": {},
+        "success_text": "Você encontra um ritmo confortável antes da entrada.",
+        "failure_text": "Você força a respiração e não consegue desacelerar a ansiedade.",
+        "semantic_intent": "respiracao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2013,
+    "stage": "pre_jogo",
+    "module": "P01",
+    "family": "P01.pergunta_limite",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O auxiliar abre uma última rodada de dúvidas sobre o plano. Você quer entender o limite entre pressionar e preservar a organização.",
+    "options": [
+      {
+        "code": "tatico",
+        "action": "social",
+        "text": "Perguntar qual é o sinal para recuar",
+        "effects": {
+          "visao_jogo": 1,
+          "posicionamento": 1,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você entende quando interromper a pressão sem isolar o setor.",
+        "failure_text": "A resposta não fica clara e você precisa pedir um exemplo.",
+        "semantic_intent": "limite_pressao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Relacionar sua posição à localização da bola",
+        "effects": {
+          "visao_jogo": 1,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica uma referência que consegue acompanhar.",
+        "failure_text": "Você considera só a bola e esquece a distância do setor.",
+        "semantic_intent": "referencia_bola",
+        "match_event": false
+      },
+      {
+        "code": "liderar",
+        "action": "social",
+        "text": "Pedir que o setor repita o combinado",
+        "effects": {
+          "lideranca": 5,
+          "entrosamento": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O setor percebe e resolve uma interpretação diferente.",
+        "failure_text": "A conversa fica atravessada e a diferença permanece.",
+        "semantic_intent": "checar_colegas",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Guardar uma instrução curta do auxiliar",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "A instrução curta ajuda a organizar sua tomada de decisão.",
+        "failure_text": "Você decora a frase sem compreender quando aplicá-la.",
+        "semantic_intent": "anotar_chave",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2014,
+    "stage": "pre_jogo",
+    "module": "P01",
+    "family": "P01.cuidado_bola_parada",
+    "tags": [
+      "concentracao"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A comissão relembra as responsabilidades em bolas paradas. Você precisa saber o que fazer mesmo quando não participa da cobrança.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Confirmar onde deve proteger a sobra",
+        "effects": {
+          "posicionamento": 1,
+          "ritmo_jogo": 2
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você identifica seu espaço sem disputar a mesma função do colega.",
+        "failure_text": "Você confunde a sobra com a segunda trave.",
+        "semantic_intent": "proteger_sobra",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Conferir com quem pode trocar a marcação",
+        "effects": {
+          "entrosamento": 6,
+          "moral_pessoal": 3
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês combinam como comunicar uma troca necessária.",
+        "failure_text": "Vocês não definem quem deve avisar primeiro.",
+        "semantic_intent": "troca_marcacao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Repassar a saída após um corte",
+        "effects": {
+          "visao_jogo": 1,
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você sabe qual espaço procurar depois da primeira disputa.",
+        "failure_text": "Você pensa apenas na disputa e esquece a continuidade.",
+        "semantic_intent": "observar_saida",
+        "match_event": false
+      },
+      {
+        "code": "disciplina",
+        "action": "social",
+        "text": "Relembrar a orientação sobre contatos",
+        "effects": {
+          "foco": 3
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você entende como disputar espaço sem depender de agarrões.",
+        "failure_text": "Você se concentra no contato e perde a referência da bola.",
+        "semantic_intent": "limite_contato",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  }
+]
