@@ -21,7 +21,7 @@ final class Onboarding {
         throw new InvalidArgumentException('Escolha uma cidade válida da UF informada. Use o nome do município, não o bairro.');
     }
     public static function prepare(array $g): array {
-        $g['origin']=self::origin($g['city'],$g['uf']);$g['city']=$g['origin']['name'];
+        if(($g['residence_country']??'BR')==='BR'){$g['origin']=self::origin($g['city'],$g['uf']);$g['city']=$g['origin']['name'];}
         $g['official']=true;$g['starting']=true;$g['starting_country']='BR';$g['entry_seed']=bin2hex(random_bytes(16));$g['club']='Sem clube';$g['teams']=[];$g['matches']=[];
         $g['season_competitions']=[];$g['competitions']=[];$g['competition_results']=[];$g['initial_candidates']=[];
         return $g;
@@ -35,7 +35,7 @@ final class Onboarding {
         if(!in_array($division,['sp-a3','sp-a4'],true) && !str_ends_with($division,'-entrada'))throw new InvalidArgumentException('Divisão de entrada inválida.');
         $locations=json_decode(file_get_contents(dirname(__DIR__).'/database/starting-clubs.json'),true,512,JSON_THROW_ON_ERROR);$pool=[];
         foreach(Competition::catalog()[$division]['teams'] as $club) {
-            $location=$locations[$club];$pool[]=['club'=>$club,'city'=>$location['name'],'uf'=>$location['uf'],'distance_km'=>round(self::distance($origin,$location),1)];
+            $location=$locations[$club];$known=isset($origin['lat'],$origin['lon']);$pool[]=['club'=>$club,'city'=>$location['name'],'uf'=>$location['uf'],'distance_km'=>$known?round(self::distance($origin,$location),1):null];
         }
         usort($pool,fn($a,$b)=>($a['distance_km']<=>$b['distance_km'])?:strcmp($a['club'],$b['club']));return array_slice($pool,0,3);
     }
@@ -43,7 +43,8 @@ final class Onboarding {
         if($g['handicap'] && str_starts_with($g['feedback']['text']??'','Perfil inicial:')) { echo '<div class="entry-draw">';Wheel::render(Rules::HANDICAPS,$g['handicap'],'handicap:'.$g['id']);echo '</div>'; }
         $competition=Competition::catalog()[$g['entry_division']];$division=$competition['name'];$count=count($g['initial_candidates']);$country=$g['starting_country']??'BR';$heading=$count===1?'Uma porta se abriu':($count===2?'Duas portas se abriram':'Três portas se abriram');
         echo '<article class="panel entry-offers"><p class="tag">SEU PRIMEIRO CLUBE · '.e($division).'</p><h2>'.$heading.'</h2>';
-        if($country==='BR')echo '<p>Escolha onde começar. Estes são os clubes mais próximos de '.e($g['city'].' / '.$g['uf']).' nesta divisão.</p><p class="subtle">Distâncias aproximadas em linha reta entre cidades.</p>';
+        if($country==='BR' && isset($g['origin']['lat'],$g['origin']['lon']))echo '<p>Escolha onde começar. Estes são os clubes mais próximos de '.e($g['city'].' / '.$g['uf']).' nesta divisão.</p><p class="subtle">Distâncias aproximadas em linha reta entre cidades.</p>';
+        elseif($country==='BR')echo '<p>Oportunidades no estado escolhido para sua estreia. Sua residência no exterior não foi usada para inventar distâncias.</p>';
         else echo '<p>Escolha seu primeiro clube em '.e(EntryCountries::name($country)).'. Estas oportunidades vieram da divisão de entrada.</p>';
         if(!empty($competition['rules']['note']))echo '<p class="subtle">'.e($competition['rules']['note']).'</p>';
         form('/carreira/clube-inicial',$g);

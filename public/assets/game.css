@@ -45,3 +45,8 @@ header nav .new-career-link{color:var(--lime);font-weight:700}
 .squad-link{font-size:11px;display:block;margin-top:10px}.squad-table{font-size:13px}.squad-table td{vertical-align:middle}.squad-table small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.squad-table td:last-child b{font-size:20px;color:var(--lime)}.squad-reference h1{font-size:30px}.squad-reference{max-width:800px;margin:auto}
 
 .athlete-club{flex-wrap:wrap}.athlete-club .squad-link{flex-basis:100%;margin-top:0}
+
+/* Pacote 1.0: reserva real para navegação, inclusive zoom e safe area. */
+.table-return{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px}.table-return p{margin:0}.table-return .btn{min-height:44px}a:focus-visible,button:focus-visible{outline:3px solid var(--lime);outline-offset:3px}[hidden]{display:none!important}
+@media(max-width:760px){body{padding-bottom:var(--bottom-nav-space,calc(112px + env(safe-area-inset-bottom)))}header nav.authenticated{grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:max(8px,env(safe-area-inset-bottom))}header nav.authenticated .new-career-link{display:none}header nav.authenticated>a,header nav.authenticated form button{min-height:48px;font-size:12px;overflow-wrap:anywhere}footer{margin-bottom:16px}}
+

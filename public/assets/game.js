@@ -72,6 +72,7 @@ if (cityUf && cityList) {
     if (cityRequest) cityRequest.abort();
     cityRequest = new AbortController();
     cityList.replaceChildren();
+    if (document.querySelector('[name="residence_country"]')?.value !== 'BR') return;
     try {
       const response = await fetch('/api/cidades?uf=' + encodeURIComponent(cityUf.value), { signal: cityRequest.signal });
       if (!response.ok) return;
@@ -80,5 +81,24 @@ if (cityUf && cityList) {
     } catch (_) { /* O campo continua disponível e a validação permanece no servidor. */ }
   };
   cityUf.addEventListener('change', loadCities);
+  const residence = document.querySelector('[name="residence_country"]');
+  const updateResidence = () => {
+    const brazil = residence?.value === 'BR';
+    document.querySelectorAll('[data-brazil-location]').forEach(el => { el.hidden = !brazil; });
+    document.querySelectorAll('[data-foreign-location]').forEach(el => { el.hidden = brazil; });
+    loadCities();
+  };
+  residence?.addEventListener('change', updateResidence);
+  updateResidence();
   loadCities();
+}
+
+const bottomNav = document.querySelector('header nav.authenticated');
+if (bottomNav && 'ResizeObserver' in window) {
+  const reserveNav = () => document.documentElement.style.setProperty('--bottom-nav-space',
+    window.matchMedia('(max-width:760px)').matches ? `${Math.ceil(bottomNav.getBoundingClientRect().height) + 24}px` : '0px');
+  new ResizeObserver(reserveNav).observe(bottomNav);
+  window.addEventListener('resize', reserveNav);
+  window.visualViewport?.addEventListener('resize', reserveNav);
+  reserveNav();
 }

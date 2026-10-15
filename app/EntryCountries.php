@@ -27,7 +27,10 @@ final class EntryCountries {
         foreach(Competition::catalog()[$division]['teams'] as $name){$club=$clubs[$name]??null;if(!$club || ($club['country']??'BR')!==$country || !empty($club['reserve']))continue;$pool[]=['club'=>$name,'country'=>$country,'city'=>$club['city']??self::name($country),'uf'=>$country,'distance_km'=>null];}
         usort($pool,fn($a,$b)=>strcmp(hash('sha256',$seed.':'.$a['club']),hash('sha256',$seed.':'.$b['club'])));return array_slice($pool,0,3);
     }
-    public static function create(string $name,string $city,string $uf,string $position,string $country,string $plan):array {
-        self::validate($country,$plan);$g=Game::create($name,$city,$uf,$position);$g['starting_country']=$country;return $g;
+    public static function create(string $name,string $city,string $uf,string $position,string $country,string $plan,string $residence='BR',string $region='',string $entryUf='SP'):array {
+        self::validate($country,$plan);
+        $g=Game::legacyCreate($name,$residence==='BR'?$city:'São Paulo',$residence==='BR'?$uf:'SP',$position);
+        $g=CurrentLocation::apply($g,$residence,$city,$residence==='BR'?$uf:$region,$entryUf);
+        $g=Onboarding::prepare($g);$g['starting_country']=$country;return $g;
     }
 }
