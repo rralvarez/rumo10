@@ -1,5 +1,7 @@
 # Publicação FTPS e SQL inicial — 14/10/2026
 
+**Estado atual: [publicação concluída e validação na UOL](35_Validacao_Producao_UOL.md).** Os parágrafos de preparação abaixo registram as etapas anteriores; ambos os sites já foram publicados. Não repetir o SQL inicial.
+
 Alternativa escolhida ao SSH: GitHub Actions com FTPS explícito (FTP + TLS), certificado validado, porta 21. As duas contas autenticaram e alcançaram as raízes dos sites em um teste somente de leitura. Não houve upload à UOL nem criação/importação de banco remoto.
 
 ## Contas e destinos

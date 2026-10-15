@@ -1,8 +1,8 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
-**Publicação por FTPS (sem SSH):** [SQL inicial único, destinos privados e Actions](Docs/34_Publicacao_FTPS_e_SQL_Inicial.md). As duas contas FTP autenticaram por TLS; nenhum arquivo foi enviado à UOL. SQL sanitizado disponível no repositório RumoHub; automação depende da configuração inicial e habilitação explícita.
+**Produção UOL por FTPS (sem SSH):** [estado da publicação e verificações reais](Docs/35_Validacao_Producao_UOL.md). Banco inicial importado pelo usuário; PHP, MySQL e HTTPS da hospedagem verificados. Consulte esse registro para a conclusão dos workflows e limites dos testes. [Instalação e funcionamento do deploy](Docs/34_Publicacao_FTPS_e_SQL_Inicial.md).
 
-**Preparação UOL Host/cPanel:** [layout privado, catálogo sem contas locais, GitHub Actions e validação](Docs/33_Publicacao_UOL_Host.md). Workflow de publicação desativado até configurar e validar SSH. O IIS local permanece inalterado; produção ainda não publicada/testada.
+**Alternativa SSH:** [guia de preparação](Docs/33_Publicacao_UOL_Host.md), conservado como referência opcional; o fluxo escolhido usa FTPS. O IIS local permanece inalterado.
 
 **Textos em português brasileiro:** revisão das 214 situações e 856 alternativas, com escolhas mais claras e termos de futebol mais naturais. [Alterações e verificação](Docs/24_Revisao_dos_Textos_ptBR.md).
 
@@ -106,7 +106,7 @@ DocumentRoot /srv/rumo10/public
 
 Ative `APP_ENV=production` e `APP_URL=https://seu-dominio`. FastCGI deve informar `HTTPS=on`; proxy TLS precisa transmitir isso com configuração confiável no servidor (a aplicação não confia em headers arbitrários de proxy). Cookies Secure/HSTS somente em HTTPS; produção em HTTP retorna 503 até o TLS estar configurado. As regras de `public/.htaccess` negam arquivos sensíveis e executam apenas o front controller. Se o provedor negar `Options`, mova `Options -Indexes -MultiViews` para a configuração autorizada do VirtualHost; não remova a proteção sem equivalente. Em hospedagem com raiz fixa, mantenha internos fora dela e publique somente o conteúdo de `public`, ajustando o caminho de bootstrap; valide antes de liberar.
 
-Repita o roteiro HTTP de `tests/http-smoke.ps1 -BaseUrl https://seu-dominio`. Não houve acesso ao Apache de produção; **não foi testado**. Credenciais e logs ficam fora da raiz pública. Prefixo não equivale a segurança: recomenda-se usuário MySQL dedicado com acesso apenas às tabelas `rumo10_*`; as credenciais locais reutilizadas do UcronIA precisam ser substituídas antes de produção.
+Use `bin/production-smoke.php` para a verificação pública sem escrita. Os fixtures de contas/carreiros de `tests/http.php` permanecem restritos ao ambiente local. [Validação efetiva na UOL e limites](Docs/35_Validacao_Producao_UOL.md). Credenciais e logs ficam fora da raiz pública. Produção usa credenciais próprias, diferentes das locais; prefixo de tabela não substitui controle de acesso do banco.
 
 ## Limitações atuais
 
