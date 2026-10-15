@@ -13,10 +13,14 @@ if(in_array('--maintenance',$argv,true)){
  $cases['/assets/clubs/test.png']=[403,404,503]; // Caminho inexistente passa pela ponte bloqueada.
  if($project==='rumohub')$cases['/api/v1/catalog']=[503];
 }
+// Apache pode encaminhar seu ErrorDocument 403 para a ponte em manutenção.
+if(in_array('--maintenance',$argv,true))foreach($cases as &$expected)if(!in_array(503,$expected,true))$expected[]=503;
+unset($expected);
 foreach($cases as $path=>$expected){
  $curl=curl_init($base.$path);curl_setopt_array($curl,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>20,CURLOPT_FOLLOWLOCATION=>false]);
  $body=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_RESPONSE_CODE);curl_close($curl);
  if($body===false || !in_array($status,$expected,true))throw new RuntimeException('Smoke falhou em '.$path.' (HTTP '.$status.').');
+ if($status===503 && trim((string)$body)!=='Estamos atualizando o site. Volte em instantes.')throw new RuntimeException('Resposta de manutenção inesperada em '.$path);
  echo $path.' : '.$status.' OK'.PHP_EOL;
 }
 echo "Smoke público HTTPS passou. Ainda confira login, cookie Secure, jogo e API assinada no servidor.\n";
