@@ -1,0 +1,32 @@
+{
+    "normal": {
+        "games": 420,
+        "goals": 0,
+        "assists": 12,
+        "growth": 3.66666666666665,
+        "seasons": 30,
+        "mean_growth": 0.12222222222222166,
+        "goals_per_game": 0,
+        "assists_per_game": 0.02857142857142857
+    },
+    "rapido": {
+        "games": 420,
+        "goals": 0,
+        "assists": 16,
+        "growth": 3.5555555555555642,
+        "seasons": 30,
+        "mean_growth": 0.11851851851851881,
+        "goals_per_game": 0,
+        "assists_per_game": 0.0380952380952381
+    },
+    "expresso": {
+        "games": 420,
+        "goals": 0,
+        "assists": 13,
+        "growth": 3.4444444444444358,
+        "seasons": 30,
+        "mean_growth": 0.11481481481481452,
+        "goals_per_game": 0,
+        "assists_per_game": 0.030952380952380953
+    }
+}

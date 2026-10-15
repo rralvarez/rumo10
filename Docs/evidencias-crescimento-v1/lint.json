@@ -1,0 +1,8 @@
+{
+  "php_files": 157,
+  "lint_errors": [],
+  "environments": [
+    "PHP CLI Windows local"
+  ],
+  "production_accessed": false
+}

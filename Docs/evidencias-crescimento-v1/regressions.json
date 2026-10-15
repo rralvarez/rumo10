@@ -1,0 +1,122 @@
+[
+  {
+    "test": "package-navigation",
+    "exit": 0,
+    "output": "OK: localização atual/legada/internacional, candidatos sem distância falsa e navegação somente GET.\n"
+  },
+  {
+    "test": "package-engine",
+    "exit": 0,
+    "output": "OK: 104 verificações; 45.000 partidas Monte Carlo. Iniciante gol 4.07%, assistência 4.86%.\n[\n    {\n        \"home\": 40,\n        \"away\": 80,\n        \"n\": 15000,\n        \"wins\": 0.0214,\n        \"draws\": 0.06366666666666666,\n        \"goals_for\": 0.42386666666666667,\n        \"goals_against\": 3.478466666666667\n    },\n    {\n        \"home\": 60,\n        \"away\": 60,\n        \"n\": 15000,\n        \"wins\": 0.42173333333333335,\n        \"draws\": 0.2774,\n        \"goals_for\": 1.3466666666666667,\n        \"goals_against\": 1.1012\n    },\n    {\n        \"home\": 80,\n        \"away\": 40,\n        \"n\": 15000,\n        \"wins\": 0.9504666666666667,\n        \"draws\": 0.04033333333333333,\n        \"goals_for\": 3.9912666666666667,\n        \"goals_against\": 0.3624\n    }\n]\n"
+  },
+  {
+    "test": "scene-consequences",
+    "exit": 0,
+    "output": "\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 188\nOK: 177747 verificações das 856 alternativas, quatro resultados, efeitos reais, contexto e disciplina.\n"
+  },
+  {
+    "test": "weekend-editorial",
+    "exit": 0,
+    "output": "OK: 511 verificações editoriais das 200 alternativas fora de campo.\n"
+  },
+  {
+    "test": "social-context",
+    "exit": 0,
+    "output": "OK: escolhas familiares e pessoais não afetam entrosamento; mensagens contextualizadas; apoio ao elenco preservado.\n"
+  },
+  {
+    "test": "scene-failures",
+    "exit": 0,
+    "output": "OK: 1153 verificações; falhas das 856 alternativas, consultas contextualizadas e efeitos preservados.\n"
+  },
+  {
+    "test": "finishing",
+    "exit": 0,
+    "output": "OK: 6721 verificações em 28 alternativas de chute; 407 gols e 713 falhas.\n"
+  },
+  {
+    "test": "match-balance",
+    "exit": 0,
+    "output": "OK: 35 verificações. Iniciante: gol 60.23%; assistência 82.5%.\n"
+  },
+  {
+    "test": "match-momentum",
+    "exit": 0,
+    "output": "OK: 2425 verificações de sequência, chance elevada, gol, assistência, falha e consumo único.\n"
+  },
+  {
+    "test": "career-stats",
+    "exit": 0,
+    "output": "OK: 9 verificações do histórico por clube e carreira.\n"
+  },
+  {
+    "test": "compact-results",
+    "exit": 0,
+    "output": "OK: placares e classificação preservados; dados do personagem e NPCs protegidos; compactação idempotente.\n"
+  },
+  {
+    "test": "normal-xp",
+    "exit": 0,
+    "output": "OK: 369 verificações de XP equivalente, evolução e informações internas ocultas.\n"
+  },
+  {
+    "test": "lifecycle",
+    "exit": 0,
+    "output": "OK: 144 verificações de evolução e aposentadoria.\n"
+  },
+  {
+    "test": "presentation",
+    "exit": 0,
+    "output": "OK: estatísticas ao vivo, histórico por rodada, totais finalizados, resultado verde/vermelho e escaping.\n"
+  },
+  {
+    "test": "season-presentation",
+    "exit": 0,
+    "output": "OK: continuação antes dos detalhes, narrativa com dados reais e histórico sem duplicação.\n"
+  },
+  {
+    "test": "wheel",
+    "exit": 0,
+    "output": "OK: setores proporcionais, orientação do ponteiro, resultado persistido e escaping.\n"
+  },
+  {
+    "test": "run",
+    "exit": 0,
+    "output": "OK: 27979 verificações; 30 temporadas completas em seis posições.\nOK: destaques pessoais correspondem às estatísticas e não aos gols coletivos.\n"
+  },
+  {
+    "test": "play-modes",
+    "exit": 0,
+    "output": "São Caetano-SP: 21 jogos em 1.19s\nFlamengo-RJ: 38 jogos em 3.8s\nBolívar-BO: 30 jogos em 6.27s\nRiver Plate-AR: 35 jogos em 10.65s\nNacional Montevideo-UY: 40 jogos em 7.12s\nOlimpia-PY: 44 jogos em 6.66s\nOK: 553 verificações dos três modos.\n"
+  },
+  {
+    "test": "onboarding",
+    "exit": 0,
+    "output": "OK: 88 verificações de início, proximidade, escudos e escolhas inválidas.\n"
+  },
+  {
+    "test": "state-entry",
+    "exit": 0,
+    "output": "ac-entrada OK\nal-entrada OK\nam-entrada OK\nap-entrada OK\nba-entrada OK\nce-entrada OK\ndf-entrada OK\nes-entrada OK\ngo-entrada OK\nma-entrada OK\nmt-entrada OK\nms-entrada OK\nmg-entrada OK\npa-entrada OK\npb-entrada OK\npr-entrada OK\nrj-entrada OK\nrn-entrada OK\nrs-entrada OK\nsc-entrada OK\nse-entrada OK\nto-entrada OK\nro-entrada OK\nrr-entrada OK\npi-entrada OK\npe-entrada OK\nOK: 5842 verificações estaduais e geográficas.\n"
+  },
+  {
+    "test": "international",
+    "exit": 0,
+    "output": "ar-1: 510 partidas, calendário e nova composição OK\nar-2: 670 partidas, calendário e nova composição OK\nuy-1: 298 partidas, calendário e nova composição OK\nuy-2: 231 partidas, calendário e nova composição OK\npy-1: 264 partidas, calendário e nova composição OK\npy-2: 240 partidas, calendário e nova composição OK\nbo-1: 240 partidas, calendário e nova composição OK\nbo-2: 408 partidas, calendário e nova composição OK\nBoca Juniors-AR: ano jogável e temporada seguinte OK (329 passos)\nAcassuso-AR: ano jogável e temporada seguinte OK (405 passos)\nPeñarol-UY: ano jogável e temporada seguinte OK (384 passos)\nFénix-UY: ano jogável e temporada seguinte OK (352 passos)\nOlimpia-PY: ano jogável e temporada seguinte OK (459 passos)\nSol de América-PY: ano jogável e temporada seguinte OK (312 passos)\nBolívar-BO: ano jogável e temporada seguinte OK (310 passos)\nFATIC-BO: ano jogável e temporada seguinte OK (188 passos)\n9272 verificações internacionais OK.\n"
+  },
+  {
+    "test": "europe",
+    "exit": 0,
+    "output": "en-1: 380 jogos concluídos\nen-2: 559 jogos concluídos\nes-1: 380 jogos concluídos\nes-2: 468 jogos concluídos\nde-1: 306 jogos concluídos\nde-2: 306 jogos concluídos\nit-1: 380 jogos concluídos\nit-2: 388 jogos concluídos\nfr-1: 306 jogos concluídos\nfr-2: 308 jogos concluídos\npt-1: 306 jogos concluídos\npt-2: 306 jogos concluídos\nnl-1: 306 jogos concluídos\nnl-2: 388 jogos concluídos\nbe-1: 306 jogos concluídos\nbe-2: 216 jogos concluídos\ntr-1: 306 jogos concluídos\ntr-2: 385 jogos concluídos\nsc-1: 228 jogos concluídos\nsc-2: 184 jogos concluídos\nOK: 28857 verificações Europa e mercado internacional.\n"
+  },
+  {
+    "test": "retirement-storage",
+    "exit": 0,
+    "output": "OK: 28 verificações de histórico compacto e aposentadoria.\n"
+  },
+  {
+    "test": "career-slots",
+    "exit": 0,
+    "output": "OK: 22 verificações de vagas, propriedade e exclusão.\n"
+  }
+]

@@ -14,11 +14,12 @@ residência internacional aceita cidade/região declaradas e não inventa distâ
 Novas carreiras têm `location_kind=current`; legadas mostram Cidade informada.
 Sem migration nesta etapa. Testes: `tests/package-navigation.php`, `tests/presentation.php`.
 
-## Próximas etapas em execução
+## Conclusão local das etapas B–E
 
-B: placar, força relativa sem editar notas-base, progressão igual por modo, idade e mercado.
-C: sala de troféus verificável, inclusive resumo aposentado.
-D: direitos por jogo no Hub, cortesias, indicações e origem das vagas, migrations aditivas.
-E: integração/concorrência/mobile/Monte Carlo; procedimentos de backup, publicação e rollback.
+B: implementados placar com expectativa ofensiva única, força relativa ancorada na fonte,
+progressão igual por modo, envelhecimento e mercado geográfico. C: sala de troféus verificável,
+inclusive em resumos aposentados. D: direitos por jogo, cortesias, indicações e origem das vagas.
+E: testes locais IIS, concorrência, mobile e simulações; SQL incremental preparado e não publicado.
+Relatório técnico, métricas, comandos, limitações e rollout: [38 — Entrega e implantação](38_Entrega_Crescimento_v1.md).
 Identificar a conta de Raphael no painel e confirmar antes de qualquer concessão; nenhum nome
 ou dado pessoal será inferido em scripts ou fixtures. Produção exige aprovação posterior.

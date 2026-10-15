@@ -1,0 +1,243 @@
+{
+  "checks": 19,
+  "results": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "route": "/carreira",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 575,
+        "footerBottom": 0,
+        "height": 640
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "route": "/classificacao",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 575,
+        "footerBottom": 0,
+        "height": 640
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "route": "/carreiras",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 575,
+        "footerBottom": 534.96875,
+        "height": 640
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "route": "/carreira/trofeus",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 575,
+        "footerBottom": 0,
+        "height": 640
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/carreira",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 779,
+        "footerBottom": 0,
+        "height": 844
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/classificacao",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 779,
+        "footerBottom": 0,
+        "height": 844
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/carreiras",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 779,
+        "footerBottom": 739.09375,
+        "height": 844
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/carreira/trofeus",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 779,
+        "footerBottom": 0,
+        "height": 844
+      }
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "route": "/carreira",
+      "layout": {
+        "horizontal": false,
+        "fixed": false,
+        "navTop": -267,
+        "footerBottom": 0,
+        "height": 390
+      }
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "route": "/classificacao",
+      "layout": {
+        "horizontal": false,
+        "fixed": false,
+        "navTop": -267,
+        "footerBottom": 0,
+        "height": 390
+      }
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "route": "/carreiras",
+      "layout": {
+        "horizontal": false,
+        "fixed": false,
+        "navTop": -634,
+        "footerBottom": 390.359375,
+        "height": 390
+      }
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "route": "/carreira/trofeus",
+      "layout": {
+        "horizontal": false,
+        "fixed": false,
+        "navTop": -362,
+        "footerBottom": 389.71875,
+        "height": 390
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 360
+      },
+      "route": "/carreira",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 295,
+        "footerBottom": 0,
+        "height": 360
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 360
+      },
+      "route": "/classificacao",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 295,
+        "footerBottom": 0,
+        "height": 360
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 360
+      },
+      "route": "/carreiras",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 295,
+        "footerBottom": 254.96875,
+        "height": 360
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 360
+      },
+      "route": "/carreira/trofeus",
+      "layout": {
+        "horizontal": false,
+        "fixed": true,
+        "navTop": 295,
+        "footerBottom": 0,
+        "height": 360
+      }
+    },
+    {
+      "zoom": "150% CSS",
+      "route": "/carreiras"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 300
+      },
+      "focusedInput": true,
+      "keyboard": "viewport reduzida; sem teclado físico"
+    }
+  ],
+  "unchangedCareer": true,
+  "browser": "Chrome headless, IIS local"
+}

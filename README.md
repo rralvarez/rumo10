@@ -1,5 +1,7 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
+**Pacote v1.0 de 15/10 — implementado e testado localmente, ainda não publicado:** [regras, testes, SQL incremental e rollback](Docs/38_Entrega_Crescimento_v1.md). Gratuito passa a duas vagas-base e até três extras por indicação de uso único; pago/cortesia Rumo10 mantém dez. Saves antigos preservados. Direitos por jogo são administrados no Hub. As referências abaixo registram versões anteriores; o relatório 38 prevalece para este pacote.
+
 **Conta Rumo compartilhada, modo fixo e decisões revisadas:** [migração importada, acessos, clubes, probabilidades e testes](Docs/36_Identidade_Clubes_Equilibrio_e_Textos.md). Hub e jogo usam o mesmo e-mail/senha, preservando as carreiras; modo escolhido somente na criação do jogador. Revisadas as 200 alternativas de folga, com respostas específicas e efeitos adequados aos interlocutores.
 
 **Produção UOL por FTPS (sem SSH):** [estado da publicação e verificações reais](Docs/35_Validacao_Producao_UOL.md). Banco inicial importado pelo usuário; PHP, MySQL e HTTPS da hospedagem verificados. Consulte esse registro para a conclusão dos workflows e limites dos testes. [Instalação e funcionamento do deploy](Docs/34_Publicacao_FTPS_e_SQL_Inicial.md).
@@ -12,7 +14,7 @@
 
 **Aposentadoria compacta:** novas aposentadorias preservam totais, clubes, temporadas e conquistas no histórico e liberam a vaga. Os detalhes são removidos definitivamente. Aposentadorias anteriores exigem confirmação em Minhas carreiras. [Funcionamento, instalação e testes](Docs/21_Aposentadoria_e_Historico_Compacto.md). Execute `bin/install-retirement-history.php` ao atualizar uma instalação existente.
 
-**Minhas carreiras:** abra [gerenciar carreiras](http://rumo10.local/carreiras). Limite total de 3 no gratuito e 10 no pago, contando arquivadas; exclusão exige confirmação permanente. [Preparação do Hub e próximos passos de armazenamento](Docs/20_Preparacao_RumoHub_e_Armazenamento.md). Em instalações existentes, execute `bin/install-career-limits.php` antes de atualizar a aplicação.
+**Minhas carreiras:** abra [gerenciar carreiras](http://rumo10.local/carreiras). Com o pacote de benefícios ativado, gratuito tem 2 vagas-base e até 3 extras por créditos de indicação de uso único; pago/cortesia Rumo10 tem 10, contando arquivadas. Vagas antigas são preservadas. Exclusão exige confirmação permanente. [Regras e atualização incremental](Docs/38_Entrega_Crescimento_v1.md). Instalações anteriores sem o pacote ainda usam os limites antigos; não ative as flags antes das migrations.
 
 Top 250 mundial Opta e 250 jogadores masculinos FC 27 pesquisados; nove novos mercados com duas divisões e 268 clubes. [Fontes, cobertura e limites](Docs/19_RumoHub_e_Top250.md). Todo o banco dos projetos de futebol está em `rumohub`: catálogo compartilhado em `rh_*`, contas e carreiras do Rumo10 em `rumo10_*`. [Migração e validação](Docs/31_Banco_Unificado_RumoHub.md).
 

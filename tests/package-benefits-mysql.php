@@ -27,6 +27,10 @@ try{
  $invite=HubReferrals::status($db,$owner)['token'];benef(strlen($invite)===64 && HubReferrals::status($db,$owner)['token']===$invite,'Convite estável e imprevisível');
  deny(fn()=>HubReferrals::attribute($db,$owner,$invite),422);
  $friend=HubUsers::register($db,$tag.'-friend@example.invalid',$password,'qa-local',$invite);$users[]=$friend['id'];
+ $oldLogin=HubUsers::api($db,'/api/v1/identity/login',['email'=>$email,'password'=>$password,'origin'=>'qa-local','invite'=>$invite],'rumo10');
+ benef($oldLogin['user']['id']===$owner && (int)qx('SELECT COUNT(*) FROM rh_indicacoes WHERE convidado_id=?',[$owner])->fetchColumn()===0,'Login de conta existente ignora convite e não cria atribuição');
+ $otherInvite=HubReferrals::status($db,$friend['id'])['token'];deny(fn()=>HubUsers::register($db,$tag.'-friend@example.invalid',$password,'qa-local',$otherInvite),422);
+ benef((int)qx('SELECT convidante_id FROM rh_indicacoes WHERE convidado_id=?',[$friend['id']])->fetchColumn()===$owner,'Outro link não reatribui conta já cadastrada');
  benef(HubReferrals::status($db,$owner)['available']===0,'Cadastro isolado não gera crédito');
  deny(fn()=>HubReferrals::qualify($db,$friend['id'],999999999,bin2hex(random_bytes(32))),409);
  benef(HubReferrals::status($db,$owner)['available']===0,'Formulário sem carreira persistida não qualifica');

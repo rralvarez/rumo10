@@ -1,0 +1,42 @@
+{
+    "reference_tables": {
+        "rh_clubes": {
+            "rows": 2160,
+            "sha256": "620389fbca3ea5ff4a11ed48b049261da30a5a0eebb24a36085227359234630c",
+            "unchanged": true
+        },
+        "rh_competicoes": {
+            "rows": 154,
+            "sha256": "e0e9795e55bf6c58d3b388b8203848bc2d40a78db1e06e790300f60f5d604c2e",
+            "unchanged": true
+        },
+        "rh_elenco_vinculos": {
+            "rows": 61246,
+            "sha256": "391b467e0530e552d0fd1488c3bf9c1b2193d724d94ef4d2207a114b2995a930",
+            "unchanged": true
+        },
+        "rh_jogadores": {
+            "rows": 63186,
+            "sha256": "3830c1397e39d2c063cf0bc08b803d0b0b11ba61218eaa9264b66261ea66090b",
+            "unchanged": true
+        },
+        "rh_ratings_ea": {
+            "rows": 19789,
+            "sha256": "7931798fb12938a326c50e907b98ab8410251b183c0bc44e3f5571b1960b1f80",
+            "unchanged": true
+        },
+        "rh_selecoes": {
+            "rows": 211,
+            "sha256": "36f3d6fe5b450f980fc82cca47698421ad9291ee25e8f61018744ad448944a4a",
+            "unchanged": true
+        }
+    },
+    "squad_gaps": [
+        {
+            "id": 3539,
+            "codigo": "York City-EN",
+            "total": 26,
+            "keepers": "1"
+        }
+    ]
+}

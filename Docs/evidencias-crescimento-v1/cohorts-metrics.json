@@ -1,0 +1,47 @@
+{
+    "development": {
+        "fraca": {
+            "n": 120,
+            "mean": 0,
+            "min": 0,
+            "max": 0
+        },
+        "regular": {
+            "n": 120,
+            "mean": 1,
+            "min": 1,
+            "max": 1
+        },
+        "boa": {
+            "n": 120,
+            "mean": 2.177777777777777,
+            "min": 2,
+            "max": 2.8888888888888857
+        },
+        "excepcional": {
+            "n": 120,
+            "mean": 3.512037037037038,
+            "min": 3,
+            "max": 4
+        }
+    },
+    "leagues": {
+        "control": {
+            "seasons": 300,
+            "champions": 0,
+            "top_two": 0,
+            "survival_top_six": 0,
+            "goals_per_game": 0.4311904761904762,
+            "conceded_per_game": 3.488809523809524
+        },
+        "with_protagonist": {
+            "seasons": 300,
+            "champions": 0,
+            "top_two": 0,
+            "survival_top_six": 0,
+            "goals_per_game": 0.4197619047619048,
+            "conceded_per_game": 3.4983333333333335
+        }
+    },
+    "checks": 487
+}

@@ -1,0 +1,7 @@
+{
+  "local_secret_literals_in_package": 0,
+  "text_files_scanned": 74,
+  "combined_sql_includes_both_migrations": true,
+  "combined_sql_additive_only": true,
+  "production_accessed": false
+}

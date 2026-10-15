@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-15",
+  "local_only": true,
+  "iis_http_checks": 61,
+  "mysql_benefit_checks": 35,
+  "mobile_checks": 19,
+  "regression_suites": 24,
+  "regression_suites_passed": 24,
+  "php_lint_files": 157,
+  "source_tables_unchanged": 6,
+  "apache_tested_this_round": false,
+  "production_published": false,
+  "real_courtesy_granted": false,
+  "limits": [
+    "Mobile headless, não dispositivo físico",
+    "600 miniligas sintéticas, não universo completo",
+    "Premiações individuais em preparação"
+  ]
+}
