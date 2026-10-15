@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+require dirname(__DIR__).'/app/bootstrap.php';$catalog=Scenes::catalog();$editorial=require dirname(__DIR__).'/database/weekend-outcomes.php';$checks=0;
+function editorialCheck(bool $ok,string $why):void{global $checks;$checks++;if(!$ok)throw new RuntimeException($why);}
+foreach($editorial as $id=>$messages){editorialCheck(isset($catalog[$id]) && $catalog[$id]['stage']==='fim_semana','Situação social existente');editorialCheck(count($messages)===4,'Quatro alternativas por situação');$g=Game::legacyCreate('Teste editorial','São Paulo','SP','meia');$g['stage']='fim_semana';$g['active_situation']=['id'=>$id,'key'=>Scenes::key($g)];foreach(Game::choices($g) as $i=>$o){editorialCheck($o['success_text']===$messages[$i][0] && $o['failure_text']===$messages[$i][1],'Motor usa o desfecho editorial exato');editorialCheck(!str_contains($o['failure_text'],'orientação com clareza') && !str_contains($o['failure_text'],'grupo fica sem saber'),'Não recorre ao modelo genérico de liderança');}}
+editorialCheck(count($editorial)===50,'Todas as 50 situações de folga cobertas');
+$g['active_situation']=['id'=>1163,'key'=>Scenes::key($g)];$o=Game::choices($g)[1];editorialCheck(str_contains($o['failure_text'],'companheiro prefere ficar sozinho'),'Companhia recusada tem resposta própria');editorialCheck(!$o['failure_effects'] && !$o['severe_failure_effects'] && !isset($o['effects']['lideranca']),'Apoio respeitoso não pune relações nem concede liderança indevida');
+foreach([1151=>2,1162=>0,1173=>0,1175=>1,1178=>3,1187=>2,1190=>2,1195=>1] as $id=>$index){$g['active_situation']=['id'=>$id,'key'=>Scenes::key($g)];$o=Game::choices($g)[$index];editorialCheck(!isset($o['effects']['entrosamento']) && !isset($o['failure_effects']['entrosamento']),'Vínculo pessoal não altera entrosamento do elenco');}
+echo "OK: $checks verificações editoriais das 200 alternativas fora de campo.\n";

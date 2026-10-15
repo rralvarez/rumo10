@@ -16,7 +16,8 @@ final class Identity {
    $id=$r->query('SELECT conta_id FROM rumo10_identidades WHERE hub_usuario_id=? FOR UPDATE',[$u['id']])->fetchColumn();
    if(!$id){
     $id=$r->query('SELECT id FROM rumo10_contas WHERE email=? FOR UPDATE',[$u['email']])->fetchColumn();
-    if(!$id){$r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',[$u['email'],password_hash(bin2hex(random_bytes(32)),PASSWORD_DEFAULT)]);$id=$r->db->lastInsertId();}
+    if($id)throw new RuntimeException('Conta anterior sem vínculo central. Conclua a migração antes de entrar.');
+    $r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',[$u['email'],password_hash(bin2hex(random_bytes(32)),PASSWORD_DEFAULT)]);$id=$r->db->lastInsertId();
     $r->query('INSERT INTO rumo10_identidades VALUES(?,?)',[$id,$u['id']]);
    }
    $r->query('INSERT INTO rumo10_conta_planos(conta_id,plano) VALUES(?,?) ON DUPLICATE KEY UPDATE plano=VALUES(plano)',[$id,$u['plan']]);$r->db->commit();return (int)$id;

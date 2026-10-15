@@ -94,4 +94,3 @@ catch(Throwable $ex) { $status=503; $error='Aplicação indisponível. Verifique
 http_response_code($status);
 if(str_starts_with($path,'/api/')) { header('Content-Type: application/json; charset=utf-8'); echo json_encode(['error'=>$error]); exit; }
 require dirname(__DIR__).'/app/view.php';
-

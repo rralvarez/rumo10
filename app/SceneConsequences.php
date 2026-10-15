@@ -17,6 +17,8 @@ final class SceneConsequences {
         }unset($value);
         static $overrides;$overrides??=require dirname(__DIR__).'/database/scene-consequences.php';
         $o=array_replace($o,$overrides[$id][$index]??[]);
+        static $contextEffects;$contextEffects??=require dirname(__DIR__).'/database/weekend-consequences.php';
+        $o=array_replace($o,$contextEffects[$id][$index]??[]);
         if($code==='reclamar' && !isset($overrides[$id][$index]['success_text']))$o['success_text']='Você é ouvido, mas o tom da cobrança deixa a conversa mais tensa.';
         if(!array_key_exists('failure_effects',$o)){
             $o['failure_effects']=match($code){
@@ -30,6 +32,8 @@ final class SceneConsequences {
             };
             $o['severe_failure_effects']=array_map(fn($v)=>$v<0?$v*2:$v,$o['failure_effects']);
         }
+        static $editorial;$editorial??=require dirname(__DIR__).'/database/weekend-outcomes.php';
+        if(isset($editorial[$id][$index])){[$o['success_text'],$o['failure_text']]=$editorial[$id][$index];}
         // O texto também deve refletir o efeito escolhido para uma tentativa frustrada.
         if($code==='disciplina' && $o['failure_text']==='Você se distrai e termina sem organizar o que precisava fazer. Isso abala sua confiança.')$o['failure_text']='Você se distrai e termina sem organizar o que precisava fazer. Precisa recuperar o foco.';
         unset($o['custom_effects']);return $o;
