@@ -19,6 +19,8 @@ final class SceneConsequences {
         $o=array_replace($o,$overrides[$id][$index]??[]);
         static $contextEffects;$contextEffects??=require dirname(__DIR__).'/database/weekend-consequences.php';
         $o=array_replace($o,$contextEffects[$id][$index]??[]);
+        static $contextOutcomes;$contextOutcomes??=require dirname(__DIR__).'/database/context-outcomes.php';
+        $o=array_replace($o,$contextOutcomes[$id][$index]??[]);
         if($code==='reclamar' && !isset($overrides[$id][$index]['success_text']))$o['success_text']='Você é ouvido, mas o tom da cobrança deixa a conversa mais tensa.';
         if(!array_key_exists('failure_effects',$o)){
             $o['failure_effects']=match($code){

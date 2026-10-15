@@ -10,7 +10,10 @@ try{
  $page=sharedRequest('hub','/conta/cadastro');$r=sharedRequest('hub','/conta/cadastro',['csrf'=>sharedCsrf($page),'email'=>$email,'password'=>$password,'admin'=>1,'plan'=>'pago']);sharedCheck($r['status']===303,'Cadastro pessoal no Hub');
  $q=$db->prepare('SELECT id,admin_hub,plano FROM rh_usuarios WHERE email=?');$q->execute([$email]);$u=$q->fetch();$uid=$u['id'];sharedCheck(!$u['admin_hub'] && $u['plano']==='gratuito','Formulário forjado não concede permissão ou plano');
  $page=sharedRequest('hub','/conta');sharedCheck($page['status']===200 && str_contains($page['body'],$email),'Conta Hub autenticada');sharedCheck(sharedRequest('hub','/admin')['status']===303,'Conta comum não entra no painel');
- $page=sharedRequest('game','/login');$r=sharedRequest('game','/login',['csrf'=>sharedCsrf($page),'email'=>$email,'password'=>$password]);sharedCheck($r['status']===303,'Mesmo e-mail e senha entram no jogo');
+ $db->prepare('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)')->execute([$email,password_hash(bin2hex(random_bytes(16)),PASSWORD_DEFAULT)]);$account=(int)$db->lastInsertId();
+ $page=sharedRequest('game','/login');$r=sharedRequest('game','/login',['csrf'=>sharedCsrf($page),'email'=>$email,'password'=>$password]);sharedCheck($r['status']===503,'Conta antiga sem vínculo exige migração; não é apropriada só pelo e-mail');
+ $db->prepare('INSERT INTO rumo10_identidades VALUES(?,?)')->execute([$account,$uid]);
+ $page=sharedRequest('game','/login');$r=sharedRequest('game','/login',['csrf'=>sharedCsrf($page),'email'=>$email,'password'=>$password]);sharedCheck($r['status']===303,'Mesmo e-mail e senha entram no jogo após migração');
  $q=$db->prepare('SELECT conta_id FROM rumo10_identidades WHERE hub_usuario_id=?');$q->execute([$uid]);$account=$q->fetchColumn();sharedCheck((bool)$account,'Vínculo local usa identidade central');
  $page=sharedRequest('game','/carreira');sharedCheck($page['status']===200 && str_contains($page['body'],'Crie seu jogador'),'Acesso ao jogo após login central');
  sharedCheck(sharedRequest('game','/logout',['csrf'=>sharedCsrf($page)])['status']===303,'Saída do jogo');sharedCheck(sharedRequest('hub','/conta')['status']===200,'Sessões dos sites permanecem isoladas');

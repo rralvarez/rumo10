@@ -55,7 +55,7 @@ final class Game {
         if($g['stage']==='partida'){$m=$g['matches'][self::currentIndex($g)];$side=$m['home']===$g['club']?'away':'home';$opponent=$m[$side.'_overall']??TeamStrength::rating($m[$side],$g);}
         $chance=Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
         $clear=!empty($o['clear_chance']);
-        if($clear)$chance=min(95,$chance+($type==='passe'?18:8));
+        if($clear)$chance=min(95,$chance+($o['chance_bonus']??($type==='passe'?18:8)));
         if($g['stage']==='partida' && ($type==='chute' || ($clear && $type==='drible')))return Probability::goalChance($chance,$g['skills']['finalizacao']['value'],$clear,$type);
         return round($chance,2);
     }

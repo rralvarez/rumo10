@@ -1,5 +1,7 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
+**Conta Rumo compartilhada, modo fixo e decisões revisadas:** [migração importada, acessos, clubes, probabilidades e testes](Docs/36_Identidade_Clubes_Equilibrio_e_Textos.md). Hub e jogo usam o mesmo e-mail/senha, preservando as carreiras; modo escolhido somente na criação do jogador. Revisadas as 200 alternativas de folga, com respostas específicas e efeitos adequados aos interlocutores.
+
 **Produção UOL por FTPS (sem SSH):** [estado da publicação e verificações reais](Docs/35_Validacao_Producao_UOL.md). Banco inicial importado pelo usuário; PHP, MySQL e HTTPS da hospedagem verificados. Consulte esse registro para a conclusão dos workflows e limites dos testes. [Instalação e funcionamento do deploy](Docs/34_Publicacao_FTPS_e_SQL_Inicial.md).
 
 **Alternativa SSH:** [guia de preparação](Docs/33_Publicacao_UOL_Host.md), conservado como referência opcional; o fluxo escolhido usa FTPS. O IIS local permanece inalterado.
@@ -66,7 +68,7 @@ Incluídas duas divisões de Inglaterra, Espanha, Alemanha, Itália, França, Po
 
 ## Modos de jogo
 
-Escolha **Normal**, **Rápido** ou **Expresso** na criação do jogador ou abra **Modo · alterar ritmo** na carreira antes de um jogo. Normal mantém as decisões por situação; Rápido pede uma abordagem por partida; Expresso pede uma estratégia e simula toda a temporada restante. Contratos são escolhidos por você em todos os modos. Nenhuma carreira precisa ser reiniciada e nenhuma migração de banco é necessária. [Funcionamento e limites](Docs/13_Modos_de_Jogo.md).
+Escolha **Normal**, **Rápido** ou **Expresso** somente na criação do jogador. A escolha permanece fixa durante toda a carreira. Normal mantém as decisões por situação; Rápido pede uma abordagem por partida; Expresso pede uma estratégia e simula toda a temporada restante. Contratos são escolhidos por você em todos os modos. Nenhuma carreira precisa ser reiniciada e nenhuma migração de banco é necessária. [Funcionamento e limites](Docs/13_Modos_de_Jogo.md).
 
 Para validar o motor dos modos, execute `tests/play-modes.php` com PHP e mbstring. `tests/http.php` testa também os modos no IIS e MySQL locais com uma conta descartável.
 
