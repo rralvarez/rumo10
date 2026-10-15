@@ -14,7 +14,7 @@ final class RetiredCareer {
             foreach($result['titles']??[] as $title=>$winner)if($winner===$club)$titles[$key.'|'.$title]=['season'=>$season,'competition'=>$id,'club'=>$club,'title'=>$title];
         }
         $skills=array_column($g['skills']??[],'value');
-        return ['schema'=>2,'trophies'=>Trophies::collect($g),'identity'=>array_intersect_key($g,array_flip(['id','name','city','uf','position','age','season','club','version'])),'retirement'=>$g['retirement']??['reason'=>'legacy','age'=>$g['age'],'season'=>$g['season'],'club'=>$g['club'],'totals'=>$stats['totals']],'statistics'=>$stats,'competitions'=>array_values($competitions),'titles'=>array_values($titles),'transition_reference'=>['technical_average'=>$skills?round(array_sum($skills)/count($skills),1):0,'seasons_played'=>count($stats['seasons'])],'closing_command'=>$closing];
+        return ['schema'=>2,'trophies'=>Trophies::collect($g),'identity'=>array_intersect_key($g,array_flip(['id','name','city','uf','position','age','season','club','version','location_kind','residence_country','residence_region','legacy_location_record'])),'retirement'=>$g['retirement']??['reason'=>'legacy','age'=>$g['age'],'season'=>$g['season'],'club'=>$g['club'],'totals'=>$stats['totals']],'statistics'=>$stats,'competitions'=>array_values($competitions),'titles'=>array_values($titles),'transition_reference'=>['technical_average'=>$skills?round(array_sum($skills)/count($skills),1):0,'seasons_played'=>count($stats['seasons'])],'closing_command'=>$closing];
     }
     /** Dentro da transação e lock da conta/carreira; salvar resumo antes de apagar detalhes. */
     public static function persist(Repository $r,int $account,array $g,?array $closing=null):void {

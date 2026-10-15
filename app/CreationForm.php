@@ -4,7 +4,7 @@ final class CreationForm {
     public static function render(string $path,?array $existing,string $plan):void {
         echo '<section class="panel auth"><h1>Quem entra em campo?</h1><p><a href="/carreiras">Ver vagas e gerenciar minhas carreiras</a></p>';
         if($existing)echo '<p>Sua carreira atual será arquivada e poderá ser retomada depois.</p>';
-        form($path==='/carreira/nova'?'/carreira/nova':'/carreira/criar');
+        form($path==='/carreira/nova'?'/carreira/nova':'/carreira/criar');echo '<input type="hidden" name="creation_key" value="'.e($_POST['creation_key']??bin2hex(random_bytes(32))).'">';
         echo '<label>Nome do jogador<input name="name" class="form-control" minlength="2" maxlength="60" value="'.e($_POST['name']??'').'" required></label>';
         $countries=$plan==='pago'?EntryCountries::countries():['BR'=>'Brasil'];$selected=is_string($_POST['country']??null) && isset($countries[$_POST['country']])?$_POST['country']:'BR';
         echo '<label>País onde começa a carreira<select name="country" class="form-select" required>';

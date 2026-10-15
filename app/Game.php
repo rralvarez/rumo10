@@ -68,6 +68,12 @@ final class Game {
             Retirement::close($g,'voluntary');$g['version']++;return $g;
         }
         if($action==='mode')return PlayMode::change($g,(string)($input['mode']??''));
+        if($action==='relocate'){
+            if($g['stage']==='partida' || !empty($g['starting']))throw new InvalidArgumentException('Atualize a residência depois da partida e do primeiro contrato.');
+            if(($g['location_kind']??'legacy')==='legacy')$g['legacy_location_record']??=['city'=>$g['city'],'uf'=>$g['uf'],'kind'=>'informada_no_cadastro_anterior'];
+            $g=CurrentLocation::apply($g,(string)($input['residence_country']??'BR'),trim((string)($input['city']??'')),(string)(($input['residence_country']??'BR')==='BR'?($input['uf']??''):($input['residence_region']??'')),$g['entry_uf']??'SP');
+            $g['version']++;$g['feedback']=['text'=>'Sua residência atual foi confirmada. A carreira e os resultados foram preservados.'];return $g;
+        }
         if($action==='simulate')return PlayMode::simulate($g,(string)($input['plan']??''));
         if(!$automated && PlayMode::name($g)!=='normal' && in_array($action,['choice','advance'],true))throw new InvalidArgumentException('Escolha a estratégia do seu modo de jogo.');
         $g['feedback']=null;
@@ -177,7 +183,11 @@ final class Game {
         $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
-            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++;$conversion=(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45)))); if(($m['balance_version']??0)===MatchBalance::VERSION && !$clearChance)$conversion=min($conversion,100*MatchBalance::eventChance($g,100)/max(1,self::chance($g,$o))); if($clearChance || random_int(1,10000)<=round($conversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
+            $conversion=$m['pass_conversion']??(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45))));
+            if(($m['balance_version']??0)>=2 && !$clearChance && $type==='passe')$conversion=min($conversion,100*MatchBalance::eventChance($g,100)/max(1,$roll['chance']));
+            $scoringProbability=($type==='chute' || ($clearChance && in_array($type,['drible','passe'],true)))?$roll['chance']/100:($type==='passe'?$roll['chance']*$conversion/10000:0);
+            MatchBalance::book($m,$scoringProbability);
+            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if($clearChance || random_int(1,10000)<=round($conversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
             if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
@@ -216,8 +226,9 @@ final class Game {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $span=$next-$m['minute'];
         $own=$m['home']===$g['club']?'hg':'ag';
         TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
+        if(($m['balance_version']??0)<2){$difference=max(-60,min(60,$m['home_overall']-$m['away_overall']));$means=[max(.25,min(3.5,1.35*exp($difference/55))),max(.25,min(3.5,1.10*exp(-$difference/55)))];}
         foreach(['hg','ag'] as $index=>$side) {
-            $mean=($m['balance_version']??0)===MatchBalance::VERSION?MatchBalance::collectiveMean($m,$side,$g['club'],$m['minute'],$next):$means[$index]*$span/90;
+            $mean=($m['balance_version']??0)>=2?MatchBalance::collectiveMean($m,$side,$g['club'],$m['minute'],$next):$means[$index]*$span/90;
             $goals=TeamStrength::goals($mean);
             for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
         }

@@ -15,7 +15,7 @@ final class PlayerProfile {
         if(empty($g['starting'])){ClubBadge::render($g['club']);echo '<b>'.e(ClubBadge::name($g['club'])).'</b>';}else echo '<b>À espera do primeiro contrato</b>';
         if($g['age']>=35 && $g['stage']!=='aposentado')echo '<a class="squad-link" href="/carreira/aposentar">Encerrar minha carreira →</a>';
         if(empty($g['starting']))echo '<a class="squad-link" href="/elenco">Ver companheiros de elenco ↗</a>';
-        echo '</div><p class="athlete-origin">'.e(CurrentLocation::display($g)).'</p></div></article><section class="profile-condition"><div class="profile-section-heading"><h2>Pronto para jogar?</h2><span>CONDIÇÃO ATUAL</span></div>';
+        if($g['stage']!=='partida' && empty($g['starting']))echo '<a href="/jogador/localizacao">Confirmar ou atualizar residência</a>';echo '</div><p class="athlete-origin">'.e(CurrentLocation::display($g)).'</p></div></article><section class="profile-condition"><div class="profile-section-heading"><h2>Pronto para jogar?</h2><span>CONDIÇÃO ATUAL</span></div>';
         foreach(['energia','confianca','ritmo_jogo','entrosamento'] as $key)self::meter(self::LABELS[$key],$g['states'][$key]);
         $energy=$g['states']['energia'];$description=$g['states']['risco_lesao']>85?'Seu risco de lesão está alto. Priorize a recuperação antes da próxima rodada.':($energy<35?'O desgaste está alto. Vale priorizar sua recuperação.':($energy<65?'Você tem disposição, mas precisa administrar o esforço.':'Você está com boa disposição para a próxima rodada.'));
         echo '<p class="condition-caption">'.e($description).'</p></section></div><section class="profile-performance"><div class="profile-section-heading"><h2>Sua temporada</h2><span>EM CAMPO</span></div><div class="profile-stat-grid">';

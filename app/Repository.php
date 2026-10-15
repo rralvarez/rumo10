@@ -24,18 +24,26 @@ final class Repository {
         return $g;
     }
     private static function statMap(): array { return ['minutes'=>'minutos','goals'=>'gols','assists'=>'assistencias','passes'=>'passes','completed'=>'passes_certos','shots'=>'finalizacoes','tackles'=>'desarmes','fouls'=>'faltas','cards'=>'cartoes','rating'=>'nota']; }
-    public function create(int $account,array $g,bool $replace=false): void {
-        $this->db->beginTransaction(); try {
+    public function create(int $account,array $g,bool $replace=false,?string $creationKey=null): void {
+        $central=CareerBenefits::enabled();$allocation=[];$committed=false;
+        $creationKey??=bin2hex(random_bytes(32));
+        if(!preg_match('/^[a-f0-9]{64}$/',$creationKey))throw new InvalidArgumentException('Recarregue o formulário de criação.');
+        $requestHash=hash('sha256',json_encode(array_intersect_key($g,array_flip(['name','city','uf','position','play_mode','starting_country','residence_country','residence_region'])),JSON_THROW_ON_ERROR));
+        $this->db->beginTransaction();try {
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
+            if($central){$prior=$this->query('SELECT request_hash FROM rumo10_criacoes WHERE conta_id=? AND chave=?',[$account,$creationKey])->fetchColumn();if($prior){if(!hash_equals($prior,$requestHash))throw new InvalidArgumentException('Este formulário já criou uma carreira com outros dados.');$this->db->commit();return;}}
             $quota=CareerSlots::quota($this,$account);
             if(!empty($g['starting']))EntryCountries::validate($g['starting_country']??'BR',$quota['plan']);
-            if($quota['used']>=$quota['limit'])throw new InvalidArgumentException('Limite de '.$quota['limit'].' carreiras atingido. Abra Minhas carreiras e exclua uma para criar outra.');
-            $old=$this->load($account,true);
-            if($old && !$replace) throw new InvalidArgumentException('Você já tem uma carreira.');
-            if($old) $this->archive($account,$old['id']);
+            if($central)$allocation=CareerBenefits::allocate($this,$account,$quota,hash('sha256','create|'.$account.'|'.$creationKey));
+            elseif($quota['used']>=$quota['limit'])throw new InvalidArgumentException('Limite de '.$quota['limit'].' carreiras atingido.');
+            $old=$this->load($account,true);if($old && !$replace)throw new InvalidArgumentException('Você já tem uma carreira.');
+            if($old)$this->archive($account,$old['id']);
             $this->query('INSERT INTO rumo10_carreiras(conta_id,nome,cidade,uf,posicao,idade,etapa,clube) VALUES(?,?,?,?,?,?,?,?)',[$account,$g['name'],$g['city'],$g['uf'],$g['position'],$g['age'],$g['stage'],$g['club']]);
-            $g['id']=(int)$this->db->lastInsertId(); $this->save($g); $this->db->commit();
-        } catch(Throwable $e) { if($this->db->inTransaction()) $this->db->rollBack(); throw $e; }
+            $g['id']=(int)$this->db->lastInsertId();$this->save($g);
+            if($central){$this->query('INSERT INTO rumo10_criacoes(conta_id,chave,carreira_id,request_hash) VALUES(?,?,?,?)',[$account,$creationKey,$g['id'],$requestHash]);CareerBenefits::queue($this,$account,$g['id'],$allocation);}
+            $this->db->commit();$committed=true;
+            if($central)CareerBenefits::flush($this,$account);
+        }catch(Throwable $e){if($this->db->inTransaction())$this->db->rollBack();if($central && !$committed)CareerBenefits::release($allocation);throw $e;}
     }
     private function archive(int $account,int $id): void {
         $this->query('INSERT INTO rumo10_carreiras_arquivadas(carreira_id,conta_id) VALUES(?,?) ON DUPLICATE KEY UPDATE arquivada_em=CURRENT_TIMESTAMP',[$id,$account]);
@@ -71,6 +79,7 @@ final class Repository {
                 RetiredCareer::persist($this,$account,$next,['key'=>$key,'hash'=>$hash]);unset($next);
                 $persisted=$this->load($account);$this->db->commit();return $persisted;
             }
+            if($action==='relocate')$this->query('UPDATE rumo10_carreiras SET cidade=?,uf=? WHERE id=?',[$next['city'],$next['uf'],$careerId]);
             $this->save($next); $f=$next['feedback']??[];
             $audit=['before'=>$before,'after'=>['skills'=>$next['skills'],'states'=>$next['states']],'feedback'=>$f];
             if($action==='simulate' && isset($next['pace_report']))$audit['simulation']=$next['pace_report'];

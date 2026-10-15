@@ -102,3 +102,10 @@ if (bottomNav && 'ResizeObserver' in window) {
   window.visualViewport?.addEventListener('resize', reserveNav);
   reserveNav();
 }
+
+document.querySelector('[data-copy-invite]')?.addEventListener('click', async () => {
+  const field = document.getElementById('invite-link');
+  const status = document.querySelector('[data-copy-status]');
+  try { await navigator.clipboard.writeText(field.value); status.textContent = 'Link copiado.'; }
+  catch (_) { field.focus(); field.select(); status.textContent = 'Selecione e copie o link acima.'; }
+});

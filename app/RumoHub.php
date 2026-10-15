@@ -15,7 +15,7 @@ final class RumoHub {
   curl_setopt_array($curl,[CURLOPT_CONNECTTIMEOUT=>min(3,$timeout),CURLOPT_TIMEOUT=>$timeout,CURLOPT_FOLLOWLOCATION=>false,CURLOPT_HTTPHEADER=>['X-Rumo-Client: '.$id,'X-Rumo-Timestamp: '.$time,'X-Rumo-Nonce: '.$nonce,'X-Rumo-Signature: '.hash_hmac('sha256',$message,$secret)],CURLOPT_WRITEFUNCTION=>static function($ch,string $chunk)use(&$body,$limit):int{if(strlen($body)+strlen($chunk)>$limit)return 0;$body.=$chunk;return strlen($chunk);}]);
   curl_setopt($curl,CURLOPT_HEADERFUNCTION,static function($ch,string $line)use(&$version):int{if(preg_match('/^X-Rumo-Catalog-Version:\s*([a-f0-9]{64})\s*$/i',$line,$m))$version=$m[1];return strlen($line);});
   $ok=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_RESPONSE_CODE);$type=curl_getinfo($curl,CURLINFO_CONTENT_TYPE);curl_close($curl);
-  if(str_starts_with($target,'/api/v1/identity/') && in_array($status,[401,422,429],true))throw new IdentityError((json_decode($body,true)['error']??'Entre novamente na sua conta Rumo.'),(int)$status);
+  if(str_starts_with($target,'/api/v1/identity/') && in_array($status,[401,403,409,422,429],true))throw new IdentityError((json_decode($body,true)['error']??'Entre novamente na sua conta Rumo.'),(int)$status);
   if($ok===false || $status!==200)throw new RuntimeException('RumoHub indisponível (HTTP '.(int)$status.').');return ['body'=>$body,'type'=>$type,'version'=>$version];
  }
  public static function folder():string{$dir=dirname(__DIR__).'/storage/hub-cache';if(!is_dir($dir) && !mkdir($dir,0770,true) && !is_dir($dir))throw new RuntimeException('Cache do RumoHub indisponível.');return $dir;}

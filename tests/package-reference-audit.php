@@ -1,0 +1,8 @@
+<?php
+declare(strict_types=1);
+require dirname(__DIR__).'/app/bootstrap.php';$db=Database::connect();if(config('APP_ENV','local')!=='local' || $db->query('SELECT DATABASE()')->fetchColumn()!=='rumohub')throw new RuntimeException('Auditoria somente local.');
+$receipts=glob(dirname(__DIR__).'/storage/private/package-v1-*/receipt.json');sort($receipts);if(!$receipts)throw new RuntimeException('Backup anterior não encontrado.');$before=json_decode(file_get_contents($receipts[0]),true,512,JSON_THROW_ON_ERROR);$out=['reference_tables'=>[],'squad_gaps'=>[]];
+foreach($before['catalog_hashes'] as $table=>$expected){$ctx=hash_init('sha256');$count=0;foreach($db->query('SELECT * FROM `'.$table.'`') as $row){$line='INSERT INTO `'.$table.'` VALUES('.implode(',',array_map(fn($v)=>$v===null?'NULL':$db->quote((string)$v),array_values($row))).");\n";hash_update($ctx,$line);$count++;}$hash=hash_final($ctx);$out['reference_tables'][$table]=['rows'=>$count,'sha256'=>$hash,'unchanged'=>hash_equals($expected,$hash)];if(!hash_equals($expected,$hash))throw new RuntimeException('Catálogo de referência mudou: '.$table);}
+foreach($db->query("SELECT c.id,c.codigo,COUNT(p.id) AS total,SUM(p.posicao='goleiro') AS keepers FROM rh_clubes c LEFT JOIN rh_elenco_vinculos e ON e.clube_id=c.id LEFT JOIN rh_jogadores p ON p.id=e.jogador_id GROUP BY c.id,c.codigo HAVING total<24 OR keepers<2") as $row)$out['squad_gaps'][]=$row;
+file_put_contents(dirname(__DIR__).'/storage/qa-package/reference-audit.json',json_encode($out,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR));
+echo 'OK: '.count($out['reference_tables']).' tabelas de referência com SHA-256 idêntico ao backup anterior. Lacunas de elenco: '.count($out['squad_gaps']).". Nenhum cadastro foi corrigido/importado.\n";

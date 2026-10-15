@@ -2,12 +2,14 @@
 declare(strict_types=1);
 /** Identidade central; a conta local guarda somente vínculo e propriedade das carreiras. */
 final class Identity {
+ public static function service(string $action,#[SensitiveParameter] array $data):array{return self::call($action,$data);}
  public static function enabled():bool{return RumoHub::enabled() && config('RUMOHUB_IDENTITY','0')==='1';}
  private static function call(string $action,#[SensitiveParameter] array $data):array {
   $r=RumoHub::fetch('/api/v1/identity/'.$action,65536,10,'POST',$data);return json_decode($r['body'],true,512,JSON_THROW_ON_ERROR);
  }
  public static function login(Repository $r,string $email,#[SensitiveParameter] string $password,bool $register):int {
-  $response=self::call($register?'register':'login',['email'=>$email,'password'=>$password,'origin'=>$_SERVER['REMOTE_ADDR']??'local']);
+  $response=self::call($register?'register':'login',['email'=>$email,'password'=>$password,'origin'=>$_SERVER['REMOTE_ADDR']??'local','invite'=>$register?(string)($_SESSION['referral_token']??''):'']);
+  unset($_SESSION['referral_token']);
   $account=self::bind($r,$response['user']);$_SESSION['hub_token']=$response['token'];$_SESSION['hub_user']=$response['user'];return $account;
  }
  public static function bind(Repository $r,array $u):int {
