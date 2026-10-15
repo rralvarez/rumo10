@@ -10,16 +10,13 @@ final class PlayMode {
         'equilibrio'=>['Preservar o equilíbrio','Priorizar recuperação e ações com maior chance de execução.'],
     ];
     public static function name(array $g): string {return $g['play_mode']??'normal';}
-    public static function canChange(array $g): bool {return in_array($g['stage'],['handicap','clube_inicio','treino','resumo','oferta'],true);}
+    public static function canChange(array $g): bool {return false;}
     public static function validate(string $mode): string {
         if(!isset(self::MODES[$mode]))throw new InvalidArgumentException('Escolha um modo de jogo válido.');
         return $mode;
     }
     public static function change(array $g,string $mode): array {
-        self::validate($mode);
-        if(!self::canChange($g))throw new InvalidArgumentException('Conclua a partida e as decisões pendentes antes de trocar o modo.');
-        $g['play_mode']=$mode;$g['version']++;$g['feedback']=null;Scenes::prepare($g);
-        return $g;
+        throw new InvalidArgumentException('O modo é escolhido ao criar o jogador e permanece fixo nesta carreira.');
     }
     // Percorre os mesmos comandos; Evolution aplica o multiplicador do modo da carreira.
     public static function simulate(array $g,string $plan): array {
@@ -84,10 +81,7 @@ final class PlayMode {
         echo '</select></label>';
     }
     public static function controls(array $g): void {
-        if(!self::canChange($g))return;
-        echo '<details class="pace-settings"><summary>Modo '.e(self::TITLES[self::name($g)]).' · alterar ritmo</summary>';
-        form('/carreira/modo',$g);self::selector(self::name($g));echo '<button class="btn btn-outline-light">Salvar modo</button></form>';
-        echo '<p class="subtle">No modo normal, você recebe XP em dobro. Transferências continuam sendo sua escolha.</p></details>';
+        // Ritmo escolhido uma única vez no formulário de criação do jogador.
     }
     public static function report(array $g): void {
         $r=$g['pace_report']??null;if(!$r)return;

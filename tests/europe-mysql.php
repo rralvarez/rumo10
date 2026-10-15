@@ -7,7 +7,7 @@ function sceneDbCheck(bool $ok,string $label):void{global $checks;$checks++;if(!
 try{
  $r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',['cenas-'.bin2hex(random_bytes(8)).'@example.invalid',password_hash(bin2hex(random_bytes(12)),PASSWORD_DEFAULT)]);$account=(int)$r->db->lastInsertId();
  $g=Game::command(Game::create('Teste mercado DB','São Paulo','SP','meia','Flamengo-RJ'),'handicap');
- $g=Game::command($g,'mode',['mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'coletivo']);
+ $g=array_replace($g,['play_mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'coletivo']);
  foreach($g['skills'] as &$skill)$skill['value']=64;unset($skill);$g['season_skill_baseline']=60;
  foreach($g['competitions'] as &$t)foreach($t['matches'] as &$m)if(in_array($g['club'],[$m['home'],$m['away']],true)){$m['stats']['minutes']=90;$m['stats']['rating']=7.3;}unset($t,$m);
  $g['matches']=$g['competitions'][$g['competition_id']]['matches'];

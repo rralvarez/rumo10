@@ -18,13 +18,13 @@ foreach($counts as $country=>$sizes)foreach($sizes as $n=>$size){
 }
 foreach(array_keys($counts) as $country) {
  $club=Competition::catalog()[$country.'-2']['teams'][0];$g=Game::command(Game::create('Teste Europa','São Paulo','SP','meia',$club),'handicap');
- $g=Game::command($g,'mode',['mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'coletivo']);
+ $g=array_replace($g,['play_mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'coletivo']);
  euCheck($g['stage']==='resumo','Carreira europeia jogável '.$country);
  foreach(EuropeanCompetition::pairs() as [$upper,$lower]){euCheck(count($g['next_memberships'][$upper])===count($g['memberships'][$upper]),'Tamanho primeira preservado');euCheck(count($g['next_memberships'][$lower])===count($g['memberships'][$lower]),'Tamanho segunda preservado');euCheck(!array_intersect($g['next_memberships'][$upper],$g['next_memberships'][$lower]),'Nenhuma dupla inscrição');}
  $g=Game::command($g,'offers');$g=Game::command($g,'transfer',['accept'=>'no']);euCheck($g['season']===2 && $g['stage']==='treino','Ano seguinte '.$country);
 }
 // Mercado: dados de atleta sintéticos sobre temporada descartável, sem tocar em carreira real.
-$g=Game::command(Game::create('Teste mercado','São Paulo','SP','centroavante','Flamengo-RJ'),'handicap');$g=Game::command($g,'mode',['mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'equilibrio']);
+$g=Game::command(Game::create('Teste mercado','São Paulo','SP','centroavante','Flamengo-RJ'),'handicap');$g=array_replace($g,['play_mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'equilibrio']);
 $weak=$g;foreach($weak['skills'] as &$s)$s['value']=40;unset($s);
 euCheck(!array_filter(Competition::offerPool($weak),fn($o)=>$o['international']),'Sem exterior para atleta insuficiente');
 foreach($g['skills'] as &$s)$s['value']=64;unset($s);$g['season_skill_baseline']=60;

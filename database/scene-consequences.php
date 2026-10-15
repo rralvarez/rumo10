@@ -119,7 +119,12 @@ return [
     1157=>[3=>['effects'=>['moral_pessoal'=>3],'failure_effects'=>[]]],1158=>[0=>$rest,3=>['effects'=>['moral_pessoal'=>4,'energia'=>-5,'risco_lesao'=>3]]],
     1160=>[1=>$consult,3=>['effects'=>['confianca_imprensa'=>2,'risco_polemica'=>4],'failure_effects'=>['confianca_imprensa'=>-3]]],
     1161=>[1=>$schedule,2=>$rest],1162=>[1=>['effects'=>['moral_pessoal'=>3],'failure_effects'=>['moral_pessoal'=>-1]],2=>$schedule],
-    1163=>[2=>['effects'=>['entrosamento'=>3,'foco'=>2],'failure_effects'=>[]],3=>['effects'=>['entrosamento'=>3,'moral_pessoal'=>3],'failure_effects'=>['entrosamento'=>-1]]],
+    1163=>[
+        0=>['effects'=>['entrosamento'=>3,'moral_pessoal'=>2],'failure_effects'=>[],'severe_failure_effects'=>[],'success_text'=>'Seu companheiro desabafa no próprio ritmo e agradece por você ouvi-lo.','failure_text'=>'Seu companheiro ainda não quer falar do problema. Você respeita o silêncio dele.'],
+        1=>['effects'=>['entrosamento'=>3,'moral_pessoal'=>2],'failure_effects'=>[],'severe_failure_effects'=>[],'success_text'=>'Seu companheiro aceita sua companhia e se sente menos sozinho.','failure_text'=>'Seu companheiro prefere ficar sozinho por enquanto. Você respeita a decisão e deixa o convite em aberto.'],
+        2=>['effects'=>['entrosamento'=>2,'moral_pessoal'=>1],'failure_effects'=>[],'severe_failure_effects'=>[],'success_text'=>'Você dá espaço ao companheiro e deixa claro que ele pode procurar você.','failure_text'=>'Seu companheiro continua abatido. Você evita pressioná-lo e mantém sua disponibilidade.'],
+        3=>['effects'=>['entrosamento'=>3,'moral_pessoal'=>3],'failure_effects'=>[],'severe_failure_effects'=>[],'success_text'=>'Seu companheiro aceita o convite e vocês passam um tempo tranquilo juntos.','failure_text'=>'Seu companheiro não se anima a sair hoje. Você deixa o programa para outra ocasião.'],
+    ],
     1164=>[2=>$private],1166=>[3=>['effects'=>['foco'=>2,'visao_jogo'=>1]]],
     1167=>[1=>$private,2=>['effects'=>['foco'=>3,'confianca'=>2]],3=>['effects'=>['confianca'=>3,'foco'=>-1]]],
     1168=>[0=>['effects'=>['moral_pessoal'=>3,'entrosamento'=>2]],2=>$schedule],

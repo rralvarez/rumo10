@@ -4,15 +4,19 @@ declare(strict_types=1);
 final class RumoHub {
  private static ?array $data=null;
  public static function enabled():bool{return config('RUMOHUB_ENABLED','0')==='1';}
- public static function fetch(string $target,int $limit=8388608,int $timeout=15):array {
+ public static function fetch(string $target,int $limit=8388608,int $timeout=15,string $method='GET',#[SensitiveParameter] ?array $payload=null):array {
   $base=rtrim(config('RUMOHUB_URL'),'/');$u=parse_url($base);$local=in_array($u['host']??'', ['rumohub.local','127.0.0.1','localhost'],true);
   if(!$u || isset($u['user']) || isset($u['pass']) || isset($u['query']) || isset($u['fragment']) || !empty($u['path']) || !in_array($u['scheme']??'', ['http','https'],true) || (($u['scheme']??'')!=='https' && (!$local || config('APP_ENV')==='production')))throw new RuntimeException('Endereço do RumoHub inválido.');
   if(!str_starts_with($target,'/api/v1/'))throw new RuntimeException('Endpoint inválido.');
   $id=config('RUMOHUB_CLIENT');$secret=config('RUMOHUB_SECRET');if(!preg_match('/^[a-z][a-z0-9_-]{1,31}$/',$id) || !preg_match('/^[a-f0-9]{64}$/',$secret))throw new RuntimeException('Configure o cliente privado do RumoHub.');
-  $time=(string)time();$nonce=bin2hex(random_bytes(16));$message=implode("\n",['GET',$target,hash('sha256',''),$id,$time,$nonce]);$body='';$version='';$curl=curl_init($base.$target);
+  if(!in_array($method,['GET','POST'],true))throw new RuntimeException('Método inválido.');
+  $requestBody=$payload===null?'':json_encode($payload,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);$time=(string)time();$nonce=bin2hex(random_bytes(16));$message=implode("\n",[$method,$target,hash('sha256',$requestBody),$id,$time,$nonce]);$body='';$version='';$curl=curl_init($base.$target);
+  if($method==='POST')curl_setopt_array($curl,[CURLOPT_POST=>true,CURLOPT_POSTFIELDS=>$requestBody]);
   curl_setopt_array($curl,[CURLOPT_CONNECTTIMEOUT=>min(3,$timeout),CURLOPT_TIMEOUT=>$timeout,CURLOPT_FOLLOWLOCATION=>false,CURLOPT_HTTPHEADER=>['X-Rumo-Client: '.$id,'X-Rumo-Timestamp: '.$time,'X-Rumo-Nonce: '.$nonce,'X-Rumo-Signature: '.hash_hmac('sha256',$message,$secret)],CURLOPT_WRITEFUNCTION=>static function($ch,string $chunk)use(&$body,$limit):int{if(strlen($body)+strlen($chunk)>$limit)return 0;$body.=$chunk;return strlen($chunk);}]);
   curl_setopt($curl,CURLOPT_HEADERFUNCTION,static function($ch,string $line)use(&$version):int{if(preg_match('/^X-Rumo-Catalog-Version:\s*([a-f0-9]{64})\s*$/i',$line,$m))$version=$m[1];return strlen($line);});
-  $ok=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_RESPONSE_CODE);$type=curl_getinfo($curl,CURLINFO_CONTENT_TYPE);if($ok===false || $status!==200)throw new RuntimeException('RumoHub indisponível (HTTP '.(int)$status.').');return ['body'=>$body,'type'=>$type,'version'=>$version];
+  $ok=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_RESPONSE_CODE);$type=curl_getinfo($curl,CURLINFO_CONTENT_TYPE);curl_close($curl);
+  if(str_starts_with($target,'/api/v1/identity/') && in_array($status,[401,422,429],true))throw new IdentityError((json_decode($body,true)['error']??'Entre novamente na sua conta Rumo.'),(int)$status);
+  if($ok===false || $status!==200)throw new RuntimeException('RumoHub indisponível (HTTP '.(int)$status.').');return ['body'=>$body,'type'=>$type,'version'=>$version];
  }
  public static function folder():string{$dir=dirname(__DIR__).'/storage/hub-cache';if(!is_dir($dir) && !mkdir($dir,0770,true) && !is_dir($dir))throw new RuntimeException('Cache do RumoHub indisponível.');return $dir;}
  public static function save(string $file,string $body):void{$tmp=tempnam(dirname($file),'hub-');try{if(file_put_contents($tmp,$body)===false || !rename($tmp,$file))throw new RuntimeException('Não foi possível salvar o cache.');}finally{if(is_file($tmp))unlink($tmp);}}

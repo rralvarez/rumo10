@@ -31,7 +31,7 @@ foreach($t['series_pairs'] as $i=>$pair)worldCheck($t['series_winners'][$i]===$p
 $players=ClubSquad::players('Inter Miami CF-US');$messi=array_values(array_filter($players,fn($p)=>$p['name']==='Lionel Messi'));
 worldCheck(count($messi)===1 && $messi[0]['origin']==='real','Messi importado sem duplicação');worldCheck($messi[0]['overall_origin']==='published_ea_fc27','Nota publicada de Messi');
 // Percorre escolhas em uma carreira descartável, sem alterar a conta do usuário.
-$g=Game::command(Game::create('Teste MLS','São Paulo','SP','meia','Inter Miami CF-US'),'handicap');$g=Game::command($g,'mode',['mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'equilibrio']);
+$g=Game::command(Game::create('Teste MLS','São Paulo','SP','meia','Inter Miami CF-US'),'handicap');$g=array_replace($g,['play_mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'equilibrio']);
 worldCheck($g['stage']==='resumo','MLS jogável até o fim');$g=Game::command($g,'offers');$g=Game::command($g,'transfer',['accept'=>'no']);worldCheck($g['season']===2 && $g['stage']==='treino','Renovação e segunda temporada MLS');
 Competition::finish($g['competitions']['us-1']);$g['competition_results']['us-1']=Competition::result($g['competitions']['us-1'],$g['club']);$g['matches']=$g['competitions']['us-1']['matches'];$g['id']=0;$g['version']=1;$_SESSION=['csrf'=>'teste'];
 ob_start();CompetitionView::recap($g);$html=ob_get_clean();worldCheck(str_contains($html,'Supporters') && str_contains($html,'MLS Cup'),'Troféus renderizados com nomes de clubes');

@@ -4,6 +4,7 @@ if(is_file(dirname(__DIR__).'/storage/database-migration.lock')){http_response_c
 require dirname(__DIR__).'/app/bootstrap.php';
 ini_set('display_errors','0');
 ini_set('log_errors','1');
+ini_set('zend.exception_ignore_args','1');
 ini_set('error_log',dirname(__DIR__).'/storage/logs/php.log');
 session_save_path(dirname(__DIR__).'/storage/sessions');
 $production=config('APP_ENV','local')==='production';
@@ -22,9 +23,10 @@ function form(string $path,?array $g=null): void {
 }
 $path=rawurldecode(parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/');
 $method=$_SERVER['REQUEST_METHOD'];
-$routes=['/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/modo'=>['POST'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
+$routes=['/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
 $status=200; $error=null; $g=null; $clubs=[];
 try {
+    Identity::verify();
     if($path==='/escudo' && $method==='GET' && RumoHub::enabled()) {
         if(!isset($_SESSION['account'])){http_response_code(401);exit;}
         $club=$_GET['club']??'';if(!is_string($club) || strlen($club)>400){http_response_code(422);exit;}
@@ -39,6 +41,7 @@ try {
         $r=new Repository(Database::connect());
         $email=strtolower(trim((string)($_POST['email']??''))); $password=(string)($_POST['password']??'');
         if(!filter_var($email,FILTER_VALIDATE_EMAIL) || strlen($email)>190 || strlen($password)<8 || strlen($password)>72) throw new InvalidArgumentException('Use um e-mail válido e senha entre 8 e 72 caracteres.');
+        if(Identity::enabled()){$account=Identity::login($r,$email,$password,$path==='/register');session_regenerate_id(true);$_SESSION['account']=$account;$_SESSION['csrf']=bin2hex(random_bytes(32));redirect('/carreira');}
         $fp=hash('sha256',($_SERVER['REMOTE_ADDR']??'local').'|'.$email); $now=time();
         $r->query('INSERT INTO rumo10_login_limits VALUES(?,1,?) ON DUPLICATE KEY UPDATE attempts=IF(window_start<?,1,attempts+1),window_start=IF(window_start<?,?,window_start)',[$fp,$now,$now-900,$now-900,$now]);
         if((int)$r->query('SELECT attempts FROM rumo10_login_limits WHERE fingerprint=?',[$fp])->fetchColumn()>10) { $status=429; throw new InvalidArgumentException('Muitas tentativas. Aguarde 15 minutos.'); }
@@ -49,7 +52,7 @@ try {
         if(!$a || !password_verify($password,$a['senha_hash'])) throw new InvalidArgumentException('E-mail ou senha incorretos.');
         session_regenerate_id(true); $_SESSION['account']=(int)$a['id']; $_SESSION['csrf']=bin2hex(random_bytes(32)); redirect('/carreira');
     }
-    if($path==='/logout') { $_SESSION=[]; session_destroy(); redirect('/'); }
+    if($path==='/logout') { Identity::logout(); $_SESSION=[]; session_destroy(); redirect('/'); }
     if($path==='/api/cidades') {
         $uf=strtoupper((string)($_GET['uf']??'SP'));$cities=array_values(array_column(array_filter(Onboarding::municipalities(),fn($m)=>$m['uf']===$uf),'name'));
         if(!$cities)throw new InvalidArgumentException('UF inválida.');
@@ -67,7 +70,7 @@ try {
             } elseif($path==='/carreira/restaurar') {
                 $r->restore($_SESSION['account'],(int)($_POST['career']??0));
             } else {
-                $action=match($path) {'/carreira/aposentar'=>'retire','/carreira/modo'=>'mode','/carreira/simular'=>'simulate','/carreira/clube-inicial'=>'join','/competicao/continuar'=>'continue','/carreira/handicap'=>'handicap','/decisao/registrar','/partida/decidir'=>'choice','/partida/avancar'=>'advance','/transferencia/roleta'=>'offers','/transferencia/responder'=>'transfer',default=>throw new InvalidArgumentException('Ação inválida.')};
+                $action=match($path) {'/carreira/aposentar'=>'retire','/carreira/simular'=>'simulate','/carreira/clube-inicial'=>'join','/competicao/continuar'=>'continue','/carreira/handicap'=>'handicap','/decisao/registrar','/partida/decidir'=>'choice','/partida/avancar'=>'advance','/transferencia/roleta'=>'offers','/transferencia/responder'=>'transfer',default=>throw new InvalidArgumentException('Ação inválida.')};
                 $input=in_array($action,['choice','join'],true)?['option'=>(string)($_POST['option']??'')]:($action==='transfer'?['accept'=>(string)($_POST['accept']??'')]:[]);
                 if($action==='retire')$input=['confirm'=>(string)($_POST['confirm']??'')];
                 if($action==='mode')$input=['mode'=>(string)($_POST['mode']??'')];
@@ -85,8 +88,10 @@ try {
     if($path==='/carreira/nova'){$existingCareer=$g;$g=null;}
     if($path==='/api/carreira/estado') { header('Content-Type: application/json; charset=utf-8'); echo json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE); exit; }
 
-} catch(InvalidArgumentException $ex) { if($status===200) $status=422; $error=$ex->getMessage();if(in_array($path,['/carreira/criar','/carreira/nova'],true) && $status===422){$existingCareer=$g;$g=null;$path='/carreira/nova';} }
+} catch(IdentityError $ex) { $status=$ex->status;$error=$ex->getMessage(); }
+catch(InvalidArgumentException $ex) { if($status===200) $status=422; $error=$ex->getMessage();if(in_array($path,['/carreira/criar','/carreira/nova'],true) && $status===422){$existingCareer=$g;$g=null;$path='/carreira/nova';} }
 catch(Throwable $ex) { $status=503; $error='Aplicação indisponível. Verifique a instalação e a conexão local com o banco.'; error_log('rumo10: '.$ex::class.' code='.$ex->getCode()); }
 http_response_code($status);
 if(str_starts_with($path,'/api/')) { header('Content-Type: application/json; charset=utf-8'); echo json_encode(['error'=>$error]); exit; }
 require dirname(__DIR__).'/app/view.php';
+

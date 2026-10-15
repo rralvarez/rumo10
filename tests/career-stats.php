@@ -14,6 +14,6 @@ careerCheck(count($s['seasons'])===3 && $s['seasons'][2]['current'],'Temporadas 
 ob_start();CareerStats::render($g);$html=ob_get_clean();careerCheck(str_contains($html,'data-career-stat="goals">13') && str_contains($html,'14</strong>'),'Totalizador visível');
 $g['history'][0]['club']='<script>alert(1)</script>';ob_start();CareerStats::render($g);$html=ob_get_clean();careerCheck(!str_contains($html,'<script>'),'Escaping');
 $g=Game::create('Teste início','São Paulo','SP','meia');$s=CareerStats::collect($g);careerCheck(!$s['clubs'] && $s['totals']['goals']===0,'Sem clube não inventa passagem');
-$g=Game::command(Game::legacyCreate('Teste contrato','São Paulo','SP','meia'),'handicap');$g=Game::command($g,'mode',['mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'coletivo']);$before=CareerStats::collect($g)['totals'];
+$g=Game::command(Game::legacyCreate('Teste contrato','São Paulo','SP','meia'),'handicap');$g=array_replace($g,['play_mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'coletivo']);$before=CareerStats::collect($g)['totals'];
 $g=Game::command($g,'offers');$g=Game::command($g,'transfer',['accept'=>'yes']);careerCheck(CareerStats::collect($g)['totals']===$before,'Contrato não zera nem duplica números');
 echo "OK: $checks verificações do histórico por clube e carreira.\n";

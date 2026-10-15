@@ -54,7 +54,10 @@ final class Game {
         $opponent=50;
         if($g['stage']==='partida'){$m=$g['matches'][self::currentIndex($g)];$side=$m['home']===$g['club']?'away':'home';$opponent=$m[$side.'_overall']??TeamStrength::rating($m[$side],$g);}
         $chance=Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
-        return !empty($o['clear_chance'])?round(min(90,$chance+$o['chance_bonus']),2):$chance;
+        $clear=!empty($o['clear_chance']);
+        if($clear)$chance=min(95,$chance+($type==='passe'?18:8));
+        if($g['stage']==='partida' && ($type==='chute' || ($clear && $type==='drible')))return Probability::goalChance($chance,$g['skills']['finalizacao']['value'],$clear,$type);
+        return round($chance,2);
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false): array {
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
@@ -168,7 +171,7 @@ final class Game {
         $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
-            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if($clearChance || random_int(1,100)<=15) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
+            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++;$conversion=(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45)))); if($clearChance || random_int(1,100)<=$conversion) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
             if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){

@@ -8,6 +8,10 @@ final class Probability {
     public static function effective(array $skills, string $type): float {
         $a=0; foreach (Rules::WEIGHTS[$type] as $k=>$w) $a+=$skills[$k]['value']*$w; return $a;
     }
+    public static function goalChance(float $chance,float $finishing,bool $clear=false,string $action='chute'): float {
+        $cap=min($clear?88:80,25+.65*$finishing);
+        return round(max(5,min($cap,$chance-12+.20*($finishing-50)-($action==='drible'?5:0))),2);
+    }
     public static function roll(float $p): array {
         $roll=random_int(1,10000); $success=$roll<=round($p*100);
         $intensity=random_int(1,100);

@@ -80,9 +80,13 @@ try {
     $page=request('/carreira/restaurar',tokens($page['body'],'/carreira/restaurar')+['career'=>$state['id']]);
     verify($page['status']===200 && json_decode(request('/api/carreira/estado')['body'],true)===$state,'Restauração HTTP preserva campanha');
     $page=request('/carreira');
-    $page=request('/carreira/modo',tokens($page['body'],'/carreira/modo')+['mode'=>'rapido']);
+    verify(!str_contains($page['body'],'alterar ritmo'),'Ritmo não aparece na carreira');
+    $rejectedMode=request('/carreira/modo',['mode'=>'rapido']);verify($rejectedMode['status']===404,'Endpoint antigo de mudança removido');
+    verify(json_decode(request('/api/carreira/estado')['body'],true)===$state,'Tentativa de troca não altera a carreira');
+    $page=request('/carreira/nova');$page=request('/carreira/nova',tokens($page['body'],'/carreira/nova')+['name'=>'Teste rápido','city'=>'São Paulo','uf'=>'SP','position'=>'meia','mode'=>'rapido']);
+    $page=request('/carreira/handicap',tokens($page['body'],'/carreira/handicap'));$page=request('/carreira/clube-inicial',tokens($page['body'],'/carreira/clube-inicial')+['option'=>'0']);
     $state=json_decode(request('/api/carreira/estado')['body'],true);
-    verify($page['status']===200 && PlayMode::name($state)==='rapido' && str_contains($page['body'],'PRÓXIMA PARTIDA'),'Troca para rápido HTTP');
+    verify($page['status']===200 && PlayMode::name($state)==='rapido' && str_contains($page['body'],'PRÓXIMA PARTIDA'),'Modo rápido escolhido na criação');
     $before=$state;$t=tokens($page['body'],'/carreira/simular');
     $invalid=request('/carreira/simular',$t+['plan'=>'invalid']);
     verify($invalid['status']===422 && json_decode(request('/api/carreira/estado')['body'],true)===$before,'Estratégia inválida não altera carreira');
@@ -95,7 +99,8 @@ try {
     verify($invalid['status']===422,'Token reaproveitado com outra estratégia rejeitado');
     if($state['stage']==='competicao_resumo')$page=request('/competicao/continuar',tokens($page['body'],'/competicao/continuar'));
     else $page=request('/carreira');
-    $page=request('/carreira/modo',tokens($page['body'],'/carreira/modo')+['mode'=>'expresso']);
+    $page=request('/carreira/arquivadas');$page=request('/carreira/restaurar',array_replace(tokens($page['body'],'/carreira/restaurar'),['career'=>$newState['id']]));
+    $page=request('/carreira/handicap',tokens($page['body'],'/carreira/handicap'));$page=request('/carreira/clube-inicial',tokens($page['body'],'/carreira/clube-inicial')+['option'=>'0']);
     $t=tokens($page['body'],'/carreira/simular');$page=request('/carreira/simular',$t+['plan'=>'evolucao']);
     $state=json_decode(request('/api/carreira/estado')['body'],true);
     verify($page['status']===200 && $state['stage']==='resumo' && $state['season']===1,'Expresso conclui calendário pelo IIS');
@@ -134,6 +139,7 @@ try {
     $deleted=request('/carreira/excluir',$deleteTokens+['career'=>$state['id'],'confirm'=>'delete']);verify($deleted['status']===200 && str_contains($deleted['body'],'Minhas carreiras'),'Exclusão retorna à lista');
     verify((int)$r->query('SELECT COUNT(*) FROM rumo10_universos WHERE carreira_id=?',[$state['id']])->fetchColumn()===0 && json_decode(request('/api/carreira/estado')['body'],true)===null,'Exclusão apaga universo e libera selecionada');
     $r->query("INSERT INTO rumo10_conta_planos(conta_id,plano) VALUES(?,'pago') ON DUPLICATE KEY UPDATE plano='pago'",[$owner]);
+    if(Identity::enabled())$r->query("UPDATE rh_usuarios u JOIN rumo10_identidades i ON i.hub_usuario_id=u.id SET u.plano='pago' WHERE i.conta_id=?",[$owner]);
     $page=request('/carreira/nova');preg_match('/<select name="country".*?<\/select>/s',$page['body'],$countrySelect);
     verify($page['status']===200 && str_contains($countrySelect[0],'value="EN"') && str_contains($countrySelect[0],'value="AR"'),'Pago vê países do catálogo');
     $creation=tokens($page['body'],'/carreira/nova');$fields=['name'=>'Teste Inglaterra','city'=>'São Paulo','uf'=>'SP','position'=>'meia','country'=>'EN'];
@@ -145,7 +151,7 @@ try {
     foreach($foreign['initial_candidates'] as $offer)verify(TransferMarket::country($offer['club'])==='EN','Oferta pertence ao país escolhido');
     $page=request('/carreira/clube-inicial',tokens($page['body'],'/carreira/clube-inicial')+['option'=>0]);$foreign=json_decode(request('/api/carreira/estado')['body'],true);
     verify($page['status']===200 && $foreign['stage']==='treino' && TransferMarket::country($foreign['club'])==='EN' && count($foreign['matches'])>0,'Primeiro clube inicia campeonato inglês');
-    $r->query("UPDATE rumo10_conta_planos SET plano='gratuito' WHERE conta_id=?",[$owner]);$page=request('/carreira/nova');
+    $r->query("UPDATE rumo10_conta_planos SET plano='gratuito' WHERE conta_id=?",[$owner]);if(Identity::enabled())$r->query("UPDATE rh_usuarios u JOIN rumo10_identidades i ON i.hub_usuario_id=u.id SET u.plano='gratuito' WHERE i.conta_id=?",[$owner]);$page=request('/carreira/nova');
     $forged=request('/carreira/nova',tokens($page['body'],'/carreira/nova')+array_replace($fields,['country'=>'AR','plan'=>'pago']));
     verify($forged['status']===422 && json_decode(request('/api/carreira/estado')['body'],true)===$foreign,'Bloqueio de nova carreira não arquiva nem apaga carreira estrangeira existente');
     $page=request('/carreira');$page=request('/decisao/registrar',tokens($page['body'],'/decisao/registrar')+['option'=>0]);
@@ -164,7 +170,9 @@ try {
             foreach(['rumo10_temporadas','rumo10_decisoes','rumo10_atributos','rumo10_estados','rumo10_transferencias'] as $table) $r->query("DELETE FROM $table WHERE carreira_id=?",[$id]);
             $r->query('DELETE FROM rumo10_carreiras WHERE id=?',[$id]);
         }
+        $hubId=Identity::enabled()?$r->query('SELECT hub_usuario_id FROM rumo10_identidades WHERE conta_id=?',[$account])->fetchColumn():false;
         $r->query('DELETE FROM rumo10_conta_planos WHERE conta_id=?',[$account]);$r->query('DELETE FROM rumo10_contas WHERE id=?',[$account]);
+        if($hubId)$r->query('DELETE FROM rh_usuarios WHERE id=? AND email=?',[$hubId,$email]);
     }
     $r->query('DELETE FROM rumo10_login_limits WHERE fingerprint=?',[hash('sha256',gethostbyname('rumo10.local').'|'.$email)]);
     if(is_file($cookie)) unlink($cookie);
