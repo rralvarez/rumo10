@@ -109,5 +109,14 @@ class DeploymentTests(unittest.TestCase):
         with self.assertRaises(ssl.SSLCertVerificationError): self.deploy()
         self.assertEqual(self.ftp.files, previous)
 
+    def test_success_records_manifest_and_next_deploy_skips_unchanged_code(self):
+        self.deploy()
+        self.assertIn('apps/rumo10/current/release.json', self.ftp.files)
+        writes = []
+        original = self.ftp.storbinary
+        self.ftp.storbinary = lambda cmd, stream: (writes.append(cmd), original(cmd, stream))[-1]
+        self.deploy()
+        self.assertFalse(any('bootstrap.php' in cmd or 'app.css' in cmd for cmd in writes))
+
 
 if __name__ == "__main__": unittest.main()

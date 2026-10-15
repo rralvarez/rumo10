@@ -106,6 +106,14 @@ with tarfile.open(args.archive, "r:gz") as archive:
             if blocks:
                 # Preserve os blocos efetivamente gerados pelo painel, inclusive seleção de PHP.
                 htaccess = (expected + "\n\n" + "\n\n".join(blocks) + "\n").encode("utf-8")
+        previous = read_optional(f"{base}/release.json")
+        if previous is not None:
+            previous = json.loads(previous)
+            if previous.get("project") != args.project or not isinstance(previous.get("files"), dict):
+                raise SystemExit("Manifesto remoto inválido; revisão manual necessária.")
+            # Manifesto só é gravado quando todas as transferências concluem.
+            # Configurações, sessões e uploads editoriais não fazem parte dele.
+            uploads = [(name, destination) for name, destination in uploads if previous["files"].get(name) != manifest["files"][name]]
         created = set()
 
         def ensure_directory(path):
@@ -136,8 +144,11 @@ with tarfile.open(args.archive, "r:gz") as archive:
         put(f"{public}/index.php", io.BytesIO(bridge))
         for directory in ("logs", "sessions", "private", "hub-cache"):
             ensure_directory(f"{base}/storage/{directory}")
-        for name, destination in uploads:
+        for index, (name, destination) in enumerate(uploads, 1):
             put(destination, archive.extractfile(name))
+            if index % 100 == 0:
+                print(f"{args.project}: {index}/{len(uploads)} arquivos transferidos.", flush=True)
+        put(f"{base}/release.json", io.BytesIO(json.dumps(manifest).encode("utf-8")))
         # Única exclusão remota: marcador criado por esta publicação.
         ftp.delete(lock)
         print(f"FTPS concluído: {args.project}. Banco, .env, clients.php e sessões preservados.")

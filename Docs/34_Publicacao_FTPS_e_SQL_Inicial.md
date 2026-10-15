@@ -67,3 +67,11 @@ Fontes: [cPanel — FTP com TLS](https://support.cpanel.net/hc/en-us/articles/44
 - Preparadas/enviadas por FTPS as configurações privadas para `apps/<projeto>/current/.env` e `apps/rumohub/current/storage/private/clients.php`, com permissão 0600. Nenhum arquivo público do aplicativo foi enviado. Cliente API permanece desativado e sem IPs autorizados até verificar a origem real das requisições do PHP; não foi afrouxada a autenticação.
 - DNS autoritativo da UOL: ns1.cpuh21.hospedagemuolhost.com.br / ns2.cpuh21.hospedagemuolhost.com.br. Domínio, www e rumohub respondem com 186.234.81.62 (www via CNAME para o domínio); houve cache antigo em um resolvedor público durante a mudança.
 - As verificações HTTPS dos três nomes ainda encontraram certificado autoassinado. Solicitar/rodar AutoSSL no cPanel, conferir novamente certificados e DNS, só depois publicar Hub e jogo. Não considerar testes FTPS como teste HTTPS, Apache, PHP ou da API em produção.
+
+### Verificação seguinte
+
+AutoSSL passou a fornecer HTTPS aceito pela validação TLS para domínio, www e Hub; as raízes vazias retornaram HTTP 403. Sondas PHP temporárias, autenticadas por token e removidas ao concluir, confirmaram PHP 8.4.26, pdo_mysql/mbstring/curl/zip, leitura da configuração privada e storage gravável. O IP de saída efetivamente observado do PHP do jogo para o Hub é 186.234.81.62.
+
+O MySQL recusou a autenticação com erro 1045 em localhost, 127.0.0.1 e no IP conhecido do servidor. Usuário confirmou que a senha contém barra invertida; configurações foram corrigidas e uma comparação privada confirmou que o PHP lê o valor esperado, mas a recusa persistiu. A redefinição da senha do usuário no cPanel está pendente; não houve nova importação, reset de dados ou liberação pública do aplicativo.
+
+O deploy agora grava o manifesto privado somente depois de concluir todas as transferências. Publicações seguintes pulam arquivos com hash inalterado, preservando .env, sessões e uploads. Em recuperação com manifesto incorreto/arquivos removidos manualmente, fazer backup e retirar somente o manifesto apps/<projeto>/current/release.json para forçar uma transferência completa. Sete testes FTP simulados passaram, incluindo repetição de deploy sem reenviar código inalterado.
