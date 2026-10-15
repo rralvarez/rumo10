@@ -1,0 +1,17 @@
+<?php
+declare(strict_types=1);
+// Respostas dos templates existentes, sem alterar o catálogo nem garantir a tentativa.
+return [
+ 1=>['O treino leve na academia mantém você ativo sem se expor ao campo encharcado.','Você acerta as finalizações no piso molhado e aproveita o treino.','Você se adapta ao gramado pesado e participa bem do coletivo.','Você consegue sair do treino, mas a reclamação desagrada à comissão.'],
+ 2=>['Você mantém a concentração e acerta a sequência de passes.','As brincadeiras deixam o treino mais leve, e os passes continuam saindo.','Você termina a atividade poupando energia, mas treina menos do que poderia.','A disputa com o companheiro aumenta a intensidade e melhora sua execução.'],
+ 3=>['Depois do treino, você ajuda o lateral a repetir a jogada e ele encontra o movimento.','Você aproveita o alongamento para recuperar o corpo.','A comissão ouve seu pedido de substituição do lateral, mas a cobrança pesa na relação.','Sua provocação chama atenção, mas constrange o lateral.'],
+ 4=>['Quem quer participar se reúne, e o momento aproxima o grupo antes do jogo.','Ouvir música ajuda você a entrar no clima da partida.','A brincadeira descontrai os companheiros antes da entrada em campo.','Você termina o aquecimento concentrado e pronto para jogar.'],
+ 5=>['Você desmente a notícia na entrevista e esclarece sua situação no clube.','Você mantém o foco no futebol e deixa a notícia perder força.','Sua reclamação chega à diretoria, mas aumenta o desgaste da relação.','Sua mensagem de carinho pelo clube é bem recebida pela torcida.'],
+ 6=>['Você incentiva os titulares e mantém uma boa relação com o grupo.','Você encontra um momento de silêncio para se concentrar, mas se afasta dos companheiros.','O aquecimento deixa você preparado para entrar quando o treinador chamar.','O treinador ouve sua insatisfação, mas não gosta da cobrança.'],
+ 7=>['Você encontra espaço para finalizar no ângulo.','Seu passe encontra o volante em condições de dar sequência à jogada.','Você passa pelos dois zagueiros e abre espaço na defesa.','O árbitro marca a falta que você tentou cavar.'],
+ 8=>['Você afasta o adversário, mas o empurrão aumenta a tensão em campo.','Você ajuda o companheiro a se levantar e consegue acalmá-lo.','O árbitro ouve sua cobrança, mas a reclamação piora o clima.','Você aproveita a pausa para beber água e recuperar o fôlego.'],
+ 9=>['Você avança com a bola e consegue puxar a reação da equipe.','Sua cobrança é ouvida pela defesa, mas o tom irrita os companheiros.','Você ajuda a equipe a reorganizar a marcação depois do gol sofrido.','Você volta para marcar e fecha o espaço que estava livre.'],
+ 10=>['Você participa do evento beneficente e representa bem o clube.','Você aproveita o descanso em casa para se recuperar.','Você faz uma visita breve e consegue participar da ação beneficente.','Você consegue passar o tempo jogando, mas deixa de comparecer ao compromisso.'],
+ 11=>['A postagem repercute, mas a provocação ao rival aumenta a polêmica.','Você evita a discussão nas redes e mantém o foco no futebol.','Sua mensagem de respeito ao rival é bem recebida.','O jantar ajuda você a relaxar longe da discussão nas redes.'],
+ 12=>['Por telefone, você ajuda seu antigo treinador a preparar as jogadas.','Você explica que está sem tempo e evita assumir uma tarefa que não conseguiria cumprir.','Você desenha as jogadas e entrega um material útil ao antigo treinador.','Você combina outro momento para ajudar, e o treinador aceita esperar.'],
+];

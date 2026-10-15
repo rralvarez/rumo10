@@ -82,7 +82,14 @@ final class Scenes {
             'chute'=>$stage==='partida'?'Seu chute vence o goleiro.':'Você acerta o movimento e melhora a precisão dos chutes.',
             'drible'=>$stage==='partida'?'Você passa pelo marcador e ganha espaço para continuar a jogada.':'Você mantém o controle da bola nas mudanças de direção.',
             'desarme'=>$stage==='partida'?'Você acerta o tempo do bote e recupera a bola.':'Você chega à bola no momento certo durante o exercício.',
-            'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua iniciativa foi bem recebida.','liderar'=>'Sua iniciativa ajuda a organizar a situação.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem foi bem recebida.','lazer'=>'Você consegue relaxar um pouco.',default=>'Você consegue fazer o que planejou.'};
+            'tecnica'=>'Você ajusta o toque e mantém o controle da bola durante o exercício.',
+            'tatico'=>'Você identifica o ajuste tático e entende como aplicá-lo na movimentação.',
+            'posicionamento'=>'Você ocupa o espaço a tempo e mantém a distância necessária.',
+            'visao'=>'Você percebe o movimento e identifica a melhor opção antes de decidir.',
+            'forca'=>'Você mantém a postura e completa a série de força prevista.',
+            'resistencia'=>'Você mantém a intensidade até o fim da atividade.',
+            'velocidade'=>'Você coordena as arrancadas e sustenta o ritmo do exercício.',
+            'recuperar'=>'Você cuida da recuperação sem forçar o corpo.','apoio'=>'Sua disposição para ajudar é acolhida.','liderar'=>'Você organiza a proposta e deixa claro como pretende ajudar.','disciplina'=>'Você mantém o foco e faz o que combinou.','reclamar'=>'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.','ousar'=>'Tomar a iniciativa aumenta sua confiança.','imprensa'=>'Sua mensagem esclarece sua posição sem ampliar a discussão.','lazer'=>'Você consegue relaxar durante a pausa.','social'=>'Você comunica sua decisão e evita um mal-entendido.',default=>throw new LogicException('Alternativa sem resposta de sucesso.')};
         $failure=$o['failure_text']??match($o['code']) {
             'passe'=>$stage==='partida'?'Você erra a direção do passe e a bola não chega ao companheiro.':'Você erra a força dos passes e não consegue repetir o movimento com precisão.',
             'chute'=>$stage==='partida'?'Você pega mal na bola e o chute sai sem a precisão que precisava.':'Os chutes saem imprecisos e você termina o exercício sem acertar o movimento.',

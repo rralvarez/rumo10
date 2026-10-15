@@ -3,7 +3,7 @@ declare(strict_types=1);
 require dirname(__DIR__).'/app/bootstrap.php';
 $checks=0;
 function checkFailure(bool $ok,string $message):void {global $checks;$checks++;if(!$ok)throw new RuntimeException($message);}
-$authored=require dirname(__DIR__).'/database/scene-failures.php';
+$authored=require dirname(__DIR__).'/database/scene-failures.php';$editorial=require dirname(__DIR__).'/database/weekend-outcomes.php';$context=require dirname(__DIR__).'/database/context-outcomes.php';$overrides=require dirname(__DIR__).'/database/scene-consequences.php';
 $base=Game::legacyCreate('Teste de respostas','São Paulo','SP','centroavante');
 foreach(Scenes::catalog() as $id=>$scene){
     $g=$base;$g['stage']=$scene['stage'];
@@ -13,8 +13,8 @@ foreach(Scenes::catalog() as $id=>$scene){
     checkFailure($g===$before,'Consultar respostas não modifica a carreira.');
     foreach($choices as $index=>$choice){
         checkFailure(!empty($choice['failure_text']) && !str_contains($choice['failure_text'],'A tentativa não sai') && !str_contains($choice['failure_text'],'a intenção não teve'),'Falha sem resposta padrão: '.$id.':'.$index);
-        if(isset($authored[$id][$index]))checkFailure($choice['failure_text']===$authored[$id][$index],'Desfecho específico: '.$id.':'.$index);
-        if(isset($scene['options'][$index]['failure_text']))checkFailure($choice['failure_text']===$scene['options'][$index]['failure_text'],'Resposta contextual anterior preservada.');
+        if(isset($authored[$id][$index]))checkFailure($choice['failure_text']===($editorial[$id][$index][1]??$context[$id][$index]['failure_text']??$overrides[$id][$index]['failure_text']??$authored[$id][$index]),'Desfecho específico: '.$id.':'.$index);
+        if(isset($scene['options'][$index]['failure_text']))checkFailure($choice['failure_text']===($editorial[$id][$index][1]??$context[$id][$index]['failure_text']??$overrides[$id][$index]['failure_text']??$scene['options'][$index]['failure_text']),'Resposta contextual anterior preservada.');
     }
 }
 foreach([1160=>'entrevista',1183=>'rumor'] as $id=>$context){

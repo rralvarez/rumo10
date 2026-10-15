@@ -15,8 +15,11 @@ final class TransferMarket {
   $tackles=0;foreach(Competition::playerMatches($g) as $m)if($m['status']==='finalizada' && in_array($g['club'],[$m['home'],$m['away']],true))$tackles+=$m['stats']['tackles']??0;
   $def=in_array($g['position'],['zagueiro','lateral','volante'],true);
   $production=($s['goals']*($def?.6:1)+$s['assists']+($def?$tackles*.12:0))*90/max(90,$s['minutes']);
-  $merit=max(0,min(1.5,($s['average']-5.8)/2+$production*.3+$growth*.1));
-  return $s+['technical'=>$technical,'growth'=>$growth,'production'=>$production,'merit'=>$merit,'abroad'=>$s['games']>=3 && $s['minutes']>=180 && $merit>=.20];
+  $titles=count(array_filter(Trophies::collect($g),fn($t)=>$t['season']===$g['season'] && $t['club']===$g['club']));
+  $reputation=array_sum(array_map(fn($k)=>(float)($g['states'][$k]??50),['confianca_treinador','confianca_imprensa','apoio_torcida']))/3;
+  $potential=$g['age']<=26?max(0,min(1,(Evolution::ceiling(32,'passe')-$technical)/60)):0;
+  $merit=max(0,min(1.5,($s['average']-5.8)/2+$production*.3+$growth*.1+min(.15,$titles*.05)+max(-.1,min(.1,($reputation-50)/500))));
+  return $s+['technical'=>$technical,'growth'=>$growth,'production'=>$production,'titles'=>$titles,'reputation'=>$reputation,'potential'=>$potential,'merit'=>$merit,'abroad'=>$s['games']>=3 && $s['minutes']>=180 && $merit>=.20];
  }
  public static function pool(array $g):array {
   $p=self::profile($g);$members=$g['next_memberships']??$g['memberships'];$origin=self::country($g['club']);$region=FootballGeography::region($origin);
@@ -28,7 +31,7 @@ final class TransferMarket {
    usort($ids,fn($a,$b)=>(self::sportingLevel($a)<=>self::sportingLevel($b))?:strcmp($a,$b));$id=$ids[0];
    $country=self::country($club);$foreign=$country!==$origin;if($foreign && !$p['abroad'])continue;
    $ovr=$g['next_club_strengths'][$club]??TeamStrength::initial($club);
-   $capacity=$p['technical']+10+18*$p['merit']+min(8,$p['growth']*2)+($g['age']<=26?2:0);
+   $capacity=$p['technical']+10+18*$p['merit']+min(8,$p['growth']*2)+2*$p['potential'];
    if($ovr>$capacity)continue;
    $delta=$ovr-$current;$weight=max(3,(int)round(12+25*$p['merit']-max(0,$delta-$preferred)*2-max(0,-$delta-10)));
    $bucket=$foreign?(FootballGeography::region($country)===$region?'region':'world'):'country';
@@ -36,7 +39,10 @@ final class TransferMarket {
   }
   $targets=$g['season']<=3?['country'=>6,'region'=>2,'world'=>0]:['country'=>3,'region'=>3,'world'=>2];$pool=[];
   foreach($groups as &$list){shuffle($list);usort($list,fn($a,$b)=>$b['preferred']<=>$a['preferred']);}unset($list);
-  foreach($targets as $bucket=>$n)for($i=0;$i<$n && $groups[$bucket];$i++)$pool[]=array_shift($groups[$bucket]);
+  foreach($targets as $bucket=>$n){$seen=[];for($i=0;$i<$n && $groups[$bucket];$i++){
+   $index=0;if($bucket!=='country')foreach($groups[$bucket] as $j=>$candidate)if(!isset($seen[$candidate['country']])){$index=$j;break;}
+   $candidate=$groups[$bucket][$index];$seen[$candidate['country']]=true;$pool[]=$candidate;array_splice($groups[$bucket],$index,1);
+  }}
   foreach(['region','country','world'] as $bucket)while(count($pool)<8 && $groups[$bucket])$pool[]=array_shift($groups[$bucket]);
   return $pool;
  }

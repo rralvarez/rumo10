@@ -13,7 +13,7 @@ final class Trophies {
   $out=[];$catalog=Competition::catalog();
   foreach($editions as $season=>$results)foreach($results as $id=>$r){
    $club=$clubs[$season]??null;if(!$club)continue;$c=$catalog[$id]??[];$titles=$r['titles']??[];
-   $country=TransferMarket::country($club);$category=str_starts_with($id,'br-')?'nacional':(in_array($c['family']??'', ['sp','state'],true)?'estadual':'nacional');
+   $country=TransferMarket::country($club);$category=in_array($c['family']??'', ['sp','state'],true)?'estadual':(str_ends_with($id,'-entrada')?'regional':'nacional');
    $base=['season'=>(int)$season,'competition'=>$id,'competition_name'=>$r['name']??$c['name']??$id,'club'=>$club,'country'=>$country,'category'=>$category,'reference_edition'=>$c['season_label']??$c['edition']??null,'universe_edition'=>'Temporada '.$season,'adapted'=>!empty($c['rules']['note']),'source'=>'competition_result'];
    $namedChampion=in_array($id,['ar-1','py-1','us-1','ca-1'],true) || str_starts_with($c['rules']['system']??'','short_');
    if(($r['champion']??null)===$club && (!$titles || !$namedChampion)){$name=$r['name']??$c['name']??$id;$out[$season.'|'.$id.'|champion']=$base+['title'=>$name,'kind'=>'champion'];}

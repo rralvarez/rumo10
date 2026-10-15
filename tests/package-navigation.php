@@ -1,7 +1,10 @@
 <?php
 require dirname(__DIR__).'/app/bootstrap.php';putenv('RUMOHUB_ENABLED=0');
 $g=Game::legacyCreate('Teste de localização','São Paulo','SP','meia');
-assert(CurrentLocation::label($g)==='Cidade informada (cadastro anterior)');
+if(CurrentLocation::label($g)!=='Cidade informada (cadastro anterior)')throw new RuntimeException('Legado não pode afirmar residência atual.');
+$legacy=$g;$legacy['stage']='treino';$relocated=Game::command($legacy,'relocate',['city'=>'Campinas','uf'=>'SP','residence_country'=>'BR']);
+if($relocated['legacy_location_record']['city']!==$legacy['city'] || $relocated['location_kind']!=='current' || $relocated['matches']!==$legacy['matches'] || $relocated['city']!=='Campinas')throw new RuntimeException('Edição voluntária deve preservar origem e resultados.');
+$inMatch=$legacy;$inMatch['stage']='partida';$denied=false;try{Game::command($inMatch,'relocate',['city'=>'Campinas','uf'=>'SP','residence_country'=>'BR']);}catch(InvalidArgumentException){$denied=true;}if(!$denied)throw new RuntimeException('Residência editável durante a partida.');
 $g=EntryCountries::create('Teste de localização','Lisboa','SP','meia','BR','gratuito','PT','Lisboa','SP');
 if($g['city']!=='Lisboa' || $g['uf']!=='EX' || $g['location_kind']!=='current')throw new RuntimeException('Residência internacional incorreta.');
 $g=Game::command($g,'handicap',[]);

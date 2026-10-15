@@ -23,7 +23,7 @@ final class TeamStrength {
         return $r?self::campaign(self::baseline($club),(int)$r['position'],(int)$r['teams'],(int)$r['points'],(int)$r['games']):self::baseline($club);
     }
     public static function rating(string $club,array $g=[]): float {
-        $base=$g['club_strengths'][$club]??self::initial($club);
+        $anchor=self::initial($club);$base=max($anchor-4,min($anchor+4,$g['club_strengths'][$club]??$anchor));
         $played=array_values(array_filter($g['matches']??[],fn($m)=>$m['status']==='finalizada' && in_array($club,[$m['home'],$m['away']],true)));
         $played=array_slice($played,-5);$points=0;
         foreach($played as $m){$delta=$m['home']===$club?$m['hg']-$m['ag']:$m['ag']-$m['hg'];$points+=$delta>0?3:($delta===0?1:0);}

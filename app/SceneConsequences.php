@@ -3,6 +3,8 @@ declare(strict_types=1);
 final class SceneConsequences {
     public static function option(array $o,string $stage,int $id,int $index):array {
         $code=$o['code']??null;
+        static $legacySuccess;$legacySuccess??=require dirname(__DIR__).'/database/legacy-successes.php';
+        if(isset($legacySuccess[$id][$index]) && !isset($o['success_text']))$o['success_text']=$legacySuccess[$id][$index];
         if($code==='liderar')unset($o['effects']['energia']);
         if($code==='tecnica' && !isset($o['custom_effects'])){$o['effects']=['drible'=>2,'foco'=>3,'energia'=>-3];}
         if($code==='disciplina' && $stage==='fim_semana' && !isset($o['custom_effects']))$o['effects']=['foco'=>3];

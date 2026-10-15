@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-/** Curva de jogo, não modelo médico. Auge potencial aos 32; progresso depende de XP. */
+/** Curva de jogo, não modelo médico. Auge entre 27 e 32; progresso depende de XP. */
 final class Evolution {
     public const PEAK=32;
     public static function ceiling(int $age,string $skill):int {

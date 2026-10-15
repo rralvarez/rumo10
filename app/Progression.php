@@ -27,10 +27,14 @@ final class Progression {
   self::distribute($g,$total,'match:'.$g['season'].':'.($g['competition_id']??'legacy').':'.$m['round'].':'.$m['home'].':'.$m['away']);
  }
  public static function competition(array &$g,string $id,array $result):void {
-  if(($g['progression_version']??0)!==2 || ($result['champion']??null)!==$g['club'])return;
+  if(($g['progression_version']??0)!==2)return;
   $level=TransferMarket::sportingLevel($id);$xp=match($level){1=>90,2=>70,3=>55,4=>40,default=>25};
-  $key='title:'.$g['season'].':'.$id.':'.$g['club'];if(isset($g['reward_ledger'][$key]))return;
   $played=array_filter($g['matches'],fn($m)=>$m['status']==='finalizada' && ($m['stats']['minutes']??0)>0 && in_array($g['club'],[$m['home'],$m['away']],true));
-  if(!$played)return;self::distribute($g,$xp,$key);$g['states']['apoio_torcida']=min(100,$g['states']['apoio_torcida']+4);$g['states']['confianca_imprensa']=min(100,$g['states']['confianca_imprensa']+3);
+  if(!$played)return;
+  $view=$g;$view['competition_results'][$id]=$result;
+  foreach(Trophies::collect($view) as $award){if($award['season']!==$g['season'] || $award['competition']!==$id || $award['club']!==$g['club'])continue;
+   $key='title:'.$g['season'].':'.$id.':'.hash('sha256',$award['kind'].'|'.$award['title']);if(isset($g['reward_ledger'][$key]))continue;
+   $short=$award['kind']==='stage_title';self::distribute($g,(int)round($xp*($short?.5:1)),$key);$g['states']['apoio_torcida']=min(100,$g['states']['apoio_torcida']+($short?2:4));$g['states']['confianca_imprensa']=min(100,$g['states']['confianca_imprensa']+($short?2:3));
+  }
  }
 }

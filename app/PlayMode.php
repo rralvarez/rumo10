@@ -18,7 +18,7 @@ final class PlayMode {
     public static function change(array $g,string $mode): array {
         throw new InvalidArgumentException('O modo é escolhido ao criar o jogador e permanece fixo nesta carreira.');
     }
-    // Percorre os mesmos comandos; Evolution aplica o multiplicador do modo da carreira.
+    // Percorre os mesmos comandos e a mesma curva de XP, sem multiplicador por modo.
     public static function simulate(array $g,string $plan): array {
         $mode=self::name($g);
         if($mode==='normal' || $g['stage']!=='treino' || !isset(self::PLANS[$plan]))throw new InvalidArgumentException('Estratégia incompatível com a etapa atual.');

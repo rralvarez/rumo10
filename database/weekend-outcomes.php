@@ -54,7 +54,7 @@ return [
  ['O repouso ajuda você a recuperar as energias.','Você não consegue desligar dos compromissos e descansa pouco.']],
 1160=>[
  ['Você explica o contexto da entrevista sem prolongar a discussão.','Sua explicação deixa outra dúvida e a repercussão continua.'],
- ['O clube esclarece como responder à entrevista fora de contexto.','A consulta não resolve sua dúvida sobre como se posicionar.'],
+ ['A comunicação do clube esclarece como responder à entrevista fora de contexto.','A comunicação do clube não esclarece sua dúvida sobre como responder à entrevista.'],
  ['Os companheiros entendem o que você quis dizer na entrevista.','A conversa não desfaz o mal-entendido com os companheiros citados.'],
  ['Você expõe seu ponto de vista diretamente, mas assume o risco de ampliar a discussão.','A resposta nas redes aumenta o mal-entendido e traz novas críticas.']],
 1161=>[
@@ -169,7 +169,7 @@ return [
  ['A comissão entende sua disposição para assumir mais responsabilidade.','Seu pedido fica precipitado e você não esclarece como está se preparando para isso.']],
 1183=>[
  ['Você esclarece o que sabe sem dar força a novas especulações.','Sua resposta deixa uma dúvida e o rumor continua circulando.'],
- ['O clube orienta como lidar com o rumor sem ampliar a repercussão.','A consulta não esclarece se você deve responder ao rumor agora.'],
+ ['A comunicação do clube orienta como lidar com o rumor sem ampliar a repercussão.','A comunicação do clube não esclarece se você deve responder ao rumor agora.'],
  ['Você e o companheiro envolvido esclarecem o que aconteceu.','A conversa não desfaz o mal-entendido entre vocês.'],
  ['Você silencia as notificações e recupera a atenção na sua rotina.','Mesmo sem notificações, você continua preocupado com o rumor.']],
 1184=>[

@@ -26,12 +26,13 @@ foreach(array_keys($counts) as $country) {
 // Mercado: dados de atleta sintéticos sobre temporada descartável, sem tocar em carreira real.
 $g=Game::command(Game::create('Teste mercado','São Paulo','SP','centroavante','Flamengo-RJ'),'handicap');$g=array_replace($g,['play_mode'=>'expresso']);$g=Game::command($g,'simulate',['plan'=>'equilibrio']);
 $weak=$g;foreach($weak['skills'] as &$s)$s['value']=40;unset($s);
+foreach($weak['competitions'] as &$t)foreach($t['matches'] as &$m)if(in_array($weak['club'],[$m['home'],$m['away']],true)){$m['stats']['rating']=5;$m['stats']['goals']=0;$m['stats']['assists']=0;}unset($t,$m);$weak['matches']=$weak['competitions'][$weak['competition_id']]['matches'];$weak['season_skill_baseline']=40;
 euCheck(!array_filter(Competition::offerPool($weak),fn($o)=>$o['international']),'Sem exterior para atleta insuficiente');
 foreach($g['skills'] as &$s)$s['value']=64;unset($s);$g['season_skill_baseline']=60;
 foreach($g['competitions'] as &$t)foreach($t['matches'] as &$m)if(in_array($g['club'],[$m['home'],$m['away']],true)){$m['stats']['minutes']=90;$m['stats']['rating']=7.3;}unset($t,$m);
 $g['matches']=$g['competitions'][$g['competition_id']]['matches'];$pool=Competition::offerPool($g);$foreign=array_values(array_filter($pool,fn($o)=>$o['international']));
-euCheck(count($foreign)===4,'Exterior não diluído por clubes brasileiros');euCheck(count(array_unique(array_column($foreign,'country')))>=2,'Diversidade internacional');
-foreach($foreign as $o)euCheck($o['overall']<=78,'Grandes clubes exigem mais técnica');
+euCheck(count($foreign)===2,'Primeiro ciclo almeja seis destinos nacionais e dois regionais');euCheck(count(array_unique(array_column($foreign,'country')))>=2,'Diversidade internacional');
+foreach($foreign as $o)euCheck(FootballGeography::region($o['country'])===FootballGeography::region('BR'),'Primeiros três ciclos priorizam a mesma confederação');$later=$g;$later['season']=4;$laterPool=Competition::offerPool($later);$distribution=TransferMarket::distribution($later,$laterPool);euCheck($distribution['actual']===['country'=>3,'region'=>3,'world'=>2],'A partir do quarto ciclo almeja três mais três mais dois');
 $noMinutes=$g;foreach($noMinutes['competitions'] as &$t)foreach($t['matches'] as &$m)$m['stats']['minutes']=0;unset($t,$m);$noMinutes['matches']=$noMinutes['competitions'][$noMinutes['competition_id']]['matches'];
 euCheck(!TransferMarket::profile($noMinutes)['abroad'],'Sem propostas exteriores só por nota sem minutos');
 $target=$g['next_memberships']['pt-2'][0];$g['offers']=[['club'=>$target,'tier'=>4,'peso'=>100,'selected'=>true]];$g['stage']='oferta';
