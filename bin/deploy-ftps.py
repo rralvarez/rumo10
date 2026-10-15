@@ -9,6 +9,10 @@ import re
 import ssl
 import socket
 import tarfile
+import tempfile
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
+import threading
 
 parser = argparse.ArgumentParser()
 parser.add_argument("archive")
@@ -129,13 +133,16 @@ with tarfile.open(args.archive, "r:gz") as archive:
                     ftp.cwd("/")
                 created.add(part)
 
-        def put(path, stream):
-            ensure_directory(path.rsplit("/", 1)[0])
+        def transfer(client, path, stream):
             # Upload temporário + rename evita deixar cada arquivo pela metade.
             parent, filename = path.rsplit("/", 1)
             temporary = f"{parent}/.rumo-upload-{filename}"
-            ftp.storbinary(f"STOR {temporary}", stream)
-            ftp.rename(temporary, path)
+            client.storbinary(f"STOR {temporary}", stream)
+            client.rename(temporary, path)
+
+        def put(path, stream):
+            ensure_directory(path.rsplit("/", 1)[0])
+            transfer(ftp, path, stream)
 
         lock = f"apps/{args.project}/deployment.lock"
         put(lock, io.BytesIO(b"GitHub Actions FTPS deployment\n"))
@@ -144,10 +151,41 @@ with tarfile.open(args.archive, "r:gz") as archive:
         put(f"{public}/index.php", io.BytesIO(bridge))
         for directory in ("logs", "sessions", "private", "hub-cache"):
             ensure_directory(f"{base}/storage/{directory}")
-        for index, (name, destination) in enumerate(uploads, 1):
-            put(destination, archive.extractfile(name))
-            if index % 100 == 0:
-                print(f"{args.project}: {index}/{len(uploads)} arquivos transferidos.", flush=True)
+        for _, destination in uploads:
+            ensure_directory(destination.rsplit("/", 1)[0])
+        # Conexões persistentes em paralelo: a carga inicial tem milhares de imagens.
+        # Cada conexão recebe arquivos distintos; a manutenção só termina após todas.
+        with tempfile.TemporaryDirectory(prefix="rumo-ftps-") as temporary_folder:
+            sources = {}
+            for name, _ in uploads:
+                if name in sources:
+                    continue
+                source = Path(temporary_folder) / name
+                source.parent.mkdir(parents=True, exist_ok=True)
+                source.write_bytes(archive.extractfile(name).read())
+                sources[name] = source
+            workers = min(3, len(uploads))
+            progress = [0]
+            progress_lock = threading.Lock()
+
+            def upload_batch(batch):
+                with ftplib.FTP_TLS(context=ssl.create_default_context(), timeout=30) as connection:
+                    connection.connect(host, port)
+                    connection.auth()
+                    connection.login(user, password)
+                    connection.prot_p()
+                    connection.cwd("/")
+                    for name, destination in batch:
+                        with sources[name].open("rb") as body:
+                            transfer(connection, destination, body)
+                        with progress_lock:
+                            progress[0] += 1
+                            if progress[0] % 100 == 0:
+                                print(f"{args.project}: {progress[0]}/{len(uploads)} arquivos transferidos.", flush=True)
+
+            if workers:
+                with ThreadPoolExecutor(max_workers=workers) as executor:
+                    list(executor.map(upload_batch, [uploads[i::workers] for i in range(workers)]))
         put(f"{base}/release.json", io.BytesIO(json.dumps(manifest).encode("utf-8")))
         # Única exclusão remota: marcador criado por esta publicação.
         ftp.delete(lock)
