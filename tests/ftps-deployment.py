@@ -22,10 +22,11 @@ class FakeFTP:
         self.files = {"apps/rumo10/current/.env": b"private-configuration"}
         self.deleted = []
         self.fail = False
+        self.connections = []
 
     def __enter__(self): return self
     def __exit__(self, *args): return False
-    def connect(self, *args): pass
+    def connect(self, *args): self.connections.append(args)
     def auth(self): pass
     def login(self, *args): pass
     def prot_p(self): pass
@@ -65,7 +66,7 @@ class DeploymentTests(unittest.TestCase):
     def tearDown(self): self.tmp.cleanup()
 
     def deploy(self):
-        with patch.object(sys, "argv", ["deploy-ftps.py", str(self.archive), "rumo10"]), patch.dict(os.environ, {"UOL_FTP_HOST": "test.invalid", "UOL_FTP_USERNAME": "test", "UOL_FTP_PASSWORD": "fixture-only"}), patch("ftplib.FTP_TLS", return_value=self.ftp), patch("socket.create_connection"), patch("ssl.SSLContext.wrap_socket", side_effect=getattr(self, "tls_error", None)), contextlib.redirect_stdout(io.StringIO()):
+        with patch.object(sys, "argv", ["deploy-ftps.py", str(self.archive), "rumo10"]), patch.dict(os.environ, {"UOL_FTP_HOST": "test.invalid", "UOL_FTP_ADDRESS": "192.0.2.10", "UOL_FTP_USERNAME": "test", "UOL_FTP_PASSWORD": "fixture-only"}), patch("ftplib.FTP_TLS", return_value=self.ftp), patch("socket.create_connection"), patch("ssl.SSLContext.wrap_socket", side_effect=getattr(self, "tls_error", None)), contextlib.redirect_stdout(io.StringIO()):
             runpy.run_path(str(ROOT / "bin/deploy-ftps.py"), run_name="__main__")
 
     def test_preserves_private_configuration_and_only_deletes_owned_lock(self):
@@ -117,6 +118,12 @@ class DeploymentTests(unittest.TestCase):
         self.ftp.storbinary = lambda cmd, stream: (writes.append(cmd), original(cmd, stream))[-1]
         self.deploy()
         self.assertFalse(any('bootstrap.php' in cmd or 'app.css' in cmd for cmd in writes))
+
+    def test_connects_to_pinned_address_but_preserves_tls_hostname(self):
+        self.deploy()
+        self.assertTrue(self.ftp.connections)
+        self.assertTrue(all(address == ('192.0.2.10', 21) for address in self.ftp.connections))
+        self.assertEqual(self.ftp.host, 'test.invalid')
 
 
 if __name__ == "__main__": unittest.main()

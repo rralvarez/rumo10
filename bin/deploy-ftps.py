@@ -13,6 +13,7 @@ import tempfile
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import threading
+import ipaddress
 
 parser = argparse.ArgumentParser()
 parser.add_argument("archive")
@@ -61,6 +62,9 @@ with tarfile.open(args.archive, "r:gz") as archive:
     user = os.environ.get("UOL_FTP_USERNAME", "")
     password = os.environ.get("UOL_FTP_PASSWORD", "")
     port = int(os.environ.get("UOL_FTP_PORT") or "21")
+    address = os.environ.get("UOL_FTP_ADDRESS") or host
+    if address != host:
+        ipaddress.ip_address(address)
     if not host or not user or not password:
         raise SystemExit("Configure servidor e credenciais FTPS nos Secrets do GitHub.")
     # Não tocar na publicação enquanto o domínio ainda tem DNS/TLS inválido.
@@ -70,7 +74,8 @@ with tarfile.open(args.archive, "r:gz") as archive:
         with context.wrap_socket(connection, server_hostname=web_host):
             pass
     with ftplib.FTP_TLS(context=ssl.create_default_context(), timeout=30) as ftp:
-        ftp.connect(host, port)
+        ftp.connect(address, port)
+        ftp.host = host  # Nome original para SNI/verificação TLS, mesmo com IP fixado.
         ftp.auth()
         ftp.login(user, password)
         ftp.prot_p()
@@ -170,7 +175,8 @@ with tarfile.open(args.archive, "r:gz") as archive:
 
             def upload_batch(batch):
                 with ftplib.FTP_TLS(context=ssl.create_default_context(), timeout=30) as connection:
-                    connection.connect(host, port)
+                    connection.connect(address, port)
+                    connection.host = host
                     connection.auth()
                     connection.login(user, password)
                     connection.prot_p()

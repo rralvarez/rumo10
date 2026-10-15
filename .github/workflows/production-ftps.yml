@@ -25,6 +25,7 @@ jobs:
       - name: Publicar por FTPS com TLS validado
         env:
           UOL_FTP_HOST: ${{ vars.UOL_FTP_HOST }}
+          UOL_FTP_ADDRESS: ${{ vars.UOL_FTP_ADDRESS }}
           UOL_FTP_PORT: ${{ vars.UOL_FTP_PORT }}
           UOL_FTP_USERNAME: ${{ secrets.UOL_FTP_USERNAME }}
           UOL_FTP_PASSWORD: ${{ secrets.UOL_FTP_PASSWORD }}
