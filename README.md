@@ -1,5 +1,7 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
+**Preparação da publicação v1.0:** [backups de produção conferidos e plano aguardando aprovação](Docs/39_Preparacao_Publicacao_v1_20261015.md). SQL e arquivos da produção ainda não foram alterados; importação será incremental pelo phpMyAdmin, sob manutenção coordenada.
+
 **Pacote v1.0 de 15/10 — implementado e testado localmente, ainda não publicado:** [regras, testes, SQL incremental e rollback](Docs/38_Entrega_Crescimento_v1.md). Gratuito passa a duas vagas-base e até três extras por indicação de uso único; pago/cortesia Rumo10 mantém dez. Saves antigos preservados. Direitos por jogo são administrados no Hub. As referências abaixo registram versões anteriores; o relatório 38 prevalece para este pacote.
 
 **Conta Rumo compartilhada, modo fixo e decisões revisadas:** [migração importada, acessos, clubes, probabilidades e testes](Docs/36_Identidade_Clubes_Equilibrio_e_Textos.md). Hub e jogo usam o mesmo e-mail/senha, preservando as carreiras; modo escolhido somente na criação do jogador. Revisadas as 200 alternativas de folga, com respostas específicas e efeitos adequados aos interlocutores.

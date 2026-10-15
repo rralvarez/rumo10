@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-15",
+  "stage": "preparation_waiting_owner_gate",
+  "database": "rumoacame144a99e_rumohub",
+  "mysql_version_in_dump": "8.0.46-cll-lve",
+  "db_backup": {
+    "tables": 46,
+    "rows": 151001,
+    "archive_bytes": 8329648,
+    "archive_sha256": "fb14e3a144280a2cb7067d78b2ba228fc123e60a053ba818589e2f79a8775c9c",
+    "gzip_crc_verified": true,
+    "database_restore_tested": false,
+    "migration_tables_already_present": []
+  },
+  "existing_counts": {
+    "rh_usuarios": 2,
+    "rh_admins": 1,
+    "rumo10_contas": 2,
+    "rumo10_carreiras": 3,
+    "rumo10_carreiras_arquivadas": 2,
+    "rumo10_historico_encerrado": 0
+  },
+  "files_backup": {
+    "files": 4445,
+    "source_bytes": 136300788,
+    "archive_bytes": 112328621,
+    "archive_sha256": "2da34627452bce6eaef2b8869d68333929bdebbd31f1cdbf347b22ff403d8db3",
+    "verified_archive_members": 4445,
+    "gzip_crc_verified": true
+  },
+  "installed_manifests": {
+    "rumohub": {
+      "manifest_files": 2367,
+      "files_matching_manifest": 2367,
+      "mismatches": []
+    },
+    "rumo10": {
+      "manifest_files": 127,
+      "files_matching_manifest": 127,
+      "mismatches": []
+    }
+  },
+  "sql": {
+    "sha256": "3e435b6f234a736233c8f169902bc2d99088baa0b92b0de417a5d65bc84e6cc0",
+    "statements": 17,
+    "new_tables": 12,
+    "destructive_statements": 0,
+    "initial_load": false
+  },
+  "expected_tables_after": 58,
+  "local_deployment_tests": {
+    "rumo10": 11,
+    "rumohub": 11
+  },
+  "remote_mutations_performed": false,
+  "sql_applied": false,
+  "new_code_deployed": false,
+  "maintenance_activated": false,
+  "real_courtesy_granted": false,
+  "production_qa_v1_executed": false,
+  "remote_mysql_error": 1130
+}
