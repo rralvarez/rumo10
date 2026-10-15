@@ -43,4 +43,11 @@ jobs:
           UOL_FTP_PASSWORD: ${{ secrets.UOL_FTP_PASSWORD }}
         run: python3 bin/deploy-ftps.py "$RUNNER_TEMP/release.tar.gz" rumo10
       - name: Conferir HTTPS público
-        run: php bin/production-smoke.php https://www.rumoacamisa10.com.br rumo10
+        env:
+          DEPLOY_HOLD: ${{ vars.UOL_DEPLOY_HOLD }}
+        run: |
+          if [ "$DEPLOY_HOLD" = "true" ]; then
+            php bin/production-smoke.php https://www.rumoacamisa10.com.br rumo10 --maintenance
+          else
+            php bin/production-smoke.php https://www.rumoacamisa10.com.br rumo10
+          fi

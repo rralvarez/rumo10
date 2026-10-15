@@ -7,6 +7,11 @@ if(!preg_match('#^https://[a-zA-Z0-9.-]+$#',$base) || !in_array($project,['rumo1
 $cases=['/'=>[200],'/.env'=>[403,404],'/.git/config'=>[403,404],'/storage/private/clients.php'=>[403,404],'/app/bootstrap.php'=>[403,404],'/README.md'=>[403,404],'/assets/clubs/test.png'=>[403,404]];
 $cases[$project==='rumo10'?'/login':'/admin/login']=[200];
 if($project==='rumohub')$cases['/api/v1/catalog']=[401];
+// O bloqueio coordenado é retirado pelo operador só após os testes dos dois projetos.
+if(in_array('--maintenance',$argv,true)){
+ $cases['/']=[503];$cases[$project==='rumo10'?'/login':'/admin/login']=[503];
+ if($project==='rumohub')$cases['/api/v1/catalog']=[503];
+}
 foreach($cases as $path=>$expected){
  $curl=curl_init($base.$path);curl_setopt_array($curl,[CURLOPT_RETURNTRANSFER=>true,CURLOPT_TIMEOUT=>20,CURLOPT_FOLLOWLOCATION=>false]);
  $body=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_RESPONSE_CODE);curl_close($curl);

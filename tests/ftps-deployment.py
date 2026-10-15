@@ -9,6 +9,9 @@ from pathlib import Path
 import runpy
 import sys
 import ssl
+import shutil
+import subprocess
+import time
 import tarfile
 import tempfile
 import unittest
@@ -89,6 +92,40 @@ class DeploymentTests(unittest.TestCase):
         with self.assertRaises(OSError): self.deploy()
         self.assertIn("apps/rumo10/deployment.lock", self.ftp.files)
         self.assertEqual(self.ftp.deleted, [])
+
+    def test_success_does_not_release_operator_maintenance(self):
+        self.ftp.files['apps/rumo10/maintenance.lock'] = b'coordinated-rollout'
+        self.deploy()
+        self.assertEqual(self.ftp.files['apps/rumo10/maintenance.lock'], b'coordinated-rollout')
+        self.assertIn(b'/maintenance.lock', self.ftp.files['public_html/index.php'])
+
+    def test_bridge_maintenance_expiry_and_busy_lock(self):
+        php = os.environ.get('PHP_BIN') or shutil.which('php')
+        if not php: self.skipTest('PHP CLI necessário para exercitar a ponte')
+        self.deploy()
+        folder = Path(self.tmp.name) / 'project'
+        entry = folder / 'current/public/index.php'
+        entry.parent.mkdir(parents=True)
+        entry.write_text('<?php echo "ENTRY";', encoding='utf-8')
+        bridge = Path(self.tmp.name) / 'bridge.php'
+        bridge.write_bytes(self.ftp.files['public_html/index.php'].replace(b'/home/rumoacame144a99e/apps/rumo10', folder.as_posix().encode()))
+        hold = folder / 'maintenance.lock'
+        busy = folder / 'deployment.lock'
+        allow = folder / 'maintenance-allow.json'
+        cases = [(False,False,None,'ENTRY'),(True,False,None,'Estamos'),
+                 (True,False,{'expires':int(time.time())+600,'ips':['192.0.2.10']},'ENTRY'),
+                 (True,False,{'expires':1,'ips':['192.0.2.10']},'Estamos'),
+                 (True,False,{'expires':int(time.time())+600,'ips':['192.0.2.11']},'Estamos'),
+                 (True,True,{'expires':int(time.time())+600,'ips':['192.0.2.10']},'Estamos')]
+        for holding,transferring,access,expected in cases:
+            with self.subTest(holding=holding,transferring=transferring,access=access):
+                for file,exists in [(hold,holding),(busy,transferring)]:
+                    if exists: file.write_text('fixture',encoding='utf-8')
+                    elif file.exists(): file.unlink()
+                allow.write_text(json.dumps(access),encoding='utf-8')
+                result = subprocess.run([php,'-n','-r','$_SERVER["REMOTE_ADDR"]="192.0.2.10"; require $argv[1];',str(bridge)],capture_output=True,timeout=10)
+                self.assertEqual(result.returncode,0)
+                self.assertTrue(result.stdout.decode('utf-8').startswith(expected))
 
     def test_refuses_existing_unmanaged_site_without_writing(self):
         self.ftp.files["public_html/index.php"] = b"existing website"

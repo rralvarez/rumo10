@@ -26,7 +26,15 @@ absolute = f"/home/rumoacame144a99e/{base}"
 bridge = f"""<?php
 declare(strict_types=1);
 // RUMO_FTPS_BRIDGE_V1
-if (is_file('/home/rumoacame144a99e/apps/{args.project}/deployment.lock')) {{
+$busy = is_file('/home/rumoacame144a99e/apps/{args.project}/deployment.lock');
+$hold = is_file('/home/rumoacame144a99e/apps/{args.project}/maintenance.lock');
+$allowed = false;
+if (!$busy && $hold) {{
+ $access = json_decode(@file_get_contents('/home/rumoacame144a99e/apps/{args.project}/maintenance-allow.json') ?: '{{}}', true);
+ $allowed = is_array($access) && (int)($access['expires'] ?? 0) > time() && is_array($access['ips'] ?? null)
+  && in_array((string)($_SERVER['REMOTE_ADDR'] ?? ''), $access['ips'], true);
+}}
+if ($busy || ($hold && !$allowed)) {{
  http_response_code(503); header('Cache-Control: no-store'); header('Retry-After: 60'); exit('Estamos atualizando o site. Volte em instantes.');
 }}
 $entry = '{absolute}/public/index.php';
