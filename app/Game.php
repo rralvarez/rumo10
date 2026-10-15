@@ -56,7 +56,8 @@ final class Game {
         $chance=Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
         $clear=!empty($o['clear_chance']);
         if($clear)$chance=min(95,$chance+($o['chance_bonus']??($type==='passe'?18:8)));
-        if($g['stage']==='partida' && ($type==='chute' || ($clear && $type==='drible')))return Probability::goalChance($chance,$g['skills']['finalizacao']['value'],$clear,$type);
+        if($g['stage']==='partida' && ($type==='chute' || ($clear && $type==='drible')))return MatchBalance::eventChance($g,Probability::goalChance($chance,$g['skills']['finalizacao']['value'],$clear,$type));
+        if($g['stage']==='partida' && $clear && $type==='passe')return MatchBalance::eventChance($g,$chance);
         return round($chance,2);
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false): array {
@@ -106,6 +107,7 @@ final class Game {
                 $bench=($s['bench']??($s['id']===6)); $absent=$g['states']['energia']<15 || $g['states']['risco_lesao']>85;
                 $m['lineup']=$absent?'não relacionado':($bench?'reserva':'titular');
                 $m['entry']=$absent?90:($bench?60:0); $m['exit']=90; $m['status']='pre_jogo'; $g['stage']='partida';
+                MatchBalance::prepare($m,$g);$g['progression_version']=2;
             } elseif($g['stage']==='fim_semana') {
                 $g['states']['energia']=self::clamp($g['states']['energia']+20); $g['states']['risco_lesao']=self::clamp($g['states']['risco_lesao']-10); $g['states']['risco_cartao']=self::clamp($g['states']['risco_cartao']-10);
                 if(!empty($g['official'])) Competition::afterWeekend($g);
@@ -124,16 +126,19 @@ final class Game {
             foreach(Rules::TEAMS as $t) if($t!==$g['club']) $pool[]=['club'=>$t,'tier'=>$g['tier'],'peso'=>30];
             if($g['tier']<4 && $performance['average']>=6 && array_sum(array_column($g['skills'],'value'))/9>=45) $pool[]=['club'=>'Academia Regional '.($g['tier']+1),'tier'=>$g['tier']+1,'peso'=>max(5,(int)(($performance['average']-5)*20+$g['states']['apoio_torcida']/5))];
             }
-            $chosen=Probability::weighted($pool); $g['offers']=$pool;
+            $none=['club'=>'','peso'=>!empty($g['official'])?max(3,(int)round(25-15*TransferMarket::profile($g)['merit'])):3];
+            $chosen=Probability::weighted(array_merge($pool,[$none])); $g['offers']=$pool;
             foreach($g['offers'] as &$offer) $offer['selected']=($offer['club']===$chosen['club']); unset($offer);
-            $g['stage']='oferta'; $g['feedback']=['text'=>'Proposta recebida: '.$chosen['club'],'weights'=>$pool];
+            $g['market_draw']=['id'=>bin2hex(random_bytes(16)),'season'=>$g['season'],'selected'=>$chosen['club']?:null,'none_weight'=>$none['peso'],'rules'=>Rules::VERSION];
+            if(!empty($g['official']))$g['market_draw']['distribution']=TransferMarket::distribution($g,$pool);
+            $g['stage']='oferta'; $g['feedback']=['text'=>$chosen['club']?'Proposta recebida: '.$chosen['club']:'Nenhuma proposta se concretizou nesta janela. Você pode permanecer no clube.','weights'=>$pool];
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
             unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
             $summary['technical_average']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['official']))$summary['competitions']=$g['competition_results'];
             $selected=current(array_filter($g['offers'],fn($o)=>$o['selected']));
-            if($input['accept']==='yes') { $g['club']=$selected['club']; $g['tier']=$selected['tier']; }
+            if($input['accept']==='yes') { if(!$selected)throw new InvalidArgumentException('Não há proposta para aceitar nesta janela.');$g['club']=$selected['club']; $g['tier']=$selected['tier']; }
             $summary['next_club']=$g['club']; $g['history'][]=$summary;
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
             $g['teams']=$teams; $g['season']++; $g['age']++; $g['round']=1; $g['stage']='treino'; $g['matches']=Schedule::generate($teams); $g['offers']=[]; $g['states']['energia']=85;
@@ -144,6 +149,7 @@ final class Game {
         } elseif($action==='continue' && $g['stage']==='competicao_resumo' && !empty($g['official'])) {
             Competition::continueSeason($g);
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
+        if($g['stage']==='resumo')Progression::season($g);
         if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');}
         $g['version']++;Scenes::prepare($g); return $g;
     }
@@ -171,7 +177,7 @@ final class Game {
         $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
-            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++;$conversion=(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45)))); if($clearChance || random_int(1,100)<=$conversion) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
+            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++;$conversion=(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45)))); if(($m['balance_version']??0)===MatchBalance::VERSION && !$clearChance)$conversion=min($conversion,100*MatchBalance::eventChance($g,100)/max(1,self::chance($g,$o))); if($clearChance || random_int(1,10000)<=round($conversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
             if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
@@ -211,7 +217,8 @@ final class Game {
         $own=$m['home']===$g['club']?'hg':'ag';
         TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
         foreach(['hg','ag'] as $index=>$side) {
-            $goals=TeamStrength::goals($means[$index]*$span/90);
+            $mean=($m['balance_version']??0)===MatchBalance::VERSION?MatchBalance::collectiveMean($m,$side,$g['club'],$m['minute'],$next):$means[$index]*$span/90;
+            $goals=TeamStrength::goals($mean);
             for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
         }
         $m['minute']=$next; $m['log'][]=['minute'=>$next,'text'=>'Placar: '.$m['hg'].' × '.$m['ag'].'.'];
@@ -221,6 +228,7 @@ final class Game {
             $m['status']='finalizada'; $m['stats']['minutes']=max(0,$m['exit']-$m['entry']);
             $s=&$m['stats']; $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
             $s['rating']=$s['minutes']===0?0:round(max(0,min(10,6+$s['goals']*.7+$s['assists']*.5+$s['tackles']*($def?.35:.15)+$s['completed']*.1-($s['passes']-$s['completed'])*.15-$s['cards']*.6)),1);
+            Progression::match($g,$m);
             unset($m,$s);
             if(!empty($g['official'])) {
                 $ownIndex=self::currentIndex($g);$played=&$g['matches'][$ownIndex];

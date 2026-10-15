@@ -250,6 +250,7 @@ final class Competition {
             if($t['done'])break;
         }
         $g['matches']=$t['matches'];$g['competition_results'][$id]=self::result($t,$g['club']);
+        Progression::competition($g,$id,$g['competition_results'][$id]);
         $g['stage']='competicao_resumo';$g['feedback']=null;
     }
     public static function result(array $t,string $club): array {

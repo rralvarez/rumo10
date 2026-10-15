@@ -34,7 +34,7 @@ final class TeamStrength {
     }
     public static function expectations(float $home,float $away): array {
         $difference=max(-60,min(60,$home-$away));
-        return [max(.25,min(3.5,1.35*exp($difference/55))),max(.25,min(3.5,1.10*exp(-$difference/55)))];
+        return [max(.15,min(4,1.35*exp($difference/35))),max(.15,min(4,1.10*exp(-$difference/35)))];
     }
     public static function goals(float $mean): int {
         $limit=exp(-max(0,$mean));$product=1.;$count=0;
@@ -47,7 +47,8 @@ final class TeamStrength {
             $rows=in_array($t['format'],['international','world'],true)?Schedule::table(array_values(array_filter($t['matches'],fn($m)=>in_array($m['phase'],['liga','clausura','intermedio','regular'],true))),$t['teams']):Competition::standings($t,null,'liga');$size=count($rows);
             foreach($rows as $i=>$row){
                 if(!$row['played'])continue;$club=$row['team'];
-                $score=self::campaign(self::baseline($club,$g['next_memberships']??$g['memberships']),$i+1,$size,(int)$row['points'],(int)$row['played']);
+                $anchor=self::initial($club);$campaign=self::campaign($anchor,$i+1,$size,(int)$row['points'],(int)$row['played']);
+                $previous=$g['club_strengths'][$club]??$anchor;$score=round(max($anchor-4,min($anchor+4,.8*$previous+.2*$campaign)),1);
                 $scores[$club]=max($scores[$club]??20,$score);
             }
         }

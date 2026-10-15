@@ -23,7 +23,7 @@ function form(string $path,?array $g=null): void {
 }
 $path=rawurldecode(parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/');
 $method=$_SERVER['REQUEST_METHOD'];
-$routes=['/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
+$routes=['/carreira/trofeus'=>['GET'],'/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
 $status=200; $error=null; $g=null; $clubs=[];
 try {
     Identity::verify();
@@ -81,6 +81,7 @@ try {
             redirect('/carreira');
         }
     }
+    if($path==='/carreira/trofeus' && isset($_GET['career']))$g=RetiredCareer::state(RetiredCareer::owned($r,$_SESSION['account'],(int)$_GET['career']));
     if($path==='/carreira/resumo')$retiredRecord=RetiredCareer::owned($r,$_SESSION['account'],(int)($_GET['career']??0));
     if($path==='/carreira/compactar'){$compactId=(int)($_GET['career']??0);CareerSlots::owned($r,$_SESSION['account'],$compactId);if($r->query('SELECT etapa FROM rumo10_carreiras WHERE id=?',[$compactId])->fetchColumn()!=='aposentado')throw new InvalidArgumentException('A carreira ainda não está aposentada.');}
     if($path==='/carreira/excluir')$careerToDelete=CareerSlots::owned($r,$_SESSION['account'],(int)($_GET['career']??0));
