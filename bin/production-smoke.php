@@ -10,6 +10,7 @@ if($project==='rumohub')$cases['/api/v1/catalog']=[401];
 // O bloqueio coordenado é retirado pelo operador só após os testes dos dois projetos.
 if(in_array('--maintenance',$argv,true)){
  $cases['/']=[503];$cases[$project==='rumo10'?'/login':'/admin/login']=[503];
+ $cases['/assets/clubs/test.png']=[403,404,503]; // Caminho inexistente passa pela ponte bloqueada.
  if($project==='rumohub')$cases['/api/v1/catalog']=[503];
 }
 foreach($cases as $path=>$expected){
