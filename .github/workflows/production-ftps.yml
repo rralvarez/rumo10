@@ -15,6 +15,18 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Definir rota para o servidor confirmado
+        env:
+          UOL_FTP_ADDRESS: ${{ vars.UOL_FTP_ADDRESS }}
+        run: |
+          python3 - <<'PY'
+          import ipaddress, os, subprocess
+          address = os.environ.get('UOL_FTP_ADDRESS', '').strip()
+          if address:
+              ipaddress.ip_address(address)
+              hosts = 'a16-asgard21.hospedagemuolhost.com.br rumoacamisa10.com.br www.rumoacamisa10.com.br rumohub.rumoacamisa10.com.br'
+              subprocess.run(['sudo', 'tee', '-a', '/etc/hosts'], input=('\n' + address + ' ' + hosts + '\n').encode(), check=True, stdout=subprocess.DEVNULL)
+          PY
       - name: Verificar e preparar código
         run: |
           find app bin database public -name '*.php' -print0 | xargs -0 -n 1 php -l > /dev/null
