@@ -192,6 +192,15 @@ with tarfile.open(args.archive, "r:gz") as archive:
             if workers:
                 with ThreadPoolExecutor(max_workers=workers) as executor:
                     list(executor.map(upload_batch, [uploads[i::workers] for i in range(workers)]))
+        # A conexão de controle fica ociosa durante uploads longos dos workers.
+        # Abra uma sessão TLS nova antes de confirmar o manifesto e retirar a manutenção.
+        ftp.close()
+        ftp.connect(address, port)
+        ftp.host = host
+        ftp.auth()
+        ftp.login(user, password)
+        ftp.prot_p()
+        ftp.cwd("/")
         put(f"{base}/release.json", io.BytesIO(json.dumps(manifest).encode("utf-8")))
         # Única exclusão remota: marcador criado por esta publicação.
         ftp.delete(lock)

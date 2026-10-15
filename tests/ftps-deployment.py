@@ -23,10 +23,15 @@ class FakeFTP:
         self.deleted = []
         self.fail = False
         self.connections = []
+        self.reconnected = False
+        self.was_closed = False
 
     def __enter__(self): return self
     def __exit__(self, *args): return False
-    def connect(self, *args): self.connections.append(args)
+    def connect(self, *args):
+        self.connections.append(args)
+        if self.was_closed: self.reconnected = True
+    def close(self): self.was_closed = True
     def auth(self): pass
     def login(self, *args): pass
     def prot_p(self): pass
@@ -44,6 +49,8 @@ class FakeFTP:
 
     def storbinary(self, cmd, stream):
         path = cmd[5:]
+        if getattr(self, 'require_fresh_control', False) and path.endswith('.rumo-upload-release.json') and not self.reconnected:
+            raise TimeoutError('idle control connection')
         if self.fail and path.endswith(".rumo-upload-bootstrap.php"):
             raise OSError("simulated transfer failure")
         self.files[path] = stream.read()
@@ -124,6 +131,13 @@ class DeploymentTests(unittest.TestCase):
         self.assertTrue(self.ftp.connections)
         self.assertTrue(all(address == ('192.0.2.10', 21) for address in self.ftp.connections))
         self.assertEqual(self.ftp.host, 'test.invalid')
+
+    def test_refreshes_idle_control_connection_before_activation(self):
+        self.ftp.require_fresh_control = True
+        self.deploy()
+        self.assertTrue(self.ftp.reconnected)
+        self.assertIn('apps/rumo10/current/release.json', self.ftp.files)
+        self.assertNotIn('apps/rumo10/deployment.lock', self.ftp.files)
 
 
 if __name__ == "__main__": unittest.main()
