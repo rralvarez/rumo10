@@ -22,7 +22,7 @@ final class PlayMode {
     public static function simulate(array $g,string $plan): array {
         $mode=self::name($g);
         if($mode==='normal' || $g['stage']!=='treino' || !isset(self::PLANS[$plan]))throw new InvalidArgumentException('Estratégia incompatível com a etapa atual.');
-        $version=$g['version'];$season=$g['season'];$before=Game::summary($g);$skills=$g['skills'];$played=[];$decisions=0;
+        $version=$g['version'];$season=$g['season'];$before=Game::summary($g);$skills=$g['skills'];$played=[];$decisions=0;$attempts=[];
         for($step=0;$step<3000;$step++) {
             if($g['season']!==$season)throw new LogicException('A simulação não pode renovar contratos.');
             if(in_array($g['stage'],['resumo','aposentado'],true))break;
@@ -44,12 +44,14 @@ final class PlayMode {
                 $m=$g['matches'][Game::currentIndex($g)];
                 $played[]=['home'=>$m['home'],'away'=>$m['away'],'hg'=>$m['hg'],'ag'=>$m['ag'],'stats'=>$m['stats'],'log'=>$m['log'],'competition'=>Competition::label($g)];
             }
+            $context=['stage'=>$g['stage'],'round'=>$g['round'],'competition'=>$g['competition_id']??'legacy','minute'=>$g['stage']==='partida'?$g['matches'][Game::currentIndex($g)]['minute']:null];
             $g=Game::command($g,$action,$input,true);
+            if($action==='choice')$attempts[]=$context+array_intersect_key($g['feedback']??[],array_flip(['situation','option','chance','roll','intensity_roll','success','class','effects','rules','conversion_chance','conversion_roll']));
         }
         if($step===3000)throw new RuntimeException('A simulação excedeu o limite seguro; nada foi salvo.');
         $after=Game::summary($g);$growth=[];
         foreach($skills as $key=>$s)if($g['skills'][$key]['value']!==$s['value'])$growth[$key]=$g['skills'][$key]['value']-$s['value'];
-        $g['pace_report']=['mode'=>$mode,'plan'=>$plan,'season'=>$season,'matches'=>$played,'decisions'=>$decisions,'growth'=>$growth,'before'=>$before,'after'=>$after];
+        $g['pace_report']=['mode'=>$mode,'plan'=>$plan,'season'=>$season,'matches'=>$played,'decisions'=>$decisions,'attempts'=>$attempts,'growth'=>$growth,'before'=>$before,'after'=>$after];
         $g['feedback']=null;$g['version']=$version+1;
         return $g;
     }

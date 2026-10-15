@@ -3,6 +3,10 @@ declare(strict_types=1);
 require dirname(__DIR__).'/app/bootstrap.php';putenv('RUMOHUB_ENABLED=0');$checks=0;
 function pkg(bool $ok,string $label):void{global $checks;$checks++;if(!$ok)throw new RuntimeException($label);}
 $base=Game::legacyCreate('Fixture sem pessoa real','São Paulo','SP','centroavante');
+$auditGame=Game::command($base,'handicap');$auditGame['play_mode']='rapido';$auditGame=Game::command($auditGame,'simulate',['plan'=>'coletivo']);$attempts=$auditGame['pace_report']['attempts'];
+pkg(count($attempts)===$auditGame['pace_report']['decisions'],'Cada escolha automática tem trilha individual');
+foreach($attempts as $attempt)if(!isset($attempt['chance'],$attempt['roll'],$attempt['rules']) || $attempt['roll']<1 || $attempt['roll']>10000)throw new RuntimeException('Roll automático sem auditoria.');
+pkg(count($attempts)>0,'Simulação auditou decisões reais');
 foreach([18,24,27,32,33,35,38,39] as $age)foreach(Rules::SKILLS as $skill){$states=[];foreach(['normal','rapido','expresso'] as $mode){$g=$base;$g['age']=$age;$g['play_mode']=$mode;Evolution::gain($g,$skill,20);$states[]=$g['skills'];}pkg($states[0]===$states[1] && $states[1]===$states[2],'XP independe do ritmo');}
 foreach([33=>1,35=>2,38=>3,40=>3] as $age=>$loss){$g=$base;$g['age']=$age;$before=$g['skills'];Evolution::birthday($g);pkg($g['skills']['velocidade']['value']===$before['velocidade']['value']-$loss,'Queda física por faixa');$copy=$g;Evolution::birthday($g);pkg($g===$copy,'Aniversário idempotente');pkg($g['skills']['visao_jogo']===$before['visao_jogo'],'Experiência preservada');}
 $g=$base;$g['stage']='partida';$i=Game::currentIndex($g);$m=&$g['matches'][$i];$m['home_overall']=50;$m['away_overall']=70;$m['status']='em_andamento';$m['entry']=0;$m['exit']=90;MatchBalance::prepare($m,$g);$m['clear_chance']=true;unset($m);

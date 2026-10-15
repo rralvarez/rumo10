@@ -187,7 +187,7 @@ final class Game {
             if(($m['balance_version']??0)>=2 && !$clearChance && $type==='passe')$conversion=min($conversion,100*MatchBalance::eventChance($g,100)/max(1,$roll['chance']));
             $scoringProbability=($type==='chute' || ($clearChance && in_array($type,['drible','passe'],true)))?$roll['chance']/100:($type==='passe'?$roll['chance']*$conversion/10000:0);
             MatchBalance::book($m,$scoringProbability);
-            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++; if($clearChance || random_int(1,10000)<=round($conversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
+            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++;$conversionRoll=$clearChance?null:random_int(1,10000);$g['feedback']['conversion_chance']=$clearChance?100:$conversion;$g['feedback']['conversion_roll']=$conversionRoll; if($clearChance || $conversionRoll<=round($conversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
             if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
