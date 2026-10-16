@@ -98,3 +98,5 @@ Ainda pendentes: cinco temporadas completas com múltiplas competições e merca
 Nesta fundação: países/competições ativados **zero**, clubes adicionados **zero**, novas vagas/classificações **zero**, conquistas futuras ativadas **zero**. Rollback é retirar os arquivos novos não conectados; nenhum schema/save precisa ser restaurado. Backups privados de produção da publicação anterior NÃO devem ser usados para testes v0.7.
 
 Git: commits da auditoria/fundação e push somente na branch segura após lint/testes; registrar SHA final na entrega. Nenhum merge em main ou deploy.
+
+Commits deste checkpoint: 324d369 (inventário/contrato), 53147f9 (agenda isolada), bc4a954 (testes/relatório). A direção do calendário já foi aprovada; não há solicitação pendente ao proprietário para continuar a integração. O impedimento é técnico e está descrito nos portões acima. Este é um checkpoint da etapa A/B, não a entrega final da v0.7.
