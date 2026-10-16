@@ -1,0 +1,14 @@
+{
+  "id": "cbf-serie-d-reference-2026",
+  "version": "research-v07-1",
+  "edition": 2026,
+  "target": "br-d",
+  "country": "BR",
+  "capacity": 96,
+  "status": "blocked",
+  "sources": ["https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf"],
+  "source_location": "Art. 2, pp. 4–6; aplicação à edição de 2026",
+  "registered_criteria": {"relegated_c_2025":4,"federation_places":64,"d_2025_remaining_maximum":28,"ranking_residual":"remaining places, no duplicate clubs"},
+  "missing": ["verified federation rank/slot map", "verified edition-specific claim ledger and canonical club aliases", "policy for future simulated editions"],
+  "activation": "none; no replacement for legacy already-resolved seasons"
+}
