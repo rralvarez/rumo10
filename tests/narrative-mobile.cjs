@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('fs');const path=require('path');const {execFileSync}=require('child_process');const {chromium}=require('C:/Users/rodri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
-const root=path.resolve(__dirname,'..'),out=path.join(root,'Docs/narrativa-v1/mobile');fs.mkdirSync(out,{recursive:true});
+const root=path.resolve(__dirname,'..'),out=path.join(process.env.NARRATIVE_EVIDENCE_DIR||path.join(root,'Docs/narrativa-v1'),'mobile');fs.mkdirSync(out,{recursive:true});
 (async()=>{const b=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const rows=[];
 try{const ctx=await b.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});const p=await ctx.newPage();
 await p.route('http://narrative.test/**',async route=>{const req=route.request(),url=new URL(req.url());if(url.pathname.startsWith('/assets/')||url.pathname.startsWith('/favicon')){const target=path.resolve(root,'public','.'+url.pathname);if(!target.startsWith(path.join(root,'public')+path.sep))throw Error('Asset fora da raiz');if(!fs.existsSync(target)){await route.fulfill({status:404,body:''});return;}const ext=path.extname(target);await route.fulfill({status:200,contentType:({'.css':'text/css','.js':'application/javascript','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'})[ext]||'application/octet-stream',body:fs.readFileSync(target)});return;}

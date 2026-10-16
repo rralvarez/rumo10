@@ -7,7 +7,7 @@ $files=array_merge(glob($root.'/app/*.php'),glob($root.'/database/*.json'),glob(
 foreach($files as $file)$hashes[str_replace('\\','/',substr($file,strlen($root)+1))]=hash('sha256',str_replace("\r\n","\n",file_get_contents($file)));
 $cases=[];
 foreach([45,65,85] as $level)foreach([35,50,80] as $own)foreach([35,50,80] as $opp){
- $g=Game::legacyCreate('Baseline sintética','São Paulo','SP','centroavante');$g['stage']='partida';foreach($g['skills'] as &$s)$s['value']=$level;unset($s);$i=Game::currentIndex($g);$m=&$g['matches'][$i];$m['status']='em_andamento';$m['minute']=35;$m['home_overall']=$m['home']===$g['club']?$own:$opp;$m['away_overall']=$m['away']===$g['club']?$own:$opp;MatchBalance::prepare($m,$g);$m['clear_chance']=true;unset($m);
+ $g=Game::legacyCreate('Baseline sintética','São Paulo','SP','centroavante');$g['stage']='partida';foreach($g['skills'] as &$s)$s['value']=$level;unset($s);$i=Game::currentIndex($g);$m=&$g['matches'][$i];$m['status']='em_andamento';$m['minute']=35;$m['entry']=0;$m['exit']=90;$m['home_overall']=$m['home']===$g['club']?$own:$opp;$m['away_overall']=$m['away']===$g['club']?$own:$opp;MatchBalance::prepare($m,$g);$m['clear_chance']=true;unset($m);
  $cases[]=['level'=>$level,'own'=>$own,'opponent'=>$opp,'normal'=>Game::chance($g,['action'=>'chute','effects'=>[]]),'clear'=>Game::chance($g,Game::choices($g)[0]),'expected_goals'=>$g['matches'][$i]['expected_goals']];
 }
 $result=['git_base'=>'a5bb59e','hashes'=>$hashes,'cases'=>$cases,'catalog'=>count(Scenes::catalog()),'new'=>count(NarrativeCatalog::all()),'active'=>count(array_filter(NarrativeCatalog::all(),fn($s)=>$s['enabled']))];
