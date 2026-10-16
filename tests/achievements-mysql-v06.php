@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+if(!in_array('--local-rollback',$argv,true))exit("Use --local-rollback.\n");
+putenv('RUMOHUB_ENABLED=0');putenv('RUMOHUB_BENEFITS=0');putenv('RUMO10_ACHIEVEMENTS=1');require dirname(__DIR__).'/app/bootstrap.php';
+if(!in_array(config('DB_HOST'),['127.0.0.1','localhost','::1'],true)||config('DB_DATABASE')!=='rumohub')throw new RuntimeException('Somente rumohub local.');
+class AchievementFixturePDO extends PDO {
+ public function beginTransaction():bool{return $this->inTransaction()?true:parent::beginTransaction();}
+ public function commit():bool{return true;}
+ public function discard():void{if($this->inTransaction())parent::rollBack();}
+}
+$db=new AchievementFixturePDO('mysql:host='.config('DB_HOST').';port='.config('DB_PORT','3306').';dbname=rumohub;charset=utf8mb4',config('DB_USERNAME'),config('DB_PASSWORD'),[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,PDO::ATTR_EMULATE_PREPARES=>false,PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);$r=new Repository($db);$checks=0;function check(bool $ok,string $why):void{global $checks;$checks++;if(!$ok)throw new RuntimeException($why);}
+$tables=['rumo10_contas','rumo10_identidades','rumo10_conquistas','rumo10_conquistas_carreiras','rumo10_conquistas_eventos'];$counts=[];foreach($tables as $t)$counts[$t]=(int)$db->query('SELECT COUNT(*) FROM '.$t)->fetchColumn();
+$db->beginTransaction();try{
+ $hub=random_int(1000000000000,9000000000000);$r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',['achievement-fixture-'.bin2hex(random_bytes(6)).'@example.invalid',password_hash(bin2hex(random_bytes(32)),PASSWORD_DEFAULT)]);$account=(int)$db->lastInsertId();$r->query('INSERT INTO rumo10_identidades(conta_id,hub_usuario_id) VALUES(?,?)',[$account,$hub]);
+ $key=hash('sha256','fixture-match');$event=['type'=>'match','season'=>1,'club'=>'Fixture','stats'=>['minutes'=>90,'goals'=>3,'assists'=>1,'tackles'=>2]];
+ $r->query('INSERT INTO rumo10_carreiras(conta_id,nome,cidade,uf,posicao,idade,etapa,clube) VALUES(?,?,?,?,?,?,?,?)',[$account,'Fixture','São Paulo','SP','meia',18,'treino','Fixture']);$first=(int)$db->lastInsertId();
+ $g=['id'=>$first,'achievement_events'=>[$key=>$event]];Achievements::persist($r,$account,$g);
+ $n=(int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas WHERE hub_usuario_id=?',[$hub])->fetchColumn();check($n===7,'simultaneous seven achievements');$points=(int)$r->query('SELECT SUM(pontos_g) FROM rumo10_conquistas WHERE hub_usuario_id=?',[$hub])->fetchColumn();check($points===75,'earned G exact');
+ $g['achievement_events']=[$key=>$event];Achievements::persist($r,$account,$g);check((int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas_eventos WHERE hub_usuario_id=?',[$hub])->fetchColumn()===1,'duplicate event ignored');check((int)$r->query('SELECT SUM(pontos_g) FROM rumo10_conquistas WHERE hub_usuario_id=?',[$hub])->fetchColumn()===$points,'no duplicate G');
+ $g=['id'=>9000000000002,'achievement_events'=>[$key=>$event]];Achievements::persist($r,$account,$g);check((int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas_carreiras WHERE hub_usuario_id=? AND valida=1',[$hub])->fetchColumn()===2,'unique valid careers');check((int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas WHERE hub_usuario_id=? AND conquista_id=?',[$hub,'CAR03'])->fetchColumn()===1,'second valid career achievement');
+ $s=json_decode($r->query('SELECT estado_json FROM rumo10_conquistas_carreiras WHERE hub_usuario_id=? AND carreira_id=?',[$hub,9000000000002])->fetchColumn(),true);check($s['goals']===3,'career goals not mixed');
+ $g=['id'=>9000000000003,'achievement_events'=>[$key=>array_replace($event,['stats'=>array_replace($event['stats'],['minutes'=>0])])]];Achievements::persist($r,$account,$g);check((int)$r->query('SELECT valida FROM rumo10_conquistas_carreiras WHERE hub_usuario_id=? AND carreira_id=?',[$hub,9000000000003])->fetchColumn()===0,'zero minutes not valid');
+ check((int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas WHERE hub_usuario_id=?',[$hub+1])->fetchColumn()===0,'account isolation');check((int)$r->query('SELECT SUM(xp_bonus) FROM rumo10_conquistas WHERE hub_usuario_id=?',[$hub])->fetchColumn()===0,'XP bonuses disabled');
+ $match=Game::legacyCreate('Fixture','São Paulo','SP','meia');$match['id']=$first;$match['stage']='partida';$match['progression_version']=2;$mi=Game::currentIndex($match);$m=&$match['matches'][$mi];$m['entry']=0;$m['exit']=80;$m['minute']=80;$m['status']='em_andamento';TeamStrength::snapshot($m,$match);MatchBalance::prepare($m,$match);unset($m);MatchExperience::begin($match);(new ReflectionMethod(Repository::class,'save'))->invoke($r,$match);
+ $commandKey=bin2hex(random_bytes(32));$completed=$r->command($account,'advance',[],$commandKey,0);$retry=$r->command($account,'advance',[],$commandKey,0);check($completed===$retry,'completed match and XP atomic retry');$xp=$completed['matches'][$mi]['experience'];check($xp['complete']&&array_sum($xp['earned'])>0,'actual XP summary persisted');check($r->load($account)===$completed,'reading summary cannot award XP');
+ CareerSlots::purgeDetails($r,$first);$r->query('DELETE FROM rumo10_carreiras WHERE id=?',[$first]);check((int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas WHERE hub_usuario_id=?',[$hub])->fetchColumn()>0,'career deletion preserves account reputation');
+ $g=['id'=>$first,'achievement_events'=>[$key=>$event]];Achievements::persist($r,$account,$g);check((int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas_eventos WHERE hub_usuario_id=? AND carreira_id=?',[$hub,$first])->fetchColumn()===1,'restore same career no replay');
+ for($n=0;$n<4;$n++){ob_start();AchievementView::toast($r,$account);ob_end_clean();}ob_start();AchievementView::toast($r,$account);$toast=ob_get_clean();check($toast==='','reload cannot repeat consumed toast');
+ $other=Database::connect();$other->exec('SET SESSION innodb_lock_wait_timeout=1');try{$other->beginTransaction();$q=$other->prepare('INSERT INTO rumo10_conquistas(hub_usuario_id,conquista_id,carreira_id,pontos_g,evento_chave) VALUES(?,?,?,?,?)');$q->execute([$hub,'DES01',9000000000001,5,$key]);throw new RuntimeException('Concurrent unique unlock bypassed');}catch(PDOException $e){check((int)($e->errorInfo[1]??0)===1205,'concurrent unlock waits for transaction');}finally{if($other->inTransaction())$other->rollBack();}
+}finally{$db->discard();}
+foreach($counts as $t=>$n)check((int)$db->query('SELECT COUNT(*) FROM '.$t)->fetchColumn()===$n,'rollback fixture '.$t);
+echo "OK: $checks verificações MySQL; fixtures integralmente revertidas, sem RH writes.\n";

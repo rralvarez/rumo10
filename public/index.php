@@ -23,7 +23,7 @@ function form(string $path,?array $g=null): void {
 }
 $path=rawurldecode(parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/');
 $method=$_SERVER['REQUEST_METHOD'];
-$routes=['/jogador/localizacao'=>['GET','POST'],'/convite'=>['GET'],'/convites'=>['GET'],'/carreira/trofeus'=>['GET'],'/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
+$routes=['/conquistas'=>['GET'],'/jogador/localizacao'=>['GET','POST'],'/convite'=>['GET'],'/convites'=>['GET'],'/carreira/trofeus'=>['GET'],'/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
 $status=200; $error=null; $g=null; $clubs=[];
 try {
     Identity::verify();
@@ -67,7 +67,7 @@ try {
         header('Content-Type: application/json; charset=utf-8');echo json_encode($cities,JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR);exit;
     }
     if(!$public) {
-        $r=new Repository(Database::connect());if(CareerBenefits::enabled())CareerBenefits::flush($r,$_SESSION['account']);$careerPlan=CareerSlots::quota($r,$_SESSION['account'])['plan']; if(!in_array($path,['/carreiras','/carreira/excluir','/carreira/resumo','/carreira/compactar'],true))$g=$r->load($_SESSION['account']);
+        $r=new Repository(Database::connect());if(CareerBenefits::enabled())CareerBenefits::flush($r,$_SESSION['account']);$careerPlan=CareerSlots::quota($r,$_SESSION['account'])['plan']; if(!in_array($path,['/conquistas','/carreiras','/carreira/excluir','/carreira/resumo','/carreira/compactar'],true))$g=$r->load($_SESSION['account']);
         if($method==='POST') {
             if($path==='/carreira/compactar'){RetiredCareer::compactExisting($r,$_SESSION['account'],(int)($_POST['career']??0),(string)($_POST['confirm']??''));redirect('/carreira/resumo?career='.(int)$_POST['career']);}
             if($path==='/carreira/excluir'){CareerSlots::delete($r,$_SESSION['account'],(int)($_POST['career']??0),(string)($_POST['confirm']??''));redirect('/carreiras');}

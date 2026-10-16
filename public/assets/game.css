@@ -57,8 +57,9 @@ header nav .new-career-link{color:var(--lime);font-weight:700}
 /* Espera real por resposta, sem percentual simulado. */
 .decision-wait:not([hidden]){position:fixed;z-index:1000;inset:auto 1rem calc(5rem + env(safe-area-inset-bottom));max-width:36rem;margin:auto;padding:1rem;background:#172c30;border:2px solid #c8f76b;border-radius:1rem;box-shadow:0 8px 40px #000b}
 .decision-wait p{margin:0 0 .6rem}.decision-wait a{display:block;margin-top:.7rem}.initial-impacts>ul{padding-left:1.2rem;display:grid;gap:.9rem}.initial-impacts li{overflow-wrap:anywhere}
-
-/* Match XP wraps on small screens. */
+/* Post-match progression uses wrapping cards, including at 320px. */
 .xp-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:.6rem}
 .xp-breakdown>div{padding:.65rem;border:1px solid #42606a;border-radius:.6rem;min-width:0}
 .xp-breakdown dt{font-weight:700}.xp-breakdown dd{margin:.3rem 0 0;overflow-wrap:anywhere}
+.achievement-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:.75rem}
+.achievement h2{font-size:1.15rem}.achievement progress{width:100%;accent-color:#bdef4a}.achievement-toast{border-color:#bdef4a}

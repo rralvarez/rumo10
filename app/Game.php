@@ -53,6 +53,7 @@ final class Game {
         return ActionResolution::trace($g,$o)['chance'];
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
+        $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
         if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');$g['version']++;return $g;}
         if($action==='retire') {
@@ -155,6 +156,7 @@ final class Game {
             Competition::continueSeason($g);
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
         if($g['stage']==='resumo')Progression::season($g);
+        AchievementEvents::capture($g,$previousStage);
         if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');}
         $g['version']++;$selectionStart=RequestMetrics::start();Scenes::prepare($g);RequestMetrics::end('scene_selection',$selectionStart); return $g;
     }
@@ -181,6 +183,7 @@ final class Game {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
         $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139) || !empty($o['match_event']);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
+        $auditScore=$m[$own];$auditActions=MatchMomentum::builtActions($g);
         if($onBall) {
             $conversion=$m['pass_conversion']??(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45))));
             if(!empty($o['end_sequence']))$conversion=0;
@@ -201,6 +204,7 @@ final class Game {
             // Simulação e agressão podem gerar falta/cartão; nunca dão gol automático.
             if($sid===7 && $choice===3 && !$roll['success'] && ($roll['class']==='falha_grave' || random_int(1,100)<=25)) { $st['fouls']++; $st['cards']++; $text.=' O árbitro pune a simulação com cartão.'; }
         }
+        if($m[$own]>$auditScore)GoalAudit::score($m,$own,$g['club'],($g['feedback']['highlight']??'')==='goal',['shot_kind'=>$g['feedback']['probability_trace']['kind']??null,'valid_sequence_actions'=>$auditActions]);
         if($sid===8 && in_array($choice,[0,2],true)) { $st['fouls']++; if(random_int(1,100)<=65) { $st['cards']++; $text.=' Cartão pela reação.'; } }
         if(!$roll['success'] && $roll['class']==='falha_grave' && $onBall && $type==='desarme') { $st['fouls']++;$text.=' Você chega atrasado e comete falta.'; if(random_int(1,100)<=30){$st['cards']++;$text.=' Cartão pelo desarme atrasado.';} }
         if(!empty($o['card_risk']) && random_int(1,100)<=min(50,$o['card_risk']+intdiv($g['states']['risco_cartao'],5))){$st['cards']++;$text.=' Cartão pela discussão.';}
@@ -232,7 +236,7 @@ final class Game {
         foreach(['hg','ag'] as $index=>$side) {
             $mean=($m['balance_version']??0)>=2?MatchBalance::collectiveMean($m,$side,$g['club'],$m['minute'],$next):$means[$index]*$span/90;
             $goals=TeamStrength::goals($mean);
-            for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
+            for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $auditMinute=$m['minute'];$m['minute']=$next;GoalAudit::score($m,$side,$g['club']);$m['minute']=$auditMinute; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
         }
         $m['minute']=$next; $m['log'][]=['minute'=>$next,'text'=>'Placar: '.$m['hg'].' × '.$m['ag'].'.'];
         if($next===45) $m['status']='intervalo';
