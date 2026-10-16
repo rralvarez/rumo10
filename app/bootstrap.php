@@ -8,7 +8,7 @@ spl_autoload_register(function(string $name): void {
 });
 $env = dirname(__DIR__) . '/.env';
 if (is_file($env)) foreach (file($env, FILE_IGNORE_NEW_LINES) as $line) {
-    if (preg_match('/^([A-Z_]+)=(.*)$/', trim($line), $m) && getenv($m[1]) === false) {
+    if (preg_match('/^([A-Z_][A-Z0-9_]*)=(.*)$/', trim($line), $m) && getenv($m[1]) === false) {
         putenv($m[1] . '=' . trim($m[2], "\"'"));
     }
 }

@@ -33,7 +33,7 @@ final class Achievements {
  }
  /** Called under Repository's account lock and transaction. No Hub calls. */
  public static function persist(Repository $r,int $account,array &$g):void {
-  if(!self::enabled()){unset($g['achievement_events']);return;}
+  if(!self::enabled()||!FeatureSchema::ready($r,FeatureSchema::ACHIEVEMENTS)){unset($g['achievement_events']);return;}
   if(!$r->db->inTransaction())throw new LogicException('Conquistas exigem transação.');
   $hub=$r->query('SELECT hub_usuario_id FROM rumo10_identidades WHERE conta_id=?',[$account])->fetchColumn();
   if(!$hub){unset($g['achievement_events']);return;}
@@ -43,11 +43,12 @@ final class Achievements {
    $insert=$r->query('INSERT IGNORE INTO rumo10_conquistas_eventos(hub_usuario_id,carreira_id,chave,fonte_json) VALUES(?,?,?,?)',[$hub,$career,$key,json_encode($event,JSON_THROW_ON_ERROR)]);
    if(!$insert->rowCount())continue;
    $s=self::apply($s,$event);
-   $r->query('UPDATE rumo10_conquistas_carreiras SET estado_json=?,valida=? WHERE hub_usuario_id=? AND carreira_id=?',[json_encode($s,JSON_THROW_ON_ERROR),(int)($s['matches']>0),$hub,$career]);
+   $r->query('UPDATE rumo10_conquistas_carreiras SET estado_json=?,valida=GREATEST(valida,?) WHERE hub_usuario_id=? AND carreira_id=?',[json_encode($s,JSON_THROW_ON_ERROR),(int)($s['matches']>0),$hub,$career]);
    $count=(int)$r->query('SELECT COUNT(*) FROM rumo10_conquistas_carreiras WHERE hub_usuario_id=? AND valida=1',[$hub])->fetchColumn();
-   $progress=self::progress($s,$count);
+   $progress=self::progress(AchievementReconciliation::baseline($r,(int)$hub,$career,$s),$count);
    foreach(AchievementCatalog::all() as $id=>$a){if(!$a['active'] || !isset($progress[$id]) || $progress[$id][0]<$progress[$id][1])continue;
-    $r->query('INSERT IGNORE INTO rumo10_conquistas(hub_usuario_id,conquista_id,carreira_id,pontos_g,evento_chave,xp_bonus) VALUES(?,?,?,?,?,0)',[$hub,$id,$career,$a['g'],$key]);
+    $created=$r->query('INSERT IGNORE INTO rumo10_conquistas(hub_usuario_id,conquista_id,carreira_id,pontos_g,evento_chave,xp_bonus) VALUES(?,?,?,?,?,0)',[$hub,$id,$career,$a['g'],$key]);
+    if($created->rowCount()&&FeatureSchema::ready($r,FeatureSchema::RECONCILIATION))$r->query("INSERT IGNORE INTO rumo10_conquistas_fontes(hub_usuario_id,conquista_id,origem,referencia) VALUES(?,?,'evento_normal',?)",[$hub,$id,$key]);
    }
   }
   unset($g['achievement_events']);
