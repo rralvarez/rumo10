@@ -59,7 +59,7 @@ with tarfile.open(args.archive, "r:gz") as archive:
         if name.startswith("public/assets/clubs/") or name.startswith("database/production/"):
             raise SystemExit("Conteúdo não publicável.")
         uploads.append((name, f"{base}/{name}"))
-        if name.startswith("public/assets/"):
+        if name.startswith("public/assets/") or name in {"public/favicon.svg", "public/favicon.ico"}:
             uploads.append((name, f"{public}/{name[7:]}"))
     htaccess = archive.extractfile("public/.htaccess").read()
     if args.dry_run:

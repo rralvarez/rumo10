@@ -39,3 +39,11 @@ Somente Rumo10; Hub preservado. Workflows automáticos publicam main, não a bra
 Situação nesta revisão: ainda sem deploy, sem migration de produção e sem alteração do Hub. Autorização recebida não substitui validação do backup. Push não é deploy. O resultado efetivo de produção será registrado separadamente após execução.
 
 Próxima fase: apenas inventário em pos-jogo-v061/proxima-fase-inventario.md. Mundialização e 23 vínculos seguem bloqueados.
+
+## Preparação efetiva da produção
+
+Backup fornecido em 16/10/2026 validado: 7.896.050 bytes comprimidos, 59.422.449 bytes expandidos; 58 tabelas (27 rh_*, 31 rumo10_*). SHA256 f207fddcd618cb5ab581139e0948d514cc0bb42865340ca2507fa8a587db2626. Nenhuma das seis tabelas de conquistas/feedback presente nesse dump. Banco físico conferido na configuração remota: rumoacame144a99e_rumohub.
+
+Backup FTPS de 150 arquivos, incluindo configuração privada e bridge, com todos os 136 hashes do manifesto instalado conferidos. Arquivo privado de 796.004 bytes, SHA256 98ee4107c44b33c9a440a479b4cf04c148f5797dcd83e63502d07d2838c2e73f. Recibos e cópias somente em storage/private/production-v061, fora do Git.
+
+Rumo10 colocado em manutenção e HTTP 503 confirmado; Hub não alterado. Importação incremental solicitada pelo phpMyAdmin; aguardando confirmação. Ajustado deploy FTPS para copiar também os dois favicons à raiz pública. Onze testes simulados: dez passaram, um dependente de ambiente foi ignorado. Nenhuma transferência de release executada nesta etapa.
