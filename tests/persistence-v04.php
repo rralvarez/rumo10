@@ -15,7 +15,10 @@ $r=new Repository($db);$checks=0;$times=[];function persistenceCheck(bool $ok,st
 $counts=[];foreach(['rumo10_contas','rumo10_carreiras','rumo10_universos','rumo10_decisoes'] as $table)$counts[$table]=(int)$db->query('SELECT COUNT(*) FROM '.$table)->fetchColumn();
 $db->beginTransaction();try{
  $r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',['rollback-v04-'.bin2hex(random_bytes(8)).'@example.invalid',password_hash(bin2hex(random_bytes(32)),PASSWORD_DEFAULT)]);$account=(int)$db->lastInsertId();
- $base=Game::legacyCreate('Fixture transacional descartável','São Paulo','SP','meia');$base['play_mode']='normal';$r->create($account,$base);
+ $base=Game::legacyCreate('Fixture transacional descartável','São Paulo','SP','meia');$base['play_mode']='normal';
+ $blocked=Onboarding::prepare($base);foreach(explode(' ','AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO') as $uf)if(!EntryCountries::entryStatus('BR',$uf)['valid']){$blocked['entry_uf']=$uf;break;}
+ try{$r->create($account,$blocked);throw new RuntimeException('Entrada órfã persistida');}catch(InvalidArgumentException){persistenceCheck($r->load($account)===null,'Entrada órfã não consome carreira');}
+ $r->create($account,$base);
  $g=$r->load($account);$key=bin2hex(random_bytes(32));$next=$r->command($account,'handicap',[],$key,$g['version']);$retry=$r->command($account,'handicap',[],$key,$g['version']);persistenceCheck($next===$retry,'Perfil não é sorteado duas vezes');persistenceCheck(isset($retry['initial_profile']['effects']),'Antes/depois persiste');
  foreach([1,2000] as $sceneId){
   $g=$r->load($account);$g['stage']='treino';$scene=Scenes::catalog()[$sceneId];$g['active_situation']=['id'=>$sceneId,'key'=>Scenes::key($g)];if($sceneId>=2000)$g['active_situation']['snapshot']=$scene;

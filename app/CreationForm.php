@@ -8,9 +8,9 @@ final class CreationForm {
         echo '<label>Nome do jogador<input name="name" class="form-control" minlength="2" maxlength="60" value="'.e($_POST['name']??'').'" required></label>';
         $countries=$plan==='pago'?EntryCountries::countries():['BR'=>'Brasil'];$selected=is_string($_POST['country']??null) && isset($countries[$_POST['country']])?$_POST['country']:'BR';
         echo '<label>País onde começa a carreira<select name="country" class="form-select" required>';
-        foreach($countries as $code=>$name)echo '<option value="'.e($code).'" '.($code===$selected || $plan!=='pago'?'selected':'').'>'.e($name).'</option>';
+        foreach($countries as $code=>$name){$available=$code==='BR'||EntryCountries::entryStatus($code)['valid'];echo '<option value="'.e($code).'" '.($code===$selected || $plan!=='pago'?'selected':'').($available?'':' disabled').'>'.e($name).($available?'':' · temporariamente indisponível').'</option>';}
         echo '</select></label><p class="subtle">'.($plan==='pago'?'Seu plano permite começar em qualquer país disponível.':'No plano gratuito, sua carreira começa no Brasil.').'</p>';
-        echo '<label>País onde mora atualmente<select name="residence_country" class="form-select">';
+        echo '<p class="subtle">Alguns destinos de estreia estão temporariamente indisponíveis enquanto corrigimos a continuidade das competições. Informe sua residência corretamente; ela não precisa ser alterada por causa dessa restrição.</p><label>País onde mora atualmente<select name="residence_country" class="form-select">';
         foreach(EntryCountries::countries() as $code=>$name)echo '<option value="'.e($code).'" '.($code===($_POST['residence_country']??'BR')?'selected':'').'>'.e($name).'</option>';
         echo '</select></label><label data-brazil-location>Estado onde mora atualmente<select name="uf" class="form-select">';
         foreach(explode(' ','AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO') as $uf)echo '<option '.($uf===($_POST['uf']??'SP')?'selected':'').'>'.e($uf).'</option>';

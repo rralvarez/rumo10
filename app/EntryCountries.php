@@ -21,6 +21,11 @@ final class EntryCountries {
     public static function division(string $country):string {
         $leagues=self::leagues()[$country]??[];if(!$leagues)throw new InvalidArgumentException('País sem competição de entrada.');return array_key_first($leagues);
     }
+    public static function entryStatus(string $country,string $uf='SP'):array {
+        $ids=$country==='BR'?($uf==='SP'?['sp-a3','sp-a4']:[strtolower($uf).'-entrada']):[self::division($country)];
+        foreach($ids as $id){$status=CompetitionContinuity::status($id);if(!$status['valid'])return $status+['competition'=>$id];}
+        return ['valid'=>true];
+    }
     public static function candidates(string $country,string $division,string $seed):array {
         if(!isset(self::leagues()[$country][$division]))throw new InvalidArgumentException('Competição de entrada inválida para este país.');
         $pool=[];$clubs=Competition::clubs();
@@ -31,6 +36,7 @@ final class EntryCountries {
         self::validate($country,$plan);
         $g=Game::legacyCreate($name,$residence==='BR'?$city:'São Paulo',$residence==='BR'?$uf:'SP',$position);
         $g=CurrentLocation::apply($g,$residence,$city,$residence==='BR'?$uf:$region,$entryUf);
+        if(!self::entryStatus($country,$g['entry_uf'])['valid'])throw new InvalidArgumentException('A estreia nesse destino está temporariamente indisponível por falta de continuidade da competição. Nenhuma carreira foi criada ou vaga consumida.');
         $g=Onboarding::prepare($g);$g['starting_country']=$country;return $g;
     }
 }

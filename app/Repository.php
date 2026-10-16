@@ -33,7 +33,7 @@ final class Repository {
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
             if($central){$prior=$this->query('SELECT request_hash FROM rumo10_criacoes WHERE conta_id=? AND chave=?',[$account,$creationKey])->fetchColumn();if($prior){if(!hash_equals($prior,$requestHash))throw new InvalidArgumentException('Este formulário já criou uma carreira com outros dados.');$this->db->commit();return;}}
             $quota=CareerSlots::quota($this,$account);
-            if(!empty($g['starting']))EntryCountries::validate($g['starting_country']??'BR',$quota['plan']);
+            if(!empty($g['starting'])){EntryCountries::validate($g['starting_country']??'BR',$quota['plan']);if(!EntryCountries::entryStatus($g['starting_country']??'BR',$g['entry_uf']??$g['uf'])['valid'])throw new InvalidArgumentException('Destino de estreia temporariamente indisponível por falta de continuidade.');}
             if($central)$allocation=CareerBenefits::allocate($this,$account,$quota,hash('sha256','create|'.$account.'|'.$creationKey));
             elseif($quota['used']>=$quota['limit'])throw new InvalidArgumentException('Limite de '.$quota['limit'].' carreiras atingido.');
             $old=$this->load($account,true);if($old && !$replace)throw new InvalidArgumentException('Você já tem uma carreira.');

@@ -4,7 +4,7 @@ ROOT=Path(__file__).resolve().parents[1];out=ROOT/'Docs/narrativa-v1';php='C:/PH
 env=dict(os.environ,RUMOHUB_ENABLED='0',RUMOHUB_BENEFITS='0')
 suites=['narrative','narrative-modes','scenes-strength','scene-consequences','scene-failures','weekend-editorial','social-context','finishing','match-momentum','match-balance','normal-xp','lifecycle','package-engine','package-cohorts','package-seasons','presentation','season-presentation','wheel']
 mechanics=(ROOT/'Docs/estabilizacao-v04/baseline.json').exists()
-if mechanics:suites+=['execution-v04','possession-v04','continuity-v04','market-v04','mechanics-boundary']
+if mechanics:suites+=['execution-v04','possession-v04','continuity-v04','market-v04','entry-countries','mechanics-boundary']
 if mechanics:
  out=ROOT/'Docs/estabilizacao-v04/regressao';out.mkdir(exist_ok=True)
  env['NARRATIVE_EVIDENCE_DIR']=str(out)
