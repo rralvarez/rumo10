@@ -109,6 +109,8 @@ duas requisições concorrentes. Não foram alterados usuários, benefícios ou 
   JSON contém denominadores/estatísticas por posição, plano e modo e chance/roll de cada
   decisão em campo. Resultados são amostrais; não provam equivalência estatística absoluta
   nem representam usuários reais. Antes/depois das coortes usa sorteios independentes.
+  Evidência integral versionada compactada em `regressao/coortes-modos.json.gz`; o runner
+  também deixa o JSON descompactado localmente, ignorado pelo Git para não duplicar 13 MB.
 - **33 verificações visuais/interação** passaram novamente, Chrome headless com HTML real,
   transporte em memória, 320×640, 390×844, zoom 150%, foco e duplo envio de interface.
   Capturas/resultado em `regressao/mobile/`; não foi QA em IIS, Apache ou celular físico.
