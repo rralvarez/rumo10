@@ -36,7 +36,7 @@ final class TransferInterest {
   $scenarios=self::scenarios($g,$candidates,$evaluation);$chosen=Probability::weighted(array_values(array_filter($scenarios,fn($s)=>$s['peso']>0)),$rng);$offers=[];$seen=[];
   foreach($chosen['recipe'] as $set){$available=array_values(array_filter($set,fn($c)=>!isset($seen[$c['club']])));if(!$available)continue;$offer=Probability::weighted($available,$rng);$seen[$offer['club']]=true;$offer['forecast']=OpportunityForecast::estimate($g,$offer['club']);$offer['selected']=false;$offers[]=$offer;}
   foreach($scenarios as &$row)unset($row['recipe']);unset($row);
-  return ['schema'=>2,'id'=>bin2hex(random_bytes(16)),'season'=>$g['season'],'scenario'=>$chosen['id'],'scenarios'=>$scenarios,'evaluation'=>$evaluation,'offers'=>$offers,'stay'=>['club'=>$g['club'],'overall'=>TeamStrength::rating($g['club'],$g),'forecast'=>OpportunityForecast::estimate($g,$g['club'])],'candidate_count'=>count($candidates)];
+  return ['schema'=>2,'id'=>bin2hex(random_bytes(16)),'season'=>$g['season'],'scenario'=>$chosen['id'],'scenarios'=>$scenarios,'evaluation'=>$evaluation,'offers'=>$offers,'stay'=>['club'=>$g['club'],'overall'=>$g['next_club_strengths'][$g['club']]??TeamStrength::rating($g['club'],$g),'forecast'=>OpportunityForecast::estimate($g,$g['club'])],'candidate_count'=>count($candidates)];
  }
  public static function render(array $g):void {
   $draw=$g['market_draw'];$items=array_values(array_filter($draw['scenarios'],fn($s)=>$s['peso']>0));
