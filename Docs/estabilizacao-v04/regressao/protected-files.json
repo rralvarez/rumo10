@@ -1,0 +1,260 @@
+[
+  {
+    "file": "app/Probability.php",
+    "sha256": "a1b7745bc6f872b87ce510d55812f823c9d2d58f79d287d20a7db433f787e7a2",
+    "unchanged": false,
+    "intentional_v04": true
+  },
+  {
+    "file": "app/MatchBalance.php",
+    "sha256": "606f7261bedb32caf44979661e6c16b6ce70a9171e66441deb9c8e3aa52c4e3f",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/MatchMomentum.php",
+    "sha256": "81d2c69fbb0ae818786d8700491e4fe2bc0026bbf70010b4a6dbd183ea7c5e10",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/TeamStrength.php",
+    "sha256": "cfe5817da9027bf4e8ae56f60748ec375be67b719810475aaad2c0b1f6215777",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/Progression.php",
+    "sha256": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/Evolution.php",
+    "sha256": "460cec5070d63ad62957010494d9a319caf3880611b2ba844d7afe1c8dadc36a",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/TransferMarket.php",
+    "sha256": "240d014c250e5e6bae2dd97feb572a750e617bc6950f45442f30af15bf74a0e2",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/Rules.php",
+    "sha256": "461300b1e8ae658f478f64dd8ba2555a96d8044bdafd00a39725dc824b8088dd",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/CareerBenefits.php",
+    "sha256": "6db1d64fdf6c73601a6aafb4ee9828fc2a3afd39e50c3dddcc9610a4d2a60145",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "app/Identity.php",
+    "sha256": "7a96d91999a7496b2190d88afaf9181592b190a11470ab1b187d32d8beded4df",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "public/.htaccess",
+    "sha256": "80500cb78cfe9085e4e58984847d9bc1988e799abdb2625edf14c6d6dab31848",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "public/web.config",
+    "sha256": "f896e4bf247fc73db394072fa02aa9208acbf854a137eaee3810b14659a2d9fb",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/africa-badge-overrides.json",
+    "sha256": "73e197feb484ab7e47804efbfcba7de1333da7d47d00137e75c0c5477ee9687e",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/africa-south-clubs-2026.json",
+    "sha256": "42334dfd05f3449b6bb25b5584d5a82ce4f080339ca780925c267a98098be2f1",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/africa-south-competitions-2026.json",
+    "sha256": "64d61abb7417d0f327577d8397b8a0301d66d9a4698589fedb8fe873829794e6",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/africa-south-coverage-2026.json",
+    "sha256": "0e2b05232f85a4742f5b2d07c611b9a2190e2b08c75fb1691e15380996a5f123",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/club-badges.json",
+    "sha256": "d7399fd5c528168a57530940e836337774acaca3702e5f93f353639767538578",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/clubs.json",
+    "sha256": "13615b716670c709c452503cfb08ac1535c13bbe60e7a9d6b0ac4090f4a7346e",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/competitions-2026.json",
+    "sha256": "dfef979c74778e38dc05c8fa79e91d4c8af2c34549f8225d03fed5ef05ffe85f",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/concacaf-clubs-2026.json",
+    "sha256": "755a34ade8dd42bb53ac66dceab298dfebc4c094d3118f7a48da998f7308a984",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/concacaf-competitions-2026.json",
+    "sha256": "5aff1f560066f5d615cc73489c665cdc81f1ee65e6f55c6fa266b63998d6f4c2",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/concacaf-ranking-2026.json",
+    "sha256": "d9be0f41ad9425986c17997d55a745e4fbce4bb44e748c71296a0da75cd5d7c4",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/europe-clubs-2026.json",
+    "sha256": "263e43cb144461accdb23bf51f2984395524a2c2592bb54d5649827ddac6f0a0",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/europe-competitions-2026.json",
+    "sha256": "ed9f2cdda5a9e3efdc5f2e8e3f020a369c358ab716a5ed954c2cd9478dd51eba",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/europe-results-2025.json",
+    "sha256": "bbf51ba0aebf1e6fd09bdb98661caab73dae29f98b56fcc04fce880a628f96f7",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/international-clubs-2026.json",
+    "sha256": "577d6275e0f0a3b6d13d3b9fc6da4fae57ac4f56a387940ab4ee34e64eb30612",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/international-competitions-2026.json",
+    "sha256": "f4a45fe958cd756e4ddf6fff396b13e5f7973db42f948c06d89eda1ef5415da7",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/municipalities.json",
+    "sha256": "ce4f72102d51282da796b99ae4e3a6af1cb84384ee119db4b87410852368df85",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/official-clubs-2026.json",
+    "sha256": "0dafdfdf0e4c527ece0a5aaae11b176c20f12666f282f4c24cb19138cccab8f5",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/player-catalog.json",
+    "sha256": "413bea1179954e0082cb1addeea1d940aabab6a26daf9f81c13256910bd5cea4",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/player-reference-overrides-2026.json",
+    "sha256": "b68857741b428b05a8ba8f20c086e592d1fd8d627b71d84c936016ef026418d1",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/players-top250-2026.json",
+    "sha256": "7a6daf066413cfb31e536252bb1fd657e21af937f71ddedd0645745f313dbf81",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/scenes.json",
+    "sha256": "352d234556aad6bfecc7a14c207be78e8b34aaf63cc271d817529a07bfcab763",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/starting-clubs.json",
+    "sha256": "702934973766eb83778079c25d7bed297baec4854345163e3625a5788e5fc737",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/state-clubs-2026.json",
+    "sha256": "bd7dfc21e2c8d4be4ad355e285c4e6b066eb854db62a2214b34e841d6ea2ff6b",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/state-competitions-2026.json",
+    "sha256": "99690057497ae5d06846f3be9e5ddb12e9c9bfb9ed9994dac0b14d05cbf0d48b",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/team-results-2025.json",
+    "sha256": "471f59bdbdafc85840209d435867ba47757717a51360d130c562be84308bacc7",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/top250-clubs-2026.json",
+    "sha256": "09e52f78f4f068c6e0ae1773a620a4b5fd59574052da6e62b2b52a9cf7f1c63f",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/top250-competitions-2026.json",
+    "sha256": "f6d3099740f695c65780f398961e118591ffca10053b35314340aaf6566fa802",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/top250-coverage-2026.json",
+    "sha256": "195197744ae6f3c3ba06881dda6e958faba816212a14e34de919495af37cf378",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/top250-participants-2026.json",
+    "sha256": "5036308508cbcaad9582f685d39f6721ebf93911c9c9a77ef785561adc9ac8af",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/world-top100-2026.json",
+    "sha256": "d851d0c1f78105766c67c2f4cce251676c797ddba5b6d658190a315c82bb2870",
+    "unchanged": true,
+    "intentional_v04": false
+  },
+  {
+    "file": "database/world-top250-2026.json",
+    "sha256": "d1e993e423894ba95317293e3ae699ced2541bbf8de47bd5f0d574063376d5e3",
+    "unchanged": true,
+    "intentional_v04": false
+  }
+]

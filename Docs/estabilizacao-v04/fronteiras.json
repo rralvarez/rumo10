@@ -1,0 +1,487 @@
+[
+    {
+        "file": "app\/CareerBenefits.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/CareerSlots.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/CareerStats.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/ClubBadge.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/ClubSquad.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Competition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/CompetitionView.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/ConcacafCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/CreationForm.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/CurrentLocation.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Database.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/EntryCountries.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/EuropeanCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Evolution.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/FootballGeography.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Game.php",
+        "unchanged": false,
+        "intentional_reason": "Resolução unificada de execução e rastreio; RNG do teste."
+    },
+    {
+        "file": "app\/Identity.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/IdentityError.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/InternationalCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/MatchBalance.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/MatchMomentum.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/NarrativeCatalog.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/NarrativeContext.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/NarrativeSelection.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Onboarding.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/PlayMode.php",
+        "unchanged": false,
+        "intentional_reason": "Audita componentes de chance sem alterar seleção."
+    },
+    {
+        "file": "app\/PlayerProfile.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Presentation.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Probability.php",
+        "unchanged": false,
+        "intentional_reason": "RNG injetável validado; random_int continua padrão."
+    },
+    {
+        "file": "app\/Progression.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Repository.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/RetiredCareer.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Retirement.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Rules.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/RumoHub.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/SceneConsequences.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Scenes.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Schedule.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/StateCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/TeamStrength.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/TransferMarket.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Trophies.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Wheel.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/WorldCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/bootstrap.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/view.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/africa-badge-overrides.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/africa-south-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/africa-south-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/africa-south-coverage-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/club-badges.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/clubs.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/concacaf-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/concacaf-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/concacaf-ranking-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/europe-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/europe-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/europe-results-2025.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/international-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/international-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/municipalities.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/official-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/player-catalog.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/player-reference-overrides-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/players-top250-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes-legacy-metadata.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/starting-clubs.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/state-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/state-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/team-results-2025.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-coverage-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-participants-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/world-top100-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/world-top250-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/f01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/f02.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/j01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/j02.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/j03.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/p01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/t01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/t02.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-01-effects.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-01.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-02.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-03.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-04.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-05.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-06.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-07.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-08.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "public\/assets\/game.js",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "public\/assets\/game.css",
+        "unchanged": true,
+        "intentional_reason": null
+    }
+]

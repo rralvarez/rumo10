@@ -1,5 +1,5 @@
 from pathlib import Path
-import subprocess,json,os,hashlib,re
+import subprocess,json,os,hashlib,re,gzip
 ROOT=Path(__file__).resolve().parents[1];out=ROOT/'Docs/narrativa-v1';php='C:/PHP/php-8.4.26/php.exe';opts=['-n','-d','extension_dir=C:/PHP/php-8.4.26/ext','-d','extension=mbstring','-d','memory_limit=768M']
 env=dict(os.environ,RUMOHUB_ENABLED='0',RUMOHUB_BENEFITS='0')
 suites=['narrative','narrative-modes','scenes-strength','scene-consequences','scene-failures','weekend-editorial','social-context','finishing','match-momentum','match-balance','normal-xp','lifecycle','package-engine','package-cohorts','package-seasons','presentation','season-presentation','wheel']
@@ -35,3 +35,6 @@ for name in ['app/Scenes.php','app/NarrativeCatalog.php','app/NarrativeSelection
  p=subprocess.run([php,'-n','-l',name],cwd=ROOT,capture_output=True);lint.append({'file':name,'exit':p.returncode})
 (out/'lint.json').write_text(json.dumps(lint,indent=2),encoding='utf-8')
 if any(r['exit'] for r in results+lint):raise SystemExit(1)
+if mechanics:
+ with gzip.open(out/'coortes-modos.json.gz','wb',compresslevel=9) as evidence:
+  evidence.write((out/'coortes-modos.json').read_bytes())

@@ -1,0 +1,2087 @@
+{
+    "git_base": "a5bb59e",
+    "hashes": {
+        "app\/CareerBenefits.php": "6db1d64fdf6c73601a6aafb4ee9828fc2a3afd39e50c3dddcc9610a4d2a60145",
+        "app\/CareerSlots.php": "403bdba6df6a6564d3a65cd4b878282cfdd4d465b4d67524c4ab085da47e7cce",
+        "app\/CareerStats.php": "ed4242624305b50b9ef6c0ce7c0ab4b436f540758b517e71631ed1deb6261a35",
+        "app\/ClubBadge.php": "a3a819998e7436c0e155609afaefe3b624bff82d363091509998d0ba8ef87942",
+        "app\/ClubSquad.php": "3702d910840ad993fc9c738ee0833378cdf0f6baad5d13816e081c1dabfb0e47",
+        "app\/Competition.php": "067427bf98c290ff6878e5455927ff614fcd91a6a32ca57f80edb749223d2232",
+        "app\/CompetitionView.php": "789c13700cb9b59d84744d7b8dbc94efaddc50fb7fadcd7dca3b28e0ed2f2d4c",
+        "app\/ConcacafCompetition.php": "1770bc107b6c70567a6e442440a72aa92df5bc6f3cb9e3950bec0110074de1cc",
+        "app\/CreationForm.php": "59e9e6cc52d960a1841b71e032237b2b91e34d4516008373ab9016314234ba52",
+        "app\/CurrentLocation.php": "1d3aa54422f4bc9ec9afefae3cbe451b5cdf284e81c1dca5e65ef365afa886cc",
+        "app\/Database.php": "7831c27f6cbc0d5fac869d1a5f308f2e54d280485707365caf8cddbab218cf99",
+        "app\/EntryCountries.php": "546a1bee4f8832aa7b6a1baea0ae628aca41e4025e8b163b98cf1b4a6479f8d0",
+        "app\/EuropeanCompetition.php": "6f8c680b51654958562c7d5ace26c7b191cf948b9f1d52cc926ef3b3f421904b",
+        "app\/Evolution.php": "460cec5070d63ad62957010494d9a319caf3880611b2ba844d7afe1c8dadc36a",
+        "app\/FootballGeography.php": "59ba731c956a6cdef7b5f1a0147e7e71f74a927205ed32fd4439d3106066196d",
+        "app\/Game.php": "64807a9a6c495a1e5aca7181d7013a751239e656b386475e525b6c232f7cede4",
+        "app\/Identity.php": "7a96d91999a7496b2190d88afaf9181592b190a11470ab1b187d32d8beded4df",
+        "app\/IdentityError.php": "9f2e9fb126f9a5f4b634129ff8d7213f1466a8955b1d89e24b549845db3e309c",
+        "app\/InternationalCompetition.php": "91c914e65b61dbe8c04576c1b076d6a1f226874d34cab4081517646119064d39",
+        "app\/MatchBalance.php": "606f7261bedb32caf44979661e6c16b6ce70a9171e66441deb9c8e3aa52c4e3f",
+        "app\/MatchMomentum.php": "81d2c69fbb0ae818786d8700491e4fe2bc0026bbf70010b4a6dbd183ea7c5e10",
+        "app\/NarrativeCatalog.php": "29a34560865b5411c6fe29116ee53cb92b4a12950ab6b2577e632742c99731ae",
+        "app\/NarrativeContext.php": "9485ef2256674f35601b13d108b7ada3f9ae83f8337cba2fff2ea2227f7858af",
+        "app\/NarrativeSelection.php": "1f2a19b6db1101898a4c70e49db125cc120d4f4e979ef0d5f665b2c9dc1f9cf7",
+        "app\/Onboarding.php": "881fde6511f9f4fdd4569d5a5a1c03494868b8c975873d2391616e27c203860a",
+        "app\/PlayMode.php": "6036e03de296a3d8ec280cdac278a9303586fdaefe6a8b8243424e0931a5fdc4",
+        "app\/PlayerProfile.php": "42fc13aee0cf8b31d38e151c3aca0c0ee096d5cdc6eb6889969e8ba6a40f9a09",
+        "app\/Presentation.php": "81b37f39c640023f6c055b1764f5aece75579164bf1df51c24e0d1593fc8f23a",
+        "app\/Probability.php": "a5408e41ef93f74240c88c5c9813ec623123cd822492f02327b3154c57a8f3e8",
+        "app\/Progression.php": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8",
+        "app\/Repository.php": "37e928dde4749907bdaaca97f7ec36e22ec553c79675dfafc84433b83c5fbd09",
+        "app\/RetiredCareer.php": "c8e29a19a196c8ba0c58c594af81fcc6a47844f896bc1d520940f41a0304e7d4",
+        "app\/Retirement.php": "a7791e89e4a61550ed8c51ec9e128bdde4fbfd3880d01f7156b3489e1e7497ad",
+        "app\/Rules.php": "461300b1e8ae658f478f64dd8ba2555a96d8044bdafd00a39725dc824b8088dd",
+        "app\/RumoHub.php": "bad8d0eee06e6aa31eb54e2933541294fbf39e6101e883293ea6d1c2dcc386f4",
+        "app\/SceneConsequences.php": "674910f15403b9981da4abbc5d3ffbfbdb73fc4f8a7d4bfc29a2b64adfa43335",
+        "app\/Scenes.php": "2ab4552dcaa9e06b1e4e2ff4a2103dd8019131c45217d9f60d119aa36ecf7a68",
+        "app\/Schedule.php": "927e81f9444bc152186d58f912206463a5ca0cec9cc60eb33fb2a93f09c588ad",
+        "app\/StateCompetition.php": "e98b8806b4c6c36c96499a5ac1b013129f4cc67ae2cc0627ffc39a4c6cfef82e",
+        "app\/TeamStrength.php": "cfe5817da9027bf4e8ae56f60748ec375be67b719810475aaad2c0b1f6215777",
+        "app\/TransferMarket.php": "240d014c250e5e6bae2dd97feb572a750e617bc6950f45442f30af15bf74a0e2",
+        "app\/Trophies.php": "e663f9c708bd6e57ded1124daa2320ad6aefd4ada8365396af7a53bfebb17844",
+        "app\/Wheel.php": "a607d9fb403f35332f9488045de66fe2aaa4d3d3420a7c362b199858bc0a042d",
+        "app\/WorldCompetition.php": "316777151cb789db51b77ac38183f51c825fa3f71b7e3ccda5f18a0343407abd",
+        "app\/bootstrap.php": "e06e6f460c118da903747efc3614bd6fe517bedecac8cae553d58c939677c8b5",
+        "app\/view.php": "8066e33b1acaa5fcf026cf95f6198294a9d11824b98e5afb0bc5fe52bab932b7",
+        "database\/africa-badge-overrides.json": "73e197feb484ab7e47804efbfcba7de1333da7d47d00137e75c0c5477ee9687e",
+        "database\/africa-south-clubs-2026.json": "42334dfd05f3449b6bb25b5584d5a82ce4f080339ca780925c267a98098be2f1",
+        "database\/africa-south-competitions-2026.json": "64d61abb7417d0f327577d8397b8a0301d66d9a4698589fedb8fe873829794e6",
+        "database\/africa-south-coverage-2026.json": "0e2b05232f85a4742f5b2d07c611b9a2190e2b08c75fb1691e15380996a5f123",
+        "database\/club-badges.json": "d7399fd5c528168a57530940e836337774acaca3702e5f93f353639767538578",
+        "database\/clubs.json": "13615b716670c709c452503cfb08ac1535c13bbe60e7a9d6b0ac4090f4a7346e",
+        "database\/competitions-2026.json": "dfef979c74778e38dc05c8fa79e91d4c8af2c34549f8225d03fed5ef05ffe85f",
+        "database\/concacaf-clubs-2026.json": "755a34ade8dd42bb53ac66dceab298dfebc4c094d3118f7a48da998f7308a984",
+        "database\/concacaf-competitions-2026.json": "5aff1f560066f5d615cc73489c665cdc81f1ee65e6f55c6fa266b63998d6f4c2",
+        "database\/concacaf-ranking-2026.json": "d9be0f41ad9425986c17997d55a745e4fbce4bb44e748c71296a0da75cd5d7c4",
+        "database\/europe-clubs-2026.json": "263e43cb144461accdb23bf51f2984395524a2c2592bb54d5649827ddac6f0a0",
+        "database\/europe-competitions-2026.json": "ed9f2cdda5a9e3efdc5f2e8e3f020a369c358ab716a5ed954c2cd9478dd51eba",
+        "database\/europe-results-2025.json": "bbf51ba0aebf1e6fd09bdb98661caab73dae29f98b56fcc04fce880a628f96f7",
+        "database\/international-clubs-2026.json": "577d6275e0f0a3b6d13d3b9fc6da4fae57ac4f56a387940ab4ee34e64eb30612",
+        "database\/international-competitions-2026.json": "f4a45fe958cd756e4ddf6fff396b13e5f7973db42f948c06d89eda1ef5415da7",
+        "database\/municipalities.json": "ce4f72102d51282da796b99ae4e3a6af1cb84384ee119db4b87410852368df85",
+        "database\/official-clubs-2026.json": "0dafdfdf0e4c527ece0a5aaae11b176c20f12666f282f4c24cb19138cccab8f5",
+        "database\/player-catalog.json": "413bea1179954e0082cb1addeea1d940aabab6a26daf9f81c13256910bd5cea4",
+        "database\/player-reference-overrides-2026.json": "b68857741b428b05a8ba8f20c086e592d1fd8d627b71d84c936016ef026418d1",
+        "database\/players-top250-2026.json": "7a6daf066413cfb31e536252bb1fd657e21af937f71ddedd0645745f313dbf81",
+        "database\/scenes-legacy-metadata.json": "95e734b5de93ff790fbf1906136fd60add6862367ba04141faeaaffcaaa47bf7",
+        "database\/scenes.json": "352d234556aad6bfecc7a14c207be78e8b34aaf63cc271d817529a07bfcab763",
+        "database\/starting-clubs.json": "702934973766eb83778079c25d7bed297baec4854345163e3625a5788e5fc737",
+        "database\/state-clubs-2026.json": "bd7dfc21e2c8d4be4ad355e285c4e6b066eb854db62a2214b34e841d6ea2ff6b",
+        "database\/state-competitions-2026.json": "99690057497ae5d06846f3be9e5ddb12e9c9bfb9ed9994dac0b14d05cbf0d48b",
+        "database\/team-results-2025.json": "471f59bdbdafc85840209d435867ba47757717a51360d130c562be84308bacc7",
+        "database\/top250-clubs-2026.json": "09e52f78f4f068c6e0ae1773a620a4b5fd59574052da6e62b2b52a9cf7f1c63f",
+        "database\/top250-competitions-2026.json": "f6d3099740f695c65780f398961e118591ffca10053b35314340aaf6566fa802",
+        "database\/top250-coverage-2026.json": "195197744ae6f3c3ba06881dda6e958faba816212a14e34de919495af37cf378",
+        "database\/top250-participants-2026.json": "5036308508cbcaad9582f685d39f6721ebf93911c9c9a77ef785561adc9ac8af",
+        "database\/world-top100-2026.json": "d851d0c1f78105766c67c2f4cce251676c797ddba5b6d658190a315c82bb2870",
+        "database\/world-top250-2026.json": "d1e993e423894ba95317293e3ae699ced2541bbf8de47bd5f0d574063376d5e3",
+        "database\/scenes\/f01.json": "345da4475a553b6a0678c9e8b688c0bb2b0bc0a34696df275714cf60ce637172",
+        "database\/scenes\/f02.json": "4b3f0f24f849bf663ccab4f37e714ec624501e358ac1d2ec673634aed6cd16d2",
+        "database\/scenes\/j01.json": "ce0925ed0880d5958eec7aa09fd07e12e0e910fe80ec9bcc31251288286be10e",
+        "database\/scenes\/j02.json": "9828095f17350ccc18e7c67e2bb19dc30c99cb675f48a194880c5eb70b3bd99b",
+        "database\/scenes\/j03.json": "02ed2f815f11246e617c9703bd731fe2225f12f790f8c64b4f31f2458c5b5ef2",
+        "database\/scenes\/p01.json": "a5f37541dff6eaf2fe641b0366cac5e6b62cd591f06dddcb8c5d84397fb60e14",
+        "database\/scenes\/t01.json": "daa4a44f1b1d2ee130127fbb983c8df8e158466cd869f42413ad16256e5735d0",
+        "database\/scenes\/t02.json": "7ff9ff49a188f86da3af684f2e253183ffd2f6ced1e40aaa4c0c34738c7ea37c",
+        "database\/editorial\/lote-01-effects.json": "d626bd5bc310f29c9fb5e8e66e5d518fc8777726a98be46dc5b7f2b5b632ee74",
+        "database\/editorial\/lote-01.txt": "1ea14c7a209aeeeb35954d42e2fa9d924f3f103e3ce73e3e7d9dd478d74362a6",
+        "database\/editorial\/lote-02.txt": "bc6b78968605f0a5a4fbd94904fef35088b28af0cd2e7bab004bdc0f46d4fe37",
+        "database\/editorial\/lote-03.txt": "e460c0f5c6e83e57be5defeb1293dce71831c17068865426701ef4677b31d2a0",
+        "database\/editorial\/lote-04.txt": "ca920f548319c67d4c6fa6844592de4cde1d913d7f3e45a307484204805a7d62",
+        "database\/editorial\/lote-05.txt": "b23e6d1f2c7aee3c2628611390df5075ddf29fe74c1d300d3ca5bfb382e263d7",
+        "database\/editorial\/lote-06.txt": "240ead12a73ac23c25c260b7ac0e72744e292b4b924c9d994d937efc0be15fd2",
+        "database\/editorial\/lote-07.txt": "4d73c83d0f905d4f45f5a1902d08ddb228e186045989717fffc3cbeaf3100578",
+        "database\/editorial\/lote-08.txt": "121ede42c2dada08210e3b63bd6165712fdd12051648f881acb44ee7e9b27e99",
+        "public\/assets\/game.js": "49e10ced79a8e0c90d175492ffdecfaa17c55b7510d773f722cc914b06ff98ab",
+        "public\/assets\/game.css": "4a20e6e0300e868dfe64d5ff06e8ff1f6963c9a985169477e9f4cc2ec4a174f5"
+    },
+    "cases": [
+        {
+            "level": 45,
+            "own": 35,
+            "opponent": 35,
+            "normal": 6.95,
+            "clear": 59.15,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 45,
+            "own": 35,
+            "opponent": 50,
+            "normal": 4.33,
+            "clear": 54.65,
+            "expected_goals": {
+                "hg": 0.8794427276669251,
+                "ag": 1.6885693101807309
+            }
+        },
+        {
+            "level": 45,
+            "own": 35,
+            "opponent": 80,
+            "normal": 1.66,
+            "clear": 45.65,
+            "expected_goals": {
+                "hg": 0.37321161294991184,
+                "ag": 3.978975863752931
+            }
+        },
+        {
+            "level": 45,
+            "own": 50,
+            "opponent": 35,
+            "normal": 10.68,
+            "clear": 59.15,
+            "expected_goals": {
+                "hg": 2.0723350624945334,
+                "ag": 0.7165829632841612
+            }
+        },
+        {
+            "level": 45,
+            "own": 50,
+            "opponent": 50,
+            "normal": 6.64,
+            "clear": 54.65,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 45,
+            "own": 50,
+            "opponent": 80,
+            "normal": 2.55,
+            "clear": 45.65,
+            "expected_goals": {
+                "hg": 0.5729033416638826,
+                "ag": 2.5920602866220266
+            }
+        },
+        {
+            "level": 45,
+            "own": 80,
+            "opponent": 35,
+            "normal": 20.61,
+            "clear": 59.15,
+            "expected_goals": {
+                "hg": 4,
+                "ag": 0.3040983512925208
+            }
+        },
+        {
+            "level": 45,
+            "own": 80,
+            "opponent": 50,
+            "normal": 15.65,
+            "clear": 54.65,
+            "expected_goals": {
+                "hg": 3.181164897217942,
+                "ag": 0.466810130244645
+            }
+        },
+        {
+            "level": 45,
+            "own": 80,
+            "opponent": 80,
+            "normal": 6.02,
+            "clear": 45.65,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 65,
+            "own": 35,
+            "opponent": 35,
+            "normal": 8.13,
+            "clear": 72.15,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 65,
+            "own": 35,
+            "opponent": 50,
+            "normal": 5.1,
+            "clear": 67.65,
+            "expected_goals": {
+                "hg": 0.8794427276669251,
+                "ag": 1.6885693101807309
+            }
+        },
+        {
+            "level": 65,
+            "own": 35,
+            "opponent": 80,
+            "normal": 1.99,
+            "clear": 58.65,
+            "expected_goals": {
+                "hg": 0.37321161294991184,
+                "ag": 3.978975863752931
+            }
+        },
+        {
+            "level": 65,
+            "own": 50,
+            "opponent": 35,
+            "normal": 12.49,
+            "clear": 72.15,
+            "expected_goals": {
+                "hg": 2.0723350624945334,
+                "ag": 0.7165829632841612
+            }
+        },
+        {
+            "level": 65,
+            "own": 50,
+            "opponent": 50,
+            "normal": 7.82,
+            "clear": 67.65,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 65,
+            "own": 50,
+            "opponent": 80,
+            "normal": 3.05,
+            "clear": 58.65,
+            "expected_goals": {
+                "hg": 0.5729033416638826,
+                "ag": 2.5920602866220266
+            }
+        },
+        {
+            "level": 65,
+            "own": 80,
+            "opponent": 35,
+            "normal": 24.1,
+            "clear": 72.15,
+            "expected_goals": {
+                "hg": 4,
+                "ag": 0.3040983512925208
+            }
+        },
+        {
+            "level": 65,
+            "own": 80,
+            "opponent": 50,
+            "normal": 18.43,
+            "clear": 67.65,
+            "expected_goals": {
+                "hg": 3.181164897217942,
+                "ag": 0.466810130244645
+            }
+        },
+        {
+            "level": 65,
+            "own": 80,
+            "opponent": 80,
+            "normal": 7.2,
+            "clear": 58.65,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 85,
+            "own": 35,
+            "opponent": 35,
+            "normal": 9.32,
+            "clear": 85.15,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 85,
+            "own": 35,
+            "opponent": 50,
+            "normal": 5.86,
+            "clear": 80.65,
+            "expected_goals": {
+                "hg": 0.8794427276669251,
+                "ag": 1.6885693101807309
+            }
+        },
+        {
+            "level": 85,
+            "own": 35,
+            "opponent": 80,
+            "normal": 2.32,
+            "clear": 71.65,
+            "expected_goals": {
+                "hg": 0.37321161294991184,
+                "ag": 3.978975863752931
+            }
+        },
+        {
+            "level": 85,
+            "own": 50,
+            "opponent": 35,
+            "normal": 14.3,
+            "clear": 85.15,
+            "expected_goals": {
+                "hg": 2.0723350624945334,
+                "ag": 0.7165829632841612
+            }
+        },
+        {
+            "level": 85,
+            "own": 50,
+            "opponent": 50,
+            "normal": 9,
+            "clear": 80.65,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        },
+        {
+            "level": 85,
+            "own": 50,
+            "opponent": 80,
+            "normal": 3.56,
+            "clear": 71.65,
+            "expected_goals": {
+                "hg": 0.5729033416638826,
+                "ag": 2.5920602866220266
+            }
+        },
+        {
+            "level": 85,
+            "own": 80,
+            "opponent": 35,
+            "normal": 27.6,
+            "clear": 85.15,
+            "expected_goals": {
+                "hg": 4,
+                "ag": 0.3040983512925208
+            }
+        },
+        {
+            "level": 85,
+            "own": 80,
+            "opponent": 50,
+            "normal": 21.21,
+            "clear": 80.65,
+            "expected_goals": {
+                "hg": 3.181164897217942,
+                "ag": 0.466810130244645
+            }
+        },
+        {
+            "level": 85,
+            "own": 80,
+            "opponent": 80,
+            "normal": 8.38,
+            "clear": 71.65,
+            "expected_goals": {
+                "hg": 1.35,
+                "ag": 1.1
+            }
+        }
+    ],
+    "catalog": 1014,
+    "new": 800,
+    "active": 755,
+    "database": "rumohub",
+    "schema": [
+        {
+            "TABLE_NAME": "rh_admin_audit",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_admin_audit",
+            "COLUMN_NAME": "admin_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_admin_audit",
+            "COLUMN_NAME": "entidade",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rh_admin_audit",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rh_admin_audit",
+            "COLUMN_NAME": "alteracao_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_admin_audit",
+            "COLUMN_NAME": "created_at",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_admin_login_limits",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_admin_login_limits",
+            "COLUMN_NAME": "tentativas",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rh_admin_login_limits",
+            "COLUMN_NAME": "inicio",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_admin_setup",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "tinyint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_admin_setup",
+            "COLUMN_NAME": "token_hash",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_admin_setup",
+            "COLUMN_NAME": "expira_em",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_admins",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_admins",
+            "COLUMN_NAME": "email",
+            "COLUMN_TYPE": "varchar(190)"
+        },
+        {
+            "TABLE_NAME": "rh_admins",
+            "COLUMN_NAME": "senha_hash",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_admins",
+            "COLUMN_NAME": "ativo",
+            "COLUMN_TYPE": "tinyint"
+        },
+        {
+            "TABLE_NAME": "rh_admins",
+            "COLUMN_NAME": "created_at",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_api_nonces",
+            "COLUMN_NAME": "cliente",
+            "COLUMN_TYPE": "varchar(32)"
+        },
+        {
+            "TABLE_NAME": "rh_api_nonces",
+            "COLUMN_NAME": "nonce",
+            "COLUMN_TYPE": "char(32)"
+        },
+        {
+            "TABLE_NAME": "rh_api_nonces",
+            "COLUMN_NAME": "expira_em",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_audit",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_audit",
+            "COLUMN_NAME": "beneficio_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_audit",
+            "COLUMN_NAME": "admin_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_audit",
+            "COLUMN_NAME": "acao",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_audit",
+            "COLUMN_NAME": "motivo",
+            "COLUMN_TYPE": "varchar(500)"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_audit",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_audit",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "game_id",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "tipo",
+            "COLUMN_TYPE": "enum('compra','cortesia','legado')"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "estado",
+            "COLUMN_TYPE": "enum('ativo','revogado')"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "inicio",
+            "COLUMN_TYPE": "datetime"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "fim",
+            "COLUMN_TYPE": "datetime"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "justificativa",
+            "COLUMN_TYPE": "varchar(500)"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "admin_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_beneficios_jogo",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_metadata",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "tinyint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_metadata",
+            "COLUMN_NAME": "versao",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_metadata",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_metadata",
+            "COLUMN_NAME": "atualizado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_overrides",
+            "COLUMN_NAME": "entidade",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_overrides",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_overrides",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_overrides",
+            "COLUMN_NAME": "admin_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_catalogo_overrides",
+            "COLUMN_NAME": "atualizado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_clubes",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_clubes",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rh_clubes",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rh_clubes",
+            "COLUMN_NAME": "pais",
+            "COLUMN_TYPE": "char(2)"
+        },
+        {
+            "TABLE_NAME": "rh_clubes",
+            "COLUMN_NAME": "cores_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_clubes",
+            "COLUMN_NAME": "escudo_caminho",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_clubes",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_competicoes",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rh_competicoes",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rh_competicoes",
+            "COLUMN_NAME": "pais",
+            "COLUMN_TYPE": "char(2)"
+        },
+        {
+            "TABLE_NAME": "rh_competicoes",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_convites",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_convites",
+            "COLUMN_NAME": "game_id",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rh_convites",
+            "COLUMN_NAME": "usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_convites",
+            "COLUMN_NAME": "token",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_convites",
+            "COLUMN_NAME": "estado",
+            "COLUMN_TYPE": "enum('ativo','bloqueado')"
+        },
+        {
+            "TABLE_NAME": "rh_convites",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "game_id",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "indicacao_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "estado",
+            "COLUMN_TYPE": "enum('disponivel','reservado','consumido','bloqueado')"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "reserva",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "reservado_em",
+            "COLUMN_TYPE": "datetime"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "consumido_em",
+            "COLUMN_TYPE": "datetime"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_creditos_indicacao",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_elenco_vinculos",
+            "COLUMN_NAME": "clube_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_elenco_vinculos",
+            "COLUMN_NAME": "jogador_id",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_elenco_vinculos",
+            "COLUMN_NAME": "edicao",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rh_hub_games",
+            "COLUMN_NAME": "slug",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rh_hub_games",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rh_hub_games",
+            "COLUMN_NAME": "descricao",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_hub_games",
+            "COLUMN_NAME": "url_publica",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_hub_games",
+            "COLUMN_NAME": "logo_caminho",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_hub_games",
+            "COLUMN_NAME": "status",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rh_hub_games",
+            "COLUMN_NAME": "ordem",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "game_id",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "convidante_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "convidado_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "convite_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "estado",
+            "COLUMN_TYPE": "enum('aguardando','qualificada','bloqueada')"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "qualificado_em",
+            "COLUMN_TYPE": "datetime"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "credito_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "acao",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "admin_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "motivo",
+            "COLUMN_TYPE": "varchar(500)"
+        },
+        {
+            "TABLE_NAME": "rh_indicacoes_ledger",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "nascimento",
+            "COLUMN_TYPE": "date"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "origem",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "posicao",
+            "COLUMN_TYPE": "varchar(32)"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "overall_referencia",
+            "COLUMN_TYPE": "smallint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "origem_overall",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rh_jogadores",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_migracoes_negocio",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_migracoes_negocio",
+            "COLUMN_NAME": "aplicado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_perfis_publicos",
+            "COLUMN_NAME": "usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_perfis_publicos",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(60)"
+        },
+        {
+            "TABLE_NAME": "rh_perfis_publicos",
+            "COLUMN_NAME": "consentimento",
+            "COLUMN_TYPE": "tinyint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_perfis_publicos",
+            "COLUMN_NAME": "atualizado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_primeiras_carreiras",
+            "COLUMN_NAME": "game_id",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rh_primeiras_carreiras",
+            "COLUMN_NAME": "usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_primeiras_carreiras",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_primeiras_carreiras",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_primeiras_carreiras",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "edicao",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "ea_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "genero",
+            "COLUMN_TYPE": "tinyint"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "overall",
+            "COLUMN_TYPE": "tinyint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "equipe_ea_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "equipe_nome",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "liga",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "jogador_id",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_ratings_ea",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_selecao_jogadores",
+            "COLUMN_NAME": "selecao_codigo",
+            "COLUMN_TYPE": "char(3)"
+        },
+        {
+            "TABLE_NAME": "rh_selecao_jogadores",
+            "COLUMN_NAME": "jogador_id",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "char(3)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "pais",
+            "COLUMN_TYPE": "varchar(80)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "pais_codigo",
+            "COLUMN_TYPE": "char(2)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "confederacao",
+            "COLUMN_TYPE": "varchar(12)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "federacao",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "escudo_caminho",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "fonte_url",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_selecoes",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rh_usuario_login_limits",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_usuario_login_limits",
+            "COLUMN_NAME": "tentativas",
+            "COLUMN_TYPE": "int unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_usuario_login_limits",
+            "COLUMN_NAME": "inicio",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_usuario_sessoes",
+            "COLUMN_NAME": "token_hash",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rh_usuario_sessoes",
+            "COLUMN_NAME": "usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_usuario_sessoes",
+            "COLUMN_NAME": "cliente",
+            "COLUMN_TYPE": "varchar(32)"
+        },
+        {
+            "TABLE_NAME": "rh_usuario_sessoes",
+            "COLUMN_NAME": "expira_em",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_usuarios",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_usuarios",
+            "COLUMN_NAME": "email",
+            "COLUMN_TYPE": "varchar(190)"
+        },
+        {
+            "TABLE_NAME": "rh_usuarios",
+            "COLUMN_NAME": "senha_hash",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rh_usuarios",
+            "COLUMN_NAME": "plano",
+            "COLUMN_TYPE": "enum('gratuito','pago')"
+        },
+        {
+            "TABLE_NAME": "rh_usuarios",
+            "COLUMN_NAME": "admin_hub",
+            "COLUMN_TYPE": "tinyint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_usuarios",
+            "COLUMN_NAME": "ativo",
+            "COLUMN_TYPE": "tinyint unsigned"
+        },
+        {
+            "TABLE_NAME": "rh_usuarios",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_atributos",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_atributos",
+            "COLUMN_NAME": "habilidade",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_atributos",
+            "COLUMN_NAME": "valor",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_atributos",
+            "COLUMN_NAME": "xp",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "conta_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "evento",
+            "COLUMN_TYPE": "enum('primeira_carreira','consumir_credito')"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "credito_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "reserva",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "estado",
+            "COLUMN_TYPE": "enum('pendente','confirmado')"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "tentativas",
+            "COLUMN_TYPE": "int unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_beneficios_outbox",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "conta_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(60)"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "cidade",
+            "COLUMN_TYPE": "varchar(80)"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "uf",
+            "COLUMN_TYPE": "char(2)"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "posicao",
+            "COLUMN_TYPE": "varchar(20)"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "idade",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "temporada",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "rodada",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "etapa",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "clube",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "tier",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "handicap",
+            "COLUMN_TYPE": "varchar(80)"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "versao",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras",
+            "COLUMN_NAME": "feedback_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras_arquivadas",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras_arquivadas",
+            "COLUMN_NAME": "conta_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_carreiras_arquivadas",
+            "COLUMN_NAME": "arquivada_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_catalogo_clubes",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_catalogo_clubes",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "int unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "slug",
+            "COLUMN_TYPE": "varchar(80)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "municipio",
+            "COLUMN_TYPE": "varchar(80)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "uf",
+            "COLUMN_TYPE": "char(2)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "origem",
+            "COLUMN_TYPE": "varchar(10)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "cor_primaria_nome",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "cor_primaria_hex",
+            "COLUMN_TYPE": "char(7)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "cor_secundaria_nome",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "cor_secundaria_hex",
+            "COLUMN_TYPE": "char(7)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "cor_terciaria_nome",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "cor_terciaria_hex",
+            "COLUMN_TYPE": "char(7)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "fonte_cores_url",
+            "COLUMN_TYPE": "text"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "verificacao",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "cores_verificadas_em",
+            "COLUMN_TYPE": "date"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes",
+            "COLUMN_NAME": "tier_ficticio",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes_oficiais",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes_oficiais",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes_oficiais",
+            "COLUMN_NAME": "uf",
+            "COLUMN_TYPE": "char(2)"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes_oficiais",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_clubes_oficiais",
+            "COLUMN_NAME": "fonte_url",
+            "COLUMN_TYPE": "text"
+        },
+        {
+            "TABLE_NAME": "rumo10_competicoes",
+            "COLUMN_NAME": "codigo",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_competicoes",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_competicoes",
+            "COLUMN_NAME": "edicao",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_competicoes",
+            "COLUMN_NAME": "formato",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rumo10_competicoes",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_competicoes",
+            "COLUMN_NAME": "fonte_url",
+            "COLUMN_TYPE": "text"
+        },
+        {
+            "TABLE_NAME": "rumo10_conta_planos",
+            "COLUMN_NAME": "conta_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_conta_planos",
+            "COLUMN_NAME": "plano",
+            "COLUMN_TYPE": "enum('gratuito','pago')"
+        },
+        {
+            "TABLE_NAME": "rumo10_conta_planos",
+            "COLUMN_NAME": "atualizado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_contas",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_contas",
+            "COLUMN_NAME": "email",
+            "COLUMN_TYPE": "varchar(190)"
+        },
+        {
+            "TABLE_NAME": "rumo10_contas",
+            "COLUMN_NAME": "senha_hash",
+            "COLUMN_TYPE": "varchar(255)"
+        },
+        {
+            "TABLE_NAME": "rumo10_contas",
+            "COLUMN_NAME": "created_at",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_criacoes",
+            "COLUMN_NAME": "conta_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_criacoes",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_criacoes",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_criacoes",
+            "COLUMN_NAME": "request_hash",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_criacoes",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "chave",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "comando",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "request_hash",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "versao_anterior",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "chance",
+            "COLUMN_TYPE": "decimal(5,2)"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "sorteio",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "classe",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "regras",
+            "COLUMN_TYPE": "varchar(20)"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "resultado_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_decisoes",
+            "COLUMN_NAME": "created_at",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_elenco_jogadores",
+            "COLUMN_NAME": "clube",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_elenco_jogadores",
+            "COLUMN_NAME": "jogador_id",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rumo10_elenco_jogadores",
+            "COLUMN_NAME": "edicao",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rumo10_elencos_catalogo",
+            "COLUMN_NAME": "clube",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rumo10_elencos_catalogo",
+            "COLUMN_NAME": "consultado",
+            "COLUMN_TYPE": "date"
+        },
+        {
+            "TABLE_NAME": "rumo10_elencos_catalogo",
+            "COLUMN_NAME": "reais",
+            "COLUMN_TYPE": "int unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_elencos_catalogo",
+            "COLUMN_NAME": "ficticios",
+            "COLUMN_TYPE": "int unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_elencos_catalogo",
+            "COLUMN_NAME": "notas_publicadas",
+            "COLUMN_TYPE": "int unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_elencos_catalogo",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_estados",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_estados",
+            "COLUMN_NAME": "indicador",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rumo10_estados",
+            "COLUMN_NAME": "valor",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "partida_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "minutos",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "gols",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "assistencias",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "passes",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "passes_certos",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "finalizacoes",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "desarmes",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "faltas",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "cartoes",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_estatisticas",
+            "COLUMN_NAME": "nota",
+            "COLUMN_TYPE": "decimal(4,1)"
+        },
+        {
+            "TABLE_NAME": "rumo10_eventos_partida",
+            "COLUMN_NAME": "partida_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_eventos_partida",
+            "COLUMN_NAME": "sequencia",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_eventos_partida",
+            "COLUMN_NAME": "minuto",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_eventos_partida",
+            "COLUMN_NAME": "texto",
+            "COLUMN_TYPE": "text"
+        },
+        {
+            "TABLE_NAME": "rumo10_historico_encerrado",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_historico_encerrado",
+            "COLUMN_NAME": "conta_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_historico_encerrado",
+            "COLUMN_NAME": "encerrada_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_historico_encerrado",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_historico_encerrado",
+            "COLUMN_NAME": "bytes_detalhes",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_historico_encerrado",
+            "COLUMN_NAME": "bytes_resumo",
+            "COLUMN_TYPE": "int unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_identidades",
+            "COLUMN_NAME": "conta_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_identidades",
+            "COLUMN_NAME": "hub_usuario_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "varchar(100)"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(160)"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "nascimento",
+            "COLUMN_TYPE": "date"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "origem",
+            "COLUMN_TYPE": "varchar(16)"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "posicao",
+            "COLUMN_TYPE": "varchar(32)"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "overall_referencia",
+            "COLUMN_TYPE": "smallint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "origem_overall",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "consultado",
+            "COLUMN_TYPE": "date"
+        },
+        {
+            "TABLE_NAME": "rumo10_jogadores_catalogo",
+            "COLUMN_NAME": "dados_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_login_limits",
+            "COLUMN_NAME": "fingerprint",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_login_limits",
+            "COLUMN_NAME": "attempts",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_login_limits",
+            "COLUMN_NAME": "window_start",
+            "COLUMN_TYPE": "bigint"
+        },
+        {
+            "TABLE_NAME": "rumo10_migrations",
+            "COLUMN_NAME": "version",
+            "COLUMN_TYPE": "varchar(40)"
+        },
+        {
+            "TABLE_NAME": "rumo10_migrations",
+            "COLUMN_NAME": "applied_at",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_ofertas",
+            "COLUMN_NAME": "temporada_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_ofertas",
+            "COLUMN_NAME": "clube",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_ofertas",
+            "COLUMN_NAME": "tier",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_ofertas",
+            "COLUMN_NAME": "peso",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_ofertas",
+            "COLUMN_NAME": "selecionada",
+            "COLUMN_TYPE": "tinyint"
+        },
+        {
+            "TABLE_NAME": "rumo10_opcoes",
+            "COLUMN_NAME": "situacao_id",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_opcoes",
+            "COLUMN_NAME": "opcao",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_opcoes",
+            "COLUMN_NAME": "texto",
+            "COLUMN_TYPE": "text"
+        },
+        {
+            "TABLE_NAME": "rumo10_opcoes",
+            "COLUMN_NAME": "efeitos_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_origem_vagas",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_origem_vagas",
+            "COLUMN_NAME": "tipo",
+            "COLUMN_TYPE": "enum('BASE','INDICACAO','LEGADO','PAGO')"
+        },
+        {
+            "TABLE_NAME": "rumo10_origem_vagas",
+            "COLUMN_NAME": "credito_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_origem_vagas",
+            "COLUMN_NAME": "reserva",
+            "COLUMN_TYPE": "char(64)"
+        },
+        {
+            "TABLE_NAME": "rumo10_origem_vagas",
+            "COLUMN_NAME": "referencia",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_origem_vagas",
+            "COLUMN_NAME": "criado_em",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "temporada_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "rodada",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "mandante",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "visitante",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "gols_mandante",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "gols_visitante",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "minuto",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "status",
+            "COLUMN_TYPE": "varchar(20)"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "escalacao",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "entrada",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_partidas",
+            "COLUMN_NAME": "saida",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_situacoes",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_situacoes",
+            "COLUMN_NAME": "momento",
+            "COLUMN_TYPE": "varchar(30)"
+        },
+        {
+            "TABLE_NAME": "rumo10_situacoes",
+            "COLUMN_NAME": "texto",
+            "COLUMN_TYPE": "text"
+        },
+        {
+            "TABLE_NAME": "rumo10_situacoes",
+            "COLUMN_NAME": "versao",
+            "COLUMN_TYPE": "varchar(20)"
+        },
+        {
+            "TABLE_NAME": "rumo10_temporadas",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_temporadas",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_temporadas",
+            "COLUMN_NAME": "numero",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_temporadas",
+            "COLUMN_NAME": "clube",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_temporadas",
+            "COLUMN_NAME": "finalizada",
+            "COLUMN_TYPE": "tinyint"
+        },
+        {
+            "TABLE_NAME": "rumo10_temporadas",
+            "COLUMN_NAME": "resumo_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_times",
+            "COLUMN_NAME": "temporada_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_times",
+            "COLUMN_NAME": "nome",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_transferencias",
+            "COLUMN_NAME": "id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_transferencias",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_transferencias",
+            "COLUMN_NAME": "temporada",
+            "COLUMN_TYPE": "int"
+        },
+        {
+            "TABLE_NAME": "rumo10_transferencias",
+            "COLUMN_NAME": "origem",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_transferencias",
+            "COLUMN_NAME": "destino",
+            "COLUMN_TYPE": "varchar(120)"
+        },
+        {
+            "TABLE_NAME": "rumo10_transferencias",
+            "COLUMN_NAME": "created_at",
+            "COLUMN_TYPE": "timestamp"
+        },
+        {
+            "TABLE_NAME": "rumo10_universos",
+            "COLUMN_NAME": "carreira_id",
+            "COLUMN_TYPE": "bigint unsigned"
+        },
+        {
+            "TABLE_NAME": "rumo10_universos",
+            "COLUMN_NAME": "estado_json",
+            "COLUMN_TYPE": "json"
+        },
+        {
+            "TABLE_NAME": "rumo10_universos",
+            "COLUMN_NAME": "atualizado_em",
+            "COLUMN_TYPE": "timestamp"
+        }
+    ],
+    "save_counts": {
+        "rumo10_carreiras": 3,
+        "rumo10_universos": 3,
+        "rumo10_historico_encerrado": 0
+    }
+}
