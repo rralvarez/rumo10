@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "id": "br-al-reference-2026",
+  "edition": 2026,
+  "status": "reference_only_not_installed",
+  "consulted": "2026-10-16",
+  "sources": {
+    "faf-a": {
+      "url": "https://futeboldealagoas.net/assets/uploads/176832886543.pdf",
+      "location": "2026, arts.1–12, pp.2–4"
+    },
+    "faf-b": {
+      "url": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+      "location": "2026, arts.1–7 pp.2–3; art.14 pp.5–6"
+    },
+    "faf-cup": {
+      "url": "https://www.futeboldealagoas.net/assets/uploads/177326005939.pdf",
+      "location": "REC revised 11/03/2026, arts.1–8 pp.2–4"
+    },
+    "faf-identity": {
+      "url": "https://www.futeboldealagoas.net/novo/post/sporting-teotonio-conquista-o-campeonato-alagoano-serie-b-2026-e-garante-vaga-no-alagoano-centenario-2027",
+      "location": "Official news, paragraph beginning O Sporting FC é o antigo Sete de Setembro"
+    },
+    "faf-exclusion": {
+      "url": "https://futeboldealagoas.net/assets/uploads/176962499217.pdf",
+      "location": "27/01/2026, arts.1–3, p.1"
+    },
+    "faf-homologation": {
+      "url": "https://futeboldealagoas.net/assets/uploads/177567932470.pdf",
+      "location": "02/04/2026, p.1, elimination footnote; results not imported"
+    }
+  },
+  "identities": [
+    {
+      "club": "ASA-AL",
+      "labels": [
+        "ASA"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "Coruripe-AL",
+      "labels": [
+        "Coruripe"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "CSA-AL",
+      "labels": [
+        "CSA"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "CRB-AL",
+      "labels": [
+        "CRB"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "CSE-AL",
+      "labels": [
+        "CSE"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "Cruzeiro Arapiraca-AL",
+      "labels": [
+        "Cruzeiro Arapiraca"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "Murici-AL",
+      "labels": [
+        "Murici"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "Penedense-AL",
+      "labels": [
+        "Penedense"
+      ],
+      "source": "faf-a"
+    },
+    {
+      "club": "São Domingos-AL",
+      "labels": [
+        "São Domingos"
+      ],
+      "source": "faf-b"
+    },
+    {
+      "club": "Desportivo Aliança-AL",
+      "labels": [
+        "Desportivo Aliança"
+      ],
+      "source": "faf-b"
+    },
+    {
+      "club": "Jaciobá-AL",
+      "labels": [
+        "Jaciobá"
+      ],
+      "source": "faf-b"
+    },
+    {
+      "club": "Miguelense-AL",
+      "labels": [
+        "Miguelense"
+      ],
+      "source": "faf-b"
+    },
+    {
+      "club": "Sporting-AL",
+      "labels": [
+        "Sete de Setembro",
+        "Sporting-AL",
+        "Sporting FC",
+        "Sporting Teotônio"
+      ],
+      "source": "faf-identity"
+    },
+    {
+      "club": "Zumbi-AL",
+      "labels": [
+        "Zumbi"
+      ],
+      "source": "faf-b"
+    },
+    {
+      "club": "Dimensão Saúde-AL",
+      "labels": [
+        "Dimensão Saúde"
+      ],
+      "source": "faf-cup"
+    }
+  ],
+  "competitions": {
+    "al-a1": {
+      "source_ids": [
+        "faf-a"
+      ],
+      "participants": [
+        {
+          "label": "ASA"
+        },
+        {
+          "label": "Coruripe"
+        },
+        {
+          "label": "CSA"
+        },
+        {
+          "label": "CRB"
+        },
+        {
+          "label": "CSE"
+        },
+        {
+          "label": "Cruzeiro Arapiraca"
+        },
+        {
+          "label": "Murici"
+        },
+        {
+          "label": "Penedense"
+        }
+      ],
+      "required_capabilities": [
+        "al_a_rules_adapter",
+        "edition_participation",
+        "br_serie_d_admission",
+        "br_copa_do_brasil_runtime",
+        "br_copa_nordeste_runtime",
+        "future_simulated_policy"
+      ]
+    },
+    "al-entrada": {
+      "source_ids": [
+        "faf-b"
+      ],
+      "participants": [
+        {
+          "label": "São Domingos"
+        },
+        {
+          "label": "Desportivo Aliança"
+        },
+        {
+          "label": "Jaciobá"
+        },
+        {
+          "label": "Miguelense"
+        },
+        {
+          "label": "Sete de Setembro"
+        },
+        {
+          "label": "Zumbi"
+        }
+      ],
+      "required_capabilities": [
+        "al_b_rules_adapter",
+        "sub23_squad_eligibility",
+        "promotion_to_al_a",
+        "future_simulated_policy"
+      ]
+    },
+    "al-copa": {
+      "source_ids": [
+        "faf-cup",
+        "faf-exclusion",
+        "faf-homologation"
+      ],
+      "participants": [
+        {
+          "label": "CRB",
+          "group": "A"
+        },
+        {
+          "label": "CSA",
+          "group": "A"
+        },
+        {
+          "label": "Coruripe",
+          "group": "A"
+        },
+        {
+          "label": "Cruzeiro Arapiraca",
+          "group": "A"
+        },
+        {
+          "label": "Dimensão Saúde",
+          "group": "A"
+        },
+        {
+          "label": "Desportivo Aliança",
+          "group": "A"
+        },
+        {
+          "label": "ASA",
+          "group": "B"
+        },
+        {
+          "label": "Penedense",
+          "group": "B"
+        },
+        {
+          "label": "CSE",
+          "group": "B"
+        },
+        {
+          "label": "Murici",
+          "group": "B"
+        },
+        {
+          "label": "Zumbi",
+          "group": "B"
+        },
+        {
+          "label": "Miguelense",
+          "group": "B"
+        }
+      ],
+      "excluded": {
+        "Desportivo Aliança-AL": {
+          "source": "faf-exclusion",
+          "effective_date": "2026-01-27",
+          "reason": "eliminated_before_first_match; remaining fixtures cancelled, not a simulated sporting result"
+        }
+      },
+      "required_capabilities": [
+        "al_cup_rules_adapter",
+        "edition_participation",
+        "br_copa_do_brasil_runtime",
+        "qualification_roll_down",
+        "future_simulated_policy"
+      ]
+    }
+  },
+  "progression": [
+    {
+      "from": "al-entrada",
+      "to": "al-a1",
+      "kind": "promotion",
+      "slots": 1,
+      "source": "faf-b"
+    },
+    {
+      "from": "al-a1",
+      "to": "al-entrada",
+      "kind": "relegation",
+      "slots": 1,
+      "source": "faf-a"
+    }
+  ],
+  "future_editions": "unknown; do not reuse 2026 disciplinary exclusion or assert future official regulations",
+  "historical_results_imported": false,
+  "activation": "none"
+}
