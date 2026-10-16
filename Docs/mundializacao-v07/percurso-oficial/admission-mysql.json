@@ -1,0 +1,18 @@
+{
+    "checks": 8,
+    "select_queries": 2,
+    "dml": 0,
+    "ddl": 0,
+    "rh_access": false,
+    "rollback": true,
+    "documents": [
+        {
+            "file": "br-al-2026.json",
+            "bytes": 4165
+        },
+        {
+            "file": "br-d-admission-2026-v2.json",
+            "bytes": 1777
+        }
+    ]
+}

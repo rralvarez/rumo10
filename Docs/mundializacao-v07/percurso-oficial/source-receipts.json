@@ -1,0 +1,50 @@
+[
+  {
+    "id": "faf-act-003-2026",
+    "url": "https://futeboldealagoas.net/assets/uploads/176962499217.pdf",
+    "consulted": "2026-10-16",
+    "bytes": 139567,
+    "sha256": "ebbeaa98280e3606d1b504fc4da5e2992f237a04a267218916ee0f64f6ca8e2e",
+    "stored_privately": true
+  },
+  {
+    "id": "cbf-rnf-2026",
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/RNF_Ranking_Nacional_das_Federacoes_2026_30b87e87a3.pdf",
+    "consulted": "2026-10-16",
+    "bytes": 370870,
+    "sha256": "8ab0b9a2edd287faaf7c587636715d6adafb50f4082b393752b9965cdbc975ed",
+    "stored_privately": true
+  },
+  {
+    "id": "cbf-cdb-2026",
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+    "consulted": "2026-10-16",
+    "bytes": 601120,
+    "sha256": "3f26faa8031ed699de74456102f9cada86e6fe4989d586b5e51faa22d5bd22df",
+    "stored_privately": true
+  },
+  {
+    "id": "faf-cup-homologation-2026",
+    "url": "https://www.futeboldealagoas.net/assets/uploads/177567932470.pdf",
+    "consulted": "2026-10-16",
+    "bytes": 238371,
+    "sha256": "8885020d5654a34fec63de4196a5f8cf42b248f98727fe8a56f90648cfbc0093",
+    "stored_privately": true
+  },
+  {
+    "id": "faf-sporting-identity",
+    "url": "https://www.futeboldealagoas.net/novo/post/sporting-teotonio-conquista-o-campeonato-alagoano-serie-b-2026-e-garante-vaga-no-alagoano-centenario-2027",
+    "consulted": "2026-10-16",
+    "bytes": 28461,
+    "sha256": "2623c35a00e2b5d416f52718cf2f3798802f640928bed833cf2bb3a8cf247e71",
+    "stored_privately": true
+  },
+  {
+    "id": "ce-fares-lopes-2026",
+    "url": "https://www.futebolcearense.com.br/2011/noticia_ver.asp?id=19069",
+    "consulted": "2026-10-16",
+    "bytes": 52214,
+    "sha256": "8d37ebe359f0350ae49cfec7d15e6dc4ea9fef46abeb8ae0ec38197e3c52f80f",
+    "stored_privately": true
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "base": "c4d69fff21851a647697c996f848234f80bc4ed2",
+  "official_paths_activated": 0,
+  "brazil_links_resolved_end_to_end": 0,
+  "brazil_links_still_blocked": 23,
+  "foreign_links_still_blocked": 9,
+  "items": [
+    {
+      "id": "AL-identity",
+      "state": "resolved_for_reference",
+      "evidence": "faf-identity",
+      "remaining": "No save/global rename; scope 2026 only"
+    },
+    {
+      "id": "AL-cup-effective-entry",
+      "state": "reference_resolved_runtime_pending",
+      "evidence": "faf-exclusion + faf-homologation",
+      "remaining": "Nominal 12, effective 11; unequal groups and cancellation not implemented in sports adapter"
+    },
+    {
+      "id": "AL-clubs",
+      "state": "blocked",
+      "evidence": "admission-tests.json",
+      "remaining": "4 upper canonical clubs and 1 additional cup club absent from local catalog/cache; no fabricated rating"
+    },
+    {
+      "id": "AL-runtime",
+      "state": "blocked",
+      "evidence": "app/WorldSeason.php scope guard",
+      "remaining": "Only synthetic runtime; head-to-head, final home advantage by all phases and Sub23 need adapter/tests"
+    },
+    {
+      "id": "AL-national",
+      "state": "blocked",
+      "evidence": "faf-a arts.8–10; faf-cup art.8",
+      "remaining": "Copa do Brasil, Nordeste and Serie D downstream registration/runtime not supported together"
+    },
+    {
+      "id": "AL-future",
+      "state": "blocked",
+      "evidence": "reference edition is 2026 only",
+      "remaining": "Explicit future simulated policy needs implementation; no copying historical exclusion to future"
+    },
+    {
+      "id": "CE-alternative",
+      "state": "not_selected",
+      "evidence": "ce-alternative",
+      "remaining": "Fares Lopes also grants Copa do Brasil; does not remove national dependency; not fully audited"
+    },
+    {
+      "id": "D-quotas",
+      "state": "reference_resolved",
+      "evidence": "cbf-d + cbf-rnf",
+      "remaining": "27 federation places verified, 64; total 96 with other criteria; no certified club claims"
+    },
+    {
+      "id": "D-club-ledger",
+      "state": "blocked",
+      "evidence": "br-d-admission-2026-v2.json",
+      "remaining": "Actual 96 claims, upper memberships, selection permissions, residual ranking and future policy"
+    },
+    {
+      "id": "runtime-budget",
+      "state": "blocked_for_national_expansion",
+      "evidence": "WorldSeason MAX_PILOT_MATCHES=128; CBF CDB 155 matches",
+      "remaining": "Bounded scheduling/batching must be extended and measured before adding national cup, not simply raising cap"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "local_cache_not_live_api",
+  "cache_sha256": "cc9717ed0f7691c6c61fd7544e76d109a97b5f1d4d994310853a091fb9255593",
+  "queried_canonical_keys": {
+    "Coruripe-AL": false,
+    "Cruzeiro Arapiraca-AL": false,
+    "Murici-AL": false,
+    "Penedense-AL": false,
+    "Dimensão Saúde-AL": false
+  },
+  "no_alias_inference": true
+}

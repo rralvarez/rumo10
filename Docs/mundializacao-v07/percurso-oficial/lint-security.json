@@ -1,0 +1,26 @@
+{
+  "lint": [
+    {
+      "path": "app/CompetitionParticipation.php",
+      "exit": 0
+    },
+    {
+      "path": "app/SerieDAdmission.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/official-admission-v07.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/official-admission-mysql-v07.php",
+      "exit": 0
+    }
+  ],
+  "scanned_files": 28,
+  "secret_findings": [],
+  "compressed_evidence_also_scanned": true,
+  "regression_suites_passed": 24,
+  "runtime_files_modified": false,
+  "production_access": false
+}

@@ -1,0 +1,175 @@
+{
+    "checks": 36,
+    "official_path_activated": false,
+    "real_serie_d_ledger_complete": false,
+    "synthetic_claims_only": 96,
+    "alagoas": {
+        "al-a1": {
+            "competition": "al-a1",
+            "edition": 2026,
+            "declared": [
+                "ASA-AL",
+                "Coruripe-AL",
+                "CSA-AL",
+                "CRB-AL",
+                "CSE-AL",
+                "Cruzeiro Arapiraca-AL",
+                "Murici-AL",
+                "Penedense-AL"
+            ],
+            "eligible": [
+                {
+                    "club": "ASA-AL",
+                    "group": null
+                },
+                {
+                    "club": "CSA-AL",
+                    "group": null
+                },
+                {
+                    "club": "CRB-AL",
+                    "group": null
+                },
+                {
+                    "club": "CSE-AL",
+                    "group": null
+                }
+            ],
+            "excluded": [],
+            "missing_clubs": [
+                "Coruripe-AL",
+                "Cruzeiro Arapiraca-AL",
+                "Murici-AL",
+                "Penedense-AL"
+            ],
+            "blockers": [
+                "reference_not_installed",
+                "catalog_participants_missing",
+                "capability_missing:al_a_rules_adapter",
+                "capability_missing:edition_participation",
+                "capability_missing:br_serie_d_admission",
+                "capability_missing:br_copa_do_brasil_runtime",
+                "capability_missing:br_copa_nordeste_runtime",
+                "capability_missing:future_simulated_policy"
+            ],
+            "playable": false
+        },
+        "al-entrada": {
+            "competition": "al-entrada",
+            "edition": 2026,
+            "declared": [
+                "São Domingos-AL",
+                "Desportivo Aliança-AL",
+                "Jaciobá-AL",
+                "Miguelense-AL",
+                "Sporting-AL",
+                "Zumbi-AL"
+            ],
+            "eligible": [
+                {
+                    "club": "São Domingos-AL",
+                    "group": null
+                },
+                {
+                    "club": "Desportivo Aliança-AL",
+                    "group": null
+                },
+                {
+                    "club": "Jaciobá-AL",
+                    "group": null
+                },
+                {
+                    "club": "Miguelense-AL",
+                    "group": null
+                },
+                {
+                    "club": "Sporting-AL",
+                    "group": null
+                },
+                {
+                    "club": "Zumbi-AL",
+                    "group": null
+                }
+            ],
+            "excluded": [],
+            "missing_clubs": [],
+            "blockers": [
+                "reference_not_installed",
+                "capability_missing:al_b_rules_adapter",
+                "capability_missing:sub23_squad_eligibility",
+                "capability_missing:promotion_to_al_a",
+                "capability_missing:future_simulated_policy"
+            ],
+            "playable": false
+        },
+        "al-copa": {
+            "competition": "al-copa",
+            "edition": 2026,
+            "declared": [
+                "CRB-AL",
+                "CSA-AL",
+                "Coruripe-AL",
+                "Cruzeiro Arapiraca-AL",
+                "Dimensão Saúde-AL",
+                "Desportivo Aliança-AL",
+                "ASA-AL",
+                "Penedense-AL",
+                "CSE-AL",
+                "Murici-AL",
+                "Zumbi-AL",
+                "Miguelense-AL"
+            ],
+            "eligible": [
+                {
+                    "club": "CRB-AL",
+                    "group": "A"
+                },
+                {
+                    "club": "CSA-AL",
+                    "group": "A"
+                },
+                {
+                    "club": "ASA-AL",
+                    "group": "B"
+                },
+                {
+                    "club": "CSE-AL",
+                    "group": "B"
+                },
+                {
+                    "club": "Zumbi-AL",
+                    "group": "B"
+                },
+                {
+                    "club": "Miguelense-AL",
+                    "group": "B"
+                }
+            ],
+            "excluded": [
+                {
+                    "club": "Desportivo Aliança-AL",
+                    "source": "faf-exclusion",
+                    "effective_date": "2026-01-27",
+                    "reason": "eliminated_before_first_match; remaining fixtures cancelled, not a simulated sporting result"
+                }
+            ],
+            "missing_clubs": [
+                "Coruripe-AL",
+                "Cruzeiro Arapiraca-AL",
+                "Dimensão Saúde-AL",
+                "Penedense-AL",
+                "Murici-AL"
+            ],
+            "blockers": [
+                "reference_not_installed",
+                "catalog_participants_missing",
+                "capability_missing:al_cup_rules_adapter",
+                "capability_missing:edition_participation",
+                "capability_missing:br_copa_do_brasil_runtime",
+                "capability_missing:qualification_roll_down",
+                "capability_missing:future_simulated_policy"
+            ],
+            "playable": false
+        }
+    }
+}
