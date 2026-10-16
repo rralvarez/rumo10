@@ -22,9 +22,9 @@ final class TransferInterest {
   $recipes=[[],[$candidates],[$candidates,$candidates],[$sets['same'],$sets['up'],$sets['down']],[$sets['same'],$sets['up'],$sets['continental']],[$sets['up'],$sets['continental_up'],$sets['europe']],[$sets['up'],$sets['continental_up'],$sets['europe']]];
   $weights=[max(3,(int)round(65-35*$merit)),30+(int)round(10*$merit),10+(int)round(18*$merit),5+(int)round(25*$merit),2+(int)round(15*$merit),1+(int)round(8*$merit),1+(int)round(5*$merit)];$rows=[];
   foreach(self::LABELS as $id=>$label){$eligible=$id===0||count(array_filter($recipes[$id]))>0;$reason=null;
-   if($id>=4&&(!$sets['continental']||$confidence<.20||$merit<.20)){$eligible=false;$reason='Sem alcance continental comprovado ou destinos compatíveis';}
-   if($id>=5&&(!$sets['europe']||!$sets['continental_up']||$confidence<.40||$merit<.45)){$eligible=false;$reason='Sem alcance internacional comprovado ou destinos compatíveis';}
-   if($id===6){$recipes[$id]=array_map(fn($set)=>array_filter($set,fn($c)=>($c['overall_delta']??0)>=8&&($c['overall']??0)>=70),$recipes[$id]);if($technical<75||$confidence<.60||$merit<.85||!array_filter($recipes[$id])){$eligible=false;$reason='Elite exige overall, amostra e evolução de patamar sustentados';}}
+   if($id===4&&(!$sets['continental']||$confidence<.20||$merit<.20)){$eligible=false;$reason='Sem alcance continental comprovado ou destinos compatíveis';}
+   if($id>=5&&((!$sets['europe']&&!$sets['continental_up'])||$confidence<.40||$merit<.45)){$eligible=false;$reason='Sem alcance internacional comprovado ou destinos compatíveis';}
+   if($id===6){$recipes[$id]=array_map(fn($set)=>array_filter($set,fn($c)=>($c['overall_delta']??0)>=8&&($c['overall']??0)>=70),$recipes[$id]);if($technical<75||$confidence<.60||$merit<.85||(!$recipes[$id][1]&&!$recipes[$id][2])){$eligible=false;$reason='Elite exige overall, amostra e evolução de patamar sustentados';}}
    $rows[]=['id'=>$id,'nome'=>$label,'peso'=>$eligible?$weights[$id]:0,'eligible'=>$eligible,'reason'=>$reason,'recipe'=>$recipes[$id]];
   }
   $total=array_sum(array_column($rows,'peso'));foreach($rows as &$r)$r['percent']=round(100*$r['peso']/$total,3);unset($r);return $rows;
