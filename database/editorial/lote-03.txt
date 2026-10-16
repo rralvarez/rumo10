@@ -1,0 +1,501 @@
+# Lote 03: preparação física/coletiva e vestiário. Prosa literal, IDs estáveis.
+@2200 T02.forca_base|O preparador monta uma série de agachamentos controlados. A prioridade é manter o alinhamento ao descer, sem competir por profundidade.|{}
+forca|serie_alinhada|Completar a série com alinhamento|Você sustenta a postura durante a descida.|Seus joelhos perdem a referência durante a repetição.
+disciplina|conferir_amplitude|Conferir a amplitude com o preparador|A orientação ajuda a reconhecer seu limite de execução.|Você tenta copiar a amplitude do colega em vez da orientação.
+recuperar|pausa_base|Respeitar a pausa antes da próxima série|Você retoma com controle da base.|Você ainda perde estabilidade depois da pausa.
+apoio|revezar_conferencia|Revezar a conferência com o colega|Vocês percebem desvios sem transformar a série em disputa.|Vocês comentam a quantidade e deixam de avaliar a postura.
+@2201 T02.forca_base|A sessão inclui movimentos em uma perna de apoio. O preparador pede controle antes de aumentar a velocidade.|{}
+forca|apoio_unilateral|Sustentar a série no apoio indicado|Você mantém o alinhamento sem usar o outro pé para compensar.|Você transfere o peso e descarrega o apoio que deveria trabalhar.
+posicionamento|ajustar_eixo|Ajustar o eixo do corpo antes de começar|Você encontra uma base que permite executar.|Você alinha os pés sem reorganizar o tronco.
+disciplina|reduzir_amplitude|Reduzir a amplitude para acertar a postura|Você completa um movimento menor com qualidade.|Você mantém a amplitude anterior e repete a compensação.
+recuperar|intervalo_equilibrio|Fazer o intervalo antes de trocar o apoio|Você retoma com mais controle da execução.|A pausa não resolve sua dificuldade e você precisa avisar.
+@2202 T02.forca_base|O circuito trabalha estabilidade do tronco durante deslocamentos curtos. O preparador quer evitar movimentos bruscos para compensar a base.|{}
+forca|estabilizar_deslocando|Sustentar o tronco durante a série|Você controla o tronco sem interromper o deslocamento.|Você segura a respiração e perde a coordenação do movimento.
+posicionamento|encurtar_passos|Usar passos menores para preservar a base|A redução permite manter o eixo estável.|Você encurta os passos, mas continua inclinando o corpo.
+disciplina|feedback_preparador|Pedir retorno sobre a compensação principal|Você entende qual movimento precisa corrigir.|Você recebe várias orientações sem identificar uma prioridade.
+apoio|observar_revezando|Combinar uma observação por vez com o colega|O revezamento torna a correção mais objetiva.|Vocês apontam detalhes demais e se confundem.
+@2203 T02.forca_base|O preparador propõe resistência leve durante uma caminhada lateral. A execução exige manter a distância entre os apoios.|{}
+forca|tensao_controlada|Manter a resistência durante o deslocamento|Você sustenta a distância sem arrastar os pés.|Você junta os apoios e perde a resistência proposta.
+posicionamento|base_lateral|Ajustar a largura da base|Você encontra uma largura que consegue manter.|Você abre demais e perde o controle do passo.
+disciplina|contar_qualidade|Contar apenas repetições com postura correta|Você distingue execução válida de compensação.|Você conta movimentos sem conferir o alinhamento.
+recuperar|pausa_lateral|Fazer uma pausa curta antes de repetir|Você recupera a condição de controlar os apoios.|Você retoma ainda compensando e comunica a dificuldade.
+@2204 T02.forca_base|A série exige empurrar uma resistência com movimento lento. O preparador pede que você não trave o corpo inteiro.|{}
+forca|movimento_continuo|Manter o movimento lento e contínuo|Você completa a série sem um impulso brusco.|Você inicia com impulso e perde o controle da volta.
+disciplina|respiracao_serie|Coordenar a respiração com a execução|Você evita prender o ritmo durante o esforço.|Você tenta controlar a respiração e esquece a postura.
+posicionamento|base_resistencia|Revisar a base antes de aplicar força|O apoio sustenta a execução sem deslizar.|Você começa desalinhado e precisa compensar depois.
+recuperar|intervalo_forca|Respeitar o descanso indicado|Você volta à série sem pressa de terminar.|Você continua cansado e precisa ajustar o plano com o preparador.
+@2205 T02.forca_base|O trabalho de força termina com controle da volta do movimento. O preparador observa mais o retorno que a primeira parte da série.|{}
+forca|retorno_controlado|Controlar a volta sem soltar a carga|Você mantém a postura durante o retorno.|Você relaxa na volta e perde o alinhamento.
+disciplina|tempo_retorno|Seguir o tempo de retorno combinado|Você reconhece o ritmo sem apressar a repetição.|Você segue a contagem, mas deixa o movimento cair.
+apoio|contagem_dupla|Pedir ao colega uma contagem regular|A contagem ajuda a comparar as repetições.|O colega muda a contagem e vocês perdem a referência.
+recuperar|limite_serie|Comunicar quando não sustenta mais a qualidade|Você evita transformar a última parte numa compensação.|Você demora a avisar e perde a qualidade das últimas repetições.
+@2206 T02.forca_base|O preparador oferece duas formas de executar a mesma tarefa. Você precisa escolher a que mantém a postura, não a que parece mais difícil.|{}
+disciplina|avaliar_postura|Comparar a execução com o preparador|Você escolhe a versão que consegue controlar.|Você escolhe pela dificuldade aparente e ignora a postura.
+forca|versao_controlada|Trabalhar a versão de maior controle|Você completa a série mantendo o padrão pedido.|Você tenta aumentar o desafio antes de dominar a versão.
+apoio|trocar_experiencia|Ouvir como o colega reconhece suas compensações|A troca ajuda a observar seu próprio limite.|Você copia a escolha dele sem avaliar sua execução.
+recuperar|pausa_decisao|Pausar antes de refazer a avaliação|Você retoma sem a pressa de acompanhar o grupo.|Você continua pensando em acompanhar os outros e não reorganiza a tarefa.
+@2207 T02.equilibrio|O circuito usa mudanças pequenas de apoio em uma superfície estável. A meta é recuperar o equilíbrio sem acrescentar saltos.|{}
+posicionamento|ajuste_pequeno|Corrigir com passos pequenos|Você recupera a base sem sair da área.|Você dá um passo grande e cria outra instabilidade.
+forca|sustentar_base|Sustentar o apoio durante a mudança|Você controla a transferência de peso.|Você descarrega o apoio antes de preparar o seguinte.
+visao|referencia_fixa|Manter uma referência visual estável|A referência ajuda a perceber a oscilação.|Você fixa o olhar e esquece o alinhamento do corpo.
+disciplina|reduzir_pressa|Diminuir a velocidade da sequência|Você reconhece o momento da transferência.|Você reduz o ritmo sem perceber onde perde a base.
+@2208 T02.equilibrio|O preparador pede que você pare após um deslocamento e mantenha a base por alguns instantes. Não basta alcançar a marca.|{}
+forca|sustentar_parada|Sustentar a posição depois de parar|Você estabiliza sem apoiar fora da marca.|Você chega à marca, mas precisa de outro passo para ficar em pé.
+posicionamento|preparar_freio|Preparar a parada antes da última passada|Você distribui o esforço sem um freio brusco.|Você deixa toda a parada para o último apoio.
+disciplina|qualidade_final|Avaliar a estabilidade ao terminar|Você distingue chegar da capacidade de permanecer estável.|Você avalia só a velocidade com que alcançou a marca.
+recuperar|recompor_intervalo|Respeitar um intervalo entre as paradas|Você volta com condição de controlar o final.|Você mantém a pressa e não usa o intervalo para se recompor.
+@2209 T02.equilibrio|O circuito alterna avanço e recuo com o tronco orientado para a mesma referência. Você precisa reorganizar os apoios sem girar tudo.|{}
+posicionamento|trocar_apoios|Trocar os apoios mantendo a orientação|Você muda o sentido sem perder a referência.|Você gira inteiro e deixa de acompanhar a referência.
+resistencia|manter_padrao|Sustentar o padrão durante a série|Você mantém coordenação nas últimas repetições.|O cansaço faz seus passos perderem o padrão.
+visao|acompanhar_referencia|Conferir a referência entre as mudanças|Você percebe quando começa a girar sem querer.|Você fixa a referência e perde atenção nos apoios.
+disciplina|blocos_curtos|Pedir blocos menores até acertar|Os blocos permitem avaliar cada transição.|Você reduz o bloco sem corrigir a troca dos apoios.
+@2210 T02.resistencia|O preparador organiza blocos de corrida com recuperação marcada. Seu desafio é sustentar a intensidade, não ganhar a primeira repetição.|{}
+resistencia|ritmo_bloco|Manter o ritmo em todas as repetições|Você termina o bloco sem uma queda brusca.|Você começa rápido demais e não sustenta o restante.
+disciplina|seguir_recuperacao|Respeitar a recuperação marcada|Você volta à repetição no ritmo planejado.|Você encurta a pausa e desorganiza a série.
+apoio|referencia_dupla|Usar a dupla como referência, sem disputar|Vocês mantêm o ritmo sem transformar o treino em corrida.|Vocês começam a se ultrapassar e perdem a intensidade prevista.
+recuperar|relatar_limite|Avisar quando a recuperação não basta|Você permite um ajuste antes de perder toda a qualidade.|Você avisa sem descrever a dificuldade e o ajuste fica impreciso.
+@2211 T02.resistencia|O exercício alterna trote e aceleração moderada. A comissão quer transições de ritmo sem mudanças bruscas desnecessárias.|{}
+resistencia|alternancia|Sustentar as alternâncias combinadas|Você troca o ritmo preservando a sequência.|Você acelera demais e precisa parar fora do combinado.
+velocidade|acelerar_progressivo|Aumentar a velocidade progressivamente|Você alcança o ritmo sem um arranque exagerado.|Você faz um arranque brusco e perde a intensidade de controle.
+disciplina|ouvir_sinal|Usar o sinal para mudar o ritmo|Você acompanha a sessão sem antecipar cada mudança.|Você segue o colega antes de ouvir o sinal.
+recuperar|trote_util|Usar a fase leve para recuperar|Você retoma a fase seguinte com mais controle.|Você mantém esforço alto na fase leve e não recupera.
+@2212 T02.resistencia|A corrida contínua tem um percurso com voltas regulares. O preparador pede constância mesmo quando alguém passa ao seu lado.|{}
+resistencia|constancia|Manter sua referência de ritmo|Você conserva a intensidade do trabalho.|Você acompanha a ultrapassagem e perde a constância.
+disciplina|ignorar_disputa|Voltar a atenção para a tarefa proposta|Você separa o treino de uma disputa com os colegas.|Você continua comparando posições e abandona o ritmo.
+apoio|combinar_referencia|Combinar uma referência de passagem com a dupla|A referência ajuda sem exigir que um copie o outro.|A referência vira uma meta de velocidade e muda a proposta.
+recuperar|pausa_orientada|Pedir orientação se não sustentar a carga|Você comunica o limite para ajustar a sessão.|Você descreve apenas que está difícil e não esclarece onde falha.
+@2213 T02.resistencia|O bloco físico inclui deslocamentos em várias direções. Você precisa manter qualidade nas mudanças mesmo com o acúmulo do esforço.|{}
+resistencia|qualidade_final|Sustentar a execução até o fim do bloco|Você mantém o padrão sem reduzir o controle dos apoios.|Você completa o tempo, mas perde a qualidade das mudanças.
+posicionamento|encurtar_mudanca|Usar ajustes menores nas trocas de sentido|Você evita passos extras que aumentavam o desgaste.|Você reduz os passos e perde a direção pedida.
+disciplina|priorizar_tecnica|Pedir correção antes de repetir o bloco|A correção aponta o movimento que piora com o cansaço.|Você recebe a orientação sem conseguir aplicá-la na repetição.
+recuperar|respeitar_intervalo|Cumprir o intervalo completo|Você retorna capaz de acompanhar a sequência.|Você ainda não recupera o controle e precisa informar isso.
+@2214 T02.resistencia|O preparador pede uma intensidade que permita conversar brevemente durante a corrida. Você precisa usar esse sinal sem transformar a sessão em passeio.|{}
+resistencia|intensidade_util|Ajustar o ritmo à intensidade proposta|Você mantém esforço consistente sem se esgotar cedo.|Você alterna entre esforço excessivo e ritmo baixo demais.
+disciplina|checar_ritmo|Conferir o ritmo com o preparador|Você entende melhor a sensação da intensidade pedida.|Você recebe a orientação, mas continua usando a velocidade do colega.
+apoio|troca_breve|Usar a dupla para conferir a percepção|Vocês ajudam a reconhecer o ritmo sem perder a tarefa.|A conversa tira a atenção e vocês abandonam a referência.
+recuperar|comunicar_cansaco|Comunicar quando o esforço muda de sensação|Você informa uma mudança relevante para a sessão.|Você tenta resumir tudo numa impressão vaga.
+@2215 T02.resistencia|O treino físico termina com um bloco mais curto. O preparador quer o mesmo padrão, sem uma aceleração final para compensar o resto.|{}
+resistencia|fechar_padrao|Concluir no padrão combinado|Você mantém consistência até a última repetição.|Você acelera para terminar e perde o padrão.
+disciplina|seguir_tarefa|Manter o foco na execução, não no fim|Você não abandona a técnica por já estar encerrando.|Você pensa em terminar e deixa passar as correções.
+apoio|acompanhar_sem_disputar|Acompanhar a dupla sem aumentar o ritmo|Vocês concluem juntos sem mudar a proposta.|Vocês transformam o último bloco numa disputa.
+recuperar|parada_planejada|Respeitar a recuperação ao concluir|Você encerra sem cortar a parte leve da sessão.|Você interrompe a rotina cedo e não recupera como esperava.
+@2216 T02.resistencia|O preparador pede que você reconheça em qual parte da série perde o ritmo. A intenção é ajustar o trabalho com uma observação concreta.|{}
+visao|localizar_queda|Identificar o trecho em que a execução muda|Você aponta um momento específico para avaliar.|Você descreve apenas o cansaço geral.
+resistencia|teste_constante|Repetir um bloco em intensidade constante|Você compara o esforço sem mudar toda a execução.|Você aumenta o início e perde a comparação.
+disciplina|anotar_sensacao|Registrar uma sensação ligada a uma etapa|O registro ajuda a lembrar onde a qualidade caiu.|Você registra palavras amplas que não localizam a mudança.
+recuperar|ajuste_comissao|Conversar sobre a recuperação antes de insistir|Você esclarece se o intervalo permite nova tentativa.|Você tenta negociar mais repetições sem discutir a qualidade.
+@2217 T02.resistencia|A sessão alterna trabalho com bola e corrida leve. Você precisa usar a parte leve para recuperar, sem se desligar da próxima instrução.|{}
+recuperar|fase_leve|Aproveitar o intervalo ativo|Você recupera parte da disposição sem interromper a rotina.|Você mantém a tensão e não aproveita a fase leve.
+resistencia|ritmo_total|Manter a intensidade prevista nos blocos|Você sustenta o trabalho sem oscilações grandes.|Você exagera no bloco com bola e perde o ritmo depois.
+disciplina|acompanhar_orientacao|Escutar a próxima orientação durante a fase leve|Você retoma sabendo a tarefa seguinte.|Você se desliga e precisa pedir a instrução novamente.
+apoio|revezar_atencao|Combinar com a dupla como lembrar a sequência|O combinado evita que um dos dois perca a instrução.|Vocês confiam um no outro sem confirmar a orientação.
+@2218 T02.resistencia|O preparador propõe intervalos iguais entre séries de duração diferente. Você precisa observar sua recuperação sem presumir que todas custam o mesmo.|{}
+disciplina|relatar_diferenca|Descrever como cada série muda sua disposição|Você fornece uma comparação útil entre os blocos.|Você avalia só a duração e não reconhece a diferença de esforço.
+resistencia|carga_prevista|Executar cada bloco na intensidade indicada|Você mantém a proposta apesar da diferença de duração.|Você usa o mesmo impulso inicial e desorganiza o bloco longo.
+recuperar|intervalo_completo|Usar o intervalo inteiro antes de repetir|Você retorna com mais controle da intensidade.|Você ainda se sente sem recuperação e precisa avisar.
+apoio|trocar_percepcao|Trocar percepções sem copiar o limite do colega|A conversa ajuda a reconhecer diferenças individuais.|Vocês tratam a experiência de um como padrão para os dois.
+@2219 T02.resistencia|O circuito termina com uma caminhada de retorno organizada. O preparador pede que você não abandone a rotina assim que o esforço maior acaba.|{}
+recuperar|retorno_progressivo|Cumprir a volta progressiva|Você reduz o ritmo de forma controlada.|Você interrompe a volta e não encontra a recuperação esperada.
+disciplina|concluir_rotina|Seguir a sequência até a última orientação|Você encerra sem deixar etapas por pressa.|Você considera o treino terminado antes da orientação final.
+apoio|acompanhar_colega|Acompanhar um colega mantendo o ritmo leve|Vocês completam a parte leve sem puxar outra disputa.|Vocês aceleram a conversa e o passo sem perceber.
+visao|avaliar_sessao|Observar como terminou em relação ao início|Você reconhece uma mudança concreta na execução.|Você compara apenas o cansaço e não a qualidade.
+@2220 T02.aceleracao|O preparador trabalha a saída de uma posição parada. A meta é ganhar velocidade sem levantar o corpo cedo demais.|{}
+velocidade|primeiros_passos|Executar os primeiros passos com intenção|Você ganha velocidade mantendo o apoio organizado.|Você alonga cedo os passos e perde impulso.
+posicionamento|inclinacao_saida|Ajustar a inclinação antes do sinal|Você prepara uma posição útil para arrancar.|Você inclina sem firmar os apoios.
+disciplina|repetir_sinal|Esperar o sinal antes de cada saída|Você evita antecipar a tarefa para parecer mais rápido.|Você sai junto de um colega antes do sinal.
+recuperar|pausa_arranque|Respeitar a pausa entre arrancadas|Você repete com qualidade em vez de acumular pressa.|Você retoma antes de recuperar o controle dos apoios.
+@2221 T02.aceleracao|O circuito começa com passos laterais e termina numa arrancada. Você precisa mudar o tipo de apoio sem saltar para se reorganizar.|{}
+velocidade|transicao_arranque|Acelerar ao terminar os passos laterais|Você encontra uma saída sem pausa extra.|Você precisa saltar para reorganizar os pés.
+posicionamento|ultimo_apoio|Preparar o último apoio lateral|Você termina a lateralidade pronto para avançar.|Você cruza o apoio e bloqueia a saída.
+visao|ler_marca_saida|Reconhecer a marca que inicia a arrancada|Você prepara a mudança antes de chegar ao ponto.|Você começa a arrancada antes da marca correta.
+disciplina|ensaiar_transicao|Repetir a transição em ritmo menor|Você entende como ligar os dois movimentos.|Você reduz o ritmo sem mudar o apoio problemático.
+@2222 T02.aceleracao|O preparador pede arrancadas com recuperação completa. A distância é curta para preservar qualidade, não para repetir sem pausa.|{}
+velocidade|qualidade_arrancada|Buscar uma saída limpa em cada repetição|Você mantém a qualidade dos primeiros passos.|Você aumenta a quantidade e perde a qualidade da saída.
+disciplina|cumprir_pausa|Esperar a pausa indicada mesmo se sentir disposto|Você preserva o objetivo de cada repetição.|Você segue o colega e encurta o intervalo.
+apoio|revezar_sinal|Revezar o controle do sinal com a dupla|O revezamento mantém uma referência clara.|Vocês mudam o sinal a cada tentativa sem combinar.
+recuperar|relatar_retorno|Informar quando não se recompõe entre saídas|Você permite ajustar a sessão antes de perder o padrão.|Você usa uma resposta vaga e não esclarece a dificuldade.
+@2223 T02.agilidade|O exercício usa um sinal visual para escolher a direção. Você precisa reagir ao que vê, não adivinhar a sequência.|{}
+visao|ler_sinal_real|Esperar a indicação concreta|Você identifica o lado sem depender de um palpite.|Você antecipa um lado e ignora a indicação.
+velocidade|reagir_direcao|Acelerar depois de reconhecer o lado|Você liga leitura e saída sem passos extras.|Você tenta reagir antes de firmar o apoio.
+posicionamento|base_duas_saidas|Manter uma base útil para os dois lados|Você muda de direção sem reorganizar o corpo inteiro.|Você prepara um lado e fica preso quando o sinal muda.
+disciplina|avaliar_acerto|Contar apenas respostas ao sinal correto|Você distingue leitura rápida de adivinhação.|Você comemora velocidade mesmo quando sai para o lado errado.
+@2224 T02.agilidade|A comissão monta uma corrida com parada e nova saída. O retorno não é indicado até você concluir a frenagem.|{}
+velocidade|nova_saida|Arrancar depois de controlar a parada|Você retoma a corrida sem um desequilíbrio inicial.|Você sai antes de estabilizar e precisa corrigir o caminho.
+posicionamento|freio_preparado|Frear com os apoios prontos para reagir|Você termina disponível para mudar o sentido.|Você trava a parada e perde a reação.
+visao|sinal_apos_freio|Conferir o sinal depois de parar|Você responde ao retorno realmente indicado.|Você prepara o retorno antes de receber a orientação.
+recuperar|pausa_sequencia|Solicitar intervalo antes de repetir a sequência|Você volta com condição de controlar as duas partes.|Você continua cansado e não encontra estabilidade na repetição.
+@2225 T02.agilidade|O circuito alterna deslocamentos curtos e uma saída mais longa. Você precisa reconhecer quando ampliar a passada.|{}
+velocidade|ampliar_na_saida|Ampliar a passada apenas no trecho longo|Você muda o ritmo no espaço correto.|Você amplia cedo e perde controle no trecho curto.
+posicionamento|passos_precisos|Manter passos pequenos entre as marcas próximas|Você atravessa as marcas sem pisar fora.|Você junta os pés e atrasa a troca seguinte.
+visao|planejar_trechos|Reconhecer os dois tipos de trecho antes de iniciar|Você prepara a mudança sem decorar só a ordem.|Você memoriza a ordem e ignora a distância real.
+disciplina|ritmo_progressivo|Aumentar o ritmo somente após uma sequência limpa|Você preserva o padrão ao ganhar velocidade.|Você acelera para corrigir uma sequência ainda imprecisa.
+@2226 T02.agilidade|O preparador pede acompanhamento lateral sem cruzar as pernas. A dupla muda o ritmo sem tentar vencer uma disputa.|{}
+posicionamento|apoio_lateral|Acompanhar mantendo a base aberta|Você reage sem precisar descruzar os apoios.|Você cruza as pernas na mudança mais rápida.
+velocidade|resposta_curta|Responder às mudanças com passos curtos|Você acompanha o ritmo sem um salto de correção.|Você reage com passos grandes e perde a distância.
+visao|ler_quadril|Observar o centro do movimento da dupla|Você distingue a mudança real de uma oscilação.|Você segue só os ombros e se desloca cedo.
+apoio|ritmo_dupla|Combinar variações que permitam avaliar a execução|Vocês desafiam a reação sem transformar o treino em disputa.|Vocês aumentam a dificuldade sem conseguir avaliar o gesto.
+@2227 T02.agilidade|O exercício pede correr de costas e virar para avançar ao sinal. Você precisa escolher o lado do giro sem ficar exposto à queda.|{}
+posicionamento|giro_apoio|Girar pelo apoio que consegue sustentar|Você vira sem cruzar os pés.|Você gira pelo lado em que a base já estava fechada.
+velocidade|acelerar_apos_giro|Acelerar depois de concluir o giro|Você ganha velocidade sem uma passada de ajuste.|Você acelera durante o giro e perde o alinhamento.
+visao|reconhecer_saida|Localizar a direção indicada antes de virar|Você termina orientado para o caminho certo.|Você gira por hábito antes de localizar a direção.
+disciplina|dominar_transicao|Ensaiar primeiro apenas o giro|Você reconhece a transferência de apoio necessária.|Você repete a volta sem observar o apoio que falha.
+@2228 T02.agilidade|A comissão trabalha uma reação depois de um salto baixo controlado. O preparador enfatiza aterrissagem estável antes da saída.|{}
+forca|aterrissar_estavel|Concentrar-se na qualidade da aterrissagem|Você absorve o contato sem perder a base.|Você aterrissa rígido e precisa de outro passo.
+velocidade|saida_equilibrada|Iniciar a saída depois de estabilizar|Você liga os movimentos sem se lançar desequilibrado.|Você tenta sair antes de controlar a aterrissagem.
+disciplina|altura_indicada|Manter a altura indicada pelo preparador|Você preserva o objetivo de controle.|Você aumenta a altura e muda a tarefa.
+recuperar|intervalo_salto|Respeitar o intervalo entre as sequências|Você retoma com atenção aos apoios.|Você repete apressado e deixa de perceber as compensações.
+@2229 T02.agilidade|O preparador propõe passos de reação sem bola. Um sinal pede parar; outro pede continuar, mesmo quando os colegas fazem algo diferente.|{}
+visao|distinguir_sinais|Distinguir os sinais antes de reagir|Você responde à orientação correta.|Você copia o colega em vez de ler o sinal.
+velocidade|resposta_coordenada|Executar a resposta sem passos desnecessários|Você reage mantendo o controle da base.|Você acumula passos antes de completar a resposta.
+disciplina|referencia_propria|Confiar na referência combinada|Você não muda a decisão só porque outro colega reagiu diferente.|Você abandona a indicação ao perceber outro movimento.
+apoio|conferir_entendimento|Conferir os sinais com a dupla antes da série|Vocês esclarecem uma interpretação divergente.|Vocês repetem os sinais sem combinar o que cada um significa.
+@2230 T02.prevencao|O preparador apresenta uma rotina de mobilidade de quadril. Ele pede movimento controlado, sem usar o tronco para ampliar a distância.|{}
+recuperar|amplitude_controlada|Fazer a rotina dentro da amplitude orientada|Você encontra um movimento confortável e controlado.|Você não encontra conforto e informa a dificuldade.
+posicionamento|alinhamento_quadril|Ajustar o alinhamento antes de mover|Você evita compensar com o tronco.|Você alinha os pés, mas continua girando o tronco.
+disciplina|pedir_ajuste|Pedir uma demonstração do ajuste principal|Você reconhece qual compensação deve observar.|Você tenta copiar a amplitude sem entender o ajuste.
+apoio|observacao_respeitosa|Combinar uma observação simples com o colega|O colega ajuda a perceber a compensação.|A observação vira comparação de amplitude e perde a finalidade.
+@2231 T02.prevencao|O trabalho preventivo inclui controle do joelho durante uma descida baixa. O preparador quer que você escolha qualidade, não profundidade.|{}
+forca|descida_controlada|Executar a descida na altura indicada|Você sustenta o alinhamento sem buscar uma descida maior.|Você aumenta a altura e perde o controle do joelho.
+disciplina|conferir_eixo|Pedir conferência do eixo da perna|A orientação ajuda a reconhecer o alinhamento.|Você recebe o ajuste sem conseguir mantê-lo na repetição.
+recuperar|intervalo_prevencao|Respeitar o intervalo antes de insistir|Você retoma com atenção ao movimento.|Você ainda não controla a execução e precisa avisar.
+posicionamento|apoio_firme|Organizar o apoio antes da descida|A base permite controlar a transferência de peso.|Você começa sem firmar o apoio e precisa compensar.
+@2232 T02.prevencao|A comissão reserva um bloco para ativação antes da parte intensa. Você precisa executá-lo sem transformá-lo num teste de esforço.|{}
+disciplina|seguir_intensidade|Cumprir a intensidade leve proposta|Você prepara os movimentos sem gastar esforço desnecessário.|Você acelera para acompanhar outro colega e muda a proposta.
+recuperar|controle_sensacao|Observar sua disposição durante a ativação|Você reconhece se precisa de outro ajuste antes de seguir.|Você ignora a sensação e não consegue descrevê-la depois.
+posicionamento|qualidade_apoios|Organizar os apoios em cada movimento|Você completa a rotina com controle.|Você repete rápido e perde a organização dos apoios.
+apoio|revezar_orientacao|Ajudar a dupla a seguir a sequência|Vocês mantêm a rotina sem disputar o ritmo.|Vocês se concentram na conversa e perdem a sequência.
+@2233 T02.prevencao|O preparador pede um relato simples sobre como você chega à sessão. A conversa serve para orientar o trabalho, sem inventar um diagnóstico.|{}
+disciplina|relato_objetivo|Descrever uma sensação concreta|Você fornece uma informação útil para ajustar a tarefa.|Você mistura suposições e não esclarece a sensação.
+social|tirar_duvida|Perguntar o que merece ser comunicado durante o treino|Você entende quando deve voltar a procurar a comissão.|Sua pergunta fica ampla e não esclarece o limite.
+recuperar|carga_ajustada|Aceitar uma pausa para reavaliar a disposição|Você retoma sem tentar esconder o limite.|Você continua preocupado em acompanhar os outros e não se recompõe.
+apoio|respeitar_diferencas|Apoiar a rotina do colega sem comparar limites|Vocês reconhecem que a orientação pode ser diferente.|Vocês transformam o relato em disputa de resistência.
+@2234 T02.prevencao|O circuito preventivo exige manter controle ao alcançar uma marca distante. Você precisa evitar esticar o corpo além da própria base.|{}
+posicionamento|ajustar_alcance|Escolher uma distância que preserva o apoio|Você alcança a marca sem perder o eixo.|Você busca a marca mais distante e desequilibra o apoio.
+forca|sustentar_retorno|Controlar a volta depois do alcance|Você retorna à base sem um passo extra.|Você alcança, mas não controla o retorno.
+disciplina|demonstrar_limite|Pedir que o preparador confira seu limite útil|Você entende onde termina uma execução controlada.|Você confunde alcance maior com execução melhor.
+recuperar|pausa_controle|Pausar quando não mantém o padrão|Você recupera a atenção antes de repetir.|Você retoma sem perceber a mesma compensação.
+@2235 T02.recuperacao|Após um bloco intenso do treino, há uma fase leve orientada. Você precisa desacelerar sem abandonar a instrução seguinte.|{}
+recuperar|fase_orientada|Cumprir a atividade leve prevista|Você reduz a intensidade de forma organizada.|Você continua tenso e não aproveita a redução do ritmo.
+disciplina|ouvir_etapa|Conferir a próxima etapa antes de se dispersar|Você sabe como retomar depois do intervalo.|Você se dispersa e perde a orientação.
+apoio|acompanhar_retorno|Acompanhar o colega no ritmo leve|Vocês respeitam a recuperação sem puxar outra corrida.|Vocês seguem um ritmo que continua alto demais.
+visao|comparar_execucao|Observar o que mudou no fim do bloco|Você identifica um ponto para discutir com o preparador.|Você avalia apenas que ficou cansado.
+@2236 T02.recuperacao|O preparador sugere alternar trabalho e pausa em vez de insistir numa sequência longa. Você precisa entender o objetivo antes de escolher o ritmo.|{}
+disciplina|entender_intervalo|Perguntar o que deve preservar nas repetições|Você entende o padrão que justifica a pausa.|Você pergunta só quantas repetições faltam.
+recuperar|usar_pausa|Usar a pausa completa entre os blocos|Você retorna em condição de controlar o movimento.|Você encurta a pausa e repete a dificuldade.
+resistencia|intensidade_certa|Manter a intensidade indicada durante o bloco|Você trabalha sem compensar a pausa com esforço exagerado.|Você aumenta demais o ritmo por saber que vai descansar.
+apoio|combinar_revezamento|Combinar um revezamento claro com a dupla|O revezamento evita que alguém retome antes da hora.|Vocês não definem a troca e interrompem o fluxo.
+@2237 T02.recuperacao|A sessão inclui uma checagem de disposição entre dois tipos de exercício. O preparador quer saber se a qualidade da execução mudou.|{}
+disciplina|relato_qualidade|Explicar qual movimento perdeu qualidade|Você fornece uma referência concreta para a checagem.|Você responde só que consegue continuar.
+visao|comparar_movimentos|Comparar a execução das duas tarefas|Você reconhece uma mudança sem atribuí-la a um diagnóstico.|Você compara tarefas diferentes como se exigissem o mesmo esforço.
+recuperar|pausa_checagem|Aceitar a pausa para repetir a avaliação|Você reavalia sem a pressa da sequência anterior.|Você usa a pausa pensando em recuperar tempo perdido.
+apoio|escutar_orientacao|Conferir a orientação sem copiar a do colega|Você entende qual ajuste vale para sua sessão.|Você segue o plano do colega por parecer mais exigente.
+@2238 T02.recuperacao|O preparador orienta uma parte leve com movimentos amplos e lentos. A tarefa é perceber limites sem forçar uma amplitude maior.|{}
+recuperar|amplitude_confortavel|Manter uma amplitude confortável|Você completa a rotina sem forçar o movimento.|Você não encontra conforto e comunica a dificuldade.
+disciplina|ritmo_lento|Respeitar o ritmo lento mesmo com pressa|Você percebe os ajustes que passavam despercebidos.|Você acelera os movimentos para terminar logo.
+posicionamento|base_rotina|Preparar uma base estável para cada movimento|Você controla a rotina sem compensar a postura.|Você começa a mover antes de organizar a base.
+apoio|revezar_retorno|Pedir à dupla que observe uma compensação específica|O retorno ajuda a perceber o detalhe combinado.|Vocês mudam o foco da observação a cada repetição.
+@2239 T02.recuperacao|A comissão encerra a parte física e pede que você indique como deve organizar o restante da sessão. Não é uma autorização para aumentar a carga sozinho.|{}
+disciplina|alinhar_resto|Conferir o plano com o preparador|Você segue com uma orientação clara.|Você interpreta a conversa como liberdade para mudar toda a carga.
+recuperar|preservar_retorno|Cumprir a recuperação antes de seguir|Você chega à próxima tarefa com disposição mais organizada.|Você pula a recuperação e continua sem se recompor.
+apoio|dividir_material|Ajudar a organizar o material sem apressar o grupo|Você contribui sem atrapalhar a recuperação dos colegas.|Você muda o material antes de a comissão encerrar o bloco.
+visao|resumir_sensacao|Resumir onde a execução ficou diferente|Você apresenta um detalhe útil para planejar o próximo trabalho.|Você confunde resultado do exercício com sensação de execução.
+@2240 T02.defesa_coletiva|O coletivo trabalha a proteção de um corredor central. A comissão pede que o setor se mova sem perseguir qualquer adversário que passa.|{}
+posicionamento|guardar_corredor|Preservar a posição que fecha o corredor|Você mantém a passagem protegida durante a circulação.|Você segue uma corrida e deixa a passagem livre.
+visao|separar_ameacas|Reconhecer a corrida que realmente ameaça o setor|Você distingue a ameaça da movimentação de distração.|Você acompanha a corrida mais próxima sem avaliar o destino.
+liderar|referencias_setor|Combinar referências com o colega|O setor evita trocar a proteção por perseguições isoladas.|Vocês combinam pessoas, mas esquecem o espaço a guardar.
+resistencia|deslocamento_constante|Sustentar os deslocamentos no bloco|Você mantém a coordenação durante as repetições.|O cansaço faz suas distâncias crescerem.
+@2241 T02.defesa_coletiva|O auxiliar ensaia cobertura atrás de quem sai para pressionar. Você precisa ajustar o espaço antes de o colega avançar.|{}
+posicionamento|cobrir_antes|Ocupar a cobertura antes da saída|Você evita um intervalo entre pressão e proteção.|Você começa a cobrir só depois de o espaço abrir.
+visao|ler_distancia|Observar até onde o colega consegue pressionar|Você ajusta sua cobertura ao movimento real.|Você presume uma pressão mais longa do que ele executa.
+liderar|confirmar_saida|Combinar um sinal para confirmar a pressão|Vocês sincronizam saída e cobertura.|O sinal chega quando o colega já mudou de direção.
+disciplina|repetir_funcao|Repetir sua função sem disputar o bote|Você preserva a cobertura mesmo querendo participar mais.|Você acompanha a bola e abandona a tarefa.
+@2242 T02.defesa_coletiva|O treino simula uma troca de posição entre adversários. A comissão quer que vocês comuniquem a referência em vez de se cruzarem sem aviso.|{}
+liderar|avisar_troca|Dizer qual referência você assume|O colega entende a troca sem abandonar uma ameaça.|Sua indicação não identifica a referência e mantém a dúvida.
+posicionamento|guardar_intervalo|Manter o intervalo protegido durante a troca|Você evita uma passagem livre no cruzamento.|Você acompanha a pessoa e deixa o intervalo abrir.
+visao|acompanhar_bola|Conferir a bola enquanto as referências mudam|Você não perde o início da entrega.|Você se concentra na troca e deixa de ver o passe.
+disciplina|parar_rever|Pedir uma repetição mais lenta da troca|Você entende em qual instante precisa comunicar.|Você repete sem discutir o momento da comunicação.
+@2243 T02.defesa_coletiva|O coletivo treina uma linha que sobe e recua por sinais da comissão. Sua tarefa é preservar a distância, não dar ordens fora do combinado.|{}
+posicionamento|mover_linha|Acompanhar o sinal junto da linha|Você mantém sua distância durante o deslocamento.|Você reage mais cedo e rompe a referência coletiva.
+visao|ler_sinal_linha|Conferir o sinal antes de mudar|Você responde à orientação, não a um movimento isolado.|Você segue o primeiro colega e ignora o sinal.
+liderar|repetir_sinal|Reforçar o sinal para quem não enxergou|Você ajuda o setor sem criar outra orientação.|Seu reforço muda o sentido do sinal original.
+resistencia|sustentar_linha|Completar o bloco mantendo a coordenação|Você conserva o padrão nas últimas repetições.|Você reduz o movimento e amplia a distância do setor.
+@2244 T02.defesa_coletiva|A comissão ensaia uma dobra de marcação sem contato. O objetivo é fechar duas saídas, não levar dois jogadores ao mesmo lado.|{}
+posicionamento|segundo_angulo|Oferecer o segundo ângulo da dobra|Você fecha uma saída diferente da do colega.|Você se aproxima pelo mesmo ângulo e repete a marcação.
+visao|identificar_saida|Reconhecer qual saída permanece livre|Você entende onde sua presença faz diferença.|Você olha apenas a bola e não vê a saída restante.
+liderar|dividir_lados|Combinar quem fecha cada lado|A divisão dá uma referência simples para a aproximação.|Vocês falam ao mesmo tempo e escolhem o mesmo lado.
+disciplina|controle_distancia|Aproximar sem transformar o ensaio em choque|Você mantém o objetivo de coordenação.|Você acelera demais e perde a distância de trabalho.
+@2245 T02.defesa_coletiva|O treino trabalha reação a um passe que supera a primeira pressão. A comissão pede reorganização, sem uma perseguição descontrolada.|{}
+posicionamento|reconectar_bloco|Recuar para reconstruir a ligação|Você volta ao setor sem abrir outro intervalo.|Você corre para a bola e aumenta a distância atrás.
+visao|novo_portador|Identificar a ameaça depois do passe|Você ajusta sua leitura à nova posição da bola.|Você continua reagindo ao portador anterior.
+liderar|avisar_reorganizacao|Pedir que o setor use a referência combinada|O aviso ajuda a reorganizar os movimentos.|O aviso é interpretado como uma nova ordem de pressão.
+resistencia|recuperar_posicao|Repetir a recuperação de posição no ritmo pedido|Você sustenta a volta sem perder o padrão.|O cansaço faz você encurtar o trajeto de proteção.
+@2246 T02.defesa_coletiva|O auxiliar ensaia defesa de cruzamentos sem disputa real. Você precisa dividir primeira bola e sobra antes do lançamento.|{}
+posicionamento|zona_sobra|Guardar a zona de continuação|Você fica disponível sem disputar a mesma área do colega.|Você segue a bola e abandona a sobra combinada.
+visao|ler_ponto_lancamento|Observar como a origem altera a trajetória|Você ajusta sua referência à entrega.|Você usa o mesmo ponto para lançamentos de origens diferentes.
+liderar|dividir_zonas|Confirmar quem protege cada região|A divisão evita uma região sem referência.|Vocês escolhem a mesma zona sem perceber.
+disciplina|rever_sem_bola|Repassar as posições sem a bola|Você entende a responsabilidade antes da velocidade.|Você memoriza a posição sem compreender a função.
+@2247 T02.defesa_coletiva|A equipe trabalha a proteção da entrada da área durante um ensaio. O auxiliar pede que você acompanhe a circulação sem avançar a cada toque.|{}
+posicionamento|guardar_faixa|Preservar a faixa combinada|Você mantém proteção durante a mudança da bola.|Você salta em cada toque e deixa a faixa descoberta.
+visao|ler_preparacao|Distinguir preparação de uma ameaça imediata|Você escolhe melhor quando precisa encurtar.|Você reage a toda preparação como se fosse finalização.
+liderar|coordenar_distancias|Combinar a distância com os colegas ao lado|O setor fecha sem se amontoar.|Vocês encurtam para o mesmo ponto e abrem as laterais.
+disciplina|repetir_criterio|Repetir o critério de aproximação da comissão|Você mantém uma referência nas várias tentativas.|Você repete a frase sem relacioná-la à circulação.
+@2248 T02.defesa_coletiva|O coletivo ensaia uma pressão orientada para a lateral. Você precisa fechar o caminho interno antes de acelerar a aproximação.|{}
+posicionamento|fechar_dentro|Preparar a corrida bloqueando o meio|Você aproxima preservando a orientação da pressão.|Você corre reto e deixa o meio disponível.
+visao|ler_corpo_portador|Observar como o portador pode sair|Você entende qual lado precisa negar.|Você segue a bola sem reconhecer a orientação do corpo.
+liderar|avisar_cerco|Combinar como o colega completa o cerco|Os dois movimentos fecham saídas diferentes.|O colega fecha o mesmo lado que você.
+resistencia|sustentar_pressao|Repetir a pressão sem perder o desenho|Você mantém a coordenação ao longo do bloco.|Você tenta manter velocidade sacrificando o desenho da aproximação.
+@2249 T02.defesa_coletiva|A comissão trabalha o recuo após uma pressão encerrada. O sinal pede recompor, mesmo que você ainda tenha vontade de tentar recuperar.|{}
+disciplina|respeitar_recuo|Interromper a perseguição ao sinal|Você retorna sem se separar do setor.|Você insiste no bote e atrasa sua recomposição.
+posicionamento|trajeto_recuo|Escolher um trajeto que proteja o centro|Você recompõe mantendo uma referência útil.|Você volta pelo caminho da bola e deixa o centro aberto.
+visao|identificar_nova_linha|Localizar a linha que precisa alcançar|Você sabe onde sua presença volta a ajudar.|Você recua sem reconhecer a posição de chegada.
+liderar|confirmar_recuo|Reforçar o sinal sem criar outra ordem|O setor reconhece que a pressão terminou.|Seu chamado é entendido como pedido de continuar a pressão.
+@2250 T02.ataque_coletivo|O coletivo exige manter um apoio atrás da bola durante o avanço. A comissão quer continuidade sem mandar todos para a última linha.|{}
+posicionamento|apoio_traseiro|Oferecer uma ligação atrás do portador|Você preserva uma saída para reorganizar a jogada.|Você fica atrás, mas fora do campo de visão do colega.
+visao|ler_distancias_ataque|Conferir se o apoio pode alcançar a continuação|Você identifica a distância que precisa encurtar.|Você observa apenas quem corre à frente.
+liderar|dividir_avanco|Combinar quem avança e quem liga os setores|A combinação evita que todos façam a mesma tarefa.|Vocês definem o avanço sem confirmar quem fica no apoio.
+resistencia|acompanhar_bloco|Sustentar a aproximação nas repetições|Você mantém a ligação ao longo do bloco.|Você se cansa e deixa o apoio cada vez mais distante.
+@2251 T02.ataque_coletivo|O auxiliar ensaia amplitude com a equipe sem bola. Seu setor precisa abrir espaço sem perder a distância para os colegas.|{}
+posicionamento|largura_util|Abrir até uma distância que permita participar|Você cria largura sem se desligar do setor.|Você abre além do alcance útil da jogada.
+visao|olhar_ligacao|Observar a ligação com quem ficará por dentro|Você entende qual distância precisa preservar.|Você olha o limite lateral e esquece a ligação interna.
+liderar|combinar_largura|Ajustar com o colega quem ocupa cada faixa|A divisão evita que dois jogadores abram para o mesmo ponto.|Vocês definem a faixa sem considerar o momento do movimento.
+disciplina|manter_referencia|Repetir a referência da comissão antes de variar|Você cria um padrão que o setor consegue reconhecer.|Você muda de ideia a cada repetição e perde o padrão.
+@2252 T02.ataque_coletivo|A comissão trabalha troca de posição durante a construção. O exercício só funciona se alguém ocupar o espaço deixado pelo outro.|{}
+posicionamento|ocupar_saida|Ocupar o espaço deixado pelo colega|Você mantém uma opção depois da troca.|Você segue a corrida dele e deixa o espaço vazio.
+visao|ler_troca|Reconhecer quando a troca ajuda a circulação|Você identifica o momento útil para sair.|Você troca por hábito mesmo sem abrir uma linha.
+liderar|sinal_troca|Combinar um sinal curto para a troca|Vocês mudam sem abandonar as duas referências.|Só um entende o sinal e o setor fica desconectado.
+apoio|ouvir_limites|Conferir o que o colega precisa para ocupar sua faixa|A conversa esclarece a responsabilidade de cada um.|Vocês falam apenas do destino e esquecem a saída.
+@2253 T02.ataque_coletivo|No coletivo, a comissão limita quantos podem se aproximar da bola. Você precisa reconhecer quando ajudar significa permanecer longe.|{}
+posicionamento|preservar_lado|Guardar uma opção fora da aproximação|Você oferece alternativa sem aumentar a aglomeração.|Você fica longe sem manter um ângulo de participação.
+visao|contar_apoios|Identificar quantos apoios já estão perto|Você percebe quando mais uma aproximação seria redundante.|Você conta pessoas sem avaliar os caminhos disponíveis.
+liderar|dividir_aproximacoes|Combinar aproximações em tempos diferentes|O setor evita oferecer todas as opções no mesmo instante.|O combinado vira espera e ninguém se aproxima.
+disciplina|respeitar_limite|Manter a tarefa mesmo querendo tocar mais na bola|Você preserva o objetivo coletivo do exercício.|Você procura a bola e abandona a faixa combinada.
+@2254 T02.ataque_coletivo|O auxiliar ensaia uma chegada por dentro e outra por fora. Você precisa coordenar o tempo para que as corridas não se cruzem sem função.|{}
+posicionamento|escolher_faixa|Assumir uma faixa diferente da do colega|Você oferece outra opção para a continuidade.|Você muda de faixa tarde e cruza o trajeto do colega.
+visao|ler_inicio_corrida|Observar qual corrida já começou|Você complementa o movimento em vez de copiá-lo.|Você repete o primeiro movimento sem perceber.
+liderar|definir_tempo|Combinar quem começa primeiro|A sequência cria opções em momentos diferentes.|Vocês contam tempos diferentes e saem juntos.
+resistencia|sustentar_coordenacao|Repetir as corridas mantendo a coordenação|Você mantém qualidade sem encurtar o trajeto.|O cansaço faz você sair fora do tempo.
+@2255 T02.ataque_coletivo|A comissão ensaia a circulação até o lado oposto. Sua função é manter uma referência enquanto a bola viaja, não correr atrás dela.|{}
+posicionamento|recepcao_lado|Preparar a posição do lado da chegada|Você oferece uma referência antes da inversão.|Você muda de lugar enquanto a entrega chega.
+visao|ler_circulacao|Acompanhar o próximo caminho da bola|Você reconhece quando precisa se ajustar.|Você olha só o primeiro passe e perde a continuação.
+liderar|avisar_abertura|Informar ao setor quando sua faixa está disponível|O aviso orienta a circulação sem exigir a bola.|O aviso chega depois de sua faixa ser fechada.
+disciplina|guardar_funcao|Manter sua tarefa durante a circulação|Você não abandona a referência para buscar um toque.|Você segue a bola e deixa o lado oposto sem apoio.
+@2256 T02.ataque_coletivo|O coletivo usa uma zona de apoio entre os setores. Você precisa entrar e sair dela sem permanecer no caminho da bola o tempo inteiro.|{}
+posicionamento|entrar_no_tempo|Aparecer na zona no momento da continuidade|Você oferece apoio sem bloquear a passagem.|Você entra cedo e vira uma referência fácil de fechar.
+visao|ler_saida_zona|Reconhecer quando precisa liberar a zona|Você evita ocupar o lugar que outro apoio usará.|Você espera parado e trava a rotação seguinte.
+liderar|alternar_ocupacao|Combinar quem ocupa a zona a cada movimento|A alternância cria continuidade sem amontoar o setor.|Vocês alternam sem observar onde a bola está.
+apoio|pedir_feedback_zona|Pedir ao portador que avalie sua apresentação|O retorno esclarece se seu apoio era visível.|A conversa fica em elogios e não avalia o ângulo.
+@2257 T02.ataque_coletivo|O auxiliar ensaia a participação de quem fica atrás da primeira linha ofensiva. A tarefa é preparar a continuação sem antecipar um resultado.|{}
+posicionamento|apoio_segunda|Oferecer uma posição para a segunda ação|Você mantém uma opção se o primeiro movimento não avançar.|Você se aproxima da primeira ação e abandona a continuidade.
+visao|reconhecer_corte|Observar para onde uma bola afastada pode seguir|Você ajusta sua referência sem apostar num resultado fixo.|Você escolhe um destino antes de acompanhar a disputa.
+liderar|dividir_continuacao|Combinar quem protege cada lado da continuação|Vocês evitam deixar a mesma região sem apoio.|Vocês escolhem o mesmo lado sem confirmar a divisão.
+disciplina|nao_antecipar|Manter a tarefa até a jogada mudar de fato|Você acompanha a sequência sem comemorar uma ação ainda inexistente.|Você se desliga ao esperar que o primeiro movimento resolva.
+@2258 T02.ataque_coletivo|A equipe trabalha saída curta em um espaço reduzido. O auxiliar pede que você abra o corpo para dar opções, sem presumir que todo passe deve avançar.|{}
+posicionamento|corpo_aberto|Preparar o corpo para dois destinos|Você oferece continuidade sem ficar preso a um lado.|Você recebe fechado e precisa girar antes de decidir.
+visao|avaliar_destinos|Reconhecer qual destino mantém apoio|Você distingue avanço útil de uma entrega isolada.|Você procura só a opção mais adiantada.
+passe|circulacao_util|Entregar para o apoio com melhor continuidade|A bola chega a quem pode prosseguir o exercício.|Você acerta o colega, mas o deixa sem próxima opção.
+liderar|ajustar_distancia|Pedir que o apoio ajuste a distância|A aproximação cria uma linha alcançável.|O pedido não define o ajuste e o apoio se aproxima demais.
+@2259 T02.ataque_coletivo|O coletivo exige uma circulação antes da mudança de ritmo. A comissão quer que você reconheça a abertura real, não ataque em qualquer toque.|{}
+visao|ler_abertura|Identificar quando o bloco deixa passagem|Você escolhe o momento de acelerar com uma referência.|Você confunde movimento da bola com abertura de espaço.
+posicionamento|preparar_aceleracao|Posicionar-se antes de a abertura aparecer|Você oferece uma opção quando a circulação muda.|Você se posiciona tarde e perde o momento.
+liderar|sinal_ritmo|Combinar como comunicar a mudança de ritmo|O setor reconhece quando a circulação deve acelerar.|Seu sinal é entendido como uma nova direção de passe.
+disciplina|respeitar_preparacao|Sustentar a circulação até existir a abertura|Você evita uma tentativa forçada sem apoio.|Você perde a paciência e interrompe a preparação.
+@2260 T02.transicao_coletiva|O treino marca uma perda de posse com um sinal. Você precisa distinguir quem pressiona e quem protege antes de correr.|{}
+visao|identificar_funcao|Reconhecer sua função na perda|Você escolhe um movimento compatível com a posição do setor.|Você corre antes de identificar a responsabilidade.
+posicionamento|proteger_centro|Guardar o corredor central|Você reduz a passagem direta na transição.|Você acompanha a bola e abandona o centro.
+liderar|dividir_reacao|Combinar a divisão entre pressão e proteção|O setor reage sem levar todos ao portador.|Vocês confirmam a pressão, mas não a proteção.
+resistencia|repetir_reacao|Sustentar as reações durante o bloco|Você mantém a coordenação mesmo nas últimas perdas simuladas.|O cansaço faz você reagir atrasado.
+@2261 T02.transicao_coletiva|A comissão ensaia recuperar e oferecer apoio em seguida. Nem todo jogador precisa sair correndo para frente depois da recuperação.|{}
+posicionamento|apoio_recuperacao|Oferecer uma saída próxima da recuperação|Você cria continuidade antes de buscar profundidade.|Você avança demais e deixa o portador isolado.
+visao|ler_apoios_disponiveis|Conferir quais apoios já estão à frente|Você complementa uma opção em vez de duplicá-la.|Você segue a mesma corrida que já estava disponível.
+liderar|comunicar_papel|Avisar qual apoio você vai oferecer|O portador entende onde poderá encontrar você.|Sua indicação muda no meio do movimento e confunde o colega.
+disciplina|nao_forcar_corrida|Respeitar a função de apoio da repetição|Você mantém a tarefa mesmo sem receber imediatamente.|Você tenta participar mais abandonando o apoio combinado.
+@2262 T02.transicao_coletiva|O auxiliar interrompe uma transição simulada para conferir as distâncias. Você precisa explicar sua escolha de trajeto.|{}
+visao|explicar_trajeto|Relacionar o trajeto ao espaço que queria proteger|Você apresenta uma leitura que o setor consegue discutir.|Você descreve apenas para onde correu.
+posicionamento|refazer_caminho|Repetir o trajeto com a distância corrigida|Você encontra uma ligação mais útil com o setor.|Você repete a corrida sem ajustar o ponto de chegada.
+liderar|alinhar_colega|Conferir o trajeto com o colega ao lado|Vocês identificam uma região que ambos deixavam aberta.|Vocês discutem quem correu mais e não o espaço.
+disciplina|registrar_criterio|Guardar um critério para a próxima perda|Você sai da conversa com uma referência prática.|Você registra uma frase vaga que não orienta o trajeto.
+@2263 T02.transicao_coletiva|O exercício permite pressionar por um intervalo curto depois da perda. Ao sinal seguinte, a tarefa muda para recompor.|{}
+disciplina|mudar_tarefa|Encerrar a pressão ao novo sinal|Você muda de função junto do setor.|Você insiste na recuperação e perde o tempo da volta.
+posicionamento|volta_util|Recompor por um caminho que protege o centro|Você volta sem abrir outra passagem.|Você retorna pelo caminho mais curto, mas deixa o centro livre.
+visao|ler_nova_referencia|Identificar quem passa a ameaçar a continuação|Você atualiza a leitura depois da pressão.|Você continua preso ao primeiro portador.
+liderar|reforcar_mudanca|Repetir o sinal para o setor|O chamado ajuda os colegas a reconhecer a troca de tarefa.|O chamado é confundido com incentivo para pressionar mais.
+@2264 T02.transicao_coletiva|No coletivo, a recuperação ocorre perto da lateral. A comissão pede que vocês encontrem apoio antes de abrir uma corrida longa.|{}
+posicionamento|apoio_por_dentro|Oferecer uma linha por dentro|Você retira a continuidade da faixa apertada.|Você se oferece atrás de um marcador.
+visao|conferir_saida|Reconhecer qual saída tem apoio suficiente|Você evita orientar um avanço isolado.|Você considera apenas a região mais distante.
+passe|entrega_continuidade|Treinar a primeira entrega para o apoio|Você encontra o colega sem apressar o gesto.|Você entrega com força demais para a distância curta.
+liderar|organizar_saidas|Combinar quem aproxima e quem alonga|O setor cria duas funções diferentes.|Vocês alongam juntos e deixam o portador sem apoio curto.
+@2265 T02.transicao_coletiva|O treino simula uma perda com o setor aberto. Você precisa recompor sem tentar atravessar todos os corredores pela bola.|{}
+posicionamento|diagonal_recomposicao|Voltar em diagonal para uma referência útil|Você recompõe protegendo a ligação central.|Você corre direto para a bola e mantém o centro exposto.
+visao|comparar_tempos|Comparar o tempo de chegada dos colegas|Você escolhe onde sua volta acrescenta proteção.|Você conta distâncias sem considerar quem já está voltando.
+liderar|dividir_corredores|Definir com o colega quem fecha cada corredor|A divisão evita uma recomposição duplicada.|Vocês escolhem o mesmo corredor e deixam outro aberto.
+resistencia|sustentar_volta|Repetir o retorno mantendo o desenho|Você mantém o padrão ao longo do bloco.|Você encurta a volta quando se cansa e perde a referência.
+@2266 T02.transicao_coletiva|A comissão ensaia reagir a uma recuperação que não permite avançar imediatamente. Você precisa oferecer continuidade sem exigir velocidade a qualquer custo.|{}
+visao|reconhecer_limite|Identificar por que o avanço ainda não cabe|Você percebe a falta de apoio sem tratar toda recuperação como contra-ataque.|Você vê espaço distante e ignora as ligações necessárias.
+posicionamento|apoio_seguro|Oferecer um apoio que o portador enxerga|Você cria uma saída antes de o setor se espalhar.|Você oferece apoio num ângulo que o portador não consegue usar.
+liderar|pedir_aproximacao|Pedir uma aproximação coordenada|O setor encurta sem abandonar a largura.|Todos se aproximam do mesmo ponto e deixam outro vazio.
+disciplina|manter_organizacao|Continuar a tarefa sem forçar uma corrida|Você preserva a organização da repetição.|Você tenta acelerar sozinho e se separa do setor.
+@2267 T02.transicao_coletiva|O auxiliar trabalha a reação de quem está longe da perda. Sua tarefa não é chegar primeiro ao portador, mas impedir uma continuidade fácil.|{}
+posicionamento|proteger_ligacao|Guardar a ligação para o lado oposto|Você influencia a transição sem perseguir a bola.|Você se aproxima do portador e abandona a ligação.
+visao|ler_destinatario|Reconhecer quem pode receber no seu lado|Você identifica a referência que precisa acompanhar.|Você observa só a perda e não enxerga o destinatário.
+liderar|avisar_lado_distante|Informar ao setor como está a proteção distante|O aviso permite coordenar a pressão com a cobertura.|Seu aviso não identifica o espaço protegido.
+disciplina|funcao_distante|Manter a função mesmo sem tocar na bola|Você cumpre a tarefa que sustenta a reação coletiva.|Você tenta entrar no lance e deixa sua região sem referência.
+@2268 T02.transicao_coletiva|O coletivo muda de direção a cada recuperação. Você precisa atualizar qual espaço oferece apoio e qual passa a exigir proteção.|{}
+visao|atualizar_sentido|Reconhecer o novo sentido antes de correr|Você escolhe a função de acordo com a posse atual.|Você continua correndo para o sentido da jogada anterior.
+posicionamento|reorientar_corpo|Reorientar o corpo sem perder os apoios|Você muda a função sem uma volta descontrolada.|Você gira inteiro e perde a referência da bola.
+liderar|comunicar_troca|Avisar a mudança ao colega próximo|O colega ajusta sua posição à nova tarefa.|A comunicação chega depois de ele assumir outra referência.
+resistencia|sustentar_alternancia|Manter a coordenação durante as mudanças|Você continua respondendo ao exercício nas últimas repetições.|O cansaço faz você antecipar a troca errada.
+@2269 T02.transicao_coletiva|O preparador encerra um bloco de transições e pede uma avaliação da qualidade das voltas. A quantidade de corridas não é o único critério.|{}
+visao|avaliar_chegada|Comparar onde cada retorno terminou|Você identifica se a corrida devolvia uma proteção útil.|Você avalia só quanto correu.
+disciplina|criterio_comum|Conferir o critério da comissão|Você entende como observar a próxima série.|Você busca uma nota geral sem entender o critério.
+liderar|ajuste_setor|Propor um ajuste de referência para o setor|A proposta relaciona a corrida ao espaço necessário.|A proposta exige correr mais sem explicar para onde.
+recuperar|intervalo_avaliacao|Usar o intervalo para recuperar antes de repetir|Você volta sem tentar compensar a conversa com pressa.|Você encurta a recuperação para recuperar tempo.
+@2270 T02.comunicacao|No coletivo, dois colegas usam a mesma palavra para orientações diferentes. Você pode ajudar a tornar o sinal mais claro.|{}
+liderar|definir_significado|Propor um significado único para a palavra|O setor passa a reconhecer a mesma orientação.|A proposta continua permitindo duas interpretações.
+apoio|ouvir_entendimentos|Ouvir o que cada colega havia entendido|Você identifica de onde veio a diferença.|Vocês discutem quem estava certo sem esclarecer o sentido.
+disciplina|validar_comissao|Conferir a definição com o auxiliar|A definição fica alinhada ao exercício.|Você busca confirmação sem explicar a dúvida real.
+visao|relacionar_movimento|Mostrar qual movimento cada sinal produz|Você torna visível a diferença entre as orientações.|Você descreve o movimento sem demonstrar a diferença.
+@2271 T02.comunicacao|O auxiliar pede orientações mais curtas durante o exercício. Sua tarefa é comunicar sem narrar tudo que está acontecendo.|{}
+liderar|palavra_util|Escolher uma palavra ligada à ação necessária|Seu aviso permite que o colega reaja.|A palavra fica genérica e não orienta a ação.
+disciplina|momento_fala|Esperar o instante em que o aviso ajuda|Você comunica antes da decisão do colega.|Você só avisa depois de o colega decidir.
+apoio|pedir_retorno_fala|Perguntar ao colega qual aviso ele ouviu|O retorno mostra se sua mensagem chegou.|Vocês avaliam o volume sem discutir o conteúdo.
+visao|priorizar_informacao|Distinguir a informação que o portador não vê|Você oferece um aviso que acrescenta leitura.|Você repete o que o colega já está enxergando.
+@2272 T02.comunicacao|A comissão interrompe a atividade para corrigir seu setor. Você percebe uma dúvida, mas não quer fingir que entendeu.|{}
+disciplina|pergunta_especifica|Fazer uma pergunta sobre o ponto confuso|A resposta esclarece a responsabilidade da próxima série.|Sua pergunta mistura vários pontos e não esclarece o principal.
+visao|demonstrar_leitura|Mostrar como interpretou o movimento|A demonstração revela onde a leitura estava diferente.|Você explica o destino sem mostrar o momento da saída.
+apoio|conferir_colega|Conferir se o colega entendeu a mesma tarefa|Vocês descobrem uma interpretação que precisava de ajuste.|Vocês concordam sem discutir o que farão.
+liderar|resumir_setor|Resumir o combinado para o setor confirmar|O resumo cria uma referência compartilhada.|Você resume omitindo uma responsabilidade importante.
+@2273 T02.comunicacao|Seu colega diz que não consegue ouvir suas orientações no coletivo. A solução precisa melhorar a comunicação, não virar uma cobrança.|{}
+liderar|sinal_complementar|Combinar um gesto junto da palavra|O gesto ajuda a reconhecer a orientação.|O gesto se parece com outro sinal e mantém a confusão.
+apoio|entender_dificuldade|Perguntar em que momento o aviso se perde|Você identifica uma situação concreta para ajustar.|Você se defende antes de ouvir a dificuldade.
+disciplina|aviso_antecipado|Testar um aviso um pouco mais cedo|O colega recebe a informação antes de iniciar o gesto.|Você avisa tão cedo que a referência já mudou depois.
+visao|posicao_comunicacao|Observar de onde consegue ser percebido|Você encontra um ângulo útil para comunicar.|Você procura ser visto e perde sua própria posição.
+@2274 T02.comunicacao|O auxiliar pede que você corrija uma distância do setor sem apontar um culpado. O foco é o espaço que precisa mudar.|{}
+liderar|orientar_espaco|Descrever o espaço que precisa ser protegido|A orientação oferece uma tarefa sem expor uma pessoa.|Sua fala vira uma cobrança individual e desvia o foco.
+posicionamento|demonstrar_distancia|Mostrar a distância no próprio movimento|O setor enxerga um ajuste concreto.|Você muda sua posição sem explicar a referência.
+apoio|ouvir_referencia|Perguntar qual referência o colega estava usando|Você entende a origem da distância diferente.|Você interrompe a explicação para repetir sua orientação.
+disciplina|alinhar_auxiliar|Conferir o ajuste antes de propor|Você não cria uma orientação contrária à tarefa.|Você leva uma solução pronta sem esclarecer a necessidade.
+@2275 T02.comunicacao|No ensaio coletivo, o aviso de troca chega tarde. A comissão quer que você separe reconhecer a troca de avisá-la.|{}
+visao|reconhecer_cedo|Observar o primeiro sinal da troca|Você identifica o movimento antes de ele terminar.|Você percebe a troca só quando as referências já mudaram.
+liderar|avisar_inicio|Avisar quando a troca começa|O colega tem tempo para assumir a referência.|Você avisa depois de abandonar sua referência anterior.
+apoio|confirmacao_curta|Combinar uma confirmação do colega|Vocês sabem se a informação foi recebida.|A confirmação fica longa e atrasa o movimento.
+disciplina|repetir_lento|Pedir a troca em ritmo menor para acertar o aviso|Você relaciona comunicação e movimento.|Você repete o aviso no tempo antigo mesmo com o ritmo menor.
+@2276 T02.comunicacao|A comissão pede que um colega explique o plano e você confira a aplicação. Você precisa ouvir antes de tentar corrigir.|{}
+apoio|escutar_plano|Ouvir o raciocínio inteiro do colega|Você identifica o que estava claro e o que precisava de ajuste.|Você interrompe cedo e não entende a leitura dele.
+visao|comparar_aplicacao|Comparar a explicação com o movimento ensaiado|Você encontra uma diferença verificável.|Você compara só palavras, sem observar o movimento.
+liderar|acrescentar_ponto|Acrescentar um ponto de cada vez|Sua contribuição completa a explicação sem substituí-la.|Você acrescenta temas demais e confunde a tarefa.
+disciplina|confirmar_auxiliar|Pedir ao auxiliar que valide a dúvida restante|A confirmação resolve uma divergência concreta.|Você pede uma aprovação geral sem apontar a divergência.
+@2277 T02.comunicacao|O setor fala muito durante o exercício, mas ninguém sabe qual orientação seguir. Você pode ajudar a escolher uma referência comum.|{}
+liderar|prioridade_comum|Propor uma orientação prioritária para a série|O setor passa a reconhecer a mesma tarefa.|Sua proposta soma outra orientação à confusão.
+disciplina|voltar_combinado|Relembrar a instrução original da comissão|Você recupera o critério antes de variar o exercício.|Você repete a instrução sem relacioná-la ao lance.
+apoio|ouvir_duvidas|Pedir que cada colega diga sua dúvida principal|A conversa identifica um ponto comum.|Vocês abrem assuntos demais e não escolhem um foco.
+visao|observar_padrao|Identificar em qual movimento as orientações divergem|Você localiza a origem da desorganização.|Você descreve só a confusão, sem localizar o movimento.
+@2278 T02.comunicacao|O treinador pede uma avaliação breve da última série. Você precisa dizer o que observou, sem inventar a intenção dos colegas.|{}
+visao|fato_observado|Descrever uma distância ou movimento observado|Você apresenta um fato que pode ser revisto.|Você descreve o que acha que o colega queria fazer.
+disciplina|limite_leitura|Separar observação de interpretação|Você deixa claro o que viu e o que ainda não sabe.|Você trata uma suposição como parte do exercício.
+apoio|pedir_outra_leitura|Convidar um colega a complementar|A outra leitura acrescenta uma referência diferente.|Vocês comparam conclusões sem explicar as observações.
+liderar|proximo_ajuste|Sugerir um ajuste ligado ao fato observado|A sugestão orienta a próxima série.|A sugestão muda a tarefa sem resolver o fato apontado.
+@2279 T02.comunicacao|O auxiliar pede que vocês escolham uma referência para conferir durante o coletivo. Você quer uma tarefa que todos consigam reconhecer.|{}
+liderar|criterio_simples|Propor uma distância que o setor possa observar|O critério fica claro para a próxima repetição.|O critério depende de interpretações diferentes.
+visao|testar_referencia|Verificar se a referência aparece em mais de um lance|Você escolhe algo que permite avaliar o padrão.|Você escolhe um detalhe de uma única tentativa.
+apoio|validar_entendimento|Perguntar como cada colega entendeu o critério|Vocês corrigem uma diferença antes da série.|Vocês apenas confirmam que entenderam sem explicar.
+disciplina|registrar_combinado|Guardar o critério sem acrescentar outras tarefas|Você mantém o foco durante a execução.|Você acrescenta novas cobranças e dilui a referência.
+@2280 T02.organizacao_carga|O preparador divide a sessão em estações com pausas diferentes. Você precisa seguir a ordem em vez de pular para a atividade preferida.|{}
+disciplina|seguir_estacoes|Cumprir a sequência indicada|Você respeita a relação entre esforço e pausa.|Você troca a ordem e acumula atividades semelhantes.
+visao|entender_ordem|Perguntar a finalidade da sequência|Você entende o que cada intervalo prepara.|Você pergunta apenas qual estação é mais difícil.
+apoio|revezar_estacao|Combinar a troca com a dupla|Vocês mantêm a ordem sem atrasar o grupo.|Vocês trocam antes de confirmar o fim do bloco.
+recuperar|pausa_estacao|Usar a pausa prevista entre as estações|Você chega à próxima tarefa com controle.|Você trata a pausa como tempo perdido e não recupera.
+@2281 T02.organizacao_carga|A comissão oferece um bloco opcional depois do treino. Você precisa decidir com o preparador, sem tratar volume extra como evolução garantida.|{}
+disciplina|avaliar_proposta|Perguntar qual objetivo o bloco atende|Você distingue uma necessidade de simples acúmulo.|Você considera só fazer mais que os colegas.
+recuperar|preservar_plano|Priorizar a recuperação combinada|Você encerra respeitando o plano do dia.|Você continua pensando em compensar e não relaxa a rotina.
+resistencia|bloco_autorizado|Executar o bloco na intensidade autorizada|Você mantém a qualidade prevista para o extra.|Você aumenta o ritmo para provar disposição e perde qualidade.
+apoio|trocar_percepcao|Conversar sobre limites sem copiar a escolha do colega|Você reúne referências sem abandonar sua orientação.|Você muda sua decisão para acompanhar a dupla.
+@2282 T02.organizacao_carga|O preparador pede que você observe a qualidade da última repetição, não só o número total. Isso pode mudar como deve continuar a sessão.|{}
+visao|avaliar_ultima|Comparar a última execução com a primeira|Você identifica uma mudança concreta no padrão.|Você compara só a velocidade de conclusão.
+disciplina|relato_sem_disputa|Relatar a diferença sem esconder o limite|Você oferece informação útil para ajustar o trabalho.|Você minimiza a diferença para parecer disposto.
+recuperar|pausa_reavaliacao|Usar uma pausa antes de conferir novamente|Você reavalia com menos pressa.|Você volta preocupado em recuperar repetições e mantém a pressa.
+apoio|olhar_externo|Pedir ao colega uma observação específica|O retorno ajuda a conferir o padrão.|O colega avalia outra parte e vocês não comparam a mesma execução.
+@2283 T02.organizacao_carga|O exercício físico termina antes do restante da sessão. Você precisa conservar disposição para o trabalho coletivo que vem depois.|{}
+disciplina|respeitar_dosagem|Manter a dosagem indicada|Você não gasta o intervalo tentando repetir o bloco.|Você acrescenta repetições sem considerar a etapa seguinte.
+recuperar|intervalo_entre_blocos|Cumprir a recuperação entre as duas partes|Você retoma com melhor controle dos movimentos.|Você se dispersa e não aproveita a recuperação.
+visao|conferir_sequencia|Conferir o que será exigido na etapa seguinte|Você organiza a transição sem adivinhar a tarefa.|Você presume que o treino acabou e perde a instrução.
+apoio|organizar_transicao|Ajudar a dupla a preparar a troca de atividade|Vocês transitam sem apressar o descanso.|Vocês tentam adiantar tudo e encurtam a recuperação.
+@2284 T02.organizacao_carga|O preparador percebe que o grupo acelera nas repetições feitas em dupla. Você precisa manter sua tarefa sem culpar o parceiro.|{}
+disciplina|assumir_ritmo|Reconhecer quando você começa a disputar|Você separa a carga proposta da vontade de vencer.|Você atribui toda a aceleração ao colega.
+apoio|combinar_limite|Combinar um limite de ritmo com a dupla|Vocês preservam o trabalho sem perder a cooperação.|O limite vira outra comparação de desempenho.
+resistencia|padrao_combinado|Executar a série no padrão definido|Você sustenta a intensidade sem oscilar com o parceiro.|Você responde às acelerações dele e perde o padrão.
+recuperar|pausa_completa|Respeitar a pausa mesmo quando o colega retoma|Você segue sua orientação sem entrar na disputa.|Você acompanha o colega e retoma cedo demais.
+@2285 T02.organizacao_carga|A comissão pede que você escolha um foco físico para discutir, sem alterar a programação sozinho. Você precisa relacionar a proposta ao que observou.|{}
+visao|necessidade_observada|Indicar uma dificuldade concreta do exercício|Você apresenta uma necessidade que pode ser avaliada.|Você escolhe uma capacidade por achar que é sempre melhor.
+disciplina|ouvir_planejamento|Conferir como o foco cabe no plano da comissão|Você entende a progressão sem inventar uma carga extra.|Você interpreta o foco como autorização para treinar mais sozinho.
+apoio|trocar_referencia|Pedir uma observação ao colega de exercício|A troca ajuda a conferir sua percepção.|Você toma a experiência dele como se fosse a sua.
+recuperar|conservar_rotina|Manter a recuperação até o plano ser definido|Você preserva a programação enquanto esclarece a dúvida.|Você passa a recuperação pensando em acrescentar volume.
+@2286 T02.organizacao_carga|O preparador orienta uma sessão com menos repetições e mais atenção aos gestos. Você precisa evitar compensar a quantidade menor com pressa.|{}
+disciplina|foco_execucao|Concentrar-se na qualidade de cada gesto|Você reconhece correções que perderia correndo.|Você trata a série curta como tarefa para terminar logo.
+forca|movimento_controlado|Executar o trabalho de força no tempo indicado|Você mantém controle sem buscar impulso.|Você acelera a execução e perde a finalidade da série.
+visao|criterio_qualidade|Perguntar como reconhecer uma boa repetição|Você recebe um critério para observar o próprio trabalho.|Você procura uma avaliação geral sem entender o critério.
+apoio|observar_revezamento|Revezar a observação com calma|Vocês avaliam um detalhe por vez.|Vocês tentam corrigir tudo ao mesmo tempo.
+@2287 T02.organizacao_carga|O bloco de treino muda de duração, mas mantém o objetivo. O preparador pede que você confirme a nova dosagem antes de começar.|{}
+disciplina|confirmar_dosagem|Perguntar qual ritmo vale no novo bloco|Você entende o que mudou e o que permanece.|Você presume que duração menor exige velocidade maior.
+resistencia|seguir_nova_dosagem|Executar a intensidade que foi confirmada|Você mantém a tarefa durante o novo tempo.|Você segue o ritmo anterior sem aplicar a orientação.
+recuperar|intervalo_atualizado|Conferir e cumprir o intervalo atualizado|Você respeita a relação entre trabalho e recuperação.|Você muda o trabalho, mas usa a pausa antiga.
+apoio|alinhar_dupla|Conferir se a dupla entendeu a alteração|Vocês começam com a mesma referência.|Vocês confirmam só a duração e esquecem a intensidade.
+@2288 T02.organizacao_carga|O auxiliar oferece uma revisão leve de posicionamento no fim da sessão. Você quer participar sem transformar o ensaio em outro bloco intenso.|{}
+posicionamento|movimento_controlado|Ensaiar as referências em ritmo leve|Você compreende os espaços sem acelerar a sessão.|Você aumenta o ritmo e perde a proposta de revisão.
+visao|leitura_sem_corrida|Observar as distâncias antes de mover|Você identifica ajustes sem depender de uma perseguição.|Você observa de longe sem relacionar a leitura à sua posição.
+disciplina|respeitar_fechamento|Confirmar o limite da revisão|Você mantém o trabalho dentro do encerramento combinado.|Você interpreta a revisão como autorização para ampliar o treino.
+recuperar|encerrar_orientado|Priorizar a recuperação se não sustentar a qualidade|Você comunica o limite sem abandonar a orientação.|Você escolhe parar sem esclarecer por que perdeu qualidade.
+@2289 T02.organizacao_carga|A comissão pede um comentário sobre como o treino foi distribuído. Você quer contribuir sem transformar preferência pessoal em regra para todo o elenco.|{}
+disciplina|relato_individual|Apresentar sua experiência como individual|Você explica o que percebeu sem falar por todos.|Você generaliza sua sensação para o elenco inteiro.
+apoio|ouvir_outras_rotinas|Ouvir colegas com tarefas diferentes|Você reconhece necessidades que não eram iguais às suas.|Você compara cargas como se todas tivessem o mesmo objetivo.
+visao|relacionar_etapas|Indicar em qual transição sentiu diferença|Você oferece um ponto concreto para avaliar.|Você avalia apenas a sessão inteira sem localizar a mudança.
+liderar|proposta_limitada|Propor um ajuste pequeno para a comissão avaliar|A proposta respeita o planejamento e esclarece uma necessidade.|Você sugere mudar tudo sem explicar o problema principal.
+@2290 P01.rotina_concentracao|Antes da partida, você percebe que tenta ouvir todas as conversas do vestiário ao mesmo tempo. A preparação pede uma prioridade clara.|{}
+disciplina|prioridade_atencao|Escolher uma instrução para revisar|Você organiza a atenção sem ignorar a orientação da comissão.|Você escolhe vários pontos e continua disperso.
+social|pedir_clareza|Perguntar ao auxiliar qual é sua prioridade inicial|A resposta ajuda a separar o essencial do detalhe.|Você faz uma pergunta ampla e não esclarece a prioridade.
+apoio|revisar_setor|Revisar um combinado com o colega de setor|Vocês confirmam uma referência comum.|Vocês abrem outros assuntos e não concluem o combinado.
+recuperar|pausa_respiracao|Fazer uma pausa curta para respirar com calma|Você retoma a preparação com mais tranquilidade.|Você tenta forçar a calma e continua preso nas conversas.
+@2291 P01.rotina_concentracao|O auxiliar pede que você confirme como vai receber uma orientação durante o jogo. Nem todo aviso da lateral será dirigido a você.|{}
+tatico|reconhecer_sinal|Confirmar qual sinal indica sua tarefa|Você sabe distinguir sua orientação de outro chamado.|Você memoriza o gesto sem entender a tarefa.
+visao|localizar_comissao|Repassar quando consegue olhar para a comissão|Você escolhe momentos que não exigem abandonar a jogada.|Você pensa só em olhar e esquece a leitura do campo.
+apoio|aviso_colega|Combinar como o colega repassará um aviso|Vocês definem uma comunicação sem duplicar ordens.|O combinado permite interpretar o aviso de duas formas.
+disciplina|mensagem_curta|Resumir a orientação numa frase curta|Você guarda uma referência que consegue aplicar.|Você encurta tanto que perde o sentido da instrução.
+@2292 P01.rotina_concentracao|Antes da entrada, você quer entender como reagir quando uma jogada não acontecer como planejou. A comissão oferece uma orientação breve.|{}
+disciplina|proxima_tarefa|Definir como retomar a atenção|Você prepara uma referência para voltar à tarefa.|Você pensa em evitar qualquer erro e fica sem uma reação prática.
+tatico|criterio_recomposicao|Conferir a primeira responsabilidade depois da perda|Você entende o movimento que vem antes da cobrança.|Você mistura recomposição com uma perseguição isolada.
+apoio|sinal_apoio|Combinar um sinal de apoio com o colega|Vocês definem como se ajudar sem parar para discutir.|O sinal fica parecido com outro comando e não esclarece.
+social|admitir_incerteza|Dizer qual reação ainda deixa você em dúvida|O auxiliar pode esclarecer o ponto concreto.|Você tenta parecer seguro e deixa a dúvida escondida.
+@2293 P01.rotina_concentracao|A comissão pede que cada um leve uma referência do aquecimento para o jogo. Você precisa escolher algo que realmente tenha observado.|{}
+visao|observacao_concreta|Escolher um ajuste que reconheceu no aquecimento|Você relaciona a preparação a uma tarefa verificável.|Você escolhe uma impressão que não sabe explicar.
+disciplina|uma_referencia|Guardar apenas uma prioridade inicial|Você evita transformar a preparação numa lista confusa.|Você acrescenta outros pontos e perde a prioridade.
+apoio|conferir_colega|Conferir o entendimento com um colega|A conversa mostra se a referência ficou clara.|Vocês concordam sem comparar o que entenderam.
+tatico|relacionar_funcao|Ligar a referência à sua função|Você reconhece quando o ajuste será útil.|Você tenta aplicar a referência a toda situação.
+@2294 P01.rotina_concentracao|O auxiliar pergunta se você tem alguma dúvida antes de fechar as instruções. Você quer perguntar sem iniciar uma discussão que não cabe naquele momento.|{}
+disciplina|pergunta_curta|Fazer uma pergunta objetiva|Você esclarece um ponto sem abrir vários assuntos.|Você mistura dúvidas e não obtém uma resposta útil.
+apoio|conferir_setor|Verificar se a dúvida também afeta seu setor|Vocês identificam uma referência que precisa de confirmação.|Vocês ampliam o assunto sem localizar a dúvida.
+tatico|demonstrar_entendimento|Resumir o que faria para o auxiliar conferir|Seu resumo permite corrigir uma interpretação.|Você descreve o destino, mas não o momento da ação.
+social|adiar_secundario|Separar o que pode ser conversado depois|Você preserva o foco sem fingir que resolveu tudo.|Você adia também o ponto que precisava esclarecer agora.
+@2295 P01.plano_setor|O plano pede alternar aproximação e profundidade. Você precisa acertar essa divisão com quem joga perto, sem supor uma formação diferente.|{}
+tatico|dividir_funcoes|Confirmar quem aproxima em cada referência|Você entende como complementar o movimento do colega.|Você confirma o destino sem definir quando trocar.
+posicionamento|distancia_inicial|Repassar a distância para começar a jogada|Você prepara uma posição compatível com o apoio.|Você se concentra na largura e esquece a ligação por dentro.
+apoio|ouvir_colega|Ouvir de que referência o colega precisa|Vocês identificam uma combinação simples.|Você fala da sua função sem ouvir a dele.
+visao|ler_troca|Visualizar o momento de alternar|Você reconhece o sinal de que a tarefa mudou.|Você imagina uma troca automática que não estava combinada.
+@2296 P01.plano_setor|A comissão relembra que o jogo pode exigir mudanças de ritmo. Você quer entender como reconhecer o momento sem depender só do entusiasmo.|{}
+tatico|criterio_ritmo|Perguntar qual abertura permite acelerar|Você entende uma condição concreta para mudar o ritmo.|Você recebe a orientação, mas continua pensando só em correr mais.
+visao|ler_apoios|Repassar como conferir os apoios antes de avançar|Você identifica uma leitura que pode fazer em campo.|Você considera apenas quem está mais à frente.
+liderar|sinal_compartilhado|Combinar como comunicar a abertura ao setor|O setor ganha uma referência comum.|O sinal fica parecido com outro e cria dúvida.
+disciplina|respeitar_preparacao|Manter uma prioridade para o início|Você evita tentar acelerar toda jogada desde a entrada.|Você transforma a prioridade em pressa para decidir.
+@2297 P01.plano_setor|O auxiliar pede atenção à primeira ligação entre defesa e ataque. Sua contribuição pode ser oferecer apoio, mesmo sem ser o primeiro a tocar na bola.|{}
+posicionamento|apoio_visivel|Definir onde pode ser visto pelo portador|Você identifica um ângulo útil para se apresentar.|Você escolhe uma posição sem considerar a visão de quem passa.
+tatico|funcao_ligacao|Conferir como sua função ajuda essa ligação|Você entende qual espaço precisa preservar.|Você interpreta a ligação como obrigação de receber toda bola.
+apoio|dividir_opcoes|Combinar opções diferentes com o colega|Vocês evitam aparecer no mesmo corredor.|Vocês combinam lados sem considerar as distâncias.
+visao|ler_primeiro_passe|Repassar o que observar antes da primeira entrega|Você conhece a referência que orientará sua decisão.|Você tenta antecipar o destino sem observar a situação real.
+@2298 P01.plano_setor|Antes do início, a comissão enfatiza disciplina nas trocas de referência. Você quer evitar perseguir um movimento só por estar perto.|{}
+tatico|limite_troca|Perguntar quando deve passar a referência|Você entende o limite entre acompanhar e entregar a marcação.|Você confunde a troca com abandonar a responsabilidade.
+liderar|aviso_curto|Combinar um aviso para confirmar a troca|O colega sabe quando precisa assumir a referência.|O aviso não deixa claro se a troca foi confirmada.
+visao|espaco_e_pessoa|Relacionar a pessoa ao espaço que protege|Você não perde a função ao acompanhar um movimento.|Você acompanha a pessoa sem observar a passagem aberta.
+disciplina|foco_funcao|Guardar sua prioridade de proteção|Você entra com uma referência concreta.|Você tenta memorizar todas as possibilidades e perde a prioridade.
+@2299 P01.plano_setor|O auxiliar relembra as tarefas de quem está distante da bola. Você quer participar sem correr para o lance a qualquer custo.|{}
+posicionamento|lado_distante|Confirmar onde deve oferecer continuidade|Você reconhece uma posição útil mesmo longe do portador.|Você escolhe uma região sem considerar a ligação com o setor.
+visao|ler_inversao|Repassar o que observar numa mudança de lado|Você identifica quando precisa ajustar sua apresentação.|Você presume uma inversão antes de a jogada pedir isso.
+apoio|comunicacao_distante|Combinar como avisar que está disponível|Você oferece informação sem exigir uma entrega improvável.|Seu aviso parece cobrar a bola em qualquer situação.
+disciplina|manter_tarefa_distante|Reforçar a importância de manter a função|Você evita abandonar uma referência por ansiedade.|Você entende manter a função como ficar parado.

@@ -3113,5 +3113,5866 @@
     "source_type": "ficcao_editorial",
     "schema_version": 1,
     "enabled": true
+  },
+  {
+    "id": 2650,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.cobertura",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um companheiro sai para pressionar. Você precisa proteger o espaço que ele deixa, sem abandonar sua referência.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar-se atrás da pressão",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege a faixa deixada pelo companheiro.",
+        "failure_text": "Você avança junto e deixa o mesmo espaço aberto.",
+        "semantic_intent": "cobrir_saida_pressao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a opção atrás do adversário pressionado",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica a continuação que precisa vigiar.",
+        "failure_text": "Você acompanha só o portador e perde o apoio.",
+        "semantic_intent": "ler_apoio_adversario_pressao",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar qual faixa está protegendo",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro entende sua cobertura.",
+        "failure_text": "Seu aviso não esclarece até onde pode cobrir.",
+        "semantic_intent": "avisar_cobertura_pressao",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Encurtar para disputar a bola",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você chega fora do tempo e não consegue tirar a bola.",
+        "semantic_intent": "encurtar_bola_pressao_dupla",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2651,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.linha_passe",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você está entre um portador adversário e um apoio que se aproxima por dentro.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar a diagonal do passe",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você retira uma opção de progressão.",
+        "failure_text": "Você fecha tarde e o passe entra.",
+        "semantic_intent": "fechar_diagonal_interna",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Alternar a atenção entre a bola e o apoio",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você acompanha a aproximação real.",
+        "failure_text": "Você fixa a bola e perde a corrida por dentro.",
+        "semantic_intent": "alternar_bola_apoio_interno",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar o toque do portador",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você toma a bola antes da combinação.",
+        "failure_text": "Você tenta o bote quando a bola já saiu.",
+        "semantic_intent": "atacar_toque_portador_interno",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar o companheiro sobre o apoio interno",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Seu aviso ajuda a organizar a marcação.",
+        "failure_text": "Você avisa sem indicar quem está entrando.",
+        "semantic_intent": "avisar_apoio_entrelinhas",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2652,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.lateral",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O ataque adversário se aproxima da linha lateral. Você pode pressionar sem abrir o caminho para dentro.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger a saída para dentro",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém o adversário longe do corredor central.",
+        "failure_text": "Você vira o corpo demais e libera o centro.",
+        "semantic_intent": "fechar_dentro_lateral",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar tirar a bola junto à linha",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse no duelo.",
+        "failure_text": "O adversário antecipa seu bote e continua.",
+        "semantic_intent": "bote_junto_linha",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o apoio atrás do portador",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica a devolução que pode aliviar a pressão.",
+        "failure_text": "Você acompanha o drible e esquece o apoio.",
+        "semantic_intent": "ler_apoio_lateral_adversario",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar quem pressiona e quem cobre",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês evitam atacar a mesma bola sem proteção.",
+        "failure_text": "Os dois entendem que devem pressionar e deixam a cobertura.",
+        "semantic_intent": "combinar_limite_pressao_lateral",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2653,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.recuo",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A equipe adversária recua a bola. Você precisa escolher se acompanha a circulação ou reorganiza sua posição.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Voltar à distância de proteção",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recompõe sem abrir uma faixa.",
+        "failure_text": "Você recua demais e entrega espaço livre à frente.",
+        "semantic_intent": "reorganizar_apos_recuo_rival",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar alcançar o novo portador",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola na aproximação.",
+        "failure_text": "Você chega depois do domínio e é superado.",
+        "semantic_intent": "pressionar_recuo_rival",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir onde a circulação pretende continuar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece o novo lado da jogada.",
+        "failure_text": "Você segue a bola antiga e perde a inversão.",
+        "semantic_intent": "ler_direcao_recuo_rival",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar sobre a mudança de referência",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe ajusta quem acompanha o portador.",
+        "failure_text": "Seu aviso contradiz o movimento que os companheiros já fizeram.",
+        "semantic_intent": "avisar_reinicio_rival",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2654,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.centro",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário conduz pelo centro. Um companheiro seu já está à frente dele, e você pode ajudar sem duplicar a pressão.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger as costas de quem pressiona",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você fecha a continuação central.",
+        "failure_text": "Você se alinha ao companheiro e não oferece cobertura.",
+        "semantic_intent": "proteger_costas_primeiro_defensor",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o passe atrás da primeira pressão",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica uma opção que não pode ficar livre.",
+        "failure_text": "Você olha só o duelo e perde a linha de passe.",
+        "semantic_intent": "ler_passe_atras_pressor",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar quando a bola escapa do portador",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola no momento do toque.",
+        "failure_text": "Você entra antes da exposição da bola e é superado.",
+        "semantic_intent": "disputar_toque_central",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar de qual lado vem sua proteção",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro sabe para onde pode conduzir o duelo.",
+        "failure_text": "Você muda o lado sem avisar e desfaz a referência.",
+        "semantic_intent": "orientar_lado_duelo_central",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2655,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.corrida",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você acompanha uma corrida adversária sem bola. O portador ainda pode escolher outro destino.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Acompanhar preservando visão da bola",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a corrida sob controle.",
+        "failure_text": "Você cola no corredor e perde a referência da bola.",
+        "semantic_intent": "acompanhar_sem_colar_corrida",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir se o passe realmente será tentado",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você ajusta a marcação à decisão real.",
+        "failure_text": "Você presume o passe e abandona outra faixa.",
+        "semantic_intent": "conferir_portador_corrida",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que a corrida está cruzando de setor",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe pode ajustar a responsabilidade.",
+        "failure_text": "Seu aviso chega depois de a corrida sair da sua zona.",
+        "semantic_intent": "avisar_cruzamento_corrida",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar a linha provável do passe",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta a bola.",
+        "failure_text": "Você aposta na linha errada e não alcança a jogada.",
+        "semantic_intent": "interceptar_trajeto_corrida",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2656,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.area",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário se aproxima da área com a bola. Você está entre ele e um companheiro livre por trás da sua marcação.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar o passe para trás de você",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a opção perigosa protegida.",
+        "failure_text": "Você gira sem conferir e libera o apoio.",
+        "semantic_intent": "proteger_passe_area_atras",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar a bola com o portador",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você tira a bola antes da conclusão.",
+        "failure_text": "Você chega fora do tempo e não interrompe o ataque.",
+        "semantic_intent": "atacar_portador_frente_area",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o companheiro adversário por cima do ombro",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você atualiza a referência antes do passe.",
+        "failure_text": "Você olha tarde e perde o deslocamento.",
+        "semantic_intent": "olhar_ombro_frente_area",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Pedir cobertura para a opção atrás",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O aviso ajuda a dividir as ameaças.",
+        "failure_text": "Você pede ajuda sem indicar qual ameaça precisa cobrir.",
+        "semantic_intent": "pedir_cobertura_area_atras",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2657,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.disputa_alta",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Uma bola alta vem para sua faixa defensiva. Há um adversário próximo e um companheiro pronto para apoiar.",
+    "options": [
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar a bola alta",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você vence a disputa e recupera a posse.",
+        "failure_text": "Você erra o tempo e a bola segue com o adversário.",
+        "semantic_intent": "disputar_alta_defensiva",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar a posição para a queda",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém uma referência atrás da disputa.",
+        "failure_text": "Você calcula mal a trajetória e deixa espaço.",
+        "semantic_intent": "proteger_queda_defensiva",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar quem vai à bola",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês evitam disputar a mesma bola.",
+        "failure_text": "O chamado é tardio e os dois hesitam.",
+        "semantic_intent": "combinar_disputa_alta",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem acompanha a possível sobra",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a continuação que precisa vigiar.",
+        "failure_text": "Você olha só a bola alta e perde o apoio adversário.",
+        "semantic_intent": "ler_segunda_alta_defensiva",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2658,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.inversao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário prepara uma troca de lado. Você está longe da bola e precisa ajustar a posição antes de ela chegar.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Encurtar a faixa sem abandonar a largura",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você chega conectado ao novo lado.",
+        "failure_text": "Você fecha demais e deixa o corredor externo livre.",
+        "semantic_intent": "ajustar_lado_fraco_defesa",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o provável destino da troca",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você acompanha a trajetória real.",
+        "failure_text": "Você reage a uma finta e se desloca para o lado errado.",
+        "semantic_intent": "ler_destino_inversao_rival",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a mudança de lado",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro próximo ajusta a referência.",
+        "failure_text": "Seu aviso não identifica quem pode receber.",
+        "semantic_intent": "avisar_inversao_defensiva",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar interceptar a troca",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você corta o passe.",
+        "failure_text": "Você antecipa antes de confirmar a trajetória e não alcança.",
+        "semantic_intent": "antecipar_inversao",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2659,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.transicao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A equipe perde a posse perto de você. Um adversário pode conduzir, enquanto outro corre ao lado.",
+    "options": [
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar a bola imediatamente",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse perto da perda.",
+        "failure_text": "Você chega no corpo errado e o portador escapa.",
+        "semantic_intent": "pressionar_perda_proxima",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar o passe para o corredor",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita a primeira continuação.",
+        "failure_text": "Você acompanha o portador e deixa o corredor livre.",
+        "semantic_intent": "fechar_passe_apos_perda",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir qual ameaça está mais próxima",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você escolhe uma referência real de proteção.",
+        "failure_text": "Você tenta acompanhar as duas e não controla nenhuma.",
+        "semantic_intent": "ler_prioridade_apos_perda",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar onde precisa de cobertura",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe reconhece a necessidade imediata.",
+        "failure_text": "Você dá um aviso genérico que não orienta a recomposição.",
+        "semantic_intent": "avisar_transicao_perda",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2660,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.volta",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você está à frente da bola quando o adversário começa a progredir. A recuperação da posição exige escolher um caminho.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Voltar protegendo a faixa central",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você se reconecta à defesa.",
+        "failure_text": "Você corre atrás da bola e deixa a faixa aberta.",
+        "semantic_intent": "recuar_corredor_central",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar onde o ataque pode continuar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você ajusta o trajeto à jogada.",
+        "failure_text": "Você acompanha o primeiro movimento e perde a nova direção.",
+        "semantic_intent": "ler_retorno_sem_perseguir",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar qual corredor está retomando",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Os companheiros entendem sua cobertura.",
+        "failure_text": "Você anuncia uma faixa e volta por outra.",
+        "semantic_intent": "avisar_retorno_defensivo",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar a bola na aproximação",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você alcança a jogada e toma a posse.",
+        "failure_text": "Você tenta o bote sem chegar ao alcance da bola.",
+        "semantic_intent": "alcancar_bola_na_volta",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2661,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.tempo",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O portador adversário hesita antes de passar. Você tem espaço para encurtar, mas ainda precisa respeitar o apoio atrás dele.",
+    "options": [
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Aproveitar a hesitação para disputar",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você acelera antes do toque e o adversário passa por você.",
+        "semantic_intent": "atacar_hesitacao_portador",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Encurtar mantendo a linha de passe protegida",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz espaço sem liberar o apoio.",
+        "failure_text": "Você aproxima em linha reta e abre a diagonal.",
+        "semantic_intent": "encurtar_sem_abrir_apoio",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir se a hesitação é uma preparação",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você não reage apenas ao primeiro gesto.",
+        "failure_text": "Você compra a finta e sai da posição.",
+        "semantic_intent": "ler_finta_hesitacao",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar sua aproximação ao companheiro",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A cobertura acompanha o movimento.",
+        "failure_text": "Seu aviso chega depois de você abandonar a faixa.",
+        "semantic_intent": "coordenar_aproximacao_hesitacao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2662,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.frente_gol",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "zagueiro",
+        "volante",
+        "lateral"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você protege a zona à frente do gol. O adversário recebe de costas e tenta preparar um giro.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter a posição entre o adversário e o gol",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você dificulta o giro sem perder a referência.",
+        "failure_text": "Você se aproxima pelo lado errado e libera a frente.",
+        "semantic_intent": "impedir_giro_central",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar tirar a bola no domínio",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera antes do giro.",
+        "failure_text": "Você ataca depois do controle e é superado.",
+        "semantic_intent": "tirar_bola_pivo_rival",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem chega para a devolução",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a segunda opção do ataque.",
+        "failure_text": "Você acompanha só o pivô e perde a chegada.",
+        "semantic_intent": "conferir_apoio_pivo_rival",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar ao companheiro de qual lado protege",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A divisão da cobertura fica clara.",
+        "failure_text": "O aviso não distingue quem protege o giro e quem fecha o passe.",
+        "semantic_intent": "avisar_giro_pivo_rival",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2663,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.costas",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "zagueiro",
+        "lateral",
+        "volante"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um atacante tenta se colocar nas suas costas enquanto a bola circula à frente.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o atacante antes da próxima circulação",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você atualiza a posição dele.",
+        "failure_text": "Você olha apenas quando o passe já saiu.",
+        "semantic_intent": "olhar_costas_antes_passe",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar a profundidade da marcação",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege o espaço sem perder contato com a linha.",
+        "failure_text": "Você recua sozinho e abre uma distância da equipe.",
+        "semantic_intent": "ajustar_profundidade_costas",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a referência ao companheiro ao lado",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A linha reconhece a ameaça.",
+        "failure_text": "Você avisa sem indicar de que lado ela vem.",
+        "semantic_intent": "avisar_ameaca_costas",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar interceptar antes da recepção",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você calcula mal a trajetória e deixa a recepção livre.",
+        "semantic_intent": "antecipar_bola_costas",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2664,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.meio",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "volante",
+        "meia"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você marca no meio-campo e vê um adversário saindo da sua zona para entrar na de outro companheiro.",
+    "options": [
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a passagem da referência",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro entende quem está chegando.",
+        "failure_text": "Você avisa depois de abandonar a marcação.",
+        "semantic_intent": "passar_referencia_setor",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Acompanhar até a troca ficar clara",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você evita deixar o adversário sem referência.",
+        "failure_text": "Você acompanha longe demais e esvazia sua própria zona.",
+        "semantic_intent": "acompanhar_ate_confirmar",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a posição do companheiro antes de soltar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe se ele pode assumir a marcação.",
+        "failure_text": "Você presume a troca sem olhar para ele.",
+        "semantic_intent": "conferir_troca_marcacao_meio",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar o passe durante a mudança",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta a bola.",
+        "failure_text": "Você sai da zona antes de confirmar o passe.",
+        "semantic_intent": "cortar_passe_troca_setor",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2665,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.pressao_alta",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "centroavante",
+        "ponta",
+        "meia"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você participa da primeira pressão sobre a construção adversária. Há um retorno curto e uma saída lateral.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Aproximar em curva fechando o retorno",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você pressiona sem entregar a devolução fácil.",
+        "failure_text": "Você corre reto e libera o retorno.",
+        "semantic_intent": "pressionar_em_curva",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar o domínio do portador",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola no ataque.",
+        "failure_text": "Você chega depois do toque e é superado.",
+        "semantic_intent": "atacar_dominio_construcao_rival",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a saída lateral antes de apertar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece para onde a pressão pode levar a bola.",
+        "failure_text": "Você fecha o centro sem notar o apoio aberto.",
+        "semantic_intent": "ler_saida_lateral_pressao_alta",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar quando pretende iniciar a pressão",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe pode acompanhar seu movimento.",
+        "failure_text": "Você inicia antes do aviso e fica pressionando sozinho.",
+        "semantic_intent": "combinar_primeiro_gatilho",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2666,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.pressao_alta",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "centroavante",
+        "ponta",
+        "meia"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário passa entre seus companheiros na saída. Você pode ajudar a fechar a continuação antes de voltar atrás da bola.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar a devolução ao primeiro passador",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você retira uma saída de circulação.",
+        "failure_text": "Você acompanha a bola e libera o retorno.",
+        "semantic_intent": "fechar_retorno_saida_superada",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar a bola ao alcance",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera na reação.",
+        "failure_text": "Você tenta chegar a uma bola distante e perde a referência.",
+        "semantic_intent": "reagir_passe_entre_pressao",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem pode progredir depois do passe",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a ameaça seguinte.",
+        "failure_text": "Você insiste na pressão que já foi superada.",
+        "semantic_intent": "ler_saida_apos_primeira_linha",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que a primeira linha foi superada",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe ajusta a proteção atrás.",
+        "failure_text": "Seu aviso chega quando os companheiros já avançaram sem cobertura.",
+        "semantic_intent": "avisar_pressao_superada",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2667,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.lado_fraco",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "ponta",
+        "lateral"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você está na ponta oposta à bola enquanto o adversário constrói. Um apoio aberto pode receber uma inversão.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar a distância para fechar sem abandonar o lado",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege o destino provável da troca.",
+        "failure_text": "Você fecha por dentro demais e libera a lateral.",
+        "semantic_intent": "equilibrar_lado_fraco",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar o corpo de quem pode inverter",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reage à preparação real do passe.",
+        "failure_text": "Você reage só ao olhar e sai cedo da posição.",
+        "semantic_intent": "ver_corpo_inversor",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar o apoio aberto do outro lado",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe reconhece a opção adversária.",
+        "failure_text": "Você avisa sem identificar a faixa.",
+        "semantic_intent": "avisar_apoio_aberto_oposto",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar cortar a inversão na chegada",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você erra o tempo e o adversário recebe livre.",
+        "semantic_intent": "interceptar_destino_oposto",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2668,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.pressao_media",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "score_state": "perdendo"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Sua equipe está atrás no placar. Você tem vontade de pressionar sozinho, mas o adversário ainda dispõe de apoios.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Encurtar mantendo conexão com a equipe",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz espaço sem sair isolado.",
+        "failure_text": "Você se afasta da cobertura e abre uma passagem.",
+        "semantic_intent": "encurtar_conectado_desvantagem",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar a bola",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a disputa.",
+        "failure_text": "Você força um bote sem alcance e é superado.",
+        "semantic_intent": "bote_recuperar_desvantagem",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Chamar uma aproximação coordenada",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Os companheiros entendem quando ajudar.",
+        "failure_text": "Você cobra pressão sem oferecer uma referência.",
+        "semantic_intent": "chamar_pressao_coletiva_desvantagem",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir os apoios antes de acelerar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece qual saída precisa ser fechada.",
+        "failure_text": "Você escolhe só o caminho mais curto até a bola.",
+        "semantic_intent": "ler_apoios_antes_correr",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2669,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.proteger_vantagem",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "score_state": "ganhando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A equipe está à frente. O adversário tenta aproximar apoios, e você precisa defender sem recuar automaticamente até a área.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter uma altura conectada à linha",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege espaço sem afundar sozinho.",
+        "failure_text": "Você recua demais e entrega a faixa à frente.",
+        "semantic_intent": "proteger_altura_vantagem",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar no momento do toque",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você antecipa o bote e permite a progressão.",
+        "semantic_intent": "recuperar_sem_precipitacao_vantagem",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem chega além do portador",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você não perde a segunda ameaça.",
+        "failure_text": "Você fixa o portador e deixa a chegada livre.",
+        "semantic_intent": "conferir_chegadas_vantagem",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar sobre a distância entre companheiros",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A defesa consegue ajustar um espaço aberto.",
+        "failure_text": "Você pede para todos recuarem sem apontar o problema.",
+        "semantic_intent": "organizar_distancias_vantagem",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2670,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.empate",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "score_state": "empatando"
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O placar está igual. Você defende uma aproximação adversária com um apoio curto e outro em profundidade.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir as duas referências",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a ameaça mais imediata.",
+        "failure_text": "Você alterna sem critério e perde as duas.",
+        "semantic_intent": "comparar_ameacas_empate",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger a faixa em profundidade",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita a continuação mais longa.",
+        "failure_text": "Você recua sem manter ligação com o apoio curto.",
+        "semantic_intent": "proteger_profundidade_empate",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar com o portador",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você entra quando ele já preparou o passe.",
+        "semantic_intent": "atacar_portador_empate",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar a divisão das referências",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Cada companheiro entende uma tarefa.",
+        "failure_text": "Seu chamado não define quem assume qual ameaça.",
+        "semantic_intent": "dividir_ameacas_empate",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2671,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.fim",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "minute_min": 70
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Depois dos 70 minutos, o adversário tenta um ataque pelo seu setor. Você precisa manter a leitura apesar do tempo em campo.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Preservar a posição entre bola e espaço perigoso",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a proteção.",
+        "failure_text": "Você acompanha a bola e perde a faixa.",
+        "semantic_intent": "manter_referencia_tarde",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar no toque exposto",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você tira a bola.",
+        "failure_text": "Você chega atrasado à disputa.",
+        "semantic_intent": "bote_tempo_final",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a chegada de outro adversário",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você atualiza a referência da jogada.",
+        "failure_text": "Você olha só o primeiro duelo.",
+        "semantic_intent": "conferir_apoio_tarde",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Dar um aviso curto sobre o lado da ameaça",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro entende a direção da cobertura.",
+        "failure_text": "Você fala sem indicar o lado e causa dúvida.",
+        "semantic_intent": "aviso_curto_tarde",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2672,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.disciplina",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "own_cards_min": 1
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você já tem cartão nesta partida. Um adversário recebe perto de você, e a disputa pede cuidado com o tempo de entrada.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Conter sem oferecer o giro",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz o espaço sem precisar forçar o contato.",
+        "failure_text": "Você abre o corpo e libera o caminho.",
+        "semantic_intent": "conter_com_cartao",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar a bola que ficou ao alcance",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você erra o tempo e não consegue tirar a bola.",
+        "semantic_intent": "bote_com_cartao",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o domínio antes de entrar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você distingue a bola exposta da bola protegida.",
+        "failure_text": "Você reage à finta e perde a referência.",
+        "semantic_intent": "ler_dominio_com_cartao",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Pedir cobertura enquanto contém",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro entende sua necessidade.",
+        "failure_text": "Você pede ajuda sem manter o adversário contido.",
+        "semantic_intent": "pedir_cobertura_com_cartao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2673,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.recuperacao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "own_tackles_min": 1
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um desarme seu já ficou registrado. A próxima jogada exige nova leitura, sem garantia de repetir o mesmo resultado.",
+    "options": [
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar outro desarme",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola novamente.",
+        "failure_text": "O adversário protege o toque e continua.",
+        "semantic_intent": "nova_disputa_apos_recuperacao",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Conter em vez de repetir o bote",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a faixa protegida.",
+        "failure_text": "Você espera longe demais e permite a progressão.",
+        "semantic_intent": "conter_apos_recuperacao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Ler como o adversário recebe desta vez",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe a diferença da nova disputa.",
+        "failure_text": "Você repete a entrada anterior sem conferir o domínio.",
+        "semantic_intent": "ler_duelo_apos_recuperacao",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a cobertura antes de se aproximar",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A proteção acompanha sua decisão.",
+        "failure_text": "Você avisa tarde e se aproxima sem cobertura.",
+        "semantic_intent": "coordenar_apos_recuperacao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2674,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.entrada",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "bench": true,
+      "minute_min": 60
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você entrou como reserva e precisa se conectar à organização defensiva enquanto o adversário circula.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Encontrar sua referência antes de pressionar",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você entra na estrutura defensiva.",
+        "failure_text": "Você segue a bola e ocupa a tarefa de outro companheiro.",
+        "semantic_intent": "encontrar_referencia_entrada",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Confirmar a cobertura com quem está ao lado",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês entendem a divisão do setor.",
+        "failure_text": "Você faz uma pergunta vaga e a divisão continua confusa.",
+        "semantic_intent": "confirmar_cobertura_entrada",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir por onde a circulação está avançando",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a ameaça real.",
+        "failure_text": "Você usa uma referência que a bola já deixou para trás.",
+        "semantic_intent": "ler_circulacao_entrada",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar no primeiro duelo",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a bola.",
+        "failure_text": "Você acelera sem alcançar o toque e é superado.",
+        "semantic_intent": "primeiro_duelo_entrada",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2675,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.bloqueio",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário prepara o chute à sua frente. Há um apoio dele ao lado que também pode receber.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar a linha de conclusão sem virar as costas",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege o corredor do chute.",
+        "failure_text": "Você sai da linha e libera a conclusão.",
+        "semantic_intent": "fechar_linha_chute_apoio",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar tirar a bola antes do chute",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera no preparo.",
+        "failure_text": "Você chega depois da armação e não alcança a bola.",
+        "semantic_intent": "tirar_preparacao_chute",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir se o chute abre um passe lateral",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você mantém a segunda opção na leitura.",
+        "failure_text": "Você reage ao gesto de chute e perde o apoio.",
+        "semantic_intent": "ler_ameaca_chute_passe",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar quem pode receber ao lado",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe identifica a segunda ameaça.",
+        "failure_text": "Você avisa sem apontar de qual lado ela vem.",
+        "semantic_intent": "avisar_apoio_chutador",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2676,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.cruzamento",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário chega aberto com a bola. Você precisa proteger o setor enquanto ele pode cruzar ou continuar pela linha.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Encurtar o ângulo do cruzamento",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você dificulta o levantamento sem abandonar o setor.",
+        "failure_text": "Você aproxima por dentro e libera a linha de fundo.",
+        "semantic_intent": "fechar_angulo_cruzamento",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar antes do cruzamento",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você entra cedo e o adversário leva a bola além do bote.",
+        "semantic_intent": "disputar_antes_cruzar",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a preparação do portador",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você distingue o levantamento da condução.",
+        "failure_text": "Você reage ao primeiro gesto e perde a ação real.",
+        "semantic_intent": "ler_corpo_cruzador",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que pode vir bola para a área",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Os companheiros atualizam as referências.",
+        "failure_text": "Você chama atenção só para a bola e não indica a chegada.",
+        "semantic_intent": "avisar_cobertura_cruzamento",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2677,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.segunda_bola",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Uma disputa acontece à sua frente. Você não sabe quem vai ganhar, mas pode proteger a continuidade.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ficar numa faixa de cobertura",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege a eventual continuação.",
+        "failure_text": "Você fica perto demais e deixa espaço atrás dos dois.",
+        "semantic_intent": "cobrir_atras_disputa",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Ler a queda real da bola",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você ajusta a reação à trajetória.",
+        "failure_text": "Você escolhe uma sobra presumida e sai da faixa.",
+        "semantic_intent": "acompanhar_queda_disputa",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar quem disputa e quem acompanha",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês mantêm tarefas complementares.",
+        "failure_text": "Os dois entendem que devem ir à bola.",
+        "semantic_intent": "combinar_sobra_defensiva",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar a bola na continuidade",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a posse.",
+        "failure_text": "Você reage depois do adversário e não alcança.",
+        "semantic_intent": "atacar_bola_que_sobra",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2678,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.tabela",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Dois adversários se aproximam para uma tabela curta. Você está perto da linha de devolução.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar a linha de volta",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você impede a continuação direta.",
+        "failure_text": "Você segue o primeiro passe e deixa a devolução livre.",
+        "semantic_intent": "fechar_devolucao_tabela",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar cortar o primeiro passe",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta a bola.",
+        "failure_text": "Você erra o tempo e deixa o primeiro apoio receber.",
+        "semantic_intent": "cortar_primeiro_passe_tabela",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a corrida depois do passe",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece quem quer receber a devolução.",
+        "failure_text": "Você olha apenas quem ficou com a bola.",
+        "semantic_intent": "acompanhar_corrida_tabela",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a tentativa de tabela",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro percebe a combinação.",
+        "failure_text": "Você avisa sem indicar qual corredor deve proteger.",
+        "semantic_intent": "avisar_um_dois",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2679,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.ultrapassagem",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário passa por fora de quem conduz. Você pode ajudar a não deixar as duas opções livres.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger o corredor externo",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você acompanha a opção de passagem.",
+        "failure_text": "Você fecha por dentro e libera o lado.",
+        "semantic_intent": "guardar_faixa_ultrapassagem",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir se a passagem continua",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você acompanha o movimento real.",
+        "failure_text": "Você segue uma ameaça que já parou e perde a bola.",
+        "semantic_intent": "ler_passagem_real_ou_finta",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar quem fica com o portador",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês evitam seguir os dois a mesma opção.",
+        "failure_text": "O aviso não define a divisão e gera hesitação.",
+        "semantic_intent": "dividir_portador_ultrapassagem",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar tirar a bola antes da combinação",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você sai do setor sem alcançar a bola.",
+        "semantic_intent": "bote_antes_ultrapassagem",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2680,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.infiltracao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário sem bola muda o ritmo para entrar no espaço entre você e um companheiro.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar a distância entre as marcações",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege a faixa da corrida.",
+        "failure_text": "Você abre um intervalo ao se mover sozinho.",
+        "semantic_intent": "fechar_intervalo_infiltracao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a aceleração antes de soltar a referência",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você acompanha o momento da entrada.",
+        "failure_text": "Você percebe apenas quando o corredor já passou.",
+        "semantic_intent": "ver_aceleracao_infiltrador",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar sobre a corrida no intervalo",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro entende a ameaça.",
+        "failure_text": "Você chama sem identificar a direção da corrida.",
+        "semantic_intent": "avisar_entrada_intervalo",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar o passe para a entrada",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você corta a bola.",
+        "failure_text": "Você antecipa uma trajetória diferente da real.",
+        "semantic_intent": "interceptar_entrada_intervalo",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2681,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.corpo",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O portador adversário está de lado e protege a bola. Um bote frontal pode não alcançá-la.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Conter mantendo a saída coberta",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita o giro.",
+        "failure_text": "Você se aproxima tanto que perde o equilíbrio da marcação.",
+        "semantic_intent": "conter_bola_protegida",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar quando a bola sair da proteção",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você toma a bola no momento certo.",
+        "failure_text": "Você entra enquanto ela ainda está protegida.",
+        "semantic_intent": "esperar_toque_desprotegido",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o lado para onde ele prepara o giro",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a continuação possível.",
+        "failure_text": "Você reage só ao corpo e perde a bola.",
+        "semantic_intent": "ler_lado_giro_protegido",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Pedir cobertura no lado do giro",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro entende onde apoiar.",
+        "failure_text": "Você pede ajuda sem indicar o lado.",
+        "semantic_intent": "chamar_cobertura_giro_protegido",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2682,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.distancia",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você está longe demais do adversário que recebe. Correr direto até ele pode abrir um passe entre as linhas.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Encurtar em diagonal",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você aproxima protegendo a linha interna.",
+        "failure_text": "Você corre reto e deixa o passe por dentro.",
+        "semantic_intent": "encurtar_em_diagonal",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a linha antes de avançar",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você escolhe um caminho que mantém a cobertura.",
+        "failure_text": "Você olha apenas a distância até a bola.",
+        "semantic_intent": "ler_aproximacao_distante",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que precisa de cobertura",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro ajusta a proteção.",
+        "failure_text": "Você avança antes de saber se ele pode cobrir.",
+        "semantic_intent": "avisar_espaco_antes_encurtar",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar alcançar a bola no domínio",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você força uma disputa que ainda estava fora do alcance.",
+        "semantic_intent": "alcançar_dominio_distante",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2683,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.sombra",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário usa seu corpo para esconder o passe a outro jogador. Você precisa defender vendo mais do que a bola.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o apoio fora da sombra",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece o destino provável.",
+        "failure_text": "Você segue só o portador e perde o apoio.",
+        "semantic_intent": "olhar_fora_sombra_portador",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Deslocar para fechar o passe escondido",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz a linha de progressão.",
+        "failure_text": "Você muda demais e libera a condução.",
+        "semantic_intent": "deslocar_fechar_sombra",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar com o portador",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você tira a bola.",
+        "failure_text": "Você não alcança a bola protegida.",
+        "semantic_intent": "bote_portador_sombra",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar ao companheiro sobre o apoio escondido",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A referência fica clara para a equipe.",
+        "failure_text": "Você avisa de forma vaga e o apoio segue livre.",
+        "semantic_intent": "avisar_destino_oculto",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2684,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.duas_alturas",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O ataque adversário oferece um apoio curto e outro atrás da sua linha. Você está numa posição intermediária.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger o espaço atrás da linha",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a profundidade coberta.",
+        "failure_text": "Você recua sem considerar o passe curto e abre um vazio.",
+        "semantic_intent": "proteger_linha_atras_duas_alturas",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a distância das duas opções",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece qual ameaça pode se concretizar primeiro.",
+        "failure_text": "Você alterna o olhar sem ajustar a posição.",
+        "semantic_intent": "alternar_duas_alturas",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar a divisão dos apoios",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A defesa identifica quem acompanha cada um.",
+        "failure_text": "O chamado não define responsabilidades.",
+        "semantic_intent": "dividir_apoios_duas_alturas",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar interceptar o passe",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você aposta numa opção e o portador usa a outra.",
+        "semantic_intent": "atacar_passe_entre_alturas",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2685,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.passe_lento",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um passe adversário viaja devagar pela sua faixa. Você pode tentar antecipar ou manter a proteção.",
+    "options": [
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar a bola durante o trajeto",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta o passe.",
+        "failure_text": "Você calcula mal a distância e não chega.",
+        "semantic_intent": "antecipar_passe_lento",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter a faixa protegida",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você evita abrir espaço atrás.",
+        "failure_text": "Você espera longe demais e permite o domínio livre.",
+        "semantic_intent": "guardar_faixa_passe_lento",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem pode receber antes de sair",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe a ameaça depois da recepção.",
+        "failure_text": "Você olha só a velocidade e ignora o destino.",
+        "semantic_intent": "conferir_destino_passe_lento",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que vai tentar antecipar",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A cobertura acompanha sua saída.",
+        "failure_text": "Você sai antes de comunicar e deixa a faixa desprotegida.",
+        "semantic_intent": "avisar_antecipacao_lenta",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2686,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.passe_forte",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário recebe um passe forte. O domínio dele pode definir a chance de você se aproximar.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar a direção do domínio",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece quando a bola fica exposta.",
+        "failure_text": "Você reage à força do passe sem esperar o domínio.",
+        "semantic_intent": "ler_dominio_forte_rival",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar o primeiro controle",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você tenta o bote antes de chegar ao alcance.",
+        "semantic_intent": "disputar_dominio_forte_rival",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Conter a saída após a recepção",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você fecha a continuação.",
+        "failure_text": "Você vira o corpo para o lado errado.",
+        "semantic_intent": "conter_apos_passe_forte",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar ao companheiro a direção da recepção",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Ele ajusta a cobertura.",
+        "failure_text": "Você avisa com base no passe e não no domínio real.",
+        "semantic_intent": "avisar_primeiro_controle_rival",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2687,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.bola_costas",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você precisa acompanhar um adversário que recebe de costas sem deixar a bola sumir da sua visão.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter uma distância de reação",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você protege o giro e continua vendo a bola.",
+        "failure_text": "Você cola sem equilíbrio e permite o giro.",
+        "semantic_intent": "marcar_costas_sem_colar",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar tirar a bola no controle",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a posse.",
+        "failure_text": "Você chega num toque já protegido.",
+        "semantic_intent": "atacar_bola_costas_rival",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir para quem ele pode devolver",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a combinação.",
+        "failure_text": "Você olha só o receptor e perde o apoio.",
+        "semantic_intent": "ler_apoio_receptor_costas",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar quem fecha a devolução",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A cobertura fica complementar.",
+        "failure_text": "Os dois seguem o giro e deixam o passe livre.",
+        "semantic_intent": "dividir_giro_devolucao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2688,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.reacao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário muda o lado da condução perto de você. Seu primeiro ajuste ficou na direção antiga.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Reorganizar a posição antes de encurtar",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera uma base de contenção.",
+        "failure_text": "Você cruza os passos e perde a referência.",
+        "semantic_intent": "corrigir_base_mudanca_rival",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar no novo toque",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você alcança a bola.",
+        "failure_text": "Você tenta o bote desequilibrado e não chega.",
+        "semantic_intent": "reagir_corte_rival",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a nova direção da jogada",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você abandona a leitura que já ficou para trás.",
+        "failure_text": "Você insiste no caminho anterior.",
+        "semantic_intent": "reler_apos_corte_rival",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que o portador mudou de corredor",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe acompanha a nova direção.",
+        "failure_text": "Seu aviso chega sem indicar onde está a bola.",
+        "semantic_intent": "avisar_mudanca_corredor_rival",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2689,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.contra_ataque",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário avança com espaço e você tem um companheiro ao lado. A defesa precisa dividir a condução e o passe.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger a opção de passe",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita a saída ao lado do portador.",
+        "failure_text": "Você abre tanto que deixa um corredor central.",
+        "semantic_intent": "proteger_passe_contra_ataque",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar com quem conduz",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera antes da progressão.",
+        "failure_text": "Você sai sem alcance e é superado.",
+        "semantic_intent": "encurtar_portador_transicao",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Combinar quem contém e quem cobre",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês defendem ameaças diferentes.",
+        "failure_text": "Vocês falam ao mesmo tempo e seguem a mesma ameaça.",
+        "semantic_intent": "combinar_dupla_transicao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a distância entre portador e apoio",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece o passe que pode sair.",
+        "failure_text": "Você olha só a velocidade do portador.",
+        "semantic_intent": "ler_distancias_transicao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2690,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.retardamento",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você está entre o portador e a área, com ajuda chegando. Sua decisão pode ganhar tempo para a recomposição.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Conter mantendo o caminho central fechado",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha tempo para a defesa se aproximar.",
+        "failure_text": "Você recua sem conter e entrega espaço livre.",
+        "semantic_intent": "conter_aguardar_ajuda",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar antes da ajuda",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você toma a bola.",
+        "failure_text": "Você força o bote e permite a passagem.",
+        "semantic_intent": "bote_antes_ajuda",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir de onde vem a cobertura",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você ajusta a contenção ao apoio real.",
+        "failure_text": "Você presume uma ajuda que ainda está distante.",
+        "semantic_intent": "conferir_ajuda_chegando",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Indicar qual faixa precisa de cobertura",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro chega com uma referência.",
+        "failure_text": "Você chama sem mostrar a ameaça.",
+        "semantic_intent": "orientar_ajuda_recomposicao",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2691,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.marcacao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você marca um adversário que tenta se afastar da bola para atrair você e abrir espaço para outro.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem pode usar a faixa deixada",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe a segunda intenção do movimento.",
+        "failure_text": "Você acompanha a isca sem olhar a continuação.",
+        "semantic_intent": "ler_arrasto_sem_bola",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Preservar a zona antes de seguir",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém o espaço protegido.",
+        "failure_text": "Você solta a referência sem confirmar quem a acompanha.",
+        "semantic_intent": "preservar_zona_arrasto",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a necessidade de uma troca",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro entende a nova referência.",
+        "failure_text": "Você anuncia a troca depois de abandonar a marcação.",
+        "semantic_intent": "avisar_troca_arrasto",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar cortar o passe para a faixa",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta a bola.",
+        "failure_text": "Você sai antes de confirmar o passe e não chega.",
+        "semantic_intent": "cortar_entrada_faixa_arrasto",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2692,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.recomposicao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A defesa se desloca para um lado e surge uma distância entre você e o companheiro mais próximo.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Diminuir a distância mantendo sua referência",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você fecha uma faixa de passagem.",
+        "failure_text": "Você encurta demais e libera o outro lado.",
+        "semantic_intent": "encurtar_intervalo_defensivo",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar sobre o intervalo aberto",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe ajusta a linha.",
+        "failure_text": "Você pede aproximação sem indicar qual distância preocupa.",
+        "semantic_intent": "avisar_distancia_linha",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem pode entrar no intervalo",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica a ameaça relevante.",
+        "failure_text": "Você olha apenas o companheiro e perde o adversário.",
+        "semantic_intent": "conferir_quem_ataca_intervalo",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar a bola que entra na faixa",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você chega depois da recepção.",
+        "semantic_intent": "atacar_bola_no_intervalo",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2693,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.paciencia",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário alterna fintas sem avançar. Você sente vontade de resolver o duelo com um bote imediato.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter uma base de contenção",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você não entrega uma saída fácil.",
+        "failure_text": "Você desloca o peso inteiro para uma das fintas.",
+        "semantic_intent": "manter_base_contra_fintas",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar no toque exposto",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você tira a bola.",
+        "failure_text": "Você compra a finta e não alcança a bola.",
+        "semantic_intent": "bote_contra_fintas",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a relação entre corpo e bola",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você distingue o gesto da ação possível.",
+        "failure_text": "Você acompanha só o corpo e perde o toque real.",
+        "semantic_intent": "olhar_bola_nao_so_corpo",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Pedir cobertura sem abandonar o duelo",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe reconhece sua contenção.",
+        "failure_text": "Você chama enquanto deixa o corredor livre.",
+        "semantic_intent": "pedir_cobertura_duelo_lento",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2694,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.pressao_coletiva",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um companheiro inicia a pressão e outro fica mais atrás. Você precisa escolher uma função que complete as duas.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar a opção entre as duas referências",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você completa a estrutura defensiva.",
+        "failure_text": "Você copia a pressão e abre a mesma faixa.",
+        "semantic_intent": "fechar_opcao_entre_pressao",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Observar qual opção ainda está livre",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica sua tarefa na jogada.",
+        "failure_text": "Você segue apenas o companheiro mais próximo.",
+        "semantic_intent": "conferir_papel_terceiro_defensor",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Confirmar qual opção vai proteger",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Os companheiros entendem sua referência.",
+        "failure_text": "Seu aviso contradiz o movimento que você faz.",
+        "semantic_intent": "confirmar_funcao_pressao_tripla",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar a bola ao alcance",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a posse.",
+        "failure_text": "Você sai da função sem alcançar o toque.",
+        "semantic_intent": "atacar_bola_escapada_pressao",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2695,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.saida_adversaria",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário usa um passe para trás para tirar sua pressão. Você pode mudar a referência sem perseguir a bola inteira.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar-se à próxima linha de passe",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita a circulação seguinte.",
+        "failure_text": "Você corre ao antigo portador e libera o novo apoio.",
+        "semantic_intent": "fechar_proxima_saida_recuo",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar com quem recebeu atrás",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você chega tarde e o passe seguinte sai.",
+        "semantic_intent": "pressionar_novo_portador_recuo",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir se o recuo prepara uma troca de lado",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a nova direção.",
+        "failure_text": "Você interpreta o recuo como fim do ataque.",
+        "semantic_intent": "ler_recuo_para_inverter",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que a referência da pressão mudou",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe acompanha o ajuste.",
+        "failure_text": "Você dá o aviso depois de seguir sozinho.",
+        "semantic_intent": "avisar_referencia_mudou_atras",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2696,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.meia_lua",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário se aproxima da entrada da área sem bola. Você está mais perto da bola do que dessa corrida.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a aproximação antes de olhar de novo a bola",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você não perde a chegada.",
+        "failure_text": "Você olha tarde e a opção já está livre.",
+        "semantic_intent": "conferir_chegada_entrada_area",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar-se para proteger a entrada",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você fecha a faixa de recepção.",
+        "failure_text": "Você abandona outra ameaça sem cobertura.",
+        "semantic_intent": "proteger_chegada_entrada_area",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar quem pode assumir a chegada",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A divisão da marcação fica clara.",
+        "failure_text": "Seu aviso não identifica a corrida.",
+        "semantic_intent": "avisar_chegada_frente_area",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar cortar o passe para a entrada",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta a bola.",
+        "failure_text": "Você aposta cedo e o passe sai por outro caminho.",
+        "semantic_intent": "interceptar_passe_entrada_area",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2697,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.duelo_lado",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O portador conduz paralelo à área. Você acompanha, mas precisa evitar que a marcação vire uma perseguição sem cobertura.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Acompanhar protegendo a frente do gol",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a contenção.",
+        "failure_text": "Você cruza a corrida e libera o centro.",
+        "semantic_intent": "acompanhar_paralelo_area",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar durante a condução",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você entra fora do tempo e perde o duelo.",
+        "semantic_intent": "bote_conducao_paralela",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem se oferece à frente",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a continuação possível.",
+        "failure_text": "Você segue só o portador e perde o apoio.",
+        "semantic_intent": "ver_apoio_conducao_paralela",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a passagem de setor",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe ajusta as referências.",
+        "failure_text": "Você solta a referência antes de confirmar a troca.",
+        "semantic_intent": "avisar_passagem_paralela",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2698,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.dupla_pressao",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um companheiro se aproxima para ajudar no seu duelo. Os dois precisam evitar abrir a mesma saída.",
+    "options": [
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Indicar qual lado você vai fechar",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A ajuda completa sua marcação.",
+        "failure_text": "Vocês fecham o mesmo lado e liberam o outro.",
+        "semantic_intent": "combinar_lado_dupla_pressao",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Passar à cobertura quando a ajuda encurta",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você preserva proteção atrás do duelo.",
+        "failure_text": "Você recua sem conferir quem ficou com o portador.",
+        "semantic_intent": "ajustar_cobertura_ajuda",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar com a ajuda próxima",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você tira a bola.",
+        "failure_text": "Você força o bote antes da ajuda chegar.",
+        "semantic_intent": "bote_com_ajuda_proxima",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a saída entre vocês",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a brecha que precisa fechar.",
+        "failure_text": "Você olha o companheiro e perde a bola.",
+        "semantic_intent": "ler_saida_entre_dupla",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2699,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.limite",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O ataque adversário chega ao limite do seu setor. Segui-lo além dali pode deixar outra referência sem marcação.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a cobertura antes de seguir",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica se a passagem pode ser acompanhada.",
+        "failure_text": "Você supõe a troca sem olhar o companheiro.",
+        "semantic_intent": "conferir_limite_setor",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a chegada ao setor vizinho",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe consegue dividir a continuidade.",
+        "failure_text": "Você avisa sem indicar quem está entrando.",
+        "semantic_intent": "comunicar_limite_marcacao",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter a referência que ainda ameaça sua zona",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você evita abrir outra faixa.",
+        "failure_text": "Você fica preso ao setor e perde a ameaça mais próxima.",
+        "semantic_intent": "guardar_referencia_setor",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar antes da passagem",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta a bola.",
+        "failure_text": "Você sai antes de confirmar o passe e não alcança.",
+        "semantic_intent": "cortar_antes_mudar_setor",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2700,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.primeira_linha",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "centroavante",
+        "ponta",
+        "meia"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você está na primeira linha defensiva. O adversário tenta sair usando um apoio atrás de quem conduz.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar o apoio sem perseguir o portador",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita a saída por trás.",
+        "failure_text": "Você avança reto e libera a devolução.",
+        "semantic_intent": "fechar_apoio_atras_conducao",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar o toque da condução",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você chega quando a bola já foi solta.",
+        "semantic_intent": "atacar_conducao_primeira_linha",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a terceira opção da saída",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece onde a bola pode continuar.",
+        "failure_text": "Você olha só os dois mais próximos.",
+        "semantic_intent": "ler_triângulo_saida_rival",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar qual apoio está fechando",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Os companheiros entendem sua função.",
+        "failure_text": "Seu aviso não corresponde à posição que ocupa.",
+        "semantic_intent": "orientar_primeira_linha_defensiva",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2701,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.retomo",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "played_minutes_min": 60
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Depois de pelo menos uma hora em campo, você precisa acompanhar uma nova movimentação adversária sem depender da leitura do lance anterior.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a nova posição dos apoios",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você atualiza a referência.",
+        "failure_text": "Você segue a posição antiga.",
+        "semantic_intent": "atualizar_leitura_hora_defesa",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar a base antes de encurtar",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você volta a conter com equilíbrio.",
+        "failure_text": "Você encurta desequilibrado e abre a passagem.",
+        "semantic_intent": "ajustar_base_hora_defesa",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar no toque exposto",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você toma a bola.",
+        "failure_text": "Você erra o tempo da disputa.",
+        "semantic_intent": "disputa_hora_defesa",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Dar uma referência curta ao companheiro",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O aviso ajuda a reorganizar o setor.",
+        "failure_text": "Você repete um aviso da jogada anterior.",
+        "semantic_intent": "aviso_especifico_hora_defesa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2702,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.abertura",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "minute_max": 35
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Nos primeiros movimentos da partida, um adversário tenta receber entre você e a bola. Você ainda está ajustando as referências da marcação.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger a linha de recepção",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você dificulta o primeiro passe.",
+        "failure_text": "Você se aproxima da bola e libera o recebedor.",
+        "semantic_intent": "fechar_recebedor_inicio_defesa",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir bola e recebedor",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você mantém as duas referências.",
+        "failure_text": "Você olha só a bola.",
+        "semantic_intent": "ver_duas_referencias_inicio_defesa",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar interceptar o passe",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a posse.",
+        "failure_text": "Você antecipa uma direção que não se confirma.",
+        "semantic_intent": "antecipar_inicio_defesa",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Confirmar a divisão com o companheiro",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês identificam quem acompanha o recebedor.",
+        "failure_text": "O chamado fica sem resposta e você presume a troca.",
+        "semantic_intent": "confirmar_referencia_inicio_defesa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2703,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.volta_lateral",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "lateral",
+        "ponta"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário recua para buscar a bola pela lateral. Você precisa decidir até onde acompanhá-lo.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Acompanhar mantendo a faixa protegida",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita a recepção sem perder o setor.",
+        "failure_text": "Você acompanha longe demais e abre espaço atrás.",
+        "semantic_intent": "acompanhar_recuo_lateral",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem pode ocupar a faixa deixada",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe a troca de referência.",
+        "failure_text": "Você segue o recuo sem olhar quem chega.",
+        "semantic_intent": "ler_destino_recuo_lateral",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que o adversário está recuando",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe ajusta quem deve recebê-lo.",
+        "failure_text": "Você anuncia uma troca antes de ela ser possível.",
+        "semantic_intent": "avisar_recuo_lateral",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar cortar a recepção",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você chega depois do domínio.",
+        "semantic_intent": "cortar_recepcao_recuo_lateral",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2704,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.area_lado_oposto",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "zagueiro",
+        "lateral",
+        "volante"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A bola está do outro lado da defesa. Um adversário tenta se afastar do seu campo de visão perto da área.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a posição por cima do ombro",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você não perde a referência.",
+        "failure_text": "Você olha tarde e encontra a faixa vazia.",
+        "semantic_intent": "olhar_ombro_lado_oposto_area",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar-se entre o adversário e a continuação",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém o destino protegido.",
+        "failure_text": "Você fecha só a bola e deixa o adversário livre.",
+        "semantic_intent": "proteger_lado_oposto_area",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar quem está tentando se esconder",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe reconhece a ameaça.",
+        "failure_text": "Seu aviso não identifica a posição.",
+        "semantic_intent": "avisar_referencia_area_oposta",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar cortar a bola na chegada",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você intercepta a jogada.",
+        "failure_text": "Você calcula a trajetória errada.",
+        "semantic_intent": "interceptar_destino_area_oposta",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2705,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.entre_setores",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {
+      "positions_allow": [
+        "volante",
+        "meia",
+        "zagueiro"
+      ]
+    },
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O meio-campo e a defesa ficaram separados. Você está próximo da faixa onde um adversário tenta receber.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Encurtar a distância entre os setores",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz a faixa de recepção.",
+        "failure_text": "Você sai sozinho e abre outra distância.",
+        "semantic_intent": "aproximar_linhas_setores",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir o movimento de quem quer receber",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica a ameaça real.",
+        "failure_text": "Você olha o vazio e perde o adversário que entra.",
+        "semantic_intent": "ler_recebedor_setores",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar qual distância precisa diminuir",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O ajuste fica mais claro.",
+        "failure_text": "Você pede aproximação de todos sem preservar referências.",
+        "semantic_intent": "avisar_distancia_setores",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar o passe para a faixa",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você chega quando o receptor já girou.",
+        "semantic_intent": "cortar_bola_entre_setores",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2706,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.passe_cavado",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário prepara um passe por cima da sua marcação. Você pode ajustar o corpo antes de acompanhar.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a trajetória preparada",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a bola por cima.",
+        "failure_text": "Você reage ao gesto sem acompanhar a bola real.",
+        "semantic_intent": "ler_preparo_cavado",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar o corpo para a profundidade",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você acompanha sem perder a referência.",
+        "failure_text": "Você vira tarde e fica atrás da jogada.",
+        "semantic_intent": "virar_acompanhar_cavado",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar cortar a bola alta",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você calcula mal a altura e não alcança.",
+        "semantic_intent": "interceptar_bola_cavada",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a bola em profundidade",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A cobertura ajusta a reação.",
+        "failure_text": "Você avisa depois de a bola passar.",
+        "semantic_intent": "avisar_passe_por_cima",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2707,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.retorno_centro",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Você acompanha um adversário pelo lado e ele devolve a bola ao centro. Sua função precisa acompanhar a nova origem do ataque.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Voltar a uma referência central de proteção",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você se reconecta à defesa.",
+        "failure_text": "Você continua no lado e deixa espaço interno.",
+        "semantic_intent": "reconectar_devolucao_central",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem recebe no centro",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe a nova direção.",
+        "failure_text": "Você observa o antigo portador.",
+        "semantic_intent": "conferir_novo_portador_central",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a mudança para o centro",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe acompanha a circulação.",
+        "failure_text": "Você indica um lado que a bola já deixou.",
+        "semantic_intent": "avisar_volta_centro",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar interceptar a devolução",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você corta a bola.",
+        "failure_text": "Você sai do setor sem alcançar o passe.",
+        "semantic_intent": "cortar_devolucao_centro",
+        "match_event": true
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2708,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.bola_esticada",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário tenta acelerar com uma bola longa. Você precisa acompanhar sem saber se ela chegará ao destino.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger a faixa do provável destino",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você mantém a profundidade coberta.",
+        "failure_text": "Você recua para uma trajetória que não se confirma.",
+        "semantic_intent": "proteger_destino_longa",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Acompanhar a bola até a queda",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você ajusta a corrida ao trajeto.",
+        "failure_text": "Você decide a queda cedo demais.",
+        "semantic_intent": "ler_trajetoria_longa_defesa",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar a bola na chegada",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a posse.",
+        "failure_text": "O adversário chega primeiro.",
+        "semantic_intent": "disputar_longa_defensiva",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar quem disputa e quem acompanha",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "Vocês preservam a cobertura.",
+        "failure_text": "Os dois chamam a mesma bola e hesitam.",
+        "semantic_intent": "combinar_disputa_longa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2709,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.toque_curto",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O portador adversário encurta os toques para atrair sua aproximação. Há pouco espaço entre vocês.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Manter distância de reação",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você contém sem se desequilibrar.",
+        "failure_text": "Você aproxima demais e perde o espaço de reação.",
+        "semantic_intent": "manter_alcance_toques_curtos",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar tirar a bola",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você vence a disputa.",
+        "failure_text": "Você ataca uma bola ainda protegida.",
+        "semantic_intent": "bote_toque_curto_rival",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a opção de passe dele",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você percebe o apoio que a atração tentava liberar.",
+        "failure_text": "Você observa só os pés do portador.",
+        "semantic_intent": "conferir_apoio_toques_curtos",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar sobre o apoio próximo",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe reconhece a combinação.",
+        "failure_text": "Você dá um chamado sem localização.",
+        "semantic_intent": "avisar_atracao_toques_curtos",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2710,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.distancia_gol",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O adversário recebe longe da área e começa a avançar. Você pode conter sem confundir distância com ausência de risco.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Fechar o corredor de progressão",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita o avanço.",
+        "failure_text": "Você espera demais e cede terreno sem pressão.",
+        "semantic_intent": "conter_avanco_distante",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar a bola no avanço",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você encurta sem alcançar o toque.",
+        "semantic_intent": "encurtar_avanco_distante",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quem avança junto",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a ameaça que acompanha a bola.",
+        "failure_text": "Você ignora os apoios por a bola estar longe da área.",
+        "semantic_intent": "ler_apoios_avanco_distante",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a altura da contenção",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe se conecta à marcação.",
+        "failure_text": "Você pede uma altura sem conferir onde os companheiros estão.",
+        "semantic_intent": "ajustar_altura_avanco_distante",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2711,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.centralizar",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "O ataque adversário vem pela lateral, mas procura um passe de volta para dentro. Você está perto da diagonal.",
+    "options": [
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Proteger a diagonal de volta",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você reduz a opção interna.",
+        "failure_text": "Você acompanha a linha e abre o centro.",
+        "semantic_intent": "fechar_retorno_dentro",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar interceptar o passe interno",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a bola.",
+        "failure_text": "Você antecipa antes de o passe sair.",
+        "semantic_intent": "cortar_retorno_dentro",
+        "match_event": true
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir a preparação do portador",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a mudança de direção.",
+        "failure_text": "Você reage só ao olhar e perde a bola.",
+        "semantic_intent": "ler_corpo_retorno_dentro",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a ameaça de passe por dentro",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro ajusta a cobertura.",
+        "failure_text": "O aviso não indica a faixa que precisa fechar.",
+        "semantic_intent": "avisar_retorno_interno",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2712,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.conducao_lenta",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário diminui a velocidade perto de você para esperar seus apoios. Você pode impedir que ele escolha com conforto.",
+    "options": [
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Disputar a bola enquanto ele espera",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a posse.",
+        "failure_text": "Você entra fora do tempo e ele escapa.",
+        "semantic_intent": "pressionar_espera_apoios",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Conter bloqueando a direção de progressão",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você limita a condução.",
+        "failure_text": "Você recua sem motivo e dá espaço para acelerar.",
+        "semantic_intent": "conter_espera_apoios",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir quais apoios estão chegando",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica a combinação mais próxima.",
+        "failure_text": "Você fixa o portador e não percebe a chegada.",
+        "semantic_intent": "ler_chegadas_espera_apoios",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar a divisão das referências",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A defesa se prepara para as chegadas.",
+        "failure_text": "Você chama sem indicar uma tarefa.",
+        "semantic_intent": "organizar_antes_apoios_chegarem",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2713,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.movimento_falso",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "Um adversário ameaça correr em profundidade e freia para receber no pé. Você precisa reagir ao movimento que se confirma.",
+    "options": [
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Acompanhar a mudança de ritmo",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você reconhece a recepção curta.",
+        "failure_text": "Você continua recuando para uma corrida que parou.",
+        "semantic_intent": "ler_freada_adversario",
+        "match_event": false
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Ajustar a distância ao recebedor",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você impede o domínio confortável.",
+        "failure_text": "Você avança sem equilíbrio e libera o giro.",
+        "semantic_intent": "ajustar_recepcao_freada",
+        "match_event": false
+      },
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Atacar a bola na recepção",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você recupera a posse.",
+        "failure_text": "Você chega depois do controle.",
+        "semantic_intent": "antecipar_recepcao_freada",
+        "match_event": true
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que a referência voltou ao apoio curto",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "A equipe atualiza a marcação.",
+        "failure_text": "Você mantém o chamado da corrida antiga.",
+        "semantic_intent": "avisar_corrida_virou_apoio",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
+  },
+  {
+    "id": 2714,
+    "stage": "partida",
+    "module": "J02",
+    "family": "J02.recuperar_sair",
+    "tags": [
+      "defesa"
+    ],
+    "gating": {},
+    "weight": 10,
+    "rarity": "common",
+    "cooldown": 2,
+    "text": "A bola fica em disputa perto da sua faixa. Recuperá-la é importante, mas a equipe também precisa de uma primeira conexão para sair.",
+    "options": [
+      {
+        "code": "desarme",
+        "action": "desarme",
+        "text": "Tentar recuperar a bola",
+        "effects": {},
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você ganha a posse para a equipe.",
+        "failure_text": "Você perde o tempo da disputa.",
+        "semantic_intent": "ganhar_disputa_primeira_conexao",
+        "match_event": true
+      },
+      {
+        "code": "posicionamento",
+        "action": "social",
+        "text": "Oferecer apoio fora da disputa",
+        "effects": {
+          "posicionamento": 1
+        },
+        "failure_effects": {
+          "confianca": -2
+        },
+        "severe_failure_effects": {
+          "confianca": -4
+        },
+        "success_text": "Você cria uma saída para quem recuperar.",
+        "failure_text": "Você se aproxima tanto que entra no mesmo cerco.",
+        "semantic_intent": "dar_saida_disputa_defensiva",
+        "match_event": false
+      },
+      {
+        "code": "visao",
+        "action": "social",
+        "text": "Conferir uma conexão possível",
+        "effects": {
+          "visao_jogo": 1
+        },
+        "failure_effects": {
+          "foco": -2
+        },
+        "severe_failure_effects": {
+          "foco": -4
+        },
+        "success_text": "Você identifica onde a equipe pode continuar.",
+        "failure_text": "Você olha à frente sem acompanhar a disputa real.",
+        "semantic_intent": "ler_primeiro_passe_recuperacao",
+        "match_event": false
+      },
+      {
+        "code": "apoio",
+        "action": "social",
+        "text": "Avisar que há apoio fora do contato",
+        "effects": {
+          "entrosamento": 2
+        },
+        "failure_effects": {
+          "entrosamento": -2
+        },
+        "severe_failure_effects": {
+          "entrosamento": -4
+        },
+        "success_text": "O companheiro reconhece uma alternativa.",
+        "failure_text": "Você chama de uma faixa sem linha de passe.",
+        "semantic_intent": "avisar_saida_disponivel_disputa",
+        "match_event": false
+      }
+    ],
+    "source_type": "ficcao_editorial",
+    "schema_version": 1,
+    "enabled": true
   }
 ]

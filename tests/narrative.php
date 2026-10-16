@@ -23,6 +23,26 @@ foreach(NarrativeContext::UNSUPPORTED as $tag){$bad=$sample;$bad['gating']=[$tag
 $g=ng('pre_jogo');$g['states']['energia']=10;ncheck(!in_array(2011,Scenes::eligible($g),true),'Não relacionado não é reserva');ncheck(!in_array(6,Scenes::eligible($g),true),'Legado não presume banco para não relacionado');
 $g=ng('pre_jogo');$g['states']['energia']=35;ncheck(!in_array(2011,Scenes::eligible($g),true),'Previsão de reserva sem confirmação não sustenta cena');$g['round']=4;ncheck(in_array(2011,Scenes::eligible($g),true),'Regra determinística de reserva confirma cena');
 $matrix=[];
+$reachability=[];
+foreach($new as $id=>$scene){
+ if(!$scene['enabled']){ncheck(!NarrativeContext::allows($scene,ng($scene['stage'])),'Conteúdo sem fonte nunca selecionável '.$id);$reachability[]=['id'=>$id,'module'=>$scene['module'],'eligible_fixture'=>false,'reason'=>'inativa_sem_adaptador'];continue;}
+ $gate=$scene['gating'];$position=$gate['positions_allow'][0]??'meia';$g=ng($scene['stage'],$position,$gate['minute_min']??min(70,$gate['minute_max']??70));
+ $i=Game::currentIndex($g);$m=&$g['matches'][$i];
+ if(isset($gate['home_away'])){if(($m['home']===$g['club'])!==($gate['home_away']==='home')){[$m['home'],$m['away']]=[$m['away'],$m['home']];}}
+ if(isset($gate['score_state'])){$d=match($gate['score_state']){'ganhando'=>1,'perdendo'=>-1,default=>0};$home=$m['home']===$g['club'];$m[$home?'hg':'ag']=max(0,$d);$m[$home?'ag':'hg']=max(0,-$d);}
+ if(!empty($gate['bench'])){$m['lineup']='reserva';if($scene['stage']==='pre_jogo')$g['round']=4;}
+ foreach(['goals','cards','assists','shots','completed','tackles'] as $stat)if(isset($gate['own_'.$stat.'_min']))$m['stats'][$stat]=$gate['own_'.$stat.'_min'];
+ foreach(['injury_risk_min'=>'risco_lesao','disciplinary_risk_min'=>'risco_cartao'] as $key=>$state)if(isset($gate[$key]))$g['states'][$state]=$gate[$key];
+ if(isset($gate['played_minutes_max']))$m['stats']['minutes']=$gate['played_minutes_max'];
+ if(isset($gate['played_minutes_min'])){$m['entry']=0;$m['minute']=max($m['minute'],$gate['played_minutes_min']);$m['stats']['minutes']=max($m['stats']['minutes'],$gate['played_minutes_min']);}
+ if(isset($gate['recent_form'])){$m['status']='finalizada';$m['stats']['minutes']=70;$m['stats']['rating']=match($gate['recent_form']){'boa'=>8,'ruim'=>5,default=>6.5};if($scene['stage']!=='fim_semana'){$previous=$m;$previous['round']=0;$g['matches'][]=$previous;$m['status']='em_andamento';}}
+ if(isset($gate['exit_reason']))$m['log'][]=['minute'=>60,'text'=>match($gate['exit_reason']){'injury'=>'Lesão: você deixa o campo.','fatigue'=>'Substituído por desgaste.','red'=>'Expulso: segundo cartão.'}];
+ $allowed=NarrativeContext::allows($scene,$g);ncheck($allowed,'Cena possui testemunha de elegibilidade '.$id);$reachability[]=['id'=>$id,'module'=>$scene['module'],'eligible_fixture'=>$allowed];unset($m);
+}
+// Ausência de evento/estatística não pode ser tomada como confirmação narrativa.
+$g=ng('fim_semana');$i=Game::currentIndex($g);$ctx=NarrativeContext::values($g);ncheck(!isset($ctx['exit_reason']),'Sem marcador não inventa motivo de saída');
+foreach(['injury'=>'Lesão: você deixa o campo.','fatigue'=>'Substituído por desgaste.','red'=>'Expulso: segundo cartão.'] as $reason=>$marker){$copy=$g;$copy['matches'][$i]['log'][]=['minute'=>60,'text'=>$marker];ncheck(NarrativeContext::values($copy)['exit_reason']===$reason,'Motivo vem de registro exato '.$reason);}
+foreach(['assists','shots','completed','tackles'] as $stat){$scene=$new[2385];$scene['gating']=['own_'.$stat.'_min'=>1];$g['matches'][$i]['stats'][$stat]=0;ncheck(!NarrativeContext::allows($scene,$g),'Zero não satisfaz estatística '.$stat);$g['matches'][$i]['stats'][$stat]=1;ncheck(NarrativeContext::allows($scene,$g),'Estatística persistida satisfaz '.$stat);}
 foreach(Rules::POSITIONS as $p){
  foreach(['treino','pre_jogo','partida','fim_semana'] as $stage){$g=ng($stage,$p);$pool=Scenes::eligible($g);$counts=[];foreach($pool as $id){$mod=$catalog[$id]['module'];$counts[$mod]=($counts[$mod]??0)+1;}
   $matrix[]=['position'=>$p,'stage'=>$stage,'scenario'=>'70min_empate_titular','eligible'=>count($pool),'modules'=>$counts];
@@ -73,4 +93,5 @@ foreach(['chute','passe','desarme'] as $action){
 }
 $g=ng('fim_semana');$matches=$g['matches'];Scenes::prepare($g);ncheck($g['matches']===$matches,'Preparação não recalcula partidas encerradas');
 $out=dirname(__DIR__).'/Docs/narrativa-v1';file_put_contents($out.'/eligibilidade.json',json_encode($matrix,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));file_put_contents($out.'/repeticao-500.json',json_encode(['cohorts'=>$repetition,'rare_in_5000'=>$rare,'rare_with_memory_in_5000'=>$rareWithMemory],JSON_PRETTY_PRINT));file_put_contents($out.'/test-contract.json',json_encode(['checks'=>$checks,'new'=>count($new),'catalog'=>count($catalog),'baseline_preserved'=>count($baseline),'mode'=>'PHP puro, sem banco/Hub/rede'],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+file_put_contents($out.'/elegibilidade-por-id.json',json_encode($reachability,JSON_PRETTY_PRINT));
 echo "OK: $checks verificações; 214 snapshots antigos, ".count($new)." novas, seis posições, 500 rodadas por posição.\n";

@@ -1,0 +1,500 @@
+@2700 J02.primeira_linha|Você está na primeira linha defensiva. O adversário tenta sair usando um apoio atrás de quem conduz.|{"positions_allow":["centroavante","ponta","meia"]}
+posicionamento|fechar_apoio_atras_conducao|Fechar o apoio sem perseguir o portador|Você limita a saída por trás.|Você avança reto e libera a devolução.
+desarme|atacar_conducao_primeira_linha|Disputar o toque da condução|Você recupera a bola.|Você chega quando a bola já foi solta.
+visao|ler_triângulo_saida_rival|Conferir a terceira opção da saída|Você reconhece onde a bola pode continuar.|Você olha só os dois mais próximos.
+apoio|orientar_primeira_linha_defensiva|Avisar qual apoio está fechando|Os companheiros entendem sua função.|Seu aviso não corresponde à posição que ocupa.
+@2701 J02.retomo|Depois de pelo menos uma hora em campo, você precisa acompanhar uma nova movimentação adversária sem depender da leitura do lance anterior.|{"played_minutes_min":60}
+visao|atualizar_leitura_hora_defesa|Conferir a nova posição dos apoios|Você atualiza a referência.|Você segue a posição antiga.
+posicionamento|ajustar_base_hora_defesa|Ajustar a base antes de encurtar|Você volta a conter com equilíbrio.|Você encurta desequilibrado e abre a passagem.
+desarme|disputa_hora_defesa|Tentar recuperar no toque exposto|Você toma a bola.|Você erra o tempo da disputa.
+apoio|aviso_especifico_hora_defesa|Dar uma referência curta ao companheiro|O aviso ajuda a reorganizar o setor.|Você repete um aviso da jogada anterior.
+@2702 J02.abertura|Nos primeiros movimentos da partida, um adversário tenta receber entre você e a bola. Você ainda está ajustando as referências da marcação.|{"minute_max":35}
+posicionamento|fechar_recebedor_inicio_defesa|Proteger a linha de recepção|Você dificulta o primeiro passe.|Você se aproxima da bola e libera o recebedor.
+visao|ver_duas_referencias_inicio_defesa|Conferir bola e recebedor|Você mantém as duas referências.|Você olha só a bola.
+desarme|antecipar_inicio_defesa|Tentar interceptar o passe|Você ganha a posse.|Você antecipa uma direção que não se confirma.
+apoio|confirmar_referencia_inicio_defesa|Confirmar a divisão com o companheiro|Vocês identificam quem acompanha o recebedor.|O chamado fica sem resposta e você presume a troca.
+@2703 J02.volta_lateral|Um adversário recua para buscar a bola pela lateral. Você precisa decidir até onde acompanhá-lo.|{"positions_allow":["lateral","ponta"]}
+posicionamento|acompanhar_recuo_lateral|Acompanhar mantendo a faixa protegida|Você limita a recepção sem perder o setor.|Você acompanha longe demais e abre espaço atrás.
+visao|ler_destino_recuo_lateral|Conferir quem pode ocupar a faixa deixada|Você percebe a troca de referência.|Você segue o recuo sem olhar quem chega.
+apoio|avisar_recuo_lateral|Avisar que o adversário está recuando|A equipe ajusta quem deve recebê-lo.|Você anuncia uma troca antes de ela ser possível.
+desarme|cortar_recepcao_recuo_lateral|Tentar cortar a recepção|Você recupera a bola.|Você chega depois do domínio.
+@2704 J02.area_lado_oposto|A bola está do outro lado da defesa. Um adversário tenta se afastar do seu campo de visão perto da área.|{"positions_allow":["zagueiro","lateral","volante"]}
+visao|olhar_ombro_lado_oposto_area|Conferir a posição por cima do ombro|Você não perde a referência.|Você olha tarde e encontra a faixa vazia.
+posicionamento|proteger_lado_oposto_area|Ajustar-se entre o adversário e a continuação|Você mantém o destino protegido.|Você fecha só a bola e deixa o adversário livre.
+apoio|avisar_referencia_area_oposta|Avisar quem está tentando se esconder|A equipe reconhece a ameaça.|Seu aviso não identifica a posição.
+desarme|interceptar_destino_area_oposta|Tentar cortar a bola na chegada|Você intercepta a jogada.|Você calcula a trajetória errada.
+@2705 J02.entre_setores|O meio-campo e a defesa ficaram separados. Você está próximo da faixa onde um adversário tenta receber.|{"positions_allow":["volante","meia","zagueiro"]}
+posicionamento|aproximar_linhas_setores|Encurtar a distância entre os setores|Você reduz a faixa de recepção.|Você sai sozinho e abre outra distância.
+visao|ler_recebedor_setores|Conferir o movimento de quem quer receber|Você identifica a ameaça real.|Você olha o vazio e perde o adversário que entra.
+apoio|avisar_distancia_setores|Avisar qual distância precisa diminuir|O ajuste fica mais claro.|Você pede aproximação de todos sem preservar referências.
+desarme|cortar_bola_entre_setores|Atacar o passe para a faixa|Você recupera a bola.|Você chega quando o receptor já girou.
+@2706 J02.passe_cavado|O adversário prepara um passe por cima da sua marcação. Você pode ajustar o corpo antes de acompanhar.|{}
+visao|ler_preparo_cavado|Conferir a trajetória preparada|Você reconhece a bola por cima.|Você reage ao gesto sem acompanhar a bola real.
+posicionamento|virar_acompanhar_cavado|Ajustar o corpo para a profundidade|Você acompanha sem perder a referência.|Você vira tarde e fica atrás da jogada.
+desarme|interceptar_bola_cavada|Tentar cortar a bola alta|Você recupera a posse.|Você calcula mal a altura e não alcança.
+apoio|avisar_passe_por_cima|Avisar a bola em profundidade|A cobertura ajusta a reação.|Você avisa depois de a bola passar.
+@2707 J02.retorno_centro|Você acompanha um adversário pelo lado e ele devolve a bola ao centro. Sua função precisa acompanhar a nova origem do ataque.|{}
+posicionamento|reconectar_devolucao_central|Voltar a uma referência central de proteção|Você se reconecta à defesa.|Você continua no lado e deixa espaço interno.
+visao|conferir_novo_portador_central|Conferir quem recebe no centro|Você percebe a nova direção.|Você observa o antigo portador.
+apoio|avisar_volta_centro|Avisar a mudança para o centro|A equipe acompanha a circulação.|Você indica um lado que a bola já deixou.
+desarme|cortar_devolucao_centro|Tentar interceptar a devolução|Você corta a bola.|Você sai do setor sem alcançar o passe.
+@2708 J02.bola_esticada|O adversário tenta acelerar com uma bola longa. Você precisa acompanhar sem saber se ela chegará ao destino.|{}
+posicionamento|proteger_destino_longa|Proteger a faixa do provável destino|Você mantém a profundidade coberta.|Você recua para uma trajetória que não se confirma.
+visao|ler_trajetoria_longa_defesa|Acompanhar a bola até a queda|Você ajusta a corrida ao trajeto.|Você decide a queda cedo demais.
+desarme|disputar_longa_defensiva|Disputar a bola na chegada|Você ganha a posse.|O adversário chega primeiro.
+apoio|combinar_disputa_longa|Avisar quem disputa e quem acompanha|Vocês preservam a cobertura.|Os dois chamam a mesma bola e hesitam.
+@2709 J02.toque_curto|O portador adversário encurta os toques para atrair sua aproximação. Há pouco espaço entre vocês.|{}
+posicionamento|manter_alcance_toques_curtos|Manter distância de reação|Você contém sem se desequilibrar.|Você aproxima demais e perde o espaço de reação.
+desarme|bote_toque_curto_rival|Tentar tirar a bola|Você vence a disputa.|Você ataca uma bola ainda protegida.
+visao|conferir_apoio_toques_curtos|Conferir a opção de passe dele|Você percebe o apoio que a atração tentava liberar.|Você observa só os pés do portador.
+apoio|avisar_atracao_toques_curtos|Avisar sobre o apoio próximo|A equipe reconhece a combinação.|Você dá um chamado sem localização.
+@2710 J02.distancia_gol|O adversário recebe longe da área e começa a avançar. Você pode conter sem confundir distância com ausência de risco.|{}
+posicionamento|conter_avanco_distante|Fechar o corredor de progressão|Você limita o avanço.|Você espera demais e cede terreno sem pressão.
+desarme|encurtar_avanco_distante|Disputar a bola no avanço|Você recupera a posse.|Você encurta sem alcançar o toque.
+visao|ler_apoios_avanco_distante|Conferir quem avança junto|Você reconhece a ameaça que acompanha a bola.|Você ignora os apoios por a bola estar longe da área.
+apoio|ajustar_altura_avanco_distante|Avisar a altura da contenção|A equipe se conecta à marcação.|Você pede uma altura sem conferir onde os companheiros estão.
+@2711 J02.centralizar|O ataque adversário vem pela lateral, mas procura um passe de volta para dentro. Você está perto da diagonal.|{}
+posicionamento|fechar_retorno_dentro|Proteger a diagonal de volta|Você reduz a opção interna.|Você acompanha a linha e abre o centro.
+desarme|cortar_retorno_dentro|Tentar interceptar o passe interno|Você recupera a bola.|Você antecipa antes de o passe sair.
+visao|ler_corpo_retorno_dentro|Conferir a preparação do portador|Você reconhece a mudança de direção.|Você reage só ao olhar e perde a bola.
+apoio|avisar_retorno_interno|Avisar a ameaça de passe por dentro|O companheiro ajusta a cobertura.|O aviso não indica a faixa que precisa fechar.
+@2712 J02.conducao_lenta|Um adversário diminui a velocidade perto de você para esperar seus apoios. Você pode impedir que ele escolha com conforto.|{}
+desarme|pressionar_espera_apoios|Disputar a bola enquanto ele espera|Você ganha a posse.|Você entra fora do tempo e ele escapa.
+posicionamento|conter_espera_apoios|Conter bloqueando a direção de progressão|Você limita a condução.|Você recua sem motivo e dá espaço para acelerar.
+visao|ler_chegadas_espera_apoios|Conferir quais apoios estão chegando|Você identifica a combinação mais próxima.|Você fixa o portador e não percebe a chegada.
+apoio|organizar_antes_apoios_chegarem|Avisar a divisão das referências|A defesa se prepara para as chegadas.|Você chama sem indicar uma tarefa.
+@2713 J02.movimento_falso|Um adversário ameaça correr em profundidade e freia para receber no pé. Você precisa reagir ao movimento que se confirma.|{}
+visao|ler_freada_adversario|Acompanhar a mudança de ritmo|Você reconhece a recepção curta.|Você continua recuando para uma corrida que parou.
+posicionamento|ajustar_recepcao_freada|Ajustar a distância ao recebedor|Você impede o domínio confortável.|Você avança sem equilíbrio e libera o giro.
+desarme|antecipar_recepcao_freada|Atacar a bola na recepção|Você recupera a posse.|Você chega depois do controle.
+apoio|avisar_corrida_virou_apoio|Avisar que a referência voltou ao apoio curto|A equipe atualiza a marcação.|Você mantém o chamado da corrida antiga.
+@2714 J02.recuperar_sair|A bola fica em disputa perto da sua faixa. Recuperá-la é importante, mas a equipe também precisa de uma primeira conexão para sair.|{}
+desarme|ganhar_disputa_primeira_conexao|Tentar recuperar a bola|Você ganha a posse para a equipe.|Você perde o tempo da disputa.
+posicionamento|dar_saida_disputa_defensiva|Oferecer apoio fora da disputa|Você cria uma saída para quem recuperar.|Você se aproxima tanto que entra no mesmo cerco.
+visao|ler_primeiro_passe_recuperacao|Conferir uma conexão possível|Você identifica onde a equipe pode continuar.|Você olha à frente sem acompanhar a disputa real.
+apoio|avisar_saida_disponivel_disputa|Avisar que há apoio fora do contato|O companheiro reconhece uma alternativa.|Você chama de uma faixa sem linha de passe.
+@2715 J03.gol_e_desvantagem|Você já marcou, mas a equipe continua atrás no placar. Um companheiro quer acelerar a reposição da circulação e outro pede aproximação.|{"own_goals_min":1,"score_state":"perdendo"}
+liderar|organizar_reacao_apos_gol|Pedir uma referência para a próxima jogada|Seu pedido ajuda a reação a ter direção.|Você transforma o pedido numa cobrança pelo que já passou.
+passe|conectar_reacao_apos_gol|Receber e conectar o apoio próximo|A bola segue com a equipe.|Seu passe precipitado é interceptado.
+posicionamento|profundidade_reacao_apos_gol|Oferecer profundidade sem se isolar|Você acrescenta uma opção à reação.|Você dispara sem apoio e sai da construção.
+visao|ler_placar_apos_gol|Conferir as opções atuais, além do gol anterior|Você reconhece o que esta jogada permite.|Você trata o próprio gol como garantia de que deve repetir a ação.
+@2716 J03.gol_e_vantagem|Seu gol está no registro e a equipe vence. Um companheiro oferece apoio, mas você sente vontade de buscar outra conclusão sozinho.|{"own_goals_min":1,"score_state":"ganhando"}
+passe|dividir_apos_gol_vantagem|Usar o apoio do companheiro|Seu passe mantém o ataque coletivo.|Você solta sem conferir a linha e perde a bola.
+chute|buscar_segundo_vantagem|Tentar outra finalização|Você acerta o chute e marca.|A tentativa não entra.
+visao|avaliar_contexto_sem_credito_gol|Avaliar o espaço sem se apoiar no gol anterior|Você decide pela jogada atual.|Você ignora a cobertura por confiar demais na ação anterior.
+apoio|reconhecer_opcao_colega_apos_gol|Avisar ao colega que reconheceu o apoio|A comunicação mantém uma referência entre vocês.|Você responde com cobrança e enfraquece a combinação.
+@2717 J03.sem_gol|Depois dos 70 minutos, você ainda não marcou. Uma nova bola chega ao seu setor, e a vontade de sair do zero pode pesar na decisão.|{"minute_min":70,"own_goals_max":0}
+chute|concluir_sem_meta_pessoal|Finalizar se o espaço permitir|Você acerta a conclusão e marca.|O chute não entra.
+passe|servir_apesar_zero_pessoal|Passar para o apoio disponível|Você preserva o ataque sem perseguir uma marca pessoal.|Você passa tarde, depois de a linha fechar.
+visao|julgar_sem_zero_pessoal|Conferir a oportunidade antes de pensar no próprio total|Você separa necessidade da equipe de cobrança individual.|Você enxerga só a chance de acabar com o zero.
+posicionamento|continuar_util_sem_gol|Oferecer uma opção sem exigir a bola|Você continua participando da construção.|Você espera a bola parado e deixa de ajudar.
+@2718 J03.assistencia_e_derrota|Você já deu uma assistência, mas sua equipe perde. O ataque precisa de continuidade, e não de uma repetição obrigatória daquela combinação.|{"own_assists_min":1,"score_state":"perdendo"}
+passe|variar_servico_em_desvantagem|Buscar um apoio diferente|O passe encontra outra referência.|Você força a mesma combinação e perde a bola.
+chute|concluir_apos_assistencia_atras|Tentar concluir|Você marca com a finalização.|A tentativa não entra.
+apoio|combinar_novo_caminho_atras|Combinar uma alternativa com quem está perto|Vocês encontram uma referência para reagir.|Você cobra que o colega repita uma corrida já fechada.
+visao|ler_nova_defesa_assistencia_atras|Conferir como a defesa se reorganizou|Você reconhece uma diferença importante.|Você procura o espaço antigo e perde o atual.
+@2719 J03.cartao_e_pressao|Você tem cartão e a equipe perde depois dos 70 minutos. Há uma chance de pressionar, mas um bote impulsivo pode ser mal calculado.|{"own_cards_min":1,"score_state":"perdendo","minute_min":70}
+posicionamento|conter_cartao_reacao_final|Fechar a saída em vez de atacar o corpo|Você limita a progressão.|Você aproxima desequilibrado e libera o giro.
+desarme|disputar_cartao_reacao_final|Disputar a bola ao alcance|Você recupera a posse.|Você erra o tempo e não tira a bola.
+liderar|chamar_pressao_sem_desespero|Chamar uma pressão com funções claras|A equipe entende quem deve cobrir.|Você pede reação sem definir nenhuma referência.
+visao|ler_alcance_cartao_final|Conferir se consegue chegar à bola|Você distingue oportunidade de impulso.|Você decide só pela urgência do placar.
+@2720 J03.cartao_e_vantagem|Você tem cartão e a equipe vence por um gol. Um adversário tenta atrair sua aproximação para abrir o passe atrás.|{"own_cards_min":1,"score_state":"ganhando","margin_max":1}
+posicionamento|proteger_atras_cartao_vantagem|Proteger o passe atrás|Você evita entregar a saída que ele procura.|Você segue a isca e libera a faixa.
+desarme|recuperar_cartao_vantagem|Tentar recuperar no toque exposto|Você toma a bola.|Você entra antes da exposição e perde o duelo.
+apoio|dividir_duelo_cartao_vantagem|Pedir a divisão da contenção e cobertura|O companheiro entende como ajudar.|Seu pedido deixa dúvida sobre quem fica com o portador.
+visao|ler_atracao_cartao_vantagem|Conferir o apoio que o portador quer liberar|Você reconhece a intenção antes de sair.|Você olha só o adversário à frente.
+@2721 J03.risco_e_ataque|Seu indicador de risco físico está elevado. Um ataque oferece um apoio curto e uma corrida longa, sem que haja lesão confirmada.|{"injury_risk_min":35}
+passe|apoio_curto_risco_elevado|Usar a combinação curta|O passe mantém sua participação.|O toque sai impreciso e é cortado.
+posicionamento|movimento_economico_risco|Oferecer um apoio com trajeto menor|Você encontra uma referência útil sem corrida desnecessária.|Você encurta o trajeto mas se esconde na marcação.
+visao|ler_necessidade_corrida_risco|Conferir se a corrida longa é realmente necessária|Você identifica uma alternativa disponível.|Você presume que o caminho curto basta e perde a conexão.
+apoio|combinar_distribuicao_movimentos|Combinar movimentos complementares com o colega|Vocês evitam fazer a mesma corrida.|Você usa o risco como cobrança para o colega fazer tudo.
+@2722 J03.risco_e_defesa|Seu indicador de risco físico está elevado. A defesa precisa de posicionamento para não depender de uma recuperação longa.|{"injury_risk_min":35}
+posicionamento|antecipar_posicao_risco|Ajustar cedo a posição de proteção|Você reduz a distância que precisaria recuperar.|Você se antecipa para a faixa errada.
+visao|ler_ameaca_antes_acelerar_risco|Ler a ameaça antes de acelerar|Você escolhe um trajeto conectado.|Você espera sem ajustar a posição e fica distante.
+apoio|avisar_cobertura_risco_fisico|Avisar qual espaço consegue cobrir|A divisão fica clara.|Você comunica um limite sem apontar uma alternativa de cobertura.
+desarme|disputar_alcance_risco_fisico|Disputar a bola próxima|Você recupera a posse.|Você tenta uma bola fora do alcance.
+@2723 J03.forma_ruim|As avaliações recentes foram baixas. Nesta partida, você recebe uma oportunidade simples de apoio, mas pensa em compensar tudo numa ação.|{"recent_form":"ruim"}
+passe|simplicidade_forma_ruim|Fazer o passe disponível|Você participa com precisão.|Você executa com pressa e erra a direção.
+drible|duelo_sem_compensacao_total|Tentar conduzir pelo espaço|Você supera a primeira pressão.|Você insiste num duelo fechado e perde a bola.
+visao|separar_atual_fase_ruim|Avaliar esta jogada sem resumir sua fase nela|Você reconhece uma opção concreta.|Você trata a decisão como uma prova de toda a carreira.
+apoio|pedir_referencia_fase_ruim|Pedir uma referência curta ao colega|A resposta ajuda sua conexão com a jogada.|Você pede uma garantia de sucesso que ninguém pode oferecer.
+@2724 J03.forma_boa|Suas avaliações recentes foram boas. Um companheiro pede uma solução simples enquanto você vê a possibilidade de tentar algo mais difícil.|{"recent_form":"boa"}
+passe|solucao_simples_forma_boa|Usar o passe simples|A equipe mantém a posse.|Você executa sem cuidado e erra.
+drible|arriscar_espaco_forma_boa|Conduzir pelo espaço que percebe|Você rompe a primeira marcação.|Você confunde confiança com ausência de cobertura.
+visao|conferir_risco_forma_boa|Conferir a cobertura antes de assumir o risco|Você reconhece o limite desta oportunidade.|Você usa a fase recente para ignorar a marcação atual.
+liderar|valorizar_opcao_colega_forma_boa|Reconhecer a opção oferecida pelo colega|O setor mantém uma referência compartilhada.|Você desqualifica a opção porque quer resolver sozinho.
+@2725 J03.casa|Você joga em casa e ouve uma cobrança por avanço. A bola está longe de você; correr diretamente para ela pode fechar o apoio de outro companheiro.|{"home_away":"home"}
+posicionamento|responder_cobranca_espaco|Responder oferecendo uma faixa útil|Você participa sem congestionar a jogada.|Você corre para a bola e junta as marcações.
+visao|ler_antes_cobranca_casa|Conferir a jogada antes de reagir à cobrança|Você distingue a referência real do pedido externo.|Você segue o chamado sem ver o espaço.
+apoio|combinar_apoio_ruido_casa|Confirmar o movimento com quem está perto|O companheiro entende sua opção.|Você chama de longe sem uma referência visível.
+disciplina|focar_tarefa_casa|Manter o foco na tarefa do setor|Você evita deixar a cobrança decidir seu movimento.|Você passa a acompanhar o ruído e perde a jogada.
+@2726 J03.fora|Fora de casa, você tenta avisar uma mudança de cobertura. O companheiro está olhando para a bola e não vê seu primeiro gesto.|{"home_away":"away"}
+apoio|repetir_aviso_visivel_fora|Repetir o aviso de forma visível e curta|O companheiro reconhece a mudança.|Você mistura vários sinais e mantém a dúvida.
+posicionamento|manter_cobertura_ate_aviso|Manter a referência até confirmar a comunicação|Você evita abandonar o espaço.|Você presume que foi entendido e deixa a faixa.
+visao|conferir_reacao_aviso_fora|Conferir a reação antes de trocar de tarefa|Você percebe se a referência foi assumida.|Você olha só a própria movimentação.
+liderar|simplificar_combinado_fora|Resumir a divisão em uma tarefa por pessoa|A divisão fica praticável.|Você apresenta várias ordens ao mesmo tempo.
+@2727 J03.reserva_e_empate|Você entrou como reserva e o jogo está empatado. Um colega pede energia nova, mas o setor ainda precisa manter suas referências.|{"bench":true,"score_state":"empatando"}
+posicionamento|integrar_sem_desmontar_reserva|Oferecer uma nova linha sem ocupar a dos outros|Você acrescenta uma opção ao setor.|Você entra na faixa já ocupada.
+apoio|confirmar_tarefa_reserva_empate|Confirmar uma tarefa com o colega|Você entende onde pode ajudar.|Você interpreta energia nova como obrigação de correr para qualquer lado.
+visao|ler_jogo_antes_impacto_reserva|Ler a circulação antes de buscar impacto|Você reconhece uma oportunidade real.|Você procura um gesto de destaque e perde a referência.
+passe|conectar_reserva_empate|Usar o apoio para entrar na circulação|O passe conecta sua participação.|Você tenta impor outro ritmo e o toque é cortado.
+@2728 J03.reserva_e_vantagem|Você entrou como reserva e a equipe vence. Sua movimentação pode dar uma saída nova sem transformar a vantagem numa corrida isolada.|{"bench":true,"score_state":"ganhando"}
+posicionamento|saida_nova_reserva_vantagem|Oferecer profundidade conectada ao apoio|Você cria uma saída alcançável.|Você dispara além de qualquer passe possível.
+passe|segurar_conexao_reserva_vantagem|Receber e passar ao apoio|A posse continua com a equipe.|Você recebe sem preparar a devolução e perde a bola.
+visao|reconhecer_ritmo_reserva_vantagem|Conferir a distância entre as linhas|Você adapta sua energia à estrutura real.|Você acelera sozinho e rompe a conexão.
+apoio|combinar_saida_reserva_vantagem|Avisar onde será a nova opção|A equipe reconhece sua referência.|Você muda o lugar depois de avisar.
+@2729 J03.reserva_e_desvantagem|Você entrou como reserva e a equipe perde. A vontade de mudar a partida pode levar você a pedir toda bola, mesmo sem espaço.|{"bench":true,"score_state":"perdendo"}
+visao|reconhecer_espaco_reserva_atras|Conferir quando pode receber de verdade|Você encontra uma linha acessível.|Você chama dentro da sombra da marcação.
+posicionamento|abrir_apoio_reserva_atras|Mover-se antes de pedir a bola|Você oferece uma opção concreta.|Você pede antes de sair da marcação.
+passe|coletivo_reserva_atras|Receber e conectar outro companheiro|O passe mantém a reação coletiva.|Você acelera um passe sem destino.
+liderar|reagir_sem_prometer_reserva|Pedir uma ação combinada, sem prometer resolver|O setor encontra uma referência de reação.|Você promete decidir a partida e deixa de ouvir os apoios.
+@2730 J03.titular_e_tempo|Você começou como titular e já passou uma hora em campo. Uma jogada pede movimento sem bola, e você precisa escolher um trajeto útil.|{"starter":true,"played_minutes_min":60}
+posicionamento|trajeto_util_titular_hora|Buscar uma diagonal conectada|Você participa sem repetir uma corrida vazia.|Você repete o trajeto que a defesa já fechou.
+visao|ler_trajeto_titular_hora|Conferir onde a equipe precisa de apoio|Você reconhece uma faixa disponível.|Você corre por hábito sem olhar a jogada.
+apoio|combinar_ajuste_titular_hora|Combinar um ajuste com o colega próximo|Vocês distribuem os movimentos.|Você pede que o colega cubra uma mudança que não explicou.
+passe|apoio_curto_titular_hora|Receber e usar a conexão curta|O passe preserva a circulação.|Você toca sem ajustar o corpo e erra.
+@2731 J03.ultima_decisao|O relógio marca pelo menos 80 minutos e o placar está igual. Você pode tentar acelerar, mas cada movimento precisa continuar conectado à equipe.|{"minute_min":80,"score_state":"empatando"}
+chute|buscar_gol_empate_tarde|Tentar uma finalização|Você acerta o chute e marca.|A finalização não entra.
+passe|construir_empate_tarde|Usar o apoio disponível|O passe mantém a chance de construir.|Você força a velocidade e entrega a bola.
+posicionamento|corrida_conectada_empate_tarde|Oferecer uma corrida com opção de retorno|Você acrescenta profundidade sem se isolar.|Você dispara sem deixar conexão com o portador.
+visao|ler_sem_cronometro_empate|Conferir o espaço antes de decidir pelo relógio|Você encontra uma opção real.|Você escolhe só pela urgência do minuto.
+@2732 J03.ultima_protecao|Depois dos 80 minutos, sua equipe vence por um gol. Um ataque ainda pode ser útil, desde que a posse não vire abandono das referências.|{"minute_min":80,"score_state":"ganhando","margin_max":1}
+passe|circular_um_gol_final|Usar a circulação curta|A equipe mantém a posse.|Um passe descuidado devolve a bola ao adversário.
+posicionamento|dar_saida_um_gol_final|Oferecer uma saída sem desmontar o setor|Você preserva uma referência para continuar.|Você abandona a faixa e deixa um espaço aberto.
+visao|ler_cobertura_um_gol_final|Conferir a proteção atrás antes de avançar|Você reconhece o limite da movimentação.|Você trata a vantagem como se a partida já tivesse acabado.
+liderar|manter_atencao_um_gol_final|Pedir atenção à próxima ação|A equipe recebe uma referência imediata.|Você começa a comemorar antes do fim e perde o foco.
+@2733 J03.ultima_reacao|Depois dos 80 minutos, sua equipe perde por um gol. Você está perto de dois apoios que começam a ocupar a mesma faixa.|{"minute_min":80,"score_state":"perdendo","margin_max":1}
+apoio|separar_apoios_reacao_final|Avisar para separarem as linhas de apoio|O setor recupera duas opções diferentes.|Você pede pressa sem apontar a sobreposição.
+posicionamento|ocupar_faixa_reacao_final|Oferecer uma terceira faixa de recepção|Você amplia o caminho da reação.|Você entra no mesmo corredor dos outros.
+passe|servir_apoio_reacao_final|Receber e servir o apoio acessível|O passe mantém a construção.|Você força a bola entre marcações.
+chute|concluir_reacao_final|Tentar finalizar|Você encontra o gol e marca.|A tentativa não entra.
+@2734 J03.cartao_ofensivo|Você tem cartão e participa de um ataque. Uma perda de bola poderia tentá-lo a reagir imediatamente, mas a jogada ainda está sob seu controle.|{"own_cards_min":1}
+passe|soltar_cartao_ataque|Usar o passe antes do contato|Você mantém a circulação.|O passe sai atrasado e é cortado.
+drible|proteger_cartao_ataque|Proteger a bola para sair da pressão|Você supera o contato com a posse.|Você perde o controle durante a proteção.
+visao|ler_saida_cartao_ataque|Conferir a saída antes de entrar no duelo|Você reconhece uma alternativa ao confronto.|Você busca o duelo sem notar o apoio.
+posicionamento|apoio_evitar_contato_cartao|Oferecer uma opção fora do contato|Você evita prender a jogada na pressão.|Você se aproxima na mesma linha do marcador.
+@2735 J03.desgaste_e_placar|A equipe perde e seu indicador de risco físico está alto. Você quer contribuir sem transformar toda reação numa corrida de recuperação longa.|{"injury_risk_min":35,"score_state":"perdendo"}
+posicionamento|referencia_curta_risco_atras|Oferecer apoio mais próximo da construção|Você mantém uma participação alcançável.|Você encurta sem sair da marcação.
+passe|conectar_risco_atras|Receber e conectar outro setor|O passe ajuda a equipe a progredir.|Você força a ligação e perde a bola.
+apoio|dividir_esforcos_risco_atras|Combinar quem dá profundidade e quem apoia|Vocês evitam repetir a mesma corrida.|Você cobra esforço do colega sem combinar sua própria função.
+visao|ler_custo_movimento_risco_atras|Conferir se sua movimentação terá continuação|Você evita uma corrida sem conexão.|Você parte antes de saber se o portador pode usar a opção.
+@2736 J03.desgaste_e_vantagem|Seu indicador de risco físico está alto e o time vence. A posse oferece a possibilidade de conectar passes sem abandonar o jogo.|{"injury_risk_min":35,"score_state":"ganhando"}
+passe|posse_conectada_risco_frente|Usar um apoio curto|A equipe mantém a bola.|O passe sai sem cuidado e a posse se perde.
+posicionamento|reduzir_distancias_risco_frente|Ajustar a distância ao apoio|Você oferece uma referência útil.|Você se aproxima demais e traz outro marcador.
+visao|ler_risco_frente_sem_diagnostico|Avaliar o espaço antes de exigir uma corrida longa|Você identifica uma continuação mais conectada.|Você trata qualquer movimento como impossível e deixa de participar.
+apoio|comunicar_funcao_risco_frente|Combinar uma função clara na circulação|O companheiro entende como pode usar seu apoio.|Você deixa o pedido vago e a circulação continua sem referência.
+@2737 J03.passes_e_confianca|Seus passes certos já aparecem no registro. Um novo passe difícil pode chamar sua atenção, mas o acerto anterior não abre a linha atual.|{"own_completed_min":3}
+passe|manter_precisao_sem_credito|Usar a linha que está disponível agora|Você mantém a circulação com precisão.|Você passa por hábito e encontra uma interceptação.
+drible|mudar_angulo_apos_passes|Conduzir para criar outro ângulo|Você encontra espaço fora da linha bloqueada.|Você alonga a bola ao tentar mudar o ângulo.
+visao|conferir_linha_apos_acertos|Conferir a cobertura do novo passe|Você percebe uma diferença em relação aos anteriores.|Você considera os acertos uma garantia para forçar a bola.
+apoio|reconhecer_apoios_apos_passes|Valorizar a movimentação de quem oferece apoio|A comunicação mantém os apoios ativos.|Você trata o passe como mérito isolado e desconsidera o movimento.
+@2738 J03.disputas_e_impulso|Você já recuperou bolas nesta partida. Um adversário começa a provocá-lo apenas com mudanças de ritmo, tentando atrair outro bote.|{"own_tackles_min":2}
+desarme|bote_leitura_apos_duas|Disputar quando houver alcance|Você recupera a bola.|Você tenta repetir o bote sem conferir o toque.
+posicionamento|conter_apos_duas_recuperacoes|Conter sem aceitar a pressa do duelo|Você mantém a faixa protegida.|Você se aproxima demais e abre o giro.
+visao|ler_isca_apos_duas|Conferir o apoio que a provocação tenta liberar|Você reconhece a continuação.|Você olha apenas o portador.
+apoio|combinar_ajuda_apos_duas|Combinar ajuda com o colega|A cobertura fica clara.|Você pede uma segunda pressão sem proteger a saída.
+@2739 J03.finalizacoes_sem_gol|Você já finalizou ao menos duas vezes e ainda não marcou. Um apoio aparece livre, enquanto a vontade de compensar continua presente.|{"own_shots_min":2,"own_goals_max":0}
+passe|servir_apoio_apesar_tentativas|Servir o apoio livre|Você mantém a melhor conexão disponível.|Você hesita até o apoio ser fechado.
+chute|nova_conclusao_sem_compensar|Tentar concluir a oportunidade atual|Você acerta e marca.|A nova tentativa não entra.
+visao|separar_chance_de_compensacao|Ler esta chance sem somar as anteriores|Você reconhece o contexto atual.|Você decide pela frustração das tentativas anteriores.
+posicionamento|continuar_apoio_apos_chutes|Oferecer uma opção sem exigir a conclusão|Você participa de uma continuação coletiva.|Você se afasta para esperar outra chance e perde a conexão.
+@2740 J03.gol_e_defesa|Você marcou e continua em campo. Agora o adversário constrói pelo seu setor, e seu trabalho precisa acompanhar essa mudança de fase.|{"own_goals_min":1}
+posicionamento|voltar_funcao_apos_gol|Voltar à referência defensiva|Você mantém o setor protegido.|Você fica esperando outra bola de ataque.
+desarme|disputa_defensiva_apos_gol|Tentar recuperar a posse|Você ganha a bola.|Você entra sem alcançar o toque.
+visao|ler_ameaca_apos_gol|Conferir os apoios adversários|Você reconhece a ameaça atual.|Você continua preso à jogada do gol e perde a referência.
+apoio|combinar_cobertura_apos_gol|Combinar a cobertura com o colega|Vocês dividem a proteção.|Você pede que o colega cubra tudo enquanto espera à frente.
+@2741 J03.assistencia_e_defesa|Você já deu uma assistência. Sem a bola, precisa fechar uma linha de passe adversária sem continuar olhando para o ataque anterior.|{"own_assists_min":1}
+posicionamento|fechar_linha_apos_assistencia|Proteger a linha mais próxima|Você limita a progressão.|Você fecha o destino antigo e libera o atual.
+desarme|recuperar_apos_assistencia|Disputar a bola no setor|Você recupera a posse.|Você tenta alcançar uma bola que já saiu.
+visao|atualizar_fase_apos_assistencia|Conferir a nova direção da partida|Você troca a referência ofensiva pela ameaça real.|Você espera outra oportunidade de passe e não acompanha a defesa.
+apoio|orientar_setor_apos_assistencia|Avisar a opção adversária por dentro|O colega entende a ameaça.|Você fala sem indicar quem está entrando.
+@2742 J03.fase_ruim_e_vantagem|A equipe vence, embora suas avaliações recentes tenham sido baixas. Você pode ajudar sem transformar a vantagem numa prova individual.|{"recent_form":"ruim","score_state":"ganhando"}
+passe|preservar_coletivo_fase_ruim_frente|Usar uma conexão simples|A equipe mantém a bola.|Você executa apressado e perde a posse.
+posicionamento|trabalho_sem_destaque_fase_ruim|Oferecer cobertura para quem avança|Você ajuda mesmo longe da conclusão.|Você abandona a cobertura para buscar destaque.
+visao|ler_necessidade_fase_ruim_frente|Conferir o que o setor precisa agora|Você reconhece uma tarefa concreta.|Você lê tudo como oportunidade de compensar sua fase.
+apoio|pedir_referencia_sem_autocritica|Pedir uma referência sem se desqualificar|O colega consegue orientar a próxima ação.|Você transforma o pedido numa avaliação de si mesmo e perde o foco.
+@2743 J03.fase_boa_e_desvantagem|Suas avaliações recentes são boas, mas a equipe perde. Um colega espera que você encontre uma solução sozinho.|{"recent_form":"boa","score_state":"perdendo"}
+liderar|chamar_solucao_coletiva_fase_boa|Pedir uma combinação em vez de prometer resolver|A reação ganha mais de uma referência.|Você assume uma promessa que faz os apoios pararem.
+passe|combinar_fase_boa_atras|Servir o apoio para continuar|A bola conecta os companheiros.|Você força um passe de efeito e perde a posse.
+drible|tentar_duelo_fase_boa_atras|Atacar o espaço com a bola|Você vence a primeira marcação.|Você insiste sozinho contra a cobertura.
+visao|ler_expectativa_fase_boa_atras|Conferir a defesa antes de atender à expectativa|Você escolhe pela jogada atual.|Você decide pelo que esperam de você, ignorando o bloqueio.
+@2744 J03.visibilidade|Você joga fora e recebe dois avisos diferentes sobre a mesma jogada. Os dois companheiros observam de ângulos diferentes.|{"home_away":"away"}
+visao|confirmar_avisos_conflitantes|Conferir a posição antes de seguir um aviso|Você distingue o sinal útil para sua referência.|Você segue a primeira voz sem olhar a jogada.
+apoio|confirmar_um_aviso_concreto|Pedir que indiquem uma referência concreta|A comunicação fica mais clara.|Você pede várias explicações enquanto a jogada continua.
+posicionamento|manter_referencia_avisos|Manter a faixa protegida enquanto confirma|Você evita abandonar o espaço por dúvida.|Você para entre duas tarefas e não protege nenhuma.
+disciplina|focar_bola_avisos|Voltar o foco ao que pode observar|Você recupera uma referência verificável.|Você passa a discutir os avisos e perde a ação.
+@2745 J03.cobranca_individual|Em casa, uma cobrança chama seu nome. Você está sem bola e pode reagir buscando destaque ou continuando a tarefa que o setor precisa.|{"home_away":"home"}
+posicionamento|manter_tarefa_cobranca_nome|Oferecer o apoio que falta ao setor|Você continua útil à jogada.|Você abandona a referência para aparecer perto da bola.
+apoio|confirmar_tarefa_cobranca_nome|Confirmar a próxima movimentação com o colega|Você mantém uma referência compartilhada.|Você pede que o colega responda à cobrança por você.
+visao|conferir_jogada_cobranca_nome|Ler a jogada antes de procurar protagonismo|Você reconhece uma opção concreta.|Você passa a seguir a cobrança e perde o espaço.
+disciplina|limitar_atencao_cobranca_nome|Retomar a atenção ao próximo lance|Você não deixa o chamado ocupar toda a decisão.|Você continua revendo o chamado e se desconecta.
+@2746 J03.cartao_e_tempo|Você tem cartão e já passou uma hora em campo. A fadiga pode fazer uma distância parecer menor do que é.|{"own_cards_min":1,"played_minutes_min":60}
+visao|medir_alcance_cartao_hora|Conferir seu alcance antes de entrar|Você distingue uma bola próxima de uma distante.|Você decide pela impressão inicial e chega tarde.
+posicionamento|conter_cartao_hora|Conter com a posição preparada|Você mantém a proteção sem uma corrida desnecessária.|Você recua sem acompanhar o portador.
+desarme|disputa_curta_cartao_hora|Tentar recuperar a bola ao alcance|Você toma a posse.|Você não acerta o tempo da entrada.
+apoio|confirmar_cobertura_cartao_hora|Confirmar a ajuda antes de encurtar|O setor preserva a cobertura.|Você presume que será coberto sem avisar.
+@2747 J03.entrada_e_cartao|Você entrou como reserva e já recebeu cartão nesta partida. Precisa continuar participando sem tratar toda disputa como uma prova de disposição.|{"bench":true,"own_cards_min":1}
+posicionamento|tarefa_apos_cartao_reserva|Preservar a tarefa do setor|Você participa com uma referência clara.|Você procura contato para mostrar disposição e sai da posição.
+desarme|disputar_sem_provar_reserva|Disputar a bola que pode alcançar|Você recupera a posse.|Você tenta um bote além do alcance.
+apoio|combinar_apoio_cartao_reserva|Combinar a divisão dos duelos|O colega entende onde pode ajudar.|Você transfere todas as disputas sem explicar sua função.
+visao|ler_duelo_cartao_reserva|Ler o domínio antes de reagir|Você reconhece o momento da entrada.|Você decide pelo desejo de compensar o cartão.
+@2748 J03.assistencia_sem_gol|Você ainda não marcou, mas já deu uma assistência. Uma nova chance permite escolher entre buscar o próprio gol e continuar servindo a equipe.|{"own_goals_max":0,"own_assists_min":1}
+chute|buscar_primeiro_apos_assistir|Tentar finalizar|Você encontra o gol e marca.|O chute não entra.
+passe|servir_sem_cobrar_primeiro|Passar ao apoio disponível|Você conecta o ataque sem perseguir o total pessoal.|Você demora na decisão e o passe é cortado.
+visao|julgar_opcao_assistiu_sem_marcar|Conferir qual opção está aberta|Você decide pela oportunidade real.|Você considera a assistência uma dívida de receber o próximo chute.
+posicionamento|continuar_opcao_assistiu_sem_marcar|Oferecer uma nova recepção|Você mantém a construção conectada.|Você espera um passe obrigatório e não se desmarca.
+@2749 J03.participacao_dupla|Você já tem gol e assistência nesta partida. Agora a equipe precisa continuar organizada, sem que sua boa atuação vire exigência de receber toda bola.|{"own_goals_min":1,"own_assists_min":1}
+passe|dividir_protagonismo_duplo|Usar o apoio de outro companheiro|A bola continua com o time.|Você toca sem olhar e entrega a posse.
+posicionamento|ajudar_sem_bola_duplo|Oferecer cobertura à jogada|Você participa sem precisar concluir.|Você abandona a tarefa para pedir a bola de novo.
+liderar|valorizar_colegas_duplo|Reconhecer as opções criadas pelos colegas|O setor mantém a cooperação.|Você transforma o reconhecimento em cobrança por mais passes para você.
+visao|atualizar_leitura_duplo|Ler a jogada atual sem depender do histórico|Você percebe uma cobertura nova.|Você repete uma solução que a defesa já fechou.
+@2750 J03.risco_disciplinar|Seu indicador disciplinar está elevado. Um adversário tenta atrair sua reação enquanto mantém a bola perto.|{"disciplinary_risk_min":35}
+disciplina|separar_provocacao_disputa|Concentrar-se na bola, sem responder à provocação|Você mantém a atenção na disputa.|Você discute e perde a referência da bola.
+posicionamento|conter_indicador_disciplinar|Conter o corredor de progressão|Você reduz espaço sem perseguir o corpo.|Você se aproxima desequilibrado.
+desarme|disputar_indicador_disciplinar|Tentar o desarme no toque exposto|Você recupera a posse.|Você reage antes da exposição da bola.
+apoio|pedir_cobertura_sem_revidar|Pedir cobertura com uma referência clara|O colega entende como ajudar.|Você transforma o pedido numa reclamação sobre o adversário.
+@2751 J03.leitura_inicial|Antes dos 35 minutos, um mesmo adversário muda a forma de oferecer apoio. Você pode ajustar a leitura sem rotular todo o plano rival.|{"minute_max":35}
+visao|ler_mudanca_apoio_inicio|Conferir a nova posição do apoio|Você atualiza uma referência real.|Você interpreta um movimento como regra fixa para o jogo inteiro.
+posicionamento|ajustar_faixa_apoio_inicio|Ajustar a faixa que protege|Você acompanha a mudança sem perder o setor.|Você segue a pessoa e abandona a faixa.
+apoio|comunicar_observacao_inicio|Compartilhar somente o movimento que observou|O colega recebe uma informação verificável.|Você anuncia um plano adversário que não conseguiu confirmar.
+desarme|cortar_nova_linha_inicio|Tentar cortar a nova linha de passe|Você intercepta a bola.|Você reage à posição antiga e não chega.
+@2752 J03.foco_pos_conclusao|Você já tentou finalizar e a partida segue. A jogada atual acontece no seu setor defensivo; discutir a tentativa anterior só afastaria sua atenção.|{"own_shots_min":1}
+posicionamento|retomar_setor_apos_chute|Retomar a faixa defensiva|Você volta a proteger o setor.|Você permanece olhando para a jogada anterior.
+desarme|recuperar_apos_tentativa|Tentar recuperar a bola próxima|Você ganha a disputa.|Você chega fora do tempo.
+visao|ler_ameaca_apos_tentativa|Conferir a ameaça atual|Você atualiza sua referência.|Você continua avaliando a finalização que já terminou.
+apoio|aviso_curto_apos_tentativa|Dar um aviso sobre a nova jogada|O colega entende onde está a ameaça.|Você comenta a chance anterior em vez de orientar o lance.
+@2753 J03.passe_sob_cobranca|Você já acertou passes nesta partida, mas agora ouve pedidos incompatíveis de velocidade e segurança.|{"own_completed_min":2}
+visao|julgar_passe_sem_slogan|Conferir espaço e cobertura antes de decidir|Você encontra uma opção além das cobranças.|Você tenta atender às duas vozes sem olhar a jogada.
+passe|conectar_opcao_real_cobranca|Passar pela linha realmente disponível|A bola encontra o apoio.|Você passa para onde pediram, apesar do bloqueio.
+apoio|explicar_opcao_com_gesto|Indicar qual conexão pretende usar|O companheiro reconhece sua referência.|Você sinaliza um destino e executa para outro.
+posicionamento|oferecer_novo_angulo_cobranca|Criar outro ângulo de apoio|Você ajuda a sair da escolha apertada.|Você se move para a mesma linha fechada.
+@2754 J03.defesa_e_reacao|Você já recuperou ao menos uma bola, e a equipe está atrás. A próxima tarefa exige decidir quando pressionar e quando preservar a cobertura.|{"own_tackles_min":1,"score_state":"perdendo"}
+desarme|recuperar_reacao_sem_repetir|Tentar recuperar no alcance|Você vence a disputa.|Você força um bote porque o anterior deu certo.
+posicionamento|cobrir_reacao_apos_desarme|Proteger o espaço atrás da pressão|Você mantém uma referência para a equipe.|Você avança junto de todos e deixa a faixa livre.
+visao|ler_tempo_reacao_apos_desarme|Conferir se a pressão pode ser acompanhada|Você reconhece uma oportunidade conectada.|Você sai sozinho por urgência do placar.
+liderar|chamar_funcao_reacao_apos_desarme|Chamar uma pressão com cobertura definida|A equipe entende a divisão.|Você pede reação sem dizer quem protege o espaço.
+@2755 J03.penalti|Há um pênalti confirmado para sua equipe e você foi designado para cobrar. O goleiro se movimenta antes da sua aproximação.|{"set_piece":"penalty_for","verified_event":"player_designated_taker"}
+chute|penalti_manter_canto|Manter o canto escolhido|Você acerta a cobrança e marca.|A cobrança não entra no canto pretendido.
+chute|penalti_esperar_goleiro|Ajustar a direção após observar o goleiro|Você encontra o espaço e marca.|O ajuste atrasa a batida e a bola não entra.
+disciplina|penalti_rotina_respiracao|Retomar sua rotina antes de cobrar|Você recupera a concentração para a cobrança.|Você continua acompanhando o movimento do goleiro e perde o foco.
+visao|penalti_conferir_posicoes|Conferir a posição da bola e do goleiro|Você estabelece as referências da cobrança.|Você se fixa no goleiro e esquece o próprio preparo.
+@2756 J03.penalti|Você é o cobrador designado de um pênalti confirmado. Um companheiro pede uma conversa curta antes da cobrança.|{"set_piece":"penalty_for","verified_event":"player_designated_taker"}
+apoio|penalti_ouvir_aviso_curto|Ouvir o aviso e confirmar sua decisão|A conversa ajuda sem tomar sua concentração.|Você prolonga a conversa e perde a referência da cobrança.
+disciplina|penalti_pedir_espaco|Pedir espaço para manter sua preparação|O companheiro respeita seu tempo.|Você pede com irritação e leva o atrito para a preparação.
+chute|penalti_bater_apos_aviso|Cobrar com a direção que preparou|Você acerta o chute e marca.|A execução não corresponde à direção preparada.
+visao|penalti_filtrar_informacao|Conferir se o aviso muda alguma referência real|Você distingue uma observação útil de um palpite.|Você muda a decisão apenas porque ouviu outra opinião.
+@2757 J03.penalti_sem_cobrar|Um pênalti foi confirmado para sua equipe, e o cobrador é outro jogador. Você precisa respeitar a preparação dele e a regra de entrada na área.|{"set_piece":"penalty_for","verified_event":"other_designated_taker"}
+posicionamento|penalti_aguardar_limite|Posicionar-se respeitando o limite permitido|Você permanece pronto sem invadir.|Você se antecipa ao momento permitido.
+apoio|penalti_apoio_sem_pressao|Oferecer apoio breve sem dar nova ordem|O cobrador recebe apoio sem outra cobrança.|Você passa instruções contraditórias e o distrai.
+visao|penalti_observar_possivel_sobra|Observar a cobrança para reagir à sobra real|Você acompanha a trajetória sem presumir rebote.|Você corre para um rebote antes de saber se haverá sobra.
+disciplina|penalti_nao_disputar_autoria|Respeitar a escolha de quem cobra|Você mantém o foco na equipe.|Você insiste em discutir a cobrança e perde a preparação.
+@2758 J03.penalti_contra|Foi confirmado um pênalti contra sua equipe. Você é jogador de linha e precisa se preparar para a continuação sem discutir uma decisão já definida.|{"set_piece":"penalty_against"}
+posicionamento|penalti_contra_posicao_legal|Ocupar uma posição permitida para a continuação|Você fica pronto sem antecipar a entrada.|Você avança antes do momento permitido.
+apoio|penalti_contra_apoio_goleiro|Dar apoio curto ao goleiro sem orientá-lo à distância|Sua mensagem não atrapalha a preparação.|Você tenta controlar a decisão dele e gera distração.
+visao|penalti_contra_ler_trajetoria|Acompanhar a trajetória da cobrança|Você reage ao desfecho real.|Você presume um lado e perde a trajetória.
+disciplina|penalti_contra_conter_reclamacao|Retomar o foco depois da marcação|Você se prepara para a próxima ação.|Você continua discutindo e não acompanha a cobrança.
+@2759 J03.falta_direta|Uma falta direta foi marcada perto da área adversária, e você está designado para a cobrança. A barreira deixa um lado mais visível.|{"set_piece":"direct_free_kick_for","verified_event":"player_designated_taker"}
+chute|falta_direta_lado_visivel|Finalizar pelo lado visível|Você acerta a cobrança e marca.|A bola não encontra o gol.
+chute|falta_direta_sobre_barreira|Tentar superar a barreira|Você coloca a bola no gol.|A cobrança não passa pela barreira com direção.
+passe|falta_direta_jogada_curta|Usar um companheiro numa jogada curta|O passe inicia a combinação.|A defesa antecipa a combinação e corta.
+visao|falta_direta_conferir_angulo|Conferir o ângulo real antes de definir|Você prepara uma escolha compatível com a posição da bola.|Você escolhe pela aparência da barreira e ignora a distância.
+@2760 J03.falta_indireta|Foi marcada uma falta indireta a favor. Você participa da combinação e precisa respeitar a necessidade de outro toque antes de uma conclusão válida.|{"set_piece":"indirect_free_kick_for"}
+passe|indireta_toque_combinado|Executar o primeiro toque combinado|O passe permite continuar a jogada.|O toque sai longe do cobrador seguinte.
+posicionamento|indireta_abrir_linha|Abrir uma linha para a combinação|Você oferece uma opção acessível.|Você entra no espaço do outro participante.
+apoio|indireta_confirmar_sequencia|Confirmar a sequência com o companheiro|Vocês entendem a ordem dos toques.|Cada um entende que fará o primeiro toque.
+visao|indireta_ler_avanco_barreira|Conferir a reação da barreira|Você identifica a faixa que a combinação pode usar.|Você mantém a leitura anterior ao avanço da defesa.
+@2761 J03.escanteio|Sua equipe tem um escanteio confirmado, e você é o cobrador designado. Há uma opção curta e movimentos diferentes na área.|{"set_piece":"corner_for","verified_event":"player_designated_taker"}
+passe|escanteio_bola_primeira_faixa|Enviar para a primeira faixa|A bola encontra um companheiro.|A cobrança não alcança a corrida.
+passe|escanteio_opcao_curta|Usar o apoio curto|O passe inicia uma nova combinação.|A marcação antecipa o apoio e corta.
+visao|escanteio_conferir_movimentos|Conferir qual movimento realmente começou|Você ajusta a referência da cobrança.|Você cobra para uma corrida que ainda não aconteceu.
+apoio|escanteio_confirmar_sinal|Confirmar o sinal com quem está perto|A equipe entende a proposta.|Seu sinal fica ambíguo e as corridas se desencontram.
+@2762 J03.escanteio_marcacao|Sua equipe defende um escanteio confirmado. Um adversário tenta trocar a referência de marcação passando por outro jogador.|{"set_piece":"corner_against"}
+posicionamento|escanteio_proteger_trajeto|Ajustar a posição sem perder o adversário|Você mantém a referência durante a troca.|Você acompanha o bloqueio e perde quem marcava.
+apoio|escanteio_comunicar_troca|Avisar a troca ao companheiro|A marcação se reorganiza.|Você presume que o colega assumiu sem confirmar.
+desarme|escanteio_disputar_bola|Atacar a bola na sua faixa|Você vence a disputa.|Você erra o tempo da bola.
+visao|escanteio_conferir_bola_e_homem|Alternar a atenção entre cobrança e referência|Você acompanha o movimento real.|Você fixa a bola e perde a corrida.
+@2763 J03.lateral_longo|Há um lateral confirmado perto da área adversária. Outro jogador vai cobrar, e você pode oferecer apoio curto ou profundidade.|{"set_piece":"throw_in_for_attacking"}
+posicionamento|lateral_curto_sem_sombra|Oferecer apoio curto fora da sombra|Você cria uma opção clara.|Você se aproxima na linha do marcador.
+posicionamento|lateral_longo_profundidade|Buscar profundidade para a cobrança|Você amplia os destinos possíveis.|Você dispara sem conferir o alcance do cobrador.
+apoio|lateral_confirmar_destino|Indicar onde pode receber|O cobrador reconhece sua referência.|Você sinaliza num sentido e corre no outro.
+visao|lateral_ler_cobertura|Conferir a cobertura antes da movimentação|Você encontra uma faixa disponível.|Você olha apenas o cobrador.
+@2764 J03.lateral_defensivo|Um lateral adversário foi confirmado no seu setor defensivo. Dois jogadores tentam trocar de lugar antes da cobrança.|{"set_piece":"throw_in_against_defensive"}
+posicionamento|lateral_contra_preservar_faixa|Proteger a faixa de recepção|Você limita o destino curto.|Você segue a troca e deixa o centro livre.
+apoio|lateral_contra_dividir_referencias|Combinar quem acompanha cada movimento|Vocês mantêm referências distintas.|Os dois acompanham o mesmo adversário.
+desarme|lateral_contra_antecipar|Tentar interceptar a cobrança|Você ganha a posse.|Você antecipa sem confirmar o destino.
+visao|lateral_contra_observar_cobrador|Conferir o corpo do cobrador e a corrida|Você acompanha a relação entre os dois.|Você reage só à primeira ameaça de lançamento.
+@2765 J03.falta_defensiva|Sua equipe vai cobrar uma falta na defesa. Você está designado para reiniciar, com um apoio curto e um destino mais longo.|{"set_piece":"defensive_free_kick_for","verified_event":"player_designated_taker"}
+passe|falta_defesa_curta|Usar o apoio curto|Você reinicia a posse com precisão.|O passe sai fraco e é interceptado.
+passe|falta_defesa_longa|Buscar o destino mais longo|A bola encontra a referência à frente.|A cobrança não alcança o destino.
+visao|falta_defesa_conferir_pressao|Conferir como o adversário fechou as saídas|Você reconhece uma linha utilizável.|Você cobra para uma opção que já foi fechada.
+apoio|falta_defesa_pedir_movimento|Pedir um movimento antes de cobrar|Um companheiro oferece outra referência.|O pedido não indica a direção necessária.
+@2766 J03.barreira|Uma falta direta contra sua equipe foi confirmada. Você recebeu a tarefa de compor a barreira.|{"set_piece":"direct_free_kick_against","verified_event":"player_in_wall"}
+posicionamento|barreira_manter_alinhamento|Manter o alinhamento combinado|Você preserva a faixa de proteção.|Você abre uma fresta ao ajustar sozinho.
+apoio|barreira_ouvir_goleiro|Confirmar o ajuste pedido pelo goleiro|A barreira entende o deslocamento.|Você se move antes de compreender o pedido.
+visao|barreira_acompanhar_cobrador|Acompanhar a execução sem perder o lugar|Você reage ao momento real da cobrança.|Você reage à finta e perde a posição.
+disciplina|barreira_respeitar_distancia|Manter a distância exigida|Você permanece preparado sem antecipação indevida.|Você avança antes do momento permitido.
+@2767 J03.var|A revisão de um lance ainda está em andamento. Você continua no campo sem resultado confirmado para a decisão revisada.|{"verified_event":"review_in_progress"}
+disciplina|var_aguardar_confirmacao|Esperar a confirmação antes de reagir|Você mantém a atenção sem presumir o resultado.|Você comemora ou protesta antes da decisão.
+posicionamento|var_manter_referencia|Preservar sua referência para a retomada|Você não perde a organização.|Você se afasta e deixa de acompanhar o setor.
+apoio|var_lembrar_colegas_espera|Lembrar os colegas de esperar a decisão|A comunicação reduz a precipitação.|Você divulga uma interpretação como se fosse confirmação.
+visao|var_conferir_retomada|Observar qual reinício será confirmado|Você prepara a referência correta após a decisão.|Você presume uma reposição que não foi definida.
+@2768 J03.atendimento|Um companheiro recebe atendimento confirmado, e a partida está interrompida. Não há diagnóstico informado.|{"verified_event":"teammate_medical_stoppage"}
+apoio|atendimento_respeitar_espaco|Dar espaço ao atendimento|Você não dificulta o trabalho da equipe responsável.|Você se aproxima para pedir informações e atrapalha o espaço.
+disciplina|atendimento_nao_diagnosticar|Evitar especular sobre uma lesão|Você preserva a informação que ainda não existe.|Você repete uma impressão como diagnóstico.
+posicionamento|atendimento_preparar_retomada|Manter uma referência para a retomada|Você continua conectado ao setor.|Você se afasta sem acompanhar quando o jogo pode voltar.
+liderar|atendimento_organizar_espera|Pedir aos colegas que mantenham espaço e atenção|O grupo espera sem cercar o atendimento.|Você transmite uma garantia sobre a volta do colega que não recebeu.
+@2769 J03.substituicao|Sua substituição foi confirmada e você recebeu a ordem de sair. Há um companheiro entrando para assumir a função.|{"verified_event":"player_substitution_confirmed"}
+apoio|substituicao_passar_referencia|Dar uma referência curta a quem entra|O companheiro recebe uma informação útil.|Você tenta explicar tudo durante a troca e não deixa uma referência clara.
+disciplina|substituicao_sair_sem_discutir|Cumprir a troca sem transformar a saída em discussão|Você preserva o foco na continuidade.|Você discute a decisão durante a saída.
+liderar|substituicao_apoiar_entrada|Apoiar quem vai entrar|O colega recebe uma acolhida sem cobrança.|Você apresenta a entrada como obrigação de corrigir tudo.
+visao|substituicao_resumir_ameaca|Apontar somente a ameaça que observou no setor|Você entrega uma informação verificável.|Você transmite uma suposição sobre o rival como certeza.
+@2770 J03.acrescimos|O tempo de acréscimos foi oficialmente informado e o jogo está empatado. Você recebe uma bola com um apoio curto e espaço para tentar avançar.|{"match_period":"stoppage_time","score_state":"empatando"}
+passe|acrescimos_empate_conectar|Usar o apoio curto|A bola segue com a equipe.|Você força o toque e perde a posse.
+drible|acrescimos_empate_avancar|Atacar o espaço com a bola|Você supera a primeira marcação.|Você deixa a bola longa na aceleração.
+visao|acrescimos_empate_ler_espaco|Conferir o espaço antes de acelerar|Você encontra uma opção concreta.|Você escolhe só pelo relógio e ignora a cobertura.
+apoio|acrescimos_empate_chamar_apoio|Pedir uma aproximação clara|O companheiro oferece uma conexão.|Você pede pressa sem indicar de que lado precisa do apoio.
+@2771 J03.acrescimos|Sua equipe está vencendo por um gol nos acréscimos confirmados. Você pode oferecer uma saída para evitar devolver a bola sob pressão.|{"match_period":"stoppage_time","score_state":"ganhando","margin_max":1}
+posicionamento|acrescimos_frente_dar_saida|Oferecer saída fora da pressão|Você cria uma opção alcançável.|Você se esconde atrás do marcador.
+passe|acrescimos_frente_circular|Receber e circular com o apoio|Você ajuda a manter a posse.|Um toque descuidado entrega a bola.
+visao|acrescimos_frente_proteger|Conferir onde está a cobertura|Você preserva uma referência para a perda.|Você trata a partida como encerrada e deixa a faixa aberta.
+liderar|acrescimos_frente_atencao|Pedir atenção à próxima ação, sem comemorar antes|O setor mantém o foco.|Você fala do resultado final antes do apito.
+@2772 J03.acrescimos|A equipe perde por um gol nos acréscimos confirmados. Você está longe da bola e precisa escolher uma movimentação que o portador ainda possa usar.|{"match_period":"stoppage_time","score_state":"perdendo","margin_max":1}
+posicionamento|acrescimos_atras_corrida_visivel|Atacar um espaço visível ao portador|Você cria uma opção de reação.|Você corre para trás da marcação sem linha de passe.
+apoio|acrescimos_atras_indicar_destino|Indicar onde pode receber|O portador entende a referência.|Você chama sem completar o movimento.
+visao|acrescimos_atras_conferir_portador|Conferir se o portador pode executar o passe|Você ajusta a corrida à condição real.|Você dispara enquanto ele ainda protege a bola.
+liderar|acrescimos_atras_organizar_apoios|Pedir que os apoios ocupem faixas diferentes|A reação ganha alternativas.|Você pede que todos ataquem a mesma zona.
+@2773 J03.expulsao_colega|Uma expulsão de companheiro foi confirmada. Sua equipe está com um jogador a menos, e você precisa ajustar a tarefa sem inventar uma nova escalação.|{"player_balance":"team_minus_one","verified_event":"teammate_red_confirmed"}
+posicionamento|menos_um_proteger_faixa|Proteger a faixa que ficou exposta|Você cobre uma necessidade imediata.|Você abandona sua referência sem combinar a cobertura.
+apoio|menos_um_confirmar_tarefa|Confirmar a tarefa com o companheiro ao lado|Vocês ajustam a divisão local.|Os dois entendem que devem ocupar o mesmo espaço.
+visao|menos_um_ler_espacos|Conferir qual distância ficou maior|Você identifica o problema real.|Você presume uma formação que a equipe não assumiu.
+liderar|menos_um_pedir_conexao|Pedir movimentos conectados em vez de corridas isoladas|O setor preserva apoio entre jogadores.|Você faz uma cobrança sem oferecer uma referência.
+@2774 J03.expulsao_rival|Uma expulsão adversária foi confirmada. Sua equipe tem um jogador a mais, mas a bola ainda precisa circular para encontrar o espaço.|{"player_balance":"opponent_minus_one","verified_event":"opponent_red_confirmed"}
+passe|mais_um_mudar_lado|Circular para mudar o lado|O passe desloca a marcação.|Você acelera sem precisão e perde a posse.
+posicionamento|mais_um_ocupar_largura|Oferecer largura ao ataque|Você amplia as referências.|Você se junta ao congestionamento.
+visao|mais_um_ler_ajuste_rival|Conferir como o adversário se reorganizou|Você identifica o espaço que realmente surgiu.|Você trata a vantagem numérica como corredor livre em qualquer lado.
+liderar|mais_um_evitar_pressa|Pedir uma combinação clara|A equipe ganha uma referência de construção.|Você promete que a superioridade garante o gol.
+@2775 J03.virada_confirmada|O registro confirma que sua equipe virou o placar e continua vencendo. Você precisa responder à nova fase sem agir como se ainda estivesse atrás.|{"score_state":"ganhando","verified_event":"team_comeback_confirmed"}
+passe|virada_confirmada_posse|Usar o apoio para manter a bola|A equipe continua conectada.|Você mantém a pressa da reação e erra o passe.
+posicionamento|virada_confirmada_equilibrio|Oferecer apoio com cobertura preservada|Você ajuda sem abandonar a estrutura.|Você avança junto de todos e deixa espaço atrás.
+visao|virada_confirmada_atualizar|Atualizar a leitura do placar e da jogada|Você ajusta a próxima decisão ao presente.|Você continua perseguindo um empate que já passou.
+liderar|virada_confirmada_foco|Pedir foco depois da virada|O setor retoma a atenção.|Você anuncia a vitória antes do encerramento.
+@2776 J03.gol_sofrido_recente|O registro confirma um gol sofrido na ação anterior. A partida foi retomada e você pode ajudar a equipe a se reconectar.|{"verified_event":"opponent_goal_previous_action"}
+passe|apos_sofrer_primeira_conexao|Fazer a conexão simples disponível|O passe ajuda a retomar a circulação.|Você tenta compensar imediatamente e entrega a bola.
+apoio|apos_sofrer_sem_culpado|Combinar a próxima referência sem procurar culpados|O setor encontra um próximo passo.|Você transforma o aviso em acusação.
+posicionamento|apos_sofrer_reorganizar|Retomar sua posição de apoio|Você oferece uma opção clara.|Você segue reclamando e não se apresenta.
+visao|apos_sofrer_ler_atual|Conferir a jogada que está acontecendo|Você volta ao contexto atual.|Você continua revendo o gol enquanto a bola muda de lado.
+@2777 J03.defesa_penalti|O registro confirma que o goleiro de sua equipe defendeu um pênalti e a bola permaneceu em jogo. Você precisa acompanhar a continuidade.|{"verified_event":"own_keeper_penalty_saved_live_ball"}
+desarme|penalti_defendido_disputar_sobra|Disputar a bola na continuidade|Você recupera a posse.|O adversário chega primeiro à bola.
+posicionamento|penalti_defendido_proteger|Proteger a faixa da segunda ação|Você mantém uma referência defensiva.|Você comemora antes de acompanhar a sobra.
+visao|penalti_defendido_ler_rebote|Conferir para onde a bola realmente saiu|Você reage à trajetória.|Você presume um lado e perde a sobra.
+apoio|penalti_defendido_avisar_continua|Avisar que a jogada continua|O colega mantém atenção à bola.|Seu chamado fica perdido numa comemoração antecipada.
+@2778 J03.interrupcao_longa|A partida voltou depois de uma interrupção longa confirmada. Você continua em campo e precisa retomar uma referência, sem assumir a causa da pausa.|{"verified_event":"resumed_after_long_stoppage"}
+posicionamento|retomada_longa_referencia|Retomar a posição combinada|Você volta conectado ao setor.|Você ocupa uma referência que outro companheiro já assumiu.
+apoio|retomada_longa_confirmar|Confirmar a divisão com quem está perto|Vocês alinham as tarefas.|Cada um entende uma divisão diferente.
+visao|retomada_longa_conferir_reinicio|Conferir onde a bola foi reposta|Você acompanha o reinício real.|Você espera uma reposição diferente da confirmada.
+disciplina|retomada_longa_foco|Concentrar-se na primeira ação após a volta|Você deixa a pausa para trás.|Você continua comentando a interrupção e perde a ação.
+@2779 J03.fora_confirmado|Você teve um gol anulado por impedimento confirmado. A partida foi retomada, e você precisa continuar sem contar a tentativa como gol válido.|{"verified_event":"player_goal_disallowed_offside"}
+posicionamento|apos_anulado_rever_tempo|Ajustar o tempo da próxima corrida|Você oferece uma nova referência de movimento.|Você repete o disparo sem olhar o portador.
+disciplina|apos_anulado_retornar_foco|Retomar o foco sem discutir o total pessoal|Você acompanha a jogada atual.|Você insiste em comemorar uma marca que não foi validada.
+apoio|apos_anulado_combinar_tempo|Combinar o momento da corrida com o passador|Vocês encontram uma referência comum.|Você culpa o companheiro sem ouvir a combinação.
+visao|apos_anulado_ler_nova_linha|Conferir a linha defensiva atual|Você atualiza a leitura.|Você age pela posição da defesa no lance anterior.
+@2780 J03.continental_estreia|Esta é sua primeira atuação confirmada numa competição continental. A bola chega ao seu setor, e a novidade não muda a necessidade de ler a jogada.|{"future_competition":true,"competition_type":"continental","verified_event":"player_continental_debut"}
+passe|estreia_continental_conectar|Usar o apoio disponível|Você entra na circulação com precisão.|Você tenta um passe sem conferir a linha.
+posicionamento|estreia_continental_referencia|Oferecer uma referência conhecida do setor|Você mantém a equipe conectada.|Você abandona a tarefa para procurar um gesto de destaque.
+visao|estreia_continental_ler|Conferir a cobertura antes de agir|Você reconhece o espaço real.|Você decide pelo peso da estreia e ignora o bloqueio.
+apoio|estreia_continental_confirmar|Confirmar a próxima movimentação com o colega|A combinação reduz a dúvida.|Você pede uma garantia sobre um lance ainda aberto.
+@2781 J03.continental_fora|Você joga fora numa competição continental e percebe uma dificuldade de comunicação entre os apoios. Os avisos não estão chegando com clareza.|{"future_competition":true,"competition_type":"continental","home_away":"away","verified_event":"communication_difficulty_confirmed"}
+apoio|continental_fora_sinal_simples|Usar um sinal simples e visível|O companheiro reconhece a referência.|Você combina gestos contraditórios.
+posicionamento|continental_fora_aproximar|Aproximar para uma conexão acessível|Você cria uma opção clara.|Você se junta à marcação e fecha o espaço.
+passe|continental_fora_curto|Usar o passe curto|A equipe mantém a posse.|O toque sai no tempo errado.
+visao|continental_fora_checar_reacao|Conferir se a referência foi entendida|Você percebe a resposta do colega.|Você presume o entendimento e muda de faixa sozinho.
+@2782 J03.continental_ida|É a partida de ida de um confronto continental confirmado. Você recebe uma oportunidade de ataque sem conhecer o resultado futuro do confronto.|{"future_competition":true,"competition_type":"continental","leg":"first"}
+chute|ida_continental_concluir|Tentar concluir a chance atual|Você acerta o gol e marca.|A tentativa não entra.
+passe|ida_continental_construir|Usar o apoio para continuar|O passe mantém o ataque.|Você força a bola entre coberturas.
+visao|ida_continental_sem_prever_volta|Avaliar esta jogada sem presumir o jogo de volta|Você decide pelo espaço presente.|Você escolhe por um resultado futuro que ainda não existe.
+posicionamento|ida_continental_cobertura|Oferecer apoio preservando a cobertura|Você mantém conexão para a continuação.|Você abandona a faixa sem combinar quem a assume.
+@2783 J03.continental_agregado_frente|Na volta continental confirmada, sua equipe está à frente no agregado verificado. O adversário pressiona sua saída de bola.|{"future_competition":true,"competition_type":"continental","leg":"second","aggregate_state":"leading"}
+passe|agregado_frente_apoio|Usar o apoio fora da pressão|Você ajuda a equipe a manter a posse.|Você passa com descuido e entrega a bola.
+posicionamento|agregado_frente_saida|Oferecer uma saída alcançável|Você evita prender o portador.|Você corre para longe da possibilidade de passe.
+visao|agregado_frente_sem_classificar|Conferir as opções sem tratar o confronto como encerrado|Você mantém a leitura da ameaça atual.|Você age como se a classificação já estivesse garantida.
+liderar|agregado_frente_proxima_acao|Pedir atenção à próxima ação|A equipe mantém uma referência.|Você começa a falar do próximo adversário antes do fim.
+@2784 J03.continental_agregado_atras|Na volta continental confirmada, o agregado verificado está contra sua equipe. Há uma jogada para construir, sem garantia de reação.|{"future_competition":true,"competition_type":"continental","leg":"second","aggregate_state":"trailing"}
+posicionamento|agregado_atras_abrir_caminho|Oferecer uma faixa diferente dos apoios atuais|Você amplia as opções de reação.|Você entra no mesmo corredor de outro colega.
+passe|agregado_atras_combinar|Buscar uma combinação|O passe conecta o ataque.|Você acelera sem precisão e perde a bola.
+chute|agregado_atras_finalizar|Tentar uma finalização|Você marca com o chute.|A bola não entra.
+visao|agregado_atras_sem_conta_futura|Ler a jogada sem prometer a classificação|Você reconhece uma opção real.|Você decide por uma conta de gols sem conferir o espaço.
+@2785 J03.continental_agregado_igual|O agregado está igual na volta continental confirmada. O regulamento verificado não usa gol fora como desempate nesta edição.|{"future_competition":true,"competition_type":"continental","leg":"second","aggregate_state":"level","verified_event":"no_away_goal_rule_verified"}
+visao|agregado_igual_regra_real|Considerar somente a regra verificada|Você não trata um gol fora como vantagem inexistente.|Você aplica uma regra de outra edição.
+passe|agregado_igual_circular|Usar a circulação para construir|A bola segue com o time.|Você força um passe pela urgência do agregado.
+posicionamento|agregado_igual_equilibrar|Oferecer apoio com proteção atrás|Você mantém alternativas conectadas.|Você avança sem combinar a cobertura.
+liderar|agregado_igual_evitar_mito|Reforçar o combinado sem inventar critério de desempate|O grupo mantém uma referência correta.|Você anuncia um critério que não vale nesta competição.
+@2786 J03.continental_prorrogacao|A prorrogação continental foi confirmada pelo regulamento e iniciada. Você continua em campo; o tempo regulamentar já não descreve esta fase.|{"future_competition":true,"competition_type":"continental","match_period":"extra_time"}
+posicionamento|prorrogacao_conectar_distancias|Ajustar uma distância de apoio|Você mantém a conexão do setor.|Você se afasta e deixa o portador isolado.
+passe|prorrogacao_circular|Usar a opção curta|A equipe mantém a bola.|O passe sai sem direção.
+visao|prorrogacao_ler_movimentos|Conferir os movimentos antes de acelerar|Você reconhece uma oportunidade concreta.|Você decide como se o relógio garantisse uma última jogada.
+apoio|prorrogacao_dividir_movimentos|Combinar movimentos complementares|Vocês evitam repetir a mesma corrida.|Você pede que o colega faça duas tarefas incompatíveis.
+@2787 J03.continental_penaltis|Uma disputa de pênaltis continental foi confirmada. Você está na lista de cobradores, mas sua vez ainda não chegou.|{"future_competition":true,"competition_type":"continental","match_period":"shootout","verified_event":"player_listed_shootout_taker"}
+disciplina|disputa_aguardar_vez|Manter sua preparação enquanto aguarda|Você preserva uma rotina sem antecipar a cobrança.|Você muda a preparação a cada cobrança dos outros.
+apoio|disputa_apoiar_sem_receita|Apoiar o colega sem impor uma receita|Ele recebe apoio sem mais instruções.|Você acrescenta uma ordem no momento em que ele tenta se concentrar.
+visao|disputa_observar_sem_garantir|Observar sem transformar uma cobrança em padrão garantido|Você mantém informação e incerteza separadas.|Você presume que o goleiro repetirá sempre o mesmo movimento.
+liderar|disputa_respeitar_ordem|Respeitar a ordem confirmada dos cobradores|O grupo mantém uma referência clara.|Você tenta reorganizar a lista sem autoridade para isso.
+@2788 J03.continental_final|Você está em uma final continental confirmada. Há uma oportunidade de ataque, mas o peso do título pode fazer qualquer passe parecer decisivo.|{"future_competition":true,"competition_type":"continental","knockout_round":"final"}
+passe|final_continental_jogada_atual|Usar a linha de passe disponível|Você mantém o ataque conectado.|Você força um passe como se precisasse decidir tudo agora.
+chute|final_continental_concluir|Tentar concluir a oportunidade|Você encontra o gol.|A tentativa não entra.
+visao|final_continental_espaco_real|Conferir cobertura e apoio|Você reconhece o espaço real.|Você escolhe pela imagem da comemoração e não pela defesa.
+apoio|final_continental_referencia_curta|Combinar uma referência curta com o colega|A conversa orienta a próxima ação.|Você promete um título por uma jogada ainda aberta.
+@2789 J03.continental_grupo|Na última rodada continental de grupos, o jogo está em andamento. A classificação ainda depende de dados verificados e você não recebeu confirmação dos outros resultados.|{"future_competition":true,"competition_type":"continental","knockout_round":"group_last_round","verified_event":"other_results_unconfirmed"}
+disciplina|grupo_sem_noticia_inventada|Não reagir a um placar que não foi confirmado|Você mantém o foco no jogo real.|Você trata um rumor como resultado oficial.
+visao|grupo_jogar_contexto_local|Ler a jogada e o placar da sua partida|Você usa informações disponíveis.|Você muda sua ação por uma conta incompleta.
+apoio|grupo_pedir_confirmacao_fonte|Pedir que qualquer mudança venha por uma fonte definida|A comunicação reduz mensagens contraditórias.|Você busca versões diferentes e amplia a confusão.
+posicionamento|grupo_manter_tarefa|Preservar a referência do setor|Você continua útil enquanto não há nova orientação.|Você abandona a função por uma suposta classificação.
+@2790 J03.continental_duas_contas|Na volta continental, sua equipe vence a partida, mas segue atrás no agregado confirmado. Um colega começa a tratar o placar local como classificação.|{"future_competition":true,"competition_type":"continental","leg":"second","aggregate_state":"trailing","score_state":"ganhando"}
+apoio|duas_contas_esclarecer|Lembrar a diferença entre os dois placares|O colega entende a referência do confronto.|Você explica de forma confusa e mistura os resultados.
+passe|duas_contas_continuar_ataque|Usar o apoio para continuar construindo|O passe mantém a reação possível.|Você força a bola por ansiedade com o agregado.
+posicionamento|duas_contas_dar_opcao|Oferecer outra faixa de ataque|Você amplia a construção sem uma corrida isolada.|Você se junta ao congestionamento.
+visao|duas_contas_sem_parar_lance|Manter a leitura da jogada enquanto considera o contexto|Você não perde a ação por discutir a conta.|Você continua calculando e deixa a bola passar pelo setor.
+@2791 J03.continental_protecao_agregada|Na volta continental, a equipe perde esta partida, mas ainda vence no agregado confirmado. Há uma saída de bola pressionada no seu setor.|{"future_competition":true,"competition_type":"continental","leg":"second","aggregate_state":"leading","score_state":"perdendo"}
+passe|protecao_agregada_saida|Usar a linha de saída disponível|A equipe mantém a posse.|Você passa com pressa de empatar e perde a bola.
+posicionamento|protecao_agregada_apoio|Aproximar para oferecer apoio real|Você tira o portador do isolamento.|Você aproxima levando mais um marcador.
+visao|protecao_agregada_distinguir|Distinguir o placar local da necessidade da jogada|Você reconhece uma decisão útil sem presumir o fim.|Você trata a vantagem agregada como classificação garantida.
+liderar|protecao_agregada_foco|Pedir concentração na próxima ação|O setor mantém uma referência imediata.|Você pede apenas para esperar o relógio e deixa de organizar a posse.
+@2792 J03.continental_suspensao|O registro da competição confirma que seu cartão recebido agora gera suspensão no próximo jogo. Você continua em campo e esta partida ainda precisa ser disputada.|{"future_competition":true,"competition_type":"continental","own_cards_min":1,"verified_event":"next_match_suspension_confirmed"}
+disciplina|suspensao_confirmada_foco_atual|Voltar a atenção à partida atual|Você mantém o compromisso com a ação presente.|Você passa a discutir a ausência futura e perde a jogada.
+posicionamento|suspensao_confirmada_conter|Preservar a posição de contenção|Você continua protegendo o setor.|Você se afasta dos duelos e deixa a faixa livre.
+apoio|suspensao_confirmada_combinar|Confirmar a cobertura com o colega|Vocês mantêm uma divisão clara.|Você fala da próxima escalação sem informação confirmada.
+visao|suspensao_confirmada_ler|Conferir a ameaça atual antes de reagir|Você decide pelo lance real.|Você tenta compensar a suspensão num único bote.
+@2793 J03.mundial_adaptacao|Esta é sua primeira atuação confirmada em um torneio mundial de clubes. O adversário oferece duas linhas de passe e a novidade não revela seu plano inteiro.|{"future_competition":true,"competition_type":"world_club","verified_event":"player_world_club_debut"}
+visao|mundial_ler_duas_linhas|Conferir as linhas que realmente estão disponíveis|Você reconhece uma ameaça concreta.|Você presume um estilo pelo nome do torneio.
+posicionamento|mundial_proteger_faixa|Proteger sua faixa antes de avançar|Você mantém a referência da equipe.|Você abandona o setor para acompanhar toda circulação.
+desarme|mundial_primeira_disputa|Tentar recuperar a bola próxima|Você vence a disputa.|Você tenta alcançar uma bola distante.
+apoio|mundial_confirmar_setor|Confirmar a cobertura com quem está perto|Vocês mantêm uma divisão comum.|Você inventa uma mudança de esquema que não foi combinada.
+@2794 J03.mundial_mata_mata|Você disputa uma partida eliminatória mundial confirmada. O placar está igual, mas isso não significa que o regulamento já tenha levado o jogo à prorrogação.|{"future_competition":true,"competition_type":"world_club","knockout_round":"elimination","score_state":"empatando","match_period":"regulation"}
+visao|mundial_empate_regra_tempo|Considerar a fase de jogo que está sendo disputada|Você mantém a referência do tempo regulamentar.|Você age como se uma prorrogação já tivesse começado.
+passe|mundial_empate_conexao|Usar a conexão disponível|O passe mantém o ataque.|Você força uma bola pela ideia de última chance.
+posicionamento|mundial_empate_equilibrio|Oferecer apoio com cobertura|Você mantém a equipe conectada.|Você abandona a proteção sem combinar.
+liderar|mundial_empate_proxima_jogada|Pedir atenção à próxima jogada|O grupo recebe uma tarefa imediata.|Você começa a discutir pênaltis antes de terminar a partida.
+@2795 J03.titulo_confirmado_contexto|A tabela e o regulamento verificados confirmam que esta partida pode definir o título para sua equipe. O jogo ainda está em andamento e você está no campo.|{"table_context":"title_deciding_verified","verified_event":"title_conditions_confirmed"}
+visao|titulo_condicoes_sem_declarar|Separar possibilidade de título de título conquistado|Você decide com o contexto correto.|Você trata a possibilidade como conquista garantida.
+passe|titulo_conectar_presente|Usar o apoio da jogada atual|A equipe mantém a posse.|Você força um passe pensando apenas na comemoração.
+posicionamento|titulo_tarefa_presente|Manter sua tarefa no setor|Você preserva a organização.|Você sai da posição para esperar o fim.
+liderar|titulo_foco_sem_profecia|Pedir foco sem prometer o desfecho|O setor mantém a atenção.|Você anuncia o título antes de ele estar definido.
+@2796 J03.acesso_confirmado_contexto|As condições de acesso desta partida foram verificadas. Sua equipe ainda precisa jogar; o resultado final não está registrado.|{"table_context":"promotion_deciding_verified","verified_event":"promotion_conditions_confirmed"}
+posicionamento|acesso_manter_distancias|Manter as distâncias de apoio|Você continua conectado à equipe.|Você se afasta para acompanhar a expectativa externa.
+passe|acesso_circular_sem_antecipar|Usar o passe disponível|A bola segue com o time.|Você executa sem atenção e perde a posse.
+apoio|acesso_referencia_sem_garantia|Confirmar uma tarefa com o colega|Vocês encontram uma ação concreta.|Você oferece uma garantia de acesso que ainda não existe.
+visao|acesso_ler_campo_nao_festa|Ler a jogada em vez de antecipar a festa|Você reconhece a ameaça atual.|Você deixa de acompanhar a bola por pensar no encerramento.
+@2797 J03.permanencia_confirmada_contexto|A tabela e os critérios confirmam que sua equipe disputa uma condição de permanência. A partida segue e você precisa reagir sem atribuir o desfecho a um único colega.|{"table_context":"survival_deciding_verified","verified_event":"survival_conditions_confirmed"}
+liderar|permanencia_acao_sem_culpa|Pedir uma tarefa coletiva sem apontar culpado|O grupo recebe uma referência de reação.|Você transforma o contexto em acusação pessoal.
+posicionamento|permanencia_preservar_estrutura|Preservar a referência do setor|Você evita uma corrida desorganizada.|Você abandona a tarefa por urgência.
+passe|permanencia_conexao_real|Usar a conexão de passe disponível|A equipe mantém uma construção possível.|Você força uma saída que a defesa fechou.
+visao|permanencia_contexto_sem_sentenca|Ler a jogada sem declarar um destino definitivo|Você mantém atenção ao que pode fazer agora.|Você age como se a temporada já tivesse terminado.
+@2798 J03.rivalidade_verificada|A rivalidade desta partida foi verificada no catálogo. Durante o jogo, uma provocação verbal tenta desviar sua atenção da bola.|{"rivalry_verified":true,"verified_event":"verbal_provocation_confirmed"}
+disciplina|rivalidade_ignorar_isca|Retomar a atenção à bola|Você não deixa a provocação decidir sua ação.|Você responde e perde a referência do lance.
+posicionamento|rivalidade_manter_setor|Manter a posição do setor|Você continua útil à equipe.|Você segue quem provocou e abandona a faixa.
+apoio|rivalidade_pedir_foco_colega|Pedir foco ao colega próximo|A conversa volta à tarefa.|Você repete a provocação e amplia a discussão.
+visao|rivalidade_ler_jogada_real|Conferir onde a bola pode continuar|Você reconhece uma ameaça concreta.|Você procura revanche em vez de acompanhar a jogada.
+@2799 J03.clima_verificado|A condição de campo molhado foi confirmada para esta partida. Um passe chega à sua faixa e você precisa avaliar a trajetória real, sem presumir que toda bola vai escorregar.|{"weather":"wet_pitch_verified"}
+passe|molhado_ajustar_peso|Tocar ao apoio ajustando o peso|A bola encontra o companheiro.|Você exagera o ajuste e o passe não chega.
+drible|molhado_controlar_primeiro_toque|Controlar antes de conduzir|Você mantém a posse com a trajetória observada.|Você calcula mal o primeiro toque e perde a bola.
+visao|molhado_ler_trajetoria_real|Conferir o comportamento desta bola|Você ajusta a decisão ao que observa.|Você decide por uma expectativa genérica e não pela trajetória.
+posicionamento|molhado_dar_apoio_proximo|Oferecer um apoio mais acessível|Você cria uma referência alcançável.|Você se aproxima na mesma linha do marcador.

@@ -21,14 +21,15 @@ final class NarrativeCatalog {
   if(!is_int($s['weight']) || $s['weight']<1 || $s['weight']>100 || !in_array($s['rarity'],['common','rare'],true) || !is_int($s['cooldown']) || $s['cooldown']<1 || $s['cooldown']>20)$errors[]='frequência';
   $tags=['fundamento','coletivo','ataque','defesa','transicao','bola_parada','pressao','recuperacao','imprensa','vida_pessoal','fair_play','concentracao','finalizacao','comunicacao'];
   if(!is_array($s['tags']) || !$s['tags'] || array_diff($s['tags'],$tags))$errors[]='tags';
-  $gates=['positions_allow','positions_deny','home_away','score_state','margin_max','minute_min','minute_max','played_minutes_min','starter','bench','bench_confirmed','finished','injury_risk_min','disciplinary_risk_min','recent_form','own_goals_min','own_cards_min','future_competition',...NarrativeContext::UNSUPPORTED];
+  $gates=['positions_allow','positions_deny','home_away','score_state','margin_max','minute_min','minute_max','played_minutes_min','played_minutes_max','starter','bench','bench_confirmed','finished','injury_risk_min','disciplinary_risk_min','recent_form','own_goals_min','own_goals_max','own_cards_min','own_assists_min','own_shots_min','own_completed_min','own_tackles_min','exit_reason','future_competition',...NarrativeContext::UNSUPPORTED];
   if(!is_array($s['gating']))return [...$errors,'gating não é objeto'];
   foreach($s['gating'] as $k=>$v){
    if(!in_array($k,$gates,true)){$errors[]='gating desconhecido '.$k;continue;}
    if((in_array($k,NarrativeContext::UNSUPPORTED,true) || $k==='future_competition') && $s['enabled'])$errors[]='fonte não modelada ativa '.$k;
    if(in_array($k,['positions_allow','positions_deny'],true) && (!is_array($v) || !$v || array_diff($v,Rules::POSITIONS)))$errors[]='posição';
    if(in_array($k,['starter','bench','bench_confirmed','finished'],true) && !is_bool($v))$errors[]='booleano '.$k;
-   if(in_array($k,['minute_min','minute_max','margin_max','played_minutes_min','injury_risk_min','disciplinary_risk_min','own_goals_min','own_cards_min'],true) && (!is_int($v) || $v<0 || $v>100))$errors[]='limite '.$k;
+   if(in_array($k,['minute_min','minute_max','margin_max','played_minutes_min','played_minutes_max','injury_risk_min','disciplinary_risk_min','own_goals_min','own_goals_max','own_cards_min','own_assists_min','own_shots_min','own_completed_min','own_tackles_min'],true) && (!is_int($v) || $v<0 || $v>100))$errors[]='limite '.$k;
+   if($k==='exit_reason' && !in_array($v,['injury','fatigue','red'],true))$errors[]='motivo de saída';
    if($k==='score_state' && !in_array($v,['ganhando','empatando','perdendo'],true))$errors[]='placar';
    if($k==='home_away' && !in_array($v,['home','away'],true))$errors[]='mando';
    if($k==='recent_form' && !in_array($v,['boa','regular','ruim'],true))$errors[]='forma';
@@ -36,7 +37,7 @@ final class NarrativeCatalog {
   if(isset($s['gating']['minute_min'],$s['gating']['minute_max']) && $s['gating']['minute_min']>$s['gating']['minute_max'])$errors[]='intervalo invertido';
   if(!is_array($s['options']) || count($s['options'])!==4)return [...$errors,'quatro alternativas'];
   if(!is_string($s['text']) || mb_strlen($s['text'])<20 || mb_strlen($s['text'])>450)$errors[]='enunciado';
-  $intents=[];$labels=[];
+  $intents=[];$labels=[];$successes=[];$failures=[];
   foreach($s['options'] as $o){
    foreach(['code','action','text','effects','failure_effects','severe_failure_effects','success_text','failure_text','semantic_intent','match_event'] as $k)if(!array_key_exists($k,$o))$errors[]='alternativa ausente '.$k;
    if(!in_array($o['code']??null,self::CODES,true) || !in_array($o['action']??null,array_keys(Rules::WEIGHTS),true))$errors[]='ação/código';
@@ -44,6 +45,7 @@ final class NarrativeCatalog {
    foreach(['difficulty','chance_bonus','exceptional_effects'] as $field)if(isset($o[$field]))$errors[]='modificador mecânico não autorizado '.$field;
    foreach(['text','success_text','failure_text','semantic_intent'] as $k)if(!is_string($o[$k]??null) || mb_strlen($o[$k])<4)$errors[]='texto '.$k;
    $intents[]=$o['semantic_intent']??'';$labels[]=$o['text']??'';
+   $successes[]=$o['success_text']??'';$failures[]=$o['failure_text']??'';
    if(($o['success_text']??'')===($o['failure_text']??''))$errors[]='desfechos iguais';
    foreach(['effects','failure_effects','severe_failure_effects'] as $kind){
     if(!is_array($o[$kind]??null)){$errors[]='efeitos não são objeto';continue;}
@@ -54,6 +56,7 @@ final class NarrativeCatalog {
    if($s['stage']==='partida' && !empty($o['match_event']) && !empty($o['effects']))$errors[]='XP técnico de campo deve usar motor vigente';
   }
   if(count(array_unique($intents))!==4 || count(array_unique($labels))!==4)$errors[]='intents/alternativas repetidos';
+  if(count(array_unique($successes))!==4 || count(array_unique($failures))!==4)$errors[]='desfechos repetidos dentro da cena';
   return $errors;
  }
  public static function outcome(array $o,array $roll):string {

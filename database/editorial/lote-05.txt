@@ -1,0 +1,501 @@
+# Lote 05: consequências após resultado verificado e rotina fora do campo.
+@2400 F01.vitoria|A equipe venceu a partida encerrada. A comunicação do clube pergunta o que você pretende levar dessa atuação para o próximo treino.|{"finished":true,"score_state":"ganhando"}
+imprensa|levar_trabalho|Falar de um hábito de trabalho que pode repetir|Você valoriza o processo sem prometer outra vitória.|Sua fala trata o hábito como garantia de resultado.
+disciplina|limitar_conclusao|Separar a vitória de uma conclusão sobre a temporada|Você reconhece o resultado sem antecipar o futuro.|Você amplia um jogo para uma certeza sobre o campeonato.
+apoio|reconhecer_setor|Reconhecer uma colaboração do setor|Você divide o mérito sem montar uma lista de importância.|Você compara contribuições em vez de reconhecê-las.
+social|ouvir_comissao|Pedir o retorno da comissão antes de avaliar tudo|Você mostra abertura para rever mesmo após vencer.|Sua resposta parece transferir toda a análise para os outros.
+@2401 F01.vitoria|Depois da vitória, um colega sugere que não há muito a corrigir. Você pode valorizar o resultado e ainda conversar sobre o trabalho.|{"finished":true,"score_state":"ganhando"}
+apoio|acolher_alegria|Reconhecer a alegria antes de propor a revisão|O colega percebe que analisar não significa diminuir a vitória.|Sua proposta soa como recusa de comemorar.
+disciplina|ponto_revisao|Escolher um ponto específico para discutir depois|Você preserva uma tarefa sem transformar tudo em cobrança.|Você apresenta uma lista longa e perde o foco.
+social|separar_momentos|Combinar um momento de análise após a celebração|Vocês distinguem comemorar de encerrar o aprendizado.|O combinado fica indefinido e não orienta a revisão.
+liderar|convite_revisao|Convidar o setor a avaliar uma combinação|A conversa nasce de uma tarefa compartilhada.|Você transforma o convite numa ordem sobre todos.
+@2402 F01.vitoria|A partida terminou em vitória, e pedem que você escolha um único responsável. Você quer responder sem apagar a participação coletiva.|{"finished":true,"score_state":"ganhando"}
+imprensa|explicar_colaboracao|Falar de como as tarefas se ligaram|Você explica o mérito sem reduzi-lo a um nome.|Você usa o coletivo como frase pronta sem dizer nada.
+apoio|reconhecer_apoio|Reconhecer uma ajuda recebida sem comparar pessoas|Você destaca colaboração com respeito às outras funções.|Você faz o elogio parecer uma classificação do elenco.
+disciplina|limite_memoria|Falar apenas do que consegue descrever|Você não preenche a resposta com uma intenção inventada.|Você acrescenta uma justificativa que não consegue verificar.
+social|pedir_criterio|Perguntar qual aspecto querem discutir|Você delimita a análise antes de responder.|Sua pergunta parece uma provocação e fecha a conversa.
+@2403 F01.vitoria|Na conversa pós-vitória, perguntam se o plano resolveu tudo. Você quer reconhecer o trabalho sem afirmar que nenhuma dificuldade existiu.|{"finished":true,"score_state":"ganhando"}
+imprensa|contextualizar_plano|Explicar uma responsabilidade do plano|Você descreve o trabalho sem uma conclusão absoluta.|Você afirma que a vitória prova que tudo estava perfeito.
+disciplina|abrir_revisao|Dizer o que ainda precisa ser revisto|Você preserva espaço para a análise.|Você apresenta uma dúvida ampla demais para ser útil.
+apoio|ouvir_setor|Conferir como o setor viveu a mesma orientação|Você reconhece percepções diferentes da execução.|Você procura apenas a confirmação da sua leitura.
+social|limitar_certeza|Separar uma leitura sua de uma avaliação da comissão|Você não fala como se representasse todos.|Você atribui sua conclusão à comissão sem confirmação.
+@2404 F01.vitoria|Depois da vitória, a comunicação sugere uma frase forte para divulgar. Você quer entusiasmo sem transformar confiança em provocação.|{"finished":true,"score_state":"ganhando"}
+imprensa|entusiasmo_respeitoso|Celebrar o resultado sem diminuir ninguém|Você comunica alegria com respeito.|Sua frase ganha um tom de superioridade que não pretendia.
+disciplina|conferir_sentido|Revisar como a frase pode ser entendida|Você percebe um trecho que precisava de ajuste.|Você lê apenas a intenção e ignora o significado literal.
+apoio|credito_grupo|Dar espaço ao trabalho dos colegas|Você divide a celebração sem cobrar reconhecimento.|Você usa o grupo para esconder sua própria responsabilidade.
+social|propor_alternativa|Sugerir uma formulação menos fechada|A mensagem mantém entusiasmo sem uma promessa.|A alternativa fica vaga e perde o sentido da vitória.
+@2405 F01.vitoria|O jogo encerrado terminou com sua equipe à frente por um gol. A análise pede reconhecer a margem curta sem tratar o resultado como acaso.|{"finished":true,"score_state":"ganhando","margin_max":1}
+imprensa|margem_contexto|Falar da atenção exigida pela margem|Você reconhece a disputa sem reduzir o mérito.|Sua fala parece dizer que o trabalho não teve importância.
+disciplina|rever_criterio|Escolher uma decisão para rever com calma|Você transforma a vitória curta em análise concreta.|Você julga o lance só pelo resultado favorável.
+apoio|ouvir_protecao|Ouvir quem participou da proteção do setor|A conversa acrescenta uma leitura da margem curta.|Você compara quem trabalhou mais em vez de ouvir.
+social|evitar_garantia|Não prometer que o time controlará toda vantagem|Você mantém a avaliação ligada à partida encerrada.|Você responde como se a próxima vantagem já estivesse garantida.
+@2406 F01.vitoria|Após a vitória, um colega diz que sua ajuda não apareceu tanto na conversa sobre o jogo. Você quer ouvir sem distribuir reconhecimento como prêmio pessoal.|{"finished":true,"score_state":"ganhando"}
+apoio|escutar_contribuicao|Perguntar qual contribuição ele quer discutir|Você ouve uma tarefa que talvez tivesse passado despercebida.|Você responde com um elogio antes de entender o ponto.
+social|reconhecer_limite|Admitir que não observou tudo da partida|Você abre espaço sem inventar uma avaliação.|Você tenta afirmar que viu tudo e se contradiz.
+disciplina|separar_visibilidade|Distinguir visibilidade de importância da função|Você evita medir trabalho só pelo destaque.|Sua fala parece minimizar a vontade de ser reconhecido.
+liderar|revisao_setor|Propor uma revisão da colaboração do setor|Vocês discutem funções sem escolher um vencedor interno.|A proposta vira uma disputa de quem merece mais elogios.
+@2407 F01.vitoria|A comissão elogia o resultado e pede que a rotina continue. Você quer aproveitar a confiança sem acrescentar uma meta que não foi combinada.|{"finished":true,"score_state":"ganhando"}
+disciplina|seguir_rotina|Confirmar a prioridade da próxima sessão|Você mantém uma tarefa concreta depois da vitória.|Você entende o elogio como autorização para mudar o plano.
+apoio|acolher_retorno|Agradecer o retorno e ouvir o ponto de continuidade|Você reconhece o elogio sem encerrar a conversa.|Você se prende à aprovação e perde a orientação seguinte.
+social|esclarecer_expectativa|Perguntar o que a comissão espera preservar|Você entende o pedido sem prometer outro resultado.|Você formula a pergunta como garantia de nova titularidade.
+liderar|compartilhar_foco|Reforçar um foco comum com o setor|Você liga a confiança ao trabalho coletivo.|Você transforma a vitória numa cobrança de perfeição.
+@2408 F01.vitoria|Depois do jogo vencido, você recebe uma pergunta sobre acomodação. Pode responder sobre sua preparação sem julgar a disposição dos colegas.|{"finished":true,"score_state":"ganhando"}
+imprensa|preparacao_pessoal|Descrever como mantém sua rotina|Você fala do que pode assumir pessoalmente.|Você anuncia o comprometimento dos outros como se pudesse garanti-lo.
+disciplina|responsabilidade_limitada|Distinguir sua responsabilidade da avaliação do elenco|Você evita atribuir intenção aos colegas.|Sua resposta deixa uma insinuação sobre quem se acomodou.
+apoio|valorizar_rotina|Reconhecer o trabalho compartilhado sem prometer perfeição|Você contextualiza a preparação do grupo.|Você transforma a rotina em promessa de vitória.
+social|pedir_foco|Pedir que a pergunta seja ligada à sua preparação|Você delimita um assunto que consegue explicar.|O pedido soa como fuga de qualquer responsabilidade.
+@2409 F01.vitoria|A vitória encerrou a partida, mas você quer guardar uma dúvida sobre sua execução. A conversa com o auxiliar pode acontecer sem negar o resultado.|{"finished":true,"score_state":"ganhando"}
+disciplina|duvida_concreta|Levar uma dúvida específica ao auxiliar|Você consegue discutir um ajuste verificável.|Você escolhe uma impressão ampla que não orienta a análise.
+visao|rever_contexto|Conferir o contexto antes de julgar o gesto|Você identifica uma informação que não tinha percebido.|Você usa o resultado favorável para concluir que a leitura foi perfeita.
+apoio|ouvir_companheiro|Pedir a percepção de quem participou da ação|Você acrescenta outra perspectiva.|Você aceita apenas o comentário que confirma sua escolha.
+social|assumir_revisao|Dizer que vencer não encerra sua avaliação|Você preserva abertura para aprender.|Sua fala soa como rejeição à celebração do grupo.
+@2410 F01.vitoria|O clube quer uma mensagem curta depois da vitória. Você prefere reconhecer a partida encerrada sem anunciar uma sequência que ainda não aconteceu.|{"finished":true,"score_state":"ganhando"}
+imprensa|mensagem_presente|Falar da vitória de hoje|Você mantém a celebração no resultado verificado.|Você transforma a mensagem numa previsão da campanha.
+apoio|reconhecer_apoios|Agradecer apoios sem atribuir obrigações futuras|Você reconhece a colaboração com respeito.|Sua fala parece cobrar que o apoio se repita de um jeito específico.
+disciplina|revisar_promessas|Conferir se a mensagem contém uma garantia|Você retira uma expectativa que não pode assumir.|Você mantém uma promessa escondida numa frase de confiança.
+social|pedir_retorno_mensagem|Perguntar se sua intenção ficou clara|O retorno ajuda a evitar uma interpretação exagerada.|Vocês discutem só a empolgação da frase.
+@2411 F01.vitoria|Após vencer, o setor quer lembrar uma combinação que funcionou. Você quer reconhecer o aprendizado sem transformar um lance numa receita para todos os jogos.|{"finished":true,"score_state":"ganhando"}
+tatico|condicoes_combinar|Identificar quais condições ajudaram a combinação|Você reconhece quando a solução pode ser útil.|Você considera que o gesto funciona independentemente do contexto.
+apoio|ouvir_execucao|Ouvir como o colega executou sua parte|Você entende uma contribuição além do seu gesto.|Você explica tudo antes de ouvir a parte dele.
+disciplina|registrar_limite|Anotar o limite da conclusão|Você guarda uma referência sem uma regra absoluta.|Você registra só que a combinação deu certo.
+social|teste_treino|Propor testar a leitura na próxima sessão|Você transforma a lembrança em oportunidade de trabalho.|Você promete repetir o resultado no próximo jogo.
+@2412 F01.derrota|A equipe perdeu a partida encerrada. A comunicação pede sua reação, e você quer responder sem usar a frustração para atacar alguém.|{"finished":true,"score_state":"perdendo"}
+imprensa|assumir_responsabilidade|Falar da parte que cabe ao seu trabalho|Você assume uma responsabilidade sem escolher um culpado.|Sua resposta tenta assumir tudo e não explica sua parte.
+disciplina|limite_analise|Dizer o que precisa rever antes de concluir|Você preserva uma análise baseada em fatos.|Você usa a revisão como desculpa para não dizer nada.
+apoio|respeitar_elenco|Reconhecer que as funções estão ligadas|Você evita reduzir a derrota a um nome.|Sua fala soa como distribuição de culpa entre todos.
+social|responder_calmo|Pedir um instante para organizar a resposta|Você consegue falar sem ampliar a tensão.|Você passa o instante pensando numa cobrança.
+@2413 F01.derrota|Depois da derrota, um colega quer discutir imediatamente todas as decisões. Você pode acolher a necessidade de conversar sem fingir que lembra cada lance.|{"finished":true,"score_state":"perdendo"}
+apoio|ouvir_prioridade|Perguntar qual ponto mais pesou para ele|Você identifica um assunto possível de esclarecer.|Você começa a responder antes de ouvir a prioridade.
+disciplina|separar_fatos|Separar lembrança de hipótese|Você evita reconstruir o jogo para se defender.|Você trata uma impressão como certeza.
+social|combinar_revisao|Combinar uma revisão quando puderem observar os lances|Vocês definem um próximo passo sem encerrar a conversa à força.|O combinado fica vago e parece uma fuga.
+liderar|uma_questao|Propor conversar sobre uma questão por vez|Vocês conseguem aprofundar um ponto.|Você escolhe a questão sem ouvir o que o colega trouxe.
+@2414 F01.derrota|A partida terminou em derrota e perguntam se faltou empenho. Você quer discutir a execução sem transformar uma avaliação em rótulo pessoal.|{"finished":true,"score_state":"perdendo"}
+imprensa|explicar_tarefa|Contextualizar uma responsabilidade da atuação|Você mantém a resposta no trabalho observável.|Você usa o plano como justificativa para não avaliar nada.
+disciplina|distinguir_erro|Separar um erro de execução de um julgamento de intenção|Você estabelece um limite sem negar a revisão.|Sua fala parece afirmar que nenhum erro importa.
+apoio|preservar_respeito|Evitar atribuir disposição aos colegas|Você não fala por uma intenção que não conhece.|Sua resposta deixa uma crítica indireta ao elenco.
+social|pedir_ponto_concreto|Pedir um exemplo para responder com precisão|Você delimita um tema da análise.|O pedido sai como desafio e fecha a conversa.
+@2415 F01.derrota|Após perder, você tem vontade de rever só o momento que mais incomodou. O analista propõe olhar também o que aconteceu antes.|{"finished":true,"score_state":"perdendo"}
+visao|sequencia_anterior|Rever a preparação da jogada|Você encontra uma decisão que antecedeu o desfecho.|Você espera o erro final e ignora a construção.
+disciplina|criterio_estavel|Aplicar o mesmo critério à sequência inteira|Você evita julgar tudo pelo placar.|Você muda o critério conforme quem aparece no vídeo.
+apoio|outra_referencia|Ouvir a referência de um colega envolvido|A leitura dele mostra algo que você não via.|Você escuta procurando uma confirmação da sua cobrança.
+social|assumir_memoria|Reconhecer o que não lembrava|Você preserva uma análise honesta.|Você explica como se já tivesse percebido tudo em campo.
+@2416 F01.derrota|A comunicação do clube prepara uma mensagem após a derrota. Você quer reconhecer o resultado sem prometer uma compensação imediata.|{"finished":true,"score_state":"perdendo"}
+imprensa|mensagem_responsavel|Falar de responsabilidade e trabalho concreto|Você reconhece a derrota sem anunciar o próximo placar.|Você transforma a disposição numa promessa de vitória.
+disciplina|limitar_promessa|Revisar o que pode realmente assumir|Você retira uma garantia que não controla.|Você mantém uma promessa por receio de parecer pouco confiante.
+apoio|respeitar_reacao|Reconhecer a frustração de quem acompanha|Você acolhe a reação sem acusar ninguém.|Sua fala parece cobrar apoio incondicional.
+social|clarear_tom|Pedir retorno sobre o tom da mensagem|Você identifica um trecho que soava defensivo.|Vocês avaliam apenas se a frase parece forte.
+@2417 F01.derrota|Depois de perder por um gol, perguntam se faltou pouco para tudo ser diferente. Você quer reconhecer a margem sem criar um resultado alternativo como fato.|{"finished":true,"score_state":"perdendo","margin_max":1}
+imprensa|margem_real|Falar da margem que o placar registrou|Você contextualiza a disputa sem reescrever o resultado.|Você descreve uma vitória imaginada como se tivesse escapado por acaso.
+disciplina|rever_decisoes|Escolher uma decisão para analisar|Você transforma a margem numa pergunta de trabalho.|Você escolhe um culpado em vez de uma decisão.
+apoio|ouvir_funcoes|Ouvir como o setor viveu a mesma margem|Você conhece uma perspectiva complementar.|Vocês disputam qual função teria mudado tudo sozinha.
+social|evitar_certeza|Reconhecer o que não pode saber sobre outro desfecho|Você preserva uma conclusão realista.|Você usa a incerteza para negar qualquer análise.
+@2418 F01.derrota|A derrota terminou a partida, e um colega se julga pelo resultado inteiro. Você pode oferecer apoio sem dizer que sabe exatamente como ele se sente.|{"finished":true,"score_state":"perdendo"}
+apoio|escutar_sem_adivinhar|Ouvir como ele descreve a própria atuação|Você entende a preocupação sem presumir o sentimento.|Você dá uma explicação antes de ouvir a experiência dele.
+social|separar_pessoa|Distinguir uma partida da pessoa inteira|Você acolhe sem fingir que o resultado não importa.|Sua fala parece minimizar a frustração.
+disciplina|proximo_passo|Combinar um ponto que pode ser revisto depois|Vocês encontram uma tarefa sem prometer solução imediata.|O combinado vira uma cobrança por melhorar logo.
+liderar|responsabilidade_partilhada|Falar de como as tarefas se relacionam|Você evita colocar a partida inteira sobre ele.|Você tenta dividir tudo igualmente sem ouvir a situação concreta.
+@2419 F01.derrota|Após perder, a comissão pede uma observação curta de cada setor. Você quer contribuir sem usar a conversa para se afastar da responsabilidade.|{"finished":true,"score_state":"perdendo"}
+disciplina|fato_do_setor|Apresentar um fato observável do setor|Você oferece um ponto que pode ser revisto.|Você apresenta uma impressão como se fosse consenso.
+visao|origem_desajuste|Indicar onde uma ligação deixou de funcionar|Você localiza uma transição concreta.|Você aponta apenas o lance final da sequência.
+apoio|ouvir_outra_parte|Conferir a leitura do colega antes de concluir|Você reconhece um limite da sua observação.|Você ouve só o que ajuda a defender sua atuação.
+social|assumir_parte_clara|Dizer qual ajuste cabe à sua função|Você mantém responsabilidade sem se culpar por tudo.|Você escolhe um ajuste que depende inteiramente de outro colega.
+@2420 F01.derrota|Depois da derrota, perguntam se o plano precisa ser abandonado. Você não tem de anunciar uma decisão técnica que cabe à comissão.|{"finished":true,"score_state":"perdendo"}
+imprensa|limite_funcao|Explicar sua responsabilidade sem anunciar outro plano|Você responde sem assumir uma decisão que não tomou.|Sua fala parece confirmar uma mudança inexistente.
+disciplina|avaliar_execucao|Separar avaliação da execução de decisão de estratégia|Você mantém a análise no que pode discutir.|Você usa a distinção para evitar qualquer reflexão sobre sua parte.
+apoio|respeitar_comissao|Dizer que levará observações à comissão|Você abre espaço para revisão sem uma promessa de mudança.|Sua resposta parece transferir toda a responsabilidade ao treinador.
+social|pedir_contexto_plano|Pedir que a pergunta se ligue a uma situação concreta|Você torna a conversa menos absoluta.|Você reformula tudo sem responder ao ponto apresentado.
+@2421 F01.derrota|O jogo terminou com derrota e você quer revisar uma combinação com o colega. O cuidado é não pedir que ele apenas confirme sua versão.|{"finished":true,"score_state":"perdendo"}
+apoio|ouvir_primeiro_lance|Ouvir a referência que ele usou|Você conhece uma interpretação diferente.|Você interrompe assim que encontra uma divergência.
+disciplina|comparar_sem_placar|Comparar as decisões sem usar só o placar|Você distingue o processo do desfecho.|Você considera ruim qualquer gesto por causa da derrota.
+social|explicar_referencia|Explicar o que você enxergou na hora|A conversa mostra a origem da escolha.|Você descreve o que viu depois como se já soubesse em campo.
+liderar|teste_combinado|Propor um teste da combinação no treino|Vocês definem uma forma de esclarecer o entendimento.|Vocês combinam tentar de novo sem escolher o que conferir.
+@2422 F01.derrota|Depois de perder, você pensa em compensar com uma cobrança pública forte. A comunicação do clube pergunta o que essa fala realmente ajudaria a esclarecer.|{"finished":true,"score_state":"perdendo"}
+imprensa|falar_trabalho|Propor uma mensagem centrada no trabalho necessário|Você transmite responsabilidade sem escolher um alvo.|Sua frase fica como uma cobrança indireta a alguém.
+disciplina|avaliar_efeito|Conferir quem receberia a mensagem e como|Você percebe um risco de interpretação antes de publicar.|Você considera só sua intenção de demonstrar compromisso.
+apoio|conversa_interna|Preferir uma conversa específica com o setor|Você preserva espaço para ouvir e ajustar.|Você leva à conversa a mesma acusação que queria publicar.
+social|reconhecer_frustracao|Dizer que precisa organizar a frustração antes de responder|Você evita transformar o impulso numa declaração.|Você usa o tempo apenas para formular uma cobrança mais dura.
+@2423 F01.derrota|A partida encerrada trouxe derrota. O auxiliar pede que você termine a conversa com uma tarefa possível para a próxima sessão, não com uma promessa de compensação.|{"finished":true,"score_state":"perdendo"}
+disciplina|tarefa_possivel|Escolher uma leitura que pode trabalhar|Você leva uma referência concreta para o treino.|Você escolhe um resultado que o treino não garante.
+tatico|ligar_funcao_treino|Relacionar a tarefa à sua responsabilidade|Você entende onde o ajuste pode ajudar.|Você tenta mudar toda a função para evitar o ponto difícil.
+apoio|feedback_especifico|Pedir um retorno específico ao colega|O colega sabe o que observar na próxima sessão.|Você pede que ele diga apenas se foi melhor.
+social|expectativa_realista|Assumir o trabalho sem prometer resposta imediata|Você mantém uma expectativa que cabe na preparação.|Sua fala volta a garantir o placar do próximo jogo.
+@2424 F01.empate|A partida acabou empatada. A comunicação pergunta se o resultado foi bom ou ruim, mas você quer explicar a análise sem uma resposta automática.|{"finished":true,"score_state":"empatando"}
+imprensa|explicar_contexto_empate|Falar de uma tarefa da partida|Você oferece contexto sem alterar o resultado.|Você tenta resumir tudo numa opinião sem explicar o trabalho.
+disciplina|limite_conclusao_empate|Separar o ponto conquistado de uma avaliação completa|Você mantém espaço para rever a atuação.|Você trata o empate como prova de que tudo foi igual.
+apoio|ouvir_setor_empate|Conferir como o setor percebeu a mesma partida|Você conhece uma leitura complementar.|Você busca apenas quem concorda com sua primeira impressão.
+social|pedir_criterio_empate|Perguntar qual aspecto querem discutir|Você delimita a resposta antes de concluir.|Sua pergunta parece evitar a análise do jogo.
+@2425 F01.empate|Depois do empate, um colega diz que faltou apenas uma jogada. Você pode discutir uma decisão sem apresentar uma vitória imaginada como resultado certo.|{"finished":true,"score_state":"empatando"}
+disciplina|evitar_resultado_alternativo|Separar o que aconteceu do que poderia acontecer|Você mantém a conversa nos fatos disponíveis.|Você fala de uma vitória hipotética como se fosse inevitável.
+visao|rever_sequencia_empate|Olhar a sequência antes da decisão destacada|Você identifica o contexto que ajudou ou limitou a escolha.|Você espera só o último gesto para avaliar tudo.
+apoio|ouvir_leitura_empate|Ouvir por que aquele lance chamou atenção do colega|Você entende o ponto sem precisar concordar de imediato.|Você transforma a pergunta numa disputa de memória.
+social|teste_futuro_empate|Propor rever a decisão com o auxiliar|Vocês encontram um passo concreto para esclarecer.|A proposta fica vaga e parece encerrar o assunto.
+@2426 F01.empate|O empate encerrou a partida e perguntam se faltou ambição. Você quer responder sem usar uma palavra para julgar intenções de todo o elenco.|{"finished":true,"score_state":"empatando"}
+imprensa|explicar_escolha_empate|Explicar uma responsabilidade sem falar pelos outros|Você contextualiza seu trabalho com um limite claro.|Sua fala atribui uma intenção que não pode confirmar.
+disciplina|separar_rotulo_empate|Distinguir uma decisão de um rótulo sobre o grupo|Você mantém a análise aberta a situações concretas.|Você rejeita o rótulo como se nenhuma decisão pudesse ser revista.
+apoio|reconhecer_funcoes_empate|Falar da ligação entre as funções|Você evita reduzir o jogo a uma vontade individual.|Você usa o coletivo sem explicar nenhuma relação.
+social|pedir_situacao_empate|Pedir que a pergunta indique uma situação|Você pode responder sobre algo observável.|Você pede detalhes em tom de confronto.
+@2427 F01.empate|Após o empate, a comissão quer uma conclusão sobre a organização. Você precisa avaliar distâncias, não usar o placar como prova automática.|{"finished":true,"score_state":"empatando"}
+visao|avaliar_distancias_empate|Indicar uma ligação que funcionou ou faltou|Você oferece uma referência de organização.|Você descreve só a sensação de equilíbrio do placar.
+disciplina|mesmo_criterio_empate|Usar o critério definido antes da partida|Você evita mudar a análise depois do resultado.|Você escolhe outro critério para confirmar sua impressão.
+apoio|comparar_angulo_empate|Conferir a leitura de um colega de setor|Você reconhece uma diferença entre os ângulos.|Você ouve apenas para defender a própria posição.
+social|limite_observacao_empate|Dizer qual parte não conseguiu observar|Você não preenche o relato com suposições.|Você apresenta uma conclusão sobre um trecho que não lembra.
+@2428 F01.empate|Após o empate, a comunicação quer usar uma frase sua fora da pergunta original. O trecho isolado parece uma crítica a um colega, embora você estivesse falando da própria atuação.|{"finished":true,"score_state":"empatando"}
+imprensa|mensagem_empate|Pedir que mantenham a referência à sua atuação|O trecho deixa claro que você avaliava sua própria participação.|A versão curta continua parecendo uma crítica ao colega.
+disciplina|revisar_termos_empate|Conferir a pergunta junto da resposta|Você identifica a ligação que se perdeu no recorte.|Você confere apenas a frase isolada e não percebe a mudança de sentido.
+apoio|reconhecer_publico_empate|Conversar com o colega antes que o trecho circule|Ele recebe de você a explicação sobre o contexto.|Você espera que ele adivinhe o sentido da fala isolada.
+social|esclarecer_intencao_empate|Explicar à comunicação qual ambiguidade preocupa você|A conversa identifica o ponto que precisa ser esclarecido.|Você pede um tom mais leve sem esclarecer a referência ao colega.
+@2429 F01.empate|Um colega ficou em dúvida sobre uma combinação depois do empate. Você quer conversar sem transformar a falta de vitória em prova de que um de vocês estava errado.|{"finished":true,"score_state":"empatando"}
+apoio|ouvir_combinacao_empate|Ouvir qual referência o colega seguiu|Você identifica uma diferença real de entendimento.|Você começa pelo resultado e não ouve a referência.
+disciplina|separar_placar_empate|Analisar a combinação além do placar|Você distingue uma decisão de uma conclusão geral.|Você trata qualquer escolha como errada porque o jogo empatou.
+tatico|rever_condicao_empate|Conferir em que condição a combinação deveria acontecer|Você entende o limite de aplicação.|Você descreve apenas o gesto, sem considerar a condição.
+social|revisao_compartilhada_empate|Combinar uma revisão curta no treino|Vocês definem o que precisam conferir.|Vocês apenas prometem se entender melhor sem um critério.
+@2430 F01.empate|O auxiliar pede que você escolha uma prioridade depois do jogo empatado. O foco é o próximo trabalho, não uma punição pelo resultado.|{"finished":true,"score_state":"empatando"}
+disciplina|prioridade_treino_empate|Escolher um ajuste de leitura|Você sai com uma tarefa possível.|Você escolhe compensar o placar sem definir trabalho.
+visao|informacao_faltante_empate|Identificar a informação que mais faltou numa decisão|Você localiza um ponto que pode observar melhor.|Você descreve só o desfecho da jogada.
+apoio|retorno_colega_empate|Pedir uma observação específica ao colega|O retorno ajuda a delimitar o ajuste.|Você pede uma avaliação tão ampla que não orienta a próxima sessão.
+social|alinhar_expectativa_empate|Confirmar o que a comissão espera da prioridade|Você entende o pedido sem prometer mudança imediata.|Você interpreta a prioridade como ameaça à sua função.
+@2431 F01.empate|Após o empate, perguntam se você ficou satisfeito. Você quer responder sobre sua responsabilidade sem ter de escolher entre comemorar tudo e condenar tudo.|{"finished":true,"score_state":"empatando"}
+imprensa|resposta_com_limite|Reconhecer o resultado e um ponto de trabalho|Você transmite uma avaliação com limites.|Você tenta agradar a todos e deixa a resposta sem sentido.
+disciplina|evitar_absoluto|Separar satisfação pessoal de análise completa|Você não transforma uma sensação em conclusão geral.|Você apresenta sua sensação como opinião de todo o elenco.
+apoio|valorizar_tarefa|Reconhecer a participação dos colegas|Você preserva o respeito sem negar a revisão.|Seu elogio parece impedir qualquer crítica.
+social|pedir_precisao|Perguntar qual parte da atuação querem discutir|Você abre espaço para uma resposta concreta.|Seu pedido soa como recusa de falar do jogo.
+@2432 F01.empate|O jogo acabou empatado. Você quer guardar um aprendizado sem escolher apenas o lance mais visível da partida.|{"finished":true,"score_state":"empatando"}
+visao|padrao_discreto|Procurar um padrão de participação do setor|Você encontra uma referência além do destaque.|Você escolhe uma impressão sem conferir a sequência.
+disciplina|registro_limitado|Registrar uma conclusão que pode ser revisada|Você guarda o aprendizado sem uma regra absoluta.|Você registra uma frase definitiva a partir de um jogo.
+apoio|ouvir_contribuicao|Perguntar o que outro colega percebeu|Você conhece uma tarefa que não tinha observado.|Você reduz a conversa ao lance que já havia escolhido.
+social|levar_analista|Levar a dúvida ao analista sem exigir uma confirmação|Você mantém a revisão aberta.|Você apresenta a dúvida como uma resposta já pronta.
+@2433 F01.empate|Depois do empate, o setor discute como manter a confiança. Você pode colaborar sem afirmar que confiança sozinha mudaria o placar.|{"finished":true,"score_state":"empatando"}
+apoio|acolher_setor|Ouvir como cada um viveu a partida|Você reconhece percepções diferentes sem hierarquizá-las.|Você compara quem deveria estar mais confiante.
+disciplina|confianca_trabalho|Relacionar a confiança a uma tarefa concreta|Você transforma a conversa numa referência de preparação.|Você trata confiança como obrigação de acertar sempre.
+liderar|combinado_realista|Propor um combinado que o setor possa testar|O grupo encontra uma ação sem promessa de resultado.|O combinado depende de um placar favorável para funcionar.
+social|limitar_certeza_empate|Reconhecer que a próxima atuação continua incerta|Você preserva uma expectativa responsável.|Sua fala parece dizer que o trabalho não faz diferença.
+@2434 F01.comunicacao_publica|A comunicação do clube pede que você revise uma frase antes de divulgá-la. A partida terminou, mas uma intenção mal explicada pode criar outra discussão.|{"finished":true}
+disciplina|ler_afirmacao|Conferir o que a frase afirma literalmente|Você identifica uma afirmação além do que pretendia.|Você avalia só a intenção com que escreveu.
+imprensa|reformular_mensagem|Reescrever com um foco específico|Você comunica sem misturar vários assuntos.|Você encurta a frase retirando o contexto necessário.
+apoio|pedir_leitura|Pedir a leitura de alguém da comunicação|O retorno revela uma interpretação diferente.|Você busca apenas aprovação para publicar.
+social|esclarecer_duvida_publica|Dizer qual parte teme que fique confusa|A revisão consegue tratar do ponto real.|Você descreve um receio geral sem localizar a frase.
+@2435 F01.comunicacao_publica|No pós-jogo, uma pergunta junta sua atuação e a de outro colega. Você quer explicar a relação sem falar em nome dele.|{"finished":true}
+imprensa|falar_sua_parte|Descrever apenas a tarefa que você pode explicar|Você mantém a resposta dentro da própria responsabilidade.|Você atribui ao colega uma intenção não confirmada.
+apoio|reconhecer_ligacao_publica|Reconhecer como os movimentos se relacionavam|Você mostra colaboração sem avaliar a pessoa.|Você transforma a relação numa comparação de qualidade.
+disciplina|limite_fala_publica|Separar sua leitura da avaliação da comissão|Você não apresenta uma opinião como decisão técnica.|Você atribui sua conclusão ao treinador sem confirmação.
+social|pedir_separacao|Pedir que a pergunta distinga as responsabilidades|Você cria espaço para responder com precisão.|Seu pedido parece uma tentativa de se afastar do colega.
+@2436 F01.comunicacao_publica|A comunicação simula uma pergunta sobre críticas nas redes depois da partida. Você pode preparar uma resposta sem afirmar que leu cada comentário.|{"finished":true}
+imprensa|limite_contato_redes|Dizer o que realmente acompanhou|Você responde sem inventar conhecimento sobre os comentários.|Você comenta uma reação que não chegou a conhecer.
+disciplina|nao_generalizar_redes|Evitar tratar algumas mensagens como opinião de todos|Você preserva a precisão da fala.|Você transforma uma impressão em julgamento sobre todo o público.
+apoio|ouvir_comunicacao_redes|Pedir orientação sobre um ponto concreto da resposta|A conversa esclarece a mensagem que pretende passar.|Você pede uma frase pronta sem explicar a intenção.
+social|foco_trabalho_redes|Voltar ao trabalho que pode assumir|Você contextualiza sua responsabilidade sem atacar o público.|Sua fala parece usar o trabalho para encerrar qualquer crítica.
+@2437 F01.comunicacao_publica|Depois do jogo, pedem uma resposta imediata sobre um lance que você não recorda bem. Você não precisa inventar uma memória para parecer seguro.|{"finished":true}
+disciplina|admitir_memoria|Dizer que precisa rever o lance|Você preserva uma resposta honesta.|Você fala como se a revisão fosse confirmar sua versão.
+imprensa|responder_limite_memoria|Explicar o que consegue lembrar sem concluir o resto|Você delimita a informação disponível.|Você completa a lembrança com uma suposição.
+apoio|rever_com_analista|Propor revisar antes de discutir o detalhe|Você indica um próximo passo concreto.|A proposta fica indefinida e parece uma fuga.
+social|pedir_descricao|Pedir que a pergunta descreva o momento|Você entende qual situação precisa ser revista.|Você aceita a descrição como prova de toda a intenção do lance.
+@2438 F01.comunicacao_publica|A comunicação pede um resumo curto, mas sua primeira resposta mistura desempenho, futuro e rotina. Você quer esclarecer sem prometer o que não foi decidido.|{"finished":true}
+imprensa|um_assunto|Escolher um assunto para a resposta|Você comunica uma ideia completa.|Você corta a frase sem escolher a ideia principal.
+disciplina|tirar_promessa|Retirar afirmações sobre decisões futuras|Você evita anunciar algo inexistente.|Você deixa uma promessa implícita na reformulação.
+apoio|pedir_escuta|Pedir que alguém diga o que entendeu da resposta|O retorno mostra qual mensagem chegou.|Você procura só um elogio ao tom da fala.
+social|explicar_prioridade|Dizer por que escolheu tratar de um ponto agora|Você delimita a conversa com clareza.|Sua explicação abre mais assuntos que a resposta inicial.
+@2439 F01.comunicacao_publica|Uma entrevista pós-jogo pede que você repita uma frase mais provocativa. Você quer manter sua intenção sem desrespeitar quem pergunta.|{"finished":true}
+imprensa|manter_mensagem|Repetir a ideia com palavras claras|Você conserva a mensagem sem ampliar o confronto.|Você muda o tom e cria uma provocação que não queria.
+disciplina|limite_formulacao|Explicar que não pretende usar aquela formulação|Você estabelece um limite sem atacar a entrevista.|Sua fala soa como uma acusação à pessoa que perguntou.
+apoio|orientacao_comunicacao|Pedir apoio da comunicação para esclarecer o ponto|A ajuda mantém a mensagem no assunto.|Você espera que outra pessoa responda por toda a sua intenção.
+social|pergunta_alternativa|Oferecer um aspecto concreto que pode discutir|Você abre uma conversa sem aceitar a provocação.|Você muda de assunto sem mostrar a relação com a pergunta.
+@2440 F01.comunicacao_publica|O clube prepara um vídeo curto da sua fala após a partida. Você quer conferir se o trecho escolhido conserva o sentido da resposta.|{"finished":true}
+disciplina|rever_trecho|Conferir começo e fim da fala selecionada|Você percebe um contexto que precisava permanecer.|Você revê só a frase central e ignora o corte.
+imprensa|ajustar_contexto|Sugerir uma forma curta de preservar o sentido|Você mantém clareza sem alongar tudo.|Sua sugestão acrescenta outro assunto e confunde o trecho.
+apoio|ouvir_edicao|Perguntar à comunicação qual mensagem o vídeo pretende levar|Vocês alinham a finalidade antes de aprovar.|Você presume a intenção da edição sem ouvir.
+social|explicar_receio|Dizer exatamente qual interpretação quer evitar|A revisão consegue tratar do ponto sensível.|Você manifesta um receio genérico sem apontar o trecho.
+@2441 F01.comunicacao_publica|Após o jogo, perguntam se sua forma de responder representa todo o elenco. Você precisa distinguir sua fala de uma posição coletiva que não foi combinada.|{"finished":true}
+imprensa|posicao_individual|Deixar claro o limite da sua resposta|Você não apresenta opinião pessoal como declaração do grupo.|Você usa o plural e amplia sua responsabilidade sem perceber.
+disciplina|nao_atribuir_consenso|Evitar anunciar um consenso inexistente|Você preserva a diferença entre convivência e posição oficial.|Você presume que a ausência de discordância significa acordo.
+apoio|conferir_mensagem_coletiva|Dizer que uma mensagem coletiva precisa ser combinada|Você respeita o espaço dos colegas.|Sua fala parece afirmar que existe uma divisão no grupo.
+social|responder_sua_tarefa|Voltar ao trabalho que pode descrever|Você mantém uma resposta concreta e limitada.|Você usa a própria tarefa para ignorar o limite da pergunta.
+@2442 F01.comunicacao_publica|A comunicação pergunta como você explicaria uma orientação de jogo sem revelar detalhes internos. Você quer ser claro sem inventar uma justificativa.|{"finished":true}
+imprensa|explicacao_geral|Falar do objetivo geral da sua função|Você explica uma contribuição sem expor o combinado.|Você usa termos tão vagos que não comunica nada.
+disciplina|limite_interno|Dizer qual detalhe prefere deixar para a análise interna|Você estabelece um limite respeitoso.|Sua formulação faz o limite parecer um segredo dramático.
+apoio|revisar_comunicacao|Conferir a formulação com a equipe de comunicação|A revisão encontra uma forma compreensível.|Você pede aprovação sem esclarecer sua preocupação.
+social|pedir_foco_publico|Perguntar qual parte é útil para quem acompanha|Você relaciona a resposta ao interesse da pergunta.|Sua pergunta soa como recusa de explicar a própria atuação.
+@2443 F01.comunicacao_publica|No pós-jogo, uma pergunta mistura um fato da partida com uma hipótese sobre o próximo compromisso. Você quer responder às duas partes sem confundi-las.|{"finished":true}
+disciplina|separar_tempos|Distinguir o resultado conhecido da hipótese futura|Você deixa claro o que aconteceu e o que ainda é incerto.|Você responde à hipótese como se ela já tivesse acontecido.
+imprensa|foco_partida_encerrada|Começar pelo jogo que pode analisar|Você oferece uma resposta concreta antes de falar de expectativa.|Você generaliza a atuação para o próximo jogo.
+apoio|respeitar_planejamento|Lembrar que a preparação seguinte será orientada pela comissão|Você não anuncia uma decisão técnica inexistente.|Sua fala parece confirmar que o plano já mudou.
+social|pedir_recorte|Pedir uma pergunta de cada vez|Você organiza a resposta sem perder o contexto.|Você usa o recorte para ignorar uma parte que poderia responder.
+@2444 F01.comunicacao_publica|A comunicação pede uma autocrítica curta. Você quer reconhecer uma responsabilidade sem transformar uma frase pública numa punição pessoal.|{"finished":true}
+imprensa|autocritica_concreta|Falar de uma tarefa que precisa rever|Você assume um ponto de trabalho observável.|Você descreve sua pessoa inteira em vez da tarefa.
+disciplina|limite_julgamento|Separar avaliação de rótulo pessoal|Você mantém a crítica ligada ao gesto.|Sua resposta parece rejeitar qualquer responsabilidade.
+apoio|abrir_feedback|Dizer que ouvirá uma observação específica da comissão|Você mostra abertura para trabalhar o ponto.|Você pede só uma confirmação de que não teve culpa.
+social|linguagem_respeitosa|Reformular a frase sem se atacar|Você comunica responsabilidade com respeito.|Você suaviza tanto que perde o ponto concreto.
+@2445 F01.comunicacao_publica|Após o jogo, você percebe que uma resposta pode ser entendida como promessa de minutos ou função. A decisão não cabe a você.|{"finished":true}
+disciplina|retirar_garantia|Revisar o trecho que parecia uma garantia|Você distingue sua vontade de uma decisão confirmada.|Você deixa a garantia implícita na frase seguinte.
+imprensa|explicar_disponibilidade|Falar de disponibilidade para o trabalho|Você demonstra intenção sem anunciar escalação.|Sua resposta parece cobrar a comissão publicamente.
+apoio|respeitar_outros_papeis|Reconhecer o espaço de decisão da comissão|Você evita falar por uma escolha que não tomou.|Sua fala transfere toda a responsabilidade pela sua preparação.
+social|esclarecer_intencao_pessoal|Explicar o que queria dizer na primeira formulação|Você corrige a ambiguidade de maneira direta.|Você discute como a frase deveria ser ouvida em vez de esclarecê-la.
+@2446 F01.estatistica_gol|Você marcou na partida encerrada. A conversa pós-jogo pergunta como avalia sua participação além desse registro.|{"finished":true,"own_goals_min":1}
+imprensa|gol_e_trabalho|Reconhecer o gol e explicar outra tarefa|Você contextualiza o registro sem apagar a atuação coletiva.|Você trata o gol como explicação para tudo.
+apoio|reconhecer_construcao|Reconhecer a colaboração que precisa rever com o setor|Você divide o mérito sem inventar uma sequência.|Você descreve detalhes que não consegue confirmar.
+disciplina|revisar_sem_certeza|Separar o acerto do que ainda pode analisar|Você mantém abertura para corrigir outras decisões.|Você usa o gol para encerrar qualquer avaliação.
+social|ouvir_retorno_gol|Ouvir o que a comissão quer destacar do seu trabalho|Você recebe uma avaliação além do registro.|Você escuta procurando apenas elogio pela finalização.
+@2447 F01.estatistica_gol|O gol está no seu registro da partida encerrada. Você quer guardar o que aprendeu sem prometer repetir a mesma solução em outro contexto.|{"finished":true,"own_goals_min":1}
+visao|condicao_finalizacao|Rever quais informações estavam disponíveis antes do gesto|Você identifica uma condição útil para a escolha.|Você considera que o resultado confirma qualquer leitura.
+disciplina|registrar_limite_gol|Anotar onde a conclusão precisa de limite|Você evita transformar um acerto numa regra.|Você registra só que deve fazer o mesmo sempre.
+apoio|ouvir_apoio_gol|Pedir a leitura de um colega que participou do setor|Você conhece outra parte da construção.|Você procura apenas a confirmação de que decidiu sozinho.
+social|testar_preparacao_gol|Propor testar o gesto sem uma promessa de resultado|Você leva o acerto para uma tarefa de treino.|Você promete outro gol como consequência automática do trabalho.
+@2448 F01.estatistica_assistencia|Sua estatística registra assistência na partida encerrada. A comunicação pede que você explique a contribuição sem falar como se tivesse feito o gol do colega.|{"finished":true,"own_assists_min":1}
+imprensa|reconhecer_parceria|Reconhecer a relação entre passe e finalização|Você descreve colaboração sem tomar o gesto do outro.|Sua resposta parece atribuir o gol inteiro a você.
+disciplina|limite_descricao_assistencia|Falar apenas da leitura que consegue recordar|Você evita inventar detalhes da sequência.|Você completa a lembrança com o que imagina que aconteceu.
+apoio|ouvir_finalizador|Ouvir como o colega recebeu a jogada|Você conhece uma referência que não via.|Você explica o que ele deveria ter sentido antes de ouvir.
+social|revisar_combinacao_assistencia|Propor rever a combinação em outro momento|Vocês transformam o registro em análise útil.|Você trata a assistência como garantia de que a combinação sempre funciona.
+@2449 F01.estatistica_assistencia|A assistência consta no jogo encerrado. Você quer conversar sobre o tempo da decisão sem apresentar uma única entrega como prova de que toda sua leitura foi correta.|{"finished":true,"own_assists_min":1}
+visao|tempo_da_entrega|Rever quando a linha ficou disponível|Você identifica um instante que orientou a escolha.|Você olha só o resultado da finalização.
+disciplina|avaliar_contexto_assistencia|Comparar a intenção com a informação disponível|Você preserva uma análise além do acerto.|Você reconstrói a intenção a partir do gol que aconteceu.
+apoio|feedback_recepcao_assistencia|Perguntar o que facilitou a recepção do colega|Você identifica uma qualidade concreta da entrega.|Vocês elogiam o lance sem esclarecer o que ajudou.
+social|expectativa_proxima_assistencia|Guardar o aprendizado sem prometer outro registro|Você mantém uma expectativa realista de trabalho.|Você transforma uma boa jogada numa cobrança para o próximo jogo.
+@2450 F01.estatistica_defesa|Você registrou desarme na partida encerrada. A comissão pergunta como a recuperação se ligou ao posicionamento do setor.|{"finished":true,"own_tackles_min":1}
+visao|contexto_recuperacao|Rever o espaço antes da disputa|Você identifica o que permitiu chegar à bola.|Você analisa só o bote e ignora a aproximação.
+disciplina|limite_registro_desarme|Separar o registro de uma avaliação completa|Você não trata a estatística como prova de toda a atuação.|Você usa o número para encerrar a conversa.
+apoio|reconhecer_cobertura_desarme|Perguntar sobre a cobertura que existia no setor|Você conhece uma contribuição que precisa considerar.|Você presume uma cobertura sem conferir a leitura do colega.
+social|explicar_leitura_desarme|Explicar o que percebeu antes de tentar|Você mostra o raciocínio que pode ser trabalhado.|Você descreve a intenção a partir do desfecho favorável.
+@2451 F01.estatistica_defesa|Os desarmes aparecem no seu registro do jogo encerrado. Você quer entender também as jogadas em que proteger espaço foi mais útil que disputar a bola.|{"finished":true,"own_tackles_min":1}
+tatico|comparar_decisoes_desarme|Comparar recuperação e proteção com o auxiliar|Você reconhece funções diferentes na mesma partida.|Você trata qualquer decisão sem bote como falta de iniciativa.
+visao|ler_apoios_desarme|Rever como os apoios mudavam a disputa|Você identifica quando a aproximação era possível.|Você considera apenas a distância até a bola.
+apoio|ouvir_setor_desarme|Ouvir quem dividia a cobertura|Você entende como as tarefas se complementavam.|Você busca confirmar que seu bote resolveu tudo sozinho.
+disciplina|criterio_defensivo|Guardar um critério além do total de desarmes|Você leva uma referência útil para o treino.|Você escolhe apenas aumentar o número no próximo jogo.
+@2452 F01.estatistica_finalizacao|Você finalizou ao menos três vezes e não marcou no jogo encerrado. A comissão propõe revisar as escolhas sem tratar todo chute como igual.|{"finished":true,"own_shots_min":3,"own_goals_max":0}
+visao|contexto_chutes|Comparar as condições de cada finalização|Você distingue decisões com informações diferentes.|Você agrupa todos os chutes como um único problema.
+disciplina|separar_escolha_execucao|Separar escolha de gesto técnico|Você identifica o que pode trabalhar em cada parte.|Você explica toda finalização apenas pela ausência de gol.
+apoio|ouvir_opcoes_chutes|Ouvir a leitura dos apoios que estavam disponíveis|Você acrescenta uma perspectiva à revisão.|Você ouve procurando uma cobrança para rebater.
+social|definir_tarefa_chutes|Combinar uma tarefa específica com o auxiliar|Você sai com um ponto concreto para treinar.|Você promete marcar no próximo jogo em vez de definir trabalho.
+@2453 F01.estatistica_finalizacao|Seu registro mostra três ou mais finalizações na partida encerrada. Você quer avaliar a participação sem julgar a qualidade só pela quantidade.|{"finished":true,"own_shots_min":3}
+visao|avaliar_janelas|Rever as janelas disponíveis antes dos chutes|Você identifica diferenças reais entre as oportunidades.|Você considera todo chute uma oportunidade equivalente.
+disciplina|criterio_finalizacao|Perguntar qual critério a comissão usará na revisão|Você entende como avaliar além do total.|Você pede apenas uma conclusão sobre se chutou o suficiente.
+apoio|colaboracao_chutes|Conversar sobre como o setor preparou as decisões|Você reconhece a ligação entre apoio e finalização.|Você reduz a conversa a quem deveria ter passado mais.
+social|limitar_conclusao_chutes|Guardar uma conclusão provisória até rever os lances|Você evita uma explicação construída só pelo número.|Você escolhe um rótulo antes da revisão.
+@2454 F01.estatistica_minutos|Você completou 90 minutos na partida encerrada. A comissão quer discutir como manteve a tarefa, sem usar o tempo jogado como garantia de boa atuação.|{"finished":true,"played_minutes_min":90}
+disciplina|qualidade_minutos|Escolher uma fase da execução para avaliar|Você distingue tempo em campo de qualidade do trabalho.|Você trata completar a partida como resposta para toda crítica.
+visao|comparar_fases_minutos|Comparar sua leitura no início e no fim|Você identifica um ajuste ao longo do jogo.|Você compara apenas o cansaço das duas fases.
+apoio|ouvir_setor_minutos|Pedir ao colega uma observação sobre as distâncias|Você conhece um ponto que não enxergou sozinho.|Você busca só um elogio pela disposição.
+social|relatar_limites_minutos|Descrever um limite que percebeu durante a partida|Você oferece informação para a preparação seguinte.|Você esconde a dificuldade para valorizar os minutos completos.
+@2455 F01.estatistica_minutos|Você não teve minutos na partida encerrada. A conversa com o auxiliar pode tratar da preparação sem inventar uma atuação que não aconteceu.|{"finished":true,"played_minutes_max":0}
+disciplina|confirmar_proxima_tarefa|Perguntar qual tarefa de preparação deve manter|Você entende um próximo passo sem uma promessa de entrada.|Você formula a pergunta como cobrança de minutos garantidos.
+visao|observacao_sem_atuacao|Relatar uma observação, deixando claro que não atuou|Você contribui sem falar como participante daquele lance.|Você descreve a leitura como se tivesse tomado a decisão em campo.
+apoio|manter_colaboracao_minutos|Conversar sobre como continuar colaborando com o setor|Você preserva a relação sem fingir que não queria jogar.|Sua fala vira uma comparação com quem recebeu minutos.
+social|expressar_expectativa_minutos|Explicar como está lidando com a espera|Você comunica a expectativa sem exigir uma garantia.|Você atribui uma intenção à decisão da comissão.
+@2456 F01.estatistica_disciplina|Seu registro mostra cartão na partida encerrada. A comissão propõe rever a decisão e a reação, sem presumir qual foi o motivo antes da análise.|{"finished":true,"own_cards_min":1}
+disciplina|rever_motivo_cartao|Rever o momento antes de explicar a reação|Você distingue o fato registrado da sua interpretação.|Você escolhe uma justificativa antes de olhar o contexto.
+social|assumir_reacao_cartao|Descrever a parte que dependeu da sua conduta|Você assume uma responsabilidade concreta.|Você fala apenas da conduta dos outros.
+apoio|ouvir_aviso_cartao|Ouvir como um colega tentou orientar você|Você conhece uma ajuda que talvez não tivesse percebido.|Você interpreta o retorno como outra acusação.
+tatico|reconhecer_limite_cartao|Conferir qual tarefa poderia ter sido preservada|Você liga a revisão à continuidade do jogo.|Você transforma a análise numa promessa de nunca mais disputar.
+@2457 F01.estatistica_disciplina|Você recebeu cartão no jogo encerrado. A comunicação pergunta sobre disciplina, e você quer responder sem inventar uma decisão da arbitragem.|{"finished":true,"own_cards_min":1}
+imprensa|falar_registro_cartao|Reconhecer o cartão e seu limite de análise|Você responde sem anunciar um motivo que não reviu.|Você apresenta uma suposição como explicação oficial.
+disciplina|limitar_acusacao_cartao|Evitar atribuir intenção a quem decidiu|Você mantém a fala no que pode descrever.|Sua resposta vira uma acusação sobre intenção.
+apoio|analise_comissao_cartao|Dizer que levará uma dúvida concreta à comissão|Você aponta uma forma de rever sua reação.|Você usa a comissão para evitar qualquer responsabilidade pessoal.
+social|pedir_contexto_cartao|Pedir qual aspecto da disciplina querem discutir|Você delimita a resposta com clareza.|O pedido parece um desafio e amplia a tensão.
+@2458 F01.relacao|Após a partida, um colega pede um retorno sobre como vocês dividiram o espaço. Você quer conversar sem transformar preferências em instruções oficiais.|{"finished":true}
+apoio|ouvir_espaco|Ouvir como o colega percebeu a divisão|Você conhece uma diferença de leitura.|Você tenta corrigir antes de ouvir.
+tatico|conferir_plano_espaco|Relacionar a conversa ao plano recebido|Você distingue combinado de preferência pessoal.|Você usa um plano que não tinha sido confirmado.
+disciplina|limite_opiniao_espaco|Apresentar sua leitura como uma observação|Você abre espaço para revisar a interpretação.|Você fala como se tivesse autoridade para mudar a função do colega.
+social|teste_comissao_espaco|Propor conferir o ponto com o auxiliar|Vocês encontram um próximo passo sem criar outro plano.|Vocês tratam a proposta como aprovação de uma mudança.
+@2459 F01.relacao|Um companheiro diz que não percebeu um apoio seu no jogo. Você quer entender o ângulo dele sem transformar a conversa numa cobrança de passes.|{"finished":true}
+apoio|campo_visao_colega|Perguntar o que ele conseguia enxergar|Você entende por que sua apresentação podia não ser visível.|Você repete que estava livre sem ouvir a perspectiva dele.
+visao|trajeto_apoio|Rever o trajeto até sua posição|Você identifica se a linha era realmente utilizável.|Você considera só a região onde terminou.
+disciplina|separar_pedido_cobranca|Explicar que procura uma referência de trabalho|Você mantém a conversa fora de uma disputa por toques.|Sua frase continua exigindo que o passe tivesse acontecido.
+social|ajuste_apresentacao|Combinar como testar outro ângulo no treino|Vocês definem uma checagem concreta.|Vocês prometem se procurar mais sem especificar o ajuste.
+@2460 F01.relacao|O setor discute uma troca de referência da partida. Você quer identificar o que foi comunicado sem presumir que o colega ignorou um aviso.|{"finished":true}
+apoio|ouvir_aviso_troca|Perguntar qual aviso chegou ao colega|Você conhece a informação recebida.|Você apresenta o aviso como prova de que ele foi compreendido.
+disciplina|distinguir_envio_recebimento|Separar ter falado de ter sido entendido|Você identifica uma etapa que precisa de ajuste.|Você trata volume da voz como garantia de clareza.
+tatico|momento_troca_real|Rever quando a referência mudou|Você relaciona o aviso ao movimento.|Você avalia a frase sem considerar o instante.
+social|confirmacao_futura|Combinar uma confirmação curta para testar|Vocês criam uma forma de reduzir a dúvida.|A confirmação escolhida se parece com outro comando.
+@2461 F01.relacao|Depois do jogo, um colega pede ajuda para conversar com a comissão sobre uma dúvida de função. Você pode apoiar sem falar por ele.|{"finished":true}
+apoio|organizar_duvida_colega|Ajudá-lo a formular o ponto principal|Ele encontra uma pergunta que representa sua dúvida.|Você reformula tanto que a pergunta vira a sua opinião.
+social|respeitar_agencia|Perguntar que tipo de apoio ele deseja|Você evita assumir a conversa no lugar dele.|Você decide acompanhá-lo sem perguntar.
+disciplina|limitar_interpretacao|Separar fatos observados de suposições sobre a comissão|Você não alimenta uma conclusão sem confirmação.|Você trata uma interpretação como uma decisão já tomada.
+liderar|propor_checar|Sugerir uma checagem prática com o auxiliar|Vocês identificam um caminho para esclarecer.|Você apresenta uma solução antes de ouvir a resposta da comissão.
+@2462 F01.relacao|Um companheiro agradece um aviso seu durante a partida. Você quer reconhecer a troca sem concluir que sua comunicação funcionou em todos os momentos.|{"finished":true}
+apoio|perguntar_utilidade|Perguntar o que tornou aquele aviso útil|Você identifica uma qualidade que pode repetir.|Você aceita o elogio como avaliação de todos os seus avisos.
+disciplina|guardar_condicao_aviso|Registrar em qual condição o aviso ajudou|Você preserva o contexto da contribuição.|Você transforma a frase em comando para qualquer lance.
+social|agradecer_troca_aviso|Agradecer a resposta do colega|A conversa reforça uma colaboração nos dois sentidos.|Você usa a resposta para destacar só sua participação.
+liderar|testar_clareza_aviso|Propor uma checagem de clareza no treino|Vocês encontram um modo de avaliar a comunicação.|Vocês acrescentam vários sinais sem testar nenhum.
+@2463 F01.relacao|A comissão pede que o setor escolha um ponto de cooperação para a próxima sessão. Você quer evitar uma meta que dependa de um resultado de jogo.|{"finished":true}
+liderar|meta_cooperacao|Propor uma tarefa conjunta observável|O grupo encontra uma ação que pode testar.|A proposta depende de vencer o próximo jogo.
+apoio|ouvir_necessidades|Ouvir do que cada função precisa|Você identifica uma necessidade compartilhada.|Você escolhe a meta antes de ouvir o setor.
+disciplina|limitar_meta|Manter um foco de cada vez|A tarefa fica clara para a sessão.|Você soma outras metas e dilui o foco.
+tatico|ligar_funcao_meta|Conferir como a tarefa cabe no plano|Você não cria uma orientação paralela.|Você muda a função de um colega sem confirmação.
+@2464 F01.relacao|Depois do jogo, você quer oferecer uma observação a um colega que está em silêncio. O primeiro passo é saber se ele quer conversar naquele momento.|{"finished":true}
+apoio|pedir_espaco_conversa|Perguntar se ele tem disposição para ouvir|Você respeita o momento sem presumir desinteresse.|Você pergunta, mas começa o comentário antes da resposta.
+social|respeitar_pausa_colega|Propor outro momento se ele preferir|Vocês preservam um espaço de conversa sem pressão imediata.|A proposta parece uma ameaça de cobrança posterior.
+disciplina|ponto_delimitado_colega|Preparar um comentário ligado a uma tarefa|Você evita uma avaliação da pessoa inteira.|Você escolhe uma impressão ampla e difícil de discutir.
+liderar|abrir_retorno_colega|Oferecer também espaço para ele avaliar sua ajuda|A conversa permite troca em vez de cobrança unilateral.|Você oferece retorno, mas se prepara para rebater tudo.
+@2465 F01.relacao|Um colega diz que sua orientação durante o jogo foi difícil de executar. Você quer entender a distância real dele, não só defender o movimento ideal.|{"finished":true}
+apoio|entender_ponto_partida|Perguntar de onde ele precisava sair|Você reconhece um limite que não via.|Você descreve o destino sem considerar o trajeto.
+visao|comparar_tempos_ajuda|Rever o tempo entre aviso e decisão|Você percebe se a informação chegou utilizável.|Você considera só se falou antes do lance terminar.
+disciplina|assumir_limite_orientacao|Reconhecer que a orientação podia exigir demais|Você abre espaço para ajustar o aviso.|Você trata a dificuldade como falta de disposição do colega.
+social|formular_ajuda_possivel|Propor uma orientação mais executável para testar|Vocês chegam a uma referência prática.|A proposta continua pedindo duas tarefas incompatíveis.
+@2466 F01.relacao|O setor revê uma situação em que duas pessoas ofereceram o mesmo apoio. Você quer falar da coordenação sem transformar isso em disputa por posição.|{"finished":true}
+tatico|divisao_apoios|Conferir qual divisão estava combinada|Você distingue falha de coordenação de preferência pessoal.|Você discute qual jogador deveria mandar no espaço.
+apoio|ouvir_intencao_apoio|Ouvir qual informação levou o colega a aproximar|Você entende o raciocínio antes de concluir.|Você toma a aproximação como tentativa de ocupar sua função.
+disciplina|criterio_tempo_apoio|Escolher um critério de tempo para a alternância|Vocês têm uma referência que podem verificar.|Vocês combinam alternar sem definir quando.
+liderar|confirmar_auxiliar_apoio|Propor que o auxiliar confirme a divisão|O setor evita criar outra orientação entre si.|Você apresenta uma solução pronta sem explicar a dúvida.
+@2467 F01.relacao|Depois do jogo, um colega pergunta se você ficou incomodado com uma cobrança dele. Você quer responder sobre o efeito sem julgar a intenção da pessoa.|{"finished":true}
+social|descrever_efeito|Explicar como o aviso chegou para você|Você fala do efeito sem atribuir uma intenção hostil.|Você descreve a intenção que imagina, não o que sentiu.
+apoio|ouvir_intencao_cobranca|Ouvir o que ele pretendia comunicar|Você conhece uma informação antes de concluir.|Você usa a escuta só para preparar uma resposta.
+disciplina|separar_tom_tarefa|Distinguir o ponto tático do jeito de falar|Você consegue discutir as duas partes sem misturá-las.|Você rejeita a tarefa inteira por causa do tom.
+liderar|combinado_linguagem|Propor uma formulação para testar em campo|Vocês encontram uma alternativa de comunicação.|A nova formulação mantém a mesma cobrança pessoal.
+@2468 F01.relacao|A comissão propõe uma conversa curta de encerramento. Você quer participar sem prolongar uma disputa que ainda precisa de revisão.|{"finished":true}
+disciplina|conclusao_provisoria|Apresentar o que sabe e o que precisa rever|Você mantém uma conclusão limitada aos fatos.|Você apresenta uma certeza para encerrar o desconforto.
+apoio|ouvir_ultima_leitura|Ouvir a última observação do colega|Você reconhece um ponto ainda aberto.|Você escuta apenas para voltar à discussão anterior.
+social|combinar_retomada|Definir quando e como retomar a dúvida|Vocês preservam o assunto sem exigir solução imediata.|O combinado não define nenhum próximo passo.
+liderar|fechamento_respeitoso|Reforçar uma tarefa comum para encerrar|Você reúne o setor sem apagar as divergências.|Sua fala parece exigir que todos concordem naquele instante.
+@2469 F01.relacao|Depois da partida, o grupo troca impressões sobre quem ajudou em tarefas discretas. Você quer reconhecer sem inventar uma jogada para elogiar alguém.|{"finished":true}
+apoio|elogio_observado|Citar uma ajuda que realmente percebeu|Você oferece um reconhecimento concreto.|Você completa o elogio com uma ação que não lembra.
+disciplina|limite_observacao_ajuda|Dizer qual parte não conseguiu acompanhar|Você evita avaliar uma contribuição desconhecida.|Você fala como se tivesse visto o trabalho de todos.
+social|perguntar_outra_ajuda|Convidar o colega a descrever sua própria tarefa|Você abre espaço sem falar por ele.|Você responde por ele antes de ouvir.
+liderar|ligar_tarefas_discretas|Relacionar as ajudas ao funcionamento do setor|Você valoriza colaboração sem uma disputa de importância.|Você transforma a conversa numa classificação de mérito.
+@2470 F01.saida_lesao|O registro da partida confirma que você deixou o campo por lesão. A conversa agora é organizar informações para a comissão, sem inventar diagnóstico ou prazo.|{"finished":true,"exit_reason":"injury"}
+disciplina|relato_observado_lesao|Descrever o que percebeu, sem dar um diagnóstico|Você fornece um relato que a comissão pode avaliar.|Você mistura sensação com uma conclusão clínica não confirmada.
+social|perguntar_procedimento|Perguntar qual é o próximo procedimento do clube|Você entende o passo seguinte sem presumir uma liberação.|Você interpreta uma orientação inicial como diagnóstico fechado.
+apoio|comunicar_limite_lesao|Pedir ajuda para informar o que ainda não sabe|Você comunica a incerteza sem criar uma previsão.|Você tenta tranquilizar os outros prometendo um prazo.
+recuperar|respeitar_orientacao_lesao|Priorizar a pausa orientada pela comissão|Você não acrescenta esforço por conta própria.|Você continua preocupado em compensar a saída e não se recompõe.
+@2471 F01.saida_lesao|Sua saída por lesão está registrada no jogo encerrado. A comunicação do clube pergunta como falar do ocorrido sem anunciar uma recuperação ainda não confirmada.|{"finished":true,"exit_reason":"injury"}
+imprensa|informacao_limitada_lesao|Reconhecer a saída e limitar a informação ao que sabe|Você não transforma incerteza em um prazo público.|Você sugere uma data sem confirmação.
+disciplina|revisar_diagnostico_lesao|Retirar da mensagem qualquer diagnóstico presumido|Você mantém a fala dentro do que foi confirmado.|Você deixa uma conclusão clínica implícita no texto.
+apoio|orientacao_comunicacao_lesao|Pedir apoio para comunicar sem alarmar nem prometer|A revisão preserva um limite claro.|Você procura uma frase tranquilizadora que promete demais.
+social|assumir_duvida_lesao|Dizer que ainda precisa receber orientação|Você reconhece a dúvida sem inventar uma resposta.|Sua fala fica ambígua e parece anunciar uma decisão.
+@2472 F01.saida_lesao|A partida terminou depois de sua saída registrada por lesão. Um companheiro quer saber como ajudar, e você pode pedir algo prático sem lhe atribuir uma função clínica.|{"finished":true,"exit_reason":"injury"}
+apoio|ajuda_pratica_lesao|Pedir uma ajuda simples na organização da rotina|O colega entende uma contribuição possível.|Você pede algo amplo que ele não sabe como oferecer.
+social|limitar_conselhos_lesao|Explicar que orientações sobre retorno virão da comissão|Você preserva o lugar da orientação profissional.|Sua fala soa como rejeição de toda ajuda do colega.
+disciplina|organizar_duvidas_lesao|Anotar perguntas para a comissão|Você distingue dúvida de uma conclusão por conta própria.|Você registra um prazo desejado como se fosse informação.
+recuperar|pausa_sem_compensar_lesao|Respeitar a pausa sem planejar esforço para compensar|Você mantém a rotina orientada pelo clube.|Você usa a pausa para imaginar uma volta que ainda não foi definida.
+@2473 F01.saida_desgaste|O jogo registrou sua saída por desgaste. A comissão pergunta como você percebeu a mudança de disposição durante a partida.|{"finished":true,"exit_reason":"fatigue"}
+disciplina|relato_desgaste|Indicar em qual movimento percebeu a diferença|Você oferece uma referência concreta para revisar.|Você responde só que ficou cansado.
+visao|rever_decisoes_desgaste|Comparar sua leitura antes e depois da queda de disposição|Você identifica um ajuste que pode ser trabalhado.|Você atribui toda decisão ruim ao cansaço sem rever o contexto.
+apoio|ouvir_setor_desgaste|Ouvir o que o colega percebeu nas distâncias|Você conhece um sinal que talvez não tenha notado.|Você entende o retorno como crítica à sua vontade.
+recuperar|seguir_rotina_desgaste|Cumprir a recuperação orientada pelo clube|Você não tenta compensar os minutos com esforço extra.|Você mantém a pressa de demonstrar disposição.
+@2474 F01.saida_desgaste|Sua saída por desgaste consta no registro. Você quer conversar sobre a preparação seguinte sem concluir sozinho qual carga deve mudar.|{"finished":true,"exit_reason":"fatigue"}
+disciplina|conferir_planejamento_desgaste|Levar uma observação ao preparador|Você relaciona o relato ao planejamento.|Você leva uma solução pronta sem esclarecer a dificuldade.
+visao|identificar_padrao_desgaste|Rever em que tarefa o controle mudou|Você encontra uma referência além da sensação geral.|Você procura apenas o instante da substituição.
+social|separar_carga_decisao|Distinguir sua percepção de uma decisão de carga|Você não anuncia uma mudança que a comissão não confirmou.|Você trata a percepção como autorização para alterar o treino.
+recuperar|preservar_recuperacao_desgaste|Manter a recuperação enquanto o plano é conferido|Você respeita a rotina sem inventar um ajuste.|Você passa a pausa negociando esforço extra consigo mesmo.
+@2475 F01.saida_desgaste|A partida encerrada registrou desgaste antes da sua saída. Um colega pergunta se deveria ter avisado você mais cedo.|{"finished":true,"exit_reason":"fatigue"}
+apoio|ouvir_sinal_desgaste|Perguntar qual mudança ele percebeu|Você conhece um sinal externo útil.|Você assume que ele deveria ter resolvido a situação por você.
+disciplina|assumir_relato_desgaste|Reconhecer sua responsabilidade de comunicar a disposição|Você não transfere ao colega a leitura inteira do seu limite.|Você tenta assumir tudo e deixa de ouvir a ajuda possível.
+social|combinado_aviso_desgaste|Combinar um aviso concreto para testar|Vocês definem uma ajuda sem um diagnóstico improvisado.|O aviso fica como uma cobrança de resistência.
+recuperar|encerrar_com_calma_desgaste|Voltar à rotina de recuperação depois da conversa|Você não transforma o assunto em outra disputa de esforço.|Você continua se comparando aos minutos dos colegas.
+@2476 F01.saida_expulsao|O registro confirma sua expulsão por segundo cartão. A revisão precisa tratar de decisões reais, sem inventar uma intenção da arbitragem.|{"finished":true,"exit_reason":"red"}
+disciplina|rever_dois_momentos|Rever os dois momentos antes de justificar|Você separa os fatos da sua primeira reação.|Você escolhe uma explicação antes de rever os registros.
+social|assumir_conduta_expulsao|Falar da parte que dependeu da sua conduta|Você assume uma responsabilidade específica.|Você descreve apenas o que os outros deveriam ter feito.
+apoio|ouvir_efeito_setor|Ouvir como o setor precisou se reorganizar|Você conhece um efeito da saída sem disputar culpa.|Você entende a explicação como ataque pessoal.
+tatico|rever_limite_disputa|Conferir que tarefa poderia ter preservado|Você liga a revisão a uma decisão trabalhável.|Você transforma a revisão numa promessa de nunca mais disputar.
+@2477 F01.saida_expulsao|Depois da expulsão registrada por segundo cartão, a comunicação pede uma resposta. Você quer reconhecer o ocorrido sem acusar nem prometer que jamais errará.|{"finished":true,"exit_reason":"red"}
+imprensa|reconhecer_registro_expulsao|Reconhecer a expulsão e a necessidade de revisão|Você responde dentro do fato confirmado.|Você usa uma hipótese para explicar o motivo oficial.
+disciplina|limitar_promessa_expulsao|Falar de uma responsabilidade, não de perfeição futura|Você assume um trabalho possível.|Você promete que nunca mais cometerá qualquer erro.
+apoio|respeitar_colegas_expulsao|Reconhecer o impacto sem falar pelos colegas|Você não atribui sentimentos ao grupo inteiro.|Você anuncia como todos se sentiram sem ouvi-los.
+social|organizar_resposta_expulsao|Pedir um instante antes de responder|Você consegue formular uma fala sem ampliar o confronto.|Você usa a pausa para preparar uma acusação.
+@2478 F01.sem_minutos|Você começou no banco e terminou sem minutos registrados. O auxiliar abre uma conversa sobre a preparação, sem prometer uma entrada futura.|{"finished":true,"bench":true,"played_minutes_max":0}
+disciplina|tarefa_apos_espera|Perguntar o que deve manter na rotina|Você entende uma responsabilidade atual.|Você trata a pergunta como negociação de minutos garantidos.
+apoio|continuar_ligacao|Conversar sobre como seguir ligado ao setor|Você preserva colaboração sem esconder a vontade de jogar.|Sua fala vira comparação com quem entrou.
+social|explicar_expectativa_espera|Explicar como viveu a espera|Você expressa a experiência sem atribuir intenção ao treinador.|Você apresenta uma suposição sobre por que não entrou.
+tatico|rever_observacao_espera|Conferir uma observação feita do banco|Você contribui deixando claro seu lugar de observação.|Você descreve a leitura como se tivesse executado a jogada.
+@2479 F01.sem_minutos|O registro mostra que você não atuou na partida encerrada. Você quer organizar sua reação sem inventar uma avaliação individual de jogo.|{"finished":true,"played_minutes_max":0}
+disciplina|separar_preparacao_atuacao|Distinguir avaliação da preparação e de uma atuação inexistente|Você conversa sobre o que realmente fez.|Você pede uma nota como se tivesse jogado.
+social|duvida_sem_acusacao|Levar uma dúvida concreta à comissão|Você abre espaço para uma resposta sem acusar intenção.|Você leva uma conclusão pronta sobre a decisão.
+apoio|ouvir_orientacao_espera|Ouvir o retorno sem comparar com um colega|Você entende uma orientação para sua situação.|Você trata cada retorno como uma comparação de oportunidades.
+tatico|proxima_referencia_espera|Conferir qual referência deve trabalhar no treino|Você sai com uma tarefa sem promessa de escalação.|Você troca a tarefa por uma cobrança de entrada futura.
+@2480 F02.rotina|Um compromisso pessoal e uma tarefa do seu curso ficaram para o mesmo horário livre. Como você organiza esse tempo?|{}
+disciplina|reservar_bloco_estudo|Separar um período curto para estudar|Você termina uma parte da tarefa sem ocupar toda a folga.|Você abre vários assuntos e não conclui a parte escolhida.
+social|renegociar_compromisso|Combinar outro horário com a pessoa|Vocês encontram um horário que ambos conseguem cumprir.|Você avisa tarde demais para a pessoa reorganizar o dia.
+lazer|preservar_encontro|Manter o encontro e agendar a tarefa depois|Você aproveita o encontro e deixa um horário definido para estudar.|Você deixa o estudo sem horário e continua pensando na pendência.
+apoio|pedir_ajuda_agenda|Pedir ajuda para organizar as duas prioridades|A conversa ajuda você a assumir um compromisso possível.|Você espera que a outra pessoa resolva sua agenda inteira.
+@2481 F02.familia|Alguém da sua família quer conversar, mas você está distraído olhando o celular. A pessoa percebe e interrompe a própria fala.|{}
+apoio|guardar_celular_escuta|Guardar o celular e ouvir até o fim|A pessoa retoma a conversa e se sente acolhida.|Você volta a olhar a tela e perde o que ela estava contando.
+social|combinar_conversa_presente|Pedir alguns minutos e combinar uma conversa sem distração|Você retorna no horário combinado e consegue prestar atenção.|Você não volta no horário e a pessoa desiste de conversar.
+lazer|propor_caminhada_familia|Convidar a pessoa para uma caminhada tranquila|Vocês encontram um espaço mais calmo para conversar.|Você acelera o passeio e não dá espaço para a conversa.
+disciplina|repetir_ponto_entendido|Dizer o que entendeu e perguntar o que faltou|A pergunta mostra interesse e esclarece a preocupação.|Você resume antes de ouvir e entende a preocupação errada.
+@2482 F02.estudo|Você percebe que decorou um conteúdo do curso, mas não consegue explicá-lo com suas palavras.|{}
+disciplina|escrever_explicaçao_propria|Escrever uma explicação curta sem consultar as anotações|Você identifica o trecho que realmente precisa estudar.|Você copia a definição e continua sem compreender o exemplo.
+social|pedir_exemplo_colega|Pedir a um colega do curso um exemplo prático|O exemplo liga o conteúdo a uma situação compreensível.|Você fica com vergonha de perguntar sobre a parte que não entendeu.
+lazer|fazer_intervalo_estudo|Fazer uma pausa e voltar a uma única dúvida|Você retorna com disposição para enfrentar a dúvida escolhida.|A pausa fica sem limite e a dúvida continua pendente.
+apoio|estudar_em_dupla|Combinar uma revisão em dupla|Vocês alternam explicações e encontram uma lacuna importante.|Você concorda com tudo para não admitir sua dificuldade.
+@2483 F02.amizades|Um amigo de fora do futebol diz que as conversas de vocês sempre acabam na sua carreira. Ele também quer contar sobre a própria vida.|{}
+apoio|ouvir_projeto_amigo|Perguntar sobre o projeto que ele está tentando começar|Ele consegue dividir uma preocupação sem disputar sua atenção.|Você transforma o projeto dele em mais uma comparação com futebol.
+social|reconhecer_monologo|Reconhecer que falou demais e devolver a conversa|O reconhecimento permite que ele conte sua novidade.|Você pede desculpas e imediatamente volta ao mesmo assunto.
+lazer|atividade_sem_carreira|Propor uma atividade que os dois gostam fora do esporte|Vocês recuperam um interesse que compartilhavam.|Você só aceita a atividade se ela também servir à sua imagem.
+disciplina|evitar_interromper_amigo|Ouvir uma história inteira antes de responder|Você entende o que realmente importa para ele.|Você prepara sua resposta e perde o sentido da história.
+@2484 F02.privacidade|Uma pessoa pede uma foto de um espaço interno do clube para publicar nas redes. Você não sabe se a divulgação é permitida.|{}
+disciplina|consultar_regra_imagem|Conferir a regra antes de fotografar|Você mantém a informação interna protegida até ter autorização.|Você interpreta uma regra incompleta como autorização geral.
+social|explicar_limite_foto|Explicar que não pode prometer a foto|A pessoa entende o limite sem receber uma promessa falsa.|Você deixa a resposta ambígua e ela entende que a foto virá.
+imprensa|sugerir_material_publico|Indicar uma imagem já publicada oficialmente|A pessoa consegue usar uma referência pública adequada.|Você encaminha uma imagem sem conferir de onde ela veio.
+apoio|buscar_alternativa_autorizada|Perguntar ao responsável se há uma alternativa autorizada|Você recebe uma orientação clara sobre o que pode compartilhar.|Você faz o pedido como se a autorização já estivesse concedida.
+@2485 F02.autonomia|Você tem dificuldade para dizer não a convites, mesmo quando já combinou outra coisa. Hoje chegaram dois pedidos incompatíveis.|{}
+social|recusar_com_clareza|Recusar um convite explicando o compromisso anterior|A pessoa recebe uma resposta honesta e consegue se organizar.|Você usa uma desculpa vaga e abre espaço para insistência.
+disciplina|conferir_agenda_antes|Consultar a agenda antes de responder aos dois|Você assume somente o que consegue cumprir.|Você responde no impulso e promete o mesmo horário duas vezes.
+apoio|propor_alternativa_real|Oferecer outro horário que esteja realmente livre|O convite encontra uma alternativa viável.|Você oferece uma data sem verificar outro compromisso.
+lazer|escolher_encontro_prioritario|Manter o encontro já combinado e aproveitar esse tempo|Você está presente no encontro que decidiu preservar.|Você passa o encontro inteiro justificando a escolha aos outros.
+@2486 F02.moradia|Seu espaço de descanso está virando depósito de objetos. Você quer recuperar um canto tranquilo sem transformar a folga inteira numa arrumação.|{}
+disciplina|organizar_um_canto|Escolher apenas um canto para organizar|Você termina uma tarefa pequena e recupera o espaço.|Você começa em vários lugares e deixa tudo pela metade.
+lazer|separar_espaco_descanso|Preparar um lugar para uma atividade tranquila|Você consegue aproveitar um espaço menos carregado.|Você continua empilhando objetos no lugar que queria usar.
+social|combinar_uso_espaco|Conversar com quem divide o espaço sobre o uso dele|Vocês chegam a um acordo simples para o dia a dia.|Você apresenta uma regra pronta sem ouvir a outra pessoa.
+apoio|dividir_tarefa_domestica|Propor dividir uma tarefa doméstica específica|A divisão deixa claro o que cada pessoa pode fazer.|Você faz um pedido amplo e ninguém entende por onde começar.
+@2487 F02.redes|Você recebeu uma crítica pessoal de alguém que não conhece. Está com vontade de responder imediatamente.|{}
+disciplina|aguardar_resposta_rede|Esperar antes de decidir se vale responder|A distância ajuda você a escolher sem impulso.|Você fica relendo a crítica e perde a pausa que pretendia fazer.
+imprensa|responder_limite_civil|Responder apenas ao ponto concreto, com respeito|Você esclarece seu limite sem alimentar a provocação.|Você mistura o esclarecimento com uma provocação pessoal.
+social|conversar_pessoa_confianca|Conversar em particular com alguém de confiança|A conversa ajuda você a separar crítica de ataque.|Você busca apenas uma confirmação de que deve atacar de volta.
+lazer|sair_tela_atividade|Deixar a tela e fazer outra atividade por um tempo|Você recupera o controle sobre a atenção que dedica à mensagem.|Você leva a discussão para a atividade e não consegue se desligar.
+@2488 F02.comunidade|Uma atividade do bairro precisa de voluntários. Você tem interesse, mas ainda não sabe quanto tempo pode oferecer.|{}
+disciplina|confirmar_disponibilidade_voluntario|Conferir sua disponibilidade antes de assumir uma tarefa|Você oferece uma ajuda que consegue cumprir.|Você confirma presença sem conferir o horário da atividade.
+apoio|ouvir_necessidade_organizacao|Perguntar qual ajuda faz mais falta|Você encontra uma tarefa útil dentro do seu tempo.|Você oferece o que gosta de fazer sem ouvir a necessidade.
+social|combinar_participacao_curta|Combinar uma participação com começo e fim definidos|A organização consegue contar com sua presença nesse período.|Você deixa o horário em aberto e dificulta a divisão das tarefas.
+imprensa|divulgar_informacao_confirmada|Compartilhar somente as informações confirmadas da atividade|Sua divulgação ajuda sem criar uma promessa em nome dos organizadores.|Você anuncia um detalhe que ainda não estava confirmado.
+@2489 F02.identidade|Uma pessoa pergunta quem você é além do futebol. Você percebe que quase sempre responde falando de desempenho.|{}
+lazer|retomar_interesse_pessoal|Reservar tempo para um interesse que já tinha|Você reconhece um prazer que não depende de resultado esportivo.|Você transforma a atividade em outra cobrança de desempenho.
+social|contar_historia_fora_campo|Contar uma experiência importante fora do esporte|A conversa mostra uma parte sua que raramente aparece.|Você evita a experiência e volta a listar resultados.
+disciplina|anotar_valores_pessoais|Anotar o que quer preservar na própria rotina|Você identifica um limite pessoal que merece atenção.|Você escreve só metas esportivas e deixa a pergunta sem resposta.
+apoio|ouvir_como_amigo_ve|Perguntar a um amigo o que ele valoriza na amizade|Você escuta qualidades que não aparecem nas estatísticas.|Você interpreta a resposta como uma avaliação da carreira.
+@2490 F02.organizacao|Você precisa entregar um documento pessoal e não encontra o arquivo certo. Há versões com nomes quase iguais.|{}
+disciplina|conferir_versao_documento|Conferir o conteúdo antes de enviar|Você identifica a versão completa e resolve a pendência.|Você escolhe pelo nome e envia um arquivo incompleto.
+social|pedir_prazo_realista|Avisar a pessoa responsável e combinar um prazo realista|A pessoa entende a demora e sabe quando esperar o documento.|Você promete um prazo curto sem saber onde está o arquivo.
+apoio|pedir_ajuda_localizar|Pedir ajuda para localizar a versão correta|A busca fica mais organizada e você encontra o documento.|Você compartilha arquivos sem explicar qual deles está procurando.
+lazer|pausa_breve_busca|Fazer uma pausa breve antes de retomar a busca|Você volta à procura com mais calma e encontra uma pista útil.|Você adia a busca sem definir quando vai retomá-la.
+@2491 F02.limites|Uma pessoa próxima usa suas fotos numa publicação sem perguntar. Você quer conversar sobre consentimento sem romper o vínculo.|{}
+social|pedir_retirada_foto|Pedir que ela retire a foto e perguntar antes da próxima vez|A pessoa entende o limite e corrige a publicação.|Você fala de forma indireta e ela não percebe o pedido.
+apoio|explicar_desconforto_imagem|Explicar o que deixou você desconfortável|A conversa permite que ela entenda o efeito da publicação.|Você supõe que ela sabia do incômodo e a conversa trava.
+disciplina|combinar_regra_publicacao|Combinar uma regra simples sobre fotos futuras|Vocês definem quando é necessário pedir autorização.|Você propõe tantas exceções que o acordo fica confuso.
+imprensa|corrigir_sem_expor_pessoa|Corrigir a exposição sem publicar uma acusação pessoal|Você protege seu limite sem ampliar a exposição da conversa.|Você divulga a discussão e torna o problema ainda mais público.
+@2492 F02.paciencia|Você está aprendendo uma atividade fora do futebol e se irrita ao errar uma tarefa básica.|{}
+disciplina|repetir_passo_basico|Voltar a um único passo da tarefa|Você entende a dificuldade sem exigir domínio imediato.|Você acelera a repetição e mantém o mesmo erro.
+social|pedir_demonstracao_calma|Pedir que alguém demonstre devagar|A demonstração esclarece o movimento que faltava entender.|Você tenta acompanhar antes de observar a demonstração inteira.
+lazer|aceitar_experiencia_iniciante|Continuar pela curiosidade de aprender algo novo|Você aproveita a atividade sem transformá-la numa disputa.|Você compara seu começo com quem já pratica há muito tempo.
+apoio|aprender_em_companhia|Convidar outra pessoa para aprender junto|Vocês dividem dúvidas e deixam a experiência mais leve.|Você transforma a ajuda em competição entre os dois.
+@2493 F02.sono|Você percebe que costuma levar conversas e notificações para o horário de descanso. Quer mudar um hábito da noite.|{}
+disciplina|definir_horario_tela|Definir um horário para encerrar as notificações|Você cria um limite que consegue cumprir nesta noite.|Você abre uma exceção atrás da outra e perde o limite escolhido.
+social|avisar_horario_respostas|Avisar pessoas próximas de quando voltará a responder|O combinado reduz a preocupação com mensagens pendentes.|Você avisa de forma vaga e continua esperando respostas.
+lazer|trocar_tela_atividade_calma|Escolher uma atividade tranquila antes de deitar|Você encerra o dia com menos estímulos e cobranças.|Você escolhe uma atividade que acaba deixando você mais agitado.
+apoio|pedir_respeito_rotina|Pedir apoio de quem divide a rotina com você|A pessoa entende o horário que você quer preservar.|Você apresenta a mudança como uma ordem e não chega a um acordo.
+@2494 F02.confianca|Um amigo contou algo pessoal e pediu discrição. Outra pessoa faz perguntas curiosas sobre o assunto.|{}
+disciplina|preservar_conversa_privada|Dizer que não cabe a você contar|Você preserva a confiança de quem conversou com você.|Você deixa escapar um detalhe ao tentar justificar o silêncio.
+social|redirecionar_assunto_privado|Mudar o assunto sem alimentar a curiosidade|A conversa segue sem expor o relato do amigo.|Você usa uma pista que desperta ainda mais perguntas.
+apoio|avisar_amigo_pressao|Avisar o amigo em particular sobre as perguntas|Ele entende a situação e pode decidir o que deseja compartilhar.|Você passa a pressão adiante como se ele tivesse obrigação de explicar.
+imprensa|recusar_comentario_indireto|Recusar também comentários vagos sobre o caso|Você evita que uma insinuação substitua a informação privada.|Você faz uma insinuação que permite identificar a história.
+@2495 F02.expectativas|Uma pessoa da família pergunta quando você terá uma grande conquista. Você quer responder sem fazer uma promessa que não controla.|{}
+social|explicar_processo_familia|Explicar o que está tentando melhorar agora|Ela entende uma parte concreta do caminho que você está percorrendo.|Você descreve apenas obstáculos e a conversa perde clareza.
+apoio|pedir_apoio_sem_prazo|Pedir apoio sem estabelecer um prazo para conquistas|A pessoa entende como pode apoiar sem cobrar uma data.|Você deixa o pedido implícito e a cobrança continua igual.
+disciplina|distinguir_meta_promessa|Distinguir uma meta pessoal de uma promessa de resultado|Você responde com honestidade sobre o que pode controlar.|Você transforma sua meta numa garantia para encerrar a conversa.
+lazer|preservar_conversa_familiar|Propor que a visita também tenha outros assuntos|Vocês encontram espaço para estar juntos sem avaliar sua carreira.|Você muda de assunto de forma brusca e deixa a pergunta como conflito.
+@2496 F02.apoio|Uma pessoa próxima está desanimada com um projeto próprio. Ela pede companhia, sem pedir uma solução.|{}
+apoio|companhia_sem_conselho|Ficar junto e ouvir sem tentar resolver|Ela consegue falar do que sente no próprio ritmo.|Você interrompe com soluções e ela deixa de contar o que a preocupa.
+social|perguntar_tipo_ajuda|Perguntar que tipo de companhia faria bem agora|Vocês encontram uma forma de estar juntos que ela deseja.|Você insiste na atividade que escolheria para si mesmo.
+lazer|atividade_simples_juntos|Oferecer uma atividade simples, se ela quiser|A atividade dá uma pausa na preocupação sem negar o problema.|Você trata a atividade como obrigação de ficar alegre.
+disciplina|respeitar_tempo_resposta|Dar espaço para ela responder sem pressionar|Ela percebe que não precisa reagir imediatamente.|Você transforma o silêncio numa cobrança por explicações.
+@2497 F02.agenda|Você percebe que reservou tempo para obrigações e esqueceu de deixar qualquer espaço livre na semana.|{}
+disciplina|rever_compromisso_opcional|Rever um compromisso opcional antes de aceitar outro|Você encontra uma margem real na agenda.|Você corta apenas intervalos e mantém todas as cobranças.
+lazer|proteger_bloco_livre|Proteger um pequeno bloco de tempo sem tarefa|Você consegue aproveitar um período sem uma nova meta.|Você preenche o bloco com outra obrigação assim que ele aparece.
+social|conversar_sobre_disponibilidade|Explicar a uma pessoa próxima sua disponibilidade real|Vocês combinam um encontro sem apertar ainda mais a semana.|Você esconde a sobrecarga e aceita um horário que não consegue cumprir.
+apoio|pedir_ajuda_prioridades|Pedir ajuda para distinguir urgência de hábito|A conversa ajuda você a retirar uma cobrança desnecessária.|Você tenta justificar todas as tarefas e não revê nenhuma.
+@2498 F02.mensagens|Você escreveu uma mensagem importante e percebe que o tom parece mais agressivo do que pretendia.|{}
+disciplina|reler_tom_mensagem|Reler a mensagem antes de enviar|Você encontra uma frase que poderia criar um conflito desnecessário.|Você confere só a ortografia e mantém a acusação involuntária.
+social|trocar_acusacao_pedido|Trocar uma acusação por um pedido concreto|A pessoa entende o que você precisa dela.|Você retira o pedido junto com a acusação e a mensagem fica vaga.
+apoio|ouvir_opiniao_tom|Pedir uma opinião sobre o tom sem expor detalhes privados|A opinião ajuda você a reconhecer a parte mais dura da mensagem.|Você compartilha o conteúdo privado que queria preservar.
+lazer|esperar_esfriar_cabeca|Deixar a mensagem em rascunho por um tempo|Você volta ao texto com mais calma para escolher as palavras.|Você fica ensaiando a discussão e volta ainda mais irritado.
+@2499 F02.memoria|Você quer guardar uma lembrança pessoal desta fase sem transformar toda experiência em conteúdo público.|{}
+disciplina|registrar_diario_privado|Escrever uma nota só para você|O registro preserva um detalhe importante sem depender de aprovação.|Você tenta escrever para um público imaginário e perde a lembrança pessoal.
+lazer|guardar_objeto_significativo|Separar um objeto que tenha significado para você|O gesto ajuda você a reconhecer o valor dessa fase.|Você escolhe pelo valor de exposição e não pela lembrança.
+social|contar_lembranca_amigo|Contar a lembrança a alguém que participou dela|Vocês recuperam detalhes que fazem sentido para os dois.|Você usa a história para se comparar com a outra pessoa.
+apoio|agradecer_apoio_concreto|Agradecer a alguém por uma ajuda específica|A pessoa entende qual gesto fez diferença para você.|Você faz um agradecimento tão genérico que ela não entende a referência.
