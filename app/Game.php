@@ -42,25 +42,17 @@ final class Game {
         return match($id) {7=>['chute','passe','drible','social'][$i],9=>['drible','social','social','desarme'][$i],1=>$i===1?'chute':'social',2=>'passe',default=>'social'};
     }
     public static function choices(array $g): array {
-        $s=self::situation($g); if($s) return $s['options'];
+        $s=self::situation($g); if($s) return $g['stage']==='partida'?ActionResolution::options($s['options'],$s['id']):$s['options'];
         if($g['stage']==='partida') {
             $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
-            return [['text'=>$def?'Antecipar e desarmar':'Finalizar no canto','effects'=>[],'action'=>$def?'desarme':'chute'],['text'=>'Passar para o companheiro','effects'=>[],'action'=>'passe'],['text'=>'Avançar no drible','effects'=>[],'action'=>'drible'],['text'=>'Chutar de longe','effects'=>[],'action'=>'chute']];
+            return ActionResolution::options([['text'=>$def?'Antecipar e desarmar':'Finalizar no canto','effects'=>[],'action'=>$def?'desarme':'chute'],['text'=>'Passar para o companheiro','effects'=>[],'action'=>'passe'],['text'=>'Avançar no drible','effects'=>[],'action'=>'drible'],['text'=>'Chutar de longe','effects'=>[],'action'=>'chute']],0);
         }
         return [];
     }
     public static function chance(array $g,array $o): float {
-        $type=$o['action']; $d=$o['difficulty']??['social'=>42,'passe'=>43,'chute'=>65,'drible'=>60,'desarme'=>53][$type];
-        $opponent=50;
-        if($g['stage']==='partida'){$m=$g['matches'][self::currentIndex($g)];$side=$m['home']===$g['club']?'away':'home';$opponent=$m[$side.'_overall']??TeamStrength::rating($m[$side],$g);}
-        $chance=Probability::chance(Probability::effective($g['skills'],$type),$g['states']['confianca'],$g['states']['energia'],$g['states']['ritmo_jogo'],$d,$opponent);
-        $clear=!empty($o['clear_chance']);
-        if($clear)$chance=min(95,$chance+($o['chance_bonus']??($type==='passe'?18:8)));
-        if($g['stage']==='partida' && ($type==='chute' || ($clear && $type==='drible')))return MatchBalance::eventChance($g,Probability::goalChance($chance,$g['skills']['finalizacao']['value'],$clear,$type));
-        if($g['stage']==='partida' && $clear && $type==='passe')return MatchBalance::eventChance($g,$chance);
-        return round($chance,2);
+        return ActionResolution::trace($g,$o)['chance'];
     }
-    public static function command(array $g,string $action,array $input=[],bool $automated=false): array {
+    public static function command(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
         if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');$g['version']++;return $g;}
         if($action==='retire') {
@@ -102,11 +94,11 @@ final class Game {
                 $m=$g['matches'][self::currentIndex($g)];
                 if($m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit']) throw new InvalidArgumentException('Você não está em campo.');
             }
-            $o=$choices[$n]; $roll=Probability::roll(self::chance($g,$o)); $effects=self::effects($o['effects'],$roll,$g,$o);
+            $o=$choices[$n];$probabilityTrace=ActionResolution::trace($g,$o);$roll=Probability::roll($probabilityTrace['chance'],$rng); $effects=self::effects($o['effects'],$roll,$g,$o);
             $s=self::situation($g);
             Scenes::remember($g,$s);
             $outcome=isset($o['success_text'],$o['failure_text'])?NarrativeCatalog::outcome($o,$roll):($roll['success']?'a intenção deu certo.':'a intenção não teve o efeito esperado.');
-            $g['feedback']=$roll+['text'=>$o['text'].': '.$outcome,'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
+            $g['feedback']=$roll+['text'=>$o['text'].': '.$outcome,'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION,'probability_trace'=>$probabilityTrace];
             if(($g['active_situation']['id']??null)===($s['id']??0) && isset($g['active_situation']['selection']))$g['feedback']['narrative_selection']=$g['active_situation']['selection'];
             elseif(($s['id']??0)===1300)$g['feedback']['narrative_selection']=['override'=>'momentum','situation'=>1300];
             if($g['stage']==='treino') $g['stage']='pre_jogo';

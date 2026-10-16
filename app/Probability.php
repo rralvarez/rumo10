@@ -12,9 +12,11 @@ final class Probability {
         $cap=min($clear?88:80,25+.65*$finishing);
         return round(max(5,min($cap,$chance-12+.20*($finishing-50)-($action==='drible'?5:0))),2);
     }
-    public static function roll(float $p): array {
-        $roll=random_int(1,10000); $success=$roll<=round($p*100);
-        $intensity=random_int(1,100);
+    public static function roll(float $p,?callable $rng=null): array {
+        if(!is_finite($p)||$p<0||$p>100)throw new InvalidArgumentException('Probabilidade fora da faixa.');
+        $rng??=static fn(int $min,int $max):int=>random_int($min,$max);
+        $roll=$rng(1,10000);if(!is_int($roll)||$roll<1||$roll>10000)throw new LogicException('RNG de teste inválido.');$success=$roll<=round($p*100);
+        $intensity=$rng(1,100);if(!is_int($intensity)||$intensity<1||$intensity>100)throw new LogicException('RNG de teste inválido.');
         return ['chance'=>$p,'roll'=>$roll,'intensity_roll'=>$intensity,'success'=>$success,'class'=>$success?($intensity<=Rules::EXCEPTIONAL_WEIGHT?'excepcional':'sucesso'):($intensity<=Rules::SEVERE_WEIGHT?'falha_grave':'falha')];
     }
     public static function weighted(array $items): array {

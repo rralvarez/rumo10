@@ -10,16 +10,18 @@ foreach(['equilibrio','protagonismo','coletivo'] as $plan)foreach(Rules::POSITIO
   else{
    $advance=false;
    if($g['stage']==='partida'){$m=$g['matches'][Game::currentIndex($g)];$advance=$m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'];}
-   $g=Game::command($g,$advance?'advance':'choice',$advance?[]:['option'=>$choose->invoke(null,$g,$plan)]);
-   if(!$advance){if(!isset($g['feedback']['narrative_selection']))throw new RuntimeException('Seleção Normal sem auditoria');$trace[]=$g['feedback'];}
+   $stage=$g['stage'];$g=Game::command($g,$advance?'advance':'choice',$advance?[]:['option'=>$choose->invoke(null,$g,$plan)]);
+   if(!$advance){if(!isset($g['feedback']['narrative_selection']))throw new RuntimeException('Seleção Normal sem auditoria');$trace[]=['stage'=>$stage]+$g['feedback'];}
   }
  }
  if($commands>=1000)throw new RuntimeException('Simulação não encerra');
  foreach($g['matches'] as $m)if(in_array($g['club'],[$m['home'],$m['away']],true)){$checks++;$own=$m['home']===$g['club']?$m['hg']:$m['ag'];if($m['stats']['goals']+$m['stats']['assists']>$own)throw new RuntimeException('Gol/assistência sem placar');}
  $growth=0;foreach($g['skills'] as $s)$growth+=$s['xp'];
- $rows[]=['plan'=>$plan,'position'=>$position,'mode'=>$mode,'sample'=>$sample,'summary'=>Game::summary($g),'remaining_xp'=>$growth,'skill_value_sum'=>array_sum(array_column($g['skills'],'value')),'decisions'=>count($trace),'selection_ids'=>array_values(array_unique(array_column($trace,'situation')))];
+ $stats=['minutes'=>0,'goals'=>0,'assists'=>0,'shots'=>0,'tackles'=>0,'completed'=>0];foreach(Competition::playerMatches($g) as $m)if($m['status']==='finalizada'&&in_array($g['club'],[$m['home'],$m['away']],true))foreach($stats as $key=>$value)$stats[$key]+=$m['stats'][$key];
+ $attempts=array_values(array_filter($trace,fn($a)=>($a['stage']??null)==='partida'));$clear=array_filter($attempts,fn($a)=>in_array($a['probability_trace']['kind']??null,['clear','clear_assist','one_on_one'],true));
+ $rows[]=['plan'=>$plan,'position'=>$position,'mode'=>$mode,'sample'=>$sample,'summary'=>Game::summary($g),'stats'=>$stats,'field_decisions'=>count($attempts),'clear_decisions'=>count($clear),'probability_audit'=>array_map(fn($a)=>array_intersect_key($a,array_flip(['chance','roll','success','probability_trace'])),$attempts),'remaining_xp'=>$growth,'skill_value_sum'=>array_sum(array_column($g['skills'],'value')),'decisions'=>count($trace),'selection_ids'=>array_values(array_unique(array_column($trace,'situation')))];
 }
 $means=[];foreach(['equilibrio','protagonismo','coletivo'] as $plan)foreach(['normal','rapido','expresso'] as $mode){$r=array_values(array_filter($rows,fn($x)=>$x['mode']===$mode && $x['plan']===$plan));$means[$plan][$mode]=['games'=>array_sum(array_column(array_column($r,'summary'),'games'))/count($r),'goals'=>array_sum(array_column(array_column($r,'summary'),'goals'))/count($r),'assists'=>array_sum(array_column(array_column($r,'summary'),'assists'))/count($r),'remaining_xp'=>array_sum(array_column($r,'remaining_xp'))/count($r),'skill_value_sum'=>array_sum(array_column($r,'skill_value_sum'))/count($r)];}
 $events=array_sum(array_column(array_column($rows,'summary'),'goals'))+array_sum(array_column(array_column($rows,'summary'),'assists'));if(!$events)throw new RuntimeException('Coortes não exercitaram gols ou assistências');
-file_put_contents(dirname(__DIR__).'/Docs/narrativa-v1/coortes-modos.json',json_encode(['seasons'=>count($rows),'checks'=>$checks,'automatic_audited_choices'=>$audit,'policy'=>'equilibrio/protagonismo/coletivo, método de escolha idêntico por Reflection; resultados random_int não semeados','means'=>$means,'rows'=>$rows,'note'=>'Amostra descritiva, não prova estatística de equivalência. Código usa as mesmas fórmulas; não há multiplicador por modo.'],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+$output=getenv('NARRATIVE_EVIDENCE_DIR')?:dirname(__DIR__).'/Docs/narrativa-v1';file_put_contents($output.'/coortes-modos.json',json_encode(['seasons'=>count($rows),'checks'=>$checks,'automatic_audited_choices'=>$audit,'policy'=>'equilibrio/protagonismo/coletivo, método de escolha idêntico por Reflection; resultados random_int não semeados','means'=>$means,'rows'=>$rows,'note'=>'Amostra descritiva, não prova estatística de equivalência. Código usa as mesmas fórmulas; não há multiplicador por modo.'],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
 echo 'OK: '.count($rows)." temporadas, $checks partidas reconciliadas, $audit decisões automáticas com seleção auditada.\n";
