@@ -1,0 +1,162 @@
+[
+    {
+        "id": "ac-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "al-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "ap-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "ba-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "ce-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "df-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "es-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "go-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "ma-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "mt-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "ms-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "mg-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "pa-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "pb-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "pr-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "rj-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "rn-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "rs-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "sc-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "se-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "to-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "ro-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "pi-entrada",
+        "kind": "continuity",
+        "reason": "acesso_sem_superior"
+    },
+    {
+        "id": "at-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "az-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "ch-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "ua-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "rs-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "jp-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "il-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "bg-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    },
+    {
+        "id": "se-2",
+        "kind": "continuity",
+        "reason": "vinculo_entre_divisoes_nao_implementado"
+    }
+]

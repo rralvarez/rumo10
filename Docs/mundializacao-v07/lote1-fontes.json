@@ -1,0 +1,62 @@
+[
+  {
+    "id": "faf-al-a-2026",
+    "authority": "Federação Alagoana de Futebol",
+    "edition": 2026,
+    "consulted": "2026-10-16",
+    "url": "https://futeboldealagoas.net/assets/uploads/176832886543.pdf",
+    "location": "Art.1 p.2; arts.11–12 p.4",
+    "verified": [
+      "Oito clubes na Série A; um descenso e um acesso da B"
+    ],
+    "activation": "none; no imports"
+  },
+  {
+    "id": "faf-al-b-2026",
+    "authority": "Federação Alagoana de Futebol",
+    "edition": 2026,
+    "consulted": "2026-10-16",
+    "url": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "location": "Arts.1–7 pp.2–3; art.14 pp.5–6",
+    "verified": [
+      "Seis clubes; campeão sobe à A; restrição Sub23 com exceções"
+    ],
+    "conflict": "REC lista Sete de Setembro; catálogo e notícia posterior usam Sporting. Não presumir duas entidades ou alias sem fonte primária canônica.",
+    "activation": "blocked"
+  },
+  {
+    "id": "faf-copa-al-2026-revision",
+    "authority": "Federação Alagoana de Futebol",
+    "edition": 2026,
+    "consulted": "2026-10-16",
+    "url": "https://www.futeboldealagoas.net/assets/uploads/177326005939.pdf",
+    "location": "Arts.1–8 pp.2–4",
+    "sha256": "b7ca38f35cbaa48d127f63105d2022c08c71c48b9afe70c05aa7cc62e7886ba7",
+    "verified": [
+      "Doze participantes em dois grupos; fases finais em partida única; classificação nacional sujeita a condições"
+    ],
+    "retrieval": "HTTPS PDF obtido e lido localmente com pypdf; sem imagens importadas",
+    "activation": "not_implemented_officially; translation and future admission pending"
+  },
+  {
+    "id": "faf-sporting-news-2026",
+    "authority": "Federação Alagoana de Futebol",
+    "edition": 2026,
+    "consulted": "2026-10-16",
+    "url": "https://www.futeboldealagoas.net/novo/post/sporting-teotonio-conquista-o-campeonato-alagoano-serie-b-2026-e-garante-vaga-no-alagoano-centenario-2027",
+    "location": "Notícia oficial",
+    "verified": [
+      "Nome Sporting Teotônio utilizado pela federação"
+    ],
+    "not_proven": "Identificador federativo canônico de continuidade Sete→Sporting não confirmado nesta coleta."
+  },
+  {
+    "id": "cbf-d-reference-2026",
+    "authority": "CBF",
+    "edition": 2026,
+    "consulted": "2026-10-16",
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+    "location": "Art.2 pp.4–6",
+    "activation": "blocked; federation/ranking/edition claim ledger incomplete"
+  }
+]

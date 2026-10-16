@@ -1,0 +1,132 @@
+{
+    "checks": 2168,
+    "fixtures_only": true,
+    "roles_and_modes": [
+        {
+            "position": "zagueiro",
+            "mode": "normal",
+            "games": 13,
+            "commands": 145,
+            "snapshot_bytes": 121325
+        },
+        {
+            "position": "zagueiro",
+            "mode": "rapido",
+            "games": 15,
+            "commands": 17,
+            "snapshot_bytes": 160960
+        },
+        {
+            "position": "zagueiro",
+            "mode": "expresso",
+            "games": 14,
+            "commands": 1,
+            "snapshot_bytes": 553622
+        },
+        {
+            "position": "lateral",
+            "mode": "normal",
+            "games": 15,
+            "commands": 167,
+            "snapshot_bytes": 134407
+        },
+        {
+            "position": "lateral",
+            "mode": "rapido",
+            "games": 14,
+            "commands": 16,
+            "snapshot_bytes": 159065
+        },
+        {
+            "position": "lateral",
+            "mode": "expresso",
+            "games": 15,
+            "commands": 1,
+            "snapshot_bytes": 627638
+        },
+        {
+            "position": "volante",
+            "mode": "normal",
+            "games": 15,
+            "commands": 165,
+            "snapshot_bytes": 133686
+        },
+        {
+            "position": "volante",
+            "mode": "rapido",
+            "games": 13,
+            "commands": 15,
+            "snapshot_bytes": 147947
+        },
+        {
+            "position": "volante",
+            "mode": "expresso",
+            "games": 13,
+            "commands": 1,
+            "snapshot_bytes": 523133
+        },
+        {
+            "position": "meia",
+            "mode": "normal",
+            "games": 13,
+            "commands": 140,
+            "snapshot_bytes": 122920
+        },
+        {
+            "position": "meia",
+            "mode": "rapido",
+            "games": 13,
+            "commands": 15,
+            "snapshot_bytes": 148147
+        },
+        {
+            "position": "meia",
+            "mode": "expresso",
+            "games": 15,
+            "commands": 1,
+            "snapshot_bytes": 609985
+        },
+        {
+            "position": "ponta",
+            "mode": "normal",
+            "games": 15,
+            "commands": 158,
+            "snapshot_bytes": 130772
+        },
+        {
+            "position": "ponta",
+            "mode": "rapido",
+            "games": 13,
+            "commands": 15,
+            "snapshot_bytes": 149386
+        },
+        {
+            "position": "ponta",
+            "mode": "expresso",
+            "games": 14,
+            "commands": 1,
+            "snapshot_bytes": 572267
+        },
+        {
+            "position": "centroavante",
+            "mode": "normal",
+            "games": 14,
+            "commands": 152,
+            "snapshot_bytes": 128105
+        },
+        {
+            "position": "centroavante",
+            "mode": "rapido",
+            "games": 13,
+            "commands": 15,
+            "snapshot_bytes": 151083
+        },
+        {
+            "position": "centroavante",
+            "mode": "expresso",
+            "games": 13,
+            "commands": 1,
+            "snapshot_bytes": 538045
+        }
+    ]
+}

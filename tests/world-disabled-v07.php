@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);
+putenv('RUMOHUB_ENABLED=0');putenv('RUMO10_WORLD_CALENDAR=1');putenv('RUMO10_WORLD_FIXTURES=1');require dirname(__DIR__).'/app/bootstrap.php';require __DIR__.'/world-fixture-v07.php';$g=worldFixture();$original=$g;putenv('RUMO10_WORLD_CALENDAR=0');$_SESSION=[];$path='/carreira';$error=null;ob_start();WorldSeason::view(compact('g','path','error'));$html=ob_get_clean();if(http_response_code()!==503||!str_contains($html,'Seu save foi preservado.')||$g!==$original)throw new RuntimeException('Fallback inseguro.');echo "OK: flag desligada retorna 503 claro sem converter nem alterar o save do piloto.\n";

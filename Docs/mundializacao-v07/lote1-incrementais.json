@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "world-foundation-v07",
+    "exit": 0,
+    "stdout": "OK: 162 verificações de referência/agenda; cinco agendas, não cinco carreiras completas.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "post-match-v06",
+    "exit": 0,
+    "stdout": "OK: 215 verificações pós-jogo; seis posições e três modos, sem banco.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "achievements-v06",
+    "exit": 0,
+    "stdout": "OK: 96 verificações catálogo/projeção; persistência exige suíte MySQL própria.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "growth-v061",
+    "exit": 0,
+    "stdout": "OK: 32 verificações v0.6.1 puras.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "v06-boundary",
+    "exit": 255,
+    "stdout": "\nFatal error: Uncaught RuntimeException: Mecânica fora do escopo alterada: app/Competition.php in C:\\inetpub\\wwwroot\\rumo10\\tests\\v06-boundary.php:4\nStack trace:\n#0 {main}\n  thrown in C:\\inetpub\\wwwroot\\rumo10\\tests\\v06-boundary.php on line 4\n",
+    "stderr": ""
+  }
+]

@@ -1,11 +1,11 @@
 {
-    "checks": 162,
+    "checks": 163,
     "calendar_only_not_gameplay_simulation": true,
     "five_calendar_seasons": [
         {
             "season": 1,
             "matches": 10,
-            "elapsed_ms": 48.653,
+            "elapsed_ms": 1.454,
             "bytes": 2391,
             "first": "2026-01-01",
             "last": "2026-01-28"
@@ -13,7 +13,7 @@
         {
             "season": 2,
             "matches": 10,
-            "elapsed_ms": 0.329,
+            "elapsed_ms": 0.098,
             "bytes": 2391,
             "first": "2027-01-01",
             "last": "2027-01-28"
@@ -21,7 +21,7 @@
         {
             "season": 3,
             "matches": 10,
-            "elapsed_ms": 0.353,
+            "elapsed_ms": 0.089,
             "bytes": 2391,
             "first": "2028-01-01",
             "last": "2028-01-28"
@@ -29,7 +29,7 @@
         {
             "season": 4,
             "matches": 10,
-            "elapsed_ms": 0.302,
+            "elapsed_ms": 0.087,
             "bytes": 2391,
             "first": "2029-01-01",
             "last": "2029-01-28"
@@ -37,7 +37,7 @@
         {
             "season": 5,
             "matches": 10,
-            "elapsed_ms": 0.458,
+            "elapsed_ms": 0.086,
             "bytes": 2391,
             "first": "2030-01-01",
             "last": "2030-01-28"

@@ -1,0 +1,243 @@
+{
+  "resolved_end_to_end": 0,
+  "blocked_brazil": 23,
+  "blocked_foreign": 9,
+  "documented_pilot_relation": 1,
+  "rows": [
+    {
+      "origin": "ac-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "al-entrada",
+      "edition": 2026,
+      "target": "Campeonato Alagoano Série A 2026",
+      "slots_registered": 1,
+      "sources_primary": [
+        "https://futeboldealagoas.net/assets/uploads/176832886543.pdf",
+        "https://futeboldealagoas.net/assets/uploads/177223121748.pdf"
+      ],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Ligação esportiva comprovada; não ativada: identidade Sete/Sporting exige ato canônico, superior ausente no motor, desempates/Sub23 e inscrições de edições futuras pendentes.",
+      "slots_official_verified": 1,
+      "source_location": "Série A arts.11–12 p.4; Série B art.7 §3 p.3"
+    },
+    {
+      "origin": "ap-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "ba-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "ce-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "df-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "es-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "go-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "ma-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "mt-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "ms-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "mg-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "pa-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "pb-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "pr-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "rj-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 4,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "rn-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "rs-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "sc-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 1,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "se-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "to-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "ro-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    },
+    {
+      "origin": "pi-entrada",
+      "edition": 2026,
+      "target": null,
+      "slots_registered": 2,
+      "sources_primary": [],
+      "state": "blocked",
+      "resolved_end_to_end": false,
+      "reason": "Regulamento superior, participantes, inscrição e transição não validados no motor."
+    }
+  ]
+}

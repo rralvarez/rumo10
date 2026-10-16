@@ -2,7 +2,7 @@
 declare(strict_types=1);
 if(PHP_SAPI!=='cli')exit(1);
 putenv('RUMOHUB_ENABLED=0');require dirname(__DIR__).'/app/bootstrap.php';
-$out=dirname(__DIR__).'/Docs/mundializacao-v07';if(!is_dir($out))mkdir($out,0770,true);
+$out=dirname(__DIR__).'/Docs/mundializacao-v07'.(in_array('--lote1',$argv,true)?'/lote1-auditoria':'');if(!is_dir($out))mkdir($out,0770,true);
 $catalog=Competition::catalog();$clubs=Competition::clubs();$pairs=CompetitionContinuity::pairs();$upper=[];$lower=[];foreach($pairs as [$u,$l]){$upper[$l]=$u;$lower[$u]=$l;}
 $cachePath=dirname(__DIR__).'/storage/hub-cache/catalog.json';$cache=is_file($cachePath)?json_decode(file_get_contents($cachePath),true,512,JSON_THROW_ON_ERROR):[];
 $files=glob(dirname(__DIR__).'/database/*competitions-2026.json');$raw=[];$occurrences=[];foreach($files as $file)foreach(json_decode(file_get_contents($file),true,512,JSON_THROW_ON_ERROR) as $c){$raw[$c['id']]=$c;$occurrences[$c['id']][]=basename($file);}

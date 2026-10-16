@@ -1,0 +1,7 @@
+{
+  "php_files_linted": 80,
+  "lint_errors": [],
+  "scanned_files": 89,
+  "secret_patterns_found": [],
+  "excludes_private_storage": true
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "world-foundation-v07",
+    "exit": 0,
+    "output": "OK: 163 verificações de referência/agenda; cinco agendas, não cinco carreiras completas."
+  },
+  {
+    "suite": "v06-boundary",
+    "exit": 0,
+    "output": "OK: 11 fronteiras v0.6; fórmulas e XP-base preservados."
+  },
+  {
+    "suite": "world-boundary-v07",
+    "exit": 0,
+    "output": "OK: 24 fronteiras v0.7; sem mudança de fórmulas, catálogo existente ou Hub."
+  },
+  {
+    "suite": "mechanics-boundary",
+    "exit": 0,
+    "output": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados."
+  },
+  {
+    "suite": "world-disabled-v07",
+    "exit": 0,
+    "output": "OK: flag desligada retorna 503 claro sem converter nem alterar o save do piloto."
+  },
+  {
+    "suite": "world-runtime-v07",
+    "exit": 0,
+    "output": "OK: 2168 verificações, seis posições e três modos completos; nenhuma copa oficial liberada."
+  }
+]

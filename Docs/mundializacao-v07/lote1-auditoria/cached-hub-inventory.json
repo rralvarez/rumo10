@@ -1,0 +1,1542 @@
+[
+    {
+        "id": "ac-entrada",
+        "name": "Acreano Série B",
+        "family": "state",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ge.globo.com/ac/futebol/acreano-segunda-divisao/noticia/2026/08/11/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ae-1",
+        "name": "UAE Pro League",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://uaeproleague.ae/ar/stats?sec=team-stats",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ae-2",
+        "name": "Division 1",
+        "family": "international",
+        "participant_count": 15,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.uaefa.ae/en/competition/2572",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "al-entrada",
+        "name": "Alagoano Segunda Divisão",
+        "family": "state",
+        "participant_count": 6,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "am-entrada",
+        "name": "Amazonense Série B",
+        "family": "state",
+        "participant_count": 7,
+        "local_definition_present": true,
+        "upper_implemented": "am-a1",
+        "source_registered": "https://www.fafamazonas.com.br/site/noticia/faf-divulga-clubes-da-serie-b-do-barezao/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ao-1",
+        "name": "Circuito Girabola (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ap-entrada",
+        "name": "Amapaense Série B",
+        "family": "state",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ar-1",
+        "name": "Liga Profesional Argentina",
+        "family": "international",
+        "participant_count": 30,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.lpf.org.ar/notas/primera/2025/12/10/se-definen-las-zonas-para-la-temporada-20226/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ar-2",
+        "name": "Primera Nacional Argentina",
+        "family": "international",
+        "participant_count": 36,
+        "local_definition_present": true,
+        "upper_implemented": "ar-1",
+        "source_registered": "https://www.afa.com.ar/3423/posts/primera-nacional-fixture-para-la-temporada-2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "at-1",
+        "name": "Bundesliga austríaca",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.bundesliga.at/de/klubs",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "at-2",
+        "name": "2. Liga austríaca",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.2liga.at/de/klubs",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "au-1",
+        "name": "Australian A-League Men",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://aleagues.com.au/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "au-2",
+        "name": "Championship",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://australianchampionship.com.au/news",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "az-1",
+        "name": "Misli Premyer Liqası",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://pfl.az/turnir-cədvəli",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "az-2",
+        "name": "I Liqa",
+        "family": "international",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://liqa1.pfl.az/turnir-cədvəli",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ba-entrada",
+        "name": "Baiano Série B",
+        "family": "state",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.fbf.org.br/noticias/detalhe/12835",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "be-1",
+        "name": "Jupiler Pro League",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.proleague.be/nieuws/vanaf-seizoen-26-27-met-18-clubs-in-de-jupiler-pro-league",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "be-2",
+        "name": "Challenger Pro League",
+        "family": "international",
+        "participant_count": 15,
+        "local_definition_present": true,
+        "upper_implemented": "be-1",
+        "source_registered": "https://www.proleague.be/nieuws/kalender-2026-2027-nieuwkomers-treffen-elkaar-meteen-in-challenger-pro-league",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "bg-1",
+        "name": "Parva Liga",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://bpfl.bg/ranking",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "bg-2",
+        "name": "Vtora Liga",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://bpfl.bg/ranking",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "bo-1",
+        "name": "División Profesional Bolivia",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fbf.com.bo/torneos/division-profesional/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "bo-2",
+        "name": "Copa Simón Bolívar Bolivia",
+        "family": "international",
+        "participant_count": 69,
+        "local_definition_present": true,
+        "upper_implemented": "bo-1",
+        "source_registered": "https://fbf.com.bo/arranca-la-copa-simon-bolivar-2026/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "br-a",
+        "name": "Brasileirão Série A",
+        "family": "br",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.cbf.com.br/futebol-brasileiro/times/campeonato-brasileiro/serie-a/2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "br-b",
+        "name": "Brasileirão Série B",
+        "family": "br",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": "br-a",
+        "source_registered": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "br-c",
+        "name": "Brasileirão Série C",
+        "family": "br",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": "br-b",
+        "source_registered": "https://www.cbf.com.br/futebol-brasileiro/noticias/noticias-campeonato-brasileiro-serie-c/a/serie-c-times-do-norte-tentam-manter-protagonismo-na-rodada",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "br-d",
+        "name": "Brasileirão Série D",
+        "family": "br",
+        "participant_count": 96,
+        "local_definition_present": true,
+        "upper_implemented": "br-c",
+        "source_registered": "https://www.cbf.com.br/futebol-brasileiro/noticias/undefined/ferroviario-x-4-de-julho/cbf-divulga-grupos-da-serie-d-de-2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ca-1",
+        "name": "Canadian Premier League",
+        "family": "international",
+        "participant_count": 8,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://external-tags.canpl.ca/about-us",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cd-1",
+        "name": "Circuito Linafoot (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ce-entrada",
+        "name": "Cearense Série C",
+        "family": "state",
+        "participant_count": 7,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ch-1",
+        "name": "Brack Super League",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://sfl.ch/de/klubs-brack-super-league",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ch-2",
+        "name": "dieci Challenge League",
+        "family": "international",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://sfl.ch/de/klubs-dieci-challenge-league",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ci-1",
+        "name": "Circuito Ligue 1 (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cl-1",
+        "name": "Liga de Primera",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://site.api.espn.com/apis/site/v2/sports/soccer/chi.1/teams?limit=100&season=2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cm-1",
+        "name": "Circuito Elite One (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cn-1",
+        "name": "Chinese Super League",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.cfl-china.cn/zh/index.html",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cn-2",
+        "name": "Chinese Football League 1",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.cfl-china.cn/zh/index.html",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "co-1",
+        "name": "Liga BetPlay",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://dimayor.com.co/estadisticas/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cr-1",
+        "name": "Primera División de Costa Rica",
+        "family": "international",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.unafut.com/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cy-1",
+        "name": "Cypriot Division 1",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.cfa.com.cy/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cy-2",
+        "name": "2. Division",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.cfa.com.cy/Gr/competitions/68156107",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "cz-1",
+        "name": "Circuito Chance Liga (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.chanceliga.cz/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "de-1",
+        "name": "Bundesliga",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.bundesliga.com/en/bundesliga/clubs",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "de-2",
+        "name": "2. Bundesliga",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": "de-1",
+        "source_registered": "https://www.bundesliga.com/en/2bundesliga/clubs",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "de-3",
+        "name": "German 3rd Liga",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.dfb.de/3-liga/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "df-entrada",
+        "name": "Candangão Série B",
+        "family": "state",
+        "participant_count": 7,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.ffdf.com.br/pt/noticias/view.php?q=1268",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "dk-1",
+        "name": "Superliga",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.superliga.dk/stats",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "do-1",
+        "name": "Circuito Liga Dominicana (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.concacaf.com/rankings/club",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "dz-1",
+        "name": "Circuito Ligue 1 (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ec-1",
+        "name": "LigaPro Serie A",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ligapro.ec/tabla-de-posiciones/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "eg-1",
+        "name": "Circuito Premier League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "en-1",
+        "name": "Premier League",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.premierleague.com/en/clubs",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "en-2",
+        "name": "EFL Championship",
+        "family": "international",
+        "participant_count": 24,
+        "local_definition_present": true,
+        "upper_implemented": "en-1",
+        "source_registered": "https://www.efl.com/news/2026/march/05/efl-statement--sky-bet-championship-play-off-format/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "en-3",
+        "name": "English League One",
+        "family": "international",
+        "participant_count": 24,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.efl.com/clubs-and-competitions",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "en-4",
+        "name": "English League Two",
+        "family": "international",
+        "participant_count": 24,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.efl.com/clubs-and-competitions",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "es-1",
+        "name": "LaLiga",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.laliga.com/en-ES/laliga-easports/clubs",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "es-2",
+        "name": "LaLiga Hypermotion",
+        "family": "international",
+        "participant_count": 22,
+        "local_definition_present": true,
+        "upper_implemented": "es-1",
+        "source_registered": "https://www.laliga.com/en-ES/laliga-hypermotion/clubs",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "es-entrada",
+        "name": "Capixaba Série B",
+        "family": "state",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://futebolcapixaba.com/2026/04/51396/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "et-1",
+        "name": "Circuito Premier League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "fi-1",
+        "name": "Finnish Veikkausliiga",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.veikkausliiga.com/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "fi-2",
+        "name": "Ykkösliiga",
+        "family": "international",
+        "participant_count": 10,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www-assets.palloliitto.fi/62562/1774195903-ykkosliiga2026.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "fr-1",
+        "name": "Ligue 1",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ligue1.com/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "fr-2",
+        "name": "Ligue 2",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": "fr-1",
+        "source_registered": "https://www.lfp.fr/article/publication-du-calendrier-general-de-la-ligue-2-bkt-pour-la-saison-2026-2027",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "gh-1",
+        "name": "Premier League",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://site.api.espn.com/apis/site/v2/sports/soccer/gha.1/teams?limit=100&season=2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "go-entrada",
+        "name": "Goiano Terceira Divisão",
+        "family": "state",
+        "participant_count": 7,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "gr-1",
+        "name": "Super League Greece",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.slgr.gr/en/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "gt-1",
+        "name": "Liga Nacional de Guatemala",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ligagt.com/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "gy-1",
+        "name": "Circuito Elite League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "hn-1",
+        "name": "Liga Nacional de Honduras",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.lnphn.com/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "hr-1",
+        "name": "Circuito HNL (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://hnl.hr/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ht-1",
+        "name": "Circuito Ligue Haïtienne (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.concacaf.com/rankings/club",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "hu-1",
+        "name": "Hungarian Liga NB I",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.mlsz.hu/hir/otp-bank-liga-2026-2027-sorsolas-hetfon",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "hu-2",
+        "name": "NB II",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.mlsz.hu/hir/elkeszult-a-merkantil-bank-liga-sorsolasa-39687",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ie-1",
+        "name": "Irish Premier League",
+        "family": "international",
+        "participant_count": 10,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.leagueofireland.ie/mens/premier-division/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ie-2",
+        "name": "Irish First Division",
+        "family": "international",
+        "participant_count": 10,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.leagueofireland.ie/mens/first-division/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "il-1",
+        "name": "Ligat Ha’al",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.football.org.il/en/leagues/league/?league_id=40&season_id=28",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "il-2",
+        "name": "Liga Leumit",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.football.org.il/en/leagues/league/?league_id=45&season_id=28",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "in-1",
+        "name": "Indian Super League",
+        "family": "international",
+        "participant_count": 13,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.the-aiff.com/calendar?competition_id=2305",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "in-2",
+        "name": "Indian Football League",
+        "family": "international",
+        "participant_count": 11,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.the-aiff.com/article/indian-football-league-2026-27-to-begin-on-october-30",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "it-1",
+        "name": "Serie A",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.legaseriea.it/serie-a",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "it-2",
+        "name": "Serie B",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": "it-1",
+        "source_registered": "https://www.legab.it/seriebkt",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "jm-1",
+        "name": "Circuito Jamaica Premier League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.concacaf.com/rankings/club",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "jp-1",
+        "name": "J1 League",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.jleague.jp/news/article/32852/?mode=pc",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "jp-2",
+        "name": "J2 League",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.jleague.jp/news/article/32852/?mode=pc",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ke-1",
+        "name": "Premier League",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://site.api.espn.com/apis/site/v2/sports/soccer/ken.1/teams?limit=100&season=2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "kr-1",
+        "name": "Korean K-League 1",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.kleague.com/about/competition.do",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "kr-2",
+        "name": "Korean K-League 2",
+        "family": "international",
+        "participant_count": 17,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.kleague.com/about/competition.do",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ly-1",
+        "name": "Circuito Premier League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ma-1",
+        "name": "Circuito Botola (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ma-entrada",
+        "name": "Maranhense Série B",
+        "family": "state",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "mg-entrada",
+        "name": "Mineiro Segunda Divisão",
+        "family": "state",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ml-1",
+        "name": "Circuito Première Division (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ms-entrada",
+        "name": "Sul-Mato-Grossense Série B",
+        "family": "state",
+        "participant_count": 8,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "mt-entrada",
+        "name": "Mato-grossense Segunda Divisão",
+        "family": "state",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fmfmt.com.br/pt/noticias/view.php?id=2276",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "mx-1",
+        "name": "Liga MX",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fmf.mx/justicia-deportiva/reglamentos",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ng-1",
+        "name": "NPFL",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://site.api.espn.com/apis/site/v2/sports/soccer/nga.1/teams?limit=100&season=2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ni-1",
+        "name": "Circuito Liga Primera (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.concacaf.com/rankings/club",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "nl-1",
+        "name": "Eredivisie",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://eredivisie.com/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "nl-2",
+        "name": "Eerste Divisie",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": "nl-1",
+        "source_registered": "https://www.knvb.nl/competities/keuken-kampioen-divisie",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "no-1",
+        "name": "Eliteserien",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.eliteserien.no/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pa-1",
+        "name": "Circuito Liga Panameña (adaptado)",
+        "family": "international",
+        "participant_count": 8,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.concacaf.com/rankings/club",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pa-entrada",
+        "name": "Paraense Série A3",
+        "family": "state",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.fpfpara.com.br/competicao/112",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pb-entrada",
+        "name": "Paraibano Segunda Divisão",
+        "family": "state",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pe-1",
+        "name": "Liga 1 (formato adaptado)",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://site.api.espn.com/apis/site/v2/sports/soccer/per.1/teams?limit=100&season=2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pe-entrada",
+        "name": "Pernambucano 2026/27 — primeiro turno",
+        "family": "state",
+        "participant_count": 24,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fpf-pe.com.br/pt/noticias/view.php?q=12567",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pi-entrada",
+        "name": "Piauiense Série B",
+        "family": "state",
+        "participant_count": 6,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pl-1",
+        "name": "Polish Ekstraklasa",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.ekstraklasa.org/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pl-2",
+        "name": "I Liga",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.1liga.org/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pr-entrada",
+        "name": "Paranaense Terceira Divisão",
+        "family": "state",
+        "participant_count": 11,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pt-1",
+        "name": "Liga Portugal",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.ligaportugal.pt/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "pt-2",
+        "name": "Liga Portugal 2",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": "pt-1",
+        "source_registered": "https://www.ligaportugal.pt/pages/estatutos-regulamentos",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "py-1",
+        "name": "Copa de Primera Paraguay",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.apf.org.py/copa-de-primera",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "py-2",
+        "name": "División Intermedia Paraguay",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": "py-1",
+        "source_registered": "https://www.apf.org.py/noticias/asi-iniciara-la-intermedia-2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "rj-entrada",
+        "name": "Carioca Série C",
+        "family": "state",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://rsssfbrasil.com/tablesr/rj2026l5.htm",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "rn-entrada",
+        "name": "Potiguar Segunda Divisão",
+        "family": "state",
+        "participant_count": 5,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ro-1",
+        "name": "Romania Liga I",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://lpf.ro/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ro-2",
+        "name": "Liga II",
+        "family": "international",
+        "participant_count": 22,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://www.frf.ro/competitii/competitii-masculin/liga-2-casa-pariurilor/miercuri-22-iulie-tragerea-la-sorti-pentru-stabilirea-programului-sezonului-2026-2027-din-liga-2-casa-pariurilor/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ro-entrada",
+        "name": "Rondoniense Série B",
+        "family": "state",
+        "participant_count": 2,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ge.globo.com/ro/futebol/campeonato-rondoniense/noticia/2026/08/31/rolim-de-moura-goleia-vec-por-4-a-1-e-conquista-titulo-inedito-da-serie-b.ghtml",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "rr-entrada",
+        "name": "Roraimense",
+        "family": "state",
+        "participant_count": 9,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.futebolroraimense.com.br/post/campeonato-roraimense-giroagro-2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "rs-1",
+        "name": "SuperLiga sérvia",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fss.rs/takmicenje/mozzart-bet-super-liga-srbije-26-27/?script=lat",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "rs-2",
+        "name": "Prva Liga sérvia",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fss.rs/takmicenje/mozzart-bet-prva-liga-srbije-26-27/?script=lat",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "rs-entrada",
+        "name": "Gaúcho Série B",
+        "family": "state",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ru-1",
+        "name": "Russian Premier League",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://premierliga.ru/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "rw-1",
+        "name": "Circuito Premier League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sa-1",
+        "name": "Saudi Pro League",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.spl.com.sa/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sc-1",
+        "name": "Scottish Premiership",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://spfl.co.uk/league/premiership",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sc-2",
+        "name": "Scottish Championship",
+        "family": "international",
+        "participant_count": 10,
+        "local_definition_present": true,
+        "upper_implemented": "sc-1",
+        "source_registered": "https://spfl.co.uk/pages/rules-and-regulations",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sc-entrada",
+        "name": "Catarinense Série C",
+        "family": "state",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fcf.com.br/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "se-1",
+        "name": "Allsvenskan",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.svenskfotboll.se/4af842/globalassets/svff/dokumentdokumentblock/tavling/arsplaner--seriesammansattningar/2026/faststalld-seriesammansattning-allsvenskan-och-superettan-2026.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "se-2",
+        "name": "Superettan",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.svenskfotboll.se/4af842/globalassets/svff/dokumentdokumentblock/tavling/arsplaner--seriesammansattningar/2026/faststalld-seriesammansattning-allsvenskan-och-superettan-2026.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "se-entrada",
+        "name": "Sergipano Série A2",
+        "family": "state",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sn-1",
+        "name": "Circuito Ligue 1 (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sp-a1",
+        "name": "Paulistão A1",
+        "family": "sp",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://futebolpaulista.com.br/Repositorio/Competicao/Regulamento/1551/1551_639002025107690404.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sp-a2",
+        "name": "Paulistão A2",
+        "family": "sp",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": "sp-a1",
+        "source_registered": "https://futebolpaulista.com.br/Repositorio/Noticia/30545/30545_2122025135816_1.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sp-a3",
+        "name": "Paulistão A3",
+        "family": "sp",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": "sp-a2",
+        "source_registered": "https://futebolpaulista.com.br/Repositorio/Noticia/30576/30576_0.pdf",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sp-a4",
+        "name": "Paulistão A4",
+        "family": "sp",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": "sp-a3",
+        "source_registered": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=30879",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sp-segunda",
+        "name": "Paulista Segunda Divisão Sub-23",
+        "family": "sp",
+        "participant_count": 24,
+        "local_definition_present": true,
+        "upper_implemented": "sp-a4",
+        "source_registered": "https://www.futebolpaulista.com.br/Noticias/Detalhe.aspx?Noticia=31961",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sr-1",
+        "name": "Circuito Suriname Major League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.concacaf.com/rankings/club",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "sv-1",
+        "name": "Primera División de El Salvador",
+        "family": "international",
+        "participant_count": 12,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://laprimera.com.sv/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "th-1",
+        "name": "Thai League 1",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://thaileague.co.th/standings/224",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "th-2",
+        "name": "Thai League 2",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": false,
+        "upper_implemented": null,
+        "source_registered": "https://thaileague.co.th/standings/226",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "tn-1",
+        "name": "Circuito Ligue 1 (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "to-entrada",
+        "name": "Tocantinense Segunda Divisão",
+        "family": "state",
+        "participant_count": 8,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "tr-1",
+        "name": "Süper Lig",
+        "family": "international",
+        "participant_count": 18,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.tff.org/default.aspx?pageID=198",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "tr-2",
+        "name": "TFF 1. Lig",
+        "family": "international",
+        "participant_count": 20,
+        "local_definition_present": true,
+        "upper_implemented": "tr-1",
+        "source_registered": "https://www.tff.org/default.aspx?pageID=142",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "tz-1",
+        "name": "Circuito Premier League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ua-1",
+        "name": "Premier League ucraniana",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://upl.ua/ua/tournaments/championship?id=432&tab=table",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ua-2",
+        "name": "Persha Liga",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://pfl.ua/news/1699",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ug-1",
+        "name": "Circuito Premier League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "us-1",
+        "name": "Major League Soccer",
+        "family": "international",
+        "participant_count": 30,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://www.mlssoccer.com/league-reports/competition-guidelines/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "uy-1",
+        "name": "Liga AUF Uruguaya",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://sudamericanos20.auf.org.uy/liga-auf-uruguaya/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "uy-2",
+        "name": "Segunda División Profesional Uruguay",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": true,
+        "upper_implemented": "uy-1",
+        "source_registered": "https://sudamericanos20.auf.org.uy/segunda-division-profesional/",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "ve-1",
+        "name": "Liga FUTVE (formato adaptado)",
+        "family": "international",
+        "participant_count": 14,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://site.api.espn.com/apis/site/v2/sports/soccer/ven.1/teams?limit=100&season=2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "za-1",
+        "name": "Premiership",
+        "family": "international",
+        "participant_count": 16,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://site.api.espn.com/apis/site/v2/sports/soccer/rsa.1/teams?limit=100&season=2026",
+        "evidence": "local_cache_only_not_live_api"
+    },
+    {
+        "id": "zm-1",
+        "name": "Circuito Super League (adaptado)",
+        "family": "international",
+        "participant_count": 4,
+        "local_definition_present": true,
+        "upper_implemented": null,
+        "source_registered": "https://theanalyst.com/articles/who-are-the-best-football-team-in-the-world-opta-power-rankings",
+        "evidence": "local_cache_only_not_live_api"
+    }
+]

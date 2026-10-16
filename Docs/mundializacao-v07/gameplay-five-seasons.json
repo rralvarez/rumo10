@@ -1,0 +1,160 @@
+{
+    "synthetic_competitions": true,
+    "real_Game_command": true,
+    "results": [
+        {
+            "season": 1,
+            "club": "Lemense-SP",
+            "games": 13,
+            "goals": 1,
+            "assists": 1,
+            "competitions": [
+                "fx-1",
+                "fx-cup"
+            ],
+            "fixtures": 55,
+            "commands": 143,
+            "elapsed_ms": 201.82,
+            "snapshot_bytes": 122817,
+            "titles": 0,
+            "promotions": {
+                "fx-1": [],
+                "fx-2": [
+                    "Jacareí-SP"
+                ],
+                "fx-cup": []
+            },
+            "relegations": {
+                "fx-1": [
+                    "Lemense-SP"
+                ],
+                "fx-2": [],
+                "fx-cup": []
+            },
+            "market_choice": "no"
+        },
+        {
+            "season": 2,
+            "club": "Lemense-SP",
+            "games": 13,
+            "goals": 4,
+            "assists": 1,
+            "competitions": [
+                "fx-2",
+                "fx-cup"
+            ],
+            "fixtures": 55,
+            "commands": 145,
+            "elapsed_ms": 182.18,
+            "snapshot_bytes": 139550,
+            "titles": 0,
+            "promotions": {
+                "fx-1": [],
+                "fx-2": [
+                    "Taquaritinga-SP"
+                ],
+                "fx-cup": []
+            },
+            "relegations": {
+                "fx-1": [
+                    "Jacareí-SP"
+                ],
+                "fx-2": [],
+                "fx-cup": []
+            },
+            "market_choice": "no"
+        },
+        {
+            "season": 3,
+            "club": "Lemense-SP",
+            "games": 13,
+            "goals": 1,
+            "assists": 2,
+            "competitions": [
+                "fx-2",
+                "fx-cup"
+            ],
+            "fixtures": 55,
+            "commands": 141,
+            "elapsed_ms": 151.07,
+            "snapshot_bytes": 147483,
+            "titles": 0,
+            "promotions": {
+                "fx-1": [],
+                "fx-2": [
+                    "Jacareí-SP"
+                ],
+                "fx-cup": []
+            },
+            "relegations": {
+                "fx-1": [
+                    "Comercial-SP"
+                ],
+                "fx-2": [],
+                "fx-cup": []
+            },
+            "market_choice": "no"
+        },
+        {
+            "season": 4,
+            "club": "Lemense-SP",
+            "games": 13,
+            "goals": 3,
+            "assists": 0,
+            "competitions": [
+                "fx-2",
+                "fx-cup"
+            ],
+            "fixtures": 55,
+            "commands": 143,
+            "elapsed_ms": 136.22,
+            "snapshot_bytes": 159035,
+            "titles": 0,
+            "promotions": {
+                "fx-1": [],
+                "fx-2": [
+                    "São Caetano-SP"
+                ],
+                "fx-cup": []
+            },
+            "relegations": {
+                "fx-1": [
+                    "Nacional-SP"
+                ],
+                "fx-2": [],
+                "fx-cup": []
+            },
+            "market_choice": "no"
+        },
+        {
+            "season": 5,
+            "club": "Lemense-SP",
+            "games": 13,
+            "goals": 6,
+            "assists": 2,
+            "competitions": [
+                "fx-2",
+                "fx-cup"
+            ],
+            "fixtures": 55,
+            "commands": 151,
+            "elapsed_ms": 156.9,
+            "snapshot_bytes": 178495,
+            "titles": 1,
+            "promotions": {
+                "fx-1": [],
+                "fx-2": [
+                    "Lemense-SP"
+                ],
+                "fx-cup": []
+            },
+            "relegations": {
+                "fx-1": [
+                    "Araçatuba-SP"
+                ],
+                "fx-2": [],
+                "fx-cup": []
+            }
+        }
+    ]
+}

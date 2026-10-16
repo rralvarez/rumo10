@@ -1,0 +1,1312 @@
+[
+    {
+        "id": "br-a",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 112466,
+        "creation_ms": 2.268,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "br-b",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 113057,
+        "creation_ms": 1.139,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "br-c",
+        "initial_phase_matches": 190,
+        "initial_phase_rounds": 19,
+        "initial_snapshot_bytes": 57092,
+        "creation_ms": 0.483,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "br-d",
+        "initial_phase_matches": 480,
+        "initial_phase_rounds": 10,
+        "initial_snapshot_bytes": 147490,
+        "creation_ms": 1.278,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sp-a1",
+        "initial_phase_matches": 64,
+        "initial_phase_rounds": 8,
+        "initial_snapshot_bytes": 20148,
+        "creation_ms": 0.145,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sp-a2",
+        "initial_phase_matches": 120,
+        "initial_phase_rounds": 15,
+        "initial_snapshot_bytes": 37329,
+        "creation_ms": 0.288,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sp-a3",
+        "initial_phase_matches": 120,
+        "initial_phase_rounds": 15,
+        "initial_snapshot_bytes": 37575,
+        "creation_ms": 0.299,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sp-a4",
+        "initial_phase_matches": 120,
+        "initial_phase_rounds": 15,
+        "initial_snapshot_bytes": 36854,
+        "creation_ms": 0.294,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sp-segunda",
+        "initial_phase_matches": 120,
+        "initial_phase_rounds": 10,
+        "initial_snapshot_bytes": 38027,
+        "creation_ms": 0.353,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ac-entrada",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4234,
+        "creation_ms": 0.988,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "al-entrada",
+        "initial_phase_matches": 15,
+        "initial_phase_rounds": 5,
+        "initial_snapshot_bytes": 5137,
+        "creation_ms": 0.063,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "am-entrada",
+        "initial_phase_matches": 21,
+        "initial_phase_rounds": 7,
+        "initial_snapshot_bytes": 6980,
+        "creation_ms": 0.084,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ap-entrada",
+        "initial_phase_matches": 36,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 11722,
+        "creation_ms": 0.089,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ba-entrada",
+        "initial_phase_matches": 45,
+        "initial_phase_rounds": 9,
+        "initial_snapshot_bytes": 14429,
+        "creation_ms": 0.144,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ce-entrada",
+        "initial_phase_matches": 21,
+        "initial_phase_rounds": 7,
+        "initial_snapshot_bytes": 6950,
+        "creation_ms": 0.079,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "df-entrada",
+        "initial_phase_matches": 21,
+        "initial_phase_rounds": 7,
+        "initial_snapshot_bytes": 6830,
+        "creation_ms": 0.075,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "es-entrada",
+        "initial_phase_matches": 40,
+        "initial_phase_rounds": 10,
+        "initial_snapshot_bytes": 12599,
+        "creation_ms": 0.17,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "go-entrada",
+        "initial_phase_matches": 21,
+        "initial_phase_rounds": 7,
+        "initial_snapshot_bytes": 7120,
+        "creation_ms": 0.084,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ma-entrada",
+        "initial_phase_matches": 27,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 8967,
+        "creation_ms": 0.128,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "mt-entrada",
+        "initial_phase_matches": 20,
+        "initial_phase_rounds": 5,
+        "initial_snapshot_bytes": 6834,
+        "creation_ms": 0.087,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ms-entrada",
+        "initial_phase_matches": 28,
+        "initial_phase_rounds": 7,
+        "initial_snapshot_bytes": 9172,
+        "creation_ms": 0.092,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "mg-entrada",
+        "initial_phase_matches": 30,
+        "initial_phase_rounds": 5,
+        "initial_snapshot_bytes": 10216,
+        "creation_ms": 0.11,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pa-entrada",
+        "initial_phase_matches": 24,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 8088,
+        "creation_ms": 0.118,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pb-entrada",
+        "initial_phase_matches": 45,
+        "initial_phase_rounds": 9,
+        "initial_snapshot_bytes": 14364,
+        "creation_ms": 0.151,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pr-entrada",
+        "initial_phase_matches": 30,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 10005,
+        "creation_ms": 0.119,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "rj-entrada",
+        "initial_phase_matches": 64,
+        "initial_phase_rounds": 8,
+        "initial_snapshot_bytes": 20640,
+        "creation_ms": 0.148,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "rn-entrada",
+        "initial_phase_matches": 20,
+        "initial_phase_rounds": 10,
+        "initial_snapshot_bytes": 6495,
+        "creation_ms": 0.19,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "rs-entrada",
+        "initial_phase_matches": 45,
+        "initial_phase_rounds": 9,
+        "initial_snapshot_bytes": 14234,
+        "creation_ms": 0.218,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sc-entrada",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4124,
+        "creation_ms": 0.055,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "se-entrada",
+        "initial_phase_matches": 30,
+        "initial_phase_rounds": 5,
+        "initial_snapshot_bytes": 10036,
+        "creation_ms": 0.142,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "to-entrada",
+        "initial_phase_matches": 28,
+        "initial_phase_rounds": 7,
+        "initial_snapshot_bytes": 9172,
+        "creation_ms": 0.114,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ro-entrada",
+        "initial_phase_matches": 2,
+        "initial_phase_rounds": 2,
+        "initial_snapshot_bytes": 1119,
+        "creation_ms": 0.027,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "rr-entrada",
+        "initial_phase_matches": 36,
+        "initial_phase_rounds": 9,
+        "initial_snapshot_bytes": 11260,
+        "creation_ms": 0.185,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pi-entrada",
+        "initial_phase_matches": 15,
+        "initial_phase_rounds": 5,
+        "initial_snapshot_bytes": 4903,
+        "creation_ms": 0.062,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pe-entrada",
+        "initial_phase_matches": 60,
+        "initial_phase_rounds": 5,
+        "initial_snapshot_bytes": 19698,
+        "creation_ms": 0.239,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ar-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 16,
+        "initial_snapshot_bytes": 76750,
+        "creation_ms": 3.848,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ar-2",
+        "initial_phase_matches": 648,
+        "initial_phase_rounds": 36,
+        "initial_snapshot_bytes": 201365,
+        "creation_ms": 3.545,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "uy-1",
+        "initial_phase_matches": 120,
+        "initial_phase_rounds": 15,
+        "initial_snapshot_bytes": 37816,
+        "creation_ms": 0.51,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "uy-2",
+        "initial_phase_matches": 42,
+        "initial_phase_rounds": 7,
+        "initial_snapshot_bytes": 14036,
+        "creation_ms": 0.212,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "py-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 41061,
+        "creation_ms": 0.485,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "py-2",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 76277,
+        "creation_ms": 0.964,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "bo-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 73965,
+        "creation_ms": 0.993,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "bo-2",
+        "initial_phase_matches": 198,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 67839,
+        "creation_ms": 0.804,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "en-1",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 114706,
+        "creation_ms": 1.551,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "en-2",
+        "initial_phase_matches": 552,
+        "initial_phase_rounds": 46,
+        "initial_snapshot_bytes": 167412,
+        "creation_ms": 2.556,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "es-1",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 113026,
+        "creation_ms": 2.228,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "es-2",
+        "initial_phase_matches": 462,
+        "initial_phase_rounds": 42,
+        "initial_snapshot_bytes": 137335,
+        "creation_ms": 1.481,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "de-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 93555,
+        "creation_ms": 0.91,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "de-2",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 94657,
+        "creation_ms": 1.001,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "it-1",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 110380,
+        "creation_ms": 1.464,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "it-2",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 111262,
+        "creation_ms": 1.287,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "fr-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 89679,
+        "creation_ms": 0.906,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "fr-2",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 90971,
+        "creation_ms": 0.832,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pt-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 91237,
+        "creation_ms": 0.797,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pt-2",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 91351,
+        "creation_ms": 0.794,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "nl-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 92225,
+        "creation_ms": 0.815,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "nl-2",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 113656,
+        "creation_ms": 0.981,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "be-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 92909,
+        "creation_ms": 0.801,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "be-2",
+        "initial_phase_matches": 210,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 62922,
+        "creation_ms": 0.585,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "tr-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 91579,
+        "creation_ms": 0.789,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "tr-2",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 116218,
+        "creation_ms": 1.037,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sc-1",
+        "initial_phase_matches": 198,
+        "initial_phase_rounds": 33,
+        "initial_snapshot_bytes": 58842,
+        "creation_ms": 0.483,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sc-2",
+        "initial_phase_matches": 180,
+        "initial_phase_rounds": 36,
+        "initial_snapshot_bytes": 55311,
+        "creation_ms": 0.417,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "us-1",
+        "initial_phase_matches": 510,
+        "initial_phase_rounds": 36,
+        "initial_snapshot_bytes": 157224,
+        "creation_ms": 3.179,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "mx-1",
+        "initial_phase_matches": 153,
+        "initial_phase_rounds": 17,
+        "initial_snapshot_bytes": 46051,
+        "creation_ms": 1.453,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "cr-1",
+        "initial_phase_matches": 90,
+        "initial_phase_rounds": 18,
+        "initial_snapshot_bytes": 28428,
+        "creation_ms": 0.326,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "hn-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 41235,
+        "creation_ms": 0.575,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "gt-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 40637,
+        "creation_ms": 0.505,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sv-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 41365,
+        "creation_ms": 0.375,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "no-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 71543,
+        "creation_ms": 0.967,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "dk-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 40845,
+        "creation_ms": 0.427,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "gr-1",
+        "initial_phase_matches": 182,
+        "initial_phase_rounds": 26,
+        "initial_snapshot_bytes": 54004,
+        "creation_ms": 0.469,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "cy-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 3970,
+        "creation_ms": 0.046,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ru-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 73685,
+        "creation_ms": 0.613,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sa-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 90094,
+        "creation_ms": 0.824,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ec-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 73719,
+        "creation_ms": 0.636,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "co-1",
+        "initial_phase_matches": 190,
+        "initial_phase_rounds": 19,
+        "initial_snapshot_bytes": 61099,
+        "creation_ms": 0.535,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "cz-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4170,
+        "creation_ms": 0.046,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pl-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4270,
+        "creation_ms": 0.035,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "hu-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4050,
+        "creation_ms": 0.033,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "hr-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4040,
+        "creation_ms": 0.033,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ca-1",
+        "initial_phase_matches": 112,
+        "initial_phase_rounds": 28,
+        "initial_snapshot_bytes": 34117,
+        "creation_ms": 0.272,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ni-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4260,
+        "creation_ms": 0.042,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pa-1",
+        "initial_phase_matches": 56,
+        "initial_phase_rounds": 14,
+        "initial_snapshot_bytes": 18177,
+        "creation_ms": 0.156,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ht-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4050,
+        "creation_ms": 0.038,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "jm-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4270,
+        "creation_ms": 0.034,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "do-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4050,
+        "creation_ms": 0.034,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sr-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4140,
+        "creation_ms": 0.033,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "cl-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 74093,
+        "creation_ms": 0.705,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "pe-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 93096,
+        "creation_ms": 1.033,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ve-1",
+        "initial_phase_matches": 182,
+        "initial_phase_rounds": 26,
+        "initial_snapshot_bytes": 56164,
+        "creation_ms": 0.614,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "gy-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4080,
+        "creation_ms": 0.06,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "za-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 73277,
+        "creation_ms": 0.848,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ng-1",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 115963,
+        "creation_ms": 1.58,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "gh-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 92526,
+        "creation_ms": 1.498,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ke-1",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 92070,
+        "creation_ms": 1.452,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ma-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4110,
+        "creation_ms": 0.082,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "eg-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4000,
+        "creation_ms": 0.053,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "dz-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 3940,
+        "creation_ms": 0.052,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "tn-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 3990,
+        "creation_ms": 0.048,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "tz-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4020,
+        "creation_ms": 0.049,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "cd-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4150,
+        "creation_ms": 0.049,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ao-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4200,
+        "creation_ms": 0.049,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ci-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4050,
+        "creation_ms": 0.049,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "zm-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4070,
+        "creation_ms": 0.048,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ug-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 3810,
+        "creation_ms": 0.048,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "rw-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 3940,
+        "creation_ms": 0.047,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "cm-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 3980,
+        "creation_ms": 0.049,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "sn-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4100,
+        "creation_ms": 0.049,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ml-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4140,
+        "creation_ms": 0.048,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "et-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4160,
+        "creation_ms": 0.048,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ly-1",
+        "initial_phase_matches": 12,
+        "initial_phase_rounds": 6,
+        "initial_snapshot_bytes": 4060,
+        "creation_ms": 0.048,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "at-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 39363,
+        "creation_ms": 0.544,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "at-2",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 73787,
+        "creation_ms": 0.946,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "az-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 40039,
+        "creation_ms": 0.517,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "az-2",
+        "initial_phase_matches": 90,
+        "initial_phase_rounds": 18,
+        "initial_snapshot_bytes": 27680,
+        "creation_ms": 0.313,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ch-1",
+        "initial_phase_matches": 132,
+        "initial_phase_rounds": 22,
+        "initial_snapshot_bytes": 38973,
+        "creation_ms": 0.425,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ch-2",
+        "initial_phase_matches": 90,
+        "initial_phase_rounds": 18,
+        "initial_snapshot_bytes": 27328,
+        "creation_ms": 0.301,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ua-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 71747,
+        "creation_ms": 0.754,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "ua-2",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 72869,
+        "creation_ms": 0.712,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "rs-1",
+        "initial_phase_matches": 182,
+        "initial_phase_rounds": 26,
+        "initial_snapshot_bytes": 56434,
+        "creation_ms": 0.526,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "rs-2",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 72325,
+        "creation_ms": 0.656,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "jp-1",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 115627,
+        "creation_ms": 0.983,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "jp-2",
+        "initial_phase_matches": 380,
+        "initial_phase_rounds": 38,
+        "initial_snapshot_bytes": 115753,
+        "creation_ms": 1.003,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "il-1",
+        "initial_phase_matches": 182,
+        "initial_phase_rounds": 26,
+        "initial_snapshot_bytes": 56794,
+        "creation_ms": 0.47,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "il-2",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 74195,
+        "creation_ms": 0.619,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "bg-1",
+        "initial_phase_matches": 182,
+        "initial_phase_rounds": 26,
+        "initial_snapshot_bytes": 56254,
+        "creation_ms": 0.482,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "bg-2",
+        "initial_phase_matches": 306,
+        "initial_phase_rounds": 34,
+        "initial_snapshot_bytes": 92678,
+        "creation_ms": 0.826,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "se-1",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 71679,
+        "creation_ms": 0.639,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "se-2",
+        "initial_phase_matches": 240,
+        "initial_phase_rounds": 30,
+        "initial_snapshot_bytes": 71543,
+        "creation_ms": 0.623,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    },
+    {
+        "id": "am-a1",
+        "initial_phase_matches": 16,
+        "initial_phase_rounds": 4,
+        "initial_snapshot_bytes": 5874,
+        "creation_ms": 1.202,
+        "same_round_club_conflicts": [],
+        "cross_competition_dates": false,
+        "generated": true
+    }
+]
