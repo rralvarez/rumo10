@@ -42,7 +42,7 @@ final class PlayMode {
             // Capture o jogo antes de afterWeekend mudar calendário/fase.
             if($g['stage']==='fim_semana') {
                 $m=$g['matches'][Game::currentIndex($g)];
-                $played[]=['home'=>$m['home'],'away'=>$m['away'],'hg'=>$m['hg'],'ag'=>$m['ag'],'stats'=>$m['stats'],'log'=>$m['log'],'competition'=>Competition::label($g)];
+                $played[]=['home'=>$m['home'],'away'=>$m['away'],'hg'=>$m['hg'],'ag'=>$m['ag'],'stats'=>$m['stats'],'log'=>$m['log'],'competition'=>Competition::label($g),'experience'=>$m['experience']??null];
             }
             $context=['stage'=>$g['stage'],'round'=>$g['round'],'competition'=>$g['competition_id']??'legacy','minute'=>$g['stage']==='partida'?$g['matches'][Game::currentIndex($g)]['minute']:null];
             $g=Game::command($g,$action,$input,true);
@@ -91,12 +91,14 @@ final class PlayMode {
         $last=$r['matches']?end($r['matches']):null;
         if($r['mode']==='rapido' && $last) {
             echo '<h2>'.e($last['home'].' '.$last['hg'].' × '.$last['ag'].' '.$last['away']).'</h2><p>Você: '.e($last['stats']['goals']).' gols · '.e($last['stats']['assists']).' assistências · '.e($last['stats']['minutes']).' min · nota '.e($last['stats']['rating']).'</p>';
+            MatchExperience::render($last);
             if(!$last['stats']['minutes'])echo '<p>Você não entrou em campo nesta partida.</p>';
         } else echo '<h2>'.count($r['matches']).' jogos simulados</h2><p>Temporada '.$r['season'].' · '.e(self::PLANS[$r['plan']][0]).'</p><p>'.e($r['after']['goals']).' gols · '.e($r['after']['assists']).' assistências · nota média '.e($r['after']['average']).'</p>';
         foreach($r['growth'] as $key=>$value)echo '<span class="effect-chip">'.e(ucfirst(str_replace('_',' ',$key))).' +'.e($value).'</span> ';
         echo '<details><summary>Ver jogos e destaques</summary>';
         foreach($r['matches'] as $m) {
             echo '<p><b>'.e($m['home'].' '.$m['hg'].' × '.$m['ag'].' '.$m['away']).'</b><br><small>'.e($m['competition']).' · você: '.e($m['stats']['goals']).' gols, '.e($m['stats']['assists']).' assistências</small></p>';
+            if($r['mode']==='expresso')MatchExperience::render($m);
             foreach($m['log'] as $l)if(str_contains($l['text'],'Gol do seu jogador!') || str_contains($l['text'],'assistência!'))echo '<p class="pace-highlight">'.e($l['minute']).'′ '.e($l['text']).'</p>';
         }
         echo '</details></article>';

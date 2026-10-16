@@ -19,6 +19,7 @@ final class Evolution {
         $s['xp']+=$earned;
         while($s['value']<$ceiling && $s['xp']>=Rules::xpThreshold($s['value'])){$s['xp']-=Rules::xpThreshold($s['value']);$s['value']++;}
         if($s['value']===$ceiling)$s['xp']=min($s['xp'],Rules::xpThreshold($s['value'])-1);
+        MatchExperience::record($g,$skill,$earned);
         return $earned;
     }
     public static function birthday(array &$g):array {

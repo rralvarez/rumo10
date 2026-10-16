@@ -111,6 +111,7 @@ final class Game {
                 $m['lineup']=$absent?'não relacionado':($bench?'reserva':'titular');
                 $m['entry']=$absent?90:($bench?60:0); $m['exit']=90; $m['status']='pre_jogo'; $g['stage']='partida';
                 MatchBalance::prepare($m,$g);$g['progression_version']=2;
+                MatchExperience::begin($g);
             } elseif($g['stage']==='fim_semana') {
                 $g['states']['energia']=self::clamp($g['states']['energia']+20); $g['states']['risco_lesao']=self::clamp($g['states']['risco_lesao']-10); $g['states']['risco_cartao']=self::clamp($g['states']['risco_cartao']-10);
                 if(!empty($g['official'])) Competition::afterWeekend($g);
@@ -241,6 +242,7 @@ final class Game {
             $s=&$m['stats']; $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
             $s['rating']=$s['minutes']===0?0:round(max(0,min(10,6+$s['goals']*.7+$s['assists']*.5+$s['tackles']*($def?.35:.15)+$s['completed']*.1-($s['passes']-$s['completed'])*.15-$s['cards']*.6)),1);
             Progression::match($g,$m);
+            MatchExperience::finish($g);
             unset($m,$s);
             if(!empty($g['official'])) {
                 $ownIndex=self::currentIndex($g);$played=&$g['matches'][$ownIndex];

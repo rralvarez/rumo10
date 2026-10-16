@@ -45,7 +45,9 @@ final class Presentation {
     public static function matchStats(array $g,array $m): void {
         $s=$m['stats'];
         echo '<section class="player-match-stats panel" aria-label="Seu desempenho nesta partida"><p class="tag">SEU DESEMPENHO NESTA PARTIDA</p><div class="stat-strip">';
-        foreach(['goals'=>'Gols','assists'=>'Assistências','shots'=>'Finalizações','completed'=>'Passes certos'] as $k=>$label) echo '<div><strong data-stat="'.$k.'">'.e($s[$k]).'</strong><span>'.e($label).'</span></div>';
+        $metrics=['goals'=>'Gols','assists'=>'Assistências','shots'=>'Finalizações','completed'=>'Passes certos'];
+        if($m['status']==='finalizada' && in_array($g['position'],['zagueiro','lateral','volante'],true))$metrics+=['tackles'=>'Desarmes','fouls'=>'Faltas','cards'=>'Cartões'];
+        foreach($metrics as $k=>$label) echo '<div><strong data-stat="'.$k.'">'.e($s[$k]).'</strong><span>'.e($label).'</span></div>';
         echo '</div><p class="subtle">'.e($g['name']).' · '.($m['status']==='finalizada'?'Nota '.e($s['rating']).' · '.e($s['minutes']).' minutos jogados':'Atualizado a cada lance').'</p></section>';
     }
     public static function goalHistory(array $g): void {
