@@ -1,0 +1,14 @@
+{
+  "within_scene_duplicate_options_or_outcomes": [],
+  "unique_scene_prompts": 800,
+  "active_new_by_module": {
+    "T01": 100,
+    "T02": 100,
+    "P01": 100,
+    "J01": 100,
+    "J02": 100,
+    "J03": 55,
+    "F01": 100,
+    "F02": 100
+  }
+}

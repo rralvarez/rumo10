@@ -1,0 +1,9 @@
+﻿module,legacy_assigned,legacy_editorially_approved,new_literal_scenes,new_active,new_inactive,new_options,nominal_total,target,deficit_even_if_all_legacy_approved,deficit_without_legacy_approval
+T01,20,0,100,100,0,400,120,100,0,0
+T02,33,0,100,100,0,400,133,100,0,0
+P01,55,0,100,100,0,400,155,100,0,0
+J01,25,0,100,100,0,400,125,100,0,0
+J02,15,0,100,100,0,400,115,100,0,0
+J03,13,0,100,55,45,400,113,100,0,0
+F01,22,0,100,100,0,400,122,100,0,0
+F02,31,0,100,100,0,400,131,100,0,0

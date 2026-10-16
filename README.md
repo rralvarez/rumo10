@@ -177,3 +177,5 @@ Duas boas ações seguidas com bola podem abrir uma chance clara de gol, nos tr�
 Revisão dos bônus e penalidades, XP em dobro no modo normal e retirada das regras de idade da interface: [Consequências, XP e interface](Docs/30_Consequencias_XP_e_Interface.md). As mudanças valem nas próximas decisões das carreiras existentes.
 
 Novas carreiras gratuitas começam no Brasil; contas pagas escolhem o país de estreia entre os mercados disponíveis. A escolha é validada no servidor e mantém jogador → roleta → ofertas: [País de estreia por plano](Docs/32_Pais_de_Estreia_por_Plano.md).
+
+Expansão narrativa local de 16/10/2026, ainda sem push ou publicação: [entrega, contrato, testes e limites](Docs/42_Expansao_Narrativa_v1.md). São 800 cenas novas no catálogo, 755 ativas e 45 inativas por dependerem de eventos ou competições sem adaptador verificado. Os 214 registros anteriores foram preservados. Não exige migration SQL e não altera as fórmulas publicadas de XP, gols ou transferências.
