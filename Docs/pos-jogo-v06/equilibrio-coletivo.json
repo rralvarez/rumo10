@@ -1,0 +1,223 @@
+{
+    "checks": 6002,
+    "matches": 6000,
+    "policy": "Protagonismo via PlayMode::option em partidas completas do motor; RNG seguro independente; sem banco",
+    "rows": [
+        {
+            "player": 45,
+            "own": 40,
+            "opponent": 80,
+            "games": 1000,
+            "own_goals": 417,
+            "opponent_goals": 3492,
+            "player_goals": 93,
+            "assists": 0,
+            "shots": 790,
+            "minutes": 90000,
+            "wins": 27,
+            "expected_goals": 378.86099010087577,
+            "own_goals_per_game": 0.417,
+            "wins_fraction": 0.027,
+            "confidence_95": {
+                "method": "95%: wins Wilson; goal means CLT; paired goal ratio log delta method. Independent full matches, secure RNG.",
+                "own_goals_mean": [
+                    0.37851794032522346,
+                    0.4554820596747765
+                ],
+                "opponent_goals_mean": [
+                    3.3712794278774365,
+                    3.6127205721225635
+                ],
+                "wins_wilson": [
+                    0.018621382774295186,
+                    0.038998730753039765
+                ],
+                "goal_ratio": 0.11941580756013745,
+                "goal_ratio_ci": [
+                    0.1081883691387855,
+                    0.13180839316421053
+                ]
+            }
+        },
+        {
+            "player": 45,
+            "own": 60,
+            "opponent": 60,
+            "games": 1000,
+            "own_goals": 1270,
+            "opponent_goals": 1082,
+            "player_goals": 106,
+            "assists": 0,
+            "shots": 762,
+            "minutes": 90000,
+            "wins": 415,
+            "expected_goals": 1269.000000000005,
+            "own_goals_per_game": 1.27,
+            "wins_fraction": 0.415,
+            "confidence_95": {
+                "method": "95%: wins Wilson; goal means CLT; paired goal ratio log delta method. Independent full matches, secure RNG.",
+                "own_goals_mean": [
+                    1.2001975297245306,
+                    1.3398024702754694
+                ],
+                "opponent_goals_mean": [
+                    1.018419531779619,
+                    1.1455804682203812
+                ],
+                "wins_wilson": [
+                    0.3848433602464034,
+                    0.4458071886961409
+                ],
+                "goal_ratio": 1.1737523105360443,
+                "goal_ratio_ci": [
+                    1.0835730223156637,
+                    1.2714366804227766
+                ]
+            }
+        },
+        {
+            "player": 45,
+            "own": 80,
+            "opponent": 40,
+            "games": 1000,
+            "own_goals": 4161,
+            "opponent_goals": 353,
+            "player_goals": 103,
+            "assists": 0,
+            "shots": 762,
+            "minutes": 90000,
+            "wins": 960,
+            "expected_goals": 4079.99999999995,
+            "own_goals_per_game": 4.161,
+            "wins_fraction": 0.96,
+            "confidence_95": {
+                "method": "95%: wins Wilson; goal means CLT; paired goal ratio log delta method. Independent full matches, secure RNG.",
+                "own_goals_mean": [
+                    4.0331758981827734,
+                    4.288824101817226
+                ],
+                "opponent_goals_mean": [
+                    0.31577349064379573,
+                    0.39022650935620423
+                ],
+                "wins_wilson": [
+                    0.9459903558787425,
+                    0.970489026314547
+                ],
+                "goal_ratio": 11.787535410764873,
+                "goal_ratio_ci": [
+                    10.556378253740737,
+                    13.162278550486686
+                ]
+            }
+        },
+        {
+            "player": 85,
+            "own": 40,
+            "opponent": 80,
+            "games": 1000,
+            "own_goals": 589,
+            "opponent_goals": 3400,
+            "player_goals": 255,
+            "assists": 0,
+            "shots": 772,
+            "minutes": 90000,
+            "wins": 35,
+            "expected_goals": 439.1343294351043,
+            "own_goals_per_game": 0.589,
+            "wins_fraction": 0.035,
+            "confidence_95": {
+                "method": "95%: wins Wilson; goal means CLT; paired goal ratio log delta method. Independent full matches, secure RNG.",
+                "own_goals_mean": [
+                    0.5423443903300657,
+                    0.6356556096699343
+                ],
+                "opponent_goals_mean": [
+                    3.288553455310788,
+                    3.511446544689212
+                ],
+                "wins_wilson": [
+                    0.025272263017113168,
+                    0.04828662237445291
+                ],
+                "goal_ratio": 0.17323529411764704,
+                "goal_ratio_ci": [
+                    0.15912643452918404,
+                    0.1885951081403996
+                ]
+            }
+        },
+        {
+            "player": 85,
+            "own": 60,
+            "opponent": 60,
+            "games": 1000,
+            "own_goals": 1534,
+            "opponent_goals": 1140,
+            "player_goals": 280,
+            "assists": 0,
+            "shots": 780,
+            "minutes": 90000,
+            "wins": 461,
+            "expected_goals": 1484.999999999977,
+            "own_goals_per_game": 1.534,
+            "wins_fraction": 0.461,
+            "confidence_95": {
+                "method": "95%: wins Wilson; goal means CLT; paired goal ratio log delta method. Independent full matches, secure RNG.",
+                "own_goals_mean": [
+                    1.4616614967915789,
+                    1.6063385032084212
+                ],
+                "opponent_goals_mean": [
+                    1.0729712499039534,
+                    1.2070287500960464
+                ],
+                "wins_wilson": [
+                    0.43031271661406423,
+                    0.4919857705478091
+                ],
+                "goal_ratio": 1.3456140350877195,
+                "goal_ratio_ci": [
+                    1.2480025247363302,
+                    1.450860150950097
+                ]
+            }
+        },
+        {
+            "player": 85,
+            "own": 80,
+            "opponent": 40,
+            "games": 1000,
+            "own_goals": 4534,
+            "opponent_goals": 359,
+            "player_goals": 308,
+            "assists": 0,
+            "shots": 756,
+            "minutes": 90000,
+            "wins": 971,
+            "expected_goals": 4479.999999999978,
+            "own_goals_per_game": 4.534,
+            "wins_fraction": 0.971,
+            "confidence_95": {
+                "method": "95%: wins Wilson; goal means CLT; paired goal ratio log delta method. Independent full matches, secure RNG.",
+                "own_goals_mean": [
+                    4.405429542409026,
+                    4.662570457590974
+                ],
+                "opponent_goals_mean": [
+                    0.32315604417924404,
+                    0.39484395582075593
+                ],
+                "wins_wilson": [
+                    0.9586616416633063,
+                    0.979733551843301
+                ],
+                "goal_ratio": 12.629526462395543,
+                "goal_ratio_ci": [
+                    11.393593482194362,
+                    13.999528674918919
+                ]
+            }
+        }
+    ]
+}

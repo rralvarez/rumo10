@@ -1,0 +1,25 @@
+{
+  "count": 50,
+  "g": 1000,
+  "active": 33,
+  "active_g": 620,
+  "inactive": [
+    "TIT03",
+    "TIT05",
+    "TIT06",
+    "TIT08",
+    "TIT09",
+    "SOC01",
+    "SOC02",
+    "SOC03",
+    "SOC04",
+    "SOC05",
+    "SOC06",
+    "SOC07",
+    "SOC08",
+    "SOC09",
+    "SOC10",
+    "ESP03",
+    "ESP10"
+  ]
+}

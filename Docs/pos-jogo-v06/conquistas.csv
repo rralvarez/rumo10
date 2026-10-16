@@ -1,0 +1,51 @@
+﻿ID,Nome,Categoria,G,Ativa,Secreta,XP bonus,Condição,Motivo indisponível
+CAR01,Primeiros Passos,CARREIRA,5,True,False,0,Criar a primeira carreira válida.,
+CAR02,Primeiro Apito,CARREIRA,10,True,False,0,Completar a primeira partida com minutos jogados.,
+CAR03,Dupla Jornada,CARREIRA,10,True,False,0,Criar 2 carreiras únicas válidas na conta.,
+CAR04,Três Caminhos,CARREIRA,15,True,False,0,Criar 3 carreiras únicas válidas na conta.,
+CAR05,Temporada Inteira,CARREIRA,15,True,False,0,Concluir 1 temporada em uma carreira.,
+CAR06,Colecionador de Histórias,CARREIRA,20,True,False,0,Criar 5 carreiras únicas válidas na conta.,
+CAR07,Pé na Estrada,CARREIRA,20,True,False,0,"Defender 3 clubes na mesma carreira, jogando em cada um.",
+CAR08,Veterano,CARREIRA,25,True,False,0,Concluir 5 temporadas na mesma carreira.,
+CAR09,Dez Vidas de Bola,CARREIRA,30,True,False,0,Criar 10 carreiras únicas válidas na conta.,
+CAR10,Uma Vida de Futebol,CARREIRA,50,True,False,0,Concluir 15 temporadas na mesma carreira.,
+DES01,Primeiro Grito,DESEMPENHO,5,True,False,0,Marcar o primeiro gol em partida oficial.,
+DES02,Primeiro Garçom,DESEMPENHO,10,True,False,0,Registrar a primeira assistência em partida oficial.,
+DES03,Jogo Decisivo,DESEMPENHO,10,True,False,0,Participar diretamente de 2 gols na mesma partida oficial.,
+DES04,Hat-trick,DESEMPENHO,15,True,False,0,Marcar 3 gols em uma única partida oficial.,
+DES05,Dobradinha,DESEMPENHO,20,True,False,0,Registrar gol e assistência na mesma partida oficial.,
+DES06,Muralha,DESEMPENHO,20,True,False,0,Realizar 100 desarmes em uma única carreira.,
+DES07,Garçom de Elite,DESEMPENHO,25,True,False,0,Acumular 50 assistências na mesma carreira.,
+DES08,Artilheiro Centenário,DESEMPENHO,35,True,False,0,Marcar 100 gols na mesma carreira.,
+DES09,Lenda da Marcação,DESEMPENHO,40,True,False,0,Realizar 500 desarmes na mesma carreira.,
+DES10,Máquina de Gols,DESEMPENHO,70,True,False,0,Marcar 300 gols na mesma carreira.,
+TIT01,Primeira Taça,TITULOS,5,True,False,0,Conquistar o primeiro título de competição na carreira.,
+TIT02,Campeão de Novo,TITULOS,10,True,False,0,Conquistar 2 títulos distintos na mesma carreira.,
+TIT03,Artilheiro da Temporada,TITULOS,10,False,False,0,Receber prêmio oficial simulado de artilheiro.,Premiação individual ainda não implementada.
+TIT04,Bicampeão,TITULOS,15,True,False,0,Conquistar duas edições da mesma competição na mesma carreira.,
+TIT05,Rei das Assistências,TITULOS,20,False,False,0,Receber prêmio oficial simulado de maior assistente.,Premiação individual ainda não implementada.
+TIT06,Tríplice Coroa,TITULOS,20,False,False,0,Conquistar 3 títulos distintos na mesma temporada e carreira.,Calendário com três títulos distintos na mesma temporada ainda não validado.
+TIT07,Campeão de Elite,TITULOS,25,True,False,0,Conquistar competição de primeira divisão reconhecida.,
+TIT08,Rei do Continente,TITULOS,35,False,False,0,Conquistar competição continental implementada.,Competição continental sem adaptador auditável.
+TIT09,Bola de Ouro,TITULOS,40,False,False,0,Receber 1 Bola de Ouro reconhecida pelo motor.,Bola de Ouro ainda não implementada.
+TIT10,Colecionador de Taças,TITULOS,70,True,False,0,Conquistar 10 títulos de edições distintas na mesma carreira.,
+SOC01,Primeiro Amigo,SOCIAL,5,False,False,0,Ter 1 amizade real aceita e ativa.,Amizades recíprocas aceitas indisponíveis na API atual.
+SOC02,Primeiro Convite,SOCIAL,5,False,False,0,Registrar 1 indicação válida convertida.,API atual de indicações pode escrever no Hub; aguarda consulta somente de leitura.
+SOC03,Meu Time,SOCIAL,10,False,False,0,Ter 5 amigos distintos aceitos e ativos simultaneamente.,Amizades recíprocas aceitas indisponíveis na API atual.
+SOC04,Rede Crescendo,SOCIAL,10,False,False,0,Registrar 3 indicações válidas e únicas.,API atual de indicações pode escrever no Hub; aguarda consulta somente de leitura.
+SOC05,Grupo Fechado,SOCIAL,10,False,False,0,Ter 10 amigos distintos aceitos e ativos simultaneamente.,Amizades recíprocas aceitas indisponíveis na API atual.
+SOC06,Olheiro Digital,SOCIAL,15,False,False,0,Registrar 5 indicações válidas e únicas.,API atual de indicações pode escrever no Hub; aguarda consulta somente de leitura.
+SOC07,Arquibancada Cheia,SOCIAL,15,False,False,0,Ter 25 amigos distintos aceitos e ativos simultaneamente.,Amizades recíprocas aceitas indisponíveis na API atual.
+SOC08,Ponte de Talentos,SOCIAL,20,False,False,0,Registrar 10 indicações válidas e únicas.,API atual de indicações pode escrever no Hub; aguarda consulta somente de leitura.
+SOC09,Torcida Organizada,SOCIAL,25,False,False,0,Ter 50 amigos distintos aceitos e ativos simultaneamente.,Amizades recíprocas aceitas indisponíveis na API atual.
+SOC10,Embaixador do Jogo,SOCIAL,35,False,False,0,Registrar 25 indicações válidas e únicas.,API atual de indicações pode escrever no Hub; aguarda consulta somente de leitura.
+ESP01,Virada de Mesa,ESPECIAIS,5,True,True,0,"Vencer após estar perdendo, com participação em campo.",
+ESP02,Fiel à Camisa,ESPECIAIS,5,True,True,0,Completar 3 temporadas consecutivas no mesmo clube e carreira.,
+ESP03,Superação,ESPECIAIS,5,False,True,0,Ser eleito destaque da partida começando como reserva.,Eleição de destaque ainda não implementada.
+ESP04,Sem Medo,ESPECIAIS,5,True,True,0,Converter finalização classificada como difícil em jogo oficial.,
+ESP05,Oportunista,ESPECIAIS,5,True,True,0,Marcar após 2 ações bem-sucedidas na mesma posse válida.,
+ESP06,Da Base ao Topo,ESPECIAIS,5,True,True,0,Concluir promoção reconhecida e jogar na divisão superior na temporada seguinte.,
+ESP07,Invencível,ESPECIAIS,5,True,True,0,Concluir temporada oficial invicta participando de ao menos metade dos jogos.,
+ESP08,Herói da Última Hora,ESPECIAIS,5,True,True,0,"Marcar gol de vitória aos 80 minutos ou depois, com placar verificável.",
+ESP09,Ídolo de Dois Mundos,ESPECIAIS,10,True,True,0,Conquistar títulos oficiais em 2 países na mesma carreira.,
+ESP10,The GOAT,ESPECIAIS,100,False,True,0,Conquistar 9 Bolas de Ouro verificadas em temporadas distintas na MESMA carreira.,Bola de Ouro ainda não implementada.

@@ -1,5 +1,7 @@
 # Rumo à Camisa 10 — protótipo 0.10
 
+**Etapa v0.6 local — pós-jogo e conquistas:** [implementação, fontes, migration e testes](Docs/45_Pos_Jogo_e_Conquistas_v06.md). Resumo com XP real por partida; catálogo de 50 conquistas/1.000 G, sendo 33 ativas (620 G) e 17 futuras. Sem XP bônus ativado, sem backfill retroativo, sem deploy ou mudanças no Hub. A migration 006 e a flag `RUMO10_ACHIEVEMENTS` são exclusivas do Rumo10.
+
 **Preparação da publicação v1.0:** [backups de produção conferidos e plano aguardando aprovação](Docs/39_Preparacao_Publicacao_v1_20261015.md). SQL e arquivos da produção ainda não foram alterados; importação será incremental pelo phpMyAdmin, sob manutenção coordenada.
 
 **Pacote v1.0 de 15/10 — implementado e testado localmente, ainda não publicado:** [regras, testes, SQL incremental e rollback](Docs/38_Entrega_Crescimento_v1.md). Gratuito passa a duas vagas-base e até três extras por indicação de uso único; pago/cortesia Rumo10 mantém dez. Saves antigos preservados. Direitos por jogo são administrados no Hub. As referências abaixo registram versões anteriores; o relatório 38 prevalece para este pacote.

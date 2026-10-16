@@ -1,0 +1,7 @@
+{
+  "baseline": "c3d19ca7f3e627ace22c03239249ab0c25153741",
+  "implementation_head": "465ae83da9234db22c3f31a924e59e9f0ce78b36",
+  "files_reviewed": 202,
+  "high_confidence_findings": [],
+  "method": "Changed files versus remote main plus pending deliverables; private-path and token/private-key patterns. Manual review excludes .env, storage, dumps and pre-existing untracked audit folder. Not a proof against all possible secrets."
+}

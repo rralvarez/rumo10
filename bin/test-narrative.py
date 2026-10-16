@@ -6,7 +6,7 @@ suites=['narrative','narrative-modes','scenes-strength','scene-consequences','sc
 mechanics=(ROOT/'Docs/estabilizacao-v04/baseline.json').exists()
 if mechanics:suites+=['execution-v04','possession-v04','continuity-v04','market-v04','entry-countries','mechanics-boundary']
 if mechanics:
- out=ROOT/'Docs/estabilizacao-v04/regressao';out.mkdir(exist_ok=True)
+ out=Path(os.environ.get('V06_EVIDENCE_DIR',str(ROOT/'Docs/estabilizacao-v04/regressao')));out.mkdir(parents=True,exist_ok=True)
  env['NARRATIVE_EVIDENCE_DIR']=str(out)
 results=[]
 for name in suites:
@@ -21,9 +21,9 @@ guard=[]
 for name in protected:
  old=subprocess.check_output(['git','show','dbda309:'+name],cwd=ROOT)
  now=(ROOT/name).read_bytes().replace(b'\r\n',b'\n');before=old.replace(b'\r\n',b'\n')
- guard.append({'file':name,'sha256':hashlib.sha256(now).hexdigest(),'unchanged':now==before,'intentional_v04':mechanics and name in ['app/Probability.php','app/MatchMomentum.php','app/TransferMarket.php']})
+ guard.append({'file':name,'sha256':hashlib.sha256(now).hexdigest(),'unchanged':now==before,'observational_v06':name=='app/Evolution.php' and now.replace(b'        MatchExperience::record($g,$skill,$earned);\n',b'')==before,'intentional_v04':mechanics and name in ['app/Probability.php','app/MatchMomentum.php','app/TransferMarket.php']})
 (out/'protected-files.json').write_text(json.dumps(guard,indent=2),encoding='utf-8')
-if not all(r['unchanged'] or r['intentional_v04'] for r in guard):raise SystemExit('Arquivo fora do escopo alterado')
+if not all(r['unchanged'] or r['intentional_v04'] or r.get('observational_v06',False) for r in guard):raise SystemExit('Arquivo fora do escopo alterado')
 old=subprocess.check_output(['git','show','dbda309:app/Game.php'],cwd=ROOT).decode().replace('\r\n','\n');now=(ROOT/'app/Game.php').read_text(encoding='utf-8')
 methods={}
 for name,pattern in {'chance':r'public static function chance\(.*?(?=    public static function command)','effects':r'private static function effects\(.*?(?=    private static function fieldDecision)'}.items():

@@ -1,0 +1,278 @@
+[
+  {
+    "file": "app/AchievementCatalog.php",
+    "exit": 0
+  },
+  {
+    "file": "app/AchievementEvents.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Achievements.php",
+    "exit": 0
+  },
+  {
+    "file": "app/AchievementView.php",
+    "exit": 0
+  },
+  {
+    "file": "app/ActionResolution.php",
+    "exit": 0
+  },
+  {
+    "file": "app/AmazonenseCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/bootstrap.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CareerBenefits.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CareerSlots.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CareerStats.php",
+    "exit": 0
+  },
+  {
+    "file": "app/ClubBadge.php",
+    "exit": 0
+  },
+  {
+    "file": "app/ClubSquad.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Competition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CompetitionContinuity.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CompetitionView.php",
+    "exit": 0
+  },
+  {
+    "file": "app/ConcacafCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CreationForm.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CurrentLocation.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Database.php",
+    "exit": 0
+  },
+  {
+    "file": "app/EntryCountries.php",
+    "exit": 0
+  },
+  {
+    "file": "app/EuropeanCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Evolution.php",
+    "exit": 0
+  },
+  {
+    "file": "app/FootballGeography.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Game.php",
+    "exit": 0
+  },
+  {
+    "file": "app/GoalAudit.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Identity.php",
+    "exit": 0
+  },
+  {
+    "file": "app/IdentityError.php",
+    "exit": 0
+  },
+  {
+    "file": "app/InitialProfile.php",
+    "exit": 0
+  },
+  {
+    "file": "app/InternationalCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/LocalCompetitionCatalog.php",
+    "exit": 0
+  },
+  {
+    "file": "app/MatchBalance.php",
+    "exit": 0
+  },
+  {
+    "file": "app/MatchExperience.php",
+    "exit": 0
+  },
+  {
+    "file": "app/MatchMomentum.php",
+    "exit": 0
+  },
+  {
+    "file": "app/NarrativeCatalog.php",
+    "exit": 0
+  },
+  {
+    "file": "app/NarrativeContext.php",
+    "exit": 0
+  },
+  {
+    "file": "app/NarrativeSelection.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Onboarding.php",
+    "exit": 0
+  },
+  {
+    "file": "app/OpportunityForecast.php",
+    "exit": 0
+  },
+  {
+    "file": "app/PlayerProfile.php",
+    "exit": 0
+  },
+  {
+    "file": "app/PlayMode.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Presentation.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Probability.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Progression.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Repository.php",
+    "exit": 0
+  },
+  {
+    "file": "app/RequestMetrics.php",
+    "exit": 0
+  },
+  {
+    "file": "app/RetiredCareer.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Retirement.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Rules.php",
+    "exit": 0
+  },
+  {
+    "file": "app/RumoHub.php",
+    "exit": 0
+  },
+  {
+    "file": "app/SceneConsequences.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Scenes.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Schedule.php",
+    "exit": 0
+  },
+  {
+    "file": "app/SeasonEvaluation.php",
+    "exit": 0
+  },
+  {
+    "file": "app/StateCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/TeamStrength.php",
+    "exit": 0
+  },
+  {
+    "file": "app/TransferInterest.php",
+    "exit": 0
+  },
+  {
+    "file": "app/TransferMarket.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Trophies.php",
+    "exit": 0
+  },
+  {
+    "file": "app/view.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Wheel.php",
+    "exit": 0
+  },
+  {
+    "file": "app/WorldCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "public/index.php",
+    "exit": 0
+  },
+  {
+    "file": "bin/achievements-local.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/achievements-mysql-v06.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/achievements-v06.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/collective-v06.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/post-match-v06.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/v06-boundary.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/v06-preview.php",
+    "exit": 0
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "post-match-v06",
+    "exit": 0,
+    "stdout": "OK: 215 verificações pós-jogo; seis posições e três modos, sem banco.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "achievements-v06",
+    "exit": 0,
+    "stdout": "OK: 96 verificações catálogo/projeção; persistência exige suíte MySQL própria.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "v06-boundary",
+    "exit": 0,
+    "stdout": "OK: 11 fronteiras v0.6; fórmulas e XP-base preservados.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "execution-v04",
+    "exit": 0,
+    "stdout": "OK: 1088 verificações; 1350000 sorteios, 135 cenários, chance clara iniciante 35.9%.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "possession-v04",
+    "exit": 0,
+    "stdout": "OK: 19 verificações de posse, interrupção, bônus e compatibilidade.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "continuity-v04",
+    "exit": 0,
+    "stdout": "OK: 665 verificações, cinco temporadas amazonenses e varredura de 131 competições.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "market-v04",
+    "exit": 0,
+    "stdout": "OK: 1410 verificações de avaliação, mercado, minutos e compatibilidade.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "entry-countries",
+    "exit": 0,
+    "stdout": "OK: 1060 verificações, 74 países inventariados; destinos válidos, bloqueios, planos e ofertas.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "presentation",
+    "exit": 0,
+    "stdout": "OK: estatísticas ao vivo, histórico por rodada, totais finalizados, resultado verde/vermelho e escaping.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "play-modes",
+    "exit": 0,
+    "stdout": "São Caetano-SP: 19 jogos em 1.75s\nFlamengo-RJ: 38 jogos em 7.95s\nBolívar-BO: 30 jogos em 5.84s\nRiver Plate-AR: 33 jogos em 9.93s\nNacional Montevideo-UY: 37 jogos em 6.92s\nOlimpia-PY: 44 jogos em 6.71s\nOK: 667 verificações dos três modos.\n",
+    "stderr": ""
+  }
+]
