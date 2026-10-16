@@ -1,0 +1,67 @@
+[
+  {
+    "flow": "estreia",
+    "files": [
+      "app/EntryCountries.php",
+      "app/Onboarding.php",
+      "app/CompetitionContinuity.php"
+    ],
+    "current": "bloqueia status inválido; Brasil gratuito e países pagos preservados",
+    "gap": "não verifica torneios obrigatórios, calendário consolidado ou edições externas"
+  },
+  {
+    "flow": "promoção/rebaixamento",
+    "files": [
+      "app/CompetitionContinuity.php",
+      "app/Competition.php"
+    ],
+    "current": "22 pares; 23 acessos órfãos e nove pares estrangeiros faltantes bloqueados",
+    "gap": "nível simulado não equivale ao nível federativo; regras também hardcoded"
+  },
+  {
+    "flow": "nova temporada",
+    "files": [
+      "app/Competition.php"
+    ],
+    "current": "completeWorld simula todos os memberships, aplica trocas e prepara novas memberships",
+    "gap": "regulamento relido do catálogo; sem pin por save/edição; preenchimento paulista da D sem qualificação comprovada"
+  },
+  {
+    "flow": "mercado/projeções",
+    "files": [
+      "app/TransferMarket.php",
+      "app/TransferInterest.php",
+      "app/CompetitionContinuity.php"
+    ],
+    "current": "sete cenários, zero a três propostas, permanecer; filtro de continuidade",
+    "gap": "projeções não incluem copas garantidas/incentras; falta validador de agenda por edição"
+  },
+  {
+    "flow": "competições paralelas",
+    "files": [
+      "app/Competition.php",
+      "app/Schedule.php"
+    ],
+    "current": "season_competitions/cursor ativa campeonatos sequenciais; round local sem data",
+    "gap": "não existe data compartilhada, descanso entre competições, fila global de partidas"
+  },
+  {
+    "flow": "títulos/XP/R",
+    "files": [
+      "app/Trophies.php",
+      "app/Progression.php",
+      "app/Achievements.php"
+    ],
+    "current": "resultados persistidos e chaves de competição/temporada; futuros preservados",
+    "gap": "sala inclui títulos de fase; contrato futuro deve separar gerais/fases e validar resultado final; premiações individuais futuras"
+  },
+  {
+    "flow": "persistência/legados",
+    "files": [
+      "app/Repository.php",
+      "app/RetiredCareer.php"
+    ],
+    "current": "snapshot por carreira e histórico compacto; autenticação global independente",
+    "gap": "não existe migration de calendário; não reconstruir resultados ausentes"
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "cbf-d-2026",
+    "authority": "CBF",
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+    "consulted": "2026-10-16",
+    "edition": 2026,
+    "document": "REC Brasileiro Série D 2026",
+    "location": "Art. 2 §§ 1–5, pp.4–5; arts.6–7, p.7",
+    "verified_claims": [
+      "96 participantes; critérios federativos/ranking e remanescentes da edição anterior",
+      "Estaduais/seletivos classificam para edição seguinte, observados critérios da CBF",
+      "Seis acessos para Série C; campeão com vaga na terceira fase da Copa do Brasil seguinte"
+    ],
+    "not_verified": [
+      "Ranking/indicações por federação em futuras temporadas simuladas"
+    ],
+    "implementation": "not_applied",
+    "conflict": "CompleteWorld preenche Série D com paulistas sem ledger de classificação por edição"
+  },
+  {
+    "id": "fcf-b-2026",
+    "authority": "FCF",
+    "url": "https://www.futebolcearense.com.br/2010/downloads/arquivos/arquivo_10406.pdf",
+    "consulted": "2026-10-16",
+    "edition": 2026,
+    "document": "REC Cearense Série B",
+    "location": "Art.1 p.3; arts.12–20 pp.7–11; anexo A p.15",
+    "verified_claims": [
+      "Dez participantes; primeira fase com dois grupos de cinco",
+      "Duas promoções à Série A e dois descensos à Série C"
+    ],
+    "not_verified": [
+      "Continuidade completa da Série C 2026"
+    ],
+    "implementation": "not_applied",
+    "conflict": "Capa apresenta 2025; art.1 e corpo apresentam 2026. Registrar conflito e não importar automaticamente"
+  },
+  {
+    "id": "fcf-a-2026",
+    "authority": "FCF",
+    "url": "https://www.futebolcearense.com.br/2010/downloads/arquivos/arquivo_10358.pdf",
+    "consulted": "2026-10-16",
+    "edition": 2026,
+    "document": "REC Cearense Série A 2026",
+    "location": "Art.18 p.12; anexo A p.16",
+    "verified_claims": [
+      "9º e 10º descem à B; 1º e 2º da B acessam A"
+    ],
+    "not_verified": [
+      "Revisões posteriores e comprovação integral dos participantes nesta rodada"
+    ],
+    "implementation": "not_applied"
+  },
+  {
+    "id": "fcf-c-2026-announcement",
+    "authority": "FCF",
+    "url": "https://www.futebolcearense.com.br/2011/noticia_ver.asp?id=18819",
+    "consulted": "2026-10-16",
+    "edition": 2026,
+    "document": "Publicação do regulamento Série C",
+    "location": "Página web",
+    "verified_claims": [],
+    "not_verified": [
+      "Corpo retornou página genérica/antiga; índice de busca não comprova regulamento"
+    ],
+    "implementation": "blocked_source_content_mismatch"
+  },
+  {
+    "id": "fpf-a4-2026",
+    "authority": "FPF",
+    "url": "https://futebolpaulista.com.br/Repositorio/Noticia/30603/30603_1.pdf",
+    "consulted": "2026-10-16",
+    "edition": 2026,
+    "document": "REC Paulista A4 2026",
+    "location": "Resultado de busca; leitura integral pendente",
+    "verified_claims": [],
+    "not_verified": [
+      "Regulamento integral e substituições de acesso"
+    ],
+    "implementation": "candidate_not_verified"
+  }
+]

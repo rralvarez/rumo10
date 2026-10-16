@@ -1,0 +1,15 @@
+{
+  "initial_calendar_count": 131,
+  "initial_matches": 20233,
+  "sum_initial_snapshot_bytes": 6184132,
+  "sum_initial_creation_ms": 41.314,
+  "calendar_failures": [],
+  "round_conflicts": [],
+  "not_measured": [
+    "completeWorld multiple seasons",
+    "MySQL query/save latency",
+    "authenticated IIS v07",
+    "Apache v07"
+  ],
+  "no_performance_claim_for_season_close": true
+}

@@ -1,0 +1,301 @@
+[
+    {
+        "origin": "ac-entrada",
+        "origin_name": "Acreano Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://ge.globo.com/ac/futebol/acreano-segunda-divisao/noticia/2026/08/11/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "al-entrada",
+        "origin_name": "Alagoano Segunda Divisão",
+        "edition": 2026,
+        "slots_registered": 1,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://futeboldealagoas.net/assets/uploads/177223121748.pdf"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "ap-entrada",
+        "origin_name": "Amapaense Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://santanaesporteclube.com.br/noticia_view.php?id_noticia=10"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "ba-entrada",
+        "origin_name": "Baiano Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://www.fbf.org.br/noticias/detalhe/12835"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "ce-entrada",
+        "origin_name": "Cearense Série C",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://futebolcearense.com.br/2011/noticia_ver.asp?id=18795"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "df-entrada",
+        "origin_name": "Candangão Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://www.ffdf.com.br/pt/noticias/view.php?q=1268"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "es-entrada",
+        "origin_name": "Capixaba Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://futebolcapixaba.com/2026/04/51396/"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "go-entrada",
+        "origin_name": "Goiano Terceira Divisão",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://opopular.com.br/esporte/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "ma-entrada",
+        "origin_name": "Maranhense Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://imirante.com/esporte/sao-luis/2026/03/22/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "mt-entrada",
+        "origin_name": "Mato-grossense Segunda Divisão",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://fmfmt.com.br/pt/noticias/view.php?id=2276"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "ms-entrada",
+        "origin_name": "Sul-Mato-Grossense Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://ge.globo.com/google/amp/ms/futebol/campeonato-sul-mato-grossense/noticia/2026/04/01/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "mg-entrada",
+        "origin_name": "Mineiro Segunda Divisão",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://www.fmf.com.br/Competicoes/Equipes.aspx?d=3"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "pa-entrada",
+        "origin_name": "Paraense Série A3",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://www.fpfpara.com.br/competicao/112"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "pb-entrada",
+        "origin_name": "Paraibano Segunda Divisão",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://ge.globo.com/pb/futebol/paraibano-segunda-divisao/noticia/2026/09/11/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "pr-entrada",
+        "origin_name": "Paranaense Terceira Divisão",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://federacaopr.com.br/noticias/paranaense/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026/"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "rj-entrada",
+        "origin_name": "Carioca Série C",
+        "edition": 2026,
+        "slots_registered": 4,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://rsssfbrasil.com/tablesr/rj2026l5.htm"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "rn-entrada",
+        "origin_name": "Potiguar Segunda Divisão",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://fnf.org.br/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "rs-entrada",
+        "origin_name": "Gaúcho Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://fgf.com.br/noticia/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "sc-entrada",
+        "origin_name": "Catarinense Série C",
+        "edition": 2026,
+        "slots_registered": 1,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://fcf.com.br/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense/"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "se-entrada",
+        "origin_name": "Sergipano Série A2",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://fsf-se.com.br/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2/"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "to-entrada",
+        "origin_name": "Tocantinense Segunda Divisão",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://ge.globo.com/google/amp/to/futebol/tocantinense-segunda-divisao/noticia/2026/09/05/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "ro-entrada",
+        "origin_name": "Rondoniense Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://ge.globo.com/ro/futebol/campeonato-rondoniense/noticia/2026/08/31/rolim-de-moura-goleia-vec-por-4-a-1-e-conquista-titulo-inedito-da-serie-b.ghtml"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    },
+    {
+        "origin": "pi-entrada",
+        "origin_name": "Piauiense Série B",
+        "edition": 2026,
+        "slots_registered": 2,
+        "target_verified": null,
+        "target_official_existence": "unknown_pending_primary_source",
+        "blocker": "missing_upper_definition_and_link",
+        "source_registered": [
+            "https://interativos.ge.globo.com/pi/futebol/campeonato-piauiense/guia/guia-do-piauiense-serie-b-2026"
+        ],
+        "action": "verify_official_upper_edition_participants_and_access_before_activation"
+    }
+]
