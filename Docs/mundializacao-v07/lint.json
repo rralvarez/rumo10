@@ -1,0 +1,26 @@
+[
+  {
+    "file": "app/CompetitionCalendar.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CompetitionReference.php",
+    "exit": 0
+  },
+  {
+    "file": "bin/audit-world-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/world-foundation-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/mechanics-boundary.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/presentation.php",
+    "exit": 0
+  }
+]

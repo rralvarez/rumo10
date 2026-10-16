@@ -1,0 +1,487 @@
+[
+    {
+        "file": "app\/CareerBenefits.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/CareerSlots.php",
+        "unchanged": false,
+        "intentional_reason": "Interface v0.6.1 publicada; comparação exata com 820187b, sem mudança v0.7."
+    },
+    {
+        "file": "app\/CareerStats.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/ClubBadge.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/ClubSquad.php",
+        "unchanged": false,
+        "intentional_reason": "Fallback explícito dos quatro clubes indispensáveis no jogo."
+    },
+    {
+        "file": "app\/Competition.php",
+        "unchanged": false,
+        "intentional_reason": "Continuidade Amazonense e bloqueio de acessos órfãos."
+    },
+    {
+        "file": "app\/CompetitionView.php",
+        "unchanged": false,
+        "intentional_reason": "Aviso de teto simulado, sem promoção fictícia."
+    },
+    {
+        "file": "app\/ConcacafCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/CreationForm.php",
+        "unchanged": false,
+        "intentional_reason": "Destinos indisponíveis sinalizados sem mudar residência."
+    },
+    {
+        "file": "app\/CurrentLocation.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Database.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/EntryCountries.php",
+        "unchanged": false,
+        "intentional_reason": "Novas estreias exigem continuidade antes de consumir vaga; legados preservados."
+    },
+    {
+        "file": "app\/EuropeanCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Evolution.php",
+        "unchanged": false,
+        "intentional_reason": "Somente observador do XP efetivamente retornado; fórmula preservada e comparada em tests\/v06-boundary.php."
+    },
+    {
+        "file": "app\/FootballGeography.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Game.php",
+        "unchanged": false,
+        "intentional_reason": "Resolução unificada de execução e rastreio; RNG do teste."
+    },
+    {
+        "file": "app\/Identity.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/IdentityError.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/InternationalCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/MatchBalance.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/MatchMomentum.php",
+        "unchanged": false,
+        "intentional_reason": "Posse testemunhada e encerramento por interrupção."
+    },
+    {
+        "file": "app\/NarrativeCatalog.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/NarrativeContext.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/NarrativeSelection.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Onboarding.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/PlayMode.php",
+        "unchanged": false,
+        "intentional_reason": "Audita componentes de chance sem alterar seleção."
+    },
+    {
+        "file": "app\/PlayerProfile.php",
+        "unchanged": false,
+        "intentional_reason": "Interface v0.6.1 publicada; comparação exata com 820187b, sem mudança v0.7."
+    },
+    {
+        "file": "app\/Presentation.php",
+        "unchanged": false,
+        "intentional_reason": "Labels públicos e antes\/depois do perfil."
+    },
+    {
+        "file": "app\/Probability.php",
+        "unchanged": false,
+        "intentional_reason": "RNG injetável validado; random_int continua padrão."
+    },
+    {
+        "file": "app\/Progression.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Repository.php",
+        "unchanged": false,
+        "intentional_reason": "Persistência aditiva e medição opt-in de consultas\/engine\/save."
+    },
+    {
+        "file": "app\/RetiredCareer.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Retirement.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Rules.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/RumoHub.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/SceneConsequences.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Scenes.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Schedule.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/StateCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/TeamStrength.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/TransferMarket.php",
+        "unchanged": false,
+        "intentional_reason": "Avaliação e cenários de interesse aprovados v0.4."
+    },
+    {
+        "file": "app\/Trophies.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/Wheel.php",
+        "unchanged": false,
+        "intentional_reason": "SVG de círculo completo para mercado sem candidatos, fatia única."
+    },
+    {
+        "file": "app\/WorldCompetition.php",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "app\/bootstrap.php",
+        "unchanged": false,
+        "intentional_reason": "Parser de .env aceita dígitos, comparado estritamente por bootstrap-v061.php; sem alteração de identidade."
+    },
+    {
+        "file": "app\/view.php",
+        "unchanged": false,
+        "intentional_reason": "Impactos da roleta antes do giro."
+    },
+    {
+        "file": "database\/africa-badge-overrides.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/africa-south-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/africa-south-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/africa-south-coverage-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/club-badges.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/clubs.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/concacaf-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/concacaf-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/concacaf-ranking-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/europe-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/europe-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/europe-results-2025.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/international-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/international-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/municipalities.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/official-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/player-catalog.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/player-reference-overrides-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/players-top250-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes-legacy-metadata.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/starting-clubs.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/state-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/state-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/team-results-2025.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-clubs-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-competitions-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-coverage-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/top250-participants-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/world-top100-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/world-top250-2026.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/f01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/f02.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/j01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/j02.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/j03.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/p01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/t01.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/scenes\/t02.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-01-effects.json",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-01.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-02.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-03.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-04.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-05.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-06.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-07.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "database\/editorial\/lote-08.txt",
+        "unchanged": true,
+        "intentional_reason": null
+    },
+    {
+        "file": "public\/assets\/game.js",
+        "unchanged": false,
+        "intentional_reason": "Loader, erro, timeout e envio único."
+    },
+    {
+        "file": "public\/assets\/game.css",
+        "unchanged": false,
+        "intentional_reason": "Painel acessível de espera e impactos."
+    }
+]
