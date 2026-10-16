@@ -1,0 +1,339 @@
+{
+  "at": "2026-10-16T10:41:33.505509",
+  "suites": [
+    {
+      "suite": "narrative",
+      "exit": 0,
+      "stdout": "OK: 89821 verificações; 214 snapshots antigos, 800 novas, seis posições, 500 rodadas por posição.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "finishing",
+      "exit": 0,
+      "stdout": "OK: 15841 verificações em 66 alternativas de chute; 454 gols e 2186 falhas.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "match-momentum",
+      "exit": 0,
+      "stdout": "OK: 2425 verificações de sequência, chance elevada, gol, assistência, falha e consumo único.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "match-balance",
+      "exit": 0,
+      "stdout": "OK: 35 verificações. Iniciante: gol 41.17%; assistência 49.42%.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "normal-xp",
+      "exit": 0,
+      "stdout": "OK: 369 verificações de XP equivalente, evolução e informações internas ocultas.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "lifecycle",
+      "exit": 0,
+      "stdout": "OK: 144 verificações de evolução e aposentadoria.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "package-engine",
+      "exit": 0,
+      "stdout": "OK: 104 verificações; 45.000 partidas Monte Carlo. Iniciante gol 38.3%, assistência 46.42%.\n[\n    {\n        \"home\": 40,\n        \"away\": 80,\n        \"n\": 15000,\n        \"wins\": 0.0212,\n        \"draws\": 0.0684,\n        \"goals_for\": 0.42506666666666665,\n        \"goals_against\": 3.4346\n    },\n    {\n        \"home\": 60,\n        \"away\": 60,\n        \"n\": 15000,\n        \"wins\": 0.4284,\n        \"draws\": 0.26566666666666666,\n        \"goals_for\": 1.3572666666666666,\n        \"goals_against\": 1.102\n    },\n    {\n        \"home\": 80,\n        \"away\": 40,\n        \"n\": 15000,\n        \"wins\": 0.9510666666666666,\n        \"draws\": 0.0394,\n        \"goals_for\": 3.9654666666666665,\n        \"goals_against\": 0.35086666666666666\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "suite": "presentation",
+      "exit": 0,
+      "stdout": "OK: estatísticas ao vivo, histórico por rodada, totais finalizados, resultado verde/vermelho e escaping.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "season-presentation",
+      "exit": 0,
+      "stdout": "OK: continuação antes dos detalhes, narrativa com dados reais e histórico sem duplicação.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "wheel",
+      "exit": 0,
+      "stdout": "OK: setores proporcionais, orientação do ponteiro, resultado persistido e escaping.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "possession-v04",
+      "exit": 0,
+      "stdout": "OK: 19 verificações de posse, interrupção, bônus e compatibilidade.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "continuity-v04",
+      "exit": 0,
+      "stdout": "OK: 634 verificações, cinco temporadas amazonenses e varredura de 131 competições.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "market-v04",
+      "exit": 0,
+      "stdout": "OK: 1396 verificações de avaliação, mercado, minutos e compatibilidade.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "initial-profile-v04",
+      "exit": 0,
+      "stdout": "OK: 10.000 sorteios; áreas proporcionais e 12 efeitos antes/depois sem alterar pesos ou bônus.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "mechanics-boundary",
+      "exit": 0,
+      "stdout": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados.\n",
+      "stderr": ""
+    }
+  ],
+  "lint": [
+    {
+      "file": "app/ActionResolution.php",
+      "exit": 0
+    },
+    {
+      "file": "app/AmazonenseCompetition.php",
+      "exit": 0
+    },
+    {
+      "file": "app/ClubSquad.php",
+      "exit": 0
+    },
+    {
+      "file": "app/Competition.php",
+      "exit": 0
+    },
+    {
+      "file": "app/CompetitionContinuity.php",
+      "exit": 0
+    },
+    {
+      "file": "app/CompetitionView.php",
+      "exit": 0
+    },
+    {
+      "file": "app/Game.php",
+      "exit": 0
+    },
+    {
+      "file": "app/InitialProfile.php",
+      "exit": 0
+    },
+    {
+      "file": "app/LocalCompetitionCatalog.php",
+      "exit": 0
+    },
+    {
+      "file": "app/MatchMomentum.php",
+      "exit": 0
+    },
+    {
+      "file": "app/OpportunityForecast.php",
+      "exit": 0
+    },
+    {
+      "file": "app/Presentation.php",
+      "exit": 0
+    },
+    {
+      "file": "app/Probability.php",
+      "exit": 0
+    },
+    {
+      "file": "app/Repository.php",
+      "exit": 0
+    },
+    {
+      "file": "app/RequestMetrics.php",
+      "exit": 0
+    },
+    {
+      "file": "app/SeasonEvaluation.php",
+      "exit": 0
+    },
+    {
+      "file": "app/TransferInterest.php",
+      "exit": 0
+    },
+    {
+      "file": "app/TransferMarket.php",
+      "exit": 0
+    },
+    {
+      "file": "app/Wheel.php",
+      "exit": 0
+    },
+    {
+      "file": "app/view.php",
+      "exit": 0
+    },
+    {
+      "file": "bin/audit-competitions-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "public/index.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/collective-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/continuity-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/initial-profile-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/market-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/match-momentum.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/mechanics-boundary.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/official-seasons-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/performance-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/persistence-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/possession-v04.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/ux-v04-preview.php",
+      "exit": 0
+    },
+    {
+      "file": "tests/wheel.php",
+      "exit": 0
+    }
+  ],
+  "scope": "Suítes focadas posteriores às alterações finais; matriz pesada anterior em regressao/suites.json, sem repeti-la desnecessariamente.",
+  "followup_after_reconciliation": [
+    {
+      "suite": "continuity-v04",
+      "exit": 0,
+      "stdout": "OK: 646 verificações, cinco temporadas amazonenses e varredura de 131 competições.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "market-v04",
+      "exit": 0,
+      "stdout": "OK: 1391 verificações de avaliação, mercado, minutos e compatibilidade.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "wheel",
+      "exit": 0,
+      "stdout": "OK: setores proporcionais, orientação do ponteiro, resultado persistido e escaping.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "mechanics-boundary",
+      "exit": 0,
+      "stdout": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "presentation",
+      "exit": 0,
+      "stdout": "OK: estatísticas ao vivo, histórico por rodada, totais finalizados, resultado verde/vermelho e escaping.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "season-presentation",
+      "exit": 0,
+      "stdout": "OK: continuação antes dos detalhes, narrativa com dados reais e histórico sem duplicação.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "possession-v04",
+      "exit": 0,
+      "stdout": "OK: 19 verificações de posse, interrupção, bônus e compatibilidade.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "match-momentum",
+      "exit": 0,
+      "stdout": "OK: 2425 verificações de sequência, chance elevada, gol, assistência, falha e consumo único.\n",
+      "stderr": ""
+    }
+  ],
+  "initial_entry_followup": [
+    {
+      "suite": "entry-countries",
+      "exit": 0,
+      "stdout": "OK: 1060 verificações, 74 países inventariados; destinos válidos, bloqueios, planos e ofertas.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "package-navigation",
+      "exit": 0,
+      "stdout": "OK: localização atual/legada/internacional, candidatos sem distância falsa e navegação somente GET.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "continuity-v04",
+      "exit": 0,
+      "stdout": "OK: 677 verificações, cinco temporadas amazonenses e varredura de 131 competições.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "mechanics-boundary",
+      "exit": 0,
+      "stdout": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados.\n",
+      "stderr": ""
+    }
+  ],
+  "membership_followup": [
+    {
+      "suite": "market-v04",
+      "exit": 0,
+      "stdout": "OK: 1401 verificações de avaliação, mercado, minutos e compatibilidade.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "mechanics-boundary",
+      "exit": 0,
+      "stdout": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados.\n",
+      "stderr": ""
+    }
+  ],
+  "final_market_followup": [
+    {
+      "suite": "market-v04",
+      "exit": 0,
+      "stdout": "OK: 1416 verificações de avaliação, mercado, minutos e compatibilidade.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "mechanics-boundary",
+      "exit": 0,
+      "stdout": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados.\n",
+      "stderr": ""
+    }
+  ],
+  "code_head": "3132c31ecef1217d7b8da1555482d969c110eff4"
+}

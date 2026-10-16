@@ -1,0 +1,99 @@
+{
+    "draws": 10000,
+    "unchanged_weights": true,
+    "unchanged_effects": true,
+    "rows": [
+        {
+            "name": "Talento de rua",
+            "expected": 0.25,
+            "observed": 0.2501,
+            "span": 90,
+            "effects": {
+                "drible": {
+                    "before": 45,
+                    "after": 52,
+                    "delta": 7
+                },
+                "passe": {
+                    "before": 45,
+                    "after": 49,
+                    "delta": 4
+                },
+                "energia": {
+                    "before": 85,
+                    "after": 80,
+                    "delta": -5
+                }
+            }
+        },
+        {
+            "name": "Disciplina de base",
+            "expected": 0.3,
+            "observed": 0.2936,
+            "span": 108,
+            "effects": {
+                "posicionamento": {
+                    "before": 45,
+                    "after": 50,
+                    "delta": 5
+                },
+                "resistencia": {
+                    "before": 45,
+                    "after": 50,
+                    "delta": 5
+                },
+                "confianca_treinador": {
+                    "before": 50,
+                    "after": 58,
+                    "delta": 8
+                }
+            }
+        },
+        {
+            "name": "Recomeço difícil",
+            "expected": 0.2,
+            "observed": 0.2042,
+            "span": 72,
+            "effects": {
+                "confianca": {
+                    "before": 50,
+                    "after": 40,
+                    "delta": -10
+                },
+                "energia": {
+                    "before": 85,
+                    "after": 77,
+                    "delta": -8
+                },
+                "foco": {
+                    "before": 50,
+                    "after": 58,
+                    "delta": 8
+                }
+            }
+        },
+        {
+            "name": "Explosão e ansiedade",
+            "expected": 0.25,
+            "observed": 0.2521,
+            "span": 90,
+            "effects": {
+                "velocidade": {
+                    "before": 45,
+                    "after": 53,
+                    "delta": 8
+                },
+                "confianca": {
+                    "before": 50,
+                    "after": 45,
+                    "delta": -5
+                },
+                "risco_cartao": {
+                    "before": 5,
+                    "after": 13,
+                    "delta": 8
+                }
+            }
+        }
+    ]
+}

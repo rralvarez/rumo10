@@ -13,9 +13,9 @@
   },
   {
     "file": "app/MatchMomentum.php",
-    "sha256": "81d2c69fbb0ae818786d8700491e4fe2bc0026bbf70010b4a6dbd183ea7c5e10",
-    "unchanged": true,
-    "intentional_v04": false
+    "sha256": "63a996893ef17b5e0d5d37d032422601b713b207cc235d0a954ef39216bffc42",
+    "unchanged": false,
+    "intentional_v04": true
   },
   {
     "file": "app/TeamStrength.php",
@@ -37,9 +37,9 @@
   },
   {
     "file": "app/TransferMarket.php",
-    "sha256": "240d014c250e5e6bae2dd97feb572a750e617bc6950f45442f30af15bf74a0e2",
-    "unchanged": true,
-    "intentional_v04": false
+    "sha256": "d8e90662d376fbda8025d140e2243aa4ebb25431cdb9a91c798f34fd8b759f7b",
+    "unchanged": false,
+    "intentional_v04": true
   },
   {
     "file": "app/Rules.php",

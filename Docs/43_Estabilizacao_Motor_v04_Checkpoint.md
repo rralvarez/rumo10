@@ -1,5 +1,11 @@
 # Estabilização v0.4 — checkpoint local, 16/10/2026
 
+# Continuação deste checkpoint
+
+Atualização de 16/10/2026: as pendências deste checkpoint foram retomadas. Consultar
+`44_Entrega_Estabilizacao_v04.md` e suas evidências para o estado atual; o conteúdo
+original deste checkpoint permanece como registro da primeira etapa.
+
 **Pacote em andamento. Este documento não declara conclusão das roletas, mercado, continuidade ou loading.**
 Contrato: texto anexado v0.4, seção 14 prevalecente. Base inspecionada `a5bb59e`, branch
 `codex/expansao-narrativa-v1`. Sem reset, push, deploy, UOL, edição do Hub ou migration.

@@ -1,0 +1,178 @@
+{
+  "scope": "JSONs versionados e leitura do cache local do Hub; sem consultas ou alterações no Hub/produção",
+  "cached_competitions": 154,
+  "cache_sha256": "cc9717ed0f7691c6c61fd7544e76d109a97b5f1d4d994310853a091fb9255593",
+  "original_missing_links": 24,
+  "resolved": 1,
+  "blocked": 23,
+  "rows": [
+    {
+      "id": "ac-entrada",
+      "name": "Acreano Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "al-entrada",
+      "name": "Alagoano Segunda Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "am-entrada",
+      "name": "Amazonense Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": true,
+      "policy": "ligado à Série A no complemento do jogo"
+    },
+    {
+      "id": "ap-entrada",
+      "name": "Amapaense Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "ba-entrada",
+      "name": "Baiano Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "ce-entrada",
+      "name": "Cearense Série C",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "df-entrada",
+      "name": "Candangão Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "es-entrada",
+      "name": "Capixaba Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "go-entrada",
+      "name": "Goiano Terceira Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "ma-entrada",
+      "name": "Maranhense Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "mt-entrada",
+      "name": "Mato-grossense Segunda Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "ms-entrada",
+      "name": "Sul-Mato-Grossense Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "mg-entrada",
+      "name": "Mineiro Segunda Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "pa-entrada",
+      "name": "Paraense Série A3",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "pb-entrada",
+      "name": "Paraibano Segunda Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "pr-entrada",
+      "name": "Paranaense Terceira Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "rj-entrada",
+      "name": "Carioca Série C",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "rn-entrada",
+      "name": "Potiguar Segunda Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "rs-entrada",
+      "name": "Gaúcho Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "sc-entrada",
+      "name": "Catarinense Série C",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "se-entrada",
+      "name": "Sergipano Série A2",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "to-entrada",
+      "name": "Tocantinense Segunda Divisão",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "ro-entrada",
+      "name": "Rondoniense Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    },
+    {
+      "id": "pi-entrada",
+      "name": "Piauiense Série B",
+      "present_in_cached_hub": true,
+      "resolved_in_v04": false,
+      "policy": "bloqueado para novas propostas e estreias; legado preservado"
+    }
+  ]
+}

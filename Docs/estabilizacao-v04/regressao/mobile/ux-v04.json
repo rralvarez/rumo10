@@ -1,0 +1,6 @@
+{
+  "checks": 21,
+  "errors": [],
+  "transport": "Chrome headless, PHP CLI real, rede simulada em memória; timeout adiantado com relógio Playwright",
+  "postCount": 6
+}

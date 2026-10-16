@@ -21,18 +21,18 @@
     },
     {
         "file": "app\/ClubSquad.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Fallback explícito dos quatro clubes indispensáveis no jogo."
     },
     {
         "file": "app\/Competition.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Continuidade Amazonense e bloqueio de acessos órfãos."
     },
     {
         "file": "app\/CompetitionView.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Aviso de teto simulado, sem promoção fictícia."
     },
     {
         "file": "app\/ConcacafCompetition.php",
@@ -41,8 +41,8 @@
     },
     {
         "file": "app\/CreationForm.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Destinos indisponíveis sinalizados sem mudar residência."
     },
     {
         "file": "app\/CurrentLocation.php",
@@ -56,8 +56,8 @@
     },
     {
         "file": "app\/EntryCountries.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Novas estreias exigem continuidade antes de consumir vaga; legados preservados."
     },
     {
         "file": "app\/EuropeanCompetition.php",
@@ -101,8 +101,8 @@
     },
     {
         "file": "app\/MatchMomentum.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Posse testemunhada e encerramento por interrupção."
     },
     {
         "file": "app\/NarrativeCatalog.php",
@@ -136,8 +136,8 @@
     },
     {
         "file": "app\/Presentation.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Labels públicos e antes\/depois do perfil."
     },
     {
         "file": "app\/Probability.php",
@@ -151,8 +151,8 @@
     },
     {
         "file": "app\/Repository.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Persistência aditiva e medição opt-in de consultas\/engine\/save."
     },
     {
         "file": "app\/RetiredCareer.php",
@@ -201,8 +201,8 @@
     },
     {
         "file": "app\/TransferMarket.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Avaliação e cenários de interesse aprovados v0.4."
     },
     {
         "file": "app\/Trophies.php",
@@ -211,8 +211,8 @@
     },
     {
         "file": "app\/Wheel.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "SVG de círculo completo para mercado sem candidatos, fatia única."
     },
     {
         "file": "app\/WorldCompetition.php",
@@ -226,8 +226,8 @@
     },
     {
         "file": "app\/view.php",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Impactos da roleta antes do giro."
     },
     {
         "file": "database\/africa-badge-overrides.json",
@@ -476,12 +476,12 @@
     },
     {
         "file": "public\/assets\/game.js",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Loader, erro, timeout e envio único."
     },
     {
         "file": "public\/assets\/game.css",
-        "unchanged": true,
-        "intentional_reason": null
+        "unchanged": false,
+        "intentional_reason": "Painel acessível de espera e impactos."
     }
 ]
