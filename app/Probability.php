@@ -19,8 +19,8 @@ final class Probability {
         $intensity=$rng(1,100);if(!is_int($intensity)||$intensity<1||$intensity>100)throw new LogicException('RNG de teste inválido.');
         return ['chance'=>$p,'roll'=>$roll,'intensity_roll'=>$intensity,'success'=>$success,'class'=>$success?($intensity<=Rules::EXCEPTIONAL_WEIGHT?'excepcional':'sucesso'):($intensity<=Rules::SEVERE_WEIGHT?'falha_grave':'falha')];
     }
-    public static function weighted(array $items): array {
+    public static function weighted(array $items,?callable $rng=null): array {
         $sum=array_sum(array_column($items,'peso')); if ($sum<1) throw new InvalidArgumentException('Pesos inválidos.');
-        $r=random_int(1,(int)$sum); foreach ($items as $item) { $r-=$item['peso']; if ($r<=0) return $item; } throw new LogicException('Sorteio inválido.');
+        $rng??=static fn(int $min,int $max):int=>random_int($min,$max);$r=$rng(1,(int)$sum);if(!is_int($r)||$r<1||$r>$sum)throw new LogicException('RNG de teste inválido.'); foreach ($items as $item) { $r-=$item['peso']; if ($r<=0) return $item; } throw new LogicException('Sorteio inválido.');
     }
 }

@@ -18,15 +18,16 @@ final class TransferMarket {
   $titles=count(array_filter(Trophies::collect($g),fn($t)=>$t['season']===$g['season'] && $t['club']===$g['club']));
   $reputation=array_sum(array_map(fn($k)=>(float)($g['states'][$k]??50),['confianca_treinador','confianca_imprensa','apoio_torcida']))/3;
   $potential=$g['age']<=26?max(0,min(1,(Evolution::ceiling(32,'passe')-$technical)/60)):0;
-  $merit=max(0,min(1.5,($s['average']-5.8)/2+$production*.3+$growth*.1+min(.15,$titles*.05)+max(-.1,min(.1,($reputation-50)/500))));
+  $evaluation=SeasonEvaluation::evaluate($g);$merit=max(0,min(1.5,$evaluation['weighted_score']+min(.15,$growth*.04)+min(.10,$titles*.03)+max(-.1,min(.1,($reputation-50)/500))));
   return $s+['technical'=>$technical,'growth'=>$growth,'production'=>$production,'titles'=>$titles,'reputation'=>$reputation,'potential'=>$potential,'merit'=>$merit,'abroad'=>$s['games']>=3 && $s['minutes']>=180 && $merit>=.20];
  }
- public static function pool(array $g):array {
+ public static function pool(array $g,bool $limited=true):array {
   $p=self::profile($g);$members=$g['next_memberships']??$g['memberships'];$origin=self::country($g['club']);$region=FootballGeography::region($origin);
   $current=$g['next_club_strengths'][$g['club']]??TeamStrength::rating($g['club'],$g);$groups=['country'=>[],'region'=>[],'world'=>[]];
   $preferred=10+max(0,$g['season']-3)*min(2,$p['merit'])+($p['merit']>=1?8:0);
+  $valid=[];$clubIds=[];foreach($members as $id=>$teams){$valid[$id]=CompetitionContinuity::status($id,$members)['valid']&&CompetitionContinuity::status($id,$g['memberships']??$members)['valid'];foreach($teams as $club)$clubIds[$club][]=$id;}
   foreach(Competition::clubs() as $club=>$data){
-   if($club===$g['club'] || !empty($data['reserve']))continue;$ids=[];
+   if($club===$g['club'] || !empty($data['reserve']) || empty($clubIds[$club]))continue;$ids=$clubIds[$club];if(array_filter($ids,fn($id)=>!$valid[$id]))continue;$ids=[];
    foreach($members as $id=>$teams)if(in_array($club,$teams,true))$ids[]=$id;if(!$ids)continue;
    usort($ids,fn($a,$b)=>(self::sportingLevel($a)<=>self::sportingLevel($b))?:strcmp($a,$b));$id=$ids[0];
    $country=self::country($club);$foreign=$country!==$origin;if($foreign && !$p['abroad'])continue;
@@ -37,6 +38,7 @@ final class TransferMarket {
    $bucket=$foreign?(FootballGeography::region($country)===$region?'region':'world'):'country';
    $groups[$bucket][]=['club'=>$club,'tier'=>Competition::catalog()[$id]['tier'],'peso'=>$weight,'country'=>$country,'competition'=>$id,'sporting_level'=>self::sportingLevel($id),'overall'=>round($ovr,1),'overall_delta'=>round($delta,1),'international'=>$foreign,'region'=>$bucket,'city'=>$data['municipality']??$data['city']??null,'reason'=>'A proposta considera seu desempenho, participação e o nível atual das equipes.','preferred'=>abs($delta)<=($delta>0?$preferred:10)];
   }
+  if(!$limited)return array_merge(...array_values($groups));
   $targets=$g['season']<=3?['country'=>6,'region'=>2,'world'=>0]:['country'=>3,'region'=>3,'world'=>2];$pool=[];
   foreach($groups as &$list){shuffle($list);usort($list,fn($a,$b)=>$b['preferred']<=>$a['preferred']);}unset($list);
   foreach($targets as $bucket=>$n){$seen=[];for($i=0;$i<$n && $groups[$bucket];$i++){
@@ -52,6 +54,7 @@ final class TransferMarket {
   return ['target'=>$target,'actual'=>$counts,'limited'=>$counts!==$target,'policy'=>'confederation-v1'];
  }
  public static function render(array $g):void {
+  if(($g['market_draw']['schema']??1)===2){TransferInterest::render($g);return;}
   $chosen=current(array_filter($g['offers'],fn($o)=>$o['selected']));
   if($chosen){Wheel::render($g['offers'],$chosen['club'],'offer:'.$g['id'].':'.$g['season']);self::describe($chosen);}
   else echo '<p>Nenhuma proposta se concretizou. Seu próximo capítulo pode continuar no clube atual.</p>';
@@ -64,7 +67,7 @@ final class TransferMarket {
  public static function describe(array $offer):void {
   $country=$offer['country']??self::country($offer['club']);echo '<p class="offer-destination">';ClubBadge::render($offer['club']);echo ' <strong>'.e(EntryCountries::name($country)).'</strong>';
   if(!empty($offer['city']))echo ' · '.e($offer['city']);echo '</p>';
-  if(isset($offer['competition']))echo '<p>'.e(Competition::catalog()[$offer['competition']]['name']).' · nível esportivo '.e($offer['sporting_level']??self::sportingLevel($offer['competition'])).' no país</p>';
+  if(isset($offer['competition'])){[$pyramid,$level]=TransferInterest::division($offer['competition']);echo '<p>'.e(Competition::catalog()[$offer['competition']]['name']);if($level!==null)echo ' · '.e($level).'ª divisão '.(in_array($pyramid,['sp','am'],true)?'estadual':'nacional');echo '</p>';}
   if(isset($offer['overall']))echo '<p>Overall '.e($offer['overall']).' · diferença '.e(($offer['overall_delta']??0)>=0?'+':'').e($offer['overall_delta']??0).' em relação ao seu clube</p>';
  }
 }

@@ -15,4 +15,5 @@ if(str_contains($escaped,'<script>')) throw new RuntimeException('Nome não esca
 ob_start();Wheel::render(Rules::HANDICAPS,null,null,true);$idle=ob_get_clean();
 if(substr_count($idle,'type="submit"')!==1 || !str_contains($idle,'aria-label="Girar roleta e sortear meu perfil"') || str_contains($idle,'Pronto para girar') || str_contains($idle,'wheel-outcome'))throw new RuntimeException('Roleta inicial deve ter apenas um botão claro no centro.');
 if(str_contains($html,'wheel-trigger'))throw new RuntimeException('Resultado salvo não pode apresentar botão de novo sorteio.');
+ob_start();Wheel::render([['nome'=>'Sem interesse','peso'=>1]],'Sem interesse','none');$single=ob_get_clean();if(!str_contains($single,'M180 16 A164 164'))throw new RuntimeException('Fatia única deve ocupar círculo completo');
 echo "OK: setores proporcionais, orientação do ponteiro, resultado persistido e escaping.\n";

@@ -6,7 +6,7 @@ final class ClubSquad {
         static $index;return $index??=json_decode(file_get_contents(dirname(__DIR__).'/database/player-catalog.json'),true,512,JSON_THROW_ON_ERROR);
     }
     public static function players(string $club):array {
-        if(RumoHub::enabled())return RumoHub::players($club);
+        if(RumoHub::enabled() && empty(Competition::clubs()[$club]['game_only']))return RumoHub::players($club);
         // Somente o elenco solicitado; não carregar dezenas de milhares de atletas no universo da carreira.
         static $cache=[];if(isset($cache[$club]))return $cache[$club];
         $entry=self::catalog()['clubs'][$club]??null;

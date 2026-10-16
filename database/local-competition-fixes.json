@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "checked": "2026-10-16",
+  "sources": [
+    "https://fafamazonas.com.br/site/noticia/faf-divulga-tabela-completa-de-jogos-do-barezao-2026/",
+    "https://fafamazonas.com.br/site/arquivos/download/arqeditor/REG.pdf",
+    "https://www.fafamazonas.com.br/site/noticia/serie-b-do-barezao-faf-e-clubes-alinham-ultimos-ajustes-em-iii-conselho-tecnico/"
+  ],
+  "competition": {
+    "id": "am-a1", "name": "Amazonense Série A", "edition": 2026, "tier": 1,
+    "family": "state", "uf": "AM", "country": "BR", "format": "amazonense",
+    "source": "https://fafamazonas.com.br/site/noticia/faf-divulga-tabela-completa-de-jogos-do-barezao-2026/",
+    "checked": "2026-10-16", "official_level": 1,
+    "teams": ["Amazonas-AM", "Manauara-AM", "RPE Parintins-AM", "Itacoatiara-AM", "Nacional-AM", "Manaus-AM", "Princesa do Solimões-AM", "São Raimundo-AM"],
+    "groups": [["Amazonas-AM", "Manauara-AM", "RPE Parintins-AM", "Itacoatiara-AM"], ["Nacional-AM", "Manaus-AM", "Princesa do Solimões-AM", "São Raimundo-AM"]],
+    "rules": {"access": 0, "relegation": 1, "note": "Formato de 2026 reutilizado nas temporadas simuladas: dois turnos, playoffs, campeões de turno protegidos do rebaixamento. Não prevê participantes oficiais de edições futuras."}
+  },
+  "missing_clubs": ["RPE Parintins-AM", "Itacoatiara-AM", "Princesa do Solimões-AM", "São Raimundo-AM"]
+}

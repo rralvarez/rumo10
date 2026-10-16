@@ -4,7 +4,7 @@ ROOT=Path(__file__).resolve().parents[1];out=ROOT/'Docs/narrativa-v1';php='C:/PH
 env=dict(os.environ,RUMOHUB_ENABLED='0',RUMOHUB_BENEFITS='0')
 suites=['narrative','narrative-modes','scenes-strength','scene-consequences','scene-failures','weekend-editorial','social-context','finishing','match-momentum','match-balance','normal-xp','lifecycle','package-engine','package-cohorts','package-seasons','presentation','season-presentation','wheel']
 mechanics=(ROOT/'Docs/estabilizacao-v04/baseline.json').exists()
-if mechanics:suites+=['execution-v04','mechanics-boundary']
+if mechanics:suites+=['execution-v04','possession-v04','continuity-v04','market-v04','mechanics-boundary']
 if mechanics:
  out=ROOT/'Docs/estabilizacao-v04/regressao';out.mkdir(exist_ok=True)
  env['NARRATIVE_EVIDENCE_DIR']=str(out)
@@ -21,7 +21,7 @@ guard=[]
 for name in protected:
  old=subprocess.check_output(['git','show','dbda309:'+name],cwd=ROOT)
  now=(ROOT/name).read_bytes().replace(b'\r\n',b'\n');before=old.replace(b'\r\n',b'\n')
- guard.append({'file':name,'sha256':hashlib.sha256(now).hexdigest(),'unchanged':now==before,'intentional_v04':mechanics and name=='app/Probability.php'})
+ guard.append({'file':name,'sha256':hashlib.sha256(now).hexdigest(),'unchanged':now==before,'intentional_v04':mechanics and name in ['app/Probability.php','app/MatchMomentum.php','app/TransferMarket.php']})
 (out/'protected-files.json').write_text(json.dumps(guard,indent=2),encoding='utf-8')
 if not all(r['unchanged'] or r['intentional_v04'] for r in guard):raise SystemExit('Arquivo fora do escopo alterado')
 old=subprocess.check_output(['git','show','dbda309:app/Game.php'],cwd=ROOT).decode().replace('\r\n','\n');now=(ROOT/'app/Game.php').read_text(encoding='utf-8')

@@ -16,7 +16,7 @@ header('Cache-Control: no-store'); if($production) header('Strict-Transport-Secu
 ini_set('session.use_strict_mode','1'); ini_set('session.use_only_cookies','1');
 session_name('rumo10_session'); session_set_cookie_params(['lifetime'=>0,'path'=>'/','secure'=>$https,'httponly'=>true,'samesite'=>'Lax']); session_start();
 $_SESSION['csrf']??=bin2hex(random_bytes(32));
-function redirect(string $path): never { header('Location: '.$path,true,303); exit; }
+function redirect(string $path): never { RequestMetrics::headers();header('Location: '.$path,true,303); exit; }
 function form(string $path,?array $g=null): void {
     echo '<form method="post" action="'.e($path).'"><input type="hidden" name="csrf" value="'.e($_SESSION['csrf']).'">';
     if($g) echo '<input type="hidden" name="version" value="'.e($g['version']).'"><input type="hidden" name="key" value="'.bin2hex(random_bytes(32)).'">';
@@ -80,6 +80,7 @@ try {
             } else {
                 $action=match($path) {'/jogador/localizacao'=>'relocate','/carreira/aposentar'=>'retire','/carreira/simular'=>'simulate','/carreira/clube-inicial'=>'join','/competicao/continuar'=>'continue','/carreira/handicap'=>'handicap','/decisao/registrar','/partida/decidir'=>'choice','/partida/avancar'=>'advance','/transferencia/roleta'=>'offers','/transferencia/responder'=>'transfer',default=>throw new InvalidArgumentException('Ação inválida.')};
                 $input=in_array($action,['choice','join'],true)?['option'=>(string)($_POST['option']??'')]:($action==='transfer'?['accept'=>(string)($_POST['accept']??'')]:[]);
+                if($action==='transfer'&&isset($_POST['option']))$input['option']=(string)$_POST['option'];
                 if($action==='relocate')$input=array_intersect_key($_POST,array_flip(['city','uf','residence_country','residence_region']));
                 if($action==='retire')$input=['confirm'=>(string)($_POST['confirm']??'')];
                 if($action==='mode')$input=['mode'=>(string)($_POST['mode']??'')];
@@ -103,4 +104,5 @@ catch(InvalidArgumentException $ex) { if($status===200) $status=422; $error=$ex-
 catch(Throwable $ex) { $status=503; $error='Aplicação indisponível. Verifique a instalação e a conexão local com o banco.'; error_log('rumo10: '.$ex::class.' code='.$ex->getCode()); }
 http_response_code($status);
 if(str_starts_with($path,'/api/')) { header('Content-Type: application/json; charset=utf-8'); echo json_encode(['error'=>$error]); exit; }
-require dirname(__DIR__).'/app/view.php';
+if(config('RUMO10_TIMING')==='1'){$renderStart=RequestMetrics::start();ob_start();require dirname(__DIR__).'/app/view.php';$html=ob_get_clean();RequestMetrics::end('render',$renderStart);RequestMetrics::headers();echo $html;}
+else require dirname(__DIR__).'/app/view.php';

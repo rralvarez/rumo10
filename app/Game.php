@@ -71,10 +71,12 @@ final class Game {
         $g['feedback']=null;
         if($action==='handicap' && $g['stage']==='handicap') {
             $h=Probability::weighted(Rules::HANDICAPS); $g['handicap']=$h['nome'];
+            $initialEffects=InitialProfile::effects($g,$h['efeitos']);
             foreach($h['efeitos'] as $k=>$v) {
                 if(isset($g['skills'][$k])) $g['skills'][$k]['value']=self::clamp($g['skills'][$k]['value']+$v); else $g['states'][$k]=self::clamp($g['states'][$k]+$v);
             }
-            $g['feedback']=['text'=>'Perfil inicial: '.$h['nome'],'effects'=>$h['efeitos']]; $g['stage']='treino';
+            $g['initial_profile']=['name'=>$h['nome'],'effects'=>$initialEffects];
+            $g['feedback']=['text'=>'Perfil inicial: '.$h['nome'],'effects'=>array_map(fn($v)=>$v['delta'],$initialEffects),'attribute_changes'=>$initialEffects]; $g['stage']='treino';
             $g['season_skill_baseline']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['starting'])) {
                 $country=$g['starting_country']??'BR';$g['entry_division']=Onboarding::division($g['entry_uf']??$g['uf'],$h['nome'],$country);
@@ -100,7 +102,7 @@ final class Game {
             $outcome=isset($o['success_text'],$o['failure_text'])?NarrativeCatalog::outcome($o,$roll):($roll['success']?'a intenção deu certo.':'a intenção não teve o efeito esperado.');
             $g['feedback']=$roll+['text'=>$o['text'].': '.$outcome,'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION,'probability_trace'=>$probabilityTrace];
             if(($g['active_situation']['id']??null)===($s['id']??0) && isset($g['active_situation']['selection']))$g['feedback']['narrative_selection']=$g['active_situation']['selection'];
-            elseif(($s['id']??0)===1300)$g['feedback']['narrative_selection']=['override'=>'momentum','situation'=>1300];
+            elseif(in_array($s['id']??0,[1300,1301],true))$g['feedback']['narrative_selection']=['override'=>'momentum','situation'=>$s['id']];
             if($g['stage']==='treino') $g['stage']='pre_jogo';
             elseif($g['stage']==='pre_jogo') {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i];
@@ -121,24 +123,25 @@ final class Game {
             elseif($m['minute']<$m['entry'] || $m['minute']>=$m['exit']) { self::nextSegment($g); }
             else throw new InvalidArgumentException('Resolva a decisão em campo.');
         } elseif($action==='offers' && $g['stage']==='resumo') {
-            $performance=self::summary($g); $pool=[];
-            if(!empty($g['official'])) $pool=Competition::offerPool($g);
-            else {
-            foreach(Rules::TEAMS as $t) if($t!==$g['club']) $pool[]=['club'=>$t,'tier'=>$g['tier'],'peso'=>30];
-            if($g['tier']<4 && $performance['average']>=6 && array_sum(array_column($g['skills'],'value'))/9>=45) $pool[]=['club'=>'Academia Regional '.($g['tier']+1),'tier'=>$g['tier']+1,'peso'=>max(5,(int)(($performance['average']-5)*20+$g['states']['apoio_torcida']/5))];
-            }
-            $none=['club'=>'','peso'=>!empty($g['official'])?max(3,(int)round(25-15*TransferMarket::profile($g)['merit'])):3];
-            $chosen=Probability::weighted(array_merge($pool,[$none])); $g['offers']=$pool;
-            foreach($g['offers'] as &$offer) $offer['selected']=($offer['club']===$chosen['club']); unset($offer);
-            $g['market_draw']=['id'=>bin2hex(random_bytes(16)),'season'=>$g['season'],'selected'=>$chosen['club']?:null,'none_weight'=>$none['peso'],'rules'=>Rules::VERSION];
-            if(!empty($g['official']))$g['market_draw']['distribution']=TransferMarket::distribution($g,$pool);
-            $g['stage']='oferta'; $g['feedback']=['text'=>$chosen['club']?'Proposta recebida: '.$chosen['club']:'Nenhuma proposta se concretizou nesta janela. Você pode permanecer no clube.','weights'=>$pool];
+            CompetitionContinuity::reconcileAmazonas($g);
+            $g['market_draw']=TransferInterest::draw($g);$g['offers']=$g['market_draw']['offers'];
+            $g['stage']='oferta';$g['feedback']=['text'=>count($g['offers']).' proposta(s) nesta janela. Escolha um clube ou permaneça.'];
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
             unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
+            $summary['evaluation']=SeasonEvaluation::evaluate($g);
             $summary['technical_average']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['official']))$summary['competitions']=$g['competition_results'];
             $selected=current(array_filter($g['offers'],fn($o)=>$o['selected']));
+            if(($g['market_draw']['schema']??1)===2){
+                $selected=null;
+                if($input['accept']==='yes'){
+                    $index=filter_var($input['option']??null,FILTER_VALIDATE_INT,['options'=>['min_range'=>0,'max_range'=>2]]);
+                    if($index===false||$index===null||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
+                    $selected=$g['offers'][$index];
+                }
+                $summary['market']=$g['market_draw'];$summary['market']['choice']=$selected['club']??$old;
+            }
             if($input['accept']==='yes') { if(!$selected)throw new InvalidArgumentException('Não há proposta para aceitar nesta janela.');$g['club']=$selected['club']; $g['tier']=$selected['tier']; }
             $summary['next_club']=$g['club']; $g['history'][]=$summary;
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
@@ -152,7 +155,7 @@ final class Game {
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
         if($g['stage']==='resumo')Progression::season($g);
         if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');}
-        $g['version']++;Scenes::prepare($g); return $g;
+        $g['version']++;$selectionStart=RequestMetrics::start();Scenes::prepare($g);RequestMetrics::end('scene_selection',$selectionStart); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }
     private static function effects(array $effects,array $roll,array &$g,array $choice=[]): array {
@@ -179,6 +182,7 @@ final class Game {
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         if($onBall) {
             $conversion=$m['pass_conversion']??(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45))));
+            if(!empty($o['end_sequence']))$conversion=0;
             if(($m['balance_version']??0)>=2 && !$clearChance && $type==='passe')$conversion=min($conversion,100*MatchBalance::eventChance($g,100)/max(1,$roll['chance']));
             $scoringProbability=($type==='chute' || ($clearChance && in_array($type,['drible','passe'],true)))?$roll['chance']/100:($type==='passe'?$roll['chance']*$conversion/10000:0);
             MatchBalance::book($m,$scoringProbability);
@@ -206,10 +210,10 @@ final class Game {
         if($st['cards']>=2) { $m['exit']=$m['minute']; $text.=' Expulso: segundo cartão.'; }
         elseif(random_int(1,1000)<=$g['states']['risco_lesao']) { $m['exit']=$m['minute']; $text.=' Lesão: você deixa o campo.';$before=$g['skills']['resistencia']['value'];$g['skills']['resistencia']['value']=max(0,$before-1);$g['feedback']['effects']['resistencia']=($g['feedback']['effects']['resistencia']??0)+$g['skills']['resistencia']['value']-$before; }
         elseif($g['states']['energia']<15) { $m['exit']=$m['minute']; $text.=' Substituído por desgaste.'; }
-        $constructive=$onBall && in_array($type,['passe','drible','desarme','social'],true) && !($sid===7 && $choice===3);
+        $constructive=$onBall && in_array($type,['passe','drible','desarme'],true) && empty($o['end_sequence']);
         $created=MatchMomentum::record($m,$roll['success'],$constructive,isset($g['feedback']['highlight']));
         if($m['minute']>=$m['exit']){MatchMomentum::reset($m);$created=false;}
-        if($created)$text.=' A sequência abriu a defesa: você tem uma chance clara de gol!';
+        if($created)$text.=!empty($m['clear_chance'])?' A sequência abriu a defesa: você tem uma chance clara de gol!':' A bola continua com você: escolha como seguir este lance.';
         $g['feedback']['text']=$text; foreach($beforeStates as $k=>$v) if($g['states'][$k]!==$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$g['states'][$k]-$v; $m['log'][]=['minute'=>$m['minute'],'text'=>$text];
         if(!$created)self::nextSegment($g);
     }
@@ -219,6 +223,8 @@ final class Game {
     }
     private static function segment(array &$g,int $next): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $span=$next-$m['minute'];
+        // Outro segmento representa outra janela de jogo, nunca a mesma posse.
+        MatchMomentum::reset($m);
         $own=$m['home']===$g['club']?'hg':'ag';
         TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
         if(($m['balance_version']??0)<2){$difference=max(-60,min(60,$m['home_overall']-$m['away_overall']));$means=[max(.25,min(3.5,1.35*exp($difference/55))),max(.25,min(3.5,1.10*exp(-$difference/55)))];}

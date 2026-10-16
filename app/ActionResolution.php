@@ -26,10 +26,12 @@ final class ActionResolution {
    // A promoção normal -> clara já remunera as duas ações. Não somar chance_bonus
    // nem reaplicar o orçamento coletivo como penalidade da execução.
    $sequenceIncluded=$clear?2:0;
+   $extraSequenceBonus=$clear?0:min(.10,.10*MatchMomentum::builtActions($g));
+   $chance+=(100-$chance)*$extraSequenceBonus;
   }else{
-   $kind=null;$sequenceIncluded=0;
+   $kind=null;$sequenceIncluded=0;$extraSequenceBonus=0;
    $chance=Probability::chance($quality,$confidence,$energy,$rhythm,$difficulty,50)+.4*($relative-50);
   }
-  return ['version'=>self::VERSION,'chance'=>round(max($goal?.5:5,min($goal?90:95,$chance)),2),'goal_execution'=>$goal,'kind'=>$kind,'quality'=>round($quality,3),'player_overall'=>round($overall,3),'own_overall'=>$own,'opponent_overall'=>$opponent,'opponent_unit_source'=>'collective_fallback','relative'=>round($relative,3),'components'=>$components,'sequence_actions_included'=>$sequenceIncluded,'extra_sequence_bonus'=>0,'difficulty'=>$difficulty];
+  return ['version'=>self::VERSION,'chance'=>round(max($goal?.5:5,min($goal?90:95,$chance)),2),'goal_execution'=>$goal,'kind'=>$kind,'quality'=>round($quality,3),'player_overall'=>round($overall,3),'own_overall'=>$own,'opponent_overall'=>$opponent,'opponent_unit_source'=>'collective_fallback','relative'=>round($relative,3),'components'=>$components,'sequence_actions_included'=>$sequenceIncluded,'extra_sequence_bonus'=>$extraSequenceBonus,'difficulty'=>$difficulty];
  }
 }

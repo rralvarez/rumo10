@@ -36,7 +36,9 @@ final class CompetitionView {
                 $group=array_values(array_diff($group,['__folga__']));$own=in_array($g['club'],$group,true);
                 if(!$own)echo '<details class="panel"><summary>Grupo '.e($i+1).'</summary>';
                 elseif(count($t['groups'])>1)echo '<h3>Seu grupo · '.e($i+1).'</h3>';
-                self::table(Competition::standings($t,$group,$t['phase']),$g['club']);
+                $tableState=$t;
+                if($t['format']==='amazonense'&&$t['phase']==='liga')$tableState['matches']=array_values(array_filter($t['matches'],fn($m)=>($m['am_turn']??0)===$t['am_turn']));
+                self::table(Competition::standings($tableState,$group,$t['phase']),$g['club']);
                 if(!$own)echo '</details>';
             }
         }
@@ -59,6 +61,7 @@ final class CompetitionView {
         $r=$g['competition_results'][$g['competition_id']];
         echo '<article class="panel"><p class="tag">COMPETIÇÃO ENCERRADA</p><h2>'.e($r['champion']===$g['club']?'É campeão!':'O campeonato terminou').'</h2><p>'.e(self::resultText($r,$g['club'])).'</p>';
         if(!empty($r['access_pending']))echo '<p class="subtle">Se permanecer neste clube, a próxima temporada repetirá a divisão cadastrada. Você também poderá avaliar propostas de outros clubes.</p>';
+        if(!empty($r['continuity']['simulation_ceiling']))echo '<p class="subtle">Na próxima temporada, este clube continua no mesmo campeonato. A divisão superior ainda não está disponível no jogo.</p>';
         $note=Competition::catalog()[$g['competition_id']]['rules']['note']??null;
         if($note)echo '<p class="subtle">'.e($note).'</p>';
         $next=$g['season_competitions'][$g['competition_cursor']+1]??null;
