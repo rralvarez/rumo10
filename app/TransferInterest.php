@@ -11,10 +11,10 @@ final class TransferInterest {
  }
  public static function scenarios(array $g,array $candidates,array $evaluation):array {
   $country=TransferMarket::country($g['club']);$region=FootballGeography::region($country);$members=$g['next_memberships']??$g['memberships']??[];$current=[];
-  foreach($members as $id=>$teams)if(in_array($g['club'],$teams,true))$current[]=self::division($id);
+  $clubDivisions=[];foreach($members as $id=>$teams){foreach($teams as $club)$clubDivisions[$club][]=$id;if(in_array($g['club'],$teams,true))$current[]=self::division($id);}
   $sets=['same'=>[],'up'=>[],'down'=>[],'continental'=>[],'continental_up'=>[],'europe'=>[]];
   foreach($candidates as $c){$club=$c['club'];$cc=$c['country']??$country;$division=self::division($c['competition']??'');
-   if($cc===$country){foreach($current as [$pyramid,$level]){if($level===null||$division[0]!==$pyramid||$division[1]===null)continue;$key=match($division[1]-$level){0=>'same',-1=>'up',1=>'down',default=>null};if($key)$sets[$key][$club]=$c;}}
+   if($cc===$country){foreach($clubDivisions[$club]??[] as $candidateId){$division=self::division($candidateId);foreach($current as [$pyramid,$level]){if($level===null||$division[0]!==$pyramid||$division[1]===null)continue;$key=match($division[1]-$level){0=>'same',-1=>'up',1=>'down',default=>null};if($key){$context=$c;$context['competition']=$candidateId;$context['tier']=Competition::catalog()[$candidateId]['tier'];$sets[$key][$club]=$context;}}}}
    elseif(FootballGeography::region($cc)===$region){if(abs($c['overall_delta']??0)<=10)$sets['continental'][$club]=$c;if(($c['overall_delta']??0)>0)$sets['continental_up'][$club]=$c;}
    if($cc!==$country&&in_array($cc,TransferMarket::EUROPE,true))$sets['europe'][$club]=$c;
   }
