@@ -1,0 +1,32 @@
+- paragraph: SUA EXPERIÊNCIA IMPORTA
+- heading "Avaliar o jogo" [level=1]
+- paragraph: É rápido e opcional. Sua avaliação é privada e não muda XP, conquistas ou benefícios.
+- group "Como está sua experiência? (obrigatório)":
+  - text: Como está sua experiência? (obrigatório)
+  - radio "1 estrela"
+  - text: 1 estrela
+  - radio "2 estrelas"
+  - text: 2 estrelas
+  - radio "3 estrelas"
+  - text: 3 estrelas
+  - radio "4 estrelas"
+  - text: 4 estrelas
+  - radio "5 estrelas"
+  - text: 5 estrelas
+  - paragraph: "1: precisa melhorar · 5: estou gostando muito"
+- text: Categoria (opcional)
+- combobox "Categoria (opcional)":
+  - option "Escolha se quiser" [selected]
+  - option "Elogio"
+  - option "Sugestão"
+  - option "Problema / bug"
+  - option "Dificuldade de jogo"
+  - option "Outra"
+- text: Comentário (opcional)
+- textbox "Comentário (opcional)"
+- status: 0 de 1.000 caracteres
+- paragraph: Não envie senhas, dados pessoais ou informações de pagamento. Sem anexos nesta etapa.
+- button "Enviar avaliação"
+- status
+- link "Voltar à carreira":
+  - /url: /carreira

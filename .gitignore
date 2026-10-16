@@ -16,3 +16,5 @@
 __pycache__/
 *.pyc
 /Docs/pos-jogo-v06/regressao/coortes-modos.json
+
+/Docs/pos-jogo-v061/regressao/coortes-modos.json

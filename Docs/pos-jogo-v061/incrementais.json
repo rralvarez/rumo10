@@ -1,0 +1,38 @@
+[
+  {
+    "suite": "growth-v061",
+    "exit": 0,
+    "stdout": "OK: 32 verificações v0.6.1 puras.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "bootstrap-v061",
+    "exit": 0,
+    "stdout": "OK: 4 verificações do bootstrap real e flags locais.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "post-match-v06",
+    "exit": 0,
+    "stdout": "OK: 215 verificações pós-jogo; seis posições e três modos, sem banco.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "achievements-v06",
+    "exit": 0,
+    "stdout": "OK: 96 verificações catálogo/projeção; persistência exige suíte MySQL própria.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "v06-boundary",
+    "exit": 0,
+    "stdout": "OK: 11 fronteiras v0.6; fórmulas e XP-base preservados.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "mechanics-boundary",
+    "exit": 0,
+    "stdout": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados.\n",
+    "stderr": ""
+  }
+]
