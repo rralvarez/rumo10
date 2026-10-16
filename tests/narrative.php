@@ -8,7 +8,8 @@ function ng(string $stage='partida',string $position='meia',int $minute=70,int $
  $i=Game::currentIndex($g);$m=&$g['matches'][$i];$m['minute']=$stage==='fim_semana'?90:$minute;$m['status']=$stage==='fim_semana'?'finalizada':'em_andamento';$m['entry']=0;$m['exit']=90;$m['lineup']='titular';$m['stats']['minutes']=$minute;$m['stats']['rating']=6.5;
  $home=$m['home']===$g['club'];$m[$home?'hg':'ag']=max(0,$delta);$m[$home?'ag':'hg']=max(0,-$delta);return $g;
 }
-$catalog=Scenes::catalog();$new=NarrativeCatalog::all();ncheck(count($new)>=100,'Lotes de cenas reais, sem contadores vazios');ncheck(count($catalog)===214+count($new),'214 anteriores preservadas mais novas');
+$catalog=Scenes::catalog();$new=NarrativeCatalog::all();ncheck(count($new)>=800,'Meta de catálogo completo, sem contadores vazios');ncheck(count($catalog)===214+count($new),'214 anteriores preservadas mais novas');
+foreach(array_keys(NarrativeCatalog::MODULES) as $module)ncheck(count(array_filter($new,fn($s)=>$s['module']===$module))>=100,'Cem cenas completas no módulo '.$module);
 $baseline=json_decode(file_get_contents(dirname(__DIR__).'/Docs/narrativa-v1/baseline-resolved.json'),true,512,JSON_THROW_ON_ERROR);
 foreach($baseline as $item){$s=$item['raw'];$g=ng($s['stage']);$g['active_situation']=['id'=>$s['id'],'key'=>Scenes::key($g)];ncheck(Scenes::current($g)===$item['resolved'],'Texto/opções anteriores imutáveis '.$s['id']);}
 $unique=[];
