@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 final class CompetitionContinuity {
- public static function pairs():array{return array_merge([['am-a1','am-entrada'],['sp-a1','sp-a2'],['sp-a2','sp-a3'],['sp-a3','sp-a4'],['sp-a4','sp-segunda'],['br-a','br-b'],['br-b','br-c'],['br-c','br-d'],['ar-1','ar-2'],['uy-1','uy-2'],['py-1','py-2'],['bo-1','bo-2']],EuropeanCompetition::pairs());}
+ public static function pairs():array{return array_merge([['am-a1','am-entrada'],['sp-a1','sp-a2'],['sp-a2','sp-a3'],['sp-a3','sp-a4'],['sp-a4','sp-segunda'],['br-a','br-b'],['br-b','br-c'],['br-c','br-d'],['ar-1','ar-2'],['uy-1','uy-2'],['py-1','py-2'],['bo-1','bo-2']],EuropeanCompetition::pairs(),Competition::referencePairs());}
  public static function upper(string $id):?string{foreach(self::pairs() as [$up,$down])if($down===$id)return $up;return null;}
  public static function status(string $id,?array $members=null):array {
   $c=Competition::catalog()[$id]??null;if(!$c)return ['valid'=>false,'reason'=>'competicao_ausente'];

@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 /** Dates are explicitly simulated, never an official federation schedule.
- * Planning only: callers must persist this ledger with the corresponding save transaction.
+ * WorldSeason uses this planner; its ledger is persisted in the save transaction.
  */
 final class CompetitionCalendar {
  public const VERSION='simulated-rest-v1';
  public static function build(int $save,int $season,array $tournaments,string $start,int $restDays=3,array $existing=[]):array {
   if($save<1||$season<1||$restDays<2||$restDays>7)throw new InvalidArgumentException('Parâmetros inválidos de calendário.');
   $date=DateTimeImmutable::createFromFormat('!Y-m-d',$start,new DateTimeZone('UTC'));if(!$date||$date->format('Y-m-d')!==$start)throw new InvalidArgumentException('Data inicial inválida.');
-  $jobs=[];$known=[];foreach($tournaments as $id=>$t){if(($t['id']??'')!==$id)throw new InvalidArgumentException('Identidade divergente de competição.');
+  $jobs=[];$known=[];$roundClubs=[];foreach($tournaments as $id=>$t){if(($t['id']??'')!==$id)throw new InvalidArgumentException('Identidade divergente de competição.');
    foreach($t['matches']??[] as $m){if(empty($m['home'])||empty($m['away'])||$m['home']===$m['away']||empty($m['round']))throw new InvalidArgumentException('Partida inválida.');
+    foreach(['home','away'] as $side){$roundKey=$id.'|'.$m['round'].'|'.$m[$side];if(isset($roundClubs[$roundKey]))throw new InvalidArgumentException('Clube repetido na mesma rodada da competição.');$roundClubs[$roundKey]=true;}
     $key=hash('sha256',json_encode([$save,$season,$id,$m['phase']??'liga',$m['round'],$m['home'],$m['away']],JSON_THROW_ON_ERROR));if(isset($known[$key]))throw new InvalidArgumentException('Partida duplicada.');$known[$key]=['competition'=>$id,'round'=>(int)$m['round'],'phase'=>$m['phase']??'liga','home'=>$m['home'],'away'=>$m['away']];
     $jobs[]=['key'=>$key,'competition'=>$id,'round'=>(int)$m['round'],'phase'=>$m['phase']??'liga','home'=>$m['home'],'away'=>$m['away']];
    }

@@ -20,6 +20,9 @@ final class PlayMode {
     }
     // Percorre os mesmos comandos e a mesma curva de XP, sem multiplicador por modo.
     public static function simulate(array $g,string $plan): array {
+        return WorldSeason::scope($g,fn()=>self::runSimulation($g,$plan));
+    }
+    private static function runSimulation(array $g,string $plan): array {
         $mode=self::name($g);
         if($mode==='normal' || $g['stage']!=='treino' || !isset(self::PLANS[$plan]))throw new InvalidArgumentException('Estratégia incompatível com a etapa atual.');
         $version=$g['version'];$season=$g['season'];$before=Game::summary($g);$skills=$g['skills'];$played=[];$decisions=0;$attempts=[];

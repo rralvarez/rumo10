@@ -7,10 +7,14 @@ final class CompetitionReference {
   if(!in_array($knowledge,['official_dated','simulation_adaptation','estimate','unknown'],true))throw new InvalidArgumentException('Classificação de evidência inválida.');
   if($knowledge==='official_dated'&&empty($definition['verified_sources']))throw new InvalidArgumentException('Regra oficial exige fonte primária verificada.');
   $teams=$definition['teams']??[];if(count($teams)<2||count(array_unique($teams))!==count($teams))throw new InvalidArgumentException('Participantes ausentes ou duplicados.');
-  $edition=['definition_id'=>$definition['id'],'reference_edition'=>$definition['edition']??null,'rule_version'=>$ruleVersion,'knowledge'=>$knowledge,'definition'=>$definition,'participation'=>$teams];
-  $edition['sha256']=hash('sha256',json_encode($edition,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));return $edition;
+  $edition=['digest_version'=>2,'definition_id'=>$definition['id'],'reference_edition'=>$definition['edition']??null,'rule_version'=>$ruleVersion,'knowledge'=>$knowledge,'definition'=>$definition,'participation'=>$teams];
+  $edition['sha256']=self::digest($edition);return $edition;
  }
- public static function verify(array $edition):bool {$hash=$edition['sha256']??'';unset($edition['sha256']);return hash_equals($hash,hash('sha256',json_encode($edition,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES)));}
+ public static function verify(array $edition):bool {$hash=$edition['sha256']??'';unset($edition['sha256']);$version=$edition['digest_version']??1;if(!in_array($version,[1,2],true))return false;return hash_equals($hash,$version===2?self::digest($edition):hash('sha256',json_encode($edition,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES)));}
+ private static function digest(array $value):string {
+  $normalize=function(mixed $v)use(&$normalize):mixed{if(!is_array($v))return $v;if(!array_is_list($v))ksort($v,SORT_STRING);foreach($v as &$item)$item=$normalize($item);unset($item);return $v;};
+  return hash('sha256',json_encode($normalize($value),JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
+ }
  /** Links qualify editions or move divisions; they are never interchangeable. */
  public static function graph(array $definitions,array $links):array {
   $errors=[];$promotions=[];$seen=[];

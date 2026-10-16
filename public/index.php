@@ -107,5 +107,5 @@ catch(InvalidArgumentException $ex) { if($status===200) $status=422; $error=$ex-
 catch(Throwable $ex) { $status=503; $error='Aplicação indisponível. Verifique a instalação e a conexão local com o banco.'; error_log('rumo10: '.$ex::class.' code='.$ex->getCode()); }
 http_response_code($status);
 if(str_starts_with($path,'/api/')) { header('Content-Type: application/json; charset=utf-8'); echo json_encode(['error'=>$error]); exit; }
-if(config('RUMO10_TIMING')==='1'){$renderStart=RequestMetrics::start();ob_start();require dirname(__DIR__).'/app/view.php';$html=ob_get_clean();RequestMetrics::end('render',$renderStart);RequestMetrics::headers();echo $html;}
-else require dirname(__DIR__).'/app/view.php';
+if(config('RUMO10_TIMING')==='1'){$renderStart=RequestMetrics::start();ob_start();WorldSeason::view(get_defined_vars());$html=ob_get_clean();RequestMetrics::end('render',$renderStart);RequestMetrics::headers();echo $html;}
+else WorldSeason::view(get_defined_vars());

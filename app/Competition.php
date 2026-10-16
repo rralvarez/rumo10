@@ -2,7 +2,16 @@
 declare(strict_types=1);
 /** Universo independente por carreira. Cadastro de 2026; resultados sempre simulados. */
 final class Competition {
+    private static ?array $referenceCatalog=null;
+    public static function referenceScope(array $definitions,callable $operation):mixed {
+        $previous=self::$referenceCatalog;self::$referenceCatalog=$definitions;
+        try{return $operation();}finally{self::$referenceCatalog=$previous;}
+    }
+    public static function referencePairs():array {
+        $pairs=[];foreach(self::$referenceCatalog??[] as $id=>$c)if(!empty($c['test_fixture'])&&isset($c['progression_upper']))$pairs[]=[$c['progression_upper'],$id];return $pairs;
+    }
     public static function catalog(): array {
+        if(self::$referenceCatalog!==null)return self::$referenceCatalog;
         if(RumoHub::enabled())return LocalCompetitionCatalog::competitions(RumoHub::catalog()['competitions']);
         static $data; return $data??=LocalCompetitionCatalog::competitions(array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/africa-south-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/top250-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id'));
     }
@@ -240,6 +249,7 @@ final class Competition {
         if(!$t['done'])throw new LogicException('Competição não finalizou.');
     }
     public static function afterWeekend(array &$g): void {
+        if(isset($g['world_runtime'])){WorldSeason::afterWeekend($g);return;}
         $id=$g['competition_id'];$t=&$g['competitions'][$id];$t['matches']=$g['matches'];
         while(true) {
             foreach($t['matches'] as &$m) if($m['round']<=$g['round'])self::simulate($m,$g);unset($m);
@@ -264,6 +274,7 @@ final class Competition {
         return ['name'=>self::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'promoted'=>$promoted,'relegated'=>in_array($club,$t['relegated'],true),'position'=>$position,'group'=>$group,'access_pending'=>false,'continuity'=>$continuity,'relegation_pending'=>$t['format']==='international' && str_ends_with($t['id'],'-2'),'titles'=>$t['titles']??[]];
     }
     public static function continueSeason(array &$g): void {
+        if(isset($g['world_runtime'])){WorldSeason::next($g);return;}
         if(++$g['competition_cursor']<count($g['season_competitions'])){self::activate($g,$g['season_competitions'][$g['competition_cursor']]);$g['stage']='treino';$g['states']['energia']=85;}
         else {$g['stage']='resumo';self::completeWorld($g);}
     }
@@ -311,6 +322,7 @@ final class Competition {
         return TransferMarket::pool($g);
     }
     public static function newSeason(array &$g): void {
+        if(isset($g['world_runtime'])){WorldSeason::renew($g);return;}
         CompetitionContinuity::reconcileAmazonas($g);
         $g['club_strengths']=$g['next_club_strengths']??($g['club_strengths']??[]);unset($g['next_club_strengths']);
         $g['competition_history'][]=['season'=>$g['season']-1,'results'=>$g['competition_results']];

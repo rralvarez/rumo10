@@ -1,0 +1,83 @@
+<?php
+declare(strict_types=1);
+/** Local-only integration pilot. No auto conversion of legacy or real careers. */
+final class WorldSeason {
+ public const MAX_PILOT_MATCHES=128;
+ public const MAX_SYNC_EVENTS=128;
+ public static function view(array $variables):void {
+  $state=$variables['g']??[];
+  if(isset($state['world_runtime']))try{self::scope($state,static fn()=>null);}catch(RuntimeException $e){http_response_code(503);$variables['g']=null;$variables['error']='O piloto local de calendário está indisponível nesta configuração. Seu save foi preservado.';$state=[];}
+  self::scope($state,static function()use($variables){extract($variables,EXTR_SKIP);require dirname(__DIR__).'/app/view.php';});
+ }
+ public static function renderAgenda(array $g):void {
+  echo '<details class="panel world-agenda"><summary>Agenda consolidada da temporada</summary><p class="subtle">Datas simuladas. Exibimos apenas jogos já definidos; avanços no mata-mata podem acrescentar partidas.</p><ol>';
+  foreach($g['world_agenda']??[] as $entry){if(!in_array($g['club'],[$entry['home'],$entry['away']],true))continue;$date=DateTimeImmutable::createFromFormat('!Y-m-d',$entry['date'],new DateTimeZone('UTC'));$name=$g['world_reference'][$entry['competition']]['definition']['name'];echo '<li><strong>'.e($date?$date->format('d/m/Y'):$entry['date']).'</strong> · '.e($name).'<br>'.e($entry['home']).' × '.e($entry['away']).'</li>';}
+  echo '</ol></details>';
+ }
+ public static function enabled():bool{return config('APP_ENV')!=='production'&&config('RUMO10_WORLD_CALENDAR','0')==='1';}
+ public static function scope(array $g,callable $operation):mixed {
+  if(!isset($g['world_runtime']))return $operation();
+  if(!self::enabled())throw new RuntimeException('Esta carreira de teste exige a flag local de calendário; nenhum save foi convertido.');
+  if(($g['world_runtime']['schema']??0)!==1||empty($g['world_runtime']['fixture']))throw new RuntimeException('O piloto aceita apenas fixtures isoladas; inscrições oficiais permanecem bloqueadas.');
+  $definitions=[];foreach($g['world_reference']??[] as $id=>$edition){if($id!==($edition['definition_id']??null)||!CompetitionReference::verify($edition))throw new RuntimeException('Contrato da edição ausente ou corrompido.');if(empty($edition['definition']['test_fixture']))throw new RuntimeException('Competição oficial ainda não habilitada no piloto.');$definitions[$id]=$edition['definition'];}
+  foreach($g['memberships'] as $id=>$teams)if(!isset($definitions[$id]))throw new RuntimeException('Inscrição sem contrato de edição.');
+  return Competition::referenceScope($definitions,$operation);
+ }
+ /** Called only by isolated fixture builders, never by a player route/import. */
+ public static function attachFixture(array $g,array $definitions,array $members):array {
+  if(PHP_SAPI!=='cli'||!self::enabled()||config('RUMO10_WORLD_FIXTURES','0')!=='1')throw new RuntimeException('Fixtures esportivas só podem ser preparadas pelo teste CLI local.');
+  if(empty($g['id']))throw new InvalidArgumentException('Identificador estável de carreira obrigatório.');
+  $g['world_reference']=[];foreach($definitions as $id=>$c){if(empty($c['test_fixture'])||$id!==$c['id'])throw new InvalidArgumentException('Definição não identificada como fixture.');$g['world_reference'][$id]=CompetitionReference::pin($c,'fixture-2026-v1','simulation_adaptation');}
+  $g['world_runtime']=['schema'=>1,'fixture'=>true,'start_month'=>1,'start_day'=>1,'rest_days'=>3];$g['memberships']=$members;$g['official']=true;$g['competition_history']=[];$g['story_seed']??='world-test-'.(string)$g['id'];$g['play_mode']??='normal';
+  return self::scope($g,function()use($g){self::start($g);return $g;});
+ }
+ private static function start(array &$g):void {
+  $g['competitions']=[];$g['competition_results']=[];$g['season_competitions']=[];$g['world_completed']=[];$g['world_recaps']=[];$g['world_agenda']=[];$g['world_cursor_date']=null;$g['world_current_key']=null;
+  foreach(Competition::referencePairs() as [$up,$down]){if(!isset($g['memberships'][$up],$g['memberships'][$down])||array_intersect($g['memberships'][$up],$g['memberships'][$down]))throw new RuntimeException('Divisões da fixture sem par ou com clube duplicado.');if((Competition::catalog()[$up]['rules']['relegation']??0)!==(Competition::catalog()[$down]['rules']['access']??0))throw new RuntimeException('Slots de acesso e descenso incompatíveis.');}
+  foreach($g['memberships'] as $id=>$teams){$c=Competition::catalog()[$id];if(count($teams)<2||count($teams)!==count(array_unique($teams)))throw new RuntimeException('Inscrição inviável.');foreach($teams as $club)if(!isset(Competition::clubs()[$club]))throw new RuntimeException('Clube inexistente no catálogo de referência.');
+   $g['competitions'][$id]=Competition::tournament($id,$teams);if(in_array($g['club'],$teams,true))$g['season_competitions'][]=$id;
+  }
+  if(array_sum(array_map(fn($t)=>count($t['matches']),$g['competitions']))>self::MAX_PILOT_MATCHES)throw new RuntimeException('O lote excede o orçamento síncrono do piloto; nenhuma temporada foi ativada.');
+  if(!$g['season_competitions'])throw new RuntimeException('Clube sem inscrição na edição.');self::next($g);
+ }
+ private static function key(array $g,string $id,array $m):string{return hash('sha256',json_encode([$g['id'],$g['season'],$id,$m['phase']??'liga',$m['round'],$m['home'],$m['away']],JSON_THROW_ON_ERROR));}
+ private static function agenda(array &$g):array {
+  $start=sprintf('%04d-%02d-%02d',2025+$g['season'],$g['world_runtime']['start_month'],$g['world_runtime']['start_day']);
+  $planned=CompetitionCalendar::build((int)$g['id'],(int)$g['season'],$g['competitions'],$start,$g['world_runtime']['rest_days'],$g['world_agenda']);if(count($planned)>self::MAX_PILOT_MATCHES)throw new RuntimeException('Agenda excede o orçamento do piloto; ativação ampliada permanece bloqueada.');$g['world_agenda']=$planned;$map=[];
+  foreach($g['competitions'] as $id=>$t)foreach($t['matches'] as $i=>$m)$map[self::key($g,$id,$m)]=[$id,$i];return $map;
+ }
+ private static function advance(array &$g,string $id):void {
+  $t=&$g['competitions'][$id];if(!$t['done']&&!array_filter($t['matches'],fn($m)=>$m['status']!=='finalizada'))Competition::nextPhase($t);
+  if(!$t['done']||isset($g['world_completed'][$id]))return;
+  $drop=(int)(Competition::catalog()[$id]['rules']['relegation']??0);if($drop)$t['relegated']=array_slice($t['initial_ranking'],-$drop);
+  $g['world_completed'][$id]=true;
+  if(in_array($id,$g['season_competitions'],true)){$g['competition_results'][$id]=Competition::result($t,$g['club']);Progression::competition($g,$id,$g['competition_results'][$id]);$g['world_recaps'][]=$id;}
+ }
+ public static function next(array &$g):void {
+  for($guard=0;$guard<self::MAX_SYNC_EVENTS;$guard++){
+   if($g['world_recaps']){$id=array_shift($g['world_recaps']);self::activate($g,$id,null);$g['stage']='competicao_resumo';return;}
+   $map=self::agenda($g);$pending=null;
+   foreach($g['world_agenda'] as $entry){[$id,$index]=$map[$entry['key']];if($g['competitions'][$id]['matches'][$index]['status']!=='finalizada'){$pending=[$entry,$id,$index];break;}}
+   if(!$pending){foreach($g['competitions'] as $id=>$_)self::advance($g,$id);if($g['world_recaps'])continue;
+    if(array_filter($g['competitions'],fn($t)=>!$t['done']))continue;
+    $g['next_memberships']=$g['memberships'];
+    foreach(Competition::referencePairs() as [$up,$down]){$promoted=$g['competitions'][$down]['promoted'];$slots=Competition::catalog()[$up]['rules']['relegation']??0;if(count($promoted)!==$slots)throw new RuntimeException('Vagas incompatíveis entre divisões da fixture.');$relegated=$slots?array_slice($g['competitions'][$up]['initial_ranking'],-$slots):[];$g['competitions'][$up]['relegated']=$relegated;$g['next_memberships'][$up]=array_values(array_merge(array_diff($g['memberships'][$up],$relegated),$promoted));$g['next_memberships'][$down]=array_values(array_merge(array_diff($g['memberships'][$down],$promoted),$relegated));}
+    foreach($g['season_competitions'] as $id)$g['competition_results'][$id]=Competition::result($g['competitions'][$id],$g['club']);
+    TeamStrength::nextSeason($g);$g['stage']='resumo';$g['world_season_closed']=$g['season'];return;
+   }
+   [$entry,$id,$index]=$pending;$g['world_cursor_date']=$entry['date'];$m=&$g['competitions'][$id]['matches'][$index];
+   if(in_array($g['club'],[$m['home'],$m['away']],true)){unset($m);self::activate($g,$id,$index);$g['world_current_key']=$entry['key'];$g['stage']='treino';return;}
+   Competition::simulate($m,$g);unset($m);self::advance($g,$id);
+  }
+  throw new RuntimeException('Limite de processamento do calendário; transação deve ser revertida.');
+ }
+ private static function activate(array &$g,string $id,?int $index):void {$t=$g['competitions'][$id];$g['competition_id']=$id;$g['competition_cursor']=array_search($id,$g['season_competitions'],true);$g['matches']=$t['matches'];$g['teams']=$t['teams'];$g['tier']=Competition::catalog()[$id]['tier'];if($index!==null)$g['round']=$t['matches'][$index]['round'];}
+ public static function afterWeekend(array &$g):void {
+  $id=$g['competition_id'];$i=Game::currentIndex($g);$m=$g['matches'][$i];if($m['status']!=='finalizada'||self::key($g,$id,$m)!==$g['world_current_key'])throw new RuntimeException('Partida fora da agenda persistida.');
+  $g['competitions'][$id]['matches']=$g['matches'];self::advance($g,$id);self::next($g);
+ }
+ public static function renew(array &$g):void {
+  if(($g['world_season_closed']??null)!==$g['season']-1||array_filter($g['competitions'],fn($t)=>!$t['done']))throw new RuntimeException('Temporada anterior ainda não encerrada.');
+  $g['competition_history'][]=['season'=>$g['season']-1,'results'=>$g['competition_results']];$g['memberships']=$g['next_memberships'];unset($g['next_memberships']);$g['club_strengths']=$g['next_club_strengths']??$g['club_strengths']??[];unset($g['next_club_strengths']);self::start($g);
+ }
+}

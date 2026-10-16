@@ -75,7 +75,7 @@ final class Repository {
             if($version!==$g['version']) throw new InvalidArgumentException('Esta tela ficou desatualizada. Recarregue antes de escolher.');
             $before=['skills'=>$g['skills'],'states'=>$g['states'],'season'=>$g['season'],'round'=>$g['round'],'stage'=>$g['stage']];
             $careerId=$g['id'];$start=RequestMetrics::start();$next=Game::command($g,$action,$input);RequestMetrics::end('engine',$start);unset($g);
-            Achievements::persist($this,$account,$next);
+            WorldSeason::scope($next,function()use($account,&$next){Achievements::persist($this,$account,$next);});
             if($next['stage']==='aposentado' && $before['stage']!=='aposentado') {
                 RetiredCareer::persist($this,$account,$next,['key'=>$key,'hash'=>$hash]);unset($next);
                 $persisted=$this->load($account);$this->db->commit();return $persisted;

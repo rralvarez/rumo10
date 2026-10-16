@@ -53,6 +53,9 @@ final class Game {
         return ActionResolution::trace($g,$o)['chance'];
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
+        return WorldSeason::scope($g,fn()=>self::executeCommand($g,$action,$input,$automated,$rng));
+    }
+    private static function executeCommand(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
         $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
         if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');$g['version']++;return $g;}
@@ -253,7 +256,7 @@ final class Game {
                 foreach(['home','away'] as $side) {$played[$side.'_yellow']=random_int(0,4);$played[$side.'_red']=0;}
                 $side=$played['home']===$g['club']?'home':'away';$played[$side.'_yellow']+=$played['stats']['cards'];$played[$side.'_red']+=(int)($played['stats']['cards']>=2);unset($played);
             }
-            foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') Competition::simulate($other,$g); unset($other);
+            if(!isset($g['world_runtime']))foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') Competition::simulate($other,$g); unset($other);
             $g['stage']='fim_semana'; $g['states']['ritmo_jogo']=self::clamp($g['states']['ritmo_jogo']+3);
         }
     }
