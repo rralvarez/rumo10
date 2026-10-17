@@ -29,6 +29,7 @@ final class PlayMode {
         for($step=0;$step<3000;$step++) {
             if($g['season']!==$season)throw new LogicException('A simulação não pode renovar contratos.');
             if(in_array($g['stage'],['resumo','aposentado'],true))break;
+            if($g['stage']==='world_processing'){if($mode==='expresso')$g['world_resume_plan']=$plan;break;}
             if($g['stage']==='competicao_resumo') {
                 if($mode==='rapido')break;
                 $g=Game::command($g,'continue',[],true);continue;
