@@ -21,7 +21,8 @@ final class WorldSeason {
   if(($g['world_runtime']['schema']??0)!==1||empty($g['world_runtime']['fixture']))throw new RuntimeException('O piloto aceita apenas fixtures isoladas; inscrições oficiais permanecem bloqueadas.');
   $definitions=[];foreach($g['world_reference']??[] as $id=>$edition){if($id!==($edition['definition_id']??null)||!CompetitionReference::verify($edition))throw new RuntimeException('Contrato da edição ausente ou corrompido.');if(empty($edition['definition']['test_fixture']))throw new RuntimeException('Competição oficial ainda não habilitada no piloto.');$definitions[$id]=$edition['definition'];}
   foreach($g['memberships'] as $id=>$teams)if(!isset($definitions[$id]))throw new RuntimeException('Inscrição sem contrato de edição.');
-  return Competition::referenceScope($definitions,$operation);
+  $clubs=[];foreach($definitions as $definition)foreach($definition['reference_clubs']??[] as $name=>$club){if(isset($clubs[$name])&&$clubs[$name]!==$club)throw new RuntimeException('Identidade local divergente.');$clubs[$name]=$club;}
+  return Competition::referenceScope($definitions,$operation,$clubs);
  }
  /** Called only by isolated fixture builders, never by a player route/import. */
  public static function attachFixture(array $g,array $definitions,array $members):array {
@@ -62,6 +63,7 @@ final class WorldSeason {
     if(array_filter($g['competitions'],fn($t)=>!$t['done']))continue;
     $g['next_memberships']=$g['memberships'];
     foreach(Competition::referencePairs() as [$up,$down]){$promoted=$g['competitions'][$down]['promoted'];$slots=Competition::catalog()[$up]['rules']['relegation']??0;if(count($promoted)!==$slots)throw new RuntimeException('Vagas incompatíveis entre divisões da fixture.');$relegated=$slots?array_slice($g['competitions'][$up]['initial_ranking'],-$slots):[];$g['competitions'][$up]['relegated']=$relegated;$g['next_memberships'][$up]=array_values(array_merge(array_diff($g['memberships'][$up],$relegated),$promoted));$g['next_memberships'][$down]=array_values(array_merge(array_diff($g['memberships'][$down],$promoted),$relegated));}
+    if(isset($g['alagoas_trial']))AlagoasTrial::prepareNext($g);
     foreach($g['season_competitions'] as $id)$g['competition_results'][$id]=Competition::result($g['competitions'][$id],$g['club']);
     TeamStrength::nextSeason($g);$g['stage']='resumo';$g['world_season_closed']=$g['season'];return;
    }

@@ -3,9 +3,10 @@ declare(strict_types=1);
 /** Universo independente por carreira. Cadastro de 2026; resultados sempre simulados. */
 final class Competition {
     private static ?array $referenceCatalog=null;
-    public static function referenceScope(array $definitions,callable $operation):mixed {
-        $previous=self::$referenceCatalog;self::$referenceCatalog=$definitions;
-        try{return $operation();}finally{self::$referenceCatalog=$previous;}
+    private static array $referenceClubs=[];
+    public static function referenceScope(array $definitions,callable $operation,array $clubs=[]):mixed {
+        $previous=self::$referenceCatalog;$previousClubs=self::$referenceClubs;self::$referenceCatalog=$definitions;self::$referenceClubs=$clubs;
+        try{return $operation();}finally{self::$referenceCatalog=$previous;self::$referenceClubs=$previousClubs;}
     }
     public static function referencePairs():array {
         $pairs=[];foreach(self::$referenceCatalog??[] as $id=>$c)if(!empty($c['test_fixture'])&&isset($c['progression_upper']))$pairs[]=[$c['progression_upper'],$id];return $pairs;
@@ -16,6 +17,7 @@ final class Competition {
         static $data; return $data??=LocalCompetitionCatalog::competitions(array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/africa-south-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/top250-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id'));
     }
     public static function clubs(): array {
+        if(self::$referenceClubs){$clubs=self::$referenceClubs;self::$referenceClubs=[];try{return array_replace(self::clubs(),$clubs);}finally{self::$referenceClubs=$clubs;}}
         if(RumoHub::enabled()){static $hubClubs;return $hubClubs??=LocalCompetitionCatalog::clubs(RumoHub::catalog()['clubs']);}
         static $data;
         if($data===null) {
@@ -48,6 +50,7 @@ final class Competition {
     }
     public static function tournament(string $id,?array $teams=null): array {
         $c=self::catalog()[$id]; $teams??=$c['teams'];
+        if($c['format']==='alagoas')return AlagoasCompetition::create($c,$teams);
         if($c['format']==='amazonense')return AmazonenseCompetition::create($c,$teams);
         if($c['format']==='state')return StateCompetition::create($c,$teams);
         if($c['format']==='concacaf')return ConcacafCompetition::create($c,$teams);
@@ -79,6 +82,7 @@ final class Competition {
         usort($t['matches'],fn($a,$b)=>$a['round']<=>$b['round']); return $t;
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null): array {
+        if($t['format']==='alagoas')return AlagoasCompetition::standings($t,$teams,$phase);
         $teams??=$t['teams'];$cross=$t['format']==='amazonense' || ($t['format']==='state' && !empty(self::catalog()[$t['id']]['rules']['cross'])) || ($t['format']==='international' && str_starts_with($t['id'],'ar-'));
         $split=($t['id']==='sc-1' || $t['format']==='world') && $phase==='split';if($split)$cross=true;
         if($t['id']==='us-1')$cross=true;
@@ -165,6 +169,7 @@ final class Competition {
     }
     public static function nextPhase(array &$t): void {
         foreach($t['matches'] as $m) if($m['status']!=='finalizada')throw new LogicException('Fase incompleta.');
+        if($t['format']==='alagoas'){AlagoasCompetition::next($t);return;}
         if($t['format']==='amazonense'){AmazonenseCompetition::next($t);return;}
         if($t['format']==='state'){StateCompetition::next($t);return;}
         if($t['format']==='concacaf'){ConcacafCompetition::next($t);return;}
@@ -266,6 +271,7 @@ final class Competition {
         $g['stage']='competicao_resumo';$g['feedback']=null;
     }
     public static function result(array $t,string $club): array {
+        if($t['format']==='alagoas'&&!empty($t['done']))return ['name'=>self::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'promoted'=>in_array($club,$t['promoted'],true),'relegated'=>in_array($club,$t['relegated'],true),'position'=>array_search($club,$t['final_ranking'],true)+1,'group'=>null,'access_pending'=>false,'continuity'=>CompetitionContinuity::status($t['id']),'relegation_pending'=>false,'titles'=>[]];
         $position=array_search($club,$t['initial_ranking'],true)+1;$group=null;
         if(count($t['initial_groups'])>1)foreach($t['initial_groups'] as $i=>$teams)if(in_array($club,$teams,true)) {
             $ranking=$t['format']==='international'?InternationalCompetition::ranking($t,$teams,'liga'):self::rank($t,array_values(array_diff($teams,['__folga__'])),'liga');$position=array_search($club,$ranking,true)+1;$group=$i+1;
