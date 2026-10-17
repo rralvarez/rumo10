@@ -1,0 +1,23 @@
+{
+  "public_activation": false,
+  "national_editions_per_career": 1,
+  "national_renewals": 0,
+  "state_complete_seasons_pdo": 5,
+  "abc_membership_exchange_plan_verified": true,
+  "exchanges_executed": false,
+  "source_D_runtime_verified": false,
+  "D_reference_annex_rows": 96,
+  "mandatory_cup_runtime": false,
+  "legacy_filler_unchanged": true,
+  "hub_changes": false,
+  "production_changes": false,
+  "ddl": false,
+  "archive_previous_edition_supported": false,
+  "next_lot": [
+    "D canonical admission and runtime proof",
+    "24-club C derived simulated contract",
+    "mandatory cup entry and runtime coverage",
+    "execute reciprocal swaps atomically only after all dependencies pass",
+    "five national seasons incl.two renewals and performance evidence"
+  ]
+}

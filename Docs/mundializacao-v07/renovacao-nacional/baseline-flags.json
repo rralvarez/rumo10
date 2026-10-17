@@ -1,0 +1,13 @@
+{
+  "calendar": "0",
+  "fixtures": "0",
+  "observed": "2026-10-17",
+  "only_these_flags_read_no_env_content_exported": true,
+  "head_start": "fa95e683d373b18087797e21d4f7e62a9dfeefc9",
+  "worktrees": 1,
+  "preexisting_untracked_preserved": "Docs/levantamento-2026-10-15",
+  "workflows_push_branches": [
+    "main"
+  ],
+  "new_schema_required": false
+}

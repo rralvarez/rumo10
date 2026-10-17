@@ -1,0 +1,47 @@
+{
+  "runtime_activation": false,
+  "cups": [
+    {
+      "competition": "Copa do Brasil",
+      "base_edition": 2026,
+      "expected_entries": 126,
+      "sources_buckets": {
+        "serie_a_current": 20,
+        "previous_regional_and_c_d_champions": 4,
+        "state_competitions_previous": 102
+      },
+      "next_reference_capacity": 128,
+      "missing": [
+        "126canonical_entry_claims_and_replacements",
+        "seeded_draw_and_bracket_runtime",
+        "phased_entries_and_fixture_calendar",
+        "future_simulated_qualification_and_mandatory_coverage"
+      ],
+      "eligibility_from_alagoas_candidate": "not_effective_entry"
+    },
+    {
+      "competition": "Copa do Nordeste",
+      "base_edition": 2026,
+      "missing": [
+        "full_primary_REC_verification",
+        "canonical_entry_claims_and_continental_exclusions",
+        "seeded_groups_and_calendar_runtime",
+        "future_entry_rules"
+      ],
+      "eligibility_from_geography_alone": false
+    }
+  ],
+  "mandatory_policy": "No complete national career may be renewed while confirmed or unassessed mandatory entries remain uncovered. Diagnostic pilot remains unavailable to real players.",
+  "verified_current_pilot_mandatory_entries": [
+    {
+      "club": "CRB-AL",
+      "competition": "Copa do Brasil",
+      "evidence": "REC Anexo A PDF p.19 criterion3; runtime unavailable"
+    },
+    {
+      "club": "CRB-AL",
+      "competition": "Copa do Nordeste",
+      "evidence": "CBF detailed table PDF pp.1-2 refs004/012/022/035/042; runtime unavailable"
+    }
+  ]
+}

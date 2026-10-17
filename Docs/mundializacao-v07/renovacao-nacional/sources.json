@@ -1,0 +1,40 @@
+{
+  "consulted": "2026-10-17",
+  "abc_reference_file": "database/competition-references/br-abc-2026.json",
+  "abc_sources": {
+    "br-a": {
+      "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_SA_rie_A_2026_v15_12_2025_final_02692c1077.pdf",
+      "location": "arts.3,8,9,14-15; Anexo A p.16"
+    },
+    "br-b": {
+      "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+      "location": "arts.3,5-6,11-14; Anexo A p.16"
+    },
+    "br-c": {
+      "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_C_2026_d2552ddc00.pdf",
+      "location": "arts.2,5,7,12-26,42; Anexos A/B pp.16-18"
+    }
+  },
+  "asymmetric_c_transition": {
+    "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/detalhes/competicoes-campeonato-brasileiro-serie-b/cbf-publica-documentos-tecnicos-da-serie-c-de-2026",
+    "claim": "2027 capacity24; future simulated participants still depend on results of all feeders"
+  },
+  "serie_d": {
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+    "location": "arts.2-3 pp.4-6; accession playoffs chapter4",
+    "state": "rec_revisited; 96 individual admission proofs remain incomplete"
+  },
+  "copa_do_brasil": {
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+    "location": "art.2 and annex A; arts.10-12",
+    "state": "reference_only;126entries;2027changes128;runtime_and_entry_ledger_missing"
+  },
+  "nordeste": {
+    "url": "https://www.cbf.com.br/futebol-brasileiro/noticias/serie-a/a/confira-os-documentos-tecnicos-da-copa-do-nordeste-de-2026",
+    "state": "indexed_primary_article; direct_fetch502; full_REC_not_verified_this_increment",
+    "additional_primary": "https://www.cbf.com.br/futebol-brasileiro/noticias/copa-nordeste-masculino/a/copa-do-nordeste-semifinais-tem-inicio-nesta-quarta-feira",
+    "claim": "continental participants excluded from regional competition; no automatic membership from geography",
+    "official_detailed_table": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/Tabela_Detalhada_1_Fase_Copa_do_Nordeste_2026_29740e7e40.pdf",
+    "table_claim": "CRB participates; refs004,012,022,035,042; 20 clubs; no results imported"
+  }
+}

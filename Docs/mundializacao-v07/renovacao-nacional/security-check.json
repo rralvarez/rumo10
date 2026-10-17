@@ -1,0 +1,7 @@
+{
+  "secret_pattern_scan_findings": 0,
+  "private_storage_or_dump_staged": false,
+  "schema_operations": false,
+  "production_access": false,
+  "hub_changes": false
+}

@@ -1,0 +1,37 @@
+{
+  "baseline_delivery50": {
+    "commands": 620,
+    "queries": 21703,
+    "peak_snapshot_bytes": 780351,
+    "max_command_ms": 242.33
+  },
+  "abc_one_edition": {
+    "season": 1,
+    "commands": 734,
+    "queries": 25693,
+    "max_command_ms": 877.73,
+    "p50_ms": 258.72,
+    "p95_ms": 401.12,
+    "closure_bytes": 5942,
+    "history_bytes": 2,
+    "season_close_command_ms": 394.24,
+    "elapsed_ms": 212083.45,
+    "snapshot_bytes": 886930,
+    "peak_snapshot_bytes": 1263388,
+    "games": 57,
+    "goals": 10,
+    "assists": 14
+  },
+  "comparability": "observational local runs; different competition counts and random match paths; concurrent regression workload; not controlled per-request improvement proof",
+  "new_national_renewals": 0,
+  "national_history_growth_measured": false,
+  "npc_budget": 8,
+  "default_event_limit": 128,
+  "opt_in_event_limit": 1152,
+  "hosting_workers_required": false,
+  "remaining_costs": [
+    "about35queries_per_command",
+    "full_snapshot_rewrite_each_command",
+    "no national multi-season history/performance cohort yet"
+  ]
+}

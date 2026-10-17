@@ -1,0 +1,24 @@
+{
+  "edition": 2026,
+  "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+  "status": "blocked",
+  "catalog_count": 96,
+  "approved_claims": 0,
+  "quota_policy_verified_not_club_eligibility": true,
+  "legacy_filler_unchanged": true,
+  "missing": [
+    "individual state/selective permission and substitution validation beyond annex",
+    "simulation admission policy for future seasons and vacancies",
+    "new D sports runtime including six promotions and groups pinned by edition",
+    "read compatibility and replacement proof for legacy filler"
+  ],
+  "annex_reference": "database/competition-references/br-d-annex-2026.json",
+  "base_annex_matches": 96,
+  "counts_by_annex_criterion": {
+    "1": 4,
+    "2": 64,
+    "3": 14,
+    "4": 14
+  },
+  "approved_claims_for_runtime": 0
+}

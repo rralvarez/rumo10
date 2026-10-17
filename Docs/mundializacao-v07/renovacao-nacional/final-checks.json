@@ -1,0 +1,47 @@
+[
+  {
+    "suite": "national-renewal-contracts-v07",
+    "output": "OK: 121 contratos de homologação/mandos/desempates e bloqueios.",
+    "exit": 0
+  },
+  {
+    "suite": "world-foundation-v07",
+    "output": "OK: 163 verificações de referência/agenda; cinco agendas, não cinco carreiras completas.",
+    "exit": 0
+  },
+  {
+    "suite": "world-disabled-v07",
+    "output": "OK: flag desligada retorna 503 claro sem converter nem alterar o save do piloto.",
+    "exit": 0
+  },
+  {
+    "suite": "v06-boundary",
+    "output": "OK: 11 fronteiras v0.6; fórmulas e XP-base preservados.",
+    "exit": 0
+  },
+  {
+    "suite": "world-boundary-v07",
+    "output": "OK: 24 fronteiras v0.7; sem mudança de fórmulas, catálogo existente ou Hub.",
+    "exit": 0
+  },
+  {
+    "suite": "post-match-v06",
+    "output": "OK: 215 verificações pós-jogo; seis posições e três modos, sem banco.",
+    "exit": 0
+  },
+  {
+    "suite": "achievements-v06",
+    "output": "OK: 96 verificações catálogo/projeção; persistência exige suíte MySQL própria.",
+    "exit": 0
+  },
+  {
+    "suite": "growth-v061",
+    "output": "OK: 32 verificações v0.6.1 puras.",
+    "exit": 0
+  },
+  {
+    "suite": "national-contracts-v07",
+    "output": "OK: 68 verificações de elegibilidade/mandos/classificações.",
+    "exit": 0
+  }
+]
