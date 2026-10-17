@@ -1,0 +1,13 @@
+{
+  "v06_boundary": 11,
+  "world_boundary": 24,
+  "achievements_catalog": 96,
+  "achievements": 50,
+  "points_r": 1000,
+  "feedback_pure": 32,
+  "post_match": 215,
+  "world_disabled": "pass",
+  "php_lint_files": 5,
+  "http_fixture_checks": 26,
+  "no_production_tests": true
+}

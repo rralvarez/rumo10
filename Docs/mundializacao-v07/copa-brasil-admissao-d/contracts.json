@@ -1,0 +1,81 @@
+{
+    "checks": 62,
+    "capacity_contract": [
+        {
+            "phase": 1,
+            "entrants": 28,
+            "participants": 28,
+            "matches": 14,
+            "legs": 1,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 2,
+            "entrants": 74,
+            "participants": 88,
+            "matches": 44,
+            "legs": 1,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 3,
+            "entrants": 4,
+            "participants": 48,
+            "matches": 24,
+            "legs": 1,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 4,
+            "entrants": 0,
+            "participants": 24,
+            "matches": 12,
+            "legs": 1,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 5,
+            "entrants": 20,
+            "participants": 32,
+            "matches": 32,
+            "legs": 2,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 6,
+            "entrants": 0,
+            "participants": 16,
+            "matches": 16,
+            "legs": 2,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 7,
+            "entrants": 0,
+            "participants": 8,
+            "matches": 8,
+            "legs": 2,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 8,
+            "entrants": 0,
+            "participants": 4,
+            "matches": 4,
+            "legs": 2,
+            "type": "capacity_contract_only_not_gameplay"
+        },
+        {
+            "phase": 9,
+            "entrants": 0,
+            "participants": 2,
+            "matches": 1,
+            "legs": 1,
+            "type": "capacity_contract_only_not_gameplay"
+        }
+    ],
+    "copa_brasil_games_played": 0,
+    "national_renewals_applied": 0,
+    "input_fixture_replaced": false,
+    "flags_publicly_activated": false
+}
