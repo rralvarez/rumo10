@@ -1,0 +1,44 @@
+{
+  "base": "ab9ff3015c6664531377e19d2aaaebcd50892478",
+  "faf_adapter_version": "faf-al2026-trial-v1",
+  "state_gameplay_integrated": true,
+  "five_pdo_state_seasons_tested": true,
+  "official_path_released": false,
+  "brazil_links_resolved_end_to_end": 0,
+  "brazil_links_blocked": 23,
+  "foreign_links_blocked": 9,
+  "serie_d_legacy_filler_changed": false,
+  "national_entries_granted": false,
+  "remaining": [
+    "national entry ledgers and runtimes",
+    "Sub23 complete squad eligibility",
+    "B first phase home allocation from previous edition",
+    "bounded processing for wider national calendar"
+  ],
+  "local_pdo_ranges": {
+    "commands": {
+      "min": 128,
+      "max": 160
+    },
+    "queries": {
+      "min": 4483,
+      "max": 5603
+    },
+    "max_command_ms": {
+      "min": 89.62,
+      "max": 188.07
+    },
+    "season_close_command_ms": {
+      "min": 57.98,
+      "max": 79.36
+    },
+    "elapsed_ms": {
+      "min": 7304.03,
+      "max": 10637.58
+    },
+    "snapshot_bytes": {
+      "min": 141676,
+      "max": 183845
+    }
+  }
+}

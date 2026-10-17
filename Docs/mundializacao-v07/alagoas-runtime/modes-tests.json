@@ -1,0 +1,150 @@
+{
+    "checks": 3168,
+    "official_path_released": false,
+    "results": [
+        {
+            "position": "zagueiro",
+            "mode": "normal",
+            "commands": 129,
+            "games": 12,
+            "fixtures": 83,
+            "snapshot_bytes": 134827
+        },
+        {
+            "position": "zagueiro",
+            "mode": "rapido",
+            "commands": 16,
+            "games": 14,
+            "fixtures": 83,
+            "snapshot_bytes": 170147
+        },
+        {
+            "position": "zagueiro",
+            "mode": "expresso",
+            "commands": 1,
+            "games": 10,
+            "fixtures": 83,
+            "snapshot_bytes": 438814
+        },
+        {
+            "position": "lateral",
+            "mode": "normal",
+            "commands": 129,
+            "games": 12,
+            "fixtures": 83,
+            "snapshot_bytes": 134628
+        },
+        {
+            "position": "lateral",
+            "mode": "rapido",
+            "commands": 12,
+            "games": 10,
+            "fixtures": 83,
+            "snapshot_bytes": 160747
+        },
+        {
+            "position": "lateral",
+            "mode": "expresso",
+            "commands": 1,
+            "games": 14,
+            "fixtures": 83,
+            "snapshot_bytes": 599994
+        },
+        {
+            "position": "volante",
+            "mode": "normal",
+            "commands": 146,
+            "games": 13,
+            "fixtures": 83,
+            "snapshot_bytes": 145287
+        },
+        {
+            "position": "volante",
+            "mode": "rapido",
+            "commands": 16,
+            "games": 14,
+            "fixtures": 83,
+            "snapshot_bytes": 171503
+        },
+        {
+            "position": "volante",
+            "mode": "expresso",
+            "commands": 1,
+            "games": 12,
+            "fixtures": 83,
+            "snapshot_bytes": 509786
+        },
+        {
+            "position": "meia",
+            "mode": "normal",
+            "commands": 149,
+            "games": 14,
+            "fixtures": 83,
+            "snapshot_bytes": 140020
+        },
+        {
+            "position": "meia",
+            "mode": "rapido",
+            "commands": 12,
+            "games": 10,
+            "fixtures": 83,
+            "snapshot_bytes": 162066
+        },
+        {
+            "position": "meia",
+            "mode": "expresso",
+            "commands": 1,
+            "games": 12,
+            "fixtures": 83,
+            "snapshot_bytes": 501942
+        },
+        {
+            "position": "ponta",
+            "mode": "normal",
+            "commands": 106,
+            "games": 10,
+            "fixtures": 83,
+            "snapshot_bytes": 128578
+        },
+        {
+            "position": "ponta",
+            "mode": "rapido",
+            "commands": 16,
+            "games": 14,
+            "fixtures": 83,
+            "snapshot_bytes": 174976
+        },
+        {
+            "position": "ponta",
+            "mode": "expresso",
+            "commands": 1,
+            "games": 14,
+            "fixtures": 83,
+            "snapshot_bytes": 583551
+        },
+        {
+            "position": "centroavante",
+            "mode": "normal",
+            "commands": 111,
+            "games": 10,
+            "fixtures": 83,
+            "snapshot_bytes": 129486
+        },
+        {
+            "position": "centroavante",
+            "mode": "rapido",
+            "commands": 17,
+            "games": 15,
+            "fixtures": 83,
+            "snapshot_bytes": 177343
+        },
+        {
+            "position": "centroavante",
+            "mode": "expresso",
+            "commands": 1,
+            "games": 14,
+            "fixtures": 83,
+            "snapshot_bytes": 588198
+        }
+    ]
+}

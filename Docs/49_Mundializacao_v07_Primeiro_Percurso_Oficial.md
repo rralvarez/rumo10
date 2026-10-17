@@ -1,109 +1,102 @@
-# v0.7 — primeiro percurso oficial: admissão fundamentada e bloqueio de ativação
+# v0.7 — Alagoas: adaptador estadual integrado, continuidade nacional pendente
 
-Data: 16/10/2026. Branch: `codex/mundializacao-v07`. Base conferida: `c4d69fff21851a647697c996f848234f80bc4ed2`. Único conteúdo preexistente não versionado: `Docs/levantamento-2026-10-15/`, preservado e excluído dos commits. Workflows automáticos limitados a main; sem deploy pela branch de trabalho.
+Atualização: 17/10/2026. Branch `codex/mundializacao-v07`; base real desta continuação: `ab9ff3015c6664531377e19d2aaaebcd50892478`, posterior ao c4d69ff citado no pedido. O relatório anterior permanece no histórico Git desse commit. Não foi repetida a auditoria mundial. A pasta preexistente `Docs/levantamento-2026-10-15/` foi preservada fora dos commits.
 
-**Resultado: critério de conclusão ainda não alcançado. ZERO percursos oficiais ativados.** Esta entrega resolve a evidência de identidade e acrescenta contratos/validadores de admissão; não converte o piloto sintético em percurso oficial nem anuncia liga+copa oficial jogável. Não houve alteração do motor esportivo, saves reais, Hub, produção, credenciais ou .env.
+**O percurso completo ainda NÃO está liberado.** Agora há adaptação esportiva de Alagoas executada no Game/Repository, com cinco temporadas em memória e cinco em MySQL. Isso é um avanço sobre a entrega anterior, que tinha apenas contratos e validadores de admissão. A execução permanece um teste CLI isolado, com participantes reais e fontes FAF; NÃO é uma carreira oficial disponível no site, nem validação de suas competições nacionais.
 
-## Escolha e descobertas desta continuação
+## Implementação efetiva
 
-Alagoas continua sendo o percurso prioritário: o material já reunido permite fechar a identificação e localizar precisamente as exceções da edição. Não foi repetida a auditoria mundial. A alternativa examinada, Taça Fares Lopes/Ceará 2026, também concede vaga na Copa do Brasil; trocar de estado não elimina essa dependência. Não alegamos que todos os demais estados foram descartados ou que nenhum percurso brasileiro seja possível.
+`AlagoasCompetition`, versão `faf-al2026-trial-v1`, é chamado por Competition::tournament/standings/nextPhase/result somente no formato novo `alagoas`. O caminho legado permanece igual. Foram implementados:
 
-### Identidade: impedimento documental resolvido
+- Turno único de oito clubes na Série A e seis na B; copa inicialmente com os 11 participantes efetivos depois da eliminação do Aliança, em grupos de cinco e seis. Folgas não viram partidas.
+- Quatro classificados nas ligas; dois por grupo na copa. Semifinais cruzadas na copa e 1×4/2×3 nas ligas; finais conforme vencedores.
+- Semifinais/final em ida e volta nas ligas e jogo único na copa; mando de semifinal conforme classificação e de final pela campanha acumulada. Empates usam o resolvedor de pênaltis existente.
+- Pontos, vitórias, saldo, gols, confronto direto apenas entre dois empatados, vermelhos, amarelos e sorteio persistido. A campanha acumulada inclui jogos contra adversários eliminados; não é uma tabela apenas dos finalistas.
+- Ranking final completo; um acesso da B e uma queda da A; copa não promove clube. Títulos vêm do resultado finalizado e passam pela coleta existente, sem títulos de fase inventados.
+- Agenda compartilhada com descanso simulado de três dias, ligada aos comandos reais do jogador e resultados NPC. Referências e clubes complementares estão fixados no snapshot, com hash e versão, sem alteração de catálogo global/Hub.
+- Projeções mínimas/potenciais reconhecem o novo formato. Para Zumbi na edição inicial: dez jogos mínimos (cinco B + cinco copa), até seis de mata-mata.
 
-A notícia oficial da FAF afirma expressamente a continuidade do antigo Sete de Setembro para Sporting FC, utilizado também como Sporting Teotônio. Ela é suficiente para o alias de referência esportiva desta edição; não é necessário inventar um identificador federativo numérico para registrar essa correspondência. O diagnóstico anterior era excessivamente restritivo nesse ponto.
+`AlagoasTrial` prepara apenas fixtures CLI locais com flags explícitas. As cinco identidades ausentes são disponibilizadas exclusivamente no contexto dessas fixtures, com nome/UF/país e fonte. Não cria cidades, escudos, jogadores ou ratings oficiais; usa o fallback de força já existente e identificado como provisório. Esse contexto é restaurado por try/finally, sem vazar para outra carreira.
 
-`database/competition-references/br-al-2026.json` associa esses rótulos a `Sporting-AL`, que já existe no jogo. Não altera o cadastro global, cores, cidade, escudo ou nomes em históricos. O alias não é aplicado automaticamente a outras edições.
+## Participação e futuro simulado
 
-### Copa: o REC nominal não basta
+O alias Sporting-AL / Sporting FC / Sporting Teotônio / antigo Sete de Setembro permanece fundamentado na notícia oficial FAF. Não houve renomeação de históricos.
 
-O Ato 003/2026 da FAF, de 27/01, elimina o Desportivo Aliança e manda cancelar seus jogos. A homologação confirma essa situação. Portanto, há 12 nomes no REC, mas 11 equipes efetivas após a exclusão; não se pode simplesmente gerar dois grupos de seis com todos inscritos. Não importamos o campeão ou qualquer resultado histórico.
+O Ato 003/2026 exclui o Aliança apenas da copa inicial; seus jogos não são gerados e a sanção não é aplicada à Série B. Não foram importados placares ou campeões históricos.
 
-O contrato conserva a lista nominal e registra a exclusão separadamente, com data e fonte. O validador não aplica essa sanção à Série B nem a 2027. Regulamento de referência e atos posteriores precisam compor o mesmo contrato efetivo de edição.
+Na renovação da fixture, a copa usa uma política explicitamente simulada: os oito participantes da A anterior mais os quatro semifinalistas da B anterior, distribuídos deterministicamente em dois grupos de seis. O modelo reutiliza as regras esportivas-base de 2026, sem alegar regulamento oficial posterior. A sanção histórica não é carregada automaticamente para os anos seguintes. Acesso/descenso utiliza os resultados produzidos naquela carreira e preserva oito/seis clubes nas ligas.
 
-### Participantes e dependências
+O ledger `national_qualification_pending` registra candidatos e motivo do bloqueio por temporada, com chave única. Não concede inscrição nacional, R, XP ou título por candidatura. O repasse de vaga da copa é exercitado como candidato, mas a elegibilidade nacional completa ainda não está certificada.
 
-A Série B tem seis identidades resolvidas no catálogo local. Na Série A faltam quatro chaves canônicas: Coruripe-AL, Cruzeiro Arapiraca-AL, Murici-AL e Penedense-AL; a copa acrescenta Dimensão Saúde-AL. Essas cinco chaves também não constam no cache Hub lido nesta conferência, o que NÃO comprova ausência na API atual. Não consultamos nem modificamos a API do Hub. Não criamos avaliações de força para preencher as ausências.
+## O que impede a liberação completa
 
-O acesso B→A e o descenso A→B têm uma vaga cada na referência oficial. Continuam sem ativação ponta a ponta. A versão atual do runtime aceita apenas fixtures; faltam o adaptador esportivo de Alagoas, confrontos diretos nos desempates, mando da final pela campanha acumulada, elegibilidade Sub-23 e a composição futura das inscrições.
+1. Copa do Brasil, Nordeste e Série D não têm, neste percurso, inscrições e calendários nacionais consolidados íntegros. O teste estadual não os simula nem inventa suas vagas. A Série A e a copa não podem prometer destinos nacionais inexistentes.
+2. A Série D continua com política candidata bloqueada: RNF/quotas estão documentados, mas falta ledger real completo dos 96 clubes, evidência de mérito, exceções e composição futura. O preenchimento paulista do legado NÃO foi removido; nenhuma inscrição histórica foi regravada.
+3. A elegibilidade Sub-23 do elenco completo e as condições de inscrição dos atletas não foram implementadas. O atleta das cinco temporadas vai dos 18 aos 22 anos, o que não prova conformidade dos demais jogadores.
+4. A distribuição de mandos da primeira fase da B segundo a classificação anterior ainda não está validada. O calendário usa geração simulada; não deve ser anunciado como reprodução integral do REC. Datas são simuladas, não a tabela oficial de 2026.
+5. O piloto suporta este conjunto de 83/88 jogos totais, mas mantém teto de 128. Isso não comprova capacidade para Copa do Brasil + estaduais + demais torneios. É necessário implementar e medir processamento limitado/reentrante antes de ampliar a escala.
 
-A Série A prevê qualificações nacionais condicionadas aos critérios CBF, e a copa prevê Copa do Brasil, inclusive repasse de vaga e obrigação de participação estadual. Essas vagas não podem virar promoções, ofertas de mercado ou inscrições presumidas. A Copa do Brasil 2026 possui 126 equipes/nove fases; a CBF informa 155 partidas. O limite atual do piloto é 128 partidas, antes mesmo de agregar estaduais. Liberar a copa exige ampliar de forma medida o processamento consolidado, não apenas retirar um guard.
+Logo, permanecem **0 dos 23 vínculos brasileiros liberados ponta a ponta**, 23 bloqueados e 9 internacionais bloqueados. O vínculo Alagoas foi exercitado no teste regulatório, mas não desbloqueado na estreia ou no mercado de usuários. Não houve expansão continental.
 
-## Série D: avanço implementado e limitação exata
+A alternativa Fares Lopes/Ceará, examinada na etapa anterior, também leva à Copa do Brasil e não elimina o bloqueio nacional. Não afirmamos ter descartado todos os estados. Alagoas continua como o eixo mais avançado nesta implementação.
 
-A política candidata `br-d-admission-2026-v2.json` registra RNF de 27 federações e quotas estaduais verificadas: 64 vagas, com outras categorias completando 96. Não é uma lista certificada de clubes. As categorias de retenção e ranking residual compartilham o saldo, com prioridade de critérios; não são duas cotas adicionais independentes.
+## Testes desta continuação
 
-`SerieDAdmission` exige contexto nacional e ledger aprovados, impede sobreposição com divisões superiores, rejeita UF de vaga incompatível, prioridade alterada, edição trocada e capacidade reduzida para esconder faltantes. Reaproveita `CompetitionQualification`, sem reescrevê-lo. Os 96 claims usados no teste são explicitamente sintéticos.
+Evidências novas em `Docs/mundializacao-v07/alagoas-runtime/`:
 
-A política real continua `blocked`, sem fontes de claims/contexto liberadas. Faltam prova de cada inscrição, permissões de seletivas, vínculo canônico dos clubes, ranking residual, desistências e política futura. A edição 2026 não é aplicada ao mérito estadual de 2026 para fabricar automaticamente a Série D de 2027.
-
-O preenchimento paulista em `Competition::completeWorld` permanece intacto no fluxo legado, inclusive nas novas temporadas desse fluxo. Não foi corrigido no gameplay: removê-lo sem substituição íntegra quebraria continuidade. Nenhuma inscrição histórica foi reescrita. O novo validador não é chamado automaticamente pelo legado.
-
-## Código entregue
-
-- `app/CompetitionParticipation.php`: consulta pura por edição; aliases explícitos, fontes, exclusões, participantes ausentes e capacidades faltantes. Referência não instalada permanece não jogável mesmo se capacidades forem declaradas pelo chamador. Nenhuma rota recebe parâmetros para instalar contratos.
-- `app/SerieDAdmission.php`: validação específica da referência 2026 antes do avaliador genérico; nenhuma escrita/DDL.
-- `database/competition-references/br-al-2026.json`: participantes nominais, alias, sanção e dependências; somente referência.
-- `database/competition-references/br-d-admission-2026-v2.json`: política candidata com RNF/quotas, bloqueada. A política anterior foi preservada.
-- `tests/official-admission-v07.php` e `tests/official-admission-mysql-v07.php`: invariantes e roundtrip JSON real no MySQL.
-- Evidências e fontes: `Docs/mundializacao-v07/percurso-oficial/`.
-
-## Testes executados nesta rodada
-
-| Verificação | Resultado |
+| Teste | Evidência / resultado |
 |---|---|
-| Admissão, identidade, exclusão, duplicatas, edição e quotas | 36 verificações passaram |
-| MySQL local, JSON normalizado, transação revertida | 8 passaram; 2 SELECTs; zero DML/DDL |
-| Regressão existente | 24 suítes passaram, incluindo 1.014 cenas, modos, mercado e identidade/slots |
-| Fundação de referência/calendário | 163 verificações passaram |
-| Fronteiras de fórmulas/catálogo/Hub | 24 passaram |
-| Pós-jogo / conquistas / v0.6.1 pura | 215 / 96 / 32 passaram |
-| HTTP autenticado com fixture local descartável | 22 passaram; fixture removida |
-| Chrome 320/390/1280 | 39 passaram; screenshots no diretório de evidências |
+| Regras FAF, formato, mando, ranking, confronto direto e pênaltis | `rules-tests.json`: 50 verificações |
+| Cinco temporadas reais do Game::command, permanecendo no clube | `gameplay-five-seasons.json` |
+| Cinco temporadas via Repository/PDO, recarga por comando, duas contas, tokens e lock concorrente | `mysql-runtime.json`: 33 verificações; rollback integral |
+| Seis posições × Normal/Rápido/Expresso, uma temporada completa em cada combinação | `modes-tests.json`: 3.168 verificações |
+| Aceite de oferta elegível e nova temporada | `transfer-runtime.json`; RNG controlado na fixture, sem alterar mérito/fórmulas |
+| Páginas autenticadas, decisão, CSRF, replay, isolamento | `http-runtime.json`: 22 verificações; conta descartável removida |
+| Chrome 320/390/1280 e teclado | `mobile/results.json`: 39 verificações; screenshots |
+| Regressão geral | `regressao/suites.json`: 24 suítes |
 
-Resultados reproduzíveis: `incremental-tests.json`, `admission-tests.json`, `admission-mysql.json`, `regressao/suites.json`, `http-runtime.json`, `mobile/results.json`. O smoke HTTP é PHP loopback com login local e Hub desligado; não prova login central Hub nem Apache/IIS autenticado. Visual usa HTML capturado dessa fixture, não conta de terceiros. Houve bloqueio inicial do sandbox ao socket local; repetição autorizada no mesmo banco local passou. Não foi uma falha da aplicação nem exigiu alterar serviço.
+As temporadas do adaptador usam clubes reais e regras estaduais acima; são simulações estaduais isoladas com pendências, NÃO cinco temporadas oficiais completas com Copa do Brasil/Nordeste/Série D. Os testes PDO desativam conquistas somente para a fixture descartável; não provam desbloqueio de R nela. As suítes próprias e a comparação de fronteiras preservam 50 conquistas/1.000 R, XP-base e v0.6.1.
 
-**Cinco temporadas oficiais NÃO executadas:** não existe percurso oficial ativado para fazê-lo com honestidade. As cinco temporadas PDO/sintéticas do relatório 48 não são reapresentadas como aceite oficial. Concorrência/locks, mercado, títulos e promoção do percurso oficial continuam pendentes; as regressões do motor existente não substituem isso. Nenhum título/R/XP foi concedido por estes dados de referência.
+A versão final foi recarregada pelo MySQL após introduzir o identificador do adaptador. Dados de teste foram revertidos, sem DDL, backfill ou atualização de usuário real. Não houve migração de save legado. HTTP usa servidor PHP loopback com login local e Hub desativado, não autenticação central em IIS/Apache. Os testes visuais usam o HTML capturado dessa fixture.
 
-Não existe medição de fechamento de temporada oficial ampliada nesta rodada. O desempenho do piloto anterior continua registrado no relatório 48 e não é projeção UOL. Os validadores novos são locais e não estão no caminho de decisão do jogador, portanto não acrescentam consultas por clique ao gameplay atual. O teste MySQL novo só mede a integridade do roundtrip; não é benchmark de uma temporada.
+Falha intermediária registrada: a fronteira v0.6 inicialmente rejeitou o novo despacho de Competition. Foi ajustada para retirar somente os hooks do formato novo/contexto, mantendo comparação exata do restante; repetição passou com 11 verificações. Não se afrouxaram fórmulas para corrigir o teste. Regressão do piloto sintético também passou após os hooks novos.
 
-## Fontes primárias e rastreabilidade
+## Desempenho e ambiente
 
-Matriz CSV/JSON em `percurso-oficial/sources.*`; recibos com SHA-256 e tamanho em `source-receipts.json`. PDFs e HTML de origem foram guardados somente em storage privado, fora dos commits. As fontes provam fatos datados; não importam resultados históricos nem autorizam uma edição futura oficial.
+Coorte local final: 4483–5603 consultas/temporada; comando mais lento 188.07 ms; fechamento 57.98–79.36 ms; snapshots 141676–183845 bytes.
+
+Métricas exatas por temporada estão em `mysql-runtime.json`: comandos, consultas, maior duração, comando de fechamento, duração total e bytes do snapshot. Tempo total soma muitos comandos e NÃO é tempo de um único request. Cinco temporadas foram medidas localmente; não há benchmark Apache/UOL. O histórico cresce e os dados de referência complementares ainda se repetem nos contratos, ponto para otimização futura sem alterar saves existentes.
+
+Nenhum teste desta continuação acessou a produção ou modificou Hub/rh_*. O site local habitual continua no legado e não oferece o percurso novo. `RUMO10_WORLD_CALENDAR=0` permanece; não houve mudança do .env, handlers IIS ou configuração Apache.
+
+## Fontes primárias
+
+Contratos e matrizes existentes: `database/competition-references/br-al-2026.json`, `br-d-admission-2026-v2.json` e `Docs/mundializacao-v07/percurso-oficial/sources.*`. Fontes regulatórias foram reconsultadas em 17/10/2026; nenhum resultado histórico importado.
 
 - [FAF, Série A 2026](https://futeboldealagoas.net/assets/uploads/176832886543.pdf): arts.1–12, pp.2–4.
-- [FAF, Série B Sub-23 2026](https://futeboldealagoas.net/assets/uploads/177223121748.pdf): arts.1–7, pp.2–3; art.14, pp.5–6.
+- [FAF, Série B Sub-23](https://futeboldealagoas.net/assets/uploads/177223121748.pdf): arts.1–7, pp.2–3; art.14, pp.5–6.
 - [FAF, Copa Alagoas revisada](https://www.futeboldealagoas.net/assets/uploads/177326005939.pdf): arts.1–8, pp.2–4.
-- [FAF, identidade Sporting](https://www.futeboldealagoas.net/novo/post/sporting-teotonio-conquista-o-campeonato-alagoano-serie-b-2026-e-garante-vaga-no-alagoano-centenario-2027): parágrafo explícito sobre o antigo Sete de Setembro.
-- [FAF, Ato 003/2026](https://futeboldealagoas.net/assets/uploads/176962499217.pdf): arts.1–3, p.1.
-- [FAF, homologação da copa](https://futeboldealagoas.net/assets/uploads/177567932470.pdf): p.1, nota da eliminação; resultados não importados.
-- [CBF, REC Série D 2026](https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf): art.2, pp.4–6.
-- [CBF, RNF 2026](https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/RNF_Ranking_Nacional_das_Federacoes_2026_30b87e87a3.pdf): p.1, ordem das federações.
-- [CBF, REC Copa do Brasil 2026](https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf): arts.2–3 e capítulo do formato; 26 páginas.
-- [CBF, partidas da Copa do Brasil](https://www.cbf.com.br/futebol-brasileiro/noticias/liga-de-desenvolvimento/sub-14-feminino/cbf-divulga-cotas-da-copa-do-brasil-2026-a-mais-democratica-da-historia): publicação de 04/02/2026, total informado de jogos.
-- [FCF, alternativa Fares Lopes](https://www.futebolcearense.com.br/2011/noticia_ver.asp?id=19069): publicação de 02/10/2026, dependência da Copa do Brasil.
+- [FAF, Sporting/Sete](https://www.futeboldealagoas.net/novo/post/sporting-teotonio-conquista-o-campeonato-alagoano-serie-b-2026-e-garante-vaga-no-alagoano-centenario-2027): parágrafo explícito da identidade.
+- [FAF, Ato 003/2026](https://futeboldealagoas.net/assets/uploads/176962499217.pdf): arts.1–3, p.1, exclusão.
+- [CBF, Série D 2026](https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf): art.2, pp.4–6.
+- [CBF, RNF 2026](https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/RNF_Ranking_Nacional_das_Federacoes_2026_30b87e87a3.pdf): p.1.
 
-## Menor próxima intervenção necessária
+## Reprodução, rollback e próximo portão
 
-1. Implementar o adaptador de Alagoas sobre estes contratos, acrescentando as cinco identidades locais comprovadas sem inventar ratings oficiais; respeitar a exclusão efetiva e grupos desiguais. Isso pode ser testado isoladamente, mas não é liberação do percurso completo.
-2. Fechar o ledger nacional e o adaptador/calendário de Copa do Brasil, Série D e Nordeste necessários ao percurso; processar partidas em lotes limitados/reentrantes no mesmo PHP/MySQL, sem worker externo. Há dependências de escala e inscrições, não um único alias pendente.
-3. Implementar política futura explicitamente simulada, usando regulamento-base fixado e resultados do próprio save. Não é obrigatório esperar REC oficial de 2027 para criar uma adaptação declarada; é obrigatório não alegar que a adaptação é a regra oficial futura, nem carregar sanções históricas automaticamente.
-4. Só então rodar cinco temporadas completas oficiais simuladas via Repository/MySQL, incluindo locks/replay, títulos e mercado, e considerar ativação local. Se o proprietário preferir reduzir o produto a estaduais sem suas vagas nacionais, isso é mudança de escopo e precisará de aprovação explícita; não foi aplicado silenciosamente.
-
-Permanecem 23 vínculos brasileiros bloqueados e 9 internacionais; nenhum destino novo liberado. A identidade de um vínculo foi esclarecida, não o vínculo resolvido ponta a ponta. A etapa continental não começou.
-
-## Recuperação e publicação
-
-Sem migrations, DDL, backfill ou mudança em saves; não houve necessidade de backup para DDL inexistente. A flag permanece desligada. Reverter os commits de referência/validadores/documentação remove este incremento sem restaurar banco ou apagar progresso posterior. `http://rumo10.local` continua no fluxo anterior e não oferece Copa Alagoas.
-
-Reprodução: PHP 8.4 com mbstring; para MySQL, pdo_mysql e configuração local já existente:
+PHP 8.4 com mbstring; pdo_mysql para PDO/HTTP. Os scripts exigem banco rumohub local e definem flags no próprio processo:
 
 ```
-php tests/official-admission-v07.php
-php tests/official-admission-mysql-v07.php --local-readonly
-php tests/world-http-v07.php --local-fixtures
-node tests/world-mobile-v07.cjs
+php tests/alagoas-rules-v07.php
+php tests/alagoas-gameplay-v07.php
+php tests/alagoas-modes-v07.php
+php tests/alagoas-mysql-v07.php --local-rollback
+php tests/alagoas-transfer-v07.php
+php tests/alagoas-http-v07.php --local-fixtures
+node tests/alagoas-mobile-v07.cjs
 ```
 
-Os dois últimos exercitam o piloto sintético existente, não um percurso oficial. Suítes de regressão: definir V06_EVIDENCE_DIR para uma pasta local de evidências e executar `python bin/test-narrative.py`. Não executar scripts em produção.
+Não há migration/DDL. Rollback: manter flags desligadas e reverter commits de código, preservando quaisquer snapshots; não restaurar banco sobre progresso posterior. Fixtures CLI não são convertidas em carreiras reais.
 
-Commits e SHA remoto final constam na entrega. Push exclusivamente à branch de trabalho após testes; sem merge/main, deploy UOL, SQL produtivo ou alteração do RumoHub. Apache/HTTPS de produção não foram testados nesta rodada.
+Próximo portão concreto: concluir elegibilidade/mando inicial, admissões e runtime nacional dependente, com política futura explícita; depois validar cinco temporadas do percurso INTEGRAL e só então liberar novas carreiras locais. Retirar qualificações nacionais do produto seria uma mudança de escopo, não aplicada silenciosamente. Não foi necessário inventar vínculo entre estadual e divisão nacional.
+
+Commits por módulo e push exclusivamente para `codex/mundializacao-v07`, com SHA remoto informado na entrega. Sem merge main, deploy UOL, SQL produtivo ou alterações do RumoHub.

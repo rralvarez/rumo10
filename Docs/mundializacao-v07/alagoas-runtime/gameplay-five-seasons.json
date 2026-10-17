@@ -1,0 +1,272 @@
+{
+    "real_participants": true,
+    "faf_2026_rules_adapter": true,
+    "official_path_released": false,
+    "national_qualification_pending": {
+        "al|1": {
+            "source_edition": 1,
+            "basis": "FAF 2026 reference; future simulation only",
+            "copa_do_brasil_candidates": [
+                "CRB-AL",
+                "ASA-AL",
+                "CSA-AL",
+                "CSE-AL"
+            ],
+            "serie_d_candidates": [
+                "CRB-AL",
+                "ASA-AL",
+                "CSA-AL",
+                "CSE-AL",
+                "Murici-AL",
+                "Penedense-AL",
+                "Coruripe-AL",
+                "Cruzeiro Arapiraca-AL"
+            ],
+            "state": "blocked_external_eligibility_and_target_runtime",
+            "granted_entries": []
+        },
+        "al|2": {
+            "source_edition": 2,
+            "basis": "FAF 2026 reference; future simulation only",
+            "copa_do_brasil_candidates": [
+                "CRB-AL",
+                "CSE-AL",
+                "ASA-AL",
+                "Penedense-AL"
+            ],
+            "serie_d_candidates": [
+                "CRB-AL",
+                "CSE-AL",
+                "ASA-AL",
+                "CSA-AL",
+                "Penedense-AL",
+                "Miguelense-AL",
+                "Coruripe-AL",
+                "Murici-AL"
+            ],
+            "state": "blocked_external_eligibility_and_target_runtime",
+            "granted_entries": []
+        },
+        "al|3": {
+            "source_edition": 3,
+            "basis": "FAF 2026 reference; future simulation only",
+            "copa_do_brasil_candidates": [
+                "CRB-AL",
+                "CSE-AL",
+                "ASA-AL",
+                "Cruzeiro Arapiraca-AL"
+            ],
+            "serie_d_candidates": [
+                "CRB-AL",
+                "CSE-AL",
+                "ASA-AL",
+                "CSA-AL",
+                "Miguelense-AL",
+                "Coruripe-AL",
+                "Penedense-AL",
+                "Cruzeiro Arapiraca-AL"
+            ],
+            "state": "blocked_external_eligibility_and_target_runtime",
+            "granted_entries": []
+        },
+        "al|4": {
+            "source_edition": 4,
+            "basis": "FAF 2026 reference; future simulation only",
+            "copa_do_brasil_candidates": [
+                "CSE-AL",
+                "ASA-AL",
+                "CRB-AL",
+                "CSA-AL"
+            ],
+            "serie_d_candidates": [
+                "CSE-AL",
+                "ASA-AL",
+                "CRB-AL",
+                "CSA-AL",
+                "Miguelense-AL",
+                "Coruripe-AL",
+                "Penedense-AL",
+                "Murici-AL"
+            ],
+            "state": "blocked_external_eligibility_and_target_runtime",
+            "granted_entries": []
+        },
+        "al|5": {
+            "source_edition": 5,
+            "basis": "FAF 2026 reference; future simulation only",
+            "copa_do_brasil_candidates": [
+                "CRB-AL",
+                "CSA-AL",
+                "ASA-AL",
+                "Murici-AL"
+            ],
+            "serie_d_candidates": [
+                "CRB-AL",
+                "CSA-AL",
+                "ASA-AL",
+                "CSE-AL",
+                "Penedense-AL",
+                "Coruripe-AL",
+                "São Domingos-AL",
+                "Miguelense-AL"
+            ],
+            "state": "blocked_external_eligibility_and_target_runtime",
+            "granted_entries": []
+        }
+    },
+    "real_Game_command": true,
+    "results": [
+        {
+            "season": 1,
+            "club": "Zumbi-AL",
+            "games": 10,
+            "goals": 1,
+            "assists": 0,
+            "competitions": [
+                "al-entrada",
+                "al-copa"
+            ],
+            "fixtures": 83,
+            "commands": 113,
+            "elapsed_ms": 172.04,
+            "snapshot_bytes": 130362,
+            "titles": 0,
+            "promotions": {
+                "al-a1": [],
+                "al-entrada": [
+                    "Miguelense-AL"
+                ],
+                "al-copa": []
+            },
+            "relegations": {
+                "al-a1": [
+                    "Cruzeiro Arapiraca-AL"
+                ],
+                "al-entrada": [],
+                "al-copa": []
+            },
+            "market_choice": "no"
+        },
+        {
+            "season": 2,
+            "club": "Zumbi-AL",
+            "games": 7,
+            "goals": 2,
+            "assists": 1,
+            "competitions": [
+                "al-entrada"
+            ],
+            "fixtures": 88,
+            "commands": 78,
+            "elapsed_ms": 125.47,
+            "snapshot_bytes": 141090,
+            "titles": 0,
+            "promotions": {
+                "al-a1": [],
+                "al-entrada": [
+                    "Cruzeiro Arapiraca-AL"
+                ],
+                "al-copa": []
+            },
+            "relegations": {
+                "al-a1": [
+                    "Murici-AL"
+                ],
+                "al-entrada": [],
+                "al-copa": []
+            },
+            "market_choice": "yes"
+        },
+        {
+            "season": 3,
+            "club": "São Domingos-AL",
+            "games": 7,
+            "goals": 0,
+            "assists": 1,
+            "competitions": [
+                "al-entrada"
+            ],
+            "fixtures": 88,
+            "commands": 72,
+            "elapsed_ms": 168.7,
+            "snapshot_bytes": 149142,
+            "titles": 0,
+            "promotions": {
+                "al-a1": [],
+                "al-entrada": [
+                    "Murici-AL"
+                ],
+                "al-copa": []
+            },
+            "relegations": {
+                "al-a1": [
+                    "Cruzeiro Arapiraca-AL"
+                ],
+                "al-entrada": [],
+                "al-copa": []
+            },
+            "market_choice": "no"
+        },
+        {
+            "season": 4,
+            "club": "São Domingos-AL",
+            "games": 14,
+            "goals": 2,
+            "assists": 1,
+            "competitions": [
+                "al-copa",
+                "al-entrada"
+            ],
+            "fixtures": 88,
+            "commands": 161,
+            "elapsed_ms": 197.5,
+            "snapshot_bytes": 193284,
+            "titles": 1,
+            "promotions": {
+                "al-a1": [],
+                "al-entrada": [
+                    "São Domingos-AL"
+                ],
+                "al-copa": []
+            },
+            "relegations": {
+                "al-a1": [
+                    "Murici-AL"
+                ],
+                "al-entrada": [],
+                "al-copa": []
+            },
+            "market_choice": "no"
+        },
+        {
+            "season": 5,
+            "club": "São Domingos-AL",
+            "games": 12,
+            "goals": 3,
+            "assists": 2,
+            "competitions": [
+                "al-copa",
+                "al-a1"
+            ],
+            "fixtures": 88,
+            "commands": 135,
+            "elapsed_ms": 177.86,
+            "snapshot_bytes": 201486,
+            "titles": 1,
+            "promotions": {
+                "al-a1": [],
+                "al-entrada": [
+                    "Cruzeiro Arapiraca-AL"
+                ],
+                "al-copa": []
+            },
+            "relegations": {
+                "al-a1": [
+                    "Miguelense-AL"
+                ],
+                "al-entrada": [],
+                "al-copa": []
+            }
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "existing_market_merit_gates": true,
+    "controlled_rng_in_existing_draw": true,
+    "scenario": 1,
+    "offers": 1,
+    "old_club": "Zumbi-AL",
+    "new_club": "CRB-AL",
+    "season": 2,
+    "continued_with_two_competitions": true,
+    "no_real_user_changes": true
+}

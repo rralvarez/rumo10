@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "v06-boundary",
+    "exit": 0,
+    "output": "OK: 11 fronteiras v0.6; fórmulas e XP-base preservados."
+  },
+  {
+    "suite": "world-boundary-v07",
+    "exit": 0,
+    "output": "OK: 24 fronteiras v0.7; sem mudança de fórmulas, catálogo existente ou Hub."
+  },
+  {
+    "suite": "official-admission-v07",
+    "exit": 0,
+    "output": "OK: 36 verificações de admissão; nenhuma competição oficial ativada."
+  },
+  {
+    "suite": "post-match-v06",
+    "exit": 0,
+    "output": "OK: 215 verificações pós-jogo; seis posições e três modos, sem banco."
+  },
+  {
+    "suite": "achievements-v06",
+    "exit": 0,
+    "output": "OK: 96 verificações catálogo/projeção; persistência exige suíte MySQL própria."
+  },
+  {
+    "suite": "growth-v061",
+    "exit": 0,
+    "output": "OK: 32 verificações v0.6.1 puras."
+  }
+]

@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+putenv('RUMOHUB_ENABLED=0');putenv('RUMOHUB_BENEFITS=0');putenv('RUMO10_WORLD_CALENDAR=1');putenv('RUMO10_WORLD_FIXTURES=1');require dirname(__DIR__).'/app/bootstrap.php';
+$g=AlagoasTrial::create(799001,'centroavante','expresso');foreach($g['skills'] as &$skill)$skill['value']=85;unset($skill);$g['season_skill_baseline']=85;
+$g=Game::command($g,'simulate',['plan'=>'protagonismo']);if($g['stage']!=='resumo')throw new RuntimeException('Temporada incompleta.');
+$g=Game::command($g,'offers');$old=$g['club'];
+$draw=WorldSeason::scope($g,function()use($g){$pool=TransferMarket::pool($g,false);$rows=TransferInterest::scenarios($g,$pool,SeasonEvaluation::evaluate($g));$sum=0;$target=null;foreach($rows as $row){if($row['id']!==0&&$row['peso']>0){$target=$sum+1;break;}$sum+=$row['peso'];}if($target===null)throw new RuntimeException('Fixture sem candidatos compatíveis.');$first=true;return TransferInterest::draw($g,function(int $min,int $max)use(&$first,$target):int{if($first){$first=false;return $target;}return $min;});});
+if(!$draw['offers']||count($draw['offers'])>3)throw new RuntimeException('Oferta inválida.');$g['market_draw']=$draw;$g['offers']=$draw['offers'];$g=Game::command($g,'transfer',['accept'=>'yes','option'=>0]);if($g['club']===$old||$g['season']!==2||$g['stage']!=='treino')throw new RuntimeException('Transferência não aplicada.');
+file_put_contents(dirname(__DIR__).'/Docs/mundializacao-v07/alagoas-runtime/transfer-runtime.json',json_encode(['existing_market_merit_gates'=>true,'controlled_rng_in_existing_draw'=>true,'scenario'=>$draw['scenario'],'offers'=>count($draw['offers']),'old_club'=>$old,'new_club'=>$g['club'],'season'=>$g['season'],'continued_with_two_competitions'=>count($g['season_competitions'])===2,'no_real_user_changes'=>true],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));echo "OK: oferta elegível, aceite e próxima temporada no motor real; RNG controlado na fixture.\n";

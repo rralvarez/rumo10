@@ -1,0 +1,61 @@
+{
+  "lint": [
+    {
+      "path": "app/AlagoasCompetition.php",
+      "exit": 0
+    },
+    {
+      "path": "app/AlagoasTrial.php",
+      "exit": 0
+    },
+    {
+      "path": "app/Competition.php",
+      "exit": 0
+    },
+    {
+      "path": "app/WorldSeason.php",
+      "exit": 0
+    },
+    {
+      "path": "app/OpportunityForecast.php",
+      "exit": 0
+    },
+    {
+      "path": "app/view.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/v06-boundary.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/alagoas-gameplay-v07.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/alagoas-http-v07.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/alagoas-modes-v07.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/alagoas-mysql-v07.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/alagoas-rules-v07.php",
+      "exit": 0
+    },
+    {
+      "path": "tests/alagoas-transfer-v07.php",
+      "exit": 0
+    }
+  ],
+  "secret_findings": [],
+  "scanned_files": 37,
+  "regression_suites_passed": 24,
+  "private_storage_excluded": true,
+  "base": "ab9ff30"
+}

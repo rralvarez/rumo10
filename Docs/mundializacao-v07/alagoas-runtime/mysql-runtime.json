@@ -1,0 +1,71 @@
+{
+    "checks": 33,
+    "five_gameplay_seasons_with_real_repository": true,
+    "all_fixture_writes_rolled_back": true,
+    "rh_writes": false,
+    "faf_rules_and_real_participants": true,
+    "national_continuity_complete": false,
+    "achievements_disabled_for_disposable_fixture": true,
+    "seasons": [
+        {
+            "season": 1,
+            "commands": 160,
+            "queries": 5603,
+            "max_command_ms": 157.52,
+            "season_close_command_ms": 57.98,
+            "elapsed_ms": 10637.58,
+            "snapshot_bytes": 141676,
+            "games": 14,
+            "goals": 0,
+            "assists": 4
+        },
+        {
+            "season": 2,
+            "commands": 151,
+            "queries": 5288,
+            "max_command_ms": 89.62,
+            "season_close_command_ms": 79.36,
+            "elapsed_ms": 7858.04,
+            "snapshot_bytes": 156798,
+            "games": 14,
+            "goals": 2,
+            "assists": 1
+        },
+        {
+            "season": 3,
+            "commands": 128,
+            "queries": 4483,
+            "max_command_ms": 188.07,
+            "season_close_command_ms": 63.79,
+            "elapsed_ms": 7612.62,
+            "snapshot_bytes": 165769,
+            "games": 12,
+            "goals": 1,
+            "assists": 0
+        },
+        {
+            "season": 4,
+            "commands": 135,
+            "queries": 4728,
+            "max_command_ms": 142.88,
+            "season_close_command_ms": 75.63,
+            "elapsed_ms": 7304.03,
+            "snapshot_bytes": 173653,
+            "games": 12,
+            "goals": 2,
+            "assists": 1
+        },
+        {
+            "season": 5,
+            "commands": 134,
+            "queries": 4693,
+            "max_command_ms": 131.99,
+            "season_close_command_ms": 68.92,
+            "elapsed_ms": 8912.53,
+            "snapshot_bytes": 183845,
+            "games": 12,
+            "goals": 3,
+            "assists": 2
+        }
+    ]
+}

@@ -1,0 +1,300 @@
+{
+    "checks": 1408,
+    "isolated_season_closings": 100,
+    "forced_scenarios": [
+        0,
+        1,
+        2,
+        3,
+        3,
+        3,
+        3
+    ],
+    "draw_distribution": {
+        "1": 30,
+        "0": 45,
+        "2": 25
+    },
+    "rates_450": {
+        "schema": 1,
+        "position": "centroavante",
+        "totals": {
+            "goals": 5,
+            "assists": 0,
+            "minutes": 450,
+            "shots": 10,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 5,
+            "cards": 0
+        },
+        "per90": {
+            "goals": 1,
+            "assists": 0,
+            "shots": 2,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 1,
+            "cards": 0
+        },
+        "games": 5,
+        "average": 7.5,
+        "confidence": 0.3333,
+        "opponent_context_factor": 1,
+        "context_minutes": 0,
+        "sample_minutes_reference": 900,
+        "conversion": 0.5,
+        "overall": 46.111111111111114,
+        "unavailable_metrics": [
+            "passes_decisivos",
+            "interceptacoes",
+            "duelos",
+            "defesas",
+            "gols_evitados"
+        ],
+        "score": 0.4032,
+        "history_weights": [
+            {
+                "season": 3,
+                "weight": 1,
+                "score": 0.4032
+            }
+        ],
+        "weighted_score": 0.4032,
+        "history_available": 0
+    },
+    "rates_2400": {
+        "schema": 1,
+        "position": "centroavante",
+        "totals": {
+            "goals": 5,
+            "assists": 0,
+            "minutes": 2400,
+            "shots": 10,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 5,
+            "cards": 0
+        },
+        "per90": {
+            "goals": 0.1875,
+            "assists": 0,
+            "shots": 0.375,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 0.1875,
+            "cards": 0
+        },
+        "games": 27,
+        "average": 7.5,
+        "confidence": 0.7273,
+        "opponent_context_factor": 1,
+        "context_minutes": 0,
+        "sample_minutes_reference": 900,
+        "conversion": 0.5,
+        "overall": 46.111111111111114,
+        "unavailable_metrics": [
+            "passes_decisivos",
+            "interceptacoes",
+            "duelos",
+            "defesas",
+            "gols_evitados"
+        ],
+        "score": 0.6081,
+        "history_weights": [
+            {
+                "season": 3,
+                "weight": 1,
+                "score": 0.6081
+            }
+        ],
+        "weighted_score": 0.6081,
+        "history_available": 0
+    },
+    "tiny": {
+        "schema": 1,
+        "position": "centroavante",
+        "totals": {
+            "goals": 1,
+            "assists": 0,
+            "minutes": 10,
+            "shots": 10,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 5,
+            "cards": 0
+        },
+        "per90": {
+            "goals": 9,
+            "assists": 0,
+            "shots": 90,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 45,
+            "cards": 0
+        },
+        "games": 1,
+        "average": 7.5,
+        "confidence": 0.011,
+        "opponent_context_factor": 1,
+        "context_minutes": 0,
+        "sample_minutes_reference": 900,
+        "conversion": 0.1,
+        "overall": 46.111111111111114,
+        "unavailable_metrics": [
+            "passes_decisivos",
+            "interceptacoes",
+            "duelos",
+            "defesas",
+            "gols_evitados"
+        ],
+        "score": 0.0165,
+        "history_weights": [
+            {
+                "season": 3,
+                "weight": 1,
+                "score": 0.0165
+            }
+        ],
+        "weighted_score": 0.0165,
+        "history_available": 0
+    },
+    "long": {
+        "schema": 1,
+        "position": "centroavante",
+        "totals": {
+            "goals": 10,
+            "assists": 0,
+            "minutes": 1500,
+            "shots": 10,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 5,
+            "cards": 0
+        },
+        "per90": {
+            "goals": 0.6,
+            "assists": 0,
+            "shots": 0.6,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 0.3,
+            "cards": 0
+        },
+        "games": 17,
+        "average": 7.5,
+        "confidence": 0.625,
+        "opponent_context_factor": 1,
+        "context_minutes": 0,
+        "sample_minutes_reference": 900,
+        "conversion": 1,
+        "overall": 46.111111111111114,
+        "unavailable_metrics": [
+            "passes_decisivos",
+            "interceptacoes",
+            "duelos",
+            "defesas",
+            "gols_evitados"
+        ],
+        "score": 0.6402,
+        "history_weights": [
+            {
+                "season": 3,
+                "weight": 1,
+                "score": 0.6402
+            }
+        ],
+        "weighted_score": 0.6402,
+        "history_available": 0
+    },
+    "history": {
+        "schema": 1,
+        "position": "centroavante",
+        "totals": {
+            "goals": 10,
+            "assists": 0,
+            "minutes": 1500,
+            "shots": 10,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 5,
+            "cards": 0
+        },
+        "per90": {
+            "goals": 0.6,
+            "assists": 0,
+            "shots": 0.6,
+            "passes": 0,
+            "completed": 0,
+            "tackles": 0.3,
+            "cards": 0
+        },
+        "games": 17,
+        "average": 7.5,
+        "confidence": 0.625,
+        "opponent_context_factor": 1,
+        "context_minutes": 0,
+        "sample_minutes_reference": 900,
+        "conversion": 1,
+        "overall": 46.111111111111114,
+        "unavailable_metrics": [
+            "passes_decisivos",
+            "interceptacoes",
+            "duelos",
+            "defesas",
+            "gols_evitados"
+        ],
+        "score": 0.6402,
+        "history_weights": [
+            {
+                "season": 3,
+                "weight": 0.7000000000000001,
+                "score": 0.6402
+            },
+            {
+                "season": 2,
+                "weight": 0.20000000000000004,
+                "score": 0.2
+            },
+            {
+                "season": 1,
+                "weight": 0.10000000000000002,
+                "score": 0.1
+            }
+        ],
+        "weighted_score": 0.4981,
+        "history_available": 2
+    },
+    "forecast_low": {
+        "schema": 1,
+        "scheduled_games": 14,
+        "expected_games": 8,
+        "minutes_percent": 21.3,
+        "expected_minutes": 268,
+        "related_probability": 0.7102004228560976,
+        "starter_probability": 0.14457775046587726,
+        "sub_probability": 0.8,
+        "role": "Reserva eventual",
+        "short_calendar": false,
+        "position": "centroavante",
+        "competition_reference": 48,
+        "competitions": [],
+        "basis": "Calendário mínimo da próxima temporada simulada; mata-matas adicionais não garantidos. Concorrência do elenco de referência na posição (sintético quando indisponível), sem promessa de titularidade."
+    },
+    "forecast_high": {
+        "schema": 1,
+        "scheduled_games": 14,
+        "expected_games": 13,
+        "minutes_percent": 82.9,
+        "expected_minutes": 1045,
+        "related_probability": 0.9655460007535679,
+        "starter_probability": 0.9870462724693041,
+        "sub_probability": 0.8,
+        "role": "Titular provável",
+        "short_calendar": false,
+        "position": "centroavante",
+        "competition_reference": 48,
+        "competitions": [],
+        "basis": "Calendário mínimo da próxima temporada simulada; mata-matas adicionais não garantidos. Concorrência do elenco de referência na posição (sintético quando indisponível), sem promessa de titularidade."
+    }
+}
