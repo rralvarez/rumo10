@@ -1,0 +1,169 @@
+{
+  "id": "cbf-abc-reference-2026-v1",
+  "edition": 2026,
+  "consulted": "2026-10-17",
+  "activation": "cli_fixture_only",
+  "competitions": {
+    "br-a": {
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_SA_rie_A_2026_v15_12_2025_final_02692c1077.pdf",
+      "participants": [
+        "Athletico-PR",
+        "Atlético-MG",
+        "Bahia-BA",
+        "Botafogo-RJ",
+        "Chapecoense-SC",
+        "Corinthians-SP",
+        "Coritiba-PR",
+        "Cruzeiro-MG",
+        "Flamengo-RJ",
+        "Fluminense-RJ",
+        "Grêmio-RS",
+        "Internacional-RS",
+        "Mirassol-SP",
+        "Palmeiras-SP",
+        "Red Bull Bragantino-SP",
+        "Remo-PA",
+        "Santos-SP",
+        "São Paulo-SP",
+        "Vasco-RJ",
+        "Vitória-BA"
+      ],
+      "registration": {
+        "min": 25,
+        "max": 50,
+        "bid_verified": false
+      },
+      "source_location": "arts.3,8,9,14-15; Anexo A p.16"
+    },
+    "br-b": {
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+      "participants": [
+        "América-MG",
+        "Athletic-MG",
+        "Atlético-GO",
+        "Avaí-SC",
+        "Botafogo-SP",
+        "Ceará-CE",
+        "CRB-AL",
+        "Criciúma-SC",
+        "Cuiabá-MT",
+        "Fortaleza-CE",
+        "Goiás-GO",
+        "Juventude-RS",
+        "Londrina-PR",
+        "Náutico-PE",
+        "Novorizontino-SP",
+        "Operário-PR",
+        "Ponte Preta-SP",
+        "São Bernardo FC-SP",
+        "Sport-PE",
+        "Vila Nova-GO"
+      ],
+      "registration": {
+        "min": 25,
+        "max": 50,
+        "bid_verified": false
+      },
+      "source_location": "arts.3,5-6,11-14; Anexo A p.16"
+    },
+    "br-c": {
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_C_2026_d2552ddc00.pdf",
+      "participants": [
+        "Amazonas-AM",
+        "Anápolis-GO",
+        "Barra-SC",
+        "Botafogo-PB",
+        "Brusque-SC",
+        "Caxias-RS",
+        "Confiança-SE",
+        "Ferroviária-SP",
+        "Figueirense-SC",
+        "Floresta-CE",
+        "Guarani-SP",
+        "Inter de Limeira-SP",
+        "Itabaiana-SE",
+        "Ituano-SP",
+        "Maranhão-MA",
+        "Maringá-PR",
+        "Paysandu-PA",
+        "Santa Cruz-PE",
+        "Volta Redonda-RJ",
+        "Ypiranga-RS"
+      ],
+      "registration": {
+        "min": 25,
+        "max": 50,
+        "bid_verified": false
+      },
+      "source_location": "arts.2,5,7,12-26,42; Anexos A/B pp.16-18",
+      "home_priority": [
+        "Ferroviária-SP",
+        "Amazonas-AM",
+        "Volta Redonda-RJ",
+        "Paysandu-PA",
+        "Caxias-RS",
+        "Brusque-SC",
+        "Guarani-SP",
+        "Floresta-CE",
+        "Confiança-SE",
+        "Ypiranga-RS"
+      ]
+    }
+  },
+  "links": [
+    {
+      "from": "br-b",
+      "to": "br-a",
+      "slots": 4,
+      "kind": "promotion"
+    },
+    {
+      "from": "br-a",
+      "to": "br-b",
+      "slots": 4,
+      "kind": "relegation"
+    },
+    {
+      "from": "br-c",
+      "to": "br-b",
+      "slots": 4,
+      "kind": "promotion"
+    },
+    {
+      "from": "br-b",
+      "to": "br-c",
+      "slots": 4,
+      "kind": "relegation"
+    },
+    {
+      "from": "br-c",
+      "to": "br-d",
+      "slots": 2,
+      "kind": "relegation",
+      "status": "blocked_target"
+    },
+    {
+      "from": "br-d",
+      "to": "br-c",
+      "slots": 6,
+      "kind": "promotion",
+      "status": "blocked_source"
+    }
+  ],
+  "next_capacities": {
+    "br-a": 20,
+    "br-b": 20,
+    "br-c": 24
+  },
+  "future_rules_status": "not_implemented",
+  "mandatory_uncovered": [
+    "copa_do_brasil_entries_and_runtime",
+    "regional_entries_and_runtime",
+    "continental_entries_and_runtime_where_qualified"
+  ],
+  "notes": [
+    "C art.5 prints Serie B 2026; art.25 and annual flow identify 2027. Literal error retained in source; target is explicitly next simulated season, not an official erratum.",
+    "C Anexo B prints Guarani SC, Anexo A identifies Guarani SP; canonical existing Guarani-SP retained.",
+    "No future participant or historical result imported."
+  ]
+}

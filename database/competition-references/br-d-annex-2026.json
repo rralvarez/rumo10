@@ -1,0 +1,885 @@
+{
+  "id": "cbf-d-annex-reference-2026-v1",
+  "edition": 2026,
+  "consulted": "2026-10-17",
+  "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+  "status": "reference_only_not_admission_policy",
+  "counts_by_criterion": {
+    "1": 4,
+    "2": 64,
+    "3": 14,
+    "4": 14
+  },
+  "rows": [
+    {
+      "club": "CSA-AL",
+      "uf": "AL",
+      "criterion_per_annex": 1,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "ABC-RN",
+      "uf": "RN",
+      "criterion_per_annex": 1,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Retrô-PE",
+      "uf": "PE",
+      "criterion_per_annex": 1,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Tombense-MG",
+      "uf": "MG",
+      "criterion_per_annex": 1,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Independência-AC",
+      "uf": "AC",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Galvez-AC",
+      "uf": "AC",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "ASA-AL",
+      "uf": "AL",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "CSE-AL",
+      "uf": "AL",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Nacional-AM",
+      "uf": "AM",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Manaus-AM",
+      "uf": "AM",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Trem-AP",
+      "uf": "AP",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Oratório-AP",
+      "uf": "AP",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Jacuipense-BA",
+      "uf": "BA",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Atlético-BA",
+      "uf": "BA",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Maracanã-CE",
+      "uf": "CE",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Ferroviário-CE",
+      "uf": "CE",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Gama-DF",
+      "uf": "DF",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Capital-DF",
+      "uf": "DF",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Rio Branco-ES",
+      "uf": "ES",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Vitória-ES",
+      "uf": "ES",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "CRAC-GO",
+      "uf": "GO",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "ABECAT-GO",
+      "uf": "GO",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Imperatriz-MA",
+      "uf": "MA",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "IAPE-MA",
+      "uf": "MA",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Uberlândia-MG",
+      "uf": "MG",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Betim-MG",
+      "uf": "MG",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Operário-MS",
+      "uf": "MS",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Ivinhema-MS",
+      "uf": "MS",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Primavera-MT",
+      "uf": "MT",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Mixto-MT",
+      "uf": "MT",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Tuna Luso-PA",
+      "uf": "PA",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Águia de Marabá-PA",
+      "uf": "PA",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Sousa-PB",
+      "uf": "PB",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Serra Branca-PB",
+      "uf": "PB",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Maguary-PE",
+      "uf": "PE",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Decisão-PE",
+      "uf": "PE",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Piauí-PI",
+      "uf": "PI",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Fluminense-PI",
+      "uf": "PI",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Cianorte-PR",
+      "uf": "PR",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Azuriz-PR",
+      "uf": "PR",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Sampaio Corrêa-RJ",
+      "uf": "RJ",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Madureira-RJ",
+      "uf": "RJ",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "América-RN",
+      "uf": "RN",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Laguna-RN",
+      "uf": "RN",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Porto Velho-RO",
+      "uf": "RO",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Guaporé-RO",
+      "uf": "RO",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "GAS-RR",
+      "uf": "RR",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Monte Roraima-RR",
+      "uf": "RR",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "São Luiz-RS",
+      "uf": "RS",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Guarany de Bagé-RS",
+      "uf": "RS",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Santa Catarina-SC",
+      "uf": "SC",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Joinville-SC",
+      "uf": "SC",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Lagarto-SE",
+      "uf": "SE",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Sergipe-SE",
+      "uf": "SE",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Velo Clube-SP",
+      "uf": "SP",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Portuguesa-SP",
+      "uf": "SP",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Araguaína-TO",
+      "uf": "TO",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Tocantinópolis-TO",
+      "uf": "TO",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Porto-BA",
+      "uf": "BA",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Tirol-CE",
+      "uf": "CE",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Inhumas-GO",
+      "uf": "GO",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Democrata GV-MG",
+      "uf": "MG",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "São Joseense-PR",
+      "uf": "PR",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "America-RJ",
+      "uf": "RJ",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Brasil de Pelotas-RS",
+      "uf": "RS",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Blumenau-SC",
+      "uf": "SC",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Noroeste-SP",
+      "uf": "SP",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "XV de Piracicaba-SP",
+      "uf": "SP",
+      "criterion_per_annex": 2,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Goiatuba-GO",
+      "uf": "GO",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Aparecidense-GO",
+      "uf": "GO",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Altos-PI",
+      "uf": "PI",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Ceilândia-DF",
+      "uf": "DF",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Manauara-AM",
+      "uf": "AM",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Central-PE",
+      "uf": "PE",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "São José-RS",
+      "uf": "RS",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Luverdense-MT",
+      "uf": "MT",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Marcílio Dias-SC",
+      "uf": "SC",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Juazeirense-BA",
+      "uf": "BA",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Água Santa-SP",
+      "uf": "SP",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Sampaio Corrêa-MA",
+      "uf": "MA",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "FC Cascavel-PR",
+      "uf": "PR",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Maricá-RJ",
+      "uf": "RJ",
+      "criterion_per_annex": 3,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Nova Iguaçu-RJ",
+      "uf": "RJ",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Brasiliense-DF",
+      "uf": "DF",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Pouso Alegre-MG",
+      "uf": "MG",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Portuguesa-RJ",
+      "uf": "RJ",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Humaitá-AC",
+      "uf": "AC",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "São Raimundo-RR",
+      "uf": "RR",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Iguatu-CE",
+      "uf": "CE",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "União-MT",
+      "uf": "MT",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Real Noroeste-ES",
+      "uf": "ES",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Treze-PB",
+      "uf": "PB",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Atlético-CE",
+      "uf": "CE",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Operário-MT",
+      "uf": "MT",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Moto Club-MA",
+      "uf": "MA",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    },
+    {
+      "club": "Parnahyba-PI",
+      "uf": "PI",
+      "criterion_per_annex": 4,
+      "source_location": "REC Anexo A, PDF pp.16-18",
+      "evidence": "official_base_participation_list",
+      "admission_runtime": "blocked",
+      "future_claim": null
+    }
+  ],
+  "notes": [
+    "Canonical IDs already present; no clubs added or renamed.",
+    "Anexo A proves listed participation/criterion, not every underlying state selective permission or later withdrawal/substitution.",
+    "Criterion3 maximum28 is not an actual count requirement; this annex lists14; criterion4 fills14.",
+    "No future simulated entries determined from this list."
+  ]
+}
