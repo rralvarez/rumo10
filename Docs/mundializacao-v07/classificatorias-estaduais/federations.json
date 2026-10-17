@@ -1,0 +1,852 @@
+{
+    "source_quota": [
+        "https:\/\/stcbfsiteprdimgbrs.blob.core.windows.net\/img-site\/cdn\/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+        "https:\/\/stcbfsiteprdimgbrs.blob.core.windows.net\/img-site\/cdn\/RNF_Ranking_Nacional_das_Federacoes_2026_30b87e87a3.pdf"
+    ],
+    "knowledge": "2026 quota reference; future freeze is simulated adaptation",
+    "rows": [
+        {
+            "uf": "SP",
+            "rnf_reference_2026": 1,
+            "quota": 4,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "sp-a1",
+                    "name": "Paulistão A1",
+                    "edition": 2026,
+                    "format": "paulista_swiss",
+                    "participants": 16,
+                    "sources": [
+                        "https:\/\/futebolpaulista.com.br\/Repositorio\/Competicao\/Regulamento\/1551\/1551_639002025107690404.pdf"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                },
+                {
+                    "id": "sp-a2",
+                    "name": "Paulistão A2",
+                    "edition": 2026,
+                    "format": "quadrangular",
+                    "participants": 16,
+                    "sources": [
+                        "https:\/\/futebolpaulista.com.br\/Repositorio\/Noticia\/30545\/30545_2122025135816_1.pdf"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                },
+                {
+                    "id": "sp-a3",
+                    "name": "Paulistão A3",
+                    "edition": 2026,
+                    "format": "sp_knockout",
+                    "participants": 16,
+                    "sources": [
+                        "https:\/\/futebolpaulista.com.br\/Repositorio\/Noticia\/30576\/30576_0.pdf"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                },
+                {
+                    "id": "sp-a4",
+                    "name": "Paulistão A4",
+                    "edition": 2026,
+                    "format": "sp_advantage",
+                    "participants": 16,
+                    "sources": [
+                        "https:\/\/www.futebolpaulista.com.br\/Noticias\/Detalhe.aspx?Noticia=30879"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                },
+                {
+                    "id": "sp-segunda",
+                    "name": "Paulista Segunda Divisão Sub-23",
+                    "edition": 2026,
+                    "format": "sp_groups",
+                    "participants": 24,
+                    "sources": [
+                        "https:\/\/www.futebolpaulista.com.br\/Noticias\/Detalhe.aspx?Noticia=31961"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "RJ",
+            "rnf_reference_2026": 2,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "rj-entrada",
+                    "name": "Carioca Série C",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 16,
+                    "sources": [
+                        "https:\/\/rsssfbrasil.com\/tablesr\/rj2026l5.htm"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "MG",
+            "rnf_reference_2026": 3,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "mg-entrada",
+                    "name": "Mineiro Segunda Divisão",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 12,
+                    "sources": [
+                        "https:\/\/www.fmf.com.br\/Competicoes\/Equipes.aspx?d=3"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "RS",
+            "rnf_reference_2026": 4,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "rs-entrada",
+                    "name": "Gaúcho Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 10,
+                    "sources": [
+                        "https:\/\/fgf.com.br\/noticia\/fgf-divulga-regulamento-especifico-e-tabela-basica-do-gauchao-serie-b-2026"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "PR",
+            "rnf_reference_2026": 5,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "pr-entrada",
+                    "name": "Paranaense Terceira Divisão",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 11,
+                    "sources": [
+                        "https:\/\/federacaopr.com.br\/noticias\/paranaense\/fpf-divulga-as-datas-dos-jogos-da-terceira-divisao-paranaense-2026\/"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "CE",
+            "rnf_reference_2026": 6,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "ce-entrada",
+                    "name": "Cearense Série C",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 7,
+                    "sources": [
+                        "https:\/\/futebolcearense.com.br\/2011\/noticia_ver.asp?id=18795"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "GO",
+            "rnf_reference_2026": 7,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "go-entrada",
+                    "name": "Goiano Terceira Divisão",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 7,
+                    "sources": [
+                        "https:\/\/opopular.com.br\/esporte\/com-sete-clubes-3-divis-o-do-goiano-comeca-neste-final-de-semana-1.3466649"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "SC",
+            "rnf_reference_2026": 8,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "sc-entrada",
+                    "name": "Catarinense Série C",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 4,
+                    "sources": [
+                        "https:\/\/fcf.com.br\/divulgada-a-tabela-e-o-regulamento-especifico-da-serie-c-do-catarinense\/"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "BA",
+            "rnf_reference_2026": 9,
+            "quota": 3,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "ba-entrada",
+                    "name": "Baiano Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 10,
+                    "sources": [
+                        "https:\/\/www.fbf.org.br\/noticias\/detalhe\/12835"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "PE",
+            "rnf_reference_2026": 10,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "pe-entrada",
+                    "name": "Pernambucano 2026\/27 — primeiro turno",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 24,
+                    "sources": [
+                        "https:\/\/fpf-pe.com.br\/pt\/noticias\/view.php?q=12567"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "AL",
+            "rnf_reference_2026": 11,
+            "quota": 2,
+            "qualifying_competition": "al-a1",
+            "rule_source": "https:\/\/futeboldealagoas.net\/assets\/uploads\/176832886543.pdf",
+            "location": "arts.1,5-10; PDF pp.2-4; art.10 classifies champion\/runner-up and rolls down final ranking",
+            "path_status": "sports_path_implemented_pending_national_admission",
+            "usable_final_classification": "verified_reconstruction_required",
+            "specific_engine": "existing_alagoas_adapter_reused",
+            "lower_or_selective": "not_required_for_AL_D_path; lower_division_affects_next_state_edition",
+            "roll_down": "final_ranking_skipping_verified_upper_divisions_and_already_qualified_national_candidates",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "al-entrada",
+                    "name": "Alagoano Série B Sub-23",
+                    "edition": 2026,
+                    "format": "alagoas",
+                    "participants": 6,
+                    "sources": [
+                        "https:\/\/futeboldealagoas.net\/assets\/uploads\/177223121748.pdf",
+                        "https:\/\/futeboldealagoas.net\/assets\/uploads\/178302506438.pdf"
+                    ],
+                    "validation": "pinned_pilot_sports_verified",
+                    "can_generate_legacy_results": true
+                },
+                {
+                    "id": "al-a1",
+                    "name": "Alagoano Série A",
+                    "edition": 2026,
+                    "format": "alagoas",
+                    "participants": 8,
+                    "sources": [
+                        "https:\/\/futeboldealagoas.net\/assets\/uploads\/176832886543.pdf"
+                    ],
+                    "validation": "pinned_pilot_sports_verified",
+                    "can_generate_legacy_results": true
+                },
+                {
+                    "id": "al-copa",
+                    "name": "Copa Alagoas",
+                    "edition": 2026,
+                    "format": "alagoas",
+                    "participants": 11,
+                    "sources": [
+                        "https:\/\/www.futeboldealagoas.net\/assets\/uploads\/177326005939.pdf",
+                        "https:\/\/futeboldealagoas.net\/assets\/uploads\/176962499217.pdf",
+                        "https:\/\/futeboldealagoas.net\/assets\/uploads\/177567932470.pdf"
+                    ],
+                    "validation": "pinned_pilot_sports_verified",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "PA",
+            "rnf_reference_2026": 12,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "pa-entrada",
+                    "name": "Paraense Série A3",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 12,
+                    "sources": [
+                        "https:\/\/www.fpfpara.com.br\/competicao\/112"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "MT",
+            "rnf_reference_2026": 13,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "mt-entrada",
+                    "name": "Mato-grossense Segunda Divisão",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 10,
+                    "sources": [
+                        "https:\/\/fmfmt.com.br\/pt\/noticias\/view.php?id=2276"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "AM",
+            "rnf_reference_2026": 14,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "am-entrada",
+                    "name": "Amazonense Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 7,
+                    "sources": [
+                        "https:\/\/www.fafamazonas.com.br\/site\/noticia\/faf-divulga-clubes-da-serie-b-do-barezao\/"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                },
+                {
+                    "id": "am-a1",
+                    "name": "Amazonense Série A",
+                    "edition": 2026,
+                    "format": "amazonense",
+                    "participants": 8,
+                    "sources": [
+                        "https:\/\/fafamazonas.com.br\/site\/noticia\/faf-divulga-tabela-completa-de-jogos-do-barezao-2026\/"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "RN",
+            "rnf_reference_2026": 15,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "rn-entrada",
+                    "name": "Potiguar Segunda Divisão",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 5,
+                    "sources": [
+                        "https:\/\/fnf.org.br\/campeonato-potiguar-segunda-divisao-2026-cinco-clubes-disputarao-a-taca-a-partir-de-7-de-outubro"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "PB",
+            "rnf_reference_2026": 16,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "pb-entrada",
+                    "name": "Paraibano Segunda Divisão",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 10,
+                    "sources": [
+                        "https:\/\/ge.globo.com\/pb\/futebol\/paraibano-segunda-divisao\/noticia\/2026\/09\/11\/guia-da-2a-divisao-do-paraibano-2026-tudo-o-que-voce-precisa-saber-sobre-a-competicao.ghtml"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "MA",
+            "rnf_reference_2026": 17,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "ma-entrada",
+                    "name": "Maranhense Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 12,
+                    "sources": [
+                        "https:\/\/imirante.com\/esporte\/sao-luis\/2026\/03\/22\/fmf-confirma-participantes-e-formula-de-disputa-do-maranhense-serie-b-2026"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "SE",
+            "rnf_reference_2026": 18,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "se-entrada",
+                    "name": "Sergipano Série A2",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 12,
+                    "sources": [
+                        "https:\/\/fsf-se.com.br\/congresso-tecnico-define-formato-do-sergipano-da-serie-a2-2\/"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "DF",
+            "rnf_reference_2026": 19,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "df-entrada",
+                    "name": "Candangão Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 7,
+                    "sources": [
+                        "https:\/\/www.ffdf.com.br\/pt\/noticias\/view.php?q=1268"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "PI",
+            "rnf_reference_2026": 20,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "pi-entrada",
+                    "name": "Piauiense Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 6,
+                    "sources": [
+                        "https:\/\/interativos.ge.globo.com\/pi\/futebol\/campeonato-piauiense\/guia\/guia-do-piauiense-serie-b-2026"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "ES",
+            "rnf_reference_2026": 21,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "es-entrada",
+                    "name": "Capixaba Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 10,
+                    "sources": [
+                        "https:\/\/futebolcapixaba.com\/2026\/04\/51396\/"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "TO",
+            "rnf_reference_2026": 22,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "to-entrada",
+                    "name": "Tocantinense Segunda Divisão",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 8,
+                    "sources": [
+                        "https:\/\/ge.globo.com\/google\/amp\/to\/futebol\/tocantinense-segunda-divisao\/noticia\/2026\/09\/05\/guia-da-segundona-tocantinense-2026-tudo-sobre-o-torneio-que-inicia-neste-sabado.ghtml"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "AC",
+            "rnf_reference_2026": 23,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "ac-entrada",
+                    "name": "Acreano Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 4,
+                    "sources": [
+                        "https:\/\/ge.globo.com\/ac\/futebol\/acreano-segunda-divisao\/noticia\/2026\/08\/11\/guia-do-acreano-serie-b-regulamento-clubes-participantes-e-mais-detalhes-sobre-a-2a-divisao.ghtml"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "RO",
+            "rnf_reference_2026": 24,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "ro-entrada",
+                    "name": "Rondoniense Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 2,
+                    "sources": [
+                        "https:\/\/ge.globo.com\/ro\/futebol\/campeonato-rondoniense\/noticia\/2026\/08\/31\/rolim-de-moura-goleia-vec-por-4-a-1-e-conquista-titulo-inedito-da-serie-b.ghtml"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "RR",
+            "rnf_reference_2026": 25,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "rr-entrada",
+                    "name": "Roraimense",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 9,
+                    "sources": [
+                        "https:\/\/www.futebolroraimense.com.br\/post\/campeonato-roraimense-giroagro-2026"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "MS",
+            "rnf_reference_2026": 26,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "ms-entrada",
+                    "name": "Sul-Mato-Grossense Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 8,
+                    "sources": [
+                        "https:\/\/ge.globo.com\/google\/amp\/ms\/futebol\/campeonato-sul-mato-grossense\/noticia\/2026\/04\/01\/sul-mato-grossense-serie-b-veja-os-jogos-datas-e-formato.ghtml"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        },
+        {
+            "uf": "AP",
+            "rnf_reference_2026": 27,
+            "quota": 2,
+            "qualifying_competition": "not_certified",
+            "rule_source": null,
+            "location": null,
+            "path_status": "blocked_pending_primary_rule_and_participants_review",
+            "usable_final_classification": "legacy_result_not_certified_for_D",
+            "specific_engine": "review_required; generic_format_does_not_prove_REC",
+            "lower_or_selective": "official_qualifying_path_and_selective_permissions_unverified",
+            "roll_down": "not_activated_without_official_path",
+            "national_entries_granted": 0,
+            "competitions": [
+                {
+                    "id": "ap-entrada",
+                    "name": "Amapaense Série B",
+                    "edition": 2026,
+                    "format": "state",
+                    "participants": 12,
+                    "sources": [
+                        "https:\/\/santanaesporteclube.com.br\/noticia_view.php?id_noticia=10"
+                    ],
+                    "validation": "catalogue_reference_not_D_qualification_certification",
+                    "can_generate_legacy_results": true
+                }
+            ]
+        }
+    ]
+}

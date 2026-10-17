@@ -1,0 +1,32 @@
+{
+    "checks": 38,
+    "national_seasons_with_real_repository": 1,
+    "national_renewals": 0,
+    "mode": "expresso",
+    "crash_retry_and_closure_replay": true,
+    "all_fixture_writes_rolled_back": true,
+    "rh_writes": false,
+    "faf_rules_and_real_participants": true,
+    "national_continuity_complete": false,
+    "achievements_disabled_for_disposable_fixture": true,
+    "seasons": [
+        {
+            "season": 1,
+            "commands": 200,
+            "queries": 7003,
+            "max_command_ms": 1660.35,
+            "p50_ms": 453.29,
+            "p95_ms": 871.52,
+            "p99_ms": 1284.22,
+            "closure_bytes": 10940,
+            "history_bytes": 2,
+            "season_close_command_ms": 1660.35,
+            "elapsed_ms": 105057.74,
+            "snapshot_bytes": 1531616,
+            "peak_snapshot_bytes": 2009066,
+            "games": 63,
+            "goals": 0,
+            "assists": 0
+        }
+    ]
+}
