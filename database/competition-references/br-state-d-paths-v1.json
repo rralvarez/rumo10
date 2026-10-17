@@ -1,0 +1,21 @@
+{
+  "id": "state-d-paths-2026-v1",
+  "paths": {
+    "AL": {
+      "id": "faf-al-a2026-d2027-v1",
+      "status": "sports_rule_verified",
+      "competition": "al-a1",
+      "source_edition": 2026,
+      "target_edition": 2027,
+      "quota": 2,
+      "source": "https://futeboldealagoas.net/assets/uploads/176832886543.pdf",
+      "location": "arts.1,5-10; PDF pp.2-4; art.10 classifies champion/runner-up and rolls down final ranking",
+      "participants": ["ASA-AL", "Coruripe-AL", "CSA-AL", "CRB-AL", "CSE-AL", "Cruzeiro Arapiraca-AL", "Murici-AL", "Penedense-AL"],
+      "roll_down": "final_ranking_skipping_verified_upper_divisions_and_already_qualified_national_candidates",
+      "selective_required": false,
+      "eligibility": "sporting candidate only; BID, licensing, acceptance and full national edition still required",
+      "consulted_on": "2026-10-17",
+      "future_rule": "later editions require separately pinned simulated policy, not official regulation reuse"
+    }
+  }
+}

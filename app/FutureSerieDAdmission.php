@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 /** Read-only conservative proposal approved 17/10/2026. Never applies memberships.
  * National merits are rebuilt from finalized results; catalogue presence is not merit.
- * Federation qualifiers need a separately verified edition policy, absent in this lot.
+ * Federation qualifiers require a separately verified edition policy and result receipt.
  */
 final class FutureSerieDAdmission {
     /** Optional snapshot ledger, persisted by the caller's existing transaction.
@@ -26,15 +26,20 @@ final class FutureSerieDAdmission {
             $selected[$club]=true;$from=in_array($club,$g['competitions']['br-c']['relegated'],true)?'br-c':'br-d';
             $ledger[]=['key'=>hash('sha256',$g['id'].'|2027|'.$club),'club'=>$club,'source'=>$from,'source_edition'=>2026,'target_edition'=>2027,'state'=>'national_merit_candidate_not_enrolled','evidence'=>$closure['sha256']];
         }
-        $deficits=[];foreach($policy['federation_ranking'] as $uf=>$rank){$quota=$policy['quotas']['federation:'.$uf];$deficits[$uf]=['reference_2026_quota'=>$quota,'accepted'=>0,'missing'=>$quota,'state'=>'future_rule_and_finalized_qualifying_results_required'];}
+        $nationalSelected=$selected;$stateSelected=[];$deficits=[];foreach($policy['federation_ranking'] as $uf=>$rank){$quota=$policy['quotas']['federation:'.$uf];$deficits[$uf]=['reference_2026_quota'=>$quota,'accepted'=>0,'missing'=>$quota,'state'=>'future_rule_and_finalized_qualifying_results_required'];}
+        foreach($g['state_qualifications']['2027']??[] as $uf=>$receipt){$proof=StateQualification::evaluate($g,$uf);if($receipt!=$proof||$proof['quota']!==$deficits[$uf]['reference_2026_quota'])throw new RuntimeException('Recibo estadual ou quota divergentes.');
+            foreach($proof['selected'] as $club){if(isset($selected[$club])||in_array($club,$upper,true))throw new RuntimeException('Vaga estadual duplicada.');$selected[$club]=true;$stateSelected[]=$club;$ledger[]=['key'=>hash('sha256',$g['id'].'|2027|'.$uf.'|'.$club),'club'=>$club,'source'=>$proof['competition'],'source_edition'=>2026,'target_edition'=>2027,'state'=>'state_merit_candidate_not_enrolled','evidence'=>$proof['sha256']];}
+            $deficits[$uf]['accepted']=$proof['candidate_count'];$deficits[$uf]['missing']=$proof['unavailable'];$deficits[$uf]['state']='sports_candidates_proven_admission_pending';
+        }
         // Retain rejected/unevaluated candidates as evidence, never select a champion by name.
         foreach($g['competitions'] as $id=>$t){$pin=$g['world_reference'][$id]??[];$c=$pin['definition']??[];
             if(($c['country']??null)!=='BR'||($c['scope']??null)!=='state')continue;
+            if(isset($g['state_qualifications']['2027'][$c['uf']??''])&&($g['state_qualifications']['2027'][$c['uf']]['competition']??null)===$id)continue; // Certified path already has its selected and rejected ranking rows in the receipt.
             if(!CompetitionReference::verify($pin)||empty($t['done'])||array_filter($t['matches'],fn($m)=>$m['status']!=='finalizada'))throw new RuntimeException('Estadual sem edição/resultados fechados verificáveis.');
             foreach($t['final_ranking']??[] as $i=>$club){$reason=isset($selected[$club])?'already_national_candidate':(in_array($club,$upper,true)?'upper_division_ineligible':'federation_qualification_rule_not_certified');
                 $ledger[]=['key'=>hash('sha256',$g['id'].'|2027|'.$id.'|'.$club),'club'=>$club,'source'=>$id,'source_edition'=>2026,'target_edition'=>2027,'rank'=>$i+1,'state'=>'not_selected','reason'=>$reason,'evidence'=>$pin['sha256']];
             }
         }
-        return ['schema'=>1,'policy'=>'conservative-evidence-only-approved-20261017','knowledge'=>'future_simulation_proposal_not_official_2027','career_id'=>$g['id'],'source_edition'=>2026,'target_edition'=>2027,'capacity_proposed'=>96,'national_candidates'=>array_keys($selected),'candidate_count'=>count($selected),'missing_total'=>96-count($selected),'federations'=>$deficits,'federation_missing_total'=>array_sum(array_column($deficits,'missing')),'residual_missing'=>96-count($selected)-array_sum(array_column($deficits,'missing')),'quotas_status'=>'2026_reference_not_certified_2027','blocked'=>true,'memberships_applied'=>false,'ledger'=>$ledger,'source_results_digest'=>$closure['sha256'],'input_unchanged'=>$before===$g];
+        return ['schema'=>1,'policy'=>'conservative-evidence-only-approved-20261017','knowledge'=>'future_simulation_proposal_not_official_2027','career_id'=>$g['id'],'source_edition'=>2026,'target_edition'=>2027,'capacity_proposed'=>96,'national_candidates'=>array_keys($nationalSelected),'state_candidates'=>$stateSelected,'candidate_count'=>count($selected),'missing_total'=>96-count($selected),'federations'=>$deficits,'federation_missing_total'=>array_sum(array_column($deficits,'missing')),'residual_missing'=>96-count($selected)-array_sum(array_column($deficits,'missing')),'quotas_status'=>'2026_reference_not_certified_2027','blocked'=>true,'memberships_applied'=>false,'ledger'=>$ledger,'source_results_digest'=>$closure['sha256'],'input_unchanged'=>$before===$g];
     }
 }
