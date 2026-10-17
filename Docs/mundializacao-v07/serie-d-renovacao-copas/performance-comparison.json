@@ -1,0 +1,41 @@
+{
+  "baseline51": {
+    "mode": "normal",
+    "commands": 734,
+    "queries": 25693,
+    "p95_ms": 401.12,
+    "peak_snapshot_bytes": 1263388
+  },
+  "current_mode": "expresso",
+  "current": {
+    "season": 1,
+    "commands": 176,
+    "queries": 6163,
+    "max_command_ms": 4723.02,
+    "p50_ms": 396.72,
+    "p95_ms": 1186.27,
+    "closure_bytes": 6293,
+    "history_bytes": 2,
+    "season_close_command_ms": 3225.48,
+    "elapsed_ms": 94973.41,
+    "snapshot_bytes": 1806325,
+    "peak_snapshot_bytes": 1879792,
+    "games": 67,
+    "goals": 0,
+    "assists": 1
+  },
+  "comparable_controlled_benchmark": false,
+  "national_same_career_seasons_completed": 1,
+  "applied_national_renewals": 0,
+  "season2_metrics": null,
+  "season3_metrics": null,
+  "season5_metrics": null,
+  "missing_future_metrics_reason": "sports and mandatory tournament gates block next edition",
+  "default_match_ceiling": 128,
+  "generic_pilot_ceiling": 1152,
+  "named_fixture_ceiling": {
+    "abcd-2026-v1": 1673,
+    "abcd-ne-2026-v1": 1733
+  },
+  "npc_batch_budget": 8
+}

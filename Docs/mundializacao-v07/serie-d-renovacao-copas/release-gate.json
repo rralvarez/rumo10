@@ -1,0 +1,17 @@
+{
+  "public_activation": false,
+  "base_edition_per_career_completed": 1,
+  "national_renewals_applied": 0,
+  "five_national_seasons": false,
+  "serie_d_2026_sports_runtime": true,
+  "nordeste_2026_sports_runtime": true,
+  "all_legal_admission_conditions_certified": false,
+  "future_c24_contract_isolated_test": true,
+  "future_d_admission_missing": 68,
+  "copa_do_brasil_runtime": false,
+  "all_mandatory_tournaments_covered": false,
+  "legacy_completeWorld_unchanged": true,
+  "ddl": false,
+  "hub_changed": false,
+  "production_changed": false
+}

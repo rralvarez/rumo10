@@ -1,0 +1,34 @@
+<?php
+declare(strict_types=1);
+if(!in_array('--local-fixtures',$argv,true))exit("Use --local-fixtures, somente loopback.\n");
+putenv('RUMOHUB_ENABLED=0');putenv('RUMOHUB_IDENTITY=0');putenv('RUMOHUB_BENEFITS=0');putenv('RUMO10_ACHIEVEMENTS=0');putenv('RUMO10_WORLD_CALENDAR=1');putenv('RUMO10_WORLD_FIXTURES=1');putenv('RUMO10_RECONCILIATION=1');putenv('RUMO10_FEEDBACK=1');require dirname(__DIR__).'/app/bootstrap.php';
+if(config('APP_ENV','local')==='production'||!in_array(config('DB_HOST'),['localhost','127.0.0.1','::1'],true)||config('DB_DATABASE')!=='rumohub')throw new RuntimeException('Somente rumohub local.');
+$root=dirname(__DIR__);$dir=$root.'/storage/qa/serie-d-cup-v07';if(!is_dir($dir))mkdir($dir,0700,true);
+$db=Database::connect();$r=new Repository($db);$hub=random_int(1000000000000,7000000000000);$email='http-v07-'.bin2hex(random_bytes(8)).'@example.invalid';$password=bin2hex(random_bytes(20));$account=0;$career=0;$server=null;$cookies=[];$checks=0;
+function ok(bool $x,string $why):void{global $checks;$checks++;if(!$x)throw new RuntimeException($why);}
+function request(string $path,?array $post=null):array {
+ global $cookies;$headers=['Connection: close'];if($cookies)$headers[]='Cookie: '.implode('; ',array_map(fn($k,$v)=>$k.'='.$v,array_keys($cookies),$cookies));
+ $opt=['method'=>$post===null?'GET':'POST','ignore_errors'=>true,'follow_location'=>0,'timeout'=>10,'header'=>implode("\r\n",$headers)];if($post!==null){$opt['content']=http_build_query($post);$opt['header'].="\r\nContent-Type: application/x-www-form-urlencoded";}
+ $body=file_get_contents('http://127.0.0.1:18071'.$path,false,stream_context_create(['http'=>$opt]));$response=$http_response_header??[];preg_match('/HTTP\/\S+ (\d+)/',$response[0]??'',$m);
+ foreach($response as $h)if(preg_match('/^Set-Cookie: ([^=]+)=([^;]*)/i',$h,$cookie))$cookies[$cookie[1]]=$cookie[2];return ['status'=>(int)($m[1]??0),'body'=>$body?:''];
+}
+function hidden(string $html,string $name):string {preg_match('/name="'.preg_quote($name,'/').'"[^>]*value="([^"]*)"/',$html,$m);return html_entity_decode($m[1]??'',ENT_QUOTES,'UTF-8');}
+try{
+ $probe=@fsockopen('127.0.0.1',18071,$errno,$errstr,.1);if($probe){fclose($probe);throw new RuntimeException('Porta de teste ocupada.');}
+ $r->query('INSERT INTO rumo10_contas(email,senha_hash) VALUES(?,?)',[$email,password_hash($password,PASSWORD_DEFAULT)]);$account=(int)$db->lastInsertId();$r->query('INSERT INTO rumo10_identidades VALUES(?,?)',[$account,$hub]);
+ $r->query('INSERT INTO rumo10_carreiras(conta_id,nome,cidade,uf,posicao,idade,etapa,clube) VALUES(?,?,?,?,?,?,?,?)',[$account,'Atleta de teste','São Paulo','SP','meia',18,'treino','CRB-AL']);$career=(int)$db->lastInsertId();$g=NationalTrial::createABCDWithNordeste($career);$g['stage']='world_processing';$r->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?)',[$career,json_encode($g,JSON_THROW_ON_ERROR)]);
+ $server=proc_open([PHP_BINARY,'-n','-d','extension_dir=C:/PHP/php-8.4.26/ext','-d','extension=mbstring','-d','extension=pdo_mysql','-S','127.0.0.1:18071','-t',$root.'/public',$root.'/tests/router-v061.php'],[0=>['pipe','r'],1=>['file',$dir.'/server.log','a'],2=>['file',$dir.'/server-error.log','a']],$pipes,$root);if(!is_resource($server))throw new RuntimeException('Servidor não iniciou.');fclose($pipes[0]);
+ for($i=0;$i<30;$i++){usleep(100000);$socket=@fsockopen('127.0.0.1',18071,$errno,$errstr,.1);if($socket){fclose($socket);break;}}
+ ok(request('/carreira')['status']===303,'anônimo bloqueado');$login=request('/login');$csrf=hidden($login['body'],'csrf');ok(request('/login',['csrf'=>$csrf,'email'=>$email,'password'=>$password])['status']===303,'login descartável');
+ for($batch=0;$batch<50;$batch++){$state=$r->load($account);if($state['stage']!=='world_processing')break;$page=request('/carreira');ok(str_contains($page['body'],'Continuar atualização'),'estado de processamento visível');$continue=['csrf'=>hidden($page['body'],'csrf'),'version'=>hidden($page['body'],'version'),'key'=>hidden($page['body'],'key')];ok(request('/competicao/continuar',$continue)['status']===303,'continuação pelo controller');$afterBatch=$r->load($account);ok(request('/competicao/continuar',$continue)['status']===303&&$r->load($account)===$afterBatch,'retry de lote não duplica');}
+ ok($r->load($account)['stage']==='treino','retoma jogo do jogador');
+ foreach(['/carreira','/jogador','/classificacao','/carreira/trofeus','/carreiras'] as $path){$page=request($path);ok($page['status']===200,'página autenticada '.$path);ok(!str_contains($page['body'],'Fatal error'),'sem erro de referência '.$path);file_put_contents($dir.'/'.str_replace('/','-',trim($path,'/')).'.html',$page['body']);}
+ $page=request('/carreira');ok(str_contains($page['body'],'Calendário simulado · ambiente de teste'),'adaptação visível');$post=['csrf'=>hidden($page['body'],'csrf'),'version'=>hidden($page['body'],'version'),'key'=>hidden($page['body'],'key'),'option'=>0];
+ ok(request('/decisao/registrar',array_replace($post,['csrf'=>'wrong']))['status']===403,'CSRF');ok(request('/decisao/registrar',$post)['status']===303,'decisão pelo controller');$after=$r->load($account);ok($after['stage']==='pre_jogo','treino persistido');ok(request('/decisao/registrar',$post)['status']===303,'duplo POST');ok($r->load($account)===$after,'sem dupla evolução');ok(request('/decisao/registrar',array_replace($post,['option'=>1]))['status']===422,'token divergente bloqueado');
+ ok(request('/api/carreira/estado?user_id=999999')['status']===200,'API própria');$api=json_decode(request('/api/carreira/estado?career=999999')['body'],true);ok($api['id']===$career,'parâmetro não troca proprietário');request('/logout',['csrf'=>$post['csrf']]);ok(request('/carreira')['status']===303,'logout');
+}finally{
+ if(is_resource($server)){proc_terminate($server);proc_close($server);}
+ if($career){$db->beginTransaction();CareerSlots::purgeDetails($r,$career);$r->query('DELETE FROM rumo10_carreiras WHERE id=?',[$career]);$db->commit();}
+ if($account){$r->query('DELETE FROM rumo10_identidades WHERE conta_id=?',[$account]);$r->query('DELETE FROM rumo10_contas WHERE id=?',[$account]);}$r->query('DELETE FROM rumo10_login_limits WHERE fingerprint=?',[hash('sha256','127.0.0.1|'.$email)]);
+}
+file_put_contents($root.'/Docs/mundializacao-v07/serie-d-renovacao-copas/http-runtime.json',json_encode(['checks'=>$checks,'transport'=>'isolated PHP loopback; not IIS central login','fixtures_cleaned'=>true,'rh_writes'=>false],JSON_PRETTY_PRINT));echo "OK: $checks verificações HTTP do piloto, fixture removida.\n";

@@ -1,0 +1,2347 @@
+{
+    "edition": 2026,
+    "scope": "base_2026_only_not_legal_certification",
+    "all_obligations_known": false,
+    "other_regional_and_continental_entries": "not_fully_audited",
+    "clubs": {
+        "ASA-AL": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Coruripe-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "CSA-AL": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "CRB-AL": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "CSE-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Cruzeiro Arapiraca-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Murici-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Penedense-AL": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "São Domingos-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Desportivo Aliança-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Jaciobá-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Miguelense-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Sporting-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Zumbi-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Dimensão Saúde-AL": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "América-MG": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Athletic-MG": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Atlético-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Avaí-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Botafogo-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Ceará-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Criciúma-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Cuiabá-MT": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Fortaleza-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Goiás-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Juventude-RS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Londrina-PR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Náutico-PE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Novorizontino-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Operário-PR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Ponte Preta-SP": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "São Bernardo FC-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Sport-PE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Vila Nova-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Athletico-PR": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Atlético-MG": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Bahia-BA": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Botafogo-RJ": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Chapecoense-SC": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Corinthians-SP": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Coritiba-PR": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Cruzeiro-MG": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Flamengo-RJ": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Fluminense-RJ": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Grêmio-RS": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Internacional-RS": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Mirassol-SP": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Palmeiras-SP": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Red Bull Bragantino-SP": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Remo-PA": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Santos-SP": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "São Paulo-SP": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Vasco-RJ": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Vitória-BA": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Amazonas-AM": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Anápolis-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Barra-SC": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Botafogo-PB": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Brusque-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Caxias-RS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Confiança-SE": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Ferroviária-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Figueirense-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Floresta-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Guarani-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Inter de Limeira-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Itabaiana-SE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Ituano-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Maranhão-MA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Maringá-PR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Paysandu-PA": {
+            "br-copa": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": true
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Santa Cruz-PE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Volta Redonda-RJ": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Ypiranga-RS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Nacional-AM": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Manaus-AM": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Manauara-AM": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "GAS-RR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Monte Roraima-RR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "São Raimundo-RR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Independência-AC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Galvez-AC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Humaitá-AC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Porto Velho-RO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Guaporé-RO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Araguaína-TO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Gama-DF": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Brasiliense-DF": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Luverdense-MT": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Primavera-MT": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Inhumas-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Aparecidense-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Capital-DF": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Ceilândia-DF": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Mixto-MT": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Operário-MT": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "União-MT": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Goiatuba-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Trem-AP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Oratório-AP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Tuna Luso-PA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Águia de Marabá-PA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Tocantinópolis-TO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Imperatriz-MA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Sampaio Corrêa-MA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Moto Club-MA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "IAPE-MA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Maracanã-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Iguatu-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Parnahyba-PI": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Ferroviário-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Tirol-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Atlético-CE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Altos-PI": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Piauí-PI": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Fluminense-PI": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "ABC-RN": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "América-RN": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Laguna-RN": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Sousa-PB": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Maguary-PE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Central-PE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Retrô-PE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Decisão-PE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Serra Branca-PB": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Treze-PB": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Lagarto-SE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Sergipe-SE": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Jacuipense-BA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Atlético-BA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Juazeirense-BA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "confirmed_base_2026",
+                "calendar": "present",
+                "completed": true,
+                "required_uncovered": false
+            }
+        },
+        "Uberlândia-MG": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Betim-MG": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "CRAC-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "ABECAT-GO": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Operário-MS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Ivinhema-MS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Porto-BA": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Rio Branco-ES": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Vitória-ES": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Real Noroeste-ES": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Tombense-MG": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Democrata GV-MG": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Madureira-RJ": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Portuguesa-RJ": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "America-RJ": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Portuguesa-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Água Santa-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Pouso Alegre-MG": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Nova Iguaçu-RJ": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Sampaio Corrêa-RJ": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Maricá-RJ": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "XV de Piracicaba-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Noroeste-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Velo Clube-SP": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Cianorte-PR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "FC Cascavel-PR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Santa Catarina-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Joinville-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Guarany de Bagé-RS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "São Luiz-RS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Blumenau-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Marcílio Dias-SC": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "São Joseense-PR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Azuriz-PR": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "São José-RS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        },
+        "Brasil de Pelotas-RS": {
+            "br-copa": {
+                "evidence": "unassessed_not_exempt",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            },
+            "br-nordeste": {
+                "evidence": "not_listed_in_closed_base_annex",
+                "calendar": "absent",
+                "completed": false,
+                "required_uncovered": false
+            }
+        }
+    },
+    "public_continuation_allowed": false
+}

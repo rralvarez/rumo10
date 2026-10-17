@@ -1,0 +1,14 @@
+{
+  "base_local_and_remote": "c781ff6c94eb5cafc0946dcdcadfa3e44f128ea1",
+  "worktrees": 1,
+  "untracked_preserved": "Docs/levantamento-2026-10-15",
+  "normal_flags": {
+    "RUMO10_WORLD_CALENDAR": "0",
+    "RUMO10_WORLD_FIXTURES": "0"
+  },
+  "workflows_push": [
+    "main"
+  ],
+  "production_access": false,
+  "schema_changes": false
+}

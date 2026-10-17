@@ -1,0 +1,20 @@
+[
+  {
+    "test": "serie-d-cup-runtime-v07",
+    "failure": "long-running PHP process had loaded old NationalDCompetition before verify method was added; later autoload loaded new caller",
+    "resolution": "repeat with stabilized code; no success claimed for this attempt",
+    "data": "memory fixture only; no user data"
+  },
+  {
+    "test": "initial_normal_PDO_run",
+    "state": "cancelled_stale_class_process",
+    "process_identity_checked": true,
+    "connection_close_rolls_back_outer_transaction": true,
+    "success_claimed": false
+  },
+  {
+    "test": "express_PDO_harness_initial_attempt",
+    "failure": "harness sent choice at first treino in Expresso; engine correctly rejected, fixture rolled back",
+    "fix": "use simulate with strategy for initial command and nonce replay"
+  }
+]

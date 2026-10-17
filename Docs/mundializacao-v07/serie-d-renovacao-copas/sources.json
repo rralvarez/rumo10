@@ -1,0 +1,30 @@
+{
+  "consulted": "2026-10-17",
+  "serie_d_rec": {
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+    "location": "arts6,15-21; AnexoB PDFpp20-22",
+    "conflict": "art17 vs art21 playoffs; specific21 applied, not an asserted official erratum"
+  },
+  "serie_d_groups": {
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/Tabela_Detalhada_Brasileiro_Serie_D_2026_1f9d105d94.pdf",
+    "location": "PDFpp1-2 refs001-048",
+    "legal_BID_inferred": false
+  },
+  "nordeste_rec": {
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Nordeste_2026_113589c009.pdf",
+    "location": "arts2,5,7,10-22; AnexosA/B PDFpp14-15"
+  },
+  "nordeste_groups": {
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/Tabela_Detalhada_Copa_do_Nordeste_2026_31_03_9c5998f5b7.pdf",
+    "location": "PDFpp1-2 group letters/refs001-050"
+  },
+  "D_retention_primary_federation": {
+    "url": "https://www.fnf.org.br/cbf-define-os-grupos-do-campeonato-brasileiro-serie-d",
+    "location": "Formato de disputa; third phase retention statement"
+  },
+  "copa_do_brasil": {
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+    "location": "art2; AnexoA",
+    "coverage": "28confirmed entries reconciled this increment, not full126"
+  }
+}
