@@ -1,0 +1,42 @@
+{
+  "id": "br-d-future-evidence-only-v1",
+  "status": "product_direction_approved_not_activated",
+  "approved_on": "2026-10-17",
+  "scope": "Rumo10 independent simulated career, never official future participants",
+  "official_base": {
+    "edition": 2026,
+    "rec": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+    "rnf": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/RNF_Ranking_Nacional_das_Federacoes_2026_30b87e87a3.pdf",
+    "national_reference": "26 retained after 6 D promotions; 2 C descents in the current base edition",
+    "federation_slots": 64,
+    "reference_quota_file": "br-d-admission-2026-v2.json"
+  },
+  "simulation_adaptations": {
+    "capacity": 96,
+    "quota_version": "Freeze RNF2026 allocation until a separately versioned simulation policy replaces it; not official RNF2027",
+    "first_transition": {"retained_d": 26, "relegated_c": 2, "federation": 64, "residual": 4},
+    "following_transitions": {"d_to_c": 4, "c_to_d": 4, "retained_d": 28, "relegated_c": 4, "federation": 64, "residual": 0},
+    "state_results": "Complete official state/selective sports adapters with verified participants and NPC games, not new artificial selection tournaments",
+    "priority": ["national retention and descent", "federation paths with verified edition-specific rule", "residual from save sporting results"],
+    "duplicate_reassignment": "Skip already retained and A/B/C clubs, continue down the eligible finalized sporting classification of that federation; never exceed its quota",
+    "residual_first_transition": "Four highest eligible nonselected clubs in complete finalized D2026 ranking; deterministic published rank; no imported historical result or overall",
+    "ties": "Use persisted final rank from competition adapter; its official tie criteria and saved lot. Never re-roll selection or use current catalogue/overall",
+    "insufficient_federation_results": "Block full national renewal; report UF, slots and missing qualifying tournament/results. No transfer offers for unavailable edition"
+  },
+  "ledger": {
+    "identity": ["career_id", "target_edition", "club", "path", "policy_version"],
+    "evidence": ["pinned edition contract digest", "final sporting result digest", "source competition and edition", "rank and quota", "selection or rejection reason"],
+    "application": "Single existing Repository transaction only after all divisions, mandatory cups and state paths validate; no partial memberships",
+    "replay": "Same canonical digest returns existing ledger; conflicting digest aborts without mutation"
+  },
+  "activation_gates": [
+    "Per-federation official qualifying rule and selective exceptions verified",
+    "All 27 federation paths have enough simulated finalized eligible results",
+    "All 96 unique IDs known, no overlap with A/B/C",
+    "Mandatory current and next cups covered, including Copa do Brasil128 and new regional champions",
+    "C24 and D future four-slot formats implemented and tested, not just configured",
+    "Atomic renewal and five consecutive national seasons tested with PDO"
+  ],
+  "runtime_enabled": false,
+  "selection_engine_implemented": false
+}
