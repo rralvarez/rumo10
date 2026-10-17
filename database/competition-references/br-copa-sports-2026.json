@@ -1,0 +1,621 @@
+{
+  "id": "cbf-copa-brasil-sports-2026-v1",
+  "edition": 2026,
+  "rec": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+  "draw_source": "https://www.cbf.com.br/futebol-brasileiro/noticias/selecao-base-masculina/a/sorteio-da-copa-do-brasil-sera-nesta-quarta-feira-confira-os-criterios",
+  "rnc_source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/RNC_Ranking_Nacional_dos_Clubes_2026_27e24418e7.pdf",
+  "consulted_on": "2026-10-17",
+  "initial_pairs": [
+    [
+      "Ji-Paraná-RO",
+      "FC Pantanal-MS"
+    ],
+    [
+      "Independente-AP",
+      "Ivinhema-MS"
+    ],
+    [
+      "Madureira-RJ",
+      "Baré-RR"
+    ],
+    [
+      "Gama-DF",
+      "Monte Roraima-RR"
+    ],
+    [
+      "Galvez-AC",
+      "Guaporé-RO"
+    ],
+    [
+      "Velo Clube-SP",
+      "Vasco-AC"
+    ],
+    [
+      "Primavera-SP",
+      "Araguaína-TO"
+    ],
+    [
+      "Sampaio Corrêa-RJ",
+      "Desportiva Ferroviária-ES"
+    ],
+    [
+      "Betim-MG",
+      "Piauí-PI"
+    ],
+    [
+      "Tirol-CE",
+      "América-SE"
+    ],
+    [
+      "Santa Catarina-SC",
+      "IAPE-MA"
+    ],
+    [
+      "Porto-BA",
+      "Serra Branca-PB"
+    ],
+    [
+      "Maguary-PE",
+      "Laguna-RN"
+    ],
+    [
+      "Bragantino-PA",
+      "Primavera-MT"
+    ]
+  ],
+  "pots": {
+    "A": [
+      "Fortaleza-CE",
+      "Juventude-RS",
+      "Atlético-GO",
+      "América-MG",
+      "Ceará-CE",
+      "Cuiabá-MT",
+      "Goiás-GO",
+      "Sport-PE",
+      "CRB-AL",
+      "Vila Nova-GO",
+      "Operário-PR"
+    ],
+    "B": [
+      "Avaí-SC",
+      "Novorizontino-SP",
+      "CSA-AL",
+      "Amazonas-AM",
+      "Tombense-MG",
+      "Volta Redonda-RJ",
+      "Guarani-SP",
+      "ABC-RN",
+      "Londrina-PR",
+      "Retrô-PE",
+      "Ypiranga-RS"
+    ],
+    "C": [
+      "Athletic-MG",
+      "Botafogo-PB",
+      "Maringá-PR",
+      "São Bernardo FC-SP",
+      "Caxias-RS",
+      "Figueirense-SC",
+      "América-RN",
+      "Manaus-AM",
+      "Altos-PI",
+      "Nova Iguaçu-RJ",
+      "Águia de Marabá-PA"
+    ],
+    "D": [
+      "Anápolis-GO",
+      "Sousa-PB",
+      "Tocantinópolis-TO",
+      "ASA-AL",
+      "Porto Velho-RO",
+      "Ceilândia-DF",
+      "Portuguesa-RJ",
+      "Trem-AP",
+      "Juazeirense-BA",
+      "Itabaiana-SE",
+      "Maranhão-MA"
+    ],
+    "E": [
+      "Santa Cruz-PE",
+      "Tuna Luso-PA",
+      "Maracanã-CE",
+      "Cianorte-PR",
+      "Operário-MS",
+      "Jacuipense-BA",
+      "Capital-DF",
+      "Fluminense-PI",
+      "São Luiz-RS",
+      "Operário-MT",
+      "Manauara-AM"
+    ],
+    "F": [
+      "Azuriz-PR",
+      "Rio Branco-ES",
+      "Boavista-RJ",
+      "GAS-RR",
+      "Guarany de Bagé-RS",
+      "Mixto-MT",
+      "Portuguesa-SP",
+      "Atlético de Alagoinhas-BA",
+      "Lagarto-SE",
+      "Capital-TO",
+      "Independência-AC"
+    ],
+    "G": [
+      "Joinville-SC",
+      "Uberlândia-MG",
+      "Imperatriz-MA",
+      "Penedense-AL",
+      "Porto Vitória-ES",
+      "Castanhal-PA",
+      "Nacional-AM",
+      "Oratório-AP",
+      "w1",
+      "w2",
+      "w3"
+    ],
+    "H": [
+      "w4",
+      "w5",
+      "w6",
+      "w7",
+      "w8",
+      "w9",
+      "w10",
+      "w11",
+      "w12",
+      "w13",
+      "w14"
+    ]
+  },
+  "rank": {
+    "Flamengo-RJ": 1,
+    "Corinthians-SP": 2,
+    "Palmeiras-SP": 3,
+    "Atlético-MG": 4,
+    "São Paulo-SP": 5,
+    "Fluminense-RJ": 6,
+    "Botafogo-RJ": 7,
+    "Athletico-PR": 8,
+    "Bahia-BA": 9,
+    "Vasco-RJ": 10,
+    "Cruzeiro-MG": 11,
+    "Grêmio-RS": 12,
+    "Fortaleza-CE": 13,
+    "Internacional-RS": 14,
+    "Red Bull Bragantino-SP": 15,
+    "Santos-SP": 16,
+    "Juventude-RS": 17,
+    "Atlético-GO": 18,
+    "América-MG": 19,
+    "Vitória-BA": 20,
+    "Ceará-CE": 21,
+    "Cuiabá-MT": 22,
+    "Goiás-GO": 23,
+    "Coritiba-PR": 24,
+    "Sport-PE": 25,
+    "CRB-AL": 26,
+    "Mirassol-SP": 28,
+    "Vila Nova-GO": 29,
+    "Operário-PR": 30,
+    "Avaí-SC": 31,
+    "Novorizontino-SP": 32,
+    "Chapecoense-SC": 33,
+    "Paysandu-PA": 35,
+    "Remo-PA": 37,
+    "Ponte Preta-SP": 38,
+    "CSA-AL": 39,
+    "Amazonas-AM": 40,
+    "Tombense-MG": 42,
+    "Volta Redonda-RJ": 43,
+    "Guarani-SP": 45,
+    "ABC-RN": 46,
+    "Londrina-PR": 48,
+    "Retrô-PE": 49,
+    "Ypiranga-RS": 50,
+    "Athletic-MG": 51,
+    "Botafogo-PB": 52,
+    "Confiança-SE": 53,
+    "Maringá-PR": 56,
+    "São Bernardo FC-SP": 57,
+    "Caxias-RS": 58,
+    "Figueirense-SC": 59,
+    "América-RN": 62,
+    "Manaus-AM": 64,
+    "Altos-PI": 65,
+    "Nova Iguaçu-RJ": 66,
+    "Águia de Marabá-PA": 67,
+    "Anápolis-GO": 69,
+    "Sousa-PB": 70,
+    "Tocantinópolis-TO": 71,
+    "ASA-AL": 74,
+    "Porto Velho-RO": 75,
+    "Ceilândia-DF": 77,
+    "Portuguesa-RJ": 78,
+    "Trem-AP": 80,
+    "Juazeirense-BA": 83,
+    "Itabaiana-SE": 84,
+    "Maranhão-MA": 85,
+    "Santa Cruz-PE": 86,
+    "Tuna Luso-PA": 87,
+    "Maracanã-CE": 89,
+    "Cianorte-PR": 90,
+    "Operário-MS": 93,
+    "Jacuipense-BA": 94,
+    "Capital-DF": 95,
+    "Fluminense-PI": 97,
+    "São Luiz-RS": 98,
+    "Barra-SC": 99,
+    "Operário-MT": 102,
+    "Manauara-AM": 103,
+    "Azuriz-PR": 111,
+    "Rio Branco-ES": 112,
+    "Boavista-RJ": 113,
+    "Guarany de Bagé-RS": 116,
+    "Mixto-MT": 119,
+    "Portuguesa-SP": 121,
+    "Atlético de Alagoinhas-BA": 123,
+    "Lagarto-SE": 127,
+    "Capital-TO": 130,
+    "Independência-AC": 132,
+    "Joinville-SC": 136,
+    "Uberlândia-MG": 143,
+    "Imperatriz-MA": 144,
+    "Castanhal-PA": 170,
+    "Nacional-AM": 185,
+    "Oratório-AP": 198,
+    "GAS-RR": 113,
+    "Penedense-AL": 161,
+    "Porto Vitória-ES": 161
+  },
+  "home_slots_phase2": [
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "phase3_slots": [
+    [
+      "c4",
+      "w15"
+    ],
+    [
+      "w16",
+      "w17"
+    ],
+    [
+      "w18",
+      "w19"
+    ],
+    [
+      "w20",
+      "w21"
+    ],
+    [
+      "w22",
+      "w23"
+    ],
+    [
+      "w24",
+      "w25"
+    ],
+    [
+      "w26",
+      "w27"
+    ],
+    [
+      "w28",
+      "w29"
+    ],
+    [
+      "w30",
+      "w31"
+    ],
+    [
+      "w32",
+      "w33"
+    ],
+    [
+      "w34",
+      "w35"
+    ],
+    [
+      "c3",
+      "w36"
+    ],
+    [
+      "c2",
+      "w37"
+    ],
+    [
+      "w38",
+      "w39"
+    ],
+    [
+      "w40",
+      "w41"
+    ],
+    [
+      "w42",
+      "w43"
+    ],
+    [
+      "w44",
+      "w45"
+    ],
+    [
+      "w46",
+      "w47"
+    ],
+    [
+      "w48",
+      "w49"
+    ],
+    [
+      "w50",
+      "w51"
+    ],
+    [
+      "w52",
+      "w53"
+    ],
+    [
+      "w54",
+      "w55"
+    ],
+    [
+      "w56",
+      "w57"
+    ],
+    [
+      "c1",
+      "w58"
+    ]
+  ],
+  "home_slots_phase3": [
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    0
+  ],
+  "home_slots_phase4": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "reference_clubs": {
+    "Vasco-AC": {
+      "name": "Vasco-AC",
+      "official_name": "Associação Desportiva Vasco da Gama",
+      "country": "BR",
+      "uf": "AC",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Independente-AP": {
+      "name": "Independente-AP",
+      "official_name": "Independente Esporte Clube",
+      "country": "BR",
+      "uf": "AP",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Atlético de Alagoinhas-BA": {
+      "name": "Atlético de Alagoinhas-BA",
+      "official_name": "Alagoinhas Atlético Clube",
+      "country": "BR",
+      "uf": "BA",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Desportiva Ferroviária-ES": {
+      "name": "Desportiva Ferroviária-ES",
+      "official_name": "Associação Desportiva Ferroviária Vale do Rio Doce",
+      "country": "BR",
+      "uf": "ES",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Porto Vitória-ES": {
+      "name": "Porto Vitória-ES",
+      "official_name": "Porto Vitória Futebol Clube Ltda - Me",
+      "country": "BR",
+      "uf": "ES",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "FC Pantanal-MS": {
+      "name": "FC Pantanal-MS",
+      "official_name": "Futebol Clube Pantanal SAF",
+      "country": "BR",
+      "uf": "MS",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Bragantino-PA": {
+      "name": "Bragantino-PA",
+      "official_name": "Bragantino Clube do Pará",
+      "country": "BR",
+      "uf": "PA",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Castanhal-PA": {
+      "name": "Castanhal-PA",
+      "official_name": "Castanhal Esporte Clube",
+      "country": "BR",
+      "uf": "PA",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Boavista-RJ": {
+      "name": "Boavista-RJ",
+      "official_name": "Boavista Sport Club S.A.F.",
+      "country": "BR",
+      "uf": "RJ",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Ji-Paraná-RO": {
+      "name": "Ji-Paraná-RO",
+      "official_name": "Ji-Paraná Futebol Clube",
+      "country": "BR",
+      "uf": "RO",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "América-SE": {
+      "name": "América-SE",
+      "official_name": "América Futebol Clube",
+      "country": "BR",
+      "uf": "SE",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    },
+    "Capital-TO": {
+      "name": "Capital-TO",
+      "official_name": "Ricanato Futebol Clube (Capital Futebol Clube)",
+      "country": "BR",
+      "uf": "TO",
+      "competitions": [
+        "br-copa"
+      ],
+      "game_only": true,
+      "rating_origin": "existing_game_fallback_not_official_rating",
+      "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+      "source_location": "Anexo A PDF pp.19-21"
+    }
+  },
+  "simulation": [
+    "draw outcomes randomized and persisted; not historical draw",
+    "calendar dates simulated",
+    "final listed home is administrative only; venue CBF not certified",
+    "BID/discipline/registration limits not legally certified"
+  ],
+  "future_entries": "blocked_128_requires_new_regionals_and_state_results"
+}

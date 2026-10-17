@@ -52,6 +52,7 @@ final class CompetitionView {
         $s=$r['name'].': ';
         if($r['champion']===$club)$s.='seu clube conquistou o título! ';
         else $s.='campeão '.$r['champion'].'. ';
+        if(($r['sports_format']??null)==='copa_brasil')return $s.($r['champion']===$club?'':(($r['phase_reached']??0)===9?'Seu clube chegou à final.':'Seu clube foi eliminado na '.(int)$r['phase_reached'].'ª fase.'));
         if($r['promoted'])$s.='Acesso conquistado.'.(!empty($r['access_pending'])?' A divisão seguinte deste estado ainda não está disponível no protótipo.':'');
         elseif($r['relegated'])$s.=!empty($r['relegation_pending'])?'Seu clube terminou na zona de rebaixamento. A terceira divisão ainda não está disponível; permanecer no clube repete a divisão cadastrada.':'Seu clube foi rebaixado.';
         else $s.='Seu clube terminou em '.$r['position'].'º '.(!empty($r['group'])?'no grupo '.$r['group']:'na primeira fase').'.';

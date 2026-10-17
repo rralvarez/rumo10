@@ -53,6 +53,7 @@ final class Competition {
         if($c['format']==='alagoas')return AlagoasCompetition::create($c,$teams);
         if($c['format']==='amazonense')return AmazonenseCompetition::create($c,$teams);
         if($c['format']==='state')return StateCompetition::create($c,$teams);
+        if($c['format']==='copa_brasil')return CopaBrasilCompetition::create($c,$teams);
         if($c['format']==='nordeste')return NordesteCompetition::create($c,$teams);
         if($c['format']==='national_d')return NationalDCompetition::create($c,$teams);
         if($c['format']==='national_c')return NationalCCompetition::create($c,$teams);
@@ -85,6 +86,7 @@ final class Competition {
         usort($t['matches'],fn($a,$b)=>$a['round']<=>$b['round']); return $t;
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null): array {
+        if($t['format']==='copa_brasil')return CopaBrasilCompetition::standings($t,$teams,$phase);
         if($t['format']==='nordeste')return NordesteCompetition::standings($t,$teams,$phase);
         if($t['format']==='national_d')return NationalDCompetition::standings($t,$teams,$phase);
         if($t['format']==='national_c')return NationalCCompetition::standings($t,$teams,$phase);
@@ -175,6 +177,7 @@ final class Competition {
     }
     public static function nextPhase(array &$t): void {
         foreach($t['matches'] as $m) if($m['status']!=='finalizada')throw new LogicException('Fase incompleta.');
+        if($t['format']==='copa_brasil'){CopaBrasilCompetition::next($t);return;}
         if($t['format']==='nordeste'){NordesteCompetition::next($t);return;}
         if($t['format']==='national_d'){NationalDCompetition::next($t);return;}
         if($t['format']==='national_c'){NationalCCompetition::next($t);return;}
@@ -280,6 +283,7 @@ final class Competition {
         $g['stage']='competicao_resumo';$g['feedback']=null;
     }
     public static function result(array $t,string $club): array {
+        if($t['format']==='copa_brasil')return CopaBrasilCompetition::result($t,$club);
         if($t['format']==='nordeste')return NordesteCompetition::result($t,$club);
         if($t['format']==='national_d')return NationalDCompetition::result($t,$club);
         if($t['format']==='national_c')return NationalCCompetition::result($t,$club);

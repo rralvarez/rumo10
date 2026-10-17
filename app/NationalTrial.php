@@ -39,6 +39,13 @@ final class NationalTrial {
         $defs['br-nordeste']=['id'=>'br-nordeste','name'=>'Copa do Nordeste','edition'=>2026,'country'=>'BR','scope'=>'regional','family'=>'br','tier'=>3,'internal_tier_basis'=>'simulation_compatibility_not_official_division','format'=>'nordeste','teams'=>array_merge(...$r['groups']),'groups'=>$r['groups'],'test_fixture'=>true,'verified_sources'=>[$r['rec'],$r['groups_source']]];
         return WorldSeason::attachFixture($g,$defs,array_map(fn($c)=>$c['teams'],$defs),['max_matches'=>1733,'budget'=>8,'sized_contract'=>'abcd-ne-2026-v1']);
     }
+    public static function createWithCopaBrasil(int $id,string $mode='normal'):array {
+        $g=self::createABCDWithNordeste($id,$mode);$defs=array_map(fn($p)=>$p['definition'],$g['world_reference']);
+        $r=json_decode(file_get_contents(dirname(__DIR__).'/database/competition-references/br-copa-sports-2026.json'),true,512,JSON_THROW_ON_ERROR);
+        if(isset($defs['br-copa']))throw new RuntimeException('Copa do Brasil já inscrita.');
+        $defs['br-copa']=['id'=>'br-copa','name'=>'Copa do Brasil','edition'=>2026,'country'=>'BR','scope'=>'national','family'=>'br','tier'=>1,'internal_tier_basis'=>'simulation_compatibility_not_official_division','format'=>'copa_brasil','teams'=>array_column(CopaBrasilReference::reference()['participants'],'club'),'test_fixture'=>true,'verified_sources'=>[$r['rec'],$r['draw_source'],$r['rnc_source']],'sports_contract'=>$r,'reference_clubs'=>$r['reference_clubs']];
+        return WorldSeason::attachFixture($g,$defs,array_map(fn($c)=>$c['teams'],$defs),['max_matches'=>1888,'budget'=>8,'sized_contract'=>'abcd-ne-cdb-2026-v1']);
+    }
     public static function finish(array &$g):void {
         $t=$g['competitions']['br-b'];if(!$t['done'])throw new RuntimeException('Nacional incompleto.');
         foreach(['promoted'=>'br-a','relegated'=>'br-c'] as $field=>$target)foreach($t[$field] as $club)ExternalQualification::record($g,['source'=>'br-b','source_edition'=>$g['season'],'club'=>$club,'target'=>$target,'target_edition'=>$g['season']+1,'evidence'=>hash('sha256',json_encode([$t['initial_ranking'],$t[$field]]))]);
