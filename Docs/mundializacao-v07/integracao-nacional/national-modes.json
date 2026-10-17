@@ -1,0 +1,30 @@
+{
+    "checks": 2832,
+    "official_path_released": false,
+    "results": [
+        {
+            "position": "meia",
+            "mode": "normal",
+            "commands": 635,
+            "games": 55,
+            "fixtures": 467,
+            "snapshot_bytes": 541632
+        },
+        {
+            "position": "meia",
+            "mode": "rapido",
+            "commands": 88,
+            "games": 55,
+            "fixtures": 467,
+            "snapshot_bytes": 563346
+        },
+        {
+            "position": "meia",
+            "mode": "expresso",
+            "commands": 31,
+            "games": 55,
+            "fixtures": 467,
+            "snapshot_bytes": 739945
+        }
+    ]
+}

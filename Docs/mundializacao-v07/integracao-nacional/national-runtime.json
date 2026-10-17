@@ -1,0 +1,21 @@
+{
+    "checks": 956,
+    "national_competition": "br-b",
+    "seasons": 1,
+    "complete_career_released": false,
+    "steps": 620,
+    "batches": 29,
+    "max_command_ms": 33.94,
+    "elapsed_ms": 9891.44,
+    "fixtures": 467,
+    "snapshot_bytes": 544862,
+    "peak_snapshot_bytes": 814667,
+    "player_summary": {
+        "goals": 6,
+        "assists": 7,
+        "minutes": 4890,
+        "games": 55,
+        "average": 6.15
+    },
+    "national_champion": "São Bernardo FC-SP"
+}

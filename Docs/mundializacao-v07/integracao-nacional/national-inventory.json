@@ -1,0 +1,39 @@
+{
+  "local": [
+    {
+      "id": "br-a",
+      "name": "Brasileirão Série A",
+      "recorded_format": "league",
+      "participants_recorded": 20,
+      "source_file": "database/competitions-2026.json",
+      "new_consolidated_integration": "not_validated_in_this_increment"
+    },
+    {
+      "id": "br-b",
+      "name": "Brasileirão Série B",
+      "recorded_format": "b_playoff",
+      "participants_recorded": 20,
+      "source_file": "database/competitions-2026.json",
+      "new_consolidated_integration": "one_edition_tested"
+    },
+    {
+      "id": "br-c",
+      "name": "Brasileirão Série C",
+      "recorded_format": "quadrangular",
+      "participants_recorded": 20,
+      "source_file": "database/competitions-2026.json",
+      "new_consolidated_integration": "not_validated_in_this_increment"
+    },
+    {
+      "id": "br-d",
+      "name": "Brasileirão Série D",
+      "recorded_format": "d_knockout",
+      "participants_recorded": 96,
+      "source_file": "database/competitions-2026.json",
+      "new_consolidated_integration": "not_validated_in_this_increment"
+    }
+  ],
+  "cup_cache_matches": [],
+  "hub_api_accessed": false,
+  "duplicates_added": 0
+}

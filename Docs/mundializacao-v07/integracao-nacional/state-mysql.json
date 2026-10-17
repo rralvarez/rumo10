@@ -1,0 +1,71 @@
+{
+    "checks": 33,
+    "five_gameplay_seasons_with_real_repository": true,
+    "all_fixture_writes_rolled_back": true,
+    "rh_writes": false,
+    "faf_rules_and_real_participants": true,
+    "national_continuity_complete": false,
+    "achievements_disabled_for_disposable_fixture": true,
+    "seasons": [
+        {
+            "season": 1,
+            "commands": 131,
+            "queries": 4588,
+            "max_command_ms": 1413.1,
+            "season_close_command_ms": 98.69,
+            "elapsed_ms": 33600.88,
+            "snapshot_bytes": 173666,
+            "games": 12,
+            "goals": 3,
+            "assists": 2
+        },
+        {
+            "season": 2,
+            "commands": 107,
+            "queries": 3748,
+            "max_command_ms": 86.6,
+            "season_close_command_ms": 56.25,
+            "elapsed_ms": 5873.14,
+            "snapshot_bytes": 231522,
+            "games": 10,
+            "goals": 0,
+            "assists": 1
+        },
+        {
+            "season": 3,
+            "commands": 113,
+            "queries": 3958,
+            "max_command_ms": 74.58,
+            "season_close_command_ms": 65.01,
+            "elapsed_ms": 6335.49,
+            "snapshot_bytes": 292840,
+            "games": 10,
+            "goals": 1,
+            "assists": 0
+        },
+        {
+            "season": 4,
+            "commands": 77,
+            "queries": 2698,
+            "max_command_ms": 96.6,
+            "season_close_command_ms": 72.71,
+            "elapsed_ms": 5370.09,
+            "snapshot_bytes": 340847,
+            "games": 7,
+            "goals": 2,
+            "assists": 0
+        },
+        {
+            "season": 5,
+            "commands": 154,
+            "queries": 5393,
+            "max_command_ms": 141.18,
+            "season_close_command_ms": 83.36,
+            "elapsed_ms": 12392.06,
+            "snapshot_bytes": 419778,
+            "games": 14,
+            "goals": 1,
+            "assists": 2
+        }
+    ]
+}

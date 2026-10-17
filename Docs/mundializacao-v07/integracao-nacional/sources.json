@@ -1,0 +1,26 @@
+[
+  {
+    "competition": "br-b",
+    "edition": 2026,
+    "url": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_B_2026_85d55b9f72.pdf",
+    "articles": "3,5,6,11-14; Anexo A",
+    "claims": "20 participants; registration25-50;38rounds;4promotionmerits;4descents;playoffs",
+    "consulted": "2026-10-17"
+  },
+  {
+    "competition": "al-b",
+    "edition": 2026,
+    "url": "https://futeboldealagoas.net/assets/uploads/178302506438.pdf",
+    "page": 1,
+    "claims": "15 initial home fixtures; refs001-015",
+    "consulted": "2026-10-17"
+  },
+  {
+    "competition": "al-b",
+    "edition": 2026,
+    "url": "https://futeboldealagoas.net/assets/uploads/177223121748.pdf",
+    "articles": "14; pages5-6",
+    "claims": "Sub23cut2003;max5overage;max23related;min11professionals;max50registration",
+    "consulted": "2026-10-17"
+  }
+]
