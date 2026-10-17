@@ -1,0 +1,21 @@
+{
+  "id": "future-national-contract-preparation-v1",
+  "knowledge": "simulation_proposals_not_official_2027_regulations",
+  "public_runtime_enabled": false,
+  "c": {"participants": 24, "games": 302, "access_to_b": 4, "relegation_to_d": 4, "version": "c-2027-four-down-v2", "implementation": "isolated_sports_adapter_only"},
+  "d": {"participants": 96, "groups": 16, "group_size": 6, "group_games": 480, "knockout_games": [64,32,16,8,4,2], "games": 606, "access_to_c": 4, "implementation": "format_plan_only_no_executable_future_adapter"},
+  "copa_brasil": {
+    "participants": 128,
+    "criterion1": 20,
+    "criterion2": 6,
+    "criterion3": 102,
+    "proposed_phases": [[36,36,18,1],[66,84,42,1],[6,48,24,1],[0,24,12,1],[20,32,32,2],[0,16,16,2],[0,8,8,2],[0,4,4,2],[0,2,1,1]],
+    "games": 157,
+    "format_approval": "approved_for_later_development_inactive",
+    "approved_on": "2026-10-17",
+    "implementation": "capacity_contract_only_not_executable",
+    "blockers": ["qualified_128_participants", "new_regional_champions", "state_paths", "future_ranking_and_draw_policy", "sport_adapter_and_persistence_tests"]
+  },
+  "nordeste": {"implementation": "base2026_only_no_future_admissions", "blockers": ["all_state_qualifiers", "federation_ranking_extra_slots", "continental_exclusions", "future_edition_contract"]},
+  "other_mandatory_cups": "not_fully_covered; unknown_is_not_exempt"
+}
