@@ -3,7 +3,7 @@ declare(strict_types=1);
 /** First national integration: one edition only, not a released complete career. */
 final class NationalTrial {
     public static function registerSquads(array &$g):void {
-        foreach(['br-a','br-b','br-c'] as $competition)foreach($g['memberships'][$competition]??[] as $club){$reference=ClubSquad::players($club);$players=$reference;usort($players,fn($a,$b)=>[($a['position']??'')!=='goleiro',-(float)($a['overall']??0),$a['id']]<=>[($b['position']??'')!=='goleiro',-(float)($b['overall']??0),$b['id']]);$players=array_slice($players,0,50);$count=count($players);$keepers=count(array_filter($players,fn($p)=>($p['position']??'')==='goleiro'));$added=[];
+        foreach(['br-a','br-b','br-c','br-d'] as $competition)foreach($g['memberships'][$competition]??[] as $club){$reference=ClubSquad::players($club);$players=$reference;usort($players,fn($a,$b)=>[($a['position']??'')!=='goleiro',-(float)($a['overall']??0),$a['id']]<=>[($b['position']??'')!=='goleiro',-(float)($b['overall']??0),$b['id']]);$players=array_slice($players,0,50);$count=count($players);$keepers=count(array_filter($players,fn($p)=>($p['position']??'')==='goleiro'));$added=[];
             while($count<25||$keepers<2){$position=$keepers<2?'goleiro':'meia';$added[]=['id'=>'fictional:national:'.substr(hash('sha256',$club.'|'.$g['season'].'|'.$count),0,20),'origin'=>'fictional','position'=>$position,'simulated_birth_year'=>2025+$g['season']-18];$count++;if($position==='goleiro')$keepers++;}
             $g['national_squad_registration'][$club]=['reference_count'=>count($reference),'registered_count'=>$count,'registered_reference_ids'=>array_column($players,'id'),'not_registered_reference_count'=>count($reference)-count($players),'goalkeepers'=>$keepers,'added_simulated_players'=>$added,'reference_sha256'=>hash('sha256',json_encode($reference,JSON_THROW_ON_ERROR)),'official_bid_verified'=>false,'selection_basis'=>'simulated_registration; reference roster not modified'];
         }
@@ -25,6 +25,19 @@ final class NationalTrial {
         }
         $g['national_trial']['schema']='abc-closure-v1';
         return WorldSeason::attachFixture($g,$defs,array_map(fn($c)=>$c['teams'],$defs),['max_matches'=>1152,'budget'=>8]);
+    }
+    public static function createABCD(int $id,string $mode='normal'):array {
+        $d=Competition::catalog()['br-d'];$g=self::createABC($id,$mode);$defs=array_map(fn($p)=>$p['definition'],$g['world_reference']);
+        $r=json_decode(file_get_contents(dirname(__DIR__).'/database/competition-references/br-d-sports-2026.json'),true,512,JSON_THROW_ON_ERROR);
+        $d['groups']=$r['groups'];$d['test_fixture']=true;$d['format']='national_d';$d['d_reference']=$r['id'];$d['verified_sources']=[$r['rec_source'],$r['groups_source']];$defs['br-d']=$d;
+        $g['national_trial']['schema']='abcd-closure-v1';
+        return WorldSeason::attachFixture($g,$defs,array_map(fn($c)=>$c['teams'],$defs),['max_matches'=>1673,'budget'=>8,'sized_contract'=>'abcd-2026-v1']);
+    }
+    public static function createABCDWithNordeste(int $id,string $mode='normal'):array {
+        if(isset(Competition::catalog()['br-nordeste']))throw new RuntimeException('Identidade de copa já presente: revisar adaptador, não duplicar.');
+        $g=self::createABCD($id,$mode);$defs=array_map(fn($p)=>$p['definition'],$g['world_reference']);$r=json_decode(file_get_contents(dirname(__DIR__).'/database/competition-references/br-nordeste-2026.json'),true,512,JSON_THROW_ON_ERROR);
+        $defs['br-nordeste']=['id'=>'br-nordeste','name'=>'Copa do Nordeste','edition'=>2026,'country'=>'BR','scope'=>'regional','family'=>'br','tier'=>3,'internal_tier_basis'=>'simulation_compatibility_not_official_division','format'=>'nordeste','teams'=>array_merge(...$r['groups']),'groups'=>$r['groups'],'test_fixture'=>true,'verified_sources'=>[$r['rec'],$r['groups_source']]];
+        return WorldSeason::attachFixture($g,$defs,array_map(fn($c)=>$c['teams'],$defs),['max_matches'=>1733,'budget'=>8,'sized_contract'=>'abcd-ne-2026-v1']);
     }
     public static function finish(array &$g):void {
         $t=$g['competitions']['br-b'];if(!$t['done'])throw new RuntimeException('Nacional incompleto.');

@@ -39,6 +39,7 @@ final class NationalRenewal {
         return $closed;
     }
     public static function explanation(array $g):string {
+        if(isset($g['national_pyramid_closures']))return 'A/B/C/D concluídas na simulação. A C seguinte tem 24 candidatos comprovados, mas faltam 68 entradas futuras na Série D e as copas obrigatórias. Nenhuma divisão foi renovada.';
         $closure=$g['national_closures'][(string)$g['season']]??null;
         return $closure?'Resultados de A/B/C homologados na simulação. A próxima edição aguarda seis acessos da Série D, as regras da Série C com 24 clubes e a cobertura das copas e demais inscrições obrigatórias. Nenhum participante foi reposto artificialmente.':'A próxima edição nacional ainda depende de resultados e inscrições verificáveis. Seu progresso está preservado.';
     }

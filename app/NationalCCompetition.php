@@ -7,13 +7,14 @@ final class NationalCCompetition {
         return ['name'=>Competition::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'position'=>array_search($club,$t['final_ranking'],true)+1,'group'=>null,'promoted'=>false,'relegated'=>false,'promotion_merit'=>in_array($club,$t['promoted'],true),'access_pending'=>in_array($club,$t['promoted'],true),'relegation_pending'=>in_array($club,$t['relegated'],true),'continuity'=>CompetitionContinuity::status($t['id']),'titles'=>[]];
     }
     public static function create(array $c,array $teams):array {
-        if(count($teams)!==20||$teams!==$c['teams'])throw new RuntimeException('Série C: somente a edição-base comprovada está implementada.');
+        $n=count($teams);$future=$n===24&&($c['edition']??null)==='simulation-2'&&($c['rules']['derived_simulation']??null)==='c-2027-from-2026-v1';
+        if(($n!==20&&!$future)||$teams!==$c['teams'])throw new RuntimeException('Série C: somente a edição-base comprovada está implementada.');
         $priority=$c['rules']['home_priority'];$order=array_merge($priority,array_values(array_diff($teams,$priority)));
-        if(count($priority)!==10||count(array_unique($order))!==20)throw new RuntimeException('Prioridade de mando incompleta.');
+        if(count($priority)!==$n/2||count(array_unique($order))!==$n)throw new RuntimeException('Prioridade de mando incompleta.');
         $indices=array_flip($order);$matches=[];
-        foreach(Schedule::generate($order,false) as $m){$a=$indices[$m['home']];$b=$indices[$m['away']];if(($b-$a+21)%21>10)[$m['home'],$m['away']]=[$m['away'],$m['home']];$matches[]=$m+['phase'=>'liga','group'=>'1'];}
+        foreach(Schedule::generate($order,false) as $m){$a=$indices[$m['home']];$b=$indices[$m['away']];if(($b-$a+$n+1)%($n+1)>$n/2)[$m['home'],$m['away']]=[$m['away'],$m['home']];$matches[]=$m+['phase'=>'liga','group'=>'1'];}
         $lots=$teams;shuffle($lots);
-        return ['id'=>$c['id'],'teams'=>$teams,'format'=>'national_c','phase'=>'liga','groups'=>[$teams],'initial_groups'=>[$teams],'matches'=>$matches,'phase_start'=>1,'phase_end'=>19,'done'=>false,'champion'=>null,'promoted'=>[],'relegated'=>[],'ties'=>[],'lots'=>array_flip($lots),'rounds'=>[]];
+        return ['id'=>$c['id'],'teams'=>$teams,'format'=>'national_c','phase'=>'liga','groups'=>[$teams],'initial_groups'=>[$teams],'matches'=>$matches,'phase_start'=>1,'phase_end'=>$n-1,'done'=>false,'champion'=>null,'promoted'=>[],'relegated'=>[],'ties'=>[],'lots'=>array_flip($lots),'rounds'=>[]];
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null):array {
         $teams??=$t['teams'];$matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase||$m['phase']===$phase)&&in_array($m['home'],$teams,true)&&in_array($m['away'],$teams,true)));
