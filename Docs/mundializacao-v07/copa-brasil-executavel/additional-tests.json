@@ -1,0 +1,19 @@
+{
+  "v06_boundary": 11,
+  "world_boundary": 24,
+  "achievements_catalog_checks": 96,
+  "achievement_count": 50,
+  "points_r": 1000,
+  "feedback_pure_checks": 32,
+  "post_match_checks": 215,
+  "positions": 6,
+  "normal_fast_express": "covered by post-match and Game mode cohorts",
+  "hub_modified": false,
+  "production_tested": false,
+  "http_fixture_checks": 27,
+  "mobile_checks": 48,
+  "presentation": "pass",
+  "season_presentation": "pass",
+  "world_disabled": "503_preserves_fixture",
+  "php_lint": "13 files passed; final additional lint recorded in report"
+}

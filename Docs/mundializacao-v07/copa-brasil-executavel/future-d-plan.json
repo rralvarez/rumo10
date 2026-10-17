@@ -1,0 +1,222 @@
+{
+    "checks": 11,
+    "scope": "isolated NPC rules fixture; not a second national season",
+    "plan": {
+        "policy": "br-d-future-evidence-only-v1",
+        "source_edition": 2026,
+        "target_edition": 2027,
+        "national_candidates": [
+            "Porto Velho-RO",
+            "Nacional-AM",
+            "Independência-AC",
+            "União-MT",
+            "Gama-DF",
+            "Luverdense-MT",
+            "Ceilândia-DF",
+            "IAPE-MA",
+            "Maracanã-CE",
+            "Tuna Luso-PA",
+            "Sousa-PB",
+            "Altos-PI",
+            "Atlético-CE",
+            "ASA-AL",
+            "Lagarto-SE",
+            "Treze-PB",
+            "Sergipe-SE",
+            "ABECAT-GO",
+            "Betim-MG",
+            "Democrata GV-MG",
+            "CRAC-GO",
+            "Portuguesa-RJ",
+            "Velo Clube-SP",
+            "Água Santa-SP",
+            "Blumenau-SC",
+            "Azuriz-PR",
+            "Brusque-SC",
+            "Ypiranga-RS"
+        ],
+        "national_count": 28,
+        "residual_proposal": [
+            "Maguary-PE",
+            "Moto Club-MA",
+            "Imperatriz-MA",
+            "Guarany de Bagé-RS"
+        ],
+        "residual_count": 4,
+        "residual_method": "simulated finalized D ranking; adaptation proposed, not official RNC",
+        "federation_slots": {
+            "SP": {
+                "reference_2026_quota": 4,
+                "accepted": 0,
+                "missing": 4,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RJ": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MG": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RS": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "PR": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "CE": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "GO": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "SC": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "BA": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "PE": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "AL": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "PA": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MT": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "AM": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RN": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "PB": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MA": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "SE": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "DF": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "PI": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "ES": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "TO": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "AC": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RO": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RR": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MS": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "AP": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            }
+        },
+        "remaining_if_residual_proposal_accepted": 64,
+        "current_missing_verified_entries": 68,
+        "base_capacity_check": 96,
+        "following_capacity_check": 96,
+        "following_c_to_d": 4,
+        "following_d_to_c": 4,
+        "source_digest": "046430b26b9cb541ee7b58b0ab7dafaa2aa416183e040a5767dfd60f518b8d5f",
+        "blocked": true,
+        "memberships_applied": false,
+        "activation": "requires complete state\/selective pathways, future cups, four-slot adapters and atomic renewal tests"
+    }
+}

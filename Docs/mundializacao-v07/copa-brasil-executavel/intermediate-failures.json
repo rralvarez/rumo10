@@ -1,0 +1,6 @@
+{
+  "mysql_first_attempt": "failed strict associative reward ledger comparison after JSON normalization; finally rollback executed",
+  "correction": "strict in-memory equality plus order-independent values after MySQL; corrected cohort39checks, final version37checks (varies with cup games)",
+  "sports_formula_change": false,
+  "http_fixture": "visual fixture initially selected CDBphase1 without CRB; corrected to phase2 where it is entered;27HTTP+48Chromechecks passed"
+}
