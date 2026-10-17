@@ -53,6 +53,8 @@ final class Competition {
         if($c['format']==='alagoas')return AlagoasCompetition::create($c,$teams);
         if($c['format']==='amazonense')return AmazonenseCompetition::create($c,$teams);
         if($c['format']==='state')return StateCompetition::create($c,$teams);
+        if($c['format']==='nordeste')return NordesteCompetition::create($c,$teams);
+        if($c['format']==='national_d')return NationalDCompetition::create($c,$teams);
         if($c['format']==='national_c')return NationalCCompetition::create($c,$teams);
         if($c['format']==='concacaf')return ConcacafCompetition::create($c,$teams);
         if($c['format']==='world')return WorldCompetition::create($c,$teams);
@@ -83,6 +85,8 @@ final class Competition {
         usort($t['matches'],fn($a,$b)=>$a['round']<=>$b['round']); return $t;
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null): array {
+        if($t['format']==='nordeste')return NordesteCompetition::standings($t,$teams,$phase);
+        if($t['format']==='national_d')return NationalDCompetition::standings($t,$teams,$phase);
         if($t['format']==='national_c')return NationalCCompetition::standings($t,$teams,$phase);
         if($t['format']==='alagoas')return AlagoasCompetition::standings($t,$teams,$phase);
         $teams??=$t['teams'];$cross=$t['format']==='amazonense' || ($t['format']==='state' && !empty(self::catalog()[$t['id']]['rules']['cross'])) || ($t['format']==='international' && str_starts_with($t['id'],'ar-'));
@@ -171,6 +175,8 @@ final class Competition {
     }
     public static function nextPhase(array &$t): void {
         foreach($t['matches'] as $m) if($m['status']!=='finalizada')throw new LogicException('Fase incompleta.');
+        if($t['format']==='nordeste'){NordesteCompetition::next($t);return;}
+        if($t['format']==='national_d'){NationalDCompetition::next($t);return;}
         if($t['format']==='national_c'){NationalCCompetition::next($t);return;}
         if($t['format']==='alagoas'){AlagoasCompetition::next($t);return;}
         if($t['format']==='amazonense'){AmazonenseCompetition::next($t);return;}
@@ -274,6 +280,8 @@ final class Competition {
         $g['stage']='competicao_resumo';$g['feedback']=null;
     }
     public static function result(array $t,string $club): array {
+        if($t['format']==='nordeste')return NordesteCompetition::result($t,$club);
+        if($t['format']==='national_d')return NationalDCompetition::result($t,$club);
         if($t['format']==='national_c')return NationalCCompetition::result($t,$club);
         if($t['format']==='alagoas'&&!empty($t['done']))return ['name'=>self::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'promoted'=>in_array($club,$t['promoted'],true),'relegated'=>in_array($club,$t['relegated'],true),'position'=>array_search($club,$t['final_ranking'],true)+1,'group'=>null,'access_pending'=>false,'continuity'=>CompetitionContinuity::status($t['id']),'relegation_pending'=>false,'titles'=>[]];
         $position=array_search($club,$t['initial_ranking'],true)+1;$group=null;
