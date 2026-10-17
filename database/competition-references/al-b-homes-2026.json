@@ -1,0 +1,86 @@
+{
+  "edition": 2026,
+  "source": "https://futeboldealagoas.net/assets/uploads/178302506438.pdf",
+  "source_status": "primary final table rechecked 2026-10-17; only pairings/home extracted, no results",
+  "location": "p.1, refs 001–015; updated 01/06/2026",
+  "fixtures": [
+    {
+      "round": 1,
+      "home": "Jaciobá-AL",
+      "away": "Sporting-AL"
+    },
+    {
+      "round": 1,
+      "home": "Zumbi-AL",
+      "away": "São Domingos-AL"
+    },
+    {
+      "round": 1,
+      "home": "Miguelense-AL",
+      "away": "Desportivo Aliança-AL"
+    },
+    {
+      "round": 2,
+      "home": "São Domingos-AL",
+      "away": "Jaciobá-AL"
+    },
+    {
+      "round": 2,
+      "home": "Desportivo Aliança-AL",
+      "away": "Zumbi-AL"
+    },
+    {
+      "round": 2,
+      "home": "Sporting-AL",
+      "away": "Miguelense-AL"
+    },
+    {
+      "round": 3,
+      "home": "Zumbi-AL",
+      "away": "Jaciobá-AL"
+    },
+    {
+      "round": 3,
+      "home": "Desportivo Aliança-AL",
+      "away": "Sporting-AL"
+    },
+    {
+      "round": 3,
+      "home": "Miguelense-AL",
+      "away": "São Domingos-AL"
+    },
+    {
+      "round": 4,
+      "home": "Jaciobá-AL",
+      "away": "Miguelense-AL"
+    },
+    {
+      "round": 4,
+      "home": "São Domingos-AL",
+      "away": "Desportivo Aliança-AL"
+    },
+    {
+      "round": 4,
+      "home": "Zumbi-AL",
+      "away": "Sporting-AL"
+    },
+    {
+      "round": 5,
+      "home": "Miguelense-AL",
+      "away": "Zumbi-AL"
+    },
+    {
+      "round": 5,
+      "home": "Sporting-AL",
+      "away": "São Domingos-AL"
+    },
+    {
+      "round": 5,
+      "home": "Desportivo Aliança-AL",
+      "away": "Jaciobá-AL"
+    }
+  ],
+  "dates": "not imported; simulated consolidated dates",
+  "results_imported": false,
+  "source_previous_indexed": "https://www.futeboldealagoas.net/assets/uploads/177317409519.pdf?v=177352246822"
+}

@@ -11,7 +11,9 @@ final class AlagoasCompetition {
         if(array_merge(...$groups)!==$teams)throw new InvalidArgumentException('Grupos de Alagoas não correspondem às inscrições.');
         $lots=$teams;shuffle($lots);
         $t=['id'=>$c['id'],'adapter_version'=>self::VERSION,'teams'=>$teams,'format'=>'alagoas','phase'=>'liga','groups'=>$groups,'initial_groups'=>$groups,'matches'=>[],'phase_start'=>1,'phase_end'=>0,'done'=>false,'champion'=>null,'promoted'=>[],'relegated'=>[],'ties'=>[],'lots'=>array_flip($lots),'rounds'=>[]];
-        Competition::leaguePhase($t,$groups,'liga',false);return $t;
+        if($c['rules']['kind']==='b'&&!empty($c['rules']['initial_home_fixture'])){foreach($c['rules']['initial_home_fixture'] as $f)$t['matches'][]=Schedule::match($f['round'],$f['home'],$f['away'])+['phase'=>'liga','group'=>'1'];$t['phase_end']=5;}
+        elseif($c['rules']['kind']==='b'){$rounds=[[[3,4],[0,5],[1,2]],[[5,3],[2,0],[4,1]],[[0,3],[2,4],[1,5]],[[3,1],[5,2],[0,4]],[[1,0],[4,5],[2,3]]];foreach($rounds as $round=>$pairs)foreach($pairs as [$h,$a])$t['matches'][]=Schedule::match($round+1,$teams[$h],$teams[$a])+['phase'=>'liga','group'=>'1'];$t['phase_end']=5;}
+        else Competition::leaguePhase($t,$groups,'liga',false);return $t;
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null,bool $campaign=false):array {
         $teams??=$t['teams'];$matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase||$m['phase']===$phase)&&($campaign||(in_array($m['home'],$teams,true)&&in_array($m['away'],$teams,true)))));
