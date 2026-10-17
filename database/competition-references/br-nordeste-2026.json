@@ -1,0 +1,48 @@
+{
+  "id": "cbf-nordeste-2026-v1",
+  "edition": 2026,
+  "consulted": "2026-10-17",
+  "rec": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Nordeste_2026_113589c009.pdf",
+  "rec_location": "arts.2,5,7,10-22; Anexos A/B pp.14-15",
+  "groups_source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/Tabela_Detalhada_Copa_do_Nordeste_2026_31_03_9c5998f5b7.pdf",
+  "groups_location": "PDF pp.1-2 group letters and refs001-050; no scores",
+  "groups": [
+    [
+      "Vitória-BA",
+      "ASA-AL",
+      "Sousa-PB",
+      "Itabaiana-SE",
+      "Fluminense-PI"
+    ],
+    [
+      "Juazeirense-BA",
+      "CRB-AL",
+      "Botafogo-PB",
+      "Confiança-SE",
+      "Piauí-PI"
+    ],
+    [
+      "Ceará-CE",
+      "Sport-PE",
+      "América-RN",
+      "Imperatriz-MA",
+      "Ferroviário-CE"
+    ],
+    [
+      "Fortaleza-CE",
+      "Retrô-PE",
+      "ABC-RN",
+      "Maranhão-MA",
+      "Jacuipense-BA"
+    ]
+  ],
+  "qualification_sources": {
+    "criterion1": "2025 state champions; replacements per art2",
+    "criterion2": "2025 state runners-up; replacements per art2",
+    "criterion3": "RNF/RNC extra for BA/CE"
+  },
+  "conmebol_exclusion": true,
+  "bid_verified": false,
+  "future_entry_policy": "blocked pending state results/rankings and continental exclusions",
+  "initial_dates_and_fixture_order": "simulation_adaptation; not actual2026match dates"
+}

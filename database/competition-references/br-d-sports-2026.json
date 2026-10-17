@@ -1,0 +1,144 @@
+{
+  "id": "cbf-d-sports-2026-v1",
+  "edition": 2026,
+  "consulted": "2026-10-17",
+  "groups": [
+    [
+      "Nacional-AM",
+      "Manaus-AM",
+      "Manauara-AM",
+      "GAS-RR",
+      "Monte Roraima-RR",
+      "São Raimundo-RR"
+    ],
+    [
+      "Independência-AC",
+      "Galvez-AC",
+      "Humaitá-AC",
+      "Porto Velho-RO",
+      "Guaporé-RO",
+      "Araguaína-TO"
+    ],
+    [
+      "Gama-DF",
+      "Brasiliense-DF",
+      "Luverdense-MT",
+      "Primavera-MT",
+      "Inhumas-GO",
+      "Aparecidense-GO"
+    ],
+    [
+      "Capital-DF",
+      "Ceilândia-DF",
+      "Mixto-MT",
+      "Operário-MT",
+      "União-MT",
+      "Goiatuba-GO"
+    ],
+    [
+      "Trem-AP",
+      "Oratório-AP",
+      "Tuna Luso-PA",
+      "Águia de Marabá-PA",
+      "Tocantinópolis-TO",
+      "Imperatriz-MA"
+    ],
+    [
+      "Sampaio Corrêa-MA",
+      "Moto Club-MA",
+      "IAPE-MA",
+      "Maracanã-CE",
+      "Iguatu-CE",
+      "Parnahyba-PI"
+    ],
+    [
+      "Ferroviário-CE",
+      "Tirol-CE",
+      "Atlético-CE",
+      "Altos-PI",
+      "Piauí-PI",
+      "Fluminense-PI"
+    ],
+    [
+      "ABC-RN",
+      "América-RN",
+      "Laguna-RN",
+      "Sousa-PB",
+      "Maguary-PE",
+      "Central-PE"
+    ],
+    [
+      "Retrô-PE",
+      "Decisão-PE",
+      "Serra Branca-PB",
+      "Treze-PB",
+      "Lagarto-SE",
+      "Sergipe-SE"
+    ],
+    [
+      "ASA-AL",
+      "CSA-AL",
+      "CSE-AL",
+      "Jacuipense-BA",
+      "Atlético-BA",
+      "Juazeirense-BA"
+    ],
+    [
+      "Uberlândia-MG",
+      "Betim-MG",
+      "CRAC-GO",
+      "ABECAT-GO",
+      "Operário-MS",
+      "Ivinhema-MS"
+    ],
+    [
+      "Porto-BA",
+      "Rio Branco-ES",
+      "Vitória-ES",
+      "Real Noroeste-ES",
+      "Tombense-MG",
+      "Democrata GV-MG"
+    ],
+    [
+      "Madureira-RJ",
+      "Portuguesa-RJ",
+      "America-RJ",
+      "Portuguesa-SP",
+      "Água Santa-SP",
+      "Pouso Alegre-MG"
+    ],
+    [
+      "Nova Iguaçu-RJ",
+      "Sampaio Corrêa-RJ",
+      "Maricá-RJ",
+      "XV de Piracicaba-SP",
+      "Noroeste-SP",
+      "Velo Clube-SP"
+    ],
+    [
+      "Cianorte-PR",
+      "FC Cascavel-PR",
+      "Santa Catarina-SC",
+      "Joinville-SC",
+      "Guarany de Bagé-RS",
+      "São Luiz-RS"
+    ],
+    [
+      "Blumenau-SC",
+      "Marcílio Dias-SC",
+      "São Joseense-PR",
+      "Azuriz-PR",
+      "São José-RS",
+      "Brasil de Pelotas-RS"
+    ]
+  ],
+  "groups_source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/Tabela_Detalhada_Brasileiro_Serie_D_2026_1f9d105d94.pdf",
+  "groups_source_location": "PDF pp.1-2 refs001-048; 25/03/2026",
+  "rec_source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf",
+  "rules_location": "arts.6,15-21; Anexo B PDF pp.20-22",
+  "fixture_dates": "simulation_adaptation",
+  "first_phase_home_order": "simulated; balanced5/5, not official fixture order",
+  "playoff_interpretation": "art21 specific rule points,goal_difference,previous_ranking; art17 conflict noted; no official erratum asserted",
+  "official_legal_admission_certified": false,
+  "future_status": "blocked until state/selective/ranking evidence and mandatory cups covered"
+}
