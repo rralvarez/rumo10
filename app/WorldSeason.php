@@ -31,7 +31,7 @@ final class WorldSeason {
   if(empty($g['id']))throw new InvalidArgumentException('Identificador estável de carreira obrigatório.');
   $g['world_reference']=[];foreach($definitions as $id=>$c){if(empty($c['test_fixture'])||$id!==$c['id'])throw new InvalidArgumentException('Definição não identificada como fixture.');$g['world_reference'][$id]=CompetitionReference::pin($c,'fixture-2026-v1','simulation_adaptation');}
   $g['world_runtime']=['schema'=>1,'fixture'=>true,'start_month'=>1,'start_day'=>1,'rest_days'=>3];$g['memberships']=$members;$g['official']=true;$g['competition_history']=[];$g['story_seed']??='world-test-'.(string)$g['id'];$g['play_mode']??='normal';
-  if($processing){$max=$processing['max_matches']??128;$budget=$processing['budget']??16;if(!is_int($max)||$max<128||$max>512||!is_int($budget)||$budget<1||$budget>32)throw new InvalidArgumentException('Orçamento incremental inválido.');$g['world_runtime']+=['max_matches'=>$max,'processing_budget'=>$budget];}
+  if($processing){$max=$processing['max_matches']??128;$budget=$processing['budget']??16;if(!is_int($max)||$max<128||$max>1152||!is_int($budget)||$budget<1||$budget>32)throw new InvalidArgumentException('Orçamento incremental inválido.');$g['world_runtime']+=['max_matches'=>$max,'processing_budget'=>$budget];}
   return self::scope($g,function()use($g){self::start($g);return $g;});
  }
  private static function start(array &$g):void {
@@ -73,6 +73,7 @@ final class WorldSeason {
     if(isset($g['alagoas_trial']))AlagoasTrial::prepareNext($g);
     foreach($g['season_competitions'] as $id)$g['competition_results'][$id]=Competition::result($g['competitions'][$id],$g['club']);
     if(isset($g['national_trial']))NationalTrial::finish($g);
+    if(($g['national_trial']['schema']??null)==='abc-closure-v1')NationalRenewal::close($g);
     TeamStrength::nextSeason($g);if(isset($g['national_trial'])){foreach($g['competitions'] as &$closed)Competition::compactResults($closed,$g['club']);unset($closed);$g['matches']=$g['competitions'][$g['competition_id']]['matches'];}$g['stage']='resumo';$g['world_season_closed']=$g['season'];return;
    }
    [$entry,$id,$index]=$pending;$g['world_cursor_date']=$entry['date'];$m=&$g['competitions'][$id]['matches'][$index];

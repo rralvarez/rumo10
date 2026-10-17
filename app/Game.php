@@ -56,7 +56,7 @@ final class Game {
         return WorldSeason::scope($g,function()use($g,$action,$input,$automated,$rng){$next=self::executeCommand($g,$action,$input,$automated,$rng);if($action==='continue'&&$next['stage']==='treino'&&isset($next['world_resume_plan'])){$plan=$next['world_resume_plan'];unset($next['world_resume_plan']);$next=PlayMode::simulate($next,$plan);$next['version']=$g['version']+1;}return $next;});
     }
     private static function executeCommand(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
-        if(isset($g['national_trial'])&&in_array($action,['offers','transfer'],true))throw new InvalidArgumentException('Esta integração nacional de teste ainda não possui próxima edição validada. Resultados preservados.');
+        if(isset($g['national_trial'])&&in_array($action,['offers','transfer'],true))throw new InvalidArgumentException(NationalRenewal::explanation($g));
         if($g['stage']==='world_processing'){if($action!=='continue')throw new InvalidArgumentException('Conclua o processamento do calendário.');WorldSeason::next($g);$g['version']++;return $g;}
         $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
