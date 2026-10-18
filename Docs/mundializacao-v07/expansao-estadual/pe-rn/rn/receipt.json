@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "policy": "rn-state-d-2027-v1",
+  "career_id": 857300,
+  "uf": "RN",
+  "source_edition": 2026,
+  "target_edition": 2027,
+  "competition": "rn-a1",
+  "classification_state": "proven_by_results",
+  "admission_state": "pending_national_edition",
+  "quota": 2,
+  "selected": [],
+  "candidate_count": 0,
+  "unavailable": 2,
+  "rows": [
+    {
+      "club": "América-RN",
+      "rank": 1,
+      "state": "not_selected",
+      "reason": "already_national_candidate"
+    },
+    {
+      "club": "QFC-RN",
+      "rank": 2,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Laguna-RN",
+      "rank": 3,
+      "state": "not_selected",
+      "reason": "verified_upper_national_division"
+    },
+    {
+      "club": "ABC-RN",
+      "rank": 4,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Globo-RN",
+      "rank": 5,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Potiguar de Mossoró-RN",
+      "rank": 6,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Potyguar Seridoense-RN",
+      "rank": 7,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Santa Cruz de Natal-RN",
+      "rank": 8,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    }
+  ],
+  "contract": "80a18517520351a8497c5b067845364bf80320ad5d94d8896c8b8f1d7652f8ba",
+  "results_digest": "bc65093a18d53936d966e71930365512f1621cb2b60127edd000eb35ae07e47f",
+  "national_digest": "b35960568ea566547a734c14bb7e886c3be402a53346849e12daeef627adfec3",
+  "source": "https://www.fnf.org.br/files/REC_Campeonato_Potiguar_2026.pdf",
+  "memberships_applied": false,
+  "sha256": "adcc7680302dc33aec01b8c4fd43c49d6e6e26b0bd29a413251617d05afb558d"
+}

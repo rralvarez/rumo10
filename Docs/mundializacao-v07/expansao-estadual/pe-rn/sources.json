@@ -1,0 +1,325 @@
+{
+  "consulted": "2026-10-18",
+  "pe_rn": {
+    "PE": {
+      "rec": "https://www.fpf-pe.com.br/assets/uploads/176499150263.pdf?v=17696371365",
+      "table": "https://fpf-pe.com.br/pt/competicoes/jogos.php?q=1651",
+      "rec_sha256": "f6db44ebcf8e4d176bfcb55c983691db7c9f8be7529cdce8f3c5bacc3b2ef27f",
+      "table_sha256": "5f3c7137b198a18131741e7ffb28de8bcc64b8327e1a3ea976e9c0728c8b64c7",
+      "historical_scores_imported": false,
+      "fixtures": [
+        [
+          1,
+          "Retrô-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          1,
+          "Náutico-PE",
+          "Maguary-PE"
+        ],
+        [
+          1,
+          "Jaguar-PE",
+          "Sport-PE"
+        ],
+        [
+          1,
+          "Santa Cruz-PE",
+          "Decisão-PE"
+        ],
+        [
+          2,
+          "Vitória de Santo Antão-PE",
+          "Jaguar-PE"
+        ],
+        [
+          2,
+          "Maguary-PE",
+          "Santa Cruz-PE"
+        ],
+        [
+          2,
+          "Decisão-PE",
+          "Náutico-PE"
+        ],
+        [
+          2,
+          "Sport-PE",
+          "Retrô-PE"
+        ],
+        [
+          3,
+          "Decisão-PE",
+          "Jaguar-PE"
+        ],
+        [
+          3,
+          "Santa Cruz-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          3,
+          "Maguary-PE",
+          "Retrô-PE"
+        ],
+        [
+          3,
+          "Náutico-PE",
+          "Sport-PE"
+        ],
+        [
+          4,
+          "Vitória de Santo Antão-PE",
+          "Maguary-PE"
+        ],
+        [
+          4,
+          "Sport-PE",
+          "Decisão-PE"
+        ],
+        [
+          4,
+          "Retrô-PE",
+          "Santa Cruz-PE"
+        ],
+        [
+          4,
+          "Jaguar-PE",
+          "Náutico-PE"
+        ],
+        [
+          5,
+          "Sport-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          5,
+          "Maguary-PE",
+          "Decisão-PE"
+        ],
+        [
+          5,
+          "Retrô-PE",
+          "Jaguar-PE"
+        ],
+        [
+          5,
+          "Santa Cruz-PE",
+          "Náutico-PE"
+        ],
+        [
+          6,
+          "Maguary-PE",
+          "Sport-PE"
+        ],
+        [
+          6,
+          "Santa Cruz-PE",
+          "Jaguar-PE"
+        ],
+        [
+          6,
+          "Decisão-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          6,
+          "Náutico-PE",
+          "Retrô-PE"
+        ],
+        [
+          7,
+          "Sport-PE",
+          "Santa Cruz-PE"
+        ],
+        [
+          7,
+          "Retrô-PE",
+          "Decisão-PE"
+        ],
+        [
+          7,
+          "Vitória de Santo Antão-PE",
+          "Náutico-PE"
+        ],
+        [
+          7,
+          "Jaguar-PE",
+          "Maguary-PE"
+        ]
+      ],
+      "identity_map": {
+        "20023": "Náutico-PE",
+        "20010": "Sport-PE",
+        "55531": "Retrô-PE",
+        "20039": "Santa Cruz-PE",
+        "35768": "Decisão-PE",
+        "59116": "Maguary-PE",
+        "20330": "Vitória de Santo Antão-PE",
+        "35743": "Jaguar-PE"
+      },
+      "consulted": "2026-10-18"
+    },
+    "RN": {
+      "rec": "https://www.fnf.org.br/files/REC_Campeonato_Potiguar_2026.pdf",
+      "table": "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026",
+      "rec_sha256": "5128ee96f6cd8556123f8e26cd9aea7779097d9798f3293b8200ce6840f538e7",
+      "table_sha256": "4101fd043ee1928ee258bf5bbb99647be58f9478808daa8a0b87bce9a7bc5fa1",
+      "historical_scores_imported": false,
+      "fixtures": [
+        [
+          1,
+          "América-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          1,
+          "Globo-RN",
+          "QFC-RN"
+        ],
+        [
+          1,
+          "Santa Cruz de Natal-RN",
+          "Potiguar de Mossoró-RN"
+        ],
+        [
+          1,
+          "ABC-RN",
+          "Laguna-RN"
+        ],
+        [
+          2,
+          "Laguna-RN",
+          "QFC-RN"
+        ],
+        [
+          2,
+          "Potyguar Seridoense-RN",
+          "Santa Cruz de Natal-RN"
+        ],
+        [
+          2,
+          "Potiguar de Mossoró-RN",
+          "ABC-RN"
+        ],
+        [
+          2,
+          "Globo-RN",
+          "América-RN"
+        ],
+        [
+          3,
+          "QFC-RN",
+          "Potiguar de Mossoró-RN"
+        ],
+        [
+          3,
+          "ABC-RN",
+          "Santa Cruz de Natal-RN"
+        ],
+        [
+          3,
+          "América-RN",
+          "Laguna-RN"
+        ],
+        [
+          3,
+          "Potyguar Seridoense-RN",
+          "Globo-RN"
+        ],
+        [
+          4,
+          "América-RN",
+          "ABC-RN"
+        ],
+        [
+          4,
+          "Laguna-RN",
+          "Globo-RN"
+        ],
+        [
+          4,
+          "Santa Cruz de Natal-RN",
+          "QFC-RN"
+        ],
+        [
+          4,
+          "Potiguar de Mossoró-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          5,
+          "Laguna-RN",
+          "Potiguar de Mossoró-RN"
+        ],
+        [
+          5,
+          "QFC-RN",
+          "América-RN"
+        ],
+        [
+          5,
+          "Potyguar Seridoense-RN",
+          "ABC-RN"
+        ],
+        [
+          5,
+          "Globo-RN",
+          "Santa Cruz de Natal-RN"
+        ],
+        [
+          6,
+          "Santa Cruz de Natal-RN",
+          "Laguna-RN"
+        ],
+        [
+          6,
+          "QFC-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          6,
+          "ABC-RN",
+          "Globo-RN"
+        ],
+        [
+          6,
+          "Potiguar de Mossoró-RN",
+          "América-RN"
+        ],
+        [
+          7,
+          "ABC-RN",
+          "QFC-RN"
+        ],
+        [
+          7,
+          "Potiguar de Mossoró-RN",
+          "Globo-RN"
+        ],
+        [
+          7,
+          "Laguna-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          7,
+          "América-RN",
+          "Santa Cruz de Natal-RN"
+        ]
+      ],
+      "identity_map": {
+        "América SAF": "América-RN",
+        "ABC": "ABC-RN",
+        "Potiguar": "Potiguar de Mossoró-RN",
+        "QFC": "QFC-RN",
+        "Laguna": "Laguna-RN",
+        "Santa Cruz de Natal": "Santa Cruz de Natal-RN",
+        "Potyguar": "Potyguar Seridoense-RN",
+        "Globo FC": "Globo-RN"
+      },
+      "consulted": "2026-10-18"
+    }
+  }
+}

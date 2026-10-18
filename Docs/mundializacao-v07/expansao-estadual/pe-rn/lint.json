@@ -1,0 +1,34 @@
+[
+  {
+    "file": "app/ConfiguredStateCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/StateQualification.php",
+    "exit": 0
+  },
+  {
+    "file": "app/WorldSeason.php",
+    "exit": 0
+  },
+  {
+    "file": "app/PernambucoPotiguarTrial.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\pe-rn-http-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\pe-rn-mysql-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\pe-rn-runtime-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\pe-rn-v07.php",
+    "exit": 0
+  }
+]

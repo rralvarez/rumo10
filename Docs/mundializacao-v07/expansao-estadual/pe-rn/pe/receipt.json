@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "policy": "pe-state-d-2027-v1",
+  "career_id": 857300,
+  "uf": "PE",
+  "source_edition": 2026,
+  "target_edition": 2027,
+  "competition": "pe-a1",
+  "classification_state": "proven_by_results",
+  "admission_state": "pending_national_edition",
+  "quota": 2,
+  "selected": [
+    "Retrô-PE",
+    "Maguary-PE"
+  ],
+  "candidate_count": 2,
+  "unavailable": 0,
+  "rows": [
+    {
+      "club": "Náutico-PE",
+      "rank": 1,
+      "state": "not_selected",
+      "reason": "verified_upper_national_division"
+    },
+    {
+      "club": "Sport-PE",
+      "rank": 2,
+      "state": "not_selected",
+      "reason": "verified_upper_national_division"
+    },
+    {
+      "club": "Santa Cruz-PE",
+      "rank": 3,
+      "state": "not_selected",
+      "reason": "verified_upper_national_division"
+    },
+    {
+      "club": "Retrô-PE",
+      "rank": 4,
+      "state": "pending_candidate",
+      "reason": null
+    },
+    {
+      "club": "Maguary-PE",
+      "rank": 5,
+      "state": "pending_candidate",
+      "reason": null
+    },
+    {
+      "club": "Decisão-PE",
+      "rank": 6,
+      "state": "not_selected",
+      "reason": "already_national_candidate"
+    },
+    {
+      "club": "Jaguar-PE",
+      "rank": 7,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Vitória de Santo Antão-PE",
+      "rank": 8,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    }
+  ],
+  "contract": "b708fd02c72042e74bfc28a643b986ae1391ea589e10d4e8703367ee48e80620",
+  "results_digest": "49ee26857a2aadc376f2f23372061f3cc1be16746c4fc801c7492e49aeccf532",
+  "national_digest": "b35960568ea566547a734c14bb7e886c3be402a53346849e12daeef627adfec3",
+  "source": "https://www.fpf-pe.com.br/assets/uploads/176499150263.pdf?v=17696371365",
+  "memberships_applied": false,
+  "sha256": "65a64923578de9ce1b75485cc8586cff44fd6d9644557e2174ee2261de73e821"
+}

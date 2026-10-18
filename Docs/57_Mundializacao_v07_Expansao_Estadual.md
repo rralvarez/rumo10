@@ -1,3 +1,86 @@
+# Entrega 57 — continuação PE e RN integrada ao piloto local
+
+18/10/2026. Base local e remota conferida: `a03e757aced0dff5a5bb318da3fd6f2311449368`, branch `codex/mundializacao-v07`. Abaixo está a continuação atual; o relatório capixaba anterior foi preservado ao final como histórico.
+
+## Resultado efetivo e limites
+
+**Duas federações adicionais com competição esportiva executada: Pernambuco e Rio Grande do Norte.** Sete federações no piloto: AL, PI, RO, BA, ES, PE e RN. São 38 partidas em cada novo estadual, dentro de um universo de **15 competições/2.153 partidas**. Ambos passaram integralmente por Game nos três modos e, separadamente, Repository/PDO com personagem e recarga por comando. Isso não habilita novas carreiras públicas nem conclui continuidade nacional.
+
+PE gera até duas candidaturas por classificação final e exclusões documentadas. **RN tem prova de classificação, mas a distribuição nacional permanece bloqueada:** o art.16 delega os critérios à CBF e não fixa a regra futura. Foi apresentada a proposta de dois melhores elegíveis, sem inscrição; enquanto não aprovada/documentada, `max_candidates=0`. Não se presume autorização nem se inventa seletiva. A competição é executável independentemente desse bloqueio de candidatura.
+
+Na evidência canônica `pe-rn/sports.json`, de uma só carreira:
+
+| UF | AL | PI | RO | BA | ES | PE | RN |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Candidatos comprovados/aceitos pela política | 2 | 2 | 2 | 3 | 0 | 2 | 0 |
+
+Total **11 candidaturas estaduais**, **53 vagas estaduais pendentes**, mais **quatro residuais separadas**. Os 28 méritos nacionais não completam a edição. **Zero inscrições nacionais efetivadas e zero renovações nacionais aplicadas.** Cada coorte tem seus próprios resultados, registrados em `game-modes.json` e `mysql-expresso-{pe,rn}.json`; não somar candidatos ou temporadas de saves diferentes. No mesmo save canônico, PE reduz o déficit em dois; RN não reduz vagas enquanto sua política estiver bloqueada.
+
+## Regulamentos e identidade
+
+- [FPF-PE REC 2026](https://www.fpf-pe.com.br/assets/uploads/176499150263.pdf?v=17696371365), arts.11–16, PDF pp.11–14, Anexos A/B pp.29–30; [tabela oficial](https://fpf-pe.com.br/pt/competicoes/jogos.php?q=1651). Os 28 pares/rodadas/mandos foram extraídos do endpoint público usado pela própria página, fase3798; a correspondência dos oito IDs foi conferida na classificação oficial. Não confundir fase3801 (final) com primeira fase. Nenhum placar histórico foi importado.
+- [FNF REC 2026](https://www.fnf.org.br/files/REC_Campeonato_Potiguar_2026.pdf), arts.6–17, PDF pp.5–8, Anexo I p.15; [tabela oficial de 2026](https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026). A tabela confirma QFC/Potyguar nas posições que o anexo ainda descrevia como campeão/vice da segunda divisão2025. Os 28 pares/rodadas/mandos iniciais foram conferidos, sem copiar resultados.
+- [CBF REC Série D2026](https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf), arts.2–4 pp.4–6: quota de referência de duas vagas por PE/RN; classificação estadual de um ano alimenta o seguinte, sujeita às regras e confirmação. Quota não prova automaticamente o repasse específico RN2027.
+
+Regulamentos PE/RN novamente baixados em18/10: hashes idênticos às cópias pesquisadas. Digests, mapeamentos de identidade e os pares sem placares estão em `br-pe-rn-2026-v1.json` e `pe-rn/sources.json`. Reutilizados Náutico, Sport, Retrô, Santa Cruz-PE, Decisão, Maguary, Jaguar, ABC, América-RN e Laguna. Referências locais adicionais estritamente de participantes: Vitória de Santo Antão, Potiguar de Mossoró, QFC, Santa Cruz de Natal, Potyguar Seridoense e Globo. Não há alias Vitória/Vera Cruz ou Santa Cruz-PE/Santa Cruz de Natal. Sem cidades, ratings, imagens ou elencos novos; sem escrita no Hub.
+
+**PE:** liga única28; top2 diretamente à semifinal; playoffs3×6/4×5 em ida/volta; semifinal1º×vencedor4×5 e2º×vencedor3×6; final ida/volta. Voltas pela primeira fase, empates por pontos/saldo/pênaltis. Campeão/vice; derrotados das semifinais e playoffs ordenados pela **primeira fase**, não campanha acumulada. **Sem descenso2026**; 7º/8º não são tratados como rebaixados. A mudança de turnos2027 citada no REC não foi implementada nem declarada continuidade pronta.
+
+**RN:** liga28 e mesmos tamanhos de fases, mas semifinal resemeada: líder contra vencedor de pior colocação inicial, vice contra melhor. Campanha do mando final e ranking3º–6º considera **apenas liga+semifinal**, excluindo playoffs e final. 7º/8º preservados na ordem inicial, com mérito de descenso, sem troca automática de memberships. Desempate inclui confronto direto somente entre dois. A final tem mandos nominais e Arena das Dunas como estádio comum conforme art.17 §§4/6; o simulador não altera a fórmula de força por esse metadado. BID, sanções e homologações administrativas reais não foram certificados.
+
+Datas consolidadas e descanso de três dias são a adaptação simulada já aprovada, não agenda histórica oficial. Regulamentos2026 ficam fixados no snapshot; nenhum contrato futuro foi ativado.
+
+## Implementação e provas
+
+`ConfiguredStateCompetition` recebe duas opções opt-in do contrato v2: base inicial dos eliminados e fases permitidas da campanha; o novo ranking `qualified_campaign` restringe a ordenação acumulada ao prefixo elegível, preservando os dois últimos. Contratos anteriores sem essas opções mantêm seu comportamento e hashes.
+
+`PernambucoPotiguarTrial` compõe `CapixabaTrial`, sem reimplementar os cinco estaduais. Orçamento2.153 autorizado somente com marcador e definições/memberships exatos. Não elevar teto genérico. `StateResultProof` reconstrói os novos formatos com os resultados e pênaltis persistidos, sem sorteio de novos resultados. `StateQualification` exige o contrato certificado; recibos imutáveis e `FutureSerieDAdmission` continuam bloqueando inscrição incompleta.
+
+Preservada a correção `world_processing`. Sem alterações em Game, probabilidades, força, evolução, XP, transferências, autenticação, benefícios, conquistas ou feedback; `protected-base.json` comprova a base. Sem DDL, migrations, backfill ou alteração de saves reais.
+
+## Testes e desempenho
+
+Evidências: `Docs/mundializacao-v07/expansao-estadual/pe-rn/`.
+
+| Teste | Resultado |
+|---|---|
+| `tests/pe-rn-v07.php` | 40 verificações:38+38, byes, cruzamentos distintos, mandos, ranking, exclusão de playoffs, adulteração, contratos inválidos, provas e recibos idempotentes. |
+| `tests/pe-rn-runtime-v07.php` | 25.890 verificações; seis coortes independentes (PE/RN×três modos), uma edição completa de2.153 jogos em cada, personagem em campo, descanso, NPC sem XP do personagem e replay. |
+| `tests/pe-rn-mysql-v07.php --local-rollback [--rn]` | 43 verificações em cada UF; duas contas descartáveis por execução, reload por comando, nonce divergente, fechamento/crash/retry/savepoint, lock real1205, isolamento e rollback integral. Uma edição por UF, **não duas temporadas consecutivas**. |
+| `tests/pe-rn-http-v07.php --local-fixtures` |123 verificações; login descartável, processamento sem partida ativa, tabelas PE/RN e cinco componentes anteriores, controller/CSRF/duplo POST/isolamento e HTML completo. Fixture removida. |
+| `tests/pe-rn-mobile-v07.cjs` | 129 verificações em320/390/1280px: tabelas PE/RN, cinco componentes anteriores, world_processing, teclado/Escape, reduced-motion e ausência de overflow;36 capturas de fixture. |
+| `bin/test-narrative.py` |24 suítes passaram,214 legadas+800 novas cenas preservadas; seis posições/três modos pertinentes. |
+| Rechecks específicos |55 motor estadual,22 roteamento,22 BA,46 ES,215 pós-jogo,96 catálogo de conquistas,32 v0.6.1. Evidências históricas anteriores restauradas e rechecks separados. |
+
+Conquistas desligadas nas fixtures PDO descartáveis: não alegar que essas coortes provaram concessão de R; catálogo50/1.000R e progressão possuem testes próprios. Banco físico local `rumohub`, sem rh_*. A primeira conexão MySQL no sandbox foi negada por permissão de socket; repetida com permissão apenas para fixture local autorizada. Não houve falha MySQL esportiva oculta. HTTP por PHP loopback, não IIS/login central; mobile usa HTML autenticado capturado em Chrome, não dispositivo físico/leitor de tela. Apache/HTTPS/UOL não testados.
+
+| PDO | Comandos | Consultas | p50ms | p95ms | p99ms | Pior/fechamento ms | Snapshot final bytes | Pico bytes |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| PE | 266 | 9313 | 403.47 | 618.72 | 883.77 | 1624.43 | 1527031 | 1873364 |
+| RN | 264 | 9243 | 398.11 | 626.87 | 725.48 | 1817.86 | 1521884 | 1865242 |
+
+Pico de memória do processo/harness PDO:138.412.032bytes em cada UF. AL/PI/RO/BA/ES permanecem íntegros. São76 jogos adicionais em relação ao piloto ES. As coortes não têm a mesma seed/carga/personagem do relatório anterior: não inferir melhora causal de p95 ou snapshot. Sem compactação, worker, cache persistente ou migração de saves da v0.8. Métricas são locais, sem promessa de latência UOL.
+
+## DF e Copa ES: bloqueios específicos
+
+**DF não integrado.** REC art.17 prevê jogo único extra com mando/definição FFDF após esgotar os critérios, sem sorteio. Faltam estado persistido de espera/decisão administrativa, fixture extra retomável/prova, desempate entre três ou mais clubes e tratamento da final neutra/ranking de semifinalistas. Art.20 também exige simultaneidade de jogos decisivos na última rodada. Menor próxima intervenção: suportar decisão federativa auditada no piloto, bloqueando a fase sem designação válida; testar jogo extra no calendário antes de considerar DF jogável. Fonte e detalhes em `documentary-blockers.json`. Não foi contado como federação integrada.
+
+**Copa ES inativa para classificação nacional.** Fontes complementares FES de [24/06](https://futebolcapixaba.com/2026/06/vitoria-e-rio-branco-fc-decidem-o-titulo-da-copa-es-sicoob-na-quarta-feira-01/) e [02/07](https://futebolcapixaba.com/2026/07/rio-branco-fc-comemora-titulo-inedito-da-copa-es-sicoob-e-vaga-para-a-serie-d/) confirmam intenção esportiva D2027. Porém o REC/adendo disponível ainda escreve D2026 no art.11 §§1–2; não foi localizada retificação normativa que substitua esse texto. Conclusão limitada: comunicação operacional posterior é clara, divergência formal persiste. Nenhum campeão histórico foi importado; nenhuma segunda vaga foi concedida por inferência. A execução da copa e sua prova de classificação ainda faltam.
+
+## Segurança, reprodução e rollback
+
+Flags permanentes seguem desligadas; os testes habilitam calendário/fixtures apenas no processo CLI. Produção, IIS, Apache, Hub/API/rh_*, workflows, main e diretório `Docs/levantamento-2026-10-15/` intocados. Sem merge/deploy. Os workflows inspecionados só publicam push em main; esta branch não dispara deploy.
+
+PHP `C:/PHP/php-8.4.26/php.exe`, opções `-n -d extension_dir=C:/PHP/php-8.4.26/ext -d extension=mbstring -d memory_limit=768M`; adicionar `-d extension=pdo_mysql` para MySQL/HTTP. Rodar os scripts da tabela; PDO uma vez sem `--rn` e outra com `--rn`, **sem concorrência com HTTP**, porque ele cria/remove fixtures próprias. HTTP antes do mobile. `python -X utf8 bin/audit-pe-rn.py` exporta matriz27UF/recibos do único save `sports.json`. `V06_EVIDENCE_DIR=Docs/mundializacao-v07/expansao-estadual/pe-rn/regressao` direciona as24 suítes. Gzip comparado byte a byte com JSON bruto antes de remover a cópia regenerável. HTML/CSRF/logs/dados de conexão ficam em storage privado ignorado.
+
+Rollback não destrutivo: manter flags0 e retornar somente código à base `a03e757`, sem restaurar banco sobre progresso posterior. Não abrir snapshots de teste PE/RN em código sem os contratos; preservá-los. Nenhum save real depende desta entrega. Próximos portões: política RN comprovada/aprovada, DF, CopaES, demais federações e obrigações futuras. Não declarar mundialização ou renovação nacional concluídas.
+
+Implementação: `3d20663ea124a8df771b108d70b80a53880a7b48`. Testes/exportador: `8378627bf61dbcce40fc2ce3b63c930cd98a5ca8`. Evidências/documentação em commit separado; SHA remoto final conferido após push e informado ao proprietário.
+
+---
+
+## Histórico preservado: checkpoint capixaba anterior
+
 # Entrega 57 — Capixabão integrado ao piloto local
 
 18/10/2026. Branch `codex/mundializacao-v07`, base local/remota conferida `1c88bb3e8191772143baf567b03a51bfb316cdc4`. Continuação do lote aprovado da Bahia; não houve auditoria mundial ou reimplementação de AL/PI/RO/BA. A pasta não versionada `Docs/levantamento-2026-10-15/` foi preservada.

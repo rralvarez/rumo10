@@ -1,0 +1,85 @@
+{
+  "base": "a03e757aced0dff5a5bb318da3fd6f2311449368",
+  "files": [
+    {
+      "file": "app/Game.php",
+      "unchanged": true,
+      "sha256": "ceee86fa458f6b9b710525933c8af430069d621ce89d52f7818bbfe03f6fd2d2"
+    },
+    {
+      "file": "app/Rules.php",
+      "unchanged": true,
+      "sha256": "461300b1e8ae658f478f64dd8ba2555a96d8044bdafd00a39725dc824b8088dd"
+    },
+    {
+      "file": "app/Probability.php",
+      "unchanged": true,
+      "sha256": "6015ec14237aa5896d1baf2a84e101b4ab80965999f7558cddb3a2427d639845"
+    },
+    {
+      "file": "app/MatchBalance.php",
+      "unchanged": true,
+      "sha256": "606f7261bedb32caf44979661e6c16b6ce70a9171e66441deb9c8e3aa52c4e3f"
+    },
+    {
+      "file": "app/MatchMomentum.php",
+      "unchanged": true,
+      "sha256": "b9e335a3e0e115116f2b5fc3d6a2979a1b98d5b16dd0b49906208febb29bc6bd"
+    },
+    {
+      "file": "app/TeamStrength.php",
+      "unchanged": true,
+      "sha256": "cfe5817da9027bf4e8ae56f60748ec375be67b719810475aaad2c0b1f6215777"
+    },
+    {
+      "file": "app/Evolution.php",
+      "unchanged": true,
+      "sha256": "2b5160bfc9a332855c6ed2089958e190e557452005ad1aba0881c67188ae9ef7"
+    },
+    {
+      "file": "app/Progression.php",
+      "unchanged": true,
+      "sha256": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8"
+    },
+    {
+      "file": "app/TransferMarket.php",
+      "unchanged": true,
+      "sha256": "0fad8ab67e89e84ce5a58cbf6a5e592dfe083c9bc72b5ba304e5e7bb903b1bec"
+    },
+    {
+      "file": "app/Achievements.php",
+      "unchanged": true,
+      "sha256": "93be79e64694a26b2860af5de7a018dfcc02041b918a116c5083729c3e007cff"
+    },
+    {
+      "file": "app/Identity.php",
+      "unchanged": true,
+      "sha256": "7a96d91999a7496b2190d88afaf9181592b190a11470ab1b187d32d8beded4df"
+    },
+    {
+      "file": "app/CareerBenefits.php",
+      "unchanged": true,
+      "sha256": "6db1d64fdf6c73601a6aafb4ee9828fc2a3afd39e50c3dddcc9610a4d2a60145"
+    },
+    {
+      "file": "app/view.php",
+      "unchanged": true,
+      "sha256": "6835aa3ca5385637c7cc0566112c614a76c49c610558824848feb7a2efe00bc1"
+    },
+    {
+      "file": "database/competition-references/br-state-batch-2026-v1.json",
+      "unchanged": true,
+      "sha256": "1539662b9b26c33763d67af677b5f28cc9848e54044853b1fc9d989c374cdc75"
+    },
+    {
+      "file": "database/competition-references/br-state-expansion-2026-v1.json",
+      "unchanged": true,
+      "sha256": "0441ab4a97c66cef8ced5da5ac41342fc05574d0a2fb872d982644678ae9605e"
+    },
+    {
+      "file": "database/competition-references/br-capixaba-2026-v1.json",
+      "unchanged": true,
+      "sha256": "22df6dd54f82fed3becda8398c8263845c3283b98e72a31d97afbb042daf4f6d"
+    }
+  ]
+}

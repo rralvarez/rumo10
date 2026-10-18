@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "tests/configured-state-v07.php",
+    "exit": 0,
+    "stdout": "OK: 55 verificações motor estadual; 6 candidatos, 58 vagas estaduais pendentes.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "tests/state-routing-v07.php",
+    "exit": 0,
+    "stdout": "OK: 22 verificações de roteamento; somente fixtures sintéticas.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "tests/state-expansion-v07.php",
+    "exit": 0,
+    "stdout": "OK: 22 verificações Bahia; 3 candidatos adicionais; 55 vagas estaduais pendentes.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "tests/capixaba-v07.php",
+    "exit": 0,
+    "stdout": "OK: 46 verificações ES; 0 candidatos novos, 56 vagas estaduais pendentes.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "tests/post-match-v06.php",
+    "exit": 0,
+    "stdout": "OK: 215 verificações pós-jogo; seis posições e três modos, sem banco.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "tests/achievements-v06.php",
+    "exit": 0,
+    "stdout": "OK: 96 verificações catálogo/projeção; persistência exige suíte MySQL própria.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "tests/growth-v061.php",
+    "exit": 0,
+    "stdout": "OK: 32 verificações v0.6.1 puras.\n",
+    "stderr": ""
+  }
+]

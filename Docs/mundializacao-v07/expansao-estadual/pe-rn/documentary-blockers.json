@@ -1,0 +1,56 @@
+{
+  "consulted": "2026-10-18",
+  "copa_es": {
+    "status": "inactive_no_national_admission",
+    "regulation": "https://futebolcapixaba.com/site/wp-content/uploads/2026/04/Regulamento-COPA-ES-2026.pdf",
+    "regulation_location": "art.11 paragraphs1/2 PDF p.6; adendo02/06/2026",
+    "regulation_sha256": "fbd03b512132909770a81ef3190b0534da1b819034e60fdef2a449042e91123e",
+    "regulation_target": 2026,
+    "supplementary_sources": [
+      {
+        "url": "https://futebolcapixaba.com/2026/06/vitoria-e-rio-branco-fc-decidem-o-titulo-da-copa-es-sicoob-na-quarta-feira-01/",
+        "published": "2026-06-24",
+        "sha256": "e65c31ba8d50bac9c834990a67eded9adc4c3d4ccaaf8927e08bcfe121de1a34",
+        "stated_target": 2027
+      },
+      {
+        "url": "https://futebolcapixaba.com/2026/07/rio-branco-fc-comemora-titulo-inedito-da-copa-es-sicoob-e-vaga-para-a-serie-d/",
+        "published": "2026-07-02",
+        "sha256": "5081675acf76e6d735c3923ef0e083c273e4fd84b8e41a65dbf69d666e7e57e2",
+        "stated_target": 2027
+      }
+    ],
+    "conclusion": "Later primary federation communications establish sporting intent for 2027, but no corrected regulatory act was located. No silent correction; cup and its national path stay inactive. No real winner imported."
+  },
+  "df": {
+    "status": "not_implemented_blocked_administrative_tiebreak",
+    "rec": "https://ffdf.com.br/assets/uploads/176245464195.pdf?v=17652869932",
+    "sha256": "4b38e9b0ada3cc8fbf2834b18a6437fbfe66837a9f21342647dc08c9aae00054",
+    "location": "arts.13-17 PDF pp.8-9; art.20 p.9",
+    "known_rules": [
+      "League 45 matches; top4 semifinal two legs 1v4/2v3; initial-rank aggregate tie advantage",
+      "Final one match Arena BRB Mane Garrincha, penalties",
+      "Semifinal losers ranked on semifinal alone",
+      "Last league round simultaneous when qualification/relegation is at stake",
+      "Last tiebreak is one extra game with venue and decision by FFDF, not lottery"
+    ],
+    "missing_components": [
+      "Persisted administrative designation for the extra game, including a tie among more than two clubs",
+      "Re-entrant extra fixture integrated into calendar/proof and fail-closed unresolved designation",
+      "Neutral final representation and phase-only semifinal ranking; last-round scheduling adaptation must be explicit"
+    ],
+    "next_intervention": "Add explicit awaiting_federation_decision state and audited test-fixture designation, never use overall/random selection. DF is not counted as playable."
+  },
+  "source_update_checks": {
+    "pe": {
+      "preserved": "f6db44ebcf8e4d176bfcb55c983691db7c9f8be7529cdce8f3c5bacc3b2ef27f",
+      "current": "f6db44ebcf8e4d176bfcb55c983691db7c9f8be7529cdce8f3c5bacc3b2ef27f",
+      "identical": true
+    },
+    "rn": {
+      "preserved": "5128ee96f6cd8556123f8e26cd9aea7779097d9798f3293b8200ce6840f538e7",
+      "current": "5128ee96f6cd8556123f8e26cd9aea7779097d9798f3293b8200ce6840f538e7",
+      "identical": true
+    }
+  }
+}
