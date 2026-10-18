@@ -29,7 +29,13 @@ final class ConfiguredStateCompetition {
                 }
             }
         }
-        if(!in_array($r['final_ranking']??'', ['campaign','elimination'],true)||!is_int($r['relegation']??null)||$r['relegation']<0||$r['relegation']>=count($teams))throw new RuntimeException('Classificação/descenso inválidos.');
+        // New semantics are opt-in; frozen v1/v2 contracts without these keys retain their ranking.
+        if(isset($r['campaign_phases'])){
+            if($r['version']!==self::ROUTED_VERSION||!is_array($r['campaign_phases'])||!$r['campaign_phases']||count(array_unique($r['campaign_phases']))!==count($r['campaign_phases'])||array_diff($r['campaign_phases'],array_keys($names)))throw new RuntimeException('Fases da campanha inválidas.');
+        }
+        if(isset($r['eliminated_basis'])&&($r['version']!==self::ROUTED_VERSION||!in_array($r['eliminated_basis'],['initial','campaign'],true)))throw new RuntimeException('Base dos eliminados inválida.');
+        if(($r['final_ranking']??'')==='qualified_campaign'&&($r['version']!==self::ROUTED_VERSION||!isset($r['campaign_phases'])||!is_int($r['ranking_prefix']??null)||$r['ranking_prefix']<2||$r['ranking_prefix']>count($teams)))throw new RuntimeException('Escopo da classificação acumulada inválido.');
+        if(!in_array($r['final_ranking']??'', ['campaign','elimination','qualified_campaign'],true)||!is_int($r['relegation']??null)||$r['relegation']<0||$r['relegation']>=count($teams))throw new RuntimeException('Classificação/descenso inválidos.');
     }
 
     public static function create(array $c,array $teams):array {
@@ -42,7 +48,7 @@ final class ConfiguredStateCompetition {
 
     public static function standings(array $t,?array $teams=null,?string $phase=null,bool $campaign=false):array {
         $teams??=$t['teams'];$rules=Competition::catalog()[$t['id']]['state_engine'];
-        $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase||$m['phase']===$phase)&&($campaign||(in_array($m['home'],$teams,true)&&in_array($m['away'],$teams,true)))));
+        $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase||$m['phase']===$phase)&&(!$campaign||$phase||!isset($rules['campaign_phases'])||in_array($m['phase'],$rules['campaign_phases'],true))&&($campaign||(in_array($m['home'],$teams,true)&&in_array($m['away'],$teams,true)))));
         $rows=Schedule::table($matches,$teams);foreach($rows as &$row){$row['red']=0;$row['yellow']=0;foreach($matches as $m)if($m['status']==='finalizada')foreach(['home','away'] as $side)if($m[$side]===$row['team']){$row['red']+=$m[$side.'_red']??0;$row['yellow']+=$m[$side.'_yellow']??0;}}unset($row);
         // Group ties by every preceding criterion. H2H is never pairwise for a three-way tie.
         $sort=function(array $bucket,int $at)use(&$sort,$rules,$matches,$t):array{
@@ -113,7 +119,8 @@ final class ConfiguredStateCompetition {
         else{
             if(count($t['state_winners'])!==1)throw new RuntimeException('Campeão indefinido.');$champion=$t['state_winners'][0];$runner=array_values(array_diff($t['groups'][0],[$champion]));$prefix=array_merge([$champion],$runner);
             if($r['final_ranking']==='campaign')$ranking=array_merge($prefix,array_column(self::standings($t,array_values(array_diff($t['teams'],$prefix)),null,true),'team'));
-            else{$ranking=$prefix;foreach(array_reverse($t['state_eliminated']) as $eliminated)$ranking=array_merge($ranking,array_column(self::standings($t,array_values(array_diff($eliminated,$ranking)),null,true),'team'));$ranking=array_merge($ranking,array_values(array_diff($t['initial_ranking']??$t['teams'],$ranking)));}
+            elseif($r['final_ranking']==='qualified_campaign'){$eligible=array_values(array_diff(array_slice($t['initial_ranking'],0,$r['ranking_prefix']),$prefix));$ranking=array_merge($prefix,array_column(self::standings($t,$eligible,null,true),'team'));$ranking=array_merge($ranking,array_values(array_diff($t['initial_ranking'],$ranking)));}
+            else{$ranking=$prefix;foreach(array_reverse($t['state_eliminated']) as $eliminated)$ranking=array_merge($ranking,array_column(self::standings($t,array_values(array_diff($eliminated,$ranking)),($r['eliminated_basis']??'campaign')==='initial'?$r['stages'][0]['name']:null,true),'team'));$ranking=array_merge($ranking,array_values(array_diff($t['initial_ranking']??$t['teams'],$ranking)));}
         }
         $t['final_ranking']=$ranking;$t['champion']=$ranking[0];$t['promoted']=array_slice($ranking,0,$r['promotion']??0);$t['done']=true;
     }

@@ -1,0 +1,1008 @@
+{
+  "id": "pe-rn-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "pe-a1": {
+      "id": "pe-a1",
+      "name": "Pernambucano Série A1",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "PE",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "pe",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Náutico-PE",
+        "Sport-PE",
+        "Retrô-PE",
+        "Santa Cruz-PE",
+        "Decisão-PE",
+        "Maguary-PE",
+        "Vitória de Santo Antão-PE",
+        "Jaguar-PE"
+      ],
+      "groups": [
+        [
+          "Náutico-PE",
+          "Sport-PE",
+          "Retrô-PE",
+          "Santa Cruz-PE",
+          "Decisão-PE",
+          "Maguary-PE",
+          "Vitória de Santo Antão-PE",
+          "Jaguar-PE"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://www.fpf-pe.com.br/assets/uploads/176499150263.pdf?v=17696371365",
+        "https://fpf-pe.com.br/pt/competicoes/jogos.php?q=1651"
+      ],
+      "reference_clubs": {
+        "Vitória de Santo Antão-PE": {
+          "name": "Vitória de Santo Antão-PE",
+          "country": "BR",
+          "uf": "PE",
+          "competitions": [
+            "pe-a1"
+          ],
+          "game_only": true,
+          "source": "https://fpf-pe.com.br/pt/competicoes/jogos.php?q=1651",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "classification": "official_2026_sport_format_simulated_results",
+        "qualification_note": "Candidaturas pendentes; não são inscrições nacionais. BID e homologação administrativa não verificados."
+      },
+      "state_engine": {
+        "version": "configured-state-v2",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "stages": [
+          {
+            "name": "liga",
+            "type": "league",
+            "return": false,
+            "fixtures": [
+              [
+                1,
+                "Retrô-PE",
+                "Vitória de Santo Antão-PE"
+              ],
+              [
+                1,
+                "Náutico-PE",
+                "Maguary-PE"
+              ],
+              [
+                1,
+                "Jaguar-PE",
+                "Sport-PE"
+              ],
+              [
+                1,
+                "Santa Cruz-PE",
+                "Decisão-PE"
+              ],
+              [
+                2,
+                "Vitória de Santo Antão-PE",
+                "Jaguar-PE"
+              ],
+              [
+                2,
+                "Maguary-PE",
+                "Santa Cruz-PE"
+              ],
+              [
+                2,
+                "Decisão-PE",
+                "Náutico-PE"
+              ],
+              [
+                2,
+                "Sport-PE",
+                "Retrô-PE"
+              ],
+              [
+                3,
+                "Decisão-PE",
+                "Jaguar-PE"
+              ],
+              [
+                3,
+                "Santa Cruz-PE",
+                "Vitória de Santo Antão-PE"
+              ],
+              [
+                3,
+                "Maguary-PE",
+                "Retrô-PE"
+              ],
+              [
+                3,
+                "Náutico-PE",
+                "Sport-PE"
+              ],
+              [
+                4,
+                "Vitória de Santo Antão-PE",
+                "Maguary-PE"
+              ],
+              [
+                4,
+                "Sport-PE",
+                "Decisão-PE"
+              ],
+              [
+                4,
+                "Retrô-PE",
+                "Santa Cruz-PE"
+              ],
+              [
+                4,
+                "Jaguar-PE",
+                "Náutico-PE"
+              ],
+              [
+                5,
+                "Sport-PE",
+                "Vitória de Santo Antão-PE"
+              ],
+              [
+                5,
+                "Maguary-PE",
+                "Decisão-PE"
+              ],
+              [
+                5,
+                "Retrô-PE",
+                "Jaguar-PE"
+              ],
+              [
+                5,
+                "Santa Cruz-PE",
+                "Náutico-PE"
+              ],
+              [
+                6,
+                "Maguary-PE",
+                "Sport-PE"
+              ],
+              [
+                6,
+                "Santa Cruz-PE",
+                "Jaguar-PE"
+              ],
+              [
+                6,
+                "Decisão-PE",
+                "Vitória de Santo Antão-PE"
+              ],
+              [
+                6,
+                "Náutico-PE",
+                "Retrô-PE"
+              ],
+              [
+                7,
+                "Sport-PE",
+                "Santa Cruz-PE"
+              ],
+              [
+                7,
+                "Retrô-PE",
+                "Decisão-PE"
+              ],
+              [
+                7,
+                "Vitória de Santo Antão-PE",
+                "Náutico-PE"
+              ],
+              [
+                7,
+                "Jaguar-PE",
+                "Maguary-PE"
+              ]
+            ]
+          },
+          {
+            "name": "playoff",
+            "type": "knockout",
+            "selection": "initial",
+            "pairs": [
+              [
+                2,
+                5
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "semifinal",
+            "type": "knockout",
+            "selection": "routed",
+            "entries": [
+              {
+                "from": "initial",
+                "index": 0
+              },
+              {
+                "from": "initial",
+                "index": 1
+              },
+              {
+                "from": "winner",
+                "phase": "playoff",
+                "index": 0
+              },
+              {
+                "from": "winner",
+                "phase": "playoff",
+                "index": 1
+              }
+            ],
+            "pairs": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "final",
+            "type": "knockout",
+            "selection": "winners",
+            "pairs": [
+              [
+                0,
+                1
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          }
+        ],
+        "final_ranking": "elimination",
+        "relegation": 0,
+        "promotion": 0,
+        "eliminated_basis": "initial"
+      }
+    },
+    "rn-a1": {
+      "id": "rn-a1",
+      "name": "Potiguar Primeira Divisão",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "RN",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "rn",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "América-RN",
+        "ABC-RN",
+        "Potiguar de Mossoró-RN",
+        "QFC-RN",
+        "Laguna-RN",
+        "Santa Cruz de Natal-RN",
+        "Potyguar Seridoense-RN",
+        "Globo-RN"
+      ],
+      "groups": [
+        [
+          "América-RN",
+          "ABC-RN",
+          "Potiguar de Mossoró-RN",
+          "QFC-RN",
+          "Laguna-RN",
+          "Santa Cruz de Natal-RN",
+          "Potyguar Seridoense-RN",
+          "Globo-RN"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://www.fnf.org.br/files/REC_Campeonato_Potiguar_2026.pdf",
+        "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026"
+      ],
+      "reference_clubs": {
+        "Potiguar de Mossoró-RN": {
+          "name": "Potiguar de Mossoró-RN",
+          "country": "BR",
+          "uf": "RN",
+          "competitions": [
+            "rn-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "QFC-RN": {
+          "name": "QFC-RN",
+          "country": "BR",
+          "uf": "RN",
+          "competitions": [
+            "rn-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Santa Cruz de Natal-RN": {
+          "name": "Santa Cruz de Natal-RN",
+          "country": "BR",
+          "uf": "RN",
+          "competitions": [
+            "rn-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Potyguar Seridoense-RN": {
+          "name": "Potyguar Seridoense-RN",
+          "country": "BR",
+          "uf": "RN",
+          "competitions": [
+            "rn-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Globo-RN": {
+          "name": "Globo-RN",
+          "country": "BR",
+          "uf": "RN",
+          "competitions": [
+            "rn-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "classification": "official_2026_sport_format_simulated_results",
+        "qualification_note": "Candidaturas pendentes; não são inscrições nacionais. BID e homologação administrativa não verificados.",
+        "venue_note": "Final: Arena das Dunas, estádio comum (art.17 §§4/6); mandos nominais pela campanha sem playoff."
+      },
+      "state_engine": {
+        "version": "configured-state-v2",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "h2h_points_two",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "stages": [
+          {
+            "name": "liga",
+            "type": "league",
+            "return": false,
+            "fixtures": [
+              [
+                1,
+                "América-RN",
+                "Potyguar Seridoense-RN"
+              ],
+              [
+                1,
+                "Globo-RN",
+                "QFC-RN"
+              ],
+              [
+                1,
+                "Santa Cruz de Natal-RN",
+                "Potiguar de Mossoró-RN"
+              ],
+              [
+                1,
+                "ABC-RN",
+                "Laguna-RN"
+              ],
+              [
+                2,
+                "Laguna-RN",
+                "QFC-RN"
+              ],
+              [
+                2,
+                "Potyguar Seridoense-RN",
+                "Santa Cruz de Natal-RN"
+              ],
+              [
+                2,
+                "Potiguar de Mossoró-RN",
+                "ABC-RN"
+              ],
+              [
+                2,
+                "Globo-RN",
+                "América-RN"
+              ],
+              [
+                3,
+                "QFC-RN",
+                "Potiguar de Mossoró-RN"
+              ],
+              [
+                3,
+                "ABC-RN",
+                "Santa Cruz de Natal-RN"
+              ],
+              [
+                3,
+                "América-RN",
+                "Laguna-RN"
+              ],
+              [
+                3,
+                "Potyguar Seridoense-RN",
+                "Globo-RN"
+              ],
+              [
+                4,
+                "América-RN",
+                "ABC-RN"
+              ],
+              [
+                4,
+                "Laguna-RN",
+                "Globo-RN"
+              ],
+              [
+                4,
+                "Santa Cruz de Natal-RN",
+                "QFC-RN"
+              ],
+              [
+                4,
+                "Potiguar de Mossoró-RN",
+                "Potyguar Seridoense-RN"
+              ],
+              [
+                5,
+                "Laguna-RN",
+                "Potiguar de Mossoró-RN"
+              ],
+              [
+                5,
+                "QFC-RN",
+                "América-RN"
+              ],
+              [
+                5,
+                "Potyguar Seridoense-RN",
+                "ABC-RN"
+              ],
+              [
+                5,
+                "Globo-RN",
+                "Santa Cruz de Natal-RN"
+              ],
+              [
+                6,
+                "Santa Cruz de Natal-RN",
+                "Laguna-RN"
+              ],
+              [
+                6,
+                "QFC-RN",
+                "Potyguar Seridoense-RN"
+              ],
+              [
+                6,
+                "ABC-RN",
+                "Globo-RN"
+              ],
+              [
+                6,
+                "Potiguar de Mossoró-RN",
+                "América-RN"
+              ],
+              [
+                7,
+                "ABC-RN",
+                "QFC-RN"
+              ],
+              [
+                7,
+                "Potiguar de Mossoró-RN",
+                "Globo-RN"
+              ],
+              [
+                7,
+                "Laguna-RN",
+                "Potyguar Seridoense-RN"
+              ],
+              [
+                7,
+                "América-RN",
+                "Santa Cruz de Natal-RN"
+              ]
+            ]
+          },
+          {
+            "name": "playoff",
+            "type": "knockout",
+            "selection": "initial",
+            "pairs": [
+              [
+                2,
+                5
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "semifinal",
+            "type": "knockout",
+            "selection": "routed",
+            "entries": [
+              {
+                "from": "initial",
+                "index": 0
+              },
+              {
+                "from": "initial",
+                "index": 1
+              },
+              {
+                "from": "winner_initial",
+                "phase": "playoff",
+                "index": 0
+              },
+              {
+                "from": "winner_initial",
+                "phase": "playoff",
+                "index": 1
+              }
+            ],
+            "pairs": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "final",
+            "type": "knockout",
+            "selection": "winners",
+            "pairs": [
+              [
+                0,
+                1
+              ]
+            ],
+            "home_basis": "campaign",
+            "legs": 2,
+            "tie_rule": "penalties"
+          }
+        ],
+        "final_ranking": "qualified_campaign",
+        "relegation": 2,
+        "promotion": 0,
+        "campaign_phases": [
+          "liga",
+          "semifinal"
+        ],
+        "ranking_prefix": 6
+      }
+    }
+  },
+  "paths": {
+    "PE": {
+      "id": "pe-state-d-2027-v1",
+      "competition": "pe-a1",
+      "source_edition": 2026,
+      "quota": 2,
+      "source": "https://www.fpf-pe.com.br/assets/uploads/176499150263.pdf?v=17696371365",
+      "location": "REC arts.11-14 pp.11-14",
+      "participants": [
+        "Náutico-PE",
+        "Sport-PE",
+        "Retrô-PE",
+        "Santa Cruz-PE",
+        "Decisão-PE",
+        "Maguary-PE",
+        "Vitória de Santo Antão-PE",
+        "Jaguar-PE"
+      ],
+      "selective_required": false,
+      "eligibility": "pending sports candidacy only; no BID or enrollment",
+      "consulted_on": "2026-10-18",
+      "future_rule": "No future edition activated"
+    },
+    "RN": {
+      "id": "rn-state-d-2027-v1",
+      "competition": "rn-a1",
+      "source_edition": 2026,
+      "quota": 2,
+      "source": "https://www.fnf.org.br/files/REC_Campeonato_Potiguar_2026.pdf",
+      "location": "REC arts.6-17 pp.5-8; national distribution pending CBF",
+      "participants": [
+        "América-RN",
+        "ABC-RN",
+        "Potiguar de Mossoró-RN",
+        "QFC-RN",
+        "Laguna-RN",
+        "Santa Cruz de Natal-RN",
+        "Potyguar Seridoense-RN",
+        "Globo-RN"
+      ],
+      "selective_required": false,
+      "eligibility": "pending sports candidacy only; no BID or enrollment",
+      "consulted_on": "2026-10-18",
+      "future_rule": "No future edition activated",
+      "max_candidates": 0,
+      "policy_status": "blocked_pending_national_distribution_or_simulation_approval"
+    }
+  },
+  "sources": {
+    "PE": {
+      "rec": "https://www.fpf-pe.com.br/assets/uploads/176499150263.pdf?v=17696371365",
+      "table": "https://fpf-pe.com.br/pt/competicoes/jogos.php?q=1651",
+      "rec_sha256": "f6db44ebcf8e4d176bfcb55c983691db7c9f8be7529cdce8f3c5bacc3b2ef27f",
+      "table_sha256": "5f3c7137b198a18131741e7ffb28de8bcc64b8327e1a3ea976e9c0728c8b64c7",
+      "historical_scores_imported": false,
+      "fixtures": [
+        [
+          1,
+          "Retrô-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          1,
+          "Náutico-PE",
+          "Maguary-PE"
+        ],
+        [
+          1,
+          "Jaguar-PE",
+          "Sport-PE"
+        ],
+        [
+          1,
+          "Santa Cruz-PE",
+          "Decisão-PE"
+        ],
+        [
+          2,
+          "Vitória de Santo Antão-PE",
+          "Jaguar-PE"
+        ],
+        [
+          2,
+          "Maguary-PE",
+          "Santa Cruz-PE"
+        ],
+        [
+          2,
+          "Decisão-PE",
+          "Náutico-PE"
+        ],
+        [
+          2,
+          "Sport-PE",
+          "Retrô-PE"
+        ],
+        [
+          3,
+          "Decisão-PE",
+          "Jaguar-PE"
+        ],
+        [
+          3,
+          "Santa Cruz-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          3,
+          "Maguary-PE",
+          "Retrô-PE"
+        ],
+        [
+          3,
+          "Náutico-PE",
+          "Sport-PE"
+        ],
+        [
+          4,
+          "Vitória de Santo Antão-PE",
+          "Maguary-PE"
+        ],
+        [
+          4,
+          "Sport-PE",
+          "Decisão-PE"
+        ],
+        [
+          4,
+          "Retrô-PE",
+          "Santa Cruz-PE"
+        ],
+        [
+          4,
+          "Jaguar-PE",
+          "Náutico-PE"
+        ],
+        [
+          5,
+          "Sport-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          5,
+          "Maguary-PE",
+          "Decisão-PE"
+        ],
+        [
+          5,
+          "Retrô-PE",
+          "Jaguar-PE"
+        ],
+        [
+          5,
+          "Santa Cruz-PE",
+          "Náutico-PE"
+        ],
+        [
+          6,
+          "Maguary-PE",
+          "Sport-PE"
+        ],
+        [
+          6,
+          "Santa Cruz-PE",
+          "Jaguar-PE"
+        ],
+        [
+          6,
+          "Decisão-PE",
+          "Vitória de Santo Antão-PE"
+        ],
+        [
+          6,
+          "Náutico-PE",
+          "Retrô-PE"
+        ],
+        [
+          7,
+          "Sport-PE",
+          "Santa Cruz-PE"
+        ],
+        [
+          7,
+          "Retrô-PE",
+          "Decisão-PE"
+        ],
+        [
+          7,
+          "Vitória de Santo Antão-PE",
+          "Náutico-PE"
+        ],
+        [
+          7,
+          "Jaguar-PE",
+          "Maguary-PE"
+        ]
+      ],
+      "identity_map": {
+        "20023": "Náutico-PE",
+        "20010": "Sport-PE",
+        "55531": "Retrô-PE",
+        "20039": "Santa Cruz-PE",
+        "35768": "Decisão-PE",
+        "59116": "Maguary-PE",
+        "20330": "Vitória de Santo Antão-PE",
+        "35743": "Jaguar-PE"
+      },
+      "consulted": "2026-10-18"
+    },
+    "RN": {
+      "rec": "https://www.fnf.org.br/files/REC_Campeonato_Potiguar_2026.pdf",
+      "table": "https://www.fnf.org.br/tabela/195/estadual-primeira-divisao-2026",
+      "rec_sha256": "5128ee96f6cd8556123f8e26cd9aea7779097d9798f3293b8200ce6840f538e7",
+      "table_sha256": "4101fd043ee1928ee258bf5bbb99647be58f9478808daa8a0b87bce9a7bc5fa1",
+      "historical_scores_imported": false,
+      "fixtures": [
+        [
+          1,
+          "América-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          1,
+          "Globo-RN",
+          "QFC-RN"
+        ],
+        [
+          1,
+          "Santa Cruz de Natal-RN",
+          "Potiguar de Mossoró-RN"
+        ],
+        [
+          1,
+          "ABC-RN",
+          "Laguna-RN"
+        ],
+        [
+          2,
+          "Laguna-RN",
+          "QFC-RN"
+        ],
+        [
+          2,
+          "Potyguar Seridoense-RN",
+          "Santa Cruz de Natal-RN"
+        ],
+        [
+          2,
+          "Potiguar de Mossoró-RN",
+          "ABC-RN"
+        ],
+        [
+          2,
+          "Globo-RN",
+          "América-RN"
+        ],
+        [
+          3,
+          "QFC-RN",
+          "Potiguar de Mossoró-RN"
+        ],
+        [
+          3,
+          "ABC-RN",
+          "Santa Cruz de Natal-RN"
+        ],
+        [
+          3,
+          "América-RN",
+          "Laguna-RN"
+        ],
+        [
+          3,
+          "Potyguar Seridoense-RN",
+          "Globo-RN"
+        ],
+        [
+          4,
+          "América-RN",
+          "ABC-RN"
+        ],
+        [
+          4,
+          "Laguna-RN",
+          "Globo-RN"
+        ],
+        [
+          4,
+          "Santa Cruz de Natal-RN",
+          "QFC-RN"
+        ],
+        [
+          4,
+          "Potiguar de Mossoró-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          5,
+          "Laguna-RN",
+          "Potiguar de Mossoró-RN"
+        ],
+        [
+          5,
+          "QFC-RN",
+          "América-RN"
+        ],
+        [
+          5,
+          "Potyguar Seridoense-RN",
+          "ABC-RN"
+        ],
+        [
+          5,
+          "Globo-RN",
+          "Santa Cruz de Natal-RN"
+        ],
+        [
+          6,
+          "Santa Cruz de Natal-RN",
+          "Laguna-RN"
+        ],
+        [
+          6,
+          "QFC-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          6,
+          "ABC-RN",
+          "Globo-RN"
+        ],
+        [
+          6,
+          "Potiguar de Mossoró-RN",
+          "América-RN"
+        ],
+        [
+          7,
+          "ABC-RN",
+          "QFC-RN"
+        ],
+        [
+          7,
+          "Potiguar de Mossoró-RN",
+          "Globo-RN"
+        ],
+        [
+          7,
+          "Laguna-RN",
+          "Potyguar Seridoense-RN"
+        ],
+        [
+          7,
+          "América-RN",
+          "Santa Cruz de Natal-RN"
+        ]
+      ],
+      "identity_map": {
+        "América SAF": "América-RN",
+        "ABC": "ABC-RN",
+        "Potiguar": "Potiguar de Mossoró-RN",
+        "QFC": "QFC-RN",
+        "Laguna": "Laguna-RN",
+        "Santa Cruz de Natal": "Santa Cruz de Natal-RN",
+        "Potyguar": "Potyguar Seridoense-RN",
+        "Globo FC": "Globo-RN"
+      },
+      "consulted": "2026-10-18"
+    }
+  }
+}
