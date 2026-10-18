@@ -5,6 +5,13 @@ foreach($files as $file){$old=shell_exec('git show c08ab56:'.$file);$now=file_ge
 if($file==='app/Competition.php'){
  $now=implode("\n",array_filter(explode("\n",str_replace("\r\n","\n",$now)),static fn($line)=>!str_starts_with($line,'        if(self::$referenceClubs)')&&!str_starts_with($line,"        if(\$c['format']==='alagoas'")&&!str_starts_with($line,"        if(\$t['format']==='alagoas'")));
 
+ // Exact configurable-state dispatch only. Removing these hooks must restore legacy bytes.
+ foreach([
+ "        if(\$c['format']==='configured_state')return ConfiguredStateCompetition::create(\$c,\$teams);",
+ "        if(\$t['format']==='configured_state')return ConfiguredStateCompetition::standings(\$t,\$teams,\$phase);",
+ "        if(\$t['format']==='configured_state'){ConfiguredStateCompetition::next(\$t);return;}",
+ "        if(\$t['format']==='configured_state'&&!empty(\$t['done']))return ['name'=>self::catalog()[\$t['id']]['name'],'champion'=>\$t['champion'],'promoted'=>false,'relegated'=>false,'position'=>array_search(\$club,\$t['final_ranking'],true)+1,'group'=>null,'access_pending'=>in_array(\$club,\$t['promoted'],true),'continuity'=>['valid'=>false,'reason'=>'state_future_memberships_and_mandatory_calendar_pending'],'relegation_pending'=>in_array(\$club,\$t['relegated'],true),'titles'=>[]];"
+ ] as $hook){if(substr_count($now,$hook)!==1)throw new RuntimeException('Dispatch estadual divergente.');$now=str_replace($hook."\n",'',$now);}
  // Exact opt-in C adapter hooks: removing them must restore the entire legacy file.
  foreach(["        if(\$c['format']==='national_c')return NationalCCompetition::create(\$c,\$teams);", "        if(\$t['format']==='national_c')return NationalCCompetition::standings(\$t,\$teams,\$phase);", "        if(\$t['format']==='national_c'){NationalCCompetition::next(\$t);return;}", "        if(\$t['format']==='national_c')return NationalCCompetition::result(\$t,\$club);"] as $hook)$now=str_replace($hook."\n",'', $now);
  foreach(["        if(\$c['format']==='national_d')return NationalDCompetition::create(\$c,\$teams);","        if(\$t['format']==='national_d')return NationalDCompetition::standings(\$t,\$teams,\$phase);","        if(\$t['format']==='national_d'){NationalDCompetition::next(\$t);return;}","        if(\$t['format']==='national_d')return NationalDCompetition::result(\$t,\$club);"] as $hook)$now=str_replace($hook."\n",'',$now);

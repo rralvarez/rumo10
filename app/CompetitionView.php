@@ -21,6 +21,10 @@ final class CompetitionView {
     public static function standings(array $g): void {
         $t=$g['competitions'][$g['competition_id']];$t['matches']=$g['matches'];
         echo '<h2>Classificação · '.e(Competition::label($g)).'</h2><p class="subtle">'.e(Competition::phaseLabel($g)).' · resultados da sua carreira</p>';
+        if($t['format']==='configured_state'){
+            echo '<p class="subtle">Datas simuladas. As vagas nacionais e a continuidade estadual ainda dependem da validação das próximas competições.</p>';
+            if((Competition::catalog()[$t['id']]['uf']??null)==='RO')echo '<p class="subtle">Neste piloto, as posições de campeão e vice podem fundamentar vagas nacionais. Um repasse além dos finalistas permanece pendente de confirmação.</p>';
+        }
         if($t['ties']) {
             foreach($t['ties'] as $i=>$tie) {
                 echo '<article class="panel"><h3>'.e($tie['a'].' × '.$tie['b']).'</h3>';
@@ -53,6 +57,12 @@ final class CompetitionView {
         if($r['champion']===$club)$s.='seu clube conquistou o título! ';
         else $s.='campeão '.$r['champion'].'. ';
         if(($r['sports_format']??null)==='copa_brasil')return $s.($r['champion']===$club?'':(($r['phase_reached']??0)===9?'Seu clube chegou à final.':'Seu clube foi eliminado na '.(int)$r['phase_reached'].'ª fase.'));
+        if(($r['continuity']['reason']??null)==='state_future_memberships_and_mandatory_calendar_pending'){
+            $s.='Classificação final simulada: '.$r['position'].'º lugar. ';
+            if(!empty($r['relegation_pending']))$s.='O clube terminou em posição de descenso; a próxima edição estadual ainda está pendente. ';
+            if(!empty($r['access_pending']))$s.='O mérito de acesso aguarda uma edição seguinte validada. ';
+            return $s;
+        }
         if($r['promoted'])$s.='Acesso conquistado.'.(!empty($r['access_pending'])?' A divisão seguinte deste estado ainda não está disponível no protótipo.':'');
         elseif($r['relegated'])$s.=!empty($r['relegation_pending'])?'Seu clube terminou na zona de rebaixamento. A terceira divisão ainda não está disponível; permanecer no clube repete a divisão cadastrada.':'Seu clube foi rebaixado.';
         else $s.='Seu clube terminou em '.$r['position'].'º '.(!empty($r['group'])?'no grupo '.$r['group']:'na primeira fase').'.';

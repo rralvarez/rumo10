@@ -50,6 +50,7 @@ final class Competition {
     }
     public static function tournament(string $id,?array $teams=null): array {
         $c=self::catalog()[$id]; $teams??=$c['teams'];
+        if($c['format']==='configured_state')return ConfiguredStateCompetition::create($c,$teams);
         if($c['format']==='alagoas')return AlagoasCompetition::create($c,$teams);
         if($c['format']==='amazonense')return AmazonenseCompetition::create($c,$teams);
         if($c['format']==='state')return StateCompetition::create($c,$teams);
@@ -90,6 +91,7 @@ final class Competition {
         if($t['format']==='nordeste')return NordesteCompetition::standings($t,$teams,$phase);
         if($t['format']==='national_d')return NationalDCompetition::standings($t,$teams,$phase);
         if($t['format']==='national_c')return NationalCCompetition::standings($t,$teams,$phase);
+        if($t['format']==='configured_state')return ConfiguredStateCompetition::standings($t,$teams,$phase);
         if($t['format']==='alagoas')return AlagoasCompetition::standings($t,$teams,$phase);
         $teams??=$t['teams'];$cross=$t['format']==='amazonense' || ($t['format']==='state' && !empty(self::catalog()[$t['id']]['rules']['cross'])) || ($t['format']==='international' && str_starts_with($t['id'],'ar-'));
         $split=($t['id']==='sc-1' || $t['format']==='world') && $phase==='split';if($split)$cross=true;
@@ -181,6 +183,7 @@ final class Competition {
         if($t['format']==='nordeste'){NordesteCompetition::next($t);return;}
         if($t['format']==='national_d'){NationalDCompetition::next($t);return;}
         if($t['format']==='national_c'){NationalCCompetition::next($t);return;}
+        if($t['format']==='configured_state'){ConfiguredStateCompetition::next($t);return;}
         if($t['format']==='alagoas'){AlagoasCompetition::next($t);return;}
         if($t['format']==='amazonense'){AmazonenseCompetition::next($t);return;}
         if($t['format']==='state'){StateCompetition::next($t);return;}
@@ -287,6 +290,7 @@ final class Competition {
         if($t['format']==='nordeste')return NordesteCompetition::result($t,$club);
         if($t['format']==='national_d')return NationalDCompetition::result($t,$club);
         if($t['format']==='national_c')return NationalCCompetition::result($t,$club);
+        if($t['format']==='configured_state'&&!empty($t['done']))return ['name'=>self::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'promoted'=>false,'relegated'=>false,'position'=>array_search($club,$t['final_ranking'],true)+1,'group'=>null,'access_pending'=>in_array($club,$t['promoted'],true),'continuity'=>['valid'=>false,'reason'=>'state_future_memberships_and_mandatory_calendar_pending'],'relegation_pending'=>in_array($club,$t['relegated'],true),'titles'=>[]];
         if($t['format']==='alagoas'&&!empty($t['done']))return ['name'=>self::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'promoted'=>in_array($club,$t['promoted'],true),'relegated'=>in_array($club,$t['relegated'],true),'position'=>array_search($club,$t['final_ranking'],true)+1,'group'=>null,'access_pending'=>false,'continuity'=>CompetitionContinuity::status($t['id']),'relegation_pending'=>false,'titles'=>[]];
         $position=array_search($club,$t['initial_ranking'],true)+1;$group=null;
         if(count($t['initial_groups'])>1)foreach($t['initial_groups'] as $i=>$teams)if(in_array($club,$teams,true)) {
