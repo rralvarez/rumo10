@@ -12,12 +12,12 @@
       "file": "ba-rec.pdf",
       "locator": "arts. 3, 6, 8-18",
       "format": "Liga única; semifinal e final únicas; mando final por campanha acumulada",
-      "blockers": "Desempate por confronto direto múltiplo ainda não contratado; identidade/IDs e tabela não integrados; campanha final e ordenação de semifinalistas não certificadas no motor",
+      "blockers": "Renovação estadual sem Série B recíproca; calendário obrigatório futuro incompleto; BID/licenciamento não verificados; runtime público desativado",
       "sha256": "03ba4b51012623d371fc068be687993b93231acb42ea72c650517dcb328057ed",
       "consulted": "2026-10-18",
-      "status": "researched_not_executable",
-      "new_proven_candidates": 0,
-      "installed": false
+      "status": "local_fixture_executable_public_disabled",
+      "new_proven_candidates": 3,
+      "installed": true
     },
     {
       "uf": "ES",
@@ -88,8 +88,8 @@
     "file": "ac-rec.pdf",
     "reason": "electoral_regulation_not_football_rules"
   },
-  "newly_executable_federations": 0,
-  "new_proven_candidates": 0,
+  "newly_executable_federations": 1,
+  "new_proven_candidates": 3,
   "national_renewals": 0,
-  "note": "Expected game counts are arithmetic from researched formats, not completed tournaments. No source hash certifies identity, eligibility or a result."
+  "note": "Expected game counts are format arithmetic; ba/sports.json is separate execution evidence. No source hash by itself certifies identity, eligibility or a result."
 }

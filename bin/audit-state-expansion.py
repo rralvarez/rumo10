@@ -43,13 +43,35 @@ for row in ROWS:
     row.update(sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
                consulted='2026-10-18', status='researched_not_executable',
                new_proven_candidates=0, installed=False)
+execution = OUT / 'ba/sports.json'
+proof = json.loads(execution.read_text(encoding='utf-8')) if execution.exists() else None
+if proof:
+    ba = next(row for row in ROWS if row['uf'] == 'BA')
+    ba.update(status='local_fixture_executable_public_disabled', installed=True,
+              new_proven_candidates=proof['rows']['BA']['candidate_count'],
+              blockers='Renovação estadual sem Série B recíproca; calendário obrigatório futuro incompleto; BID/licenciamento não verificados; runtime público desativado')
 payload = dict(schema=1, base='b31f14531d139107b2ff20b07a8afce501551b1f',
                status='partial_checkpoint_not_delivery_accepted', sources=ROWS,
                excluded_source=dict(file='ac-rec.pdf', reason='electoral_regulation_not_football_rules'),
-               newly_executable_federations=0, new_proven_candidates=0,
+               newly_executable_federations=1 if proof else 0,
+               new_proven_candidates=proof['rows']['BA']['candidate_count'] if proof else 0,
                national_renewals=0,
-               note='Expected game counts are arithmetic from researched formats, not completed tournaments. No source hash certifies identity, eligibility or a result.')
+               note='Expected game counts are format arithmetic; ba/sports.json is separate execution evidence. No source hash by itself certifies identity, eligibility or a result.')
 (OUT / 'sources.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
 with (OUT / 'sources.csv').open('w', encoding='utf-8-sig', newline='') as f:
     writer=csv.DictWriter(f, fieldnames=list(ROWS[0]));writer.writeheader();writer.writerows(ROWS)
-print('5 regulamentos inventariados; zero novas competições certificadas.')
+if proof:
+    matrix=[]
+    for uf, stats in proof['admission']['federations'].items():
+        receipt=proof['rows'].get(uf,{})
+        matrix.append(dict(uf=uf,quota=stats['reference_2026_quota'],
+                           proven_candidates=stats['accepted'],pending=stats['missing'],
+                           competition=receipt.get('competition','not_certified'),
+                           source=receipt.get('source',''),status=stats['state'],entries=0,
+                           career_id=proof['admission']['career_id']))
+    assert len(matrix)==27 and sum(row['quota'] for row in matrix)==64
+    with (OUT/'ba/federations.csv').open('w',encoding='utf-8-sig',newline='') as f:
+        writer=csv.DictWriter(f,fieldnames=list(matrix[0]));writer.writeheader();writer.writerows(matrix)
+    (OUT/'ba/federations.json').write_text(json.dumps(dict(evidence='sports.json',same_career=True,rows=matrix,
+        state_pending=sum(row['pending'] for row in matrix),residual_pending=4,national_entries=0),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print('5 regulamentos inventariados; Bahia executável somente no piloto local.' if proof else '5 regulamentos inventariados; nenhum resultado local exportado.')

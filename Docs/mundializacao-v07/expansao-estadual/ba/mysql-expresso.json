@@ -1,0 +1,40 @@
+{
+    "checks": 41,
+    "national_seasons_with_real_repository": 1,
+    "national_renewals": 0,
+    "mode": "expresso",
+    "crash_retry_and_closure_replay": true,
+    "all_fixture_writes_rolled_back": true,
+    "rh_writes": false,
+    "faf_rules_and_real_participants": true,
+    "national_continuity_complete": false,
+    "achievements_disabled_for_disposable_fixture": true,
+    "seasons": [
+        {
+            "season": 1,
+            "commands": 215,
+            "queries": 7528,
+            "max_command_ms": 1626.69,
+            "p50_ms": 401.82,
+            "p95_ms": 723.94,
+            "p99_ms": 1515.81,
+            "closure_bytes": 10830,
+            "history_bytes": 2,
+            "season_close_command_ms": 1626.69,
+            "elapsed_ms": 102677.76,
+            "snapshot_bytes": 1763854,
+            "peak_snapshot_bytes": 2150179,
+            "games": 66,
+            "goals": 0,
+            "assists": 1
+        }
+    ],
+    "state_candidates": {
+        "AL": 2,
+        "PI": 2,
+        "RO": 2,
+        "BA": 3
+    },
+    "state_slots_pending": 55,
+    "peak_process_memory_bytes": 155189248
+}

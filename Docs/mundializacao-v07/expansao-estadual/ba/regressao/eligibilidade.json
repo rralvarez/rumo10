@@ -1,0 +1,1208 @@
+[
+    {
+        "position": "zagueiro",
+        "stage": "treino",
+        "scenario": "70min_empate_titular",
+        "eligible": 248,
+        "modules": {
+            "T01": 120,
+            "T02": 128
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "pre_jogo",
+        "scenario": "70min_empate_titular",
+        "eligible": 115,
+        "modules": {
+            "P01": 115
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "70min_empate_titular",
+        "eligible": 198,
+        "modules": {
+            "J02": 103,
+            "J03": 13,
+            "J01": 82
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "fim_semana",
+        "scenario": "70min_empate_titular",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "15min_delta-1",
+        "eligible": 192,
+        "modules": {
+            "J02": 102,
+            "J03": 9,
+            "J01": 81
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "15min_delta0",
+        "eligible": 194,
+        "modules": {
+            "J02": 102,
+            "J03": 11,
+            "J01": 81
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "15min_delta1",
+        "eligible": 192,
+        "modules": {
+            "J02": 102,
+            "J03": 9,
+            "J01": 81
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "35min_delta-1",
+        "eligible": 192,
+        "modules": {
+            "J02": 102,
+            "J03": 9,
+            "J01": 81
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "35min_delta0",
+        "eligible": 194,
+        "modules": {
+            "J02": 102,
+            "J03": 11,
+            "J01": 81
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "35min_delta1",
+        "eligible": 192,
+        "modules": {
+            "J02": 102,
+            "J03": 9,
+            "J01": 81
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "70min_delta-1",
+        "eligible": 196,
+        "modules": {
+            "J02": 103,
+            "J03": 11,
+            "J01": 82
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "70min_delta0",
+        "eligible": 198,
+        "modules": {
+            "J02": 103,
+            "J03": 13,
+            "J01": 82
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "70min_delta1",
+        "eligible": 196,
+        "modules": {
+            "J02": 103,
+            "J03": 11,
+            "J01": 82
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "80min_delta-1",
+        "eligible": 197,
+        "modules": {
+            "J02": 103,
+            "J03": 12,
+            "J01": 82
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "80min_delta0",
+        "eligible": 200,
+        "modules": {
+            "J03": 15,
+            "J02": 103,
+            "J01": 82
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "partida",
+        "scenario": "80min_delta1",
+        "eligible": 197,
+        "modules": {
+            "J02": 103,
+            "J03": 12,
+            "J01": 82
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "fim_semana",
+        "scenario": "forma_boa",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "fim_semana",
+        "scenario": "forma_ruim",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "zagueiro",
+        "stage": "pre_jogo",
+        "scenario": "reserva_confirmada_rodada4",
+        "eligible": 88,
+        "modules": {
+            "P01": 88
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "treino",
+        "scenario": "70min_empate_titular",
+        "eligible": 248,
+        "modules": {
+            "T01": 120,
+            "T02": 128
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "pre_jogo",
+        "scenario": "70min_empate_titular",
+        "eligible": 115,
+        "modules": {
+            "P01": 115
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "70min_empate_titular",
+        "eligible": 225,
+        "modules": {
+            "J01": 108,
+            "J02": 104,
+            "J03": 13
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "fim_semana",
+        "scenario": "70min_empate_titular",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "15min_delta-1",
+        "eligible": 219,
+        "modules": {
+            "J01": 107,
+            "J02": 103,
+            "J03": 9
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "15min_delta0",
+        "eligible": 221,
+        "modules": {
+            "J01": 107,
+            "J02": 103,
+            "J03": 11
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "15min_delta1",
+        "eligible": 219,
+        "modules": {
+            "J01": 107,
+            "J02": 103,
+            "J03": 9
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "35min_delta-1",
+        "eligible": 219,
+        "modules": {
+            "J01": 107,
+            "J02": 103,
+            "J03": 9
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "35min_delta0",
+        "eligible": 221,
+        "modules": {
+            "J01": 107,
+            "J02": 103,
+            "J03": 11
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "35min_delta1",
+        "eligible": 219,
+        "modules": {
+            "J01": 107,
+            "J02": 103,
+            "J03": 9
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "70min_delta-1",
+        "eligible": 223,
+        "modules": {
+            "J01": 108,
+            "J02": 104,
+            "J03": 11
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "70min_delta0",
+        "eligible": 225,
+        "modules": {
+            "J01": 108,
+            "J02": 104,
+            "J03": 13
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "70min_delta1",
+        "eligible": 223,
+        "modules": {
+            "J01": 108,
+            "J02": 104,
+            "J03": 11
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "80min_delta-1",
+        "eligible": 224,
+        "modules": {
+            "J01": 108,
+            "J02": 104,
+            "J03": 12
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "80min_delta0",
+        "eligible": 227,
+        "modules": {
+            "J03": 15,
+            "J01": 108,
+            "J02": 104
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "partida",
+        "scenario": "80min_delta1",
+        "eligible": 224,
+        "modules": {
+            "J01": 108,
+            "J02": 104,
+            "J03": 12
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "fim_semana",
+        "scenario": "forma_boa",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "fim_semana",
+        "scenario": "forma_ruim",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "lateral",
+        "stage": "pre_jogo",
+        "scenario": "reserva_confirmada_rodada4",
+        "eligible": 88,
+        "modules": {
+            "P01": 88
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "treino",
+        "scenario": "70min_empate_titular",
+        "eligible": 248,
+        "modules": {
+            "T01": 120,
+            "T02": 128
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "pre_jogo",
+        "scenario": "70min_empate_titular",
+        "eligible": 115,
+        "modules": {
+            "P01": 115
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "70min_empate_titular",
+        "eligible": 200,
+        "modules": {
+            "J02": 104,
+            "J03": 13,
+            "J01": 83
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "fim_semana",
+        "scenario": "70min_empate_titular",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "15min_delta-1",
+        "eligible": 194,
+        "modules": {
+            "J02": 103,
+            "J03": 9,
+            "J01": 82
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "15min_delta0",
+        "eligible": 196,
+        "modules": {
+            "J02": 103,
+            "J03": 11,
+            "J01": 82
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "15min_delta1",
+        "eligible": 194,
+        "modules": {
+            "J02": 103,
+            "J03": 9,
+            "J01": 82
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "35min_delta-1",
+        "eligible": 194,
+        "modules": {
+            "J02": 103,
+            "J03": 9,
+            "J01": 82
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "35min_delta0",
+        "eligible": 196,
+        "modules": {
+            "J02": 103,
+            "J03": 11,
+            "J01": 82
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "35min_delta1",
+        "eligible": 194,
+        "modules": {
+            "J02": 103,
+            "J03": 9,
+            "J01": 82
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "70min_delta-1",
+        "eligible": 198,
+        "modules": {
+            "J02": 104,
+            "J03": 11,
+            "J01": 83
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "70min_delta0",
+        "eligible": 200,
+        "modules": {
+            "J02": 104,
+            "J03": 13,
+            "J01": 83
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "70min_delta1",
+        "eligible": 198,
+        "modules": {
+            "J02": 104,
+            "J03": 11,
+            "J01": 83
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "80min_delta-1",
+        "eligible": 199,
+        "modules": {
+            "J02": 104,
+            "J03": 12,
+            "J01": 83
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "80min_delta0",
+        "eligible": 202,
+        "modules": {
+            "J03": 15,
+            "J02": 104,
+            "J01": 83
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "partida",
+        "scenario": "80min_delta1",
+        "eligible": 199,
+        "modules": {
+            "J02": 104,
+            "J03": 12,
+            "J01": 83
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "fim_semana",
+        "scenario": "forma_boa",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "fim_semana",
+        "scenario": "forma_ruim",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "volante",
+        "stage": "pre_jogo",
+        "scenario": "reserva_confirmada_rodada4",
+        "eligible": 88,
+        "modules": {
+            "P01": 88
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "treino",
+        "scenario": "70min_empate_titular",
+        "eligible": 248,
+        "modules": {
+            "T01": 120,
+            "T02": 128
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "pre_jogo",
+        "scenario": "70min_empate_titular",
+        "eligible": 115,
+        "modules": {
+            "P01": 115
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "70min_empate_titular",
+        "eligible": 213,
+        "modules": {
+            "J01": 111,
+            "J03": 13,
+            "J02": 89
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "fim_semana",
+        "scenario": "70min_empate_titular",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "15min_delta-1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "15min_delta0",
+        "eligible": 209,
+        "modules": {
+            "J01": 110,
+            "J03": 11,
+            "J02": 88
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "15min_delta1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "35min_delta-1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "35min_delta0",
+        "eligible": 209,
+        "modules": {
+            "J01": 110,
+            "J03": 11,
+            "J02": 88
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "35min_delta1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "70min_delta-1",
+        "eligible": 211,
+        "modules": {
+            "J01": 111,
+            "J03": 11,
+            "J02": 89
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "70min_delta0",
+        "eligible": 213,
+        "modules": {
+            "J01": 111,
+            "J03": 13,
+            "J02": 89
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "70min_delta1",
+        "eligible": 211,
+        "modules": {
+            "J01": 111,
+            "J03": 11,
+            "J02": 89
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "80min_delta-1",
+        "eligible": 212,
+        "modules": {
+            "J01": 111,
+            "J03": 12,
+            "J02": 89
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "80min_delta0",
+        "eligible": 215,
+        "modules": {
+            "J03": 15,
+            "J01": 111,
+            "J02": 89
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "partida",
+        "scenario": "80min_delta1",
+        "eligible": 212,
+        "modules": {
+            "J01": 111,
+            "J03": 12,
+            "J02": 89
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "fim_semana",
+        "scenario": "forma_boa",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "fim_semana",
+        "scenario": "forma_ruim",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "meia",
+        "stage": "pre_jogo",
+        "scenario": "reserva_confirmada_rodada4",
+        "eligible": 88,
+        "modules": {
+            "P01": 88
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "treino",
+        "scenario": "70min_empate_titular",
+        "eligible": 248,
+        "modules": {
+            "T01": 120,
+            "T02": 128
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "pre_jogo",
+        "scenario": "70min_empate_titular",
+        "eligible": 115,
+        "modules": {
+            "P01": 115
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "70min_empate_titular",
+        "eligible": 213,
+        "modules": {
+            "J01": 111,
+            "J03": 13,
+            "J02": 89
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "fim_semana",
+        "scenario": "70min_empate_titular",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "15min_delta-1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "15min_delta0",
+        "eligible": 209,
+        "modules": {
+            "J01": 110,
+            "J03": 11,
+            "J02": 88
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "15min_delta1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "35min_delta-1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "35min_delta0",
+        "eligible": 209,
+        "modules": {
+            "J01": 110,
+            "J03": 11,
+            "J02": 88
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "35min_delta1",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 88
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "70min_delta-1",
+        "eligible": 211,
+        "modules": {
+            "J01": 111,
+            "J03": 11,
+            "J02": 89
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "70min_delta0",
+        "eligible": 213,
+        "modules": {
+            "J01": 111,
+            "J03": 13,
+            "J02": 89
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "70min_delta1",
+        "eligible": 211,
+        "modules": {
+            "J01": 111,
+            "J03": 11,
+            "J02": 89
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "80min_delta-1",
+        "eligible": 212,
+        "modules": {
+            "J01": 111,
+            "J03": 12,
+            "J02": 89
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "80min_delta0",
+        "eligible": 215,
+        "modules": {
+            "J03": 15,
+            "J01": 111,
+            "J02": 89
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "partida",
+        "scenario": "80min_delta1",
+        "eligible": 212,
+        "modules": {
+            "J01": 111,
+            "J03": 12,
+            "J02": 89
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "fim_semana",
+        "scenario": "forma_boa",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "fim_semana",
+        "scenario": "forma_ruim",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "ponta",
+        "stage": "pre_jogo",
+        "scenario": "reserva_confirmada_rodada4",
+        "eligible": 88,
+        "modules": {
+            "P01": 88
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "treino",
+        "scenario": "70min_empate_titular",
+        "eligible": 248,
+        "modules": {
+            "T01": 120,
+            "T02": 128
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "pre_jogo",
+        "scenario": "70min_empate_titular",
+        "eligible": 115,
+        "modules": {
+            "P01": 115
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "70min_empate_titular",
+        "eligible": 211,
+        "modules": {
+            "J01": 111,
+            "J03": 13,
+            "J02": 87
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "fim_semana",
+        "scenario": "70min_empate_titular",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "15min_delta-1",
+        "eligible": 205,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 86
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "15min_delta0",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 11,
+            "J02": 86
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "15min_delta1",
+        "eligible": 205,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 86
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "35min_delta-1",
+        "eligible": 205,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 86
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "35min_delta0",
+        "eligible": 207,
+        "modules": {
+            "J01": 110,
+            "J03": 11,
+            "J02": 86
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "35min_delta1",
+        "eligible": 205,
+        "modules": {
+            "J01": 110,
+            "J03": 9,
+            "J02": 86
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "70min_delta-1",
+        "eligible": 209,
+        "modules": {
+            "J01": 111,
+            "J03": 11,
+            "J02": 87
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "70min_delta0",
+        "eligible": 211,
+        "modules": {
+            "J01": 111,
+            "J03": 13,
+            "J02": 87
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "70min_delta1",
+        "eligible": 209,
+        "modules": {
+            "J01": 111,
+            "J03": 11,
+            "J02": 87
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "80min_delta-1",
+        "eligible": 210,
+        "modules": {
+            "J01": 111,
+            "J03": 12,
+            "J02": 87
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "80min_delta0",
+        "eligible": 213,
+        "modules": {
+            "J03": 15,
+            "J01": 111,
+            "J02": 87
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "partida",
+        "scenario": "80min_delta1",
+        "eligible": 210,
+        "modules": {
+            "J01": 111,
+            "J03": 12,
+            "J02": 87
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "fim_semana",
+        "scenario": "forma_boa",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "fim_semana",
+        "scenario": "forma_ruim",
+        "eligible": 200,
+        "modules": {
+            "F02": 126,
+            "F01": 74
+        }
+    },
+    {
+        "position": "centroavante",
+        "stage": "pre_jogo",
+        "scenario": "reserva_confirmada_rodada4",
+        "eligible": 88,
+        "modules": {
+            "P01": 88
+        }
+    }
+]

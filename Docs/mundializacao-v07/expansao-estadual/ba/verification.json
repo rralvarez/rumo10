@@ -1,0 +1,81 @@
+{
+  "base": "af2e6e256824cfdd91368acb11a72c7ee1944eb9",
+  "protected": [
+    {
+      "file": "app/Game.php",
+      "unchanged": true,
+      "sha256": "ceee86fa458f6b9b710525933c8af430069d621ce89d52f7818bbfe03f6fd2d2"
+    },
+    {
+      "file": "app/Progression.php",
+      "unchanged": true,
+      "sha256": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8"
+    },
+    {
+      "file": "app/Evolution.php",
+      "unchanged": true,
+      "sha256": "2b5160bfc9a332855c6ed2089958e190e557452005ad1aba0881c67188ae9ef7"
+    },
+    {
+      "file": "app/Probability.php",
+      "unchanged": true,
+      "sha256": "6015ec14237aa5896d1baf2a84e101b4ab80965999f7558cddb3a2427d639845"
+    },
+    {
+      "file": "app/TeamStrength.php",
+      "unchanged": true,
+      "sha256": "cfe5817da9027bf4e8ae56f60748ec375be67b719810475aaad2c0b1f6215777"
+    },
+    {
+      "file": "app/TransferMarket.php",
+      "unchanged": true,
+      "sha256": "0fad8ab67e89e84ce5a58cbf6a5e592dfe083c9bc72b5ba304e5e7bb903b1bec"
+    },
+    {
+      "file": "app/Achievements.php",
+      "unchanged": true,
+      "sha256": "93be79e64694a26b2860af5de7a018dfcc02041b918a116c5083729c3e007cff"
+    },
+    {
+      "file": "app/StateBatchTrial.php",
+      "unchanged": true,
+      "sha256": "c4b294c200f7af6f1399e3e1fed10a769b36e84b06f64c48bff111a6c669add4"
+    },
+    {
+      "file": "app/Identity.php",
+      "unchanged": true,
+      "sha256": "7a96d91999a7496b2190d88afaf9181592b190a11470ab1b187d32d8beded4df"
+    },
+    {
+      "file": "app/CareerBenefits.php",
+      "unchanged": true,
+      "sha256": "6db1d64fdf6c73601a6aafb4ee9828fc2a3afd39e50c3dddcc9610a4d2a60145"
+    },
+    {
+      "file": "app/Rules.php",
+      "unchanged": true,
+      "sha256": "461300b1e8ae658f478f64dd8ba2555a96d8044bdafd00a39725dc824b8088dd"
+    }
+  ],
+  "suites_passed": 24,
+  "narrative_scenes": 1014,
+  "achievements": 50,
+  "points_R": 1000,
+  "qualified_states": [
+    "AL",
+    "PI",
+    "RO",
+    "BA"
+  ],
+  "new_states": 1,
+  "new_candidates_pdo": 3,
+  "state_pending_pdo": 55,
+  "national_renewals": 0,
+  "private_secret_patterns": "scoped scan passed; no universal guarantee",
+  "no_deploy": true,
+  "workflows_unchanged": true,
+  "old_database_files_unchanged": true,
+  "implementation_commit": "902b98b658629ff1c0e9e72f8fda7f6f25bfc638",
+  "integration_tests_commit": "36f49714d996ed0584371640943f52880043281d",
+  "state_pending_sports": 56
+}

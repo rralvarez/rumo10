@@ -1,0 +1,6 @@
+{
+    "checks": 30,
+    "transport": "isolated PHP loopback; not IIS central login",
+    "fixtures_cleaned": true,
+    "rh_writes": false
+}
