@@ -1,0 +1,32 @@
+{
+  "consulted": "2026-10-18",
+  "league": {
+    "rec": "41d3a886a5f3a95570b4f8bb8d6a14c7c3d20cc95d9a939bce8158e78d5f1a93",
+    "table_page": "c51c5737e95ecb4a16805242d8066842c53a19ea00bac590bd688a52a7f04d40"
+  },
+  "source_update_check": {
+    "rec_identical_to_preserved": true,
+    "fixture_pairs_and_rounds_identical_to_preserved": true,
+    "consulted": "2026-10-18"
+  },
+  "distinct_clubs": [
+    "https://futebolcapixaba.com/time/s-c-capixaba/",
+    "https://futebolcapixaba.com/time/sport-c-b-capixaba/"
+  ],
+  "second_path": {
+    "source": "https://futebolcapixaba.com/site/wp-content/uploads/2026/04/Regulamento-COPA-ES-2026.pdf",
+    "location": "art.11 paragraphs1-3, PDF p.6; amendment02/06/2026",
+    "notice": "https://futebolcapixaba.com/2026/01/clubes-e-fes-realizam-a-primeira-reuniao-do-conselho-arbitral-da-copa-es-2026-que-comeca-em-abril/",
+    "state": "not_implemented_edition_conflict",
+    "conflict": "Official cup PDF says D2026; federation notice says D2027. No silent correction or qualification.",
+    "sha256": "fbd03b512132909770a81ef3190b0534da1b819034e60fdef2a449042e91123e"
+  },
+  "national_slots_from_league": 1,
+  "federation_reference_quota": 2,
+  "public_enabled": false,
+  "rio_branco_vn": {
+    "source": "https://futebolcapixaba.com/time/rio-branco-f-c/",
+    "sha256": "f570ebbb518b4f97a37b51a1032c96f53afd7c4a2dec4d08d4892ebf82791354",
+    "distinct_from": "Rio Branco-ES"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "base": "1c88bb3e8191772143baf567b03a51bfb316cdc4",
+  "protected": [
+    {
+      "file": "app/Game.php",
+      "sha256": "ceee86fa458f6b9b710525933c8af430069d621ce89d52f7818bbfe03f6fd2d2",
+      "unchanged": true
+    },
+    {
+      "file": "app/Rules.php",
+      "sha256": "461300b1e8ae658f478f64dd8ba2555a96d8044bdafd00a39725dc824b8088dd",
+      "unchanged": true
+    },
+    {
+      "file": "app/Evolution.php",
+      "sha256": "2b5160bfc9a332855c6ed2089958e190e557452005ad1aba0881c67188ae9ef7",
+      "unchanged": true
+    },
+    {
+      "file": "app/Progression.php",
+      "sha256": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8",
+      "unchanged": true
+    },
+    {
+      "file": "app/Probability.php",
+      "sha256": "6015ec14237aa5896d1baf2a84e101b4ab80965999f7558cddb3a2427d639845",
+      "unchanged": true
+    },
+    {
+      "file": "app/TeamStrength.php",
+      "sha256": "cfe5817da9027bf4e8ae56f60748ec375be67b719810475aaad2c0b1f6215777",
+      "unchanged": true
+    },
+    {
+      "file": "app/TransferMarket.php",
+      "sha256": "0fad8ab67e89e84ce5a58cbf6a5e592dfe083c9bc72b5ba304e5e7bb903b1bec",
+      "unchanged": true
+    },
+    {
+      "file": "app/Achievements.php",
+      "sha256": "93be79e64694a26b2860af5de7a018dfcc02041b918a116c5083729c3e007cff",
+      "unchanged": true
+    },
+    {
+      "file": "app/Identity.php",
+      "sha256": "7a96d91999a7496b2190d88afaf9181592b190a11470ab1b187d32d8beded4df",
+      "unchanged": true
+    },
+    {
+      "file": "app/CareerBenefits.php",
+      "sha256": "6db1d64fdf6c73601a6aafb4ee9828fc2a3afd39e50c3dddcc9610a4d2a60145",
+      "unchanged": true
+    },
+    {
+      "file": "app/FutureSerieDAdmission.php",
+      "sha256": "5742926fac1077d43d41dba38648fd3ac95ac6db38343496dec9c2af8d9fa1ee",
+      "unchanged": true
+    },
+    {
+      "file": "app/StateResultProof.php",
+      "sha256": "de3f79d435566acfd588dd3492478dc9c15400a7140e8ceb90e609688568178b",
+      "unchanged": true
+    },
+    {
+      "file": "app/StateBatchTrial.php",
+      "sha256": "c4b294c200f7af6f1399e3e1fed10a769b36e84b06f64c48bff111a6c669add4",
+      "unchanged": true
+    },
+    {
+      "file": "app/StateExpansionTrial.php",
+      "sha256": "da4fcff4f4e1a18b431c5f41a551045378debce000fb5ea3a88838c477494f39",
+      "unchanged": true
+    }
+  ],
+  "suites_passed": 24,
+  "narrative_scenes": 1014,
+  "achievements": 50,
+  "points_R": 1000,
+  "new_federations": 1,
+  "new_component": "ES",
+  "federations_in_pilot": [
+    "AL",
+    "PI",
+    "RO",
+    "BA",
+    "ES"
+  ],
+  "state_pending_pdo": 54,
+  "public_flags_modified": false,
+  "production_touched": false,
+  "ddl": false,
+  "no_deploy": true,
+  "old_reference_files_unchanged": true,
+  "workflows_unchanged": true,
+  "scoped_secret_pattern_review": "passed; not a universal guarantee",
+  "persistent_process_flags": {
+    "RUMO10_WORLD_CALENDAR": "unset_default_0",
+    "RUMO10_WORLD_FIXTURES": "unset_default_0"
+  },
+  "implementation_commit": "13b60849fbc4fb4f0f7a83ba513bcfb47ad7af9b",
+  "integration_and_view_commit": "82ae849e328138f6849170ce20eb8251316ae1d8"
+}
