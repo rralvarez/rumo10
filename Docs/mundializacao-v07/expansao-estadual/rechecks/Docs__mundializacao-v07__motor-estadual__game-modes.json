@@ -1,0 +1,89 @@
+{
+    "checks": 11850,
+    "results": [
+        {
+            "mode": "normal",
+            "commands": 316,
+            "matches": 1970,
+            "club": "Teresina-PI",
+            "state_candidates": {
+                "AL": 2,
+                "PI": 2,
+                "RO": 1
+            },
+            "state_slots_pending": 59,
+            "state_played": 7,
+            "cup_matches": 155,
+            "own_cup_fixtures": 0,
+            "own_cup_played": 0,
+            "own_cup_minutes": 0,
+            "cup_champion": "Fluminense-RJ",
+            "p50_ms": 23.32,
+            "p95_ms": 127.27,
+            "p99_ms": 236.82,
+            "max_ms": 1228.87,
+            "elapsed_ms": 204975.26,
+            "snapshot_bytes": 1381028,
+            "peak_snapshot_bytes": 1692257,
+            "seasons": 1,
+            "renewals": 0
+        },
+        {
+            "mode": "rapido",
+            "commands": 251,
+            "matches": 1970,
+            "club": "Genus-RO",
+            "state_candidates": {
+                "AL": 2,
+                "PI": 2,
+                "RO": 1
+            },
+            "state_slots_pending": 59,
+            "state_played": 16,
+            "cup_matches": 155,
+            "own_cup_fixtures": 0,
+            "own_cup_played": 0,
+            "own_cup_minutes": 0,
+            "cup_champion": "Chapecoense-SC",
+            "p50_ms": 50.02,
+            "p95_ms": 131.94,
+            "p99_ms": 196.32,
+            "max_ms": 322.11,
+            "elapsed_ms": 29035.39,
+            "snapshot_bytes": 1466434,
+            "peak_snapshot_bytes": 1778024,
+            "seasons": 1,
+            "renewals": 0
+        },
+        {
+            "mode": "expresso",
+            "commands": 205,
+            "matches": 1970,
+            "club": "CRB-AL",
+            "state_candidates": {
+                "AL": 2,
+                "PI": 2,
+                "RO": 2
+            },
+            "state_slots_pending": 58,
+            "state_played": 11,
+            "cup_matches": 155,
+            "own_cup_fixtures": 1,
+            "own_cup_played": 1,
+            "own_cup_minutes": 90,
+            "cup_champion": "Coritiba-PR",
+            "p50_ms": 26.8,
+            "p95_ms": 379.63,
+            "p99_ms": 754.37,
+            "max_ms": 1281.48,
+            "elapsed_ms": 33255.93,
+            "snapshot_bytes": 1644938,
+            "peak_snapshot_bytes": 2092130,
+            "seasons": 1,
+            "renewals": 0
+        }
+    ],
+    "same_career_sequential_seasons": 1,
+    "national_renewals": 0,
+    "five_national_seasons": false
+}

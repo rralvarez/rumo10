@@ -1,0 +1,73 @@
+{
+  "base": "b31f14531d139107b2ff20b07a8afce501551b1f",
+  "engine_commit": "a7973c724257f228e0e48e33e6e5e29f66ce3b4a",
+  "protected": [
+    {
+      "file": "app/Game.php",
+      "unchanged": true,
+      "sha256": "ceee86fa458f6b9b710525933c8af430069d621ce89d52f7818bbfe03f6fd2d2"
+    },
+    {
+      "file": "app/Progression.php",
+      "unchanged": true,
+      "sha256": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8"
+    },
+    {
+      "file": "app/Evolution.php",
+      "unchanged": true,
+      "sha256": "2b5160bfc9a332855c6ed2089958e190e557452005ad1aba0881c67188ae9ef7"
+    },
+    {
+      "file": "app/Probability.php",
+      "unchanged": true,
+      "sha256": "6015ec14237aa5896d1baf2a84e101b4ab80965999f7558cddb3a2427d639845"
+    },
+    {
+      "file": "app/TeamStrength.php",
+      "unchanged": true,
+      "sha256": "cfe5817da9027bf4e8ae56f60748ec375be67b719810475aaad2c0b1f6215777"
+    },
+    {
+      "file": "app/TransferMarket.php",
+      "unchanged": true,
+      "sha256": "0fad8ab67e89e84ce5a58cbf6a5e592dfe083c9bc72b5ba304e5e7bb903b1bec"
+    },
+    {
+      "file": "app/Achievements.php",
+      "unchanged": true,
+      "sha256": "93be79e64694a26b2860af5de7a018dfcc02041b918a116c5083729c3e007cff"
+    },
+    {
+      "file": "app/FutureSerieDAdmission.php",
+      "unchanged": true,
+      "sha256": "15ef4c85890f706b522073f8968d6df4aec7295a55f8d18d4a78d07d6e200bf4"
+    },
+    {
+      "file": "app/StateQualification.php",
+      "unchanged": true,
+      "sha256": "e823128b48eaa0eb14c45f80b86cd2e2d5929b01ddffdd5e7657e9a3aaf10ac7"
+    },
+    {
+      "file": "app/StateBatchTrial.php",
+      "unchanged": true,
+      "sha256": "c4b294c200f7af6f1399e3e1fed10a769b36e84b06f64c48bff111a6c669add4"
+    },
+    {
+      "file": "app/Identity.php",
+      "unchanged": true,
+      "sha256": "7a96d91999a7496b2190d88afaf9181592b190a11470ab1b187d32d8beded4df"
+    },
+    {
+      "file": "app/CareerBenefits.php",
+      "unchanged": true,
+      "sha256": "6db1d64fdf6c73601a6aafb4ee9828fc2a3afd39e50c3dddcc9610a4d2a60145"
+    }
+  ],
+  "regression_suites_passed": 24,
+  "routing_checks": 22,
+  "database_and_workflows_unchanged": true,
+  "secret_pattern_scan": "passed_scoped_text_files_no_guarantee_of_all_possible_secrets",
+  "new_certified_states": 0,
+  "new_candidates": 0,
+  "production_touched": false
+}
