@@ -1,0 +1,716 @@
+{
+  "id": "state-batch-pi-ro2026-v1",
+  "public_runtime_enabled": false,
+  "sources": {
+    "ro_listing": "https://ffer.com.br/Publicacao.aspx?id=178275",
+    "ro_table_notice": "https://www.ffer.com.br/Publicacao.aspx?id=645189",
+    "pi_listing": "https://ffp-pi.com.br/conteudo/?q=92&sc=9",
+    "pi_table_notice": "https://www.ffp-pi.com.br/noticias/v/1433"
+  },
+  "definitions": {
+    "pi-a1": {
+      "id": "pi-a1",
+      "name": "Piauiense Série A",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "PI",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "pi",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Altos-PI",
+        "Atlético Piauiense-PI",
+        "Parnahyba-PI",
+        "Oeirense-PI",
+        "Teresina-PI",
+        "Piauí-PI",
+        "Fluminense-PI",
+        "Corisabbá-PI"
+      ],
+      "groups": [
+        [
+          "Altos-PI",
+          "Atlético Piauiense-PI",
+          "Parnahyba-PI",
+          "Oeirense-PI",
+          "Teresina-PI",
+          "Piauí-PI",
+          "Fluminense-PI",
+          "Corisabbá-PI"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://ffp-pi.com.br/assets/uploads/178043156618.pdf",
+        "https://www.ffp-pi.com.br/assets/uploads/176306443317.pdf"
+      ],
+      "reference_clubs": {
+        "Atlético Piauiense-PI": {
+          "name": "Atlético Piauiense-PI",
+          "country": "BR",
+          "uf": "PI",
+          "competitions": [
+            "pi-a1"
+          ],
+          "game_only": true,
+          "source": "https://ffp-pi.com.br/assets/uploads/178043156618.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Oeirense-PI": {
+          "name": "Oeirense-PI",
+          "country": "BR",
+          "uf": "PI",
+          "competitions": [
+            "pi-a1"
+          ],
+          "game_only": true,
+          "source": "https://ffp-pi.com.br/assets/uploads/178043156618.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Teresina-PI": {
+          "name": "Teresina-PI",
+          "country": "BR",
+          "uf": "PI",
+          "competitions": [
+            "pi-a1"
+          ],
+          "game_only": true,
+          "source": "https://ffp-pi.com.br/assets/uploads/178043156618.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Corisabbá-PI": {
+          "name": "Corisabbá-PI",
+          "country": "BR",
+          "uf": "PI",
+          "competitions": [
+            "pi-a1"
+          ],
+          "game_only": true,
+          "source": "https://ffp-pi.com.br/assets/uploads/178043156618.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "access": 0,
+        "relegation": 2,
+        "note": "Datas simuladas; classificações externas pendentes. Inscrição/BID não verificados.",
+        "limitations": [
+          "REC art.11 contains editorial references to2025; heading, participants and paragraph3 expressly2026/2027",
+          "BID, licensing, monetary obligations and administrative substitutions not simulated"
+        ]
+      },
+      "state_engine": {
+        "version": "configured-state-v1",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "relegation": 2,
+        "promotion": 0,
+        "final_ranking": "campaign",
+        "stages": [
+          {
+            "name": "liga",
+            "type": "league",
+            "return": false,
+            "fixtures": [
+              [
+                1,
+                "Oeirense-PI",
+                "Fluminense-PI"
+              ],
+              [
+                1,
+                "Piauí-PI",
+                "Altos-PI"
+              ],
+              [
+                1,
+                "Parnahyba-PI",
+                "Atlético Piauiense-PI"
+              ],
+              [
+                1,
+                "Corisabbá-PI",
+                "Teresina-PI"
+              ],
+              [
+                2,
+                "Fluminense-PI",
+                "Piauí-PI"
+              ],
+              [
+                2,
+                "Oeirense-PI",
+                "Atlético Piauiense-PI"
+              ],
+              [
+                2,
+                "Teresina-PI",
+                "Altos-PI"
+              ],
+              [
+                2,
+                "Corisabbá-PI",
+                "Parnahyba-PI"
+              ],
+              [
+                3,
+                "Teresina-PI",
+                "Oeirense-PI"
+              ],
+              [
+                3,
+                "Altos-PI",
+                "Fluminense-PI"
+              ],
+              [
+                3,
+                "Atlético Piauiense-PI",
+                "Corisabbá-PI"
+              ],
+              [
+                3,
+                "Piauí-PI",
+                "Parnahyba-PI"
+              ],
+              [
+                4,
+                "Oeirense-PI",
+                "Corisabbá-PI"
+              ],
+              [
+                4,
+                "Atlético Piauiense-PI",
+                "Piauí-PI"
+              ],
+              [
+                4,
+                "Fluminense-PI",
+                "Teresina-PI"
+              ],
+              [
+                4,
+                "Parnahyba-PI",
+                "Altos-PI"
+              ],
+              [
+                5,
+                "Altos-PI",
+                "Atlético Piauiense-PI"
+              ],
+              [
+                5,
+                "Corisabbá-PI",
+                "Fluminense-PI"
+              ],
+              [
+                5,
+                "Teresina-PI",
+                "Piauí-PI"
+              ],
+              [
+                5,
+                "Parnahyba-PI",
+                "Oeirense-PI"
+              ],
+              [
+                6,
+                "Atlético Piauiense-PI",
+                "Teresina-PI"
+              ],
+              [
+                6,
+                "Altos-PI",
+                "Corisabbá-PI"
+              ],
+              [
+                6,
+                "Piauí-PI",
+                "Oeirense-PI"
+              ],
+              [
+                6,
+                "Fluminense-PI",
+                "Parnahyba-PI"
+              ],
+              [
+                7,
+                "Oeirense-PI",
+                "Altos-PI"
+              ],
+              [
+                7,
+                "Corisabbá-PI",
+                "Piauí-PI"
+              ],
+              [
+                7,
+                "Parnahyba-PI",
+                "Teresina-PI"
+              ],
+              [
+                7,
+                "Fluminense-PI",
+                "Atlético Piauiense-PI"
+              ]
+            ]
+          },
+          {
+            "name": "semifinal",
+            "type": "knockout",
+            "selection": "initial",
+            "pairs": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "final",
+            "type": "knockout",
+            "selection": "winners",
+            "pairs": [
+              [
+                0,
+                1
+              ]
+            ],
+            "home_basis": "campaign",
+            "legs": 2,
+            "tie_rule": "penalties"
+          }
+        ]
+      }
+    },
+    "ro-a1": {
+      "id": "ro-a1",
+      "name": "Rondoniense Série A",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "RO",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "ro",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Porto Velho-RO",
+        "Genus-RO",
+        "Barcelona-RO",
+        "Rondoniense-RO",
+        "Ji-Paraná-RO",
+        "Guaporé-RO",
+        "União Cacoalense-RO"
+      ],
+      "groups": [
+        [
+          "Porto Velho-RO",
+          "Genus-RO",
+          "Barcelona-RO",
+          "Rondoniense-RO",
+          "Ji-Paraná-RO",
+          "Guaporé-RO",
+          "União Cacoalense-RO"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://drive.google.com/file/d/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9/view",
+        "https://drive.google.com/file/d/1-V8mvdYmrGmSDNqF_AcWc4TDARHxum7z/view",
+        "https://drive.google.com/file/d/10bIvsGAow8D1IDqpb4BLaAXcDmKHQ54I/view"
+      ],
+      "reference_clubs": {
+        "Genus-RO": {
+          "name": "Genus-RO",
+          "country": "BR",
+          "uf": "RO",
+          "competitions": [
+            "ro-a1"
+          ],
+          "game_only": true,
+          "source": "https://drive.google.com/file/d/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9/view",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Barcelona-RO": {
+          "name": "Barcelona-RO",
+          "country": "BR",
+          "uf": "RO",
+          "competitions": [
+            "ro-a1"
+          ],
+          "game_only": true,
+          "source": "https://drive.google.com/file/d/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9/view",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Rondoniense-RO": {
+          "name": "Rondoniense-RO",
+          "country": "BR",
+          "uf": "RO",
+          "competitions": [
+            "ro-a1"
+          ],
+          "game_only": true,
+          "source": "https://drive.google.com/file/d/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9/view",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "União Cacoalense-RO": {
+          "name": "União Cacoalense-RO",
+          "country": "BR",
+          "uf": "RO",
+          "competitions": [
+            "ro-a1"
+          ],
+          "game_only": true,
+          "source": "https://drive.google.com/file/d/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9/view",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "access": 0,
+        "relegation": 1,
+        "note": "Datas simuladas; classificações externas pendentes. Inscrição/BID não verificados.",
+        "limitations": [
+          "REC art.14 singular clarified by art.15 and official fixtures47/48: two final legs",
+          "positions3/4 ordering not certified for external qualification; only finalists may supply D candidates",
+          "round dates explicitly simulated; official home pairs preserved, notice round date inversions not claimed as live calendar"
+        ]
+      },
+      "state_engine": {
+        "version": "configured-state-v1",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "h2h_gd_two",
+          "gd",
+          "gf",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "relegation": 1,
+        "promotion": 0,
+        "final_ranking": "elimination",
+        "stages": [
+          {
+            "name": "liga",
+            "type": "league",
+            "return": true,
+            "fixtures": [
+              [
+                1,
+                "Porto Velho-RO",
+                "Rondoniense-RO"
+              ],
+              [
+                1,
+                "União Cacoalense-RO",
+                "Barcelona-RO"
+              ],
+              [
+                1,
+                "Ji-Paraná-RO",
+                "Guaporé-RO"
+              ],
+              [
+                2,
+                "Guaporé-RO",
+                "União Cacoalense-RO"
+              ],
+              [
+                2,
+                "Barcelona-RO",
+                "Porto Velho-RO"
+              ],
+              [
+                2,
+                "Rondoniense-RO",
+                "Genus-RO"
+              ],
+              [
+                3,
+                "Genus-RO",
+                "União Cacoalense-RO"
+              ],
+              [
+                3,
+                "Ji-Paraná-RO",
+                "Porto Velho-RO"
+              ],
+              [
+                3,
+                "Rondoniense-RO",
+                "Barcelona-RO"
+              ],
+              [
+                4,
+                "União Cacoalense-RO",
+                "Rondoniense-RO"
+              ],
+              [
+                4,
+                "Barcelona-RO",
+                "Ji-Paraná-RO"
+              ],
+              [
+                4,
+                "Genus-RO",
+                "Guaporé-RO"
+              ],
+              [
+                5,
+                "Barcelona-RO",
+                "Guaporé-RO"
+              ],
+              [
+                5,
+                "Ji-Paraná-RO",
+                "Rondoniense-RO"
+              ],
+              [
+                5,
+                "Porto Velho-RO",
+                "Genus-RO"
+              ],
+              [
+                6,
+                "Guaporé-RO",
+                "Porto Velho-RO"
+              ],
+              [
+                6,
+                "Barcelona-RO",
+                "Genus-RO"
+              ],
+              [
+                6,
+                "União Cacoalense-RO",
+                "Ji-Paraná-RO"
+              ],
+              [
+                7,
+                "Genus-RO",
+                "Ji-Paraná-RO"
+              ],
+              [
+                7,
+                "Rondoniense-RO",
+                "Guaporé-RO"
+              ],
+              [
+                7,
+                "União Cacoalense-RO",
+                "Porto Velho-RO"
+              ],
+              [
+                8,
+                "Barcelona-RO",
+                "União Cacoalense-RO"
+              ],
+              [
+                8,
+                "Guaporé-RO",
+                "Ji-Paraná-RO"
+              ],
+              [
+                8,
+                "Rondoniense-RO",
+                "Porto Velho-RO"
+              ],
+              [
+                9,
+                "União Cacoalense-RO",
+                "Guaporé-RO"
+              ],
+              [
+                9,
+                "Porto Velho-RO",
+                "Barcelona-RO"
+              ],
+              [
+                9,
+                "Genus-RO",
+                "Rondoniense-RO"
+              ],
+              [
+                10,
+                "União Cacoalense-RO",
+                "Genus-RO"
+              ],
+              [
+                10,
+                "Barcelona-RO",
+                "Rondoniense-RO"
+              ],
+              [
+                10,
+                "Porto Velho-RO",
+                "Ji-Paraná-RO"
+              ],
+              [
+                11,
+                "Rondoniense-RO",
+                "União Cacoalense-RO"
+              ],
+              [
+                11,
+                "Guaporé-RO",
+                "Genus-RO"
+              ],
+              [
+                11,
+                "Ji-Paraná-RO",
+                "Barcelona-RO"
+              ],
+              [
+                12,
+                "Guaporé-RO",
+                "Barcelona-RO"
+              ],
+              [
+                12,
+                "Genus-RO",
+                "Porto Velho-RO"
+              ],
+              [
+                12,
+                "Rondoniense-RO",
+                "Ji-Paraná-RO"
+              ],
+              [
+                13,
+                "Genus-RO",
+                "Barcelona-RO"
+              ],
+              [
+                13,
+                "Porto Velho-RO",
+                "Guaporé-RO"
+              ],
+              [
+                13,
+                "Ji-Paraná-RO",
+                "União Cacoalense-RO"
+              ],
+              [
+                14,
+                "Ji-Paraná-RO",
+                "Genus-RO"
+              ],
+              [
+                14,
+                "Guaporé-RO",
+                "Rondoniense-RO"
+              ],
+              [
+                14,
+                "Porto Velho-RO",
+                "União Cacoalense-RO"
+              ]
+            ]
+          },
+          {
+            "name": "semifinal",
+            "type": "knockout",
+            "selection": "initial",
+            "pairs": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "final",
+            "type": "knockout",
+            "selection": "winners",
+            "pairs": [
+              [
+                0,
+                1
+              ]
+            ],
+            "home_basis": "campaign",
+            "legs": 2,
+            "tie_rule": "penalties"
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "PI": {
+      "id": "pi-state-d2027-v1",
+      "status": "sports_path_with_declared_limits",
+      "competition": "pi-a1",
+      "source_edition": 2026,
+      "target_edition": 2027,
+      "quota": 2,
+      "source": "https://ffp-pi.com.br/assets/uploads/178043156618.pdf",
+      "location": "arts.3,7-11,17,21; PDF pp.1,3-4,6,8; final ranking and two D2027 slots",
+      "participants": [
+        "Altos-PI",
+        "Atlético Piauiense-PI",
+        "Parnahyba-PI",
+        "Oeirense-PI",
+        "Teresina-PI",
+        "Piauí-PI",
+        "Fluminense-PI",
+        "Corisabbá-PI"
+      ],
+      "roll_down": "verified ranking prefix only; skip upper divisions and already selected national merits",
+      "ranking_prefix": 8,
+      "selective_required": false,
+      "eligibility": "sports candidate, not BID/licensing/national entry",
+      "consulted_on": "2026-10-17",
+      "future_rule": "later editions require separate pinned simulated rules"
+    },
+    "RO": {
+      "id": "ro-state-d2027-v1",
+      "status": "sports_path_with_declared_limits",
+      "competition": "ro-a1",
+      "source_edition": 2026,
+      "target_edition": 2027,
+      "quota": 2,
+      "source": "https://drive.google.com/file/d/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9/view",
+      "location": "arts.3,5-6,11-17, AnexoA; PDF pp.2-3,5-6,11; two finalists indicated to D2027",
+      "participants": [
+        "Porto Velho-RO",
+        "Genus-RO",
+        "Barcelona-RO",
+        "Rondoniense-RO",
+        "Ji-Paraná-RO",
+        "Guaporé-RO",
+        "União Cacoalense-RO"
+      ],
+      "roll_down": "verified ranking prefix only; skip upper divisions and already selected national merits",
+      "ranking_prefix": 2,
+      "selective_required": false,
+      "eligibility": "sports candidate, not BID/licensing/national entry",
+      "consulted_on": "2026-10-17",
+      "future_rule": "later editions require separate pinned simulated rules"
+    }
+  }
+}
