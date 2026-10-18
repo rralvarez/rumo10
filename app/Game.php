@@ -57,7 +57,7 @@ final class Game {
     }
     private static function executeCommand(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
         if(isset($g['national_trial'])&&in_array($action,['offers','transfer'],true))throw new InvalidArgumentException(NationalRenewal::explanation($g));
-        if($g['stage']==='world_processing'){if($action!=='continue')throw new InvalidArgumentException('Conclua o processamento do calendário.');WorldSeason::next($g);$g['version']++;return $g;}
+        if(in_array($g['stage'],['world_processing','world_pending'],true)){if($action!=='continue')throw new InvalidArgumentException('Conclua o processamento do calendário.');WorldSeason::next($g);$g['version']++;return $g;}
         $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
         if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');$g['version']++;return $g;}
@@ -236,7 +236,7 @@ final class Game {
         // Outro segmento representa outra janela de jogo, nunca a mesma posse.
         MatchMomentum::reset($m);
         $own=$m['home']===$g['club']?'hg':'ag';
-        TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
+        TeamStrength::snapshot($m,$g);$means=MatchVenue::expectations($m);
         if(($m['balance_version']??0)<2){$difference=max(-60,min(60,$m['home_overall']-$m['away_overall']));$means=[max(.25,min(3.5,1.35*exp($difference/55))),max(.25,min(3.5,1.10*exp(-$difference/55)))];}
         foreach(['hg','ag'] as $index=>$side) {
             $mean=($m['balance_version']??0)>=2?MatchBalance::collectiveMean($m,$side,$g['club'],$m['minute'],$next):$means[$index]*$span/90;

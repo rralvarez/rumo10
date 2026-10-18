@@ -24,6 +24,7 @@ final class CompetitionView {
         if($t['format']==='configured_state'){
             echo '<p class="subtle">Datas simuladas. As vagas nacionais e a continuidade estadual ainda dependem da validação das próximas competições.</p>';
             if((Competition::catalog()[$t['id']]['uf']??null)==='RO')echo '<p class="subtle">Neste piloto, as posições de campeão e vice podem fundamentar vagas nacionais. Um repasse além dos finalistas permanece pendente de confirmação.</p>';
+            if(array_filter($t['matches'],fn($m)=>isset($m['simultaneous_group'])))echo '<p class="subtle">Rodada decisiva na mesma data e horário simulados. Resultados são processados em lotes; classificação e méritos só são homologados após todos os jogos. Uma tabela durante o lote é parcial.</p>';
             $qualificationNote=Competition::catalog()[$t['id']]['rules']['qualification_note']??null;
             if($qualificationNote)echo '<p class="subtle">'.e($qualificationNote).'</p>';
         }
@@ -32,6 +33,7 @@ final class CompetitionView {
                 echo '<article class="panel"><h3>'.e($tie['a'].' × '.$tie['b']).'</h3>';
                 foreach($t['matches'] as $m)if($m['phase']===$t['phase'] && ($m['tie']??null)===$i) {
                     echo '<p>'.e(ClubBadge::name($m['home'])).' <b>'.($m['status']==='finalizada'?e($m['hg'].' × '.$m['ag']):'×').'</b> '.e(ClubBadge::name($m['away'])).'</p>';
+                    if(!empty($m['neutral']))echo '<p class="subtle">Campo neutro · '.e($m['venue']??'Local designado').'</p>';
                     if(isset($m['penalties']))echo '<p>Nos pênaltis: '.e(implode(' × ',$m['penalties'])).'</p>';
                 }
                 if($tie['winner'])echo '<p>Classificado: <b>'.e($tie['winner']).'</b></p>';

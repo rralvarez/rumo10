@@ -1,0 +1,686 @@
+{
+  "id": "candangao-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "df-a1": {
+      "id": "df-a1",
+      "name": "Candangão Série A",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "DF",
+      "scope": "state",
+      "family": "state",
+      "pyramid": "df",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "ARUC-DF",
+        "Brasília-DF",
+        "Brasiliense-DF",
+        "Capital-DF",
+        "Ceilândia-DF",
+        "Paranoá-DF",
+        "Real Brasília-DF",
+        "Samambaia-DF",
+        "Sobradinho-DF",
+        "Gama-DF"
+      ],
+      "groups": [
+        [
+          "ARUC-DF",
+          "Brasília-DF",
+          "Brasiliense-DF",
+          "Capital-DF",
+          "Ceilândia-DF",
+          "Paranoá-DF",
+          "Real Brasília-DF",
+          "Samambaia-DF",
+          "Sobradinho-DF",
+          "Gama-DF"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://ffdf.com.br/assets/uploads/176245464195.pdf?v=17652869932",
+        "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626"
+      ],
+      "reference_clubs": {
+        "ARUC-DF": {
+          "name": "ARUC-DF",
+          "country": "BR",
+          "uf": "DF",
+          "competitions": [
+            "df-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Brasília-DF": {
+          "name": "Brasília-DF",
+          "country": "BR",
+          "uf": "DF",
+          "competitions": [
+            "df-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Paranoá-DF": {
+          "name": "Paranoá-DF",
+          "country": "BR",
+          "uf": "DF",
+          "competitions": [
+            "df-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Real Brasília-DF": {
+          "name": "Real Brasília-DF",
+          "country": "BR",
+          "uf": "DF",
+          "competitions": [
+            "df-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Samambaia-DF": {
+          "name": "Samambaia-DF",
+          "country": "BR",
+          "uf": "DF",
+          "competitions": [
+            "df-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Sobradinho-DF": {
+          "name": "Sobradinho-DF",
+          "country": "BR",
+          "uf": "DF",
+          "competitions": [
+            "df-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "qualification_note": "Resultados do save. Desempate esgotado exige decisão federativa; sem sorteio automático. Candidatura nacional não é inscrição. BID e homologação administrativa não verificados.",
+        "simulation_note": "Datas adaptadas; rodada final simultânea às15h simuladas; campo neutro requer política local explícita."
+      },
+      "state_engine": {
+        "version": "configured-state-v3",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "red",
+          "yellow",
+          "h2h_points_two",
+          "federation_game"
+        ],
+        "relegation": 2,
+        "promotion": 0,
+        "final_ranking": "elimination",
+        "eliminated_basis": "phase",
+        "stages": [
+          {
+            "name": "liga",
+            "type": "league",
+            "return": false,
+            "fixtures": [
+              [
+                1,
+                "Paranoá-DF",
+                "ARUC-DF"
+              ],
+              [
+                1,
+                "Brasiliense-DF",
+                "Brasília-DF"
+              ],
+              [
+                1,
+                "Ceilândia-DF",
+                "Sobradinho-DF"
+              ],
+              [
+                1,
+                "Gama-DF",
+                "Real Brasília-DF"
+              ],
+              [
+                1,
+                "Capital-DF",
+                "Samambaia-DF"
+              ],
+              [
+                2,
+                "ARUC-DF",
+                "Capital-DF"
+              ],
+              [
+                2,
+                "Sobradinho-DF",
+                "Paranoá-DF"
+              ],
+              [
+                2,
+                "Real Brasília-DF",
+                "Brasiliense-DF"
+              ],
+              [
+                2,
+                "Brasília-DF",
+                "Gama-DF"
+              ],
+              [
+                2,
+                "Samambaia-DF",
+                "Ceilândia-DF"
+              ],
+              [
+                3,
+                "Paranoá-DF",
+                "Brasília-DF"
+              ],
+              [
+                3,
+                "Brasiliense-DF",
+                "Sobradinho-DF"
+              ],
+              [
+                3,
+                "Ceilândia-DF",
+                "ARUC-DF"
+              ],
+              [
+                3,
+                "Capital-DF",
+                "Real Brasília-DF"
+              ],
+              [
+                3,
+                "Gama-DF",
+                "Samambaia-DF"
+              ],
+              [
+                4,
+                "Real Brasília-DF",
+                "Samambaia-DF"
+              ],
+              [
+                4,
+                "Paranoá-DF",
+                "Capital-DF"
+              ],
+              [
+                4,
+                "Sobradinho-DF",
+                "ARUC-DF"
+              ],
+              [
+                4,
+                "Brasiliense-DF",
+                "Gama-DF"
+              ],
+              [
+                4,
+                "Brasília-DF",
+                "Ceilândia-DF"
+              ],
+              [
+                5,
+                "Samambaia-DF",
+                "Brasiliense-DF"
+              ],
+              [
+                5,
+                "Ceilândia-DF",
+                "Real Brasília-DF"
+              ],
+              [
+                5,
+                "Capital-DF",
+                "Sobradinho-DF"
+              ],
+              [
+                5,
+                "ARUC-DF",
+                "Brasília-DF"
+              ],
+              [
+                5,
+                "Gama-DF",
+                "Paranoá-DF"
+              ],
+              [
+                6,
+                "Real Brasília-DF",
+                "Paranoá-DF"
+              ],
+              [
+                6,
+                "Sobradinho-DF",
+                "Gama-DF"
+              ],
+              [
+                6,
+                "Ceilândia-DF",
+                "Capital-DF"
+              ],
+              [
+                6,
+                "Samambaia-DF",
+                "Brasília-DF"
+              ],
+              [
+                6,
+                "Brasiliense-DF",
+                "ARUC-DF"
+              ],
+              [
+                7,
+                "Real Brasília-DF",
+                "Sobradinho-DF"
+              ],
+              [
+                7,
+                "Paranoá-DF",
+                "Brasiliense-DF"
+              ],
+              [
+                7,
+                "Gama-DF",
+                "Ceilândia-DF"
+              ],
+              [
+                7,
+                "Brasília-DF",
+                "Capital-DF"
+              ],
+              [
+                7,
+                "ARUC-DF",
+                "Samambaia-DF"
+              ],
+              [
+                8,
+                "Capital-DF",
+                "Brasiliense-DF"
+              ],
+              [
+                8,
+                "Ceilândia-DF",
+                "Paranoá-DF"
+              ],
+              [
+                8,
+                "Gama-DF",
+                "ARUC-DF"
+              ],
+              [
+                8,
+                "Brasília-DF",
+                "Real Brasília-DF"
+              ],
+              [
+                8,
+                "Samambaia-DF",
+                "Sobradinho-DF"
+              ],
+              [
+                9,
+                "Paranoá-DF",
+                "Samambaia-DF"
+              ],
+              [
+                9,
+                "ARUC-DF",
+                "Real Brasília-DF"
+              ],
+              [
+                9,
+                "Sobradinho-DF",
+                "Brasília-DF"
+              ],
+              [
+                9,
+                "Capital-DF",
+                "Gama-DF"
+              ],
+              [
+                9,
+                "Brasiliense-DF",
+                "Ceilândia-DF"
+              ]
+            ],
+            "simultaneous_round": 9
+          },
+          {
+            "name": "semifinal",
+            "type": "knockout",
+            "selection": "initial",
+            "pairs": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "advantage"
+          },
+          {
+            "name": "final",
+            "type": "knockout",
+            "selection": "winners",
+            "pairs": [
+              [
+                0,
+                1
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 1,
+            "tie_rule": "penalties",
+            "neutral": true,
+            "venue": "Arena BRB Mané Garrincha"
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "DF": {
+      "id": "df-state-d-2027-v1",
+      "competition": "df-a1",
+      "source_edition": 2026,
+      "quota": 2,
+      "max_candidates": 2,
+      "source": "https://ffdf.com.br/assets/uploads/176245464195.pdf?v=17652869932",
+      "location": "art.22 PDF p.9; quota federal de referência CBF2026, projeção simulada2027",
+      "participants": [
+        "ARUC-DF",
+        "Brasília-DF",
+        "Brasiliense-DF",
+        "Capital-DF",
+        "Ceilândia-DF",
+        "Paranoá-DF",
+        "Real Brasília-DF",
+        "Samambaia-DF",
+        "Sobradinho-DF",
+        "Gama-DF"
+      ],
+      "selective_required": false,
+      "roll_down": "REC art.22: final ranking for redistribution; exclude proven national merits",
+      "eligibility": "pending sports candidacy only; no real licensing or BID confirmation",
+      "consulted_on": "2026-10-18",
+      "future_rule": "No future competition activated"
+    }
+  },
+  "sources": {
+    "rec": "https://ffdf.com.br/assets/uploads/176245464195.pdf?v=17652869932",
+    "rec_sha256": "4b38e9b0ada3cc8fbf2834b18a6437fbfe66837a9f21342647dc08c9aae00054",
+    "table": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+    "table_sha256": "3a26e4fad863c0c7a19d71ff7c7efbcf75d50a0fc9e5315b0ddbef6ca5e5f654",
+    "identity_map": {
+      "aruc": "ARUC-DF",
+      "brasília": "Brasília-DF",
+      "brasiliense": "Brasiliense-DF",
+      "capital": "Capital-DF",
+      "ceilândia": "Ceilândia-DF",
+      "paranoá": "Paranoá-DF",
+      "real brasília": "Real Brasília-DF",
+      "samambaia": "Samambaia-DF",
+      "sobradinho": "Sobradinho-DF",
+      "gama": "Gama-DF",
+      "bfc": "Brasília-DF",
+      "ceilândia saf": "Ceilândia-DF",
+      "samambaia saf": "Samambaia-DF",
+      "paranoá esporte clube": "Paranoá-DF"
+    },
+    "fixtures": [
+      [
+        1,
+        "Paranoá-DF",
+        "ARUC-DF"
+      ],
+      [
+        1,
+        "Brasiliense-DF",
+        "Brasília-DF"
+      ],
+      [
+        1,
+        "Ceilândia-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        1,
+        "Gama-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        1,
+        "Capital-DF",
+        "Samambaia-DF"
+      ],
+      [
+        2,
+        "ARUC-DF",
+        "Capital-DF"
+      ],
+      [
+        2,
+        "Sobradinho-DF",
+        "Paranoá-DF"
+      ],
+      [
+        2,
+        "Real Brasília-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        2,
+        "Brasília-DF",
+        "Gama-DF"
+      ],
+      [
+        2,
+        "Samambaia-DF",
+        "Ceilândia-DF"
+      ],
+      [
+        3,
+        "Paranoá-DF",
+        "Brasília-DF"
+      ],
+      [
+        3,
+        "Brasiliense-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        3,
+        "Ceilândia-DF",
+        "ARUC-DF"
+      ],
+      [
+        3,
+        "Capital-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        3,
+        "Gama-DF",
+        "Samambaia-DF"
+      ],
+      [
+        4,
+        "Real Brasília-DF",
+        "Samambaia-DF"
+      ],
+      [
+        4,
+        "Paranoá-DF",
+        "Capital-DF"
+      ],
+      [
+        4,
+        "Sobradinho-DF",
+        "ARUC-DF"
+      ],
+      [
+        4,
+        "Brasiliense-DF",
+        "Gama-DF"
+      ],
+      [
+        4,
+        "Brasília-DF",
+        "Ceilândia-DF"
+      ],
+      [
+        5,
+        "Samambaia-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        5,
+        "Ceilândia-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        5,
+        "Capital-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        5,
+        "ARUC-DF",
+        "Brasília-DF"
+      ],
+      [
+        5,
+        "Gama-DF",
+        "Paranoá-DF"
+      ],
+      [
+        6,
+        "Real Brasília-DF",
+        "Paranoá-DF"
+      ],
+      [
+        6,
+        "Sobradinho-DF",
+        "Gama-DF"
+      ],
+      [
+        6,
+        "Ceilândia-DF",
+        "Capital-DF"
+      ],
+      [
+        6,
+        "Samambaia-DF",
+        "Brasília-DF"
+      ],
+      [
+        6,
+        "Brasiliense-DF",
+        "ARUC-DF"
+      ],
+      [
+        7,
+        "Real Brasília-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        7,
+        "Paranoá-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        7,
+        "Gama-DF",
+        "Ceilândia-DF"
+      ],
+      [
+        7,
+        "Brasília-DF",
+        "Capital-DF"
+      ],
+      [
+        7,
+        "ARUC-DF",
+        "Samambaia-DF"
+      ],
+      [
+        8,
+        "Capital-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        8,
+        "Ceilândia-DF",
+        "Paranoá-DF"
+      ],
+      [
+        8,
+        "Gama-DF",
+        "ARUC-DF"
+      ],
+      [
+        8,
+        "Brasília-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        8,
+        "Samambaia-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        9,
+        "Paranoá-DF",
+        "Samambaia-DF"
+      ],
+      [
+        9,
+        "ARUC-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        9,
+        "Sobradinho-DF",
+        "Brasília-DF"
+      ],
+      [
+        9,
+        "Capital-DF",
+        "Gama-DF"
+      ],
+      [
+        9,
+        "Brasiliense-DF",
+        "Ceilândia-DF"
+      ]
+    ],
+    "historical_scores_imported": false,
+    "consulted": "2026-10-18"
+  }
+}

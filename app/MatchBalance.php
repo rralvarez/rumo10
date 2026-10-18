@@ -6,7 +6,7 @@ final class MatchBalance {
  public static function prepare(array &$m,array $g):void {
   if(isset($m['balance_version']))return;$m['balance_version']=self::VERSION;
   $m['player_attack_share']=match($g['position']){'centroavante'=>.60,'ponta'=>.55,'meia'=>.48,'lateral'=>.35,default=>.30};
-  [$h,$a]=TeamStrength::expectations($m['home_overall'],$m['away_overall']);$own=$m['home']===$g['club']?'home':'away';$opponent=$m[$own==='home'?'away_overall':'home_overall'];
+  [$h,$a]=MatchVenue::expectations($m);$own=$m['home']===$g['club']?'home':'away';$opponent=$m[$own==='home'?'away_overall':'home_overall'];
   $technical=array_sum(array_column($g['skills'],'value'))/9;
   $contribution=1+max(-.12,min(.12,($technical-$opponent)/250))*max(0,$m['exit']-$m['entry'])/90;
   if($own==='home')$h*=$contribution;else$a*=$contribution;

@@ -129,7 +129,7 @@ final class Competition {
     }
     public static function simulate(array &$m,array $g=[]): void {
         if($m['status']==='finalizada')return;
-        TeamStrength::snapshot($m,$g);[$home,$away]=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
+        TeamStrength::snapshot($m,$g);[$home,$away]=MatchVenue::expectations($m);
         $m['hg']=TeamStrength::goals($home); $m['ag']=TeamStrength::goals($away); $m['status']='finalizada';$m['minute']=90;
         $m['home_yellow']=random_int(0,5);$m['away_yellow']=random_int(0,5);$m['home_red']=random_int(0,10)===0?1:0;$m['away_red']=random_int(0,10)===0?1:0;
     }
