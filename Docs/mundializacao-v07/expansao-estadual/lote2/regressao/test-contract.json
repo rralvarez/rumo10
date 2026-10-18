@@ -1,0 +1,7 @@
+{
+    "checks": 89821,
+    "new": 800,
+    "catalog": 1014,
+    "baseline_preserved": 214,
+    "mode": "PHP puro, sem banco\/Hub\/rede"
+}
