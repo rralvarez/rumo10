@@ -10,7 +10,7 @@ final class ConfiguredStateCompetition {
         $r=$c['state_engine']??[];
         if(!in_array($r['version']??null,[self::VERSION,self::ROUTED_VERSION],true)||$teams!==($c['teams']??[])||count($teams)<2||count(array_unique($teams))!==count($teams))throw new RuntimeException('Contrato estadual configurável inválido.');
         $allowed=['points','wins','gd','gf','h2h_gd_two','red','yellow','lots'];
-        if(($r['version']??null)===self::ROUTED_VERSION)$allowed=array_merge($allowed,['h2h_points_group','h2h_gd_group']);
+        if(($r['version']??null)===self::ROUTED_VERSION)$allowed=array_merge($allowed,['h2h_points_group','h2h_gd_group','h2h_points_two']);
         if(empty($r['tiebreakers'])||count(array_unique($r['tiebreakers']))!==count($r['tiebreakers'])||array_diff($r['tiebreakers'],$allowed)||$r['tiebreakers'][0]!=='points'||end($r['tiebreakers'])!=='lots')throw new RuntimeException('Critérios de desempate incompletos.');
         $stages=$r['stages']??[];if(!$stages)throw new RuntimeException('Fases ausentes.');$names=[];
         foreach($stages as $i=>$stage){if(empty($stage['name'])||isset($names[$stage['name']])||!in_array($stage['type']??'', ['league','knockout'],true))throw new RuntimeException('Fase inválida/duplicada.');$names[$stage['name']]=true;
@@ -47,9 +47,9 @@ final class ConfiguredStateCompetition {
         // Group ties by every preceding criterion. H2H is never pairwise for a three-way tie.
         $sort=function(array $bucket,int $at)use(&$sort,$rules,$matches,$t):array{
             if(count($bucket)<2||$at>=count($rules['tiebreakers']))return $bucket;$criterion=$rules['tiebreakers'][$at];
-            if($criterion==='h2h_gd_two'){
+            if(in_array($criterion,['h2h_gd_two','h2h_points_two'],true)){
                 if(count($bucket)!==2)return $sort($bucket,$at+1);$gd=0;[$a,$b]=$bucket;
-                foreach($matches as $m)if($m['status']==='finalizada'&&in_array($m['home'],[$a['team'],$b['team']],true)&&in_array($m['away'],[$a['team'],$b['team']],true))$gd+=($m['home']===$a['team']?1:-1)*($m['hg']-$m['ag']);
+                foreach($matches as $m)if($m['status']==='finalizada'&&in_array($m['home'],[$a['team'],$b['team']],true)&&in_array($m['away'],[$a['team'],$b['team']],true)){$delta=($m['home']===$a['team']?1:-1)*($m['hg']-$m['ag']);$gd+=$criterion==='h2h_points_two'?($delta<=>0)*3:$delta;}
                 return $gd?($gd>0?[$a,$b]:[$b,$a]):$sort($bucket,$at+1);
             }
             if(in_array($criterion,['h2h_points_group','h2h_gd_group'],true)){

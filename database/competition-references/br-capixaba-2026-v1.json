@@ -1,0 +1,505 @@
+{
+  "id": "capixaba-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "es-a1": {
+      "id": "es-a1",
+      "name": "Capixaba Série A",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "ES",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "es",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Vitória-ES",
+        "Serra-ES",
+        "Vilavelhense-ES",
+        "Rio Branco-ES",
+        "Porto Vitória-ES",
+        "Desportiva Ferroviária-ES",
+        "Real Noroeste-ES",
+        "Forte-ES",
+        "Capixaba SC-ES",
+        "Rio Branco VN-ES"
+      ],
+      "groups": [
+        [
+          "Vitória-ES",
+          "Serra-ES",
+          "Vilavelhense-ES",
+          "Rio Branco-ES",
+          "Porto Vitória-ES",
+          "Desportiva Ferroviária-ES",
+          "Real Noroeste-ES",
+          "Forte-ES",
+          "Capixaba SC-ES",
+          "Rio Branco VN-ES"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://futebolcapixaba.com/site/wp-content/uploads/2025/12/Regulamento-Serie-A-2026.pdf",
+        "https://futebolcapixaba.com/campeonatos/capixabao-2026/"
+      ],
+      "reference_clubs": {
+        "Serra-ES": {
+          "name": "Serra-ES",
+          "country": "BR",
+          "uf": "ES",
+          "competitions": [
+            "es-a1"
+          ],
+          "game_only": true,
+          "source": "https://futebolcapixaba.com/campeonatos/capixabao-2026/",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Vilavelhense-ES": {
+          "name": "Vilavelhense-ES",
+          "country": "BR",
+          "uf": "ES",
+          "competitions": [
+            "es-a1"
+          ],
+          "game_only": true,
+          "source": "https://futebolcapixaba.com/campeonatos/capixabao-2026/",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Forte-ES": {
+          "name": "Forte-ES",
+          "country": "BR",
+          "uf": "ES",
+          "competitions": [
+            "es-a1"
+          ],
+          "game_only": true,
+          "source": "https://futebolcapixaba.com/campeonatos/capixabao-2026/",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Capixaba SC-ES": {
+          "name": "Capixaba SC-ES",
+          "country": "BR",
+          "uf": "ES",
+          "competitions": [
+            "es-a1"
+          ],
+          "game_only": true,
+          "source": "https://futebolcapixaba.com/campeonatos/capixabao-2026/",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Rio Branco VN-ES": {
+          "name": "Rio Branco VN-ES",
+          "country": "BR",
+          "uf": "ES",
+          "competitions": [
+            "es-a1"
+          ],
+          "game_only": true,
+          "source": "https://futebolcapixaba.com/campeonatos/capixabao-2026/",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "access": 0,
+        "relegation": 2,
+        "note": "Edição-base 2026; confrontos/mandos publicados, datas simuladas. Continuidade bloqueada sem divisão recíproca e obrigações futuras.",
+        "qualification_note": "O Capixabão fundamenta uma vaga à Série D. A outra vaga capixaba permanece pendente de caminho comprovado. Só campeão e vice podem fundamentar este recibo; posições seguintes são ordenação operacional simulada, sem homologação do DCO.",
+        "limitations": [
+          "BID e licenciamento não verificados.",
+          "Art.15: vice só substitui campeão por acesso comprovado da Série D à C; desistência não é simulada.",
+          "DCO homologa posições finais: apenas campeão e vice certificados pelo contrato; demais posições não geram repasse.",
+          "Capixaba SC e SC Brasil Capixaba são clubes distintos; nenhum alias entre eles."
+        ]
+      },
+      "state_engine": {
+        "version": "configured-state-v2",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "h2h_points_two",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "final_ranking": "elimination",
+        "relegation": 2,
+        "promotion": 0,
+        "stages": [
+          {
+            "name": "liga",
+            "type": "league",
+            "fixtures": [
+              [
+                1,
+                "Porto Vitória-ES",
+                "Capixaba SC-ES"
+              ],
+              [
+                1,
+                "Vitória-ES",
+                "Vilavelhense-ES"
+              ],
+              [
+                1,
+                "Real Noroeste-ES",
+                "Forte-ES"
+              ],
+              [
+                1,
+                "Rio Branco-ES",
+                "Serra-ES"
+              ],
+              [
+                1,
+                "Desportiva Ferroviária-ES",
+                "Rio Branco VN-ES"
+              ],
+              [
+                2,
+                "Vitória-ES",
+                "Porto Vitória-ES"
+              ],
+              [
+                2,
+                "Forte-ES",
+                "Capixaba SC-ES"
+              ],
+              [
+                2,
+                "Vilavelhense-ES",
+                "Rio Branco-ES"
+              ],
+              [
+                2,
+                "Rio Branco VN-ES",
+                "Real Noroeste-ES"
+              ],
+              [
+                2,
+                "Serra-ES",
+                "Desportiva Ferroviária-ES"
+              ],
+              [
+                3,
+                "Porto Vitória-ES",
+                "Forte-ES"
+              ],
+              [
+                3,
+                "Rio Branco-ES",
+                "Vitória-ES"
+              ],
+              [
+                3,
+                "Capixaba SC-ES",
+                "Rio Branco VN-ES"
+              ],
+              [
+                3,
+                "Desportiva Ferroviária-ES",
+                "Vilavelhense-ES"
+              ],
+              [
+                3,
+                "Real Noroeste-ES",
+                "Serra-ES"
+              ],
+              [
+                4,
+                "Rio Branco-ES",
+                "Porto Vitória-ES"
+              ],
+              [
+                4,
+                "Rio Branco VN-ES",
+                "Forte-ES"
+              ],
+              [
+                4,
+                "Vitória-ES",
+                "Desportiva Ferroviária-ES"
+              ],
+              [
+                4,
+                "Serra-ES",
+                "Capixaba SC-ES"
+              ],
+              [
+                4,
+                "Vilavelhense-ES",
+                "Real Noroeste-ES"
+              ],
+              [
+                5,
+                "Porto Vitória-ES",
+                "Rio Branco VN-ES"
+              ],
+              [
+                5,
+                "Desportiva Ferroviária-ES",
+                "Rio Branco-ES"
+              ],
+              [
+                5,
+                "Forte-ES",
+                "Serra-ES"
+              ],
+              [
+                5,
+                "Real Noroeste-ES",
+                "Vitória-ES"
+              ],
+              [
+                5,
+                "Capixaba SC-ES",
+                "Vilavelhense-ES"
+              ],
+              [
+                6,
+                "Desportiva Ferroviária-ES",
+                "Porto Vitória-ES"
+              ],
+              [
+                6,
+                "Serra-ES",
+                "Rio Branco VN-ES"
+              ],
+              [
+                6,
+                "Rio Branco-ES",
+                "Real Noroeste-ES"
+              ],
+              [
+                6,
+                "Vilavelhense-ES",
+                "Forte-ES"
+              ],
+              [
+                6,
+                "Vitória-ES",
+                "Capixaba SC-ES"
+              ],
+              [
+                7,
+                "Porto Vitória-ES",
+                "Serra-ES"
+              ],
+              [
+                7,
+                "Real Noroeste-ES",
+                "Desportiva Ferroviária-ES"
+              ],
+              [
+                7,
+                "Rio Branco VN-ES",
+                "Vilavelhense-ES"
+              ],
+              [
+                7,
+                "Capixaba SC-ES",
+                "Rio Branco-ES"
+              ],
+              [
+                7,
+                "Forte-ES",
+                "Vitória-ES"
+              ],
+              [
+                8,
+                "Real Noroeste-ES",
+                "Porto Vitória-ES"
+              ],
+              [
+                8,
+                "Vilavelhense-ES",
+                "Serra-ES"
+              ],
+              [
+                8,
+                "Desportiva Ferroviária-ES",
+                "Capixaba SC-ES"
+              ],
+              [
+                8,
+                "Vitória-ES",
+                "Rio Branco VN-ES"
+              ],
+              [
+                8,
+                "Rio Branco-ES",
+                "Forte-ES"
+              ],
+              [
+                9,
+                "Porto Vitória-ES",
+                "Vilavelhense-ES"
+              ],
+              [
+                9,
+                "Capixaba SC-ES",
+                "Real Noroeste-ES"
+              ],
+              [
+                9,
+                "Serra-ES",
+                "Vitória-ES"
+              ],
+              [
+                9,
+                "Forte-ES",
+                "Desportiva Ferroviária-ES"
+              ],
+              [
+                9,
+                "Rio Branco VN-ES",
+                "Rio Branco-ES"
+              ]
+            ],
+            "return": false
+          },
+          {
+            "name": "quartas",
+            "type": "knockout",
+            "selection": "initial",
+            "pairs": [
+              [
+                0,
+                7
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "advantage"
+          },
+          {
+            "name": "semifinal",
+            "type": "knockout",
+            "selection": "routed",
+            "entries": [
+              {
+                "phase": "quartas",
+                "index": 0,
+                "from": "winner"
+              },
+              {
+                "phase": "quartas",
+                "index": 1,
+                "from": "winner"
+              },
+              {
+                "phase": "quartas",
+                "index": 2,
+                "from": "winner"
+              },
+              {
+                "phase": "quartas",
+                "index": 3,
+                "from": "winner"
+              }
+            ],
+            "pairs": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "final",
+            "type": "knockout",
+            "selection": "winners",
+            "pairs": [
+              [
+                0,
+                1
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 2,
+            "tie_rule": "penalties"
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "ES": {
+      "id": "es-capixabao-d2027-v1",
+      "status": "one_competition_path_of_two_federation_places",
+      "competition": "es-a1",
+      "source_edition": 2026,
+      "target_edition": 2027,
+      "quota": 2,
+      "max_candidates": 1,
+      "selection_mode": "champion_or_vice_on_c_access",
+      "source": "https://futebolcapixaba.com/site/wp-content/uploads/2025/12/Regulamento-Serie-A-2026.pdf",
+      "location": "REC arts.3-15; PDF pp.3-7; art.15 paragraphs1,3,4,5",
+      "participants": [
+        "Vitória-ES",
+        "Serra-ES",
+        "Vilavelhense-ES",
+        "Rio Branco-ES",
+        "Porto Vitória-ES",
+        "Desportiva Ferroviária-ES",
+        "Real Noroeste-ES",
+        "Forte-ES",
+        "Capixaba SC-ES",
+        "Rio Branco VN-ES"
+      ],
+      "ranking_prefix": 2,
+      "selective_required": false,
+      "roll_down": "Only vice if champion promoted from D to C; no invented withdrawal; no third-place fallback",
+      "eligibility": "sports candidate only, no BID/licensing/national enrollment",
+      "consulted_on": "2026-10-18",
+      "future_rule": "Future editions require separate pinned simulated rules"
+    }
+  },
+  "identity_aliases": {
+    "Vitoria F.C.": "Vitória-ES",
+    "Serra F.C.": "Serra-ES",
+    "Vilavelhense F.C.": "Vilavelhense-ES",
+    "Rio Branco A.C. SAF": "Rio Branco-ES",
+    "Porto Vitoria F.C.": "Porto Vitória-ES",
+    "A. Desportiva Ferroviária V.R.D.": "Desportiva Ferroviária-ES",
+    "Real Noroeste F.C.": "Real Noroeste-ES",
+    "Forte F.C.": "Forte-ES",
+    "Capixaba S.C.": "Capixaba SC-ES",
+    "Rio Branco F.C.": "Rio Branco VN-ES"
+  },
+  "identity_distinction_sources": [
+    "https://futebolcapixaba.com/time/s-c-capixaba/",
+    "https://futebolcapixaba.com/time/sport-c-b-capixaba/"
+  ],
+  "source_digests": {
+    "rec": "41d3a886a5f3a95570b4f8bb8d6a14c7c3d20cc95d9a939bce8158e78d5f1a93",
+    "table_page": "c51c5737e95ecb4a16805242d8066842c53a19ea00bac590bd688a52a7f04d40"
+  },
+  "source_update_check": {
+    "rec_identical_to_preserved": true,
+    "fixture_pairs_and_rounds_identical_to_preserved": true,
+    "consulted": "2026-10-18"
+  }
+}
