@@ -1,3 +1,19 @@
+# Complemento aprovado — candidaturas simuladas RN2027
+
+18/10/2026, após confirmação expressa do proprietário. A política `rn-state-d-2027-sim-v2` seleciona os **dois melhores elegíveis** da classificação final do RN, excluindo os clubes já contemplados por méritos nacionais verificados. É **adaptação do simulador**, não regra oficial CBF2027. Produz somente candidatura pendente: inscrições, consumo de vagas nacionais, recompensas e renovação continuam bloqueados.
+
+Substitui apenas o bloqueio de capacidade zero da política RN descrita no checkpoint abaixo. As definições esportivas2026, fontes, regras PE e os seis percursos Game anteriores não mudaram; esses resultados históricos não foram reescritos. Recibos antigos incompatíveis continuam imutáveis e são rejeitados, não migrados automaticamente. Nenhum save real foi alterado.
+
+Nova fixture independente `rn-approved-policy/results-pdo.json`: RN2, total estadual14, pendentes estaduais50, quatro residuais pendentes; **zero inscrições e zero renovações**. Não agregar esta fixture às anteriores. Evidência em `Docs/mundializacao-v07/expansao-estadual/pe-rn/rn-approved-policy/`.
+
+`tests/rn-qualification-policy-v07.php`:9 verificações puras; com `--local-rollback`,15 verificações, incluindo6 de Repository/PDO/isolamento/rollback. Cobertos corte após exclusões, duplicidade, replay, conflito com recibo antigo e preservação de memberships/recompensas. Não repetir coortes pesadas: motor, contratos de competição, calendário e interface não mudaram (`scope.json`).
+
+Limite observado no harness: emitir o ledger D em memória antes da primeira normalização MySQL pode provocar conflito por ordenação das competições ao recarregar. A fixture foi corrigida para carregar primeiro pelo Repository, como o fluxo PDO existente; depois emitir e persistir os recibos. O caminho inteiramente em memória→primeira persistência não foi corrigido neste complemento e não deve ser usado para backfill. Todas as escritas da tentativa inicial e da repetição foram revertidas. Sem DDL ou alteração de persistência.
+
+Somente piloto local CLI, flags públicas desligadas, Hub/produção intocados. DF e CopaES conservam os bloqueios documentados. Commit/push somente na branch de trabalho.
+
+---
+
 # Entrega 57 — continuação PE e RN integrada ao piloto local
 
 18/10/2026. Base local e remota conferida: `a03e757aced0dff5a5bb318da3fd6f2311449368`, branch `codex/mundializacao-v07`. Abaixo está a continuação atual; o relatório capixaba anterior foi preservado ao final como histórico.

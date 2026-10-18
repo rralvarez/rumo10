@@ -1,0 +1,8 @@
+{
+  "edition_definitions_unchanged": true,
+  "sources_unchanged": true,
+  "PE_policy_unchanged": true,
+  "RN_policy_old": "rn-state-d-2027-v1",
+  "RN_policy_new": "rn-state-d-2027-sim-v2",
+  "heavy_game_regressions_not_repeated": "No engine, schedule, definition, XP, UI or persistence implementation changed; focused eligibility/receipt/PDO tests only."
+}

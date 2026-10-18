@@ -659,7 +659,7 @@
       "future_rule": "No future edition activated"
     },
     "RN": {
-      "id": "rn-state-d-2027-v1",
+      "id": "rn-state-d-2027-sim-v2",
       "competition": "rn-a1",
       "source_edition": 2026,
       "quota": 2,
@@ -679,8 +679,11 @@
       "eligibility": "pending sports candidacy only; no BID or enrollment",
       "consulted_on": "2026-10-18",
       "future_rule": "No future edition activated",
-      "max_candidates": 0,
-      "policy_status": "blocked_pending_national_distribution_or_simulation_approval"
+      "max_candidates": 2,
+      "policy_status": "approved_simulated_conservative",
+      "rule_kind": "simulator_adaptation_not_official_2027",
+      "approval": "Owner approved on 2026-10-18: two highest eligible final-ranked clubs, exclude verified national merits; pending candidates only",
+      "roll_down": "Final ranking order, excluding verified next A/B/C and retained D merits; never automatic enrollment"
     }
   },
   "sources": {
