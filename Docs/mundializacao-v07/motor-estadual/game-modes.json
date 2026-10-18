@@ -1,0 +1,89 @@
+{
+    "checks": 11862,
+    "results": [
+        {
+            "mode": "normal",
+            "commands": 332,
+            "matches": 1970,
+            "club": "Teresina-PI",
+            "state_candidates": {
+                "AL": 2,
+                "PI": 2,
+                "RO": 1
+            },
+            "state_slots_pending": 59,
+            "state_played": 9,
+            "cup_matches": 155,
+            "own_cup_fixtures": 0,
+            "own_cup_played": 0,
+            "own_cup_minutes": 0,
+            "cup_champion": "Remo-PA",
+            "p50_ms": 71.35,
+            "p95_ms": 180.66,
+            "p99_ms": 384.88,
+            "max_ms": 1404.06,
+            "elapsed_ms": 47295.13,
+            "snapshot_bytes": 1393485,
+            "peak_snapshot_bytes": 1704162,
+            "seasons": 1,
+            "renewals": 0
+        },
+        {
+            "mode": "rapido",
+            "commands": 250,
+            "matches": 1970,
+            "club": "Genus-RO",
+            "state_candidates": {
+                "AL": 2,
+                "PI": 2,
+                "RO": 2
+            },
+            "state_slots_pending": 58,
+            "state_played": 14,
+            "cup_matches": 155,
+            "own_cup_fixtures": 0,
+            "own_cup_played": 0,
+            "own_cup_minutes": 0,
+            "cup_champion": "Fluminense-RJ",
+            "p50_ms": 88.15,
+            "p95_ms": 199.78,
+            "p99_ms": 439.08,
+            "max_ms": 1496.08,
+            "elapsed_ms": 49248.15,
+            "snapshot_bytes": 1452838,
+            "peak_snapshot_bytes": 1763971,
+            "seasons": 1,
+            "renewals": 0
+        },
+        {
+            "mode": "expresso",
+            "commands": 206,
+            "matches": 1970,
+            "club": "CRB-AL",
+            "state_candidates": {
+                "AL": 2,
+                "PI": 2,
+                "RO": 2
+            },
+            "state_slots_pending": 58,
+            "state_played": 11,
+            "cup_matches": 155,
+            "own_cup_fixtures": 5,
+            "own_cup_played": 5,
+            "own_cup_minutes": 390,
+            "cup_champion": "Santos-SP",
+            "p50_ms": 105.83,
+            "p95_ms": 627.59,
+            "p99_ms": 935.37,
+            "max_ms": 1719.41,
+            "elapsed_ms": 66823.54,
+            "snapshot_bytes": 1728995,
+            "peak_snapshot_bytes": 2089707,
+            "seasons": 1,
+            "renewals": 0
+        }
+    ],
+    "same_career_sequential_seasons": 1,
+    "national_renewals": 0,
+    "five_national_seasons": false
+}

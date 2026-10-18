@@ -1,0 +1,28 @@
+﻿uf,quota,qualifying_competition,path_status,rule_source,location,specific_engine,roll_down,proven_candidates_in_fixture,remaining_in_fixture,national_entries_granted
+SP,4,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,4,0
+RJ,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+MG,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+RS,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+PR,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+CE,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+GO,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+SC,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+BA,3,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,3,0
+PE,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+AL,2,al-a1,sports_path_implemented_pending_national_admission,https://futeboldealagoas.net/assets/uploads/176832886543.pdf,"arts.1,5-10; PDF pp.2-4; art.10 classifies champion/runner-up and rolls down final ranking",existing_alagoas_adapter_reused,final_ranking_skipping_verified_upper_divisions_and_already_qualified_national_candidates,2,0,0
+PA,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+MT,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+AM,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+RN,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+PB,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+MA,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+SE,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+DF,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+PI,2,pi-a1,implemented_local_candidate_only,https://ffp-pi.com.br/assets/uploads/178043156618.pdf,"arts.3,7-11,17,21; PDF pp.1,3-4,6,8; final ranking and two D2027 slots",configured-state-v1,verified ranking prefix only; skip upper divisions and already selected national merits,2,0,0
+ES,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+TO,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+AC,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+RO,2,ro-a1,implemented_local_candidate_only,https://drive.google.com/file/d/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9/view,"arts.3,5-6,11-17, AnexoA; PDF pp.2-3,5-6,11; two finalists indicated to D2027",configured-state-v1,verified ranking prefix only; skip upper divisions and already selected national merits,1,1,0
+RR,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+MS,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
+AP,2,not_certified,blocked_pending_primary_rule_and_participants_review,,,review_required; generic_format_does_not_prove_REC,not_activated_without_official_path,0,2,0
