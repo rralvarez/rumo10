@@ -1,0 +1,6 @@
+{
+    "checks": 4,
+    "same_designation_no_new_timestamp_or_fixture": true,
+    "conflict_rejected": true,
+    "no_public_endpoint": true
+}

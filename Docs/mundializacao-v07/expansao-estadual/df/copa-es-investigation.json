@@ -1,0 +1,45 @@
+{
+  "consulted": "2026-10-18",
+  "status": "cup_not_executable_national_path_blocked",
+  "edition_conflict": {
+    "rec_url": "https://futebolcapixaba.com/site/wp-content/uploads/2026/04/Regulamento-COPA-ES-2026.pdf",
+    "rec_sha256": "fbd03b512132909770a81ef3190b0534da1b819034e60fdef2a449042e91123e",
+    "unchanged_from_preserved": true,
+    "location": "art.11 paragraphs1/2 PDF p.6",
+    "rec_target": 2026,
+    "operational_notices_target": 2027,
+    "later_sources": [
+      "https://futebolcapixaba.com/2026/06/vitoria-e-rio-branco-fc-decidem-o-titulo-da-copa-es-sicoob-na-quarta-feira-01/",
+      "https://futebolcapixaba.com/2026/07/rio-branco-fc-comemora-titulo-inedito-da-copa-es-sicoob-e-vaga-para-a-serie-d/"
+    ],
+    "conclusion": "Evidence supports a documentary inconsistency, not permission to override a regulation. No later normative correction located; no national candidate."
+  },
+  "sports_composition": {
+    "basic_publication": "https://futebolcapixaba.com/2026/02/fes-publica-tabela-basica-e-regulamento-da-copa-espirito-santo-2026/",
+    "basic_publication_sha256": "84a858ee6033a10aa6afb8b98b24a1a2046e25d3475750fa2410e6f950cc3c4b",
+    "announced_participants": 9,
+    "current_table": "https://futebolcapixaba.com/campeonatos/copa-es-2026/",
+    "current_table_sha256": "69de60124468ad62bf76bd189f795529bc5f54561da93caec3d5523eb6410582",
+    "current_table_participants": [
+      "Porto Vitoria F.C.",
+      "Vitoria F.C.",
+      "Vilavelhense F.C.",
+      "Rio Branco F.C.",
+      "Rio Branco A.C. SAF",
+      "S.C. Brasil Capixaba",
+      "Serra F.C.",
+      "Audax São Mateus"
+    ],
+    "observed_event_table_counts": [
+      28,
+      4,
+      1
+    ],
+    "missing_reconciliation": "Initial table included Capixaba SC; current competition table has eight clubs. No primary act confirming withdrawal and treatment of that participation was located. Do not silently discard ninth club.",
+    "format_known": "Single round league; top4 semifinal two legs; final single at Kleber Andrade, nominal home draw specified by REC; non-finalists ranked on league+semifinal",
+    "implementation_gate": "Reconcile nine-to-eight transition and the authoritative fixture set; persist final nominal-home draw; then a sport-only cup can be integrated independently of blocked national qualification."
+  },
+  "historical_scores_imported": false,
+  "national_entries": 0,
+  "cup_games_simulated": 0
+}

@@ -1,0 +1,5 @@
+{
+  "checks": 159,
+  "errors": [],
+  "transport": "Chrome against captured authenticated loopback fixture HTML; not real device/IIS/Apache"
+}

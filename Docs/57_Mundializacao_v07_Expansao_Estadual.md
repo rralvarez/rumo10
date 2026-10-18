@@ -1,3 +1,114 @@
+# Entrega 57 — Distrito Federal executável no piloto local
+
+18/10/2026. Base real local/remota conferida: `2f245a051af2dec186535858847262112137933a`, branch `codex/mundializacao-v07`. Árvore inicialmente limpa, exceto a pasta preexistente `Docs/levantamento-2026-10-15/`, preservada. Continuação por UF; sem nova auditoria mundial.
+
+## Entrega efetiva
+
+**DF integrado ao Game, calendário compartilhado e Repository/PDO.** O Candangão2026 tem **50 jogos-base:45 de liga,4 de semifinal e1 final**. O piloto passa a **oito federações**: AL,PI,RO,BA,ES,PE,RN,DF; **16 competições e2.203 partidas-base** por edição. Foram concluídas três edições Game independentes (Normal/Rápido/Expresso) e uma edição PDO independente. **Nenhuma renovação nacional aplicada; nenhuma sequência de cinco temporadas alegada.**
+
+O jogo extra não foi substituído por sorteio: existe estado persistido `world_pending`, tela explicativa e retomada mediante designação explícita auditada de fixture. A suíte específica provocou empate, criou a partida extra e a disputou com personagem no Game e MySQL, com **90 minutos reais nessa fixture**. Os três universos Game completos tiveram50 jogos DF cada e zero designações extras; o caminho excepcional foi testado separadamente, não contado como outra temporada completa.
+
+A Copa ES permanece **não executável e sem candidatura nacional**: além da divergência do ano, foi identificada composição inicial de nove clubes versus oito na tabela atual. Isso não impediu o percurso DF.
+
+## Fontes e identidades DF
+
+- [REC Candangão2026](https://ffdf.com.br/assets/uploads/176245464195.pdf?v=17652869932): art.2 (dez participantes), PDF p.4; arts.12–15 e13§2 (fases/ranking), p.8; arts.16–22 (final, desempate, simultaneidade, descenso e vagas), p.9.
+- [Tabela oficial FFDF](https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626): primeira fase3675, endpoints públicos `jogos_ajax_ver3.php` observados no próprio HTML. Foram conciliados os45 pares, rodadas e mandos. Não copiar placares históricos nem tratar as fases3676/3677 como tabela inicial.
+- Quota federativa de referência: [CBF REC D2026](https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Brasileiro_Serie_D_2026_2def4ff8f2.pdf), art.2 pp.4–6/RNF2026. Aplicação à edição simulada2027 permanece projeção conservadora, não homologação oficial da CBF2027.
+
+SHA-256 do REC: `4b38e9b0ada3cc8fbf2834b18a6437fbfe66837a9f21342647dc08c9aae00054`; tabela pública: `3a26e4fad863c0c7a19d71ff7c7efbcf75d50a0fc9e5315b0ddbef6ca5e5f654`. Referência nova `database/competition-references/br-candangao-2026-v1.json`, com identidades e tabela sem resultados.
+
+Participantes: ARUC,Brasília,Brasiliense,Capital,Ceilândia,Paranoá,Real Brasília,Samambaia,Sobradinho,Gama. Reutilizados os IDs existentes de Brasiliense,Capital,Ceilândia eGama. Seis referências locais de participantes restantes, com fonte e fallback de jogo explicitado; sem novos ratings, cidades, escudos ou elencos e sem escrever catálogo Hub. BFC→Brasília e nomes de SAF conciliados pela tabela/REC, sem confusão com clubes de outros estados.
+
+## Regras implementadas e adaptações declaradas
+
+Liga de turno único; top4 à semifinal1º×4º/2º×3º, ida/volta. Volta na casa do melhor da liga e vantagem da classificação inicial em empate agregado. Final única na Arena BRB Mané Garrincha, pênaltis se necessário. Campeão e vice pelo resultado; 3º/4º pela **campanha apenas da semifinal**; 5º–10º pela liga. Dois últimos têm mérito de descenso, sem troca automática com divisão inferior ausente.
+
+O art.17 termina em **jogo extra com mando/definição FFDF**, após pontos, vitórias, saldo, gols, vermelhos, amarelos e confronto direto. Para dois empatados, o confronto direto usa o resultado do encontro. Se persistir, não usar `lots`. Para três ou mais sem resolução pelos critérios anteriores, o formato do desempate requer decisão federativa: fica pendente, sem inventar mini-liga ou escolher dois clubes arbitrariamente. Essa limitação é deliberada e visível, não um falso resultado final.
+
+**Aprovações expressas do proprietário neste lote** (`approvals.json`):
+
+1. Pausar e exigir designação auditada de confronto/mando/critério do empate; decisões sintéticas identificadas somente nos testes, sem resolução pública automática.
+2. Campo neutro: média das expectativas espelhadas já existentes, preservando diferença de força e limites. Para forças iguais, ambos recebem a mesma base. É adaptação do simulador restrita a jogos marcados `neutral`, não novo balanceamento geral.
+
+`MatchVenue` delega partidas normais exatamente à fórmula anterior. Game, NPC e MatchBalance usam a mesma decisão de campo neutro. Ordem nominal de exibição da final deriva do seeding inicial, **convenção do simulador sem vantagem de mando**, não ato histórico do DCO. Nenhuma fórmula de evolução/XP/atributos foi alterada.
+
+A última rodada tem os cinco jogos na mesma data e horário simulados (15h), atendendo conservadoramente à simultaneidade dos decisivos do art.20. Datas são adaptação consolidada, não agenda histórica oficial. O planner reserva a janela como grupo atômico, respeita descanso e rejeita agenda anterior parcial/divergente. As forças dos cinco confrontos ficam fixadas na abertura da janela. O processamento PHP continua sequencial em lotes; a tabela durante o lote é explicitamente parcial e **não há homologação, título ou mérito antes de todas as partidas terminarem**. Não alegar execução de cinco processos simultâneos em tempo real.
+
+## Pendência, auditoria e prova
+
+`ConfiguredStateCompetition` v3 é opt-in só do DF; v1/v2 e definições das sete UFs anteriores preservados. Sorteio não é critério aceito em v3. A transição de fase é atômica em memória: um desempate pendente não deixa ranking pela metade nem duplica eliminados. Resultados/pênaltis já resolvidos são preservados.
+
+`StateAdministration` registra decisão de teste com esquema, chave de pendência, referência, UTC, confronto, campo, mando, critério do empate e digest. A partida extra referencia o digest. A decisão só cria um jogo; não escolhe campeão. Replay reconstrói a decisão e o resultado persistidos. Pênaltis ausentes, iguais ou indevidos não são ressorteados nem aceitos como prova. Empate sem critério fornecido permanece bloqueado; formato com mais de dois clubes ainda exige definição adicional e não é solucionado por este operador de fixture.
+
+A operação de designação é CLI/local, com flags de fixture e de designações de teste. **Nenhum endpoint administrativo público foi criado.** Um POST comum com campos de mando/clubes não registra decisão, comprovado no HTTP. O controle administrativo real de federação não foi implementado nem atribuído a um usuário Hub.
+
+Orçamento ampliado somente pelo builder `CandangaoTrial`, marcador, definições e memberships exatos:2.203-base + até8 extras, teto2.211. Não elevar limite genérico; lote NPC8, guard de processamento preservado. Nenhum worker, fila externa ou reestruturação v0.8.
+
+`StateResultProof` reconstrói tabela, fases, mandos, neutralidade, simultaneidade, jogo extra e decisões. `StateQualification` verifica resultados e exclusões nacionais, então emite até duas candidaturas DF pela classificação final e repasses do art.22. Fonte, carreira, edição e digest ficam no recibo. `FutureSerieDAdmission` continua separando candidatura, vaga residual e inscrição efetiva.
+
+## Matriz de vagas — cada linha é um universo independente
+
+| Evidência | AL | PI | RO | BA | ES | PE | RN | DF | Candidatos estaduais | Vagas estaduais pendentes |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| sports.json | 2 | 2 | 1 | 3 | 0 | 2 | 2 | 2 | 14 | 50 |
+| PDO Expresso | 2 | 2 | 1 | 3 | 0 | 2 | 2 | 2 | 14 | 50 |
+| Game normal | 2 | 2 | 2 | 3 | 1 | 2 | 2 | 2 | 16 | 48 |
+| Game rapido | 2 | 2 | 0 | 3 | 1 | 2 | 2 | 2 | 14 | 50 |
+| Game expresso | 2 | 2 | 2 | 3 | 0 | 2 | 2 | 2 | 15 | 49 |
+
+A matriz27UF em `df/federations.csv/json` usa **somente sports.json**: 14 estaduais, 50 pendentes e **quatro residuais separadas**. No mesmo save, DF acrescenta duas candidaturas ao subconjunto das sete UFs; não comparar diretamente com a contagem14 de outro save para inferir déficit fixo. Nenhuma soma entre carreiras. **Zero inscrições nacionais efetivadas, zero renovações nacionais.** RN mantém exatamente a política conservadora aprovada `rn-state-d-2027-sim-v2`; a vaga pendente da Copa ES não foi atribuída ao Capixabão.
+
+## Testes reproduzidos
+
+Evidências em `Docs/mundializacao-v07/expansao-estadual/df/`.
+
+| Suíte | Resultado |
+|---|---|
+| `tests/candangao-v07.php` |45 verificações:45+4+1, mandos, semifinalistas, jogo extra/pendência múltipla, prova/negativos de pênaltis, recibos, neutralidade e janela simultânea/congelamento de força/retry. |
+| `tests/candangao-runtime-v07.php` |13.245 verificações; três modos, uma edição completa de2.203 jogos por fixture,50 DF em cada; repouso, NPC, XP real e replay. Não são três temporadas consecutivas. |
+| `tests/candangao-mysql-v07.php --local-rollback` |47 verificações; uma edição Expresso, personagem em11 jogos, reload por comando, segundo usuário, nonce divergente, crash/retry do fechamento, lock real1205 e rollback integral. |
+| `tests/candangao-admin-replay-v07.php` |4 verificações: repetição da designação preserva timestamp/jogo, conflito rejeitado e flag obrigatória. |
+| `tests/candangao-extra-v07.php [--local-rollback]` |5 verificações Game;15 com PDO, incluindo10 PDO/crash/retry/rollback. Jogo extra efetivamente disputado pelo personagem. Os45 placares preparatórios são **fixture sintética de empate**, não resultados reais ou outra temporada completa. |
+| `tests/candangao-http-v07.php --local-fixtures` |77 verificações; login descartável/CSRF/replay/isolamento, oito estaduais, pendência, final neutra e nenhum poder administrativo por POST. Fixture removida. |
+| `tests/candangao-mobile-v07.cjs` |159 verificações Chrome320/390/1280, pendência/final neutra/tabelas, teclado/Escape, reduced-motion e sem overflow;45 capturas. |
+| `bin/test-narrative.py` |24 suítes passaram;1.014 cenas (214+800) e nove atributos preservados. |
+| Rechecks pontuais |55 motor,22 roteamento,22 BA,46 ES,40 PE/RN,9 política RN;215 pós-jogo (seis posições/três modos),96 catálogo50/1.000R,32 v0.6.1/feedback. |
+
+Na primeira regressão, a guarda antiga recusou a delegação nova de campo neutro. Foi acrescentada comparação **estrita e reversível da única chamada** contra a base, sem permitir outras alterações de MatchBalance; nova execução das24 passou. A evidência da primeira tentativa foi preservada. No harness de crash extra, a comparação foi ajustada para usar o snapshot MySQL recarregado antes do savepoint, como no fluxo existente; a repetição passou e todas as gravações de fixture foram revertidas. Na revisão final, os três negativos de pênaltis administrativos foram acrescentados e passaram na suíte específica; não se repetiram coortes pesadas sem mudança do caminho válido.
+
+Conquistas desativadas nas fixtures PDO: não alegar concessão de R nessas coortes. Catálogo50/1.000R e pós-jogo/XP têm testes próprios. HTTP é PHP loopback, **não IIS/login central**. Chrome usa HTML autenticado capturado, não aparelho físico/leitor de tela. Apache/HTTPS/UOL/produção não foram testados nesta rodada.
+
+## Custo local e limites de escala
+
+PDO: **267 comandos, 9348 consultas**; p50 415.63ms, p95 656.88ms, p99 908.04ms, pior/fechamento 1519.32ms. Total 117171.88ms; snapshot final 1580940bytes, pico 1936509bytes, pico do processo/harness 146800640bytes. Histórico anterior2bytes nesta primeira edição; nenhuma métrica de crescimento entre temporadas foi fabricada.
+
+Referência PE anterior:266 comandos/9.313 consultas, p95618,72ms, pico1.873.364bytes, personagem7 jogos; agora11 jogos. Não é comparação controlada por seed/carga; não inferir melhoria causal nem desempenho UOL. Não houve normalização/compactação nova de saves, cache persistente, DDL ou migração estrutural.
+
+## Copa ES — investigação atualizada, não ativação
+
+O [PDF vigente](https://futebolcapixaba.com/site/wp-content/uploads/2026/04/Regulamento-COPA-ES-2026.pdf), com adendo02/06, foi novamente baixado e mantém o mesmo SHA `fbd03b512132909770a81ef3190b0534da1b819034e60fdef2a449042e91123e`. O art.11§§1–2 ainda escreve D2026. A [publicação técnica de26/02](https://futebolcapixaba.com/2026/02/fes-publica-tabela-basica-e-regulamento-da-copa-espirito-santo-2026/), a [nota de24/06](https://futebolcapixaba.com/2026/06/vitoria-e-rio-branco-fc-decidem-o-titulo-da-copa-es-sicoob-na-quarta-feira-01/) e a confirmação de02/07 mencionam D2027. Isso sustenta uma **inconsistência documental**, mas não é retificação normativa localizada nem permissão para alterar o ano silenciosamente.
+
+Também há uma divergência de composição: a nota/tabela básica anuncia **nove clubes**, incluindo Capixaba SC; a [página atual](https://futebolcapixaba.com/campeonatos/copa-es-2026/) apresenta **oito clubes** e tabelas de28+4+1 jogos. Não foi localizado nesta pesquisa um ato primário que esclareça a saída/tratamento do nono participante. Não presumir desistência, anular jogos ou descartar Capixaba SC.
+
+Formato conhecido: liga, top4, semifinais ida/volta, final única no Kleber Andrade, pênaltis; mando nominal final por sorteio previsto no REC e ranking dos não finalistas por liga+semifinal. Para ativar só o esporte, faltam reconciliar a composição e a tabela autorizada e persistir o sorteio nominal/ato da final. O vínculo D continuará separado e bloqueado até esclarecimento. **Zero jogos simulados desta copa e zero candidaturas dela**; dados apenas investigados em `copa-es-investigation.json`.
+
+## Segurança, reprodução e recuperação
+
+Flags públicas/permanentes desligadas. Testes definem calendário/fixtures e, explicitamente, `RUMO10_NEUTRAL_SIMULATION=1`/`RUMO10_ADMIN_TEST_DESIGNATIONS=1` **só no processo**. Não editar .env, Hub/rh_*, usuários reais, benefícios, catálogo compartilhado, produção, IIS/Apache, serviços ou workflows. Sem DDL, dump ou restauração; não há migration SQL a executar. A pasta não versionada do proprietário foi preservada.
+
+PHP `C:/PHP/php-8.4.26/php.exe`: `-n -d extension_dir=C:/PHP/php-8.4.26/ext -d extension=mbstring -d memory_limit=768M`, acrescentar `-d extension=pdo_mysql` para MySQL/HTTP. Rodar scripts da tabela. MySQL aceita somente `rumohub` em localhost e reverte fixtures; **não executar HTTP simultaneamente aos testes PDO de contagem global**. HTTP antes de mobile. `python -X utf8 bin/audit-candangao.py` exporta a matriz27UF de um só save. `V06_EVIDENCE_DIR=Docs/mundializacao-v07/expansao-estadual/df/regressao` direciona as24 suítes. PDFs/HTML/CSRF/logs privados ficam ignorados em storage; gzip comparado ao JSON bruto antes da remoção da cópia regenerável.
+
+Rollback: flags0, retorno do código à base `2f245a0`, sem restaurar dump sobre progresso posterior. Preservar snapshots/contratos/decisões de teste; não abri-los em versão sem v3. Nenhum save real foi convertido ou depende deste lote. Os campeonatos das sete UFs, seus IDs e a política RN estão preservados em `protected-base.json`.
+
+Próximos bloqueios: decisão formal para desempates administrativos múltiplos/sem critério do empate; CupES (composição e vaga); demais vagas estaduais/obrigações futuras. Não concluir mundialização nem renovar A/B/C/D incompletas. A v0.8 permanece fora do escopo.
+
+Motor/contratos: `1c56e57f355ad7b56226d5c6147d524ef13f8c9f`. Testes/exportador: `d064ecb84390b173d88ff35a04cd7d6a41875b06`. Evidências/documentação em commit separado; SHA remoto de encerramento confirmado após push e informado ao proprietário. Push exclusivamente na branch de trabalho, workflows main-only conferidos. Sem merge ou deploy.
+
+---
+
+## Histórico preservado das continuações anteriores
+
 # Complemento aprovado — candidaturas simuladas RN2027
 
 18/10/2026, após confirmação expressa do proprietário. A política `rn-state-d-2027-sim-v2` seleciona os **dois melhores elegíveis** da classificação final do RN, excluindo os clubes já contemplados por méritos nacionais verificados. É **adaptação do simulador**, não regra oficial CBF2027. Produz somente candidatura pendente: inscrições, consumo de vagas nacionais, recompensas e renovação continuam bloqueados.

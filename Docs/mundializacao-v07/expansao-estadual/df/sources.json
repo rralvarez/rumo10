@@ -1,0 +1,254 @@
+{
+  "consulted": "2026-10-18",
+  "df": {
+    "rec": "https://ffdf.com.br/assets/uploads/176245464195.pdf?v=17652869932",
+    "rec_sha256": "4b38e9b0ada3cc8fbf2834b18a6437fbfe66837a9f21342647dc08c9aae00054",
+    "table": "https://www.ffdf.com.br/pt/competicoes/jogos.php?q=1626",
+    "table_sha256": "3a26e4fad863c0c7a19d71ff7c7efbcf75d50a0fc9e5315b0ddbef6ca5e5f654",
+    "identity_map": {
+      "aruc": "ARUC-DF",
+      "brasília": "Brasília-DF",
+      "brasiliense": "Brasiliense-DF",
+      "capital": "Capital-DF",
+      "ceilândia": "Ceilândia-DF",
+      "paranoá": "Paranoá-DF",
+      "real brasília": "Real Brasília-DF",
+      "samambaia": "Samambaia-DF",
+      "sobradinho": "Sobradinho-DF",
+      "gama": "Gama-DF",
+      "bfc": "Brasília-DF",
+      "ceilândia saf": "Ceilândia-DF",
+      "samambaia saf": "Samambaia-DF",
+      "paranoá esporte clube": "Paranoá-DF"
+    },
+    "fixtures": [
+      [
+        1,
+        "Paranoá-DF",
+        "ARUC-DF"
+      ],
+      [
+        1,
+        "Brasiliense-DF",
+        "Brasília-DF"
+      ],
+      [
+        1,
+        "Ceilândia-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        1,
+        "Gama-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        1,
+        "Capital-DF",
+        "Samambaia-DF"
+      ],
+      [
+        2,
+        "ARUC-DF",
+        "Capital-DF"
+      ],
+      [
+        2,
+        "Sobradinho-DF",
+        "Paranoá-DF"
+      ],
+      [
+        2,
+        "Real Brasília-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        2,
+        "Brasília-DF",
+        "Gama-DF"
+      ],
+      [
+        2,
+        "Samambaia-DF",
+        "Ceilândia-DF"
+      ],
+      [
+        3,
+        "Paranoá-DF",
+        "Brasília-DF"
+      ],
+      [
+        3,
+        "Brasiliense-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        3,
+        "Ceilândia-DF",
+        "ARUC-DF"
+      ],
+      [
+        3,
+        "Capital-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        3,
+        "Gama-DF",
+        "Samambaia-DF"
+      ],
+      [
+        4,
+        "Real Brasília-DF",
+        "Samambaia-DF"
+      ],
+      [
+        4,
+        "Paranoá-DF",
+        "Capital-DF"
+      ],
+      [
+        4,
+        "Sobradinho-DF",
+        "ARUC-DF"
+      ],
+      [
+        4,
+        "Brasiliense-DF",
+        "Gama-DF"
+      ],
+      [
+        4,
+        "Brasília-DF",
+        "Ceilândia-DF"
+      ],
+      [
+        5,
+        "Samambaia-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        5,
+        "Ceilândia-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        5,
+        "Capital-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        5,
+        "ARUC-DF",
+        "Brasília-DF"
+      ],
+      [
+        5,
+        "Gama-DF",
+        "Paranoá-DF"
+      ],
+      [
+        6,
+        "Real Brasília-DF",
+        "Paranoá-DF"
+      ],
+      [
+        6,
+        "Sobradinho-DF",
+        "Gama-DF"
+      ],
+      [
+        6,
+        "Ceilândia-DF",
+        "Capital-DF"
+      ],
+      [
+        6,
+        "Samambaia-DF",
+        "Brasília-DF"
+      ],
+      [
+        6,
+        "Brasiliense-DF",
+        "ARUC-DF"
+      ],
+      [
+        7,
+        "Real Brasília-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        7,
+        "Paranoá-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        7,
+        "Gama-DF",
+        "Ceilândia-DF"
+      ],
+      [
+        7,
+        "Brasília-DF",
+        "Capital-DF"
+      ],
+      [
+        7,
+        "ARUC-DF",
+        "Samambaia-DF"
+      ],
+      [
+        8,
+        "Capital-DF",
+        "Brasiliense-DF"
+      ],
+      [
+        8,
+        "Ceilândia-DF",
+        "Paranoá-DF"
+      ],
+      [
+        8,
+        "Gama-DF",
+        "ARUC-DF"
+      ],
+      [
+        8,
+        "Brasília-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        8,
+        "Samambaia-DF",
+        "Sobradinho-DF"
+      ],
+      [
+        9,
+        "Paranoá-DF",
+        "Samambaia-DF"
+      ],
+      [
+        9,
+        "ARUC-DF",
+        "Real Brasília-DF"
+      ],
+      [
+        9,
+        "Sobradinho-DF",
+        "Brasília-DF"
+      ],
+      [
+        9,
+        "Capital-DF",
+        "Gama-DF"
+      ],
+      [
+        9,
+        "Brasiliense-DF",
+        "Ceilândia-DF"
+      ]
+    ],
+    "historical_scores_imported": false,
+    "consulted": "2026-10-18"
+  }
+}

@@ -1,0 +1,94 @@
+[
+  {
+    "file": "app\\CandangaoTrial.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\Competition.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\CompetitionCalendar.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\CompetitionView.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\ConfiguredStateCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\Game.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\MatchBalance.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\MatchVenue.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\PlayMode.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\StateAdministration.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\StateAdministrativeTie.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\StateQualification.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\StateResultProof.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\view.php",
+    "exit": 0
+  },
+  {
+    "file": "app\\WorldSeason.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\candangao-admin-replay-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\candangao-extra-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\candangao-fixtures.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\candangao-http-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\candangao-mysql-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\candangao-runtime-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests\\candangao-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/mechanics-boundary.php",
+    "exit": 0
+  }
+]

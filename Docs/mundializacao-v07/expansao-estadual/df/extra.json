@@ -1,0 +1,23 @@
+{
+    "checks": 5,
+    "pdo_checks": 0,
+    "game_commands": 86,
+    "actual_player_extra_minutes": 90,
+    "decision": {
+        "key": "59cf0a38adc1621e714ae0da68e828f66b2cf72261da3e396d63bebed50b436a",
+        "kind": "synthetic_test_designation",
+        "reference": "Explicit test operator: ARUC v Brasilia at neutral fixture ground, penalties if drawn; not an FFDF act",
+        "home": "ARUC-DF",
+        "away": "Brasília-DF",
+        "venue": "Synthetic fixture ground",
+        "neutral": true,
+        "draw_rule": "penalties",
+        "schema": "federation-fixture-designation-v1",
+        "designated_at": "2026-10-18T17:43:11Z",
+        "sha256": "b30ddbe07ec31bd084468c102037be7c625fcdacd8ce65e4b6f089f15344ff0d"
+    },
+    "initial_scores": "synthetic regulatory tie fixture, not real\/historical results",
+    "no_public_administration_endpoint": true,
+    "entries": 0,
+    "renewals": 0
+}

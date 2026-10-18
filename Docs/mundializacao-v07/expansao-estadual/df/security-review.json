@@ -1,0 +1,9 @@
+{
+  "scanned_files": 106,
+  "secret_findings": [],
+  "private_html_in_git": false,
+  "production_or_hub_changes": false,
+  "ddl": false,
+  "deploy_workflows_main_only": true,
+  "permanent_flags_changed": false
+}

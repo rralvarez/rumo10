@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "policy": "df-state-d-2027-v1",
+  "career_id": 857500,
+  "uf": "DF",
+  "source_edition": 2026,
+  "target_edition": 2027,
+  "competition": "df-a1",
+  "classification_state": "proven_by_results",
+  "admission_state": "pending_national_edition",
+  "quota": 2,
+  "selected": [
+    "Capital-DF",
+    "Ceilândia-DF"
+  ],
+  "candidate_count": 2,
+  "unavailable": 0,
+  "rows": [
+    {
+      "club": "Capital-DF",
+      "rank": 1,
+      "state": "pending_candidate",
+      "reason": null
+    },
+    {
+      "club": "Brasiliense-DF",
+      "rank": 2,
+      "state": "not_selected",
+      "reason": "already_national_candidate"
+    },
+    {
+      "club": "Gama-DF",
+      "rank": 3,
+      "state": "not_selected",
+      "reason": "already_national_candidate"
+    },
+    {
+      "club": "Ceilândia-DF",
+      "rank": 4,
+      "state": "pending_candidate",
+      "reason": null
+    },
+    {
+      "club": "Real Brasília-DF",
+      "rank": 5,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Sobradinho-DF",
+      "rank": 6,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Paranoá-DF",
+      "rank": 7,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Samambaia-DF",
+      "rank": 8,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "Brasília-DF",
+      "rank": 9,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    },
+    {
+      "club": "ARUC-DF",
+      "rank": 10,
+      "state": "not_selected",
+      "reason": "quota_filled"
+    }
+  ],
+  "contract": "ed6062b990545943a46be21a96e27fd8c088f5173dd97fe8aa28222c1ed3b1ab",
+  "results_digest": "4ee07e30c2a63c4efd8273cf5b5cc4921cd53f136656926b15ac33ed22fd8568",
+  "national_digest": "158fd8daa0a0c445968576638e839eb16d77b5ba3f45c11b5a4c3501e5e7c4c5",
+  "source": "https://ffdf.com.br/assets/uploads/176245464195.pdf?v=17652869932",
+  "memberships_applied": false,
+  "sha256": "48767f44cb7901cbe205e239841c2099678a45b4afc417ef1c0ea8058997fba5"
+}
