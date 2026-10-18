@@ -1,0 +1,36 @@
+{
+    "kind": "capability_gap_diagnostics_not_new_competition_acceptance",
+    "checks": [
+        {
+            "id": "intergroup_fixture",
+            "observed": "rejected_by_existing_engine",
+            "scope": [
+                "PR",
+                "GO"
+            ],
+            "synthetic_fixture": true
+        },
+        {
+            "id": "points_before_goal_difference",
+            "scope": [
+                "AC"
+            ],
+            "observed_existing_winner": "worse_initial",
+            "required_by_article_7_1": "better_initial",
+            "synthetic_fixture": true,
+            "reusable_without_extension": false
+        },
+        {
+            "id": "bronze_loser_selection",
+            "scope": [
+                "AC"
+            ],
+            "observed": "rejected_by_existing_engine",
+            "synthetic_fixture": true
+        }
+    ],
+    "new_federations_integrated": 0,
+    "new_candidate_receipts": 0,
+    "national_entries": 0,
+    "national_renewals": 0
+}

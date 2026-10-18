@@ -1,0 +1,45 @@
+{
+  "kind": "research_checkpoint_not_sports_acceptance",
+  "sources": [
+    {
+      "uf": "GO",
+      "source_hash_checked": true,
+      "status": "researched_not_integrated"
+    },
+    {
+      "uf": "PR",
+      "source_hash_checked": true,
+      "status": "researched_not_integrated"
+    },
+    {
+      "uf": "MA",
+      "source_hash_checked": true,
+      "status": "researched_not_integrated"
+    },
+    {
+      "uf": "AC",
+      "source_hash_checked": true,
+      "status": "researched_not_integrated"
+    }
+  ],
+  "protected_engine_hashes": {
+    "app/ConfiguredStateCompetition.php": "2e5c5526acb028c8a63cc143743885e92d6520523922af370e762d95bcdf6ab0",
+    "app/StateResultProof.php": "0eb0d7356e9496adb6a1594b505ff3343481696670d711415ae959adbb2f488a",
+    "app/StateQualification.php": "853570c8ba1da398c3e1a3dda3980e13939b1af7a43c77108461a03221ce0989",
+    "app/FutureSerieDAdmission.php": "5742926fac1077d43d41dba38648fd3ac95ac6db38343496dec9c2af8d9fa1ee",
+    "app/WorldSeason.php": "3b454380291186477990628de69d07ed8b3c73fa1c2afe6fad6207daa7a7822a",
+    "app/CompetitionCalendar.php": "c4faca620f13831e98dd844bd192a9e7b9b36c1b61dd3fd5370a6bb4d07ea471",
+    "app/Game.php": "7a20e4f07032e1825ee740ac5ec1167148dc872b038563962b4d676ae128377c",
+    "app/Progression.php": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8",
+    "app/Evolution.php": "2b5160bfc9a332855c6ed2089958e190e557452005ad1aba0881c67188ae9ef7",
+    "app/MatchVenue.php": "c44a063cb4c234ecb8e822e5d1dac54223b088f15bdfb0ee9d5bf2d44c025ead"
+  },
+  "baseline_career": 857500,
+  "baseline_state_candidates": 14,
+  "baseline_state_pending": 50,
+  "baseline_residual_pending": 4,
+  "new_federations_integrated": 0,
+  "new_candidate_receipts": 0,
+  "entries_applied": 0,
+  "renewals_applied": 0
+}

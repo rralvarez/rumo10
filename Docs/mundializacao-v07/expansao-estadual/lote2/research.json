@@ -1,0 +1,131 @@
+{
+  "schema": "state-lot2-research-v1",
+  "base": "b21170ecacbdd47d3ec94c094ab9e6dde3fadc8d",
+  "kind": "research_checkpoint_not_sports_delivery",
+  "selection": [
+    "GO",
+    "PR",
+    "MA",
+    "AC"
+  ],
+  "public_activation": false,
+  "new_federations_integrated": 0,
+  "new_national_entries": 0,
+  "national_renewals_applied": 0,
+  "sources": [
+    {
+      "uf": "GO",
+      "competition": "Goiano 1ª Divisão",
+      "source": "https://www.fgf.esp.br/assets/uploads/file/Regulamento%20Goian%C3%A3o%202026.pdf",
+      "local_file": "go-rec.pdf",
+      "locator": "arts. 5–24",
+      "participants": 12,
+      "facts": [
+        "Primeira fase intergrupos; três grupos de quatro.",
+        "Playoff de classificação entre 5º e 8º.",
+        "Permanência entre 10º/11º condicionada à diferença de até seis pontos; possibilidade de dispensar a volta."
+      ],
+      "gaps": [
+        "Conciliar tabela oficial, rodadas e mandos com IDs locais.",
+        "Interpretador não suporta liga intergrupos seguida de ramos paralelos e permanência condicional.",
+        "Critérios de vagas nacionais remetem à CBF; conciliar quotas e regras de repasse por caminho."
+      ],
+      "next_component": "Ramos paralelos de classificação e descenso, com condição de criação/encerramento explícita.",
+      "edition": 2026,
+      "consulted": "2026-10-18",
+      "sha256": "fe50af691c66f22a1684b307db5868a5fd0e586314c09c4759993ebf72925679",
+      "bytes": 10262352,
+      "status": "researched_not_integrated",
+      "implemented": false,
+      "new_candidate_receipts": 0
+    },
+    {
+      "uf": "PR",
+      "competition": "Paranaense 1ª Divisão",
+      "source": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2023/09/19162139/REC-1a-Divisao-2026.pdf",
+      "local_file": "pr-rec.pdf",
+      "locator": "arts. 8–19; anexo I; RGCP complementar",
+      "participants": 12,
+      "facts": [
+        "Dois grupos de seis enfrentam o grupo oposto na primeira fase.",
+        "Quatro melhores de cada grupo avançam; quartas e semifinais mantêm os cruzamentos definidos por grupo.",
+        "Quatro eliminados disputam dois confrontos de descenso em ida/volta; ranking final separa vencedores e perdedores."
+      ],
+      "gaps": [
+        "Tabela/mandos e critérios completos do RGCP ainda não conciliados neste lote.",
+        "Standings atual filtra adversários do mesmo grupo fora do modo campanha; não produz ranking correto de liga intergrupos.",
+        "Não há ramo paralelo de descenso no interpretador atual."
+      ],
+      "next_component": "Tabela intergrupos com validação por matriz de adversários e ranking que inclua os jogos contra o outro grupo.",
+      "edition": 2026,
+      "consulted": "2026-10-18",
+      "sha256": "68c09e2964f9cd4f48d4aaa40b2c19a0e3321ded14606fae8b3af8b06f85663a",
+      "bytes": 265496,
+      "status": "researched_not_integrated",
+      "implemented": false,
+      "new_candidate_receipts": 0
+    },
+    {
+      "uf": "MA",
+      "competition": "Maranhense Série A",
+      "source": "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf?v=177021254186",
+      "local_file": "ma-rec.pdf",
+      "locator": "art. 4 §§1–4; arts. 11–14",
+      "participants": 8,
+      "facts": [
+        "Turno único, quatro semifinalistas, semifinais e final em ida/volta.",
+        "Oitavo desce diretamente; sexto e sétimo disputam duas partidas pela permanência.",
+        "Terceiro e quarto dependem da campanha dos semifinalistas; repasses nacionais podem exigir opção do clube."
+      ],
+      "gaps": [
+        "Conciliar 28 jogos e IDs de ITZ Sport/Luminense; tabela oficial localizada, ainda não importada.",
+        "Ramo de permanência não representado pelo interpretador.",
+        "Critério em empate no playoff e opção entre vagas nacionais precisam de regra/decisão comprovada; não assumir pênaltis nem escolha automática."
+      ],
+      "next_component": "Ramo de permanência auditável e pendência explícita para decisões não cobertas.",
+      "edition": 2026,
+      "consulted": "2026-10-18",
+      "sha256": "dd4503e43dbaa041a96fe8b094e09181741eb1c25ff20b51b4db2d09ec50461d",
+      "bytes": 828564,
+      "status": "researched_not_integrated",
+      "implemented": false,
+      "new_candidate_receipts": 0
+    },
+    {
+      "uf": "AC",
+      "competition": "Acreano Série A",
+      "source": "https://www.ffac.com.br/competicoes/regulamento/43",
+      "local_file": "ac-rec.pdf",
+      "locator": "arts. 1, 3, 6–10, 28; PDF pp.3,6,7,11 (conferência visual requerida após OCR)",
+      "participants": 8,
+      "facts": [
+        "Semifinais em ida/volta com vantagem em igualdade de pontos; o texto não manda usar saldo antes dessa vantagem.",
+        "REC prevê disputa de terceiro lugar em jogo único e final única, com pênaltis.",
+        "Desempate de classificação termina em partida extra; menor número de gols sofridos precede confronto direto."
+      ],
+      "gaps": [
+        "PDF é imagem: OCR gerado para triagem, exige conferência visual dos artigos antes do contrato.",
+        "Notícia anuncia 33 jogos; soma do REC com terceiro lugar é 34. Conferir tabela autorizada e eventual adendo.",
+        "Motor advantage atual só aplica vantagem após pontos E saldo: incompatível com a redação do art.7 §1.",
+        "Falta seleção dos perdedores para disputa de bronze e registro da precedência no ranking final.",
+        "Conciliar mando da final/bronze, tabela completa e decisão de partida extra; sem inventar designação."
+      ],
+      "next_component": "Vantagem por pontos independente de saldo e disputa de posição com resultado persistido.",
+      "edition": 2026,
+      "consulted": "2026-10-18",
+      "sha256": "a9b3eefe151d9bebf3b76ac0b487df275226920ca3c7dfd0ea0061f5206a13f7",
+      "bytes": 11704523,
+      "status": "researched_not_integrated",
+      "implemented": false,
+      "new_candidate_receipts": 0
+    }
+  ],
+  "baseline_cohort": {
+    "path": "Docs/mundializacao-v07/expansao-estadual/df/sports.json",
+    "career_id": 857500,
+    "state_candidates": 14,
+    "state_slots_pending": 50,
+    "residual_slots_pending": 4,
+    "note": "Historical Entrega57 cohort only; not a new Entrega58 simulation."
+  }
+}
