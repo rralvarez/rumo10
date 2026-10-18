@@ -6,8 +6,10 @@ final class ConfiguredStateCompetition {
     public const VERSION='configured-state-v1';
     public const ROUTED_VERSION='configured-state-v2';
     public const ADMIN_VERSION='configured-state-v3';
+    public const INTERGROUP_VERSION='configured-state-v4';
 
     public static function validate(array $c,array $teams):void {
+        if(($c['state_engine']['version']??null)===self::INTERGROUP_VERSION){IntergroupStateCompetition::validate($c,$teams);return;}
         $r=$c['state_engine']??[];
         if(!in_array($r['version']??null,[self::VERSION,self::ROUTED_VERSION,self::ADMIN_VERSION],true)||$teams!==($c['teams']??[])||count($teams)<2||count(array_unique($teams))!==count($teams))throw new RuntimeException('Contrato estadual configurável inválido.');
         $allowed=['points','wins','gd','gf','h2h_gd_two','red','yellow','lots'];
@@ -43,6 +45,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function create(array $c,array $teams):array {
+        if(($c['state_engine']['version']??null)===self::INTERGROUP_VERSION)return IntergroupStateCompetition::create($c,$teams);
         self::validate($c,$teams);$lots=$teams;if($c['state_engine']['version']!==self::ADMIN_VERSION)shuffle($lots);
         $t=['id'=>$c['id'],'format'=>'configured_state','adapter_version'=>self::VERSION,'teams'=>$teams,'phase'=>'','groups'=>[],'initial_groups'=>[],'matches'=>[],'phase_start'=>1,'phase_end'=>0,'done'=>false,'champion'=>null,'promoted'=>[],'relegated'=>[],'ties'=>[],'lots'=>array_flip($lots),'rounds'=>[],'state_stage'=>0,'state_eliminated'=>[]];
         $t['adapter_version']=$c['state_engine']['version'];
@@ -52,6 +55,7 @@ final class ConfiguredStateCompetition {
 
     public static function standings(array $t,?array $teams=null,?string $phase=null,bool $campaign=false,bool $certify=false):array {
         $teams??=$t['teams'];$rules=Competition::catalog()[$t['id']]['state_engine'];
+        if(($rules['version']??null)===self::INTERGROUP_VERSION)$campaign=true;
         $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase||$m['phase']===$phase)&&(!$campaign||$phase||!isset($rules['campaign_phases'])||in_array($m['phase'],$rules['campaign_phases'],true))&&($campaign||(in_array($m['home'],$teams,true)&&in_array($m['away'],$teams,true)))));
         $rows=Schedule::table($matches,$teams);foreach($rows as &$row){$row['red']=0;$row['yellow']=0;foreach($matches as $m)if($m['status']==='finalizada')foreach(['home','away'] as $side)if($m[$side]===$row['team']){$row['red']+=$m[$side.'_red']??0;$row['yellow']+=$m[$side.'_yellow']??0;}}unset($row);
         // Group ties by every preceding criterion. H2H is never pairwise for a three-way tie.
@@ -116,6 +120,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function next(array &$t):void {
+        if(($t['adapter_version']??null)===self::INTERGROUP_VERSION){IntergroupStateCompetition::next($t);return;}
         $next=$t;try{StateAdministration::settle($next);self::advance($next);unset($next['administrative_pending']);$t=$next;}catch(StateAdministrativeTie $e){$t['matches']=$next['matches'];$t['ties']=$next['ties'];$t['administrative_pending']=$e->pending;}
     }
 

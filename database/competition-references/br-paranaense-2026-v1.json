@@ -1,0 +1,608 @@
+{
+  "id": "paranaense-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "pr-a1": {
+      "id": "pr-a1",
+      "name": "Paranaense 1ª Divisão",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "PR",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "pr",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Athletico-PR",
+        "Maringá-PR",
+        "Londrina-PR",
+        "São Joseense-PR",
+        "FC Cascavel-PR",
+        "Foz do Iguaçu-PR",
+        "Coritiba-PR",
+        "Operário-PR",
+        "Azuriz-PR",
+        "Cianorte-PR",
+        "Andraus-PR",
+        "Galo Maringá-PR"
+      ],
+      "groups": [
+        [
+          "Athletico-PR",
+          "Maringá-PR",
+          "Londrina-PR",
+          "São Joseense-PR",
+          "FC Cascavel-PR",
+          "Foz do Iguaçu-PR"
+        ],
+        [
+          "Coritiba-PR",
+          "Operário-PR",
+          "Azuriz-PR",
+          "Cianorte-PR",
+          "Andraus-PR",
+          "Galo Maringá-PR"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2023/09/19162139/REC-1a-Divisao-2026.pdf",
+        "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2026/08/10114658/RGCP-2026.pdf",
+        "https://www.federacaopr.com.br/competicao/profissional/"
+      ],
+      "reference_clubs": {
+        "Andraus-PR": {
+          "name": "Andraus-PR",
+          "country": "BR",
+          "uf": "PR",
+          "competitions": [
+            "pr-a1"
+          ],
+          "game_only": true,
+          "source": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2023/09/19162139/REC-1a-Divisao-2026.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Foz do Iguaçu-PR": {
+          "name": "Foz do Iguaçu-PR",
+          "country": "BR",
+          "uf": "PR",
+          "competitions": [
+            "pr-a1"
+          ],
+          "game_only": true,
+          "source": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2023/09/19162139/REC-1a-Divisao-2026.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Galo Maringá-PR": {
+          "name": "Galo Maringá-PR",
+          "country": "BR",
+          "uf": "PR",
+          "competitions": [
+            "pr-a1"
+          ],
+          "game_only": true,
+          "source": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2023/09/19162139/REC-1a-Divisao-2026.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "classification": "official_2026_sport_format_simulated_results",
+        "qualification_note": "Pending candidacies only; no BID/licensing certification; no reciprocal lower-state division implemented"
+      },
+      "state_engine": {
+        "version": "configured-state-v4",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "h2h_points_two",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "league": {
+          "groups": [
+            [
+              "Athletico-PR",
+              "Maringá-PR",
+              "Londrina-PR",
+              "São Joseense-PR",
+              "FC Cascavel-PR",
+              "Foz do Iguaçu-PR"
+            ],
+            [
+              "Coritiba-PR",
+              "Operário-PR",
+              "Azuriz-PR",
+              "Cianorte-PR",
+              "Andraus-PR",
+              "Galo Maringá-PR"
+            ]
+          ],
+          "fixtures": [
+            [
+              1,
+              "São Joseense-PR",
+              "Galo Maringá-PR"
+            ],
+            [
+              1,
+              "Londrina-PR",
+              "Operário-PR"
+            ],
+            [
+              1,
+              "Cianorte-PR",
+              "Maringá-PR"
+            ],
+            [
+              1,
+              "Coritiba-PR",
+              "Foz do Iguaçu-PR"
+            ],
+            [
+              1,
+              "FC Cascavel-PR",
+              "Azuriz-PR"
+            ],
+            [
+              1,
+              "Andraus-PR",
+              "Athletico-PR"
+            ],
+            [
+              2,
+              "Operário-PR",
+              "Maringá-PR"
+            ],
+            [
+              2,
+              "Coritiba-PR",
+              "Londrina-PR"
+            ],
+            [
+              2,
+              "Foz do Iguaçu-PR",
+              "Azuriz-PR"
+            ],
+            [
+              2,
+              "Andraus-PR",
+              "São Joseense-PR"
+            ],
+            [
+              2,
+              "Cianorte-PR",
+              "Athletico-PR"
+            ],
+            [
+              2,
+              "Galo Maringá-PR",
+              "FC Cascavel-PR"
+            ],
+            [
+              3,
+              "Maringá-PR",
+              "Coritiba-PR"
+            ],
+            [
+              3,
+              "Galo Maringá-PR",
+              "Foz do Iguaçu-PR"
+            ],
+            [
+              3,
+              "Azuriz-PR",
+              "Londrina-PR"
+            ],
+            [
+              3,
+              "FC Cascavel-PR",
+              "Andraus-PR"
+            ],
+            [
+              3,
+              "Athletico-PR",
+              "Operário-PR"
+            ],
+            [
+              3,
+              "São Joseense-PR",
+              "Cianorte-PR"
+            ],
+            [
+              4,
+              "Athletico-PR",
+              "Coritiba-PR"
+            ],
+            [
+              4,
+              "Foz do Iguaçu-PR",
+              "Andraus-PR"
+            ],
+            [
+              4,
+              "Londrina-PR",
+              "Galo Maringá-PR"
+            ],
+            [
+              4,
+              "Maringá-PR",
+              "Azuriz-PR"
+            ],
+            [
+              4,
+              "Cianorte-PR",
+              "FC Cascavel-PR"
+            ],
+            [
+              4,
+              "São Joseense-PR",
+              "Operário-PR"
+            ],
+            [
+              5,
+              "Andraus-PR",
+              "Londrina-PR"
+            ],
+            [
+              5,
+              "Azuriz-PR",
+              "Athletico-PR"
+            ],
+            [
+              5,
+              "Galo Maringá-PR",
+              "Maringá-PR"
+            ],
+            [
+              5,
+              "Foz do Iguaçu-PR",
+              "Cianorte-PR"
+            ],
+            [
+              5,
+              "Operário-PR",
+              "FC Cascavel-PR"
+            ],
+            [
+              5,
+              "Coritiba-PR",
+              "São Joseense-PR"
+            ],
+            [
+              6,
+              "Maringá-PR",
+              "Andraus-PR"
+            ],
+            [
+              6,
+              "Londrina-PR",
+              "Cianorte-PR"
+            ],
+            [
+              6,
+              "Operário-PR",
+              "Foz do Iguaçu-PR"
+            ],
+            [
+              6,
+              "FC Cascavel-PR",
+              "Coritiba-PR"
+            ],
+            [
+              6,
+              "Azuriz-PR",
+              "São Joseense-PR"
+            ],
+            [
+              6,
+              "Athletico-PR",
+              "Galo Maringá-PR"
+            ]
+          ],
+          "rounds": 6,
+          "home_games": 3,
+          "return": false
+        },
+        "barriers": [
+          [
+            {
+              "name": "quartas",
+              "entries": [
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 0
+                },
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 1
+                },
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 2
+                },
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 3
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 0
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 1
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 2
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  4,
+                  7
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "home_phases": [
+                "liga"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            },
+            {
+              "name": "descenso",
+              "entries": [
+                {
+                  "from": "group_tail",
+                  "skip": 4,
+                  "index": 0
+                },
+                {
+                  "from": "group_tail",
+                  "skip": 4,
+                  "index": 1
+                },
+                {
+                  "from": "group_tail",
+                  "skip": 4,
+                  "index": 2
+                },
+                {
+                  "from": "group_tail",
+                  "skip": 4,
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "home_phases": [
+                "liga"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            }
+          ],
+          [
+            {
+              "name": "semifinal",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 0
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 1
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 2
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "quartas"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            }
+          ],
+          [
+            {
+              "name": "final",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "semifinal",
+                  "index": 0
+                },
+                {
+                  "from": "winner",
+                  "phase": "semifinal",
+                  "index": 1
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "quartas",
+                "semifinal"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            }
+          ]
+        ],
+        "ranking": [
+          {
+            "from": "winner",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "semifinal",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "semifinal"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "quartas",
+            "rank_phases": [
+              "liga",
+              "quartas"
+            ]
+          },
+          {
+            "from": "winner",
+            "phase": "descenso",
+            "rank_phases": [
+              "liga",
+              "descenso"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "descenso",
+            "rank_phases": [
+              "liga",
+              "descenso"
+            ]
+          }
+        ],
+        "title_phase": "final",
+        "relegation_phase": "descenso"
+      }
+    }
+  },
+  "paths": {
+    "PR": {
+      "id": "pr-state-d-2027-v1",
+      "competition": "pr-a1",
+      "source_edition": 2026,
+      "quota": 3,
+      "max_candidates": 3,
+      "source": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2023/09/19162139/REC-1a-Divisao-2026.pdf",
+      "location": "REC art.19; RGCP art.12; CBF D2026 reference quota, future simulated admission pending",
+      "participants": [
+        "Athletico-PR",
+        "Maringá-PR",
+        "Londrina-PR",
+        "São Joseense-PR",
+        "FC Cascavel-PR",
+        "Foz do Iguaçu-PR",
+        "Coritiba-PR",
+        "Operário-PR",
+        "Azuriz-PR",
+        "Cianorte-PR",
+        "Andraus-PR",
+        "Galo Maringá-PR"
+      ],
+      "selective_required": false,
+      "roll_down": "Best eligible final ranking, excluding verified upper national membership and retained national D merits",
+      "eligibility": "pending sports candidacy only; BID/licensing unknown",
+      "consulted_on": "2026-10-18"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2023/09/19162139/REC-1a-Divisao-2026.pdf",
+      "sha256": "68c09e2964f9cd4f48d4aaa40b2c19a0e3321ded14606fae8b3af8b06f85663a",
+      "bytes": 265496,
+      "locator": "REC arts.8-19, annex I",
+      "consulted": "2026-10-18"
+    },
+    {
+      "url": "https://federacaopr.sfo3.digitaloceanspaces.com/wp-content/uploads/2026/08/10114658/RGCP-2026.pdf",
+      "sha256": "d0f1fe841f61aa29be35ced24e45799de1abbd9b3cd2b5ff5c3bb790eb463acd",
+      "bytes": 386843,
+      "locator": "RGCP art.12, pp.7-8",
+      "consulted": "2026-10-18"
+    },
+    {
+      "url": "https://www.federacaopr.com.br/competicao/profissional/",
+      "sha256": "85d49440d2fd3339163f2540ee8dc16afd4cf499f50527c1bbaf4f2ddca8a208",
+      "bytes": 542164,
+      "locator": "36 first-phase fixtures, rounds1-6, home/away only",
+      "consulted": "2026-10-18"
+    }
+  ],
+  "historical_scores_imported": false
+}

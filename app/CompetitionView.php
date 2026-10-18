@@ -26,9 +26,12 @@ final class CompetitionView {
             if((Competition::catalog()[$t['id']]['uf']??null)==='RO')echo '<p class="subtle">Neste piloto, as posições de campeão e vice podem fundamentar vagas nacionais. Um repasse além dos finalistas permanece pendente de confirmação.</p>';
             if(array_filter($t['matches'],fn($m)=>isset($m['simultaneous_group'])))echo '<p class="subtle">Rodada decisiva na mesma data e horário simulados. Resultados são processados em lotes; classificação e méritos só são homologados após todos os jogos. Uma tabela durante o lote é parcial.</p>';
             $qualificationNote=Competition::catalog()[$t['id']]['rules']['qualification_note']??null;
-            if($qualificationNote)echo '<p class="subtle">'.e($qualificationNote).'</p>';
+            if($qualificationNote&&($t['adapter_version']??null)!==ConfiguredStateCompetition::INTERGROUP_VERSION)echo '<p class="subtle">'.e($qualificationNote).'</p>';
         }
-        if($t['ties']) {
+        if(($t['adapter_version']??null)===ConfiguredStateCompetition::INTERGROUP_VERSION&&$t['state_stage']>0){
+            if($t['done']){echo '<h3>Classificação final</h3><ol>';foreach($t['final_ranking'] as $club)echo '<li>'.e(ClubBadge::name($club)).(in_array($club,$t['relegated'],true)?' · mérito de descenso, edição seguinte pendente':'').'</li>';echo '</ol>';}
+            else{$rules=Competition::catalog()[$t['id']]['state_engine'];foreach($rules['barriers'][$t['state_stage']-1] as $branch){echo '<h3>'.e($branch['name']==='descenso'?'Permanência / descenso':ucfirst($branch['name'])).'</h3>';foreach($t['state_phase_ties'][$branch['name']] as $i=>$tie){echo '<article class="panel"><h4>'.e(ClubBadge::name($tie['a']).' × '.ClubBadge::name($tie['b'])).'</h4>';foreach($t['matches'] as $m)if($m['phase']===$branch['name']&&($m['tie']??null)===$i){echo '<p>'.e(ClubBadge::name($m['home'])).' <b>'.($m['status']==='finalizada'?e($m['hg'].' × '.$m['ag']):'×').'</b> '.e(ClubBadge::name($m['away'])).'</p>';if(isset($m['penalties']))echo '<p>Nos pênaltis: '.e(implode(' × ',$m['penalties'])).'</p>';}if($tie['winner'])echo '<p>Vencedor do confronto: '.e(ClubBadge::name($tie['winner'])).'</p>';echo '</article>';}}}
+        } elseif($t['ties']) {
             foreach($t['ties'] as $i=>$tie) {
                 echo '<article class="panel"><h3>'.e($tie['a'].' × '.$tie['b']).'</h3>';
                 foreach($t['matches'] as $m)if($m['phase']===$t['phase'] && ($m['tie']??null)===$i) {
