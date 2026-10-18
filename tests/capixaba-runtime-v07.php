@@ -1,0 +1,24 @@
+<?php
+declare(strict_types=1);
+putenv('RUMOHUB_ENABLED=0');putenv('RUMOHUB_BENEFITS=0');putenv('RUMO10_WORLD_CALENDAR=1');putenv('RUMO10_WORLD_FIXTURES=1');require dirname(__DIR__).'/app/bootstrap.php';
+$checks=0;function ok(bool $v,string $m):void{global $checks;$checks++;if(!$v)throw new RuntimeException($m);}
+$results=[];
+foreach(['normal','rapido','expresso'] as $mode){$g=CapixabaTrial::create(857221,$mode,'Capixaba SC-ES');$steps=0;$max=0.;$peak=0;$times=[];$start=hrtime(true);
+ while($g['stage']!=='resumo'){
+  if(++$steps>4000)throw new RuntimeException('Loop');$action='choice';$input=['option'=>0];
+  if(in_array($g['stage'],['world_processing','competicao_resumo'],true)){$action='continue';$input=[];}
+  elseif($g['stage']==='treino'&&$mode!=='normal'){$action='simulate';$input=['plan'=>'equilibrio'];}
+  elseif($g['stage']==='partida'){$m=$g['matches'][Game::currentIndex($g)];if($m['status']!=='em_andamento'||$m['minute']<$m['entry']||$m['minute']>=$m['exit']){$action='advance';$input=[];}}
+  $time=hrtime(true);$g=Game::command($g,$action,$input);$ms=(hrtime(true)-$time)/1e6;$times[]=$ms;$max=max($max,$ms);$wire=json_encode($g,JSON_THROW_ON_ERROR);$peak=max($peak,strlen($wire));$g=json_decode($wire,true,512,JSON_THROW_ON_ERROR);
+ }
+ $stateProof=StateQualification::recordMany($g,['AL','PI','RO','BA','ES']);$audit=FutureSerieDAdmission::audit($g);ok($stateProof['AL']['candidate_count']===2&&$stateProof['PI']['candidate_count']===2&&$audit['federation_missing_total']===64-array_sum(array_column($stateProof,'candidate_count')),'candidaturas por resultados reais do Game');$ownState='es-a1';$playedState=array_filter($g['competitions'][$ownState]['matches'],fn($m)=>($m['stats']['minutes']??0)>0);ok(count($playedState)>0,'personagem disputa estadual configurável');
+ ok(count($g['world_completed'])===13&&count($g['world_agenda'])===2077,'treze competições/2077 jogos');ok(count($g['competition_results'])===($g['club']==='CRB-AL'?5:1),'CRB cinco competições');
+ WorldSeason::scope($g,function()use(&$g){ok(CopaBrasilCompetition::verify($g['competitions']['br-copa']),'CDB final reconstruída');$coverage=MandatoryTournamentCoverage::audit($g);ok($coverage['clubs']['CRB-AL']['br-copa']['completed']&&!$coverage['clubs']['CRB-AL']['br-copa']['required_uncovered'],'CDB obrigatória coberta');});
+ $cup=$g['competitions']['br-copa'];$own=[];$played=[];foreach($cup['matches'] as $m){if(in_array($g['club'],[$m['home'],$m['away']],true))$own[]=$m;if(($m['stats']['minutes']??0)>0){ok(in_array($g['club'],[$m['home'],$m['away']],true),'NPC sem minutos do personagem');$played[]=$m;}}
+ ok($g['club']==='CRB-AL'?count($own)>=1:count($own)===0,'inscrição CDB não inventada');$keys=[];foreach($played as $m){$key='match:1:br-copa:'.$m['round'].':'.$m['home'].':'.$m['away'];ok(isset($g['reward_ledger'][$key]),'XP de partida com minutos');$keys[]=$key;}
+ foreach($g['reward_ledger'] as $key=>$row)if(str_starts_with($key,'match:1:br-copa:'))ok(in_array($key,$keys,true),'sem XP de partida NPC/sem minutos');
+ $saved=$g;$replayed=WorldSeason::scope($g,function()use($g){WorldSeason::next($g);return $g;});ok($replayed['reward_ledger']===$saved['reward_ledger']&&$replayed['national_pyramid_closures']===$saved['national_pyramid_closures'],'replay sem recompensa/título duplicado');
+ ok(!$g['national_pyramid_closures']['1']['memberships_applied'],'sem renovação parcial');$busy=[];foreach($g['world_agenda'] as $e)foreach(['home','away'] as $side){$date=strtotime($e['date'].' UTC');ok(!isset($busy[$e[$side]])||$date-$busy[$e[$side]]>=3*86400,'descanso consolidado');$busy[$e[$side]]=$date;}
+ sort($times);$q=fn($p)=>round($times[(int)ceil(count($times)*$p)-1],2);$results[]=['mode'=>$mode,'commands'=>$steps,'matches'=>2077,'club'=>$g['club'],'state_candidates'=>array_column($stateProof,'candidate_count','uf'),'state_slots_pending'=>$audit['federation_missing_total'],'state_played'=>count($playedState),'cup_matches'=>155,'own_cup_fixtures'=>count($own),'own_cup_played'=>count($played),'own_cup_minutes'=>array_sum(array_map(fn($m)=>$m['stats']['minutes'],$played)),'cup_champion'=>$cup['champion'],'p50_ms'=>$q(.5),'p95_ms'=>$q(.95),'p99_ms'=>$q(.99),'max_ms'=>round($max,2),'elapsed_ms'=>round((hrtime(true)-$start)/1e6,2),'snapshot_bytes'=>strlen(json_encode($g)),'peak_snapshot_bytes'=>$peak,'seasons'=>1,'renewals'=>0];
+}
+$dir=dirname(__DIR__).'/Docs/mundializacao-v07/expansao-estadual/es';file_put_contents($dir.'/game-modes.json',json_encode(['checks'=>$checks,'results'=>$results,'same_career_sequential_seasons'=>1,'national_renewals'=>0,'five_national_seasons'=>false],JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));echo "OK: $checks verificações Game,3modos,CDB e calendário completo da fixture.\n";

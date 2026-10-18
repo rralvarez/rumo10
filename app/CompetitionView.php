@@ -24,6 +24,8 @@ final class CompetitionView {
         if($t['format']==='configured_state'){
             echo '<p class="subtle">Datas simuladas. As vagas nacionais e a continuidade estadual ainda dependem da validação das próximas competições.</p>';
             if((Competition::catalog()[$t['id']]['uf']??null)==='RO')echo '<p class="subtle">Neste piloto, as posições de campeão e vice podem fundamentar vagas nacionais. Um repasse além dos finalistas permanece pendente de confirmação.</p>';
+            $qualificationNote=Competition::catalog()[$t['id']]['rules']['qualification_note']??null;
+            if($qualificationNote)echo '<p class="subtle">'.e($qualificationNote).'</p>';
         }
         if($t['ties']) {
             foreach($t['ties'] as $i=>$tie) {
