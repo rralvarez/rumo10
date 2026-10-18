@@ -1,0 +1,146 @@
+[
+  {
+    "suite": "narrative",
+    "exit": 0,
+    "stdout": "OK: 89821 verificações; 214 snapshots antigos, 800 novas, seis posições, 500 rodadas por posição.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "narrative-modes",
+    "exit": 0,
+    "stdout": "OK: 162 temporadas, 2268 partidas reconciliadas, 12874 decisões automáticas com seleção auditada.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "scenes-strength",
+    "exit": 0,
+    "stdout": "12179 verificações OK; 1014 situações, 4056 alternativas; favorito=5719, zebra=50, empate=231; média=4.31 gols.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "scene-consequences",
+    "exit": 0,
+    "stdout": "\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\n\nWarning: Undefined array key \"chance\" in C:\\inetpub\\wwwroot\\rumo10\\app\\Game.php on line 196\nOK: 840949 verificações das 4056 alternativas, quatro resultados, efeitos reais, contexto e disciplina.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "scene-failures",
+    "exit": 0,
+    "stdout": "OK: 8353 verificações; falhas de 4056 alternativas, consultas contextualizadas e efeitos preservados.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "weekend-editorial",
+    "exit": 0,
+    "stdout": "OK: 511 verificações editoriais das 200 alternativas fora de campo.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "social-context",
+    "exit": 0,
+    "stdout": "OK: escolhas familiares e pessoais não afetam entrosamento; mensagens contextualizadas; apoio ao elenco preservado.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "finishing",
+    "exit": 0,
+    "stdout": "OK: 15841 verificações em 66 alternativas de chute; 445 gols e 2195 falhas.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "match-momentum",
+    "exit": 0,
+    "stdout": "OK: 2425 verificações de sequência, chance elevada, gol, assistência, falha e consumo único.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "match-balance",
+    "exit": 0,
+    "stdout": "OK: 35 verificações. Iniciante: gol 41.17%; assistência 49.42%.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "normal-xp",
+    "exit": 0,
+    "stdout": "OK: 369 verificações de XP equivalente, evolução e informações internas ocultas.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "lifecycle",
+    "exit": 0,
+    "stdout": "OK: 144 verificações de evolução e aposentadoria.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "package-engine",
+    "exit": 0,
+    "stdout": "OK: 104 verificações; 45.000 partidas Monte Carlo. Iniciante gol 38.3%, assistência 46.42%.\n[\n    {\n        \"home\": 40,\n        \"away\": 80,\n        \"n\": 15000,\n        \"wins\": 0.019733333333333332,\n        \"draws\": 0.06433333333333334,\n        \"goals_for\": 0.4314,\n        \"goals_against\": 3.4279333333333333\n    },\n    {\n        \"home\": 60,\n        \"away\": 60,\n        \"n\": 15000,\n        \"wins\": 0.4266,\n        \"draws\": 0.2680666666666667,\n        \"goals_for\": 1.342,\n        \"goals_against\": 1.0832666666666666\n    },\n    {\n        \"home\": 80,\n        \"away\": 40,\n        \"n\": 15000,\n        \"wins\": 0.9522666666666667,\n        \"draws\": 0.038266666666666664,\n        \"goals_for\": 4.0082,\n        \"goals_against\": 0.35086666666666666\n    }\n]\n",
+    "stderr": ""
+  },
+  {
+    "suite": "package-cohorts",
+    "exit": 0,
+    "stdout": "{\n    \"development\": {\n        \"fraca\": {\n            \"n\": 120,\n            \"mean\": 0,\n            \"min\": 0,\n            \"max\": 0\n        },\n        \"regular\": {\n            \"n\": 120,\n            \"mean\": 1,\n            \"min\": 1,\n            \"max\": 1\n        },\n        \"boa\": {\n            \"n\": 120,\n            \"mean\": 2.137962962962963,\n            \"min\": 2,\n            \"max\": 3\n        },\n        \"excepcional\": {\n            \"n\": 120,\n            \"mean\": 3.5194444444444466,\n            \"min\": 3,\n            \"max\": 4\n        }\n    },\n    \"leagues\": {\n        \"control\": {\n            \"seasons\": 300,\n            \"champions\": 0,\n            \"top_two\": 0,\n            \"survival_top_six\": 0,\n            \"goals_per_game\": 0.4326190476190476,\n            \"conceded_per_game\": 3.509047619047619\n        },\n        \"with_protagonist\": {\n            \"seasons\": 300,\n            \"champions\": 0,\n            \"top_two\": 0,\n            \"survival_top_six\": 0,\n            \"goals_per_game\": 0.4104761904761905,\n            \"conceded_per_game\": 3.4752380952380952\n        }\n    },\n    \"checks\": 487\n}\nOK: coortes em seis posições e 600 temporadas sintéticas de elite.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "package-seasons",
+    "exit": 0,
+    "stdout": "{\n    \"normal\": {\n        \"games\": 420,\n        \"goals\": 0,\n        \"assists\": 0,\n        \"growth\": 1.444444444444457,\n        \"seasons\": 30,\n        \"mean_growth\": 0.04814814814814857,\n        \"goals_per_game\": 0,\n        \"assists_per_game\": 0\n    },\n    \"rapido\": {\n        \"games\": 420,\n        \"goals\": 0,\n        \"assists\": 0,\n        \"growth\": 1.666666666666643,\n        \"seasons\": 30,\n        \"mean_growth\": 0.05555555555555477,\n        \"goals_per_game\": 0,\n        \"assists_per_game\": 0\n    },\n    \"expresso\": {\n        \"games\": 420,\n        \"goals\": 0,\n        \"assists\": 0,\n        \"growth\": 1.6666666666666572,\n        \"seasons\": 30,\n        \"mean_growth\": 0.05555555555555524,\n        \"goals_per_game\": 0,\n        \"assists_per_game\": 0\n    }\n}\nOK: 90 temporadas, seis posições, mesma política nos três ritmos e placar reconciliado.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "presentation",
+    "exit": 0,
+    "stdout": "OK: estatísticas ao vivo, histórico por rodada, totais finalizados, resultado verde/vermelho e escaping.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "season-presentation",
+    "exit": 0,
+    "stdout": "OK: continuação antes dos detalhes, narrativa com dados reais e histórico sem duplicação.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "wheel",
+    "exit": 0,
+    "stdout": "OK: setores proporcionais, orientação do ponteiro, resultado persistido e escaping.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "execution-v04",
+    "exit": 0,
+    "stdout": "OK: 1088 verificações; 1350000 sorteios, 135 cenários, chance clara iniciante 35.9%.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "possession-v04",
+    "exit": 0,
+    "stdout": "OK: 19 verificações de posse, interrupção, bônus e compatibilidade.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "continuity-v04",
+    "exit": 0,
+    "stdout": "OK: 668 verificações, cinco temporadas amazonenses e varredura de 131 competições.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "market-v04",
+    "exit": 0,
+    "stdout": "OK: 1405 verificações de avaliação, mercado, minutos e compatibilidade.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "entry-countries",
+    "exit": 0,
+    "stdout": "OK: 1060 verificações, 74 países inventariados; destinos válidos, bloqueios, planos e ofertas.\n",
+    "stderr": ""
+  },
+  {
+    "suite": "mechanics-boundary",
+    "exit": 0,
+    "stdout": "OK: 97 arquivos comparados; catálogo, gates, pesos, sementes, snapshots e demais mecânicas preservados.\n",
+    "stderr": ""
+  }
+]

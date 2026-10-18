@@ -1,0 +1,95 @@
+{
+  "base": "e222f3c9de29f6a07246db2f0fbee30ae96d9b27",
+  "checks": [
+    {
+      "file": "database/competition-references/al-b-homes-2026.json",
+      "unchanged": true,
+      "sha256": "4968fbacf5b28e73a0e16d3e76c2cf203ea82348e7430b488964522b5d661355"
+    },
+    {
+      "file": "database/competition-references/br-abc-2026.json",
+      "unchanged": true,
+      "sha256": "fa350fc5a957a1b884804de4319a4c7d8c3eb6c6630324aaa92641c4b0e10ee6"
+    },
+    {
+      "file": "database/competition-references/br-al-2026.json",
+      "unchanged": true,
+      "sha256": "42e4bb022232decaf168f343cc4c35d2c51150a94100e51ea097fa6f733eb194"
+    },
+    {
+      "file": "database/competition-references/br-candangao-2026-v1.json",
+      "unchanged": true,
+      "sha256": "63875e38bf45cf33e1047890ba31f35e51b209b0046d5dec9c668b8669efac09"
+    },
+    {
+      "file": "database/competition-references/br-capixaba-2026-v1.json",
+      "unchanged": true,
+      "sha256": "22df6dd54f82fed3becda8398c8263845c3283b98e72a31d97afbb042daf4f6d"
+    },
+    {
+      "file": "database/competition-references/br-copa-annex-2026.json",
+      "unchanged": true,
+      "sha256": "639793c3f62e32163393cc602390c884998e11fcabdaa0ce9dc8be24c03e52b5"
+    },
+    {
+      "file": "database/competition-references/br-copa-sports-2026.json",
+      "unchanged": true,
+      "sha256": "fd8d1e70168401cfd93a7a270a02d352f90beb50b7243a9ccd7672f2bfbd2faf"
+    },
+    {
+      "file": "database/competition-references/br-cup-obligations-2026.json",
+      "unchanged": true,
+      "sha256": "dd66c0573c8b783343e106b004f5dc146aff34ba023a3e4f0d7519674edba55d"
+    },
+    {
+      "file": "database/competition-references/br-d-admission-2026-v2.json",
+      "unchanged": true,
+      "sha256": "bd571a755af215eaf1059f8280e617882e8f1b18d1a71cc53a561f890eb2c006"
+    },
+    {
+      "file": "database/competition-references/br-d-annex-2026.json",
+      "unchanged": true,
+      "sha256": "87e0b46152d4696cb3b264df4248e819a8a2bc0fae7bc9f52f7b2511a61c3d14"
+    },
+    {
+      "file": "database/competition-references/br-d-future-proposal-v1.json",
+      "unchanged": true,
+      "sha256": "bc0fb45b89702fcfe42cc22ff65e6ef5418b3790f9b2c92c1b926b126ce1bccf"
+    },
+    {
+      "file": "database/competition-references/br-d-sports-2026.json",
+      "unchanged": true,
+      "sha256": "12e1f20dc519026bd50402050f9ddec9be331cf4640bc068e7c7d632954f58aa"
+    },
+    {
+      "file": "database/competition-references/br-future-formats-v1.json",
+      "unchanged": true,
+      "sha256": "f2e5f9b4762c019cff166424ae1a91f8b495dd6754a35f7ee6130da477e5f943"
+    },
+    {
+      "file": "database/competition-references/br-nordeste-2026.json",
+      "unchanged": true,
+      "sha256": "bd7e9ad9a36cf35a1f431e18293045a179ebdcf87b9268b168eb1725004c8c22"
+    },
+    {
+      "file": "database/competition-references/br-pe-rn-2026-v1.json",
+      "unchanged": true,
+      "sha256": "991602a3c24aff6cf85e56eeff667d1cd25533515ba7432a7a503dd8a13888f6"
+    },
+    {
+      "file": "database/competition-references/br-state-batch-2026-v1.json",
+      "unchanged": true,
+      "sha256": "1539662b9b26c33763d67af677b5f28cc9848e54044853b1fc9d989c374cdc75"
+    },
+    {
+      "file": "database/competition-references/br-state-d-paths-v1.json",
+      "unchanged": true,
+      "sha256": "089a1e2df647f55ec2b1dca367ea84300795873294bb737830d5262eafc8392c"
+    },
+    {
+      "file": "database/competition-references/br-state-expansion-2026-v1.json",
+      "unchanged": true,
+      "sha256": "0441ab4a97c66cef8ced5da5ac41342fc05574d0a2fb872d982644678ae9605e"
+    }
+  ]
+}

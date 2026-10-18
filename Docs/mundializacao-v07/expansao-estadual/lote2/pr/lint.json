@@ -1,0 +1,54 @@
+[
+  {
+    "file": "app/IntergroupStateCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/ParanaenseTrial.php",
+    "exit": 0
+  },
+  {
+    "file": "app/ConfiguredStateCompetition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/StateQualification.php",
+    "exit": 0
+  },
+  {
+    "file": "app/StateResultProof.php",
+    "exit": 0
+  },
+  {
+    "file": "app/WorldSeason.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Competition.php",
+    "exit": 0
+  },
+  {
+    "file": "app/CompetitionView.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/paranaense-contract-negatives-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/paranaense-http-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/paranaense-mysql-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/paranaense-runtime-v07.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/paranaense-v07.php",
+    "exit": 0
+  }
+]
