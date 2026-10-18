@@ -10,6 +10,7 @@ final class ConfiguredStateCompetition {
         $r=$c['state_engine']??[];
         if(!in_array($r['version']??null,[self::VERSION,self::ROUTED_VERSION],true)||$teams!==($c['teams']??[])||count($teams)<2||count(array_unique($teams))!==count($teams))throw new RuntimeException('Contrato estadual configurável inválido.');
         $allowed=['points','wins','gd','gf','h2h_gd_two','red','yellow','lots'];
+        if(($r['version']??null)===self::ROUTED_VERSION)$allowed=array_merge($allowed,['h2h_points_group','h2h_gd_group']);
         if(empty($r['tiebreakers'])||count(array_unique($r['tiebreakers']))!==count($r['tiebreakers'])||array_diff($r['tiebreakers'],$allowed)||$r['tiebreakers'][0]!=='points'||end($r['tiebreakers'])!=='lots')throw new RuntimeException('Critérios de desempate incompletos.');
         $stages=$r['stages']??[];if(!$stages)throw new RuntimeException('Fases ausentes.');$names=[];
         foreach($stages as $i=>$stage){if(empty($stage['name'])||isset($names[$stage['name']])||!in_array($stage['type']??'', ['league','knockout'],true))throw new RuntimeException('Fase inválida/duplicada.');$names[$stage['name']]=true;
@@ -50,6 +51,11 @@ final class ConfiguredStateCompetition {
                 if(count($bucket)!==2)return $sort($bucket,$at+1);$gd=0;[$a,$b]=$bucket;
                 foreach($matches as $m)if($m['status']==='finalizada'&&in_array($m['home'],[$a['team'],$b['team']],true)&&in_array($m['away'],[$a['team'],$b['team']],true))$gd+=($m['home']===$a['team']?1:-1)*($m['hg']-$m['ag']);
                 return $gd?($gd>0?[$a,$b]:[$b,$a]):$sort($bucket,$at+1);
+            }
+            if(in_array($criterion,['h2h_points_group','h2h_gd_group'],true)){
+                $tied=array_column($bucket,'team');$direct=array_values(array_filter($matches,fn($m)=>in_array($m['home'],$tied,true)&&in_array($m['away'],$tied,true)));$mini=Schedule::table($direct,$tied);$values=array_column($mini,$criterion==='h2h_points_group'?'points':'gd','team');$groups=[];
+                foreach($bucket as $row)$groups[$values[$row['team']]][]=$row;
+                krsort($groups,SORT_NUMERIC);$out=[];foreach($groups as $group)$out=array_merge($out,$sort($group,$at+1));return $out;
             }
             $groups=[];foreach($bucket as $row){$value=$criterion==='lots'?$t['lots'][$row['team']]:$row[$criterion];$groups[$value][]=$row;}
             if(in_array($criterion,['red','yellow','lots'],true))ksort($groups,SORT_NUMERIC);else krsort($groups,SORT_NUMERIC);$out=[];foreach($groups as $group)$out=array_merge($out,$sort($group,$at+1));return $out;

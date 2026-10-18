@@ -27,7 +27,9 @@ final class FutureSerieDAdmission {
             $ledger[]=['key'=>hash('sha256',$g['id'].'|2027|'.$club),'club'=>$club,'source'=>$from,'source_edition'=>2026,'target_edition'=>2027,'state'=>'national_merit_candidate_not_enrolled','evidence'=>$closure['sha256']];
         }
         $nationalSelected=$selected;$stateSelected=[];$deficits=[];foreach($policy['federation_ranking'] as $uf=>$rank){$quota=$policy['quotas']['federation:'.$uf];$deficits[$uf]=['reference_2026_quota'=>$quota,'accepted'=>0,'missing'=>$quota,'state'=>'future_rule_and_finalized_qualifying_results_required'];}
-        $stateReceipts=$g['state_qualifications']['2027']??[];$stateProofs=$stateReceipts?StateQualification::evaluateMany($g,array_keys($stateReceipts)):[];
+        // MySQL JSON orders object keys independently of PHP insertion order.
+        // A receipt set must produce the same candidate/ledger lists after reload.
+        $stateReceipts=$g['state_qualifications']['2027']??[];ksort($stateReceipts,SORT_STRING);$stateProofs=$stateReceipts?StateQualification::evaluateMany($g,array_keys($stateReceipts)):[];
         foreach($stateReceipts as $uf=>$receipt){$proof=$stateProofs[$uf];if($receipt!=$proof||$proof['quota']!==$deficits[$uf]['reference_2026_quota'])throw new RuntimeException('Recibo estadual ou quota divergentes.');
             foreach($proof['selected'] as $club){if(isset($selected[$club])||in_array($club,$upper,true))throw new RuntimeException('Vaga estadual duplicada.');$selected[$club]=true;$stateSelected[]=$club;$ledger[]=['key'=>hash('sha256',$g['id'].'|2027|'.$uf.'|'.$club),'club'=>$club,'source'=>$proof['competition'],'source_edition'=>2026,'target_edition'=>2027,'state'=>'state_merit_candidate_not_enrolled','evidence'=>$proof['sha256']];}
             $deficits[$uf]['accepted']=$proof['candidate_count'];$deficits[$uf]['missing']=$proof['unavailable'];$deficits[$uf]['state']='sports_candidates_proven_admission_pending';

@@ -1,0 +1,434 @@
+{
+  "id": "state-expansion-ba-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "ba-a1": {
+      "id": "ba-a1",
+      "name": "Baiano Série A",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "BA",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "ba",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Atlético-BA",
+        "Bahia-BA",
+        "Bahia de Feira-BA",
+        "Barcelona-BA",
+        "Galícia-BA",
+        "Jacuipense-BA",
+        "Jequié-BA",
+        "Juazeirense-BA",
+        "Porto-BA",
+        "Vitória-BA"
+      ],
+      "groups": [
+        [
+          "Atlético-BA",
+          "Bahia-BA",
+          "Bahia de Feira-BA",
+          "Barcelona-BA",
+          "Galícia-BA",
+          "Jacuipense-BA",
+          "Jequié-BA",
+          "Juazeirense-BA",
+          "Porto-BA",
+          "Vitória-BA"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://fbf.org.br/documentos/noticia/202511032238reg_seriea_2026_atualizado%20em%20031125.pdf",
+        "https://fbf.org.br/documentos/noticia/202511032317tab_basica_seriea_2026_031125.pdf"
+      ],
+      "reference_clubs": {
+        "Bahia de Feira-BA": {
+          "name": "Bahia de Feira-BA",
+          "country": "BR",
+          "uf": "BA",
+          "competitions": [
+            "ba-a1"
+          ],
+          "game_only": true,
+          "source": "https://fbf.org.br/documentos/noticia/202511032238reg_seriea_2026_atualizado%20em%20031125.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Barcelona-BA": {
+          "name": "Barcelona-BA",
+          "country": "BR",
+          "uf": "BA",
+          "competitions": [
+            "ba-a1"
+          ],
+          "game_only": true,
+          "source": "https://fbf.org.br/documentos/noticia/202511032238reg_seriea_2026_atualizado%20em%20031125.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Galícia-BA": {
+          "name": "Galícia-BA",
+          "country": "BR",
+          "uf": "BA",
+          "competitions": [
+            "ba-a1"
+          ],
+          "game_only": true,
+          "source": "https://fbf.org.br/documentos/noticia/202511032238reg_seriea_2026_atualizado%20em%20031125.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Jequié-BA": {
+          "name": "Jequié-BA",
+          "country": "BR",
+          "uf": "BA",
+          "competitions": [
+            "ba-a1"
+          ],
+          "game_only": true,
+          "source": "https://fbf.org.br/documentos/noticia/202511032238reg_seriea_2026_atualizado%20em%20031125.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "access": 0,
+        "relegation": 2,
+        "note": "Tabela básica oficial; datas do calendário são simuladas. Méritos estaduais não aplicam memberships. BID e licenciamento não verificados.",
+        "limitations": [
+          "Descenso para 2027 condicionado à realização da Série B conforme art.19; continuidade bloqueada sem edição recíproca.",
+          "Indicações externas são candidaturas, não inscrições.",
+          "Art.6 interpretado como confronto direto entre os clubes ainda empatados; não comparação par a par."
+        ]
+      },
+      "state_engine": {
+        "version": "configured-state-v2",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "h2h_points_group",
+          "h2h_gd_group",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "final_ranking": "elimination",
+        "relegation": 2,
+        "promotion": 0,
+        "stages": [
+          {
+            "name": "liga",
+            "type": "league",
+            "fixtures": [
+              [
+                1,
+                "Bahia-BA",
+                "Jequié-BA"
+              ],
+              [
+                1,
+                "Vitória-BA",
+                "Atlético-BA"
+              ],
+              [
+                1,
+                "Juazeirense-BA",
+                "Bahia de Feira-BA"
+              ],
+              [
+                1,
+                "Barcelona-BA",
+                "Galícia-BA"
+              ],
+              [
+                1,
+                "Porto-BA",
+                "Jacuipense-BA"
+              ],
+              [
+                2,
+                "Jacuipense-BA",
+                "Vitória-BA"
+              ],
+              [
+                2,
+                "Galícia-BA",
+                "Juazeirense-BA"
+              ],
+              [
+                2,
+                "Atlético-BA",
+                "Barcelona-BA"
+              ],
+              [
+                2,
+                "Bahia de Feira-BA",
+                "Bahia-BA"
+              ],
+              [
+                2,
+                "Jequié-BA",
+                "Porto-BA"
+              ],
+              [
+                3,
+                "Bahia-BA",
+                "Galícia-BA"
+              ],
+              [
+                3,
+                "Juazeirense-BA",
+                "Jequié-BA"
+              ],
+              [
+                3,
+                "Barcelona-BA",
+                "Jacuipense-BA"
+              ],
+              [
+                3,
+                "Atlético-BA",
+                "Bahia de Feira-BA"
+              ],
+              [
+                3,
+                "Porto-BA",
+                "Vitória-BA"
+              ],
+              [
+                4,
+                "Jacuipense-BA",
+                "Galícia-BA"
+              ],
+              [
+                4,
+                "Bahia-BA",
+                "Barcelona-BA"
+              ],
+              [
+                4,
+                "Vitória-BA",
+                "Juazeirense-BA"
+              ],
+              [
+                4,
+                "Bahia de Feira-BA",
+                "Porto-BA"
+              ],
+              [
+                4,
+                "Jequié-BA",
+                "Atlético-BA"
+              ],
+              [
+                5,
+                "Vitória-BA",
+                "Bahia-BA"
+              ],
+              [
+                5,
+                "Juazeirense-BA",
+                "Jacuipense-BA"
+              ],
+              [
+                5,
+                "Galícia-BA",
+                "Atlético-BA"
+              ],
+              [
+                5,
+                "Porto-BA",
+                "Barcelona-BA"
+              ],
+              [
+                5,
+                "Bahia de Feira-BA",
+                "Jequié-BA"
+              ],
+              [
+                6,
+                "Jacuipense-BA",
+                "Jequié-BA"
+              ],
+              [
+                6,
+                "Bahia-BA",
+                "Porto-BA"
+              ],
+              [
+                6,
+                "Galícia-BA",
+                "Bahia de Feira-BA"
+              ],
+              [
+                6,
+                "Barcelona-BA",
+                "Vitória-BA"
+              ],
+              [
+                6,
+                "Atlético-BA",
+                "Juazeirense-BA"
+              ],
+              [
+                7,
+                "Jacuipense-BA",
+                "Atlético-BA"
+              ],
+              [
+                7,
+                "Juazeirense-BA",
+                "Bahia-BA"
+              ],
+              [
+                7,
+                "Porto-BA",
+                "Galícia-BA"
+              ],
+              [
+                7,
+                "Bahia de Feira-BA",
+                "Barcelona-BA"
+              ],
+              [
+                7,
+                "Jequié-BA",
+                "Vitória-BA"
+              ],
+              [
+                8,
+                "Bahia-BA",
+                "Jacuipense-BA"
+              ],
+              [
+                8,
+                "Vitória-BA",
+                "Bahia de Feira-BA"
+              ],
+              [
+                8,
+                "Galícia-BA",
+                "Jequié-BA"
+              ],
+              [
+                8,
+                "Barcelona-BA",
+                "Juazeirense-BA"
+              ],
+              [
+                8,
+                "Atlético-BA",
+                "Porto-BA"
+              ],
+              [
+                9,
+                "Jacuipense-BA",
+                "Bahia de Feira-BA"
+              ],
+              [
+                9,
+                "Vitória-BA",
+                "Galícia-BA"
+              ],
+              [
+                9,
+                "Atlético-BA",
+                "Bahia-BA"
+              ],
+              [
+                9,
+                "Porto-BA",
+                "Juazeirense-BA"
+              ],
+              [
+                9,
+                "Jequié-BA",
+                "Barcelona-BA"
+              ]
+            ],
+            "return": false
+          },
+          {
+            "name": "semifinal",
+            "type": "knockout",
+            "selection": "initial",
+            "pairs": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "home_basis": "initial",
+            "legs": 1,
+            "tie_rule": "penalties"
+          },
+          {
+            "name": "final",
+            "type": "knockout",
+            "selection": "winners",
+            "pairs": [
+              [
+                0,
+                1
+              ]
+            ],
+            "home_basis": "campaign",
+            "legs": 1,
+            "tie_rule": "penalties"
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "BA": {
+      "id": "ba-state-d2027-v1",
+      "status": "sports_path_with_declared_limits",
+      "competition": "ba-a1",
+      "source_edition": 2026,
+      "target_edition": 2027,
+      "quota": 3,
+      "source": "https://fbf.org.br/documentos/noticia/202511032238reg_seriea_2026_atualizado%20em%20031125.pdf",
+      "location": "REC arts.3,6,8-10,16-19; tabela básica 03/11/2025 pp.1-2",
+      "participants": [
+        "Atlético-BA",
+        "Bahia-BA",
+        "Bahia de Feira-BA",
+        "Barcelona-BA",
+        "Galícia-BA",
+        "Jacuipense-BA",
+        "Jequié-BA",
+        "Juazeirense-BA",
+        "Porto-BA",
+        "Vitória-BA"
+      ],
+      "roll_down": "verified ranking prefix only; skip upper divisions and already selected national merits",
+      "ranking_prefix": 10,
+      "selective_required": false,
+      "eligibility": "sports candidate, not BID/licensing/national entry",
+      "consulted_on": "2026-10-18",
+      "future_rule": "later editions require separate pinned simulated rules"
+    }
+  },
+  "identity_aliases": {
+    "Atlético": "Atlético-BA",
+    "Bahia de Feira": "Bahia de Feira-BA",
+    "Barcelona": "Barcelona-BA",
+    "Galícia": "Galícia-BA",
+    "Jacuipense": "Jacuipense-BA",
+    "Jequié": "Jequié-BA",
+    "Juazeirense": "Juazeirense-BA",
+    "Porto": "Porto-BA",
+    "Vitória": "Vitória-BA",
+    "Bahia": "Bahia-BA"
+  },
+  "source_digests": {
+    "rec": "03ba4b51012623d371fc068be687993b93231acb42ea72c650517dcb328057ed",
+    "table": "86ca6ae589b7acba748ba9bc14d5e5a55323ebbadaa51812298909e5446d3d1e"
+  }
+}
