@@ -10,7 +10,7 @@ final class StateResultProof {
     public static function verify(array $definition,array $t):bool {
         $configured=($definition['format']??null)==='configured_state';
         if(!in_array($definition['format']??null,['alagoas','configured_state'],true)||($t['format']??null)!==$definition['format']||empty($t['done'])||$t['teams']!==$definition['teams'])return false;
-        if($configured&&($t['adapter_version']??null)!==ConfiguredStateCompetition::VERSION)return false;
+        if($configured&&($t['adapter_version']??null)!==($definition['state_engine']['version']??null))return false;
         $lots=array_values($t['lots']??[]);sort($lots);if($lots!==range(0,count($t['teams'])-1)||array_diff($t['teams'],array_keys($t['lots'])))return false;
         $key=fn($m)=>implode('|',[$m['phase'],$m['round'],$m['home'],$m['away']]);$saved=[];
         $leaguePhases=$configured?array_column(array_filter($definition['state_engine']['stages'],fn($s)=>$s['type']==='league'),'name'):['liga'];
@@ -26,6 +26,8 @@ final class StateResultProof {
                 }unset($tie);if($configured)ConfiguredStateCompetition::next($r);else AlagoasCompetition::next($r);
             }
             if($configured)foreach(['initial_groups','initial_ranking','state_stage','state_eliminated','phase'] as $f)if(($r[$f]??null)!==($t[$f]??null))return false;
+            // MySQL JSON may reorder phase object keys; winner list order remains significant.
+            if($configured&&($definition['state_engine']['version']??null)===ConfiguredStateCompetition::ROUTED_VERSION&&($r['state_phase_winners']??null)!=($t['state_phase_winners']??null))return false;
             return count($seen)===count($saved)&&$r['final_ranking']===$t['final_ranking']&&$r['champion']===$t['champion']&&$r['relegated']===$t['relegated']&&$r['promoted']===$t['promoted'];
         }catch(RuntimeException|LogicException $e){return false;}
     }

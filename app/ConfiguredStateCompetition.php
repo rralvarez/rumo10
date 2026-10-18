@@ -4,17 +4,29 @@ declare(strict_types=1);
 /** Opt-in edition contracts. No inference from country, name, tier or legacy format. */
 final class ConfiguredStateCompetition {
     public const VERSION='configured-state-v1';
+    public const ROUTED_VERSION='configured-state-v2';
 
     public static function validate(array $c,array $teams):void {
         $r=$c['state_engine']??[];
-        if(($r['version']??null)!==self::VERSION||$teams!==($c['teams']??[])||count($teams)<2||count(array_unique($teams))!==count($teams))throw new RuntimeException('Contrato estadual configurável inválido.');
+        if(!in_array($r['version']??null,[self::VERSION,self::ROUTED_VERSION],true)||$teams!==($c['teams']??[])||count($teams)<2||count(array_unique($teams))!==count($teams))throw new RuntimeException('Contrato estadual configurável inválido.');
         $allowed=['points','wins','gd','gf','h2h_gd_two','red','yellow','lots'];
         if(empty($r['tiebreakers'])||count(array_unique($r['tiebreakers']))!==count($r['tiebreakers'])||array_diff($r['tiebreakers'],$allowed)||$r['tiebreakers'][0]!=='points'||end($r['tiebreakers'])!=='lots')throw new RuntimeException('Critérios de desempate incompletos.');
         $stages=$r['stages']??[];if(!$stages)throw new RuntimeException('Fases ausentes.');$names=[];
         foreach($stages as $i=>$stage){if(empty($stage['name'])||isset($names[$stage['name']])||!in_array($stage['type']??'', ['league','knockout'],true))throw new RuntimeException('Fase inválida/duplicada.');$names[$stage['name']]=true;
             if($stage['type']==='league'){
                 if($i!==0||!is_bool($stage['return']??null))throw new RuntimeException('Liga combinada não suportada neste contrato.');$groups=$stage['groups']??[$teams];if(array_merge(...$groups)!==$teams||array_filter($groups,fn($g)=>count($g)<2))throw new RuntimeException('Grupos inválidos.');
-            }else{if(!in_array($stage['legs']??0,[1,2],true)||!in_array($stage['tie_rule']??'', ['penalties','advantage'],true)||!in_array($stage['home_basis']??'', ['initial','campaign'],true)||!in_array($stage['selection']??'', ['initial','group_top','winners'],true)||!isset($stage['pairs']))throw new RuntimeException('Chaveamento não declarado.');}
+            }else{if(!in_array($stage['legs']??0,[1,2],true)||!in_array($stage['tie_rule']??'', ['penalties','advantage'],true)||!in_array($stage['home_basis']??'', ['initial','campaign'],true)||!in_array($stage['selection']??'', ['initial','group_top','winners','routed'],true)||!isset($stage['pairs']))throw new RuntimeException('Chaveamento não declarado.');
+                if(($stage['selection']??'')==='routed'){
+                    if($r['version']!==self::ROUTED_VERSION||empty($stage['entries'])||!is_array($stage['entries']))throw new RuntimeException('Roteamento requer contrato v2.');
+                    foreach($stage['entries'] as $entry){
+                        if(!is_array($entry)||!is_int($entry['index']??null)||$entry['index']<0||!in_array($entry['from']??'', ['initial','winner','winner_initial'],true))throw new RuntimeException('Origem do classificado inválida.');
+                        $previousKnockouts=array_column(array_filter(array_slice($stages,0,$i),fn($s)=>($s['type']??null)==='knockout'),'name');
+                        if($entry['from']!=='initial'&&(!isset($entry['phase'])||!in_array($entry['phase'],$previousKnockouts,true)))throw new RuntimeException('Vencedor deve vir de mata-mata anterior.');
+                    }
+                    $indices=[];foreach($stage['pairs'] as $pair){if(!is_array($pair)||count($pair)!==2)throw new RuntimeException('Par de classificados inválido.');foreach($pair as $index){if(!is_int($index)||$index<0||$index>=count($stage['entries']))throw new RuntimeException('Índice de classificado inválido.');$indices[]=$index;}}
+                    sort($indices);if($indices!==range(0,count($stage['entries'])-1))throw new RuntimeException('Roteamento deve usar cada classificado uma vez.');
+                }
+            }
         }
         if(!in_array($r['final_ranking']??'', ['campaign','elimination'],true)||!is_int($r['relegation']??null)||$r['relegation']<0||$r['relegation']>=count($teams))throw new RuntimeException('Classificação/descenso inválidos.');
     }
@@ -22,6 +34,8 @@ final class ConfiguredStateCompetition {
     public static function create(array $c,array $teams):array {
         self::validate($c,$teams);$lots=$teams;shuffle($lots);
         $t=['id'=>$c['id'],'format'=>'configured_state','adapter_version'=>self::VERSION,'teams'=>$teams,'phase'=>'','groups'=>[],'initial_groups'=>[],'matches'=>[],'phase_start'=>1,'phase_end'=>0,'done'=>false,'champion'=>null,'promoted'=>[],'relegated'=>[],'ties'=>[],'lots'=>array_flip($lots),'rounds'=>[],'state_stage'=>0,'state_eliminated'=>[]];
+        $t['adapter_version']=$c['state_engine']['version'];
+        if($t['adapter_version']===self::ROUTED_VERSION)$t['state_phase_winners']=[];
         self::stage($t,$c);return $t;
     }
 
@@ -58,18 +72,36 @@ final class ConfiguredStateCompetition {
         $pool=match($s['selection']){
             'initial'=>$t['initial_ranking']??$t['teams'],
             'winners'=>$t['state_winners']??throw new RuntimeException('Vencedores anteriores ausentes.'),
-            'group_top'=>array_merge(...array_map(fn($g)=>array_slice(array_column(self::standings($t,$g,$c['state_engine']['stages'][0]['name']),'team'),0,$s['per_group']),$t['initial_groups']))
+            'group_top'=>array_merge(...array_map(fn($g)=>array_slice(array_column(self::standings($t,$g,$c['state_engine']['stages'][0]['name']),'team'),0,$s['per_group']),$t['initial_groups'])),
+            'routed'=>self::routedPool($t,$s)
         };
         if($s['selection']==='winners')$pool=array_column(self::standings($t,$pool,$s['home_basis']==='initial'?$c['state_engine']['stages'][0]['name']:null,true),'team');
         $pairs=[];$used=[];foreach($s['pairs'] as [$a,$b]){if(!isset($pool[$a],$pool[$b])||$a===$b||isset($used[$pool[$a]])||isset($used[$pool[$b]]))throw new RuntimeException('Cruzamento inválido.');$used[$pool[$a]]=$used[$pool[$b]]=true;$pairs[]=[$pool[$a],$pool[$b]];}
+        // Routing fixes opponents; home advantage is a separate ordering decision.
+        if($s['selection']==='routed'){
+            $rank=array_column(self::standings($t,$t['teams'],$s['home_basis']==='initial'?$c['state_engine']['stages'][0]['name']:null,true),'team');$order=array_flip($rank);
+            foreach($pairs as &$pair)if($order[$pair[0]]>$order[$pair[1]])$pair=array_reverse($pair);unset($pair);
+        }
         Competition::knockout($t,$pairs,$s['name'],$s['legs'],$s['tie_rule']);
     }
 
+    private static function routedPool(array $t,array $stage):array {
+        $pool=[];
+        foreach($stage['entries'] as $entry){
+            $source=$entry['from']==='initial'?($t['initial_ranking']??[]):($t['state_phase_winners'][$entry['phase']]??[]);
+            if($entry['from']==='winner_initial'){$order=array_flip($t['initial_ranking']);usort($source,fn($a,$b)=>$order[$a]<=>$order[$b]);}
+            if(!isset($source[$entry['index']]))throw new RuntimeException('Classificado de origem ausente.');
+            $pool[]=$source[$entry['index']];
+        }
+        if(count(array_unique($pool))!==count($pool))throw new RuntimeException('Classificado duplicado no roteamento.');
+        return $pool;
+    }
+
     public static function next(array &$t):void {
-        $c=Competition::catalog()[$t['id']];self::validate($c,$t['teams']);if(($t['adapter_version']??null)!==self::VERSION)throw new RuntimeException('Versão do snapshot estadual inválida.');$r=$c['state_engine'];$s=$r['stages'][$t['state_stage']];
+        $c=Competition::catalog()[$t['id']];self::validate($c,$t['teams']);if(($t['adapter_version']??null)!==$c['state_engine']['version'])throw new RuntimeException('Versão do snapshot estadual inválida.');$r=$c['state_engine'];$s=$r['stages'][$t['state_stage']];
         if(array_filter($t['matches'],fn($m)=>$m['status']!=='finalizada'))throw new RuntimeException('Fase estadual incompleta.');
         if($s['type']==='league'){$t['initial_ranking']=array_column(self::standings($t,null,$s['name']),'team');$t['relegated']=$r['relegation']?array_slice($t['initial_ranking'],-$r['relegation']):[];}
-        else{$w=Competition::resolve($t);$t['state_winners']=$w;$t['state_eliminated'][]=array_values(array_diff(array_merge(...$t['groups']),$w));}
+        else{$w=Competition::resolve($t);$t['state_winners']=$w;$t['state_eliminated'][]=array_values(array_diff(array_merge(...$t['groups']),$w));if($r['version']===self::ROUTED_VERSION)$t['state_phase_winners'][$s['name']]=$w;}
         if(isset($r['stages'][$t['state_stage']+1])){$t['state_stage']++;self::stage($t,$c);return;}
         if($s['type']==='league')$ranking=$t['initial_ranking'];
         else{
