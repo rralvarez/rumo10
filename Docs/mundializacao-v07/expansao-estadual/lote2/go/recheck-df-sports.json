@@ -1,0 +1,1448 @@
+{
+    "checks": 45,
+    "rows": {
+        "AL": {
+            "schema": 1,
+            "policy": "faf-al-a2026-d2027-v1",
+            "career_id": 857500,
+            "uf": "AL",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "al-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 2,
+            "selected": [
+                "CSE-AL",
+                "ASA-AL"
+            ],
+            "candidate_count": 2,
+            "unavailable": 0,
+            "rows": [
+                {
+                    "club": "CRB-AL",
+                    "rank": 1,
+                    "state": "not_selected",
+                    "reason": "verified_upper_national_division"
+                },
+                {
+                    "club": "CSE-AL",
+                    "rank": 2,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "ASA-AL",
+                    "rank": 3,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "CSA-AL",
+                    "rank": 4,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Murici-AL",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Cruzeiro Arapiraca-AL",
+                    "rank": 6,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Penedense-AL",
+                    "rank": 7,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Coruripe-AL",
+                    "rank": 8,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                }
+            ],
+            "contract": "27b7d03f72dc23d481a5ac305bd560a7bae4725a63660652f808dbbc3ab59029",
+            "results_digest": "ae663f2216cedc512e1b4442b200f7cecf659edf2b719d1f5f3bb0b9547d3516",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/futeboldealagoas.net\/assets\/uploads\/176832886543.pdf",
+            "memberships_applied": false,
+            "sha256": "1817aa9e8d74c60a8a79371df07b00f1a69436e1a118481428f2034d2e4c865b"
+        },
+        "PI": {
+            "schema": 1,
+            "policy": "pi-state-d2027-v1",
+            "career_id": 857500,
+            "uf": "PI",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "pi-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 2,
+            "selected": [
+                "Parnahyba-PI",
+                "Oeirense-PI"
+            ],
+            "candidate_count": 2,
+            "unavailable": 0,
+            "rows": [
+                {
+                    "club": "Altos-PI",
+                    "rank": 1,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                },
+                {
+                    "club": "Parnahyba-PI",
+                    "rank": 2,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Oeirense-PI",
+                    "rank": 3,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Piauí-PI",
+                    "rank": 4,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Corisabbá-PI",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Teresina-PI",
+                    "rank": 6,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Atlético Piauiense-PI",
+                    "rank": 7,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Fluminense-PI",
+                    "rank": 8,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                }
+            ],
+            "contract": "1e11bb898a5ada699925c98e58abcfe07adc9b330b8a4a514593c95ff05530ad",
+            "results_digest": "95459206461eb6497051030d3d9fdf57bcfdf49657e0502eb1d22080ba39fee1",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/ffp-pi.com.br\/assets\/uploads\/178043156618.pdf",
+            "memberships_applied": false,
+            "sha256": "5d48c8bb5fcdd8317e588810b3c6ab040d326caf308f31be7a4ab1c21d1e6402"
+        },
+        "RO": {
+            "schema": 1,
+            "policy": "ro-state-d2027-v1",
+            "career_id": 857500,
+            "uf": "RO",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "ro-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 2,
+            "selected": [
+                "Porto Velho-RO",
+                "Barcelona-RO"
+            ],
+            "candidate_count": 2,
+            "unavailable": 0,
+            "rows": [
+                {
+                    "club": "Porto Velho-RO",
+                    "rank": 1,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Barcelona-RO",
+                    "rank": 2,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Guaporé-RO",
+                    "rank": 3,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Ji-Paraná-RO",
+                    "rank": 4,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Rondoniense-RO",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "União Cacoalense-RO",
+                    "rank": 6,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Genus-RO",
+                    "rank": 7,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                }
+            ],
+            "contract": "7e1e1e8b0823647d8a866411a30ef9476984045c43d97090e1b908d45682a867",
+            "results_digest": "e7ab05c81af222c159923845846286b868a84e1ba64a36a62101de97126353fd",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/drive.google.com\/file\/d\/1IiXRE3n6xqyn0Y0Rs-IMcyxg0DxW3be9\/view",
+            "memberships_applied": false,
+            "sha256": "89e7a0283e59685b60c4f6b9afd5aec935f31fefd1180357010716229bee2c59"
+        },
+        "BA": {
+            "schema": 1,
+            "policy": "ba-state-d2027-v1",
+            "career_id": 857500,
+            "uf": "BA",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "ba-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 3,
+            "selected": [
+                "Jacuipense-BA",
+                "Porto-BA",
+                "Bahia de Feira-BA"
+            ],
+            "candidate_count": 3,
+            "unavailable": 0,
+            "rows": [
+                {
+                    "club": "Bahia-BA",
+                    "rank": 1,
+                    "state": "not_selected",
+                    "reason": "verified_upper_national_division"
+                },
+                {
+                    "club": "Atlético-BA",
+                    "rank": 2,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                },
+                {
+                    "club": "Vitória-BA",
+                    "rank": 3,
+                    "state": "not_selected",
+                    "reason": "verified_upper_national_division"
+                },
+                {
+                    "club": "Jacuipense-BA",
+                    "rank": 4,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Juazeirense-BA",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                },
+                {
+                    "club": "Porto-BA",
+                    "rank": 6,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Bahia de Feira-BA",
+                    "rank": 7,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Barcelona-BA",
+                    "rank": 8,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Jequié-BA",
+                    "rank": 9,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Galícia-BA",
+                    "rank": 10,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                }
+            ],
+            "contract": "60d495a4f8aa9f82eb317c2654f53cf72586d6686abaa56850215a3bb155398c",
+            "results_digest": "5396bdc8984af025fdb64aa3ebe48d8094c6831f5af8006e175708a582671340",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/fbf.org.br\/documentos\/noticia\/202511032238reg_seriea_2026_atualizado%20em%20031125.pdf",
+            "memberships_applied": false,
+            "sha256": "16acab0780d8710b9b197264ee1d2facce485d38af3e8f6fd638519a94ad15bc"
+        },
+        "ES": {
+            "schema": 1,
+            "policy": "es-capixabao-d2027-v1",
+            "career_id": 857500,
+            "uf": "ES",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "es-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 2,
+            "selected": [
+                "Capixaba SC-ES"
+            ],
+            "candidate_count": 1,
+            "unavailable": 1,
+            "rows": [
+                {
+                    "club": "Capixaba SC-ES",
+                    "rank": 1,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Desportiva Ferroviária-ES",
+                    "rank": 2,
+                    "state": "not_selected",
+                    "reason": "rank_not_assigned_by_path_rule"
+                },
+                {
+                    "club": "Rio Branco-ES",
+                    "rank": 3,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Real Noroeste-ES",
+                    "rank": 4,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Serra-ES",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Vitória-ES",
+                    "rank": 6,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Rio Branco VN-ES",
+                    "rank": 7,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Vilavelhense-ES",
+                    "rank": 8,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Forte-ES",
+                    "rank": 9,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                },
+                {
+                    "club": "Porto Vitória-ES",
+                    "rank": 10,
+                    "state": "not_selected",
+                    "reason": "ranking_position_not_certified"
+                }
+            ],
+            "contract": "460c2c1150693edc18674d367ae78184f1996c23feac863519f4b43a177921c5",
+            "results_digest": "dd8816763adbc2cb55a5e9c40f974f32f87fc4a2e2a1424498e0f76c4ced5622",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/futebolcapixaba.com\/site\/wp-content\/uploads\/2025\/12\/Regulamento-Serie-A-2026.pdf",
+            "memberships_applied": false,
+            "sha256": "0b4549b1c075b8819c0b8d6a19e38200ef2fde83580fe060308e290d585fec21"
+        },
+        "PE": {
+            "schema": 1,
+            "policy": "pe-state-d-2027-v1",
+            "career_id": 857500,
+            "uf": "PE",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "pe-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 2,
+            "selected": [
+                "Decisão-PE",
+                "Vitória de Santo Antão-PE"
+            ],
+            "candidate_count": 2,
+            "unavailable": 0,
+            "rows": [
+                {
+                    "club": "Sport-PE",
+                    "rank": 1,
+                    "state": "not_selected",
+                    "reason": "verified_upper_national_division"
+                },
+                {
+                    "club": "Náutico-PE",
+                    "rank": 2,
+                    "state": "not_selected",
+                    "reason": "verified_upper_national_division"
+                },
+                {
+                    "club": "Decisão-PE",
+                    "rank": 3,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Retrô-PE",
+                    "rank": 4,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                },
+                {
+                    "club": "Santa Cruz-PE",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "verified_upper_national_division"
+                },
+                {
+                    "club": "Vitória de Santo Antão-PE",
+                    "rank": 6,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Jaguar-PE",
+                    "rank": 7,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Maguary-PE",
+                    "rank": 8,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                }
+            ],
+            "contract": "b708fd02c72042e74bfc28a643b986ae1391ea589e10d4e8703367ee48e80620",
+            "results_digest": "053e732bca5732676943e51412accdfae45b13b78c0a7787ae414a0c4579fbd2",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/www.fpf-pe.com.br\/assets\/uploads\/176499150263.pdf?v=17696371365",
+            "memberships_applied": false,
+            "sha256": "9360f60a7ee13d8f4e687979d47a1b5506e62b27c68317d43c32c2480b71ea25"
+        },
+        "RN": {
+            "schema": 1,
+            "policy": "rn-state-d-2027-sim-v2",
+            "career_id": 857500,
+            "uf": "RN",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "rn-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 2,
+            "selected": [
+                "América-RN",
+                "ABC-RN"
+            ],
+            "candidate_count": 2,
+            "unavailable": 0,
+            "rows": [
+                {
+                    "club": "América-RN",
+                    "rank": 1,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Laguna-RN",
+                    "rank": 2,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                },
+                {
+                    "club": "ABC-RN",
+                    "rank": 3,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "QFC-RN",
+                    "rank": 4,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Potiguar de Mossoró-RN",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Globo-RN",
+                    "rank": 6,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Santa Cruz de Natal-RN",
+                    "rank": 7,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Potyguar Seridoense-RN",
+                    "rank": 8,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                }
+            ],
+            "contract": "80a18517520351a8497c5b067845364bf80320ad5d94d8896c8b8f1d7652f8ba",
+            "results_digest": "dad00c612ac6265955619a04e8c9b9e1ffa41a71cea1168096f85005b70c0bcb",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/www.fnf.org.br\/files\/REC_Campeonato_Potiguar_2026.pdf",
+            "memberships_applied": false,
+            "sha256": "ea45ead8be4cc721c087e11f5ad6fb86c36aca736ce36d859863dfe4801d4208"
+        },
+        "DF": {
+            "schema": 1,
+            "policy": "df-state-d-2027-v1",
+            "career_id": 857500,
+            "uf": "DF",
+            "source_edition": 2026,
+            "target_edition": 2027,
+            "competition": "df-a1",
+            "classification_state": "proven_by_results",
+            "admission_state": "pending_national_edition",
+            "quota": 2,
+            "selected": [
+                "Brasiliense-DF",
+                "Samambaia-DF"
+            ],
+            "candidate_count": 2,
+            "unavailable": 0,
+            "rows": [
+                {
+                    "club": "Brasiliense-DF",
+                    "rank": 1,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Capital-DF",
+                    "rank": 2,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                },
+                {
+                    "club": "Samambaia-DF",
+                    "rank": 3,
+                    "state": "pending_candidate",
+                    "reason": null
+                },
+                {
+                    "club": "Gama-DF",
+                    "rank": 4,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Ceilândia-DF",
+                    "rank": 5,
+                    "state": "not_selected",
+                    "reason": "already_national_candidate"
+                },
+                {
+                    "club": "Sobradinho-DF",
+                    "rank": 6,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "ARUC-DF",
+                    "rank": 7,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Brasília-DF",
+                    "rank": 8,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Real Brasília-DF",
+                    "rank": 9,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                },
+                {
+                    "club": "Paranoá-DF",
+                    "rank": 10,
+                    "state": "not_selected",
+                    "reason": "quota_filled"
+                }
+            ],
+            "contract": "ed6062b990545943a46be21a96e27fd8c088f5173dd97fe8aa28222c1ed3b1ab",
+            "results_digest": "84e739560f309f320aa35bf62167e01da340cf602ba836db57e3cd79cd72e6fe",
+            "national_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+            "source": "https:\/\/ffdf.com.br\/assets\/uploads\/176245464195.pdf?v=17652869932",
+            "memberships_applied": false,
+            "sha256": "f1ae62bc210971dbbd9a34e8f6dba9dbb7ee19148988683631683a195d2b402e"
+        }
+    },
+    "admission": {
+        "schema": 1,
+        "policy": "conservative-evidence-only-approved-20261017",
+        "knowledge": "future_simulation_proposal_not_official_2027",
+        "career_id": 857500,
+        "source_edition": 2026,
+        "target_edition": 2027,
+        "capacity_proposed": 96,
+        "national_candidates": [
+            "Manauara-AM",
+            "Guaporé-RO",
+            "São Raimundo-RR",
+            "Humaitá-AC",
+            "Goiatuba-GO",
+            "Ceilândia-DF",
+            "Capital-DF",
+            "Tuna Luso-PA",
+            "Iguatu-CE",
+            "Águia de Marabá-PA",
+            "Fluminense-PI",
+            "Altos-PI",
+            "Laguna-RN",
+            "Atlético-BA",
+            "Retrô-PE",
+            "Treze-PB",
+            "Juazeirense-BA",
+            "Operário-MS",
+            "ABECAT-GO",
+            "Democrata GV-MG",
+            "Noroeste-SP",
+            "Pouso Alegre-MG",
+            "Brasil de Pelotas-RS",
+            "Marcílio Dias-SC",
+            "Blumenau-SC",
+            "São José-RS",
+            "Paysandu-PA",
+            "Brusque-SC"
+        ],
+        "state_candidates": [
+            "CSE-AL",
+            "ASA-AL",
+            "Jacuipense-BA",
+            "Porto-BA",
+            "Bahia de Feira-BA",
+            "Brasiliense-DF",
+            "Samambaia-DF",
+            "Capixaba SC-ES",
+            "Decisão-PE",
+            "Vitória de Santo Antão-PE",
+            "Parnahyba-PI",
+            "Oeirense-PI",
+            "América-RN",
+            "ABC-RN",
+            "Porto Velho-RO",
+            "Barcelona-RO"
+        ],
+        "candidate_count": 44,
+        "missing_total": 52,
+        "federations": {
+            "SP": {
+                "reference_2026_quota": 4,
+                "accepted": 0,
+                "missing": 4,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RJ": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MG": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RS": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "PR": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "CE": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "GO": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "SC": {
+                "reference_2026_quota": 3,
+                "accepted": 0,
+                "missing": 3,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "BA": {
+                "reference_2026_quota": 3,
+                "accepted": 3,
+                "missing": 0,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "PE": {
+                "reference_2026_quota": 2,
+                "accepted": 2,
+                "missing": 0,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "AL": {
+                "reference_2026_quota": 2,
+                "accepted": 2,
+                "missing": 0,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "PA": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MT": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "AM": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RN": {
+                "reference_2026_quota": 2,
+                "accepted": 2,
+                "missing": 0,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "PB": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MA": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "SE": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "DF": {
+                "reference_2026_quota": 2,
+                "accepted": 2,
+                "missing": 0,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "PI": {
+                "reference_2026_quota": 2,
+                "accepted": 2,
+                "missing": 0,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "ES": {
+                "reference_2026_quota": 2,
+                "accepted": 1,
+                "missing": 1,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "TO": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "AC": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "RO": {
+                "reference_2026_quota": 2,
+                "accepted": 2,
+                "missing": 0,
+                "state": "sports_candidates_proven_admission_pending"
+            },
+            "RR": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "MS": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            },
+            "AP": {
+                "reference_2026_quota": 2,
+                "accepted": 0,
+                "missing": 2,
+                "state": "future_rule_and_finalized_qualifying_results_required"
+            }
+        },
+        "federation_missing_total": 48,
+        "residual_missing": 4,
+        "quotas_status": "2026_reference_not_certified_2027",
+        "blocked": true,
+        "memberships_applied": false,
+        "ledger": [
+            {
+                "key": "ca8dcd9ed64d896fa027bd0fa4433200b0fe36e18b6c3785f9fbd2d4fa93bb9e",
+                "club": "Manauara-AM",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "11ed134e50c49b0738d98b7711f1b2b0a72041982887248e2678dc3fced8d2a5",
+                "club": "Guaporé-RO",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "cbaca0c6a5f3b9d48ac8faa384f8186c74611a3ffe2cbfa4d4e6ccd21d307512",
+                "club": "São Raimundo-RR",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "94e486a2ab5a18a5a0d33855237bde73e837caf1fe3e8ec10f15963ee1ed7d4d",
+                "club": "Humaitá-AC",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "debe8d35167f653f443c327de2017e94f838a1aab86c66f44d6f187d486a928a",
+                "club": "Goiatuba-GO",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "07cda482cebae14435dd8dd7e3a24ddbb49f9d64367ea207a226bc8ad30f5d78",
+                "club": "Ceilândia-DF",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "257bdaf5aad3246ddb6718e3fa00eb4d568f369f85633de727a02edd15dd4558",
+                "club": "Capital-DF",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "013a58e7c03dedc957bf3032f5318346439f95ca9813d20c4285a281946fedb4",
+                "club": "Tuna Luso-PA",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "a8b27ed85ee1c1442023183edd8e7f5714f122793014e5ea349deb0f67f49733",
+                "club": "Iguatu-CE",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "56fa1d9f9a4b95be286443859615b158d5adf6f6c3b97e705b5140ae7ec01306",
+                "club": "Águia de Marabá-PA",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "8197ab144029c155d7103f5a48d21c1d012d0e25eab058c4e75bf1c57ab188eb",
+                "club": "Fluminense-PI",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "1ba130e569a8b116f62288500d7aba4a9d6aafeef3701ba478c7c26c02dfc5b9",
+                "club": "Altos-PI",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "fd202d7ce4445f7eda39a9fe34c1e0332554eb1098736aef2bc26a5a659ccfa0",
+                "club": "Laguna-RN",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "fe09afb87e5ba4dd0cc922c0930d87ffbf72d1c270d70056b53424326a05300b",
+                "club": "Atlético-BA",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "0cb4de9fb795b1cc8a9e3f1039632a68e91470c329534fa4eea593e26ef7cd11",
+                "club": "Retrô-PE",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "3e8565d126fc22e473f5ae93701e629d509c84dbffb2a07379837976e31a6caf",
+                "club": "Treze-PB",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "4caf40919bc1aaa67b2ba2d6682cfe5c53a14285ae0db0c43dd82f51e7b5e6eb",
+                "club": "Juazeirense-BA",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "3f1499a854ce24e7bbd35f15ebf3b4f41145ef5e427aa573371ca2def7f5e9f7",
+                "club": "Operário-MS",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "dd346d82f7753d27186389721336753083c4379ebe158d45c7707bbfa509b3f8",
+                "club": "ABECAT-GO",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "9a3d129152d9468066e987ec443309326f8cf98767cc19307f341b36d1fef498",
+                "club": "Democrata GV-MG",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "12e252297d15b0341efb2a3f63d9adc8cb896437ec1a673b9c50a98ea273f37c",
+                "club": "Noroeste-SP",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "78f983fe4dfc058d2e77748214f94dc64615fe2f59c0f1faa4c753e8334ec8f5",
+                "club": "Pouso Alegre-MG",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "3c13048655d5336253671ccdfcff147cf35307aaf68051387112500c3fe2622f",
+                "club": "Brasil de Pelotas-RS",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "93980238f5400419b399e8e2f6be5c0df117d471a333503bb0357c44228b53b0",
+                "club": "Marcílio Dias-SC",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "c7571a94063ae8f8de648ea1d098a5d3547841fc2ac0208927b14747f8ce54d4",
+                "club": "Blumenau-SC",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "9d4eadd71d473867c0851d2288e26b3524e720565d72e5a1191dba2348e8e80f",
+                "club": "São José-RS",
+                "source": "br-d",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "0005b83ff30146f79f526e2bcc65742e18450122ec98c0b05df524d74ac5aef8",
+                "club": "Paysandu-PA",
+                "source": "br-c",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "d5ad23ed199164567c0072cf035e978bed1dcd4edccfeca1af49199bdb71c286",
+                "club": "Brusque-SC",
+                "source": "br-c",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "national_merit_candidate_not_enrolled",
+                "evidence": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4"
+            },
+            {
+                "key": "3a855521af541daedaddd7746947b2b75fefa76cbeae7cf6471779b5c6d5eb2d",
+                "club": "CSE-AL",
+                "source": "al-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "1817aa9e8d74c60a8a79371df07b00f1a69436e1a118481428f2034d2e4c865b"
+            },
+            {
+                "key": "301070fa53ab47f5778028b8e724a467d19060edb36052d97d0690d719c10fab",
+                "club": "ASA-AL",
+                "source": "al-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "1817aa9e8d74c60a8a79371df07b00f1a69436e1a118481428f2034d2e4c865b"
+            },
+            {
+                "key": "583a45e7d2f96ea5f00901733eec8f9f635a985008fff67eb527bc47be8bce1a",
+                "club": "Jacuipense-BA",
+                "source": "ba-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "16acab0780d8710b9b197264ee1d2facce485d38af3e8f6fd638519a94ad15bc"
+            },
+            {
+                "key": "7e009860d4a9d35135177f23f56d001326db5a41c83fd14e1a6a1c83bc7f191c",
+                "club": "Porto-BA",
+                "source": "ba-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "16acab0780d8710b9b197264ee1d2facce485d38af3e8f6fd638519a94ad15bc"
+            },
+            {
+                "key": "c37e0de77a3c326894823b5b755de004b84c86865d01698d611a58682224dd85",
+                "club": "Bahia de Feira-BA",
+                "source": "ba-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "16acab0780d8710b9b197264ee1d2facce485d38af3e8f6fd638519a94ad15bc"
+            },
+            {
+                "key": "453cb692b2184eb339d9afbf346f4c37f671d89fa3041e40f20e4a051c9528ff",
+                "club": "Brasiliense-DF",
+                "source": "df-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "f1ae62bc210971dbbd9a34e8f6dba9dbb7ee19148988683631683a195d2b402e"
+            },
+            {
+                "key": "1a9dc66818d5d0a6afc17939ba3a166c93dfa468256578ec03d94e96a2598fab",
+                "club": "Samambaia-DF",
+                "source": "df-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "f1ae62bc210971dbbd9a34e8f6dba9dbb7ee19148988683631683a195d2b402e"
+            },
+            {
+                "key": "e6d49969344c59da322d5db67f5925ef914b344efaa5111ee2f143fed471b83c",
+                "club": "Capixaba SC-ES",
+                "source": "es-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "0b4549b1c075b8819c0b8d6a19e38200ef2fde83580fe060308e290d585fec21"
+            },
+            {
+                "key": "23d98cd23c115dafebc600444536bfdeb9761fea0978c599153d40b53f248b49",
+                "club": "Decisão-PE",
+                "source": "pe-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "9360f60a7ee13d8f4e687979d47a1b5506e62b27c68317d43c32c2480b71ea25"
+            },
+            {
+                "key": "0bc96f21cd91f31a613ff839420b5b09369eb9c0171d4d7c1a8a5b08e9c8cbd4",
+                "club": "Vitória de Santo Antão-PE",
+                "source": "pe-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "9360f60a7ee13d8f4e687979d47a1b5506e62b27c68317d43c32c2480b71ea25"
+            },
+            {
+                "key": "d471c67e3b9a0f50a694568ec04f435c8d659768eac7121d36e3a2131486a470",
+                "club": "Parnahyba-PI",
+                "source": "pi-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "5d48c8bb5fcdd8317e588810b3c6ab040d326caf308f31be7a4ab1c21d1e6402"
+            },
+            {
+                "key": "d0c5c6ad923c0be47101eb8111b4c24dab6e00fe4c4ab639a945e25d5c7ce16e",
+                "club": "Oeirense-PI",
+                "source": "pi-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "5d48c8bb5fcdd8317e588810b3c6ab040d326caf308f31be7a4ab1c21d1e6402"
+            },
+            {
+                "key": "b7e9a5bb4269d6f5d8e29c7d3727d3325954d1f3ef11d9863d2cf723602ca1f5",
+                "club": "América-RN",
+                "source": "rn-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "ea45ead8be4cc721c087e11f5ad6fb86c36aca736ce36d859863dfe4801d4208"
+            },
+            {
+                "key": "f327f10c9dd788719620503ae267361d02c554e059cb043a4fbc7a6a2ae57d36",
+                "club": "ABC-RN",
+                "source": "rn-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "ea45ead8be4cc721c087e11f5ad6fb86c36aca736ce36d859863dfe4801d4208"
+            },
+            {
+                "key": "835bcdce5f526d5b82d0a8a8c964022d44ff51298a629b23fb63ab6244063d9c",
+                "club": "Porto Velho-RO",
+                "source": "ro-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "89e7a0283e59685b60c4f6b9afd5aec935f31fefd1180357010716229bee2c59"
+            },
+            {
+                "key": "02f3e861b41052db85a3ffe83b62ed543799342dc2805b186a0eae48993739a7",
+                "club": "Barcelona-RO",
+                "source": "ro-a1",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "state": "state_merit_candidate_not_enrolled",
+                "evidence": "89e7a0283e59685b60c4f6b9afd5aec935f31fefd1180357010716229bee2c59"
+            },
+            {
+                "key": "1be42813d203c19c8396be7e50beb5ba499e716bbb8c8c4be0d15140289f6362",
+                "club": "Desportivo Aliança-AL",
+                "source": "al-entrada",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 1,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "ef8fac75389ae0d194fe7adbc0d36063af310e5cf47727595f44a15394ed6038"
+            },
+            {
+                "key": "26baed0a167f610307f797cce3d4744ad8346687e74bb975def2d1f37bc50afd",
+                "club": "São Domingos-AL",
+                "source": "al-entrada",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 2,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "ef8fac75389ae0d194fe7adbc0d36063af310e5cf47727595f44a15394ed6038"
+            },
+            {
+                "key": "6efc22044eb749e57796fccb2e8437be3a8418c1c0512825c089a4251a27016e",
+                "club": "Miguelense-AL",
+                "source": "al-entrada",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 3,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "ef8fac75389ae0d194fe7adbc0d36063af310e5cf47727595f44a15394ed6038"
+            },
+            {
+                "key": "d03fb0532979fb1e0d42075090367cbaeb12fbca0357a66600dec7f1255439a7",
+                "club": "Zumbi-AL",
+                "source": "al-entrada",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 4,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "ef8fac75389ae0d194fe7adbc0d36063af310e5cf47727595f44a15394ed6038"
+            },
+            {
+                "key": "e732c6cd6d26d2e61daa4af10eddb43c2be018d60b652d39b20fd296096a8ba3",
+                "club": "Jaciobá-AL",
+                "source": "al-entrada",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 5,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "ef8fac75389ae0d194fe7adbc0d36063af310e5cf47727595f44a15394ed6038"
+            },
+            {
+                "key": "22738c72f1204b58531de3e2158c95ace88d108538e0ae2dd038ac6b847da876",
+                "club": "Sporting-AL",
+                "source": "al-entrada",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 6,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "ef8fac75389ae0d194fe7adbc0d36063af310e5cf47727595f44a15394ed6038"
+            },
+            {
+                "key": "e6f93bdec15f2905357b1a11640d8c265177c68213e867e1f6209deab3f23306",
+                "club": "CRB-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 1,
+                "state": "not_selected",
+                "reason": "upper_division_ineligible",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "80dcbc26facfe55197ae5b755e18f9fc2f3b0d8f1fdd1fd8da21a165c72c59b7",
+                "club": "CSE-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 2,
+                "state": "not_selected",
+                "reason": "already_national_candidate",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "30d32a1f0fb36cc90816a32175dea431d27e7a396974d483c165965123d15451",
+                "club": "ASA-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 3,
+                "state": "not_selected",
+                "reason": "already_national_candidate",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "e66f90f6e76d213d7482a52da8579e42ad874fd440977597b47a06ebe0387c8b",
+                "club": "Coruripe-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 4,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "d59bfaa211359e9c47b0fe1fbac5077f5f3d111e6654dd80e01dd3d717740a4e",
+                "club": "Zumbi-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 5,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "9ad7c1634f51a0782a3ab97e045a9e636c664e3da4f0455520d8713d06bb8845",
+                "club": "Miguelense-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 6,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "1d0fbac4a9fcc4fcbae55fbaae333643565e44de650224680b31e8bd73b0d3d9",
+                "club": "Penedense-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 7,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "c14548d3d4b4964bea777d0ccb1893e8cacbeacd42ccdfabae1125f84a9b6249",
+                "club": "Cruzeiro Arapiraca-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 8,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "b283efbe313361bdf5cd2d6cbf233014729a4721b482023fe55c5b4f43cafb26",
+                "club": "CSA-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 9,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "cfdaf852c7f88e11df38200bd4dd39ad8d9031766e897e4e152158636db33607",
+                "club": "Dimensão Saúde-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 10,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            },
+            {
+                "key": "908abcbd63687cbf456064f9db0adf14ee0945262068483f46062cea2f438273",
+                "club": "Murici-AL",
+                "source": "al-copa",
+                "source_edition": 2026,
+                "target_edition": 2027,
+                "rank": 11,
+                "state": "not_selected",
+                "reason": "federation_qualification_rule_not_certified",
+                "evidence": "5b4beed406d3c9988fbbc318844046e7e5d6a99f3c0e12464b1a9f5fb8e4fb13"
+            }
+        ],
+        "source_results_digest": "b5fc4b120f20c491340271349a66c30ca6014fb854a36e3677d06998ab8d80a4",
+        "sha256": "8b1b237f31aa021c3bd696fb3b5312bfbf439367ca0c3a4cf50c573707faacfe"
+    },
+    "games": 50,
+    "extra_decisions": [],
+    "entries": 0,
+    "national_renewals": 0,
+    "neutral_policy": "local_fixture_opt_in",
+    "peak_memory_bytes": 33554432
+}

@@ -1,0 +1,33 @@
+{
+  "MA": {
+    "implemented": false,
+    "sources": [
+      "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+      "https://www.futebolmaranhense.com.br/conteudo/24/14"
+    ],
+    "facts": [
+      "REC art.4: last relegated directly, 6th/7th two matches, return at sixth",
+      "REC art.12: penalties explicitly cover semifinal/final",
+      "REC art.22: omissions belong to DCO"
+    ],
+    "pending": [
+      "Confirm applicable general regulation or DCO act for tied permanence; do not import semifinal rule by analogy",
+      "Conciliate 28 official pairings and optional national berth choices; do not auto-select a club choice"
+    ],
+    "games_executed": 0
+  },
+  "AC": {
+    "implemented": false,
+    "sources": [
+      "https://www.ffac.com.br/competicoes/regulamento/43",
+      "https://ffac.com.br/noticia/ffac-divulga-a-tabela-detalhada-do-campeonato-acreano2026"
+    ],
+    "pending": [
+      "REC includes bronze: 28+4+1+1=34; news says 33, no reconciled erratum/table yet",
+      "Points advantage is not goal difference; preserve bronze and verify home/extra-game conditions"
+    ],
+    "games_executed": 0
+  },
+  "national_entries": 0,
+  "national_renewals": 0
+}

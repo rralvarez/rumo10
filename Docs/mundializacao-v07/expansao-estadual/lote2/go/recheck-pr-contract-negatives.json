@@ -1,0 +1,22 @@
+[
+    {
+        "case": "reversed_home",
+        "rejected": true
+    },
+    {
+        "case": "unknown_club",
+        "rejected": true
+    },
+    {
+        "case": "missing_relegation",
+        "rejected": true
+    },
+    {
+        "case": "same_barrier_dependency",
+        "rejected": true
+    },
+    {
+        "case": "overlapping_branches",
+        "rejected": true
+    }
+]

@@ -1,3 +1,116 @@
+# Entrega 58 — Goiás executável, interpretador condicional v5
+
+18/10/2026. Continuação da base `500c46cb75e9ed710841d029f7703abfe11f1689`, branch `codex/mundializacao-v07`. O histórico Paraná/pesquisa foi preservado abaixo. A pasta alheia `Docs/levantamento-2026-10-15/` permanece intocada e fora dos commits.
+
+## Resultado esportivo deste incremento
+
+**GO adicionado ao piloto isolado: dez federações AL, PI, RO, BA, ES, PE, RN, DF, PR, GO; dezessete restantes.** São 18 competições no universo de teste. Goiás executa 48 jogos intergrupos, oito quartas, quatro semifinais, duas finais, quatro semifinais de colocação e duas finais de colocação: 68 jogos obrigatórios, mais zero, uma ou duas partidas de permanência. A edição conjunta tem 2.325–2.327 jogos-base; teto específico 2.335 inclui oito extras administrativos opcionais do DF. Budget NPC oito preservado; teto genérico não ampliado.
+
+Não há nova carreira pública, inscrição nacional efetivada ou renovação aplicada. É uma edição por coorte, não cinco temporadas consecutivas. MA e AC permanecem sem competição executável neste checkpoint; os bloqueios específicos estão abaixo.
+
+## Fontes e identidades
+
+- [REC definitivo disponibilizado pela FGF](https://fgf.esp.br/assets/uploads/176833012335.pdf): arts.6–7, grupos e classificação geral; 9–14, cruzamentos, campanha e mandos; 15–18, colocação5–8; 19–20, permanência; 21–25, ranking, descenso e vagas.
+- [Tabela oficial Goianão2026](https://www.fgf.esp.br/assets/uploads/file/Tabela%20Goian%C3%A3o%202026.pdf): 48 confrontos, rodadas1–8, mandantes e visitantes. Nenhum resultado histórico importado.
+
+URLs, SHA256, bytes, consulta e localizadores estão no contrato `database/competition-references/br-goiano-2026-v1.json` e em `go/sources.csv`. O REC atual tem SHA diferente do documento pesquisado anteriormente. A comparação textual identificou alterações de condição de jogo/registro no art.4 §§3/5; não tratamos o documento anterior como a versão corrente. BID, suspensões administrativas e elencos reais não são certificados. Não houve alteração de idade, atributos ou geração de jogadores.
+
+GrupoA: Vila Nova, CRAC, Inhumas, Goiatuba. GrupoB: Anápolis, Goiás, Jataiense, Aparecidense. GrupoC: Atlético, ABECAT, Centro Oeste, Anapolina. Nove IDs existentes reutilizados; Jataiense, Centro Oeste e Anapolina têm referências isoladas do Rumo10, sem criar dados no Hub, ratings oficiais, cidades, escudos ou elencos. Fallback já existente explicitamente identificado; origem em `go/participants.csv`.
+
+## Contrato opt-in e decisões condicionais
+
+Somente `configured-state-v5` entra em `ConditionalStateCompetition`; v1/v2/v3/v4 e o arquivo `IntergroupStateCompetition.php` permanecem preservados. A validação confere três grupos de quatro, oito jogos/quatro mandos por clube, cada adversário externo exatamente uma vez, rodadas, duplicidades e dependências das fases. Tabela geral determina os oito classificados, independentemente dos grupos. Não se aplica o corte por grupo do Paraná.
+
+Quartas1×8/2×7/3×6/4×5. Semifinais e playoff5–8 reordenam os respectivos vencedores/perdedores pela campanha liga+quartas. Mandos são separados dos adversários, com volta da melhor campanha conforme a fase. Desempate dos mata-matas por pontos, saldo e pênaltis persistidos; ranking por pontos, vitórias, saldo, gols pró, vermelhos, amarelos e sorteio simulado persistido. Não confundir esse sorteio com ata federativa real.
+
+Permanência é uma máquina de estados registrada no snapshot:
+
+- Diferença inicial10º–11º superior a seis: nenhum jogo criado, 11º descende junto do12º.
+- Diferença até seis: cria **somente a ida**, mando do11º, junto à barreira das quartas.
+- Depois da ida, soma os pontos da liga e da partida. Diferença superior a três: encerra e **não cria a volta**; não existe partida fantasma/cancelada com XP ou calendário.
+- Caso contrário, cria a volta no mando do10º. Decisão por campanha liga+permanência, incluindo os desempates do art.20, sem usar saldo isolado do confronto nem pênaltis.
+
+As duas partidas, quando necessárias, compartilham as barreiras dos demais ramos. Só há avanço após todos os jogos obrigatórios da barreira. Fechamento e decisões são aplicados em cópia validada. `StateResultProof` reconstrói inclusive a ausência regulamentar de jogos; adulteração de placar, mando, rodada, ranking, motivo, campanha ou pênaltis indevidos é recusada. Recarga não sorteia de novo.
+
+Ranking preserva9º/12º iniciais; semifinalistas3º/4º por campanha; playoff define5º–8º; permanência define10º/11º. Descenso é mérito esportivo, não troca efetivada com divisão inferior ainda não integrada. Título principal só no fechamento final. Prêmio secundário de campeão do interior do art.23 não foi criado por inferência geográfica, nem convertido em conquista/XP/R.
+
+## Interface, candidaturas e fronteiras
+
+A classificação mostra tabela geral e grupos intergrupos, explica o corte geral e apresenta a permanência com motivo explícito: sem playoff, ida confirmada, volta necessária ou volta dispensada. Partida do jogador usa sua fase real. Rótulos técnicos do contrato não são apresentados como regras oficiais futuras.
+
+`StateQualification` valida o contrato fixado e a prova reconstruída. Até três elegíveis de GO geram candidaturas, excluídos méritos nacionais já comprovados. A quota2026 é referência para a projeção conservadora simulada2027, não homologação futura: REC arts.24–25 remete condições à CBF. Recibo por carreira/edição, sem somar saves, sem R/XP ou inscrição. A ausência de outras classificatórias/obrigações mantém `FutureSerieDAdmission` e renovação bloqueados.
+
+## Pendências MA/AC e nacionais
+
+MA: [REC definitivo FMF](https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf), art.4 confirma último direto e permanência6º×7º em duas partidas, volta do6º. O art.12 explicita pênaltis nas semifinais/final, mas não resolve expressamente o empate da permanência nesse trecho; art.22 reserva omissões ao DCO. A próxima intervenção mínima é conciliar o RGC aplicável ou ato do DCO, além da tabela e escolhas entre vagas nacionais. Não transplantar pênaltis de outra fase por analogia. Zero jogos MA integrados.
+
+AC: [REC FFAC](https://www.ffac.com.br/competicoes/regulamento/43) prevê bronze e vantagem por igualdade de pontos; a [notícia oficial da tabela](https://ffac.com.br/noticia/ffac-divulga-a-tabela-detalhada-do-campeonato-acreano2026) informa33 jogos. A conta com bronze é28+4+1+1=34. Não foi localizada retificação conciliada nesta checagem focal; tabela/mandos, bronze e eventual jogo extra continuam pendentes. Zero jogos AC integrados. Não omitir bronze nem substituir vantagem em pontos por saldo.
+
+Copa ES segue inativa e sua vaga nacional bloqueada. DF mantém50 jogos-base, neutralidade, simultaneidade e pendência administrativa auditada. RN mantém a adaptação conservadora aprovada. SérieD96, C24 futura, CDB128/157 e quatro vagas residuais seguem sem liberação quando faltam inscrições e obrigações. Nenhuma renovação parcial.
+
+## Testes, métricas e reprodução
+
+Evidências deste incremento em `Docs/mundializacao-v07/expansao-estadual/lote2/go/`. Resultados finais e métricas reproduzíveis abaixo. Os testes são fixtures locais, não carreiras reais.
+
+### Contagens finais por universo
+
+| Coorte |AL|PI|RO|BA|ES|PE|RN|DF|PR|GO|Total candidatos|Estaduais pendentes|Residuais|
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| sports859001 |2|2|1|3|0|2|2|2|3|3|20|44|4|
+| PDO Expresso |2|2|0|3|1|2|2|2|3|3|20|44|4|
+| normal |2|2|2|3|1|2|2|2|3|3|22|42|4|
+| rapido |2|2|1|3|1|2|2|2|3|3|21|43|4|
+| expresso |2|2|2|3|1|2|2|2|3|3|22|42|4|
+
+Cada linha é um universo independente. No save esportivo859001, GO adiciona3 ao subconjunto anterior **do próprio save**:17→20, pendentes47→44. Isso não é comparação controlada com os18 candidatos de outro checkpoint. As27 UFs estão em `go/federations.csv/json`, reproduzíveis por `bin/audit-goiano-v07.py`. Candidatura não é inscrição: a contagem de admissões efetivadas continua zero.
+
+### Suítes e limites
+
+| Teste | Resultado |
+|---|---|
+| `tests/goiano-v07.php` |62 verificações:48 confrontos, classificação externa, condições estritas6/3, três edições isoladas68/69/70 com prova reconstruída, adulterações, JSON reordenado e recibos. Inclui probes sintéticos de fronteira identificados, sem tratá-los como resultados oficiais.|
+| `tests/goiano-runtime-v07.php` |13.985 verificações; uma edição inteira em cada modo,18 competições,2.327/2.326/2.326 jogos no universo Normal/Rápido/Expresso; Goiás70/69/69; personagem12/9/8 partidas GO. Provas, títulos, descanso, candidaturas e replay.|
+| `tests/goiano-mysql-v07.php --local-rollback` |44 verificações; uma edição Expresso,18 competições encerradas,8 partidas do personagem,XP por partidas efetivas,recarga por comando,duas contas,replay divergente,crash antes do ledger,retry,lock1205 e rollback integral.|
+| `tests/goiano-http-v07.php --local-fixtures` |83 verificações:autenticação descartável,CSRF,isolamento,retry,HTML completo,dez UFs,grupos PR,tabela geral GO,permanência e pendência DF. Conta/fixture removidas.|
+| `tests/goiano-mobile-v07.cjs` |201 verificações;57 capturas,320/390/1280px,teclado/Escape,reduced-motion,sem overflow nem erros JS. Inspeção visual dos estados GO320/390 feita.|
+| `bin/test-narrative.py` |24 suítes aprovadas;1.014 cenas,nove atributos e métodos protegidos preservados.|
+| Rechecks |PR77,negativosPR5,DF45,pós-jogo215(seis posições,três modos),conquistas96(catálogo50/1.000R),v0.6.1/feedback32.|
+
+A primeira tentativa PDO encontrou comparação estrita de ordem em objeto JSON do contrato. Corrigida com digest canônico sensível aos tipos, insensível à ordem de propriedades; teste negativo de limiares e teste de reordenação acrescentados. A repetição PDO passou e o rollback foi confirmado. Não houve falha esportiva ocultada.
+
+Conquistas desativadas nas fixtures PDO/HTTP; não alegar concessão de R nelas. Seis posições validadas no pós-jogo, não seis coortes completas GO. Chrome usa HTML autenticado capturado em loopback; não é aparelho físico,leitor de tela,IIS,Apache,HTTPS ou produção. A autenticação central real não foi exercitada. Rechecks/exportação nunca somam carreiras distintas.
+
+### Métricas locais
+
+PDO: 285 comandos, 9978 consultas; p50 421.19ms, p95 647.63ms, p99 908.65ms, pior/fechamento 1885.84ms. Total 134955.26ms; snapshot final 1652865bytes, pico 2030943bytes, memória do harness 148897792bytes; histórico anterior 2bytes nesta primeira edição.
+
+| Game |Comandos|p95ms|Piorms|Pico snapshot bytes|
+|---|---:|---:|---:|---:|
+|normal|413|231.56|1397.79|2027169|
+|rapido|294|306.12|1640.58|2036612|
+|expresso|287|301.86|1442.86|2033995|
+
+Referência PR:277comandos/9.698consultas,p95703,55ms,pico1.969.120bytes. O novo mundo tem até70 partidas a mais, e coortes compartilharam CPU; não é benchmark controlado. Não concluir melhoria estatística ou desempenho UOL. Não há curva multi-temporada: zero renovações. Sem mudança estrutural de persistência.
+
+### Reprodução e recuperação
+
+PHP8.4 com `-n -d extension_dir=C:/PHP/php-8.4.26/ext -d extension=mbstring -d memory_limit=768M`; acrescentar `-d extension=pdo_mysql` para PDO/HTTP. Executar scripts da tabela; DB somente `rumohub` local, com flag `--local-rollback`. **Não executar HTTP simultaneamente à fixture PDO que compara contagens globais.** HTTP antes de mobile. Node/Chrome/Playwright locais conforme paths do harness; nenhum pacote remoto em runtime. Exportar matriz com `python -X utf8 bin/audit-goiano-v07.py`.
+
+Regressão: `V06_EVIDENCE_DIR=Docs/mundializacao-v07/expansao-estadual/lote2/go/regressao`, depois `python -X utf8 bin/test-narrative.py`. Gzip conferido contra JSON bruto antes de remover só a cópia regenerável. PDFs/HTML/CSRF/logs ficam privados/ignorados em storage. Evidências anteriores regeneradas foram copiadas para rechecks novos e restauradas da base, sem sobrescrever a pasta alheia.
+
+`go/protected-files.json` compara33 arquivos protegidos com a base, incluindo o interpretador v4 e referências anteriores. Lint/diff e revisão de segredos concluídos antes do commit. Workflows continuam main-only/manual: push da branch não faz deploy. Commits de implementação/testes:
+
+```text
+b584499048b1e2c62ab6e2456040998bdc31e093 test: verify Goiano gameplay persistence and mobile flows
+d07310f104391c56b70b61b1f032fb010088c4b2 feat: integrate Goiano with conditional permanence v5
+```
+
+Commit de documentação/evidências separado; SHA remoto confirmado no resumo após push. Sem merge,Hub,DDL,produção ou flags públicas.
+
+Sem DDL/migration ou backup produtivo. Rollback: manter flags públicas0; retornar ao checkpoint anterior para runtime público e preservar snapshots v5 de testes junto ao seu interpretador. Não restaurar dump sobre progresso posterior. `.env`, Hub/rh_*, serviços, IIS/Apache e UOL intocados; nenhum deploy ou merge. Sem v0.8.
+
+---
+
 # Entrega 58 — Paraná executável; lote permanece aberto
 
 18/10/2026. Continuação sobre `e222f3c9de29f6a07246db2f0fbee30ae96d9b27`, branch `codex/mundializacao-v07`. Base local/remota conferida; nenhuma alteração alheia sobrescrita. A pasta preexistente `Docs/levantamento-2026-10-15/` foi preservada. O checkpoint anterior permanece ao final como histórico.
