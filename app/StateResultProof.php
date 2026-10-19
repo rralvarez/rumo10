@@ -8,6 +8,7 @@ final class StateResultProof {
         return hash('sha256',json_encode($sort($data),JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR));
     }
     public static function verify(array $definition,array $t):bool {
+        if(($definition['state_engine']['version']??null)===ConfiguredStateCompetition::CONDITIONAL_VERSION)return ConditionalStateCompetition::verify($definition,$t);
         if(($definition['state_engine']['version']??null)===ConfiguredStateCompetition::INTERGROUP_VERSION)return IntergroupStateCompetition::verify($definition,$t);
         $configured=($definition['format']??null)==='configured_state';
         if(!in_array($definition['format']??null,['alagoas','configured_state'],true)||($t['format']??null)!==$definition['format']||empty($t['done'])||$t['teams']!==$definition['teams'])return false;

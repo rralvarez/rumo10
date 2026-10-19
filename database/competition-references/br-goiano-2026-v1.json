@@ -1,0 +1,769 @@
+{
+  "id": "goiano-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "go-a1": {
+      "id": "go-a1",
+      "name": "Goiano 1ª Divisão",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "GO",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "go",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Vila Nova-GO",
+        "CRAC-GO",
+        "Inhumas-GO",
+        "Goiatuba-GO",
+        "Anápolis-GO",
+        "Goiás-GO",
+        "Jataiense-GO",
+        "Aparecidense-GO",
+        "Atlético-GO",
+        "ABECAT-GO",
+        "Centro Oeste-GO",
+        "Anapolina-GO"
+      ],
+      "groups": [
+        [
+          "Vila Nova-GO",
+          "CRAC-GO",
+          "Inhumas-GO",
+          "Goiatuba-GO"
+        ],
+        [
+          "Anápolis-GO",
+          "Goiás-GO",
+          "Jataiense-GO",
+          "Aparecidense-GO"
+        ],
+        [
+          "Atlético-GO",
+          "ABECAT-GO",
+          "Centro Oeste-GO",
+          "Anapolina-GO"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://fgf.esp.br/assets/uploads/176833012335.pdf",
+        "https://www.fgf.esp.br/assets/uploads/file/Tabela%20Goian%C3%A3o%202026.pdf"
+      ],
+      "rules": {
+        "promotion": 0,
+        "relegation": 0
+      },
+      "reference_clubs": {
+        "Jataiense-GO": {
+          "name": "Jataiense-GO",
+          "country": "BR",
+          "uf": "GO",
+          "competitions": [
+            "go-a1"
+          ],
+          "game_only": true,
+          "source": "https://fgf.esp.br/assets/uploads/176833012335.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Centro Oeste-GO": {
+          "name": "Centro Oeste-GO",
+          "country": "BR",
+          "uf": "GO",
+          "competitions": [
+            "go-a1"
+          ],
+          "game_only": true,
+          "source": "https://fgf.esp.br/assets/uploads/176833012335.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Anapolina-GO": {
+          "name": "Anapolina-GO",
+          "country": "BR",
+          "uf": "GO",
+          "competitions": [
+            "go-a1"
+          ],
+          "game_only": true,
+          "source": "https://fgf.esp.br/assets/uploads/176833012335.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "state_engine": {
+        "version": "configured-state-v5",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "league": {
+          "groups": [
+            [
+              "Vila Nova-GO",
+              "CRAC-GO",
+              "Inhumas-GO",
+              "Goiatuba-GO"
+            ],
+            [
+              "Anápolis-GO",
+              "Goiás-GO",
+              "Jataiense-GO",
+              "Aparecidense-GO"
+            ],
+            [
+              "Atlético-GO",
+              "ABECAT-GO",
+              "Centro Oeste-GO",
+              "Anapolina-GO"
+            ]
+          ],
+          "fixtures": [
+            [
+              1,
+              "Goiás-GO",
+              "Goiatuba-GO"
+            ],
+            [
+              1,
+              "Jataiense-GO",
+              "CRAC-GO"
+            ],
+            [
+              1,
+              "Atlético-GO",
+              "Anápolis-GO"
+            ],
+            [
+              1,
+              "ABECAT-GO",
+              "Vila Nova-GO"
+            ],
+            [
+              1,
+              "Anapolina-GO",
+              "Inhumas-GO"
+            ],
+            [
+              1,
+              "Centro Oeste-GO",
+              "Aparecidense-GO"
+            ],
+            [
+              2,
+              "Vila Nova-GO",
+              "Anapolina-GO"
+            ],
+            [
+              2,
+              "CRAC-GO",
+              "Goiás-GO"
+            ],
+            [
+              2,
+              "Goiatuba-GO",
+              "Jataiense-GO"
+            ],
+            [
+              2,
+              "Inhumas-GO",
+              "ABECAT-GO"
+            ],
+            [
+              2,
+              "Aparecidense-GO",
+              "Atlético-GO"
+            ],
+            [
+              2,
+              "Anápolis-GO",
+              "Centro Oeste-GO"
+            ],
+            [
+              3,
+              "CRAC-GO",
+              "ABECAT-GO"
+            ],
+            [
+              3,
+              "Goiatuba-GO",
+              "Anapolina-GO"
+            ],
+            [
+              3,
+              "Aparecidense-GO",
+              "Inhumas-GO"
+            ],
+            [
+              3,
+              "Anápolis-GO",
+              "Vila Nova-GO"
+            ],
+            [
+              3,
+              "Atlético-GO",
+              "Goiás-GO"
+            ],
+            [
+              3,
+              "Centro Oeste-GO",
+              "Jataiense-GO"
+            ],
+            [
+              4,
+              "Vila Nova-GO",
+              "Aparecidense-GO"
+            ],
+            [
+              4,
+              "Inhumas-GO",
+              "Anápolis-GO"
+            ],
+            [
+              4,
+              "Goiás-GO",
+              "Centro Oeste-GO"
+            ],
+            [
+              4,
+              "Jataiense-GO",
+              "Atlético-GO"
+            ],
+            [
+              4,
+              "ABECAT-GO",
+              "Goiatuba-GO"
+            ],
+            [
+              4,
+              "Anapolina-GO",
+              "CRAC-GO"
+            ],
+            [
+              5,
+              "Vila Nova-GO",
+              "Atlético-GO"
+            ],
+            [
+              5,
+              "Inhumas-GO",
+              "Centro Oeste-GO"
+            ],
+            [
+              5,
+              "Aparecidense-GO",
+              "Goiatuba-GO"
+            ],
+            [
+              5,
+              "Anápolis-GO",
+              "CRAC-GO"
+            ],
+            [
+              5,
+              "ABECAT-GO",
+              "Jataiense-GO"
+            ],
+            [
+              5,
+              "Anapolina-GO",
+              "Goiás-GO"
+            ],
+            [
+              6,
+              "CRAC-GO",
+              "Aparecidense-GO"
+            ],
+            [
+              6,
+              "Goiatuba-GO",
+              "Anápolis-GO"
+            ],
+            [
+              6,
+              "Goiás-GO",
+              "ABECAT-GO"
+            ],
+            [
+              6,
+              "Jataiense-GO",
+              "Anapolina-GO"
+            ],
+            [
+              6,
+              "Atlético-GO",
+              "Inhumas-GO"
+            ],
+            [
+              6,
+              "Centro Oeste-GO",
+              "Vila Nova-GO"
+            ],
+            [
+              7,
+              "Goiás-GO",
+              "Vila Nova-GO"
+            ],
+            [
+              7,
+              "Jataiense-GO",
+              "Inhumas-GO"
+            ],
+            [
+              7,
+              "ABECAT-GO",
+              "Anápolis-GO"
+            ],
+            [
+              7,
+              "Anapolina-GO",
+              "Aparecidense-GO"
+            ],
+            [
+              7,
+              "Atlético-GO",
+              "CRAC-GO"
+            ],
+            [
+              7,
+              "Centro Oeste-GO",
+              "Goiatuba-GO"
+            ],
+            [
+              8,
+              "Vila Nova-GO",
+              "Jataiense-GO"
+            ],
+            [
+              8,
+              "Inhumas-GO",
+              "Goiás-GO"
+            ],
+            [
+              8,
+              "CRAC-GO",
+              "Centro Oeste-GO"
+            ],
+            [
+              8,
+              "Goiatuba-GO",
+              "Atlético-GO"
+            ],
+            [
+              8,
+              "Aparecidense-GO",
+              "ABECAT-GO"
+            ],
+            [
+              8,
+              "Anápolis-GO",
+              "Anapolina-GO"
+            ]
+          ],
+          "rounds": 8,
+          "home_games": 4,
+          "return": false
+        },
+        "barriers": [
+          [
+            {
+              "name": "quartas",
+              "entries": [
+                {
+                  "from": "initial",
+                  "index": 0
+                },
+                {
+                  "from": "initial",
+                  "index": 1
+                },
+                {
+                  "from": "initial",
+                  "index": 2
+                },
+                {
+                  "from": "initial",
+                  "index": 3
+                },
+                {
+                  "from": "initial",
+                  "index": 4
+                },
+                {
+                  "from": "initial",
+                  "index": 5
+                },
+                {
+                  "from": "initial",
+                  "index": 6
+                },
+                {
+                  "from": "initial",
+                  "index": 7
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  7
+                ],
+                [
+                  1,
+                  6
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "home_phases": [
+                "liga"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            }
+          ],
+          [
+            {
+              "name": "semifinal",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 0,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 1,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 2,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 3,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "quartas"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            },
+            {
+              "name": "playoff5",
+              "entries": [
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 0,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                },
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 1,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                },
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 2,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                },
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 3,
+                  "rank_phases": [
+                    "liga",
+                    "quartas"
+                  ]
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "quartas"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            }
+          ],
+          [
+            {
+              "name": "final",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "semifinal",
+                  "index": 0,
+                  "rank_phases": [
+                    "liga",
+                    "quartas",
+                    "semifinal"
+                  ]
+                },
+                {
+                  "from": "winner",
+                  "phase": "semifinal",
+                  "index": 1,
+                  "rank_phases": [
+                    "liga",
+                    "quartas",
+                    "semifinal"
+                  ]
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "quartas",
+                "semifinal"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            },
+            {
+              "name": "final5",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "playoff5",
+                  "index": 0,
+                  "rank_phases": [
+                    "liga",
+                    "quartas",
+                    "playoff5"
+                  ]
+                },
+                {
+                  "from": "winner",
+                  "phase": "playoff5",
+                  "index": 1,
+                  "rank_phases": [
+                    "liga",
+                    "quartas",
+                    "playoff5"
+                  ]
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "quartas",
+                "playoff5"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            }
+          ]
+        ],
+        "title_phase": "final",
+        "conditional_permanence": {
+          "phase": "permanencia",
+          "initial_positions": [
+            9,
+            10
+          ],
+          "skip_above": 6,
+          "omit_return_above": 3
+        },
+        "ranking": [
+          {
+            "from": "winner",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "semifinal",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "semifinal"
+            ]
+          },
+          {
+            "from": "winner",
+            "phase": "final5",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "playoff5",
+              "final5"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "final5",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "playoff5",
+              "final5"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "playoff5",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "playoff5"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 8,
+            "rank_phases": [
+              "liga"
+            ]
+          },
+          {
+            "from": "permanence",
+            "rank_phases": [
+              "liga"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 11,
+            "rank_phases": [
+              "liga"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "GO": {
+      "id": "go-state-d-2027-sim-v1",
+      "competition": "go-a1",
+      "source_edition": 2026,
+      "quota": 3,
+      "max_candidates": 3,
+      "source": "https://fgf.esp.br/assets/uploads/176833012335.pdf",
+      "location": "REC arts.24-25; quota CBF2026 projected only as future simulated candidacy",
+      "participants": [
+        "Vila Nova-GO",
+        "CRAC-GO",
+        "Inhumas-GO",
+        "Goiatuba-GO",
+        "Anápolis-GO",
+        "Goiás-GO",
+        "Jataiense-GO",
+        "Aparecidense-GO",
+        "Atlético-GO",
+        "ABECAT-GO",
+        "Centro Oeste-GO",
+        "Anapolina-GO"
+      ],
+      "selective_required": false,
+      "roll_down": "Best eligible final ranking, excluding verified upper national membership and retained national D merits",
+      "eligibility": "pending sports candidacy only; BID/licensing unknown",
+      "consulted_on": "2026-10-18"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://fgf.esp.br/assets/uploads/176833012335.pdf",
+      "sha256": "e9c0623490f8920cd53eca7bfe4c65b5661866fa4b8e58587561ecd05b0f6de8",
+      "bytes": 384081,
+      "locator": "REC arts.6–25; current BID amendment arts.4.3/4.5",
+      "consulted": "2026-10-18"
+    },
+    {
+      "url": "https://www.fgf.esp.br/assets/uploads/file/Tabela%20Goian%C3%A3o%202026.pdf",
+      "sha256": "529fb5c4d8f0869004be959e7d6785ebc4f9f12a831188383d2565219bf655f0",
+      "bytes": 2524893,
+      "locator": "48 first-phase pairings, rounds1–8; home/away only",
+      "consulted": "2026-10-18"
+    }
+  ],
+  "historical_scores_imported": false
+}
