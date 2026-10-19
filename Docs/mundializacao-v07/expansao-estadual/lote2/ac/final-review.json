@@ -1,0 +1,21 @@
+{
+  "base": "1fafd96aa02c0d32efc4e893e14aaab26872ccfa",
+  "files_scanned": 64,
+  "secret_patterns_found": 0,
+  "protected_unchanged": [
+    "app/Progression.php",
+    "app/Evolution.php",
+    "app/Rules.php",
+    "app/Achievements.php",
+    "app/MaranhenseCompetition.php",
+    "app/IntergroupStateCompetition.php",
+    "app/ConditionalStateCompetition.php",
+    ".github/workflows/production.yml",
+    ".github/workflows/production-ftps.yml"
+  ],
+  "allowed_Game_change": "Only reject offers/transfer in acre_isolated_trial; no formula changes",
+  "schema_changes": false,
+  "production_or_hub_changes": false,
+  "public_flags_enabled": false,
+  "owner_untracked_folder_excluded": true
+}

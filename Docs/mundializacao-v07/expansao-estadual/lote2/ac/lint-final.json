@@ -1,0 +1,22 @@
+{
+  "php_files": [
+    "app/Competition.php",
+    "app/CompetitionView.php",
+    "app/ConfiguredStateCompetition.php",
+    "app/Game.php",
+    "app/StateAdministration.php",
+    "app/StateQualification.php",
+    "app/StateResultProof.php",
+    "app/WorldSeason.php",
+    "app/view.php",
+    "app/AcreAdministration.php",
+    "app/AcreCompetition.php",
+    "app/AcreTrial.php",
+    "tests/acre-fixtures.php",
+    "tests/acre-http-v07.php",
+    "tests/acre-mysql-v07.php",
+    "tests/acre-runtime-v07.php",
+    "tests/acre-v07.php"
+  ],
+  "all_passed": true
+}

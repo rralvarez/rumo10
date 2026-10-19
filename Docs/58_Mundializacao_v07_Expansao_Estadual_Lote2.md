@@ -1,3 +1,66 @@
+# Entrega 58 — Acre executável com pendências auditadas
+
+18/10/2026. Base `1fafd96aa02c0d32efc4e893e14aaab26872ccfa`, branch `codex/mundializacao-v07`. Esta seção é a atualização corrente; as seções anteriores abaixo são histórico dos checkpoints e suas contagens não devem ser agregadas.
+
+## Resultado e limites de homologação
+
+São **12 integrações técnicas**: AL, PI, RO, BA, ES, PE, RN, DF, PR, GO, MA e AC. Restam 15 federações sem integração. Isso não significa homologação oficial irrestrita: Maranhão e Acre conservam os portões documentais descritos abaixo. Nenhuma flag pública foi habilitada.
+
+O Acre executa **34 partidas-base**: 28 de liga, quatro semifinais, bronze e final. Extras auditados são adicionais; a fronteira sintética com um extra executou 35. Empates envolvendo três ou mais clubes continuam pendentes de formato/documento suficiente. Não se inventou chaveamento. A composição de 34 prevalece na conciliação entre REC/tabela e notícia que anunciou 33; não foi localizada errata formal da notícia.
+
+Na única coorte NPC completa `862001`, foram reconstruídas provas das 20 competições e **24 candidatos estaduais**, incluindo **dois do Acre**; permanecem **40 vagas estaduais e quatro residuais**. Antes de incorporar os candidatos AC da mesma coorte eram 22/42. Não somar esses números aos de outros saves. **Zero inscrições nacionais, zero renovações e zero temporadas nacionais consecutivas demonstradas nesta entrega.** A matriz reproduzível das 27 UFs está em `expansao-estadual/lote2/ac/federations.csv` e JSON. Uma execução diagnóstica anterior encontrou legitimamente pendência MA e não emitiu recibos; não teve resultados alterados para contornar o bloqueio.
+
+## Fontes e identidades AC
+
+- [REC FFAC 2026](https://www.ffac.com.br/competicoes/regulamento/43): participantes e vagas, arts.1/3; semifinais, bronze, final e descenso, arts.6–8; desempates/jogo extra e pontos, arts.9/10. Localizadores, SHA-256 e bytes no contrato `database/competition-references/br-acreano-2026-v1.json` e `ac/sources.csv`.
+- [Tabela oficial de partidas](https://www.ffac.com.br/competicao/2026/acreanao-sicredi-2026/partidas): os primeiros 28 confrontos/mandos foram conciliados em sete rodadas, quatro pares por rodada; as seis partidas seguintes incluem bronze e final.
+- [Notícia da tabela](https://www.ffac.com.br/noticia/ffac-divulga-a-tabela-detalhada-do-campeonato-acreano2026): divergência quantitativa preservada como evidência, não usada para excluir o bronze.
+
+Adesg, Vasco, Galvez, Independência, Rio Branco, Santa Cruz Acre, São Francisco e Humaitá: oito IDs estáveis. Três referências já estavam no catálogo, Vasco reutiliza exatamente a identidade já conciliada na Copa do Brasil e quatro são referências somente do jogo. Nenhuma alteração no Hub, ratings, cidades, escudos ou elencos. Resultados históricos reais não foram importados. Datas do calendário são simuladas; BID e decisões disciplinares reais não são certificados.
+
+## Motor, decisões e provas
+
+Novo opt-in `configured-state-v7-ac`, sem mudar interpretadores v1–v6. Semifinais 1×4 e 2×3, ida/volta, volta da melhor posição inicial. **Igualdade de pontos favorece a melhor campanha inicial mesmo com saldo inferior**. Não se converte essa vantagem em saldo ou pênaltis. Final e bronze são jogos únicos; empate usa o critério documentado do REC. Ranking final separa campeão, vice, vencedor/perdedor do bronze e posições iniciais 5–8; descenso é mérito dos dois últimos, sem inventar divisão inferior executável.
+
+Quando não existe fundamento suficiente para designar mando/recinto de final e bronze, a competição para após as semifinais, conserva resultados e exige designação explícita para os quatro participantes efetivos. Também há pendência quando os desempates documentados exigem jogo extra. Sem designação válida não há homologação, título nem candidatura. Não se presume campo neutro, sorteio ou resolução administrativa.
+
+`AcreAdministration` fornece somente operador **CLI de fixtures locais**, protegido por ambiente e flags de teste. Decisões sintéticas são rotuladas, têm referência, data UTC, digest, chave da pendência, participantes, mando, recinto e neutralidade explícitos. Não constituem ato FFAC; não existe endpoint público para aplicá-las. Replay idêntico é idempotente; divergência ou adulteração falha. O ramo extra de dois clubes é exercitado; três ou mais exigem nova decisão de formato e permanecem bloqueados. O operador DF não aceita pendência AC.
+
+`StateResultProof` reconstrói resultados, decisões e ranking sem novo sorteio; `StateQualification` emite apenas candidaturas rastreáveis e aplica exclusões de mérito nacional. `FutureSerieDAdmission` continua bloqueando a composição incompleta. Nenhuma decisão concede XP ou R. Bronze não é título principal. O Game isolado bloqueia mercado e renovação porque não certifica calendário nacional seguinte.
+
+O builder completo tem 20 competições, 2.395–2.397 jogos-base e teto específico 2.413 incluindo orçamentos extras DF/AC. Budget NPC permanece oito. O limite genérico e os modelos anteriores não foram ampliados indiscriminadamente.
+
+## Maranhão: investigação focada
+
+Reconsultados [REC definitivo](https://www.futebolmaranhense.com.br/conteudo/18/11), [regulamento geral](https://www.futebolmaranhense.com.br/conteudo/24/14), [portarias](https://www.futebolmaranhense.com.br/conteudo/?q=23&sc=11) e [resoluções](https://www.futebolmaranhense.com.br/conteudo/?q=11&sc=9). Não foi localizado esclarecimento normativo suficiente para desempatar a permanência. Isso não prova inexistência de outro ato. Preservado o bloqueio quando os pontos empatam, sem importar pênaltis das semifinais. A opção entre vagas nacionais continua dependente de política verificável ou aprovação específica, sem escolha automática. Nenhum contrato MA foi alterado.
+
+## Testes executados e escopos
+
+- `acre-v07.php`: 51 verificações, 34-base, extra de dois clubes (35), pendência de três ou mais, vantagem por pontos, bronze, ranking, provas, adulteração, replay e coorte NPC completa.
+- `acre-runtime-v07.php`: 246 verificações. Game Normal/Rápido/Expresso, 34 jogos em cada fixture AC isolada, sete partidas do personagem em cada execução, recarga JSON por comando e XP/estatísticas reais. Uma designação sintética explícita por execução. Não são três temporadas nacionais.
+- `acre-mysql-v07.php --local-rollback`: 28 verificações. Repository/PDO, recarga, pendência, extra sintético persistido, crash/retry, nonce conflitante, segundo usuário, lock real com erro1205, savepoints e rollback integral. Fixture AC Expresso, 34 jogos/sete do personagem. Conquistas desligadas nessa coorte: ela não comprova concessão de R.
+- `acre-http-v07.php --local-fixtures`: 31 verificações. Servidor PHP loopback, autenticação descartável, CSRF, isolamento, pendência, rejeição de designação por POST de jogador, escape, replay e logout. Não equivale a login real Hub nem IIS/Apache/HTTPS.
+- `acre-mobile-v07.cjs`: 57 verificações, 18 capturas (seis rotas ×320/390/1280), sem overflow ou erros JS; teclado/Escape e reduced-motion. Evidências em `ac/mobile/`.
+- As **24 suítes** de `bin/test-narrative.py` passaram, com artefatos em `ac/regressao/`; preservados 1.014 registros narrativos. Rechecagens MA150, DF45, pós-jogo215 (seis posições/três modos), conquistas96 (50/1.000R), feedback32. Após o último ajuste restrito do Game, reexecutados mecânica97 arquivos, apresentação e novos testes Game/PDO/HTTP/mobile. Não houve repetição desnecessária da coorte pesada.
+
+Apenas fronteiras sintéticas declaradas têm placares controlados. Coortes Game/NPC não tiveram resultados manipulados para obter homologação. O caminho de pendência é resultado válido de teste, não falha a contornar. Os testes HTTP e PDO não são executados simultaneamente, evitando interferência nas verificações de contagem/rollback.
+
+## Desempenho local
+
+Game isolado: Normal78 comandos/p95 2,78ms; Rápido9/p95 7,22ms; Expresso3/p95 41,06ms. Snapshots finais 92.805/123.355/316.513 bytes respectivamente. São medições locais em memória com recarga JSON; não são latências da hospedagem.
+
+PDO Expresso: três comandos, p50 75,54ms, p95/p99/pior126,94ms, execução total2.127,17ms, snapshot315.391 bytes e memória32MiB. **218 consultas incluem verificações, locks, replay e fronteiras**, não representam apenas as três ações naturais. Não comparar esse universo AC isolado com snapshots nacionais de ~2MB como se fosse ganho de otimização. Sem reestruturação de persistência ou DDL.
+
+## Arquivos, reprodução e recuperação
+
+Novos `AcreCompetition`, `AcreAdministration`, `AcreTrial`, contrato AC, testes `acre-*` e exportador `bin/audit-acre-v07.py`; dispatch/prova/qualificação/calendário/apresentação têm extensões restritas. `Game.php` recebeu somente um bloqueio de mercado/transferência da fixture isolada AC. Fórmulas esportivas, nove atributos, XP-base, elencos, idade, autenticação/benefícios, Hub, ambientes e workflows não foram modificados. Corrigidos na implementação o reaproveitamento da identidade Vasco, reconstrução do extra fora dos pontos da liga, designação somente dos quatro finalistas e guarda do mercado isolado.
+
+Reproduzir com PHP8.4, `-n -d extension_dir=C:/PHP/php-8.4.26/ext -d extension=mbstring -d memory_limit=768M`; adicionar `-d extension=pdo_mysql` para PDO. Executar os testes acima a partir da raiz; os scripts de fixtures carregam as flags locais necessárias e limpam dados descartáveis. Exportar matriz: `python -X utf8 bin/audit-acre-v07.py`. Regressão completa: consultar contrato/comandos de `bin/test-narrative.py` e `ac/regressao/suites.json`. Mobile usa Chrome/Playwright locais, sem serviço externo. Dados privados permanecem em `storage/qa/`, fora do Git.
+
+Nenhuma migration ou alteração de schema. Todos os dados PDO descartáveis foram revertidos; HTTP limpou suas fixtures. Recuperação não destrutiva: manter flags públicas desligadas e usar a base anterior para saves antigos; snapshots locais com v7 devem conservar leitor v7, sem converter saves reais ou restaurar dump sobre progresso posterior. Não houve edição de contas reais, Hub/rh, produção, UOL, merge ou deploy. Renovação nacional continua bloqueada por admissões e torneios obrigatórios incompletos. V0.8 não iniciada.
+
+---
+
 # Entrega 58 — Maranhão executável com portões documentais; Acre conciliado parcialmente
 
 18/10/2026. Base `69ead9b802bb91972f8506e658d6bc6980eb8096`, branch `codex/mundializacao-v07`. As dez federações aprovadas e seus contratos foram preservados. A pasta preexistente `Docs/levantamento-2026-10-15/` permanece intocada e excluída dos commits. Histórico anterior abaixo.
