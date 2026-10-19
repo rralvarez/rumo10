@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 /** Opt-in edition contracts. No inference from country, name, tier or legacy format. */
 final class ConfiguredStateCompetition {
+    public const PARALLEL_VERSION='configured-state-v8-parallel';
     public const VERSION='configured-state-v1';
     public const ROUTED_VERSION='configured-state-v2';
     public const ADMIN_VERSION='configured-state-v3';
@@ -12,6 +13,7 @@ final class ConfiguredStateCompetition {
     public const INTERGROUP_VERSION='configured-state-v4';
 
     public static function validate(array $c,array $teams):void {
+        if(($c['state_engine']['version']??null)===self::PARALLEL_VERSION){ParallelStateCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::ACRE_VERSION){AcreCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::MARANHENSE_VERSION){MaranhenseCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::CONDITIONAL_VERSION){ConditionalStateCompetition::validate($c,$teams);return;}
@@ -51,6 +53,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function create(array $c,array $teams):array {
+        if(($c['state_engine']['version']??null)===self::PARALLEL_VERSION)return ParallelStateCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::ACRE_VERSION)return AcreCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::MARANHENSE_VERSION)return MaranhenseCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::CONDITIONAL_VERSION)return ConditionalStateCompetition::create($c,$teams);
@@ -64,7 +67,7 @@ final class ConfiguredStateCompetition {
 
     public static function standings(array $t,?array $teams=null,?string $phase=null,bool $campaign=false,bool $certify=false):array {
         $teams??=$t['teams'];$rules=Competition::catalog()[$t['id']]['state_engine'];
-        if(in_array($rules['version']??null,[self::INTERGROUP_VERSION,self::CONDITIONAL_VERSION],true))$campaign=true;
+        if(in_array($rules['version']??null,[self::INTERGROUP_VERSION,self::CONDITIONAL_VERSION,self::PARALLEL_VERSION],true))$campaign=true;
         $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase||$m['phase']===$phase)&&(!$campaign||$phase||!isset($rules['campaign_phases'])||in_array($m['phase'],$rules['campaign_phases'],true))&&($campaign||(in_array($m['home'],$teams,true)&&in_array($m['away'],$teams,true)))));
         $rows=Schedule::table($matches,$teams);foreach($rows as &$row){$row['red']=0;$row['yellow']=0;foreach($matches as $m)if($m['status']==='finalizada')foreach(['home','away'] as $side)if($m[$side]===$row['team']){$row['red']+=$m[$side.'_red']??0;$row['yellow']+=$m[$side.'_yellow']??0;}}unset($row);
         // Group ties by every preceding criterion. H2H is never pairwise for a three-way tie.
@@ -130,6 +133,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function next(array &$t):void {
+        if(($t['adapter_version']??null)===self::PARALLEL_VERSION){ParallelStateCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::ACRE_VERSION){AcreCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::MARANHENSE_VERSION){MaranhenseCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::CONDITIONAL_VERSION){ConditionalStateCompetition::next($t);return;}

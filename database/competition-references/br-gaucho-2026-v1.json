@@ -1,0 +1,745 @@
+{
+  "id": "gaucho-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "br-rs-a1": {
+      "id": "br-rs-a1",
+      "name": "Gaúcho Série A1",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "RS",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "br-rs",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Internacional-RS",
+        "Juventude-RS",
+        "Avenida-RS",
+        "São José-RS",
+        "Guarany de Bagé-RS",
+        "São Luiz-RS",
+        "Grêmio-RS",
+        "Caxias-RS",
+        "Novo Hamburgo-RS",
+        "Monsoon-RS",
+        "Internacional de Santa Maria-RS",
+        "Ypiranga-RS"
+      ],
+      "groups": [
+        [
+          "Internacional-RS",
+          "Juventude-RS",
+          "Avenida-RS",
+          "São José-RS",
+          "Guarany de Bagé-RS",
+          "São Luiz-RS"
+        ],
+        [
+          "Grêmio-RS",
+          "Caxias-RS",
+          "Novo Hamburgo-RS",
+          "Monsoon-RS",
+          "Internacional de Santa Maria-RS",
+          "Ypiranga-RS"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+        "https://fgf.com.br/Layout/documentos/69aefa8ba061ftabela-detalhada-gaucha%CC%83o-2026-2.pdf"
+      ],
+      "reference_clubs": {
+        "Avenida-RS": {
+          "name": "Avenida-RS",
+          "country": "BR",
+          "uf": "RS",
+          "competitions": [
+            "br-rs-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Novo Hamburgo-RS": {
+          "name": "Novo Hamburgo-RS",
+          "country": "BR",
+          "uf": "RS",
+          "competitions": [
+            "br-rs-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Monsoon-RS": {
+          "name": "Monsoon-RS",
+          "country": "BR",
+          "uf": "RS",
+          "competitions": [
+            "br-rs-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Internacional de Santa Maria-RS": {
+          "name": "Internacional de Santa Maria-RS",
+          "country": "BR",
+          "uf": "RS",
+          "competitions": [
+            "br-rs-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "rules": {
+        "access": 0,
+        "relegation": 2,
+        "note": "REC FGF2026. Datas e barreiras do calendário são simuladas; quadrangular encerra antes de liberar as semifinais neste piloto. BID/licenças não certificados. Sorteio terminal simulado persistido, não ata federativa. Méritos secundários não concedem título principal, XP ou R."
+      },
+      "state_engine": {
+        "version": "configured-state-v8-parallel",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "league": {
+          "groups": [
+            [
+              "Internacional-RS",
+              "Juventude-RS",
+              "Avenida-RS",
+              "São José-RS",
+              "Guarany de Bagé-RS",
+              "São Luiz-RS"
+            ],
+            [
+              "Grêmio-RS",
+              "Caxias-RS",
+              "Novo Hamburgo-RS",
+              "Monsoon-RS",
+              "Internacional de Santa Maria-RS",
+              "Ypiranga-RS"
+            ]
+          ],
+          "rounds": 6,
+          "home_games": 3,
+          "return": false,
+          "fixtures": [
+            [
+              1,
+              "Avenida-RS",
+              "Grêmio-RS"
+            ],
+            [
+              1,
+              "Internacional-RS",
+              "Novo Hamburgo-RS"
+            ],
+            [
+              1,
+              "Guarany de Bagé-RS",
+              "Monsoon-RS"
+            ],
+            [
+              1,
+              "São José-RS",
+              "Internacional de Santa Maria-RS"
+            ],
+            [
+              1,
+              "São Luiz-RS",
+              "Caxias-RS"
+            ],
+            [
+              1,
+              "Juventude-RS",
+              "Ypiranga-RS"
+            ],
+            [
+              2,
+              "Internacional de Santa Maria-RS",
+              "São Luiz-RS"
+            ],
+            [
+              2,
+              "Ypiranga-RS",
+              "Guarany de Bagé-RS"
+            ],
+            [
+              2,
+              "Grêmio-RS",
+              "São José-RS"
+            ],
+            [
+              2,
+              "Monsoon-RS",
+              "Internacional-RS"
+            ],
+            [
+              2,
+              "Caxias-RS",
+              "Avenida-RS"
+            ],
+            [
+              2,
+              "Novo Hamburgo-RS",
+              "Juventude-RS"
+            ],
+            [
+              3,
+              "Grêmio-RS",
+              "São Luiz-RS"
+            ],
+            [
+              3,
+              "Ypiranga-RS",
+              "Internacional-RS"
+            ],
+            [
+              3,
+              "Novo Hamburgo-RS",
+              "São José-RS"
+            ],
+            [
+              3,
+              "Monsoon-RS",
+              "Avenida-RS"
+            ],
+            [
+              3,
+              "Internacional de Santa Maria-RS",
+              "Juventude-RS"
+            ],
+            [
+              3,
+              "Caxias-RS",
+              "Guarany de Bagé-RS"
+            ],
+            [
+              4,
+              "Guarany de Bagé-RS",
+              "Grêmio-RS"
+            ],
+            [
+              4,
+              "Internacional-RS",
+              "Internacional de Santa Maria-RS"
+            ],
+            [
+              4,
+              "São José-RS",
+              "Monsoon-RS"
+            ],
+            [
+              4,
+              "Juventude-RS",
+              "Caxias-RS"
+            ],
+            [
+              4,
+              "Avenida-RS",
+              "Ypiranga-RS"
+            ],
+            [
+              4,
+              "São Luiz-RS",
+              "Novo Hamburgo-RS"
+            ],
+            [
+              5,
+              "Internacional-RS",
+              "Grêmio-RS"
+            ],
+            [
+              5,
+              "São Luiz-RS",
+              "Ypiranga-RS"
+            ],
+            [
+              5,
+              "Guarany de Bagé-RS",
+              "Internacional de Santa Maria-RS"
+            ],
+            [
+              5,
+              "Juventude-RS",
+              "Monsoon-RS"
+            ],
+            [
+              5,
+              "São José-RS",
+              "Caxias-RS"
+            ],
+            [
+              5,
+              "Avenida-RS",
+              "Novo Hamburgo-RS"
+            ],
+            [
+              6,
+              "Ypiranga-RS",
+              "São José-RS"
+            ],
+            [
+              6,
+              "Monsoon-RS",
+              "São Luiz-RS"
+            ],
+            [
+              6,
+              "Grêmio-RS",
+              "Juventude-RS"
+            ],
+            [
+              6,
+              "Caxias-RS",
+              "Internacional-RS"
+            ],
+            [
+              6,
+              "Internacional de Santa Maria-RS",
+              "Avenida-RS"
+            ],
+            [
+              6,
+              "Novo Hamburgo-RS",
+              "Guarany de Bagé-RS"
+            ]
+          ]
+        },
+        "barriers": [
+          [
+            {
+              "name": "quartas",
+              "type": "knockout",
+              "entries": [
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 0
+                },
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 1
+                },
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 2
+                },
+                {
+                  "from": "group",
+                  "group": 0,
+                  "index": 3
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 0
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 1
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 2
+                },
+                {
+                  "from": "group",
+                  "group": 1,
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  4,
+                  7
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "legs": 1,
+              "tie_rule": "penalties",
+              "home_phases": [
+                "liga"
+              ],
+              "seed_by_campaign": false
+            },
+            {
+              "name": "permanencia",
+              "type": "league",
+              "entries": [
+                {
+                  "from": "group_place",
+                  "place": 4,
+                  "index": 0
+                },
+                {
+                  "from": "group_place",
+                  "place": 4,
+                  "index": 1
+                },
+                {
+                  "from": "group_place",
+                  "place": 5,
+                  "index": 0
+                },
+                {
+                  "from": "group_place",
+                  "place": 5,
+                  "index": 1
+                }
+              ],
+              "home_phases": [
+                "liga"
+              ],
+              "rounds": 6,
+              "fixtures": [
+                [
+                  1,
+                  3,
+                  0
+                ],
+                [
+                  1,
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  0,
+                  2
+                ],
+                [
+                  2,
+                  1,
+                  3
+                ],
+                [
+                  3,
+                  3,
+                  2
+                ],
+                [
+                  3,
+                  1,
+                  0
+                ],
+                [
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  4,
+                  0,
+                  1
+                ],
+                [
+                  5,
+                  3,
+                  1
+                ],
+                [
+                  5,
+                  2,
+                  0
+                ],
+                [
+                  6,
+                  1,
+                  2
+                ],
+                [
+                  6,
+                  0,
+                  3
+                ]
+              ]
+            }
+          ],
+          [
+            {
+              "name": "semifinal",
+              "type": "knockout",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 0
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 1
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 2
+                },
+                {
+                  "from": "winner",
+                  "phase": "quartas",
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "legs": 2,
+              "tie_rule": "penalties",
+              "home_phases": [
+                "liga",
+                "quartas"
+              ],
+              "seed_by_campaign": true
+            },
+            {
+              "name": "farroupilha_semifinal",
+              "type": "knockout",
+              "entries": [
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 0
+                },
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 1
+                },
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 2
+                },
+                {
+                  "from": "loser",
+                  "phase": "quartas",
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "legs": 2,
+              "tie_rule": "penalties",
+              "home_phases": [
+                "liga",
+                "quartas"
+              ],
+              "seed_by_campaign": true
+            }
+          ],
+          [
+            {
+              "name": "final",
+              "type": "knockout",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "semifinal",
+                  "index": 0
+                },
+                {
+                  "from": "winner",
+                  "phase": "semifinal",
+                  "index": 1
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "legs": 2,
+              "tie_rule": "penalties",
+              "home_phases": [
+                "liga",
+                "quartas",
+                "semifinal"
+              ],
+              "seed_by_campaign": false
+            },
+            {
+              "name": "farroupilha_final",
+              "type": "knockout",
+              "entries": [
+                {
+                  "from": "winner",
+                  "phase": "farroupilha_semifinal",
+                  "index": 0
+                },
+                {
+                  "from": "winner",
+                  "phase": "farroupilha_semifinal",
+                  "index": 1
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "legs": 2,
+              "tie_rule": "penalties",
+              "home_phases": [
+                "liga",
+                "quartas",
+                "farroupilha_semifinal"
+              ],
+              "seed_by_campaign": false
+            }
+          ]
+        ],
+        "ranking": [
+          {
+            "from": "winner",
+            "phase": "final",
+            "rank_phases": [
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "final",
+            "rank_phases": [
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "semifinal",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "semifinal"
+            ]
+          },
+          {
+            "from": "winner",
+            "phase": "farroupilha_final",
+            "rank_phases": [
+              "farroupilha_final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "farroupilha_final",
+            "rank_phases": [
+              "farroupilha_final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "farroupilha_semifinal",
+            "rank_phases": [
+              "liga",
+              "quartas",
+              "farroupilha_semifinal"
+            ]
+          },
+          {
+            "from": "phase_rank",
+            "phase": "permanencia",
+            "rank_phases": [
+              "permanencia"
+            ]
+          }
+        ],
+        "title_phase": "final",
+        "relegation_phase": "permanencia",
+        "interior_exclusions": [
+          "Grêmio-RS",
+          "Internacional-RS"
+        ]
+      }
+    }
+  },
+  "paths": {
+    "RS": {
+      "id": "rs-state-d-2027-v1",
+      "competition": "br-rs-a1",
+      "source_edition": 2026,
+      "quota": 3,
+      "max_candidates": 2,
+      "source": "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+      "location": "REC art6: two league indications conditional on three CBF berths. Third path not certified here.",
+      "participants": [
+        "Internacional-RS",
+        "Juventude-RS",
+        "Avenida-RS",
+        "São José-RS",
+        "Guarany de Bagé-RS",
+        "São Luiz-RS",
+        "Grêmio-RS",
+        "Caxias-RS",
+        "Novo Hamburgo-RS",
+        "Monsoon-RS",
+        "Internacional de Santa Maria-RS",
+        "Ypiranga-RS"
+      ],
+      "selection_mode": "ranking",
+      "knowledge": "future_pending_candidacy_not_official_admission",
+      "consulted_on": "2026-10-19"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+      "sha256": "310a3f39e6a2b6c5c407b53ce6804ff2a71ceda3029693a5a48da31aed04e428",
+      "bytes": 551773,
+      "locator": "REC arts.4,6,9–20; pages3–12",
+      "consulted": "2026-10-19"
+    },
+    {
+      "url": "https://fgf.com.br/Layout/documentos/69aefa8ba061ftabela-detalhada-gaucha%CC%83o-2026-2.pdf",
+      "sha256": "46b0364f937945f157fa8c229a0f982086c63bdcf88f36a99b6f65c73c4cb68e",
+      "bytes": 40418,
+      "locator": "First36 pairings/home-away only; no historical scores imported",
+      "consulted": "2026-10-19"
+    }
+  ],
+  "historical_scores_imported": false
+}
