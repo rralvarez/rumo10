@@ -1,0 +1,497 @@
+{
+  "id": "acreano-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "ac-a1": {
+      "id": "ac-a1",
+      "name": "Acreano Série A",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "AC",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "ac",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "Adesg-AC",
+        "Vasco-AC",
+        "Galvez-AC",
+        "Independência-AC",
+        "Rio Branco-AC",
+        "Santa Cruz Acre-AC",
+        "São Francisco-AC",
+        "Humaitá-AC"
+      ],
+      "groups": [
+        [
+          "Adesg-AC",
+          "Vasco-AC",
+          "Galvez-AC",
+          "Independência-AC",
+          "Rio Branco-AC",
+          "Santa Cruz Acre-AC",
+          "São Francisco-AC",
+          "Humaitá-AC"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://www.ffac.com.br/competicoes/regulamento/43",
+        "https://www.ffac.com.br/competicao/2026/acreanao-sicredi-2026/partidas"
+      ],
+      "rules": {
+        "promotion": 0,
+        "relegation": 0
+      },
+      "reference_clubs": {
+        "Adesg-AC": {
+          "name": "Adesg-AC",
+          "country": "BR",
+          "uf": "AC",
+          "competitions": [
+            "ac-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffac.com.br/competicoes/regulamento/43",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Vasco-AC": {
+          "name": "Vasco-AC",
+          "official_name": "Associação Desportiva Vasco da Gama",
+          "country": "BR",
+          "uf": "AC",
+          "competitions": [
+            "br-copa"
+          ],
+          "game_only": true,
+          "rating_origin": "existing_game_fallback_not_official_rating",
+          "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+          "source_location": "Anexo A PDF pp.19-21"
+        },
+        "Rio Branco-AC": {
+          "name": "Rio Branco-AC",
+          "country": "BR",
+          "uf": "AC",
+          "competitions": [
+            "ac-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffac.com.br/competicoes/regulamento/43",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Santa Cruz Acre-AC": {
+          "name": "Santa Cruz Acre-AC",
+          "country": "BR",
+          "uf": "AC",
+          "competitions": [
+            "ac-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffac.com.br/competicoes/regulamento/43",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "São Francisco-AC": {
+          "name": "São Francisco-AC",
+          "country": "BR",
+          "uf": "AC",
+          "competitions": [
+            "ac-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.ffac.com.br/competicoes/regulamento/43",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "state_engine": {
+        "version": "configured-state-v7-ac",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "ga",
+          "h2h_gd_two",
+          "red",
+          "yellow",
+          "federation_game"
+        ],
+        "league": {
+          "groups": [
+            [
+              "Adesg-AC",
+              "Vasco-AC",
+              "Galvez-AC",
+              "Independência-AC",
+              "Rio Branco-AC",
+              "Santa Cruz Acre-AC",
+              "São Francisco-AC",
+              "Humaitá-AC"
+            ]
+          ],
+          "fixtures": [
+            [
+              1,
+              "Independência-AC",
+              "Santa Cruz Acre-AC"
+            ],
+            [
+              1,
+              "Galvez-AC",
+              "São Francisco-AC"
+            ],
+            [
+              1,
+              "Vasco-AC",
+              "Rio Branco-AC"
+            ],
+            [
+              1,
+              "Adesg-AC",
+              "Humaitá-AC"
+            ],
+            [
+              2,
+              "Humaitá-AC",
+              "Santa Cruz Acre-AC"
+            ],
+            [
+              2,
+              "Rio Branco-AC",
+              "Galvez-AC"
+            ],
+            [
+              2,
+              "Independência-AC",
+              "São Francisco-AC"
+            ],
+            [
+              2,
+              "Vasco-AC",
+              "Adesg-AC"
+            ],
+            [
+              3,
+              "Independência-AC",
+              "Humaitá-AC"
+            ],
+            [
+              3,
+              "São Francisco-AC",
+              "Rio Branco-AC"
+            ],
+            [
+              3,
+              "Santa Cruz Acre-AC",
+              "Vasco-AC"
+            ],
+            [
+              3,
+              "Adesg-AC",
+              "Galvez-AC"
+            ],
+            [
+              4,
+              "Rio Branco-AC",
+              "Independência-AC"
+            ],
+            [
+              4,
+              "Humaitá-AC",
+              "Vasco-AC"
+            ],
+            [
+              4,
+              "São Francisco-AC",
+              "Adesg-AC"
+            ],
+            [
+              4,
+              "Santa Cruz Acre-AC",
+              "Galvez-AC"
+            ],
+            [
+              5,
+              "Vasco-AC",
+              "Independência-AC"
+            ],
+            [
+              5,
+              "Adesg-AC",
+              "Rio Branco-AC"
+            ],
+            [
+              5,
+              "Santa Cruz Acre-AC",
+              "São Francisco-AC"
+            ],
+            [
+              5,
+              "Galvez-AC",
+              "Humaitá-AC"
+            ],
+            [
+              6,
+              "Rio Branco-AC",
+              "Santa Cruz Acre-AC"
+            ],
+            [
+              6,
+              "Humaitá-AC",
+              "São Francisco-AC"
+            ],
+            [
+              6,
+              "Galvez-AC",
+              "Vasco-AC"
+            ],
+            [
+              6,
+              "Adesg-AC",
+              "Independência-AC"
+            ],
+            [
+              7,
+              "São Francisco-AC",
+              "Vasco-AC"
+            ],
+            [
+              7,
+              "Independência-AC",
+              "Galvez-AC"
+            ],
+            [
+              7,
+              "Humaitá-AC",
+              "Rio Branco-AC"
+            ],
+            [
+              7,
+              "Santa Cruz Acre-AC",
+              "Adesg-AC"
+            ]
+          ],
+          "rounds": 7,
+          "return": false
+        },
+        "barriers": [
+          [
+            {
+              "name": "semifinal",
+              "entries": [
+                {
+                  "from": "initial",
+                  "index": 0
+                },
+                {
+                  "from": "initial",
+                  "index": 1
+                },
+                {
+                  "from": "initial",
+                  "index": 2
+                },
+                {
+                  "from": "initial",
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "home_phases": [
+                "liga"
+              ],
+              "legs": 2,
+              "tie_rule": "points_advantage"
+            }
+          ],
+          [
+            {
+              "name": "final",
+              "entries": [
+                {
+                  "from": "winner",
+                  "index": 0,
+                  "phase": "semifinal"
+                },
+                {
+                  "from": "winner",
+                  "index": 1,
+                  "phase": "semifinal"
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "semifinal"
+              ],
+              "legs": 1,
+              "tie_rule": "penalties"
+            },
+            {
+              "name": "bronze",
+              "entries": [
+                {
+                  "from": "loser",
+                  "index": 0,
+                  "phase": "semifinal"
+                },
+                {
+                  "from": "loser",
+                  "index": 1,
+                  "phase": "semifinal"
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "semifinal"
+              ],
+              "legs": 1,
+              "tie_rule": "penalties"
+            }
+          ]
+        ],
+        "title_phase": "final",
+        "ranking": [
+          {
+            "from": "winner",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "winner",
+            "phase": "bronze",
+            "rank_phases": [
+              "liga",
+              "semifinal",
+              "bronze"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "bronze",
+            "rank_phases": [
+              "liga",
+              "semifinal",
+              "bronze"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 4,
+            "rank_phases": [
+              "liga"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 5,
+            "rank_phases": [
+              "liga"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 6,
+            "rank_phases": [
+              "liga"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 7,
+            "rank_phases": [
+              "liga"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "AC": {
+      "id": "ac-state-d-2027-v1",
+      "competition": "ac-a1",
+      "source_edition": 2026,
+      "quota": 2,
+      "max_candidates": 2,
+      "source": "https://www.ffac.com.br/competicoes/regulamento/43",
+      "location": "REC art.3 champion/vice and technical roll-down; CBF2026 quota used for future simulated pending candidacy",
+      "participants": [
+        "Adesg-AC",
+        "Vasco-AC",
+        "Galvez-AC",
+        "Independência-AC",
+        "Rio Branco-AC",
+        "Santa Cruz Acre-AC",
+        "São Francisco-AC",
+        "Humaitá-AC"
+      ],
+      "selective_required": false,
+      "roll_down": "Verified final ranking, excluding existing national merits",
+      "eligibility": "Pending sports candidacy only; external administrative eligibility not certified",
+      "consulted_on": "2026-10-18",
+      "ranking_prefix": 8
+    }
+  },
+  "sources": [
+    {
+      "url": "https://www.ffac.com.br/competicoes/regulamento/43",
+      "sha256": "a9b3eefe151d9bebf3b76ac0b487df275226920ca3c7dfd0ea0061f5206a13f7",
+      "bytes": 11704523,
+      "locator": "REC arts.1,3,6–10; PDF pages3,6–7",
+      "consulted": "2026-10-18"
+    },
+    {
+      "url": "https://www.ffac.com.br/competicao/2026/acreanao-sicredi-2026/partidas",
+      "sha256": "167543fe91cc550946aabfeafa78fc634b004f379b107ed9631cc2d1a0adc6bb",
+      "bytes": 153377,
+      "locator": "34 fixtures incl bronze; first28 home/away; no historical scores imported",
+      "consulted": "2026-10-18"
+    }
+  ],
+  "identities": {
+    "Independência-AC": "Independência",
+    "Santa Cruz Acre-AC": "Santa Cruz",
+    "Galvez-AC": "Galvez",
+    "São Francisco-AC": "São Francisco",
+    "Vasco-AC": "Vasco da Gama",
+    "Rio Branco-AC": "Rio Branco",
+    "Adesg-AC": "ADESG",
+    "Humaitá-AC": "Humaitá"
+  },
+  "historical_scores_imported": false,
+  "calendar": "simulated round dates; pairings and home/away reconciled to official schedule"
+}

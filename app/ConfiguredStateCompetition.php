@@ -6,11 +6,13 @@ final class ConfiguredStateCompetition {
     public const VERSION='configured-state-v1';
     public const ROUTED_VERSION='configured-state-v2';
     public const ADMIN_VERSION='configured-state-v3';
+    public const ACRE_VERSION='configured-state-v7-ac';
     public const MARANHENSE_VERSION='configured-state-v6-ma';
     public const CONDITIONAL_VERSION='configured-state-v5';
     public const INTERGROUP_VERSION='configured-state-v4';
 
     public static function validate(array $c,array $teams):void {
+        if(($c['state_engine']['version']??null)===self::ACRE_VERSION){AcreCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::MARANHENSE_VERSION){MaranhenseCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::CONDITIONAL_VERSION){ConditionalStateCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::INTERGROUP_VERSION){IntergroupStateCompetition::validate($c,$teams);return;}
@@ -49,6 +51,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function create(array $c,array $teams):array {
+        if(($c['state_engine']['version']??null)===self::ACRE_VERSION)return AcreCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::MARANHENSE_VERSION)return MaranhenseCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::CONDITIONAL_VERSION)return ConditionalStateCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::INTERGROUP_VERSION)return IntergroupStateCompetition::create($c,$teams);
@@ -67,6 +70,7 @@ final class ConfiguredStateCompetition {
         // Group ties by every preceding criterion. H2H is never pairwise for a three-way tie.
         $sort=function(array $bucket,int $at)use(&$sort,$rules,$matches,$t,$phase,$certify):array{
             if(count($bucket)<2||$at>=count($rules['tiebreakers']))return $bucket;$criterion=$rules['tiebreakers'][$at];
+            if($criterion==='federation_game'&&($rules['version']??null)===self::ACRE_VERSION)return AcreAdministration::rank($t,$bucket,$phase??'campaign',$certify);
             if($criterion==='federation_game'){return StateAdministration::rank($t,$bucket,$phase??'campaign',$certify);}
             if(in_array($criterion,['h2h_gd_two','h2h_points_two'],true)){
                 if(count($bucket)!==2)return $sort($bucket,$at+1);$gd=0;[$a,$b]=$bucket;
@@ -79,7 +83,7 @@ final class ConfiguredStateCompetition {
                 krsort($groups,SORT_NUMERIC);$out=[];foreach($groups as $group)$out=array_merge($out,$sort($group,$at+1));return $out;
             }
             $groups=[];foreach($bucket as $row){$value=$criterion==='lots'?$t['lots'][$row['team']]:$row[$criterion];$groups[$value][]=$row;}
-            if(in_array($criterion,['red','yellow','lots'],true))ksort($groups,SORT_NUMERIC);else krsort($groups,SORT_NUMERIC);$out=[];foreach($groups as $group)$out=array_merge($out,$sort($group,$at+1));return $out;
+            if(in_array($criterion,['red','yellow','lots'],true)||($criterion==='ga'&&($rules['version']??null)===self::ACRE_VERSION))ksort($groups,SORT_NUMERIC);else krsort($groups,SORT_NUMERIC);$out=[];foreach($groups as $group)$out=array_merge($out,$sort($group,$at+1));return $out;
         };
         return $sort($rows,0);
     }
@@ -126,6 +130,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function next(array &$t):void {
+        if(($t['adapter_version']??null)===self::ACRE_VERSION){AcreCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::MARANHENSE_VERSION){MaranhenseCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::CONDITIONAL_VERSION){ConditionalStateCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::INTERGROUP_VERSION){IntergroupStateCompetition::next($t);return;}
