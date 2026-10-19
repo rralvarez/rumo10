@@ -1,0 +1,428 @@
+{
+  "career_id": 864001,
+  "sports": {
+    "AL": {
+      "competition": "al-a1",
+      "done": true,
+      "proof": true
+    },
+    "PI": {
+      "competition": "pi-a1",
+      "done": true,
+      "proof": true
+    },
+    "RO": {
+      "competition": "ro-a1",
+      "done": true,
+      "proof": true
+    },
+    "BA": {
+      "competition": "ba-a1",
+      "done": true,
+      "proof": true
+    },
+    "ES": {
+      "competition": "es-a1",
+      "done": true,
+      "proof": true
+    },
+    "PE": {
+      "competition": "pe-a1",
+      "done": true,
+      "proof": true
+    },
+    "RN": {
+      "competition": "rn-a1",
+      "done": true,
+      "proof": true
+    },
+    "DF": {
+      "competition": "df-a1",
+      "done": true,
+      "proof": true
+    },
+    "PR": {
+      "competition": "pr-a1",
+      "done": true,
+      "proof": true
+    },
+    "GO": {
+      "competition": "go-a1",
+      "done": true,
+      "proof": true
+    },
+    "MA": {
+      "competition": "ma-a1",
+      "done": false,
+      "proof": false
+    },
+    "AC": {
+      "competition": "ac-a1",
+      "done": true,
+      "proof": true
+    },
+    "RS": {
+      "competition": "br-rs-a1",
+      "done": true,
+      "proof": true
+    }
+  },
+  "required_competitions_pending": {
+    "ma-a1": {
+      "key": "c22116e77065d3828b8ac8060dfcf3ef86438cbb93dfab97a226baacde5d145b",
+      "phase": "permanencia",
+      "teams": [
+        "ITZ Sport-MA",
+        "Tuntum-MA"
+      ],
+      "reason": "ma_permanence_tie_rule_not_verified",
+      "state": "awaiting_federation_decision",
+      "source": "REC MA2026 art.4 §2 and art.22; published RGC does not settle tie",
+      "simulation_only": true
+    }
+  },
+  "state_candidates": null,
+  "state_missing": null,
+  "transition_residual_missing": 4,
+  "national_enrollments": 0,
+  "future_composition_complete": false,
+  "renewals": 0,
+  "future_capacities": {
+    "C": 24,
+    "D": 96,
+    "CopaBrasil": 128,
+    "CopaBrasil_games": 157
+  },
+  "remaining_obligations": [
+    "Complete state/selective admissions and four transition residuals",
+    "Future Nordeste and Copa do Brasil entries and contracts",
+    "Sul-Sudeste/regional obligations not certified club by club",
+    "Continental obligations not implemented; unknown entry is not dispensation"
+  ],
+  "federations": [
+    {
+      "uf": "SP",
+      "quota_reference": 4,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "RJ",
+      "quota_reference": 3,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "MG",
+      "quota_reference": 3,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "RS",
+      "quota_reference": 3,
+      "competition": "br-rs-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "PR",
+      "quota_reference": 3,
+      "competition": "pr-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "CE",
+      "quota_reference": 3,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "GO",
+      "quota_reference": 3,
+      "competition": "go-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "SC",
+      "quota_reference": 3,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "BA",
+      "quota_reference": 3,
+      "competition": "ba-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "PE",
+      "quota_reference": 2,
+      "competition": "pe-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "AL",
+      "quota_reference": 2,
+      "competition": "al-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "PA",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "MT",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "AM",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "RN",
+      "quota_reference": 2,
+      "competition": "rn-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "PB",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "MA",
+      "quota_reference": 2,
+      "competition": "ma-a1",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "SE",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "DF",
+      "quota_reference": 2,
+      "competition": "df-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "PI",
+      "quota_reference": 2,
+      "competition": "pi-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "ES",
+      "quota_reference": 2,
+      "competition": "es-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "TO",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "AC",
+      "quota_reference": 2,
+      "competition": "ac-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "RO",
+      "quota_reference": 2,
+      "competition": "ro-a1",
+      "sports_proven": true,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "RR",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "MS",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    },
+    {
+      "uf": "AP",
+      "quota_reference": 2,
+      "competition": "not_implemented",
+      "sports_proven": false,
+      "candidate_count": null,
+      "candidate_state": "not_assessed_required_tournaments_pending",
+      "enrollments": 0,
+      "future_composition_complete": false,
+      "renewals": 0,
+      "career_id": 864001
+    }
+  ]
+}

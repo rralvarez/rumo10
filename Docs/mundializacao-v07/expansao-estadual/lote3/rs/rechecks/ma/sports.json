@@ -1,0 +1,72 @@
+{
+    "checks": 150,
+    "cases": {
+        "clear": {
+            "games": 36,
+            "done": true,
+            "pending": null,
+            "ranking": [
+                "Luminense-MA",
+                "IAPE-MA",
+                "Imperatriz-MA",
+                "Moto Club-MA",
+                "Sampaio Corrêa-MA",
+                "ITZ Sport-MA",
+                "Maranhão-MA",
+                "Tuntum-MA"
+            ]
+        },
+        "unequal_semifinal_margins": {
+            "games": 36,
+            "done": true,
+            "pending": null,
+            "ranking": [
+                "Moto Club-MA",
+                "Imperatriz-MA",
+                "IAPE-MA",
+                "Luminense-MA",
+                "Sampaio Corrêa-MA",
+                "Tuntum-MA",
+                "Maranhão-MA",
+                "ITZ Sport-MA"
+            ]
+        },
+        "tied_points": {
+            "games": 36,
+            "done": false,
+            "pending": {
+                "key": "e9fa0cb4286bb5fbeb2d456f30a8d8db6641c9aeda0751b3e6749a803577763e",
+                "phase": "permanencia",
+                "teams": [
+                    "ITZ Sport-MA",
+                    "Maranhão-MA"
+                ],
+                "reason": "ma_permanence_tie_rule_not_verified",
+                "state": "awaiting_federation_decision",
+                "source": "REC MA2026 art.4 §2 and art.22; published RGC does not settle tie",
+                "simulation_only": true
+            },
+            "ranking": null
+        },
+        "drawn": {
+            "games": 36,
+            "done": false,
+            "pending": {
+                "key": "8190886562e6c3f4c37a39958a8d9a6629e740d4c240270eab0cbbbc9dac412a",
+                "phase": "permanencia",
+                "teams": [
+                    "Maranhão-MA",
+                    "Sampaio Corrêa-MA"
+                ],
+                "reason": "ma_permanence_tie_rule_not_verified",
+                "state": "awaiting_federation_decision",
+                "source": "REC MA2026 art.4 §2 and art.22; published RGC does not settle tie",
+                "simulation_only": true
+            },
+            "ranking": null
+        }
+    },
+    "synthetic_rule_cases": true,
+    "national_entries": 0,
+    "national_renewals": 0
+}

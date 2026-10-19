@@ -1,0 +1,32 @@
+{
+    "checks": 103,
+    "scope": "synthetic boundary scores, real contract; not historical results",
+    "games": 64,
+    "phases": {
+        "liga": 36,
+        "quartas": 4,
+        "permanencia": 12,
+        "semifinal": 4,
+        "farroupilha_semifinal": 4,
+        "final": 2,
+        "farroupilha_final": 2
+    },
+    "ranking": [
+        "São Luiz-RS",
+        "Internacional-RS",
+        "Ypiranga-RS",
+        "Monsoon-RS",
+        "Grêmio-RS",
+        "Internacional de Santa Maria-RS",
+        "Juventude-RS",
+        "Avenida-RS",
+        "São José-RS",
+        "Guarany de Bagé-RS",
+        "Novo Hamburgo-RS",
+        "Caxias-RS"
+    ],
+    "secondary_merits": {
+        "farroupilha": "Grêmio-RS",
+        "interior": "Ypiranga-RS"
+    }
+}

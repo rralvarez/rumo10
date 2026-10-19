@@ -1,0 +1,13 @@
+{
+    "checks": 5,
+    "scope": "same full21 NPC career snapshot persisted, not full21 Game season",
+    "career_id": 864001,
+    "candidate_count": 0,
+    "candidacy_assessed": false,
+    "all_state_candidates": 0,
+    "state_missing": null,
+    "residual_missing": 4,
+    "entries": 0,
+    "renewals": 0,
+    "all_writes_rolled_back": true
+}

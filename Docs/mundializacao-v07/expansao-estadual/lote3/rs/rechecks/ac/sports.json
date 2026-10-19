@@ -1,0 +1,79 @@
+{
+    "checks": 51,
+    "cases": {
+        "base34": {
+            "games": 34,
+            "decisions": 1,
+            "ranking": [
+                "Adesg-AC",
+                "Vasco-AC",
+                "Independência-AC",
+                "Galvez-AC",
+                "Rio Branco-AC",
+                "Santa Cruz Acre-AC",
+                "São Francisco-AC",
+                "Humaitá-AC"
+            ],
+            "source": "synthetic boundary results, never historical"
+        },
+        "two_club_extra": {
+            "games": 35,
+            "decisions": 2,
+            "ranking": [
+                "Adesg-AC",
+                "Vasco-AC",
+                "Galvez-AC",
+                "Independência-AC",
+                "Rio Branco-AC",
+                "Santa Cruz Acre-AC",
+                "São Francisco-AC",
+                "Humaitá-AC"
+            ],
+            "source": "synthetic boundary results, never historical"
+        },
+        "multi_club": {
+            "games": 28,
+            "pending": {
+                "key": "e914aa4c72da6bc9c784d53a6dfb5b7e612099e0135e291b0f2e8bc5b1ddbfb6",
+                "reason": "ac_extra_game_requires_designation",
+                "phase": "campaign",
+                "teams": [
+                    "Adesg-AC",
+                    "Galvez-AC",
+                    "Vasco-AC"
+                ],
+                "context": {
+                    "results": "a4a48cfd57b042183e3d9b05c5ef4b8c8cdd00bc97454c5dce797628e975a3d9"
+                },
+                "state": "awaiting_federation_decision",
+                "source": "REC AC2026 arts.7\/9; designation not inferred",
+                "simulation_only": true
+            }
+        }
+    },
+    "career_id": 862001,
+    "scope": "full20 NPC proof fixture; not Game national season",
+    "ac_games": 34,
+    "pending": {
+        "ma-a1": {
+            "key": "c64fe4ce347e06ccb08a7b1ff8ef8faebc982b83c3903509953270288fdb5a4c",
+            "phase": "permanencia",
+            "teams": [
+                "Luminense-MA",
+                "Tuntum-MA"
+            ],
+            "reason": "ma_permanence_tie_rule_not_verified",
+            "state": "awaiting_federation_decision",
+            "source": "REC MA2026 art.4 §2 and art.22; published RGC does not settle tie",
+            "simulation_only": true
+        }
+    },
+    "rows": [],
+    "admission": {
+        "state": "blocked_unfinished_required_tournament",
+        "memberships_applied": false
+    },
+    "entries": 0,
+    "national_renewals": 0,
+    "random_NPC_results_not_modified": true
+}

@@ -1,0 +1,95 @@
+{
+    "checks": 15,
+    "career_id": 864001,
+    "scope": "full21 NPC proof fixture; not Game national season",
+    "rs_games": 64,
+    "pending": {
+        "ma-a1": {
+            "key": "c22116e77065d3828b8ac8060dfcf3ef86438cbb93dfab97a226baacde5d145b",
+            "phase": "permanencia",
+            "teams": [
+                "ITZ Sport-MA",
+                "Tuntum-MA"
+            ],
+            "reason": "ma_permanence_tie_rule_not_verified",
+            "state": "awaiting_federation_decision",
+            "source": "REC MA2026 art.4 §2 and art.22; published RGC does not settle tie",
+            "simulation_only": true
+        }
+    },
+    "state_sports": {
+        "AL": {
+            "competition": "al-a1",
+            "done": true,
+            "proof": true
+        },
+        "PI": {
+            "competition": "pi-a1",
+            "done": true,
+            "proof": true
+        },
+        "RO": {
+            "competition": "ro-a1",
+            "done": true,
+            "proof": true
+        },
+        "BA": {
+            "competition": "ba-a1",
+            "done": true,
+            "proof": true
+        },
+        "ES": {
+            "competition": "es-a1",
+            "done": true,
+            "proof": true
+        },
+        "PE": {
+            "competition": "pe-a1",
+            "done": true,
+            "proof": true
+        },
+        "RN": {
+            "competition": "rn-a1",
+            "done": true,
+            "proof": true
+        },
+        "DF": {
+            "competition": "df-a1",
+            "done": true,
+            "proof": true
+        },
+        "PR": {
+            "competition": "pr-a1",
+            "done": true,
+            "proof": true
+        },
+        "GO": {
+            "competition": "go-a1",
+            "done": true,
+            "proof": true
+        },
+        "MA": {
+            "competition": "ma-a1",
+            "done": false,
+            "proof": false
+        },
+        "AC": {
+            "competition": "ac-a1",
+            "done": true,
+            "proof": true
+        },
+        "RS": {
+            "competition": "br-rs-a1",
+            "done": true,
+            "proof": true
+        }
+    },
+    "rows": [],
+    "admission": {
+        "state": "blocked_unfinished_required_tournament",
+        "memberships_applied": false
+    },
+    "entries": 0,
+    "national_renewals": 0,
+    "random_NPC_results_not_modified": true
+}

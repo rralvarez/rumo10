@@ -1,0 +1,42 @@
+{
+  "consulted_on": "2026-10-19",
+  "scope": "focused six-federation triage, not general world audit",
+  "federations": [
+    {
+      "uf": "RS",
+      "state": "implemented_local_opt_in",
+      "primary": "https://www.fgf.com.br/public/uploads/noticias/693caa950a28d-Gaucha%CC%83o%20SUPERBET%202026%20-%20REC_251212_205059.pdf",
+      "next": "Complete source proof;64 games in Game and PDO. National entry remains blocked."
+    },
+    {
+      "uf": "SP",
+      "state": "researched_not_implemented",
+      "primary": "https://futebolpaulista.com.br/Repositorio/Competicao/Regulamento/1551/1551_639002025107690404.pdf",
+      "next": "Fixed64-fixture partial league; check RGC final-ranking and venue restrictions; no integration claimed. RGC landing returned403 in local fetch."
+    },
+    {
+      "uf": "CE",
+      "state": "REC_read_not_implemented",
+      "primary": "https://www.futebolcearense.com.br/2010/downloads/arquivos/arquivo_10358.pdf",
+      "next": "First phase within groups; second cross groups with home allocation; placement3/5 and single-round permanence. Reconcile detailed table before new contract."
+    },
+    {
+      "uf": "SC",
+      "state": "official_REC_located_not_reconciled",
+      "primary": "https://fcf-sc.s3.sa-east-1.amazonaws.com/wp-content/uploads/2024/02/19182343/REC.-Camp.-Cat.-Fut.Prof_.Serie_.A.2026.pdf",
+      "next": "Official resolution page timed out in browse; REC link located. Read full REC/amendments and reconcile all branches/fixtures; no implemented claim."
+    },
+    {
+      "uf": "MG",
+      "state": "official_portal_located_not_reconciled",
+      "primary": "https://fmf.com.br/Competicoes/ProxJogos.aspx?d=1",
+      "next": "Obtain/read attached REC, RGC and notices; reconcile Inconfidencia and rankings. Portal is not executable contract."
+    },
+    {
+      "uf": "RJ",
+      "state": "official_portal_located_not_reconciled",
+      "primary": "https://www.fferj.com.br/campeonatos/estadual/profissional/serie-a?genero=MASCULINO",
+      "next": "Read current SerieA REC and all branches, Guanabara/Rio/permanence and reciprocal lower-division obligations. SerieA2 PDF does not certify SerieA."
+    }
+  ]
+}
