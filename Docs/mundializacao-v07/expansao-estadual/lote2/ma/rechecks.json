@@ -1,0 +1,19 @@
+{
+  "regression_suites": 24,
+  "candangao": 45,
+  "presentation": true,
+  "season_presentation": true,
+  "post_match": 215,
+  "achievement_catalog": 96,
+  "catalog_achievements": 50,
+  "catalog_R": 1000,
+  "growth_v061": 32,
+  "narrative_scenes": 1014,
+  "attributes": 9,
+  "IIS": false,
+  "Apache": false,
+  "production": false,
+  "goiano": 62,
+  "paranaense_negative_contracts": 5,
+  "lint_php_files": 14
+}

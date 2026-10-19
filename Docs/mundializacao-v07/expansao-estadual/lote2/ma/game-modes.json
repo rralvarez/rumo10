@@ -1,0 +1,106 @@
+{
+  "checks": 9473,
+  "results": [
+    {
+      "mode": "normal",
+      "commands": 389,
+      "matches": 2363,
+      "ma_matches": 36,
+      "administrative_decisions": 0,
+      "club": "ITZ Sport-MA",
+      "state_candidates": {
+        "AL": 2,
+        "PI": 2,
+        "RO": 1,
+        "BA": 3,
+        "ES": 0,
+        "PE": 2,
+        "RN": 2,
+        "DF": 2,
+        "PR": 3,
+        "GO": 3,
+        "MA": 1
+      },
+      "state_slots_pending": 43,
+      "state_played": 9,
+      "cup_matches": 155,
+      "own_cup_fixtures": 0,
+      "own_cup_played": 0,
+      "own_cup_minutes": 0,
+      "cup_champion": "Bahia-BA",
+      "p50_ms": 103.34,
+      "p95_ms": 259.35,
+      "p99_ms": 461.11,
+      "max_ms": 1462.68,
+      "elapsed_ms": 79639.99,
+      "snapshot_bytes": 1666740,
+      "peak_snapshot_bytes": 2027276,
+      "seasons": 1,
+      "renewals": 0
+    },
+    {
+      "mode": "expresso",
+      "commands": 292,
+      "matches": 2363,
+      "ma_matches": 36,
+      "administrative_decisions": 0,
+      "club": "ITZ Sport-MA",
+      "state_candidates": {
+        "AL": 2,
+        "PI": 2,
+        "RO": 0,
+        "BA": 3,
+        "ES": 1,
+        "PE": 2,
+        "RN": 2,
+        "DF": 2,
+        "PR": 3,
+        "GO": 3,
+        "MA": 0
+      },
+      "state_slots_pending": 44,
+      "state_played": 7,
+      "cup_matches": 155,
+      "own_cup_fixtures": 0,
+      "own_cup_played": 0,
+      "own_cup_minutes": 0,
+      "cup_champion": "Cruzeiro-MG",
+      "p50_ms": 111.18,
+      "p95_ms": 265.63,
+      "p99_ms": 476.5,
+      "max_ms": 1310.77,
+      "elapsed_ms": 73488.09,
+      "snapshot_bytes": 1678870,
+      "peak_snapshot_bytes": 2042027,
+      "seasons": 1,
+      "renewals": 0
+    }
+  ],
+  "blocked_results": [
+    {
+      "mode": "rapido",
+      "commands": 237,
+      "matches_finalized": null,
+      "ma_matches": 36,
+      "pending": {
+        "competition": "ma-a1",
+        "key": "8f3c4cc420039314d9dc80fd21cb7407ad413143923c2d43f91c43e6487c7539",
+        "phase": "permanencia",
+        "teams": [
+          "Luminense-MA",
+          "Tuntum-MA"
+        ],
+        "reason": "ma_permanence_tie_rule_not_verified",
+        "state": "awaiting_federation_decision",
+        "source": "REC MA2026 art.4 §2 and art.22; published RGC does not settle tie",
+        "simulation_only": true
+      },
+      "national_renewals": 0,
+      "counter_note": "Global finalized count was not collected correctly in this run; future harness counter corrected. MA36 verified separately."
+    }
+  ],
+  "all_three_modes_completed": false,
+  "same_career_sequential_seasons": 1,
+  "national_renewals": 0,
+  "five_national_seasons": false
+}

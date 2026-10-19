@@ -1,0 +1,23 @@
+[
+  {
+    "url": "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+    "sha256": "dd4503e43dbaa041a96fe8b094e09181741eb1c25ff20b51b4db2d09ec50461d",
+    "bytes": 828564,
+    "locator": "REC arts.4,12\u201314,22",
+    "consulted": "2026-10-18"
+  },
+  {
+    "url": "https://www.futebolmaranhense.com.br/assets/uploads/176374611975.pdf",
+    "sha256": "83f3851b634274408dcfe4db101f1a8d1baca5e74bf5793dc66eb9bcad38b9de",
+    "bytes": 3106188,
+    "locator": "28 initial pairings; semifinal/final slots",
+    "consulted": "2026-10-18"
+  },
+  {
+    "url": "https://www.futebolmaranhense.com.br/assets/uploads/175039859589.pdf",
+    "sha256": "9fea1eecd805672f9d3a046ccbfef924ab5652e0de0ccca35ae47be3c0f2c994",
+    "bytes": 587914,
+    "locator": "Published RGC2025; points per match, no permanence tie procedure located",
+    "consulted": "2026-10-18"
+  }
+]

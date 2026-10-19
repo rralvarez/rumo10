@@ -1,0 +1,177 @@
+[
+  {
+    "file": "app/ConditionalStateCompetition.php",
+    "unchanged": true,
+    "sha256": "e81ea74ede7607be2f150ba3fee9a2ae3297a27a3a4ba4a7e701729a698cd7f1"
+  },
+  {
+    "file": "app/IntergroupStateCompetition.php",
+    "unchanged": true,
+    "sha256": "03ed3aaac4330da33d32dc4e2924910f8ef92d27b1e87d44cced6a6054a815ae"
+  },
+  {
+    "file": "app/Game.php",
+    "unchanged": true,
+    "sha256": "7a20e4f07032e1825ee740ac5ec1167148dc872b038563962b4d676ae128377c"
+  },
+  {
+    "file": "app/Probability.php",
+    "unchanged": true,
+    "sha256": "6015ec14237aa5896d1baf2a84e101b4ab80965999f7558cddb3a2427d639845"
+  },
+  {
+    "file": "app/TeamStrength.php",
+    "unchanged": true,
+    "sha256": "cfe5817da9027bf4e8ae56f60748ec375be67b719810475aaad2c0b1f6215777"
+  },
+  {
+    "file": "app/MatchBalance.php",
+    "unchanged": true,
+    "sha256": "6d83517f01d59ead4f415b4545511c89e2bbace74a1f3782debde6e7568c521e"
+  },
+  {
+    "file": "app/MatchMomentum.php",
+    "unchanged": true,
+    "sha256": "b9e335a3e0e115116f2b5fc3d6a2979a1b98d5b16dd0b49906208febb29bc6bd"
+  },
+  {
+    "file": "app/Progression.php",
+    "unchanged": true,
+    "sha256": "b3a287058f07dd4dd490d94dec91482efb821e9363bf847459b140685781e7e8"
+  },
+  {
+    "file": "app/Evolution.php",
+    "unchanged": true,
+    "sha256": "2b5160bfc9a332855c6ed2089958e190e557452005ad1aba0881c67188ae9ef7"
+  },
+  {
+    "file": "app/Rules.php",
+    "unchanged": true,
+    "sha256": "461300b1e8ae658f478f64dd8ba2555a96d8044bdafd00a39725dc824b8088dd"
+  },
+  {
+    "file": "app/TransferMarket.php",
+    "unchanged": true,
+    "sha256": "0fad8ab67e89e84ce5a58cbf6a5e592dfe083c9bc72b5ba304e5e7bb903b1bec"
+  },
+  {
+    "file": "app/Identity.php",
+    "unchanged": true,
+    "sha256": "7a96d91999a7496b2190d88afaf9181592b190a11470ab1b187d32d8beded4df"
+  },
+  {
+    "file": "app/CareerBenefits.php",
+    "unchanged": true,
+    "sha256": "6db1d64fdf6c73601a6aafb4ee9828fc2a3afd39e50c3dddcc9610a4d2a60145"
+  },
+  {
+    "file": "public/.htaccess",
+    "unchanged": true,
+    "sha256": "80500cb78cfe9085e4e58984847d9bc1988e799abdb2625edf14c6d6dab31848"
+  },
+  {
+    "file": "public/web.config",
+    "unchanged": true,
+    "sha256": "f896e4bf247fc73db394072fa02aa9208acbf854a137eaee3810b14659a2d9fb"
+  },
+  {
+    "file": "database/competition-references/al-b-homes-2026.json",
+    "unchanged": true,
+    "sha256": "4968fbacf5b28e73a0e16d3e76c2cf203ea82348e7430b488964522b5d661355"
+  },
+  {
+    "file": "database/competition-references/br-abc-2026.json",
+    "unchanged": true,
+    "sha256": "fa350fc5a957a1b884804de4319a4c7d8c3eb6c6630324aaa92641c4b0e10ee6"
+  },
+  {
+    "file": "database/competition-references/br-al-2026.json",
+    "unchanged": true,
+    "sha256": "42e4bb022232decaf168f343cc4c35d2c51150a94100e51ea097fa6f733eb194"
+  },
+  {
+    "file": "database/competition-references/br-candangao-2026-v1.json",
+    "unchanged": true,
+    "sha256": "63875e38bf45cf33e1047890ba31f35e51b209b0046d5dec9c668b8669efac09"
+  },
+  {
+    "file": "database/competition-references/br-capixaba-2026-v1.json",
+    "unchanged": true,
+    "sha256": "22df6dd54f82fed3becda8398c8263845c3283b98e72a31d97afbb042daf4f6d"
+  },
+  {
+    "file": "database/competition-references/br-copa-annex-2026.json",
+    "unchanged": true,
+    "sha256": "639793c3f62e32163393cc602390c884998e11fcabdaa0ce9dc8be24c03e52b5"
+  },
+  {
+    "file": "database/competition-references/br-copa-sports-2026.json",
+    "unchanged": true,
+    "sha256": "fd8d1e70168401cfd93a7a270a02d352f90beb50b7243a9ccd7672f2bfbd2faf"
+  },
+  {
+    "file": "database/competition-references/br-cup-obligations-2026.json",
+    "unchanged": true,
+    "sha256": "dd66c0573c8b783343e106b004f5dc146aff34ba023a3e4f0d7519674edba55d"
+  },
+  {
+    "file": "database/competition-references/br-d-admission-2026-v2.json",
+    "unchanged": true,
+    "sha256": "bd571a755af215eaf1059f8280e617882e8f1b18d1a71cc53a561f890eb2c006"
+  },
+  {
+    "file": "database/competition-references/br-d-annex-2026.json",
+    "unchanged": true,
+    "sha256": "87e0b46152d4696cb3b264df4248e819a8a2bc0fae7bc9f52f7b2511a61c3d14"
+  },
+  {
+    "file": "database/competition-references/br-d-future-proposal-v1.json",
+    "unchanged": true,
+    "sha256": "bc0fb45b89702fcfe42cc22ff65e6ef5418b3790f9b2c92c1b926b126ce1bccf"
+  },
+  {
+    "file": "database/competition-references/br-d-sports-2026.json",
+    "unchanged": true,
+    "sha256": "12e1f20dc519026bd50402050f9ddec9be331cf4640bc068e7c7d632954f58aa"
+  },
+  {
+    "file": "database/competition-references/br-future-formats-v1.json",
+    "unchanged": true,
+    "sha256": "f2e5f9b4762c019cff166424ae1a91f8b495dd6754a35f7ee6130da477e5f943"
+  },
+  {
+    "file": "database/competition-references/br-goiano-2026-v1.json",
+    "unchanged": true,
+    "sha256": "41ea70b336f20d2d8b99c147a511c6518306ded56ac32afc93abfa837a488c2b"
+  },
+  {
+    "file": "database/competition-references/br-nordeste-2026.json",
+    "unchanged": true,
+    "sha256": "bd7e9ad9a36cf35a1f431e18293045a179ebdcf87b9268b168eb1725004c8c22"
+  },
+  {
+    "file": "database/competition-references/br-paranaense-2026-v1.json",
+    "unchanged": true,
+    "sha256": "03e79c0084c702cc7a42eb22f18ff3f1270da7a7b0e2904fde1a0266bb0016ab"
+  },
+  {
+    "file": "database/competition-references/br-pe-rn-2026-v1.json",
+    "unchanged": true,
+    "sha256": "991602a3c24aff6cf85e56eeff667d1cd25533515ba7432a7a503dd8a13888f6"
+  },
+  {
+    "file": "database/competition-references/br-state-batch-2026-v1.json",
+    "unchanged": true,
+    "sha256": "1539662b9b26c33763d67af677b5f28cc9848e54044853b1fc9d989c374cdc75"
+  },
+  {
+    "file": "database/competition-references/br-state-d-paths-v1.json",
+    "unchanged": true,
+    "sha256": "089a1e2df647f55ec2b1dca367ea84300795873294bb737830d5262eafc8392c"
+  },
+  {
+    "file": "database/competition-references/br-state-expansion-2026-v1.json",
+    "unchanged": true,
+    "sha256": "0441ab4a97c66cef8ced5da5ac41342fc05574d0a2fb872d982644678ae9605e"
+  }
+]

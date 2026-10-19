@@ -1,3 +1,120 @@
+# Entrega 58 — Maranhão executável com portões documentais; Acre conciliado parcialmente
+
+18/10/2026. Base `69ead9b802bb91972f8506e658d6bc6980eb8096`, branch `codex/mundializacao-v07`. As dez federações aprovadas e seus contratos foram preservados. A pasta preexistente `Docs/levantamento-2026-10-15/` permanece intocada e excluída dos commits. Histórico anterior abaixo.
+
+## Resultado efetivo e limites
+
+**Maranhão entrou no Game, calendário e Repository/PDO: 36 partidas quando não existe empate documentalmente indefinido.** São28 de liga,4 semifinais,2 de permanência e2 de final. A integração técnica passa a11 federações; **MA tem portão de homologação e repasses ainda limitado**, não equivale a homologação irrestrita. Acre não foi ativado; não declarar12 federações concluídas.
+
+As fases conhecidas são disputadas mesmo se a permanência ficar indefinida. Ao fim, sem fonte que resolva o empate, o motor conserva resultados e bloqueia homologação, título, candidaturas e avanço. Não sorteia o vencedor, não presume pênaltis e não inventa jogo extra.
+
+Universo do builder:19 competições,2.361–2.363 jogos-base conforme a permanência GO, teto específico2.371 incluindo até8 extras DF. Budget NPC8 e limite genérico preservados. **Zero inscrições nacionais efetivadas, zero renovações nacionais aplicadas.** Não são cinco temporadas consecutivas nem uma liberação pública.
+
+## Fontes MA, edição e participantes
+
+- [REC definitivo FMF2026](https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf): art.4, inscrições nacionais, opções e descenso; arts.12–14, liga, semifinais e final; art.22, omissões.
+- [Tabela oficial FMF2026](https://www.futebolmaranhense.com.br/assets/uploads/176374611975.pdf):28 confrontos iniciais e mandos/slots das fases seguintes. A linha com horário `16::00` não fez perder um confronto: horários reais não foram importados e a cobertura de28 pares foi conferida.
+- [RGC publicado na página de regulamento geral](https://www.futebolmaranhense.com.br/assets/uploads/175039859589.pdf): documento disponibilizado como2025, art.21, três pontos por vitória/um por empate. Não foi identificado nele procedimento que encerre o empate da permanência MA2026. Publicação vigente consultada, sem alegar regulamento oficial futuro.
+
+Hashes, bytes e localizadores em `database/competition-references/br-maranhense-2026-v1.json` e `ma/sources.json`. Nenhum placar histórico foi importado; resultados são ficção do save e datas são simulação do calendário consolidado. BID/licenças/decisões disciplinares reais não certificados.
+
+Oito identidades: IAPE, ITZ Sport, Luminense, Maranhão, Moto Club, Sampaio Corrêa, Imperatriz e Tuntum. Cinco IDs locais reutilizados; ITZ Sport,Luminense,Tuntum são referências isoladas do Rumo10, sem preencher Hub, ratings oficiais, cidades, escudos ou elencos. Não houve fusão por semelhança de nomes.
+
+## Motor opt-in e homologação
+
+`configured-state-v6-ma` entra apenas em `MaranhenseCompetition`. V5 GO, v4 PR e contratos anteriores permanecem intactos. Liga valida todos os28 pares, sete jogos por clube, rodadas1–7, adversários e mandos explícitos. Ranking por pontos,vitórias,saldo,gols pró,confronto direto entre dois,vermelhos,amarelos e sorteio simulado persistido. Não é uma ata de sorteio federativo. Não foi implementada uma nova regra geral de regulamentos.
+
+Semifinais1×4/2×3, volta do1º/2º inicial. Final em ida/volta, volta da melhor campanha liga+semifinais. Mata-matas conhecidos usam pontos,saldo e pênaltis persistidos. Liga e ramos não são recalculados pelo catálogo atual após pin da edição.
+
+Último da liga tem mérito direto de descenso. Sexto/sétimo jogam duas partidas, volta do sexto, em paralelo às semifinais. Se a soma dos pontos das duas partidas produz vencedor inequívoco, esse clube permanece; RGC art.21 sustenta o sistema de pontos. **Se os pontos empatam, a homologação permanece pendente mesmo com saldos diferentes**, pois não se transplantou o desempate específico da semifinal para a permanência.
+
+A final pode ser disputada antes da pendência impedir o fechamento; seu vencedor ainda não recebe título enquanto o resultado completo não puder ser homologado. Quinto/oitavo iniciais preservados; semifinalistas3º/4º por campanha; vencedor/perdedor da permanência6º/7º. Rebaixados são7º/8º finais, sem efetivar troca com divisão inferior não integrada.
+
+A pendência é persistida, tem chave derivada dos resultados e replay sem novas partidas/recompensas. O operador CLI de extra DF **recusa** a pendência MA: não basta um comando sintético para transformar uma omissão em regra oficial. A tela MA explica a ausência de critério, sem dizer que o REC exige jogo extra. Nenhum endpoint administrativo foi criado.
+
+## Série D e opção entre vagas
+
+REC art.4 prevê campeão,vice e3º para D2027, sujeito à disponibilização; os itensVI–VIII também preveem opção do clube quando há múltiplas vagas remanescentes em competições distintas. A matriz conservadora anterior usa quota de referência CBF2026 **MA2, total64**, que não foi ampliada silenciosamente para65.
+
+O caminho deste piloto certifica somente finalistas elegíveis, no máximo2, excluindo méritos nacionais já comprovados. Terceiro e repasses além dos finalistas ficam com motivo `national_option_not_verified`. Isso é um limite conservador explícito da projeção simulada, **não homologação oficial das vagas2027**. Uma terceira vaga e a opção entre torneios precisam de política/inscrição confirmada antes da execução. Se a competição está pendente, nenhuma prova final/candidatura MA é concedida.
+
+`StateResultProof` reconstrói tabela, chaves, mandos, ranking, campeão e descensos quando certificados. `StateQualification` e `FutureSerieDAdmission` mantêm recibos por carreira/edição, idempotência e separação de candidatura/inscrição. Não se combinam resultados de saves diferentes.
+
+## Acre:33/34 explicado, ativação ainda bloqueada
+
+A [tabela oficial da FFAC](https://www.ffac.com.br/competicao/2026/acreanao-sicredi-2026/partidas) atual tem **34 links distintos de partidas**. O [REC, arts.6–9](https://www.ffac.com.br/competicoes/regulamento/43), prevê28 de liga,4 semifinais,1 bronze e1 final, total34. Os dois últimos registros são [966](https://www.ffac.com.br/partida/966) e [967](https://www.ffac.com.br/partida/967). Nenhum placar foi incorporado.
+
+A [notícia dos33 jogos](https://ffac.com.br/noticia/ffac-divulga-a-tabela-detalhada-do-campeonato-acreano2026) não conta a disputa de bronze prevista no REC e presente na contagem da tabela. Esta é uma conciliação documental por confronto das fontes, **não uma errata formal localizada**. Não foi removido o bronze.
+
+Ainda faltam contrato conciliado dos mandos genéricos da final/bronze e procedimento/designação do jogo extra do art.9, especialmente empate entre vários clubes. Mandante de uma partida histórica não prova regra genérica de mando para outros finalistas simulados. A vantagem da semifinal é por igualdade de **pontos**, antes de qualquer saldo, e foi registrada como requisito; não foi ativada por analogia com outro mata-mata.
+
+Alternativas: localizar ato/tabela de designação aplicável aos confrontos simulados; ou implementar pendências auditadas específicas, com confirmação prévia do formato administrativo. Campo neutro ou sorteio não foram escolhidos automaticamente. **Acre: zero jogos no Game/PDO, zero candidaturas novas.** Próximo lote pode aproveitar a conciliação34 sem repetir a pesquisa geral.
+
+## Evidências e testes
+
+Pasta deste incremento: `Docs/mundializacao-v07/expansao-estadual/lote2/ma/`. Coortes e métricas finais abaixo.
+
+### Resultados finais das coortes
+
+| Coorte independente |MA jogos|MA homologado|Candidatos MA|Total estadual|Vagas estaduais pendentes|Residuais|Renovações|
+|---|---:|---|---:|---:|---:|---:|---:|
+|PDO Expresso|36|sim, sem empate na permanência|1|23|41|4|0|
+|Game normal|36|sim|1|21|43|4|0|
+|Game expresso|36|sim|0|20|44|4|0|
+|Game Rápido|36|não: empate na permanência|não concedidos|não homologado globalmente|não apurado globalmente|4|0|
+
+Cada linha é uma carreira/execução independente, sem agregação. No PDO, o subconjunto das dez UFs anteriores **do mesmo save** tem22 candidatos; MA soma1 e chega23, pendentes42→41. Não comparar esse subtotal com outra execução antiga. `ma/federations.csv/json` exporta27 UFs desse único PDO; o ID efêmero não foi exportado e não foi inventado. O recibo foi gravado,recarregado e repetido pelo Repository antes do rollback. Reprodução: `bin/audit-maranhense-v07.py` exige evidência de coorte concluída; não exporta números de edição bloqueada como homologados.
+
+Normal/Expresso completaram2.363 partidas do universo cada, com19 competições; personagem disputou9/7 partidas MA. Rápido parou depois dos36 jogos MA e237 comandos, preservando a pendência. A contagem global de partidas finalizadas não foi coletada corretamente nessa execução e está **null**, não zero; o contador do harness foi corrigido para execuções futuras. Não se repetiu uma coorte pesada apenas para preencher essa métrica. Os três modos foram exercitados, mas **não houve três edições homologadas**. PDO concluiu uma edição; não são temporadas sequenciais nem renovações.
+
+### Testes e correções
+
+| Suíte | Evidência |
+|---|---|
+| `tests/maranhense-v07.php` |150 verificações:28 pares,rodadas,semifinais/permanência paralelas,36 jogos,ranking,último direto,prova reconstruída,placares com margens diferentes,empates pendentes,replay e recusa do operador DF para MA. Casos esportivos sintéticos identificados; não são resultados históricos.|
+| `tests/maranhense-runtime-v07.php` |9.473 verificações; Normal/Expresso concluídos,Rápido pendente esperado,calendário,provas,recompensas e ausência de renovação.|
+| `tests/maranhense-mysql-v07.php --local-rollback` |45 verificações,uma edição com36 MA,recarga por comando,duas contas,nonce,replay divergente,crash após save antes do ledger,retry,lock1205 e rollback integral. Há ramo de teste para persistência de pendência; a execução final medida foi a concluída.|
+| `tests/maranhense-http-v07.php --local-fixtures` |141 verificações,login descartável,CSRF,isolamento,HTML completo,11 estaduais,permanência e pendência MA sem promessa de jogo extra. Fixture removida.|
+| `tests/maranhense-mobile-v07.cjs` |222 verificações,63 capturas,320/390/1280,teclado/Escape,reduced-motion,sem overflow/erros JS. Pendência MA320 inspecionada visualmente.|
+| `bin/test-narrative.py` |24 suítes passaram,1.014 cenas,nove atributos preservados.|
+| Rechecks |GO62,negativosPR5,DF45,pós-jogo215(seis posições/três modos),conquistas96(catálogo50/1.000R),feedback/v0.6.1 32; apresentação e resumo repetidos após ajuste de UI.|
+
+A primeira versão do harness herdava a suposição de que toda coorte terminaria: encontrou corretamente a pendência MA e abortou. Foi ajustada para registrar bloqueio esportivo esperado em vez de resolver artificialmente. Outra comparação exigia igualdade de todo o estado após continuar, incluindo a versão que o Game incrementa; agora verifica estado esportivo,pendência e recompensas, permitindo o incremento de versão.
+
+A reconstrução de semifinais revelou um erro novo no adaptador MA: em igualdade de pontos com saldos diferentes, o verificador escolhia somente pelo sinal dos pontos. Corrigido para pontos e depois saldo **apenas nos mata-matas documentados**; caso específico adicionado. A permanência conserva o bloqueio por empate em pontos. Testes específicos passaram após a correção; nenhum motor nacional,GO/PR,força ou probabilidade foi alterado.
+
+Conquistas desativadas em PDO/HTTP: não alegar concessão de R nessas fixtures. Seis posições são cobertura do pós-jogo, não seis temporadas completas MA. HTTP é servidor PHP loopback com conta descartável e Chrome sobre HTML capturado; não IIS,identidade central real,Apache,HTTPS,UOL,leitor de tela ou aparelho físico. Nenhum teste AC no Game/PDO foi declarado.
+
+### Desempenho local
+
+PDO: 290 comandos, 10153 consultas; p50 476.35ms,p95 766.92ms,p99 990.38ms,pior/fechamento 1966.43ms. Total 153568.47ms; snapshot final 1672433bytes,pico 2050157bytes; pico de memória do harness 150994944bytes; histórico anterior 2bytes nesta primeira edição.
+
+| Game concluído |Comandos|p95ms|Piorms|Pico snapshot bytes|
+|---|---:|---:|---:|---:|
+|normal|389|259.35|1462.68|2027276|
+|expresso|292|265.63|1310.77|2042027|
+
+Referência GO anterior:285 comandos/9.978consultas,p95647,63ms,pico2.030.943bytes. Agora há mais36 jogos; algumas suítes compartilharam CPU. Não é comparação controlada nem previsão UOL. Sem curva multi-temporada ou otimização estrutural v0.8.
+
+### Reprodução, recuperação e Git
+
+PHP8.4 com `-n -d extension_dir=C:/PHP/php-8.4.26/ext -d extension=mbstring -d memory_limit=768M`; PDO/HTTP acrescentam `-d extension=pdo_mysql`. Executar scripts da tabela. DB somente `rumohub` local e `--local-rollback`. Não executar HTTP ao mesmo tempo que PDO,pois este confere contagens globais. HTTP antes de mobile. Resultados aleatórios podem levar a pendência legítima: nunca resolver automaticamente para forçar um teste concluído.
+
+Regressão: `V06_EVIDENCE_DIR=Docs/mundializacao-v07/expansao-estadual/lote2/ma/regressao`; `python -X utf8 bin/test-narrative.py`. JSON bruto comparado com gzip antes de remover somente a cópia regenerável. PDFs,HTML autenticado,CSRF e logs ficam privados/ignorados em storage. Evidências antigas regeneradas foram copiadas como rechecks novos e restauradas da base,sem tocar a pasta alheia.
+
+`ma/protected-files.json` confere35 arquivos protegidos e contratos anteriores contra a base69ead9b. Lint de14PHP,diff e revisão de segredos feitos. Sem DDL/migration: nenhum backup/restauração ou dado de produção envolvido. Todas as gravações PDO revertidas; fixture HTTP removida.
+
+Rollback não destrutivo: flags públicas0; voltar ao checkpoint69ead9b para runtime público,preservando snapshots de teste v6 junto ao interpretador que os lê. Não restaurar dumps sobre progresso posterior. Sem conversão de saves reais. `.env`,Hub/rh_*,IIS/Apache,serviços,produção e workflows intocados. Workflow continua main-only/manual; push da branch não faz deploy. Commits separados para implementação,testes e evidências:
+
+```text
+7e5700817d0acacd2324333ecec36ee7fc23960d test: cover Maranhense completion and documented pending paths
+d31023aba3152dd246c075d3e42d74a3d37a9779 feat: integrate Maranhense with guarded permanence homologation
+```
+
+SHA remoto confirmado no resumo após push. Sem merge nem v0.8.
+
+---
+
 # Entrega 58 — Goiás executável, interpretador condicional v5
 
 18/10/2026. Continuação da base `500c46cb75e9ed710841d029f7703abfe11f1689`, branch `codex/mundializacao-v07`. O histórico Paraná/pesquisa foi preservado abaixo. A pasta alheia `Docs/levantamento-2026-10-15/` permanece intocada e fora dos commits.

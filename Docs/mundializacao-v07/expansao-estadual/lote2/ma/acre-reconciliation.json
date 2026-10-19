@@ -1,0 +1,24 @@
+{
+  "implemented": false,
+  "official_schedule_url": "https://www.ffac.com.br/competicao/2026/acreanao-sicredi-2026/partidas",
+  "sha256": "167543fe91cc550946aabfeafa78fc634b004f379b107ed9631cc2d1a0adc6bb",
+  "distinct_fixture_links": 34,
+  "league": 28,
+  "semifinals": 4,
+  "bronze": 1,
+  "final": 1,
+  "rec_locator": "arts.6–9, PDF pages6–7",
+  "bronze_source": "https://www.ffac.com.br/partida/966",
+  "final_source": "https://www.ffac.com.br/partida/967",
+  "news_count": 33,
+  "news_url": "https://ffac.com.br/noticia/ffac-divulga-a-tabela-detalhada-do-campeonato-acreano2026",
+  "conclusion": "Official schedule count agrees with REC including bronze; old news count excludes one match. This is reconciliation, not a located formal erratum. No historical scores imported.",
+  "pending": [
+    "Generic home assignment for simulated final/bronze not verified from concrete historical home team",
+    "Art.9 extra game: multi-club format/home designation not provided; cannot replace by lots",
+    "Require edition contract and Game/PDO validation before activation"
+  ],
+  "games_executed": 0,
+  "national_entries": 0,
+  "bytes": 153377
+}
