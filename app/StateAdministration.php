@@ -33,6 +33,7 @@ final class StateAdministration {
     public static function replay(array &$t,array $decision):void {
         $hash=$decision['sha256']??'';$body=$decision;unset($body['sha256']);if(($decision['schema']??null)!=='federation-fixture-designation-v1'||!preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/',$decision['designated_at']??'')||!hash_equals($hash,StateResultProof::digest($body)))throw new RuntimeException('Auditoria da designação inválida.');
         $p=$t['administrative_pending']??throw new RuntimeException('Sem pendência administrativa.');
+        if(($p['reason']??null)==='ma_permanence_tie_rule_not_verified')throw new RuntimeException('O critério MA requer fonte federativa; designar jogo extra DF não resolve esta pendência.');
         if(count($p['teams'])!==2||($decision['key']??null)!==$p['key']||($decision['kind']??null)!=='synthetic_test_designation'||empty($decision['reference'])||empty($decision['venue'])||!is_bool($decision['neutral']??null)||!in_array($decision['draw_rule']??null,['penalties','await_decision'],true))throw new RuntimeException('Designação federativa incompleta ou formato múltiplo não definido.');
         $pair=[$decision['home']??null,$decision['away']??null];sort($pair,SORT_STRING);if($pair!==$p['teams'])throw new RuntimeException('Clubes divergentes da pendência.');
         if(isset($t['administrative_decisions'][$p['key']])||count($t['administrative_decisions']??[])>=8)throw new RuntimeException('Decisão já registrada ou orçamento de jogos extras esgotado.');

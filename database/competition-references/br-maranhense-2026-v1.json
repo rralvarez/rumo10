@@ -1,0 +1,460 @@
+{
+  "id": "maranhense-2026-v1",
+  "public_runtime_enabled": false,
+  "definitions": {
+    "ma-a1": {
+      "id": "ma-a1",
+      "name": "Maranhense Série A",
+      "edition": 2026,
+      "country": "BR",
+      "uf": "MA",
+      "family": "state",
+      "scope": "state",
+      "pyramid": "ma",
+      "tier": 5,
+      "format": "configured_state",
+      "teams": [
+        "IAPE-MA",
+        "ITZ Sport-MA",
+        "Luminense-MA",
+        "Maranhão-MA",
+        "Moto Club-MA",
+        "Sampaio Corrêa-MA",
+        "Imperatriz-MA",
+        "Tuntum-MA"
+      ],
+      "groups": [
+        [
+          "IAPE-MA",
+          "ITZ Sport-MA",
+          "Luminense-MA",
+          "Maranhão-MA",
+          "Moto Club-MA",
+          "Sampaio Corrêa-MA",
+          "Imperatriz-MA",
+          "Tuntum-MA"
+        ]
+      ],
+      "test_fixture": true,
+      "verified_sources": [
+        "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+        "https://www.futebolmaranhense.com.br/assets/uploads/176374611975.pdf",
+        "https://www.futebolmaranhense.com.br/assets/uploads/175039859589.pdf"
+      ],
+      "rules": {
+        "promotion": 0,
+        "relegation": 0
+      },
+      "reference_clubs": {
+        "ITZ Sport-MA": {
+          "name": "ITZ Sport-MA",
+          "country": "BR",
+          "uf": "MA",
+          "competitions": [
+            "ma-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Luminense-MA": {
+          "name": "Luminense-MA",
+          "country": "BR",
+          "uf": "MA",
+          "competitions": [
+            "ma-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        },
+        "Tuntum-MA": {
+          "name": "Tuntum-MA",
+          "country": "BR",
+          "uf": "MA",
+          "competitions": [
+            "ma-a1"
+          ],
+          "game_only": true,
+          "source": "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+          "rating_origin": "existing_game_fallback_not_official_rating"
+        }
+      },
+      "state_engine": {
+        "version": "configured-state-v6-ma",
+        "tiebreakers": [
+          "points",
+          "wins",
+          "gd",
+          "gf",
+          "h2h_gd_two",
+          "red",
+          "yellow",
+          "lots"
+        ],
+        "league": {
+          "groups": [
+            [
+              "IAPE-MA",
+              "ITZ Sport-MA",
+              "Luminense-MA",
+              "Maranhão-MA",
+              "Moto Club-MA",
+              "Sampaio Corrêa-MA",
+              "Imperatriz-MA",
+              "Tuntum-MA"
+            ]
+          ],
+          "fixtures": [
+            [
+              1,
+              "Imperatriz-MA",
+              "Sampaio Corrêa-MA"
+            ],
+            [
+              1,
+              "Maranhão-MA",
+              "Moto Club-MA"
+            ],
+            [
+              1,
+              "IAPE-MA",
+              "ITZ Sport-MA"
+            ],
+            [
+              1,
+              "Tuntum-MA",
+              "Luminense-MA"
+            ],
+            [
+              2,
+              "ITZ Sport-MA",
+              "Moto Club-MA"
+            ],
+            [
+              2,
+              "Luminense-MA",
+              "Imperatriz-MA"
+            ],
+            [
+              2,
+              "Maranhão-MA",
+              "Tuntum-MA"
+            ],
+            [
+              2,
+              "Sampaio Corrêa-MA",
+              "IAPE-MA"
+            ],
+            [
+              3,
+              "ITZ Sport-MA",
+              "Imperatriz-MA"
+            ],
+            [
+              3,
+              "Luminense-MA",
+              "Moto Club-MA"
+            ],
+            [
+              3,
+              "Sampaio Corrêa-MA",
+              "Maranhão-MA"
+            ],
+            [
+              3,
+              "Tuntum-MA",
+              "IAPE-MA"
+            ],
+            [
+              4,
+              "Luminense-MA",
+              "IAPE-MA"
+            ],
+            [
+              4,
+              "Maranhão-MA",
+              "ITZ Sport-MA"
+            ],
+            [
+              4,
+              "Tuntum-MA",
+              "Imperatriz-MA"
+            ],
+            [
+              4,
+              "Moto Club-MA",
+              "Sampaio Corrêa-MA"
+            ],
+            [
+              5,
+              "Imperatriz-MA",
+              "Maranhão-MA"
+            ],
+            [
+              5,
+              "Sampaio Corrêa-MA",
+              "Luminense-MA"
+            ],
+            [
+              5,
+              "ITZ Sport-MA",
+              "Tuntum-MA"
+            ],
+            [
+              5,
+              "IAPE-MA",
+              "Moto Club-MA"
+            ],
+            [
+              6,
+              "Tuntum-MA",
+              "Sampaio Corrêa-MA"
+            ],
+            [
+              6,
+              "ITZ Sport-MA",
+              "Luminense-MA"
+            ],
+            [
+              6,
+              "Moto Club-MA",
+              "Imperatriz-MA"
+            ],
+            [
+              6,
+              "IAPE-MA",
+              "Maranhão-MA"
+            ],
+            [
+              7,
+              "Imperatriz-MA",
+              "IAPE-MA"
+            ],
+            [
+              7,
+              "Sampaio Corrêa-MA",
+              "ITZ Sport-MA"
+            ],
+            [
+              7,
+              "Maranhão-MA",
+              "Luminense-MA"
+            ],
+            [
+              7,
+              "Moto Club-MA",
+              "Tuntum-MA"
+            ]
+          ],
+          "rounds": 7,
+          "return": false
+        },
+        "barriers": [
+          [
+            {
+              "name": "semifinal",
+              "entries": [
+                {
+                  "from": "initial",
+                  "index": 0
+                },
+                {
+                  "from": "initial",
+                  "index": 1
+                },
+                {
+                  "from": "initial",
+                  "index": 2
+                },
+                {
+                  "from": "initial",
+                  "index": 3
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "home_phases": [
+                "liga"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            },
+            {
+              "name": "permanencia",
+              "entries": [
+                {
+                  "from": "initial",
+                  "index": 5
+                },
+                {
+                  "from": "initial",
+                  "index": 6
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "home_phases": [
+                "liga"
+              ],
+              "legs": 2,
+              "tie_rule": "pending_federation"
+            }
+          ],
+          [
+            {
+              "name": "final",
+              "entries": [
+                {
+                  "from": "winner",
+                  "index": 0,
+                  "phase": "semifinal"
+                },
+                {
+                  "from": "winner",
+                  "index": 1,
+                  "phase": "semifinal"
+                }
+              ],
+              "pairs": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "home_phases": [
+                "liga",
+                "semifinal"
+              ],
+              "legs": 2,
+              "tie_rule": "penalties"
+            }
+          ]
+        ],
+        "title_phase": "final",
+        "relegation_phase": "permanencia",
+        "ranking": [
+          {
+            "from": "winner",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "final",
+            "rank_phases": [
+              "liga",
+              "semifinal",
+              "final"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "semifinal",
+            "rank_phases": [
+              "liga",
+              "semifinal"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 4,
+            "rank_phases": [
+              "liga"
+            ]
+          },
+          {
+            "from": "winner",
+            "phase": "permanencia",
+            "rank_phases": [
+              "liga",
+              "permanencia"
+            ]
+          },
+          {
+            "from": "loser",
+            "phase": "permanencia",
+            "rank_phases": [
+              "liga",
+              "permanencia"
+            ]
+          },
+          {
+            "from": "initial",
+            "index": 7,
+            "rank_phases": [
+              "liga"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "paths": {
+    "MA": {
+      "id": "ma-state-d-2027-v1",
+      "competition": "ma-a1",
+      "source_edition": 2026,
+      "quota": 2,
+      "max_candidates": 2,
+      "source": "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+      "location": "REC art.4 §1 II,VI–VIII; club option among multiple remaining national berths requires explicit evidence",
+      "participants": [
+        "IAPE-MA",
+        "ITZ Sport-MA",
+        "Luminense-MA",
+        "Maranhão-MA",
+        "Moto Club-MA",
+        "Sampaio Corrêa-MA",
+        "Imperatriz-MA",
+        "Tuntum-MA"
+      ],
+      "selective_required": false,
+      "roll_down": "Blocked beyond finalists: REC art.4 VI–VIII requires choice among remaining national berths",
+      "eligibility": "Only verified eligible finalists within the CBF2026 reference quota; extra berth and roll-down require club option evidence",
+      "consulted_on": "2026-10-18",
+      "ranking_prefix": 2,
+      "excluded_rank_reason": "national_option_not_verified"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf",
+      "sha256": "dd4503e43dbaa041a96fe8b094e09181741eb1c25ff20b51b4db2d09ec50461d",
+      "bytes": 828564,
+      "locator": "REC arts.4,12–14,22",
+      "consulted": "2026-10-18"
+    },
+    {
+      "url": "https://www.futebolmaranhense.com.br/assets/uploads/176374611975.pdf",
+      "sha256": "83f3851b634274408dcfe4db101f1a8d1baca5e74bf5793dc66eb9bcad38b9de",
+      "bytes": 3106188,
+      "locator": "28 initial pairings; semifinal/final slots",
+      "consulted": "2026-10-18"
+    },
+    {
+      "url": "https://www.futebolmaranhense.com.br/assets/uploads/175039859589.pdf",
+      "sha256": "9fea1eecd805672f9d3a046ccbfef924ab5652e0de0ccca35ae47be3c0f2c994",
+      "bytes": 587914,
+      "locator": "Published RGC2025; points per match, no permanence tie procedure located",
+      "consulted": "2026-10-18"
+    }
+  ],
+  "historical_scores_imported": false
+}

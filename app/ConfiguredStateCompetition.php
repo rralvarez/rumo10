@@ -6,10 +6,12 @@ final class ConfiguredStateCompetition {
     public const VERSION='configured-state-v1';
     public const ROUTED_VERSION='configured-state-v2';
     public const ADMIN_VERSION='configured-state-v3';
+    public const MARANHENSE_VERSION='configured-state-v6-ma';
     public const CONDITIONAL_VERSION='configured-state-v5';
     public const INTERGROUP_VERSION='configured-state-v4';
 
     public static function validate(array $c,array $teams):void {
+        if(($c['state_engine']['version']??null)===self::MARANHENSE_VERSION){MaranhenseCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::CONDITIONAL_VERSION){ConditionalStateCompetition::validate($c,$teams);return;}
         if(($c['state_engine']['version']??null)===self::INTERGROUP_VERSION){IntergroupStateCompetition::validate($c,$teams);return;}
         $r=$c['state_engine']??[];
@@ -47,6 +49,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function create(array $c,array $teams):array {
+        if(($c['state_engine']['version']??null)===self::MARANHENSE_VERSION)return MaranhenseCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::CONDITIONAL_VERSION)return ConditionalStateCompetition::create($c,$teams);
         if(($c['state_engine']['version']??null)===self::INTERGROUP_VERSION)return IntergroupStateCompetition::create($c,$teams);
         self::validate($c,$teams);$lots=$teams;if($c['state_engine']['version']!==self::ADMIN_VERSION)shuffle($lots);
@@ -123,6 +126,7 @@ final class ConfiguredStateCompetition {
     }
 
     public static function next(array &$t):void {
+        if(($t['adapter_version']??null)===self::MARANHENSE_VERSION){MaranhenseCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::CONDITIONAL_VERSION){ConditionalStateCompetition::next($t);return;}
         if(($t['adapter_version']??null)===self::INTERGROUP_VERSION){IntergroupStateCompetition::next($t);return;}
         $next=$t;try{StateAdministration::settle($next);self::advance($next);unset($next['administrative_pending']);$t=$next;}catch(StateAdministrativeTie $e){$t['matches']=$next['matches'];$t['ties']=$next['ties'];$t['administrative_pending']=$e->pending;}
