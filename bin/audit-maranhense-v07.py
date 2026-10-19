@@ -1,0 +1,7 @@
+from pathlib import Path
+import csv,json
+out=Path('Docs/mundializacao-v07/expansao-estadual/lote2/ma');d=json.loads((out/'mysql-expresso.json').read_text());assert d['national_renewals']==0 and d['all_fixture_writes_rolled_back'];counts=d['state_candidates'];assert sum(counts.values())+d['state_slots_pending']==64
+with Path('Docs/mundializacao-v07/expansao-estadual/lote2/go/federations.csv').open(encoding='utf-8-sig') as f:baseline={r['uf']:r for r in csv.DictReader(f)};quotas={uf:int(r['quota']) for uf,r in baseline.items()}
+rows=[dict(uf=uf,quota=q,proven_candidates=counts.get(uf,0),pending=q-counts.get(uf,0),cohort='one PDO Expresso rollback career; never aggregate',career_id='ephemeral PDO id not exported',implemented=uf in counts,competition='ma-a1' if uf=='MA' else baseline[uf]['competition'],source='https://www.futebolmaranhense.com.br/assets/uploads/17651550147.pdf' if uf=='MA' else baseline[uf]['source'],status='verified_results_candidates_pending_admission' if uf in counts else 'qualifying_results_required',entries=0) for uf,q in quotas.items()]
+with (out/'federations.csv').open('w',encoding='utf-8',newline='') as f:w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
+(out/'federations.json').write_text(json.dumps(dict(source='mysql-expresso.json',career_id='ephemeral PDO id not exported',federations=rows,total_candidates=sum(counts.values()),state_pending=d['state_slots_pending'],residual_pending=4,entries=0,renewals=0),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
