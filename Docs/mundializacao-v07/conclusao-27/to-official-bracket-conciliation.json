@@ -1,0 +1,74 @@
+{
+  "source": "https://admin.ftf.org.br/api/v1/competitions/35",
+  "edition": 2026,
+  "consulted_on": "2026-10-19",
+  "purpose": "reconcile published semifinal seeds and home order; historical scores never imported to simulator",
+  "initial_rank": [
+    {
+      "rank": 1,
+      "club": "Tocantinópolis  EC"
+    },
+    {
+      "rank": 2,
+      "club": "União AC"
+    },
+    {
+      "rank": 3,
+      "club": "Gurupi EC"
+    },
+    {
+      "rank": 4,
+      "club": "Capital FC"
+    },
+    {
+      "rank": 5,
+      "club": "Araguaína FR"
+    },
+    {
+      "rank": 6,
+      "club": "Bela Vista"
+    },
+    {
+      "rank": 7,
+      "club": "Palmas Futebol e Regatas"
+    },
+    {
+      "rank": 8,
+      "club": "Guaraí"
+    }
+  ],
+  "semifinals": [
+    {
+      "date": "2026-03-14",
+      "home": "Capital FC",
+      "away": "Tocantinópolis  EC"
+    },
+    {
+      "date": "2026-03-14",
+      "home": "Gurupi EC",
+      "away": "União AC"
+    },
+    {
+      "date": "2026-03-21",
+      "home": "Tocantinópolis  EC",
+      "away": "Capital FC"
+    },
+    {
+      "date": "2026-03-21",
+      "home": "União AC",
+      "away": "Gurupi EC"
+    }
+  ],
+  "finals": [
+    {
+      "date": "2026-04-02",
+      "home": "União AC",
+      "away": "Tocantinópolis  EC"
+    },
+    {
+      "date": "2026-04-05",
+      "home": "Tocantinópolis  EC",
+      "away": "União AC"
+    }
+  ]
+}

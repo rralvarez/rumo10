@@ -1,0 +1,272 @@
+[
+  {
+    "reference": "state-program-2026-v1",
+    "sources": [
+      {
+        "id": "sp_rec",
+        "url": "https://www.futebolpaulista.com.br/Repositorio/Competicao/Regulamento/1551/1551_639002025107690404.pdf",
+        "sha256": "53e01ade98350600edb970702d8fb6996d4a4ec6a11b53d5acf12bd51f33efab",
+        "bytes": 613369,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "sp_table",
+        "url": "https://www.futebolpaulista.com.br/Repositorio/Noticia/30630/30630_221220251050_0.pdf",
+        "sha256": "f80d34066645cf53d184d526b662340bdcb91d3230a6ce787e3a5867fcad7c4b",
+        "bytes": 1278249,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "to_rec",
+        "url": "https://drive.google.com/file/d/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe/view",
+        "sha256": "9fbcef774d33d0834a194facfca77617b957961eeb680a6b676acaaad59cbd5d",
+        "bytes": 2552069,
+        "consulted_on": "2026-10-19",
+        "discovery": "https://admin.ftf.org.br/api/v1/competitions/35"
+      },
+      {
+        "id": "to_table",
+        "url": "https://drive.google.com/file/d/19nHEe5uq2jD9oLSQiQfhjWTvH1A3iNGr/view",
+        "sha256": "10d52bd2c762d463abd76129c5c7d5a75f1e3231472376ecf04725ff21c8b99f",
+        "bytes": 847199,
+        "consulted_on": "2026-10-19",
+        "discovery": "https://admin.ftf.org.br/api/v1/competitions/35"
+      },
+      {
+        "id": "mt_rec",
+        "url": "https://fmfmt.com.br/assets/uploads/176461945683.pdf",
+        "sha256": "e348039ae01ea0ec195e847ccb68cb800db8fe02764f446171ea23d5900891f9",
+        "bytes": 361585,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "mt_table",
+        "url": "https://fmfmt.com.br/assets/uploads/17676411618.pdf",
+        "sha256": "b38e0a9439aaabc0f43e6c7d12ba62301e26012b746b8d51ed9f03a27c55d7a9",
+        "bytes": 672117,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "rj_rec",
+        "url": "https://static.fferj.com.br/media/upload/campeonato/7b17fbdb38604c98a5eb0044b152a324.pdf",
+        "sha256": "e29779e57430660683220e306bf436fca2be9c957e56b76846c63e0c72746600",
+        "bytes": 922758,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "rj_table",
+        "url": "https://static.fferj.com.br/media/upload/campeonato/a45e31327505499192119379a1b83066.pdf",
+        "sha256": "daebc2bdda0ec5f38c353977599c6cdf8dc66d63b9753f2c6590ce525ba36371",
+        "bytes": 567025,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "rj_group_x",
+        "url": "https://static.fferj.com.br/media/upload/campeonato/a98d3e40773343668fc0a9390191bf4e.pdf",
+        "sha256": "77dd4fcd61ddf0caaab869451abbb1db91fba2bd07f595bc47013357e84601e3",
+        "bytes": 502987,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "sc_rec",
+        "url": "https://fcf-com-br-media.s3.amazonaws.com/wp-content/uploads/2025/12/08150622/REC.-Camp.-Cat.-Fut.Prof_.Serie_.A.2026-08-12.pdf",
+        "sha256": "50a22b9ff5ea882c6a60273c723c4f6e6f19f0713742033ba08507728cae1cb9",
+        "bytes": 1570068,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "sc_table",
+        "url": "https://fcf.com.br/competicoes/profissionais/2026/686/",
+        "sha256": "42ba6d7158cd107c5c8acf774c507c8aa4fabe56a7745adfc93b75eb9d047c0d",
+        "bytes": 844289,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "ce_rec",
+        "url": "https://www.futebolcearense.com.br/2010/downloads/arquivos/arquivo_10358.pdf",
+        "sha256": "1362d8ba484322ead89b5b6339467b919be0dc21dadd4b13d1384e8ed9c843f5",
+        "bytes": 1034513,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "ce_table_second",
+        "url": "https://www.futebolcearense.com.br/2010/downloads/arquivos/arquivo_10413.pdf",
+        "sha256": "80d42d47253cb1f93508823dd3a439bbd17792e1ea8df4a44928765b24c6b39f",
+        "bytes": 318454,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "pa_rec_final",
+        "url": "https://www.fpfpara.com.br/files/db046adcd141efe50925c33e6efa20e6.pdf",
+        "sha256": "5d2031b048f9a694401a71d6ba75159e417e49481659eeca63108a669d4fc60c",
+        "bytes": 317009,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "pa_table_final",
+        "url": "https://www.fpfpara.com.br/files/886d1f3675038e9023c5d4e1e9a09825.pdf",
+        "sha256": "cfa48215cbf20dacdaba57e3702127b867d2251e8271c1b816d9a5094f9d9ce9",
+        "bytes": 557776,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "mg_rec",
+        "url": "https://esumula.fmf.com.br/Arquivos/ArquivosCompeticao/1899/Arquivo_18992870.pdf",
+        "sha256": "6f4b1dae4df9122154d359861161801055b9c94a6711dfededce3eac7e321ab3",
+        "bytes": 1539957,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "mg_table",
+        "url": "https://esumula.fmf.com.br/Arquivos/ArquivosCompeticao/1899/Arquivo_18992871.pdf",
+        "sha256": "ede4402e316b2fb211e1c4f940a730d9d63788533b47ead82425cd320d1518d9",
+        "bytes": 94719,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "mg_rgc",
+        "url": "https://www.fmf.com.br/Arquivos/RGC_FMF_2026.pdf",
+        "sha256": "956933f993e5d63561f0b59b709ca44dfd45e6b3a85c39be139ef36acbf88de4",
+        "bytes": 5020936,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "am_rec",
+        "url": "https://fafamazonas.com.br/site/arquivos/download/arqeditor/REG.pdf",
+        "sha256": "eede4820e738c87331c0808cc29686d31b81901a7cba547a1eccc2dc36cc032c",
+        "bytes": 22919006,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "am_table",
+        "url": "https://fafamazonas.com.br/site//arquivos/download/arqeditor/PROGRAMAC%CC%A7A%CC%83O%20DE%20JOGOS.pdf",
+        "sha256": "6cdb4a482aae9437dffa06a87e85a5c7ce0b9c9c31a19000f67977fce8fc1fa1",
+        "bytes": 6096437,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "se_rec",
+        "url": "https://fsf-se.com.br/wp-content/uploads/2025/12/Regulamento-Campeonato-Sergipano-de-Futebol-Profissional-da-Serie-A1-2026-REVISAO-I.pdf",
+        "sha256": "db852981665d8c1857140268fc56fd7d50ca1a355866a87082dda5fe32fe950b",
+        "bytes": 705666,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "se_ata",
+        "url": "https://fsf-se.com.br/wp-content/uploads/2026/02/Ata-de-reuniao-para-adequacao-do-regulamento-especifico-do-Campeonato-Sergipano-Serie-A1-2026.pdf",
+        "sha256": "f5c9d258da02097501b70b8d69db4f1220cf257c04217f2303534fa1de0d3fcf",
+        "bytes": 4426631,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "se_visible_table_projection",
+        "url": "https://fsf-se.com.br/campeonatos/sergipano-a1-2026/",
+        "sha256": "6a8682bccf5004bd8eff83441839b0b0e8405b42e203302cc04ff0894aac4412",
+        "bytes": 3634,
+        "hash_scope": "sanitized DOM sports projection, not complete HTML",
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "ms_rec_official",
+        "url": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+        "sha256": "f8f148a4127c8e685cb71c83327d0db05b2a5bcd31ec59766b6d5c39de285cf1",
+        "bytes": 308656,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "ms_table_official",
+        "url": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/Tg96ZBqTwD4FNFgRWfDpkIykKYTw3lli9VKg81eT.pdf",
+        "sha256": "f94fef7178941e249052d336774bd3466f252602e6f45958315c236a7d249fe7",
+        "bytes": 251866,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "ms_rgc_official",
+        "url": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/5LaKkYOaGXMziUW3quNkUMTa4cKnZirC7vs60XTE.pdf",
+        "sha256": "9741246b8bf664deb43f2b58339b2a9271eddccbc17c2d15370d50f095d32205",
+        "bytes": 953919,
+        "consulted_on": "2026-10-19"
+      },
+      {
+        "id": "ms_calendar_opinion",
+        "url": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/xEd6gMTyJrI8hjdjeAONimSLoRDmqmHbzP8pOvTN.pdf",
+        "sha256": "051fbf0511ff8c34c69d5f130267a2ae4cd6ed0ac28fea61f560fae9f5396a44",
+        "bytes": 1348762,
+        "consulted_on": "2026-10-19"
+      }
+    ]
+  },
+  {
+    "reference": "state-program-reviewed-2026-v2",
+    "sources": [
+      {
+        "id": "to_official_api_bracket",
+        "url": "https://admin.ftf.org.br/api/v1/competitions/35",
+        "sha256": "1331f730884fda3da96bf7e7bde72bf20587c3b87d278ab08094befb75c0c7c9",
+        "bytes": 96350,
+        "consulted_on": "2026-10-19",
+        "knowledge": "primary_table_conciliation_not_normative_erratum",
+        "sports_projection": "Docs/mundializacao-v07/conclusao-27/to-official-bracket-conciliation.json"
+      }
+    ]
+  },
+  {
+    "reference": "documentary-audit-resolution-2026-10-19",
+    "sources": [
+      {
+        "id": "pb_calendar_official",
+        "alias": "pb_calendar",
+        "url": "https://s3.federacaopbfutebol.com.br/fpfonline-site/dco/documents/01KSDQDNAXY712ENW6CV3BH3QV.pdf",
+        "sha256": "c35a1b984f67df3450dc84e6cd6ddf743d678b42ba7507d2a3a11ac2b8de7fe1",
+        "bytes": 311421,
+        "consulted_on": "2026-10-19",
+        "knowledge": "FPF_PB_calendar_official_2026_oficio_001_2026 (harmonizado com pb_calendar); comprova estritamente a janela oficial de datas (17/01 a 22/03/2026); não comprova participantes, formato eliminatório ou vagas; REC adulto 1ª Divisão 2026 não localizado ou certificado nos canais institucionais efetivamente consultados da FPF-PB; bloqueio documental mantido"
+      },
+      {
+        "id": "pb_calendar",
+        "alias": "pb_calendar_official",
+        "url": "https://s3.federacaopbfutebol.com.br/fpfonline-site/dco/documents/01KSDQDNAXY712ENW6CV3BH3QV.pdf",
+        "sha256": "c35a1b984f67df3450dc84e6cd6ddf743d678b42ba7507d2a3a11ac2b8de7fe1",
+        "bytes": 311421,
+        "consulted_on": "2026-10-19",
+        "knowledge": "FPF_PB_calendar_official_2026 (entrada histórica harmonizada com pb_calendar_official); apenas janela de datas; não comprova participantes, fases eliminatórias ou vagas; REC adulto 1ª Divisão 2026 não localizado ou certificado nos canais efetivamente consultados"
+      },
+      {
+        "id": "ap_rec_identified",
+        "url": "https://fafamapa.com.br/wp-content/uploads/2025/11/REC-AMAPAZAO-SERIE-A-2026.pdf",
+        "consulted_on": "2026-10-19",
+        "knowledge": "minuta regulamentar/REC preliminar indicado no portal FAF sob instabilidade/timeout TLS; documento não localizado de forma íntegra ou certificado nos canais consultados; regras de mata-mata, critérios de desempate, descenso e vagas permanecem não certificados; bloqueio documental preservado"
+      },
+      {
+        "id": "ap_table_identified",
+        "url": "https://fafamapa.com.br/wp-content/uploads/2026/02/TABELA-CAMPEONATO-PROFISSIONAL_AMAPAZAO-SERIE-A-2026.pdf",
+        "sha256": "1bab004208bd6280849a9158f423667ea83ff096624564a3294499ec1510303c",
+        "bytes": 270108,
+        "consulted_on": "2026-10-19",
+        "knowledge": "tabela oficial de jogos do Amapazão Série A 2026 obtida em /2026/02/; confirma os 8 participantes (Trem, Oratório, Independente, Santos-AP, Cristal, Ypiranga-AP, Macapá e São José-AP) e as 7 rodadas da primeira fase; a tabela NÃO comprova o formato das semifinais (ida e volta vs jogo único), final, critérios de desempate, rebaixamento ou distribuição de vagas da Série D e Copa do Brasil; o REC oficial adulto não foi localizado ou certificado nos canais consultados; bloqueio documental preservado"
+      },
+      {
+        "id": "rr_frf_portal_audit",
+        "url": "https://www.frfroraima.com",
+        "consulted_on": "2026-10-19",
+        "knowledge": "FRF_official_portal_audited; portal institucional auditado disponibiliza apenas REC Sub-20 e comunicados gerais; REC adulto 1ª Divisão 2026 não foi localizado ou certificado nos canais institucionais efetivamente consultados da FRF; crônica esportiva regional e tabelas em espelho secundárias contêm contradições sobre desempates; desempates, ranking completo e vagas não certificados; bloqueio mantido"
+      },
+      {
+        "id": "mt_portaria_pres_009_2026",
+        "url": "https://mail.fmfmt.com.br/assets/uploads/177101982767.pdf?v=177196408950",
+        "sha256": "8b9402c082aa5f4df0d3c926981201e908c8b92cf7bb21c48583ecc5b27ab08d",
+        "bytes": 1876995,
+        "consulted_on": "2026-10-19",
+        "knowledge": "FMF_Portaria_Pres_009_2026 de 13/02/2026; Art. 1º: vagas da Copa do Brasil 2027 para campeão e vice; Art. 2º: terceira vaga por índice de aproveitamento de todas as fases excluindo campeão e vice; Art. 3º: quarta vaga para Copa FMF 2026; Art. 4º: complementa e interpreta Art. 5º do REC; Não resolve expressamente o conflito de descenso entre artigos 6º e 18 do REC; critério da Copa do Brasil não é solução automática para Série D; descenso e homologação integral permanecem bloqueados"
+      },
+      {
+        "id": "sp_rec_audit_art7_16_69",
+        "url": "https://www.futebolpaulista.com.br/Repositorio/Competicao/Regulamento/1551/1551_639002025107690404.pdf",
+        "sha256": "53e01ade98350600edb970702d8fb6996d4a4ec6a11b53d5acf12bd51f33efab",
+        "bytes": 613369,
+        "consulted_on": "2026-10-19",
+        "knowledge": "FPF_SP_rec_audit_confirmed; art_7_delegates_venues_to_DCO; art_16_p4_defines_accumulated_campaign; full_final_ranking_of_eliminated_not_codified_in_rec_or_rgc"
+      }
+    ]
+  }
+]

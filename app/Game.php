@@ -56,6 +56,7 @@ final class Game {
         return WorldSeason::scope($g,function()use($g,$action,$input,$automated,$rng){$next=self::executeCommand($g,$action,$input,$automated,$rng);if($action==='continue'&&$next['stage']==='treino'&&isset($next['world_resume_plan'])){$plan=$next['world_resume_plan'];unset($next['world_resume_plan']);$next=PlayMode::simulate($next,$plan);$next['version']=$g['version']+1;}return $next;});
     }
     private static function executeCommand(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
+        if(isset($g['state_documentary_trial'])&&in_array($action,['offers','transfer'],true))throw new InvalidArgumentException('Contrato documental de teste sem próxima edição homologada.');
         if(isset($g['gaucho_isolated_trial'])&&in_array($action,['offers','transfer'],true))throw new InvalidArgumentException('Fixture isolada RS sem calendário nacional seguinte certificado.');
         if(isset($g['acre_isolated_trial'])&&in_array($action,['offers','transfer'],true))throw new InvalidArgumentException('A fixture isolada do Acre não certifica a próxima temporada nem o mercado nacional. Resultados preservados.');
         if(isset($g['national_trial'])&&in_array($action,['offers','transfer'],true))throw new InvalidArgumentException(NationalRenewal::explanation($g));

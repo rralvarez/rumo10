@@ -1,0 +1,287 @@
+{
+    "checks": 6135,
+    "career_id": 876001,
+    "scope": "same-career32-competition NPC audit,24 available UFs; not27 UFs and not a full Game national season",
+    "competitions": 32,
+    "state_federations": 24,
+    "matches": 3046,
+    "phase_calls": 136,
+    "synthetic_designations": 11,
+    "sports": {
+        "AC": {
+            "competition": "ac-a1",
+            "matches": 34,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "AL": {
+            "competition": "al-a1",
+            "matches": 34,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "AM": {
+            "competition": "am-a1",
+            "matches": 39,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": null
+        },
+        "BA": {
+            "competition": "ba-a1",
+            "matches": 48,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "CE": {
+            "competition": "br-ce-a1",
+            "matches": 43,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": null
+        },
+        "DF": {
+            "competition": "df-a1",
+            "matches": 50,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "ES": {
+            "competition": "es-a1",
+            "matches": 59,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "GO": {
+            "competition": "go-a1",
+            "matches": 70,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "MA": {
+            "competition": "ma-a1",
+            "matches": 36,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "MG": {
+            "competition": "br-mg-a1",
+            "matches": 59,
+            "done": false,
+            "full_proof": false,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": "tie_criterion_requires_documentary_clarification"
+        },
+        "MS": {
+            "competition": "br-ms-a1",
+            "matches": 55,
+            "done": false,
+            "full_proof": false,
+            "prefix_proof": true,
+            "partial_certification": {
+                "schema": 1,
+                "version": "certified-outcomes-v1",
+                "competition": "br-ms-a1",
+                "edition": 2026,
+                "certified_champion": "Ivinhema-MS",
+                "certified_runner_up": "Operário-MS",
+                "certified_relegated": [
+                    "Águia Negra-MS",
+                    "Clube de Regatas Aquidauana-MS"
+                ],
+                "pending_ranking": true,
+                "pending_national_admission": true,
+                "homologated": false,
+                "reason": "ms_full_final_ranking_and_national_path_not_certified",
+                "source": "https:\/\/campeonatos.futebolms.com.br\/storage\/competicao\/48\/33\/2026\/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf arts.12\/13\/36: campeão,vice,descenso comprovados; classificação integral dos eliminados e caminhos D futuros não definidos no REC obtido"
+            },
+            "pending": "ms_full_final_ranking_and_national_path_not_certified"
+        },
+        "MT": {
+            "competition": "br-mt-a1",
+            "matches": 53,
+            "done": false,
+            "full_proof": false,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": "mt_relegation_conflict_articles_6_18"
+        },
+        "PA": {
+            "competition": "br-pa-a1",
+            "matches": 44,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": null
+        },
+        "PE": {
+            "competition": "pe-a1",
+            "matches": 38,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "PI": {
+            "competition": "pi-a1",
+            "matches": 34,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "PR": {
+            "competition": "pr-a1",
+            "matches": 54,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "RJ": {
+            "competition": "br-rj-a1",
+            "matches": 62,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": null
+        },
+        "RN": {
+            "competition": "rn-a1",
+            "matches": 38,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "RO": {
+            "competition": "ro-a1",
+            "matches": 48,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "RS": {
+            "competition": "br-rs-a1",
+            "matches": 64,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": false,
+            "partial_certification": null,
+            "pending": null
+        },
+        "SC": {
+            "competition": "br-sc-a1",
+            "matches": 69,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": null
+        },
+        "SE": {
+            "competition": "br-se-a1",
+            "matches": 55,
+            "done": true,
+            "full_proof": true,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": null
+        },
+        "SP": {
+            "competition": "sp-a1",
+            "matches": 72,
+            "done": false,
+            "full_proof": false,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": "sp_final_ranking_and_dco_venue_evidence_required"
+        },
+        "TO": {
+            "competition": "br-to-a1",
+            "matches": 34,
+            "done": false,
+            "full_proof": false,
+            "prefix_proof": true,
+            "partial_certification": null,
+            "pending": "to_final_ranking_campaign_scope_requires_clarification"
+        }
+    },
+    "pending": {
+        "sp-a1": {
+            "reason": "sp_final_ranking_and_dco_venue_evidence_required",
+            "source": "https:\/\/www.futebolpaulista.com.br\/Repositorio\/Competicao\/Regulamento\/1551\/1551_639002025107690404.pdf arts.7,16,69 e RGC referido no art.1",
+            "matches": 72
+        },
+        "br-to-a1": {
+            "reason": "to_final_ranking_campaign_scope_requires_clarification",
+            "source": "https:\/\/drive.google.com\/file\/d\/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe\/view art.11§1: número de pontos e critérios dos semifinalistas, sem explicitar fases acumuladas",
+            "matches": 34
+        },
+        "br-mt-a1": {
+            "reason": "mt_relegation_conflict_articles_6_18",
+            "source": "https:\/\/fmfmt.com.br\/assets\/uploads\/176461945683.pdf arts.6 e 18; classificação final\/repasse também requer confirmação",
+            "matches": 53
+        },
+        "br-mg-a1": {
+            "reason": "tie_criterion_requires_documentary_clarification",
+            "source": "https:\/\/esumula.fmf.com.br\/Arquivos\/ArquivosCompeticao\/1899\/Arquivo_18992870.pdf art.24 parágrafo único: saldo na fase semifinal; necessita esclarecimento para empate em pontos na final",
+            "matches": 59
+        },
+        "br-ms-a1": {
+            "reason": "ms_full_final_ranking_and_national_path_not_certified",
+            "source": "https:\/\/campeonatos.futebolms.com.br\/storage\/competicao\/48\/33\/2026\/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf arts.12\/13\/36: campeão,vice,descenso comprovados; classificação integral dos eliminados e caminhos D futuros não definidos no REC obtido",
+            "matches": 55
+        }
+    },
+    "unavailable_federations": [
+        "AP",
+        "PB",
+        "RR"
+    ],
+    "candidacy_assessed": false,
+    "candidates": null,
+    "state_vacancies": null,
+    "residual_vacancies": 4,
+    "entries": 0,
+    "renewals": 0,
+    "elapsed_ms": 1536.46,
+    "snapshot_bytes": 2570278,
+    "memory_bytes": 41943040,
+    "achievements_disabled": true,
+    "natural_results_not_modified": true
+}

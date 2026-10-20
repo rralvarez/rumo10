@@ -1,0 +1,31 @@
+{
+    "checks": 144,
+    "scope": "Certificação parcial desacoplada - Tocantins (br-to-a1) com descenso comprovado pelo Art. 13",
+    "matches": 34,
+    "phases": {
+        "liga": 28,
+        "semifinal": 4,
+        "final": 2
+    },
+    "champion_certified": true,
+    "runner_up_certified": true,
+    "relegation_certified": true,
+    "relegation_count": 2,
+    "relegation_basis": "REC art.13: duas associações com pior campanha somando os pontos da 1ª fase rebaixadas para a 2ª divisão de 2026",
+    "full_ranking_certified": false,
+    "pending_reason": "to_final_ranking_campaign_scope_requires_clarification",
+    "pending_source": "REC art.11 §1",
+    "bracket_conciliation": "API FTF oficial 35 (identificada como evidência de conciliação)",
+    "national_admission_certified": false,
+    "homologated": false,
+    "done": false,
+    "game_modes_tested": [
+        "normal",
+        "rapido",
+        "expresso"
+    ],
+    "v1_compatibility_verified": true,
+    "tampering_boundaries_tested": 22,
+    "pdo_status": "executado: aprovado com rollback",
+    "elapsed_ms": 716.09
+}

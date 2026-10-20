@@ -14,7 +14,18 @@ final class FutureSerieDAdmission {
         $canonical=function($v)use(&$canonical){if(!is_array($v))return $v;if(!array_is_list($v))ksort($v,SORT_STRING);foreach($v as &$x)$x=$canonical($x);return $v;};
         $row['sha256']=hash('sha256',json_encode($canonical($row),JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE));
         $key=(string)$row['target_edition'];
-        if(isset($g['future_d_admissions'][$key])){if($g['future_d_admissions'][$key]!=$row)throw new RuntimeException('Ledger de candidaturas D imutável: conflito.');return $g['future_d_admissions'][$key];}
+        if(isset($g['future_d_admissions'][$key])){
+            $old=$g['future_d_admissions'][$key];
+            if($old!=$row){
+                // Preserve legacy ledgers byte-for-byte when only list enumeration changed.
+                $oldBody=$old;unset($oldBody['sha256']);
+                if(!hash_equals($old['sha256']??'',hash('sha256',json_encode($canonical($oldBody),JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE))))throw new RuntimeException('Ledger de candidaturas D imutável: conflito.');
+                $left=$oldBody;$right=$row;unset($right['sha256']);
+                foreach([&$left,&$right] as &$candidate)usort($candidate['ledger'],fn($a,$b)=>strcmp($a['key'],$b['key']));unset($candidate);
+                if($left!=$right)throw new RuntimeException('Ledger de candidaturas D imutável: conflito.');
+            }
+            return $old;
+        }
         $g['future_d_admissions'][$key]=$row;return $row;
     }
     public static function audit(array $g):array {
@@ -35,7 +46,8 @@ final class FutureSerieDAdmission {
             $deficits[$uf]['accepted']=$proof['candidate_count'];$deficits[$uf]['missing']=$proof['unavailable'];$deficits[$uf]['state']='sports_candidates_proven_admission_pending';
         }
         // Retain rejected/unevaluated candidates as evidence, never select a champion by name.
-        foreach($g['competitions'] as $id=>$t){$pin=$g['world_reference'][$id]??[];$c=$pin['definition']??[];
+        $competitions=$g['competitions'];ksort($competitions,SORT_STRING);
+        foreach($competitions as $id=>$t){$pin=$g['world_reference'][$id]??[];$c=$pin['definition']??[];
             if(($c['country']??null)!=='BR'||($c['scope']??null)!=='state')continue;
             if(isset($g['state_qualifications']['2027'][$c['uf']??''])&&($g['state_qualifications']['2027'][$c['uf']]['competition']??null)===$id)continue; // Certified path already has its selected and rejected ranking rows in the receipt.
             if(!CompetitionReference::verify($pin)||empty($t['done'])||array_filter($t['matches'],fn($m)=>$m['status']!=='finalizada'))throw new RuntimeException('Estadual sem edição/resultados fechados verificáveis.');

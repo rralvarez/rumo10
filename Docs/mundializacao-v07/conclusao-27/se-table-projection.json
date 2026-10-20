@@ -1,0 +1,234 @@
+{
+  "source": "https://fsf-se.com.br/campeonatos/sergipano-a1-2026/",
+  "consulted_on": "2026-10-19",
+  "method": "visible round selector in official browser page; only club names and home order extracted",
+  "fixtures": [
+    [
+      1,
+      "Desportiva Aracaju-SE",
+      "Confiança-SE"
+    ],
+    [
+      1,
+      "Lagarto-SE",
+      "Falcon-SE"
+    ],
+    [
+      1,
+      "América de Propriá-SE",
+      "Sergipe-SE"
+    ],
+    [
+      1,
+      "Guarany-SE",
+      "Dorense-SE"
+    ],
+    [
+      1,
+      "Itabaiana-SE",
+      "Atlético Gloriense-SE"
+    ],
+    [
+      2,
+      "Falcon-SE",
+      "Itabaiana-SE"
+    ],
+    [
+      2,
+      "Dorense-SE",
+      "América de Propriá-SE"
+    ],
+    [
+      2,
+      "Sergipe-SE",
+      "Guarany-SE"
+    ],
+    [
+      2,
+      "Atlético Gloriense-SE",
+      "Desportiva Aracaju-SE"
+    ],
+    [
+      2,
+      "Confiança-SE",
+      "Lagarto-SE"
+    ],
+    [
+      3,
+      "América de Propriá-SE",
+      "Atlético Gloriense-SE"
+    ],
+    [
+      3,
+      "Itabaiana-SE",
+      "Sergipe-SE"
+    ],
+    [
+      3,
+      "Confiança-SE",
+      "Falcon-SE"
+    ],
+    [
+      3,
+      "Lagarto-SE",
+      "Guarany-SE"
+    ],
+    [
+      3,
+      "Desportiva Aracaju-SE",
+      "Dorense-SE"
+    ],
+    [
+      4,
+      "Atlético Gloriense-SE",
+      "Confiança-SE"
+    ],
+    [
+      4,
+      "Falcon-SE",
+      "Sergipe-SE"
+    ],
+    [
+      4,
+      "Guarany-SE",
+      "América de Propriá-SE"
+    ],
+    [
+      4,
+      "Dorense-SE",
+      "Lagarto-SE"
+    ],
+    [
+      4,
+      "Itabaiana-SE",
+      "Desportiva Aracaju-SE"
+    ],
+    [
+      5,
+      "Dorense-SE",
+      "Falcon-SE"
+    ],
+    [
+      5,
+      "América de Propriá-SE",
+      "Desportiva Aracaju-SE"
+    ],
+    [
+      5,
+      "Guarany-SE",
+      "Atlético Gloriense-SE"
+    ],
+    [
+      5,
+      "Lagarto-SE",
+      "Itabaiana-SE"
+    ],
+    [
+      5,
+      "Sergipe-SE",
+      "Confiança-SE"
+    ],
+    [
+      6,
+      "Falcon-SE",
+      "Atlético Gloriense-SE"
+    ],
+    [
+      6,
+      "Itabaiana-SE",
+      "Dorense-SE"
+    ],
+    [
+      6,
+      "Desportiva Aracaju-SE",
+      "Sergipe-SE"
+    ],
+    [
+      6,
+      "Lagarto-SE",
+      "América de Propriá-SE"
+    ],
+    [
+      6,
+      "Confiança-SE",
+      "Guarany-SE"
+    ],
+    [
+      7,
+      "América de Propriá-SE",
+      "Falcon-SE"
+    ],
+    [
+      7,
+      "Sergipe-SE",
+      "Dorense-SE"
+    ],
+    [
+      7,
+      "Atlético Gloriense-SE",
+      "Lagarto-SE"
+    ],
+    [
+      7,
+      "Guarany-SE",
+      "Desportiva Aracaju-SE"
+    ],
+    [
+      7,
+      "Confiança-SE",
+      "Itabaiana-SE"
+    ],
+    [
+      8,
+      "Sergipe-SE",
+      "Atlético Gloriense-SE"
+    ],
+    [
+      8,
+      "Dorense-SE",
+      "Confiança-SE"
+    ],
+    [
+      8,
+      "América de Propriá-SE",
+      "Itabaiana-SE"
+    ],
+    [
+      8,
+      "Guarany-SE",
+      "Falcon-SE"
+    ],
+    [
+      8,
+      "Desportiva Aracaju-SE",
+      "Lagarto-SE"
+    ],
+    [
+      9,
+      "Falcon-SE",
+      "Desportiva Aracaju-SE"
+    ],
+    [
+      9,
+      "Atlético Gloriense-SE",
+      "Dorense-SE"
+    ],
+    [
+      9,
+      "Lagarto-SE",
+      "Sergipe-SE"
+    ],
+    [
+      9,
+      "Confiança-SE",
+      "América de Propriá-SE"
+    ],
+    [
+      9,
+      "Itabaiana-SE",
+      "Guarany-SE"
+    ]
+  ],
+  "final_legs_verified": 2,
+  "historical_scores_imported": false
+}

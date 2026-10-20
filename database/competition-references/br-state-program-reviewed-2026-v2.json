@@ -1,0 +1,879 @@
+{
+    "id": "state-program-reviewed-2026-v2",
+    "public_runtime_enabled": false,
+    "revision_scope": [
+        "br-to-a1",
+        "br-ms-a1"
+    ],
+    "definitions": {
+        "br-to-a1": {
+            "id": "br-to-a1",
+            "name": "Tocantinense Primeira Divisão",
+            "edition": 2026,
+            "country": "BR",
+            "uf": "TO",
+            "family": "state",
+            "scope": "state",
+            "pyramid": "br-to",
+            "tier": 5,
+            "format": "configured_state",
+            "teams": [
+                "Capital-TO",
+                "Araguaína-TO",
+                "Gurupi-TO",
+                "Palmas-TO",
+                "União Atlético-TO",
+                "Tocantinópolis-TO",
+                "Bela Vista-TO",
+                "Guaraí-TO"
+            ],
+            "test_fixture": true,
+            "verified_sources": [
+                "https://drive.google.com/file/d/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe/view",
+                "https://drive.google.com/file/d/19nHEe5uq2jD9oLSQiQfhjWTvH1A3iNGr/view",
+                "https://admin.ftf.org.br/api/v1/competitions/35"
+            ],
+            "rules": {
+                "access": 0,
+                "relegation": 2,
+                "note": "REC2026 preservado. A tabela PDF contém erro material 2º×2º na semifinal. API oficial 35 publica confrontos e mandos coerentes com 1º×4º e 2º×3º, conciliados com a classificação computável das 28 partidas oficiais, sem importar placares ao simulador. Inferência de conciliação, não errata normativa: revisão humana necessária. Executa 34 jogos; art. 13 comprova o descenso de 2 associações com pior campanha na 1ª fase; homologação/ranking 3º–4º permanece bloqueada pelo escopo da campanha do art.11§1. Nenhuma candidatura ou inscrição nacional."
+            },
+            "state_engine": {
+                "version": "configured-state-v10-edition",
+                "tiebreakers": [
+                    "points",
+                    "wins",
+                    "gd",
+                    "gf",
+                    "h2h_points_two",
+                    "lots"
+                ],
+                "initial": {
+                    "coverage": "single_round_robin",
+                    "rounds": 7,
+                    "games_per_club": 7,
+                    "fixtures": [
+                        [
+                            1,
+                            "Capital-TO",
+                            "Araguaína-TO"
+                        ],
+                        [
+                            1,
+                            "Gurupi-TO",
+                            "Palmas-TO"
+                        ],
+                        [
+                            1,
+                            "União Atlético-TO",
+                            "Tocantinópolis-TO"
+                        ],
+                        [
+                            1,
+                            "Bela Vista-TO",
+                            "Guaraí-TO"
+                        ],
+                        [
+                            2,
+                            "Araguaína-TO",
+                            "Gurupi-TO"
+                        ],
+                        [
+                            2,
+                            "Palmas-TO",
+                            "União Atlético-TO"
+                        ],
+                        [
+                            2,
+                            "Tocantinópolis-TO",
+                            "Bela Vista-TO"
+                        ],
+                        [
+                            2,
+                            "Guaraí-TO",
+                            "Capital-TO"
+                        ],
+                        [
+                            3,
+                            "Araguaína-TO",
+                            "Palmas-TO"
+                        ],
+                        [
+                            3,
+                            "Tocantinópolis-TO",
+                            "Guaraí-TO"
+                        ],
+                        [
+                            3,
+                            "Gurupi-TO",
+                            "União Atlético-TO"
+                        ],
+                        [
+                            3,
+                            "Bela Vista-TO",
+                            "Capital-TO"
+                        ],
+                        [
+                            4,
+                            "Tocantinópolis-TO",
+                            "Araguaína-TO"
+                        ],
+                        [
+                            4,
+                            "Guaraí-TO",
+                            "Palmas-TO"
+                        ],
+                        [
+                            4,
+                            "União Atlético-TO",
+                            "Bela Vista-TO"
+                        ],
+                        [
+                            4,
+                            "Capital-TO",
+                            "Gurupi-TO"
+                        ],
+                        [
+                            5,
+                            "Capital-TO",
+                            "União Atlético-TO"
+                        ],
+                        [
+                            5,
+                            "Araguaína-TO",
+                            "Guaraí-TO"
+                        ],
+                        [
+                            5,
+                            "Gurupi-TO",
+                            "Bela Vista-TO"
+                        ],
+                        [
+                            5,
+                            "Palmas-TO",
+                            "Tocantinópolis-TO"
+                        ],
+                        [
+                            6,
+                            "União Atlético-TO",
+                            "Guaraí-TO"
+                        ],
+                        [
+                            6,
+                            "Bela Vista-TO",
+                            "Araguaína-TO"
+                        ],
+                        [
+                            6,
+                            "Gurupi-TO",
+                            "Tocantinópolis-TO"
+                        ],
+                        [
+                            6,
+                            "Capital-TO",
+                            "Palmas-TO"
+                        ],
+                        [
+                            7,
+                            "Araguaína-TO",
+                            "União Atlético-TO"
+                        ],
+                        [
+                            7,
+                            "Palmas-TO",
+                            "Bela Vista-TO"
+                        ],
+                        [
+                            7,
+                            "Guaraí-TO",
+                            "Gurupi-TO"
+                        ],
+                        [
+                            7,
+                            "Tocantinópolis-TO",
+                            "Capital-TO"
+                        ]
+                    ]
+                },
+                "barriers": [
+                    [
+                        {
+                            "name": "semifinal",
+                            "type": "knockout",
+                            "entries": [
+                                {
+                                    "from": "initial",
+                                    "index": 0
+                                },
+                                {
+                                    "from": "initial",
+                                    "index": 1
+                                },
+                                {
+                                    "from": "initial",
+                                    "index": 2
+                                },
+                                {
+                                    "from": "initial",
+                                    "index": 3
+                                }
+                            ],
+                            "pairs": [
+                                [
+                                    0,
+                                    3
+                                ],
+                                [
+                                    1,
+                                    2
+                                ]
+                            ],
+                            "legs": 2,
+                            "tie_rule": "penalties",
+                            "home_basis": "initial",
+                            "home_phases": [
+                                "liga"
+                            ]
+                        }
+                    ],
+                    [
+                        {
+                            "name": "final",
+                            "type": "knockout",
+                            "entries": [
+                                {
+                                    "from": "winner",
+                                    "index": 0,
+                                    "phase": "semifinal"
+                                },
+                                {
+                                    "from": "winner",
+                                    "index": 1,
+                                    "phase": "semifinal"
+                                }
+                            ],
+                            "pairs": [
+                                [
+                                    0,
+                                    1
+                                ]
+                            ],
+                            "legs": 2,
+                            "tie_rule": "penalties",
+                            "home_basis": "campaign",
+                            "home_phases": [
+                                "liga",
+                                "semifinal"
+                            ]
+                        }
+                    ]
+                ],
+                "closure": {
+                    "schema": "certified-outcomes-v1",
+                    "title_phase": "final",
+                    "certified_runner_up": true,
+                    "relegation": 2,
+                    "relegation_phase": "liga",
+                    "pending": {
+                        "reason": "to_final_ranking_campaign_scope_requires_clarification",
+                        "source": "https://drive.google.com/file/d/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe/view art.11§1: número de pontos e critérios dos semifinalistas, sem explicitar fases acumuladas; art.13: duas piores campanhas da 1ª fase rebaixadas"
+                    }
+                }
+            },
+            "reference_clubs": {
+                "Capital-TO": {
+                    "name": "Capital-TO",
+                    "official_name": "Ricanato Futebol Clube (Capital Futebol Clube)",
+                    "country": "BR",
+                    "uf": "TO",
+                    "competitions": [
+                        "br-copa"
+                    ],
+                    "game_only": true,
+                    "rating_origin": "existing_game_fallback_not_official_rating",
+                    "source": "https://stcbfsiteprdimgbrs.blob.core.windows.net/img-site/cdn/REC_Copa_do_Brasil_2026_66989a5426.pdf",
+                    "source_location": "Anexo A PDF pp.19-21"
+                },
+                "Gurupi-TO": {
+                    "name": "Gurupi-TO",
+                    "country": "BR",
+                    "uf": "TO",
+                    "competitions": [
+                        "br-to-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://drive.google.com/file/d/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe/view",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Palmas-TO": {
+                    "name": "Palmas-TO",
+                    "country": "BR",
+                    "uf": "TO",
+                    "competitions": [
+                        "br-to-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://drive.google.com/file/d/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe/view",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "União Atlético-TO": {
+                    "name": "União Atlético-TO",
+                    "country": "BR",
+                    "uf": "TO",
+                    "competitions": [
+                        "br-to-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://drive.google.com/file/d/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe/view",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Bela Vista-TO": {
+                    "name": "Bela Vista-TO",
+                    "country": "BR",
+                    "uf": "TO",
+                    "competitions": [
+                        "br-to-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://drive.google.com/file/d/1XnxSP29SXyfYa39D0hJQV29Le5PkdWSe/view",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                }
+            }
+        },
+        "br-ms-a1": {
+            "id": "br-ms-a1",
+            "name": "Sul-Mato-Grossense Série A",
+            "edition": 2026,
+            "country": "BR",
+            "uf": "MS",
+            "family": "state",
+            "scope": "state",
+            "pyramid": "br-ms",
+            "tier": 5,
+            "format": "configured_state",
+            "teams": [
+                "Operário-MS",
+                "Ivinhema-MS",
+                "Pantanal-MS",
+                "Águia Negra-MS",
+                "Dourados-MS",
+                "Costa Rica-MS",
+                "Naviraiense-MS",
+                "Corumbaense-MS",
+                "Bataguassu-MS",
+                "Clube de Regatas Aquidauana-MS"
+            ],
+            "groups": [
+                [
+                    "Operário-MS",
+                    "Ivinhema-MS",
+                    "Pantanal-MS",
+                    "Águia Negra-MS",
+                    "Dourados-MS",
+                    "Costa Rica-MS",
+                    "Naviraiense-MS",
+                    "Corumbaense-MS",
+                    "Bataguassu-MS",
+                    "Clube de Regatas Aquidauana-MS"
+                ]
+            ],
+            "test_fixture": true,
+            "verified_sources": [
+                "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/Tg96ZBqTwD4FNFgRWfDpkIykKYTw3lli9VKg81eT.pdf",
+                "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/5LaKkYOaGXMziUW3quNkUMTa4cKnZirC7vs60XTE.pdf",
+                "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/xEd6gMTyJrI8hjdjeAONimSLoRDmqmHbzP8pOvTN.pdf"
+            ],
+            "rules": {
+                "access": 0,
+                "relegation": 2,
+                "note": "REC oficial2026 arts.9–13;55 jogos. Mando da final por média dos critérios quando número de partidas difere; comparação racional exata por produtos cruzados, sem alterar força ou probabilidades. Fonte de tabela oficial com45 confrontos extraídos, placares históricos não importados. Jogo31 antecipado no mundo real permanece rodada7 na agenda simulada explicitamente adaptada. Parecer003/2026 trata compatibilização de datas, não substitui regras de disputa. Piloto de certificações parciais independentes: campeão, vice e descenso certificados e desacoplados; homologação integral, ranking completo dos eliminados e indicação nacional permanecem pendentes. CRA distinto de Aquidauanense."
+            },
+            "state_engine": {
+                "version": "configured-state-v10-edition",
+                "tiebreakers": [
+                    "points",
+                    "wins",
+                    "gd",
+                    "gf",
+                    "h2h_points_two",
+                    "red",
+                    "yellow",
+                    "lots"
+                ],
+                "initial": {
+                    "coverage": "single_round_robin",
+                    "rounds": 9,
+                    "games_per_club": 9,
+                    "fixtures": [
+                        [
+                            1,
+                            "Bataguassu-MS",
+                            "Naviraiense-MS"
+                        ],
+                        [
+                            1,
+                            "Clube de Regatas Aquidauana-MS",
+                            "Costa Rica-MS"
+                        ],
+                        [
+                            1,
+                            "Corumbaense-MS",
+                            "Operário-MS"
+                        ],
+                        [
+                            1,
+                            "Ivinhema-MS",
+                            "Dourados-MS"
+                        ],
+                        [
+                            1,
+                            "Pantanal-MS",
+                            "Águia Negra-MS"
+                        ],
+                        [
+                            2,
+                            "Costa Rica-MS",
+                            "Ivinhema-MS"
+                        ],
+                        [
+                            2,
+                            "Dourados-MS",
+                            "Pantanal-MS"
+                        ],
+                        [
+                            2,
+                            "Naviraiense-MS",
+                            "Corumbaense-MS"
+                        ],
+                        [
+                            2,
+                            "Operário-MS",
+                            "Clube de Regatas Aquidauana-MS"
+                        ],
+                        [
+                            2,
+                            "Águia Negra-MS",
+                            "Bataguassu-MS"
+                        ],
+                        [
+                            3,
+                            "Clube de Regatas Aquidauana-MS",
+                            "Naviraiense-MS"
+                        ],
+                        [
+                            3,
+                            "Corumbaense-MS",
+                            "Bataguassu-MS"
+                        ],
+                        [
+                            3,
+                            "Dourados-MS",
+                            "Águia Negra-MS"
+                        ],
+                        [
+                            3,
+                            "Ivinhema-MS",
+                            "Operário-MS"
+                        ],
+                        [
+                            3,
+                            "Pantanal-MS",
+                            "Costa Rica-MS"
+                        ],
+                        [
+                            4,
+                            "Bataguassu-MS",
+                            "Clube de Regatas Aquidauana-MS"
+                        ],
+                        [
+                            4,
+                            "Costa Rica-MS",
+                            "Dourados-MS"
+                        ],
+                        [
+                            4,
+                            "Naviraiense-MS",
+                            "Ivinhema-MS"
+                        ],
+                        [
+                            4,
+                            "Operário-MS",
+                            "Águia Negra-MS"
+                        ],
+                        [
+                            4,
+                            "Pantanal-MS",
+                            "Corumbaense-MS"
+                        ],
+                        [
+                            5,
+                            "Clube de Regatas Aquidauana-MS",
+                            "Corumbaense-MS"
+                        ],
+                        [
+                            5,
+                            "Costa Rica-MS",
+                            "Águia Negra-MS"
+                        ],
+                        [
+                            5,
+                            "Dourados-MS",
+                            "Operário-MS"
+                        ],
+                        [
+                            5,
+                            "Ivinhema-MS",
+                            "Bataguassu-MS"
+                        ],
+                        [
+                            5,
+                            "Pantanal-MS",
+                            "Naviraiense-MS"
+                        ],
+                        [
+                            6,
+                            "Bataguassu-MS",
+                            "Pantanal-MS"
+                        ],
+                        [
+                            6,
+                            "Corumbaense-MS",
+                            "Ivinhema-MS"
+                        ],
+                        [
+                            6,
+                            "Naviraiense-MS",
+                            "Dourados-MS"
+                        ],
+                        [
+                            6,
+                            "Operário-MS",
+                            "Costa Rica-MS"
+                        ],
+                        [
+                            6,
+                            "Águia Negra-MS",
+                            "Clube de Regatas Aquidauana-MS"
+                        ],
+                        [
+                            7,
+                            "Costa Rica-MS",
+                            "Naviraiense-MS"
+                        ],
+                        [
+                            7,
+                            "Dourados-MS",
+                            "Bataguassu-MS"
+                        ],
+                        [
+                            7,
+                            "Ivinhema-MS",
+                            "Clube de Regatas Aquidauana-MS"
+                        ],
+                        [
+                            7,
+                            "Operário-MS",
+                            "Pantanal-MS"
+                        ],
+                        [
+                            7,
+                            "Águia Negra-MS",
+                            "Corumbaense-MS"
+                        ],
+                        [
+                            8,
+                            "Bataguassu-MS",
+                            "Costa Rica-MS"
+                        ],
+                        [
+                            8,
+                            "Clube de Regatas Aquidauana-MS",
+                            "Pantanal-MS"
+                        ],
+                        [
+                            8,
+                            "Corumbaense-MS",
+                            "Dourados-MS"
+                        ],
+                        [
+                            8,
+                            "Ivinhema-MS",
+                            "Águia Negra-MS"
+                        ],
+                        [
+                            8,
+                            "Naviraiense-MS",
+                            "Operário-MS"
+                        ],
+                        [
+                            9,
+                            "Costa Rica-MS",
+                            "Corumbaense-MS"
+                        ],
+                        [
+                            9,
+                            "Dourados-MS",
+                            "Clube de Regatas Aquidauana-MS"
+                        ],
+                        [
+                            9,
+                            "Operário-MS",
+                            "Bataguassu-MS"
+                        ],
+                        [
+                            9,
+                            "Pantanal-MS",
+                            "Ivinhema-MS"
+                        ],
+                        [
+                            9,
+                            "Águia Negra-MS",
+                            "Naviraiense-MS"
+                        ]
+                    ],
+                    "home_counts": {
+                        "Operário-MS": 5,
+                        "Ivinhema-MS": 5,
+                        "Pantanal-MS": 5,
+                        "Águia Negra-MS": 4,
+                        "Dourados-MS": 5,
+                        "Costa Rica-MS": 5,
+                        "Naviraiense-MS": 4,
+                        "Corumbaense-MS": 4,
+                        "Bataguassu-MS": 4,
+                        "Clube de Regatas Aquidauana-MS": 4
+                    }
+                },
+                "barriers": [
+                    [
+                        {
+                            "name": "quartas",
+                            "type": "knockout",
+                            "entries": [
+                                {
+                                    "from": "initial",
+                                    "index": 2
+                                },
+                                {
+                                    "from": "initial",
+                                    "index": 3
+                                },
+                                {
+                                    "from": "initial",
+                                    "index": 4
+                                },
+                                {
+                                    "from": "initial",
+                                    "index": 5
+                                }
+                            ],
+                            "pairs": [
+                                [
+                                    0,
+                                    3
+                                ],
+                                [
+                                    1,
+                                    2
+                                ]
+                            ],
+                            "legs": 2,
+                            "tie_rule": "penalties",
+                            "home_basis": "initial",
+                            "home_phases": [
+                                "liga"
+                            ]
+                        }
+                    ],
+                    [
+                        {
+                            "name": "semifinal",
+                            "type": "knockout",
+                            "entries": [
+                                {
+                                    "from": "initial",
+                                    "index": 0
+                                },
+                                {
+                                    "from": "winner",
+                                    "index": 1,
+                                    "phase": "quartas"
+                                },
+                                {
+                                    "from": "initial",
+                                    "index": 1
+                                },
+                                {
+                                    "from": "winner",
+                                    "index": 0,
+                                    "phase": "quartas"
+                                }
+                            ],
+                            "pairs": [
+                                [
+                                    0,
+                                    1
+                                ],
+                                [
+                                    2,
+                                    3
+                                ]
+                            ],
+                            "legs": 2,
+                            "tie_rule": "penalties",
+                            "home_basis": "initial",
+                            "home_phases": [
+                                "liga"
+                            ]
+                        }
+                    ],
+                    [
+                        {
+                            "name": "final",
+                            "type": "knockout",
+                            "entries": [
+                                {
+                                    "from": "winner",
+                                    "index": 0,
+                                    "phase": "semifinal"
+                                },
+                                {
+                                    "from": "winner",
+                                    "index": 1,
+                                    "phase": "semifinal"
+                                }
+                            ],
+                            "pairs": [
+                                [
+                                    0,
+                                    1
+                                ]
+                            ],
+                            "legs": 2,
+                            "tie_rule": "penalties",
+                            "home_basis": "campaign_average",
+                            "home_phases": [
+                                "liga",
+                                "quartas",
+                                "semifinal"
+                            ]
+                        }
+                    ]
+                ],
+                "closure": {
+                    "schema": "certified-outcomes-v1",
+                    "title_phase": "final",
+                    "certified_runner_up": true,
+                    "relegation": 2,
+                    "relegation_phase": "liga",
+                    "pending": {
+                        "reason": "ms_full_final_ranking_and_national_path_not_certified",
+                        "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf arts.12/13/36: campeão,vice,descenso comprovados; classificação integral dos eliminados e caminhos D futuros não definidos no REC obtido"
+                    }
+                }
+            },
+            "reference_clubs": {
+                "Pantanal-MS": {
+                    "name": "Pantanal-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Águia Negra-MS": {
+                    "name": "Águia Negra-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Dourados-MS": {
+                    "name": "Dourados-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Costa Rica-MS": {
+                    "name": "Costa Rica-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Naviraiense-MS": {
+                    "name": "Naviraiense-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Corumbaense-MS": {
+                    "name": "Corumbaense-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Bataguassu-MS": {
+                    "name": "Bataguassu-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                },
+                "Clube de Regatas Aquidauana-MS": {
+                    "name": "Clube de Regatas Aquidauana-MS",
+                    "country": "BR",
+                    "uf": "MS",
+                    "competitions": [
+                        "br-ms-a1"
+                    ],
+                    "game_only": true,
+                    "source": "https://campeonatos.futebolms.com.br/storage/competicao/48/33/2026/9RSOTZFY9aUhXoMjAjyVtj9eGA1HhQErOucE1Koi.pdf",
+                    "rating_origin": "existing_game_fallback_not_official_rating"
+                }
+            }
+        }
+    },
+    "sources": [
+        {
+            "id": "to_official_api_bracket",
+            "url": "https://admin.ftf.org.br/api/v1/competitions/35",
+            "sha256": "1331f730884fda3da96bf7e7bde72bf20587c3b87d278ab08094befb75c0c7c9",
+            "bytes": 96350,
+            "consulted_on": "2026-10-19",
+            "knowledge": "primary_table_conciliation_not_normative_erratum",
+            "sports_projection": "Docs/mundializacao-v07/conclusao-27/to-official-bracket-conciliation.json"
+        }
+    ]
+}

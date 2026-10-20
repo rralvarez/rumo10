@@ -1,0 +1,30 @@
+{
+    "checks": 172,
+    "scope": "Piloto de certificações parciais desacopladas corrigido - Mato Grosso do Sul (br-ms-a1)",
+    "defects_addressed": {
+        "defeito_1_compatibilidade_historica": "runner_up e partial_certification condicionados estritamente ao schema certified-outcomes-v1; snapshots históricos de RJ, SC, CE, PA e TO verificados sem campos novos",
+        "defeito_2_validacao_descenso": "relegation_basis=final_ranking rejeitado para certificação parcial; fase de descenso restrita a league; validação estrita de contagem, unicidade e ausência de conflitos",
+        "defeito_3_integridade_recibo": "schema validado estritamente como inteiro 1 (rejeitando \"1\"); digest canônico comparado estritamente; recibo vinculado a contract_digest e results_digest",
+        "falha_bloqueante_auditoria_2_recibo": "certified_relegated validado com array_is_list, comparação estrita contra a lista reconstruída, e rejeição de objetos numéricos, índices não sequenciais, inversão de ordem e hidratação JSON adulterada"
+    },
+    "matches": 55,
+    "champion_certified": true,
+    "runner_up_certified": true,
+    "relegation_certified": true,
+    "full_ranking_certified": false,
+    "national_admission_certified": false,
+    "homologated": false,
+    "done": false,
+    "historical_snapshots_tested": [
+        "br-rj-a1",
+        "br-sc-a1",
+        "br-ce-a1",
+        "br-pa-a1"
+    ],
+    "game_modes_tested": [
+        "normal",
+        "rapido",
+        "expresso"
+    ],
+    "elapsed_ms": 629.95
+}
