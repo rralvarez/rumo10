@@ -1,0 +1,13 @@
+name: Entrega 62 — verificação manual somente leitura
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify-only:
+    uses: rralvarez/rumo10/.github/workflows/release62-selective.yml@038e001ea1efbd9c13bf3b76a04fa97a8eaee16c
+    with:
+      control_ref: 038e001ea1efbd9c13bf3b76a04fa97a8eaee16c
+      mode: verify-only
+    secrets: inherit
