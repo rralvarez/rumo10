@@ -1,0 +1,80 @@
+name: Entrega 62 — pacote seletivo manual
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [verify-only, deploy]
+        default: verify-only
+        required: true
+      approval:
+        type: string
+        default: ''
+        required: false
+      backup_receipt:
+        type: string
+        default: '{}'
+        required: false
+  workflow_call:
+    inputs:
+      mode:
+        type: string
+        default: verify-only
+      control_ref:
+        type: string
+        required: true
+      approval:
+        type: string
+        default: ''
+      backup_receipt:
+        type: string
+        default: '{}'
+    secrets:
+      UOL_FTP_USERNAME:
+        required: true
+      UOL_FTP_PASSWORD:
+        required: true
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: production
+  cancel-in-progress: false
+jobs:
+  selective:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    environment: production
+    steps:
+      - name: Obter somente a referência de controle
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ inputs.control_ref || github.sha }}
+          persist-credentials: false
+      - name: Validar pacote e publicador fixados
+        run: |
+          python3 -c "import sys; sys.path.insert(0, 'ops/release62'); import control; control.offline()"
+          python3 ops/release62/bin/deploy-ftps.py ops/release62/package.tar.gz rumo10 --dry-run
+      - name: Regressões e testes adversariais sem rede
+        run: |
+          export PHP_BIN="$(command -v php)"
+          export PYTHONDONTWRITEBYTECODE=1
+          python3 ops/release62/tests/ftps-deployment.py
+          python3 ops/release62/adversarial-audit.py
+          python3 ops/release62/tests/control-tests.py
+      - name: Verificação remota ou publicação explicitamente autorizada
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UOL_FTP_HOST: ${{ vars.UOL_FTP_HOST }}
+          UOL_FTP_ADDRESS: ${{ vars.UOL_FTP_ADDRESS }}
+          UOL_FTP_PORT: ${{ vars.UOL_FTP_PORT }}
+          UOL_FTP_USERNAME: ${{ secrets.UOL_FTP_USERNAME }}
+          UOL_FTP_PASSWORD: ${{ secrets.UOL_FTP_PASSWORD }}
+          RELEASE62_ALLOW_DEPLOY: ${{ vars.RELEASE62_ALLOW_DEPLOY }}
+          RELEASE62_APPROVAL: ${{ inputs.approval }}
+          RELEASE62_BACKUP_RECEIPT: ${{ inputs.backup_receipt }}
+          RELEASE62_MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          case "$RELEASE62_MODE" in verify-only|deploy) ;; *) echo 'Invalid mode'; exit 1;; esac
+          python3 -u ops/release62/control.py "$RELEASE62_MODE" | tee "$RUNNER_TEMP/release62-receipt.json"
