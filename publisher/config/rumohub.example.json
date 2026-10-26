@@ -1,0 +1,59 @@
+{
+  "project": "rumohub",
+  "repository": "rralvarez/rumohub",
+  "branch": "main",
+  "workflow_id": 0,
+  "required_jobs": [
+    "syntax",
+    "regression",
+    "publisher-safety",
+    "artifact"
+  ],
+  "apply_enabled": false,
+  "max_artifact_bytes": 268435456,
+  "token_file": "/home/rumoacame144a99e/private-publisher/rumohub/github-read.token",
+  "private": "/home/rumoacame144a99e/private-publisher/rumohub",
+  "current": "/home/rumoacame144a99e/apps/rumohub/current",
+  "public": "/home/rumoacame144a99e/rumohub.rumoacamisa10.com.br",
+  "control": "/home/rumoacame144a99e/apps/rumohub",
+  "account_mutex": "/home/rumoacame144a99e/private-publisher/account.lock",
+  "php": "/opt/alt/php84/usr/bin/php",
+  "php_args": [],
+  "data_contracts": [
+    "rumohub-writer-v1"
+  ],
+  "baseline_data_contracts": [],
+  "pinned_controls": {},
+  "public_inventory": {},
+  "homologation": {
+    "backup": false,
+    "maintenance": false,
+    "recovery": false,
+    "legacy_publishers_fenced": false
+  },
+  "hooks": {
+    "fence": {
+      "script": "REQUIRES_AUDITED_PRIVATE_PATH/legacy-fence-hook.php",
+      "sha256": "REQUIRES_APPROVED_SHA256",
+      "args": [
+        "--profile",
+        "REQUIRES_PRIVATE_FENCE_PROFILE"
+      ]
+    }
+  },
+  "baseline_commit": "REQUIRES_CONFIRMED_INSTALLED_40_HEX_COMMIT",
+  "workflow_path": ".github/workflows/tested-release-artifact.yml",
+  "workflow_sha256": "REQUIRES_APPROVED_WORKFLOW_SHA256",
+  "backup_roots": {},
+  "unmanaged_allowlist": {},
+  "request_gate": {
+    "root": "/home/rumoacame144a99e/private-publisher/account-request-gate",
+    "coverage_approved": false,
+    "projects": [
+      "rumo10",
+      "rumohub"
+    ],
+    "entrypoints": {},
+    "timeout_seconds": 30
+  }
+}

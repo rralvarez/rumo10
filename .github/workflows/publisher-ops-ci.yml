@@ -1,0 +1,46 @@
+name: Isolated publisher operational v3 CI
+on:
+  push:
+    branches: [codex/publisher-ops-v3-ci-20261026]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: isolated-publisher-ci-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  homologation:
+    if: github.ref == 'refs/heads/codex/publisher-ops-v3-ci-20261026'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PHP_BIN: php
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: '8.4'
+          extensions: curl, openssl, sqlite3, pdo_sqlite, mbstring, pdo_mysql
+          coverage: none
+      - name: Validate all workflow expressions with pinned actionlint
+        run: python3 publisher/tests/actionlint-ci.py
+      - name: Install disposable database test clients
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq mysql-client
+      - name: Local-only publisher, drainage, recovery and preservation suites
+        run: python3 publisher/tests/run.py --project rumo10 --frozen-archive publisher/approved-input/rumo10-entrega62-selective.tar.gz
+      - name: Backup and restore on owned disposable MySQL instances
+        run: python3 publisher/tests/mysql-ci.py
+      - name: Evidence without credentials or database dumps
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: publisher-ci-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            publisher/evidence/*.json
+            publisher/evidence/*.log
+          if-no-files-found: error
+          retention-days: 14
