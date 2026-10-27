@@ -1,0 +1,15 @@
+evidence/*
+!evidence/.gitkeep
+tests/fixtures/
+tests/runs-*/
+tests/v3-runtime-*/
+tests/client-*/
+tests/qa-proof-*/
+tests/drain-runs-*/
+tests/producer-*/
+tests/ci-representative-*/
+tests/mysql-*/
+tests/sealed-proof-*/
+tests/http-port.txt
+tests/sandbox-hook-state.json
+**/__pycache__/

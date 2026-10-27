@@ -1,0 +1,83 @@
+name: Isolated publisher operational v3 CI
+on:
+  push:
+    branches: [codex/publisher-release62-artifact-20261027]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: isolated-publisher-ci-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  homologation:
+    if: github.ref == 'refs/heads/codex/publisher-release62-artifact-20261027'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PHP_BIN: php
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: '8.4'
+          extensions: curl, openssl, sqlite3, pdo_sqlite, mbstring, pdo_mysql
+          coverage: none
+      - name: Validate all workflow expressions with pinned actionlint
+        run: python3 publisher/tests/actionlint-ci.py
+      - name: Install disposable database test clients
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq mysql-client
+      - name: Local-only publisher, drainage, recovery and preservation suites
+        run: python3 publisher/tests/run.py --project rumo10 --frozen-archive publisher/approved-input/rumo10-entrega62-selective.tar.gz
+      - name: Backup and restore on owned disposable MySQL instances
+        run: python3 publisher/tests/mysql-ci.py
+      - name: Evidence without credentials or database dumps
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: publisher-ci-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            publisher/evidence/*.json
+            publisher/evidence/*.log
+          if-no-files-found: error
+          retention-days: 14
+
+  artifact:
+    needs: [homologation]
+    if: github.ref == 'refs/heads/codex/publisher-release62-artifact-20261027' && github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Bind approved frozen bytes to this successful CI run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORKFLOW_ID="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq '.workflow_id')"
+          python3 publisher/bin/seal-approved.py \
+            --archive publisher/approved-input/rumo10-entrega62-selective.tar.gz \
+            --output "$RUNNER_TEMP/approved-release" \
+            --repository "$GITHUB_REPOSITORY" --commit "$GITHUB_SHA" \
+            --workflow-id "$WORKFLOW_ID" --run-id "$GITHUB_RUN_ID" \
+            --run-number "$GITHUB_RUN_NUMBER" --attempt "$GITHUB_RUN_ATTEMPT"
+          echo "caec057a8acc65ce58df9f7f4243082fdd8fe069e445c57f937b68609d633378  $RUNNER_TEMP/approved-release/release.tar.gz" | sha256sum --check --strict
+      - name: Upload receiver-compatible operational artifact without activation
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-rumo10-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/approved-release/candidate.json
+            ${{ runner.temp }}/approved-release/release.tar.gz
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 30

@@ -1,0 +1,78 @@
+# TEMPLATE ONLY: not installed, pushed or homologated.
+name: tested-release-artifact
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: tested-release-artifact-${{ github.repository }}
+  cancel-in-progress: false
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Lint compatible PHP
+        run: |
+          php -r 'if (PHP_VERSION_ID < 80400) exit(1);'
+          find app bin tests -name '*.php' -print0 | xargs -0 -n1 php -l
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Mandatory regressions
+        run: |
+          set -euo pipefail
+          php tests/deployment-package.php
+          python3 tests/ftps-deployment.py
+          # Incorporate approved v3 persistence, game and receiver/recovery suites before homologation.
+  publisher-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Require PHP 8.4 and SQLite test capability
+        run: php -r 'if (PHP_VERSION_ID < 80400 || !extension_loaded("sqlite3") || !extension_loaded("mbstring")) exit(1);'
+      - name: Receiver recovery provenance and representative package tests
+        env:
+          PROJECT: ${{ vars.PULL_PROJECT }}
+        run: python3 publisher/tests/run.py --project "$PROJECT" --source .
+  artifact:
+    needs: [syntax, regression, publisher-safety]
+    if: ${{ needs.syntax.result == 'success' && needs.regression.result == 'success' && needs.publisher-safety.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Require explicit CI homologation
+        env:
+          READY: ${{ vars.PULL_PUBLISHER_CI_HOMOLOGATED }}
+        run: test "$READY" = "true"
+      - name: Produce tested immutable commit
+        env:
+          PROJECT: ${{ vars.PULL_PROJECT }}
+          WORKFLOW_ID: ${{ vars.PULL_WORKFLOW_ID }}
+          DATA_CONTRACT: ${{ vars.PULL_DATA_CONTRACT }}
+        run: |
+          python3 publisher/bin/produce.py \
+            --repo . --commit "$GITHUB_SHA" --project "$PROJECT" \
+            --repository "$GITHUB_REPOSITORY" --workflow-id "$WORKFLOW_ID" \
+            --run-id "$GITHUB_RUN_ID" --run-number "$GITHUB_RUN_NUMBER" \
+            --attempt "$GITHUB_RUN_ATTEMPT" --data-contract "$DATA_CONTRACT" \
+            --output "$RUNNER_TEMP/release-output"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-${{ vars.PULL_PROJECT }}-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/release-output/candidate.json
+            ${{ runner.temp }}/release-output/release.tar.gz
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 30
