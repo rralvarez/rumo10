@@ -44,3 +44,40 @@ jobs:
             publisher/evidence/*.log
           if-no-files-found: error
           retention-days: 14
+
+  artifact:
+    needs: [homologation]
+    if: github.ref == 'refs/heads/codex/publisher-ops-v3-ci-20261026' && github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Bind approved frozen bytes to this successful CI run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORKFLOW_ID="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq '.workflow_id')"
+          python3 publisher/bin/seal-approved.py \
+            --archive publisher/approved-input/rumo10-entrega62-selective.tar.gz \
+            --output "$RUNNER_TEMP/approved-release" \
+            --repository "$GITHUB_REPOSITORY" --commit "$GITHUB_SHA" \
+            --workflow-id "$WORKFLOW_ID" --run-id "$GITHUB_RUN_ID" \
+            --run-number "$GITHUB_RUN_NUMBER" --attempt "$GITHUB_RUN_ATTEMPT"
+          echo "caec057a8acc65ce58df9f7f4243082fdd8fe069e445c57f937b68609d633378  $RUNNER_TEMP/approved-release/release.tar.gz" | sha256sum --check --strict
+      - name: Upload receiver-compatible operational artifact without activation
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-rumo10-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/approved-release/candidate.json
+            ${{ runner.temp }}/approved-release/release.tar.gz
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 30
