@@ -74,6 +74,7 @@ saveargs=[*ARGS,"-d","extension=php_mbstring.dll"] if os.name=="nt" else ARGS
 if opts.project!='rumohub':
  command("saves-tests",[PHP,*saveargs,str(ROOT/"tests/saves.php")])
 else:results.append({"name":"saves-tests","status":"NOT_TESTED","reason":"Rumo10-only runtime, not Hub test"})
+if opts.frozen_archive:command("frozen-sealer",[sys.executable,str(ROOT/"tests/seal-approved.py")])
 command("drain-processes",[sys.executable,str(ROOT/"tests/drain-processes.py")])
 command("legacy-fence",[PHP,*ARGS,str(ROOT/"tests/legacy-fence.php")])
 command("workflow-static",[sys.executable,str(ROOT/"tests/workflow-static.py")])
