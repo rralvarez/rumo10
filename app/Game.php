@@ -46,6 +46,12 @@ final class Game {
     }
     public static function choices(array $g): array {
         if(($g['stage']??'')==='penaltis')return class_exists('PenaltyShootout')?PenaltyShootout::choices($g):[];
+        if(($g['stage']??'')==='fim_semana') {
+            $m = !empty($g['matches']) ? ($g['matches'][self::currentIndex($g)] ?? null) : null;
+            if ($m && class_exists('PenaltyShootout') && PenaltyShootout::requiresShootout($g, $m)) {
+                return [];
+            }
+        }
         $s=self::situation($g); if($s) return $g['stage']==='partida'?ActionResolution::options($s['options'],$s['id']):$s['options'];
         if($g['stage']==='partida') {
             $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
@@ -313,19 +319,6 @@ final class Game {
                 $side=$played['home']===$g['club']?'home':'away';$played[$side.'_yellow']+=$played['stats']['cards'];$played[$side.'_red']+=(int)($played['stats']['cards']>=2);unset($played);
             }
             foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') Competition::simulate($other,$g); unset($other);
-            $ownIndex=self::currentIndex($g);$played=&$g['matches'][$ownIndex];
-            if(class_exists('PenaltyShootout') && PenaltyShootout::requiresShootout($g,$played)) {
-                PenaltyShootout::start($g,$played);
-                PenaltyShootout::advanceUntilProtagonistOrEnd($g);
-                if(($g['shootout']['status']??'')==='in_progress') {
-                    $g['stage']='penaltis';
-                    $g['states']['ritmo_jogo']=self::clamp($g['states']['ritmo_jogo']+3);
-                    unset($played);
-                    return;
-                }
-                PenaltyShootout::complete($g);
-            }
-            unset($played);
             $g['stage']='fim_semana'; $g['states']['ritmo_jogo']=self::clamp($g['states']['ritmo_jogo']+3);
         }
     }

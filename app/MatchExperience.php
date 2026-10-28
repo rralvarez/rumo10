@@ -24,15 +24,43 @@ final class MatchExperience {
  }
  public static function render(array $m):void {
   echo '<section class="match-experience" aria-label="Evolução nesta partida">';
-  $s=$m['stats'];
+  $s=$m['stats']??[];
+  $minutes=isset($s['minutes'])?(int)$s['minutes']:0;
+  $rating=isset($s['rating'])?(float)$s['rating']:0.0;
+  $ratingStr=number_format($rating,1,',','.');
+  $goals=isset($s['goals'])?(int)$s['goals']:0;
+  $assists=isset($s['assists'])?(int)$s['assists']:0;
+  $goalsLabel=($goals===1?'Gol':'Gols');
+  $assistsLabel=($assists===1?'Assistência':'Assistências');
   $x=$m['experience']??null;
   $total=$x && !empty($x['complete'])?array_sum($x['earned']):0;
 
-  echo '<div class="match-protagonist-strip">';
-  echo '<span class="protagonist-pill"><b>'.e($s['minutes']).'</b> <small>minutos</small></span>';
-  echo '<span class="protagonist-pill rating-pill"><b>'.e(number_format((float)$s['rating'],1,',','.')).'</b> <small>nota</small></span>';
-  echo '<span class="protagonist-pill"><b>'.e($s['goals']).'</b> <small>'.($s['goals']==1?'gol':'gols').'</small></span>';
-  echo '<span class="protagonist-pill"><b>'.e($s['assists']).'</b> <small>assistências</small></span>';
+  echo '<div class="match-protagonist-strip" role="group" aria-label="Estatísticas do jogador na partida">';
+
+  // 1. Minutos
+  echo '<div class="stat-chip stat-chip-minutes" aria-label="Minutos jogados: '.e($minutes).'">';
+  echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span class="stat-value">'.e($minutes).'</span></div>';
+  echo '<span class="stat-label">Minutos</span>';
+  echo '</div>';
+
+  // 2. Nota
+  echo '<div class="stat-chip stat-chip-rating" aria-label="Nota do jogador: '.e($ratingStr).'">';
+  echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="stat-value">'.e($ratingStr).'</span></div>';
+  echo '<span class="stat-label">Nota</span>';
+  echo '</div>';
+
+  // 3. Gols
+  echo '<div class="stat-chip stat-chip-goals" aria-label="'.e($goals.' '.$goalsLabel).'">';
+  echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7l3 2v3.5l-3 2-3-2V9z"/><path d="M12 3v4M15 9l3.5-1.5M15 12.5l3.5 1.5M12 14.5v4.5M9 12.5L5.5 14M9 9L5.5 7.5"/></svg><span class="stat-value">'.e($goals).'</span></div>';
+  echo '<span class="stat-label">'.e($goalsLabel).'</span>';
+  echo '</div>';
+
+  // 4. Assistências
+  echo '<div class="stat-chip stat-chip-assists" aria-label="'.e($assists.' '.$assistsLabel).'">';
+  echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 17l4-1 6 3h5a2 2 0 0 0 2-2v-1l-3-4-5-1-4 2-5 3z"/><path d="M10 11l-2 3M13 12l-1 3"/></svg><span class="stat-value">'.e($assists).'</span></div>';
+  echo '<span class="stat-label">'.e($assistsLabel).'</span>';
+  echo '</div>';
+
   echo '</div>';
 
   if(!$x || empty($x['complete'])){
@@ -41,15 +69,20 @@ final class MatchExperience {
   }
 
   echo '<div class="match-xp-summary">';
+  echo '<div class="xp-badge">';
+  echo '<svg class="xp-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
+  echo '<span class="xp-val">+'.e($total).' XP</span>';
   if(isset($x['development_raw_xp'])){
-   echo '<div class="xp-badge"><strong>+'.e($total).' XP aplicados ao desenvolvimento</strong></div>';
+   echo '<span class="xp-desc">· Aplicados ao desenvolvimento</span>';
   } else {
-   echo '<div class="xp-badge"><strong>+'.e($total).' XP recebidos nesta partida</strong></div>';
+   echo '<span class="xp-desc">· Recebidos nesta partida</span>';
   }
+  echo '</div>';
+
   $upgrades=[];
   foreach(Rules::SKILLS as $k){
    $a=$x['before'][$k]['value'];$b=$x['after'][$k]['value'];
-   if($b>$a)$upgrades[]='<span class="upgrade-chip">⚡ <strong>'.e(self::LABELS[$k]).'</strong> '.e($a).' → '.e($b).' (+'.e($b-$a).')</span>';
+   if($b>$a)$upgrades[]='<span class="upgrade-chip"><svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <strong>'.e(self::LABELS[$k]).'</strong> '.e($a).' → '.e($b).' (+'.e($b-$a).')</span>';
   }
   if($upgrades)echo '<div class="xp-upgrades">'.implode(' ',$upgrades).'</div>';
   echo '</div>';

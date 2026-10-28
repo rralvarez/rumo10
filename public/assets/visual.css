@@ -466,8 +466,178 @@ main.container {
 }
 
 .post-match .match-experience {
-  margin-top: 4px;
-  padding-top: 4px
+  margin-top: 6px;
+  padding-top: 4px;
+}
+
+.post-match .match-protagonist-strip {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+  margin: 6px 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.post-match .stat-chip {
+  background: #111e23;
+  border: 1px solid #283d42;
+  border-radius: 6px;
+  padding: 5px 4px 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.post-match .stat-chip:hover {
+  border-color: #3f585f;
+  background: #15252c;
+}
+
+.post-match .stat-chip-top {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.post-match .stat-chip .stat-icon {
+  width: 13px !important;
+  height: 13px !important;
+  color: var(--lime);
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.post-match .stat-chip-rating .stat-icon {
+  color: #ffd166 !important;
+}
+
+.post-match .stat-chip .stat-value {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: #f1f7f3 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.post-match .stat-chip .stat-label {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  color: #8fa7ad !important;
+  margin-top: 3px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+}
+
+/* Bloco de XP discreto e separado */
+.post-match .match-xp-summary {
+  margin: 6px 0 2px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.post-match .xp-badge {
+  background: #11251e !important;
+  border: 1px solid #204838 !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.post-match .xp-badge .xp-icon {
+  color: var(--lime) !important;
+  flex-shrink: 0 !important;
+}
+
+.post-match .xp-badge .xp-val {
+  font-weight: 800 !important;
+  color: var(--lime) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1 !important;
+}
+
+.post-match .xp-badge .xp-desc {
+  color: #a4c9b9 !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+}
+
+.post-match .xp-upgrades {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+}
+
+.post-match .upgrade-chip {
+  background: #153326 !important;
+  border: 1px solid #2d6349 !important;
+  color: #e5f7ed !important;
+  border-radius: 5px !important;
+  padding: 2px 7px !important;
+  font-size: 11px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  line-height: 1.3 !important;
+}
+
+.post-match .upgrade-chip svg {
+  color: var(--lime) !important;
+  flex-shrink: 0 !important;
+}
+
+.post-match .upgrade-chip strong {
+  color: var(--lime) !important;
+  font-weight: 700 !important;
+}
+
+.post-match .match-details-accordion {
+  margin-top: 4px !important;
+}
+
+.post-match .match-details-accordion summary {
+  font-size: 11px !important;
+  color: #7e999e !important;
+  cursor: pointer !important;
+  padding: 3px 0 !important;
+  transition: color 0.15s !important;
+}
+
+.post-match .match-details-accordion summary:hover {
+  color: var(--lime) !important;
+}
+
+/* Responsividade Mobile: Grid 2x2 para as 4 estatísticas */
+@media (max-width: 600px) {
+  .post-match .match-protagonist-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+  .post-match .stat-chip {
+    padding: 6px 4px 5px !important;
+  }
 }
 
 .season-recap {
