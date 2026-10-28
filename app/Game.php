@@ -3,6 +3,9 @@ declare(strict_types=1);
 final class Game {
     public static function create(string $name,string $city,string $uf,string $position,?string $club=null): array {
         $g=self::legacyCreate($name,$city,$uf,$position);
+        $flag=config('RUMO10_DEVELOPMENT_V2','');
+        $active=$flag==='1'||($flag===''&&class_exists('BalanceService')&&BalanceService::isDevelopmentV3Active());
+        if($active)PlayerDevelopment::initialize($g);
         return $club!==null?Competition::attach($g,$club):Onboarding::prepare($g);
     }
     public static function legacyCreate(string $name,string $city,string $uf,string $position): array {
@@ -42,6 +45,7 @@ final class Game {
         return match($id) {7=>['chute','passe','drible','social'][$i],9=>['drible','social','social','desarme'][$i],1=>$i===1?'chute':'social',2=>'passe',default=>'social'};
     }
     public static function choices(array $g): array {
+        if(($g['stage']??'')==='penaltis')return class_exists('PenaltyShootout')?PenaltyShootout::choices($g):[];
         $s=self::situation($g); if($s) return $g['stage']==='partida'?ActionResolution::options($s['options'],$s['id']):$s['options'];
         if($g['stage']==='partida') {
             $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
@@ -50,12 +54,13 @@ final class Game {
         return [];
     }
     public static function chance(array $g,array $o): float {
+        if(($g['stage']??'')==='penaltis'&&isset($o['chance']))return (float)$o['chance'];
         return ActionResolution::trace($g,$o)['chance'];
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
         $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
-        if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');$g['version']++;return $g;}
+        if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}
         if($action==='retire') {
             if(!Retirement::eligible($g) || ($input['confirm']??'')!=='retire')throw new InvalidArgumentException('A aposentadoria não está disponível para esta carreira ou falta a confirmação.');
             Retirement::close($g,'voluntary');$g['version']++;return $g;
@@ -90,7 +95,13 @@ final class Game {
             $g=Competition::attach($g,$g['initial_candidates'][$n]['club']);
             $g['starting']=false;$g['stage']='treino';
             $g['feedback']=['text'=>'Você chegou ao '.$g['club'].'. É hora de conquistar seu espaço.'];
-        } elseif($action==='choice' && in_array($g['stage'],['treino','pre_jogo','fim_semana','partida'],true)) {
+        } elseif($action==='choice' && in_array($g['stage'],['treino','pre_jogo','fim_semana','partida','penaltis'],true)) {
+            if($g['stage']==='penaltis') {
+                $n=filter_var($input['option']??null,FILTER_VALIDATE_INT);
+                if($n===false)throw new InvalidArgumentException('Escolha de pênalti inválida.');
+                PenaltyShootout::decide($g,$n);
+                $g['version']++; return $g;
+            }
             $choices=self::choices($g); $n=filter_var($input['option']??null,FILTER_VALIDATE_INT);
             if($n===false || !isset($choices[$n])) throw new InvalidArgumentException('Escolha inválida.');
             if($g['stage']==='partida') {
@@ -118,7 +129,36 @@ final class Game {
                 if(!empty($g['official'])) Competition::afterWeekend($g);
                 elseif($g['round']===14) $g['stage']='resumo'; else { $g['round']++; $g['stage']='treino'; }
             } else self::fieldDecision($g,$o,$roll,$s['id']??0,$n);
-        } elseif($action==='advance' && $g['stage']==='partida') {
+        } elseif($action==='shootout_start') {
+            $i=self::currentIndex($g); $m=&$g['matches'][$i];
+            if(!class_exists('PenaltyShootout') || !PenaltyShootout::requiresShootout($g,$m)) {
+                throw new InvalidArgumentException('Disputa de pênaltis não aplicável nesta partida.');
+            }
+            if(!isset($g['shootout']) || ($g['shootout']['status'] ?? '') !== 'in_progress') {
+                PenaltyShootout::start($g, $m);
+            }
+            $g['stage'] = 'penaltis';
+            unset($m);
+            $g['version']++; return $g;
+        } elseif($action==='shootout_finish') {
+            if($g['stage']==='penaltis') {
+                PenaltyShootout::complete($g);
+                $g['version']++; return $g;
+            }
+        } elseif(($action==='advance' || $action==='shootout_advance') && ($g['stage']==='partida' || $g['stage']==='penaltis')) {
+            if($g['stage']==='penaltis') {
+                if (($g['shootout']['status'] ?? '') === 'completed') {
+                    PenaltyShootout::complete($g);
+                    $g['version']++; return $g;
+                }
+                $mode = $input['mode'] ?? 'one';
+                if ($mode === 'to_protagonist') {
+                    PenaltyShootout::advanceUntilProtagonistOrEnd($g);
+                } else {
+                    PenaltyShootout::advanceOneKick($g);
+                }
+                $g['version']++; return $g;
+            }
             $i=self::currentIndex($g); $m=&$g['matches'][$i];
             if($m['status']==='pre_jogo') { $m['status']='em_andamento'; self::segment($g,15); }
             elseif($m['status']==='intervalo') { $m['status']='em_andamento'; self::segment($g,60); }
@@ -157,7 +197,7 @@ final class Game {
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
         if($g['stage']==='resumo')Progression::season($g);
         AchievementEvents::capture($g,$previousStage);
-        if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);Retirement::close($g,'mandatory');}
+        if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');}
         $g['version']++;$selectionStart=RequestMetrics::start();Scenes::prepare($g);RequestMetrics::end('scene_selection',$selectionStart); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }
@@ -190,7 +230,18 @@ final class Game {
             if(($m['balance_version']??0)>=2 && !$clearChance && $type==='passe')$conversion=min($conversion,100*MatchBalance::eventChance($g,100)/max(1,$roll['chance']));
             $scoringProbability=($type==='chute' || ($clearChance && in_array($type,['drible','passe'],true)))?$roll['chance']/100:($type==='passe'?$roll['chance']*$conversion/10000:0);
             MatchBalance::book($m,$scoringProbability);
-            if($type==='passe') { $st['passes']++; if($roll['success']) { $st['completed']++;$conversionRoll=$clearChance?null:random_int(1,10000);$g['feedback']['conversion_chance']=$clearChance?100:$conversion;$g['feedback']['conversion_roll']=$conversionRoll; if($clearChance || $conversionRoll<=round($conversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; } } }
+            if($type==='passe') {
+                $st['passes']++;
+                if($roll['success']) {
+                    $st['completed']++;
+                    $posAssistRate=match($g['position']){'meia'=>1.0,'ponta'=>0.85,'centroavante'=>0.55,'lateral'=>0.40,'volante'=>0.25,'zagueiro'=>0.08,default=>0.50};
+                    $effConversion=(int)round($conversion*$posAssistRate);
+                    $conversionRoll=$clearChance?null:random_int(1,10000);
+                    $g['feedback']['conversion_chance']=$clearChance?100:$effConversion;
+                    $g['feedback']['conversion_roll']=$conversionRoll;
+                    if($clearChance || $conversionRoll<=round($effConversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; }
+                }
+            }
             if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
@@ -244,7 +295,15 @@ final class Game {
             MatchMomentum::reset($m);
             $m['status']='finalizada'; $m['stats']['minutes']=max(0,$m['exit']-$m['entry']);
             $s=&$m['stats']; $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
-            $s['rating']=$s['minutes']===0?0:round(max(0,min(10,6+$s['goals']*.7+$s['assists']*.5+$s['tackles']*($def?.35:.15)+$s['completed']*.1-($s['passes']-$s['completed'])*.15-$s['cards']*.6)),1);
+            $rParams = class_exists('BalanceService') ? BalanceService::params('match.rating') : [];
+            $rBase = (float)($rParams['base'] ?? 6.0);
+            $wGoal = (float)($rParams['w_goal'] ?? 0.70);
+            $wAssist = (float)($rParams['w_assist'] ?? 0.50);
+            $wTackle = $def ? (float)($rParams['w_tackle_def'] ?? 0.35) : (float)($rParams['w_tackle_off'] ?? 0.15);
+            $wPassOk = (float)($rParams['w_pass_ok'] ?? 0.10);
+            $wPassErr = (float)($rParams['w_pass_err'] ?? 0.15);
+            $wCard = (float)($rParams['w_card'] ?? 0.60);
+            $s['rating']=$s['minutes']===0?0:round(max(0,min(10,$rBase+$s['goals']*$wGoal+$s['assists']*$wAssist+$s['tackles']*$wTackle+$s['completed']*$wPassOk-($s['passes']-$s['completed'])*$wPassErr-$s['cards']*$wCard)),1);
             Progression::match($g,$m);
             MatchExperience::finish($g);
             unset($m,$s);
@@ -254,6 +313,19 @@ final class Game {
                 $side=$played['home']===$g['club']?'home':'away';$played[$side.'_yellow']+=$played['stats']['cards'];$played[$side.'_red']+=(int)($played['stats']['cards']>=2);unset($played);
             }
             foreach($g['matches'] as &$other) if($other['round']===$g['round'] && $other['status']!=='finalizada') Competition::simulate($other,$g); unset($other);
+            $ownIndex=self::currentIndex($g);$played=&$g['matches'][$ownIndex];
+            if(class_exists('PenaltyShootout') && PenaltyShootout::requiresShootout($g,$played)) {
+                PenaltyShootout::start($g,$played);
+                PenaltyShootout::advanceUntilProtagonistOrEnd($g);
+                if(($g['shootout']['status']??'')==='in_progress') {
+                    $g['stage']='penaltis';
+                    $g['states']['ritmo_jogo']=self::clamp($g['states']['ritmo_jogo']+3);
+                    unset($played);
+                    return;
+                }
+                PenaltyShootout::complete($g);
+            }
+            unset($played);
             $g['stage']='fim_semana'; $g['states']['ritmo_jogo']=self::clamp($g['states']['ritmo_jogo']+3);
         }
     }

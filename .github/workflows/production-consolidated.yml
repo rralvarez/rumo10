@@ -1,0 +1,95 @@
+name: Rumo10 consolidated release
+on:
+  push:
+    branches: [codex/production-consolidated-v062]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: rumo10-production
+  cancel-in-progress: false
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_mysql, pdo_sqlite, sqlite3, curl
+      - run: find app bin public publisher -name '*.php' -print0 | xargs -0 -n 1 php -l
+      - name: Verify approved frozen package
+        run: echo '8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458  approved-release/rumo10-consolidated-reviewed-candidate.tar.gz' | sha256sum -c -
+      - run: python publisher/tests/seal-approved.py
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_sqlite, sqlite3
+      - name: Deployment affected regressions
+        run: |
+          php tests/player-development-cost-v2.php
+          php tests/player-development-normalization-v3.php
+          php tests/entrega61-rating-cache.php
+          php tests/penalty-shootout-v07.php
+          php tests/aggregate-score-v07.php
+          php tests/consolidated-independent-flow.php
+  compatibility:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: synthetic-ci-only
+          MYSQL_DATABASE: rumo_compatible_synthetic
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -psynthetic-ci-only"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_mysql
+      - run: mkdir /tmp/published-v3 && tar -xzf approved-release/published-v3-baseline.tar.gz -C /tmp/published-v3
+      - name: Real native MySQL old and new writers
+        env:
+          DB_HOST: 127.0.0.1
+          DB_PORT: '3306'
+          DB_DATABASE: rumo_compatible_synthetic
+          DB_USERNAME: root
+          DB_PASSWORD: synthetic-ci-only
+        run: php publisher/tests/compatible-writers.php /tmp/published-v3
+  publisher-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_sqlite, sqlite3, curl
+      - run: python publisher/tests/run.py --project rumo10 --source .
+  artifact:
+    needs: [syntax, regression, compatibility, publisher-safety]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Obtain exact completed run metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api repos/rralvarez/rumo10/actions/runs/"$GITHUB_RUN_ID" > /tmp/run.json
+      - run: python publisher/bin/build-operational.py /tmp/run.json /tmp/sealed
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-rumo10-${{ github.sha }}
+          path: |
+            /tmp/sealed/candidate.json
+            /tmp/sealed/release.tar.gz
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 90

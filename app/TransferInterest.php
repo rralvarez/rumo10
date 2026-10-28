@@ -20,7 +20,16 @@ final class TransferInterest {
   }
   $merit=max(0,min(1.5,(float)$evaluation['weighted_score']));$technical=array_sum(array_column($g['skills'],'value'))/max(1,count($g['skills']));$confidence=$evaluation['confidence'];
   $recipes=[[],[$candidates],[$candidates,$candidates],[$sets['same'],$sets['up'],$sets['down']],[$sets['same'],$sets['up'],$sets['continental']],[$sets['up'],$sets['continental_up'],$sets['europe']],[$sets['up'],$sets['continental_up'],$sets['europe']]];
-  $weights=[max(3,(int)round(65-35*$merit)),30+(int)round(10*$merit),10+(int)round(18*$merit),5+(int)round(25*$merit),2+(int)round(15*$merit),1+(int)round(8*$merit),1+(int)round(5*$merit)];$rows=[];
+  $mp=class_exists('BalanceService')?BalanceService::params('market.interest.scenarios'):[];
+  $weights=[
+   max(3,(int)round((int)($mp['weight_no_offer_base']??65)-(int)($mp['weight_no_offer_slope']??35)*$merit)),
+   (int)($mp['weight_one_base']??30)+(int)round((int)($mp['weight_one_slope']??10)*$merit),
+   (int)($mp['weight_two_base']??10)+(int)round((int)($mp['weight_two_slope']??18)*$merit),
+   (int)($mp['weight_national_base']??5)+(int)round((int)($mp['weight_national_slope']??25)*$merit),
+   (int)($mp['weight_continental_base']??2)+(int)round((int)($mp['weight_continental_slope']??15)*$merit),
+   (int)($mp['weight_international_base']??1)+(int)round((int)($mp['weight_international_slope']??8)*$merit),
+   (int)($mp['weight_star_base']??1)+(int)round((int)($mp['weight_star_slope']??5)*$merit)
+  ];$rows=[];
   foreach(self::LABELS as $id=>$label){$eligible=$id===0||count(array_filter($recipes[$id]))>0;$reason=null;
    if($id===4&&(!$sets['continental']||$confidence<.20||$merit<.20)){$eligible=false;$reason='Sem alcance continental comprovado ou destinos compatíveis';}
    if($id>=5&&((!$sets['europe']&&!$sets['continental_up'])||$confidence<.40||$merit<.45)){$eligible=false;$reason='Sem alcance internacional comprovado ou destinos compatíveis';}

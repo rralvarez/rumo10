@@ -23,7 +23,25 @@ function form(string $path,?array $g=null): void {
 }
 $path=rawurldecode(parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/');
 $method=$_SERVER['REQUEST_METHOD'];
-$routes=['/feedback'=>['GET','POST'],'/conquistas/reconciliar'=>['POST'],'/conquistas'=>['GET'],'/jogador/localizacao'=>['GET','POST'],'/convite'=>['GET'],'/convites'=>['GET'],'/carreira/trofeus'=>['GET'],'/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
+
+if(str_starts_with($path, '/admin')) {
+    $action = match($path) {
+        '/admin/login' => 'login',
+        '/admin/logout' => 'logout',
+        '/admin/manutencao' => 'maintenance_toggle',
+        '/admin/balance_save' => 'balance_save',
+        '/admin/balance_activate' => 'balance_activate',
+        '/admin/balance_rollback' => 'balance_rollback',
+        '/admin/simulacao' => 'simulate',
+        default => 'dashboard',
+    };
+    AdminController::handle($action);
+    exit;
+}
+
+Maintenance::check();
+
+$routes=['/feedback'=>['GET','POST'],'/conquistas/reconciliar'=>['POST'],'/conquistas'=>['GET'],'/jogador/localizacao'=>['GET','POST'],'/convite'=>['GET'],'/convites'=>['GET'],'/carreira/trofeus'=>['GET'],'/carreira/resumo'=>['GET'],'/carreira/compactar'=>['GET','POST'],'/carreiras'=>['GET'],'/carreira/excluir'=>['GET','POST'],'/carreira/aposentar'=>['GET','POST'],'/elenco'=>['GET'],'/carreira/simular'=>['POST'],'/jogador'=>['GET'],'/'=>['GET'],'/login'=>['GET','POST'],'/register'=>['GET','POST'],'/logout'=>['POST'],'/carreira'=>['GET'],'/carreira/nova'=>['GET','POST'],'/carreira/arquivadas'=>['GET'],'/carreira/restaurar'=>['POST'],'/competicao/continuar'=>['POST'],'/carreira/criar'=>['POST'],'/carreira/clube-inicial'=>['POST'],'/carreira/handicap'=>['POST'],'/semana'=>['GET'],'/decisao/registrar'=>['POST'],'/partida'=>['GET'],'/partida/avancar'=>['POST'],'/partida/decidir'=>['POST'],'/penaltis/iniciar'=>['POST'],'/penaltis/decidir'=>['POST'],'/penaltis/avancar'=>['POST'],'/penaltis/concluir'=>['POST'],'/classificacao'=>['GET'],'/temporada/resumo'=>['GET'],'/transferencia/roleta'=>['POST'],'/transferencia/responder'=>['POST'],'/api/carreira/estado'=>['GET'],'/api/cidades'=>['GET']];
 $status=200; $error=null; $g=null; $clubs=[];
 try {
     Identity::verify();
@@ -81,8 +99,8 @@ try {
             } elseif($path==='/carreira/restaurar') {
                 $r->restore($_SESSION['account'],(int)($_POST['career']??0));
             } else {
-                $action=match($path) {'/jogador/localizacao'=>'relocate','/carreira/aposentar'=>'retire','/carreira/simular'=>'simulate','/carreira/clube-inicial'=>'join','/competicao/continuar'=>'continue','/carreira/handicap'=>'handicap','/decisao/registrar','/partida/decidir'=>'choice','/partida/avancar'=>'advance','/transferencia/roleta'=>'offers','/transferencia/responder'=>'transfer',default=>throw new InvalidArgumentException('Ação inválida.')};
-                $input=in_array($action,['choice','join'],true)?['option'=>(string)($_POST['option']??'')]:($action==='transfer'?['accept'=>(string)($_POST['accept']??'')]:[]);
+                $action=match($path) {'/jogador/localizacao'=>'relocate','/carreira/aposentar'=>'retire','/carreira/simular'=>'simulate','/carreira/clube-inicial'=>'join','/competicao/continuar'=>'continue','/carreira/handicap'=>'handicap','/penaltis/iniciar'=>'shootout_start','/penaltis/concluir'=>'shootout_finish','/penaltis/avancar'=>'shootout_advance','/decisao/registrar','/partida/decidir','/penaltis/decidir'=>'choice','/partida/avancar'=>'advance','/transferencia/roleta'=>'offers','/transferencia/responder'=>'transfer',default=>throw new InvalidArgumentException('Ação inválida.')};
+                $input=in_array($action,['choice','join'],true)?['option'=>(string)($_POST['option']??'')]:($action==='transfer'?['accept'=>(string)($_POST['accept']??'')]:($action==='shootout_advance'?['mode'=>(string)($_POST['mode']??'one')]:[]));
                 if($action==='transfer'&&isset($_POST['option']))$input['option']=(string)$_POST['option'];
                 if($action==='relocate')$input=array_intersect_key($_POST,array_flip(['city','uf','residence_country','residence_region']));
                 if($action==='retire')$input=['confirm'=>(string)($_POST['confirm']??'')];

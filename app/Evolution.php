@@ -9,6 +9,7 @@ final class Evolution {
         return max(40,100-(in_array($skill,['velocidade','resistencia','forca'],true)?2*$years:(in_array($skill,['visao_jogo','posicionamento'],true)?intdiv($years,3):$years)));
     }
     public static function gain(array &$g,string $skill,int $xp):int {
+        if(PlayerDevelopment::enabled($g))return PlayerDevelopment::gain($g,$skill,$xp);
         $s=&$g['skills'][$skill];$ceiling=self::ceiling($g['age'],$skill);
         // Legados acima do novo teto não são rebaixados retroativamente; também não ganham mais pontos acima dele.
         if($g['age']>=33 && in_array($skill,['velocidade','resistencia','forca'],true))return 0;
@@ -23,6 +24,7 @@ final class Evolution {
         return $earned;
     }
     public static function birthday(array &$g):array {
+        if(PlayerDevelopment::enabled($g))return PlayerDevelopment::birthday($g);
         $changes=[];if(($g['aging_applied_age']??0)>=$g['age'])return $changes;$g['aging_applied_age']=$g['age'];if($g['age']<=32)return $changes;
         foreach($g['skills'] as $key=>&$s) {
             $loss=in_array($key,['velocidade','resistencia','forca'],true)?($g['age']<=34?1:($g['age']<=37?2:3)):(in_array($key,['visao_jogo','posicionamento'],true)?0:($g['age']>=38?1:0));

@@ -1,0 +1,22 @@
+
+        body { background: #0b1114; color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 1rem; }
+        .login-card { background: #131c20; border: 1px solid #203037; border-radius: 12px; width: 100%; max-width: 420px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .brand { color: #10b981; font-weight: 800; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .form-control { background: #0b1114; border: 1px solid #203037; color: #f3f4f6; }
+        .form-control:focus { background: #0b1114; border-color: #10b981; color: #fff; box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25); }
+        .btn-admin { background: #10b981; color: #000; font-weight: 700; width: 100%; padding: 0.65rem; border: none; }
+        .btn-admin:hover { background: #059669; color: #fff; }
+    
+
+        body { background: #0b1114; color: #f3f4f6; font-family: -apple-system, sans-serif; padding: 2rem 1rem; }
+        .card { background: #131c20; border: 1px solid #203037; border-radius: 12px; margin-bottom: 2rem; color: #f3f4f6; }
+        .card-header { background: #1a252b; border-bottom: 1px solid #203037; font-weight: 700; color: #10b981; }
+        .table { color: #f3f4f6; }
+        .table-dark { background: #131c20; }
+        .badge-status { padding: 0.35rem 0.65rem; border-radius: 999px; font-weight: 700; font-size: 0.75rem; }
+        .badge-active { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; }
+        .badge-maint { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+        .btn-gold { background: #f59e0b; color: #1e1e1e; font-weight: 700; }
+        .btn-gold:hover { background: #d97706; }
+    
+body { background: #0b1114; color: #f3f4f6; padding: 2rem; }

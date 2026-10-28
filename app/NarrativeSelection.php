@@ -21,7 +21,17 @@ final class NarrativeSelection {
   if($fresh)$pool=$fresh;else$fallback[]='familias_esgotadas';
   $counts=$g['narrative_counts'][$g['season']]??[];$modules=[];
   foreach($pool as $id){$module=$catalog[$id]['module']??'legacy';$modules[$module]=($modules[$module]??0)+1;}
-  $weights=[];foreach($pool as $id){$s=$catalog[$id];$weights[$id]=max(1,(int)round(10000*($s['weight']??10)* (($s['rarity']??'common')==='rare'?.10:1)/$modules[$s['module']??'legacy']/(1+($counts[$id]??0))/(1+.1*($g['narrative_lifetime_counts'][$id]??0))));}
+  $freq=class_exists('BalanceService')?BalanceService::params('match.opportunity.frequency'):[];
+  $posMultipliers=['centroavante'=>(float)($freq['mult_ca']??3.5),'ponta'=>(float)($freq['mult_pt']??2.8),'meia'=>(float)($freq['mult_me']??1.8),'lateral'=>(float)($freq['mult_def']??1.0),'volante'=>(float)($freq['mult_def']??1.0),'zagueiro'=>(float)($freq['mult_def']??0.8),'goleiro'=>0.2];
+  $posMult=$posMultipliers[$g['position']??'centroavante']??1.0;
+  $weights=[];foreach($pool as $id){
+   $s=$catalog[$id];$w=(int)round(10000*($s['weight']??10)* (($s['rarity']??'common')==='rare'?.10:1)/$modules[$s['module']??'legacy']/(1+($counts[$id]??0))/(1+.1*($g['narrative_lifetime_counts'][$id]??0)));
+   if(($g['stage']??'')==='partida'){
+    $hasShot=$id===7 || (!empty($s['options']) && (in_array('chute',array_column($s['options'],'code'),true) || in_array('chute',array_column($s['options'],'action'),true)));
+    if($hasShot && $posMult!==1.0)$w=(int)round($w*$posMult);
+   }
+   $weights[$id]=max(1,$w);
+  }
   $sum=array_sum($weights);$digest=hash('sha256',$g['story_seed'].':'.Scenes::key($g).':'.($g['competition_id']??'legacy'));$roll=hexdec(substr($digest,0,7))%$sum;$cursor=0;$chosen=$pool[0];
   foreach($weights as $id=>$w){$cursor+=$w;if($roll<$cursor){$chosen=$id;break;}}
   return ['id'=>$chosen,'selection'=>['schema'=>1,'candidates'=>$pool,'weights'=>$weights,'roll'=>$roll,'rarity_roll'=>$rarityRoll,'rarity_channel'=>$channel,'pool_total'=>count($original),'fallback'=>$fallback,'module'=>$catalog[$chosen]['module']??'legacy','family'=>$catalog[$chosen]['family']??'legacy.'.$chosen]];

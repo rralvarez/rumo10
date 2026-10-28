@@ -1,0 +1,20 @@
+{
+  "schema": "rumo-update-policy-v1",
+  "project": "rumo10",
+  "branch": "codex/production-consolidated-v062",
+  "approved_incremental_migrations": {
+    "database/006-balance-and-maintenance.sql": "146b58ad5c430c14072fa6d772594f1c131f4c0adf5a2fda098973caac415b23",
+    "database/seed_balance.php": "b9989dd8393b6f0b9eaade6f1c5355d8d3ba687c78f46f98dfb2e0cdae8f9777",
+    "database/007-recalibracao-ofensiva.sql": "81b9c3e404f77e23116980f63e9bc86ad2b3d7e47224a4da5aee91c8a7ef7553",
+    "database/008-penalties-balance.sql": "27c1046f81ba1dc76889611cac988ba1a47c634de0a395cfa737761839efad32"
+  },
+  "protected_contract_paths": [
+    "app/Database.php",
+    "app/Repository.php",
+    "public/.htaccess",
+    "app/Retirement.php",
+    "app/RetiredCareer.php"
+  ],
+  "data_contract": "rumo10-development-v3",
+  "first_approved_package_sha256": "8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458"
+}

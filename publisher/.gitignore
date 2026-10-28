@@ -1,0 +1,11 @@
+evidence/*
+!evidence/.gitkeep
+tests/fixtures/
+tests/*-proof-*/
+tests/sealed-proof-*/
+tests/ci-representative-*/
+tests/v3-runtime-*/
+tests/producer-AUDIT_ONLY-*/
+__pycache__/
+*.pyc
+*.sqlite

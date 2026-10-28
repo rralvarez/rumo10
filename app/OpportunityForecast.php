@@ -2,7 +2,10 @@
 declare(strict_types=1);
 final class OpportunityForecast {
  public static function utilization(float $technical,float $reference):array {
-  $delta=$technical-$reference;$related=.65+.33/(1+exp(-$delta/12));$starter=1/(1+exp(-($delta+2)/9));$sub=.8;
+  $fp=class_exists('BalanceService')?BalanceService::params('market.opportunity.forecast'):[];
+  $base=(float)($fp['related_base']??.65);$scale=(float)($fp['related_scale']??.33);$rDiv=(float)($fp['related_divisor']??12.0);
+  $sOff=(float)($fp['starter_offset']??2.0);$sDiv=(float)($fp['starter_divisor']??9.0);$sub=(float)($fp['sub_rate']??.8);
+  $delta=$technical-$reference;$related=$base+$scale/(1+exp(-$delta/$rDiv));$starter=1/(1+exp(-($delta+$sOff)/$sDiv));
   return ['related'=>$related,'starter'=>$starter,'sub'=>$sub,'share'=>$related*($starter*78+(1-$starter)*$sub*23)/90];
  }
  public static function estimate(array $g,string $club):array {

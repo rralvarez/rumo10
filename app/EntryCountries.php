@@ -37,6 +37,7 @@ final class EntryCountries {
         $g=Game::legacyCreate($name,$residence==='BR'?$city:'São Paulo',$residence==='BR'?$uf:'SP',$position);
         $g=CurrentLocation::apply($g,$residence,$city,$residence==='BR'?$uf:$region,$entryUf);
         if(!self::entryStatus($country,$g['entry_uf'])['valid'])throw new InvalidArgumentException('A estreia nesse destino está temporariamente indisponível por falta de continuidade da competição. Nenhuma carreira foi criada ou vaga consumida.');
+        if(config('RUMO10_DEVELOPMENT_V2','0')==='1')PlayerDevelopment::initialize($g);
         $g=Onboarding::prepare($g);$g['starting_country']=$country;return $g;
     }
 }

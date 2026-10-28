@@ -5,10 +5,18 @@ final class MatchBalance {
  public const VERSION=3;
  public static function prepare(array &$m,array $g):void {
   if(isset($m['balance_version']))return;$m['balance_version']=self::VERSION;
-  $m['player_attack_share']=match($g['position']){'centroavante'=>.60,'ponta'=>.55,'meia'=>.48,'lateral'=>.35,default=>.30};
+  $quotas = class_exists('BalanceService') ? BalanceService::params('match.balance.quotas') : [];
+  $m['player_attack_share']=match($g['position']){
+      'centroavante'=>(float)($quotas['share_ca']??.60),
+      'ponta'=>(float)($quotas['share_pt']??.55),
+      'meia'=>(float)($quotas['share_me']??.48),
+      'lateral'=>(float)($quotas['share_lt']??.35),
+      default=>(float)($quotas['share_def']??.30)
+  };
   [$h,$a]=TeamStrength::expectations($m['home_overall'],$m['away_overall']);$own=$m['home']===$g['club']?'home':'away';$opponent=$m[$own==='home'?'away_overall':'home_overall'];
   $technical=array_sum(array_column($g['skills'],'value'))/9;
-  $contribution=1+max(-.12,min(.12,($technical-$opponent)/250))*max(0,$m['exit']-$m['entry'])/90;
+  $maxBoost=(float)($quotas['team_boost_max']??.12);
+  $contribution=1+max(-$maxBoost,min($maxBoost,($technical-$opponent)/250))*max(0,$m['exit']-$m['entry'])/90;
   if($own==='home')$h*=$contribution;else$a*=$contribution;
   $m['expected_goals']=['hg'=>$h,'ag'=>$a];$m['balance_expected_contribution']=$contribution;
   $m['pass_conversion']=(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45))));

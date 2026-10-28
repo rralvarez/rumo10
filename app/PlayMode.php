@@ -31,6 +31,14 @@ final class PlayMode {
                 $g=Game::command($g,'continue',[],true);continue;
             }
             if($mode==='rapido' && $played && $g['stage']==='treino')break;
+            if($g['stage']==='penaltis') {
+                if(($g['shootout']['status']??'')==='completed')$g=Game::command($g,'shootout_finish',[],true);
+                elseif(PenaltyShootout::isProtagonistTurn($g)){
+                    $choices=Game::choices($g);$best=0;foreach($choices as $j=>$choice)if($choice['chance']>$choices[$best]['chance'])$best=$j;
+                    $g=Game::command($g,'choice',['option'=>$best],true);$decisions++;
+                }else $g=Game::command($g,'shootout_advance',[],true);
+                continue;
+            }
             if($g['stage']==='partida') {
                 $m=$g['matches'][Game::currentIndex($g)];
                 $advance=$m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'];
@@ -61,16 +69,16 @@ final class PlayMode {
             $score=0.;$effects=$o['effects'];
             if($g['stage']==='partida') {
                 $preferred=$plan==='coletivo'?'passe':(in_array($g['position'],['zagueiro','lateral','volante'],true)?'desarme':'chute');
-                if(in_array($plan,['protagonismo','coletivo'],true))$score+=($o['action']===$preferred?30:0);
+                if(in_array($plan,['protagonismo','coletivo'],true)||(PlayerDevelopment::enabled($g)&&$plan==='evolucao'))$score+=($o['action']===$preferred?30:0);
                 elseif($plan==='equilibrio')$score+=Game::chance($g,$o)/2;
                 // Evolução varia a prática e nunca força uma ação inexistente no contexto.
             }
             foreach($effects as $key=>$delta) {
                 if(isset($g['skills'][$key]))$score+=max(0,$delta)*($plan==='evolucao'?4:1);
                 elseif(str_starts_with($key,'risco_'))$score-=$delta*2;
-                elseif($key==='energia')$score+=$delta*($plan==='equilibrio' || $g['states']['energia']<40?3:1);
+                elseif($key==='energia')$score+=$delta*($plan==='equilibrio' || $g['states']['energia']<40?3:(PlayerDevelopment::enabled($g)&&$plan==='evolucao'?.15:1));
                 elseif($key==='entrosamento')$score+=$delta*($plan==='coletivo'?3:1);
-                else $score+=$delta;
+                else $score+=$delta*(PlayerDevelopment::enabled($g)&&$plan==='evolucao'?.15:1);
             }
             $scores[$i]=$score;
         }
