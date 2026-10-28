@@ -22,8 +22,8 @@ final class LegacyFence {
    foreach($list as $w){$path=$w['path'];if(in_array($path,['.github/workflows/production.yml','.github/workflows/production-ftps.yml'],true)){need($w['state']==='disabled_manually','Legacy publication workflow must be explicitly disabled');$legacy[]=$path;}
     elseif($w['state']==='active'){
      $pin=$cfg['approved_active'][$path]??null;need(is_array($pin)&&preg_match('/^[a-f0-9]{40}$/D',$pin['commit']??'')===1,'Unapproved active workflow');
-     $ref=$get($repo,$base.'/git/ref/heads/'.rawurlencode($cfg['branch']));need(($ref['object']['sha']??'')===$pin['commit'],'Control branch moved');
-     $file=$get($repo,$base.'/contents/'.$path.'?ref='.$pin['commit']);need(($file['encoding']??'')==='base64','Workflow content unavailable');$bytes=base64_decode(preg_replace('/\s+/','',$file['content']??''),true);need($bytes!==false&&hash('sha256',$bytes)===$pin['sha256'],'Active workflow hash changed');
+     $ref=$get($repo,$base.'/git/ref/heads/'.rawurlencode($pin['branch']??$cfg['branch']));$expected=($pin['track_head']??false)?($ref['object']['sha']??''):$pin['commit'];need(preg_match('/^[a-f0-9]{40}$/D',$expected)===1&&($ref['object']['sha']??'')===$expected,'Control branch moved');
+     $file=$get($repo,$base.'/contents/'.$path.'?ref='.$expected);need(($file['encoding']??'')==='base64','Workflow content unavailable');$bytes=base64_decode(preg_replace('/\s+/','',$file['content']??''),true);need($bytes!==false&&hash('sha256',$bytes)===$pin['sha256'],'Active workflow hash changed');
     }else need(in_array($w['state'],['disabled_manually','disabled_inactivity','deleted'],true),'Unknown workflow state');
    }
    need(count($legacy)===2,'Legacy workflow inventory missing');
