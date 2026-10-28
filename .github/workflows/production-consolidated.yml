@@ -75,6 +75,12 @@ jobs:
           php-version: '8.4'
           extensions: mbstring, pdo_sqlite, sqlite3, curl
       - run: python publisher/tests/run.py --project rumo10 --source .
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: publisher-safety-evidence-${{ github.sha }}
+          path: publisher/evidence/
+          retention-days: 30
   artifact:
     needs: [syntax, regression, compatibility, publisher-safety]
     runs-on: ubuntu-latest

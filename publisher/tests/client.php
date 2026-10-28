@@ -3,7 +3,7 @@ declare(strict_types=1);
 require dirname(__DIR__).'/lib/GitHub.php';
 use Rumo\Publisher\GitHub;
 use function Rumo\Publisher\{digest,inspectArtifactZip,record};
-$results=[];$root=__DIR__.'/client-'.bin2hex(random_bytes(4));mkdir($root,0700);file_put_contents($root.'/fake.token','synthetic-credential-not-valid');
+$results=[];$root=__DIR__.'/client-'.bin2hex(random_bytes(4));mkdir($root,0700);file_put_contents($root.'/fake.token','synthetic-credential-not-valid');chmod($root.'/fake.token',0600);
 function check(string $name,callable $f):void{global $results;try{$f();$results[]=['name'=>$name,'status'=>'PASS'];}catch(Throwable $e){$results[]=['name'=>$name,'status'=>'FAIL','error'=>$e->getMessage()];}}
 function yes(bool $v):void{if(!$v)throw new RuntimeException('assertion');}
 function rejected(callable $f):void{try{$f();}catch(Throwable $e){return;}throw new RuntimeException('rejection absent');}

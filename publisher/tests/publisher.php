@@ -359,6 +359,30 @@ check('concrete site hooks integrated with exclusive drain and backup',function(
 });
 check('interruption before gate creation leaves service open and can resume safely',function(){[$c,$i,$d]=drainFixture();$db=digest($d.'/save.sqlite');$p=new OpsFault($c);$stage=$p->stage(...$i);$p->fault='before-close';rejected(fn()=>$p->apply($stage['stage']),'OPS_CRASH');yes(!file_exists($d.'/account-gate/closed.json'));unset($p);$p=new OpsFault($c);$r=$p->recover();yes($r['gate_never_closed']&&digest($d.'/save.sqlite')===$db);});
 check('idempotent installation cannot hide changed public mirror',function(){[$c,$i,$d]=drainFixture();$p=new OpsFault($c);$stage=$p->stage(...$i);yes($p->apply($stage['stage'])['state']==='validated');file_put_contents($d.'/public/assets/style.css','tampered repeat');rejected(fn()=>$p->apply($stage['stage']),'Public mirror');yes(file_exists($d.'/account-gate/closed.json'));unset($p);$p=new OpsFault($c);rejected(fn()=>$p->recover(),'Public mirror');yes(file_exists($d.'/account-gate/closed.json'));});
+class CompatibleFixturePublisher extends Publisher {
+ public string $crash='';public bool $short=false;
+ protected function hook(string $name,array $r):array {
+  if($name==='maintenance') { $x=parent::hook($name,$r);return $x+['new_requests_blocked'=>true,'publisher_exclusive'=>true]; }
+  if($name==='fence')return ['ok'=>true,'legacy_publishers_fenced'=>true];
+  if($name==='migrate')return ['ok'=>true,'compatible_expansion'=>true];
+  return parent::hook($name,$r);
+ }
+ protected function checkpoint(string $p):void {if($this->crash===$p)throw new RuntimeException('COMPATIBLE_CRASH');}
+ protected function transfer($a,$b):int|false {if($this->short){fwrite($b,'bad');return 3;}return parent::transfer($a,$b);}
+}
+function compatibleFixture():array {
+ [$c,$i,$d]=fixture();$c['update_policy']=['schema'=>'rumo-update-policy-v1','protected_contract_paths'=>[],'approved_incremental_migrations'=>[]];
+ $c['required_jobs'][]='compatibility';$j=$i[3][0];$j['name']='compatibility';$i[3][]=$j;return [$c,$i,$d];
+}
+check('compatible A installs with admission proof without false old-worker drain',function(){[$c,$i,$d]=compatibleFixture();$p=new CompatibleFixturePublisher($c);$v=$p->stage(...$i);yes($p->apply($v['stage'])['state']==='validated');});
+check('compatible recovery completes forward after lost rename acknowledgement',function(){[$c,$i,$d]=compatibleFixture();$p=new CompatibleFixturePublisher($c);$v=$p->stage(...$i);$p->crash='after-promotion-0';rejected(fn()=>$p->apply($v['stage']),'COMPATIBLE_CRASH');unset($p);$p=new CompatibleFixturePublisher($c);yes($p->recover()['state']==='validated');yes(!file_exists($c['control'].'/deployment.lock'));});
+check('compatible recovery reconciles partial owned temporary',function(){[$c,$i,$d]=compatibleFixture();$p=new CompatibleFixturePublisher($c);$v=$p->stage(...$i);$p->short=true;rejected(fn()=>$p->apply($v['stage']),'Short install write');unset($p);$p=new CompatibleFixturePublisher($c);yes($p->recover()['state']==='validated');});
+check('compatible recovery refuses replaced target and retains maintenance',function(){[$c,$i,$d]=compatibleFixture();$p=new CompatibleFixturePublisher($c);$v=$p->stage(...$i);$p->crash='after-promotion-0';rejected(fn()=>$p->apply($v['stage']),'COMPATIBLE_CRASH');unset($p);$j=json_decode(file_get_contents($c['private'].'/journal.json'),true);file_put_contents($j['operations'][0]['dest'],'foreign write');$p=new CompatibleFixturePublisher($c);rejected(fn()=>$p->recover(),'Ambiguous write');yes(file_exists($c['control'].'/deployment.lock'));});
+check('policy rejects unknown migration and requires actual compatible CI and admission',function(){
+ $policy=['schema'=>'rumo-update-policy-v1','protected_contract_paths'=>[],'approved_incremental_migrations'=>[]];
+ $x=Rumo\Publisher\UpdatePolicy::assess(['files'=>[]],['files'=>['database/999.sql'=>str_repeat('a',64)]],$policy);yes($x['class']==='C');
+ $x=Rumo\Publisher\UpdatePolicy::assess(['files'=>[]],['files'=>['app/new.php'=>str_repeat('a',64)]],$policy);yes($x['class']==='A');rejected(fn()=>Rumo\Publisher\UpdatePolicy::maintenance(['http_status'=>503,'new_requests_blocked'=>true,'publisher_exclusive'=>true],$x),'compatible-writer');
+});
 $failed=count(array_filter($results,fn($r)=>$r['status']==='FAIL'));
 record(dirname(__DIR__).'/evidence/tests.json',['php'=>PHP_VERSION,'root'=>$root,'results'=>$results,'passed'=>count(array_filter($results,fn($r)=>$r['status']==='PASS')),'failed'=>$failed,'peak_memory'=>memory_get_peak_usage(true)]);
 foreach($results as $r)echo $r['status'].' '.$r['name'].(isset($r['error'])?' :: '.$r['error'].' '.$r['at']:'').PHP_EOL;

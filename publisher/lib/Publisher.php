@@ -264,7 +264,36 @@ class Publisher {
                 digest($p)===$h,'Backup receipt digest invalid');
             $j['backup_receipt']=$b; $j['state']='installing'; $this->save($j);
             $this->checkpoint('after-backup');
+            return $this->continueInstallation($j,$request);
+        } catch (\Throwable $e) {
+            $j['state']=$j['state']==='validated'?'validated':'blocked'; $j['events'][]=['at'=>time(),'error'=>$e->getMessage()]; $this->save($j);
+            throw $e; // Lock retained; no DB restore and no automatic old writer.
+        }
+    }
+    private function continueInstallation(array &$j,array $request):array {
+        $v=$j['candidate'];$stage=$j['stage'];$id=$j['attempt'];
+        if(!isset($j['migration_receipt']) && !empty($request['update_policy']['migrations'])) {
+            $this->own($j);$j['state']='migrating';$this->save($j);
+            $receipt=$this->hook('migrate',$request+['attempt'=>$id]);
+            need(($receipt['compatible_expansion']??false)===true,'Incremental migration proof missing');
+            $j['migration_receipt']=$receipt;$j['state']='installing';$this->save($j);
+        }
             foreach ($j['operations'] as $i=>&$op) {
+                if($op['state']==='confirmed') {
+                    need(sameFileState($op['dest'])===($op['post']??null),'Confirmed destination drift');
+                    continue;
+                }
+                if($op['state']==='intent' && ($now=sameFileState($op['dest']))!==$op['before']) {
+                    $proof=$op['temp_proof']??null;
+                    need($proof!==null&&($proof['ino']??0)!==0&&$now!==null&&$now['ino']===$proof['ino']&&$now['dev']===$proof['dev']&&$now['hash']===$op['after'],'Ambiguous write retained for reconciliation');
+                    $op['post']=$now;$op['state']='confirmed';$this->save($j);continue;
+                }
+                if(isset($op['temp']) && file_exists($op['temp'])) {
+                    $now=sameFileState($op['temp']);$creation=$op['temp_creation']??null;
+                    need($creation!==null&&($creation['ino']??0)!==0&&$now['ino']===$creation['ino']&&$now['dev']===$creation['dev'],'Unknown temporary retained');
+                    need(unlink($op['temp']),'Cannot remove proven incomplete temporary');
+                }
+                unset($op['temp'],$op['temp_creation'],$op['temp_proof']);
                 $this->own($j); need(sameFileState($op['dest'])===$op['before'],'Target changed before operation');
                 if ($op['after']!==null) {
                     $tmp=$op['dest'].'.pull-'.$id; parents($tmp,($op['public']??false)?0755:0750);
@@ -306,10 +335,6 @@ class Publisher {
             $j['state']='validated'; $this->save($j); $this->checkpoint('before-unlock');
             $this->own($j); need(unlink($this->marker()),'Cannot release own maintenance lock');
             return ['state'=>'validated','commit'=>$v['commit']];
-        } catch (\Throwable $e) {
-            $j['state']=$j['state']==='validated'?'validated':'blocked'; $j['events'][]=['at'=>time(),'error'=>$e->getMessage()]; $this->save($j);
-            throw $e; // Lock retained; no DB restore and no automatic old writer.
-        }
     }
     private function cleanupTemps(array $j): void {
         foreach($j['operations'] as $op) {
@@ -362,7 +387,17 @@ class Publisher {
             $this->own($j);need(unlink($this->marker()),'Cannot finalize own lock');
             return ['state'=>'validated','finalized'=>true];
         }
-        need(in_array($j['state'],['locking','blocked','installing','maintenance','promoting-manifest'],true),'No recoverable pending attempt');
+        need(in_array($j['state'],['locking','blocked','installing','maintenance','migrating','promoting-manifest'],true),'No recoverable pending attempt');
+        if(isset($this->c['update_policy']) && isset($j['backup_receipt']) && count(array_filter($j['operations'],fn($o)=>$o['state']!=='planned'))>0) {
+            $v=$j['candidate'];$this->verify($j['stage'].'/release.tar.gz',$v['run'],$v['artifact'],$v['jobs'],$v['envelope']);$this->verifyPayload($j['stage'],$v);
+            $policy=UpdatePolicy::assess($j['old_manifest'],$v['inventory'],$this->c['update_policy'],$v['jobs']);need($policy['class']!=='C','Forward recovery requires approved compatible policy');
+            $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private,'update_policy'=>$policy];
+            $f=$this->hook('fence',$request);need(($f['legacy_publishers_fenced']??false)===true,'Recovery fence missing');
+            $m=$this->hook('maintenance',$request+['action'=>'verify-admission','attempt'=>$j['attempt']]);UpdatePolicy::maintenance($m,$policy);
+            foreach($j['backup_receipt']['files'] as $path=>$hash)need(digest($path)===$hash,'Recovery backup drift');
+            // New penalty states cannot be opened by the former engine. Finish the verified new release, never downgrade the writer.
+            return $this->continueInstallation($j,$request);
+        }
         $untouched=count(array_filter($j['operations'],fn($o)=>$o['state']!=='planned' || isset($o['temp'])))===0;
         if($untouched && in_array($j['state'],['locking','maintenance','blocked'],true)) {
             need($this->baseline()['files']===$j['old_manifest']['files'],'Pre-transfer abort baseline drift');
