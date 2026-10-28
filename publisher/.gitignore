@@ -9,3 +9,5 @@ tests/producer-AUDIT_ONLY-*/
 __pycache__/
 *.pyc
 *.sqlite
+tests/*/
+tests/http-port.txt
