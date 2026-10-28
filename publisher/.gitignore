@@ -11,3 +11,4 @@ __pycache__/
 *.sqlite
 tests/*/
 tests/http-port.txt
+tests/*-state.json

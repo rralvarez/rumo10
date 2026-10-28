@@ -22,6 +22,7 @@ jobs:
       - name: Verify approved frozen package
         run: echo '8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458  approved-release/rumo10-consolidated-reviewed-candidate.tar.gz' | sha256sum -c -
       - run: python publisher/tests/seal-approved.py
+      - run: python publisher/tests/actionlint-ci.py
   regression:
     runs-on: ubuntu-latest
     steps:
