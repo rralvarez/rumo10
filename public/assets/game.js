@@ -146,4 +146,14 @@ document.querySelector('[data-copy-invite]')?.addEventListener('click', async ()
   catch (_) { field.focus(); field.select(); status.textContent = 'Selecione e copie o link acima.'; }
 });
 
+document.addEventListener('click', event => {
+  const btn = event.target instanceof Element ? event.target.closest('[data-action="continue-post-match"]') : null;
+  if (!btn) return;
+  event.preventDefault();
+  document.body.classList.remove('post-match-summary');
+  document.body.classList.add('post-match-decision');
+  try { history.replaceState(null, '', '/carreira?etapa=pos_jogo'); } catch (_) {}
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 })();

@@ -1423,3 +1423,234 @@ footer strong {
     cursor: pointer;
     box-shadow: 0 4px 14px rgba(215, 255, 96, 0.25);
 }
+
+/* Fluxo pós-jogo em duas etapas (encerramento da partida -> decisão de fim de semana) */
+.post-match-continue-wrap {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #283d42;
+}
+.btn-post-match-continue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(215, 255, 96, 0.18);
+}
+body.post-match-summary .weekend-decision-panel,
+body.post-match-summary .career-extras {
+  display: none !important;
+}
+body.post-match-decision .post-match,
+body.post-match-decision .action-result,
+body.post-match-decision .season-recap {
+  display: none !important;
+}
+
+/* Mobile UX: Reordenação e compactação da partida e pós-jogo */
+@media (max-width: 760px) {
+  .in-match main.container:has(>.game-layout) {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 10px 10px;
+  }
+  .in-match .game-layout,
+  .in-match .game-layout > section {
+    display: contents;
+  }
+  .in-match .career-head {
+    order: 1;
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+  }
+  .in-match .career-head h1 {
+    font-size: 16px;
+    line-height: 1.15;
+  }
+  .in-match .career-head .tag {
+    font-size: 9.5px;
+  }
+  .in-match .career-head .club-line {
+    display: none;
+  }
+  /* 1. Resumo da partida no topo */
+  .in-match .compact-score {
+    order: 2;
+    padding: 7px 10px;
+    margin: 0 0 6px;
+    border-radius: 10px;
+  }
+  .in-match .compact-score .match-time {
+    font-size: 9.5px;
+    margin-bottom: 2px;
+    letter-spacing: 0.8px;
+  }
+  .in-match .compact-score .score-row {
+    gap: 6px;
+  }
+  .in-match .compact-score .score-row > strong {
+    font-size: 21px;
+    line-height: 1;
+  }
+  .in-match .compact-score .score-team {
+    font-size: 11.5px;
+    flex-direction: row;
+    gap: 5px;
+  }
+  .in-match .compact-score .score-team .club-badge {
+    width: 18px;
+    height: 18px;
+  }
+  .in-match .compact-score .aggregate-strip {
+    margin: 4px 0 2px;
+    padding: 4px 8px;
+    gap: 2px;
+    font-size: 11px;
+  }
+  .in-match .compact-score .aggregate-leg1,
+  .in-match .compact-score .aggregate-status {
+    font-size: 10.5px;
+  }
+  .in-match .compact-score .aggregate-total {
+    font-size: 11.5px;
+  }
+  .in-match .compact-score .aggregate-total strong {
+    font-size: 12px;
+  }
+  .in-match .compact-score .live-player-stats {
+    margin-top: 4px;
+    padding-top: 4px;
+    font-size: 10.5px;
+    gap: 10px;
+  }
+  /* 2. Resultado da ação anterior logo abaixo do placar */
+  .in-match .action-result {
+    order: 3;
+    padding: 6px 9px;
+    margin: 0 0 6px;
+    gap: 7px;
+    border-radius: 9px;
+    align-items: center;
+  }
+  .in-match .action-result .result-icon,
+  body.post-match-summary .action-result .result-icon {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+  .in-match .action-result .result-icon:after,
+  body.post-match-summary .action-result .result-icon:after {
+    border-radius: 8px;
+    inset: -3px;
+    border-width: 2px;
+  }
+  .in-match .action-result .result-copy h2 {
+    font-size: 13px;
+    margin: 0 0 1px;
+    line-height: 1.15;
+  }
+  .in-match .action-result .result-copy p {
+    font-size: 11.5px;
+    line-height: 1.25;
+    margin: 0 0 2px;
+  }
+  .in-match .action-result .result-effects {
+    gap: 3px;
+    margin-top: 1px;
+  }
+  .in-match .action-result .effect-chip {
+    font-size: 9.5px;
+    padding: 1px 5px;
+  }
+  /* 3. Escolhas da jogada atual */
+  .in-match .game-layout > section > .panel:not(.compact-score),
+  .in-match .game-layout > section > form {
+    order: 4;
+  }
+  .in-match .game-layout > section > .panel:not(.compact-score) {
+    padding: 9px 11px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+  }
+  .in-match .game-layout > section > .panel:not(.compact-score) h2 {
+    font-size: 14px;
+    line-height: 1.25;
+    margin: 0 0 3px;
+  }
+  .in-match .chance-caption {
+    font-size: 10.5px;
+    margin: 0 0 5px;
+    line-height: 1.25;
+  }
+  .in-match .choice {
+    min-height: 42px;
+    padding: 6px 9px;
+    margin: 4px 0;
+    font-size: 12.5px;
+    gap: 8px;
+  }
+  .in-match .choice b {
+    min-width: 22px;
+    height: 22px;
+    font-size: 12px;
+  }
+  .in-match .choice-chance {
+    min-width: 60px;
+  }
+  .in-match .choice-chance strong {
+    font-size: 13px;
+  }
+  .in-match .choice-chance small.outcome-pill {
+    font-size: 8.5px;
+    margin-top: 2px;
+    padding: 1px 5px;
+  }
+
+  /* Pós-jogo no mobile: priorizar APITO FINAL + estatísticas + botão Continuar */
+  body.post-match-summary main.container:has(>.game-layout) {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 10px 10px;
+  }
+  body.post-match-summary .game-layout,
+  body.post-match-summary .game-layout > section {
+    display: contents;
+  }
+  body.post-match-summary .career-head {
+    order: 1;
+    margin-bottom: 5px;
+  }
+  body.post-match-summary .post-match {
+    order: 2;
+    padding: 10px 12px;
+    margin: 0 0 6px;
+  }
+  body.post-match-summary .action-result {
+    order: 3;
+    padding: 6px 9px;
+    margin: 0 0 6px;
+    gap: 7px;
+    align-items: center;
+  }
+  body.post-match-summary .action-result .result-copy h2 {
+    font-size: 13px;
+    margin: 0 0 1px;
+  }
+  body.post-match-summary .action-result .result-copy p {
+    font-size: 11.5px;
+    line-height: 1.25;
+    margin: 0 0 2px;
+  }
+  body.post-match-summary .season-recap {
+    order: 4;
+    margin-top: 2px;
+    padding: 8px 12px;
+  }
+}
