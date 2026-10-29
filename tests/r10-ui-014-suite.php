@@ -177,6 +177,21 @@ ok(str_contains($htmlViewTie, 'action="/penaltis/iniciar"'), 'B1: Form aponta pa
 ok(!str_contains($htmlViewTie, 'O que você faz?'), 'B1: Cena narrativa de fim de semana NÃO é renderizada enquanto houver pênalti');
 $checks += 4;
 
+// A URL de continuação pode permanecer em um favorito ou após recarga.
+// Ela não pode ocultar o único controle de uma disputa obrigatória.
+$_GET = ['etapa' => 'pos_jogo'];
+$g = $gTie;
+ob_start();
+include dirname(__DIR__).'/app/view.php';
+$htmlTieReload = ob_get_clean();
+ok(str_contains($htmlTieReload, 'class="playing career-focus post-match-summary"'), 'B1: Empate agregado mantém resumo visível mesmo com URL de continuação');
+ok(!str_contains($htmlTieReload, 'post-match-decision'), 'B1: CSS de narrativa não oculta CTA pendente');
+ok(str_contains($htmlTieReload, 'action="/penaltis/iniciar"'), 'B1: Recarga mantém início dos pênaltis');
+ok(!str_contains($htmlTieReload, 'weekend-decision-panel'), 'B1: URL não antecipa narrativa');
+ok($g === $gTie, 'B1: Renderizar recarga não modifica o save');
+$checks += 5;
+$_GET = [];
+
 // Caso B: Iniciar disputa e testar transição para stage 'penaltis'
 $gStarted = Game::command($gTie, 'shootout_start');
 ok($gStarted['stage'] === 'penaltis', 'B2: Transição confirmada para stage penaltis');
