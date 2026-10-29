@@ -31,6 +31,10 @@ final class PlayMode {
                 $g=Game::command($g,'continue',[],true);continue;
             }
             if($mode==='rapido' && $played && $g['stage']==='treino')break;
+            // A disputa pendente bloqueia escolhas narrativas; usar o fluxo de penalidades existente.
+            if($g['stage']==='fim_semana' && PenaltyShootout::requiresShootout($g,$g['matches'][Game::currentIndex($g)])) {
+                $g=Game::command($g,'shootout_start',[],true);continue;
+            }
             if($g['stage']==='penaltis') {
                 if(($g['shootout']['status']??'')==='completed')$g=Game::command($g,'shootout_finish',[],true);
                 elseif(PenaltyShootout::isProtagonistTurn($g)){
