@@ -1654,3 +1654,17 @@ body.post-match-decision .season-recap {
     padding: 8px 12px;
   }
 }
+
+/* Keep secondary navigation and the mobile More control on the same baseline. */
+@media (min-width:761px) {
+  header nav.authenticated details.menu-more { display:flex; align-items:center; margin:0; padding:0; }
+  header nav.authenticated details.menu-more > .menu-secondary { display:flex; align-items:center; gap:.35rem; }
+}
+@media (max-width:760px) {
+  header nav.authenticated details.menu-more { margin:0; padding:0; min-width:0; }
+  header nav.authenticated details.menu-more > summary {
+    margin:0; padding:7px 1px; height:55px; min-height:55px; width:100%;
+    box-sizing:border-box; border:1px solid transparent; font:600 10px/1.2 system-ui,sans-serif;
+  }
+  header nav.authenticated details.menu-more > summary svg { width:21px; height:21px; }
+}
