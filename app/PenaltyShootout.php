@@ -14,33 +14,20 @@ final class PenaltyShootout {
     public static function requiresShootout(array $g, array $m): bool {
         if (($m['status'] ?? '') !== 'finalizada') return false;
 
-        // Se for jogo de volta de confronto eliminatório
-        $agg = Competition::aggregateContext($g, $m);
-        if ($agg !== null) {
-            return !empty($agg['is_tied']) && ($agg['rule'] ?? '') === 'penalties' && empty($m['penalties']);
-        }
+        $cid=$m['competition']??($g['competition_id']??null);
+        $t=$g['competitions'][$cid]??['phase'=>$m['phase']??null,'ties'=>$g['ties']??[]];
+        $tieDef=Competition::knockoutTie($t,$m);
+        if($tieDef===null || ($tieDef['rule']??'penalties')!=='penalties' || !empty($m['penalties']))return false;
 
-        // Se for jogo único eliminatório (fase de mata-mata com 1 perna)
-        $phase = $m['phase'] ?? '';
-        if ($phase && $phase !== 'liga' && $phase !== 'quadrangular' && (int)($m['hg'] ?? 0) === (int)($m['ag'] ?? 0)) {
-            $cid = $m['competition'] ?? ($g['competition_id'] ?? null);
-            $t = $cid && isset($g['competitions'][$cid]) ? $g['competitions'][$cid] : [];
-            $legs=array_filter($g['matches']??[],static fn($x)=>($x['phase']??'')===$phase && (($x['home']===$m['home']&&$x['away']===$m['away'])||($x['home']===$m['away']&&$x['away']===$m['home'])));
-            if(count($legs)>1)return false; // First leg cannot decide a two-legged tie.
-            $tieDef = null;
-            if (isset($m['tie']) && isset($t['ties'][$m['tie']])) $tieDef = $t['ties'][$m['tie']];
-            elseif (!empty($t['ties'])) {
-                foreach ($t['ties'] as $cand) {
-                    if (($cand['a'] === $m['home'] && $cand['b'] === $m['away']) || ($cand['a'] === $m['away'] && $cand['b'] === $m['home'])) {
-                        $tieDef = $cand; break;
-                    }
-                }
-            }
-            $rule = $tieDef['rule'] ?? 'penalties';
-            return $rule === 'penalties' && empty($m['penalties']);
-        }
+        $agg=Competition::aggregateContext($g,$m);
+        if($agg!==null)return !empty($agg['is_tied']);
 
-        return false;
+        // Sem agregado, somente a partida unica da chave pode exigir desempate.
+        $phase=$m['phase']??'';
+        $legs=array_filter($g['matches']??[],static fn($x)=>($x['phase']??'')===$phase &&
+            (($x['home']===$m['home']&&$x['away']===$m['away'])||($x['home']===$m['away']&&$x['away']===$m['home'])));
+        if(count($legs)!==1)return false;
+        return (int)($m['hg']??0)===(int)($m['ag']??0);
     }
 
     /**

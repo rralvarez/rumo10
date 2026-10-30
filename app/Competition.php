@@ -166,7 +166,20 @@ final class Competition {
             $winners[]=$tie['winner'];
         } unset($tie); return $winners;
     }
+    /** Exige uma chave eliminatoria explicita; repetir adversario nao define mata-mata. */
+    public static function knockoutTie(array $t,array $m): ?array {
+        $phase=$m['phase']??($t['phase']??null);
+        if(!$phase || in_array($phase,['liga','regular','quadrangular','hexagonal','split','clausura','intermedio','nacional'],true))return null;
+        $ties=$t['state_phase_ties'][$phase]??[];
+        if(($t['phase']??null)===$phase)$ties=array_merge($t['ties']??[],$ties);
+        foreach($ties as $tie) {
+            if((($tie['a']??null)===($m['home']??null)&&($tie['b']??null)===($m['away']??null)) ||
+               (($tie['a']??null)===($m['away']??null)&&($tie['b']??null)===($m['home']??null)))return $tie;
+        }
+        return null;
+    }
     public static function tieContext(array $t, array $m): ?array {
+        $tieDef=self::knockoutTie($t,$m);if($tieDef===null)return null;
         $phase = $m['phase'] ?? ($t['phase'] ?? null);
         if (!$phase) return null;
         $allMatches = $t['matches'] ?? [];
@@ -213,34 +226,6 @@ final class Competition {
 
         $homeAggregate = $homeLeg1Goals + $currentHg;
         $awayAggregate = $awayLeg1Goals + $currentAg;
-
-        $tieDef = null;
-        $tieIndex = $m['tie'] ?? $leg2['tie'] ?? $leg1['tie'] ?? null;
-        if ($tieIndex !== null && isset($t['ties'][$tieIndex])) {
-            $tieDef = $t['ties'][$tieIndex];
-        }
-        if (!$tieDef && !empty($t['ties'])) {
-            foreach ($t['ties'] as $cand) {
-                if (
-                    ($cand['a'] === $homeId && $cand['b'] === $awayId) ||
-                    ($cand['a'] === $awayId && $cand['b'] === $homeId)
-                ) {
-                    $tieDef = $cand;
-                    break;
-                }
-            }
-        }
-        if (!$tieDef && !empty($t['state_phase_ties'][$phase])) {
-            foreach ($t['state_phase_ties'][$phase] as $cand) {
-                if (
-                    ($cand['a'] === $homeId && $cand['b'] === $awayId) ||
-                    ($cand['a'] === $awayId && $cand['b'] === $homeId)
-                ) {
-                    $tieDef = $cand;
-                    break;
-                }
-            }
-        }
 
         $rule = $tieDef['rule'] ?? 'penalties';
         $advantageId = in_array($rule, ['advantage', 'points_advantage'], true) ? ($tieDef['a'] ?? $leg2['home']) : null;
@@ -498,6 +483,33 @@ final class Competition {
         if(!empty($g['starting']))return isset($g['entry_division'])?self::catalog()[$g['entry_division']]['name']:'Seu primeiro contrato';
         return self::catalog()[$g['competition_id']]['name'];
     }
+    /** Reconhece turnos somente em blocos completos de todos-contra-todos do calendario salvo. */
+    public static function roundRobinTurn(array $t,string $club,int $round): ?array {
+        $phase=$t['phase'];$phaseMatches=array_values(array_filter($t['matches'],fn($m)=>($m['phase']??null)===$phase));
+        $group=null;
+        foreach($phaseMatches as $m)if($m['round']===$round && in_array($club,[$m['home'],$m['away']],true)){$group=$m['group']??'';break;}
+        if($group===null)return null;
+        foreach($phaseMatches as $m)if(in_array($club,[$m['home'],$m['away']],true)&&($m['group']??'')!==$group)return null;
+        $matches=array_values(array_filter($phaseMatches,fn($m)=>($m['group']??'')===$group));
+        $teams=array_unique(array_merge(array_column($matches,'home'),array_column($matches,'away')));$n=count($teams);
+        if($n<2)return null;
+        $rounds=array_values(array_unique(array_column($matches,'round')));sort($rounds,SORT_NUMERIC);
+        $length=$n%2?$n:$n-1;
+        if(count($rounds)%$length)return null;
+        $turns=intdiv(count($rounds),$length);
+        foreach(array_chunk($rounds,$length) as $block){
+            $pairs=[];$busy=[];
+            foreach($matches as $m)if(in_array($m['round'],$block,true)){
+                if(isset($m['tie']) || self::knockoutTie($t,$m)!==null || $m['home']===$m['away'])return null;
+                $pair=[$m['home'],$m['away']];sort($pair,SORT_STRING);$key=json_encode($pair);
+                if(isset($pairs[$key]) || isset($busy[$m['round']][$m['home']]) || isset($busy[$m['round']][$m['away']]))return null;
+                $pairs[$key]=true;$busy[$m['round']][$m['home']]=true;$busy[$m['round']][$m['away']]=true;
+            }
+            if(count($pairs)!==intdiv($n*($n-1),2))return null;
+        }
+        $index=array_search($round,$rounds,true);if($index===false)return null;
+        return ['turn'=>intdiv($index,$length)+1,'turns'=>$turns];
+    }
     public static function phaseLabel(array $g): string {
         if(empty($g['official']))return 'Rodada '.$g['round'].' de 14';
         if(!empty($g['starting']))return 'Início da carreira';
@@ -505,6 +517,10 @@ final class Competition {
         if($t['done'])return 'Competição encerrada';
         if($t['format']==='amazonense')return ($t['phase']==='am_final'?'Final geral':($t['am_turn'].'º turno · '.(['liga'=>'Primeira fase','am_playoff'=>'Repescagem','am_semifinal'=>'Semifinal','am_turn_final'=>'Final'][$t['phase']]??'Partida'))).' · jogo '.($g['round']-$t['phase_start']+1).' de '.($t['phase_end']-$t['phase_start']+1);
         $phase=['liga'=>'Primeira fase','quadrangular'=>'Quadrangular','hexagonal'=>'Hexagonal final','segunda'=>'Segunda fase','terceira'=>'Terceira fase','oitavas'=>'Oitavas de final','quartas'=>'Quartas de final','semifinal'=>'Semifinais / playoffs','final'=>'Final','playoff'=>'Repescagem','clausura'=>'Clausura','intermedio'=>'Intermedio','intermedio_final'=>'Final do Intermedio','competencia_final'=>'Final do Competencia','regular'=>'Fase regular','nacional'=>'Grupos nacionais','acesso'=>'Final pelo acesso','reduzido'=>'Playoffs pelo segundo acesso','wild_card'=>'Wild card','serie_1'=>'Série MLS · partida 1','serie_2'=>'Série MLS · partida 2','serie_3'=>'Série MLS · desempate','semifinal_conferencia'=>'Semifinal de conferência','final_conferencia'=>'Final de conferência','mls_cup'=>'MLS Cup','split'=>'Fase de grupos finais'][$t['phase']]??ucfirst(str_replace('_',' ',$t['phase']));
+        if($t['phase']==='liga' && in_array($t['format'],['league','european','international','world'],true)) {
+            $t['matches']=$g['matches'];$turn=self::roundRobinTurn($t,$g['club'],$g['round']);
+            $phase=$turn===null?'Fase regular':($turn['turns']===1?'Turno único':([1=>'Primeiro turno',2=>'Segundo turno'][$turn['turn']]??$turn['turn'].'º turno'));
+        }
         return $phase.' · jogo '.($g['round']-$t['phase_start']+1).' de '.($t['phase_end']-$t['phase_start']+1);
     }
     public static function playerMatches(array $g): array {
