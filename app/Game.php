@@ -71,6 +71,14 @@ final class Game {
         return ActionResolution::trace($g,$o)['chance'];
     }
     public static function command(array $g,string $action,array $input=[],bool $automated=false,?callable $rng=null): array {
+        foreach ($g['matches'] as &$match) {
+            self::reconcileSoundEvents($match, $g);
+        }
+        unset($match);
+        return self::applyCommand($g, $action, $input, $automated, $rng);
+    }
+
+    private static function applyCommand(array $g,string $action,array $input,bool $automated,?callable $rng): array {
         $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
         if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}

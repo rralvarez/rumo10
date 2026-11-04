@@ -4,30 +4,11 @@ final class Repository {
     public function __construct(public PDO $db) {}
     public function query(string $sql,array $args=[]): PDOStatement { $start=RequestMetrics::start();try{$s=$this->db->prepare($sql); $s->execute($args); return $s;}finally{RequestMetrics::end('mysql',$start);} }
     public function load(int $account,bool $lock=false): ?array {
-        if (!$this->db->inTransaction()) {
-            $this->db->beginTransaction();
-            try { $g=$this->load($account,true); $this->db->commit(); return $g; }
-            catch(Throwable $e) { if($this->db->inTransaction())$this->db->rollBack(); throw $e; }
-        }
-        $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
         $c=$this->query('SELECT * FROM rumo10_carreiras WHERE conta_id=?'.($lock?' FOR UPDATE':''),[$account])->fetch(); if(!$c) return null;
         $summary=$this->query('SELECT dados_json FROM rumo10_historico_encerrado WHERE carreira_id=? AND conta_id=?',[$c['id'],$account])->fetchColumn();
         if($summary)return RetiredCareer::state(json_decode($summary,true,512,JSON_THROW_ON_ERROR));
         $snapshot=$this->query('SELECT estado_json FROM rumo10_universos WHERE carreira_id=?',[$c['id']])->fetchColumn();
-        if($snapshot) {
-            $g = json_decode($snapshot, true, 512, JSON_THROW_ON_ERROR);
-            if (!empty($g['matches']) && class_exists('Game')) {
-                foreach ($g['matches'] as &$m) { Game::reconcileSoundEvents($m, $g); }
-                unset($m);
-            }
-            $flags=JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION;
-            if(json_encode($g,$flags)!==json_encode(json_decode($snapshot,true,512,JSON_THROW_ON_ERROR),$flags)) {
-                $g['version']=(int)$g['version']+1;
-                $this->query('UPDATE rumo10_universos SET estado_json=? WHERE carreira_id=?',[json_encode($g,$flags),$c['id']]);
-                $this->query('UPDATE rumo10_carreiras SET versao=? WHERE id=?',[$g['version'],$c['id']]);
-            }
-            return $g;
-        }
+        if($snapshot) return json_decode($snapshot,true,512,JSON_THROW_ON_ERROR);
         $g=['id'=>(int)$c['id'],'name'=>$c['nome'],'city'=>$c['cidade'],'uf'=>$c['uf'],'position'=>$c['posicao'],'age'=>(int)$c['idade'],'season'=>(int)$c['temporada'],'round'=>(int)$c['rodada'],'stage'=>$c['etapa'],'club'=>$c['clube'],'tier'=>(int)$c['tier'],'handicap'=>$c['handicap'],'version'=>(int)$c['versao'],'feedback'=>json_decode($c['feedback_json']??'null',true),'skills'=>[],'states'=>[],'matches'=>[],'history'=>[],'offers'=>[],'teams'=>[]];
         foreach($this->query('SELECT * FROM rumo10_atributos WHERE carreira_id=?',[$g['id']]) as $a) $g['skills'][$a['habilidade']]=['value'=>(int)$a['valor'],'xp'=>(int)$a['xp']];
         foreach($this->query('SELECT * FROM rumo10_estados WHERE carreira_id=?',[$g['id']]) as $a) $g['states'][$a['indicador']]=(int)$a['valor'];
