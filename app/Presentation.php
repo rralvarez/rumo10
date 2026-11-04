@@ -21,8 +21,24 @@ final class Presentation {
         $highlight=$f['highlight']??null;
         if($highlight==='goal') $title='GOOOL! Você marcou!';
         if($highlight==='assist') $title='Assistência sua!';
+        $soundAttr = '';
+        if ($highlight === 'goal' || $highlight === 'assist') {
+            $eventType = ($highlight === 'goal') ? 'GOAL_SCORED' : 'ASSIST_RECORDED';
+            if (!empty($f['sound_event_id'])) {
+                $soundEventId = $f['sound_event_id'];
+            } else {
+                $m = (!empty($g['matches']) && in_array($g['stage'] ?? '', ['partida', 'fim_semana'], true)) ? ($g['matches'][Game::currentIndex($g)] ?? null) : null;
+                $minute = $m['minute'] ?? 90;
+                $round = $m['round'] ?? ($g['round'] ?? 1);
+                $season = $g['season'] ?? 1;
+                $compId = $m['competition'] ?? ($g['competition_id'] ?? 'c');
+                $matchKey = ($m['home'] ?? 'h') . '-' . ($m['away'] ?? 'a');
+                $soundEventId = ($g['id']??'0').':s'.$season.':'.$compId.':m'.$round.':'.$matchKey.':min'.$minute.':'.$eventType.':fb';
+            }
+            $soundAttr = ' data-sound-event="'.$eventType.'" data-sound-event-id="'.e($soundEventId).'"';
+        }
         $text=str_replace([': a intenção deu certo.',': a intenção não teve o efeito esperado.'],'.',$f['text']);
-        echo '<aside class="action-result result-'.$tone.($highlight==='goal'?' result-goal':($highlight==='assist'?' result-assist':'')).'" data-result-id="'.e($g['id'].':'.$g['version']).'" aria-live="polite">';
+        echo '<aside class="action-result result-'.$tone.($highlight==='goal'?' result-goal':($highlight==='assist'?' result-assist':'')).'" data-result-id="'.e($g['id'].':'.$g['version']).'"'.$soundAttr.' aria-live="polite">';
         echo '<div class="result-icon" aria-hidden="true">'.($highlight==='goal'?'⚽':($rolled?($success?'✓':'×'):'★')).'</div><div class="result-copy"><small class="result-status">Resultado salvo</small><h2>'.e($title).'</h2><p>'.e($text).'</p>';
         echo '<div class="result-effects">';
         foreach($f['effects']??[] as $k=>$v) if($v!=0) echo '<span class="effect-chip">'.e(self::label($k)).' '.e($v>=0?'+'.$v:$v).'</span>';

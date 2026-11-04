@@ -21,6 +21,13 @@ final class Game {
         throw new LogicException('Partida não encontrada.');
     }
     public static function situation(array $g): ?array {
+        if(($g['stage']??'')==='partida') {
+            $m=$g['matches'][self::currentIndex($g)];
+            if(!empty($m['active_match_penalty'])) {
+                if(($m['active_match_penalty']['status']??'')==='pending_request') return MatchPenalty::triggerRequestSituation($m, $m['active_match_penalty']['victim']??'companheiro');
+                if(($m['active_match_penalty']['status']??'')==='taking_kick') return MatchPenalty::triggerKickSituation($m, $m['active_match_penalty']['context_message']??'O árbitro aponta para a marca da cal. A responsabilidade da cobrança é sua.');
+            }
+        }
         if($chance=MatchMomentum::situation($g))return $chance;
         if($scene=Scenes::current($g))return $scene;
         $all=require dirname(__DIR__).'/database/situations.php'; $r=$g['round'];
@@ -125,15 +132,65 @@ final class Game {
             elseif($g['stage']==='pre_jogo') {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i];
                 TeamStrength::snapshot($m,$g);
-                $bench=($s['bench']??($s['id']===6)); $absent=$g['states']['energia']<15 || $g['states']['risco_lesao']>85;
-                $m['lineup']=$absent?'não relacionado':($bench?'reserva':'titular');
-                $m['entry']=$absent?90:($bench?60:0); $m['exit']=90; $m['status']='pre_jogo'; $g['stage']='partida';
+                MatchParticipation::prepare($m, $g, $s);
+                $m['status']='pre_jogo'; $g['stage']='partida';
                 MatchBalance::prepare($m,$g);$g['progression_version']=2;
                 MatchExperience::begin($g);
             } elseif($g['stage']==='fim_semana') {
                 $g['states']['energia']=self::clamp($g['states']['energia']+20); $g['states']['risco_lesao']=self::clamp($g['states']['risco_lesao']-10); $g['states']['risco_cartao']=self::clamp($g['states']['risco_cartao']-10);
                 if(!empty($g['official'])) Competition::afterWeekend($g);
                 elseif($g['round']===14) $g['stage']='resumo'; else { $g['round']++; $g['stage']='treino'; }
+            } elseif(($s['id']??0)===MatchPenalty::SITUATION_REQUEST) {
+                $i=self::currentIndex($g); $m=&$g['matches'][$i];
+                if($n===0) {
+                    $conf = $g['states']['confianca'] ?? 50;
+                    $coach = $g['states']['confianca_treinador'] ?? 50;
+                    $lead = $g['states']['lideranca'] ?? 50;
+                    $accepted = ($conf >= 55 || $coach >= 55 || $lead >= 55) && (random_int(1,100) <= 75);
+                    if ($accepted) {
+                        $m['active_match_penalty'] = ['status' => 'taking_kick', 'context_message' => 'O companheiro aceita seu pedido e entrega a bola. A cobrança é sua.'];
+                        $g['feedback']['text'] = 'O companheiro autorizou sua cobrança. Prepare-se para bater o pênalti.';
+                    } else {
+                        $g['feedback']['text'] = 'O cobrador oficial preferiu manter a responsabilidade da cobrança.';
+                        MatchPenalty::resolveTeammatePenalty($g, $m, false);
+                        self::nextSegment($g);
+                    }
+                } elseif($n===1) {
+                    $g['feedback']['text'] = 'Você respeita a hierarquia da equipe.';
+                    MatchPenalty::resolveTeammatePenalty($g, $m, false);
+                    self::nextSegment($g);
+                } else {
+                    $g['feedback']['text'] = 'Você incentiva o companheiro na cobrança.';
+                    MatchPenalty::resolveTeammatePenalty($g, $m, true);
+                    self::nextSegment($g);
+                }
+            } elseif(($s['id']??0)===MatchPenalty::SITUATION_KICK) {
+                $i=self::currentIndex($g); $m=&$g['matches'][$i]; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
+                $st['shots']++;
+                $st['penalties_taken'] = ($st['penalties_taken'] ?? 0) + 1;
+                unset($m['active_match_penalty']);
+                if($roll['success']) {
+                    $m[$own]++; $st['goals']++; $st['penalties_scored'] = ($st['penalties_scored'] ?? 0) + 1;
+                    $g['feedback']['highlight'] = 'goal';
+                    $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
+                    $g['feedback']['text'] = 'GOL DE PÊNALTI! Você cobra com frieza e balança as redes!';
+                    $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | GOL DE PÊNALTI! Cobrança impecável!"];
+                } else {
+                    $st['penalties_missed'] = ($st['penalties_missed'] ?? 0) + 1;
+                    $missKind = match(random_int(1,3)) { 1 => 'saved', 2 => 'post', default => 'wide' };
+                    if ($missKind === 'saved') {
+                        $g['feedback']['text'] = 'DEFENDE O GOLEIRO! O arqueiro acerta o canto e espalma o pênalti!';
+                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: o goleiro defende sua finalização."];
+                    } elseif ($missKind === 'post') {
+                        self::emitSoundEvent($m, $g, 'BALL_HIT_POST', (int)$m['minute']);
+                        $g['feedback']['text'] = 'NA TRAVE! A bola explode no poste e não entra!';
+                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: finalização carimba o poste!"];
+                    } else {
+                        $g['feedback']['text'] = 'PRA FORA! A bola sai raspando a trave!';
+                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: finalização pela linha de fundo."];
+                    }
+                }
+                self::nextSegment($g);
             } else self::fieldDecision($g,$o,$roll,$s['id']??0,$n);
         } elseif($action==='shootout_start') {
             $i=self::currentIndex($g); $m=&$g['matches'][$i];
@@ -245,10 +302,25 @@ final class Game {
                     $conversionRoll=$clearChance?null:random_int(1,10000);
                     $g['feedback']['conversion_chance']=$clearChance?100:$effConversion;
                     $g['feedback']['conversion_roll']=$conversionRoll;
-                    if($clearChance || $conversionRoll<=round($effConversion*100)) { $m[$own]++; $st['assists']++; $g['feedback']['highlight']='assist'; $text.=' O companheiro marca: assistência!'; }
+                    if($clearChance || $conversionRoll<=round($effConversion*100)) {
+                        $m[$own]++;
+                        $st['assists']++;
+                        $g['feedback']['highlight']='assist';
+                        $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'ASSIST_RECORDED', (int)$m['minute']);
+                        $text.=' O companheiro marca: assistência!';
+                    }
                 }
             }
-            if($type==='chute') { $st['shots']++; if($roll['success']) { $m[$own]++; $st['goals']++; $g['feedback']['highlight']='goal'; $text.=' Gol do seu jogador!'; } else $text.=' A bola não entrou.'; }
+            if($type==='chute') {
+                $st['shots']++;
+                if($roll['success']) {
+                    $m[$own]++;
+                    $st['goals']++;
+                    $g['feedback']['highlight']='goal';
+                    $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
+                    $text.=' Gol do seu jogador!';
+                } else $text.=' A bola não entrou.';
+            }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
                 $st['tackles']++;foreach(self::effects(['desarme'=>1],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
@@ -257,14 +329,41 @@ final class Game {
                 $skill=['passe'=>'passe','chute'=>'finalizacao','drible'=>'drible','desarme'=>'desarme'][$type];
                 foreach(self::effects([$skill=>2],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
             }
-            if($clearChance && $type==='drible' && $roll['success']){$st['shots']++;$st['goals']++;$m[$own]++;$g['feedback']['highlight']='goal';$text.=' Gol do seu jogador!';}
+            if($clearChance && $type==='drible' && $roll['success']){
+                $st['shots']++;
+                $st['goals']++;
+                $m[$own]++;
+                $g['feedback']['highlight']='goal';
+                $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
+                $text.=' Gol do seu jogador!';
+            }
             // Simulação e agressão podem gerar falta/cartão; nunca dão gol automático.
-            if($sid===7 && $choice===3 && !$roll['success'] && ($roll['class']==='falha_grave' || random_int(1,100)<=25)) { $st['fouls']++; $st['cards']++; $text.=' O árbitro pune a simulação com cartão.'; }
+            if($sid===7 && $choice===3 && !$roll['success'] && ($roll['class']==='falha_grave' || random_int(1,100)<=25)) {
+                $st['fouls']++;
+                $foulRes = MatchDiscipline::recordFoul($g, $m, 'simulation');
+                $text .= ' ' . $foulRes['text'];
+            }
         }
         if($m[$own]>$auditScore)GoalAudit::score($m,$own,$g['club'],($g['feedback']['highlight']??'')==='goal',['shot_kind'=>$g['feedback']['probability_trace']['kind']??null,'valid_sequence_actions'=>$auditActions]);
-        if($sid===8 && in_array($choice,[0,2],true)) { $st['fouls']++; if(random_int(1,100)<=65) { $st['cards']++; $text.=' Cartão pela reação.'; } }
-        if(!$roll['success'] && $roll['class']==='falha_grave' && $onBall && $type==='desarme') { $st['fouls']++;$text.=' Você chega atrasado e comete falta.'; if(random_int(1,100)<=30){$st['cards']++;$text.=' Cartão pelo desarme atrasado.';} }
-        if(!empty($o['card_risk']) && random_int(1,100)<=min(50,$o['card_risk']+intdiv($g['states']['risco_cartao'],5))){$st['cards']++;$text.=' Cartão pela discussão.';}
+        if($sid===8 && in_array($choice,[0,2],true)) {
+            $st['fouls']++;
+            if(random_int(1,100)<=65) {
+                $foulRes = MatchDiscipline::recordFoul($g, $m, 'dissent');
+                $text .= ' ' . $foulRes['text'];
+            }
+        }
+        if(!$roll['success'] && $roll['class']==='falha_grave' && $onBall && $type==='desarme') {
+            $st['fouls']++;
+            $text.=' Você chega atrasado e comete falta.';
+            if(random_int(1,100)<=30){
+                $foulRes = MatchDiscipline::recordFoul($g, $m, 'late_tackle');
+                $text .= ' ' . $foulRes['text'];
+            }
+        }
+        if(!empty($o['card_risk']) && random_int(1,100)<=min(50,$o['card_risk']+intdiv($g['states']['risco_cartao'],5))){
+            $foulRes = MatchDiscipline::recordFoul($g, $m, 'argument');
+            $text .= ' ' . $foulRes['text'];
+        }
         if(isset($g['feedback']['highlight'])){
             $before=$g['states']['confianca'];$g['states']['confianca']=self::clamp($before+($g['feedback']['highlight']==='goal'?4:3));
         }
@@ -288,6 +387,45 @@ final class Game {
         // Outro segmento representa outra janela de jogo, nunca a mesma posse.
         MatchMomentum::reset($m);
         $own=$m['home']===$g['club']?'hg':'ag';
+
+        // Check for in-match penalty event during segment (idempotente e avaliado uma única vez por janela lógica)
+        $m['evaluated_penalties'] = $m['evaluated_penalties'] ?? [];
+        $windowKey = $m['minute'] . '-' . $next;
+        if (empty($m['active_match_penalty']) && !in_array($windowKey, $m['evaluated_penalties'], true)) {
+            $m['evaluated_penalties'][] = $windowKey;
+            $isProtagonistOnField = ($m['entry'] <= $m['minute'] && $m['minute'] < $m['exit']);
+            $penaltyRoll = random_int(1, 100);
+            if ($penaltyRoll <= 5) {
+                // Team penalty awarded!
+                self::emitSoundEvent($m, $g, 'WHISTLE_FOUL', (int)$m['minute']);
+                $victim = $g['name'];
+                $isOfficialTaker = MatchPenalty::isProtagonistOfficialTaker($g, $m);
+                if ($isProtagonistOnField && $isOfficialTaker) {
+                    $m['active_match_penalty'] = [
+                        'status' => 'taking_kick',
+                        'victim' => $victim,
+                        'window' => $windowKey,
+                        'context_message' => 'PÊNALTI A FAVOR! Como cobrador oficial da equipe, você assume a marca da cal.'
+                    ];
+                    $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti a favor da sua equipe! Você se posiciona na marca da cal."];
+                    return;
+                } elseif ($isProtagonistOnField) {
+                    $m['active_match_penalty'] = [
+                        'status' => 'pending_request',
+                        'victim' => 'companheiro',
+                        'window' => $windowKey
+                    ];
+                    $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti a favor da sua equipe! O cobrador oficial pega a bola."];
+                    return;
+                } else {
+                    MatchPenalty::resolveTeammatePenalty($g, $m, false);
+                }
+            } elseif ($penaltyRoll >= 96) {
+                // Opponent penalty
+                MatchPenalty::resolveOpponentPenalty($g, $m);
+            }
+        }
+
         TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
         if(($m['balance_version']??0)<2){$difference=max(-60,min(60,$m['home_overall']-$m['away_overall']));$means=[max(.25,min(3.5,1.35*exp($difference/55))),max(.25,min(3.5,1.10*exp(-$difference/55)))];}
         foreach(['hg','ag'] as $index=>$side) {
@@ -295,7 +433,7 @@ final class Game {
             $goals=TeamStrength::goals($mean);
             for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $auditMinute=$m['minute'];$m['minute']=$next;GoalAudit::score($m,$side,$g['club']);$m['minute']=$auditMinute; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
         }
-        $m['minute']=$next; $m['log'][]=['minute'=>$next,'text'=>'Placar: '.$m['hg'].' × '.$m['ag'].'.'];
+        $m['minute']=$next; MatchParticipation::sync($m, $g, $next); $m['log'][]=['minute'=>$next,'text'=>'Placar: '.$m['hg'].' × '.$m['ag'].'.'];
         if($next===45) $m['status']='intervalo';
         if($next===90) {
             MatchMomentum::reset($m);
@@ -312,6 +450,7 @@ final class Game {
             $s['rating']=$s['minutes']===0?0:round(max(0,min(10,$rBase+$s['goals']*$wGoal+$s['assists']*$wAssist+$s['tackles']*$wTackle+$s['completed']*$wPassOk-($s['passes']-$s['completed'])*$wPassErr-$s['cards']*$wCard)),1);
             Progression::match($g,$m);
             MatchExperience::finish($g);
+            MatchDiscipline::processMatchEnd($g, $m);
             unset($m,$s);
             if(!empty($g['official'])) {
                 $ownIndex=self::currentIndex($g);$played=&$g['matches'][$ownIndex];
@@ -328,5 +467,120 @@ final class Game {
             foreach(['goals','assists','minutes'] as $k) $out[$k]+=$m['stats'][$k]; if($m['stats']['minutes']>0) { $out['games']++; $sum+=$m['stats']['rating']; }
         }
         $out['average']=$out['games']?round($sum/$out['games'],2):0; return $out;
+    }
+
+    /**
+     * Registra evento sonoro autoritativo persistente com ID único imutável
+     */
+    public static function emitSoundEvent(array &$m, array $g, string $type, int $minute): string {
+        $m['sound_events'] = $m['sound_events'] ?? [];
+        $m['sound_event_counters'] = $m['sound_event_counters'] ?? [];
+        // Reconcilia com eventos existentes que já possuam seq para evitar reuso
+        if (!isset($m['sound_event_counters'][$type])) {
+            $maxSeq = 0;
+            foreach ($m['sound_events'] as $sev) {
+                if (($sev['type'] ?? '') === $type && isset($sev['seq'])) {
+                    $maxSeq = max($maxSeq, (int)$sev['seq']);
+                }
+            }
+            $m['sound_event_counters'][$type] = $maxSeq;
+        }
+        $seq = $m['sound_event_counters'][$type] = ($m['sound_event_counters'][$type] ?? 0) + 1;
+        $saveId = $g['id'] ?? '0';
+        $season = $g['season'] ?? 1;
+        $compId = $m['competition'] ?? ($g['competition_id'] ?? 'c');
+        $round = $m['round'] ?? ($g['round'] ?? 1);
+        $matchPair = ($m['home'] ?? 'h') . '-' . ($m['away'] ?? 'a');
+        $eventId = "{$saveId}:s{$season}:{$compId}:m{$round}:{$matchPair}:min{$minute}:{$type}:{$seq}";
+        $m['sound_events'][] = [
+            'id' => $eventId,
+            'type' => $type,
+            'minute' => $minute,
+            'seq' => $seq
+        ];
+        return $eventId;
+    }
+
+    /**
+     * Reconcilia eventos sonoros em uma partida, garantindo IDs persistidos imutáveis para legados
+     */
+    public static function reconcileSoundEvents(array &$m, array $g): void {
+        if (empty($m['sound_events']) || !is_array($m['sound_events'])) return;
+        $saveId = $g['id'] ?? '0';
+        $season = $g['season'] ?? 1;
+        $compId = $m['competition'] ?? ($g['competition_id'] ?? 'c');
+        $round = $m['round'] ?? ($g['round'] ?? 1);
+        $matchPair = ($m['home'] ?? 'h') . '-' . ($m['away'] ?? 'a');
+
+        $m['sound_event_counters'] = $m['sound_event_counters'] ?? [];
+        $usedIds = [];
+        $maxSeqPerType = [];
+        $seenIds = [];
+
+        // Passo 1: Catalogar todos os IDs válidos únicos e a maior sequência já existente
+        foreach ($m['sound_events'] as $idx => $sev) {
+            $type = $sev['type'] ?? 'GENERIC';
+            if (!empty($sev['id'])) {
+                if (isset($seenIds[$sev['id']])) {
+                    // ID duplicado
+                } else {
+                    $seenIds[$sev['id']] = $idx;
+                    $usedIds[$sev['id']] = true;
+                }
+                if (preg_match('/:(\d+)$/', (string)$sev['id'], $matchSeq)) {
+                    $maxSeqPerType[$type] = max($maxSeqPerType[$type] ?? 0, (int)$matchSeq[1]);
+                }
+            }
+            if (isset($sev['seq'])) {
+                $sVal = (int)$sev['seq'];
+                $maxSeqPerType[$type] = max($maxSeqPerType[$type] ?? 0, $sVal);
+            }
+        }
+        foreach ($maxSeqPerType as $t => $ms) {
+            $m['sound_event_counters'][$t] = max($m['sound_event_counters'][$t] ?? 0, $ms);
+        }
+
+        // Passo 2: Atribuir IDs únicos e imutáveis
+        $assignedIds = [];
+        $usedSeqsInMatch = [];
+        foreach ($m['sound_events'] as $idx => &$sev) {
+            $type = $sev['type'] ?? 'GENERIC';
+            $minute = (int)($sev['minute'] ?? 0);
+
+            if (!empty($sev['id']) && !isset($assignedIds[$sev['id']])) {
+                $assignedIds[$sev['id']] = true;
+                if (isset($sev['seq'])) {
+                    $usedSeqsInMatch[$type][(int)$sev['seq']] = true;
+                }
+                continue;
+            }
+
+            // Para quem não tem ID:
+            // Se já tem um seq explícito e esse seq ainda não colidiu nesta partida, tenta preservá-lo
+            $seq = null;
+            if (isset($sev['seq']) && empty($usedSeqsInMatch[$type][(int)$sev['seq']])) {
+                $candidateId = "{$saveId}:s{$season}:{$compId}:m{$round}:{$matchPair}:min{$minute}:{$type}:" . (int)$sev['seq'];
+                if (!isset($usedIds[$candidateId])) {
+                    $seq = (int)$sev['seq'];
+                }
+            }
+
+            if ($seq === null) {
+                do {
+                    $seq = ($m['sound_event_counters'][$type] ?? 0) + 1;
+                    $m['sound_event_counters'][$type] = $seq;
+                    $candidateId = "{$saveId}:s{$season}:{$compId}:m{$round}:{$matchPair}:min{$minute}:{$type}:{$seq}";
+                } while (isset($usedIds[$candidateId]) || !empty($usedSeqsInMatch[$type][$seq]));
+            } else {
+                $candidateId = "{$saveId}:s{$season}:{$compId}:m{$round}:{$matchPair}:min{$minute}:{$type}:{$seq}";
+            }
+
+            $sev['seq'] = $seq;
+            $sev['id'] = $candidateId;
+            $usedIds[$candidateId] = true;
+            $assignedIds[$candidateId] = true;
+            $usedSeqsInMatch[$type][$seq] = true;
+        }
+        unset($sev);
     }
 }

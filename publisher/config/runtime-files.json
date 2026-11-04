@@ -207,5 +207,9 @@
   "public/favicon.ico",
   "public/favicon.svg",
   "public/index.php",
-  "public/maintenance.html"
+  "public/maintenance.html",
+  "app/MatchDiscipline.php",
+  "app/MatchParticipation.php",
+  "app/MatchPenalty.php",
+  "public/assets/audio-engine.js"
 ]

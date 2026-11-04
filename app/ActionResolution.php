@@ -3,7 +3,7 @@ declare(strict_types=1);
 /** Probabilidade da execução, condicionada à oportunidade já apresentada. */
 final class ActionResolution {
  public const VERSION='execution-v04';
- public const SHOT_BASE=['long'=>.035,'difficult'=>.075,'normal'=>.18,'clear'=>.38,'one_on_one'=>.43];
+ public const SHOT_BASE=['long'=>.035,'difficult'=>.075,'normal'=>.18,'clear'=>.38,'one_on_one'=>.43,'penalty_placement'=>.76,'penalty_power'=>.74,'penalty_wait_keeper'=>.72,'penalty_risk'=>.68];
  // Classificação mecânica revisada; não lê palavras nem altera snapshots editoriais.
  private const SHOTS=[1104=>[2=>'long'],1107=>[2=>'long'],1115=>[3=>'long'],1113=>[2=>'difficult'],1117=>[2=>'difficult'],1123=>[3=>'difficult'],2579=>[2=>'difficult'],2649=>[0=>'difficult']];
  public static function options(array $options,int $id):array {

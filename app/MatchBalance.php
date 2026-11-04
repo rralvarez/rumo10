@@ -36,6 +36,20 @@ final class MatchBalance {
   $mean=$m['expected_goals'][$side];$own=$m['home']===$club?'hg':'ag';$span=$to-$from;
   if(($m['balance_version']??0)===2){if($side===$own){$active=max(0,min($to,$m['exit'])-max($from,$m['entry']));$span-=$active*$m['player_attack_share'];}return $mean*max(0,$span)/90;}
   $expected=$mean*max(0,$span)/90;
+  // Inferioridade numérica após expulsão do protagonista (partição temporal exata)
+  if(!empty($m['team_reduced'])) {
+   $redMinute = (int)($m['red_card_minute'] ?? 0);
+   if ($from >= $redMinute) {
+    if($side===$own) { $expected *= 0.75; } else { $expected *= 1.20; }
+   } elseif ($to > $redMinute) {
+    $spanNormal = max(0, $redMinute - $from);
+    $spanReduced = max(0, $to - $redMinute);
+    $expNormal = $mean * $spanNormal / 90;
+    $expReduced = $mean * $spanReduced / 90;
+    if($side===$own) { $expReduced *= 0.75; } else { $expReduced *= 1.20; }
+    $expected = $expNormal + $expReduced;
+   }
+  }
   if($side===$own){$pending=$m['pending_personal_expectation']??0;$discount=min($expected,$pending);$expected-=$discount;$m['pending_personal_expectation']=$pending-$discount;
    $available=max(0,$mean-($m['background_expected_spent']??0)-($m['personal_expected_spent']??0));$expected=min($expected,$available);$m['background_expected_spent']=($m['background_expected_spent']??0)+$expected;}
   return max(0,$expected);
