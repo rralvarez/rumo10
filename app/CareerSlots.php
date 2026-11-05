@@ -25,6 +25,13 @@ final class CareerSlots {
     }
     /** Chamar somente em transação, depois de verificar proprietário e bloquear carreira. */
     public static function purgeDetails(Repository $r,int $id):void {
+            // F01: Remoção de tabelas canônicas e outbox associadas à carreira
+            $r->query('DELETE FROM rumo10_f01_outbox WHERE carreira_id=?',[$id]);
+            $r->query('DELETE FROM rumo10_f01_respostas WHERE carreira_id=?',[$id]);
+            $r->query('DELETE e FROM rumo10_f01_eventos e JOIN rumo10_f01_aparicoes a ON a.appearance_uid=e.appearance_uid WHERE a.carreira_id=?',[$id]);
+            $r->query('DELETE FROM rumo10_f01_aparicoes WHERE carreira_id=?',[$id]);
+            $r->query('DELETE FROM rumo10_f01_partidas WHERE carreira_id=?',[$id]);
+
             // Lista fixa de dependências do jogo, inclusive armazenamento legado. Catálogo compartilhado preservado.
             foreach(['rumo10_eventos_partida','rumo10_estatisticas'] as $table)$r->query("DELETE x FROM $table x JOIN rumo10_partidas p ON p.id=x.partida_id JOIN rumo10_temporadas t ON t.id=p.temporada_id WHERE t.carreira_id=?",[$id]);
             $r->query('DELETE p FROM rumo10_partidas p JOIN rumo10_temporadas t ON t.id=p.temporada_id WHERE t.carreira_id=?',[$id]);
