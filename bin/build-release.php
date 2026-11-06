@@ -23,16 +23,31 @@ foreach(explode("\0",$list) as $path){
 }
 foreach(['public/index.php','public/.htaccess','app/bootstrap.php','bin/deploy-cpanel.sh'] as $required)if(!isset($manifest[$required]))throw new RuntimeException('Preparação de deploy precisa estar versionada antes de empacotar.');
 
+$gitFunctionalCheck = proc_open(['git', '-C', $root, 'diff', '--name-only', '907427dabc363d055ff32ad53853d322639992fb', 'HEAD', '--', 'app', 'database', 'public'], [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $diffPipes);
+$functionalDiff = trim(stream_get_contents($diffPipes[1]));
+fclose($diffPipes[1]);
+fclose($diffPipes[2]);
+proc_close($gitFunctionalCheck);
+if ($functionalDiff !== '') {
+    throw new RuntimeException("Divergência detectada contra o commit funcional homologado F01:\n" . $functionalDiff);
+}
+$functionalCommit = '907427dabc363d055ff32ad53853d322639992fb';
+
 $gitCommitProc = proc_open(['git', '-C', $root, 'rev-parse', 'HEAD'], [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $commitPipes);
-$commitHash = trim(stream_get_contents($commitPipes[1]));
+$infraCommit = trim(stream_get_contents($commitPipes[1]));
 fclose($commitPipes[1]);
 fclose($commitPipes[2]);
 proc_close($gitCommitProc);
-if (!preg_match('/^[0-9a-f]{40}$/i', $commitHash)) {
+if (!preg_match('/^[0-9a-f]{40}$/i', $infraCommit)) {
     throw new RuntimeException('Commit Git inválido para build-manifest.json');
 }
 
-$buildManifestContent = json_encode(['commit' => strtolower($commitHash), 'checksums' => $manifest], JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES);
+$buildManifestData = [
+    'commit' => $functionalCommit,
+    'infrastructure_commit' => strtolower($infraCommit),
+    'checksums' => $manifest,
+];
+$buildManifestContent = json_encode($buildManifestData, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES);
 $manifest['build-manifest.json'] = hash('sha256', $buildManifestContent);
 
 $tar->buildFromIterator(new ArrayIterator($files));

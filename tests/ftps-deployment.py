@@ -52,14 +52,23 @@ class FakeFTP:
 
     def storbinary(self, cmd, stream):
         path = cmd[5:]
-        if getattr(self, 'require_fresh_control', False) and path.endswith('.rumo-upload-release.json') and not self.reconnected:
+        if getattr(self, 'require_fresh_control', False) and 'release.json' in path and not self.reconnected:
             raise TimeoutError('idle control connection')
-        if self.fail and path.endswith(".rumo-upload-bootstrap.php"):
+        if self.fail and 'bootstrap.php' in path:
             raise OSError("simulated transfer failure")
         self.files[path] = stream.read()
 
     def rename(self, source, target): self.files[target] = self.files.pop(source)
     def delete(self, path): self.deleted.append(path); del self.files[path]
+
+    def mlsd(self, path=""):
+        parent = path.strip("/")
+        results = []
+        for f in self.files:
+            p, name = (f.rsplit("/", 1)) if "/" in f else ("", f)
+            if p == parent:
+                results.append((name, {"type": "file"}))
+        return results
 
 
 class DeploymentTests(unittest.TestCase):
