@@ -66,7 +66,7 @@ class DeploymentTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.archive = Path(self.tmp.name) / "release.tar.gz"
-        files = {"app/bootstrap.php": b"<?php", "public/index.php": b"<?php", "public/.htaccess": b"RewriteEngine On\n", "public/assets/app.css": b"body{}", "public/favicon.svg": b"<svg/>", "public/favicon.ico": b"icon-fixture"}
+        files = {"app/bootstrap.php": b"<?php", "public/index.php": b"<?php", "public/.htaccess": b"RewriteEngine On\n", "public/assets/app.css": b"body{}", "public/favicon.svg": b"<svg/>", "public/favicon.ico": b"icon-fixture", "build-manifest.json": b'{"commit":"907427dabc363d055ff32ad53853d322639992fb","checksums":{}}'}
         manifest = {"project": "rumo10", "files": {name: hashlib.sha256(body).hexdigest() for name, body in files.items()}}
         with tarfile.open(self.archive, "w:gz") as tar:
             for name, body in {**files, "release.json": json.dumps(manifest).encode()}.items():
@@ -87,6 +87,7 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(self.ftp.files["public_html/assets/app.css"], b"body{}")
         self.assertEqual(self.ftp.files["public_html/favicon.svg"], b"<svg/>")
         self.assertEqual(self.ftp.files["public_html/favicon.ico"], b"icon-fixture")
+        self.assertIn("apps/rumo10/current/build-manifest.json", self.ftp.files)
         self.assertFalse(any("sql" in path or ".rumo-upload-" in path for path in self.ftp.files))
 
     def test_failure_keeps_maintenance(self):

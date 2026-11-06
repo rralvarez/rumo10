@@ -22,7 +22,21 @@ foreach(explode("\0",$list) as $path){
  $files[$path]=$root.'/'.$path;$manifest[$path]=hash_file('sha256',$root.'/'.$path);
 }
 foreach(['public/index.php','public/.htaccess','app/bootstrap.php','bin/deploy-cpanel.sh'] as $required)if(!isset($manifest[$required]))throw new RuntimeException('Preparação de deploy precisa estar versionada antes de empacotar.');
+
+$gitCommitProc = proc_open(['git', '-C', $root, 'rev-parse', 'HEAD'], [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $commitPipes);
+$commitHash = trim(stream_get_contents($commitPipes[1]));
+fclose($commitPipes[1]);
+fclose($commitPipes[2]);
+proc_close($gitCommitProc);
+if (!preg_match('/^[0-9a-f]{40}$/i', $commitHash)) {
+    throw new RuntimeException('Commit Git inválido para build-manifest.json');
+}
+
+$buildManifestContent = json_encode(['commit' => strtolower($commitHash), 'checksums' => $manifest], JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES);
+$manifest['build-manifest.json'] = hash('sha256', $buildManifestContent);
+
 $tar->buildFromIterator(new ArrayIterator($files));
+$tar->addFromString('build-manifest.json', $buildManifestContent);
 $tar->addFromString('release.json',json_encode(['project'=>$project,'files'=>$manifest],JSON_THROW_ON_ERROR|JSON_UNESCAPED_SLASHES));
 $tar->compress(Phar::GZ);unset($tar);unlink($output);
 echo 'Pacote sem credenciais: '.$output.'.gz'.PHP_EOL;
