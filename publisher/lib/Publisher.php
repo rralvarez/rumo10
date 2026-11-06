@@ -150,7 +150,7 @@ class Publisher {
                 if(protectedPath($rel))continue;
                 need(!$entry->isLink(),'Unapproved operational symlink');
                 if($entry->isDir())continue;
-                if($kind==='current' && ($rel==='release.json' || isset($manifest['files'][$rel])))continue;
+                if($kind==='current' && ($rel==='release.json' || $rel==='build-manifest.json' || isset($manifest['files'][$rel])))continue;
                 if($kind==='public' && isset($manifest['files']['public/'.$rel]) && !in_array($rel,['index.php','.htaccess'],true))continue;
                 if(isset($pins[str_replace(chr(92),'/',$entry->getPathname())]))continue;
                 $key=$kind.'/'.$rel;
@@ -257,6 +257,7 @@ class Publisher {
                 need(digest($backup.'/file-'.$i)===$op['before']['hash'],'Backup code hash failed');
             }
             atomic($backup.'/release.json',file_get_contents($this->c['current'].'/release.json'));
+            if(is_file($this->c['current'].'/build-manifest.json'))atomic($backup.'/build-manifest.json',file_get_contents($this->c['current'].'/build-manifest.json'));
             $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
             need(($b['consistent']??false) && ($b['restore_tested']??false) && ($b['attempt']??null)===$id &&
                 isset($b['files']) && count($b['files'])>0,'Backup/restore proof missing');
@@ -324,8 +325,10 @@ class Publisher {
             $this->own($j); $j['state']='promoting-manifest'; $this->save($j);
             $managed=array_filter($v['inventory']['files'],fn($p)=>!protectedPath($p),ARRAY_FILTER_USE_KEY);
             record($this->c['current'].'/release.json',['project'=>$this->c['project'],'files'=>$managed]);
+            record($this->c['current'].'/build-manifest.json',['commit'=>$v['commit'],'checksums'=>$managed]);
             $this->checkpoint('after-manifest');
             need(json(file_get_contents($this->c['current'].'/release.json'))['files']===$managed,'Official manifest mismatch');
+            need(json(file_get_contents($this->c['current'].'/build-manifest.json'))['commit']===$v['commit'],'Official build-manifest mismatch');
             $this->verifyInstalled($j);
             $publicInventory=[];
             foreach($managed as $p=>$hash) if(str_starts_with($p,'public/') && !in_array($p,['public/index.php','public/.htaccess'],true))
@@ -440,6 +443,8 @@ class Publisher {
             foreach ($j['operations'] as $op) need((sameFileState($op['dest'])['hash']??null)===($op['before']['hash']??null),'Recovery content mismatch');
             $this->cleanupTemps($j); $this->controls(); $this->own($j);
             atomic($this->c['current'].'/release.json',file_get_contents($j['backup'].'/release.json'));
+            if(is_file($j['backup'].'/build-manifest.json'))atomic($this->c['current'].'/build-manifest.json',file_get_contents($j['backup'].'/build-manifest.json'));
+            elseif(is_file($this->c['current'].'/build-manifest.json'))unlink($this->c['current'].'/build-manifest.json');
             need($this->baseline()['files']===$j['old_manifest']['files'],'Recovered manifest mismatch');
             $this->hook('smoke',['project'=>$this->c['project'],'action'=>'recovery','attempt'=>$j['attempt']]);
             $j['state']='recovered'; $this->save($j); $this->own($j); need(unlink($this->marker()),'Cannot release recovered lock');

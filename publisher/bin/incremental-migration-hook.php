@@ -14,7 +14,7 @@ try {
   if(!in_array('006',$versions,true)){$db->exec(file_get_contents($stage.'/database/006-balance-and-maintenance.sql'));$db->exec("INSERT INTO rumo10_migrations(version) VALUES('006')");}
   $db->beginTransaction();
   if(!in_array('006-seed',$versions,true)){require $stage.'/database/seed_balance.php';seed_balance_data($db);$db->exec("INSERT INTO rumo10_migrations(version) VALUES('006-seed')");}
-  foreach(['007'=>'007-recalibracao-ofensiva.sql','008'=>'008-penalties-balance.sql'] as $version=>$name)if(!in_array((string)$version,$versions,true)){$db->exec(file_get_contents($stage.'/database/'.$name));$db->prepare('INSERT INTO rumo10_migrations(version) VALUES(?)')->execute([(string)$version]);}
+  foreach(['007'=>'007-recalibracao-ofensiva.sql','008'=>'008-penalties-balance.sql','009'=>'009-f01-canonical-telemetry.sql'] as $version=>$name)if(!in_array((string)$version,$versions,true)&&is_file($stage.'/database/'.$name)){$db->exec(file_get_contents($stage.'/database/'.$name));$db->prepare('INSERT INTO rumo10_migrations(version) VALUES(?)')->execute([(string)$version]);}
   need($db->query("SELECT codigo FROM rumo10_balanceamentos WHERE estado='ativo'")->fetchColumn()==='bal-v062-recalibracao-ofensiva','Active balance mismatch');
   need((int)$db->query("SELECT COUNT(*) FROM rumo10_formula_parametros p JOIN rumo10_formula_versoes v ON v.id=p.versao_id WHERE v.formula_id='match.penalties.parameters'")->fetchColumn()>0,'Penalty parameters missing');
   $db->commit();$out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN)];
