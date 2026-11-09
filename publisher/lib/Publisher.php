@@ -104,13 +104,18 @@ class Publisher {
 
             $targetRelease = $authorizedReleases[$declaredFunctional];
 
-            // Vinculação criptográfica do build autorizado
-            if (isset($targetRelease['authorized_build_commits'])) {
-                need(is_array($targetRelease['authorized_build_commits']),
-                    "Release policy for {$declaredFunctional} `authorized_build_commits` must be an array");
-                need(in_array($run['head_sha'], $targetRelease['authorized_build_commits'], true),
-                    "Publication build commit not authorized for release {$declaredFunctional}: {$run['head_sha']}");
+            // Vinculação criptográfica obrigatória e fail-closed do build autorizado
+            need(array_key_exists('authorized_build_commits', $targetRelease),
+                "Release policy for {$declaredFunctional} missing required field `authorized_build_commits`");
+            $authorizedBuildCommits = $targetRelease['authorized_build_commits'];
+            need(is_array($authorizedBuildCommits) && !empty($authorizedBuildCommits),
+                "Release policy for {$declaredFunctional} `authorized_build_commits` must be a non-empty array");
+            foreach ($authorizedBuildCommits as $bc) {
+                need(is_string($bc) && preg_match('/^[a-f0-9]{40}$/D', $bc) === 1,
+                    "Invalid build commit SHA format in release policy ({$declaredFunctional}): " . var_export($bc, true));
             }
+            need(in_array($run['head_sha'], $authorizedBuildCommits, true),
+                "Publication build commit not authorized for release {$declaredFunctional}: {$run['head_sha']}");
 
             $mandatory = $targetRelease['mandatory_files'] ?? [];
             need(is_array($mandatory) && !empty($mandatory),
