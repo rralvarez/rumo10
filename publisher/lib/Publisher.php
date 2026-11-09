@@ -86,58 +86,60 @@ class Publisher {
         $inventory=Package::inspect($package,$this->c['project']);
         if ($this->c['project']==='rumo10') {
             need(isset($inventory['files']['app/PlayerDevelopment.php']),'v3 writer missing');
-            // Política de releases autorizadas: substitui a exigência fixa da identidade F01
+            // Política de releases autorizadas: catálogo obrigatório, válido e fail-closed
             $authorizedReleases = $this->c['update_policy']['authorized_releases'] ?? null;
             if ($authorizedReleases === null && is_file(dirname(__DIR__).'/config/update-policy.json')) {
                 $policyFile = json(file_get_contents(dirname(__DIR__).'/config/update-policy.json'));
                 $authorizedReleases = $policyFile['authorized_releases'] ?? null;
             }
 
-            if (!empty($authorizedReleases)) {
-                $declaredFunctional = $envelope['functional_commit'] ?? null;
-                need(is_string($declaredFunctional) && preg_match('/^[a-f0-9]{40}$/D', $declaredFunctional) === 1,
-                    'Functional provenance missing or malformed');
-                need(isset($authorizedReleases[$declaredFunctional]),
-                    'Functional commit not recognized in authorized releases policy: '.$declaredFunctional);
+            need(is_array($authorizedReleases) && !empty($authorizedReleases),
+                'Authorized releases policy catalog missing, invalid or empty');
 
-                $targetRelease = $authorizedReleases[$declaredFunctional];
-                $mandatory = $targetRelease['mandatory_files'] ?? [];
-                foreach ($mandatory as $path => $expectedHash) {
-                    need(isset($inventory['files'][$path]) && $inventory['files'][$path] === $expectedHash,
-                        'Package content diverged from authorized release baseline ('.$declaredFunctional.'): '.$path);
-                }
-                
-                // Converter e validar estritamente requires_migration -> required_migrations
-                $rawRequires = $targetRelease['requires_migration'] ?? [];
-                need(is_array($rawRequires), "Release {$declaredFunctional} `requires_migration` must be an array");
-                $validKnownVersions = ['001','002','003','004','005','006','006-seed','007','008','009'];
-                $trustedRequiredMigrations = [];
-                foreach ($rawRequires as $ver) {
-                    need(is_string($ver) && preg_match('/^[a-zA-Z0-9_-]+$/D', $ver) === 1,
-                        "Invalid migration version format in release {$declaredFunctional}");
-                    need(in_array($ver, $validKnownVersions, true),
-                        "Unknown migration version `{$ver}` in authorized release {$declaredFunctional}");
-                    $trustedRequiredMigrations[] = $ver;
-                }
-                $trustedRequiredMigrations = array_values(array_unique($trustedRequiredMigrations));
+            $declaredFunctional = $envelope['functional_commit'] ?? null;
+            need(is_string($declaredFunctional) && preg_match('/^[a-f0-9]{40}$/D', $declaredFunctional) === 1,
+                'Functional provenance missing or malformed');
+            need(isset($authorizedReleases[$declaredFunctional]) && is_array($authorizedReleases[$declaredFunctional]),
+                'Functional commit not recognized in authorized releases policy: '.$declaredFunctional);
 
-                // Se o envelope declarar required_migrations, garantir que não tente reduzir/divergir da política
-                if (isset($envelope['required_migrations'])) {
-                    need(is_array($envelope['required_migrations']), "Candidate `required_migrations` must be an array");
-                    foreach ($envelope['required_migrations'] as $candVer) {
-                        need(is_string($candVer), "Candidate `required_migrations` contains non-string version");
-                    }
-                    foreach ($trustedRequiredMigrations as $trVer) {
-                        need(in_array($trVer, $envelope['required_migrations'], true),
-                            "Candidate illegally reduced mandatory migration requirement: {$trVer}");
-                    }
-                }
-                $envelope['required_migrations'] = $trustedRequiredMigrations;
-            } elseif (isset($envelope['functional_commit'])) {
-                $declaredFunctional = $envelope['functional_commit'];
-                need(is_string($declaredFunctional) && preg_match('/^[a-f0-9]{40}$/D', $declaredFunctional) === 1,
-                    'Functional provenance malformed');
+            $targetRelease = $authorizedReleases[$declaredFunctional];
+            $mandatory = $targetRelease['mandatory_files'] ?? [];
+            need(is_array($mandatory) && !empty($mandatory),
+                'Mandatory files specification missing in release policy ('.$declaredFunctional.')');
+            foreach ($mandatory as $path => $expectedHash) {
+                need(isset($inventory['files'][$path]) && $inventory['files'][$path] === $expectedHash,
+                    'Package content diverged from authorized release baseline ('.$declaredFunctional.'): '.$path);
             }
+            
+            // Exigência fail-closed estrita de requires_migration
+            need(array_key_exists('requires_migration', $targetRelease),
+                "Release policy for {$declaredFunctional} missing required field `requires_migration`");
+            $rawRequires = $targetRelease['requires_migration'];
+            need(is_array($rawRequires), "Release {$declaredFunctional} `requires_migration` must be an array");
+
+            $validKnownVersions = ['001','002','003','004','005','006','006-seed','007','008','009'];
+            $trustedRequiredMigrations = [];
+            foreach ($rawRequires as $ver) {
+                need(is_string($ver) && preg_match('/^[a-zA-Z0-9_-]+$/D', $ver) === 1,
+                    "Invalid migration version format in release {$declaredFunctional}");
+                need(in_array($ver, $validKnownVersions, true),
+                    "Unknown migration version `{$ver}` in authorized release {$declaredFunctional}");
+                $trustedRequiredMigrations[] = $ver;
+            }
+            $trustedRequiredMigrations = array_values(array_unique($trustedRequiredMigrations));
+
+            // Se o envelope declarar required_migrations, garantir que seja array de strings e não reduza requisitos
+            if (isset($envelope['required_migrations'])) {
+                need(is_array($envelope['required_migrations']), "Candidate `required_migrations` must be an array");
+                foreach ($envelope['required_migrations'] as $candVer) {
+                    need(is_string($candVer), "Candidate `required_migrations` contains non-string version");
+                }
+                foreach ($trustedRequiredMigrations as $trVer) {
+                    need(in_array($trVer, $envelope['required_migrations'], true),
+                        "Candidate illegally reduced mandatory migration requirement: {$trVer}");
+                }
+            }
+            $envelope['required_migrations'] = $trustedRequiredMigrations;
         }
         // Persist only validation fields, never actor/author/commit-message or arbitrary API metadata.
         $run=array_intersect_key($run,array_flip(['id','workflow_id','head_branch','event','status','conclusion','head_sha','run_number','run_attempt','repository']));
