@@ -128,6 +128,12 @@ class Publisher {
             }
             $trustedRequiredMigrations = array_values(array_unique($trustedRequiredMigrations));
 
+            // Invariante de segurança mandatória da F01: migration 009 obrigatória
+            if ($declaredFunctional === '907427dabc363d055ff32ad53853d322639992fb') {
+                need(in_array('009', $trustedRequiredMigrations, true),
+                    "Release F01 ({$declaredFunctional}) strictly requires migration `009`");
+            }
+
             // Se o envelope declarar required_migrations, garantir que seja array de strings e não reduza requisitos
             if (isset($envelope['required_migrations'])) {
                 need(is_array($envelope['required_migrations']), "Candidate `required_migrations` must be an array");
