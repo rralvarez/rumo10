@@ -106,6 +106,7 @@ class Publisher {
                     need(isset($inventory['files'][$path]) && $inventory['files'][$path] === $expectedHash,
                         'Package content diverged from authorized release baseline ('.$declaredFunctional.'): '.$path);
                 }
+                $envelope['required_migrations'] = $targetRelease['requires_migration'] ?? [];
             } elseif (isset($envelope['functional_commit'])) {
                 $declaredFunctional = $envelope['functional_commit'];
                 need(is_string($declaredFunctional) && preg_match('/^[a-f0-9]{40}$/D', $declaredFunctional) === 1,
@@ -123,7 +124,7 @@ class Publisher {
             $j['steps']=array_map(fn($step)=>['conclusion'=>$step['conclusion']??null],$j['steps']??[]);
             return $j;
         },$jobs);
-        $envelope=array_intersect_key($envelope,array_flip(['schema','project','repository','commit','workflow_id','run_id','run_number','run_attempt','package_sha256','data_contracts','functional_commit']));
+        $envelope=array_intersect_key($envelope,array_flip(['schema','project','repository','commit','workflow_id','run_id','run_number','run_attempt','package_sha256','data_contracts','functional_commit','required_migrations']));
         return ['run_number'=>$run['run_number'],'commit'=>$run['head_sha'],'artifact_id'=>$artifact['id'],
             'package_sha256'=>$envelope['package_sha256'],'artifact_digest'=>$artifact['digest'],
             'data_contracts'=>$envelope['data_contracts'],'inventory'=>$inventory,
@@ -227,6 +228,7 @@ class Publisher {
         $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private];
         if(isset($this->c['update_policy'])){
             $request['update_policy']=UpdatePolicy::assess($this->baseline(),$v['inventory'],$this->c['update_policy'],$v['jobs']);
+            $request['update_policy']['required_migrations'] = $v['envelope']['required_migrations'] ?? [];
             need($request['update_policy']['class']!=='C','Class C requires separately proven exclusive window');
         }
         $g=$this->hook('preflight',$request);
@@ -298,12 +300,18 @@ class Publisher {
     }
     private function continueInstallation(array &$j,array $request):array {
         $v=$j['candidate'];$stage=$j['stage'];$id=$j['attempt'];
-        if(!isset($j['migration_receipt']) && !empty($request['update_policy']['migrations'])) {
+        $requiredMigrations = $v['envelope']['required_migrations']
+            ?? $request['update_policy']['required_migrations']
+            ?? ($this->c['update_policy']['authorized_releases'][$v['envelope']['functional_commit'] ?? '']['requires_migration'] ?? []);
+        $hasMigrationsToRun = !empty($request['update_policy']['migrations']) || !empty($requiredMigrations);
+        if(!isset($j['migration_receipt']) && $hasMigrationsToRun) {
             $this->own($j);$j['state']='migrating';$this->save($j);
             $receipt=$this->hook('migrate',$request+['attempt'=>$id]);
             need(($receipt['compatible_expansion']??false)===true,'Incremental migration proof missing');
             if ($this->c['project']==='rumo10') {
-                need(in_array('009', $receipt['versions']??[], true), 'F01 installation requires version 009 confirmed in migration receipt');
+                foreach ($requiredMigrations as $reqVer) {
+                    need(in_array($reqVer, $receipt['versions']??[], true), "Release requires version {$reqVer} confirmed in migration receipt");
+                }
             }
             $j['migration_receipt']=$receipt;$j['state']='installing';$this->save($j);
         }

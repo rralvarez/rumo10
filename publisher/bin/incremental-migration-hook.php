@@ -60,7 +60,7 @@ function getF01HomologatedSchema(): array {
         ],
         "rumo10_f01_outbox" => [
             "columns" => [
-                "id" => ["type" => "bigint unsigned", "nullable" => false, "default" => null],
+                "id" => ["type" => "bigint unsigned", "nullable" => false, "default" => null, "extra" => "auto_increment"],
                 "carreira_id" => ["type" => "bigint unsigned", "nullable" => false, "default" => null],
                 "command_uid" => ["type" => "char(36)", "nullable" => false, "default" => null],
                 "chave" => ["type" => "char(64)", "nullable" => false, "default" => null],
@@ -148,9 +148,9 @@ function assertF01TableStructure(PDO $db, string $table, array $contract): void 
     $currentDb = (string)$db->query("SELECT DATABASE()")->fetchColumn();
     need($currentDb !== '', 'Database name resolution required');
 
-    // 1. Validação de Colunas (nome, tipo, nulidade e valor padrão)
+    // 1. Validação de Colunas (nome, tipo, nulidade, valor padrão e extra/auto_increment)
     $stmt = $db->prepare("
-        SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT
+        SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT, EXTRA
         FROM INFORMATION_SCHEMA.COLUMNS 
         WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?
     ");
@@ -161,7 +161,8 @@ function assertF01TableStructure(PDO $db, string $table, array $contract): void 
         $actualCols[$c['COLUMN_NAME']] = [
             'type' => strtolower($c['COLUMN_TYPE']),
             'nullable' => $c['IS_NULLABLE'] === 'YES',
-            'default' => $c['COLUMN_DEFAULT']
+            'default' => $c['COLUMN_DEFAULT'],
+            'extra' => strtolower($c['EXTRA'] ?? ''),
         ];
     }
 
@@ -179,6 +180,11 @@ function assertF01TableStructure(PDO $db, string $table, array $contract): void 
             need($actDef !== null, "Table `{$table}` column `{$colName}` default mismatch: expected {$expDef}, got NULL");
             need(strtoupper($expDef) === strtoupper($actDef) || trim($expDef, "'\"") === trim($actDef, "'\""),
                 "Table `{$table}` column `{$colName}` default mismatch: expected {$expDef}, got {$actDef}");
+        }
+
+        if (isset($expected['extra'])) {
+            need(str_contains($actual['extra'], strtolower($expected['extra'])),
+                "Table `{$table}` column `{$colName}` extra mismatch: expected '{$expected['extra']}', got '{$actual['extra']}'");
         }
     }
 
@@ -435,7 +441,14 @@ try {
         }
 
         $allVersions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
-        need(in_array('009', $allVersions, true), 'Release requires validated 009 migration');
+        
+        $requiredMigrations = $policy['required_migrations']
+            ?? $q['candidate']['envelope']['required_migrations']
+            ?? ($c['authorized_releases'][$q['candidate']['envelope']['functional_commit'] ?? '']['requires_migration'] ?? []);
+
+        foreach ($requiredMigrations as $rm) {
+            need(in_array((string)$rm, $allVersions, true), "Release requires validated {$rm} migration");
+        }
 
         $out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$allVersions];
         record($q['private'].'/migrations-'.$q['attempt'].'.json',$out+['approved_hashes'=>$c['approved_incremental_migrations']]);
