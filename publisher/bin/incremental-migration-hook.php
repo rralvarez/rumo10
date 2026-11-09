@@ -20,9 +20,14 @@ function getF01HomologatedSchema(): array {
                 "projected_at_utc" => ["type" => "timestamp(6)", "nullable" => false, "default" => "CURRENT_TIMESTAMP(6)"],
             ],
             "primary_key" => ["appearance_uid"],
+            "unique_keys" => [
+                "uk_f01_partida_aparicao" => ["match_uid", "appearance_uid"],
+                "uk_f01_partida_carreira" => ["match_uid", "carreira_id"],
+            ],
+            "indexes" => [],
             "foreign_keys" => [
-                "fk_f01_aparicoes_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"]],
-                "fk_f01_aparicoes_partida" => ["columns" => ["match_uid"], "ref_table" => "rumo10_f01_partidas", "ref_columns" => ["match_uid"]],
+                "fk_f01_aparicoes_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"], "on_delete" => "CASCADE"],
+                "fk_f01_aparicoes_partida" => ["columns" => ["match_uid"], "ref_table" => "rumo10_f01_partidas", "ref_columns" => ["match_uid"], "on_delete" => "CASCADE"],
             ],
         ],
         "rumo10_f01_eventos" => [
@@ -40,10 +45,17 @@ function getF01HomologatedSchema(): array {
                 "projected_at_utc" => ["type" => "timestamp(6)", "nullable" => false, "default" => "CURRENT_TIMESTAMP(6)"],
             ],
             "primary_key" => ["event_uid"],
+            "unique_keys" => [
+                "uk_f01_eventos_partida_seq" => ["match_uid", "sequencia_partida"],
+            ],
+            "indexes" => [
+                "ix_f01_eventos_tipo" => ["tipo_evento"],
+                "ix_f01_eventos_carreira" => ["carreira_id"],
+            ],
             "foreign_keys" => [
-                "fk_f01_eventos_aparicao_composta" => ["columns" => ["match_uid", "appearance_uid"], "ref_table" => "rumo10_f01_aparicoes", "ref_columns" => ["match_uid", "appearance_uid"]],
-                "fk_f01_eventos_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"]],
-                "fk_f01_eventos_partida" => ["columns" => ["match_uid"], "ref_table" => "rumo10_f01_partidas", "ref_columns" => ["match_uid"]],
+                "fk_f01_eventos_aparicao_composta" => ["columns" => ["match_uid", "appearance_uid"], "ref_table" => "rumo10_f01_aparicoes", "ref_columns" => ["match_uid", "appearance_uid"], "on_delete" => "CASCADE"],
+                "fk_f01_eventos_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"], "on_delete" => "CASCADE"],
+                "fk_f01_eventos_partida" => ["columns" => ["match_uid"], "ref_table" => "rumo10_f01_partidas", "ref_columns" => ["match_uid"], "on_delete" => "CASCADE"],
             ],
         ],
         "rumo10_f01_outbox" => [
@@ -63,8 +75,14 @@ function getF01HomologatedSchema(): array {
                 "projected_at_utc" => ["type" => "timestamp(6)", "nullable" => true, "default" => null],
             ],
             "primary_key" => ["id"],
+            "unique_keys" => [
+                "uk_f01_outbox_carreira_chave" => ["carreira_id", "chave"],
+            ],
+            "indexes" => [
+                "ix_f01_outbox_estado" => ["estado", "id"],
+            ],
             "foreign_keys" => [
-                "fk_f01_outbox_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"]],
+                "fk_f01_outbox_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"], "on_delete" => "CASCADE"],
             ],
         ],
         "rumo10_f01_partidas" => [
@@ -91,8 +109,14 @@ function getF01HomologatedSchema(): array {
                 "projected_at_utc" => ["type" => "timestamp(6)", "nullable" => false, "default" => "CURRENT_TIMESTAMP(6)"],
             ],
             "primary_key" => ["match_uid"],
+            "unique_keys" => [],
+            "indexes" => [
+                "ix_f01_partidas_carreira_temp" => ["carreira_id", "temporada_numero"],
+                "ix_f01_partidas_batch" => ["batch_uid", "sequencia_no_batch"],
+                "ix_f01_partidas_legacy" => ["legacy_match_id"],
+            ],
             "foreign_keys" => [
-                "fk_f01_partidas_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"]],
+                "fk_f01_partidas_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"], "on_delete" => "CASCADE"],
             ],
         ],
         "rumo10_f01_respostas" => [
@@ -109,8 +133,12 @@ function getF01HomologatedSchema(): array {
                 "persisted_at_utc" => ["type" => "timestamp(6)", "nullable" => false, "default" => "CURRENT_TIMESTAMP(6)"],
             ],
             "primary_key" => ["carreira_id", "chave"],
+            "unique_keys" => [
+                "uk_f01_respostas_command" => ["command_uid"],
+            ],
+            "indexes" => [],
             "foreign_keys" => [
-                "fk_f01_respostas_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"]],
+                "fk_f01_respostas_carreira" => ["columns" => ["carreira_id"], "ref_table" => "rumo10_carreiras", "ref_columns" => ["id"], "on_delete" => "CASCADE"],
             ],
         ],
     ];
@@ -166,12 +194,53 @@ function assertF01TableStructure(PDO $db, string $table, array $contract): void 
     need($priCols === $contract['primary_key'],
         "Table `{$table}` PRIMARY KEY mismatch: expected " . json_encode($contract['primary_key']) . ", got " . json_encode($priCols));
 
-    // 3. Validação de Foreign Keys
+    // 3. Validação de Chaves Únicas (UNIQUE) e Índices Secundários via INFORMATION_SCHEMA.STATISTICS
+    $statStmt = $db->prepare("
+        SELECT INDEX_NAME, NON_UNIQUE, COLUMN_NAME, SEQ_IN_INDEX
+        FROM INFORMATION_SCHEMA.STATISTICS
+        WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?
+        ORDER BY INDEX_NAME, SEQ_IN_INDEX
+    ");
+    $statStmt->execute([$currentDb, $table]);
+    $stats = $statStmt->fetchAll(PDO::FETCH_ASSOC);
+    $actualIndexes = [];
+    foreach ($stats as $st) {
+        $idxName = $st['INDEX_NAME'];
+        if ($idxName === 'PRIMARY') continue;
+        if (!isset($actualIndexes[$idxName])) {
+            $actualIndexes[$idxName] = [
+                'unique' => ((int)$st['NON_UNIQUE']) === 0,
+                'columns' => []
+            ];
+        }
+        $actualIndexes[$idxName]['columns'][] = $st['COLUMN_NAME'];
+    }
+
+    // Conferência de UNIQUE keys
+    $expectedUniques = $contract['unique_keys'] ?? [];
+    foreach ($expectedUniques as $uName => $uCols) {
+        need(isset($actualIndexes[$uName]), "Table `{$table}` missing UNIQUE constraint `{$uName}`");
+        need($actualIndexes[$uName]['unique'] === true, "Index `{$uName}` on `{$table}` is not UNIQUE");
+        need($actualIndexes[$uName]['columns'] === $uCols,
+            "Table `{$table}` UNIQUE `{$uName}` columns mismatch: expected " . json_encode($uCols) . ", got " . json_encode($actualIndexes[$uName]['columns']));
+    }
+
+    // Conferência de Índices secundários
+    $expectedIndexes = $contract['indexes'] ?? [];
+    foreach ($expectedIndexes as $idxName => $idxCols) {
+        need(isset($actualIndexes[$idxName]), "Table `{$table}` missing secondary index `{$idxName}`");
+        need($actualIndexes[$idxName]['columns'] === $idxCols,
+            "Table `{$table}` index `{$idxName}` columns mismatch: expected " . json_encode($idxCols) . ", got " . json_encode($actualIndexes[$idxName]['columns']));
+    }
+
+    // 4. Validação de Foreign Keys e regras ON DELETE via KEY_COLUMN_USAGE e REFERENTIAL_CONSTRAINTS
     $fkStmt = $db->prepare("
-        SELECT CONSTRAINT_NAME, COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
-        FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-        WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? AND REFERENCED_TABLE_NAME IS NOT NULL
-        ORDER BY CONSTRAINT_NAME, ORDINAL_POSITION
+        SELECT k.CONSTRAINT_NAME, k.COLUMN_NAME, k.REFERENCED_TABLE_NAME, k.REFERENCED_COLUMN_NAME, r.DELETE_RULE
+        FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE k
+        JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS r 
+          ON k.CONSTRAINT_SCHEMA = r.CONSTRAINT_SCHEMA AND k.CONSTRAINT_NAME = r.CONSTRAINT_NAME AND k.TABLE_NAME = r.TABLE_NAME
+        WHERE k.TABLE_SCHEMA = ? AND k.TABLE_NAME = ? AND k.REFERENCED_TABLE_NAME IS NOT NULL
+        ORDER BY k.CONSTRAINT_NAME, k.ORDINAL_POSITION
     ");
     $fkStmt->execute([$currentDb, $table]);
     $fks = $fkStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -182,7 +251,8 @@ function assertF01TableStructure(PDO $db, string $table, array $contract): void 
             $actualFks[$cname] = [
                 'columns' => [],
                 'ref_table' => $fk['REFERENCED_TABLE_NAME'],
-                'ref_columns' => []
+                'ref_columns' => [],
+                'on_delete' => strtoupper($fk['DELETE_RULE'] ?? 'RESTRICT')
             ];
         }
         $actualFks[$cname]['columns'][] = $fk['COLUMN_NAME'];
@@ -195,6 +265,9 @@ function assertF01TableStructure(PDO $db, string $table, array $contract): void 
             if ($actualFk['ref_table'] === $expFk['ref_table'] &&
                 $actualFk['columns'] === $expFk['columns'] &&
                 $actualFk['ref_columns'] === $expFk['ref_columns']) {
+                $expDelete = strtoupper($expFk['on_delete'] ?? 'CASCADE');
+                need($actualFk['on_delete'] === $expDelete,
+                    "Table `{$table}` foreign key `{$fkName}` ON DELETE rule mismatch: expected {$expDelete}, got {$actualFk['on_delete']}");
                 $found = true;
                 break;
             }
@@ -285,9 +358,64 @@ try {
                 }
             }
 
-            // 2. Executar SQL DDL (com CREATE TABLE IF NOT EXISTS idempotente) se 009 não estiver registrada
+            // 2. Executar SQL DDL se 009 não estiver registrada.
+            // Para suportar recuperação idempotente de DDL parcial sem DROP TABLE, completamos índices/constraints faltantes se a tabela já existir
             if(!in_array('009', $versions, true)) {
                 $db->exec(file_get_contents($sql009Path));
+
+                // Se tabelas pré-existiam com schema parcial compatível, garantir criação de índices e constraints complementares
+                $currentDb = (string)$db->query("SELECT DATABASE()")->fetchColumn();
+                $existingIndexesStmt = $db->prepare("SELECT INDEX_NAME FROM INFORMATION_SCHEMA.STATISTICS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?");
+                
+                // rumo10_f01_partidas
+                $existingIndexesStmt->execute([$currentDb, 'rumo10_f01_partidas']);
+                $partidasIdx = $existingIndexesStmt->fetchAll(PDO::FETCH_COLUMN);
+                if (!in_array('ix_f01_partidas_batch', $partidasIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_partidas ADD INDEX ix_f01_partidas_batch (batch_uid, sequencia_no_batch)");
+                }
+                if (!in_array('ix_f01_partidas_legacy', $partidasIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_partidas ADD INDEX ix_f01_partidas_legacy (legacy_match_id)");
+                }
+
+                // rumo10_f01_aparicoes
+                $existingIndexesStmt->execute([$currentDb, 'rumo10_f01_aparicoes']);
+                $aparicoesIdx = $existingIndexesStmt->fetchAll(PDO::FETCH_COLUMN);
+                if (!in_array('uk_f01_partida_aparicao', $aparicoesIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_aparicoes ADD UNIQUE KEY uk_f01_partida_aparicao (match_uid, appearance_uid)");
+                }
+                if (!in_array('uk_f01_partida_carreira', $aparicoesIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_aparicoes ADD UNIQUE KEY uk_f01_partida_carreira (match_uid, carreira_id)");
+                }
+
+                // rumo10_f01_eventos
+                $existingIndexesStmt->execute([$currentDb, 'rumo10_f01_eventos']);
+                $eventosIdx = $existingIndexesStmt->fetchAll(PDO::FETCH_COLUMN);
+                if (!in_array('uk_f01_eventos_partida_seq', $eventosIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_eventos ADD UNIQUE KEY uk_f01_eventos_partida_seq (match_uid, sequencia_partida)");
+                }
+                if (!in_array('ix_f01_eventos_tipo', $eventosIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_eventos ADD INDEX ix_f01_eventos_tipo (tipo_evento)");
+                }
+                if (!in_array('ix_f01_eventos_carreira', $eventosIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_eventos ADD INDEX ix_f01_eventos_carreira (carreira_id)");
+                }
+
+                // rumo10_f01_outbox
+                $existingIndexesStmt->execute([$currentDb, 'rumo10_f01_outbox']);
+                $outboxIdx = $existingIndexesStmt->fetchAll(PDO::FETCH_COLUMN);
+                if (!in_array('uk_f01_outbox_carreira_chave', $outboxIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_outbox ADD UNIQUE KEY uk_f01_outbox_carreira_chave (carreira_id, chave)");
+                }
+                if (!in_array('ix_f01_outbox_estado', $outboxIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_outbox ADD INDEX ix_f01_outbox_estado (estado, id)");
+                }
+
+                // rumo10_f01_respostas
+                $existingIndexesStmt->execute([$currentDb, 'rumo10_f01_respostas']);
+                $respostasIdx = $existingIndexesStmt->fetchAll(PDO::FETCH_COLUMN);
+                if (!in_array('uk_f01_respostas_command', $respostasIdx, true)) {
+                    $db->exec("ALTER TABLE rumo10_f01_respostas ADD UNIQUE KEY uk_f01_respostas_command (command_uid)");
+                }
 
                 // 3. Validação estrutural rigorosa pós-execução de todas as 5 tabelas F01 contra o contrato homologado
                 foreach ($f01Contract as $tableName => $tContract) {

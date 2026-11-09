@@ -17,5 +17,40 @@
     "app/RetiredCareer.php"
   ],
   "data_contract": "rumo10-development-v3",
-  "first_approved_package_sha256": "8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458"
+  "first_approved_package_sha256": "8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458",
+  "authorized_releases": {
+    "907427dabc363d055ff32ad53853d322639992fb": {
+      "label": "F01 Homologada",
+      "tree": "1cc1c18901fe02c5332d059cf2d0dbee5a7b1781",
+      "data_contract": "rumo10-development-v3",
+      "requires_migration": ["009"],
+      "mandatory_files": {
+        "app/CanonicalIdentity.php": "b95b8525014cbf42113a8d9db07276a69d51449b85d821ebd1560db52f87a9dc",
+        "app/CareerSlots.php": "af6cc42b5cba2deb0701f95a7a48f07aaa44f7043a4bb3de73eb6386e1832a56",
+        "app/Database.php": "e7ad6a575afdd326d8442d58a2b25cf396956af6d3c946d713e14d83d462dc76",
+        "app/F01Drainer.php": "980036c923093688a33bff1b82192682b01019e74e08224995c851089c54476a",
+        "app/F01Telemetry.php": "7f77337dd1329d296d50172d604a378253a833c9de1bda35a7ed1f33932e24b2",
+        "app/Repository.php": "4200bb92106f6931cb3ebc454336677fd1617b1ad4ea997cfd52d70dabde7ec5",
+        "app/bootstrap.php": "1fe123accf27972527e3594613e23cd71eff946eb8b4fca134276f38237f362a",
+        "app/view.php": "1772596df9a81367af01d47ae243b2bbb1f965d07793520d72eede2fe016c170",
+        "database/009-f01-canonical-telemetry.sql": "0cb513015ddd8650885d55677df8717e3c0557838d7f42af904272744a8dda8a",
+        "public/assets/f01-telemetry.js": "d2b8f203da21012c3d1d9138b7b5fd9454e69d49ce126f9a4c8777d67edaaa35",
+        "public/index.php": "e61d3cfc8f586d7cb23171bc71cde45080955a600ab090182bbd5b53f406faa1"
+      }
+    },
+    "f23c2c3be2fbc322daf817fa14346ab02073a97b": {
+      "label": "V8 Homologada",
+      "tree": "cac4535f0e67df336acb3ce9680eeb87fe28b90a",
+      "data_contract": "rumo10-development-v3",
+      "requires_migration": [],
+      "mandatory_files": {
+        "app/CareerSlots.php": "34769a42fa493b706af9bd88d978f0da0296c25dc4f5b5f7bbb4b5ff7cb57add",
+        "app/Database.php": "73b5d85d3311586f0cdef853dd9fe185933b59b96e7c834c384c87ea2ba6ac6c",
+        "app/Repository.php": "32212bf858d9353c987ffc9c1d918edb5c993a55f8b6f0cc9ced11d44bed1696",
+        "app/bootstrap.php": "95a27844a412d1f6354c72f17851aa878f8ee6657b9cd91d983de3386eb84036",
+        "app/view.php": "faf5eceda2cd17826e81079eb475d8ef95818812527e167f657263b5efd40acd",
+        "public/index.php": "b1b3961716b46b7c2fb7940cf0db535c14c22307d673be8048e839cde0c2c8b0"
+      }
+    }
+  }
 }
