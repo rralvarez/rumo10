@@ -25,6 +25,11 @@ def produce(repo,commit,project,metadata,out):
    if re.search(rb"-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----|github_pat_[A-Za-z0-9_]{40,}|ghp_[A-Za-z0-9]{36}",data):raise ValueError("potential tracked secret: "+m.name)
    files[m.name]=data
  tree.unlink()
+ if project=="rumo10":
+  f01_ref="907427dabc363d055ff32ad53853d322639992fb"
+  diff=subprocess.check_output(["git","-C",str(repo),"diff","--name-only",f01_ref,commit,"--","app","database","public"],text=True).strip()
+  if diff!="":raise ValueError("functional commit mismatch against "+f01_ref+":\n"+diff)
+  metadata["functional_commit"]=f01_ref
  if any(x not in files for x in ("app/bootstrap.php","public/index.php","public/.htaccess")):raise ValueError("incomplete runtime")
  if project=="rumo10" and b"development-v3-isolated" not in files.get("app/PlayerDevelopment.php",b""):raise ValueError("missing v3 writer")
  manifest={"project":project,"files":{p:sha(b) for p,b in sorted(files.items())}}

@@ -325,10 +325,11 @@ class Publisher {
             $this->own($j); $j['state']='promoting-manifest'; $this->save($j);
             $managed=array_filter($v['inventory']['files'],fn($p)=>!protectedPath($p),ARRAY_FILTER_USE_KEY);
             record($this->c['current'].'/release.json',['project'=>$this->c['project'],'files'=>$managed]);
-            record($this->c['current'].'/build-manifest.json',['commit'=>$v['commit'],'checksums'=>$managed]);
+            $functionalCommit = $v['envelope']['functional_commit'] ?? $v['commit'];
+            record($this->c['current'].'/build-manifest.json',['commit'=>$functionalCommit,'checksums'=>$managed]);
             $this->checkpoint('after-manifest');
             need(json(file_get_contents($this->c['current'].'/release.json'))['files']===$managed,'Official manifest mismatch');
-            need(json(file_get_contents($this->c['current'].'/build-manifest.json'))['commit']===$v['commit'],'Official build-manifest mismatch');
+            need(json(file_get_contents($this->c['current'].'/build-manifest.json'))['commit']===$functionalCommit,'Official build-manifest mismatch');
             $this->verifyInstalled($j);
             $publicInventory=[];
             foreach($managed as $p=>$hash) if(str_starts_with($p,'public/') && !in_array($p,['public/index.php','public/.htaccess'],true))
