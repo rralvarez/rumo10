@@ -35,9 +35,10 @@ for x in ("good","duplicate","symlink","hardlink","traversal"):fixture(x,None if
 fixture("protected",extra={"storage/saves/private.json":b"do not install","app/clients.php":b"do not install","app/.env":b"do not install"})
 b=(F/"good.tar.gz").read_bytes();(F/"truncated.tar.gz").write_bytes(b[:len(b)//2])
 head="a"*40
+synth_functional="1"*40
 run={"id":100,"repository":{"full_name":"rralvarez/rumo10"},"workflow_id":7,"head_branch":"main","event":"push","status":"completed","conclusion":"success","head_sha":head,"run_number":2,"run_attempt":1}
 jobs=[{"name":"checks","status":"completed","conclusion":"success","head_sha":head,"run_id":100,"steps":[{"conclusion":"success"}]}]
-env={"schema":"rumo-pull-v1","project":"rumo10","repository":"rralvarez/rumo10","commit":head,"workflow_id":7,"run_id":100,"run_attempt":1,"run_number":2,"package_sha256":sha((F/"good.tar.gz").read_bytes()),"data_contracts":["rumo10-development-v3"]}
+env={"schema":"rumo-pull-v1","project":"rumo10","repository":"rralvarez/rumo10","commit":head,"functional_commit":synth_functional,"required_migrations":[],"workflow_id":7,"run_id":100,"run_attempt":1,"run_number":2,"package_sha256":sha((F/"good.tar.gz").read_bytes()),"data_contracts":["rumo10-development-v3"]}
 with zipfile.ZipFile(F/"client.zip","w",zipfile.ZIP_DEFLATED) as z:z.writestr("candidate.json",json.dumps(env));z.write(F/"good.tar.gz","release.tar.gz")
 artifact={"id":200,"name":"release-rumo10-"+head,"expired":False,"digest":"sha256:"+sha((F/"client.zip").read_bytes()),"workflow_run":{"id":100,"head_sha":head}}
 (F/"client.json").write_text(json.dumps({"run":run,"artifact":artifact,"jobs":jobs}))

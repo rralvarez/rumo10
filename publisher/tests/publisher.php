@@ -18,12 +18,14 @@ function rejected(callable $fn,string $reason=''):void {
  throw new RuntimeException('Expected rejection missing: '.$reason);
 }
 function input(string $pkg,string $project='rumo10',int $order=2):array {
+ $synthFunctional = str_repeat('1', 40);
  $run=['id'=>100,'repository'=>['full_name'=>'rralvarez/'.$project],'workflow_id'=>7,'head_branch'=>'main',
  'event'=>'push','status'=>'completed','conclusion'=>'success','head_sha'=>str_repeat('a',40),'run_number'=>$order,'run_attempt'=>1];
  $a=['id'=>200,'name'=>'release-'.$project.'-'.$run['head_sha'],'expired'=>false,'digest'=>'sha256:'.str_repeat('b',64),
  'workflow_run'=>['id'=>100,'head_sha'=>$run['head_sha']]];
  $jobs=[['name'=>'checks','status'=>'completed','conclusion'=>'success','head_sha'=>$run['head_sha'],'run_id'=>100,'_requested_attempt'=>1,'steps'=>[['conclusion'=>'success']]]];
  $e=['schema'=>'rumo-pull-v1','project'=>$project,'repository'=>'rralvarez/'.$project,'commit'=>$run['head_sha'],
+ 'functional_commit'=>$synthFunctional,'required_migrations'=>[],
  'workflow_id'=>7,'run_id'=>100,'run_number'=>$order,'run_attempt'=>1,'package_sha256'=>digest($pkg),
  'data_contracts'=>$project==='rumo10'?['rumo10-development-v3']:['rumohub-writer-v1']];
  return [$pkg,$run,$a,$jobs,$e];
@@ -51,13 +53,28 @@ function fixture(?string $pkg=null,string $project='rumo10'):array {
  $db=new SQLite3($d.'/save.sqlite');$db->exec('CREATE TABLE careers (id INTEGER PRIMARY KEY, state TEXT NOT NULL)');
  $state=['xp'=>12345,'attributes'=>array_fill(0,9,75),'player_development'=>['version'=>'development-v3-isolated','spent'=>400,'received'=>12745]];
  $q=$db->prepare('INSERT INTO careers VALUES(1,:state)');$q->bindValue(':state',json_encode($state));$q->execute();$db->close();
+ $synthFunctional = str_repeat('1', 40);
+ $mandatoryFiles = [];
+ foreach($inv['files'] as $fp => $fh) {
+  if($fp !== 'release.json') $mandatoryFiles[$fp] = $fh;
+ }
  $c=['project'=>$project,'repository'=>'rralvarez/'.$project,'workflow_id'=>7,'branch'=>'main','required_jobs'=>['checks'],
  'private'=>$d.'/private','current'=>$d.'/current','public'=>$d.'/public','control'=>$d.'/control','account_mutex'=>$d.'/account.lock',
  'apply_enabled'=>true,'data_contracts'=>$project==='rumo10'?['rumo10-development-v3']:['rumohub-writer-v1'],
  'baseline_data_contracts'=>$project==='rumo10'?['rumo10-development-v3']:['rumohub-writer-v1'],
  'backup_roots'=>['env'=>$d.'/current/.env','storage'=>$d.'/current/storage'],'php'=>PHP_BINARY,'php_args'=>(PHP_OS_FAMILY==='Windows'?['-n','-d','extension_dir=C:/PHP/php-8.4.26/ext','-d','extension=php_sqlite3.dll']:[]),
  'pinned_controls'=>[$d.'/public/index.php'=>digest($d.'/public/index.php'),$d.'/public/.htaccess'=>digest($d.'/public/.htaccess')],
- 'unmanaged_allowlist'=>['public/user-owned.txt'=>digest($d.'/public/user-owned.txt')],'public_inventory'=>[],'homologation'=>array_fill_keys(['backup','maintenance','recovery','legacy_publishers_fenced'],true),'hooks'=>[]];
+ 'unmanaged_allowlist'=>['public/user-owned.txt'=>digest($d.'/public/user-owned.txt')],'public_inventory'=>[],'homologation'=>array_fill_keys(['backup','maintenance','recovery','legacy_publishers_fenced'],true),'hooks'=>[],
+ 'authorized_releases'=>[
+   $synthFunctional => [
+     'label' => 'Synthetic Test Release',
+     'tree' => str_repeat('0', 40),
+     'data_contract' => 'rumo10-development-v3',
+     'authorized_build_commits' => [str_repeat('a', 40), str_repeat('c', 40)],
+     'requires_migration' => [],
+     'mandatory_files' => $mandatoryFiles
+   ]
+ ]];
  foreach($files as $p=>$h)if(str_starts_with($p,'public/')&&!in_array($p,['public/index.php','public/.htaccess'],true)&&!protectedPath($p))
   $c['public_inventory'][substr($p,7)]=$h;
  foreach(['preflight','maintenance','backup','smoke'] as $h)$c['hooks'][$h]=['script'=>__DIR__.'/hook.php','sha256'=>digest(__DIR__.'/hook.php')];

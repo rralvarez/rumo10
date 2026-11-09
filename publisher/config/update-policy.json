@@ -24,11 +24,11 @@
       "tree": "1cc1c18901fe02c5332d059cf2d0dbee5a7b1781",
       "data_contract": "rumo10-development-v3",
       "authorized_build_commits": [
-        "91aa764cf019c0659baf1f71e84c95af1b1579b7",
-        "a134ab2f6fdebfa2eaa197f6d07370149102614d",
-        "7c121200cb9b02b6cac4503f475abe2dc0ff12b8"
+        "a134ab2f6fdebfa2eaa197f6d07370149102614d"
       ],
-      "requires_migration": ["009"],
+      "requires_migration": [
+        "009"
+      ],
       "mandatory_files": {
         "app/CanonicalIdentity.php": "b95b8525014cbf42113a8d9db07276a69d51449b85d821ebd1560db52f87a9dc",
         "app/CareerSlots.php": "af6cc42b5cba2deb0701f95a7a48f07aaa44f7043a4bb3de73eb6386e1832a56",

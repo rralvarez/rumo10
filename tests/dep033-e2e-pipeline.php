@@ -174,6 +174,9 @@ $f01CandidateJson = $produceDir . '/f01-release/candidate.json';
 $f01CandidateData = json_decode(file_get_contents($f01CandidateJson), true);
 
 $updatePolicy = json_decode(file_get_contents($rootDir . '/publisher/config/update-policy.json'), true);
+if (isset($updatePolicy['authorized_releases'][$f01Sha])) {
+    $updatePolicy['authorized_releases'][$f01Sha]['authorized_build_commits'][] = $headSha;
+}
 
 // Prepara baseline em current
 Package::inspect($f01PackageTarGz, 'rumo10', $opsDir . '/current');

@@ -87,7 +87,9 @@ class Publisher {
         if ($this->c['project']==='rumo10') {
             need(isset($inventory['files']['app/PlayerDevelopment.php']),'v3 writer missing');
             // Política de releases autorizadas: catálogo obrigatório, válido e fail-closed
-            $authorizedReleases = $this->c['update_policy']['authorized_releases'] ?? null;
+            $authorizedReleases = $this->c['authorized_releases']
+                ?? $this->c['update_policy']['authorized_releases']
+                ?? null;
             if ($authorizedReleases === null && is_file(dirname(__DIR__).'/config/update-policy.json')) {
                 $policyFile = json(file_get_contents(dirname(__DIR__).'/config/update-policy.json'));
                 $authorizedReleases = $policyFile['authorized_releases'] ?? null;
