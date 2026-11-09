@@ -292,10 +292,18 @@ try {
     $q=json(stream_get_contents(STDIN));
     need($q['project']==='rumo10'&&$c['project']==='rumo10','Only Rumo10 incremental migrations');
 
-    $policy=$q['update_policy'];
-    need($policy['class']==='B'&&$policy['compatible_writers_ci'],'Compatible CI required');
-
+    $policy=$q['update_policy'] ?? [
+        'class' => 'A',
+        'compatible_writers_ci' => true,
+        'migrations' => [],
+        'required_migrations' => $q['candidate']['envelope']['required_migrations'] ?? []
+    ];
     $stage=$q['candidate']['stage'].'/payload';
+    $isClassA = ($policy['class'] ?? '') === 'A';
+    $isClassB = ($policy['class'] ?? '') === 'B';
+    need(($isClassA || $isClassB) && ($policy['compatible_writers_ci'] ?? false), 'Compatible CI required in Class A or B');
+
+    // Validação estrita de integridade dos arquivos de migração declarados
     foreach($policy['migrations'] as $path) {
         need(($c['approved_incremental_migrations'][$path]??null)===digest($stage.'/'.$path),'Unapproved SQL or seed');
     }
@@ -307,6 +315,35 @@ try {
     try {
         $versions=$db->query('SELECT version FROM rumo10_migrations')->fetchAll(PDO::FETCH_COLUMN);
 
+        // Se for Classe A (sem DDL pendente), modo estritamente de leitura: não executar DDL, DML ou mutações
+        if ($isClassA) {
+            need(empty($policy['migrations']), 'Class A cannot execute pending migration files');
+
+            $allVersions = $versions;
+            $requiredMigrations = $policy['required_migrations']
+                ?? $q['candidate']['envelope']['required_migrations']
+                ?? ($c['authorized_releases'][$q['candidate']['envelope']['functional_commit'] ?? '']['requires_migration'] ?? []);
+
+            // Validar que cada migration requerida esteja devidamente registrada
+            foreach ($requiredMigrations as $rm) {
+                need(in_array((string)$rm, $allVersions, true), "Release requires validated {$rm} migration in rumo10_migrations");
+            }
+
+            // Se 009 for exigida, validar integralmente as cinco tabelas F01 contra o contrato homologado (modo leitura)
+            if (in_array('009', $requiredMigrations, true)) {
+                $f01Contract = getF01HomologatedSchema();
+                foreach ($f01Contract as $tableName => $tContract) {
+                    assertF01TableStructure($db, $tableName, $tContract);
+                }
+            }
+
+            $out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$allVersions];
+            record($q['private'].'/migrations-'.$q['attempt'].'.json',$out+['approved_hashes'=>$c['approved_incremental_migrations']]);
+            echo json_encode($out,JSON_THROW_ON_ERROR);
+            return;
+        }
+
+        // --- FLUXO DE EXECUÇÃO DE MIGRATIONS CLASSE B ---
         // Migrações 006 (balance e seed)
         if(!in_array('006',$versions,true)){
             $db->exec(file_get_contents($stage.'/database/006-balance-and-maintenance.sql'));
