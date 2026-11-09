@@ -103,6 +103,15 @@ class Publisher {
                 'Functional commit not recognized in authorized releases policy: '.$declaredFunctional);
 
             $targetRelease = $authorizedReleases[$declaredFunctional];
+
+            // Vinculação criptográfica do build autorizado
+            if (isset($targetRelease['authorized_build_commits'])) {
+                need(is_array($targetRelease['authorized_build_commits']),
+                    "Release policy for {$declaredFunctional} `authorized_build_commits` must be an array");
+                need(in_array($run['head_sha'], $targetRelease['authorized_build_commits'], true),
+                    "Publication build commit not authorized for release {$declaredFunctional}: {$run['head_sha']}");
+            }
+
             $mandatory = $targetRelease['mandatory_files'] ?? [];
             need(is_array($mandatory) && !empty($mandatory),
                 'Mandatory files specification missing in release policy ('.$declaredFunctional.')');
