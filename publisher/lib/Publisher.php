@@ -86,6 +86,29 @@ class Publisher {
         $inventory=Package::inspect($package,$this->c['project']);
         if ($this->c['project']==='rumo10') {
             need(isset($inventory['files']['app/PlayerDevelopment.php']),'v3 writer missing');
+            // Validação e preservação estrita da proveniência funcional F01 homologada
+            $expectedF01Commit = '907427dabc363d055ff32ad53853d322639992fb';
+            $declaredFunctional = $envelope['functional_commit'] ?? null;
+            need(is_string($declaredFunctional) && preg_match('/^[a-f0-9]{40}$/D', $declaredFunctional) === 1, 'Functional provenance missing or malformed');
+            need($declaredFunctional === $expectedF01Commit, 'Functional provenance mismatch against homologated F01: '.$declaredFunctional);
+
+            $f01MandatoryHashes = [
+                'app/CanonicalIdentity.php' => 'b95b8525014cbf42113a8d9db07276a69d51449b85d821ebd1560db52f87a9dc',
+                'app/CareerSlots.php' => 'af6cc42b5cba2deb0701f95a7a48f07aaa44f7043a4bb3de73eb6386e1832a56',
+                'app/Database.php' => 'e7ad6a575afdd326d8442d58a2b25cf396956af6d3c946d713e14d83d462dc76',
+                'app/F01Drainer.php' => '980036c923093688a33bff1b82192682b01019e74e08224995c851089c54476a',
+                'app/F01Telemetry.php' => '7f77337dd1329d296d50172d604a378253a833c9de1bda35a7ed1f33932e24b2',
+                'app/Repository.php' => '4200bb92106f6931cb3ebc454336677fd1617b1ad4ea997cfd52d70dabde7ec5',
+                'app/bootstrap.php' => '1fe123accf27972527e3594613e23cd71eff946eb8b4fca134276f38237f362a',
+                'app/view.php' => '1772596df9a81367af01d47ae243b2bbb1f965d07793520d72eede2fe016c170',
+                'database/009-f01-canonical-telemetry.sql' => '0cb513015ddd8650885d55677df8717e3c0557838d7f42af904272744a8dda8a',
+                'public/assets/f01-telemetry.js' => 'd2b8f203da21012c3d1d9138b7b5fd9454e69d49ce126f9a4c8777d67edaaa35',
+                'public/index.php' => 'e61d3cfc8f586d7cb23171bc71cde45080955a600ab090182bbd5b53f406faa1'
+            ];
+            foreach ($f01MandatoryHashes as $path=>$expectedHash) {
+                need(isset($inventory['files'][$path]) && $inventory['files'][$path] === $expectedHash,
+                    'Package content diverged from homologated functional F01 baseline: '.$path);
+            }
         }
         // Persist only validation fields, never actor/author/commit-message or arbitrary API metadata.
         $run=array_intersect_key($run,array_flip(['id','workflow_id','head_branch','event','status','conclusion','head_sha','run_number','run_attempt','repository']));
@@ -98,7 +121,7 @@ class Publisher {
             $j['steps']=array_map(fn($step)=>['conclusion'=>$step['conclusion']??null],$j['steps']??[]);
             return $j;
         },$jobs);
-        $envelope=array_intersect_key($envelope,array_flip(['schema','project','repository','commit','workflow_id','run_id','run_number','run_attempt','package_sha256','data_contracts']));
+        $envelope=array_intersect_key($envelope,array_flip(['schema','project','repository','commit','workflow_id','run_id','run_number','run_attempt','package_sha256','data_contracts','functional_commit']));
         return ['run_number'=>$run['run_number'],'commit'=>$run['head_sha'],'artifact_id'=>$artifact['id'],
             'package_sha256'=>$envelope['package_sha256'],'artifact_digest'=>$artifact['digest'],
             'data_contracts'=>$envelope['data_contracts'],'inventory'=>$inventory,
@@ -277,6 +300,9 @@ class Publisher {
             $this->own($j);$j['state']='migrating';$this->save($j);
             $receipt=$this->hook('migrate',$request+['attempt'=>$id]);
             need(($receipt['compatible_expansion']??false)===true,'Incremental migration proof missing');
+            if ($this->c['project']==='rumo10') {
+                need(in_array('009', $receipt['versions']??[], true), 'F01 installation requires version 009 confirmed in migration receipt');
+            }
             $j['migration_receipt']=$receipt;$j['state']='installing';$this->save($j);
         }
             foreach ($j['operations'] as $i=>&$op) {
