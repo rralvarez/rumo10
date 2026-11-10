@@ -10,7 +10,7 @@ def permitted(p,project):
  if p.startswith(("database/production/","public/assets/clubs/")) or p=="public/web.config":return False
  if project=="rumo10" and (p.startswith("database/rosters/") or p=="database/player-catalog.json"):return False
  return True
-def produce(repo,commit,project,metadata,out):
+def produce(repo,commit,project,metadata,out,*,functional_reference=None):
  if not re.fullmatch("[a-f0-9]{40}",commit):raise ValueError("full commit SHA required")
  actual=subprocess.check_output(["git","-C",str(repo),"rev-parse",commit+"^{commit}"],text=True).strip()
  if actual!=commit:raise ValueError("commit mismatch")
@@ -25,7 +25,12 @@ def produce(repo,commit,project,metadata,out):
    if re.search(rb"-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----|github_pat_[A-Za-z0-9_]{40,}|ghp_[A-Za-z0-9]{36}",data):raise ValueError("potential tracked secret: "+m.name)
    files[m.name]=data
  tree.unlink()
- if project=="rumo10":
+ if project=="rumo10" and functional_reference is not None:
+  actual_reference=subprocess.check_output(["git","-C",str(repo),"rev-parse",functional_reference+"^{commit}"],text=True).strip()
+  if actual_reference!=functional_reference:raise ValueError("Exact functional reference required")
+  subprocess.run(["git","-C",str(repo),"diff","--quiet",functional_reference,commit,"--","app","database","public","run_tests_f01.php"],check=True)
+  metadata=dict(metadata, functional_commit=functional_reference)
+ elif project=="rumo10":
   policy_path=pathlib.Path(repo)/"publisher"/"config"/"update-policy.json"
   authorized_releases={}
   if policy_path.is_file():
