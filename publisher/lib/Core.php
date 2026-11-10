@@ -152,12 +152,15 @@ final class Evidence {
     public static function validate(array $c,array $m, array $a,array $jobs,array $e): void {
         need(($m['repository']['full_name']??null)===$c['repository'],'Wrong repository');
         need(($m['workflow_id']??null)===$c['workflow_id'],'Wrong workflow');
-        need(($m['head_branch']??null)===$c['branch'] && ($m['event']??null)==='push','Unauthorized branch/event');
+        $channel=$c['release_channel']??null;
+        $recovery=$channel==='recovery-v8';
+        need(($m['head_branch']??null)===$c['branch'] &&
+             ($m['event']??null)===($recovery?'workflow_dispatch':'push'),'Unauthorized branch/event');
         need(($m['status']??null)==='completed' && ($m['conclusion']??null)==='success','Unsuccessful run');
         need(preg_match('/^[a-f0-9]{40}$/D',$m['head_sha']??'')===1,'Invalid commit SHA');
         need(($a['workflow_run']['id']??null)===$m['id'] &&
              ($a['workflow_run']['head_sha']??null)===$m['head_sha'],'Artifact/run binding failed');
-        need(($a['name']??null)==='release-'.$c['project'].'-'.$m['head_sha'] &&
+        need(($a['name']??null)===($recovery?'recovery-v8-':'release-').$c['project'].'-'.$m['head_sha'] &&
             ($a['expired']??true)===false,'Wrong/expired artifact');
         need(preg_match('/^sha256:[a-f0-9]{64}$/D',$a['digest']??'')===1,'Missing artifact digest');
         need(($e['project']??null)===$c['project'] && ($e['repository']??null)===$c['repository'] &&
@@ -166,6 +169,23 @@ final class Evidence {
             ($e['workflow_id']??null)===$m['workflow_id'],'Envelope provenance mismatch');
         need(($e['run_number']??null)===$m['run_number'],'Envelope order mismatch');
         need(($e['schema']??null)==='rumo-pull-v1','Unsupported envelope');
+        need(($e['release_channel']??null)===$channel,'Release channel mismatch');
+        if($channel!==null){
+            need($c['branch']==='main' && $c['project']==='rumo10' && in_array($channel,['main','recovery-v8'],true),
+                'Invalid production channel profile');
+            $required=$recovery?['recovery-artifact']:['syntax','regression','compatibility','publisher-safety','rumo10-ci-gate','artifact'];
+            need(!array_diff($required,$c['required_jobs']),'Required channel job policy incomplete');
+            if($recovery){
+                need(($c['recovery_run_id']??null)===$m['id'] && ($c['recovery_artifact_id']??null)===$a['id'] &&
+                    ($c['recovery_package_sha256']??null)===($e['package_sha256']??null) &&
+                    ($e['source_commit']??null)==='baeec12bc0153980e4fdce31d897343ed753214d' &&
+                    ($e['functional_commit']??null)==='f23c2c3be2fbc322daf817fa14346ab02073a97b',
+                    'V8 recovery not explicitly authorized');
+            }else{
+                need(($e['source_commit']??null)===$m['head_sha'] && is_int($m['merged_pr']??null) && $m['merged_pr']>0,
+                    'Merged main PR or source binding missing');
+            }
+        }
         foreach ($c['required_jobs'] as $required) {
             $found=array_values(array_filter($jobs,fn($j)=>($j['name']??null)===$required));
             need(count($found)===1 && ($found[0]['conclusion']??null)==='success' &&

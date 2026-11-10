@@ -57,18 +57,35 @@ class GitHub {
         need($r['status']===200,'GitHub API status '.$r['status']); return json($r['body']);
     }
     public function discover(): array {
+        need(($this->c['release_channel']??null)!=='recovery-v8','V8 recovery requires explicit selection');
         $base='/repos/'.$this->c['repository'].'/actions';
         $r=$this->api($base.'/workflows/'.$this->c['workflow_id'].'/runs?branch='.rawurlencode($this->c['branch']).'&event=push&status=success&per_page=100');
         $runs=$r['workflow_runs']??[];
         need(count($runs)>0,'No successful authorized workflow run');
         usort($runs,fn($a,$b)=>$b['run_number']<=>$a['run_number']);
         $run=$runs[0];
+        $this->assertMainTip($run['head_sha']);
         $a=$this->api($base.'/runs/'.$run['id'].'/artifacts?per_page=100');
         need(($a['total_count']??0)<=100,'Artifact discovery pagination bound; choose explicit IDs');
         $name='release-'.$this->c['project'].'-'.$run['head_sha'];
         $found=array_values(array_filter($a['artifacts']??[],fn($v)=>$v['name']===$name && !$v['expired']));
         need(count($found)===1,'No unique artifact for latest successful run; no fallback to old run');
         return [$run['id'],$found[0]['id']];
+    }
+    public function assertMainTip(string $head): void {
+        if(($this->c['release_channel']??null)!=='main')return;
+        $ref=$this->api('/repos/'.$this->c['repository'].'/git/ref/heads/main');
+        need(($ref['object']['sha']??null)===$head,'Latest main commit has no eligible candidate');
+    }
+    private function mergedMainPr(string $head): int {
+        $repo=$this->c['repository'];
+        $pulls=$this->api('/repos/'.$repo.'/commits/'.$head.'/pulls?per_page=100');
+        $matches=array_values(array_filter($pulls,static fn($pr)=>
+            ($pr['base']['repo']['full_name']??null)===$repo && ($pr['base']['ref']??null)==='main' &&
+            ($pr['merge_commit_sha']??null)===$head && !empty($pr['merged_at']) &&
+            ($pr['state']??null)==='closed' && is_int($pr['number']??null) && $pr['number']>0));
+        need(count($matches)===1,'Exact merged main PR not found');
+        return $matches[0]['number'];
     }
     public function assertDescendant(string $base,string $head): void {
         need(preg_match('/^[a-f0-9]{40}$/D',$base)===1 && preg_match('/^[a-f0-9]{40}$/D',$head)===1,'Trusted baseline commit required');
@@ -96,7 +113,15 @@ class GitHub {
         privateDir($dir);
         [$run,$artifact,$jobs]=$this->evidence($runId,$artifactId);
         $checkpoint=is_file($this->c['private'].'/installed.json')?json(file_get_contents($this->c['private'].'/installed.json')):null;
-        $this->assertDescendant($checkpoint['commit']??($this->c['baseline_commit']??''),$run['head_sha']);
+        $channel=$this->c['release_channel']??null;
+        if($channel==='recovery-v8'){
+            need(($this->c['recovery_run_id']??null)===$runId && ($this->c['recovery_artifact_id']??null)===$artifactId,
+                'V8 recovery requires private run and artifact pins');
+        }else{
+            $previous=$checkpoint['last_main_commit']??$checkpoint['commit']??$this->c['baseline_commit']??'';
+            $this->assertDescendant($previous,$run['head_sha']);
+            $this->assertMainTip($run['head_sha']);
+        }
         $path=$this->c['workflow_path']??'';
         need(preg_match('#^\.github/workflows/[a-zA-Z0-9_.-]+\.ya?ml$#D',$path)===1,'Pinned workflow path required');
         $definition=$this->api('/repos/'.$this->c['repository'].'/contents/'.$path.'?ref='.$run['head_sha']);
@@ -119,6 +144,10 @@ class GitHub {
         need($ok && digest($zip)===$match[1],'Artifact ZIP digest mismatch');
         [$after,$a2,$j2]=$this->evidence($runId,$artifactId);
         need($after===$run && $a2===$artifact && $j2===$jobs,'GitHub source changed during download');
+        if($channel==='main'){
+            $this->assertMainTip($run['head_sha']);
+            $run['merged_pr']=$this->mergedMainPr($run['head_sha']);
+        }
         // PharData reads ZIP; do not extract archive-controlled paths.
         $zipFinal=$dir.'/artifact-'.$artifactId.'.zip';
         need(rename($zip,$zipFinal),'Cannot commit downloaded archive');

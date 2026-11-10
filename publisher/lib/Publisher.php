@@ -79,7 +79,30 @@ class Publisher {
         Evidence::validate($this->c,$run,$artifact,$jobs,$envelope);
         need(digest($package)===$envelope['package_sha256'],'Package digest mismatch');
         $installed=is_file($this->private.'/installed.json')?json(file_get_contents($this->private.'/installed.json')):null;
-        if ($installed!==null) {
+        $channel=$this->c['release_channel']??null;
+        $f01='907427dabc363d055ff32ad53853d322639992fb';
+        $v8='f23c2c3be2fbc322daf817fa14346ab02073a97b';
+        $recovery=$channel==='recovery-v8';
+        if(($installed['release_channel']??null)==='recovery-v8'){
+            need($channel!==null,'Legacy publication paused after V8 recovery');
+        }
+        if($recovery){
+            need(($installed['functional_commit']??null)===$f01 ||
+                (($installed['release_channel']??null)==='recovery-v8' && ($installed['artifact_id']??null)===$artifact['id'] &&
+                 ($installed['package_sha256']??null)===$envelope['package_sha256']),
+                'V8 recovery requires the installed homologated F01');
+        }
+        if($channel==='main'){
+            need($installed!==null,'Main release requires a verified installation checkpoint');
+            if(($installed['release_channel']??null)==='recovery-v8'){
+                need(($this->c['resume_after_recovery_artifact_id']??null)===$installed['artifact_id'],
+                    'Main publication paused after V8 recovery');
+                need(is_int($installed['last_main_run_number']??null) &&
+                    $run['run_number']>$installed['last_main_run_number'] &&
+                    $run['head_sha']!==($installed['last_main_commit']??null),'Main replay refused after V8 recovery');
+            }
+        }
+        if ($installed!==null && !$recovery && ($installed['release_channel']??null)!=='recovery-v8') {
             need($run['run_number'] >= $installed['run_number'],'Downgrade/late run refused');
             if ($run['run_number']===$installed['run_number']) need($installed['artifact_id']===$artifact['id'] &&
                 $installed['package_sha256']===$envelope['package_sha256'],'Replaced same-order candidate refused');
@@ -94,7 +117,7 @@ class Publisher {
             $authorizedReleases = $this->c['authorized_releases']
                 ?? $this->c['update_policy']['authorized_releases']
                 ?? null;
-            if ($authorizedReleases === null && is_file(dirname(__DIR__).'/config/update-policy.json')) {
+            if ($channel===null && $authorizedReleases === null && is_file(dirname(__DIR__).'/config/update-policy.json')) {
                 $policyFile = json(file_get_contents(dirname(__DIR__).'/config/update-policy.json'));
                 $authorizedReleases = $policyFile['authorized_releases'] ?? null;
             }
@@ -105,6 +128,26 @@ class Publisher {
             $declaredFunctional = $envelope['functional_commit'] ?? null;
             need(is_string($declaredFunctional) && preg_match('/^[a-f0-9]{40}$/D', $declaredFunctional) === 1,
                 'Functional provenance missing or malformed');
+            if($channel==='main')need($declaredFunctional!==$v8,'Recovery runtime not eligible for main publication');
+            $initialMain=$channel==='main' && ($installed['release_channel']??null)!=='main';
+            if($initialMain){
+                need($declaredFunctional===$f01 && ($installed['functional_commit']??$installed['commit'])===$v8,
+                    'First main installation requires the pinned V8 to F01 transition');
+                need(($this->c['bootstrap_run_id']??null)===$run['id'] &&
+                    ($this->c['bootstrap_artifact_id']??null)===$artifact['id'] &&
+                    ($this->c['bootstrap_package_sha256']??null)===$envelope['package_sha256'],
+                    'First main artifact not explicitly authorized');
+            }
+            $delegated=$channel==='main' && !$initialMain && ($this->c['delegate_main']??false)===true;
+            if($delegated && $declaredFunctional!==$f01){
+                $migration='database/009-f01-canonical-telemetry.sql';
+                $hash=$this->c['update_policy']['approved_incremental_migrations'][$migration]??null;
+                need($declaredFunctional===$run['head_sha'] && $declaredFunctional!==$v8 &&
+                    is_string($hash) && preg_match('/^[a-f0-9]{64}$/D',$hash)===1,
+                    'Delegated release identity or private migration pin missing');
+                $authorizedReleases[$declaredFunctional]=['authorized_build_commits'=>[$run['head_sha']],
+                    'mandatory_files'=>[$migration=>$hash],'requires_migration'=>['009']];
+            }
             need(isset($authorizedReleases[$declaredFunctional]) && is_array($authorizedReleases[$declaredFunctional]),
                 'Functional commit not recognized in authorized releases policy: '.$declaredFunctional);
 
@@ -120,6 +163,7 @@ class Publisher {
                 need(is_string($bc) && preg_match('/^[a-f0-9]{40}$/D', $bc) === 1,
                     "Invalid build commit SHA format in release policy ({$declaredFunctional}): " . var_export($bc, true));
             }
+            if($delegated && $declaredFunctional===$f01)$authorizedBuildCommits[]=$run['head_sha'];
             need(in_array($run['head_sha'], $authorizedBuildCommits, true),
                 "Publication build commit not authorized for release {$declaredFunctional}: {$run['head_sha']}");
 
@@ -129,6 +173,11 @@ class Publisher {
             foreach ($mandatory as $path => $expectedHash) {
                 need(isset($inventory['files'][$path]) && $inventory['files'][$path] === $expectedHash,
                     'Package content diverged from authorized release baseline ('.$declaredFunctional.'): '.$path);
+            }
+            if($channel!==null && in_array($declaredFunctional,[$f01,$v8],true)){
+                $pin=$this->c['update_policy']['authorized_releases'][$declaredFunctional]['runtime_inventory_sha256']??null;
+                need(is_string($pin) && hash_equals($pin,self::inventoryDigest($inventory['files'])),
+                    'Channel runtime inventory does not match homologated release');
             }
             
             // ExigÃªncia fail-closed estrita de requires_migration
@@ -149,7 +198,7 @@ class Publisher {
             $trustedRequiredMigrations = array_values(array_unique($trustedRequiredMigrations));
 
             // Invariante de seguranÃ§a mandatÃ³ria da F01: migration 009 obrigatÃ³ria
-            if ($declaredFunctional === '907427dabc363d055ff32ad53853d322639992fb') {
+            if ($declaredFunctional === $f01 || $channel==='main') {
                 need(in_array('009', $trustedRequiredMigrations, true),
                     "Release F01 ({$declaredFunctional}) strictly requires migration `009`");
             }
@@ -168,7 +217,7 @@ class Publisher {
             $envelope['required_migrations'] = $trustedRequiredMigrations;
         }
         // Persist only validation fields, never actor/author/commit-message or arbitrary API metadata.
-        $run=array_intersect_key($run,array_flip(['id','workflow_id','head_branch','event','status','conclusion','head_sha','run_number','run_attempt','repository']));
+        $run=array_intersect_key($run,array_flip(['id','workflow_id','head_branch','event','status','conclusion','head_sha','run_number','run_attempt','repository','merged_pr']));
         $run['repository']=['full_name'=>$run['repository']['full_name']];
         $artifact=array_intersect_key($artifact,array_flip(['id','name','expired','digest','workflow_run']));
         $artifact['workflow_run']=array_intersect_key($artifact['workflow_run'],array_flip(['id','head_sha']));
@@ -178,7 +227,7 @@ class Publisher {
             $j['steps']=array_map(fn($step)=>['conclusion'=>$step['conclusion']??null],$j['steps']??[]);
             return $j;
         },$jobs);
-        $envelope=array_intersect_key($envelope,array_flip(['schema','project','repository','commit','workflow_id','run_id','run_number','run_attempt','package_sha256','data_contracts','functional_commit','required_migrations']));
+        $envelope=array_intersect_key($envelope,array_flip(['schema','project','repository','commit','workflow_id','run_id','run_number','run_attempt','package_sha256','data_contracts','functional_commit','required_migrations','source_commit','release_channel']));
         return ['run_number'=>$run['run_number'],'commit'=>$run['head_sha'],'artifact_id'=>$artifact['id'],
             'package_sha256'=>$envelope['package_sha256'],'artifact_digest'=>$artifact['digest'],
             'data_contracts'=>$envelope['data_contracts'],'inventory'=>$inventory,
@@ -282,6 +331,17 @@ class Publisher {
     private function transitionPolicy(array $old,array $v,?string $from): array {
         $policy=$this->c['update_policy'];
         $to=$v['envelope']['functional_commit']??null;
+        $channel=$v['envelope']['release_channel']??null;
+        if($channel==='main' && $from===null){
+            foreach(array_unique(array_merge(array_keys($old['files']),array_keys($v['inventory']['files']))) as $path){
+                if(preg_match('#^(?:bin/|deploy/|public/index\.php$)#D',$path)===1){
+                    need(($old['files'][$path]??null)===($v['inventory']['files'][$path]??null),
+                        'Main release modifies a protected operational path: '.$path);
+                }
+            }
+        }
+        if($channel==='recovery-v8')need($from==='907427dabc363d055ff32ad53853d322639992fb',
+            'V8 recovery lacks a verified F01 source');
         if($from!==null && $to!==null && isset($policy['authorized_transitions'][$from.':'.$to])) {
             foreach([[$from,$old['files']],[$to,$v['inventory']['files']]] as [$commit,$files]) {
                 $pin=$policy['authorized_releases'][$commit]['runtime_inventory_sha256']??null;
@@ -289,6 +349,7 @@ class Publisher {
             }
         }
         $result=UpdatePolicy::assess($old,$v['inventory'],$policy,$v['jobs'],$from,$to);
+        if($channel!==null)$result['requires_full_drain']=true;
         $result['required_migrations']=$v['envelope']['required_migrations']??[];
         return $result;
     }
@@ -479,9 +540,16 @@ class Publisher {
             $publicInventory=[];
             foreach($managed as $p=>$hash) if(str_starts_with($p,'public/') && !in_array($p,['public/index.php','public/.htaccess'],true))
                 $publicInventory[substr($p,7)]=$hash;
+            $previous=[];
+            if(($v['envelope']['release_channel']??null)==='recovery-v8'){
+                $prior=json(file_get_contents($this->private.'/installed.json'));
+                $previous=['last_main_run_number'=>$prior['last_main_run_number']??$prior['run_number'],
+                    'last_main_commit'=>$prior['last_main_commit']??$prior['commit']];
+            }
             record($this->private.'/installed.json',array_intersect_key($v,array_flip(['commit','run_number','artifact_id','package_sha256','data_contracts']))+
                 ['functional_commit'=>$functionalCommit,'manifest_sha256'=>digest($this->c['current'].'/release.json'),
-                 'build_manifest_sha256'=>digest($this->c['current'].'/build-manifest.json'),'public_inventory'=>$publicInventory]);
+                 'release_channel'=>$v['envelope']['release_channel']??null,'source_commit'=>$v['envelope']['source_commit']??$v['commit'],
+                 'build_manifest_sha256'=>digest($this->c['current'].'/build-manifest.json'),'public_inventory'=>$publicInventory]+$previous);
             $j['state']='validated'; $this->save($j); $this->checkpoint('before-unlock');
             $this->own($j); need(unlink($this->marker()),'Cannot release own maintenance lock');
             return ['state'=>'validated','commit'=>$v['commit']];

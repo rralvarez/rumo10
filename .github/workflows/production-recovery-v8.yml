@@ -1,0 +1,38 @@
+name: Rumo10 V8 contingency artifact
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: rumo10-recovery-v8
+  cancel-in-progress: false
+jobs:
+  recovery-artifact:
+    if: ${{ github.ref == 'refs/heads/main' && github.repository == 'rralvarez/rumo10' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: baeec12bc0153980e4fdce31d897343ed753214d
+          fetch-depth: 0
+          persist-credentials: false
+          path: source
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: b859e81709b382be9d9e34a52378654e5cd78e9a
+          persist-credentials: false
+          path: trusted
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api repos/rralvarez/rumo10/actions/runs/"$GITHUB_RUN_ID" > /tmp/run.json
+      - run: python trusted/publisher/bin/main-release.py source /tmp/run.json /tmp/recovery --recovery
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: recovery-v8-rumo10-${{ github.sha }}
+          path: |
+            /tmp/recovery/candidate.json
+            /tmp/recovery/release.tar.gz
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 90

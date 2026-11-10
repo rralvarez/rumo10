@@ -13,7 +13,9 @@ try {
     $mode=$opts['mode']; need(in_array($mode,['verify-only','stage','apply'],true),'Unknown mode');
     $configPath=$opts['config']; need(is_file($configPath) && !is_link($configPath),'Private config required');
     if(PHP_OS_FAMILY!=='Windows')need((fileperms($configPath)&0077)===0,'Config must be 0600');
-    $c=json(file_get_contents($configPath)); $publisher=new Publisher($c); $publisher->acquire();
+    $c=json(file_get_contents($configPath));
+    need(!isset($c['release_channel']),'Production channels require controlled-pull.php');
+    $publisher=new Publisher($c); $publisher->acquire();
     if($mode==='apply') {
         need(($c['apply_enabled']??false)===true,'apply disabled by default');
         if(isset($opts['recover'])) $result=$publisher->recover();

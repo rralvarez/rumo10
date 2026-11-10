@@ -13,16 +13,20 @@ $c=['project'=>'rumo10','repository'=>'rralvarez/rumo10','branch'=>'main','workf
  'workflow_path'=>'.github/workflows/release.yml','workflow_sha256'=>hash('sha256','trusted workflow')];
 class MockClient extends GitHub {
  public array $meta;public string $scenario='ok';public int $calls=0;public array $observations=[];
+ public string $zip=__DIR__.'/fixtures/client.zip';
  protected function request(string $url,bool $auth,int $limit,?string $out=null):array {
   self::checkUrl($url,$auth);$this->observations[]=[$auth,parse_url($url,PHP_URL_HOST)];
   if(str_contains($url,'blob.core.windows.net')){
    if($this->scenario==='partial') {file_put_contents($out,'partial');throw new RuntimeException('injected EOF');}
    if($this->scenario==='expired' && $this->calls++===0)return ['status'=>403,'body'=>'','headers'=>[],'bytes'=>0];
-   copy(__DIR__.'/fixtures/client.zip',$out);
+   copy($this->zip,$out);
    return ['status'=>200,'body'=>'','headers'=>[],'bytes'=>filesize($out)];
   }
   if(str_ends_with($url,'/zip'))return ['status'=>302,'headers'=>['location'=>'https://synthetic.blob.core.windows.net/artifact?short-lived'],'body'=>'','bytes'=>0];
   if(str_contains($url,'/contents/'))$v=['encoding'=>'base64','content'=>base64_encode($this->scenario==='workflow-drift'?'untrusted workflow':'trusted workflow')];
+  elseif(str_ends_with($url,'/git/ref/heads/main'))$v=['object'=>['sha'=>$this->scenario==='newer-main'?str_repeat('c',40):$this->meta['run']['head_sha']]];
+  elseif(str_contains($url,'/pulls?'))$v=$this->scenario==='no-pr'?[]:[['number'=>18,'state'=>'closed','merged_at'=>'2026-11-10T00:00:00Z',
+   'base'=>['ref'=>'main','repo'=>['full_name'=>'rralvarez/rumo10']],'merge_commit_sha'=>$this->meta['run']['head_sha']]];
   elseif(str_contains($url,'/compare/'))$v=['status'=>$this->scenario==='diverged'?'diverged':'ahead','merge_base_commit'=>['sha'=>str_repeat('b',40)]];
   elseif(str_contains($url,'/workflows/') && str_contains($url,'/runs?'))$v=['workflow_runs'=>[$this->meta['run']]];
   elseif(str_contains($url,'/runs/100/artifacts?'))$v=['total_count'=>1,'artifacts'=>[$this->meta['artifact']]];
@@ -55,6 +59,34 @@ check('duplicate outer ZIP rejected',fn()=>rejected(fn()=>inspectArtifactZip(__D
 check('outer ZIP traversal rejected',fn()=>rejected(fn()=>inspectArtifactZip(__DIR__.'/fixtures/traversal.zip')));
 check('automatic discovery binds latest successful run to unique artifact',function(){
  $p=client();yes($p->discover()===[100,200]);
+});
+check('main discovery waits for the latest main SHA',function()use($c,$meta){
+ $p=new MockClient($c+['release_channel'=>'main']);$p->meta=$meta;
+ yes($p->discover()===[100,200]);
+ $p->scenario='newer-main';rejected(fn()=>$p->discover());
+});
+check('recovery profile has no automatic discovery',function()use($c,$meta){
+ $p=new MockClient($c+['release_channel'=>'recovery-v8']);$p->meta=$meta;
+ rejected(fn()=>$p->discover());yes($p->observations===[]);
+});
+check('main fetch attaches merged PR from API and blocks wrong workflow bytes',function()use($c,$meta,$root){
+ $names=['syntax','regression','compatibility','publisher-safety','rumo10-ci-gate','artifact'];
+ $normal=array_replace($c,['release_channel'=>'main','required_jobs'=>$names]);
+ $p=new MockClient($normal);$p->meta=$meta;
+ $p->zip=$root.'/main.zip';
+ $original=new PharData(__DIR__.'/fixtures/client.zip');
+ $e=json_decode($original['candidate.json']->getContent(),true);
+ $e['release_channel']='main';$e['source_commit']=$e['commit'];
+ $zip=new PharData($p->zip);
+ $zip['candidate.json']=json_encode($e);
+ $zip['release.tar.gz']=$original['release.tar.gz']->getContent();
+ unset($zip);
+ $p->meta['artifact']['digest']='sha256:'.digest($p->zip);
+ $p->meta['jobs']=array_map(fn($name)=>array_replace($meta['jobs'][0],['name'=>$name]),$names);
+ $result=$p->fetch(100,200,$root.'/main-ok');
+ yes($result[1]['merged_pr']===18);
+ $p->scenario='no-pr';rejected(fn()=>$p->fetch(100,200,$root.'/main-no-pr'));
+ $p->scenario='workflow-drift';rejected(fn()=>$p->fetch(100,200,$root.'/main-workflow-drift'));
 });
 $failed=count(array_filter($results,fn($r)=>$r['status']==='FAIL'));
 record(dirname(__DIR__).'/evidence/client-tests.json',['results'=>$results,'passed'=>count($results)-$failed,'failed'=>$failed,'live_requests'=>0]);

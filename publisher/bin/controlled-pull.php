@@ -17,12 +17,27 @@ try {
     $c=json(file_get_contents($configPath)); $publisher=!isset($c['update_policy'])||($c['request_gate']['coverage_approved']??false)===true?new DrainPublisher($c):new Publisher($c); $publisher->acquire();
     if($mode==='apply') {
         need(($c['apply_enabled']??false)===true,'apply disabled by default');
+        $channel=$c['release_channel']??null;
+        if($channel!==null)need($publisher instanceof DrainPublisher && isset($c['update_policy']),
+            'Production channel requires a private drain policy');
         if(isset($opts['recover'])) $result=$publisher->recover();
         elseif(isset($opts['discover'])) {
             $source=new GitHub($c); $ids=$source->discover();
             $input=$source->fetch($ids[0],$ids[1],$c['private'].'/downloads');
-            $staged=$publisher->stage(...$input); $result=$publisher->apply($staged['stage']);
-        } else $result=$publisher->apply($opts['stage']??'');
+            $staged=$publisher->stage(...$input);
+            $source->assertMainTip($staged['commit']);
+            $result=$publisher->apply($staged['stage']);
+        } else {
+            $stage=$opts['stage']??'';
+            if($channel==='main'){
+                $path=realpath($stage);
+                need($path!==false && str_starts_with(str_replace('\\','/',$path),
+                    str_replace('\\','/',realpath($c['private'])).'/stage-'),'Stage outside private root');
+                $ready=json(file_get_contents($path.'/ready.json'));
+                (new GitHub($c))->assertMainTip($ready['run']['head_sha']);
+            }
+            $result=$publisher->apply($stage);
+        }
     } else {
         $source=new GitHub($c);
         $ids=isset($opts['discover'])?$source->discover():[(int)($opts['run']??0),(int)($opts['artifact']??0)];

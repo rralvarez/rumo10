@@ -12,7 +12,7 @@ if opts.project:
  module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
  sha0=subprocess.check_output(['git','-C',str(opts.source),'rev-parse','HEAD'],text=True).strip()
  out=ROOT/'tests'/('ci-representative-'+str(time.time_ns()))
- module.produce(opts.source,sha0,opts.project,{'repository':'rralvarez/'+opts.project,'workflow_id':7,'run_id':100,'run_number':2,'run_attempt':1,'data_contracts':['rumo10-development-v3'] if opts.project=='rumo10' else ['rumohub-writer-v1']},out)
+ module.produce(opts.source,sha0,opts.project,{'repository':'rralvarez/'+opts.project,'workflow_id':7,'run_id':100,'run_number':2,'run_attempt':1,'data_contracts':['rumo10-development-v3'] if opts.project=='rumo10' else ['rumohub-writer-v1']},out,functional_reference=sha0)
  os.environ['REPRESENTATIVE_'+opts.project.upper()]=str(out/'release.tar.gz')
 PHP=os.environ.get("PHP_BIN",r"C:\PHP\php-8.4.26\php.exe" if os.name=="nt" else "php")
 ARGS=["-n","-d",r"extension_dir=C:\PHP\php-8.4.26\ext","-d","extension=php_sqlite3.dll","-d","memory_limit=512M"] if os.name=="nt" else ["-d","memory_limit=512M"]
@@ -89,7 +89,7 @@ for project in ("rumo10","rumohub"):
  commit=subprocess.check_output(["git","-C",str(repo),"rev-parse","HEAD"],text=True).strip()
  out=ROOT/"tests"/("producer-AUDIT_ONLY-"+project+"-"+str(time.time_ns()))
  meta={"repository":"rralvarez/"+project,"workflow_id":7,"run_id":100,"run_number":2,"run_attempt":1,"data_contracts":["rumo10-development-v3"] if project=="rumo10" else ["rumohub-writer-v1"]}
- e=producer.produce(repo,commit,project,meta,out)
+ e=producer.produce(repo,commit,project,meta,out,functional_reference=commit)
  with tarfile.open(out/"release.tar.gz","r:gz") as t:
   paths=t.getnames();m=json.load(t.extractfile("release.json"))
   assert all(producer.permitted(p,project) or p=="release.json" for p in paths)

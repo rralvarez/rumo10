@@ -1,11 +1,11 @@
 name: Rumo10 consolidated release
 on:
+  pull_request:
+    branches: [main]
   push:
-    branches: [codex/production-consolidated-v062]
-  workflow_dispatch:
+    branches: [main]
 permissions:
   contents: read
-  actions: read
 concurrency:
   group: rumo10-production
   cancel-in-progress: false
@@ -81,16 +81,46 @@ jobs:
           name: publisher-safety-evidence-${{ github.sha }}
           path: publisher/evidence/
           retention-days: 30
-  artifact:
+  rumo10-ci-gate:
+    if: ${{ always() }}
     needs: [syntax, regression, compatibility, publisher-safety]
     runs-on: ubuntu-latest
     steps:
+      - env:
+          SYNTAX: ${{ needs.syntax.result }}
+          REGRESSION: ${{ needs.regression.result }}
+          COMPATIBILITY: ${{ needs.compatibility.result }}
+          SAFETY: ${{ needs.publisher-safety.result }}
+        run: test "$SYNTAX:$REGRESSION:$COMPATIBILITY:$SAFETY" = success:success:success:success
+  artifact:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'rralvarez/rumo10' }}
+    needs: [rumo10-ci-gate]
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: source
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: b859e81709b382be9d9e34a52378654e5cd78e9a
+          persist-credentials: false
+          path: trusted
       - name: Obtain exact completed run metadata
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api repos/rralvarez/rumo10/actions/runs/"$GITHUB_RUN_ID" > /tmp/run.json
-      - run: python publisher/bin/build-operational.py /tmp/run.json /tmp/sealed
+        run: |
+          set -euo pipefail
+          gh api "repos/rralvarez/rumo10/commits/$GITHUB_SHA/pulls?per_page=100" |
+            jq -e --arg sha "$GITHUB_SHA" '[.[] | select(.base.repo.full_name == "rralvarez/rumo10" and .base.ref == "main" and .state == "closed" and .merged_at != null and .merge_commit_sha == $sha)] | length == 1'
+          gh api repos/rralvarez/rumo10/actions/runs/"$GITHUB_RUN_ID" > /tmp/run.json
+      - run: python trusted/publisher/bin/main-release.py source /tmp/run.json /tmp/sealed
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: release-rumo10-${{ github.sha }}

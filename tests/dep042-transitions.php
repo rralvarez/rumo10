@@ -77,7 +77,7 @@ function rejected(callable $call,string $message):void {
     }
     throw new RuntimeException('Expected rejection: '.$message);
 }
-function stageBuild(Publisher $publisher,string $dir):array {
+function buildEvidence(string $dir):array {
     $e=json(file_get_contents($dir.'/candidate.json'));
     $sha=$e['commit'];
     $id=$e['run_id'];
@@ -88,7 +88,23 @@ function stageBuild(Publisher $publisher,string $dir):array {
         'digest'=>'sha256:'.str_repeat('a',64),'workflow_run'=>['id'=>$id,'head_sha'=>$sha]];
     $jobs=[['name'=>'compatibility','status'=>'completed','conclusion'=>'success','head_sha'=>$sha,
         'run_id'=>$id,'_requested_attempt'=>1,'steps'=>[['conclusion'=>'success']]]];
-    return $publisher->stage($dir.'/release.tar.gz',$run,$artifact,$jobs,$e);
+    if(isset($e['release_channel'])){
+        $run['head_branch']='main';$run['workflow_id']=$e['workflow_id'];
+        if($e['release_channel']==='main'){
+            $run['merged_pr']=$id;
+            $names=['syntax','regression','compatibility','publisher-safety','rumo10-ci-gate','artifact'];
+        }else{
+            $run['event']='workflow_dispatch';
+            $artifact['name']='recovery-v8-rumo10-'.$sha;
+            $names=['recovery-artifact'];
+        }
+        $template=$jobs[0];unset($template['name']);
+        $jobs=array_map(fn($name)=>['name'=>$name]+$template,$names);
+    }
+    return [$dir.'/release.tar.gz',$run,$artifact,$jobs,$e];
+}
+function stageBuild(Publisher $publisher,string $dir):array {
+    return $publisher->stage(...buildEvidence($dir));
 }
 
 [$script,$root,$v8Package,$f01Dir,$recoveryDir]=$argv;
@@ -155,6 +171,35 @@ $config=['project'=>'rumo10','repository'=>'rralvarez/rumo10','workflow_id'=>1,'
     'hooks'=>array_fill_keys(['preflight','fence','maintenance','backup','smoke'],$hook)+
         ['migrate'=>['script'=>$migrate,'sha256'=>digest($migrate),'args'=>['--profile',$root.'/migration.json']]]];
 
+$main=($f01['release_channel']??null)==='main';
+if($main){
+    $config=array_replace($config,[
+        'branch'=>'main','workflow_id'=>$f01['workflow_id'],'release_channel'=>'main','delegate_main'=>true,
+        'bootstrap_run_id'=>$f01['run_id'],'bootstrap_artifact_id'=>$f01['run_id'],
+        'bootstrap_package_sha256'=>$f01['package_sha256'],
+        'required_jobs'=>['syntax','regression','compatibility','publisher-safety','rumo10-ci-gate','artifact']]);
+    $verifier=new Publisher($config);
+    $bad=buildEvidence($f01Dir); unset($bad[1]['merged_pr']);
+    rejected(fn()=>$verifier->verify(...$bad),'Merged main PR or source binding missing');
+    $bad=buildEvidence($f01Dir); $bad[1]['event']='pull_request';
+    rejected(fn()=>$verifier->verify(...$bad),'Unauthorized branch/event');
+    $bad=buildEvidence($f01Dir); $bad[1]['workflow_id']=99;
+    rejected(fn()=>$verifier->verify(...$bad),'Wrong workflow');
+    $bad=buildEvidence($f01Dir); $bad[3][0]['conclusion']='failure';
+    rejected(fn()=>$verifier->verify(...$bad),'Mandatory job not approved: syntax');
+    $bad=buildEvidence($f01Dir); array_shift($bad[3]);
+    rejected(fn()=>$verifier->verify(...$bad),'Mandatory job not approved: syntax');
+    $bad=buildEvidence($f01Dir); $bad[3][0]['steps'][0]['conclusion']='skipped';
+    rejected(fn()=>$verifier->verify(...$bad),'Required job contains unsuccessful/skipped step');
+    $bad=buildEvidence($f01Dir); $bad[4]['package_sha256']=str_repeat('f',64);
+    rejected(fn()=>$verifier->verify(...$bad),'Package digest mismatch');
+    $bad=buildEvidence($f01Dir); $bad[4]['required_migrations']=[];
+    rejected(fn()=>$verifier->verify(...$bad),'Candidate illegally reduced mandatory migration requirement');
+    $bad=buildEvidence($f01Dir); $bad[4]['source_commit']=str_repeat('a',40);
+    rejected(fn()=>$verifier->verify(...$bad),'Merged main PR or source binding missing');
+    rejected(fn()=>$verifier->verify(...buildEvidence($recoveryDir)),'Wrong workflow');
+}
+
 $plain=new Publisher($config);
 $stage=stageBuild($plain,$f01Dir);
 check($stage['envelope']['required_migrations']===['009'],'F01 stage carries mandatory migration');
@@ -176,6 +221,32 @@ check(json(file_get_contents($root.'/private/installed.json'))['functional_commi
 $db->exec("UPDATE rumo10_universos SET estado_json='{\"id\":1,\"version\":2,\"stage\":\"handicap\",\"canonical_match_uid\":\"synthetic\"}' WHERE carreira_id=1");
 $db->exec("INSERT INTO rumo10_f01_outbox(carreira_id,command_uid,chave,payload_json) VALUES(1,'dep042','dep042','{}')");
 file_put_contents($root.'/expected','2');
+if($main && ($next=getenv('DEP050_NEXT'))!==false){
+    foreach(explode(PATH_SEPARATOR,$next) as $dir){
+        $nextStage=stageBuild($publisher,$dir);
+        check($publisher->apply($nextStage['stage'])['state']==='validated','Unlisted main SHA installed with the actual publisher');
+        check(json(file_get_contents($root.'/private/installed.json'))['functional_commit']===$nextStage['commit'],
+            'Normal receipt preserves the new functional SHA');
+    }
+    rejected(fn()=>$publisher->verify(...buildEvidence($f01Dir)),'Downgrade/late run refused');
+    check((int)$db->query("SELECT COUNT(*) FROM rumo10_migrations WHERE version='009'")->fetchColumn()===1 &&
+        (int)$db->query("SELECT COUNT(*) FROM rumo10_f01_outbox WHERE chave='dep042'")->fetchColumn()===1,
+        'Delegated updates preserved migration and outbox');
+    if(($forbidden=getenv('DEP050_FORBIDDEN'))!==false){
+        $forbiddenStage=stageBuild($publisher,$forbidden);
+        rejected(fn()=>$publisher->apply($forbiddenStage['stage']),'Class C requires separately proven exclusive window');
+    }
+    exit;
+}
+if($main){
+    unset($publisher);
+    $mainConfig=$config;
+    $config=array_replace($config,[
+        'workflow_id'=>$v8['workflow_id'],'release_channel'=>'recovery-v8','required_jobs'=>['recovery-artifact'],
+        'recovery_run_id'=>$v8['run_id'],'recovery_artifact_id'=>$v8['run_id'],
+        'recovery_package_sha256'=>$v8['package_sha256']]);
+    $publisher=new DrainPublisher($config);
+}
 $stage=stageBuild($publisher,$recoveryDir);
 $fault=getenv('DEP043_FAULT')?:'';
 if ($fault==='') {
@@ -210,3 +281,10 @@ check(str_contains(file_get_contents($root.'/smoke.log'),'{"version":2,"f01":fal
 check(count($db->query("SHOW TABLES LIKE 'rumo10_f01_%'")->fetchAll(PDO::FETCH_COLUMN))===5
     && (int)$db->query("SELECT COUNT(*) FROM rumo10_f01_outbox WHERE chave='dep042'")->fetchColumn()===1,'Five F01 tables and recent outbox survived the return');
 check(!(new RequestDrain($root.'/gate'))->closed(),'Writer admission reopened after smoke');
+if($main){
+    rejected(fn()=>(new Publisher($mainConfig))->verify(...buildEvidence($f01Dir)),
+        'Main publication paused after V8 recovery');
+    $mainConfig['resume_after_recovery_artifact_id']=$v8['run_id'];
+    rejected(fn()=>(new Publisher($mainConfig))->verify(...buildEvidence($f01Dir)),
+        'Main replay refused after V8 recovery');
+}
