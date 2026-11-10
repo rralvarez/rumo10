@@ -6,10 +6,14 @@ require_once __DIR__.'/Publisher.php';require_once __DIR__.'/RequestDrain.php';
 class DrainPublisher extends Publisher {
  private array $ops;private ?RequestDrain $drain=null;private string $session;
  public function __construct(array $config){parent::__construct($config);$this->ops=$config;$this->session=$config['private'].'/drain-session.json';}
+ protected function assertWriterDrain():void{
+  need($this->drain!==null,'Drain integration missing');$this->drain->assertDrained();
+ }
  protected function hook(string $name,array $request):array{
-  if(in_array($name,['maintenance','backup','smoke'],true)){$this->drain?->assertDrained();need($this->drain!==null,'Drain integration missing');}
+  $this->assertWriterDrain();
   $receipt=parent::hook($name,$request);
-  if($name==='maintenance'){$this->drain->assertDrained();$receipt['inflight_writers']=0;$receipt['writes_blocked']=true;}
+  $this->assertWriterDrain();
+  if($name==='maintenance'){$receipt['inflight_writers']=0;$receipt['writes_blocked']=true;}
   return $receipt;
  }
  private function enroll():void{

@@ -14,7 +14,7 @@ try {
     $mode=$opts['mode']; need(in_array($mode,['verify-only','stage','apply'],true),'Unknown mode');
     $configPath=$opts['config']; need(is_file($configPath) && !is_link($configPath),'Private config required');
     if(PHP_OS_FAMILY!=='Windows')need((fileperms($configPath)&0077)===0,'Config must be 0600');
-    $c=json(file_get_contents($configPath)); $publisher=isset($c['update_policy'])?new Publisher($c):new DrainPublisher($c); $publisher->acquire();
+    $c=json(file_get_contents($configPath)); $publisher=!isset($c['update_policy'])||($c['request_gate']['coverage_approved']??false)===true?new DrainPublisher($c):new Publisher($c); $publisher->acquire();
     if($mode==='apply') {
         need(($c['apply_enabled']??false)===true,'apply disabled by default');
         if(isset($opts['recover'])) $result=$publisher->recover();

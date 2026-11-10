@@ -41,7 +41,11 @@ class Publisher {
     protected function transfer($input,$output): int|false { return stream_copy_to_stream($input,$output); }
     private function journal(): string { return $this->private.'/journal.json'; }
     private function marker(): string { return $this->c['control'].'/deployment.lock'; }
+    protected function assertWriterDrain(): void {
+        need(false,'Exclusive request drain required for this transition');
+    }
     private function own(array $j): void {
+        if($j['requires_full_drain']??false)$this->assertWriterDrain();
         need(is_file($this->marker()) && file_get_contents($this->marker())===$j['lock_bytes'],'Deployment lock lost/replaced');
     }
     private function save(array $j): void { record($this->journal(),$j); }
@@ -86,7 +90,7 @@ class Publisher {
         $inventory=Package::inspect($package,$this->c['project']);
         if ($this->c['project']==='rumo10') {
             need(isset($inventory['files']['app/PlayerDevelopment.php']),'v3 writer missing');
-            // Política de releases autorizadas: catálogo obrigatório, válido e fail-closed
+            // PolÃ­tica de releases autorizadas: catÃ¡logo obrigatÃ³rio, vÃ¡lido e fail-closed
             $authorizedReleases = $this->c['authorized_releases']
                 ?? $this->c['update_policy']['authorized_releases']
                 ?? null;
@@ -106,7 +110,7 @@ class Publisher {
 
             $targetRelease = $authorizedReleases[$declaredFunctional];
 
-            // Vinculação criptográfica obrigatória e fail-closed do build autorizado
+            // VinculaÃ§Ã£o criptogrÃ¡fica obrigatÃ³ria e fail-closed do build autorizado
             need(array_key_exists('authorized_build_commits', $targetRelease),
                 "Release policy for {$declaredFunctional} missing required field `authorized_build_commits`");
             $authorizedBuildCommits = $targetRelease['authorized_build_commits'];
@@ -127,7 +131,7 @@ class Publisher {
                     'Package content diverged from authorized release baseline ('.$declaredFunctional.'): '.$path);
             }
             
-            // Exigência fail-closed estrita de requires_migration
+            // ExigÃªncia fail-closed estrita de requires_migration
             need(array_key_exists('requires_migration', $targetRelease),
                 "Release policy for {$declaredFunctional} missing required field `requires_migration`");
             $rawRequires = $targetRelease['requires_migration'];
@@ -144,13 +148,13 @@ class Publisher {
             }
             $trustedRequiredMigrations = array_values(array_unique($trustedRequiredMigrations));
 
-            // Invariante de segurança mandatória da F01: migration 009 obrigatória
+            // Invariante de seguranÃ§a mandatÃ³ria da F01: migration 009 obrigatÃ³ria
             if ($declaredFunctional === '907427dabc363d055ff32ad53853d322639992fb') {
                 need(in_array('009', $trustedRequiredMigrations, true),
                     "Release F01 ({$declaredFunctional}) strictly requires migration `009`");
             }
 
-            // Se o envelope declarar required_migrations, garantir que seja array de strings e não reduza requisitos
+            // Se o envelope declarar required_migrations, garantir que seja array de strings e nÃ£o reduza requisitos
             if (isset($envelope['required_migrations'])) {
                 need(is_array($envelope['required_migrations']), "Candidate `required_migrations` must be an array");
                 foreach ($envelope['required_migrations'] as $candVer) {
@@ -270,6 +274,44 @@ class Publisher {
         // Manifest is promoted LAST, after all content hashes and smoke.
         return $ops;
     }
+    private static function inventoryDigest(array $files): string {
+        $files=array_filter($files,fn($p)=>!protectedPath($p),ARRAY_FILTER_USE_KEY);
+        ksort($files,SORT_STRING);
+        return hash('sha256',json_encode($files,JSON_THROW_ON_ERROR|JSON_UNESCAPED_SLASHES));
+    }
+    private function transitionPolicy(array $old,array $v,?string $from): array {
+        $policy=$this->c['update_policy'];
+        $to=$v['envelope']['functional_commit']??null;
+        if($from!==null && $to!==null && isset($policy['authorized_transitions'][$from.':'.$to])) {
+            foreach([[$from,$old['files']],[$to,$v['inventory']['files']]] as [$commit,$files]) {
+                $pin=$policy['authorized_releases'][$commit]['runtime_inventory_sha256']??null;
+                need(is_string($pin)&&hash_equals($pin,self::inventoryDigest($files)),'Transition runtime inventory does not match trusted release');
+            }
+        }
+        $result=UpdatePolicy::assess($old,$v['inventory'],$policy,$v['jobs'],$from,$to);
+        $result['required_migrations']=$v['envelope']['required_migrations']??[];
+        return $result;
+    }
+    private function transitionOrigin(array $old,array $v): ?string {
+        $receiptPath=$this->private.'/installed.json';
+        if(!is_file($receiptPath))return null;
+        $receipt=json(file_get_contents($receiptPath));
+        $from=$receipt['functional_commit']??$receipt['commit']??null;
+        $to=$v['envelope']['functional_commit']??null;
+        if($from===null || $to===null || !isset($this->c['update_policy']['authorized_transitions'][$from.':'.$to]))return null;
+
+        $manifest=$this->c['current'].'/build-manifest.json';
+        if(is_file($manifest)) {
+            $m=json(file_get_contents($manifest));
+            need(($m['commit']??null)===$from && is_array($m['checksums']??null) &&
+                self::inventoryDigest($m['checksums'])===self::inventoryDigest($old['files']),'Installed build manifest identity or checksums mismatch');
+            if(isset($receipt['build_manifest_sha256']))need(digest($manifest)===$receipt['build_manifest_sha256'],'Installed build manifest receipt drift');
+        } else {
+            need(!isset($receipt['functional_commit']) && $from==='f23c2c3be2fbc322daf817fa14346ab02073a97b',
+                'Installed build manifest required');
+        }
+        return $from;
+    }
     private function gate(array $v): array {
         need(($this->c['apply_enabled']??false)===true,'apply disabled by default');
         need(($this->c['homologation']['backup']??false) && ($this->c['homologation']['maintenance']??false) &&
@@ -277,12 +319,11 @@ class Publisher {
             'Unhomologated backup / drain / recovery / legacy-writer fencing');
         $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private];
         if(isset($this->c['update_policy'])){
-            $bm = $this->c['current'].'/build-manifest.json';
-            $fromCommit = is_file($bm) ? (json(file_get_contents($bm))['commit'] ?? null) : null;
-            $toCommit = $v['envelope']['functional_commit'] ?? null;
-            $request['update_policy']=UpdatePolicy::assess($this->baseline(),$v['inventory'],$this->c['update_policy'],$v['jobs'],$fromCommit,$toCommit);
-            $request['update_policy']['required_migrations'] = $v['envelope']['required_migrations'] ?? [];
+            $old=$this->baseline();
+            $request['source_functional_commit']=$this->transitionOrigin($old,$v);
+            $request['update_policy']=$this->transitionPolicy($old,$v,$request['source_functional_commit']);
             need($request['update_policy']['class']!=='C','Class C requires separately proven exclusive window');
+            if($request['update_policy']['requires_full_drain'])$this->assertWriterDrain();
         }
         $g=$this->hook('preflight',$request);
         need(($g['legacy_publishers_fenced']??false) && ($g['source_unchanged']??false),'Source/concurrency fence not confirmed');
@@ -297,8 +338,8 @@ class Publisher {
         need(!is_file($this->journal()) || in_array(json(file_get_contents($this->journal()))['state'],['validated','recovered'],true),
             'Pending journal: reconcile with apply --recover, never overwrite');
         need(str_starts_with(str_replace(chr(92),'/',realpath($stage)?:''),str_replace(chr(92),'/',realpath($this->private)).'/stage-'),'Stage outside private root');
-        $v=json(file_get_contents($stage.'/ready.json'));
-        $this->verify($stage.'/release.tar.gz',$v['run'],$v['artifact'],$v['jobs'],$v['envelope']);
+        $ready=json(file_get_contents($stage.'/ready.json'));
+        $v=$this->verify($stage.'/release.tar.gz',$ready['run'],$ready['artifact'],$ready['jobs'],$ready['envelope'])+['stage'=>$stage];
         $this->verifyPayload($stage,$v);
         foreach ($this->c['data_contracts'] as $contract)
             need(in_array($contract,$this->c['baseline_data_contracts']??[],true),'Baseline writer incompatible: stage approved compatible recovery before apply');
@@ -316,7 +357,9 @@ class Publisher {
         $id=bin2hex(random_bytes(16)); $backup=$this->private.'/backup-'.$id; privateDir($backup);
         $lockBytes=json_encode(['publisher'=>'rumo-pull-v1','project'=>$this->c['project'],'attempt'=>$id],JSON_THROW_ON_ERROR);
         $j=['state'=>'locking','attempt'=>$id,'lock_bytes'=>$lockBytes,'stage'=>$stage,'candidate'=>$v,
-            'old_manifest'=>$old,'controls'=>$controls,'operations'=>$ops,'backup'=>$backup,'created_at'=>time(),'events'=>[]];
+            'old_manifest'=>$old,'source_functional_commit'=>$request['source_functional_commit']??null,
+            'requires_full_drain'=>$request['update_policy']['requires_full_drain']??false,
+            'controls'=>$controls,'operations'=>$ops,'backup'=>$backup,'created_at'=>time(),'events'=>[]];
         $this->save($j);
         $handle=fopen($this->marker(),'xb'); need($handle!==false,'Cannot exclusively create deployment lock');
         need(fwrite($handle,$lockBytes)===strlen($lockBytes) && fflush($handle) && fsync($handle),'Lock write failed');
@@ -424,7 +467,8 @@ class Publisher {
             foreach($managed as $p=>$hash) if(str_starts_with($p,'public/') && !in_array($p,['public/index.php','public/.htaccess'],true))
                 $publicInventory[substr($p,7)]=$hash;
             record($this->private.'/installed.json',array_intersect_key($v,array_flip(['commit','run_number','artifact_id','package_sha256','data_contracts']))+
-                ['manifest_sha256'=>digest($this->c['current'].'/release.json'),'public_inventory'=>$publicInventory]);
+                ['functional_commit'=>$functionalCommit,'manifest_sha256'=>digest($this->c['current'].'/release.json'),
+                 'build_manifest_sha256'=>digest($this->c['current'].'/build-manifest.json'),'public_inventory'=>$publicInventory]);
             $j['state']='validated'; $this->save($j); $this->checkpoint('before-unlock');
             $this->own($j); need(unlink($this->marker()),'Cannot release own maintenance lock');
             return ['state'=>'validated','commit'=>$v['commit']];
@@ -482,10 +526,13 @@ class Publisher {
         }
         need(in_array($j['state'],['locking','blocked','installing','maintenance','migrating','promoting-manifest'],true),'No recoverable pending attempt');
         if(isset($this->c['update_policy']) && isset($j['backup_receipt']) && count(array_filter($j['operations'],fn($o)=>$o['state']!=='planned'))>0) {
-            $v=$j['candidate'];$this->verify($j['stage'].'/release.tar.gz',$v['run'],$v['artifact'],$v['jobs'],$v['envelope']);$this->verifyPayload($j['stage'],$v);
-            $fromCommit = is_file($j['backup'].'/build-manifest.json') ? (json(file_get_contents($j['backup'].'/build-manifest.json'))['commit'] ?? null) : null;
-            $toCommit = $v['envelope']['functional_commit'] ?? null;
-            $policy=UpdatePolicy::assess($j['old_manifest'],$v['inventory'],$this->c['update_policy'],$v['jobs'],$fromCommit,$toCommit);need($policy['class']!=='C','Forward recovery requires approved compatible policy');
+            $ready=$j['candidate'];
+            $v=$this->verify($j['stage'].'/release.tar.gz',$ready['run'],$ready['artifact'],$ready['jobs'],$ready['envelope'])+['stage'=>$j['stage']];
+            $this->verifyPayload($j['stage'],$v);
+            $policy=$this->transitionPolicy($j['old_manifest'],$v,$j['source_functional_commit']??null);
+            need($policy['class']!=='C','Forward recovery requires approved compatible policy');
+            if($policy['requires_full_drain'])$this->assertWriterDrain();
+            $j['candidate']=$v;
             $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private,'update_policy'=>$policy];
             $f=$this->hook('fence',$request);need(($f['legacy_publishers_fenced']??false)===true,'Recovery fence missing');
             $m=$this->hook('maintenance',$request+['action'=>'verify-admission','attempt'=>$j['attempt']]);UpdatePolicy::maintenance($m,$policy);
@@ -506,9 +553,7 @@ class Publisher {
             need(in_array($contract,$this->c['baseline_data_contracts']??[],true),'Old writer incompatible; use approved forward-compatible recovery package');
         $m=$this->hook('maintenance',['action'=>'verify-and-drain','attempt'=>$j['attempt'],'project'=>$this->c['project']]);
         if(isset($this->c['update_policy'])) {
-            $fromCommit = is_file($j['backup'].'/build-manifest.json') ? (json(file_get_contents($j['backup'].'/build-manifest.json'))['commit'] ?? null) : null;
-            $toCommit = $j['candidate']['envelope']['functional_commit'] ?? null;
-            UpdatePolicy::maintenance($m,UpdatePolicy::assess($j['old_manifest'],$j['candidate']['inventory'],$this->c['update_policy'],$j['candidate']['jobs'],$fromCommit,$toCommit));
+            UpdatePolicy::maintenance($m,$this->transitionPolicy($j['old_manifest'],$j['candidate'],$j['source_functional_commit']??null));
         } else need(($m['http_status']??0)===503 && ($m['writes_blocked']??false) && ($m['inflight_writers']??-1)===0,'Recovery maintenance/drain not demonstrated');
         try {
             foreach (array_reverse(array_keys($j['operations'])) as $i) {

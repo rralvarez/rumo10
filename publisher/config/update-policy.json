@@ -41,7 +41,8 @@
         "database/009-f01-canonical-telemetry.sql": "0cb513015ddd8650885d55677df8717e3c0557838d7f42af904272744a8dda8a",
         "public/assets/f01-telemetry.js": "d2b8f203da21012c3d1d9138b7b5fd9454e69d49ce126f9a4c8777d67edaaa35",
         "public/index.php": "e61d3cfc8f586d7cb23171bc71cde45080955a600ab090182bbd5b53f406faa1"
-      }
+      },
+      "runtime_inventory_sha256": "025513c9a2dbf1c8cff75fada5b5a5cc17c2b345381ef77657a5e4205f61573b"
     },
     "f23c2c3be2fbc322daf817fa14346ab02073a97b": {
       "label": "V8 Homologada",
@@ -58,7 +59,8 @@
         "app/bootstrap.php": "95a27844a412d1f6354c72f17851aa878f8ee6657b9cd91d983de3386eb84036",
         "app/view.php": "faf5eceda2cd17826e81079eb475d8ef95818812527e167f657263b5efd40acd",
         "public/index.php": "b1b3961716b46b7c2fb7940cf0db535c14c22307d673be8048e839cde0c2c8b0"
-      }
+      },
+      "runtime_inventory_sha256": "5b251e4145f4d8b11c9ec8e8493737899caeba5cea1b113819942414794683af"
     }
   },
   "authorized_transitions": {

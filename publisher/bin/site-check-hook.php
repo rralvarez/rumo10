@@ -9,7 +9,7 @@ try{
  foreach(['current','public','control'] as $k)need(is_dir($c[$k])&&!is_link($c[$k]),'Physical root required');
  foreach($c['pinned_controls'] as $p=>$h)need(is_file($p)&&!is_link($p)&&digest($p)===$h,'Control drift');
  if($mode==='maintenance'){
-  $compatible=isset($q['update_policy'])&&in_array($q['update_policy']['class'],['A','B'],true)&&($q['update_policy']['compatible_writers_ci']??false);if(!$compatible){$g=new RequestDrain($c['gate_root']);need($g->closed(),'Account gate is open');}$marker=json(file_get_contents($c['control'].'/deployment.lock'));need(($marker['attempt']??null)===($q['attempt']??null)&&isset($q['attempt']),'Deployment attempt mismatch');
+  $compatible=isset($q['update_policy'])&&!($q['update_policy']['requires_full_drain']??false)&&in_array($q['update_policy']['class'],['A','B'],true)&&($q['update_policy']['compatible_writers_ci']??false);if(!$compatible){$g=new RequestDrain($c['gate_root']);need($g->closed(),'Account gate is open');}$marker=json(file_get_contents($c['control'].'/deployment.lock'));need(($marker['attempt']??null)===($q['attempt']??null)&&isset($q['attempt']),'Deployment attempt mismatch');
   need(is_array($c['maintenance_urls']??null)&&count($c['maintenance_urls'])>=2,'Both maintenance endpoints required');
   foreach($c['maintenance_urls'] as $url){$u=parse_url($url);$local=($c['test_only_loopback']??false)&&in_array($u['host']??'',['127.0.0.1','localhost'],true)&&str_starts_with(str_replace(chr(92),'/',realpath($file)),str_replace(chr(92),'/',realpath(dirname(__DIR__).'/tests')).'/');
    need(($u['scheme']??'')==='https'||($local&&($u['scheme']??'')==='http'),'TLS required');need(!isset($u['user'])&&!isset($u['pass']),'No credentials in URL');
