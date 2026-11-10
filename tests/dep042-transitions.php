@@ -38,6 +38,34 @@ if (in_array($argv[1]??'', ['fence','preflight','maintenance','backup','smoke'],
     exit;
 }
 
+// DEP-043 deliberately exits the child at a checkpoint without unwinding Publisher::apply().
+class InterruptedPublisher extends DrainPublisher {
+    public string $fault='';
+    protected function checkpoint(string $point):void {
+        if ($point===$this->fault) exit(86);
+    }
+}
+if (in_array($argv[1]??'', ['dep043-apply','dep043-recover'], true)) {
+    $worker=new InterruptedPublisher(json(file_get_contents($argv[2])));
+    try {
+        if ($argv[1]==='dep043-apply') {
+            $worker->fault=$argv[4];
+            $worker->apply($argv[3]);
+        } else {
+            need($worker->recover()['state']==='validated','Forward recovery did not validate');
+        }
+    } catch (Throwable $e) {
+        fwrite(STDERR,$e->getMessage().PHP_EOL);
+        exit(87);
+    }
+    exit;
+}
+
+function transitionWorker(string ...$args):int {
+    $proc=proc_open([PHP_BINARY,__FILE__,...$args],[0=>STDIN,1=>STDOUT,2=>STDERR],$pipes);
+    need(is_resource($proc),'Cannot start isolated publisher worker');
+    return proc_close($proc);
+}
 function check(bool $condition,string $description):void {
     need($condition,$description);
     echo "[PASS] {$description}\n";
@@ -149,7 +177,34 @@ $db->exec("UPDATE rumo10_universos SET estado_json='{\"id\":1,\"version\":2,\"st
 $db->exec("INSERT INTO rumo10_f01_outbox(carreira_id,command_uid,chave,payload_json) VALUES(1,'dep042','dep042','{}')");
 file_put_contents($root.'/expected','2');
 $stage=stageBuild($publisher,$recoveryDir);
-check($publisher->apply($stage['stage'])['state']==='validated','Deliberate F01 to V8 recovery build installed');
+$fault=getenv('DEP043_FAULT')?:'';
+if ($fault==='') {
+    check($publisher->apply($stage['stage'])['state']==='validated','Deliberate F01 to V8 recovery build installed');
+} else {
+    $tamper=$fault==='tamper-quarantine';
+    $point=$tamper?'after-promotion-0':$fault;
+    $workerConfig=$root.'/worker-config.json';
+    record($workerConfig,$config);
+    unset($publisher);
+    check(transitionWorker('dep043-apply',$workerConfig,$stage['stage'],$point)===86,'Worker exited at '.$point);
+    $gate=new RequestDrain($root.'/gate');
+    check($gate->closed() && is_file($root.'/control/deployment.lock'),'Both gates retained after process exit');
+    rejected(fn()=>$gate->enter(),'Maintenance: new writers refused');
+    check(json(file_get_contents($root.'/private/installed.json'))['functional_commit']===$f01['functional_commit'],
+        'Interrupted attempt did not publish a success receipt');
+    if ($tamper) {
+        $j=json(file_get_contents($root.'/private/journal.json'));
+        file_put_contents($j['operations'][0]['quarantine'],'foreign bytes');
+        check(transitionWorker('dep043-recover',$workerConfig)===87 && $gate->closed()
+            && is_file($root.'/control/deployment.lock'),'Unproven quarantine refused with both gates retained');
+        exit;
+    }
+    check(transitionWorker('dep043-recover',$workerConfig)===0,'New process validated the interrupted V8 installation');
+    $iterator=new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root.'/current',FilesystemIterator::SKIP_DOTS));
+    foreach ($iterator as $entry) need(!str_contains($entry->getFilename(),'.pull-removed-'),'Quarantine residue');
+}
+check((int)$db->query("SELECT COUNT(*) FROM rumo10_migrations WHERE version='009'")->fetchColumn()===1,
+    'Migration 009 remains registered exactly once');
 check(json(file_get_contents($root.'/private/installed.json'))['functional_commit']===$v8['functional_commit'],'V8 receipt records the authenticated functional identity');
 check(str_contains(file_get_contents($root.'/smoke.log'),'{"version":2,"f01":false}'),'Restored V8 Repository read the recent save during smoke');
 check(count($db->query("SHOW TABLES LIKE 'rumo10_f01_%'")->fetchAll(PDO::FETCH_COLUMN))===5

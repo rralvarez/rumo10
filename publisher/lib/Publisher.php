@@ -413,12 +413,16 @@ class Publisher {
         }
             foreach ($j['operations'] as $i=>&$op) {
                 if($op['state']==='confirmed') {
-                    need(sameFileState($op['dest'])===($op['post']??null),'Confirmed destination drift');
+                    need(!is_link($op['dest']) && sameFileState($op['dest'])===($op['post']??null),'Confirmed destination drift');
                     continue;
                 }
                 if($op['state']==='intent' && ($now=sameFileState($op['dest']))!==$op['before']) {
-                    $proof=$op['temp_proof']??null;
-                    need($proof!==null&&($proof['ino']??0)!==0&&$now!==null&&$now['ino']===$proof['ino']&&$now['dev']===$proof['dev']&&$now['hash']===$op['after'],'Ambiguous write retained for reconciliation');
+                    if($op['after']===null) {
+                        need($this->provedRemoval($op,$now),'Ambiguous removal retained for reconciliation');
+                    } else {
+                        $proof=$op['temp_proof']??null;
+                        need($proof!==null&&($proof['ino']??0)!==0&&$now!==null&&$now['ino']===$proof['ino']&&$now['dev']===$proof['dev']&&$now['hash']===$op['after'],'Ambiguous write retained for reconciliation');
+                    }
                     $op['post']=$now;$op['state']='confirmed';$this->save($j);continue;
                 }
                 if(isset($op['temp']) && file_exists($op['temp'])) {
@@ -440,15 +444,24 @@ class Publisher {
                     finally { fclose($input); fclose($output); }
                     need(chmod($tmp,$op['before']['mode']??(($op['public']??false)?0644:0640)),'Cannot set target permissions'); need(digest($tmp)===$op['after'],'Install temporary corrupted');
                     $op['temp']=$tmp; $op['temp_proof']=sameFileState($tmp);
+                } else {
+                    // A sibling rename preserves the identity of the removed file across process failure.
+                    $op['quarantine']=$op['dest'].'.pull-removed-'.$id;
+                    need(!file_exists($op['quarantine'])&&!is_link($op['quarantine']),'Removal quarantine collision');
                 }
                 $op['state']='intent'; $this->save($j); $this->checkpoint('before-promotion-'.$i);
                 $this->own($j); need(sameFileState($op['dest'])===$op['before'],'Target changed immediately before rename/delete');
-                if ($op['after']===null) need($this->remove($op['dest']),'Managed deletion failed');
+                if ($op['after']===null) {
+                    need(!file_exists($op['quarantine'])&&!is_link($op['quarantine']),'Removal quarantine changed before rename');
+                    need($this->promote($op['dest'],$op['quarantine']),'Managed deletion failed');
+                }
                 else need($this->promote($op['temp'],$op['dest']),'Promotion rename failed');
                 $this->checkpoint('after-promotion-'.$i);
                 $op['post']=sameFileState($op['dest']);
                 need(($op['post']['hash']??null)===$op['after'],'Post-promotion hash mismatch');
+                if($op['after']===null)need($this->provedRemoval($op,$op['post']),'Removal quarantine proof missing');
                 $op['state']='confirmed'; $this->save($j);
+                if($op['after']===null)$this->checkpoint('after-removal-confirmation-'.$i);
             }
             unset($op);
             $this->cleanupTemps($j);
@@ -473,8 +486,23 @@ class Publisher {
             $this->own($j); need(unlink($this->marker()),'Cannot release own maintenance lock');
             return ['state'=>'validated','commit'=>$v['commit']];
     }
+    private function provedRemoval(array $op,?array $destination): bool {
+        return $destination===null && !is_link($op['dest']) && $this->hasQuarantinedFile($op);
+    }
+    private function hasQuarantinedFile(array $op): bool {
+        return isset($op['quarantine']) && !is_link($op['quarantine']) &&
+            ($op['before']['ino']??0)!==0 && sameFileState($op['quarantine'])===$op['before'];
+    }
     private function cleanupTemps(array $j): void {
-        foreach($j['operations'] as $op) {
+        foreach($j['operations'] as $i=>$op) {
+            if(isset($op['quarantine'])&&(file_exists($op['quarantine'])||is_link($op['quarantine']))) {
+                $this->own($j);
+                need(in_array($op['state'],['confirmed','recovered'],true) && $this->hasQuarantinedFile($op),
+                    'Unproven removal quarantine retained for reconciliation');
+                $this->checkpoint('before-removal-cleanup-'.$i);
+                need($this->remove($op['quarantine']),'Managed deletion failed');
+                $this->checkpoint('after-removal-cleanup-'.$i);
+            }
             if(!isset($op['temp']) || !file_exists($op['temp']))continue;
             $this->own($j); $now=sameFileState($op['temp']); $creation=$op['temp_creation']??null;
             need($creation!==null && ($creation['ino']??0)!==0 &&
@@ -561,15 +589,23 @@ class Publisher {
                 $now=sameFileState($op['dest']);
                 if ($op['state']==='recovered' || $now===$op['before']) continue;
                 if ($op['state']==='intent') {
-                    // Hash/intention alone NEVER prove creation. Inode/device proof across rename required.
-                    $t=$op['temp_proof']??null;
-                    need($t!==null && ($t['ino']??0)!==0 && $now!==null &&
-                        $now['ino']===$t['ino'] && $now['dev']===$t['dev'] &&
-                        $now['hash']===$t['hash'],'Ambiguous promotion; preserved for manual reconciliation: '.$op['relative']);
+                    if($op['after']===null) {
+                        need($this->provedRemoval($op,$now),'Ambiguous removal retained for reconciliation');
+                    } else {
+                        // Hash/intention alone NEVER prove creation. Inode/device proof across rename required.
+                        $t=$op['temp_proof']??null;
+                        need($t!==null && ($t['ino']??0)!==0 && $now!==null &&
+                            $now['ino']===$t['ino'] && $now['dev']===$t['dev'] &&
+                            $now['hash']===$t['hash'],'Ambiguous promotion; preserved for manual reconciliation: '.$op['relative']);
+                    }
                 } else need($op['state']==='confirmed' && $now===($op['post']??null),
                     'Changed/unknown residual preserved: '.$op['relative']);
                 if ($op['before']===null) need(unlink($op['dest']),'Recovery deletion refused');
-                else {
+                elseif(isset($op['quarantine']) && (file_exists($op['quarantine'])||is_link($op['quarantine']))) {
+                    need($this->provedRemoval($op,$now),'Unproven removal quarantine retained for reconciliation');
+                    need($this->promote($op['quarantine'],$op['dest']),'Recovery rename failure');
+                    need(sameFileState($op['dest'])===$op['before'],'Restored file identity mismatch');
+                } else {
                     $saved=$j['backup'].'/file-'.$i;
                     need(digest($saved)===$op['before']['hash'],'Backup drift');
                     $tmp=$op['dest'].'.recover-'.$j['attempt']; need(!file_exists($tmp),'Recovery temp collision');
