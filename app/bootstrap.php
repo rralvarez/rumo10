@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 spl_autoload_register(function(string $name): void {
-    if (preg_match('/^[A-Za-z0-9_]+$/', $name)) {
+    if (preg_match('/^[A-Za-z]+$/', $name)) {
         $file = __DIR__ . '/' . $name . '.php';
         if (is_file($file)) require $file;
     }

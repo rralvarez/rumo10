@@ -56,7 +56,7 @@ with tarfile.open(args.archive, "r:gz") as archive:
             raise SystemExit("Configuração privada não pode integrar o pacote.")
         if hashlib.file_digest(archive.extractfile(item), "sha256").hexdigest() != digest:
             raise SystemExit("Hash divergente no pacote.")
-        if not re.match(r"^(?:(?:app|bin|database|public|deploy)/|build-manifest\.json$)", name) and not name.startswith("storage/media/"):
+        if not re.match(r"^(app|bin|database|public|deploy)/", name) and not name.startswith("storage/media/"):
             raise SystemExit("Arquivo fora do escopo.")
         if name.startswith("public/assets/clubs/") or name.startswith("database/production/"):
             raise SystemExit("Conteúdo não publicável.")
@@ -129,7 +129,7 @@ with tarfile.open(args.archive, "r:gz") as archive:
 
         def destinations(files):
             for name, digest in files.items():
-                if not isinstance(name, str) or not re.fullmatch(r"(?:(?:app|bin|database|public|deploy)/[^\\:]+|build-manifest\.json)|storage/media/[^\\:]+", name):
+                if not isinstance(name, str) or not re.fullmatch(r"(?:app|bin|database|public|deploy)/[^\\:]+|storage/media/[^\\:]+", name):
                     raise SystemExit("Caminho inválido no manifesto/diário.")
                 if any(part in ("", ".", "..") for part in name.split("/")):
                     raise SystemExit("Caminho inválido no manifesto/diário.")

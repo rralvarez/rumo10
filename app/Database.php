@@ -7,8 +7,6 @@ final class Database {
         $port = config('DB_PORT', '3306');
         if (!preg_match('/^[a-zA-Z0-9_]+$/', $db) || !preg_match('/^[a-zA-Z0-9.:-]+$/', $host) || !ctype_digit($port)) throw new RuntimeException('Configuração de banco inválida.');
         if (config('DB_USERNAME') === '') throw new RuntimeException('Configure o .env local antes de instalar.');
-        $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4", config('DB_USERNAME'), config('DB_PASSWORD'), [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES=>false, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);
-        $pdo->exec("SET time_zone = '+00:00'");
-        return $pdo;
+        return new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4", config('DB_USERNAME'), config('DB_PASSWORD'), [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES=>false, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC]);
     }
 }
