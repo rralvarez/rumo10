@@ -60,5 +60,35 @@
         "public/index.php": "b1b3961716b46b7c2fb7940cf0db535c14c22307d673be8048e839cde0c2c8b0"
       }
     }
+  },
+  "authorized_transitions": {
+    "f23c2c3be2fbc322daf817fa14346ab02073a97b:907427dabc363d055ff32ad53853d322639992fb": {
+      "label": "V8 -> F01 Homologated Controlled Upgrade",
+      "from_release": "f23c2c3be2fbc322daf817fa14346ab02073a97b",
+      "to_release": "907427dabc363d055ff32ad53853d322639992fb",
+      "requires_full_drain": true,
+      "allowed_protected_paths": [
+        "app/Database.php",
+        "app/Repository.php"
+      ],
+      "allowed_deletions": []
+    },
+    "907427dabc363d055ff32ad53853d322639992fb:f23c2c3be2fbc322daf817fa14346ab02073a97b": {
+      "label": "F01 -> V8 Homologated Controlled Rollback",
+      "from_release": "907427dabc363d055ff32ad53853d322639992fb",
+      "to_release": "f23c2c3be2fbc322daf817fa14346ab02073a97b",
+      "requires_full_drain": true,
+      "allowed_protected_paths": [
+        "app/Database.php",
+        "app/Repository.php"
+      ],
+      "allowed_deletions": [
+        "app/CanonicalIdentity.php",
+        "app/F01Drainer.php",
+        "app/F01Telemetry.php",
+        "database/009-f01-canonical-telemetry.sql",
+        "public/assets/f01-telemetry.js"
+      ]
+    }
   }
 }

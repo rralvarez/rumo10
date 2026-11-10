@@ -277,7 +277,10 @@ class Publisher {
             'Unhomologated backup / drain / recovery / legacy-writer fencing');
         $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private];
         if(isset($this->c['update_policy'])){
-            $request['update_policy']=UpdatePolicy::assess($this->baseline(),$v['inventory'],$this->c['update_policy'],$v['jobs']);
+            $bm = $this->c['current'].'/build-manifest.json';
+            $fromCommit = is_file($bm) ? (json(file_get_contents($bm))['commit'] ?? null) : null;
+            $toCommit = $v['envelope']['functional_commit'] ?? null;
+            $request['update_policy']=UpdatePolicy::assess($this->baseline(),$v['inventory'],$this->c['update_policy'],$v['jobs'],$fromCommit,$toCommit);
             $request['update_policy']['required_migrations'] = $v['envelope']['required_migrations'] ?? [];
             need($request['update_policy']['class']!=='C','Class C requires separately proven exclusive window');
         }
@@ -480,7 +483,9 @@ class Publisher {
         need(in_array($j['state'],['locking','blocked','installing','maintenance','migrating','promoting-manifest'],true),'No recoverable pending attempt');
         if(isset($this->c['update_policy']) && isset($j['backup_receipt']) && count(array_filter($j['operations'],fn($o)=>$o['state']!=='planned'))>0) {
             $v=$j['candidate'];$this->verify($j['stage'].'/release.tar.gz',$v['run'],$v['artifact'],$v['jobs'],$v['envelope']);$this->verifyPayload($j['stage'],$v);
-            $policy=UpdatePolicy::assess($j['old_manifest'],$v['inventory'],$this->c['update_policy'],$v['jobs']);need($policy['class']!=='C','Forward recovery requires approved compatible policy');
+            $fromCommit = is_file($j['backup'].'/build-manifest.json') ? (json(file_get_contents($j['backup'].'/build-manifest.json'))['commit'] ?? null) : null;
+            $toCommit = $v['envelope']['functional_commit'] ?? null;
+            $policy=UpdatePolicy::assess($j['old_manifest'],$v['inventory'],$this->c['update_policy'],$v['jobs'],$fromCommit,$toCommit);need($policy['class']!=='C','Forward recovery requires approved compatible policy');
             $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private,'update_policy'=>$policy];
             $f=$this->hook('fence',$request);need(($f['legacy_publishers_fenced']??false)===true,'Recovery fence missing');
             $m=$this->hook('maintenance',$request+['action'=>'verify-admission','attempt'=>$j['attempt']]);UpdatePolicy::maintenance($m,$policy);
@@ -500,8 +505,11 @@ class Publisher {
         foreach ($this->c['data_contracts'] as $contract)
             need(in_array($contract,$this->c['baseline_data_contracts']??[],true),'Old writer incompatible; use approved forward-compatible recovery package');
         $m=$this->hook('maintenance',['action'=>'verify-and-drain','attempt'=>$j['attempt'],'project'=>$this->c['project']]);
-        if(isset($this->c['update_policy']))UpdatePolicy::maintenance($m,UpdatePolicy::assess($j['old_manifest'],$j['candidate']['inventory'],$this->c['update_policy'],$j['candidate']['jobs']));
-        else need(($m['http_status']??0)===503 && ($m['writes_blocked']??false) && ($m['inflight_writers']??-1)===0,'Recovery maintenance/drain not demonstrated');
+        if(isset($this->c['update_policy'])) {
+            $fromCommit = is_file($j['backup'].'/build-manifest.json') ? (json(file_get_contents($j['backup'].'/build-manifest.json'))['commit'] ?? null) : null;
+            $toCommit = $j['candidate']['envelope']['functional_commit'] ?? null;
+            UpdatePolicy::maintenance($m,UpdatePolicy::assess($j['old_manifest'],$j['candidate']['inventory'],$this->c['update_policy'],$j['candidate']['jobs'],$fromCommit,$toCommit));
+        } else need(($m['http_status']??0)===503 && ($m['writes_blocked']??false) && ($m['inflight_writers']??-1)===0,'Recovery maintenance/drain not demonstrated');
         try {
             foreach (array_reverse(array_keys($j['operations'])) as $i) {
                 $op=&$j['operations'][$i]; $this->own($j);

@@ -4,12 +4,26 @@ namespace Rumo\Publisher;
 require_once __DIR__.'/Core.php';
 /** Classifies concrete changed paths. SQL is compatible only by an operator-approved digest. */
 final class UpdatePolicy {
- public static function assess(array $old,array $new,array $policy,array $jobs=[]):array {
+ public static function assess(array $old,array $new,array $policy,array $jobs=[],?string $fromCommit=null,?string $toCommit=null):array {
   need(($policy['schema']??'')==='rumo-update-policy-v1','Unknown update policy');
   $class='A';$reasons=[];$changed=[];$migrations=[];
+
+  $transitionKey=($fromCommit!==null&&$toCommit!==null)?"{$fromCommit}:{$toCommit}":null;
+  $transition=($transitionKey!==null)?($policy['authorized_transitions'][$transitionKey]??null):null;
+  $allowedProtected=$transition['allowed_protected_paths']??[];
+  $allowedDeletions=$transition['allowed_deletions']??[];
+
   foreach(array_unique(array_merge(array_keys($old['files']),array_keys($new['files']))) as $p){
    if(($old['files'][$p]??null)===($new['files'][$p]??null))continue;$changed[]=$p;
-   if(!isset($new['files'][$p])||protectedPath($p)||in_array($p,$policy['protected_contract_paths']??[],true)){$class='C';$reasons[]='destructive/protected contract: '.$p;continue;}
+   if(!isset($new['files'][$p])){
+    if(in_array($p,$allowedDeletions,true)){if($class==='A')$class='B';continue;}
+    $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
+   }
+   if(protectedPath($p)){$class='C';$reasons[]='destructive/protected contract: '.$p;continue;}
+   if(in_array($p,$policy['protected_contract_paths']??[],true)){
+    if(in_array($p,$allowedProtected,true)){if($class==='A')$class='B';continue;}
+    $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
+   }
    if(str_starts_with($p,'database/')&&(str_ends_with($p,'.sql')||str_ends_with($p,'.php'))){
     if(($policy['approved_incremental_migrations'][$p]??null)!==$new['files'][$p]){$class='C';$reasons[]='unapproved database change: '.$p;}
     else {$migrations[]=$p;if($class==='A')$class='B';}
@@ -17,7 +31,8 @@ final class UpdatePolicy {
   }
   $compatible=false;
   foreach($jobs as $job)if(($job['name']??'')==='compatibility'&&($job['status']??'')==='completed'&&($job['conclusion']??'')==='success')$compatible=true;
-  return ['class'=>$class,'changed'=>$changed,'migrations'=>$migrations,'reasons'=>$reasons,'requires_full_drain'=>$class==='C','compatible_writers_ci'=>$compatible];
+  $requiresFullDrain=($class==='C')||(($transition['requires_full_drain']??false)===true);
+  return ['class'=>$class,'changed'=>$changed,'migrations'=>$migrations,'reasons'=>$reasons,'requires_full_drain'=>$requiresFullDrain,'compatible_writers_ci'=>$compatible,'transition'=>$transition['label']??null];
  }
  public static function maintenance(array $receipt,array $policy):void{
   need(($receipt['http_status']??null)===503,'Maintenance HTTP503 required');
