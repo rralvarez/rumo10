@@ -1,0 +1,72 @@
+{
+    "cohorts": [
+        {
+            "position": "zagueiro",
+            "rounds": 500,
+            "seasons": 10,
+            "unique_ids": 178,
+            "id_repeat_10_pct": 0,
+            "id_repeat_20_pct": 5.8,
+            "family_repeat_10_pct": 12.8,
+            "family_repeat_20_pct": 24.8,
+            "fallbacks": 0
+        },
+        {
+            "position": "lateral",
+            "rounds": 500,
+            "seasons": 10,
+            "unique_ids": 201,
+            "id_repeat_10_pct": 0,
+            "id_repeat_20_pct": 7.2,
+            "family_repeat_10_pct": 14.4,
+            "family_repeat_20_pct": 26,
+            "fallbacks": 0
+        },
+        {
+            "position": "volante",
+            "rounds": 500,
+            "seasons": 10,
+            "unique_ids": 182,
+            "id_repeat_10_pct": 0,
+            "id_repeat_20_pct": 5.4,
+            "family_repeat_10_pct": 11.8,
+            "family_repeat_20_pct": 24.8,
+            "fallbacks": 0
+        },
+        {
+            "position": "meia",
+            "rounds": 500,
+            "seasons": 10,
+            "unique_ids": 188,
+            "id_repeat_10_pct": 0,
+            "id_repeat_20_pct": 6.4,
+            "family_repeat_10_pct": 12.2,
+            "family_repeat_20_pct": 26.4,
+            "fallbacks": 0
+        },
+        {
+            "position": "ponta",
+            "rounds": 500,
+            "seasons": 10,
+            "unique_ids": 191,
+            "id_repeat_10_pct": 0,
+            "id_repeat_20_pct": 4.4,
+            "family_repeat_10_pct": 11,
+            "family_repeat_20_pct": 23.4,
+            "fallbacks": 0
+        },
+        {
+            "position": "centroavante",
+            "rounds": 500,
+            "seasons": 10,
+            "unique_ids": 182,
+            "id_repeat_10_pct": 0,
+            "id_repeat_20_pct": 7.4,
+            "family_repeat_10_pct": 12.4,
+            "family_repeat_20_pct": 25.8,
+            "fallbacks": 0
+        }
+    ],
+    "rare_in_5000": 492,
+    "rare_with_memory_in_5000": 492
+}

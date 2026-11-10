@@ -2,12 +2,23 @@
 declare(strict_types=1);
 /** Universo independente por carreira. Cadastro de 2026; resultados sempre simulados. */
 final class Competition {
+    private static ?array $referenceCatalog=null;
+    private static array $referenceClubs=[];
+    public static function referenceScope(array $definitions,callable $operation,array $clubs=[]):mixed {
+        $previous=self::$referenceCatalog;$previousClubs=self::$referenceClubs;self::$referenceCatalog=$definitions;self::$referenceClubs=$clubs;
+        try{return $operation();}finally{self::$referenceCatalog=$previous;self::$referenceClubs=$previousClubs;}
+    }
+    public static function referencePairs():array {
+        $pairs=[];foreach(self::$referenceCatalog??[] as $id=>$c)if(!empty($c['test_fixture'])&&isset($c['progression_upper']))$pairs[]=[$c['progression_upper'],$id];return $pairs;
+    }
     public static function catalog(): array {
-        if(RumoHub::enabled())return RumoHub::catalog()['competitions'];
-        static $data; return $data??=array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/africa-south-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/top250-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id');
+        if(self::$referenceCatalog!==null)return self::$referenceCatalog;
+        if(RumoHub::enabled())return LocalCompetitionCatalog::competitions(RumoHub::catalog()['competitions']);
+        static $data; return $data??=LocalCompetitionCatalog::competitions(array_column(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/state-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/international-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/africa-south-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/top250-competitions-2026.json'),true,512,JSON_THROW_ON_ERROR)),null,'id'));
     }
     public static function clubs(): array {
-        if(RumoHub::enabled())return RumoHub::catalog()['clubs'];
+        if(self::$referenceClubs){$clubs=self::$referenceClubs;self::$referenceClubs=[];try{return array_replace(self::clubs(),$clubs);}finally{self::$referenceClubs=$clubs;}}
+        if(RumoHub::enabled()){static $hubClubs;return $hubClubs??=LocalCompetitionCatalog::clubs(RumoHub::catalog()['clubs']);}
         static $data;
         if($data===null) {
             $data=array_column(json_decode(file_get_contents(dirname(__DIR__).'/database/official-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),null,'name');
@@ -16,7 +27,7 @@ final class Competition {
                 $data[$club['name']]=array_replace($old,$club);
             }
             foreach(array_merge(json_decode(file_get_contents(dirname(__DIR__).'/database/international-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/europe-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/concacaf-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/africa-south-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR),json_decode(file_get_contents(dirname(__DIR__).'/database/top250-clubs-2026.json'),true,512,JSON_THROW_ON_ERROR)) as $club)$data[$club['name']]=$club;
-        }return $data;
+        $data=LocalCompetitionCatalog::clubs($data);}return $data;
     }
     public static function attach(array $g,string $club): array {
         if(!isset(self::clubs()[$club])) throw new InvalidArgumentException('Escolha um clube participante de 2026.');
@@ -39,6 +50,7 @@ final class Competition {
     }
     public static function tournament(string $id,?array $teams=null): array {
         $c=self::catalog()[$id]; $teams??=$c['teams'];
+        if($c['format']==='amazonense')return AmazonenseCompetition::create($c,$teams);
         if($c['format']==='state')return StateCompetition::create($c,$teams);
         if($c['format']==='concacaf')return ConcacafCompetition::create($c,$teams);
         if($c['format']==='world')return WorldCompetition::create($c,$teams);
@@ -69,7 +81,7 @@ final class Competition {
         usort($t['matches'],fn($a,$b)=>$a['round']<=>$b['round']); return $t;
     }
     public static function standings(array $t,?array $teams=null,?string $phase=null): array {
-        $teams??=$t['teams'];$cross=($t['format']==='state' && !empty(self::catalog()[$t['id']]['rules']['cross'])) || ($t['format']==='international' && str_starts_with($t['id'],'ar-'));
+        $teams??=$t['teams'];$cross=$t['format']==='amazonense' || ($t['format']==='state' && !empty(self::catalog()[$t['id']]['rules']['cross'])) || ($t['format']==='international' && str_starts_with($t['id'],'ar-'));
         $split=($t['id']==='sc-1' || $t['format']==='world') && $phase==='split';if($split)$cross=true;
         if($t['id']==='us-1')$cross=true;
         $matches=array_values(array_filter($t['matches'],fn($m)=>(!$phase || $m['phase']===$phase || ($split && $m['phase']==='liga')) && ($cross?(in_array($m['home'],$teams,true) || in_array($m['away'],$teams,true)):(in_array($m['home'],$teams,true) && in_array($m['away'],$teams,true)))));
@@ -144,17 +156,162 @@ final class Competition {
                 if($points || $gd)$tie['winner']=($points?:$gd)>0?$tie['a']:$tie['b'];
                 elseif($tie['rule']==='advantage')$tie['winner']=$tie['a'];
                 else {
-                    $tie['winner']=random_int(0,1)?$tie['a']:$tie['b'];
-                    $loserScore=random_int(2,4);$m=&$t['matches'][$last];$homeWins=$m['home']===$tie['winner'];
-                    $m['penalties']=[$homeWins?$loserScore+1:$loserScore,$homeWins?$loserScore:$loserScore+1];
+                    $st = class_exists('PenaltyShootout') ? PenaltyShootout::simulateTie($tie, $t['matches'], $t['phase'] ?? '') : ['winner'=>random_int(0,1)?$tie['a']:$tie['b'],'score'=>[$tie['a']=>4,$tie['b']=>3]];
+                    $tie['winner'] = $st['winner'];
+                    $m=&$t['matches'][$last];
+                    $m['penalties'] = [$st['score'][$m['home']] ?? 0, $st['score'][$m['away']] ?? 0];
                     $m['log'][]=['minute'=>90,'text'=>'Nos pênaltis: '.$m['home'].' '.$m['penalties'][0].' × '.$m['penalties'][1].' '.$m['away'].'.'];unset($m);
                 }
             }
             $winners[]=$tie['winner'];
         } unset($tie); return $winners;
     }
+    /** Exige uma chave eliminatoria explicita; repetir adversario nao define mata-mata. */
+    public static function knockoutTie(array $t,array $m): ?array {
+        $phase=$m['phase']??($t['phase']??null);
+        if(!$phase || in_array($phase,['liga','regular','quadrangular','hexagonal','split','clausura','intermedio','nacional'],true))return null;
+        $ties=$t['state_phase_ties'][$phase]??[];
+        if(($t['phase']??null)===$phase)$ties=array_merge($t['ties']??[],$ties);
+        foreach($ties as $tie) {
+            if((($tie['a']??null)===($m['home']??null)&&($tie['b']??null)===($m['away']??null)) ||
+               (($tie['a']??null)===($m['away']??null)&&($tie['b']??null)===($m['home']??null)))return $tie;
+        }
+        return null;
+    }
+    public static function tieContext(array $t, array $m): ?array {
+        $tieDef=self::knockoutTie($t,$m);if($tieDef===null)return null;
+        $phase = $m['phase'] ?? ($t['phase'] ?? null);
+        if (!$phase) return null;
+        $allMatches = $t['matches'] ?? [];
+        if (!$allMatches) return null;
+        $homeId = $m['home'] ?? null;
+        $awayId = $m['away'] ?? null;
+        if (!$homeId || !$awayId) return null;
+
+        $tieMatches = [];
+        $hasTieIndex = isset($m['tie']);
+        foreach ($allMatches as $cand) {
+            if (($cand['phase'] ?? null) !== $phase) continue;
+            if ($hasTieIndex && isset($cand['tie']) && $cand['tie'] !== $m['tie']) continue;
+            $cH = $cand['home'] ?? null;
+            $cA = $cand['away'] ?? null;
+            if (
+                ($cH === $homeId && $cA === $awayId) ||
+                ($cH === $awayId && $cA === $homeId)
+            ) {
+                $tieMatches[] = $cand;
+            }
+        }
+        if (count($tieMatches) !== 2) return null;
+
+        usort($tieMatches, fn($a, $b) => ((int)$a['round']) <=> ((int)$b['round']));
+        $leg1 = $tieMatches[0];
+        $leg2 = $tieMatches[1];
+
+        if ((int)$m['round'] !== (int)$leg2['round']) return null;
+        if (($leg1['status'] ?? '') !== 'finalizada' || !isset($leg1['hg'], $leg1['ag'])) return null;
+
+        if ($leg1['home'] === $homeId) {
+            $homeLeg1Goals = (int)$leg1['hg'];
+            $awayLeg1Goals = (int)$leg1['ag'];
+        } elseif ($leg1['away'] === $homeId) {
+            $homeLeg1Goals = (int)$leg1['ag'];
+            $awayLeg1Goals = (int)$leg1['hg'];
+        } else {
+            return null;
+        }
+
+        $currentHg = (int)($m['hg'] ?? 0);
+        $currentAg = (int)($m['ag'] ?? 0);
+
+        $homeAggregate = $homeLeg1Goals + $currentHg;
+        $awayAggregate = $awayLeg1Goals + $currentAg;
+
+        $rule = $tieDef['rule'] ?? 'penalties';
+        $advantageId = in_array($rule, ['advantage', 'points_advantage'], true) ? ($tieDef['a'] ?? $leg2['home']) : null;
+
+        $isTied = ($homeAggregate === $awayAggregate);
+        $qualifyingId = null;
+        if ($homeAggregate > $awayAggregate) {
+            $qualifyingId = $homeId;
+        } elseif ($awayAggregate > $homeAggregate) {
+            $qualifyingId = $awayId;
+        } else {
+            if ($advantageId !== null) {
+                $qualifyingId = $advantageId;
+            } else {
+                $qualifyingId = null;
+            }
+        }
+
+        $finalized = (($m['status'] ?? '') === 'finalizada');
+        $advancedId = null;
+        $byPenalties = false;
+        $penalties = $m['penalties'] ?? null;
+
+        if ($finalized) {
+            if (!empty($tieDef['winner'])) {
+                $advancedId = $tieDef['winner'];
+                if (isset($m['penalties'])) $byPenalties = true;
+            } elseif ($homeAggregate > $awayAggregate) {
+                $advancedId = $homeId;
+            } elseif ($awayAggregate > $homeAggregate) {
+                $advancedId = $awayId;
+            } elseif ($advantageId !== null) {
+                $advancedId = $advantageId;
+            } elseif (is_array($penalties) && count($penalties) === 2 && $penalties[0] !== $penalties[1]) {
+                $byPenalties = true;
+                $advancedId = $penalties[0] > $penalties[1] ? $homeId : $awayId;
+            }
+        }
+
+        return [
+            'is_second_leg' => true,
+            'phase' => $phase,
+            'rule' => $rule,
+            'home_id' => $homeId,
+            'away_id' => $awayId,
+            'leg1' => [
+                'round' => (int)$leg1['round'],
+                'home' => $leg1['home'],
+                'away' => $leg1['away'],
+                'hg' => (int)$leg1['hg'],
+                'ag' => (int)$leg1['ag'],
+            ],
+            'leg2' => [
+                'round' => (int)$m['round'],
+                'home' => $homeId,
+                'away' => $awayId,
+                'hg' => $currentHg,
+                'ag' => $currentAg,
+                'status' => $m['status'] ?? 'agendada',
+            ],
+            'home_leg1_goals' => $homeLeg1Goals,
+            'away_leg1_goals' => $awayLeg1Goals,
+            'home_current_goals' => $currentHg,
+            'away_current_goals' => $currentAg,
+            'home_aggregate' => $homeAggregate,
+            'away_aggregate' => $awayAggregate,
+            'is_tied' => $isTied,
+            'qualifying_id' => $qualifyingId,
+            'advantage_id' => $advantageId,
+            'finalized' => $finalized,
+            'advanced_id' => $advancedId,
+            'by_penalties' => $byPenalties,
+            'penalties' => $penalties,
+        ];
+    }
+    public static function aggregateContext(array $g, array $m): ?array {
+        $cid = $m['competition'] ?? ($g['competition_id'] ?? null);
+        $t = ($cid && isset($g['competitions'][$cid])) ? $g['competitions'][$cid] : ['matches' => $g['matches'] ?? [], 'ties' => $g['ties'] ?? []];
+        if (($cid ?? '') === ($g['competition_id'] ?? '')) {
+            $t['matches'] = $g['matches'] ?? ($t['matches'] ?? []);
+        }
+        return self::tieContext($t, $m);
+    }
     public static function nextPhase(array &$t): void {
         foreach($t['matches'] as $m) if($m['status']!=='finalizada')throw new LogicException('Fase incompleta.');
+        if($t['format']==='amazonense'){AmazonenseCompetition::next($t);return;}
         if($t['format']==='state'){StateCompetition::next($t);return;}
         if($t['format']==='concacaf'){ConcacafCompetition::next($t);return;}
         if($t['format']==='world'){WorldCompetition::next($t);return;}
@@ -258,41 +415,47 @@ final class Competition {
         if(count($t['initial_groups'])>1)foreach($t['initial_groups'] as $i=>$teams)if(in_array($club,$teams,true)) {
             $ranking=$t['format']==='international'?InternationalCompetition::ranking($t,$teams,'liga'):self::rank($t,array_values(array_diff($teams,['__folga__'])),'liga');$position=array_search($club,$ranking,true)+1;$group=$i+1;
         }
-        $promoted=in_array($club,$t['promoted'],true);
-        return ['name'=>self::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'promoted'=>$promoted,'relegated'=>in_array($club,$t['relegated'],true),'position'=>$position,'group'=>$group,'access_pending'=>$promoted && $t['format']==='state','relegation_pending'=>$t['format']==='international' && str_ends_with($t['id'],'-2'),'titles'=>$t['titles']??[]];
+        $continuity=CompetitionContinuity::status($t['id']);$promoted=in_array($club,$t['promoted'],true) && $continuity['valid'];
+        return ['name'=>self::catalog()[$t['id']]['name'],'champion'=>$t['champion'],'promoted'=>$promoted,'relegated'=>in_array($club,$t['relegated'],true),'position'=>$position,'group'=>$group,'access_pending'=>false,'continuity'=>$continuity,'relegation_pending'=>$t['format']==='international' && str_ends_with($t['id'],'-2'),'titles'=>$t['titles']??[]];
     }
     public static function continueSeason(array &$g): void {
         if(++$g['competition_cursor']<count($g['season_competitions'])){self::activate($g,$g['season_competitions'][$g['competition_cursor']]);$g['stage']='treino';$g['states']['energia']=85;}
         else {$g['stage']='resumo';self::completeWorld($g);}
     }
     public static function completeWorld(array &$g): void {
-        // A expansão entra na próxima janela de mercado, sem refazer campeonatos já salvos.
-        foreach(self::catalog() as $id=>$c)if($c['family']==='international' && !isset($g['memberships'][$id]))$g['memberships'][$id]=$c['teams'];
-        foreach($g['memberships'] as $id=>$teams) {
-            if(!isset($g['competitions'][$id]))$g['competitions'][$id]=self::tournament($id,$g['memberships'][$id]);
-            self::finish($g['competitions'][$id],$g);
-            self::compactResults($g['competitions'][$id],$g['club']);
+        TeamStrength::openRatingCache($g, true);
+        try {
+            CompetitionContinuity::extend($g);
+            // A expansão entra na próxima janela de mercado, sem refazer campeonatos já salvos.
+            foreach(self::catalog() as $id=>$c)if($c['family']==='international' && !isset($g['memberships'][$id]))$g['memberships'][$id]=$c['teams'];
+            foreach($g['memberships'] as $id=>$teams) {
+                if(!isset($g['competitions'][$id]))$g['competitions'][$id]=self::tournament($id,$g['memberships'][$id]);
+                self::finish($g['competitions'][$id],$g);
+                self::compactResults($g['competitions'][$id],$g['club']);
+            }
+            if(count($g['memberships']['br-c'])>=28)$g['competitions']['br-c']['relegated']=array_slice($g['competitions']['br-c']['initial_ranking'],-6);
+            EuropeanCompetition::barrages($g);
+            foreach($g['season_competitions'] ?? [] as $id)$g['competition_results'][$id]=self::result($g['competitions'][$id],$g['club']);
+            $g['next_memberships']=$g['memberships'];
+            foreach(CompetitionContinuity::pairs() as [$upper,$lower]) {
+                if(!isset($g['competitions'][$upper],$g['competitions'][$lower]))continue;
+                $down=$g['competitions'][$upper]['relegated'];$up=$g['competitions'][$lower]['promoted'];
+                $g['next_memberships'][$upper]=array_values(array_diff($g['next_memberships'][$upper],$down));
+                $g['next_memberships'][$lower]=array_values(array_diff($g['next_memberships'][$lower],$up));
+                $g['next_memberships'][$upper]=array_merge($g['next_memberships'][$upper],$up);
+                $g['next_memberships'][$lower]=array_merge($g['next_memberships'][$lower],$down);
+            }
+            // Série D conserva acesso nacional para todos os clubes do universo jogável.
+            // Licenciamento e novas vagas oriundas de outros estaduais não são simulados.
+            $national=array_merge($g['next_memberships']['br-a'],$g['next_memberships']['br-b'],$g['next_memberships']['br-c'],$g['next_memberships']['br-d']);
+            foreach(['sp-a1','sp-a2','sp-a3','sp-a4','sp-segunda'] as $id) foreach($g['competitions'][$id]['initial_ranking'] as $club) {
+                if(count($g['next_memberships']['br-d'])>=96)break 2;
+                if(!in_array($club,$national,true)){$g['next_memberships']['br-d'][]=$club;$national[]=$club;}
+            }
+            TeamStrength::nextSeason($g);
+        } finally {
+            TeamStrength::closeRatingCache($g);
         }
-        if(count($g['memberships']['br-c'])>=28)$g['competitions']['br-c']['relegated']=array_slice($g['competitions']['br-c']['initial_ranking'],-6);
-        EuropeanCompetition::barrages($g);
-        foreach($g['season_competitions'] as $id)$g['competition_results'][$id]=self::result($g['competitions'][$id],$g['club']);
-        $g['next_memberships']=$g['memberships'];
-        foreach(array_merge([['sp-a1','sp-a2'],['sp-a2','sp-a3'],['sp-a3','sp-a4'],['sp-a4','sp-segunda'],['br-a','br-b'],['br-b','br-c'],['br-c','br-d'],['ar-1','ar-2'],['uy-1','uy-2'],['py-1','py-2'],['bo-1','bo-2']],EuropeanCompetition::pairs()) as [$upper,$lower]) {
-            if(!isset($g['competitions'][$upper],$g['competitions'][$lower]))continue;
-            $down=$g['competitions'][$upper]['relegated'];$up=$g['competitions'][$lower]['promoted'];
-            $g['next_memberships'][$upper]=array_values(array_diff($g['next_memberships'][$upper],$down));
-            $g['next_memberships'][$lower]=array_values(array_diff($g['next_memberships'][$lower],$up));
-            $g['next_memberships'][$upper]=array_merge($g['next_memberships'][$upper],$up);
-            $g['next_memberships'][$lower]=array_merge($g['next_memberships'][$lower],$down);
-        }
-        // Série D conserva acesso nacional para todos os clubes do universo jogável.
-        // Licenciamento e novas vagas oriundas de outros estaduais não são simulados.
-        $national=array_merge($g['next_memberships']['br-a'],$g['next_memberships']['br-b'],$g['next_memberships']['br-c'],$g['next_memberships']['br-d']);
-        foreach(['sp-a1','sp-a2','sp-a3','sp-a4','sp-segunda'] as $id) foreach($g['competitions'][$id]['initial_ranking'] as $club) {
-            if(count($g['next_memberships']['br-d'])>=96)break 2;
-            if(!in_array($club,$national,true)){$g['next_memberships']['br-d'][]=$club;$national[]=$club;}
-        }
-        TeamStrength::nextSeason($g);
     }
     /** Partidas alheias concluídas: manter resultados, eliminar somente estruturas vazias do personagem. */
     public static function compactResults(array &$t,string $club):void {
@@ -308,9 +471,11 @@ final class Competition {
         return TransferMarket::pool($g);
     }
     public static function newSeason(array &$g): void {
+        CompetitionContinuity::reconcileAmazonas($g);
         $g['club_strengths']=$g['next_club_strengths']??($g['club_strengths']??[]);unset($g['next_club_strengths']);
         $g['competition_history'][]=['season'=>$g['season']-1,'results'=>$g['competition_results']];
         $g['memberships']=$g['next_memberships'];unset($g['next_memberships']);
+        CompetitionContinuity::extend($g);
         self::startSeason($g);
     }
     public static function label(array $g): string {
@@ -318,17 +483,49 @@ final class Competition {
         if(!empty($g['starting']))return isset($g['entry_division'])?self::catalog()[$g['entry_division']]['name']:'Seu primeiro contrato';
         return self::catalog()[$g['competition_id']]['name'];
     }
+    /** Reconhece turnos somente em blocos completos de todos-contra-todos do calendario salvo. */
+    public static function roundRobinTurn(array $t,string $club,int $round): ?array {
+        $phase=$t['phase'];$phaseMatches=array_values(array_filter($t['matches'],fn($m)=>($m['phase']??null)===$phase));
+        $group=null;
+        foreach($phaseMatches as $m)if($m['round']===$round && in_array($club,[$m['home'],$m['away']],true)){$group=$m['group']??'';break;}
+        if($group===null)return null;
+        foreach($phaseMatches as $m)if(in_array($club,[$m['home'],$m['away']],true)&&($m['group']??'')!==$group)return null;
+        $matches=array_values(array_filter($phaseMatches,fn($m)=>($m['group']??'')===$group));
+        $teams=array_unique(array_merge(array_column($matches,'home'),array_column($matches,'away')));$n=count($teams);
+        if($n<2)return null;
+        $rounds=array_values(array_unique(array_column($matches,'round')));sort($rounds,SORT_NUMERIC);
+        $length=$n%2?$n:$n-1;
+        if(count($rounds)%$length)return null;
+        $turns=intdiv(count($rounds),$length);
+        foreach(array_chunk($rounds,$length) as $block){
+            $pairs=[];$busy=[];
+            foreach($matches as $m)if(in_array($m['round'],$block,true)){
+                if(isset($m['tie']) || self::knockoutTie($t,$m)!==null || $m['home']===$m['away'])return null;
+                $pair=[$m['home'],$m['away']];sort($pair,SORT_STRING);$key=json_encode($pair);
+                if(isset($pairs[$key]) || isset($busy[$m['round']][$m['home']]) || isset($busy[$m['round']][$m['away']]))return null;
+                $pairs[$key]=true;$busy[$m['round']][$m['home']]=true;$busy[$m['round']][$m['away']]=true;
+            }
+            if(count($pairs)!==intdiv($n*($n-1),2))return null;
+        }
+        $index=array_search($round,$rounds,true);if($index===false)return null;
+        return ['turn'=>intdiv($index,$length)+1,'turns'=>$turns];
+    }
     public static function phaseLabel(array $g): string {
         if(empty($g['official']))return 'Rodada '.$g['round'].' de 14';
         if(!empty($g['starting']))return 'Início da carreira';
         $t=$g['competitions'][$g['competition_id']];
         if($t['done'])return 'Competição encerrada';
+        if($t['format']==='amazonense')return ($t['phase']==='am_final'?'Final geral':($t['am_turn'].'º turno · '.(['liga'=>'Primeira fase','am_playoff'=>'Repescagem','am_semifinal'=>'Semifinal','am_turn_final'=>'Final'][$t['phase']]??'Partida'))).' · jogo '.($g['round']-$t['phase_start']+1).' de '.($t['phase_end']-$t['phase_start']+1);
         $phase=['liga'=>'Primeira fase','quadrangular'=>'Quadrangular','hexagonal'=>'Hexagonal final','segunda'=>'Segunda fase','terceira'=>'Terceira fase','oitavas'=>'Oitavas de final','quartas'=>'Quartas de final','semifinal'=>'Semifinais / playoffs','final'=>'Final','playoff'=>'Repescagem','clausura'=>'Clausura','intermedio'=>'Intermedio','intermedio_final'=>'Final do Intermedio','competencia_final'=>'Final do Competencia','regular'=>'Fase regular','nacional'=>'Grupos nacionais','acesso'=>'Final pelo acesso','reduzido'=>'Playoffs pelo segundo acesso','wild_card'=>'Wild card','serie_1'=>'Série MLS · partida 1','serie_2'=>'Série MLS · partida 2','serie_3'=>'Série MLS · desempate','semifinal_conferencia'=>'Semifinal de conferência','final_conferencia'=>'Final de conferência','mls_cup'=>'MLS Cup','split'=>'Fase de grupos finais'][$t['phase']]??ucfirst(str_replace('_',' ',$t['phase']));
+        if($t['phase']==='liga' && in_array($t['format'],['league','european','international','world'],true)) {
+            $t['matches']=$g['matches'];$turn=self::roundRobinTurn($t,$g['club'],$g['round']);
+            $phase=$turn===null?'Fase regular':($turn['turns']===1?'Turno único':([1=>'Primeiro turno',2=>'Segundo turno'][$turn['turn']]??$turn['turn'].'º turno'));
+        }
         return $phase.' · jogo '.($g['round']-$t['phase_start']+1).' de '.($t['phase_end']-$t['phase_start']+1);
     }
     public static function playerMatches(array $g): array {
         if(empty($g['official']))return $g['matches'];
-        $all=[];foreach($g['season_competitions'] as $id) {
+        $all=[];foreach($g['season_competitions'] ?? [] as $id) {
             $matches=$id===$g['competition_id']?$g['matches']:($g['competitions'][$id]['matches']??[]);
             foreach($matches as $m)if(in_array($g['club'],[$m['home'],$m['away']],true))$all[]=$m+['competition'=>$id];
         }return $all;

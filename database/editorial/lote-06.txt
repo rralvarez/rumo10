@@ -1,0 +1,501 @@
+@2500 F02.dinheiro|Você quer organizar seus gastos pessoais, mas suas anotações misturam despesas fixas e compras ocasionais.|{}
+disciplina|separar_despesas|Separar as despesas por frequência|Você identifica o que precisa prever todo mês.|Você mistura períodos e chega a uma previsão confusa.
+social|pedir_metodo_registro|Pedir uma sugestão de método a alguém de confiança|Você encontra uma forma simples de registrar despesas.|Você tenta copiar uma rotina que não consegue manter.
+lazer|rever_compra_impulso|Deixar uma compra opcional para decidir depois|Você consegue pensar sem a pressão do impulso.|Você continua procurando ofertas e não consegue adiar a decisão.
+apoio|conversar_limite_gastos|Conversar sobre um limite que deseja respeitar|A conversa ajuda você a assumir um limite realista.|Você fala em economizar sem definir o que pretende rever.
+@2501 F02.familia|Durante uma ligação, alguém da família pergunta por um assunto que você vinha evitando conversar.|{}
+social|responder_limite_assunto|Explicar até onde se sente à vontade para falar|A pessoa entende seu limite sem precisar adivinhar.|Você muda de assunto e deixa a pessoa preocupada.
+apoio|ouvir_preocupacao_ligacao|Perguntar o que está preocupando a pessoa|Você entende a pergunta antes de reagir a ela.|Você interrompe e responde a uma preocupação diferente.
+disciplina|combinar_retomada_assunto|Combinar um momento para retomar o tema|Vocês deixam a conversa com um próximo passo claro.|Você adia sem combinar quando poderá conversar.
+lazer|manter_contato_afetuoso|Continuar a ligação com um assunto que os aproxima|Vocês preservam o contato sem forçar uma confidência.|Você usa o novo assunto para encerrar a ligação com frieza.
+@2502 F02.estudo|Você recebeu uma correção num trabalho do curso e ficou incomodado com uma observação do professor.|{}
+disciplina|reler_criterio_trabalho|Reler o critério antes de refazer o trecho|Você entende o que precisa corrigir.|Você altera o texto sem conferir o motivo da observação.
+social|pedir_exemplo_correcao|Pedir um exemplo do que faltou no trabalho|A explicação torna a revisão mais objetiva.|Você pede um exemplo apenas para contestar a avaliação.
+apoio|comparar_rascunhos_colega|Revisar com um colega sem copiar a resposta dele|A troca ajuda você a enxergar sua própria dificuldade.|Você copia a solução e continua sem entender o critério.
+lazer|pausar_reacao_nota|Esperar a irritação passar antes de responder|Você retoma a revisão com menos resistência.|Você gasta a pausa discutindo a nota e volta mais irritado.
+@2503 F02.amizades|Um amigo marcou um encontro e não apareceu. Você ainda não sabe o que aconteceu.|{}
+social|perguntar_ausencia_amigo|Perguntar se aconteceu alguma coisa|Você recebe uma explicação antes de tirar conclusões.|Você escreve como acusação e dificulta a resposta.
+disciplina|explicar_tempo_espera|Dizer até quando pode esperar hoje|O limite evita que você fique sem saber como seguir.|Você manda mensagens contraditórias sobre quanto pode esperar.
+lazer|seguir_plano_individual|Aproveitar o tempo numa atividade sua|Você preserva uma parte do dia sem depender da resposta.|Você continua conferindo a mensagem e não aproveita a atividade.
+apoio|combinar_reagendamento|Oferecer remarcar depois de entender a situação|Vocês encontram espaço para conversar sobre o desencontro.|Você remarca sem tratar o incômodo e continua ressentido.
+@2504 F02.comunidade|Uma criança pergunta se precisa abandonar os estudos para tentar jogar futebol.|{}
+social|valorizar_estudo_esporte|Explicar que os estudos também fazem parte de suas possibilidades|Você responde sem apresentar uma escolha precipitada como obrigação.|Você usa uma frase vaga e a criança mantém a dúvida.
+apoio|incluir_responsavel_conversa|Sugerir que converse com um responsável sobre a rotina|Você encaminha a dúvida sem assumir decisões pela família.|Você dá uma ordem sobre uma rotina que não conhece.
+disciplina|evitar_promessa_carreira|Dizer que ninguém pode garantir uma carreira esportiva|Você deixa claro o limite da sua experiência.|Você exagera sua história e acaba parecendo prometer um caminho certo.
+imprensa|indicar_orientacao_publica|Indicar um canal oficial de orientação do clube|Você aponta onde buscar informação verificável.|Você cita uma oportunidade sem conferir se existe.
+@2505 F02.privacidade|Um conhecido pede o telefone particular de um companheiro seu. Você não sabe se ele quer compartilhar o contato.|{}
+disciplina|nao_repassar_contato|Não repassar o número sem autorização|Você protege uma informação que não cabe a você divulgar.|Você mostra o número na tela enquanto tenta explicar o limite.
+social|oferecer_encaminhar_pedido|Oferecer encaminhar o pedido ao companheiro|A decisão fica com a pessoa dona do contato.|Você promete uma resposta em nome dela.
+apoio|perguntar_autorizacao_contato|Consultar o companheiro em particular|Você consegue uma resposta clara antes de compartilhar qualquer coisa.|Você consulta em voz alta e expõe o contato na conversa.
+imprensa|indicar_canal_publico_contato|Indicar um canal público disponível|O conhecido recebe uma alternativa sem invadir a privacidade.|Você apresenta um perfil não verificado como canal oficial.
+@2506 F02.casa|Você e quem divide a casa têm expectativas diferentes sobre visitas. Um convite está sendo discutido.|{}
+social|combinar_visita_antes|Conversar sobre o horário antes de confirmar|Vocês chegam a um acordo antes de receber alguém.|Você confirma o convite antes de ouvir a outra pessoa.
+disciplina|estabelecer_regra_visitas|Propor uma regra que valha para os dois|A regra deixa as expectativas mais claras.|Você propõe uma regra que só limita a outra pessoa.
+apoio|ouvir_incômodo_visitas|Perguntar o que mais incomoda nas visitas|Você entende o problema concreto que precisa ser resolvido.|Você minimiza o incômodo antes de conhecê-lo.
+lazer|encontro_fora_casa|Sugerir um encontro em outro lugar desta vez|Você mantém o encontro sem forçar o uso do espaço compartilhado.|Você apresenta a alternativa como punição e cria outro atrito.
+@2507 F02.autocobranca|Você está comparando sua rotina com publicações de outros atletas e sente que nunca faz o suficiente.|{}
+disciplina|conferir_rotina_real|Comparar sua rotina com seus próprios compromissos|Você distingue uma obrigação real de uma comparação sem contexto.|Você acrescenta tarefas só para imitar as publicações.
+social|falar_comparacao_confianca|Conversar sobre a cobrança com alguém de confiança|Você consegue explicar a pressão que vinha guardando.|Você transforma a conversa numa lista de quem está à sua frente.
+lazer|limitar_tempo_comparacao|Interromper a sequência de publicações por um tempo|Você dá espaço para pensar na própria rotina.|Você troca de perfil e mantém a mesma comparação.
+apoio|reconhecer_ajuda_processo|Lembrar uma ajuda que recebeu no seu caminho|Você reconhece que desenvolvimento não é uma corrida solitária.|Você interpreta precisar de ajuda como sinal de fracasso.
+@2508 F02.cultura|Um amigo convida você para uma atividade cultural que não conhece. Você está curioso, mas receia não entender nada.|{}
+lazer|experimentar_sem_dominar|Aceitar a experiência sem obrigação de entender tudo|Você encontra algo interessante na novidade.|Você se cobra conhecer tudo e não consegue aproveitar.
+social|perguntar_como_funciona|Perguntar ao amigo como funciona a atividade|A explicação ajuda você a se sentir mais à vontade.|Você finge que entendeu e continua desconfortável.
+disciplina|buscar_contexto_breve|Ler uma apresentação curta antes de ir|Você chega com uma referência útil, sem precisar estudar tudo.|Você se perde em informações e deixa o convite em segundo plano.
+apoio|combinar_companhia_curiosa|Dizer que gostaria de explorar a experiência junto|O amigo entende sua curiosidade e acompanha seu ritmo.|Você espera que ele explique tudo e não participa da descoberta.
+@2509 F02.conflito|Você percebe que uma piada sua deixou uma pessoa próxima desconfortável.|{}
+social|reconhecer_piadas_limite|Reconhecer o efeito da piada sem se justificar|A pessoa percebe que você levou o incômodo a sério.|Você explica sua intenção como se ela anulasse o desconforto.
+apoio|ouvir_limite_pessoa|Perguntar se ela quer dizer o que incomodou|Você escuta o limite sem exigir que ela aceite outra brincadeira.|Você insiste em obter uma explicação antes de respeitar o limite.
+disciplina|nao_repetir_piadas|Assumir que não repetirá aquele tipo de piada|Você transforma o reconhecimento numa atitude concreta.|Você faz outra piada ao tentar aliviar o assunto.
+lazer|retomar_convivio_respeito|Dar espaço e propor outra atividade depois|Você respeita o tempo da pessoa antes de retomar o convívio.|Você usa a atividade para fingir que nada aconteceu.
+@2510 F02.objetivos|Você anotou muitas metas pessoais e não sabe qual merece atenção primeiro.|{}
+disciplina|escolher_meta_pequena|Escolher uma meta pequena para esta semana|Você consegue definir um primeiro passo viável.|Você escolhe uma meta que depende de resolver todas as outras.
+social|explicar_prioridade_amigo|Explicar a prioridade a alguém que conhece sua rotina|A conversa ajuda você a perceber o que realmente deseja.|Você muda a prioridade apenas para agradar quem está ouvindo.
+lazer|retirar_meta_sem_sentido|Retirar uma meta que já não faz sentido|Você recupera espaço para algo que ainda importa.|Você mantém a meta por comparação e continua sobrecarregado.
+apoio|pedir_apoio_primeiro_passo|Pedir apoio para um primeiro passo específico|A pessoa entende como pode ajudar sem assumir a meta por você.|Você pede uma cobrança constante que torna a meta mais pesada.
+@2511 F02.rede_apoio|Você quer pedir ajuda com uma dificuldade pessoal, mas costuma começar dizendo que não é nada.|{}
+social|nomear_dificuldade_pessoal|Explicar a dificuldade com uma frase direta|A pessoa entende por que você procurou a conversa.|Você minimiza o assunto e ela não percebe que precisa ouvir.
+apoio|pedir_escuta_sem_solucao|Dizer que precisa ser ouvido antes de receber sugestões|Você encontra espaço para organizar o que está sentindo.|Você não explica o pedido e se irrita com a primeira sugestão.
+disciplina|escolher_momento_conversa|Combinar um momento em que ambos possam conversar|A conversa acontece com a atenção necessária.|Você escolhe um horário apertado e precisa interromper no ponto principal.
+lazer|conversa_em_ambiente_calmo|Propor conversar durante uma atividade tranquila|O ambiente facilita que você aborde a dificuldade.|Você evita o assunto durante toda a atividade.
+@2512 F02.consumo|Uma oferta usa sua vontade de melhorar no futebol para vender um produto com promessas exageradas.|{}
+disciplina|conferir_promessa_produto|Conferir o que a oferta realmente comprova|Você identifica a distância entre publicidade e garantia.|Você trata um depoimento como prova de resultado para todos.
+social|consultar_pessoa_qualificada|Perguntar a uma pessoa qualificada antes de decidir|Você recebe uma orientação sem depender da propaganda.|Você procura apenas alguém que confirme a compra que já decidiu fazer.
+lazer|adiar_compra_promessa|Adiar a decisão até sair da pressão da oferta|Você recupera tempo para decidir com calma.|Você continua acompanhando a contagem da oferta e se sente pressionado.
+imprensa|nao_repassar_promessa|Não divulgar uma promessa que não conseguiu verificar|Você evita transformar uma dúvida em recomendação pública.|Você compartilha a oferta com um elogio que parece uma recomendação.
+@2513 F02.vinculos|Uma pessoa próxima diz que só recebe mensagens suas quando você precisa de alguma coisa.|{}
+social|reconhecer_contato_interesse|Reconhecer o padrão e ouvir como ela se sente|Você entende o que se perdeu na relação.|Você lista favores antigos em vez de ouvir o pedido atual.
+apoio|perguntar_sobre_dia_pessoa|Perguntar sobre a vida dela sem emendar um pedido|Ela encontra espaço para falar do próprio momento.|Você ouve a resposta só como introdução ao favor que queria pedir.
+disciplina|combinar_contato_regular|Combinar uma forma realista de manter contato|Vocês escolhem algo que não depende de uma necessidade sua.|Você promete uma frequência que não consegue sustentar.
+lazer|marcar_encontro_sem_favor|Propor um encontro que não tenha outro objetivo|O encontro recupera um espaço de convivência.|Você acrescenta um favor ao convite e repete o problema.
+@2514 F02.documentos|Um formulário pede informações pessoais que parecem não ter relação com a atividade anunciada.|{}
+disciplina|verificar_finalidade_formulario|Verificar quem recebe os dados e para quê|Você entende o pedido antes de fornecer informações.|Você confunde um logotipo conhecido com confirmação de autenticidade.
+social|perguntar_campo_obrigatorio|Perguntar por que aquele campo é necessário|A resposta permite decidir sem preencher no impulso.|Você aceita uma resposta vaga sem esclarecer a finalidade.
+imprensa|buscar_canal_autentico|Buscar a informação por um canal oficial independente|Você consegue comparar o formulário com uma fonte confiável.|Você usa o mesmo contato suspeito para tentar confirmar o pedido.
+apoio|pedir_segunda_leitura|Pedir uma segunda leitura sem compartilhar seus dados|A pessoa ajuda você a notar um sinal de dúvida.|Você encaminha o formulário já preenchido e expõe as informações.
+@2515 F02.familia|Você quer participar de uma comemoração familiar, mas não consegue estar presente durante todo o encontro.|{}
+social|avisar_periodo_presenca|Avisar com clareza o período em que pode participar|A família consegue contar com sua presença sem esperar além do combinado.|Você deixa o horário indefinido e cria uma expectativa que não cumpre.
+apoio|ajudar_tarefa_antes|Oferecer ajuda numa tarefa antes da comemoração|Você participa de uma forma útil dentro do seu tempo.|Você assume uma tarefa que precisa continuar depois de sua saída.
+lazer|aproveitar_periodo_familia|Estar presente de verdade no tempo que tiver|Você compartilha um momento sem passar o encontro se justificando.|Você acompanha outras mensagens e mal participa da comemoração.
+disciplina|organizar_saida_respeitosa|Combinar sua saída antes de chegar|Você consegue sair sem transformar o limite numa surpresa.|Você muda o horário sem avisar e interrompe os planos dos outros.
+@2516 F02.escolhas|Uma pessoa que você admira deu um conselho pessoal que não combina com sua realidade.|{}
+disciplina|avaliar_conselho_contexto|Comparar o conselho com sua situação concreta|Você aproveita o que faz sentido sem copiar a decisão inteira.|Você ignora uma diferença importante e tenta reproduzir a experiência dela.
+social|perguntar_limites_conselho|Perguntar em que condições aquele conselho funcionou|A conversa revela uma condição que você não tinha considerado.|Você trata a experiência dela como regra para qualquer pessoa.
+apoio|agradecer_sem_prometer|Agradecer a intenção sem prometer seguir o conselho|Você preserva a relação e sua autonomia.|Você concorda para agradar e depois se sente obrigado a cumprir.
+lazer|dar_tempo_decisao_pessoal|Dar um tempo antes de decidir|Você encontra espaço para ouvir a própria preferência.|Você usa a pausa apenas para procurar mais aprovações externas.
+@2517 F02.mudancas|Uma mudança simples de rotina deixou você sentindo falta de um hábito antigo.|{}
+lazer|recuperar_parte_habito|Recuperar uma parte do hábito que ainda cabe na rotina|Você encontra continuidade sem negar a mudança.|Você tenta reproduzir tudo e não consegue encaixar o hábito.
+social|contar_falta_habito|Contar a alguém por que aquele hábito fazia falta|A conversa ajuda você a entender o que deseja preservar.|Você fala só do que perdeu e não consegue nomear o que valorizava.
+disciplina|testar_novo_horario_habito|Testar um novo horário por alguns dias|Você encontra uma adaptação que parece viável.|Você muda o horário a cada tentativa e não consegue avaliar o ajuste.
+apoio|convidar_companhia_habito|Convidar alguém para compartilhar uma versão do hábito|Vocês encontram uma atividade que cabe aos dois.|Você espera que a outra pessoa se adapte a todos os seus detalhes.
+@2518 F02.expectativas|Um conhecido diz que atleta precisa estar sempre disposto a atender qualquer pedido de foto.|{}
+social|explicar_disponibilidade_foto|Explicar que respeito também inclui limites de disponibilidade|Você comunica o limite sem tratar o pedido como ofensa.|Você reage ao comentário como um ataque pessoal.
+imprensa|distinguir_evento_vida_privada|Distinguir um evento público de um momento particular|A diferença ajuda a pessoa a entender sua posição.|Você usa uma explicação tão vaga que parece rejeitar qualquer contato.
+disciplina|oferecer_resposta_consistente|Escolher uma resposta educada que consiga manter|Você evita promessas diferentes para situações parecidas.|Você promete uma exceção que não consegue cumprir.
+apoio|reconhecer_intencao_pedido|Reconhecer o carinho sem abrir mão do limite|A pessoa entende que o limite não apaga o reconhecimento.|Você faz um agradecimento automático que soa como deboche.
+@2519 F02.aprendizado|Você encontrou uma anotação antiga sobre algo que gostaria de aprender fora do esporte.|{}
+disciplina|definir_primeiro_experimento|Definir uma primeira experiência curta|Você transforma a curiosidade numa ação possível.|Você tenta planejar o domínio completo antes de começar.
+lazer|explorar_sem_meta_publica|Experimentar por prazer, sem anunciar uma meta pública|Você consegue descobrir se gosta da atividade.|Você se preocupa mais em mostrar a tentativa do que em vivê-la.
+social|perguntar_experiencia_praticante|Perguntar a alguém que já pratica como foi o começo|A resposta dá uma referência realista para sua primeira tentativa.|Você compara seu início com a habilidade atual da outra pessoa.
+apoio|combinar_aprendizado_conjunto|Propor aprender com alguém também iniciante|Vocês dividem a curiosidade sem precisar competir.|Você começa a avaliar quem aprende mais rápido.
+@2520 F02.responsabilidade|Você quebrou sem querer um objeto de alguém próximo. A pessoa ainda não percebeu.|{}
+social|assumir_objeto_quebrado|Contar o que aconteceu sem esconder a responsabilidade|A pessoa entende a situação diretamente de você.|Você atribui o acidente ao objeto antes de assumir sua parte.
+disciplina|combinar_reparacao_objeto|Perguntar como pode reparar o prejuízo|Vocês chegam a um encaminhamento claro.|Você promete uma solução sem verificar se é possível.
+apoio|ouvir_importancia_objeto|Ouvir o que aquele objeto significava para a pessoa|Você entende que a perda pode ir além do uso material.|Você minimiza a perda por achar o objeto simples.
+lazer|evitar_conversa_irritada_objeto|Esperar um momento adequado para conversar com calma|Você consegue tratar o ocorrido sem acrescentar uma discussão.|Você usa a espera para continuar escondendo o acidente.
+@2521 F02.redes|Você quer celebrar uma conquista de alguém próximo, mas não sabe se ela quer divulgação pública.|{}
+apoio|parabenizar_privado|Parabenizar em particular primeiro|A pessoa recebe seu carinho sem perder o controle da notícia.|Você usa a conversa privada para cobrar uma reação pública.
+social|perguntar_publicacao_conquista|Perguntar se pode publicar a homenagem|Você respeita a decisão dela sobre a própria conquista.|Você faz a pergunta depois de já publicar.
+imprensa|usar_material_autorizado_conquista|Compartilhar apenas o material que ela autorizou|Sua homenagem acompanha o limite que foi combinado.|Você acrescenta um detalhe pessoal que não estava autorizado.
+disciplina|preservar_noticia_pessoa|Deixar que ela conte a notícia no próprio tempo|Você não se antecipa a uma decisão que é dela.|Você faz uma insinuação que acaba revelando a notícia.
+@2522 F02.distancia|Você está há algum tempo sem conversar com um parente importante e não sabe como retomar o contato.|{}
+social|enviar_mensagem_retoma|Enviar uma mensagem simples perguntando como ele está|O contato reabre uma conversa sem exigir intimidade imediata.|Você começa justificando toda a ausência e não deixa espaço para resposta.
+apoio|lembrar_momento_compartilhado|Mencionar uma lembrança que os aproxima|A lembrança dá um ponto de partida para a conversa.|Você usa a lembrança para cobrar que a relação volte a ser como antes.
+disciplina|propor_horario_ligacao|Perguntar se há um bom horário para ligar|Vocês conseguem conversar sem interromper a rotina de ninguém.|Você liga repetidamente sem combinar um momento.
+lazer|convite_simples_reencontro|Propor um encontro simples quando for possível|O convite deixa uma possibilidade concreta de aproximação.|Você propõe um encontro grandioso que dificulta qualquer combinação.
+@2523 F02.paciencia|Uma tarefa cotidiana demorou mais do que você previa e isso começou a contaminar seu humor.|{}
+disciplina|recalcular_tempo_tarefa|Rever o que ainda é possível fazer hoje|Você ajusta a expectativa e evita outra promessa impossível.|Você mantém o planejamento original como se o atraso não existisse.
+social|avisar_atraso_cotidiano|Avisar quem depende do seu horário|A pessoa consegue reorganizar o próprio tempo.|Você espera até o último momento e transforma o atraso em surpresa.
+lazer|pausa_curta_irritacao|Fazer uma pausa curta antes de continuar|Você retoma a tarefa sem descarregar a irritação em tudo.|Você passa a pausa revendo o atraso e volta mais tenso.
+apoio|pedir_ajuda_etapa|Pedir ajuda numa etapa específica|A ajuda resolve uma parte do problema sem transferir tudo.|Você faz um pedido tão amplo que a outra pessoa não sabe como ajudar.
+@2524 F02.convivencia|Uma conversa entre pessoas próximas virou competição sobre quem trabalha mais. Você foi chamado a tomar partido.|{}
+social|recusar_comparacao_rotinas|Dizer que as rotinas não precisam competir|Você abre espaço para falar de necessidades em vez de vencedores.|Você tenta encerrar a discussão diminuindo o esforço de alguém.
+apoio|ouvir_sobrecarga_concreta|Perguntar qual dificuldade prática está por trás da discussão|A conversa encontra uma tarefa que pode ser reorganizada.|Você escolhe um lado antes de entender a dificuldade.
+disciplina|propor_acordo_tarefa|Propor um acordo sobre uma tarefa, sem julgar pessoas|Vocês tratam um problema concreto que estava alimentando a tensão.|Você propõe uma divisão sem perguntar a disponibilidade dos envolvidos.
+lazer|sugerir_pausa_discussao|Sugerir uma pausa e retomar quando todos estiverem mais calmos|A pausa impede que a comparação cresça.|Você usa a pausa para comentar a discussão com um dos lados.
+@2525 F02.respeito|Um conhecido faz um comentário discriminatório durante uma conversa informal. Você quer interromper aquilo.|{}
+social|contestar_comentario_discriminatorio|Dizer claramente por que o comentário é inaceitável|Você estabelece um limite sem repetir a ofensa.|Você reage de modo confuso e o limite não fica claro.
+apoio|acolher_pessoa_alvo|Oferecer apoio em particular a quem foi atingido|A pessoa encontra espaço para dizer do que precisa.|Você exige que ela explique o próprio sofrimento aos outros.
+disciplina|encerrar_conversa_ofensiva|Recusar continuar a conversa naquele tom|Você deixa claro que não vai normalizar a ofensa.|Você encerra com uma risada nervosa que parece concordância.
+imprensa|nao_amplificar_ofensa|Buscar um encaminhamento sem reproduzir a ofensa publicamente|Você trata o ocorrido sem aumentar a exposição da pessoa atingida.|Você reproduz o comentário ao tentar denunciá-lo e amplia o constrangimento.
+@2526 F02.cuidados|Você percebeu que anda esquecendo compromissos cotidianos pequenos. Quer criar uma forma de lembrar sem depender de outra pessoa.|{}
+disciplina|usar_lembrete_unico|Anotar os compromissos num único lugar|Você passa a encontrar o que precisa conferir.|Você espalha lembretes em lugares diferentes e continua se perdendo.
+social|confirmar_horario_combinado|Confirmar um horário que ficou ambíguo|A confirmação evita que os dois contem com horários diferentes.|Você pergunta sem mencionar o dia e mantém a ambiguidade.
+apoio|pedir_sugestao_organizacao|Pedir uma sugestão que preserve sua autonomia|Você encontra uma ferramenta que consegue usar sozinho.|Você acaba transferindo à pessoa a tarefa de lembrar de tudo.
+lazer|reduzir_excesso_alertas|Retirar alertas que já não são úteis|Você distingue um lembrete importante do ruído.|Você apaga tudo e perde também um aviso necessário.
+@2527 F02.visitas|Uma pessoa que visita sua casa quer conhecer detalhes da rotina de outros moradores.|{}
+disciplina|preservar_rotina_moradores|Dizer que não cabe a você contar a rotina deles|Você respeita informações que pertencem aos outros.|Você cita um horário enquanto tenta explicar que é informação privada.
+social|perguntar_interesse_visita|Perguntar o que a pessoa precisa saber para a visita de hoje|Você resolve a necessidade sem expor detalhes desnecessários.|Você aceita a curiosidade como justificativa para contar mais do que devia.
+apoio|consultar_morador_pedido|Consultar o morador antes de responder por ele|A pessoa envolvida decide o que quer informar.|Você consulta num grupo e expõe a pergunta a todos.
+lazer|conduzir_visita_assunto_comum|Conduzir a visita para uma atividade compartilhada|Vocês aproveitam o encontro sem transformar a casa em exposição.|Você usa a atividade para fazer brincadeiras sobre a vida dos moradores.
+@2528 F02.estudo|Você recebeu um convite para participar de um trabalho em grupo do curso, mas a divisão das tarefas ainda está vazia.|{}
+disciplina|assumir_parte_definida|Assumir uma parte com entrega definida|O grupo sabe com o que pode contar de você.|Você assume uma parte sem entender o tamanho da tarefa.
+social|propor_divisao_curso|Propor que cada pessoa diga sua disponibilidade|A divisão passa a considerar os horários reais.|Você impõe sua agenda antes de ouvir as outras pessoas.
+apoio|ajudar_colega_duvida_curso|Oferecer ajuda numa dúvida que consegue esclarecer|A ajuda permite que o colega avance na própria parte.|Você toma a tarefa dele e deixa sua parte para depois.
+lazer|evitar_reuniao_sem_fim|Sugerir uma reunião curta com pauta|A conversa termina com decisões e tempo preservado.|Você corta a reunião antes de combinar o próximo passo.
+@2529 F02.relacoes|Você soube por outra pessoa que um amigo ficou magoado com você. Ainda não ouviu a versão dele.|{}
+social|procurar_amigo_diretamente|Procurar o amigo para ouvir o que aconteceu|Você conversa com quem está envolvido antes de tirar conclusões.|Você começa exigindo que ele confirme o relato de terceiros.
+apoio|perguntar_magoa_sem_defesa|Perguntar se fez algo que o incomodou|A pergunta abre espaço para uma resposta sincera.|Você pede sinceridade e rebate cada frase antes de ouvir o fim.
+disciplina|nao_espalhar_relato|Não comentar o relato com mais pessoas|Você evita que uma dúvida vire uma discussão pública.|Você pede tantas opiniões que espalha a história.
+lazer|convidar_conversa_reservada|Convidar para conversar num lugar tranquilo|Vocês encontram espaço para tratar o incômodo com privacidade.|Você escolhe um lugar cheio e a conversa não avança.
+@2530 F02.direitos|Alguém oferece resolver uma pendência pessoal se você assinar um documento sem ler.|{}
+disciplina|ler_antes_assinar|Ler o documento inteiro antes de decidir|Você encontra um ponto que precisava esclarecer.|Você olha apenas o título e não entende uma condição importante.
+social|pedir_explicacao_clausula|Pedir uma explicação por escrito do trecho duvidoso|A explicação permite avaliar o pedido com mais clareza.|Você aceita uma promessa verbal que não esclarece o texto.
+apoio|buscar_orientacao_independente|Buscar orientação independente sobre o documento|Você entende melhor o alcance do que está sendo pedido.|Você consulta apenas a pessoa interessada na sua assinatura.
+lazer|recusar_pressa_assinatura|Adiar a decisão em vez de assinar sob pressão|Você preserva o tempo necessário para conferir o pedido.|Você usa o adiamento sem definir como vai esclarecer a dúvida.
+@2531 F02.rotina|Você prometeu ajudar em casa e percebeu que interpretou a tarefa de um jeito diferente do esperado.|{}
+social|confirmar_tarefa_domestica|Perguntar qual era o resultado esperado|Vocês esclarecem a diferença antes de discutir a intenção.|Você defende sua interpretação sem ouvir a explicação.
+disciplina|refazer_parte_combinada|Refazer a parte que ficou faltando|Você corrige a entrega sem transformar o erro numa disputa.|Você começa outra tarefa e deixa a correção pendente.
+apoio|reconhecer_trabalho_outro|Reconhecer o trabalho que sobrou para a outra pessoa|Ela entende que você percebeu o efeito do desencontro.|Você diz que ajudou bastante e desconsidera o que ficou para ela.
+lazer|combinar_pausa_apos_tarefa|Combinar terminar a tarefa antes de uma pausa juntos|Vocês resolvem a pendência e conseguem descansar sem cobrança.|Você trata a pausa como recompensa que a outra pessoa precisa conceder.
+@2532 F02.comunidade|Uma atividade com moradores tem pouca acessibilidade. Você percebe que uma pessoa não consegue participar do mesmo jeito que as outras.|{}
+apoio|perguntar_adaptacao_pessoa|Perguntar à pessoa qual adaptação seria útil|Você escuta uma necessidade sem decidir por ela.|Você presume uma necessidade e oferece uma ajuda que ela não pediu.
+social|levar_barreira_organizacao|Apontar a barreira aos organizadores|A organização entende qual acesso precisa ser revisto.|Você faz uma reclamação genérica que não identifica a barreira.
+disciplina|evitar_promessa_acesso|Combinar apenas uma solução que possa ser confirmada|Você evita anunciar uma acessibilidade que ainda não existe.|Você promete uma adaptação antes de consultar os responsáveis.
+imprensa|divulgar_acesso_verificado|Sugerir que as informações de acesso sejam descritas com clareza|As pessoas podem decidir como participar com informação útil.|Você divulga uma descrição otimista sem conferir a condição real.
+@2533 F02.pertences|Você encontrou um objeto perdido numa área comum e não sabe de quem é.|{}
+disciplina|entregar_objeto_responsavel|Entregar a quem cuida do espaço|O objeto segue um caminho claro para ser recuperado.|Você deixa o objeto num lugar sem avisar quem cuida dali.
+social|avisar_sem_expor_detalhes|Avisar que encontrou algo, pedindo identificação do objeto|Você permite que o dono se identifique sem expor todos os detalhes.|Você revela tudo e dificulta distinguir quem realmente perdeu.
+apoio|ajudar_busca_dono|Perguntar discretamente se alguém está procurando um pertence|Você encontra uma pista sem abrir o objeto.|Você vasculha informações pessoais para tentar descobrir o dono.
+imprensa|evitar_foto_documento_perdido|Não publicar dados que estejam no objeto|Você ajuda sem transformar a perda em exposição.|Você publica uma foto legível antes de pensar na privacidade.
+@2534 F02.gratidao|Você quer agradecer a alguém que ajudou no seu começo, mas tem receio de parecer que está pedindo outro favor.|{}
+social|agradecer_gesto_nomeado|Mencionar exatamente qual gesto você lembra|A pessoa entende o motivo do agradecimento.|Você faz um elogio vago que soa como preparação para um pedido.
+apoio|ouvir_momento_mentor|Perguntar como a pessoa está hoje|A conversa também dá espaço à vida de quem ajudou você.|Você usa a resposta apenas para voltar à própria história.
+disciplina|mensagem_sem_pedido|Enviar o agradecimento sem acrescentar uma solicitação|Você deixa claro que o contato tem valor por si só.|Você emenda um favor e reforça a dúvida que queria evitar.
+lazer|encontro_relembrar|Propor um encontro simples para relembrar aquela fase|Vocês compartilham a lembrança sem transformar o encontro em cobrança.|Você espera que a pessoa reviva uma relação que já mudou.
+@2535 F02.fronteiras|Um grupo de mensagens espera respostas suas a qualquer hora. Você está perdendo a sensação de tempo livre.|{}
+disciplina|definir_janelas_resposta|Definir períodos em que vai conferir o grupo|Você passa a escolher quando dedicar atenção às mensagens.|Você abre notificações fora dos períodos e mantém a mesma rotina.
+social|explicar_urgencia_canal|Combinar como diferenciar urgência de conversa comum|O grupo entende quando pode esperar uma resposta.|Você chama tudo de urgência e o combinado perde sentido.
+lazer|silenciar_conversa_folga|Silenciar a conversa durante um período de folga|Você aproveita a pausa sem interrupções constantes.|Você continua entrando no grupo para conferir se perdeu algo.
+apoio|conversar_expectativa_resposta|Conversar com quem costuma cobrar resposta imediata|Vocês ajustam uma expectativa que estava gerando atrito.|Você promete responder sempre mais rápido e aumenta a cobrança.
+@2536 F02.educacao|Você precisa escolher um tema para um trabalho pessoal e está inclinado a copiar um assunto popular.|{}
+disciplina|escolher_pergunta_propria|Escolher uma pergunta que realmente quer investigar|Você encontra uma direção que desperta interesse.|Você escolhe um tema tão amplo que não consegue começar.
+social|testar_tema_conversa|Explicar a ideia a alguém e ouvir dúvidas|As perguntas ajudam você a delimitar o tema.|Você só aceita elogios e perde as dúvidas úteis.
+apoio|pedir_fonte_confiavel|Pedir indicação de uma fonte adequada ao assunto|Você encontra um ponto de partida verificável.|Você aceita uma fonte sem saber de onde veio a informação.
+lazer|explorar_ideia_curiosa|Reservar um tempo curto para explorar o tema por curiosidade|Você descobre um recorte que gostaria de desenvolver.|Você acumula referências sem decidir o que quer perguntar.
+@2537 F02.espera|Você aguarda uma resposta pessoal importante e percebe que está conferindo o celular a todo instante.|{}
+disciplina|estabelecer_proxima_consulta|Definir quando voltará a conferir a resposta|Você reduz as interrupções enquanto aguarda.|Você abandona o horário combinado a cada nova notificação.
+social|confirmar_prazo_resposta|Perguntar uma vez sobre o prazo esperado|Você consegue uma referência sem exigir resposta imediata.|Você repete a pergunta e transforma a espera em pressão.
+lazer|ocupar_espera_interesse|Fazer uma atividade que prenda sua atenção|Você atravessa parte da espera sem ficar preso à tela.|Você escolhe a atividade mas não deixa de acompanhar o celular.
+apoio|dividir_ansiedade_espera|Dividir a ansiedade com alguém de confiança|A conversa ajuda você a suportar a incerteza.|Você pede que a pessoa adivinhe uma resposta que também não conhece.
+@2538 F02.erros|Você deu uma informação errada numa conversa e só percebeu depois.|{}
+social|corrigir_informacao_conversa|Voltar à conversa e corrigir a informação|As pessoas recebem a correção diretamente de você.|Você corrige pela metade e mantém o ponto que estava errado.
+disciplina|verificar_antes_corrigir|Conferir a fonte antes de enviar a correção|Você substitui a dúvida por uma informação verificável.|Você troca uma lembrança incerta por outra igualmente incerta.
+apoio|avisar_quem_depende_info|Avisar primeiro quem poderia agir com base na informação|Você evita que a pessoa siga uma orientação errada.|Você demora a explicar qual parte da informação mudou.
+imprensa|corrigir_mesmo_canal|Fazer a correção no mesmo canal em que informou|Quem viu a mensagem original tem acesso à correção.|Você corrige num lugar onde os destinatários não vão encontrar.
+@2539 F02.convites|Você recebeu um convite para falar sobre sua experiência, mas o organizador quer apresentá-lo com um título que você não tem.|{}
+imprensa|corrigir_apresentacao_convite|Pedir que a apresentação use somente informações corretas|O convite passa a refletir sua experiência real.|Você aceita uma descrição exagerada para evitar constrangimento.
+social|explicar_limite_experiencia|Explicar sobre o que consegue falar com propriedade|Vocês delimitam um assunto que você conhece.|Você tenta cobrir um tema que exige uma formação que não possui.
+disciplina|conferir_material_convite|Pedir para conferir a apresentação antes da divulgação|Você identifica o exagero antes de ele se espalhar.|Você confere apenas o nome e deixa passar o título incorreto.
+apoio|sugerir_outra_pessoa_tema|Sugerir que uma pessoa qualificada cubra o tema específico|O evento encontra uma forma mais responsável de tratar o assunto.|Você indica alguém sem perguntar se pode fazer a apresentação.
+@2540 F02.alimentacao|Uma refeição com pessoas próximas virou debate sobre o que um atleta pode ou não comer. Você não pediu uma avaliação.|{}
+social|pedir_refeicao_sem_julgamento|Pedir para aproveitarem a refeição sem avaliar seu prato|Você comunica um limite e mantém a conversa respeitosa.|Você responde com ironia e a discussão cresce.
+disciplina|remeter_orientacao_individual|Dizer que orientações individuais devem ser tratadas com profissionais|Você evita transformar a mesa numa consulta improvisada.|Você repete uma regra de internet como se valesse para todos.
+apoio|reconhecer_cuidado_sem_controle|Reconhecer a intenção de cuidado e explicar o incômodo|A pessoa entende a diferença entre apoiar e fiscalizar.|Você agradece sem explicar o limite e a fiscalização continua.
+lazer|convidar_assunto_compartilhado|Puxar um assunto que todos possam aproveitar|A refeição recupera um espaço de convivência.|Você muda de assunto atacando os hábitos de outra pessoa.
+@2541 F02.recomeco|Uma atividade pessoal que você tentou aprender não saiu como esperava. Você pensa em desistir depois da primeira tentativa.|{}
+disciplina|avaliar_primeira_tentativa|Anotar uma dificuldade e uma coisa que entendeu|Você encontra um ponto concreto para uma próxima tentativa.|Você resume toda a experiência a não ter conseguido.
+lazer|tentar_formato_diferente|Experimentar uma versão mais simples da atividade|Você descobre uma forma de começar sem tanta pressão.|Você escolhe uma versão igualmente difícil e repete a frustração.
+social|perguntar_inicio_dificil|Perguntar a alguém como lidou com o próprio começo|A conversa normaliza uma dificuldade que você julgava exclusiva.|Você ouve só o tempo que a outra pessoa demorou e se compara.
+apoio|combinar_tentativa_acompanhada|Pedir companhia para uma segunda tentativa|Você encontra apoio sem delegar a aprendizagem.|Você espera que a pessoa faça a atividade por você.
+@2542 F02.tempo|Um conhecido pede uma tarefa voluntária urgente, mas você não tem como cumprir o prazo informado.|{}
+social|recusar_prazo_impossivel|Explicar que não consegue cumprir aquele prazo|A pessoa pode procurar outra solução a tempo.|Você aceita para não decepcionar e entrega tarde demais.
+disciplina|oferecer_parte_viavel|Oferecer somente uma parte que consegue concluir|A ajuda fica delimitada e utilizável.|Você oferece uma parte sem combinar como ela se encaixa no restante.
+apoio|ajudar_buscar_alternativa|Ajudar a pensar numa alternativa sem prometer presença|Você contribui respeitando seu limite real.|Você indica outra pessoa como disponível sem consultá-la.
+lazer|preservar_compromisso_anterior|Manter um compromisso pessoal já assumido|Você cumpre o que tinha combinado sem inventar uma desculpa.|Você tenta atender aos dois e não consegue estar presente em nenhum.
+@2543 F02.memoria|Você encontrou um comentário seu antigo com o qual já não concorda.|{}
+disciplina|reconhecer_mudanca_opiniao|Escrever por que sua opinião mudou|Você entende a mudança sem fingir que sempre pensou igual.|Você altera a lembrança para não reconhecer a opinião anterior.
+imprensa|corrigir_posicao_publica|Esclarecer sua posição se o comentário ainda estiver sendo usado|Você oferece contexto sem negar o registro existente.|Você acusa quem encontrou o comentário em vez de esclarecê-lo.
+social|conversar_aprendizado_mudanca|Conversar com alguém sobre o que aprendeu desde então|A troca ajuda você a nomear o que mudou.|Você busca apenas uma justificativa para não rever nada.
+apoio|ouvir_impacto_comentario|Ouvir quem foi afetado pelo comentário|Você entende um efeito que sua reflexão não tinha considerado.|Você exige que a pessoa reconheça sua mudança antes de ouvi-la.
+@2544 F02.colaboracao|Você quer ajudar num projeto de um amigo, mas suas sugestões estão tomando o lugar das decisões dele.|{}
+social|perguntar_espaco_sugestao|Perguntar se ele quer sugestões ou apenas companhia|Você ajusta sua participação ao que ele pediu.|Você continua sugerindo antes de ouvir a resposta.
+apoio|devolver_decisao_projeto|Deixar claro que a decisão final é dele|O apoio não se transforma em controle do projeto.|Você diz que a decisão é dele e critica cada escolha.
+disciplina|assumir_tarefa_solicitada|Fazer uma tarefa específica que ele solicitou|Sua ajuda se torna útil sem ocupar o projeto inteiro.|Você muda a tarefa porque prefere fazer de outro jeito.
+lazer|celebrar_etapa_amigo|Reconhecer uma etapa concluída sem acrescentar uma cobrança|Vocês compartilham a satisfação pelo avanço.|Você usa o elogio como entrada para uma lista de correções.
+@2545 F02.mobilidade|Você quer conhecer melhor o lugar onde vive e percebe que só faz os mesmos trajetos.|{}
+lazer|explorar_local_publico|Escolher um lugar público para conhecer com calma|Você descobre uma referência nova na sua rotina.|Você transforma o passeio numa lista apressada de lugares.
+social|pedir_dica_morador|Pedir uma dica a alguém que conhece a região|A conversa oferece uma sugestão que combina com seu interesse.|Você não explica o que procura e recebe uma dica que não consegue aproveitar.
+disciplina|planejar_trajeto_possivel|Conferir um trajeto compatível com seu tempo livre|Você consegue fazer o passeio sem outra correria.|Você considera só a ida e se atrapalha na volta.
+apoio|convidar_companhia_passeio|Convidar alguém para explorar o lugar junto|Vocês encontram um programa que interessa aos dois.|Você impõe todo o roteiro e não ouve a preferência da companhia.
+@2546 F02.autonomia|Uma pessoa próxima organiza algo por você sem perguntar, achando que está ajudando.|{}
+social|explicar_decisao_propria|Explicar qual decisão gostaria de tomar sozinho|A pessoa entende onde a ajuda ultrapassou seu espaço.|Você reage como se toda ajuda fosse indesejada.
+apoio|agradecer_intencao_delimitar|Agradecer a intenção e delimitar a ajuda necessária|Vocês encontram uma forma de apoio que preserva sua autonomia.|Você agradece sem explicar o limite e o padrão continua.
+disciplina|combinar_consulta_antes|Combinar que decisões sejam consultadas antes|O acordo evita outro desencontro semelhante.|Você cria uma regra ambígua sobre o que precisa ser consultado.
+lazer|resolver_depois_do_encontro|Escolher um momento tranquilo para tratar do limite|Você consegue conversar sem transformar o encontro inteiro em conflito.|Você adia indefinidamente e acumula irritação.
+@2547 F02.etica|Uma pessoa oferece um benefício pessoal em troca de você divulgar algo sem dizer que recebeu a oferta.|{}
+imprensa|exigir_transparencia_divulgacao|Dizer que qualquer divulgação precisa ser transparente|Você não apresenta uma oferta interessada como opinião espontânea.|Você usa uma indicação vaga que não revela a relação.
+disciplina|recusar_condicao_oculta|Recusar a condição de esconder a oferta|Você mantém um limite claro sem aceitar a contrapartida.|Você deixa aberta a possibilidade de ocultar só uma parte.
+social|pedir_condicoes_escritas|Pedir as condições por escrito antes de decidir|Você consegue avaliar o que está sendo solicitado.|Você aceita uma explicação informal no lugar das condições.
+apoio|consultar_orientacao_etica|Buscar orientação sem expor dados privados desnecessários|Você recebe ajuda para avaliar o conflito de interesse.|Você consulta apenas quem também ganharia com a oferta.
+@2548 F02.escuta|Você está numa conversa com alguém que fala mais devagar. Percebe que está completando todas as frases dela.|{}
+disciplina|esperar_frase_completa|Esperar que a pessoa conclua a frase|Você entende o que ela queria dizer, sem preencher as lacunas.|Você interrompe de novo para mostrar que entendeu rápido.
+social|reconhecer_interrupcao|Reconhecer que estava interrompendo|A pessoa encontra espaço para retomar a própria fala.|Você explica a interrupção e ocupa ainda mais a conversa.
+apoio|perguntar_ritmo_conversa|Perguntar se ela prefere explicar de outro jeito|Você oferece uma alternativa sem impor um ritmo.|Você trata o ritmo dela como defeito a ser corrigido.
+lazer|reduzir_pressa_encontro|Deixar mais tempo livre para aquele encontro|Você consegue ouvir sem transformar cada pausa em urgência.|Você amplia o tempo no papel mas continua apressando as respostas.
+@2549 F02.organizacao|Uma atividade pessoal depende de duas pessoas e cada uma entendeu uma data diferente.|{}
+social|confirmar_data_unica|Conferir as duas versões e confirmar uma data|Vocês saem com um combinado comum.|Você confirma só com uma das pessoas e mantém o desencontro.
+disciplina|registrar_acordo_data|Registrar o acordo num lugar acessível aos envolvidos|A informação fica fácil de consultar.|Você registra um horário sem identificar o dia.
+apoio|ouvir_restricoes_agenda|Perguntar quais horários cada pessoa realmente pode cumprir|Vocês encontram uma possibilidade que respeita os dois.|Você trata a disponibilidade de alguém como falta de interesse.
+lazer|adaptar_atividade_tempo|Adaptar a atividade ao tempo que existe|O encontro continua possível sem uma agenda impossível.|Você mantém todas as etapas e deixa a atividade corrida.
+@2550 F02.aprendizado|Você quer aprender um idioma, mas seu material está avançado demais para o que entende hoje.|{}
+disciplina|retomar_base_idioma|Voltar a uma unidade básica e completá-la|Você identifica uma base que faltava antes de avançar.|Você pula os exercícios por vergonha de começar do básico.
+social|praticar_frase_idioma|Pedir para praticar uma frase simples com alguém|Você consegue usar uma frase e reconhecer a dúvida seguinte.|Você escolhe uma conversa complexa demais e não consegue acompanhar.
+lazer|usar_idioma_interesse|Explorar um conteúdo curto de um assunto que gosta|O interesse ajuda você a continuar mesmo entendendo só uma parte.|Você tenta traduzir tudo de uma vez e abandona a experiência.
+apoio|pedir_indicacao_nivel|Pedir material adequado ao seu nível atual|Você encontra uma proposta que consegue seguir.|Você descreve um nível que ainda não tem e recebe outra tarefa difícil demais.
+@2551 F02.escolhas|Uma compra que você fez por entusiasmo continua guardada, sem uso. Você está pensando em comprar outra coisa parecida.|{}
+disciplina|avaliar_uso_antes_compra|Conferir por que não usou o que já tem|Você reconhece uma necessidade diferente da vontade de comprar.|Você ignora o objeto guardado e repete a mesma justificativa.
+lazer|experimentar_objeto_guardado|Reservar um tempo para experimentar o que já comprou|Você descobre se aquela atividade realmente interessa.|Você transforma o teste numa obrigação e perde a curiosidade.
+social|conversar_compra_sem_uso|Conversar sobre a decisão sem pedir aprovação automática|A troca ajuda você a separar entusiasmo de utilidade.|Você procura apenas alguém que recomende a próxima compra.
+apoio|oferecer_objeto_util|Verificar se alguém próximo pode aproveitar o objeto|Você encontra um uso possível sem impor um presente.|Você entrega a outra pessoa algo que ela não queria receber.
+@2552 F02.reconhecimento|Um trabalho coletivo fora do futebol recebeu elogios, mas citaram apenas seu nome.|{}
+social|lembrar_participantes_trabalho|Nomear a participação das outras pessoas|O reconhecimento passa a incluir quem trabalhou com você.|Você menciona o grupo como detalhe depois de assumir todo o mérito.
+imprensa|corrigir_credito_publicado|Pedir uma correção dos créditos divulgados|O registro reflete melhor o trabalho coletivo.|Você pede uma correção sem informar quem ficou de fora.
+apoio|agradecer_colaboracao_privado|Agradecer em particular uma contribuição específica|A pessoa percebe que o trabalho dela foi visto.|Você usa um agradecimento genérico que não reconhece a contribuição.
+disciplina|organizar_creditos_futuros|Propor combinar os créditos antes de outra divulgação|O grupo cria uma referência para não repetir o apagamento.|Você decide a ordem dos nomes sem consultar os participantes.
+@2553 F02.preconceitos|Alguém presume que você não gosta de estudar porque joga futebol.|{}
+social|contar_interesse_estudo|Contar um interesse seu sem aceitar o estereótipo|Você apresenta sua experiência sem transformar a conversa em ataque.|Você reage julgando a profissão da outra pessoa.
+disciplina|questionar_generalizacao|Perguntar de onde veio aquela generalização|A pergunta ajuda a pessoa a rever a suposição.|Você faz a pergunta com deboche e a discussão se fecha.
+apoio|reconhecer_caminhos_distintos|Lembrar que atletas têm interesses e trajetórias diferentes|Você amplia a conversa sem falar em nome de todos.|Você substitui um estereótipo por outro igualmente amplo.
+lazer|preservar_encontro_sem_rotulo|Pedir para conversarem sem reduzir ninguém à profissão|O encontro encontra um assunto menos limitado.|Você muda de assunto sem explicar por que o comentário incomodou.
+@2554 F02.celebracao|Uma pessoa próxima quer comemorar algo pequeno e diz que talvez não seja importante o bastante.|{}
+apoio|valorizar_conquista_pessoa|Perguntar por que aquilo fez diferença para ela|Você reconhece o significado que a conquista tem para a pessoa.|Você mede a conquista pelo que seria importante para você.
+lazer|propor_celebracao_simples|Propor uma comemoração simples que ela goste|Vocês conseguem aproveitar o momento sem criar outra cobrança.|Você transforma a comemoração num evento que ela não queria.
+social|ouvir_caminho_conquista|Pedir que ela conte como chegou até ali|Ela consegue compartilhar um esforço que não estava visível.|Você interrompe para contar uma conquista sua parecida.
+disciplina|respeitar_forma_celebrar|Deixar que ela escolha como quer marcar a ocasião|A comemoração respeita a preferência de quem conquistou.|Você insiste que só existe uma forma certa de comemorar.
+@2555 F02.convivencia|Você foi convidado a participar de uma brincadeira que expõe alguém ausente.|{}
+disciplina|recusar_exposicao_ausente|Recusar participar da exposição|Você estabelece um limite sem acrescentar outro comentário.|Você recusa rindo e a reação acaba incentivando a brincadeira.
+social|mudar_foco_brincadeira|Sugerir uma brincadeira que não dependa de expor alguém|O grupo encontra outra forma de se divertir.|Você propõe outro alvo e mantém o mesmo problema.
+apoio|lembrar_limite_ausente|Lembrar que a pessoa não está ali para responder|Você faz o grupo considerar o efeito da brincadeira.|Você repete o detalhe constrangedor ao tentar defendê-la.
+imprensa|impedir_registro_exposicao|Não colaborar com a gravação ou divulgação|Você evita ampliar a exposição para além da conversa.|Você compartilha o registro como crítica e acaba divulgando a brincadeira.
+@2556 F02.estudo|Você tem uma apresentação no curso e sabe o conteúdo, mas se perde na ordem dos tópicos.|{}
+disciplina|organizar_tres_topicos|Organizar três tópicos numa sequência clara|Você encontra um fio para conduzir a apresentação.|Você escreve o conteúdo inteiro e não consegue localizar o próximo ponto.
+social|ensaiar_para_colega|Ensaiar para um colega e pedir uma dúvida ao final|A pergunta revela onde sua explicação precisa de ligação.|Você interrompe o ensaio para corrigir cada palavra e perde a sequência.
+apoio|combinar_apoio_grupo_apresentacao|Combinar com o grupo como passar de uma fala para outra|As transições ficam claras para os participantes.|Você combina a ordem sem conferir se todos entenderam.
+lazer|pausa_antes_ensaio|Fazer uma pausa antes de um ensaio curto|Você consegue praticar sem carregar toda a tensão da tarefa.|Você adia o ensaio até não restar tempo para testar a sequência.
+@2557 F02.familia|Um parente pede que você escolha um lado numa divergência que não acompanhou.|{}
+social|dizer_nao_conhece_fatos|Explicar que não conhece o suficiente para julgar|Você evita transformar um relato parcial em veredito.|Você dá razão a quem falou primeiro para encerrar o assunto.
+apoio|ouvir_sem_dar_sentenca|Ouvir o incômodo sem decidir pelo outro|A pessoa se sente ouvida sem receber uma autorização para atacar.|Você confunde acolher a pessoa com concordar com toda acusação.
+disciplina|nao_transportar_recados|Recusar levar acusações de uma pessoa para outra|Você evita ocupar o papel de mensageiro do conflito.|Você aceita um recado e acrescenta sua interpretação.
+lazer|preservar_encontro_fora_disputa|Propor um momento de convivência fora da disputa|Vocês conseguem compartilhar algo sem exigir um julgamento seu.|Você usa o encontro para reabrir a discussão indiretamente.
+@2558 F02.cuidado|Uma pessoa próxima oferece ajuda, mas você tem vergonha de admitir que precisa dela numa tarefa cotidiana.|{}
+social|aceitar_ajuda_delimitada|Aceitar ajuda numa parte específica|Você recebe apoio sem perder o controle da tarefa.|Você aceita tudo sem explicar o que realmente precisava.
+apoio|explicar_vergonha_ajuda|Dizer que tem dificuldade para pedir ajuda|A conversa torna o pedido menos pesado.|Você transforma a dificuldade numa obrigação de a pessoa insistir.
+disciplina|combinar_papeis_tarefa|Combinar o que cada um fará|A tarefa anda com responsabilidades claras.|Você muda a divisão no meio sem avisar.
+lazer|reconhecer_tarefa_compartilhada|Tratar a tarefa como uma oportunidade de companhia|Você consegue estar junto sem se cobrar fazer tudo sozinho.|Você passa o tempo se desculpando e não participa da tarefa.
+@2559 F02.imagem|Uma foto sua foi usada num convite que sugere sua presença num evento. Você não confirmou participação.|{}
+imprensa|pedir_correcao_presenca|Pedir a correção da informação sobre sua presença|O convite deixa de anunciar uma confirmação inexistente.|Você pede uma mudança vaga e a promessa de presença continua.
+social|contatar_organizador_foto|Conversar com o organizador antes de uma resposta pública|Você esclarece o desencontro diretamente com quem divulgou.|Você acusa uma intenção que não chegou a confirmar.
+disciplina|registrar_limite_autorizacao|Deixar por escrito que a presença não está confirmada|Você cria uma referência clara sobre o que autorizou.|Você usa uma frase ambígua que parece uma confirmação condicional.
+apoio|orientar_quem_perguntou|Informar corretamente a quem perguntou sobre o convite|Você evita que a pessoa se desloque contando com sua presença.|Você responde sem esclarecer se vai participar ou não.
+@2560 F02.rotina|Você costuma começar o dia respondendo a pedidos alheios e deixa suas próprias tarefas para o fim.|{}
+disciplina|prioridade_antes_mensagens|Escolher uma prioridade antes de abrir as mensagens|Você começa o dia sabendo o que precisa preservar.|Você troca de prioridade a cada novo pedido.
+social|negociar_pedido_nao_urgente|Combinar outro horário para um pedido que pode esperar|A pessoa recebe uma previsão e você preserva sua tarefa.|Você diz que fará depois sem combinar quando.
+lazer|reservar_inicio_calmo|Reservar alguns minutos de início de dia sem solicitações|Você consegue começar com menos sensação de urgência.|Você usa o período para antecipar preocupações e não desacelera.
+apoio|explicar_padrao_sobrecarga|Conversar sobre o padrão com alguém próximo|Você reconhece um limite que precisa comunicar.|Você espera que a pessoa passe a recusar todos os pedidos por você.
+@2561 F02.pertencimento|Num encontro fora do futebol, você não conhece quase ninguém e ficou esperando alguém iniciar uma conversa.|{}
+social|iniciar_pergunta_simples|Fazer uma pergunta simples sobre o encontro|Você encontra um primeiro assunto em comum.|Você faz uma pergunta e não escuta a resposta.
+lazer|participar_atividade_encontro|Participar de uma atividade já aberta ao grupo|Você se integra sem precisar ter uma história pronta.|Você tenta se destacar antes de entender a atividade.
+apoio|acolher_outro_recém_chegado|Conversar com outra pessoa que também chegou sozinha|Vocês encontram companhia para conhecer o grupo.|Você presume que ela precisa de ajuda e não pergunta se quer companhia.
+disciplina|aceitar_pausa_social|Dar a si mesmo tempo para se ambientar|Você reduz a cobrança de se enturmar imediatamente.|Você transforma o tempo de adaptação em comparação com quem já se conhece.
+@2562 F02.promessas|Você percebe que prometeu algo para uma pessoa sem entender o que ela estava pedindo.|{}
+social|esclarecer_promessa_antes|Retomar a conversa e esclarecer o pedido|Vocês corrigem a expectativa antes de depender da entrega.|Você finge que entendeu e deixa o desencontro crescer.
+disciplina|redefinir_escopo_promessa|Dizer exatamente o que consegue entregar|A promessa passa a caber na sua disponibilidade.|Você reduz a entrega sem avisar a pessoa.
+apoio|reconhecer_expectativa_criada|Reconhecer a expectativa que criou ao concordar|A pessoa percebe que você assumiu a confusão.|Você responsabiliza a outra pessoa por não ter explicado melhor.
+lazer|evitar_aceite_impulsivo|Dar um tempo para responder a novos pedidos|Você consegue ouvir o pedido inteiro antes de assumir outro.|Você adia a resposta mas concorda sem conferir os detalhes.
+@2563 F02.escuta|Uma pessoa próxima conta uma experiência diferente da sua e você sente vontade de dizer que sabe exatamente como ela se sente.|{}
+apoio|ouvir_experiencia_distinta|Ouvir sem substituir a experiência pela sua|A pessoa consegue contar o que foi particular para ela.|Você interrompe para mostrar uma experiência sua supostamente igual.
+social|perguntar_sentido_experiencia|Perguntar o que mais marcou aquela experiência|Você entende um aspecto que não tinha imaginado.|Você faz a pergunta só para conduzir à resposta que já esperava.
+disciplina|reconhecer_limite_entendimento|Reconhecer que pode não compreender tudo|A honestidade abre espaço para a pessoa explicar mais.|Você usa a diferença como motivo para não tentar ouvir.
+lazer|oferecer_presenca_simples|Oferecer companhia sem exigir que a conversa continue|A pessoa pode escolher falar ou apenas estar junto.|Você trata o silêncio como sinal de que precisa mudar o humor dela.
+@2564 F02.curiosidade|Você recebeu uma notícia surpreendente num grupo de conhecidos. A mensagem não informa a fonte.|{}
+disciplina|buscar_fonte_noticia|Procurar a origem antes de repassar|Você percebe o que ainda não foi confirmado.|Você confunde repetição em vários grupos com confirmação.
+social|perguntar_origem_sem_acusar|Perguntar de onde veio a informação|A conversa passa a distinguir notícia de comentário.|Você faz a pergunta como acusação e a fonte continua desconhecida.
+imprensa|nao_repassar_sem_fonte|Não compartilhar enquanto não houver uma referência verificável|Você evita ampliar uma informação duvidosa.|Você compartilha com um aviso de dúvida e ainda assim amplia a mensagem.
+apoio|avisar_pessoa_exposta|Avisar discretamente se a mensagem expõe alguém próximo|A pessoa toma conhecimento sem receber uma nova divulgação pública.|Você encaminha a mensagem para vários conhecidos dela e aumenta a exposição.
+@2565 F02.desapego|Você guardou objetos de fases anteriores e quer decidir o que ainda faz sentido manter.|{}
+disciplina|separar_significado_utilidade|Separar lembranças importantes de coisas sem uso|Você consegue escolher sem tratar tudo como obrigação de guardar.|Você começa pela quantidade e descarta o significado dos objetos.
+lazer|criar_pequeno_canto_memorias|Escolher poucas lembranças para um espaço pessoal|Você preserva uma história sem ocupar todo o ambiente.|Você transforma o espaço numa exibição que já não combina com você.
+social|ouvir_historia_objeto|Conversar com alguém sobre uma lembrança compartilhada|A conversa ajuda você a entender por que aquele objeto importa.|Você deixa a outra pessoa decidir o valor de todas as suas lembranças.
+apoio|encaminhar_doacao_adequada|Verificar uma forma adequada de doar o que estiver em bom estado|Você encontra um destino útil sem descartar a responsabilidade.|Você oferece objetos sem conferir se estão em condições de uso.
+@2566 F02.vizinhos|Um ruído na sua casa incomodou um vizinho. Você soube pelo pedido dele para conversar.|{}
+social|ouvir_horario_incomodo|Perguntar em que horário o ruído incomodou|Você entende o problema concreto antes de responder.|Você nega o incômodo sem ouvir quando aconteceu.
+disciplina|combinar_limite_ruido|Combinar um cuidado que consegue manter|O acordo cria uma referência para os próximos dias.|Você promete silêncio absoluto e não explica o que pode ajustar.
+apoio|reconhecer_impacto_ruido|Reconhecer que o som pode chegar diferente ao outro espaço|O vizinho percebe que você levou a queixa a sério.|Você compara o incômodo com o que você próprio suportaria.
+lazer|adaptar_atividade_sonora|Escolher outra forma de fazer a atividade naquele horário|Você preserva a atividade com menos atrito.|Você muda a atividade sem perceber que o mesmo ruído continua.
+@2567 F02.apresentacao|Você precisa se apresentar num grupo novo e está em dúvida sobre quanto da sua vida pessoal contar.|{}
+social|apresentacao_interesse_comum|Começar por um interesse que possa gerar conversa|Você encontra uma conexão sem expor toda sua história.|Você lista informações sem dar espaço para troca.
+disciplina|definir_limite_apresentacao|Escolher antes o que prefere manter privado|Você se apresenta com um limite que reconhece.|Você segue a curiosidade do grupo e conta algo que não queria.
+apoio|perguntar_outros_interesses|Convidar outras pessoas a se apresentarem também|A conversa passa a incluir diferentes histórias.|Você faz perguntas pessoais demais para um primeiro encontro.
+lazer|participar_sem_performance|Entrar na atividade sem tentar impressionar na apresentação|Você consegue conhecer o grupo pela convivência.|Você se cobra criar uma primeira impressão perfeita e fica travado.
+@2568 F02.desacordo|Você e um amigo gostam da mesma atividade, mas têm preferências opostas sobre como passar a folga.|{}
+social|alternar_preferencias_folga|Propor alternar as escolhas em encontros diferentes|Vocês conseguem respeitar as duas preferências.|Você chama de alternância um acordo que sempre começa pela sua escolha.
+lazer|encontrar_terceira_atividade|Buscar uma terceira atividade que interesse aos dois|Vocês descobrem uma possibilidade sem exigir que alguém ceda sempre.|Você escolhe uma alternativa que só disfarça sua preferência original.
+disciplina|aceitar_programas_separados|Aceitar que hoje podem fazer programas diferentes|Você preserva a amizade sem transformar a diferença em rejeição.|Você apresenta a escolha separada como castigo.
+apoio|ouvir_motivo_preferencia|Perguntar o que o amigo quer aproveitar na folga|Você entende uma necessidade por trás da preferência.|Você ouve apenas para encontrar um argumento contra a escolha dele.
+@2569 F02.familia|Uma pessoa da família quer saber detalhes de conversas privadas do vestiário.|{}
+disciplina|manter_conversa_vestiario_privada|Explicar que não vai reproduzir conversas internas|Você preserva a confiança sem inventar uma história.|Você conta um detalhe para provar que sabe e quebra o limite.
+social|compartilhar_rotina_propria|Falar somente da sua própria experiência|A pessoa conhece sua rotina sem receber informações dos outros.|Você inclui uma fala identificável de um colega na explicação.
+apoio|reconhecer_curiosidade_familia|Reconhecer a curiosidade e oferecer outro assunto da sua vida|Você mantém a aproximação sem abrir a conversa interna.|Você trata a pergunta como má intenção e cria um conflito desnecessário.
+imprensa|usar_informacao_ja_publica|Limitar a conversa a uma informação já divulgada oficialmente|Você distingue o que é público do que é reservado.|Você acrescenta uma confirmação interna que não estava na divulgação.
+@2570 F02.lazer|Você transformou um passatempo em mais uma lista de metas e já não sente vontade de praticá-lo.|{}
+lazer|praticar_sem_medida|Experimentar uma sessão sem medir resultado|Você recupera um pouco do prazer da atividade.|Você continua comparando cada tentativa com sua melhor marca.
+disciplina|retirar_cobranca_passatempo|Retirar uma meta que não precisa existir|Você deixa espaço para a atividade não ter utilidade.|Você troca a meta por outra cobrança igualmente rígida.
+social|conversar_prazer_atividade|Conversar com alguém sobre o que gostava de fazer|Você reconhece uma parte do interesse que ficou escondida.|Você transforma a conversa numa justificativa para produzir mais.
+apoio|compartilhar_sem_competir|Convidar alguém para praticar sem competição|Vocês aproveitam a companhia durante o passatempo.|Você começa a registrar quem fez melhor mesmo sem combinar uma disputa.
+@2571 F02.frustracao|Um plano pessoal foi cancelado por um motivo fora do seu controle. Você já tinha reservado o dia.|{}
+lazer|escolher_alternativa_leve|Escolher uma alternativa simples para aproveitar parte do dia|Você encontra algo agradável sem precisar substituir o plano inteiro.|Você compara cada alternativa com o plano cancelado e não escolhe nenhuma.
+social|confirmar_possivel_remarcacao|Perguntar se existe possibilidade de remarcar|Você recebe uma informação clara sem exigir uma garantia.|Você transforma a pergunta numa cobrança por um motivo que a pessoa não controla.
+disciplina|separar_controle_cancelamento|Distinguir o que pode reorganizar do que não depende de você|Você ajusta o dia sem assumir culpa pelo cancelamento.|Você tenta resolver uma causa sobre a qual não tem influência.
+apoio|dividir_decepcao_plano|Conversar com alguém que também esperava pelo plano|Vocês reconhecem a decepção sem culpar um ao outro.|Você exige que a outra pessoa fique igualmente aborrecida.
+@2572 F02.combinados|Você combinou emprestar um objeto e percebe que precisa dele antes do prazo acordado.|{}
+social|pedir_devolucao_antecipada|Explicar a necessidade e perguntar se é possível antecipar|Vocês encontram um acordo sem apagar o combinado anterior.|Você cobra como se a outra pessoa já estivesse atrasada.
+disciplina|respeitar_prazo_emprestimo|Manter o prazo e reorganizar sua tarefa|Você preserva o combinado que a pessoa usou para se organizar.|Você diz que respeitará o prazo mas continua pressionando.
+apoio|buscar_alternativa_emprestimo|Buscar uma alternativa que não dependa da devolução|Você resolve a necessidade sem transferir a urgência.|Você envolve outra pessoa sem explicar por quanto tempo precisará da ajuda.
+lazer|adaptar_plano_sem_objeto|Adaptar o plano para usar o que está disponível|Você encontra uma versão possível da atividade.|Você mantém um plano que ainda depende do objeto emprestado.
+@2573 F02.futuro|Você começou a pensar em interesses profissionais fora dos gramados, sem decidir mudar de carreira agora.|{}
+disciplina|mapear_interesse_futuro|Anotar uma pergunta sobre uma área de interesse|Você inicia uma exploração sem tratar curiosidade como decisão tomada.|Você escreve um plano inteiro sem conhecer a área.
+social|conversar_profissional_area|Perguntar a um profissional como é a rotina dele|Você conhece um aspecto concreto além da imagem da profissão.|Você pergunta só sobre reconhecimento e não entende o trabalho cotidiano.
+lazer|experimentar_conteudo_area|Explorar um conteúdo introdutório por curiosidade|Você descobre se quer conhecer mais sobre o assunto.|Você exige de si uma escolha definitiva depois de uma introdução.
+apoio|dividir_curiosidade_sem_promessa|Contar a alguém próximo que está explorando uma possibilidade|A pessoa entende a curiosidade sem receber uma promessa de mudança.|Você apresenta uma hipótese como decisão e cria uma expectativa que não queria.
+@2574 F02.autorrespeito|Você percebe que fala consigo mesmo com uma dureza que não usaria com alguém próximo.|{}
+disciplina|descrever_erro_sem_rotulo|Descrever uma dificuldade sem se definir por ela|Você encontra algo que pode enfrentar sem se reduzir a um rótulo.|Você troca uma palavra dura por outra e mantém a mesma acusação.
+social|conversar_cobranca_interna|Compartilhar essa cobrança com alguém de confiança|Você consegue reconhecer um padrão que estava tratando como normal.|Você usa a conversa para pedir que a pessoa confirme sua pior avaliação.
+lazer|permitir_atividade_sem_prova|Fazer algo agradável sem exigir merecimento|Você encontra um momento que não precisa justificar por desempenho.|Você transforma a pausa numa nova prova de que deveria estar produzindo.
+apoio|usar_tom_que_ofereceria_amigo|Tentar o mesmo tom de apoio que ofereceria a um amigo|Você reconhece a dificuldade sem acrescentar uma condenação pessoal.|Você repete palavras gentis sem abandonar a exigência impossível por trás delas.
+@2575 J01.profundidade|Você oferece apoio por dentro. A linha de passe ao seu pé está fechada, mas há espaço nas costas de quem o acompanha.|{}
+posicionamento|correr_costas_marcador|Atacar o espaço nas costas do marcador|Seu deslocamento abre uma opção mais à frente.|Você dispara antes de o portador poder enxergar a corrida.
+passe|aproximar_tabela_interna|Aproximar e tentar uma tabela curta|A devolução mantém a equipe progredindo.|Seu passe fica curto e interrompe a combinação.
+visao|sinalizar_lado_aberto|Sinalizar o lado que ficou livre|O portador reconhece uma saída para a jogada.|Seu sinal aponta para um espaço que já foi fechado.
+drible|receber_giro_profundidade|Buscar a bola e girar sobre a marcação|Você supera a pressão e leva a bola adiante.|O marcador antecipa o giro e tira a bola.
+@2576 J01.receber|Um companheiro conduz pela lateral. Você pode se aproximar, mas sua marcação tenta acompanhar cada mudança de direção.|{}
+posicionamento|frear_abrir_apoio|Frear a corrida para oferecer apoio atrás|A mudança de ritmo cria uma linha de passe segura.|Você freia na mesma linha do marcador e continua inacessível.
+passe|tocar_retorno_lateral|Receber e devolver para a lateral|A devolução permite continuar o ataque.|O toque sai atrás do companheiro e atrasa a jogada.
+drible|dominar_lado_interno|Dominar buscando o corredor interno|Você encontra espaço por dentro com a bola.|Seu domínio entra na zona de alcance do marcador.
+visao|observar_segundo_apoio|Procurar quem oferece o segundo apoio|Você identifica uma continuação além do primeiro passe.|Você acompanha só a bola e perde o apoio que se movimentava.
+@2577 J01.finalizar|A bola chega baixa perto da entrada da área. Há um corredor de chute, mas o bloqueio está se aproximando.|{}
+chute|finalizar_rasteiro_corredor|Chutar rasteiro pelo corredor aberto|A finalização passa pelo bloqueio e entra.|O bloqueio alcança o chute e a bola não entra.
+passe|servir_lado_bloqueio|Tocar para o lado oposto do bloqueio|O passe mantém o ataque fora da pressão.|A bola fica ao alcance do adversário e a jogada se perde.
+drible|ameacar_chute_levar_lado|Ameaçar o chute e levar para o lado|Você escapa do primeiro bloqueio com a bola.|O defensor não cai na ameaça e toma a bola.
+posicionamento|abrir_corredor_entrada|Sair da linha para oferecer outra recepção|Você cria uma alternativa ao chute congestionado.|Você se move para trás de outro marcador.
+@2578 J01.circulacao|O ataque encontrou resistência no centro. Você está perto da bola e pode ajudar a mudar o caminho da jogada.|{}
+passe|circular_fora_centro|Circular para um apoio fora do centro|A equipe muda o lado sem perder a bola.|O passe atravessa uma linha ocupada e é interceptado.
+drible|conduzir_atrair_centro|Conduzir para atrair a primeira marcação|Você desloca a pressão e abre um caminho.|Você mantém a bola perto demais do defensor e a perde.
+visao|identificar_corredor_vazio|Indicar o corredor que não está ocupado|Seu aviso ajuda a evitar outra entrada congestionada.|Você indica um espaço sem notar a cobertura adversária.
+posicionamento|apoio_altura_diferente|Oferecer apoio numa altura diferente|Você sai da sombra da marcação.|Você muda de lugar sem alterar a linha bloqueada.
+@2579 J01.cruzamento|Você recebe aberto e vê movimento na área. O corredor até a linha de fundo ainda está livre.|{}
+passe|cruzar_antes_fundo|Cruzar antes de chegar à linha de fundo|A bola encontra um companheiro na área.|O cruzamento passa além do alcance de quem chegava.
+drible|carregar_ate_fundo|Conduzir até a linha de fundo|Você ganha posição para continuar o ataque.|A marcação fecha o caminho e recupera a bola.
+chute|arriscar_angulo_lateral|Finalizar do ângulo lateral|Você encontra o espaço no gol e marca.|O ângulo fecha e a bola não entra.
+visao|conferir_movimento_area|Esperar a referência de quem entra na área|Você reconhece a corrida que pode orientar a próxima jogada.|Você demora na leitura e o movimento deixa de estar disponível.
+@2580 J01.protecao|Você recebe de costas com um adversário encostando e outro vigiando o passe para dentro.|{}
+drible|girar_lado_externo_costas|Girar pelo lado externo|Você sai do contato com a bola dominada.|O toque de giro deixa a bola exposta ao marcador.
+passe|devolver_fora_contato|Devolver para quem está fora do contato|A devolução evita que a pressão prenda a bola.|O passe sai fraco e permite a recuperação adversária.
+posicionamento|proteger_reposicionar_apoio|Proteger a posição e oferecer novo ângulo de apoio|Você mantém uma referência acessível à equipe.|Você fica parado na sombra do segundo defensor.
+visao|ler_segundo_defensor|Conferir o segundo defensor antes de decidir|Você evita escolher a saída que estava sendo vigiada.|Você olha tarde e não distingue qual lado estava protegido.
+@2581 J01.entrelinhas|Uma faixa de espaço aparece entre dois setores adversários. Você está fora dela e pode ajustar sua movimentação.|{}
+posicionamento|entrar_intervalo_setores|Entrar na faixa livre sem alinhar com o marcador|Você oferece uma recepção entre os setores.|Você entra na linha do adversário e não fica disponível.
+visao|observar_tempo_faixa|Observar quando o espaço pode ser usado|Você identifica a janela de aproximação.|Você espera demais e a faixa volta a ser ocupada.
+passe|apoiar_passe_por_fora|Receber por fora e passar para o apoio interno|O passe alcança um companheiro bem colocado.|A bola cruza um defensor e é cortada.
+drible|conduzir_entre_setores|Buscar a bola e conduzir entre os setores|Você entra no espaço carregando a bola.|Você conduz para onde a cobertura já estava chegando.
+@2582 J01.ultimo_passe|Você recebe voltado para o ataque. Um companheiro inicia uma corrida diagonal e outro permanece como apoio curto.|{}
+passe|enfiar_diagonal_corrida|Passar na diagonal da corrida|Seu passe encontra o movimento do companheiro.|A bola chega depois da janela e a defesa corta.
+passe|usar_apoio_curto_diagonal|Usar o apoio curto antes de avançar|A equipe preserva a bola para continuar a construção.|O toque sai impreciso e interrompe o ataque.
+drible|carregar_atrair_diagonal|Carregar para atrair a cobertura|Você cria espaço sem entregar a bola ao defensor.|Você avança para o alcance da cobertura e perde a posse.
+visao|ler_cobertura_diagonal|Conferir quem acompanha a corrida diagonal|Você distingue o apoio disponível da corrida fechada.|Você acompanha só o corredor e perde a posição da cobertura.
+@2583 J01.segunda_bola|A disputa à sua frente pode deixar uma sobra. Você precisa escolher de onde acompanhar a jogada.|{}
+posicionamento|ocupar_frente_sobra|Ocupar a faixa à frente da disputa|Você oferece uma referência para a eventual sobra.|Você entra perto demais da disputa e fecha seu próprio espaço.
+visao|ler_trajetoria_disputa|Acompanhar a trajetória antes de avançar|Você reconhece para onde a jogada pode continuar.|Você antecipa uma direção e fica longe da continuação.
+apoio|avisar_companheiro_sobra|Avisar quem está melhor colocado para a sobra|Seu aviso organiza a aproximação.|Você chama ao mesmo tempo que outro companheiro e confunde a reação.
+passe|oferecer_devolucao_sobra|Oferecer-se para receber e devolver a sobra|Sua devolução permite manter o ataque.|O toque não encontra o apoio e a posse se perde.
+@2584 J01.finalizar|Você recebe um passe recuado perto da área e pode finalizar antes de a linha adversária se reorganizar.|{}
+chute|bater_passe_recuado|Finalizar sem outro domínio|Você acerta o chute e marca.|Você pega mal na bola e a finalização não entra.
+drible|dominar_tirar_linha|Dominar tirando da linha de bloqueio|Você encontra um corredor para continuar.|O domínio demora e o defensor recupera a bola.
+passe|devolver_quem_recuou|Devolver para o companheiro que fez o passe|A combinação mantém a jogada viva.|O passe volta atrás do companheiro e é cortado.
+visao|conferir_antes_bater|Conferir a posição do bloqueio antes de escolher|Você percebe qual saída ainda está livre.|Você olha tarde e perde a referência do bloqueio.
+@2585 J01.largura|Você nota que dois companheiros estão ocupando o mesmo corredor. Há espaço para oferecer uma alternativa por fora.|{}
+posicionamento|dar_largura_corredor_duplo|Abrir para dar largura|Seu movimento oferece uma saída fora do congestionamento.|Você abre sem sair da linha de marcação.
+apoio|avisar_ocupacao_dupla|Avisar sobre a ocupação repetida do corredor|Os companheiros entendem onde podem se separar.|Seu aviso não identifica qual espaço deve ficar livre.
+passe|receber_inverter_faixa|Receber e levar o passe à faixa externa|A bola alcança o apoio aberto.|O passe fica curto e a marcação intercepta.
+visao|ler_distancia_corredores|Conferir a distância entre os apoios|Você encontra uma referência para não juntar mais gente.|Você acompanha os companheiros sem notar o adversário entre eles.
+@2586 J01.arranque|Você recebe com alguns metros à frente. Um adversário tenta escolher se avança sobre você ou protege o passe.|{}
+drible|atacar_indecisao_marcador|Conduzir enquanto o marcador hesita|Você aproveita o espaço antes de ele fechar.|Você alonga o toque e entrega a bola ao adversário.
+passe|soltar_antes_decisao|Soltar para o apoio antes de o marcador encurtar|O passe evita a pressão direta.|Você solta sem ajustar a direção e perde a posse.
+posicionamento|apoiar_depois_soltar|Preparar uma nova linha de apoio|Você cria uma continuação para a circulação.|Você se aproxima no mesmo eixo do adversário.
+visao|provocar_leitura_pressao|Observar qual caminho o marcador protege|Você identifica uma saída menos vigiada.|Você demora para interpretar e a vantagem de espaço desaparece.
+@2587 J01.associacao|Uma triangulação começa perto de você. O terceiro jogador está livre, mas o passe direto passa por uma zona vigiada.|{}
+passe|usar_intermediario_triangulo|Usar o apoio intermediário|A combinação encontra a continuação sem forçar o passe direto.|O toque intermediário sai fora do ritmo e é cortado.
+posicionamento|abrir_terceiro_homem|Mover-se para ser a terceira opção|Você cria outro ângulo de circulação.|Você ocupa a linha de quem já estava livre.
+drible|atrair_zona_vigiada|Conduzir para deslocar quem vigia o passe|Você tira a marcação da linha inicial.|Você entra na zona vigiada sem proteger a bola.
+visao|ler_triangulo_completo|Conferir as três posições antes de oferecer apoio|Você reconhece onde a triangulação pode continuar.|Você fixa o olhar num apoio e perde o terceiro jogador.
+@2588 J01.corte|Você domina perto da lateral. O marcador protege a linha de fundo, deixando um pequeno espaço para dentro.|{}
+drible|cortar_para_dentro_lateral|Cortar para dentro|Você vence a primeira marcação com a bola.|O corte fica previsível e o marcador toma a bola.
+passe|apoio_atras_lateral|Passar ao apoio atrás da jogada|A equipe mantém a posse longe do bloqueio.|O passe fica entre dois companheiros e é recuperado pelo adversário.
+chute|finalizar_apos_corte|Cortar e finalizar|Você encontra o gol depois do corte.|O chute sai bloqueado e não entra.
+visao|ver_cobertura_interna|Conferir a cobertura do espaço interno|Você percebe se o pequeno espaço tem continuação.|Você ignora a segunda marcação ao olhar só o primeiro defensor.
+@2589 J01.rebote|Você está perto de um companheiro que pode finalizar. É hora de escolher como acompanhar a tentativa, sem saber seu desfecho.|{}
+posicionamento|acompanhar_fora_linha_chute|Acompanhar fora da linha do chute|Você oferece presença sem bloquear o companheiro.|Você cruza a linha e atrapalha o espaço da finalização.
+visao|ler_possivel_rebote|Ler a trajetória para reagir a uma possível sobra|Você fica atento à continuação real da jogada.|Você corre para um rebote presumido antes de a bola sair.
+apoio|sinalizar_opcao_recuo|Sinalizar que pode receber um recuo|O companheiro reconhece uma alternativa ao chute.|Você chama de um lugar sem linha de passe.
+passe|combinar_em_vez_bloquear|Oferecer uma combinação curta se receber|Seu passe mantém a jogada na frente.|O toque de combinação fica ao alcance do defensor.
+@2590 J01.tempo|Você recebe um passe que vem um pouco atrás do corpo. Há pressão chegando, mas um apoio lateral segue disponível.|{}
+passe|corrigir_devolver_lado|Ajustar o corpo e tocar ao lado|Você corrige a recepção e mantém a posse.|O ajuste não acompanha a bola e o toque sai errado.
+drible|proteger_passe_atras|Proteger a bola e girar|Você sai da pressão depois de corrigir o domínio.|O giro expõe a bola antes de você equilibrar o corpo.
+visao|reconhecer_pressao_receber|Conferir de que lado chega a pressão|Você escolhe o lado que não entrega a bola ao contato.|Você olha depois do domínio e perde a referência da pressão.
+posicionamento|ajustar_angulo_recepcao|Ajustar sua posição para a próxima recepção|Você oferece um ângulo mais fácil ao portador.|Você recua para a mesma linha bloqueada.
+@2591 J01.infiltracao|Um companheiro conduz pelo centro e você pode cruzar a corrida dele ou abrir um corredor ao lado.|{}
+posicionamento|correr_paralelo_portador|Correr em paralelo sem fechar o portador|Você oferece uma continuação com espaço próprio.|Você aproxima demais a corrida e junta as marcações.
+passe|tabela_corrida_central|Oferecer uma tabela ao condutor|A combinação ajuda a equipe a avançar.|A devolução não acompanha a corrida e se perde.
+visao|notar_cruzamento_corridas|Observar antes de cruzar a trajetória|Você evita ocupar o caminho do companheiro.|Você decide tarde e bloqueia a linha que ele usaria.
+apoio|combinar_lado_corrida|Avisar de que lado vai oferecer apoio|O companheiro entende sua opção de corrida.|O aviso vem depois da mudança e gera hesitação.
+@2592 J01.profundidade|Você se aproxima da área sem bola. O defensor acompanha seus olhos e tenta prever a corrida.|{}
+posicionamento|mudar_direcao_sem_bola|Mudar de direção antes de atacar o espaço|Você cria separação sem depender de contato.|Você muda cedo demais e o marcador acompanha.
+visao|esperar_portador_erguer|Esperar o portador levantar a cabeça|Você oferece a corrida quando ela pode ser vista.|Você espera parado e perde a possibilidade de ganhar espaço.
+apoio|indicar_corrida_curta|Indicar uma aproximação curta em vez da corrida longa|Seu companheiro reconhece a opção de apoio.|Seu gesto não distingue se quer a bola no pé ou adiante.
+passe|aproximar_devolver_area|Aproximar para receber e devolver|Seu passe permite continuar o ataque perto da área.|A devolução fica atrás do portador e interrompe a jogada.
+@2593 J01.finalizar|A bola vem para seu pé com espaço reduzido para armar o chute. Você precisa decidir entre concluir e preservar a jogada.|{}
+chute|chute_curto_armação|Finalizar com movimento curto|O chute sai antes do bloqueio e entra.|A bola não ganha direção suficiente e não entra.
+passe|soltar_curto_sem_armar|Tocar curto para o apoio|O passe mantém a posse perto da área.|O toque não sai do alcance do marcador.
+drible|ganhar_passo_chute_curto|Buscar um passo lateral com a bola|Você ganha espaço sem precisar de um chute apertado.|O passo deixa a bola desprotegida.
+visao|ler_bloqueio_chute_curto|Conferir a perna de bloqueio do defensor|Você identifica o lado menos protegido.|Você fixa a atenção no bloqueio e perde o apoio disponível.
+@2594 J01.amplitude|A bola circula do outro lado. Você está longe dela e precisa continuar participando sem correr para o congestionamento.|{}
+posicionamento|manter_opcao_lado_oposto|Manter-se como opção no lado oposto|Você preserva uma saída para mudar o ataque.|Você se afasta tanto que deixa de ser uma opção alcançável.
+visao|acompanhar_posicao_longe_bola|Acompanhar a posição dos defensores próximos|Você reconhece quando pode se aproximar.|Você acompanha só a bola e perde sua referência de espaço.
+apoio|avisar_largura_disponivel|Avisar que o lado oposto está disponível|A equipe reconhece uma alternativa de circulação.|Você pede a bola sem conferir se o passe é viável.
+posicionamento|aproximar_em_diagonal_longe|Aproximar em diagonal para encurtar o passe|Você se conecta à jogada sem fechar a largura.|Você aproxima em linha reta e entra na sombra do marcador.
+@2595 J01.pivo|Você recebe pressionado perto da área. Um companheiro passa por fora e outro espera a devolução atrás.|{}
+passe|servir_passagem_externa|Tocar na passagem por fora|O passe acompanha a corrida e mantém o ataque.|Você solta tarde e o corredor já está fechado.
+passe|recuar_apoio_pivo|Devolver ao apoio de trás|A equipe conserva uma saída segura.|O recuo sai sem força e permite a intervenção adversária.
+drible|girar_entre_apoios|Girar tentando sair do contato|Você avança com a bola dominada.|O marcador antecipa seu giro e recupera a bola.
+visao|ler_tempo_passagem|Conferir o tempo da passagem antes de decidir|Você distingue a corrida disponível da que já terminou.|Você acompanha só o primeiro apoio e perde a segunda opção.
+@2596 J01.reciclar|Você recebe depois de uma sequência de passes. A equipe avançou, mas as opções imediatamente à frente estão vigiadas.|{}
+passe|voltar_recomecar_ataque|Voltar ao apoio e recomeçar|A circulação continua sem entregar a posse.|O passe de retorno é interceptado.
+drible|buscar_outro_angulo_frente|Conduzir para procurar outro ângulo|Você desloca o primeiro defensor e encontra espaço.|Você tenta passar entre duas coberturas e perde a bola.
+posicionamento|desmarcar_depois_recuo|Preparar um novo apoio fora da linha atual|Seu movimento oferece uma continuação diferente.|Você muda de posição para a mesma sombra defensiva.
+visao|conferir_cobertura_antes_forcar|Ler a cobertura antes de insistir por dentro|Você percebe que a janela inicial fechou.|Você insiste na leitura antiga e perde o tempo da jogada.
+@2597 J01.bola_alta|Uma bola alta chega à sua zona com um companheiro próximo. Você precisa escolher como tratar a recepção.|{}
+passe|amortecer_para_apoio_alta|Amortecer para o companheiro próximo|A bola fica jogável para a equipe.|O amortecimento foge do alcance do apoio.
+drible|dominar_alta_girar|Dominar antes de girar|Você mantém a bola e consegue sair da primeira pressão.|O domínio escapa antes do giro.
+chute|concluir_bola_alta|Tentar concluir a bola alta|Você acerta a conclusão e marca.|Você não acerta o tempo da bola e não faz o gol.
+visao|observar_queda_bola_alta|Ler a queda antes de entrar na disputa|Você ajusta sua posição à trajetória real.|Você calcula mal a queda e fica fora da jogada.
+@2598 J01.aproximacao|Você corre para apoiar quem leva a bola, mas percebe que está trazendo seu marcador para perto dele.|{}
+posicionamento|abrir_apoio_sem_arrastar|Abrir a corrida para afastar sua marcação|Você devolve espaço ao portador e oferece outra linha.|Você muda tarde e leva o marcador ao contato.
+apoio|avisar_marcador_aproximando|Avisar que a pressão está chegando com você|O portador percebe o defensor que se aproxima.|Você avisa sem indicar o lado da pressão.
+visao|ler_distancia_apoio_pressao|Conferir a distância antes de encurtar|Você mantém uma separação útil entre os dois apoios.|Você reduz a distância até fechar a própria opção.
+passe|receber_soltar_pressao_apoio|Receber e soltar rapidamente|O passe impede que as duas marcações prendam a jogada.|Você recebe sem preparar a devolução e perde a bola.
+@2599 J01.finalizar|Você recebe perto da área com o corpo de lado para o gol. A marcação deixa pouco tempo para ajustar.|{}
+chute|girar_bater_corpo_lateral|Girar e finalizar|Você encontra o gol com a finalização.|Você não completa o giro e a bola não entra.
+passe|servir_apoio_corpo_lateral|Passar a quem está voltado para o ataque|Seu passe encontra um companheiro em posição de continuar.|A bola sai no pé errado e a jogada é cortada.
+drible|proteger_ajuste_lateral|Proteger enquanto ajusta o corpo|Você mantém a bola apesar da pressão.|O ajuste demora e o defensor recupera a posse.
+visao|conferir_giro_disponivel|Olhar se o espaço de giro continua aberto|Você reconhece o lado que ainda pode usar.|Você olha apenas para o gol e ignora o fechamento lateral.
+

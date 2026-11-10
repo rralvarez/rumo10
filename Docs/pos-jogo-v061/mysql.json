@@ -1,0 +1,9 @@
+{
+    "checks": 25,
+    "recognized_fixture_first": 7,
+    "recognized_fixture_second": 1,
+    "gamerscore_fixture": 85,
+    "real_accounts_processed": 0,
+    "rollback": true,
+    "result": "passed"
+}

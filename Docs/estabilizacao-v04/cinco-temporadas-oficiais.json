@@ -1,0 +1,83 @@
+{
+    "checks": 20,
+    "seasons": 5,
+    "elapsed_ms": 10707.5358,
+    "fixture": "Somente memória: placares do clube controlados para validar campeão\/acesso; demais jogos simulados; sem banco ou Hub",
+    "rows": [
+        {
+            "season": 1,
+            "player_competitions": [
+                "am-entrada"
+            ],
+            "next_am_a1": true,
+            "world_matches": 22965,
+            "summary": {
+                "goals": 0,
+                "assists": 0,
+                "minutes": 0,
+                "games": 0,
+                "average": 0
+            }
+        },
+        {
+            "season": 2,
+            "player_competitions": [
+                "am-a1"
+            ],
+            "next_am_a1": true,
+            "world_matches": 23043,
+            "summary": {
+                "goals": 0,
+                "assists": 0,
+                "minutes": 0,
+                "games": 0,
+                "average": 0
+            }
+        },
+        {
+            "season": 3,
+            "player_competitions": [
+                "am-a1"
+            ],
+            "next_am_a1": true,
+            "world_matches": 23152,
+            "summary": {
+                "goals": 0,
+                "assists": 0,
+                "minutes": 0,
+                "games": 0,
+                "average": 0
+            }
+        },
+        {
+            "season": 4,
+            "player_competitions": [
+                "am-a1"
+            ],
+            "next_am_a1": true,
+            "world_matches": 23154,
+            "summary": {
+                "goals": 0,
+                "assists": 0,
+                "minutes": 0,
+                "games": 0,
+                "average": 0
+            }
+        },
+        {
+            "season": 5,
+            "player_competitions": [
+                "am-a1"
+            ],
+            "next_am_a1": true,
+            "world_matches": 23152,
+            "summary": {
+                "goals": 0,
+                "assists": 0,
+                "minutes": 0,
+                "games": 0,
+                "average": 0
+            }
+        }
+    ]
+}

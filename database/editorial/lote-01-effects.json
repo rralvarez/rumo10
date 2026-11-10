@@ -1,0 +1,11 @@
+{
+  "2090":{"3":{"effects":{"confianca_imprensa":2},"failure_effects":{"confianca_imprensa":-1},"severe_failure_effects":{"confianca_imprensa":-2}}},
+  "2091":{"3":{"effects":{"foco":3},"failure_effects":{"foco":-1},"severe_failure_effects":{"foco":-2}}},
+  "2092":{"3":{"effects":{"confianca_treinador":2},"failure_effects":{"foco":-1},"severe_failure_effects":{"foco":-2}}},
+  "2093":{"3":{"effects":{"entrosamento":3},"failure_effects":{"entrosamento":-1},"severe_failure_effects":{"entrosamento":-2}}},
+  "2095":{"1":{"effects":{"moral_pessoal":3},"failure_effects":{"moral_pessoal":-1},"severe_failure_effects":{"moral_pessoal":-2}}},
+  "2096":{"1":{"effects":{"foco":3},"failure_effects":{"foco":-1},"severe_failure_effects":{"foco":-2}}},
+  "2097":{"0":{"effects":{"moral_pessoal":3},"failure_effects":{"moral_pessoal":-1},"severe_failure_effects":{"moral_pessoal":-2}},"2":{"effects":{"moral_pessoal":3},"failure_effects":{"moral_pessoal":-1},"severe_failure_effects":{"moral_pessoal":-2}}},
+  "2098":{"1":{"effects":{"moral_pessoal":3},"failure_effects":{"moral_pessoal":-1},"severe_failure_effects":{"moral_pessoal":-2}},"2":{"effects":{"foco":3},"failure_effects":{"foco":-1},"severe_failure_effects":{"foco":-2}}},
+  "2099":{"1":{"effects":{"moral_pessoal":3},"failure_effects":{"moral_pessoal":-1},"severe_failure_effects":{"moral_pessoal":-2}}}
+}

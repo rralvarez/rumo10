@@ -14,7 +14,11 @@ foreach(Rules::POSITIONS as $position)foreach(array_keys(PlayMode::PLANS) as $pl
     modeCheck($g['round']===2 && $g['stage']==='treino','Rápido resolve só uma partida');
     modeCheck($g['version']===$v+1 && count($g['pace_report']['matches'])===1,'Uma versão por comando');
     $clearChances=count(array_filter($g['pace_report']['matches'][0]['log'],fn($event)=>str_contains($event['text'],'A sequência abriu a defesa')));
-    modeCheck($clearChances<=2 && $g['pace_report']['decisions']>=3 && $g['pace_report']['decisions']<=8+$clearChances,'Oportunidades regulares e até duas chances construídas por partida');
+    // v0.4: five temporal windows, each with at most two constructive actions
+    // and a conclusion; plus training, pre-match and weekend decisions.
+    modeCheck($clearChances<=5 && $g['pace_report']['decisions']>=3 && $g['pace_report']['decisions']<=18,'Janelas temporais da v0.4 limitam as decisões');
+    $windows=[];foreach($g['pace_report']['attempts'] as $attempt)if($attempt['stage']==='partida'){$window=$attempt['competition'].'|'.$attempt['round'].'|'.$attempt['minute'];$windows[$window]=($windows[$window]??0)+1;}
+    foreach($windows as $count)modeCheck($count<=3,'No máximo três ações por posse/janela');
     $played=$g['matches'];$skills=$g['skills'];
     modeCheck(rejects(fn()=>Game::command($g,'mode',['mode'=>'normal'])),'Rápido não pode virar normal');
     modeCheck($g['matches']===$played && $g['skills']===$skills,'Recusa conserva campanha');

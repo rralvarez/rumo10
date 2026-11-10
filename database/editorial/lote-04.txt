@@ -1,0 +1,501 @@
+# Lote 04: preparação de jogo e primeiros relatos pós-jogo.
+@2300 P01.atencao|A conversa pré-jogo está terminando. Você quer guardar uma referência útil sem tentar decorar cada frase da comissão.|{}
+disciplina|priorizar_instrucao|Escolher a instrução que orienta sua primeira tarefa|Você organiza a preparação numa referência aplicável.|Você escolhe uma frase sem entender quando usá-la.
+tatico|aplicar_instrucao|Relacionar a instrução a um movimento|Você reconhece uma aplicação concreta.|Você imagina um movimento que não corresponde à orientação.
+apoio|conferir_entendimento|Conferir a referência com o colega próximo|Vocês descobrem um entendimento diferente antes da entrada.|Vocês repetem a frase sem comparar o significado.
+social|esclarecer_duvida|Dizer ao auxiliar o que ainda ficou confuso|A dúvida fica clara para uma resposta curta.|Você tenta esconder a dúvida numa pergunta vaga.
+@2301 P01.atencao|Você pensa em várias coisas que gostaria de fazer no jogo. O auxiliar pede que transforme essa lista numa prioridade inicial.|{}
+disciplina|meta_controlavel|Escolher uma tarefa que depende da sua atenção|Você entra com uma prioridade que consegue acompanhar.|Você escolhe um resultado que não controla sozinho.
+visao|leitura_inicial|Definir o que observar antes da primeira ação|Você prepara uma leitura em vez de um gesto automático.|Você decide o gesto antes de considerar a situação.
+apoio|apoio_setor|Combinar uma contribuição simples com o setor|O combinado torna sua prioridade útil aos colegas.|Você promete várias contribuições e não define nenhuma.
+recuperar|pausa_preparacao|Fazer uma pausa breve antes de escolher|Você reduz a pressa que embaralhava a lista.|Você usa a pausa para repetir mentalmente toda a lista.
+@2302 P01.atencao|O auxiliar pergunta como você pretende retomar o foco depois de uma interrupção. O jogo ainda não começou; é uma preparação, não um relato de falha.|{}
+disciplina|referencia_retorno|Definir uma palavra curta para retomar a tarefa|Você encontra uma referência ligada ao que precisa fazer.|Você escolhe uma palavra que não lembra a função.
+tatico|primeira_observacao|Repassar o que observar ao voltar à ação|Você sabe qual leitura vem antes do próximo movimento.|Você prepara um movimento sem conferir a posição da bola.
+apoio|sinal_companheiro|Combinar um aviso discreto com o colega|Vocês definem como ajudar sem fazer uma cobrança longa.|O aviso se parece com uma crítica e não esclarece a ajuda.
+social|limite_expectativa|Explicar que quer manter uma prioridade de cada vez|Sua intenção fica compreensível para o auxiliar.|Sua fala parece recusar outras responsabilidades.
+@2303 P01.atencao|Antes da entrada, você percebe que está mais preocupado em demonstrar disposição do que em compreender a tarefa.|{}
+disciplina|voltar_funcao|Revisar sua responsabilidade principal|Você troca a pressa por uma referência de trabalho.|Você revisa sem deixar de pensar em impressionar.
+social|perguntar_contribuicao|Perguntar qual contribuição será mais útil|Você recebe uma indicação sem promessa de destaque.|Você faz a pergunta como uma cobrança por protagonismo.
+apoio|ouvir_colega|Ouvir como o colega prepara a própria função|A conversa oferece uma referência sem exigir comparação.|Você compara as funções como se disputassem importância.
+recuperar|pausa_calma|Reservar um instante de preparação tranquila|Você diminui a urgência de demonstrar tudo antes do início.|Você continua antecipando como será avaliado.
+@2304 P01.atencao|A comissão pede que vocês entrem preparados para observar antes de tirar conclusões. Você quer evitar julgar o jogo pelo primeiro lance.|{}
+visao|observar_padrao|Escolher uma referência para observar nos primeiros movimentos|Você prepara uma leitura que pode ser atualizada.|Você escolhe uma conclusão antes de observar o padrão.
+disciplina|evitar_generalizacao|Lembrar que uma ação não define a partida|Você mantém espaço para ajustar a leitura.|Você transforma a lembrança numa expectativa de não reagir a nada.
+tatico|criterio_ajuste|Perguntar qual mudança exige um ajuste de posição|Você entende quando a observação deve virar ação.|Você mistura um ajuste pequeno com uma troca completa de plano.
+apoio|trocar_observacoes|Combinar como compartilhar uma observação útil|O setor ganha um meio simples de conferir a leitura.|Vocês combinam falar de tudo e perdem a prioridade.
+@2305 P01.atencao|Você quer acertar muito no jogo, mas percebe que está ensaiando mentalmente só as comemorações. O auxiliar chama sua atenção para a preparação.|{}
+disciplina|processo|Voltar aos gestos que dependem de você|Você organiza a atenção no trabalho antes do resultado.|Você escolhe uma tarefa, mas volta a antecipar o destaque.
+visao|primeira_leitura|Repassar o que precisa enxergar ao receber|Você prepara uma decisão aberta ao contexto.|Você imagina a recepção como se a marcação já estivesse definida.
+apoio|contribuicao_coletiva|Conversar sobre uma contribuição ao setor|Você relaciona sua expectativa a uma tarefa coletiva.|Você fala apenas do que quer receber dos colegas.
+recuperar|desacelerar|Fazer uma pausa curta para desacelerar|Você retorna à preparação sem tanta pressa.|Você passa a pausa antecipando o placar.
+@2306 P01.atencao|O auxiliar propõe uma checagem curta: o que você controla e o que depende da partida. Você precisa separar intenção de garantia.|{}
+disciplina|separar_controle|Nomear uma atitude que consegue executar|Você define uma responsabilidade concreta.|Você escolhe um resultado como se dependesse só de você.
+tatico|ligar_plano|Relacionar a atitude ao plano do setor|Você conecta preparação e função.|Você trata a atitude como uma nova instrução para o time inteiro.
+social|assumir_duvida|Dizer qual expectativa ainda está confusa|A conversa delimita uma dúvida real.|Você tenta parecer confiante e deixa a expectativa indefinida.
+apoio|compartilhar_limite|Ouvir a expectativa de um colega sem comparar|Vocês reconhecem responsabilidades diferentes.|Vocês transformam expectativas em uma disputa de ambição.
+@2307 P01.atencao|Antes de entrar, você quer recuperar a rotina que costuma ajudar a concentrar. O desafio é usar uma referência sem tratá-la como superstição obrigatória.|{}
+disciplina|rotina_simples|Escolher uma ação curta de preparação|Você usa a rotina para voltar à tarefa.|Você se preocupa mais em repetir o ritual que em entender a função.
+visao|revisar_ambiente|Conferir as referências de espaço que vai observar|Você prepara o olhar para a entrada.|Você observa detalhes sem escolher uma referência útil.
+apoio|confirmacao_dupla|Confirmar um combinado com o colega|A conversa dá um ponto comum à preparação.|Vocês abrem outro assunto e não confirmam o combinado.
+recuperar|ritmo_respira|Respirar com calma sem forçar um resultado|Você encontra um ritmo confortável de preparação.|Você tenta obrigar a ansiedade a desaparecer e se dispersa.
+@2308 P01.atencao|O auxiliar pergunta qual informação você costuma perder quando se apressa. A conversa busca uma referência para o jogo que vai começar.|{}
+visao|ponto_cego|Identificar uma leitura que precisa conferir|Você escolhe algo observável para acompanhar.|Você descreve uma dificuldade ampla demais.
+disciplina|lembrete_curto|Preparar um lembrete ligado à leitura|O lembrete ajuda a reconhecer o momento de olhar.|Você escolhe uma frase longa que não consegue aplicar.
+apoio|aviso_util|Combinar um aviso que acrescente informação|O colega entende qual ajuda você pede.|O aviso combinado repete algo que você já enxerga.
+tatico|relacionar_posicao|Conferir como sua posição facilita essa leitura|Você reconhece um ajuste possível de preparação.|Você tenta resolver a leitura mudando toda a função.
+@2309 P01.atencao|Você começa a comparar a própria preparação com a dos colegas. A comissão lembra que cada função pode exigir uma rotina diferente.|{}
+disciplina|seguir_orientacao|Voltar à orientação que recebeu|Você mantém uma preparação compatível com sua tarefa.|Você continua copiando a rotina que parece mais intensa.
+apoio|entender_diferenca|Perguntar ao colega qual é o objetivo da rotina dele|Você compreende a diferença sem copiá-la.|Você trata a explicação como sugestão para mudar sua rotina.
+social|esclarecer_inseguranca|Conversar com o auxiliar sobre a comparação|A conversa identifica o que estava deixando você inseguro.|Você fala só do colega e não esclarece sua dúvida.
+recuperar|reduzir_pressa|Fazer uma pausa antes de alterar qualquer coisa|Você evita mudar a preparação por impulso.|Você usa a pausa para observar ainda mais os outros.
+@2310 P01.atencao|A comissão faz uma instrução curta sobre a primeira reação após perder a bola. Você precisa guardar o critério, não uma corrida obrigatória para qualquer lado.|{}
+tatico|entender_gatilho|Conferir quando deve pressionar e quando proteger|Você entende a diferença entre as duas tarefas.|Você interpreta toda perda como sinal de correr à bola.
+visao|leitura_perda|Escolher o que observar antes de reagir|Você prepara uma leitura ligada aos apoios disponíveis.|Você decide a reação sem considerar as distâncias.
+liderar|sinal_setor|Combinar um sinal de confirmação com o setor|O sinal ajuda a iniciar a reação conjunta.|O sinal mistura duas orientações diferentes.
+disciplina|prioridade_funcao|Guardar sua primeira responsabilidade|Você não tenta assumir todas as tarefas da transição.|Você tenta cobrir tudo e perde a função principal.
+@2311 P01.atencao|O auxiliar pede que você descreva uma boa decisão sem falar do resultado. A ideia é entrar com um critério que não dependa de sorte.|{}
+visao|qualidade_leitura|Descrever a informação necessária antes do gesto|Você identifica um critério para avaliar a escolha.|Você descreve apenas como gostaria que a jogada terminasse.
+tatico|apoio_disponivel|Relacionar a decisão aos apoios reais|Você prepara uma escolha que considera o setor.|Você imagina apoios em posições que não foram combinadas.
+disciplina|criterio_curto|Resumir o critério numa pergunta simples|Você encontra uma checagem que pode usar em campo.|Sua pergunta continua ampla demais para ajudar.
+apoio|ouvir_outro_criterio|Ouvir o critério de um companheiro|Você percebe uma referência que pode complementar a sua.|Você abandona seu critério sem entender o dele.
+@2312 P01.atencao|Você tem vontade de corrigir todos os detalhes antes da entrada. O auxiliar pede que escolha o que realmente precisa resolver agora.|{}
+disciplina|distinguir_urgencia|Separar dúvida urgente de ajuste para depois|Você resolve um ponto sem atropelar o restante da preparação.|Você trata todos os detalhes como igualmente urgentes.
+social|pergunta_delimitada|Apresentar a dúvida em uma frase|O auxiliar entende o ponto que pode esclarecer agora.|Você inclui vários assuntos e perde a pergunta principal.
+apoio|checar_combinado|Conferir primeiro o combinado do setor|Você percebe qual dúvida interfere nos colegas.|Vocês abrem uma discussão maior que a dúvida inicial.
+recuperar|pausa_prioridade|Parar um instante antes de escolher|Você retoma com uma prioridade mais clara.|Você continua reorganizando a lista sem escolher um ponto.
+@2313 P01.atencao|A comissão relembra que disposição não é sair da própria função em toda jogada. Você quer demonstrar trabalho sem perder a organização.|{}
+disciplina|trabalho_util|Definir uma tarefa útil para o início|Você relaciona disposição a uma responsabilidade.|Você escolhe apenas correr mais, sem um destino útil.
+posicionamento|preservar_referencia|Repassar a referência que não deve abandonar|Você conhece o limite da sua aproximação.|Você memoriza o ponto sem entender o espaço protegido.
+apoio|dividir_esforco|Conversar sobre como dividir os movimentos|O setor entende quem complementa cada ação.|Vocês prometem ajudar em tudo e não dividem a tarefa.
+visao|reconhecer_necessidade|Conferir quando sua aproximação acrescenta apoio|Você evita um movimento redundante.|Você decide aproximar só por estar perto da bola.
+@2314 P01.atencao|Antes do início, o auxiliar pergunta como você reconheceria que precisa pedir ajuda. Você quer uma referência sem inventar um problema já ocorrido.|{}
+disciplina|limite_claro|Definir qual dúvida precisa ser comunicada|Você sabe quando procurar a orientação da comissão.|Você escolhe um limite tão amplo que não orienta nada.
+apoio|apoio_combinado|Combinar um aviso com o colega próximo|O colega entende como oferecer ajuda sem adivinhar.|O combinado não deixa claro se você pede ajuda ou confirma uma tarefa.
+tatico|referencia_funcao|Conferir a responsabilidade que deve manter enquanto pergunta|Você entende como pedir ajuda sem abandonar o setor.|Você imagina que perguntar suspende toda responsabilidade.
+social|comunicar_sem_promessa|Explicar sua dúvida sem prometer que não errará|A conversa fica centrada na preparação.|Você tenta garantir perfeição e deixa a dúvida de lado.
+@2315 P01.comunicacao|A comissão combina uma palavra para aproximar o setor e outra para alongar. Você percebe que as duas soam parecidas.|{}
+disciplina|confirmar_palavras|Confirmar a diferença antes da entrada|Você reconhece qual palavra corresponde a cada ação.|Você repete as palavras sem distingui-las em uso.
+liderar|propor_clareza|Sugerir uma confirmação curta ao receber o aviso|O setor ganha uma forma de conferir a orientação.|A confirmação proposta acrescenta mais uma palavra parecida.
+apoio|ensaiar_com_colega|Ensaiar o aviso com um colega|Vocês identificam a confusão antes do jogo.|Vocês ensaiam sem executar o movimento correspondente.
+tatico|ligar_movimento|Relacionar cada palavra à sua responsabilidade|Você sabe o que muda para você em cada caso.|Você entende a ação do time, mas não a própria função.
+@2316 P01.comunicacao|O auxiliar pede que você repasse uma orientação ao colega do outro lado do setor. Sua tarefa é conservar o sentido, não acrescentar outra ideia.|{}
+liderar|repassar_fiel|Repassar a orientação sem ampliar|O colega recebe a instrução que foi combinada.|Você acrescenta uma sugestão e muda o sentido.
+apoio|pedir_confirmacao|Pedir ao colega que diga o que entendeu|Vocês detectam uma interpretação diferente.|Vocês confirmam só que ouviram a frase.
+disciplina|conferir_origem|Conferir um ponto antes de transmitir|Você não leva uma dúvida como se fosse instrução.|Você pede uma confirmação genérica e mantém o ponto confuso.
+tatico|explicar_funcao|Mostrar qual tarefa a orientação altera|O colega relaciona o aviso ao movimento necessário.|Você descreve o objetivo sem explicar a responsabilidade.
+@2317 P01.comunicacao|Antes da partida, o setor combina como avisar sobre uma referência que sai do campo de visão do colega.|{}
+liderar|nomear_referencia|Combinar um aviso que identifica a referência|O colega sabe de qual movimento você está falando.|O aviso fica genérico e pode apontar para várias pessoas.
+visao|momento_aviso|Repassar em que momento a informação será útil|Você evita avisar só depois de a referência mudar.|Você pensa no movimento inteiro e não escolhe o instante.
+apoio|ouvir_necessidade|Perguntar qual informação o colega não consegue ver|Você oferece um aviso que acrescenta leitura.|Você combina um aviso sobre o que ele já enxerga.
+disciplina|manter_simples|Escolher um sinal curto sem acumular códigos|Você preserva uma comunicação fácil de reconhecer.|Você simplifica demais e retira a informação necessária.
+@2318 P01.comunicacao|A comissão pede que vocês confirmem recebimento de orientações durante o jogo. Você precisa combinar algo que não interrompa sua tarefa.|{}
+disciplina|gesto_confirmacao|Combinar um gesto simples de confirmação|O gesto demonstra que a orientação chegou.|O gesto se parece com outro sinal do setor.
+tatico|tempo_seguro|Conferir quando pode confirmar sem abandonar a jogada|Você relaciona a resposta à sua responsabilidade.|Você planeja olhar para fora mesmo quando precisa acompanhar a bola.
+apoio|repasse_colega|Combinar um repasse se não puder enxergar a comissão|O colega entende quando deve ajudar na comunicação.|O repasse cria uma segunda versão da mesma instrução.
+liderar|resumo_conjunto|Pedir uma checagem curta do setor|Vocês identificam uma diferença antes da entrada.|A checagem vira outra lista de orientações.
+@2319 P01.comunicacao|Um colega pede que você fale mais durante o jogo. Você quer entender que informação seria útil, sem prometer comentar todo lance.|{}
+apoio|pergunta_utilidade|Perguntar em que situação ele precisa do aviso|Você identifica uma ajuda concreta.|Você promete falar mais sem esclarecer o conteúdo.
+liderar|aviso_especifico|Combinar um aviso ligado a uma referência|O combinado torna sua fala mais útil.|Você escolhe um aviso que pode significar coisas diferentes.
+visao|ver_angulo_colega|Considerar o que o colega consegue enxergar|Você evita repetir uma informação já visível.|Você pensa apenas no que está vendo do seu lado.
+disciplina|limitar_falas|Definir uma prioridade para os avisos|Você não transforma comunicação em excesso de ordens.|Você limita as falas sem escolher a informação principal.
+@2320 P01.comunicacao|O auxiliar pede que uma orientação chegue ao setor inteiro. Você quer ajudar sem assumir que todos ouviram a primeira explicação.|{}
+liderar|checar_entendimento|Pedir uma confirmação do entendimento|Você identifica quem precisa de esclarecimento.|Você aceita um aceno sem conferir o significado.
+apoio|repassar_individual|Repassar o ponto ao colega que pediu ajuda|Você esclarece sem expor o colega diante do grupo.|Você repete a frase no mesmo formato que havia confundido.
+tatico|demonstrar_tarefa|Relacionar a orientação a uma posição inicial|O setor reconhece uma aplicação concreta.|Você usa um exemplo que exige outra função.
+disciplina|evitar_acrescimos|Conservar o ponto sem acrescentar cobranças|Você mantém a comunicação centrada na tarefa.|Você acrescenta preocupações e dilui a orientação.
+@2321 P01.comunicacao|A comissão relembra o limite das reclamações. Você pode preparar como pedir um esclarecimento sem tratar a arbitragem como adversária.|{}
+disciplina|foco_jogada|Priorizar a continuidade depois de uma decisão|Você entra com uma referência de atenção ao jogo.|Você pensa na possível discussão e perde a tarefa inicial.
+social|pergunta_respeitosa|Conferir com o auxiliar como formular uma dúvida|Você entende uma forma de perguntar sem ampliar o conflito.|Sua pergunta vira uma crítica antecipada à arbitragem.
+apoio|sinal_colega|Combinar um aviso para retomar o foco|O colega entende como ajudar sem aumentar a cobrança.|O sinal parece uma bronca e não uma ajuda.
+visao|tempo_pergunta|Distinguir o momento de jogar do momento de perguntar|Você prepara uma leitura que preserva sua função.|Você planeja perguntar sem considerar a bola em movimento.
+@2322 P01.comunicacao|O auxiliar pede que vocês não confundam orientação com cobrança pessoal. Você quer combinar uma comunicação que continue útil quando houver pressão.|{}
+liderar|linguagem_tarefa|Combinar palavras ligadas ao espaço e à ação|O setor entende o trabalho necessário.|As palavras escolhidas soam como julgamento sobre a pessoa.
+apoio|escutar_colega|Perguntar como o colega interpreta seus avisos|A conversa revela um tom que poderia atrapalhar.|Você se defende antes de ouvir a interpretação dele.
+disciplina|evitar_rotulos|Separar uma correção de um rótulo pessoal|Você prepara uma fala centrada no gesto.|Você explica a intenção, mas mantém o rótulo.
+tatico|exemplo_concreto|Usar uma responsabilidade do plano como exemplo|Você torna clara a diferença entre ajudar e culpar.|O exemplo mistura funções e não esclarece a diferença.
+@2323 P01.comunicacao|O setor recebe uma orientação com duas etapas. Você quer confirmar a ordem para não iniciar a segunda antes de concluir a primeira.|{}
+tatico|ordem_etapas|Repassar a sequência com o auxiliar|Você identifica qual etapa prepara a seguinte.|Você descreve as duas tarefas sem definir a ordem.
+disciplina|sinal_passagem|Escolher uma referência que marca a troca|Você sabe quando deve mudar de tarefa.|Você escolhe um sinal que pode acontecer nas duas etapas.
+apoio|conferir_dupla|Pedir ao colega que confirme a mesma sequência|Vocês descobrem uma ordem interpretada de outro jeito.|Vocês concordam nos nomes sem comparar os movimentos.
+liderar|resumir_ordem|Resumir a sequência para o setor|O resumo ajuda os colegas a guardar a ordem.|Você encurta a explicação e elimina a transição.
+@2324 P01.comunicacao|Antes da entrada, o auxiliar orienta que vocês comuniquem mudanças observadas sem inventar conclusões sobre o adversário.|{}
+visao|observar_fato|Escolher qual movimento pode observar diretamente|Você prepara um relato ligado ao que acontece no campo.|Você escolhe uma intenção adversária que não consegue verificar.
+disciplina|separar_hipotese|Distinguir observação de hipótese|Você deixa claro o que precisa ser confirmado.|Você trata sua expectativa como uma certeza.
+liderar|aviso_objetivo|Combinar um aviso sobre o movimento observado|O setor recebe informação sem uma conclusão exagerada.|Seu aviso mistura observação e uma nova ordem.
+apoio|confirmar_outro_angulo|Pedir que o colega confira por outro ângulo|Vocês combinam uma forma de revisar a leitura.|Vocês concordam antes de observar qualquer movimento.
+@2325 P01.plano_protecao|A comissão relembra como proteger a bola quando faltar apoio. A orientação é uma preparação, não uma previsão de que você ficará isolado.|{}
+tatico|criterio_protecao|Conferir quando preservar e quando soltar|Você entende um critério ligado aos apoios.|Você interpreta proteção como obrigação de prender toda bola.
+posicionamento|base_protecao|Repassar a base que permite enxergar a saída|Você prepara uma posição sem fechar o campo de visão.|Você pensa só em esconder a bola e esquece a continuidade.
+apoio|apoio_disponivel|Combinar como o colega pode se apresentar|Vocês definem uma alternativa sem prometer que ela estará sempre livre.|Você trata o combinado como garantia de passe disponível.
+disciplina|evitar_excesso|Guardar o limite de contatos desnecessários|Você prepara uma decisão sem transformar controle em demora.|Você conta toques sem considerar o espaço real.
+@2326 P01.plano_protecao|O auxiliar pede atenção à distância entre você e o apoio mais próximo. Antes do início, você quer reconhecer como ajustá-la.|{}
+posicionamento|distancia_util|Repassar uma distância que permite continuidade|Você entende onde pode se oferecer sem congestionar.|Você escolhe uma distância sem considerar a marcação.
+visao|angulo_apoio|Conferir como reconhecer uma linha realmente aberta|Você distingue proximidade de um apoio utilizável.|Você considera qualquer colega próximo como opção livre.
+apoio|necessidade_colega|Perguntar onde o colega consegue enxergar você|A conversa esclarece um ângulo de apresentação.|Você descreve sua posição sem ouvir a leitura dele.
+tatico|alternar_distancia|Conferir quando precisa aproximar ou se afastar|Você entende o ajuste como resposta à jogada.|Você transforma o ajuste numa corrida automática.
+@2327 P01.plano_protecao|A comissão explica que largura sem ligação pode isolar o setor. Você quer oferecer espaço sem desaparecer da jogada.|{}
+posicionamento|ligacao_lateral|Conferir a distância de ligação por dentro|Você reconhece como abrir sem romper o apoio.|Você pensa apenas no limite lateral.
+visao|campo_visao|Observar de onde o portador pode encontrar você|Você prepara uma apresentação compatível com o olhar dele.|Você escolhe uma faixa que exige uma entrega improvável.
+apoio|dividir_faixas|Combinar quem oferece largura e quem aproxima|Vocês preservam duas opções diferentes.|Vocês escolhem o mesmo tipo de apoio.
+disciplina|guardar_principio|Resumir o princípio de largura útil|Você mantém uma referência sem decorar um ponto fixo.|Você guarda a posição, mas esquece a função dela.
+@2328 P01.plano_protecao|O auxiliar pede que o setor não confunda profundidade com correr sempre para o gol. Você quer entender a utilidade da corrida.|{}
+tatico|funcao_corrida|Perguntar qual espaço a corrida deve criar|Você entende a profundidade como contribuição ao setor.|Você interpreta a orientação como obrigação de receber.
+visao|ler_marcacao|Repassar como reconhecer a reação do marcador|Você prepara uma leitura antes de escolher a continuação.|Você planeja a corrida sem considerar qualquer reação.
+apoio|complementar_colega|Combinar uma opção curta para quem não alonga|Vocês criam funções que se complementam.|Vocês prometem profundidade e deixam de combinar apoio.
+disciplina|evitar_automatismo|Guardar um critério para não repetir corridas inúteis|Você associa movimento a uma necessidade.|Você decide não correr sem avaliar se a jogada pede.
+@2329 P01.plano_protecao|A comissão relembra a proteção atrás de uma jogada ofensiva. Você quer saber qual referência manter quando não estiver envolvido no primeiro movimento.|{}
+posicionamento|equilibrio_ataque|Conferir o espaço que precisa continuar protegido|Você conhece sua contribuição fora da primeira ação.|Você escolhe uma pessoa sem considerar o espaço.
+tatico|limite_aproximacao|Perguntar até onde pode aproximar sem romper a proteção|Você entende um limite ligado às distâncias do setor.|Você guarda uma distância fixa para qualquer jogada.
+apoio|cobertura_combinada|Combinar quem assume a proteção se você aproximar|Vocês identificam uma responsabilidade que precisa de confirmação.|Você presume que alguém cobrirá sem combinar.
+disciplina|continuar_atento|Preparar uma referência para permanecer atento à continuação|Você evita tratar a primeira tentativa como fim da jogada.|Você pensa no resultado antes de acompanhar a continuidade.
+@2330 P01.plano_transicao|O auxiliar relembra a primeira decisão depois de recuperar a bola. A orientação distingue uma abertura real de uma corrida sem apoio.|{}
+visao|conferir_opcoes|Definir o que observar antes de acelerar|Você prepara uma leitura de espaço e apoio.|Você considera apenas a distância até o ataque.
+tatico|criterio_avanco|Perguntar quando o avanço deve esperar|Você entende que reorganizar também pode dar continuidade.|Você interpreta a espera como falta de iniciativa.
+apoio|oferecer_saida|Combinar como dar uma opção ao recuperador|O colega conhece uma referência que você tentará oferecer.|Você promete uma linha que pode estar marcada.
+disciplina|evitar_pressa|Guardar uma pergunta curta antes da primeira entrega|Você prepara uma checagem em vez de uma ação automática.|Você cria uma lista tão longa que não consegue aplicar.
+@2331 P01.plano_transicao|A comissão pede atenção a quem está longe da perda de posse. Sua reação pode ser proteger uma passagem, não chegar à bola.|{}
+posicionamento|guardar_ligacao|Repassar qual ligação precisa ser protegida|Você reconhece uma tarefa útil sem perseguir o portador.|Você escolhe o trajeto mais curto até a bola.
+visao|observar_destino|Conferir quem pode receber na continuidade|Você prepara uma leitura além do primeiro adversário.|Você imagina o passe antes de observar os apoios.
+liderar|dividir_protecao|Combinar referências com o colega distante|Vocês evitam proteger o mesmo caminho.|Vocês indicam lados sem definir as responsabilidades.
+disciplina|manter_limite|Guardar o limite entre aproximar e abandonar o setor|Você entra com um critério de reação.|Você entende o limite como proibição de ajudar.
+@2332 P01.plano_transicao|O auxiliar explica como encerrar uma pressão que já não tem apoio. Você quer reconhecer a mudança sem esperar uma cobrança tardia.|{}
+tatico|criterio_encerrar|Perguntar qual sinal indica recomposição|Você entende a transição entre as tarefas.|Você confunde perder o bote com ter de perseguir mais.
+visao|conferir_apoios|Repassar como verificar se o setor acompanhou|Você prepara uma leitura antes de prolongar a pressão.|Você considera só a própria distância do portador.
+apoio|aviso_recuo|Combinar um aviso de recomposição|O colega entende que o sinal muda a tarefa.|O aviso parece uma cobrança para pressionar com mais força.
+disciplina|respeitar_sinal|Assumir o compromisso de seguir o sinal combinado|Você prepara uma reação coletiva, não uma perseguição por impulso.|Você promete seguir, mas não esclarece qual é o sinal.
+@2333 P01.plano_transicao|A comissão relembra que uma recuperação pode exigir um apoio atrás. Você quer contribuir sem correr automaticamente para a mesma frente.|{}
+posicionamento|apoio_atras|Conferir onde pode oferecer uma saída de retorno|Você entende a distância que mantém a jogada ligada.|Você recua tanto que deixa de ser alcançável.
+visao|ler_estrutura|Repassar como reconhecer o setor ainda desorganizado|Você distingue espaço adiante de apoio suficiente.|Você considera apenas quem já começou a correr.
+apoio|dividir_corridas|Combinar funções diferentes depois da recuperação|Vocês sabem quem aproxima e quem alonga.|Vocês combinam correr sem dividir a direção.
+disciplina|evitar_duplicacao|Guardar a prioridade de não duplicar o mesmo apoio|Você prepara um ajuste que acrescenta opção.|Você pensa em ficar longe de todos e perde a ligação.
+@2334 P01.plano_transicao|O auxiliar pede que você considere a posição do colega antes de ordenar uma reação. Você quer ajudar sem dar uma orientação impossível de executar.|{}
+visao|ler_posicao_colega|Repassar como conferir a distância do colega|Você prepara um aviso compatível com o espaço dele.|Você pensa no movimento ideal sem considerar de onde ele parte.
+liderar|orientacao_possivel|Combinar um aviso ligado a uma tarefa alcançável|O setor entende uma ajuda que pode executar.|Seu aviso exige que o colega cubra duas saídas ao mesmo tempo.
+apoio|ouvir_referencia|Perguntar qual referência o colega usará primeiro|Você compreende a prioridade dele.|Você tenta mudar a prioridade sem entender a função.
+disciplina|limitar_ordens|Escolher uma informação antes de falar|Você evita transformar toda observação em ordem.|Você elimina avisos úteis junto das ordens desnecessárias.
+@2335 P01.plano_sem_bola|A comissão pede atenção aos movimentos que abrem espaço sem receber. Você quer entender como avaliar sua participação além do número de toques.|{}
+tatico|funcao_espaco|Perguntar que efeito sua movimentação deve procurar|Você entende uma finalidade verificável.|Você trata qualquer corrida como contribuição garantida.
+visao|reacao_marcador|Repassar como observar a reação do marcador|Você prepara uma leitura do efeito real do movimento.|Você presume que o marcador acompanhará você.
+apoio|dividir_opcoes|Combinar como o colega aproveita o espaço|Vocês criam uma relação entre as duas tarefas.|Você promete um espaço que ainda não existe.
+disciplina|avaliar_processo|Guardar um critério além de tocar na bola|Você evita abandonar a função por ansiedade.|Você transforma o critério numa justificativa para não se apresentar.
+@2336 P01.plano_sem_bola|O auxiliar pede que o setor evite alinhar todos os apoios. Você quer preparar uma posição que ofereça outro ângulo.|{}
+posicionamento|angulo_diferente|Repassar uma apresentação fora da linha do colega|Você reconhece como acrescentar uma opção.|Você escolhe um ângulo sem considerar a marcação.
+visao|ver_linhas|Conferir como distinguir linha visível de linha utilizável|Você prepara uma leitura do trajeto do passe.|Você observa só o destino sem considerar o bloqueio.
+apoio|ajustar_dupla|Combinar quem muda de altura em cada referência|Vocês evitam se alinhar no mesmo ponto.|Vocês mudam de altura juntos e mantêm o alinhamento.
+tatico|tempo_apresentacao|Perguntar quando a apresentação deve acontecer|Você entende o tempo, além do lugar.|Você guarda a posição, mas chega sempre depois da decisão.
+@2337 P01.plano_sem_bola|A comissão relembra que aproximar demais pode levar outro marcador ao portador. Você quer reconhecer quando manter distância ajuda.|{}
+visao|observar_marcador|Preparar a leitura de quem acompanha você|Você considera o efeito do movimento sobre o colega.|Você pensa só na sua vontade de receber.
+posicionamento|distancia_complementar|Repassar uma distância que preserva outra saída|Você oferece apoio sem fechar o espaço do portador.|Você se afasta tanto que deixa de oferecer apoio.
+apoio|combinado_aproximacao|Combinar um sinal para a aproximação|O colega entende quando pode pedir sua ajuda.|O sinal parece exigir um passe mesmo sem linha.
+disciplina|evitar_corrida_automatica|Guardar um critério para não seguir toda bola|Você relaciona aproximação a uma necessidade.|Você interpreta o critério como ordem de ficar parado.
+@2338 P01.plano_sem_bola|O auxiliar pede que você preserve uma referência mesmo quando a bola mudar de lado. O objetivo é manter a organização durante a viagem da bola.|{}
+posicionamento|ajuste_lado|Repassar como ajustar sem atravessar o setor inteiro|Você entende um deslocamento ligado à função.|Você planeja correr até o novo portador em qualquer situação.
+visao|ver_continuidade|Escolher o que observar durante a mudança|Você prepara a leitura da continuidade.|Você acompanha o voo da bola sem observar os movimentos.
+liderar|avisar_referencia|Combinar como confirmar a referência com o setor|O setor sabe quem permanece protegendo a ligação.|O combinado não define quem deve confirmar.
+disciplina|manter_atencao|Guardar uma tarefa para a parte distante da jogada|Você evita se desligar por estar longe da bola.|Você reduz a tarefa a esperar que a bola volte.
+@2339 P01.plano_sem_bola|A comissão prepara o setor para continuar depois de uma disputa. Você precisa considerar mais de um resultado possível, sem adivinhar quem vai vencer.|{}
+visao|duas_continuidades|Repassar a continuidade para cada resultado da disputa|Você prepara alternativas sem tratar uma delas como certa.|Você organiza apenas a continuação favorável.
+posicionamento|base_continuacao|Conferir uma posição que preserve capacidade de reagir|Você entende onde não deve ficar preso.|Você escolhe um lado cedo e abandona a outra possibilidade.
+apoio|dividir_sobras|Combinar quem cobre cada região da continuação|Vocês evitam disputar a mesma sobra.|Vocês definem regiões sem considerar a posição inicial.
+disciplina|acompanhar_ate_fim|Lembrar de acompanhar até a disputa terminar|Você mantém atenção antes de iniciar a próxima tarefa.|Você antecipa o desfecho e deixa de acompanhar.
+@2340 P01.bola_parada|O auxiliar relembra as tarefas de uma reposição lateral. Você quer ajudar sem presumir que será o cobrador.|{}
+tatico|funcao_reposicao|Conferir sua tarefa quando outro colega cobra|Você entende uma contribuição sem precisar da cobrança.|Você interpreta a jogada apenas pelo gesto de quem lança.
+posicionamento|linha_recepcao|Repassar como oferecer uma linha sem se amontoar|Você prepara um apoio com outro ângulo.|Você escolhe o mesmo espaço que outro apoio.
+apoio|combinar_alternativa|Combinar uma segunda opção com o setor|Vocês não dependem de uma única apresentação.|Você trata a alternativa como se ela fosse ficar livre sempre.
+disciplina|reconhecer_reinicio|Conferir como retomar a função depois da reposição|Você não encerra sua tarefa no primeiro toque.|Você se concentra na reposição e esquece a continuidade.
+@2341 P01.bola_parada|A comissão pede atenção à organização enquanto uma bola parada é preparada. Você quer reconhecer sua tarefa sem antecipar uma cobrança que ainda não existe.|{}
+posicionamento|guardar_referencia|Repassar o espaço que deve manter durante a preparação|Você conhece sua responsabilidade antes do reinício.|Você pensa no destino da cobrança sem guardar sua referência.
+visao|conferir_mudancas|Escolher quais movimentos precisa observar|Você prepara uma leitura sem adivinhar a cobrança.|Você escolhe acompanhar apenas a bola parada.
+liderar|confirmar_divisao|Combinar como confirmar a divisão do setor|O setor ganha uma checagem curta de responsabilidades.|A checagem parece uma nova orientação de posição.
+disciplina|evitar_conclusao|Guardar a tarefa até o reinício acontecer|Você não troca de função por uma expectativa.|Você age como se a jogada ensaiada já estivesse definida.
+@2342 P01.bola_parada|O auxiliar relembra como reagir se uma bola parada não gerar finalização. Você precisa pensar na continuidade sem tratar o corte como inevitável.|{}
+tatico|continuacao_possivel|Repassar as alternativas após a primeira ação|Você prepara respostas para mais de uma continuidade.|Você organiza só a reação ao corte que imagina.
+posicionamento|proteger_sobra|Conferir a distância para participar da sobra|Você entende uma posição que preserva reação.|Você escolhe um ponto longe demais da continuidade.
+apoio|dividir_regioes|Combinar a divisão das regiões com o colega|Vocês evitam deixar uma região sem referência.|Vocês escolhem a mesma região sem perceber.
+disciplina|seguir_jogada|Preparar uma lembrança para continuar atento|Você não termina sua participação na primeira disputa.|Você trata a primeira tentativa como encerramento do lance.
+@2343 P01.bola_parada|A comissão pede atenção aos contatos em disputas de espaço. Você quer se preparar sem interpretar a orientação como promessa de uma falta.|{}
+disciplina|limite_gesto|Conferir o limite do contato permitido na orientação|Você prepara uma disputa sem depender de agarrar.|Você se concentra em evitar qualquer contato e perde a referência.
+posicionamento|base_disputa|Repassar como ganhar posição com os apoios|Você entende uma alternativa ao empurrão.|Você pensa em força sem organizar a base.
+visao|acompanhar_bola|Definir como manter a bola na leitura|Você evita disputar só o corpo do adversário.|Você observa o adversário sem considerar a trajetória.
+apoio|referencia_colega|Combinar um aviso se a referência mudar|O colega sabe qual informação ajuda você.|O aviso fica parecido com um pedido de troca de função.
+@2344 P01.bola_parada|O auxiliar pergunta o que você fará se não for uma opção direta na cobrança. Você quer preservar utilidade sem procurar a bola a qualquer custo.|{}
+posicionamento|apoio_indireto|Conferir uma posição para a continuidade|Você reconhece uma contribuição fora do alvo principal.|Você se afasta do alvo sem manter outra função.
+tatico|entender_papel|Perguntar qual equilíbrio a comissão quer preservar|Você relaciona sua posição à organização.|Você interpreta equilíbrio como não participar da jogada.
+apoio|complementar_alvo|Combinar como complementar quem será opção|Vocês dividem funções sem disputar o mesmo destino.|Você tenta ocupar o lugar reservado ao outro papel.
+disciplina|manter_referencia|Guardar sua tarefa até a cobrança mudar de fato|Você não abandona a referência por ansiedade.|Você segue qualquer movimento e perde a função.
+@2345 P01.bola_parada|A comissão relembra que a segunda bola exige nova leitura. Você quer evitar correr automaticamente para o lugar onde a primeira disputa aconteceu.|{}
+visao|ler_nova_trajetoria|Definir como observar a continuação real|Você prepara uma reação sem adivinhar a queda.|Você escolhe o destino antes de a trajetória mudar.
+posicionamento|base_reacao|Conferir uma base que permita dois sentidos|Você preserva capacidade de ajustar.|Você prepara um lado e dificulta a reação ao outro.
+liderar|aviso_sobra|Combinar como avisar quem acompanha a continuação|O setor identifica uma divisão útil.|O aviso não distingue primeira disputa e sobra.
+disciplina|reiniciar_leitura|Guardar a ideia de decidir outra vez|Você não tenta repetir o gesto da disputa anterior.|Você entende a lembrança como esperar demais antes de reagir.
+@2346 P01.plano_coletivo|O auxiliar pede que você saiba como receber uma mudança de função durante o jogo. Isso não significa que ela já foi decidida.|{}
+tatico|confirmar_mudanca|Perguntar o que precisará conferir se houver ajuste|Você prepara uma confirmação sem antecipar a troca.|Você trata a possibilidade como uma função já alterada.
+apoio|combinado_setor|Combinar como comunicar ao colega um ajuste confirmado|O setor sabe que precisa de confirmação antes de mudar.|O combinado permite trocar por suposição.
+visao|ler_responsabilidade|Repassar que referência não pode ficar sem responsável|Você entende o que conferir numa mudança.|Você pensa só na nova posição e esquece a responsabilidade anterior.
+disciplina|manter_atual|Guardar a função atual até receber a orientação|Você evita abandonar a tarefa por expectativa.|Você fica preso à função atual mesmo ao imaginar uma orientação clara.
+@2347 P01.plano_coletivo|A comissão pede movimentos que se complementem, não uma fila seguindo o portador. Você quer reconhecer como acrescentar uma opção diferente.|{}
+posicionamento|outro_angulo|Repassar uma apresentação em outro ângulo|Você entende como evitar uma opção duplicada.|Você muda o ângulo sem considerar a distância do passe.
+visao|identificar_opcoes|Definir como observar as opções que já existem|Você prepara uma leitura antes de aproximar.|Você pensa apenas em se oferecer mais perto.
+apoio|dividir_apresentacao|Combinar a divisão com um colega|Vocês preservam alternativas diferentes.|Vocês escolhem o mesmo tipo de apresentação.
+disciplina|criterio_movimento|Guardar uma pergunta antes de mudar de posição|Você relaciona a corrida à necessidade da jogada.|Você usa a pergunta como motivo para não se mover.
+@2348 P01.plano_coletivo|O auxiliar relembra que uma orientação serve ao momento da jogada. Você quer evitar aplicá-la quando a bola já mudou a situação.|{}
+visao|atualizar_leitura|Conferir o contexto antes de repetir a orientação|Você prepara uma leitura que pode ser atualizada.|Você decide repetir a orientação independentemente da bola.
+tatico|limite_aplicacao|Perguntar em qual situação ela deixa de valer|Você entende o limite da instrução.|Você interpreta o limite como liberdade para abandonar o plano.
+apoio|checar_colega|Combinar uma checagem se a leitura divergir|Vocês ganham uma forma de esclarecer a diferença.|A checagem vira uma disputa sobre quem manda.
+disciplina|nao_decorar|Resumir a condição, não só o movimento|Você guarda uma referência ligada ao momento.|Você memoriza a condição sem entender o gesto necessário.
+@2349 P01.plano_coletivo|A comissão encerra as instruções pedindo atenção ao que o colega precisa. Você quer colaborar sem assumir a função dele.|{}
+apoio|pergunta_apoio|Perguntar qual apoio será mais útil ao colega|Você identifica uma contribuição compatível com sua função.|Você promete resolver a tarefa inteira por ele.
+posicionamento|distancia_ajuda|Repassar uma posição que facilite essa ajuda|Você oferece apoio sem abandonar o setor.|Você se aproxima demais e ocupa o espaço do colega.
+visao|ler_necessidade|Definir uma informação para observar durante o jogo|Você prepara ajuda baseada na situação real.|Você decide antecipadamente o que o colega vai precisar.
+disciplina|limitar_promessa|Confirmar apenas o que consegue assumir|Você conserva uma responsabilidade clara.|Você evita prometer, mas deixa de esclarecer sua contribuição.
+@2350 P01.reserva|Você começará no banco nesta partida. O auxiliar pede que mantenha uma observação útil, sem tratar uma eventual entrada como garantida.|{"bench":true,"bench_confirmed":true}
+visao|observar_distancias|Observar as distâncias entre os setores|Você define uma referência que poderá acompanhar do banco.|Você tenta observar tudo e fica sem prioridade.
+tatico|entender_ajuda|Perguntar qual informação seria útil à comissão|Você entende uma contribuição possível durante a espera.|Você pergunta como se a observação garantisse sua entrada.
+apoio|apoiar_titulares|Confirmar um apoio simples a quem começa|Você demonstra disponibilidade sem disputar a função do colega.|Sua fala soa como cobrança por uma oportunidade.
+disciplina|rotina_reserva|Conferir a rotina de preparação dos reservas|Você sabe como se manter pronto sem se desgastar à toa.|Você confunde a sequência e precisa de novo esclarecimento.
+@2351 P01.reserva|Relacionado para o banco, você quer entender o plano sem se desligar por não começar em campo.|{"bench":true,"bench_confirmed":true}
+tatico|funcao_eventual|Conferir qual tarefa precisa reconhecer se for chamado|Você entende uma possibilidade sem presumir que será usada.|Você trata a conversa como uma função já prometida.
+visao|referencia_banco|Escolher uma referência do plano para acompanhar|Você mantém atenção na partida que vai começar.|Você escolhe uma conclusão antes de ver o jogo.
+apoio|ouvir_colega_reserva|Trocar uma observação com outro reserva|Vocês mantêm a preparação sem transformar a espera em disputa.|Vocês passam a comparar quem deveria entrar primeiro.
+disciplina|foco_disponibilidade|Organizar sua atenção na disponibilidade|Você preserva a preparação apesar da frustração de esperar.|Você tenta esconder a frustração e deixa de ouvir o plano.
+@2352 P01.reserva|Você está confirmado no banco. A comissão pede que os reservas saibam como receber um chamado sem se precipitar.|{"bench":true,"bench_confirmed":true}
+disciplina|sequencia_chamado|Conferir a sequência antes de se apresentar|Você entende o que precisa fazer se houver o chamado.|Você confunde a preparação com autorização para entrar.
+tatico|pergunta_entrada|Perguntar o que confirmar antes de assumir uma função|Você sabe qual orientação precisa ouvir antes de jogar.|Você tenta antecipar uma função que ainda não foi definida.
+apoio|ajuda_reserva|Combinar uma ajuda prática entre os reservas|Vocês se organizam sem prometer a entrada de ninguém.|O combinado vira comparação de oportunidades.
+recuperar|preservar_disposicao|Manter uma preparação tranquila durante a espera|Você evita gastar energia numa ansiedade sem tarefa.|Você continua antecipando o chamado e não encontra tranquilidade.
+@2353 P01.reserva|No banco, você pode acompanhar a função de quem começa no seu setor. O objetivo é entender referências, não procurar um erro do colega.|{"bench":true,"bench_confirmed":true}
+visao|ler_referencias|Escolher quais referências de espaço observar|Você define uma leitura útil do setor.|Você prepara uma avaliação da pessoa, não da função.
+apoio|apoio_sem_disputa|Demonstrar apoio ao colega que inicia|Você reforça a cooperação sem cobrar uma troca.|Sua fala parece uma comparação entre vocês.
+tatico|conferir_funcao|Confirmar com o auxiliar a função que será observada|Você evita tirar conclusões com uma referência errada.|Você presume que conhece todas as instruções do titular.
+disciplina|evitar_julgamento|Guardar um critério antes de avaliar uma jogada|Você prepara observações sem transformar cada erro em disputa por vaga.|Você escolhe um critério que já favorece sua opinião.
+@2354 P01.reserva|Você começará no banco e quer manter o grupo por perto, sem fingir que não gostaria de jogar.|{"bench":true,"bench_confirmed":true}
+social|franqueza_respeitosa|Dizer que quer jogar e continua disponível|Você expressa sua vontade sem exigir uma promessa.|Sua frase mistura disponibilidade com uma cobrança.
+apoio|manter_convivio|Participar da preparação com os colegas|Você mantém a convivência apesar da espera.|Você participa pensando só em comparar oportunidades.
+disciplina|organizar_expectativa|Separar sua expectativa da tarefa atual|Você consegue se preparar sem viver só da possível entrada.|Você tenta controlar quando será chamado e perde o foco.
+tatico|entender_plano_atual|Ouvir o plano atual antes de pensar numa mudança|Você acompanha a orientação que vale agora.|Você escuta procurando apenas o que mudaria com sua entrada.
+@2355 P01.reserva|A comissão confirma você no banco e orienta a rotina de aquecimento. Você precisa entender o ritmo sem tentar provar disposição pelo excesso.|{"bench":true,"bench_confirmed":true}
+disciplina|rotina_combinada|Conferir o início e a duração do aquecimento|Você guarda uma referência clara para se preparar.|Você confunde a duração e o momento de começar.
+recuperar|evitar_excesso|Preservar a disposição até a etapa indicada|Você não transforma a espera em esforço desnecessário.|Você continua tenso e não aproveita a preparação leve.
+apoio|revezar_avisos|Combinar como os reservas lembrarão a sequência|O grupo confirma as etapas sem competir pelo ritmo.|Vocês confiam que outro lembrará e ninguém confirma.
+tatico|orientacao_antes|Perguntar em que momento receberia uma instrução tática|Você entende o que precisa confirmar se for chamado.|Você toma a pergunta como anúncio de uma entrada.
+@2356 P01.reserva|Você ficará no banco. O auxiliar pede que se prepare para compreender uma instrução curta, sem assumir antecipadamente onde jogará.|{"bench":true,"bench_confirmed":true}
+tatico|perguntas_essenciais|Definir o que precisaria confirmar numa instrução|Você distingue função, referência e responsabilidade.|Você tenta decorar uma função que ainda não recebeu.
+visao|observar_setores|Escolher referências para entender o desenho do jogo|Você prepara uma observação aberta ao que acontecer.|Você decide que já sabe como o jogo se desenvolverá.
+disciplina|esperar_confirmacao|Guardar a necessidade de uma orientação confirmada|Você evita agir por uma expectativa de entrada.|Você interpreta qualquer gesto como confirmação.
+apoio|coopera_banco|Combinar uma troca curta de observações com outro reserva|Vocês podem se ajudar sem inventar conclusões.|Vocês passam a elaborar um plano diferente do da comissão.
+@2357 P01.reserva|Confirmado no banco, você quer conversar com a comissão sobre sua preparação. O momento pede uma pergunta prática, não uma negociação de escalação.|{"bench":true,"bench_confirmed":true}
+social|pergunta_preparacao|Perguntar o que precisa manter durante a espera|Você obtém uma orientação sobre a tarefa atual.|Sua pergunta soa como pedido de garantia de minutos.
+disciplina|foco_agora|Organizar o que pode fazer neste momento|Você preserva uma responsabilidade concreta.|Você escolhe uma tarefa que depende do chamado da comissão.
+apoio|aceitar_orientacao|Ouvir o retorno sem comparar com outro reserva|Você entende a orientação como individual.|Você leva a conversa para a preparação dos outros.
+tatico|checar_entendimento|Resumir a instrução recebida|A comissão pode corrigir um entendimento antes da espera.|Você repete as palavras sem esclarecer a aplicação.
+@2358 P01.reserva|Você vai iniciar no banco e percebe a vontade de se isolar. A preparação oferece uma oportunidade de continuar envolvido sem esconder sua expectativa.|{"bench":true,"bench_confirmed":true}
+apoio|manter_presenca|Acompanhar a conversa do setor|Você mantém uma ligação com a tarefa coletiva.|Você fica presente, mas deixa de acompanhar a orientação.
+social|expressar_expectativa|Conversar com calma sobre como está lidando com a espera|Você expressa a expectativa sem culpar um colega.|Sua fala parece atribuir a espera a outra pessoa.
+disciplina|tarefa_espera|Definir uma tarefa de observação para a espera|Você encontra uma forma concreta de se manter envolvido.|Você escolhe uma tarefa ampla que não consegue acompanhar.
+recuperar|pausa_sem_isolar|Fazer uma pausa breve e depois retomar a preparação|Você volta à conversa com mais tranquilidade.|Você prolonga a pausa e não retoma o contato como pretendia.
+@2359 P01.reserva|A comissão confirma o banco e pede atenção ao jogo desde o início. Você quer observar com critério, sem imaginar que cada mudança pedirá sua entrada.|{"bench":true,"bench_confirmed":true}
+visao|leitura_aberta|Definir uma observação que pode ser atualizada|Você se prepara para acompanhar o que acontecer.|Você escolhe uma conclusão que só espera confirmar.
+tatico|entender_atual|Conferir a função do setor que começa|Você observa a partir do plano vigente.|Você interpreta o setor pensando só na sua possível função.
+apoio|apoio_inicio|Reforçar um combinado com quem começa|Você contribui sem cobrar uma troca futura.|Sua fala transforma apoio em comparação por espaço.
+disciplina|separar_chamado|Distinguir observar o jogo de esperar um chamado|Você mantém atenção mesmo sem sinal de entrada.|Você acompanha apenas os gestos da comissão.
+@2360 P01.titular|Você está previsto para começar jogando. O auxiliar pede que prepare a primeira tarefa sem tratar a titularidade como garantia de destaque.|{"starter":true}
+disciplina|responsabilidade_inicio|Guardar sua responsabilidade inicial|Você entra com uma referência de trabalho.|Você escolhe um resultado pessoal em vez de uma tarefa.
+apoio|conferir_setor_inicio|Confirmar uma combinação com o setor|Vocês compartilham a mesma referência de início.|Vocês confirmam nomes, mas não os movimentos.
+tatico|prioridade_plano|Conferir o ponto principal do plano para sua função|Você entende o que precisa preservar primeiro.|Você tenta memorizar todas as funções ao mesmo tempo.
+visao|ler_antes_acao|Repassar o que observar antes do primeiro gesto|Você prepara uma decisão ligada à situação real.|Você imagina o gesto antes de reconhecer o contexto.
+@2361 P01.titular|Você começa em campo e quer ajudar um colega a reconhecer seus apoios. A conversa precisa organizar o setor, não prometer uma jogada específica.|{"starter":true}
+apoio|mostrar_disponibilidade|Explicar como tentará se apresentar|O colega entende uma opção sem recebê-la como garantia.|Sua fala promete uma linha que pode não estar livre.
+posicionamento|angulo_inicial|Conferir o ângulo de apoio para o início|Você reconhece uma posição que complementa o colega.|Você escolhe um ponto sem considerar a distância.
+tatico|troca_funcao|Combinar como reconhecer uma troca necessária|Vocês entendem que a troca precisa de confirmação.|O combinado parece uma troca automática em toda jogada.
+disciplina|limite_promessa|Assumir apenas a responsabilidade que pode cumprir|Você preserva uma tarefa clara para começar.|Você tenta ajudar em tudo e não delimita sua função.
+@2362 P01.titular|Previsto entre quem inicia, você quer entrar com atenção sem tentar compensar a espera de um colega no banco.|{"starter":true}
+apoio|respeitar_colega|Reconhecer a preparação do colega sem compará-la à sua|A conversa mantém respeito pela situação de cada um.|Você tenta consolar comparando oportunidades.
+disciplina|foco_tarefa_atual|Voltar à tarefa que recebeu para o início|Você separa responsabilidade de culpa pela escalação.|Você entra pensando em justificar a escolha do treinador.
+social|conversa_sem_promessa|Conversar sem prometer que o colega entrará|Você oferece respeito sem uma garantia que não controla.|Sua fala parece anunciar uma decisão da comissão.
+tatico|conferir_funcao_atual|Repassar a função que precisa cumprir agora|Você entra com uma referência concreta.|Você muda a própria função para tentar agradar ao colega.
+@2363 P01.titular|Você começa jogando e a comissão pede comunicação desde os primeiros movimentos. O objetivo é informação útil, não falar por falar.|{"starter":true}
+liderar|aviso_prioritario|Escolher um aviso que acrescente leitura|Você define uma informação que o colega pode não enxergar.|Você escolhe repetir tudo que vê.
+apoio|necessidade_setor|Perguntar de qual aviso o setor precisa mais|Vocês combinam uma ajuda específica.|A conversa termina só com um pedido genérico para falar mais.
+visao|ler_angulo_outro|Considerar o campo de visão do colega|Você entende quando sua observação pode ajudar.|Você assume que o colega enxerga o mesmo que você.
+disciplina|momento_util|Guardar o momento em que o aviso deve chegar|Você evita comunicar só depois da decisão.|Você escolhe o aviso sem pensar no instante de falar.
+@2364 P01.titular|A comissão confirma você no início da partida e pede atenção às distâncias. Você quer uma referência que não dependa de receber logo a bola.|{"starter":true}
+posicionamento|ligacao_primeira|Repassar a ligação com o setor próximo|Você prepara uma função mesmo longe do primeiro passe.|Você relaciona sua utilidade só ao recebimento da bola.
+visao|referencia_distancia|Escolher como conferir a distância durante a circulação|Você tem uma referência para ajustar.|Você escolhe um ponto fixo sem considerar a bola.
+apoio|combinar_complemento|Combinar um movimento complementar ao do colega|Vocês evitam buscar o mesmo espaço.|Vocês combinam o destino sem considerar a ordem dos movimentos.
+disciplina|paciencia_inicio|Preparar-se para cumprir a tarefa sem pressa por um toque|Você mantém atenção mesmo sem participar da primeira entrega.|Você se desliga por ainda não ter recebido.
+@2365 P01.titular|Você começará em campo. O auxiliar pede que reconheça uma orientação recebida sem abandonar a jogada para procurar a comissão.|{"starter":true}
+visao|momento_olhar|Conferir quando pode buscar o sinal|Você relaciona a comunicação à responsabilidade no campo.|Você pensa em olhar para fora em qualquer momento.
+tatico|sinal_funcao|Ligar o sinal à mudança que ele pode pedir|Você entende o conteúdo, não só o gesto.|Você memoriza o gesto sem saber a tarefa correspondente.
+apoio|repasse_setor|Combinar um repasse curto com o colega|O setor cria outra forma de confirmar a mensagem.|O repasse modifica a orientação original.
+disciplina|confirmar_recebimento|Definir como confirmar que entendeu|Você prepara uma resposta simples.|Você escolhe um gesto parecido com outro comando.
+@2366 P01.titular|Entre os que iniciam, você quer dosar a vontade de participar. A comissão relembra que seguir a função também demonstra iniciativa.|{"starter":true}
+disciplina|iniciativa_util|Definir uma tarefa ativa dentro da sua função|Você associa iniciativa a uma necessidade do setor.|Você escolhe correr para a bola independentemente do plano.
+posicionamento|preservar_espaco|Repassar o espaço que deve continuar ocupado|Você entende o que não pode abandonar por impulso.|Você guarda a posição sem entender a responsabilidade.
+apoio|dividir_movimentos|Combinar quem toma cada iniciativa de aproximação|Vocês evitam duplicar o mesmo apoio.|Vocês prometem aproximar juntos em toda jogada.
+visao|ler_pedido_jogada|Escolher uma referência para perceber o momento de ajudar|Você prepara uma resposta à necessidade real.|Você decide ajudar antes de observar a jogada.
+@2367 P01.titular|Você começa a partida e quer evitar que uma primeira decisão ruim defina seu estado de atenção. O auxiliar oferece uma orientação de retorno à tarefa.|{"starter":true}
+disciplina|retorno_funcao|Guardar uma referência para voltar à função|Você prepara uma reação sem depender do primeiro resultado.|Você tenta garantir que a primeira ação será perfeita.
+apoio|sinal_retorno|Combinar um aviso de apoio com o colega|O colega entende como ajudar sem fazer uma cobrança.|O aviso parece uma bronca e não um apoio.
+tatico|primeira_reacao|Conferir a responsabilidade se a posse mudar|Você entende o movimento que vem antes de avaliar o erro.|Você imagina uma perseguição como única reação.
+social|dizer_inseguranca|Explicar a dúvida sem prometer um jogo sem falhas|O auxiliar consegue responder ao ponto real.|Você disfarça a dúvida numa promessa de acerto.
+@2368 P01.titular|A comissão confirma você para o início e pede que o setor tenha referências diferentes de apoio. Você precisa coordenar sem criar outra formação.|{"starter":true}
+posicionamento|altura_complementar|Conferir uma altura que complementa o colega|Você oferece outra ligação ao portador.|Você muda a altura sem manter a distância útil.
+tatico|limite_ajuste|Perguntar até onde o ajuste cabe na sua função|Você entende a mudança sem trocar o plano inteiro.|Você interpreta um ajuste como liberdade para circular por qualquer setor.
+apoio|ouvir_outra_funcao|Ouvir a tarefa do colega antes de combinar|Você não pede um movimento que contradiz a função dele.|Você combina a partir apenas da sua necessidade.
+disciplina|confirmar_plano|Resumir o combinado para a comissão conferir|A confirmação evita uma interpretação criada só entre vocês.|Você pede aprovação sem explicar o que combinaram.
+@2369 P01.titular|Previsto para começar, você quer usar o aquecimento como preparação, não como avaliação antecipada do que fará no jogo.|{"starter":true}
+disciplina|separar_preparacao|Guardar que a tarefa começa de novo na partida|Você não transforma um gesto de aquecimento numa previsão.|Você trata a preparação como garantia de rendimento.
+visao|ajuste_observavel|Escolher um ajuste que consegue reconhecer em campo|Você leva uma referência concreta para a entrada.|Você escolhe uma sensação vaga que não orienta a leitura.
+apoio|checar_setor|Confirmar uma referência com o setor antes de entrar|Vocês alinham o ponto que usarão no início.|Vocês abrem uma discussão nova e esquecem a referência.
+recuperar|encerrar_calmo|Concluir a preparação no ritmo combinado|Você evita gastar disposição tentando provar mais no fim.|Você acelera para terminar e perde a tranquilidade.
+@2370 P01.relacao_setor|Um colega pergunta como pode ajudar você durante a partida. A preparação pede um pedido concreto, não que ele adivinhe suas necessidades.|{}
+apoio|pedido_concreto|Indicar uma informação que ele consegue oferecer|O colega entende uma ajuda possível.|Você pede uma ajuda tão ampla que ele não sabe por onde começar.
+tatico|ligar_pedido_funcao|Relacionar o pedido às duas funções|Vocês evitam um combinado que contradiz o plano.|Você considera só sua função ao definir a ajuda.
+social|ouvir_tambem|Perguntar de que apoio ele precisa|A conversa cria uma colaboração nos dois sentidos.|Você volta à sua necessidade sem ouvir a dele.
+disciplina|limite_combinado|Guardar apenas um combinado para o início|Vocês mantêm uma referência fácil de reconhecer.|Você acrescenta pedidos e dilui o combinado.
+@2371 P01.relacao_setor|Um companheiro comenta que está ansioso para o jogo. Você pode acolher sem avaliar sua condição nem prometer que tudo sairá bem.|{}
+apoio|escutar_preocupacao|Ouvir qual parte da preparação pesa para ele|Você entende uma preocupação concreta.|Você tenta tranquilizar antes de ouvir o ponto principal.
+social|acolher_sem_garantia|Reconhecer a ansiedade sem prometer um resultado|A conversa oferece apoio sem uma garantia falsa.|Sua fala soa como se a ansiedade fosse uma falha pessoal.
+disciplina|voltar_tarefa_comum|Relembrar um combinado simples do setor|O colega encontra uma referência para a preparação.|Você acrescenta outra cobrança ao momento.
+tatico|distinguir_duvida|Perguntar se existe uma dúvida sobre a função|Você separa uma dúvida prática da expectativa do jogo.|Você transforma toda a ansiedade numa explicação tática.
+@2372 P01.relacao_setor|O colega ao seu lado se prepara em silêncio. Você quer confirmar uma tarefa sem tratar a rotina dele como falta de interesse.|{}
+apoio|pedir_momento|Perguntar quando pode confirmar o combinado|Vocês encontram um momento sem interromper a preparação.|Você pergunta sem esperar a resposta e já começa a orientar.
+disciplina|mensagem_objetiva|Confirmar apenas a tarefa necessária|Você preserva a preparação do colega.|Você abre outros assuntos e perde o objetivo.
+social|respeitar_rotina|Reconhecer que as rotinas podem ser diferentes|Você evita transformar o silêncio numa cobrança.|Você interpreta a diferença como uma rejeição pessoal.
+tatico|conferir_auxiliar|Esclarecer sua própria dúvida com o auxiliar|Você resolve o ponto sem atribuir ao colega uma responsabilidade extra.|Você descreve a rotina do colega em vez da sua dúvida.
+@2373 P01.imprensa_antes|Na conversa de preparação, a comunicação do clube simula uma pergunta que compara dois companheiros. Você quer responder sem transformar a comparação numa disputa.|{}
+imprensa|falar_funcoes|Explicar que as funções não são iguais|Sua resposta contextualiza sem escolher um culpado.|Sua resposta parece uma avaliação de quem vale mais.
+apoio|valorizar_contribuicoes|Reconhecer contribuições diferentes|Você valoriza a colaboração sem montar uma classificação pessoal.|Você usa elogios genéricos e mantém a comparação aberta.
+disciplina|limitar_resposta|Responder só ao que pode afirmar|Você evita atribuir intenções aos colegas.|Você acrescenta uma suposição para completar a fala.
+social|pedir_contexto|Perguntar qual aspecto a comparação pretende discutir|Você delimita o assunto antes de responder.|Sua pergunta soa como uma provocação e não esclarece o contexto.
+@2374 P01.imprensa_antes|A comunicação do clube ensaia uma pergunta sobre seu futuro. Não há proposta nova nessa preparação; o cuidado é não anunciar o que não existe.|{}
+imprensa|presente_trabalho|Falar do trabalho que está fazendo agora|Você responde sem inventar uma negociação.|Sua frase deixa parecer que existe algo já acertado.
+disciplina|limite_confirmacao|Distinguir desejo de informação confirmada|Você deixa claro o limite do que pode afirmar.|Você mistura uma vontade com uma decisão anunciada.
+social|resposta_honesta|Dizer que ainda não tem uma resposta definida|Você reconhece a incerteza sem criar expectativa falsa.|Sua fala fica vaga e parece esconder um acordo.
+apoio|conferir_comunicacao|Pedir retorno sobre como a mensagem foi entendida|A revisão mostra um ponto que precisava de clareza.|Vocês avaliam apenas o tom e não o significado da frase.
+@2375 P01.imprensa_antes|A comunicação do clube ensaia uma pergunta pedindo promessa de gol. Você quer demonstrar disposição sem transformar intenção em garantia.|{}
+imprensa|prometer_trabalho|Falar da responsabilidade de trabalhar pela equipe|Você comunica disposição sem garantir o placar.|Sua resposta parece uma promessa indireta de resultado.
+apoio|valorizar_coletivo|Relacionar sua contribuição ao setor|Você evita concentrar toda a expectativa em você.|Você transfere a responsabilidade inteira para os colegas.
+disciplina|separar_intencao|Dizer o que depende da sua preparação|Você distingue esforço de um resultado incerto.|Você tenta listar garantias e perde o limite da resposta.
+social|responder_com_calma|Pedir uma formulação menos fechada da pergunta|Você abre espaço para responder com honestidade.|Sua reação parece uma recusa irritada e não esclarece a intenção.
+@2376 P01.relacao_setor|Um colega pergunta o que costuma ajudar você a se concentrar. Você pode compartilhar uma rotina sem apresentá-la como receita para todos.|{}
+social|experiencia_pessoal|Contar a experiência como algo individual|Você compartilha sem transformar sua rotina numa obrigação.|Você explica como se a mesma rotina devesse servir a todos.
+apoio|ouvir_rotina_outro|Perguntar o que funciona para ele|Vocês reconhecem diferenças sem disputar preparação.|Você compara rotinas em vez de ouvir a experiência dele.
+disciplina|limite_conselho|Separar uma sugestão de uma regra|Você preserva o espaço de escolha do colega.|Você dá uma regra rígida para uma preferência pessoal.
+recuperar|pausa_compartilhada|Fazer uma pausa tranquila antes de voltar à tarefa|Você retoma a preparação sem alongar a conversa.|Você fica preso no assunto e não aproveita a pausa.
+@2377 P01.relacao_setor|Antes da entrada, você pensa nas pessoas que acompanham sua carreira. A comissão pede que transforme essa motivação em tarefa, não em obrigação de provar algo.|{}
+disciplina|motivacao_tarefa|Relacionar a motivação a uma atitude controlável|Você prepara uma responsabilidade sem exigir um resultado de si.|Você transforma a motivação numa promessa de desempenho.
+social|expressar_expectativa|Conversar sobre o peso da expectativa|Você consegue explicar o que está pressionando sua preparação.|Você fala só de resultados e não esclarece a expectativa.
+apoio|ouvir_colega|Ouvir como o colega separa apoio e cobrança|A experiência oferece uma referência sem decidir por você.|Você compara histórias e aumenta a própria cobrança.
+recuperar|pausa_motivacao|Fazer uma pausa para reorganizar a atenção|Você retorna à preparação com uma prioridade mais clara.|Você continua imaginando como os outros avaliarão cada gesto.
+@2378 P01.disciplina|Seu indicador de risco disciplinar está elevado. Antes do jogo, o auxiliar propõe preparar uma reação que não dependa de discutir cada decisão.|{"disciplinary_risk_min":35}
+disciplina|reacao_planejada|Escolher uma referência para voltar à jogada|Você prepara uma reação ligada à sua função.|Você pensa apenas em se conter e esquece a tarefa seguinte.
+apoio|sinal_atencao|Combinar um aviso de atenção com o colega|O colega entende como ajudar sem ampliar a discussão.|O aviso parece uma cobrança e tende a aumentar a tensão.
+social|esclarecer_limite|Perguntar como tirar uma dúvida com respeito|Você entende uma forma de perguntar sem atribuir má intenção.|Você transforma a pergunta numa reclamação antecipada.
+tatico|responsabilidade_reinicio|Repassar sua responsabilidade quando o jogo seguir|Você sabe onde concentrar o próximo movimento.|Você imagina uma interrupção que ainda não aconteceu.
+@2379 P01.forma_recente|Suas atuações recentes tiveram avaliações baixas. Você quer preparar uma reação prática sem tratar a partida que vem como uma prova definitiva de valor.|{"recent_form":"ruim"}
+disciplina|ajuste_controlavel|Escolher um ajuste que consegue observar|Você encontra uma tarefa concreta para trabalhar.|Você escolhe uma promessa de resultado para compensar a fase.
+apoio|pedido_feedback|Combinar um retorno específico com o setor|O colega entende qual referência pode ajudar.|Você pede uma avaliação geral que não orienta a tarefa.
+tatico|alinhar_criterio|Conferir com o auxiliar o critério da sua função|Você separa a responsabilidade do peso das avaliações.|Você tenta mudar a função só para fugir da avaliação anterior.
+recuperar|preparacao_sem_pressa|Reservar uma pausa antes de decidir sua prioridade|Você volta à preparação sem tentar corrigir tudo de uma vez.|Você usa a pausa para repetir mentalmente as avaliações ruins.
+@2380 P01.forma_recente|Você vem de boas avaliações individuais. O auxiliar pede atenção ao trabalho que as sustenta, sem presumir que o próximo jogo repetirá o resultado.|{"recent_form":"boa"}
+disciplina|repetir_processo|Guardar uma atitude de preparação que depende de você|Você mantém uma referência sem se acomodar.|Você trata a referência como garantia de outra boa nota.
+visao|leitura_nova|Repassar o que precisa observar nesta partida|Você prepara uma leitura aberta ao contexto novo.|Você decide repetir a solução do jogo anterior.
+apoio|dividir_confianca|Oferecer apoio ao colega sem falar como dono da solução|Você transmite disposição para colaborar.|Sua fala parece uma cobrança baseada nas boas avaliações.
+tatico|confirmar_funcao|Conferir a tarefa atual antes de se soltar|Você continua ligado ao plano do setor.|Você interpreta a fase como autorização para abandonar a função.
+@2381 P01.cuidado_fisico|Seu risco físico exige atenção. A conversa pré-jogo é sobre ajustar a preparação, sem afirmar que você esteja lesionado.|{"injury_risk_min":35}
+disciplina|relato_sensacao|Descrever ao auxiliar como está sua disposição|Você fornece uma informação que pode orientar a preparação.|Você mistura suposições com o que realmente sente.
+recuperar|rotina_orientada|Seguir uma preparação mais tranquila conforme a orientação|Você preserva disposição sem acrescentar esforço por conta própria.|Você continua tentando demonstrar intensidade e não se recompõe.
+tatico|economia_movimento|Conferir como evitar corridas sem função|Você entende um ajuste de leitura, não uma promessa de evitar qualquer problema.|Você interpreta o ajuste como não participar da jogada.
+apoio|dividir_cobertura|Combinar como comunicar uma necessidade de ajuda|O setor entende qual apoio pode oferecer.|Você pede que o colega cubra tudo sem explicar a necessidade.
+@2382 P01.relacao_setor|Um colega quer confirmar se vocês entenderam a mesma instrução. Você pode usar a conversa para conferir, sem impor que sua leitura seja a única possível.|{}
+apoio|comparar_leituras|Ouvir a leitura dele antes de explicar a sua|Vocês identificam uma diferença concreta.|Você prepara sua correção enquanto ele ainda fala.
+tatico|conferir_comissao|Levar a diferença ao auxiliar|A confirmação resolve o ponto sem criar outro plano.|Você apresenta só sua versão e deixa a dúvida incompleta.
+visao|exemplo_movimento|Usar um movimento como exemplo da interpretação|Você torna visível o que estava diferente.|Você escolhe um exemplo que exige outra função.
+disciplina|guardar_confirmado|Manter apenas o que foi confirmado|Você evita levar uma suposição para o início.|Você mistura o confirmado com a preferência pessoal.
+@2383 P01.relacao_setor|A comissão pede que o setor entre unido, mas sem exigir que todos expressem a concentração do mesmo jeito. Você quer contribuir respeitando essa diferença.|{}
+apoio|apoio_respeitoso|Oferecer apoio sem cobrar uma reação igual|Você participa preservando o espaço do colega.|Você mede o comprometimento dele pela reação que esperava.
+social|rotina_diferente|Reconhecer que as rotinas podem variar|Você evita transformar uma diferença em conflito.|Sua fala parece desinteresse pelo combinado do grupo.
+disciplina|tarefa_comum|Confirmar a responsabilidade compartilhada|Você separa a rotina individual da tarefa coletiva.|Você tenta padronizar as duas coisas ao mesmo tempo.
+liderar|convite_sem_imposicao|Propor uma confirmação curta de quem quiser participar|O convite permite colaboração sem impor um ritual.|Você apresenta a participação como prova de compromisso.
+@2384 P01.fechamento|As instruções terminaram. Você tem um instante para conferir sua prioridade antes da entrada, sem abrir um plano novo.|{}
+disciplina|ultima_checagem|Conferir a tarefa que precisa reconhecer primeiro|Você termina a preparação com uma referência clara.|Você transforma a checagem numa nova lista de preocupações.
+apoio|confirmar_colega|Confirmar um combinado curto com o colega|Vocês entram com o mesmo entendimento.|Vocês escolhem esse instante para discutir outro assunto.
+visao|olhar_contexto|Preparar-se para observar o que realmente acontecer|Você deixa espaço para atualizar a leitura.|Você entra procurando apenas confirmar sua expectativa.
+recuperar|respirar_antes|Usar o instante para respirar sem pressa|Você encerra a preparação com mais tranquilidade.|Você força a tranquilidade e continua antecipando o resultado.
+@2385 F01.entrevista|Depois da partida, a comunicação do clube pede uma frase que descreva sua participação. Você quer falar sem usar uma nota como explicação para tudo.|{"finished":true}
+imprensa|descrever_tarefa|Descrever uma responsabilidade do jogo|Sua fala explica o trabalho sem depender de um número.|Você usa uma expressão vaga que não descreve sua participação.
+disciplina|limitar_afirmacao|Falar apenas do que consegue recordar|Você evita preencher a análise com suposições.|Você completa uma lacuna como se tivesse certeza.
+apoio|reconhecer_ligacao|Reconhecer como sua tarefa se ligava aos colegas|Você mostra uma contribuição coletiva sem comparar pessoas.|Você transforma a ligação numa lista de culpados.
+social|pedir_revisao|Pedir um retorno sobre a clareza da frase|A revisão mostra um trecho que podia confundir.|Vocês discutem só se a frase soa bonita.
+@2386 F01.entrevista|Um jornalista pergunta se uma decisão sua foi falta de vontade. A partida já acabou, e você pode explicar o gesto sem aceitar um julgamento pessoal como fato.|{"finished":true}
+imprensa|explicar_contexto|Explicar a leitura que tentou fazer|Você contextualiza a decisão sem atacar a pergunta.|Você fala da intenção sem esclarecer o gesto.
+disciplina|separar_julgamento|Distinguir uma execução ruim de falta de compromisso|Você estabelece um limite sem negar a análise.|Sua resposta parece negar qualquer possibilidade de erro.
+apoio|valorizar_feedback|Dizer que ouvirá a análise da comissão|Você mostra abertura sem prometer concordar com tudo.|Sua frase parece transferir a resposta inteira para outra pessoa.
+social|pedir_exemplo|Pedir qual decisão a pergunta pretende discutir|Você delimita o assunto antes de responder.|O pedido sai em tom de confronto e amplia a tensão.
+@2387 F01.entrevista|Na conversa pós-jogo, pedem que você atribua o resultado a uma pessoa. Você quer reconhecer responsabilidades sem reduzir a partida a um nome.|{"finished":true}
+imprensa|explicar_conjunto|Falar das relações entre as tarefas|Você contextualiza o resultado sem escolher um responsável único.|Você usa o coletivo para evitar qualquer explicação.
+disciplina|assumir_parte|Descrever a parte que coube a você|Você assume uma responsabilidade concreta.|Você tenta assumir tudo e impede uma análise equilibrada.
+apoio|respeitar_colegas|Evitar avaliar intenções dos companheiros|Você mantém a conversa nos fatos que pode discutir.|Sua resposta deixa uma insinuação sobre alguém.
+social|reformular_foco|Pedir que a pergunta seja ligada a uma jogada|Você traz a conversa para um ponto observável.|Você propõe outra pergunta sem esclarecer a original.
+@2388 F01.entrevista|A comunicação do clube propõe uma publicação resumindo a partida encerrada. Você precisa conferir se a frase corresponde ao que pode afirmar.|{"finished":true}
+disciplina|conferir_fatos|Revisar as afirmações antes de aprovar|Você identifica uma frase que precisava de contexto.|Você lê rápido e deixa passar uma afirmação imprecisa.
+imprensa|mensagem_clara|Sugerir uma frase centrada no trabalho|Você comunica sem criar uma promessa para o próximo jogo.|A frase sugere um resultado futuro como certeza.
+apoio|credito_sem_comparar|Reconhecer colaboração sem classificar colegas|Você evita transformar o resumo numa disputa de destaque.|Você escolhe palavras que parecem comparar importância.
+social|pedir_tempo_revisao|Pedir um momento para lembrar o contexto|Você revê com calma antes de responder.|Você continua sem localizar o trecho que precisava esclarecer.
+@2389 F01.entrevista|Após o jogo, perguntam se você concorda com toda a análise feita sobre sua atuação. Você quer ouvir críticas sem fingir que conhece cada comentário.|{"finished":true}
+imprensa|limite_conhecimento|Dizer quais pontos você realmente ouviu|Você responde sem atribuir opinião a uma análise desconhecida.|Você comenta uma crítica que não chegou a conhecer.
+disciplina|analisar_depois|Separar o que precisa rever antes de concluir|Você mantém a análise aberta a fatos.|Você usa a revisão futura como forma de evitar qualquer resposta.
+apoio|feedback_comissao|Procurar um retorno específico da comissão|Você obtém uma referência para discutir o desempenho.|Você pede apenas uma aprovação geral.
+social|pergunta_delimitada|Pedir que um ponto seja apresentado com clareza|Você consegue tratar de uma observação concreta.|Você abre outras perguntas e dispersa o assunto.
+@2390 F01.revisao|O analista separa uma sequência sem destacar o resultado final. A conversa busca entender como você reconheceu as opções.|{"finished":true}
+visao|mapear_opcoes|Descrever quais opções tinha percebido|Você revela a leitura que orientou a escolha.|Você lista opções que só viu depois do vídeo.
+disciplina|separar_depois|Distinguir o que sabia na hora do que soube depois|Você evita uma justificativa construída pelo resultado.|Você mistura as duas informações e mantém a análise imprecisa.
+apoio|ouvir_outro_angulo|Pedir a leitura de quem estava perto|A outra perspectiva acrescenta um dado útil.|Vocês discutem conclusões sem comparar o que enxergaram.
+social|admitir_limite|Reconhecer uma parte que não lembra|Você preserva a honestidade da revisão.|Você tenta preencher a memória com uma suposição.
+@2391 F01.revisao|A comissão pergunta em que momento sua posição deixou de ajudar a jogada. O foco é identificar a transição, não culpar o passe que veio depois.|{"finished":true}
+visao|localizar_instante|Procurar o instante anterior à perda da linha|Você identifica o ajuste que chegou tarde.|Você observa só a entrega final e perde a transição.
+disciplina|criterio_posicao|Conferir o critério usado para avaliar sua posição|Você entende o que a comissão considera uma linha útil.|Você procura uma regra fixa para qualquer situação.
+apoio|leitura_portador|Ouvir o que o portador conseguia enxergar|Você compara a apresentação com a visão dele.|Você descreve sua intenção sem ouvir a recepção do colega.
+social|explicar_escolha|Explicar por que escolheu ficar naquele espaço|A conversa revela o raciocínio que precisa de ajuste.|Você defende o resultado sem esclarecer a escolha.
+@2392 F01.revisao|O auxiliar pede que você compare duas decisões parecidas da partida. Você precisa reconhecer o que mudou no contexto antes de julgar os gestos.|{"finished":true}
+visao|diferenca_contexto|Identificar uma diferença de espaço ou apoio|Você evita tratar os dois lances como iguais.|Você compara só os movimentos finais.
+disciplina|criterio_comum|Usar o mesmo critério para avaliar as duas escolhas|Você mantém a análise coerente.|Você muda o critério de acordo com o resultado.
+apoio|perguntar_percepcao|Ouvir o colega envolvido em uma das decisões|A leitura dele acrescenta uma referência.|Você escolhe ouvir apenas o que confirma sua impressão.
+social|reconhecer_incerteza|Dizer qual parte ainda precisa rever|Você delimita a dúvida sem inventar certeza.|Você chama de dúvida o ponto que não quer discutir.
+@2393 F01.revisao|Depois do jogo, a comissão pergunta como suas orientações chegaram aos colegas. Você quer avaliar a comunicação pelo efeito, não pelo volume da voz.|{"finished":true}
+apoio|ouvir_destinatario|Perguntar ao colega o que ele entendeu|Você conhece a mensagem que realmente chegou.|Você corrige a resposta antes de ouvi-la inteira.
+disciplina|separar_intencao_efeito|Distinguir o aviso pretendido do efeito produzido|Você identifica um ajuste na comunicação.|Você trata sua intenção como prova de que o aviso foi claro.
+tatico|situacao_aviso|Rever em qual momento o aviso foi dado|Você reconhece se a informação chegou a tempo.|Você analisa a frase sem considerar a jogada.
+social|reformular_juntos|Propor uma formulação mais simples para o próximo treino|Vocês encontram um aviso que podem testar.|Vocês criam vários códigos e aumentam a confusão.
+@2394 F01.revisao|O analista pergunta qual leitura você quer observar no próximo treino. A partida acabou; a meta agora precisa caber numa atividade de trabalho.|{"finished":true}
+disciplina|meta_observavel|Escolher uma leitura que consegue verificar|Você transforma a revisão numa tarefa concreta.|Você escolhe uma meta ampla que não orienta a sessão.
+tatico|ligar_exercicio|Perguntar qual exercício pode testar essa leitura|Você relaciona análise e preparação.|Você pede um exercício sem explicar a dificuldade.
+apoio|parceria_revisao|Combinar um retorno específico com o colega|O colega entende o que deve observar.|Você pede apenas que ele diga se melhorou.
+social|limitar_promessa|Assumir a tarefa sem prometer resultado imediato|Você preserva uma expectativa realista de trabalho.|Você promete uma mudança que não controla em uma sessão.
+@2395 F01.elenco|Após a partida, um colega pede que vocês conversem sobre uma combinação que não ficou clara. Você quer ouvir sem reconstruir o lance para se defender.|{"finished":true}
+apoio|escutar_combinacao|Ouvir qual parte do combinado ele usou|Você identifica uma diferença de interpretação.|Você interrompe para explicar o que gostaria que tivesse acontecido.
+disciplina|separar_memorias|Distinguir memória do lance e hipótese|Você não transforma uma lembrança incompleta em certeza.|Você completa a memória com o que viu depois.
+social|explicar_sua_leitura|Explicar a referência que você seguiu|O colega entende de onde veio sua decisão.|Você descreve o resultado sem esclarecer a referência.
+liderar|propor_checagem|Combinar uma checagem curta para o próximo treino|Vocês definem como testar o entendimento.|Vocês combinam apenas tentar melhor sem uma referência.
+@2396 F01.elenco|A comissão abre espaço para um retorno entre colegas depois do jogo. Você precisa escolher um ponto de ajuda sem fazer uma avaliação da pessoa inteira.|{"finished":true}
+apoio|ponto_especifico|Comentar uma colaboração que pode melhorar|Você mantém o retorno ligado a uma tarefa.|Você transforma o ponto numa descrição da personalidade do colega.
+disciplina|pedir_abertura|Perguntar se aquele é um bom momento para conversar|Você respeita a disposição do colega.|Você pergunta, mas começa a cobrança antes da resposta.
+social|ouvir_retorno|Abrir espaço para o colega avaliar sua ajuda|Você conhece o efeito que sua postura produziu.|Você prepara a defesa e não escuta o retorno.
+liderar|ajuste_conjunto|Propor um ajuste que envolva os dois|Vocês compartilham uma responsabilidade concreta.|Você chama de conjunto um ajuste que só o outro teria de fazer.
+@2397 F01.elenco|Um companheiro comenta que uma orientação sua soou como cobrança durante a partida. Você quer entender a diferença entre intenção e efeito.|{"finished":true}
+apoio|ouvir_efeito|Perguntar em qual momento ele sentiu a cobrança|Você localiza uma situação que pode rever.|Você discute o tom geral sem ouvir o momento concreto.
+social|assumir_limite_fala|Reconhecer que a fala pode ter chegado diferente|Você abre espaço para esclarecer sem negar a intenção.|Você explica sua intenção como se anulasse o efeito.
+disciplina|separar_tarefa_pessoa|Reformular o aviso em termos de tarefa|Você identifica palavras que podem ajudar mais.|Você mantém a mesma cobrança apenas com menos volume.
+liderar|combinado_retorno|Combinar um sinal para conferir os avisos|Vocês criam uma forma de ajustar a comunicação.|O sinal parece outra cobrança e não resolve o problema.
+@2398 F01.elenco|Após o apito final, você quer agradecer uma ajuda recebida durante o jogo. O cuidado é reconhecer sem transformar o colega num responsável por tudo.|{"finished":true}
+apoio|agradecimento_concreto|Dizer qual ajuda fez diferença para você|O colega entende exatamente o que foi útil.|Você faz um elogio amplo que não explica a contribuição.
+social|ouvir_experiencia|Perguntar como ele enxergou a mesma colaboração|Você conhece uma perspectiva diferente.|Você espera apenas a confirmação do seu elogio.
+disciplina|limitar_atribuicao|Reconhecer a ajuda sem transferir sua responsabilidade|Você agradece mantendo clareza sobre sua parte.|Sua fala parece atribuir toda a sua atuação ao colega.
+liderar|levar_para_treino|Propor que testem a combinação na próxima sessão|Vocês transformam a ajuda numa referência de trabalho.|Você trata uma combinação que funcionou como solução garantida.
+@2399 F01.elenco|A comissão pede uma conclusão curta sobre o trabalho do setor. A partida encerrada oferece dados para revisar, não uma identidade definitiva para o grupo.|{"finished":true}
+disciplina|conclusao_limitada|Falar de uma tarefa desta partida|Você evita transformar um jogo numa regra sobre o elenco.|Você generaliza a experiência para toda a temporada.
+apoio|outras_leituras|Ouvir um colega antes de concluir|A outra leitura acrescenta um limite à sua conclusão.|Você escolhe ouvir apenas quem concorda com você.
+tatico|criterio_setor|Relacionar a conclusão ao plano que receberam|Você explica a tarefa sem criar outro critério depois do resultado.|Você usa um objetivo que não fazia parte da orientação.
+social|ponto_aberto|Dizer o que ainda precisa de revisão|Você preserva uma dúvida legítima sem inventar certeza.|Você deixa a conclusão tão vaga que não oferece informação.

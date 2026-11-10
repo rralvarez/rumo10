@@ -1,0 +1,96 @@
+{
+  "schema": "rumo-update-policy-v1",
+  "project": "rumo10",
+  "branch": "codex/production-consolidated-v062",
+  "approved_incremental_migrations": {
+    "database/006-balance-and-maintenance.sql": "146b58ad5c430c14072fa6d772594f1c131f4c0adf5a2fda098973caac415b23",
+    "database/seed_balance.php": "b9989dd8393b6f0b9eaade6f1c5355d8d3ba687c78f46f98dfb2e0cdae8f9777",
+    "database/007-recalibracao-ofensiva.sql": "81b9c3e404f77e23116980f63e9bc86ad2b3d7e47224a4da5aee91c8a7ef7553",
+    "database/008-penalties-balance.sql": "27c1046f81ba1dc76889611cac988ba1a47c634de0a395cfa737761839efad32",
+    "database/009-f01-canonical-telemetry.sql": "0cb513015ddd8650885d55677df8717e3c0557838d7f42af904272744a8dda8a"
+  },
+  "protected_contract_paths": [
+    "app/Database.php",
+    "app/Repository.php",
+    "public/.htaccess",
+    "app/Retirement.php",
+    "app/RetiredCareer.php"
+  ],
+  "data_contract": "rumo10-development-v3",
+  "first_approved_package_sha256": "8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458",
+  "authorized_releases": {
+    "907427dabc363d055ff32ad53853d322639992fb": {
+      "label": "F01 Homologada",
+      "tree": "1cc1c18901fe02c5332d059cf2d0dbee5a7b1781",
+      "data_contract": "rumo10-development-v3",
+      "authorized_build_commits": [
+        "a134ab2f6fdebfa2eaa197f6d07370149102614d"
+      ],
+      "requires_migration": [
+        "009"
+      ],
+      "mandatory_files": {
+        "app/CanonicalIdentity.php": "b95b8525014cbf42113a8d9db07276a69d51449b85d821ebd1560db52f87a9dc",
+        "app/CareerSlots.php": "af6cc42b5cba2deb0701f95a7a48f07aaa44f7043a4bb3de73eb6386e1832a56",
+        "app/Database.php": "e7ad6a575afdd326d8442d58a2b25cf396956af6d3c946d713e14d83d462dc76",
+        "app/F01Drainer.php": "980036c923093688a33bff1b82192682b01019e74e08224995c851089c54476a",
+        "app/F01Telemetry.php": "7f77337dd1329d296d50172d604a378253a833c9de1bda35a7ed1f33932e24b2",
+        "app/Repository.php": "4200bb92106f6931cb3ebc454336677fd1617b1ad4ea997cfd52d70dabde7ec5",
+        "app/bootstrap.php": "1fe123accf27972527e3594613e23cd71eff946eb8b4fca134276f38237f362a",
+        "app/view.php": "1772596df9a81367af01d47ae243b2bbb1f965d07793520d72eede2fe016c170",
+        "database/009-f01-canonical-telemetry.sql": "0cb513015ddd8650885d55677df8717e3c0557838d7f42af904272744a8dda8a",
+        "public/assets/f01-telemetry.js": "d2b8f203da21012c3d1d9138b7b5fd9454e69d49ce126f9a4c8777d67edaaa35",
+        "public/index.php": "e61d3cfc8f586d7cb23171bc71cde45080955a600ab090182bbd5b53f406faa1"
+      },
+      "runtime_inventory_sha256": "025513c9a2dbf1c8cff75fada5b5a5cc17c2b345381ef77657a5e4205f61573b"
+    },
+    "f23c2c3be2fbc322daf817fa14346ab02073a97b": {
+      "label": "V8 Homologada",
+      "tree": "cac4535f0e67df336acb3ce9680eeb87fe28b90a",
+      "data_contract": "rumo10-development-v3",
+      "authorized_build_commits": [
+        "f23c2c3be2fbc322daf817fa14346ab02073a97b"
+      ],
+      "requires_migration": [],
+      "mandatory_files": {
+        "app/CareerSlots.php": "34769a42fa493b706af9bd88d978f0da0296c25dc4f5b5f7bbb4b5ff7cb57add",
+        "app/Database.php": "73b5d85d3311586f0cdef853dd9fe185933b59b96e7c834c384c87ea2ba6ac6c",
+        "app/Repository.php": "32212bf858d9353c987ffc9c1d918edb5c993a55f8b6f0cc9ced11d44bed1696",
+        "app/bootstrap.php": "95a27844a412d1f6354c72f17851aa878f8ee6657b9cd91d983de3386eb84036",
+        "app/view.php": "faf5eceda2cd17826e81079eb475d8ef95818812527e167f657263b5efd40acd",
+        "public/index.php": "b1b3961716b46b7c2fb7940cf0db535c14c22307d673be8048e839cde0c2c8b0"
+      },
+      "runtime_inventory_sha256": "5b251e4145f4d8b11c9ec8e8493737899caeba5cea1b113819942414794683af"
+    }
+  },
+  "authorized_transitions": {
+    "f23c2c3be2fbc322daf817fa14346ab02073a97b:907427dabc363d055ff32ad53853d322639992fb": {
+      "label": "V8 -> F01 Homologated Controlled Upgrade",
+      "from_release": "f23c2c3be2fbc322daf817fa14346ab02073a97b",
+      "to_release": "907427dabc363d055ff32ad53853d322639992fb",
+      "requires_full_drain": true,
+      "allowed_protected_paths": [
+        "app/Database.php",
+        "app/Repository.php"
+      ],
+      "allowed_deletions": []
+    },
+    "907427dabc363d055ff32ad53853d322639992fb:f23c2c3be2fbc322daf817fa14346ab02073a97b": {
+      "label": "F01 -> V8 Homologated Controlled Rollback",
+      "from_release": "907427dabc363d055ff32ad53853d322639992fb",
+      "to_release": "f23c2c3be2fbc322daf817fa14346ab02073a97b",
+      "requires_full_drain": true,
+      "allowed_protected_paths": [
+        "app/Database.php",
+        "app/Repository.php"
+      ],
+      "allowed_deletions": [
+        "app/CanonicalIdentity.php",
+        "app/F01Drainer.php",
+        "app/F01Telemetry.php",
+        "database/009-f01-canonical-telemetry.sql",
+        "public/assets/f01-telemetry.js"
+      ]
+    }
+  }
+}

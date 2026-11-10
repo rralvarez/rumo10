@@ -1,0 +1,1286 @@
+{
+  "1": {
+    "module": "T02",
+    "family": "T02.carga_fisica",
+    "blocked_context": "weather",
+    "review": "legacy_requires_review"
+  },
+  "2": {
+    "module": "T01",
+    "family": "T01.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "3": {
+    "module": "T02",
+    "family": "T02.jogo_aereo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "4": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "5": {
+    "module": "P01",
+    "family": "P01.imprensa",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "6": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "7": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "8": {
+    "module": "J03",
+    "family": "J03.relacoes",
+    "blocked_context": "opponent_foul",
+    "review": "legacy_requires_review"
+  },
+  "9": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "10": {
+    "module": "F02",
+    "family": "F02.comunidade",
+    "blocked_context": "sponsor_contract",
+    "review": "legacy_requires_review"
+  },
+  "11": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": "rivalry_verified",
+    "review": "legacy_requires_review"
+  },
+  "12": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1000": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1001": {
+    "module": "T02",
+    "family": "T02.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1002": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1003": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": "weather",
+    "review": "legacy_requires_review"
+  },
+  "1004": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": "muscle_stiffness",
+    "review": "legacy_requires_review"
+  },
+  "1005": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1006": {
+    "module": "T01",
+    "family": "T01.finalizacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1007": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1008": {
+    "module": "T02",
+    "family": "T02.cobertura",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1009": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1010": {
+    "module": "T01",
+    "family": "T01.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1011": {
+    "module": "T02",
+    "family": "T02.cobertura",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1012": {
+    "module": "T02",
+    "family": "T02.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1013": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1014": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1015": {
+    "module": "T01",
+    "family": "T01.jogo_aereo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1016": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": "travel_fatigue",
+    "review": "legacy_requires_review"
+  },
+  "1017": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1018": {
+    "module": "T01",
+    "family": "T01.finalizacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1019": {
+    "module": "T02",
+    "family": "T02.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1020": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": "weather",
+    "review": "legacy_requires_review"
+  },
+  "1021": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1022": {
+    "module": "T02",
+    "family": "T02.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1023": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1024": {
+    "module": "T01",
+    "family": "T01.finalizacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1025": {
+    "module": "T02",
+    "family": "T02.carga_fisica",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1026": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1027": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1028": {
+    "module": "T01",
+    "family": "T01.finalizacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1029": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1030": {
+    "module": "T02",
+    "family": "T02.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1031": {
+    "module": "T01",
+    "family": "T01.recepcao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1032": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1033": {
+    "module": "T02",
+    "family": "T02.carga_fisica",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1034": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1035": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1036": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1037": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1038": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1039": {
+    "module": "T01",
+    "family": "T01.finalizacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1040": {
+    "module": "T02",
+    "family": "T02.recuperacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1041": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1042": {
+    "module": "T01",
+    "family": "T01.recepcao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1043": {
+    "module": "T02",
+    "family": "T02.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1044": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1045": {
+    "module": "T02",
+    "family": "T02.carga_fisica",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1046": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1047": {
+    "module": "T02",
+    "family": "T02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1048": {
+    "module": "T01",
+    "family": "T01.jogo_aereo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1049": {
+    "module": "T01",
+    "family": "T01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1050": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1051": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1052": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1053": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "opponent_style",
+    "review": "legacy_requires_review"
+  },
+  "1054": {
+    "module": "P01",
+    "family": "P01.relacoes",
+    "blocked_context": "teammate_return",
+    "review": "legacy_requires_review"
+  },
+  "1055": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "weather",
+    "review": "legacy_requires_review"
+  },
+  "1056": {
+    "module": "P01",
+    "family": "P01.imprensa",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1057": {
+    "module": "P01",
+    "family": "P01.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1058": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "opponent_lineup",
+    "review": "legacy_requires_review"
+  },
+  "1059": {
+    "module": "P01",
+    "family": "P01.concentracao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1060": {
+    "module": "P01",
+    "family": "P01.relacoes",
+    "blocked_context": "family_attendance",
+    "review": "legacy_requires_review"
+  },
+  "1061": {
+    "module": "P01",
+    "family": "P01.concentracao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1062": {
+    "module": "P01",
+    "family": "P01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1063": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1064": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "ball_change",
+    "review": "legacy_requires_review"
+  },
+  "1065": {
+    "module": "P01",
+    "family": "P01.comunidade",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1066": {
+    "module": "P01",
+    "family": "P01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1067": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "pitch_width",
+    "review": "legacy_requires_review"
+  },
+  "1068": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1069": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1070": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1071": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "transport_delay",
+    "review": "legacy_requires_review"
+  },
+  "1072": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "new_kit",
+    "review": "legacy_requires_review"
+  },
+  "1073": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1074": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "opponent_style",
+    "review": "legacy_requires_review"
+  },
+  "1075": {
+    "module": "P01",
+    "family": "P01.concentracao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1076": {
+    "module": "P01",
+    "family": "P01.imprensa",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1077": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "late_goals_history",
+    "review": "legacy_requires_review"
+  },
+  "1078": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "weather",
+    "review": "legacy_requires_review"
+  },
+  "1079": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1080": {
+    "module": "P01",
+    "family": "P01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1081": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1082": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1083": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1084": {
+    "module": "P01",
+    "family": "P01.duelo",
+    "blocked_context": "opponent_style",
+    "review": "legacy_requires_review"
+  },
+  "1085": {
+    "module": "P01",
+    "family": "P01.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1086": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "ceremony",
+    "review": "legacy_requires_review"
+  },
+  "1087": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1088": {
+    "module": "P01",
+    "family": "P01.relacoes",
+    "blocked_context": "new_teammate",
+    "review": "legacy_requires_review"
+  },
+  "1089": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1090": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "kickoff_delay",
+    "review": "legacy_requires_review"
+  },
+  "1091": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "opponent_style",
+    "review": "legacy_requires_review"
+  },
+  "1092": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "penalty_taker",
+    "review": "legacy_requires_review"
+  },
+  "1093": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": "fixture_congestion",
+    "review": "legacy_requires_review"
+  },
+  "1094": {
+    "module": "P01",
+    "family": "P01.duelo",
+    "blocked_context": "opponent_provocation",
+    "review": "legacy_requires_review"
+  },
+  "1095": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1096": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1097": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1098": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1099": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1100": {
+    "module": "J01",
+    "family": "J01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1101": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1102": {
+    "module": "J01",
+    "family": "J01.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1103": {
+    "module": "J01",
+    "family": "J01.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1104": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1105": {
+    "module": "J01",
+    "family": "J01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1106": {
+    "module": "J01",
+    "family": "J01.finalizacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1107": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1108": {
+    "module": "J01",
+    "family": "J01.recepcao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1109": {
+    "module": "J01",
+    "family": "J01.recepcao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1110": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1111": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1112": {
+    "module": "J01",
+    "family": "J01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1113": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1114": {
+    "module": "J01",
+    "family": "J01.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1115": {
+    "module": "J01",
+    "family": "J01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1116": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1117": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1118": {
+    "module": "J01",
+    "family": "J01.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1119": {
+    "module": "J01",
+    "family": "J01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1120": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1121": {
+    "module": "J01",
+    "family": "J01.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1122": {
+    "module": "J01",
+    "family": "J01.jogo_aereo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1123": {
+    "module": "J01",
+    "family": "J01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1124": {
+    "module": "J01",
+    "family": "J01.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1125": {
+    "module": "J02",
+    "family": "J02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1126": {
+    "module": "J02",
+    "family": "J02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1127": {
+    "module": "J02",
+    "family": "J02.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1128": {
+    "module": "J02",
+    "family": "J02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1129": {
+    "module": "J02",
+    "family": "J02.jogo_aereo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1130": {
+    "module": "J02",
+    "family": "J02.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1131": {
+    "module": "J02",
+    "family": "J02.cobertura",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1132": {
+    "module": "J02",
+    "family": "J02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1133": {
+    "module": "J02",
+    "family": "J02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1134": {
+    "module": "J02",
+    "family": "J02.recepcao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1135": {
+    "module": "J02",
+    "family": "J02.passes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1136": {
+    "module": "J02",
+    "family": "J02.duelo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1137": {
+    "module": "J02",
+    "family": "J02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1138": {
+    "module": "J02",
+    "family": "J02.jogo_aereo",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1139": {
+    "module": "J02",
+    "family": "J02.recepcao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1140": {
+    "module": "J03",
+    "family": "J03.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1141": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": "crowd_booing",
+    "review": "legacy_requires_review"
+  },
+  "1142": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1143": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": "actual_injury",
+    "review": "legacy_requires_review"
+  },
+  "1144": {
+    "module": "J03",
+    "family": "J03.relacoes",
+    "blocked_context": "teammate_error",
+    "review": "legacy_requires_review"
+  },
+  "1145": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": "referee_warning",
+    "review": "legacy_requires_review"
+  },
+  "1146": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1147": {
+    "module": "J03",
+    "family": "J03.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1148": {
+    "module": "J03",
+    "family": "J03.rotina",
+    "blocked_context": "opponent_provocation",
+    "review": "legacy_requires_review"
+  },
+  "1149": {
+    "module": "J03",
+    "family": "J03.cobertura",
+    "blocked_context": "substitution_event",
+    "review": "legacy_requires_review"
+  },
+  "1150": {
+    "module": "F02",
+    "family": "F02.comunidade",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1151": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1152": {
+    "module": "F01",
+    "family": "F01.recuperacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1153": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": "agent_relationship",
+    "review": "legacy_requires_review"
+  },
+  "1154": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1155": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1156": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1157": {
+    "module": "F02",
+    "family": "F02.comunidade",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1158": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1159": {
+    "module": "F01",
+    "family": "F01.recuperacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1160": {
+    "module": "F01",
+    "family": "F01.imprensa",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1161": {
+    "module": "F02",
+    "family": "F02.recuperacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1162": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1163": {
+    "module": "F01",
+    "family": "F01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1164": {
+    "module": "F01",
+    "family": "F01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1165": {
+    "module": "F02",
+    "family": "F02.recuperacao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1166": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1167": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": "transfer_enquiry",
+    "review": "legacy_requires_review"
+  },
+  "1168": {
+    "module": "F02",
+    "family": "F02.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1169": {
+    "module": "F01",
+    "family": "F01.comunidade",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1170": {
+    "module": "F01",
+    "family": "F01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1171": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1172": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1173": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1174": {
+    "module": "F01",
+    "family": "F01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1175": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1176": {
+    "module": "F01",
+    "family": "F01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1177": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1178": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1179": {
+    "module": "F01",
+    "family": "F01.imprensa",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1180": {
+    "module": "F01",
+    "family": "F01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1181": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1182": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1183": {
+    "module": "F01",
+    "family": "F01.imprensa",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1184": {
+    "module": "F02",
+    "family": "F02.comunidade",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1185": {
+    "module": "F01",
+    "family": "F01.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1186": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": "agent_relationship",
+    "review": "legacy_requires_review"
+  },
+  "1187": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1188": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1189": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1190": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1191": {
+    "module": "F02",
+    "family": "F02.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1192": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1193": {
+    "module": "F02",
+    "family": "F02.familia",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1194": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1195": {
+    "module": "F02",
+    "family": "F02.concentracao",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1196": {
+    "module": "F02",
+    "family": "F02.relacoes",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1197": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1198": {
+    "module": "F02",
+    "family": "F02.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1199": {
+    "module": "F01",
+    "family": "F01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1200": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  },
+  "1201": {
+    "module": "P01",
+    "family": "P01.rotina",
+    "blocked_context": null,
+    "review": "legacy_requires_review"
+  }
+}

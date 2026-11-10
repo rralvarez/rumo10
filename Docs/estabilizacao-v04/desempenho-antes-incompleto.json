@@ -1,0 +1,54 @@
+{
+    "environment": "PHP CLI, somente motor\/render; sem SQL, IIS ou Hub; fixtures legadas pequenas; amostra descritiva",
+    "rows": {
+        "choice": {
+            "n": 12,
+            "p50_ms": 0.1873,
+            "p95_ms": 20.6369,
+            "min_ms": 0.1731,
+            "max_ms": 20.6369
+        },
+        "shot": {
+            "n": 12,
+            "p50_ms": 0.6001,
+            "p95_ms": 181.4849,
+            "min_ms": 0.5075,
+            "max_ms": 181.4849
+        },
+        "round": {
+            "n": 12,
+            "p50_ms": 0.4853,
+            "p95_ms": 0.7362,
+            "min_ms": 0.2993,
+            "max_ms": 0.7362
+        },
+        "quick_match": {
+            "n": 12,
+            "p50_ms": 3.1978,
+            "p95_ms": 152.8382,
+            "min_ms": 2.8459,
+            "max_ms": 152.8382
+        },
+        "market": {
+            "n": 12,
+            "p50_ms": 0.0092,
+            "p95_ms": 0.0199,
+            "min_ms": 0.0087,
+            "max_ms": 0.0199
+        },
+        "season": {
+            "n": 12,
+            "p50_ms": 0.2866,
+            "p95_ms": 0.6314,
+            "min_ms": 0.2815,
+            "max_ms": 0.6314
+        },
+        "render": {
+            "n": 12,
+            "p50_ms": 0.8572,
+            "p95_ms": 407.3538,
+            "min_ms": 0.7537,
+            "max_ms": 407.3538
+        }
+    }
+}

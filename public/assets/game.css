@@ -46,7 +46,20 @@ header nav .new-career-link{color:var(--lime);font-weight:700}
 
 .athlete-club{flex-wrap:wrap}.athlete-club .squad-link{flex-basis:100%;margin-top:0}
 
+/* Foco e scroll programático precisam considerar o menu fixo, além da reserva no fim. */
+@media(max-width:760px){html{scroll-padding-bottom:calc(var(--bottom-nav-space,112px) + 12px)}button.choice{scroll-margin-block:12px}}
+@media(max-width:760px){.narrative-scene h2{font-size:16px;line-height:1.4;margin-bottom:8px}.narrative-scene .choice{min-height:48px;padding:10px;font-size:14px;line-height:1.35;gap:10px}.narrative-scene .choice b{font-size:16px}.narrative-scene>p{font-size:13px}}
 /* Pacote 1.0: reserva real para navegação, inclusive zoom e safe area. */
 .table-return{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px}.table-return p{margin:0}.table-return .btn{min-height:44px}a:focus-visible,button:focus-visible{outline:3px solid var(--lime);outline-offset:3px}[hidden]{display:none!important}
 @media(max-width:760px){body{padding-bottom:var(--bottom-nav-space,calc(112px + env(safe-area-inset-bottom)))}header nav.authenticated{grid-template-columns:repeat(4,minmax(0,1fr));padding-bottom:max(8px,env(safe-area-inset-bottom))}header nav.authenticated .new-career-link{display:none}header nav.authenticated>a,header nav.authenticated form button{min-height:48px;font-size:12px;overflow-wrap:anywhere}footer{margin-bottom:16px}}
 
+
+/* Espera real por resposta, sem percentual simulado. */
+.decision-wait:not([hidden]){position:fixed;z-index:1000;inset:auto 1rem calc(5rem + env(safe-area-inset-bottom));max-width:36rem;margin:auto;padding:1rem;background:#172c30;border:2px solid #c8f76b;border-radius:1rem;box-shadow:0 8px 40px #000b}
+.decision-wait p{margin:0 0 .6rem}.decision-wait a{display:block;margin-top:.7rem}.initial-impacts>ul{padding-left:1.2rem;display:grid;gap:.9rem}.initial-impacts li{overflow-wrap:anywhere}
+/* Post-match progression uses wrapping cards, including at 320px. */
+.xp-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:.6rem}
+.xp-breakdown>div{padding:.65rem;border:1px solid #42606a;border-radius:.6rem;min-width:0}
+.xp-breakdown dt{font-weight:700}.xp-breakdown dd{margin:.3rem 0 0;overflow-wrap:anywhere}
+.achievement-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:.75rem}
+.achievement h2{font-size:1.15rem}.achievement progress{width:100%;accent-color:#bdef4a}.achievement-toast{border-color:#bdef4a}

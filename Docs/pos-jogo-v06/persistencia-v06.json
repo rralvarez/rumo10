@@ -1,0 +1,9 @@
+{
+    "checks": 22,
+    "environment": "MySQL loopback, database rumohub",
+    "fixture_rollback": true,
+    "rh_writes": false,
+    "real_accounts_modified": false,
+    "concurrency": "Second PDO connection waits on unique unlock; lock timeout 1205",
+    "xp": "Final match, same command replay and read return identical persisted state"
+}

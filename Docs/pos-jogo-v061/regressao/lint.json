@@ -1,0 +1,46 @@
+[
+  {
+    "file": "app/Scenes.php",
+    "exit": 0
+  },
+  {
+    "file": "app/NarrativeCatalog.php",
+    "exit": 0
+  },
+  {
+    "file": "app/NarrativeSelection.php",
+    "exit": 0
+  },
+  {
+    "file": "app/NarrativeContext.php",
+    "exit": 0
+  },
+  {
+    "file": "app/Game.php",
+    "exit": 0
+  },
+  {
+    "file": "app/PlayMode.php",
+    "exit": 0
+  },
+  {
+    "file": "app/view.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/narrative.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/narrative-modes.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/narrative-baseline.php",
+    "exit": 0
+  },
+  {
+    "file": "tests/narrative-preview.php",
+    "exit": 0
+  }
+]

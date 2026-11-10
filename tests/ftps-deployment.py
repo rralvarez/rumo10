@@ -52,21 +52,30 @@ class FakeFTP:
 
     def storbinary(self, cmd, stream):
         path = cmd[5:]
-        if getattr(self, 'require_fresh_control', False) and path.endswith('.rumo-upload-release.json') and not self.reconnected:
+        if getattr(self, 'require_fresh_control', False) and 'release.json' in path and not self.reconnected:
             raise TimeoutError('idle control connection')
-        if self.fail and path.endswith(".rumo-upload-bootstrap.php"):
+        if self.fail and 'bootstrap.php' in path:
             raise OSError("simulated transfer failure")
         self.files[path] = stream.read()
 
     def rename(self, source, target): self.files[target] = self.files.pop(source)
     def delete(self, path): self.deleted.append(path); del self.files[path]
 
+    def mlsd(self, path=""):
+        parent = path.strip("/")
+        results = []
+        for f in self.files:
+            p, name = (f.rsplit("/", 1)) if "/" in f else ("", f)
+            if p == parent:
+                results.append((name, {"type": "file"}))
+        return results
+
 
 class DeploymentTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.archive = Path(self.tmp.name) / "release.tar.gz"
-        files = {"app/bootstrap.php": b"<?php", "public/index.php": b"<?php", "public/.htaccess": b"RewriteEngine On\n", "public/assets/app.css": b"body{}"}
+        files = {"app/bootstrap.php": b"<?php", "public/index.php": b"<?php", "public/.htaccess": b"RewriteEngine On\n", "public/assets/app.css": b"body{}", "public/favicon.svg": b"<svg/>", "public/favicon.ico": b"icon-fixture", "build-manifest.json": b'{"commit":"907427dabc363d055ff32ad53853d322639992fb","checksums":{}}'}
         manifest = {"project": "rumo10", "files": {name: hashlib.sha256(body).hexdigest() for name, body in files.items()}}
         with tarfile.open(self.archive, "w:gz") as tar:
             for name, body in {**files, "release.json": json.dumps(manifest).encode()}.items():
@@ -85,6 +94,9 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(self.ftp.deleted, ["apps/rumo10/deployment.lock"])
         self.assertIn(b"RUMO_FTPS_BRIDGE_V1", self.ftp.files["public_html/index.php"])
         self.assertEqual(self.ftp.files["public_html/assets/app.css"], b"body{}")
+        self.assertEqual(self.ftp.files["public_html/favicon.svg"], b"<svg/>")
+        self.assertEqual(self.ftp.files["public_html/favicon.ico"], b"icon-fixture")
+        self.assertIn("apps/rumo10/current/build-manifest.json", self.ftp.files)
         self.assertFalse(any("sql" in path or ".rumo-upload-" in path for path in self.ftp.files))
 
     def test_failure_keeps_maintenance(self):

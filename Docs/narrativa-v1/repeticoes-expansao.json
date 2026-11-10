@@ -1,0 +1,1323 @@
+{
+  "exact": [
+    {
+      "field": "text",
+      "text": "conferir o ritmo com o preparador",
+      "occurrences": [
+        [
+          2007,
+          1
+        ],
+        [
+          2214,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "você se aproxima na mesma linha do marcador.",
+      "occurrences": [
+        [
+          2015,
+          0
+        ],
+        [
+          2734,
+          3
+        ],
+        [
+          2799,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "você estica a perna sem reorganizar o apoio.",
+      "occurrences": [
+        [
+          2130,
+          1
+        ],
+        [
+          2161,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você oferece um aviso que acrescenta leitura.",
+      "occurrences": [
+        [
+          2271,
+          3
+        ],
+        [
+          2317,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você entra com uma referência concreta.",
+      "occurrences": [
+        [
+          2298,
+          3
+        ],
+        [
+          2362,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você prepara uma leitura que pode ser atualizada.",
+      "occurrences": [
+        [
+          2304,
+          0
+        ],
+        [
+          2348,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você delimita o assunto antes de responder.",
+      "occurrences": [
+        [
+          2373,
+          3
+        ],
+        [
+          2386,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você assume uma responsabilidade concreta.",
+      "occurrences": [
+        [
+          2387,
+          1
+        ],
+        [
+          2456,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "perguntar qual aspecto querem discutir",
+      "occurrences": [
+        [
+          2402,
+          3
+        ],
+        [
+          2424,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você encontra o espaço no gol e marca.",
+      "occurrences": [
+        [
+          2579,
+          2
+        ],
+        [
+          2649,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você acerta o chute e marca.",
+      "occurrences": [
+        [
+          2584,
+          0
+        ],
+        [
+          2716,
+          1
+        ],
+        [
+          2731,
+          0
+        ],
+        [
+          2756,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar concluir a bola alta",
+      "occurrences": [
+        [
+          2597,
+          2
+        ],
+        [
+          2644,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você acerta a conclusão e marca.",
+      "occurrences": [
+        [
+          2597,
+          2
+        ],
+        [
+          2613,
+          0
+        ],
+        [
+          2717,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "você recebe sem preparar a devolução e perde a bola.",
+      "occurrences": [
+        [
+          2598,
+          3
+        ],
+        [
+          2728,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você supera a primeira pressão.",
+      "occurrences": [
+        [
+          2610,
+          1
+        ],
+        [
+          2723,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "usar o apoio para manter a bola",
+      "occurrences": [
+        [
+          2611,
+          0
+        ],
+        [
+          2775,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar uma finalização",
+      "occurrences": [
+        [
+          2613,
+          0
+        ],
+        [
+          2647,
+          2
+        ],
+        [
+          2731,
+          0
+        ],
+        [
+          2784,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você vence a primeira marcação.",
+      "occurrences": [
+        [
+          2613,
+          2
+        ],
+        [
+          2743,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você ganha terreno com a bola.",
+      "occurrences": [
+        [
+          2614,
+          1
+        ],
+        [
+          2622,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar outra finalização",
+      "occurrences": [
+        [
+          2617,
+          1
+        ],
+        [
+          2716,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "a nova tentativa não entra.",
+      "occurrences": [
+        [
+          2617,
+          1
+        ],
+        [
+          2739,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "a finalização não entra.",
+      "occurrences": [
+        [
+          2618,
+          1
+        ],
+        [
+          2731,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você encontra o gol.",
+      "occurrences": [
+        [
+          2630,
+          1
+        ],
+        [
+          2788,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você atualiza a referência antes do passe.",
+      "occurrences": [
+        [
+          2642,
+          2
+        ],
+        [
+          2656,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você acerta o gol e marca.",
+      "occurrences": [
+        [
+          2643,
+          0
+        ],
+        [
+          2782,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "a tentativa não entra.",
+      "occurrences": [
+        [
+          2643,
+          0
+        ],
+        [
+          2716,
+          1
+        ],
+        [
+          2718,
+          1
+        ],
+        [
+          2733,
+          3
+        ],
+        [
+          2782,
+          0
+        ],
+        [
+          2788,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "a bola encontra o companheiro.",
+      "occurrences": [
+        [
+          2644,
+          1
+        ],
+        [
+          2799,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você recupera a posse.",
+      "occurrences": [
+        [
+          2650,
+          3
+        ],
+        [
+          2669,
+          1
+        ],
+        [
+          2672,
+          1
+        ],
+        [
+          2679,
+          3
+        ],
+        [
+          2682,
+          3
+        ],
+        [
+          2686,
+          1
+        ],
+        [
+          2692,
+          3
+        ],
+        [
+          2706,
+          2
+        ],
+        [
+          2710,
+          1
+        ],
+        [
+          2713,
+          2
+        ],
+        [
+          2719,
+          1
+        ],
+        [
+          2722,
+          3
+        ],
+        [
+          2741,
+          1
+        ],
+        [
+          2747,
+          1
+        ],
+        [
+          2750,
+          2
+        ],
+        [
+          2777,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "você avisa sem indicar quem está entrando.",
+      "occurrences": [
+        [
+          2651,
+          3
+        ],
+        [
+          2699,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você intercepta a bola.",
+      "occurrences": [
+        [
+          2655,
+          3
+        ],
+        [
+          2664,
+          3
+        ],
+        [
+          2678,
+          1
+        ],
+        [
+          2691,
+          3
+        ],
+        [
+          2696,
+          3
+        ],
+        [
+          2699,
+          3
+        ],
+        [
+          2751,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você se reconecta à defesa.",
+      "occurrences": [
+        [
+          2660,
+          0
+        ],
+        [
+          2707,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você recupera a bola.",
+      "occurrences": [
+        [
+          2661,
+          0
+        ],
+        [
+          2663,
+          3
+        ],
+        [
+          2667,
+          3
+        ],
+        [
+          2670,
+          2
+        ],
+        [
+          2676,
+          1
+        ],
+        [
+          2684,
+          3
+        ],
+        [
+          2695,
+          1
+        ],
+        [
+          2697,
+          1
+        ],
+        [
+          2700,
+          1
+        ],
+        [
+          2703,
+          3
+        ],
+        [
+          2705,
+          3
+        ],
+        [
+          2711,
+          1
+        ],
+        [
+          2738,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar recuperar a bola",
+      "occurrences": [
+        [
+          2668,
+          1
+        ],
+        [
+          2714,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você ganha a disputa.",
+      "occurrences": [
+        [
+          2668,
+          1
+        ],
+        [
+          2752,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "disputar com o portador",
+      "occurrences": [
+        [
+          2670,
+          2
+        ],
+        [
+          2683,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar recuperar no toque exposto",
+      "occurrences": [
+        [
+          2671,
+          1
+        ],
+        [
+          2701,
+          2
+        ],
+        [
+          2720,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você tira a bola.",
+      "occurrences": [
+        [
+          2671,
+          1
+        ],
+        [
+          2683,
+          2
+        ],
+        [
+          2693,
+          1
+        ],
+        [
+          2698,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você mantém a faixa protegida.",
+      "occurrences": [
+        [
+          2673,
+          1
+        ],
+        [
+          2738,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você ganha a bola.",
+      "occurrences": [
+        [
+          2674,
+          3
+        ],
+        [
+          2740,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "conferir a preparação do portador",
+      "occurrences": [
+        [
+          2676,
+          2
+        ],
+        [
+          2711,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você ganha a posse.",
+      "occurrences": [
+        [
+          2677,
+          3
+        ],
+        [
+          2687,
+          1
+        ],
+        [
+          2694,
+          3
+        ],
+        [
+          2702,
+          2
+        ],
+        [
+          2708,
+          2
+        ],
+        [
+          2712,
+          0
+        ],
+        [
+          2764,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você acompanha o movimento real.",
+      "occurrences": [
+        [
+          2679,
+          1
+        ],
+        [
+          2762,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você corta a bola.",
+      "occurrences": [
+        [
+          2680,
+          3
+        ],
+        [
+          2707,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você reconhece a continuação possível.",
+      "occurrences": [
+        [
+          2681,
+          2
+        ],
+        [
+          2697,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "você segue só o portador e perde o apoio.",
+      "occurrences": [
+        [
+          2683,
+          0
+        ],
+        [
+          2697,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você mantém a profundidade coberta.",
+      "occurrences": [
+        [
+          2684,
+          0
+        ],
+        [
+          2708,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar interceptar o passe",
+      "occurrences": [
+        [
+          2684,
+          3
+        ],
+        [
+          2702,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você toma a bola.",
+      "occurrences": [
+        [
+          2690,
+          1
+        ],
+        [
+          2701,
+          2
+        ],
+        [
+          2720,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar recuperar a bola ao alcance",
+      "occurrences": [
+        [
+          2694,
+          3
+        ],
+        [
+          2746,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você vence a disputa.",
+      "occurrences": [
+        [
+          2709,
+          1
+        ],
+        [
+          2754,
+          0
+        ],
+        [
+          2762,
+          2
+        ],
+        [
+          2793,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "a bola segue com a equipe.",
+      "occurrences": [
+        [
+          2715,
+          1
+        ],
+        [
+          2770,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "o chute não entra.",
+      "occurrences": [
+        [
+          2717,
+          0
+        ],
+        [
+          2748,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você limita a progressão.",
+      "occurrences": [
+        [
+          2719,
+          0
+        ],
+        [
+          2741,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você reconhece uma opção concreta.",
+      "occurrences": [
+        [
+          2723,
+          2
+        ],
+        [
+          2745,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "a equipe mantém a posse.",
+      "occurrences": [
+        [
+          2724,
+          0
+        ],
+        [
+          2732,
+          0
+        ],
+        [
+          2781,
+          2
+        ],
+        [
+          2791,
+          0
+        ],
+        [
+          2795,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "confirmar uma tarefa com o colega",
+      "occurrences": [
+        [
+          2727,
+          1
+        ],
+        [
+          2796,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "usar o apoio disponível",
+      "occurrences": [
+        [
+          2731,
+          1
+        ],
+        [
+          2780,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "pedir atenção à próxima ação",
+      "occurrences": [
+        [
+          2732,
+          3
+        ],
+        [
+          2783,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar finalizar",
+      "occurrences": [
+        [
+          2733,
+          3
+        ],
+        [
+          2748,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você encontra o gol e marca.",
+      "occurrences": [
+        [
+          2733,
+          3
+        ],
+        [
+          2748,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "vocês evitam repetir a mesma corrida.",
+      "occurrences": [
+        [
+          2735,
+          2
+        ],
+        [
+          2786,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "a equipe mantém a bola.",
+      "occurrences": [
+        [
+          2736,
+          0
+        ],
+        [
+          2742,
+          0
+        ],
+        [
+          2786,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você reconhece a ameaça atual.",
+      "occurrences": [
+        [
+          2740,
+          2
+        ],
+        [
+          2796,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "atacar o espaço com a bola",
+      "occurrences": [
+        [
+          2743,
+          2
+        ],
+        [
+          2770,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "confirmar a próxima movimentação com o colega",
+      "occurrences": [
+        [
+          2745,
+          1
+        ],
+        [
+          2780,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "tentar recuperar a bola próxima",
+      "occurrences": [
+        [
+          2752,
+          1
+        ],
+        [
+          2793,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você acerta a cobrança e marca.",
+      "occurrences": [
+        [
+          2755,
+          0
+        ],
+        [
+          2759,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "você avança antes do momento permitido.",
+      "occurrences": [
+        [
+          2758,
+          0
+        ],
+        [
+          2766,
+          3
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "usar o apoio curto",
+      "occurrences": [
+        [
+          2761,
+          1
+        ],
+        [
+          2765,
+          0
+        ],
+        [
+          2770,
+          0
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você cria uma opção clara.",
+      "occurrences": [
+        [
+          2763,
+          0
+        ],
+        [
+          2781,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "indicar onde pode receber",
+      "occurrences": [
+        [
+          2763,
+          2
+        ],
+        [
+          2772,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "failure_text",
+      "text": "você se junta ao congestionamento.",
+      "occurrences": [
+        [
+          2774,
+          1
+        ],
+        [
+          2790,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você mantém a equipe conectada.",
+      "occurrences": [
+        [
+          2780,
+          1
+        ],
+        [
+          2794,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você reconhece o espaço real.",
+      "occurrences": [
+        [
+          2780,
+          2
+        ],
+        [
+          2788,
+          2
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "o passe mantém o ataque.",
+      "occurrences": [
+        [
+          2782,
+          1
+        ],
+        [
+          2794,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "a bola segue com o time.",
+      "occurrences": [
+        [
+          2785,
+          1
+        ],
+        [
+          2796,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "text",
+      "text": "preservar a referência do setor",
+      "occurrences": [
+        [
+          2789,
+          3
+        ],
+        [
+          2797,
+          1
+        ]
+      ]
+    },
+    {
+      "field": "success_text",
+      "text": "você reconhece uma ameaça concreta.",
+      "occurrences": [
+        [
+          2793,
+          0
+        ],
+        [
+          2798,
+          3
+        ]
+      ]
+    }
+  ],
+  "near_prompt_threshold": 0.4,
+  "near_prompts": [],
+  "note": "Jaccard é triagem lexical, não certificação de originalidade. Vetores mecânicos podem coincidir; não são contados como narrativas novas por isso."
+}
