@@ -119,6 +119,7 @@ $config=['project'=>'rumo10','repository'=>'rralvarez/rumo10','workflow_id'=>1,'
     'required_jobs'=>['compatibility'],'data_contracts'=>['rumo10-development-v3'],'baseline_data_contracts'=>['rumo10-development-v3'],
     'private'=>$root.'/private','current'=>$current,'public'=>$root.'/public','control'=>$root.'/control',
     'account_mutex'=>$root.'/mutex','apply_enabled'=>true,'php'=>PHP_BINARY,'update_policy'=>$policy,
+    'backup_roots'=>['env'=>$current.'/.env'],
     'pinned_controls'=>[$root.'/public/index.php'=>digest($root.'/public/index.php'),$root.'/public/.htaccess'=>digest($root.'/public/.htaccess')],
     'request_gate'=>['root'=>$root.'/gate','projects'=>['rumo10','rumohub'],'coverage_approved'=>true,
         'entrypoints'=>[$root.'/public/index.php'=>digest($root.'/public/index.php'),$root.'/public/.htaccess'=>digest($root.'/public/.htaccess')],'timeout_seconds'=>0],

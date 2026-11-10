@@ -10,6 +10,11 @@ final class UpdatePolicy {
 
   $transitionKey=($fromCommit!==null&&$toCommit!==null)?"{$fromCommit}:{$toCommit}":null;
   $transition=($transitionKey!==null)?($policy['authorized_transitions'][$transitionKey]??null):null;
+  if($transition!==null) {
+   need(is_array($transition) && ($transition['from_release']??null)===$fromCommit &&
+    ($transition['to_release']??null)===$toCommit && ($transition['requires_full_drain']??false)===true,
+    'Invalid transition policy: full drain and exact release pair required');
+  }
   $allowedProtected=$transition['allowed_protected_paths']??[];
   $allowedDeletions=$transition['allowed_deletions']??[];
 
@@ -31,7 +36,7 @@ final class UpdatePolicy {
   }
   $compatible=false;
   foreach($jobs as $job)if(($job['name']??'')==='compatibility'&&($job['status']??'')==='completed'&&($job['conclusion']??'')==='success')$compatible=true;
-  $requiresFullDrain=($class==='C')||(($transition['requires_full_drain']??false)===true);
+  $requiresFullDrain=($class==='C')||$transition!==null;
   return ['class'=>$class,'changed'=>$changed,'migrations'=>$migrations,'reasons'=>$reasons,'requires_full_drain'=>$requiresFullDrain,'compatible_writers_ci'=>$compatible,'transition'=>$transition['label']??null];
  }
  public static function maintenance(array $receipt,array $policy):void{
