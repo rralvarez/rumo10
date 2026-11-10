@@ -10,6 +10,23 @@ def permitted(p,project):
  if p.startswith(("database/production/","public/assets/clubs/")) or p=="public/web.config":return False
  if project=="rumo10" and (p.startswith("database/rosters/") or p=="database/player-catalog.json"):return False
  return True
+
+def require_git_bytes(repo,commit,project,files):
+ entries=subprocess.check_output(["git","-C",str(repo),"ls-tree","-rz","--full-tree",commit]).split(b"\0")
+ expected=set()
+ for entry in filter(None,entries):
+  header,raw_path=entry.split(b"\t",1)
+  path=raw_path.decode("utf-8")
+  if not permitted(path,project):continue
+  mode,kind,oid=header.split()
+  if mode not in (b"100644",b"100755") or kind!=b"blob":raise ValueError("Unsafe Git runtime object: "+path)
+  data=files.get(path)
+  if data is None:raise ValueError("Git runtime path omitted from archive: "+path)
+  blob=hashlib.sha1(f"blob {len(data)}\0".encode()+data).hexdigest().encode()
+  if blob!=oid:raise ValueError("Archived runtime differs from Git blob: "+path)
+  expected.add(path)
+ if expected!=files.keys():raise ValueError("Archived runtime inventory differs from Git tree")
+
 def produce(repo,commit,project,metadata,out,*,functional_reference=None):
  if not re.fullmatch("[a-f0-9]{40}",commit):raise ValueError("full commit SHA required")
  actual=subprocess.check_output(["git","-C",str(repo),"rev-parse",commit+"^{commit}"],text=True).strip()
@@ -26,6 +43,7 @@ def produce(repo,commit,project,metadata,out,*,functional_reference=None):
    files[m.name]=data
  tree.unlink()
  if project=="rumo10" and functional_reference is not None:
+  require_git_bytes(repo,commit,project,files)
   actual_reference=subprocess.check_output(["git","-C",str(repo),"rev-parse",functional_reference+"^{commit}"],text=True).strip()
   if actual_reference!=functional_reference:raise ValueError("Exact functional reference required")
   subprocess.run(["git","-C",str(repo),"diff","--quiet",functional_reference,commit,"--","app","database","public"],check=True)
