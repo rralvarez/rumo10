@@ -1,0 +1,16 @@
+/.git/config : 404 OK
+/README.md : 404 OK
+/assets/bootstrap.min.css : 200 OK
+/.env : 404 OK
+/database/migrations : 404 OK
+/app/Config : 404 OK
+/assets/game.css : 200 OK
+/ : 200 OK
+/assets/game.js : 200 OK
+/nao-existe : 404 OK
+/tests/run.php : 404 OK
+/clubes : 404 OK
+/login : 200 OK
+/register : 200 OK
+/api/carreira/estado : 401 OK
+CSRF e método inválidos: OK

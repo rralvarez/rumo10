@@ -31,6 +31,18 @@ final class PlayMode {
                 $g=Game::command($g,'continue',[],true);continue;
             }
             if($mode==='rapido' && $played && $g['stage']==='treino')break;
+            // A disputa pendente bloqueia escolhas narrativas; usar o fluxo de penalidades existente.
+            if($g['stage']==='fim_semana' && PenaltyShootout::requiresShootout($g,$g['matches'][Game::currentIndex($g)])) {
+                $g=Game::command($g,'shootout_start',[],true);continue;
+            }
+            if($g['stage']==='penaltis') {
+                if(($g['shootout']['status']??'')==='completed')$g=Game::command($g,'shootout_finish',[],true);
+                elseif(PenaltyShootout::isProtagonistTurn($g)){
+                    $choices=Game::choices($g);$best=0;foreach($choices as $j=>$choice)if($choice['chance']>$choices[$best]['chance'])$best=$j;
+                    $g=Game::command($g,'choice',['option'=>$best],true);$decisions++;
+                }else $g=Game::command($g,'shootout_advance',[],true);
+                continue;
+            }
             if($g['stage']==='partida') {
                 $m=$g['matches'][Game::currentIndex($g)];
                 $advance=$m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'];
@@ -42,11 +54,11 @@ final class PlayMode {
             // Capture o jogo antes de afterWeekend mudar calendário/fase.
             if($g['stage']==='fim_semana') {
                 $m=$g['matches'][Game::currentIndex($g)];
-                $played[]=['home'=>$m['home'],'away'=>$m['away'],'hg'=>$m['hg'],'ag'=>$m['ag'],'stats'=>$m['stats'],'log'=>$m['log'],'competition'=>Competition::label($g)];
+                $played[]=['home'=>$m['home'],'away'=>$m['away'],'hg'=>$m['hg'],'ag'=>$m['ag'],'stats'=>$m['stats'],'log'=>$m['log'],'competition'=>Competition::label($g),'experience'=>$m['experience']??null];
             }
             $context=['stage'=>$g['stage'],'round'=>$g['round'],'competition'=>$g['competition_id']??'legacy','minute'=>$g['stage']==='partida'?$g['matches'][Game::currentIndex($g)]['minute']:null];
             $g=Game::command($g,$action,$input,true);
-            if($action==='choice')$attempts[]=$context+array_intersect_key($g['feedback']??[],array_flip(['situation','option','chance','roll','intensity_roll','success','class','effects','rules','conversion_chance','conversion_roll']));
+            if($action==='choice')$attempts[]=$context+array_intersect_key($g['feedback']??[],array_flip(['situation','option','chance','roll','intensity_roll','success','class','effects','rules','conversion_chance','conversion_roll','narrative_selection','probability_trace']));
         }
         if($step===3000)throw new RuntimeException('A simulação excedeu o limite seguro; nada foi salvo.');
         $after=Game::summary($g);$growth=[];
@@ -61,16 +73,16 @@ final class PlayMode {
             $score=0.;$effects=$o['effects'];
             if($g['stage']==='partida') {
                 $preferred=$plan==='coletivo'?'passe':(in_array($g['position'],['zagueiro','lateral','volante'],true)?'desarme':'chute');
-                if(in_array($plan,['protagonismo','coletivo'],true))$score+=($o['action']===$preferred?30:0);
+                if(in_array($plan,['protagonismo','coletivo'],true)||(PlayerDevelopment::enabled($g)&&$plan==='evolucao'))$score+=($o['action']===$preferred?30:0);
                 elseif($plan==='equilibrio')$score+=Game::chance($g,$o)/2;
                 // Evolução varia a prática e nunca força uma ação inexistente no contexto.
             }
             foreach($effects as $key=>$delta) {
                 if(isset($g['skills'][$key]))$score+=max(0,$delta)*($plan==='evolucao'?4:1);
                 elseif(str_starts_with($key,'risco_'))$score-=$delta*2;
-                elseif($key==='energia')$score+=$delta*($plan==='equilibrio' || $g['states']['energia']<40?3:1);
+                elseif($key==='energia')$score+=$delta*($plan==='equilibrio' || $g['states']['energia']<40?3:(PlayerDevelopment::enabled($g)&&$plan==='evolucao'?.15:1));
                 elseif($key==='entrosamento')$score+=$delta*($plan==='coletivo'?3:1);
-                else $score+=$delta;
+                else $score+=$delta*(PlayerDevelopment::enabled($g)&&$plan==='evolucao'?.15:1);
             }
             $scores[$i]=$score;
         }
@@ -91,12 +103,14 @@ final class PlayMode {
         $last=$r['matches']?end($r['matches']):null;
         if($r['mode']==='rapido' && $last) {
             echo '<h2>'.e($last['home'].' '.$last['hg'].' × '.$last['ag'].' '.$last['away']).'</h2><p>Você: '.e($last['stats']['goals']).' gols · '.e($last['stats']['assists']).' assistências · '.e($last['stats']['minutes']).' min · nota '.e($last['stats']['rating']).'</p>';
+            MatchExperience::render($last);
             if(!$last['stats']['minutes'])echo '<p>Você não entrou em campo nesta partida.</p>';
         } else echo '<h2>'.count($r['matches']).' jogos simulados</h2><p>Temporada '.$r['season'].' · '.e(self::PLANS[$r['plan']][0]).'</p><p>'.e($r['after']['goals']).' gols · '.e($r['after']['assists']).' assistências · nota média '.e($r['after']['average']).'</p>';
         foreach($r['growth'] as $key=>$value)echo '<span class="effect-chip">'.e(ucfirst(str_replace('_',' ',$key))).' +'.e($value).'</span> ';
         echo '<details><summary>Ver jogos e destaques</summary>';
         foreach($r['matches'] as $m) {
             echo '<p><b>'.e($m['home'].' '.$m['hg'].' × '.$m['ag'].' '.$m['away']).'</b><br><small>'.e($m['competition']).' · você: '.e($m['stats']['goals']).' gols, '.e($m['stats']['assists']).' assistências</small></p>';
+            if($r['mode']==='expresso')MatchExperience::render($m);
             foreach($m['log'] as $l)if(str_contains($l['text'],'Gol do seu jogador!') || str_contains($l['text'],'assistência!'))echo '<p class="pace-highlight">'.e($l['minute']).'′ '.e($l['text']).'</p>';
         }
         echo '</details></article>';

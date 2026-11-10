@@ -1,0 +1,10 @@
+{
+  "schema": "approved-frozen-release-v1",
+  "project": "rumo10",
+  "repository": "rralvarez/rumo10",
+  "package_sha256": "8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458",
+  "application_base_commit": "820187b78ba5ddac336df8fc333cdf69c8ec8e3c",
+  "data_contracts": [
+    "rumo10-development-v3"
+  ]
+}

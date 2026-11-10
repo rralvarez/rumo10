@@ -2,6 +2,7 @@
 declare(strict_types=1);
 final class Progression {
  public static function season(array &$g):void {
+  if(PlayerDevelopment::enabled($g)){PlayerDevelopment::season($g);return;}
   $key='development:'.$g['season'];if(isset($g['reward_ledger'][$key]))return;
   $games=0;$minutes=0;$ratings=0.;$contributions=0.;$def=in_array($g['position'],['zagueiro','lateral','volante'],true);
   foreach(Competition::playerMatches($g) as $m){$s=$m['stats']??[];if(($m['balance_version']??0)!==MatchBalance::VERSION || $m['status']!=='finalizada' || !($s['minutes']??0) || !in_array($g['club'],[$m['home'],$m['away']],true))continue;
@@ -15,13 +16,14 @@ final class Progression {
   self::distribute($g,$remaining,$key);$g['reward_ledger'][$key]+=['quality'=>round($quality,3),'qualified_games'=>$games,'minutes'=>$minutes];
  }
  public static function distribute(array &$g,int $total,string $key):void {
+  if(PlayerDevelopment::enabled($g)){PlayerDevelopment::distribute($g,$total,$key);return;}
   if(isset($g['reward_ledger'][$key]))return;$g['reward_ledger'][$key]=['base_xp'=>$total,'rules'=>Rules::VERSION];
   $order=match($g['position']){'zagueiro'=>['desarme','posicionamento','forca'],'lateral'=>['velocidade','passe','resistencia'],'volante'=>['posicionamento','desarme','passe'],'meia'=>['passe','visao_jogo','posicionamento'],'ponta'=>['drible','velocidade','finalizacao'],default=>['finalizacao','posicionamento','forca']};
   $skills=array_values(array_unique(array_merge($order,Rules::SKILLS)));
   foreach($skills as $i=>$skill){$xp=intdiv($total,count($skills))+(int)($i<$total%count($skills));if($xp)Evolution::gain($g,$skill,$xp);}
  }
  public static function match(array &$g,array $m):void {
-  if(($m['balance_version']??0)!==MatchBalance::VERSION || !$m['stats']['minutes'])return;
+  if((PlayerDevelopment::enabled($g)?!in_array($m['balance_version']??0,[2,3],true):($m['balance_version']??0)!==MatchBalance::VERSION) || !$m['stats']['minutes'])return;
   $s=$m['stats'];$quality=max(0,min(1,($s['rating']-5.8)/2.2));
   $total=(int)round(($s['minutes']/90)*(2+18*$quality)+min(3,$s['goals']+$s['assists']+$s['tackles']*.35));
   self::distribute($g,$total,'match:'.$g['season'].':'.($g['competition_id']??'legacy').':'.$m['round'].':'.$m['home'].':'.$m['away']);

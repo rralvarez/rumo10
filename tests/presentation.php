@@ -23,7 +23,7 @@ if(in_array('--render',$argv??[],true)) { echo renderSample(in_array('--finished
 $g=sampleGame();
 if(Game::summary($g)['goals']!==2) throw new RuntimeException('Resumo inclui gol de partida em andamento.');
 $html=renderSample();
-if(!preg_match('#<nav[^>]*>.*<a class="new-career-link" href="/carreira/nova">Nova carreira</a>.*</nav>#s',$html)) throw new RuntimeException('Nova carreira deve estar no menu durante a partida.');
+if(!preg_match('#<nav\b[^>]*>(.*?)</nav>#s',$html,$nav) || !preg_match('#<a\b[^>]*class="([^"]*\bnew-career-link\b[^"]*)"[^>]*href="/carreira/nova"[^>]*>(.*?)</a>#s',$nav[1],$newCareer) || !in_array('menu-item',preg_split('/\s+/',trim($newCareer[1])),true) || trim(strip_tags($newCareer[2]))!=='Nova carreira') throw new RuntimeException('Nova carreira deve estar acessível no menu durante a partida.');
 foreach(['result-success','data-stat="goals">2','Habilidades e evolução','Confiança +5','O adversário se aproxima. O que você faz?'] as $text) if(!str_contains($html,$text)) throw new RuntimeException('Componente ausente: '.$text);
 if(str_contains($html,'Rádio do jogo') || str_contains($html,'Ver efeitos') || str_contains($html,'href="/clubes"') || str_contains($html,'SEU DESEMPENHO NESTA PARTIDA')) throw new RuntimeException('Partida contém painel ou menu que deveria ser removido.');
 if(str_contains($html,'/10000') || str_contains($html,'oportunidade como')) throw new RuntimeException('Detalhes técnicos ou posição redundante na narrativa.');

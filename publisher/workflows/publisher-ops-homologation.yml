@@ -1,0 +1,93 @@
+# TEMPLATE: not installed. Manual CI only; no UOL credentials, maintenance or deploy.
+name: publisher-ops-homologation
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Successful run containing the approved frozen input
+        required: true
+        type: string
+      source_artifact_id:
+        description: Artifact ID in this same repository
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: publisher-ops-homologation-${{ github.repository }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PHP_BIN: php
+      PUBLISHER_TEST_PROJECT: rumo10
+      REPRESENTATIVE_RUMO10: ${{ github.workspace }}/.publisher-approved-input/rumo10-entrega62-selective.tar.gz
+      APPROVED_RELEASE62_ARCHIVE: ${{ github.workspace }}/.publisher-approved-input/rumo10-entrega62-selective.tar.gz
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: '8.4'
+          extensions: curl, openssl, sqlite3, pdo_sqlite, mbstring
+          coverage: none
+      - name: Validate source metadata without mutating GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.source_run_id }}
+          SOURCE_ARTIFACT: ${{ inputs.source_artifact_id }}
+        run: |
+          python3 - <<'PY'
+          import os,json,urllib.request
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs):return None
+          opener=urllib.request.build_opener(NoRedirect())
+          repo=os.environ['GITHUB_REPOSITORY']
+          if repo!='rralvarez/rumo10':raise SystemExit('Unapproved repository')
+          ids=[os.environ['SOURCE_RUN'],os.environ['SOURCE_ARTIFACT']]
+          if not all(v.isdigit() and int(v)>0 for v in ids):raise SystemExit('Invalid IDs')
+          def get(path):
+              q=urllib.request.Request('https://api.github.com/repos/'+repo+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','User-Agent':'Rumo-ci-homologation'})
+              with opener.open(q,timeout=20) as f:return json.load(f)
+          run=get('/actions/runs/'+ids[0]);artifact=get('/actions/artifacts/'+ids[1])
+          if run.get('status')!='completed' or run.get('conclusion')!='success':raise SystemExit('Source run not approved')
+          if run.get('repository',{}).get('full_name')!=repo:raise SystemExit('Wrong source repository')
+          if artifact.get('expired') or artifact.get('workflow_run',{}).get('id')!=int(ids[0]):raise SystemExit('Expired or unrelated artifact')
+          if artifact['workflow_run'].get('head_sha')!=run.get('head_sha'):raise SystemExit('Source SHA mismatch')
+          print('Source metadata validated; no production access')
+          PY
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          artifact-ids: ${{ inputs.source_artifact_id }}
+          run-id: ${{ inputs.source_run_id }}
+          repository: ${{ github.repository }}
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: ${{ github.workspace }}/.publisher-approved-input
+      - name: Require the exact approved frozen bytes
+        run: |
+          python3 - <<'PY'
+          import os,pathlib,hashlib
+          p=pathlib.Path(os.environ['APPROVED_RELEASE62_ARCHIVE'])
+          if p.is_symlink() or not p.is_file():raise SystemExit('Approved TAR missing')
+          if hashlib.sha256(p.read_bytes()).hexdigest()!='caec057a8acc65ce58df9f7f4243082fdd8fe069e445c57f937b68609d633378':raise SystemExit('Approved TAR digest mismatch')
+          PY
+      - name: Run receiver drain recovery and QA suites in runner sandbox
+        run: python3 publisher/tests/run.py
+      - name: Verify frozen sealer without publishing an operational artifact
+        run: python3 publisher/tests/seal-approved.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: publisher-ops-validation-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            publisher/evidence/*.json
+            publisher/evidence/*.log
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 7

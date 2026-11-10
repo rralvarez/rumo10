@@ -1,0 +1,5 @@
+{
+  "checks": 46,
+  "errors": [],
+  "transport": "Real PHP renderer, memory transport; not IIS"
+}

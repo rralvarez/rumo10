@@ -1,0 +1,12 @@
+{
+  "chance": {
+    "unchanged": false,
+    "sha256": "d88979c80ac80b6af512da93b3481b372f9db307ee42e98bb1acbc15e12db305",
+    "intentional_v04": true
+  },
+  "effects": {
+    "unchanged": true,
+    "sha256": "314034ca20304d7fbe97e9b2a33c11f2a0f54947ab86c693a863abe3fc5603fe",
+    "intentional_v04": false
+  }
+}

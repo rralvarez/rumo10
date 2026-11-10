@@ -23,7 +23,7 @@ final class Wheel {
         echo '<div class="wheel-stage"><span class="wheel-pointer" aria-hidden="true"></span><div class="wheel-rim"><svg class="wheel-rotor" viewBox="0 0 360 360" role="img" aria-label="Roleta de carreira com setores proporcionais aos pesos"><defs><radialGradient id="wheel-light"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".65" stop-color="#ffffff" stop-opacity=".06"/><stop offset="1" stop-color="#000000" stop-opacity=".35"/></radialGradient></defs><g transform="rotate('.e($target).' 180 180)">';
         foreach($segments as $i=>$s) {
             $a=deg2rad($s['start']-90); $b=deg2rad($s['start']+$s['span']-90); $mid=deg2rad($s['mid']-90);
-            $d=sprintf('M180 180 L%.4f %.4f A164 164 0 %d 1 %.4f %.4f Z',180+164*cos($a),180+164*sin($a),$s['span']>180?1:0,180+164*cos($b),180+164*sin($b));
+            $d=$s['span']>=359.999?'M180 16 A164 164 0 1 1 180 344 A164 164 0 1 1 180 16 Z':sprintf('M180 180 L%.4f %.4f A164 164 0 %d 1 %.4f %.4f Z',180+164*cos($a),180+164*sin($a),$s['span']>180?1:0,180+164*cos($b),180+164*sin($b));
             $color=$s['better']?'#49683c':$palette[$i%count($palette)];
             echo '<path d="'.e($d).'" fill="'.$color.'" stroke="#b2c9c3" stroke-opacity=".28" stroke-width="1.5"><title>'.e($s['name']).'</title></path>';
             echo '<text x="'.e(180+115*cos($mid)).'" y="'.e(180+115*sin($mid)).'" fill="#edf5ed" font-size="19" font-weight="700" text-anchor="middle" dominant-baseline="central">'.e(sprintf('%02d',$s['number'])).'</text>';

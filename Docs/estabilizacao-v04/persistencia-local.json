@@ -1,0 +1,108 @@
+{
+    "checks": 17,
+    "transport": "PDO MySQL local, transação externa, commits\/rollbacks internos de teste suprimidos e rollback externo final",
+    "concurrency": "Contenção real de lock em duas conexões e retries sequenciais; sem dois POSTs HTTP simultâneos confirmados",
+    "real_data": "Contagens preservadas; nenhuma gravação de fixture confirmada",
+    "times": {
+        "scene_1": {
+            "elapsed_ms": 12.7236,
+            "components": {
+                "mysql": {
+                    "count": 35,
+                    "ms": 5.645900000000001
+                },
+                "load": {
+                    "count": 1,
+                    "ms": 0.6365
+                },
+                "scene_selection": {
+                    "count": 1,
+                    "ms": 0.3596
+                },
+                "engine": {
+                    "count": 1,
+                    "ms": 6.0105
+                },
+                "save": {
+                    "count": 1,
+                    "ms": 4.7118
+                }
+            }
+        },
+        "scene_2000": {
+            "elapsed_ms": 7.207,
+            "components": {
+                "mysql": {
+                    "count": 35,
+                    "ms": 5.488900000000001
+                },
+                "load": {
+                    "count": 1,
+                    "ms": 0.7845
+                },
+                "scene_selection": {
+                    "count": 1,
+                    "ms": 0.3319
+                },
+                "engine": {
+                    "count": 1,
+                    "ms": 0.683
+                },
+                "save": {
+                    "count": 1,
+                    "ms": 4.4108
+                }
+            }
+        },
+        "offers": {
+            "elapsed_ms": 12.0429,
+            "components": {
+                "mysql": {
+                    "count": 35,
+                    "ms": 5.3651
+                },
+                "load": {
+                    "count": 1,
+                    "ms": 0.6776
+                },
+                "scene_selection": {
+                    "count": 1,
+                    "ms": 0.0061
+                },
+                "engine": {
+                    "count": 1,
+                    "ms": 5.7058
+                },
+                "save": {
+                    "count": 1,
+                    "ms": 3.9555
+                }
+            }
+        },
+        "season_change": {
+            "elapsed_ms": 7.8384,
+            "components": {
+                "mysql": {
+                    "count": 35,
+                    "ms": 6.2547999999999995
+                },
+                "load": {
+                    "count": 1,
+                    "ms": 0.596
+                },
+                "scene_selection": {
+                    "count": 1,
+                    "ms": 0.3828
+                },
+                "engine": {
+                    "count": 1,
+                    "ms": 0.4812
+                },
+                "save": {
+                    "count": 1,
+                    "ms": 4.6909
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,432 @@
+{
+  "checks": 33,
+  "rows": [
+    {
+      "id": 2000,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 298.921875,
+        "navTop": 575,
+        "panelHeight": 483.78125,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2005,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 298.921875,
+        "navTop": 575,
+        "panelHeight": 483.78125,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2010,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 299.09375,
+        "navTop": 575,
+        "panelHeight": 515.953125,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2015,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 524.125,
+        "navTop": 575,
+        "panelHeight": 394.5,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2040,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 524.125,
+        "navTop": 575,
+        "panelHeight": 394.5,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2075,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 524.015625,
+        "navTop": 575,
+        "panelHeight": 413.390625,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2090,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 508.765625,
+        "navTop": 575,
+        "panelHeight": 559.125,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2095,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 498.796875,
+        "navTop": 575,
+        "panelHeight": 524.15625,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2350,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 299.09375,
+        "navTop": 575,
+        "panelHeight": 515.953125,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2428,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 508.578125,
+        "navTop": 575,
+        "panelHeight": 533.9375,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2479,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 299.28125,
+        "navTop": 575,
+        "panelHeight": 527.640625,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2564,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 309.09375,
+        "navTop": 575,
+        "panelHeight": 502.453125,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2642,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 523.609375,
+        "navTop": 575,
+        "panelHeight": 434.984375,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2719,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 524.125,
+        "navTop": 575,
+        "panelHeight": 394.5,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2754,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 523.5,
+        "navTop": 575,
+        "panelHeight": 453.875,
+        "viewport": 640
+      }
+    },
+    {
+      "id": 2000,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 658.890625,
+        "navTop": 779,
+        "panelHeight": 432.046875,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2005,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 658.890625,
+        "navTop": 779,
+        "panelHeight": 432.046875,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2010,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 700.84375,
+        "navTop": 779,
+        "panelHeight": 474,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2015,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 625.65625,
+        "navTop": 779,
+        "panelHeight": 375.53125,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2040,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 640.0625,
+        "navTop": 779,
+        "panelHeight": 389.9375,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2075,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 632.84375,
+        "navTop": 779,
+        "panelHeight": 382.71875,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2090,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 726.109375,
+        "navTop": 779,
+        "panelHeight": 479.40625,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2095,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 726.109375,
+        "navTop": 779,
+        "panelHeight": 479.40625,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2350,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 710.625,
+        "navTop": 779,
+        "panelHeight": 483.78125,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2428,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 730.671875,
+        "navTop": 779,
+        "panelHeight": 498.96875,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2479,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 720.484375,
+        "navTop": 779,
+        "panelHeight": 473.78125,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2564,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 710.703125,
+        "navTop": 779,
+        "panelHeight": 464,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2642,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 661.625,
+        "navTop": 779,
+        "panelHeight": 411.5,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2719,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 654.4375,
+        "navTop": 779,
+        "panelHeight": 404.3125,
+        "viewport": 844
+      }
+    },
+    {
+      "id": 2754,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "horizontal": false,
+        "lastBottom": 654.4375,
+        "navTop": 779,
+        "panelHeight": 404.3125,
+        "viewport": 844
+      }
+    },
+    {
+      "zoom": "150% CSS",
+      "id": 2095
+    }
+  ],
+  "doubleSubmitPosts": 1,
+  "browser": "Chrome headless, HTML real renderizado por PHP CLI; transporte simulado em memória, sem rede/banco",
+  "note": "Interface real app/view.php e CSS/JS vigentes. Loopback de servidor PHP bloqueado neste ambiente; não é teste de servidor IIS/Apache nem celular físico."
+}

@@ -1,0 +1,41 @@
+{
+  "checks": 18,
+  "rows": [
+    {
+      "width": 320,
+      "mode": "post",
+      "overflow": false,
+      "reduced_motion": true
+    },
+    {
+      "width": 320,
+      "mode": "room",
+      "overflow": false,
+      "reduced_motion": true
+    },
+    {
+      "width": 390,
+      "mode": "post",
+      "overflow": false,
+      "reduced_motion": true
+    },
+    {
+      "width": 390,
+      "mode": "room",
+      "overflow": false,
+      "reduced_motion": true
+    },
+    {
+      "width": 1280,
+      "mode": "post",
+      "overflow": false,
+      "reduced_motion": true
+    },
+    {
+      "width": 1280,
+      "mode": "room",
+      "overflow": false,
+      "reduced_motion": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "reason": "A coorte de equilíbrio da execução integral não exercitou gols/assistências; ampliação necessária para cobrir protagonismo e coletivo.",
+  "command": "php -n -d extension=mbstring -d memory_limit=768M tests/narrative-modes.php",
+  "exit": 0,
+  "stdout": "OK: 162 temporadas, 2268 partidas reconciliadas, 12116 decisões automáticas com seleção auditada.",
+  "environment": "PHP CLI local; sem rede, banco ou Hub",
+  "evidence": "coortes-modos.json",
+  "catalog_target_assertions": {
+    "command": "php -n -d extension=mbstring -d memory_limit=768M tests/narrative.php",
+    "exit": 0,
+    "stdout": "OK: 89821 verificações; 214 snapshots antigos, 800 novas, seis posições, 500 rodadas por posição."
+  },
+  "note": "suites.json preserva a execução integral anterior de 18 suítes; esta ampliação foi executada depois, sem mudanças no motor. Comando completo com extension_dir e caminho PHP no relatório 42."
+}

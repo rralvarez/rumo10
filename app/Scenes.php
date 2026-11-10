@@ -6,6 +6,9 @@ final class Scenes {
         foreach(require dirname(__DIR__).'/database/situations.php' as $id=>$s)$all[$id]=['id'=>$id,'stage'=>$s[0],'text'=>$s[1],'legacy'=>$s];
         foreach(json_decode(file_get_contents(dirname(__DIR__).'/database/scenes.json'),true,512,JSON_THROW_ON_ERROR) as $s)$all[$s['id']]=$s;
         foreach([1200=>'Você começa no banco. O treinador diz que pode chamar você para mudar o ritmo do jogo.',1201=>'A comissão planeja colocar você no segundo tempo e pede que fique pronto para entrar.'] as $id=>$text)$all[$id]=['id'=>$id,'stage'=>'pre_jogo','text'=>$text,'bench'=>true,'options'=>[['code'=>'apoio','text'=>'Apoiar quem começa jogando'],['code'=>'tatico','text'=>'Observar o adversário enquanto espera'],['code'=>'disciplina','text'=>'Seguir o aquecimento combinado'],['code'=>'reclamar','text'=>'Reclamar por ter ficado no banco']]];
+        $metadata=json_decode(file_get_contents(dirname(__DIR__).'/database/scenes-legacy-metadata.json'),true,512,JSON_THROW_ON_ERROR);
+        foreach($all as $id=>&$s){$s['module']=$metadata[$id]['module'];$s['family']=$metadata[$id]['family'];$s['blocked_context']=$metadata[$id]['blocked_context'];}unset($s);
+        foreach(NarrativeCatalog::all() as $id=>$s){if(isset($all[$id]))throw new LogicException('ID narrativo colide com legado');$all[$id]=$s;}
         return $all;
     }
     private static function bench(array $g): bool {return $g['states']['energia']<40 || $g['states']['confianca_treinador']<35 || $g['round']%4===0;}
@@ -19,9 +22,14 @@ final class Scenes {
             $m=$g['matches'][Game::currentIndex($g)];
             if($m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'])return [];
         }
-        $pool=[];
+        $pool=[];$context=NarrativeContext::values($g);
         foreach(self::catalog() as $id=>$s) {
             if($s['stage']!==$g['stage'])continue;
+            if($id>=2000){if(NarrativeContext::allows($s,$g,$context))$pool[]=$id;continue;}
+            if(!empty($s['blocked_context']))continue;
+            if($g['stage']==='pre_jogo' && in_array($id,[6,1200,1201],true) && empty($context['bench']))continue;
+            if($id===1051 && empty($context['team_results_bad']))continue;
+            if($id===1075 && empty($context['last_performance_bad']))continue;
             if($g['stage']==='pre_jogo' && (bool)($s['bench']??($id===6))!==self::bench($g))continue;
             if(in_array($id,[10,11],true))continue; // Não presumir patrocinador ou rival confirmado.
             if($g['stage']==='partida') {
@@ -39,16 +47,19 @@ final class Scenes {
     public static function prepare(array &$g): void {
         $g['story_seed']??=bin2hex(random_bytes(16));$key=self::key($g);
         if(($g['active_situation']['key']??'')===$key)return;
-        $pool=self::eligible($g);if(!$pool){unset($g['active_situation']);return;}
-        $seen=$g['seen_situations'][$g['stage']]??[];$fresh=array_values(array_diff($pool,array_slice($seen,-10)));if($fresh)$pool=$fresh;
-        $hash=hash('sha256',$g['story_seed'].':'.$key);$id=$pool[hexdec(substr($hash,0,7))%count($pool)];
-        $g['active_situation']=['id'=>$id,'key'=>$key];
+        $pool=self::eligible($g);
+        if(!$pool && (!in_array($g['stage'],['treino','pre_jogo','partida','fim_semana'],true) || ($g['stage']==='partida' && empty(NarrativeContext::values($g)['on_field'])))){unset($g['active_situation']);return;}
+        $selected=NarrativeSelection::select($g,$pool,self::catalog());$id=$selected['id'];
+        $g['active_situation']=$selected+['key'=>$key];
+        if($id>=2000 && !isset($g['active_situation']['snapshot']))$g['active_situation']['snapshot']=self::catalog()[$id];
     }
     public static function remember(array &$g,?array $s): void {
         if(!$s)return;$g['seen_situations'][$g['stage']][]=$s['id'];$g['seen_situations'][$g['stage']]=array_slice($g['seen_situations'][$g['stage']],-24);
+        NarrativeSelection::remember($g,$s);
     }
     public static function current(array $g): ?array {
         $active=$g['active_situation']??null;if(!$active || $active['key']!==self::key($g))return null;
+        if($active['id']>=2000){$s=$active['snapshot']??(self::catalog()[$active['id']]??null);return $s?['id'=>$s['id'],'text'=>$s['text'],'options'=>$s['options'],'bench'=>(bool)($s['gating']['bench']??false),'module'=>$s['module'],'family'=>$s['family']]:null;}
         $s=self::catalog()[$active['id']];
         static $failures;$failures??=require dirname(__DIR__).'/database/scene-failures.php';
         if(isset($s['legacy'])) {

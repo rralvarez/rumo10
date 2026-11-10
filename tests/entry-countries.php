@@ -8,6 +8,7 @@ $countries=EntryCountries::countries();entryCountryCheck(isset($countries['BR'],
 foreach($countries as $country=>$label){
     entryCountryCheck(EntryCountries::validate($country,'pago')===$country,'Pago acessa país do catálogo.');
     if($country!=='BR')entryCountryCheck(entryCountryRejected(fn()=>EntryCountries::validate($country,'gratuito')),'Gratuito não inicia no exterior.');
+    if(!EntryCountries::entryStatus($country)['valid']){entryCountryCheck(entryCountryRejected(fn()=>EntryCountries::create('Teste países','São Paulo','SP','meia',$country,'pago')),'Nova carreira sem continuidade é bloqueada antes de persistir.');continue;}
     $g=EntryCountries::create('Teste países','São Paulo','SP','meia',$country,'pago');entryCountryCheck($g['stage']==='handicap' && $g['club']==='Sem clube' && !$g['initial_candidates'],'Criação vem antes da roleta e das ofertas.');
     $g=Game::command($g,'handicap');entryCountryCheck($g['stage']==='clube_inicio' && count($g['initial_candidates'])>=1 && count($g['initial_candidates'])<=3,'Até três clubes após roleta.');
     foreach($g['initial_candidates'] as $offer){entryCountryCheck(TransferMarket::country($offer['club'])===$country,'Oferta pertence ao país escolhido.');entryCountryCheck(in_array($offer['club'],Competition::catalog()[$g['entry_division']]['teams'],true),'Oferta pertence à divisão selecionada.');}
@@ -24,7 +25,7 @@ $_POST=[];ob_start();CreationForm::render('/carreira/nova',null,'gratuito');$fre
 preg_match('/<select name="country".*?<\/select>/s',$free,$match);entryCountryCheck(substr_count($match[0],'<option')===1 && str_contains($match[0],'value="BR"'),'Formulário gratuito só permite Brasil.');
 preg_match('/<select name="country".*?<\/select>/s',$paid,$match);entryCountryCheck(substr_count($match[0],'<option')===count($countries),'Pago vê todos os países disponíveis.');
 entryCountryCheck(!str_contains($free,'name="club"') && !str_contains($paid,'name="club"'),'Clube não é escolhido antes da roleta.');
-echo "OK: $checks verificações, ".count($countries)." países, planos, fluxo e ofertas.\n";
+echo "OK: $checks verificações, ".count($countries)." países inventariados; destinos válidos, bloqueios, planos e ofertas.\n";
 if(in_array('--mysql',$argv??[],true)){
     $r=new Repository(Database::connect());$account=null;
     try{

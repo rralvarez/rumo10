@@ -1,0 +1,501 @@
+# Lote 02: fundamentos técnicos e leitura aplicada. IDs explícitos, sem geração de prosa.
+@2100 T01.recepcao|O auxiliar alterna passes rasteiros e bolas que chegam saltando. Você precisa reconhecer a recepção antes de escolher o toque seguinte.|{}
+tecnica|amortecer_salto|Amortecer a bola que salta|Você controla a altura e mantém a bola próxima.|A bola sobe no contato e exige outro domínio.
+visao|reconhecer_trajetoria|Ler a trajetória antes de tocar|Você identifica o salto sem interromper o movimento.|Você reage à saída e não acompanha a trajetória inteira.
+passe|devolver_rasteiro|Devolver rasteiro depois do domínio|A devolução sai limpa após a recepção.|Você devolve antes de estabilizar a bola.
+disciplina|separar_tipos|Pedir uma série de cada tipo|As séries separadas esclarecem o ajuste necessário.|Você repete o mesmo gesto nos dois tipos de recepção.
+@2101 T01.recepcao|O exercício exige receber no pé mais distante de um marcador de treino. Seu primeiro toque define se consegue continuar de frente.|{}
+tecnica|pe_distante|Receber no pé afastado do marcador|Seu toque leva a bola para fora da pressão.|Você troca o apoio e recebe no lado pressionado.
+posicionamento|abrir_quadril|Ajustar o quadril antes da chegada|Você recebe preparado para enxergar a continuação.|Você abre o quadril depois de a bola chegar.
+passe|escora_preparada|Ensaiar uma escorada para a dupla|A escorada chega na direção do apoio combinado.|A escorada volta para o espaço ocupado pelo marcador.
+visao|olhar_ombro|Olhar o marcador antes da recepção|Você conhece a distância disponível para dominar.|Você olha cedo demais e não percebe a aproximação final.
+@2102 T01.recepcao|Um passe chega por trás durante a movimentação do exercício. Você precisa ajustar a corrida sem pisar sobre a bola.|{}
+tecnica|passada_menor|Encurtar a passada para receber|Você encaixa o domínio sem travar a corrida.|A passada continua longa e você passa da bola.
+posicionamento|curvar_corrida|Curvar a corrida antes do contato|O ajuste permite receber na direção da continuidade.|A curva afasta você da linha de recepção.
+passe|devolver_atras|Devolver ao passador para reiniciar|Você entrega uma devolução controlada e reposiciona a corrida.|A devolução sai forte e impede o reinício combinado.
+disciplina|marcar_ponto|Marcar o ponto onde deve reduzir|A referência ajuda você a preparar a recepção.|Você olha a marca e deixa de acompanhar a bola.
+@2103 T01.recepcao|O auxiliar propõe dominar sem deixar a bola atravessar uma faixa estreita. A velocidade do passe varia a cada tentativa.|{}
+tecnica|retirar_forca|Recuar o pé no contato|Você retira a força sem deixar a bola escapar.|Você recua o pé tarde e deixa a bola atravessar a faixa.
+passe|orientar_devolucao|Transformar a recepção em devolução curta|Você encontra um contato curto que mantém o exercício fluindo.|Seu contato impulsiona a bola além da distância curta.
+visao|comparar_velocidades|Comparar a força das entregas|Você reconhece quando precisa amortecer mais.|Você prepara o mesmo amortecimento para todas as entregas.
+apoio|trocar_feedback|Pedir que a dupla indique o excesso|O retorno da dupla ajuda a ajustar a força.|Vocês medem o excesso de maneiras diferentes e não se entendem.
+@2104 T01.recepcao|No exercício, você recebe com a sola e precisa sair sem deixar o corpo preso sobre a bola.|{}
+tecnica|sola_lateral|Levar a sola para o lado|Você retira a bola do eixo do corpo.|Você pisa forte demais e prende a saída.
+drible|puxar_girar|Puxar e girar num só movimento|O giro mantém a bola protegida na saída.|Você gira antes de puxar e perde contato com a bola.
+posicionamento|apoio_livre|Afastar o pé de apoio|Você cria espaço para soltar a bola depois do domínio.|Você afasta o apoio além do necessário e perde equilíbrio.
+disciplina|dividir_gesto|Treinar primeiro o domínio, depois a saída|Você identifica em qual parte trava o movimento.|Você acelera a segunda parte antes de controlar a primeira.
+@2105 T01.recepcao|A dupla alterna entregas no pé e no espaço. Você precisa decidir se domina parado ou acompanha a bola andando.|{}
+visao|ler_destino|Reconhecer o destino da entrega|Você distingue a bola no pé da bola no espaço.|Você trata a entrega no espaço como passe no pé.
+tecnica|acompanhar_bola|Dominar acompanhando o deslocamento|Você mantém a bola à distância de uma passada.|Você acompanha rápido demais e ultrapassa o domínio.
+passe|retorno_ligado|Dominar e devolver sem parar o exercício|Seu controle prepara uma devolução sem pausa extra.|Você precisa corrigir o controle antes de devolver.
+apoio|combinar_sinal|Combinar um sinal antes da entrega|O sinal esclarece a intenção sem retirar o desafio.|O sinal fica ambíguo e vocês interpretam entregas diferentes.
+@2106 T01.recepcao|O exercício termina cada recepção com uma mudança de direção. A comissão quer que você escolha o lado antes do toque.|{}
+visao|decidir_antes|Ler o espaço antes de receber|Você escolhe uma saída antes de a bola chegar.|Você olha o espaço depois do domínio e perde tempo.
+tecnica|contato_diagonal|Dominar em diagonal para o lado escolhido|O toque já coloca a bola no caminho da saída.|A diagonal fica curta e exige outro toque de correção.
+drible|fintar_recepcao|Usar o corpo para esconder a direção|Sua finta de recepção disfarça o primeiro caminho.|A finta desequilibra seu próprio contato com a bola.
+disciplina|fixar_rotina|Repetir uma rotina de olhar e dominar|A rotina liga a leitura ao controle.|Você repete a rotina sem observar o espaço de verdade.
+@2107 T01.recepcao|A comissão pede domínio de uma bola lançada após um deslocamento lateral. O desafio é receber sem cruzar os apoios.|{}
+posicionamento|ajustar_passos|Ajustar os passos antes da queda|Você chega à recepção com os apoios disponíveis.|Você cruza os passos e fica preso no domínio.
+tecnica|contato_lateral|Controlar a bola no lado da chegada|Seu contato mantém a bola dentro do movimento.|A bola bate na perna rígida e se afasta.
+visao|ponto_queda|Reconhecer o ponto de queda cedo|Você chega ao lugar certo sem uma correção brusca.|Você estima a queda curta demais e recebe desequilibrado.
+apoio|ritmo_dupla|Combinar a entrega com a velocidade do deslocamento|A dupla entrega no momento em que você está preparado.|A entrega e seu deslocamento continuam fora de tempo.
+@2108 T01.recepcao|Um exercício usa passes com rotação para exigir controle fino. Você precisa evitar que o efeito leve a bola para fora do apoio.|{}
+tecnica|amortecer_efeito|Amortecer acompanhando o giro da bola|Você reduz o efeito e preserva o controle.|Você oferece uma superfície rígida e amplia o desvio.
+visao|observar_rotacao|Observar a rotação antes do contato|A leitura permite ajustar o lado do domínio.|Você olha só a velocidade e ignora a rotação.
+passe|devolver_controlado|Preparar uma devolução depois de estabilizar|A devolução sai depois de um controle limpo.|Você devolve com a bola ainda girando fora do apoio.
+disciplina|reduzir_variacao|Pedir menos efeito até acertar o contato|Você entende o ajuste antes de aumentar a dificuldade.|Você repete o contato errado mesmo com menor efeito.
+@2109 T01.recepcao|O circuito termina com uma recepção perto de um limite marcado no chão. Você precisa preservar espaço para o toque seguinte.|{}
+tecnica|dominar_dentro|Orientar o domínio para dentro do limite|Você controla sem ficar sem espaço para continuar.|Você leva a bola ao limite e precisa interromper a sequência.
+posicionamento|corpo_diagonal|Aproximar com o corpo em diagonal|Seu corpo deixa uma saída aberta após o contato.|Você chega reto e fecha a própria continuidade.
+passe|devolver_cruzado|Devolver cruzando a direção da chegada|A devolução demonstra controle sobre o novo ângulo.|Você bate acompanhando a chegada e erra o destino cruzado.
+visao|medir_faixa|Conferir o espaço útil antes da entrega|Você percebe onde o domínio deve terminar.|Você mede a faixa sem considerar o movimento da bola.
+@2110 T01.recepcao|O auxiliar lança uma bola para controle com a coxa. Você deve fazê-la cair onde consegue tocar com o pé.|{}
+tecnica|coxa_suave|Amortecer com a coxa relaxada|A bola cai perto do pé que fará o próximo toque.|Você levanta a coxa rígida e devolve a bola para cima.
+posicionamento|base_coxa|Ajustar o apoio antes de levantar a perna|A base permite controlar sem perder o equilíbrio.|Você levanta a perna antes de firmar o apoio.
+passe|controle_entrega|Controlar e servir a dupla pelo chão|Você transforma o domínio numa entrega limpa.|A bola cai longe e impede a entrega no tempo combinado.
+disciplina|altura_menor|Repetir com uma altura menor|A altura menor ajuda a entender o amortecimento.|Você tenta ganhar velocidade antes de acertar o gesto.
+@2111 T01.recepcao|A dupla passa a bola enquanto você sai de um giro curto. O desafio é terminar o giro já preparado para receber.|{}
+posicionamento|giro_incompleto|Terminar o giro com o corpo aberto|Você termina enxergando a entrega e a continuação.|Você fecha o corpo na última passada do giro.
+tecnica|toque_pos_giro|Usar um contato curto depois de girar|Você controla sem precisar de outra volta.|O contato fica longo e exige uma nova correção.
+visao|antecipar_entrega|Olhar a dupla antes de completar o giro|Você acompanha o início da entrega sem perder a base.|Você vira a cabeça cedo demais e desequilibra o giro.
+apoio|ritmar_giro|Combinar a entrega com o fim do giro|A dupla passa quando seu apoio está pronto.|O combinado não define o instante e a bola chega antes.
+@2112 T01.passe_curto|No exercício, o passe precisa chegar no pé que permite ao colega continuar. Apenas acertar a pessoa não basta.|{}
+passe|pe_continuidade|Buscar o pé da continuidade|Sua bola encontra o apoio que permite seguir.|O passe chega ao pé que obriga o colega a parar.
+visao|ler_corpo_colega|Ler para onde o corpo do colega aponta|Você identifica o pé útil sem depender de um aviso.|Você segue a posição dos pés sem notar a intenção do corpo.
+tecnica|apoio_direcional|Ajustar o apoio para direcionar a entrega|O ajuste permite escolher o destino do passe.|Seu apoio aponta para o corpo, não para o pé escolhido.
+apoio|perguntar_preferencia|Conferir com a dupla qual pé ajuda mais|A conversa esclarece o objetivo da entrega.|Vocês dizem apenas direita e esquerda sem combinar a referência.
+@2113 T01.passe_curto|O circuito inclui um passe curto depois de uma parada completa. Você precisa gerar força sem usar uma corrida de aproximação.|{}
+passe|balanco_curto|Usar um balanço curto da perna|O passe ganha força suficiente sem gesto exagerado.|O balanço curto não transmite força à bola.
+tecnica|contato_firme|Firmar o tornozelo no contato|O contato transmite a força sem mudar a direção.|O tornozelo cede e a bola sai sem firmeza.
+posicionamento|distancia_apoio|Ajustar a distância do pé de apoio|Você encontra espaço para bater sem se inclinar.|O apoio fica perto demais e trava a perna do passe.
+disciplina|progressao_distancia|Aumentar a distância aos poucos|Você percebe em que ponto o gesto perde eficiência.|Você aumenta a distância sem corrigir o contato inicial.
+@2114 T01.passe_curto|O auxiliar pede uma entrega depois de dominar com um pé e passar com o outro. A troca precisa ser útil, não um toque extra sem função.|{}
+tecnica|transicao_pes|Controlar para o pé da entrega|Seu domínio prepara o outro pé sem corrigir a bola.|Você domina para trás e dificulta a troca de pé.
+passe|alternar_entrega|Passar assim que o segundo pé fica livre|A entrega sai no intervalo previsto pelo exercício.|Você espera demais depois de preparar o pé.
+visao|destino_antes|Escolher o destino antes de trocar o pé|A leitura evita um toque de procura depois do domínio.|Você troca o pé sem saber para onde vai passar.
+disciplina|ritmo_lento|Ensaiar a troca em ritmo menor|Você entende a função de cada contato.|Você reduz o ritmo, mas continua adicionando contatos desnecessários.
+@2115 T01.passe_curto|A dupla recebe em movimento lateral. Seu passe precisa chegar no caminho dela, sem obrigá-la a voltar.|{}
+passe|frente_corrida|Entregar à frente do deslocamento|A bola encontra a passada sem interromper a corrida.|A entrega fica atrás e exige um retorno.
+visao|medir_velocidade|Observar a velocidade da dupla|Você ajusta o destino ao ritmo real do colega.|Você usa a velocidade da tentativa anterior e erra o encontro.
+tecnica|forca_progressiva|Ajustar a força sem ampliar o gesto|Você muda a força mantendo a mesma direção.|Você aumenta o gesto e perde a precisão lateral.
+apoio|ritmo_combinado|Combinar um ritmo antes de variar|Vocês criam uma referência para perceber os ajustes.|Cada um entende um ritmo e a referência não se estabelece.
+@2116 T01.passe_curto|O exercício pede passes com o corpo apontando para outro lado. A intenção é disfarçar a entrega sem perder o controle.|{}
+passe|passe_disfarcado|Disfarçar usando a parte interna|Você muda o destino sem alterar a precisão.|O disfarce arrasta o contato e tira a bola da linha.
+tecnica|separar_quadril|Separar o movimento do quadril do contato|Você mantém o contato firme apesar da postura disfarçada.|O giro do quadril leva a bola junto.
+visao|confirmar_alvo|Conferir o alvo antes de desviar o olhar|Você sabe onde entregar sem olhar fixamente para o destino.|Você desvia o olhar antes de localizar o alvo.
+disciplina|gesto_pequeno|Começar com um disfarce menor|O gesto menor ajuda a preservar a direção.|Você exagera o disfarce mesmo na tentativa simplificada.
+@2117 T01.passe_curto|Dois colegas se alternam como opção de passe. O auxiliar sinaliza qual receberá somente depois de a bola chegar a você.|{}
+visao|reagir_sinal|Ler o sinal sem parar de acompanhar a bola|Você identifica o destino mantendo a recepção sob controle.|Você olha o sinal e perde o instante do domínio.
+passe|mudar_destino|Ajustar a entrega ao sinal tardio|O passe encontra o colega indicado.|Você repete o destino da tentativa anterior.
+tecnica|dominio_neutro|Dominar sem fechar um lado cedo demais|O controle mantém os dois destinos disponíveis.|Seu domínio escolhe um lado antes do sinal.
+disciplina|sequencia_atencao|Definir uma sequência curta de atenção|Você liga sinal, domínio e entrega sem hesitar.|Você tenta executar as três partes ao mesmo tempo.
+@2118 T01.passe_longo|O treino inclui uma inversão para um alvo parado. O auxiliar pede que você ajuste a trajetória, não apenas aumente a força.|{}
+passe|trajetoria_tensa|Buscar uma trajetória mais direta|A bola chega sem exigir uma espera longa do alvo.|Você reduz a altura sem ajustar a força e deixa a bola curta.
+tecnica|contato_baixo|Ajustar o ponto de contato sob a bola|O contato produz a altura necessária para a distância.|Você toca baixo demais e perde alcance.
+visao|ponto_chegada|Escolher um ponto de chegada preciso|Você define onde quer que a bola termine.|Você olha a região inteira e não escolhe um ponto.
+disciplina|encurtar_alvo|Começar com um alvo mais próximo|Você reconhece o gesto antes de ampliar o alcance.|Você amplia a distância sem estabilizar a trajetória curta.
+@2119 T01.passe_longo|A inversão do exercício deve chegar a um colega em movimento. O alvo deixa de ser um ponto fixo.|{}
+passe|encontrar_corrida|Entregar para o encontro com a corrida|A bola encontra o colega sem fazê-lo parar.|A entrega chega ao lugar de onde ele já saiu.
+visao|antecipar_chegada|Estimar a chegada antes da batida|Você considera o deslocamento durante o voo da bola.|Você calcula apenas a posição atual do colega.
+tecnica|base_lancamento|Firmar a base para não arrastar o chute|A base mantém a direção durante o gesto longo.|Você arrasta o apoio e muda a trajetória.
+apoio|acertar_tempo|Combinar quando a corrida começa|O combinado torna clara a diferença entre atraso e direção.|A corrida começa em tempos diferentes e impede a comparação.
+@2120 T01.passe_longo|O auxiliar coloca uma zona proibida no meio do percurso do passe. Você precisa ultrapassá-la sem mandar a bola longe do alvo.|{}
+passe|superar_zona|Elevar a bola só o necessário|Você supera a zona e alcança o destino.|Você exagera a altura e perde a precisão na chegada.
+tecnica|contato_cavado|Ensaiar um contato por baixo controlado|A bola ganha altura sem perder todo o avanço.|O contato tira a força e deixa a bola na zona proibida.
+visao|margem_chegada|Considerar a margem disponível depois da zona|Você identifica quanto espaço tem para a queda.|Você pensa apenas em superar a zona e esquece a chegada.
+disciplina|marcas_progressivas|Trabalhar com marcas de distância progressivas|As marcas ajudam a relacionar altura e alcance.|Você segue as marcas sem observar o efeito do próprio gesto.
+@2121 T01.passe_longo|O exercício pede um lançamento depois de um domínio lateral. Você tem de reorganizar o apoio antes da batida.|{}
+posicionamento|apoio_apos_dominio|Recolocar o pé de apoio|Você prepara o corpo sem empurrar a bola para longe.|Você recoloca o apoio no caminho da bola.
+passe|soltar_em_movimento|Lançar ainda no movimento do domínio|A batida aproveita a continuidade sem perder direção.|Você bate com a base atravessada e desvia a entrega.
+tecnica|dominio_preparacao|Usar o domínio para preparar a distância da batida|O primeiro toque deixa espaço para o gesto seguinte.|O domínio fica perto demais e encurta sua batida.
+visao|olhar_entre_toques|Conferir o alvo entre os dois gestos|Você atualiza a posição do alvo sem parar a sequência.|Você demora no olhar e perde o tempo da batida.
+@2122 T01.passe_longo|Você treina lançamentos sem uma corrida longa de aproximação. O desafio é preservar alcance usando uma base compacta.|{}
+passe|alavanca_curta|Usar uma batida curta e firme|O gesto compacto alcança a distância combinada.|A batida sai firme, mas não alcança o alvo.
+forca|estabilizar_tronco|Trabalhar a estabilidade durante a batida|Você sustenta a base sem tombar o tronco.|Você endurece demais o corpo e trava o gesto.
+tecnica|apoio_compacto|Ajustar um apoio menor|O apoio reduzido deixa espaço para bater com controle.|Você aproxima tanto o apoio que prende a perna da batida.
+disciplina|distancia_realista|Reduzir a distância até acertar o mecanismo|Você encontra um gesto que consegue repetir.|Você tenta manter o alcance e abandona o mecanismo combinado.
+@2123 T01.passe_longo|O exercício alterna inversões e passes no mesmo corredor. Você precisa mostrar diferença de trajetória sem mudar a preparação toda.|{}
+visao|ler_indicacao|Reconhecer o destino indicado pelo auxiliar|Você escolhe a trajetória antes de iniciar o gesto.|Você prepara uma inversão quando o alvo está no mesmo corredor.
+passe|variar_saida|Variar o ângulo da entrega|Você muda o destino sem perder a força útil.|Você muda o ângulo, mas mantém uma força inadequada.
+tecnica|contato_adaptavel|Ajustar o contato mantendo a base|O pequeno ajuste separa as duas trajetórias.|Você tenta mudar a trajetória girando o corpo inteiro.
+disciplina|comparar_gestos|Repetir cada tipo para comparar|Você percebe o ajuste específico de cada entrega.|Você compara apenas onde a bola cai e não observa o gesto.
+@2124 T01.passe_tabela|No exercício de tabela, o colega devolve em um toque. Seu passe inicial precisa permitir essa devolução.|{}
+passe|entrega_util|Passar na distância confortável para a devolução|Seu passe permite uma devolução sem ajuste extra.|A bola chega perto do corpo e prende a devolução.
+posicionamento|correr_angulo|Correr para um ângulo diferente depois de passar|Você cria uma linha de retorno que não estava marcada.|Você corre na mesma linha do passe inicial.
+visao|ver_apoio|Observar o pé de apoio do colega|Você entende de onde a devolução poderá sair.|Você espera uma devolução pelo lado que ele não tem apoio.
+apoio|combinar_retorno|Combinar a região da devolução|O combinado sincroniza entrega e corrida.|Vocês combinam o lado sem acertar a distância.
+@2125 T01.passe_tabela|O exercício de parede acontece com você de costas. Depois da entrega, é preciso sair sem bloquear quem vai devolver.|{}
+passe|parede_precisa|Escorar para o lado do apoio|Sua escorada permite a devolução no corredor livre.|Você escora no corpo e dificulta o retorno.
+posicionamento|sair_traeto|Sair do trajeto da devolução|Você abre a passagem sem abandonar a combinação.|Você inicia a saída pelo caminho da bola.
+visao|conferir_lado|Conferir o lado livre antes da escorada|Você encontra a saída antes de receber de costas.|Você confere tarde e precisa interromper a sequência.
+tecnica|superficie_curta|Usar uma superfície curta de contato|O contato reduzido mantém a escorada controlada.|A superfície rígida faz a bola saltar sem direção.
+@2126 T01.passe_tabela|O auxiliar inclui um terceiro jogador na combinação. A devolução não voltará necessariamente para quem iniciou a jogada.|{}
+visao|terceiro_movimento|Acompanhar o terceiro jogador|Você identifica a continuidade além da primeira devolução.|Você espera o retorno e esquece o terceiro movimento.
+passe|servir_terceiro|Entregar para a corrida do terceiro|O passe encontra a corrida sem exigir parada.|Você entrega para a posição anterior do colega.
+posicionamento|novo_apoio|Oferecer apoio depois da segunda entrega|Você continua útil sem ocupar a linha do terceiro.|Você continua correndo para o espaço que o terceiro usará.
+liderar|definir_sequencia|Combinar a ordem antes da execução|A ordem fica clara sem engessar os movimentos.|Vocês confirmam apenas a primeira parte da sequência.
+@2127 T01.passe_tabela|O circuito exige passar e mudar a direção da corrida. Seguir a própria bola não leva à próxima estação.|{}
+posicionamento|sair_diagonal|Sair em diagonal depois da entrega|Você chega à estação sem cruzar a própria bola.|Você segue em frente e perde o ângulo da estação.
+passe|soltar_antes_giro|Passar antes de mudar o corpo|A entrega sai limpa antes da mudança de direção.|Você gira durante a batida e arrasta a direção.
+visao|localizar_estacao|Localizar a próxima estação antes do passe|Você inicia a corrida sem procurar a marca no chão.|Você olha a estação e esquece o destino da entrega.
+disciplina|ritmo_separado|Ensaiar entrega e corrida em dois tempos|Você entende a transição entre os gestos.|Você transforma a pausa em parada e perde o fluxo.
+@2128 T01.finalizar_movimento|No exercício, a bola vem de trás enquanto você avança. É preciso ajustar a velocidade para finalizar sem atropelar a entrega.|{}
+chute|encontro|Finalizar no encontro com a bola|Você chega no tempo de bater equilibrado.|Você corre além do encontro e bate desequilibrado.
+posicionamento|reduzir_passada|Reduzir a passada antes do contato|O ajuste permite apoiar o corpo para o chute.|Você reduz tarde e não encontra apoio.
+tecnica|dominio_batida|Usar um domínio curto antes de bater|O domínio prepara uma batida controlada.|O domínio alonga a jogada e tira o tempo do chute.
+apoio|tempo_passador|Combinar o momento da entrega|O passador entende quando você pode finalizar.|O combinado não esclarece se a referência é a corrida ou o olhar.
+@2129 T01.finalizar_movimento|A comissão pede finalização depois de uma corrida em curva. Seu corpo precisa se alinhar ao alvo antes do contato.|{}
+chute|bater_alinhado|Bater depois de alinhar a última passada|O alinhamento mantém o chute no alvo.|Você bate antes de terminar a curva e desvia a bola.
+posicionamento|ajustar_curva|Ajustar o raio da corrida|A curva termina num ponto útil para apoiar.|Você fecha demais a curva e chega sem espaço de batida.
+tecnica|equilibrar_contato|Ensaiar o contato sem buscar potência|Você encontra o gesto sem compensar com força.|Você reduz a força, mas mantém o corpo atravessado.
+visao|alvo_na_curva|Conferir o alvo durante a aproximação|Você termina a curva sabendo para onde bater.|Você fixa o alvo e perde a referência da entrega.
+@2130 T01.finalizar_movimento|O exercício alterna uma bola curta e outra mais afastada. Você precisa ajustar a aproximação em vez de repetir a mesma passada.|{}
+visao|medir_chegada|Ler a distância da entrega|Você reconhece quanto precisa ajustar a aproximação.|Você prepara a passada da tentativa anterior.
+chute|adaptar_batida|Adaptar a batida à distância real|Você alcança a bola com contato limpo.|Você estica a perna sem reorganizar o apoio.
+posicionamento|passo_correcao|Usar um passo curto de correção|O passo ajusta a base sem interromper a sequência.|A correção fica longa e altera outra vez a distância.
+disciplina|reiniciar_base|Recomeçar quando perder o apoio|Você identifica a base necessária antes de acelerar.|Você tenta salvar toda tentativa e não reconhece o apoio correto.
+@2131 T01.finalizar_movimento|A bola é servida de lado para uma finalização de primeira. O auxiliar quer que você escolha o contato pela trajetória, não pelo pé preferido.|{}
+chute|pe_adequado|Usar o pé que encontra a trajetória|O contato acompanha a entrega sem travar o corpo.|Você força o pé preferido e chega atravessado.
+tecnica|angulacao_pes|Ajustar o ângulo dos pés|O ajuste permite encontrar a bola na passagem.|Você orienta os dois pés para a origem e fecha a batida.
+visao|ler_altura|Ler a altura da bola durante a aproximação|Você prepara uma superfície de contato adequada.|Você prepara o contato para uma altura diferente.
+disciplina|reduzir_servico|Pedir entregas mais lentas para acertar o gesto|Você encontra o contato antes de aumentar o desafio.|Você mantém a mesma pressa mesmo com a entrega lenta.
+@2132 T01.finalizacao_precisa|Há dois alvos no treino de chute. O auxiliar indica um deles apenas quando você inicia a aproximação.|{}
+visao|interpretar_alvo|Ler a indicação durante a corrida|Você identifica o alvo sem perder a bola de vista.|Você acompanha o sinal e esquece a distância da bola.
+chute|mudar_canto|Ajustar o canto antes da batida|Seu chute segue a indicação tardia.|Você muda o canto girando demais o corpo.
+tecnica|apoio_flexivel|Preservar um apoio que permita ajustar|A base deixa espaço para escolher a direção.|Você fecha o apoio cedo e fica preso a um alvo.
+disciplina|sequencia_olhar|Treinar uma sequência curta de olhares|Você liga a indicação ao gesto sem hesitação longa.|Você tenta olhar tudo ao mesmo tempo e perde a sequência.
+@2133 T01.finalizacao_precisa|O treino pede chutes com trajetória baixa depois de um pequeno deslocamento da bola. Você precisa evitar cavar a batida.|{}
+chute|cobrir_bola|Manter o corpo sobre a bola no contato|Você mantém a trajetória baixa até o alvo.|Você inclina o tronco para trás e eleva o chute.
+tecnica|superficie_firme|Firmar a superfície de contato|A bola sai limpa sem exigir força extra.|O pé cede e desvia a trajetória baixa.
+posicionamento|apoio_lateral|Colocar o apoio ao lado da nova posição|Você acompanha o deslocamento sem perder a base.|Você deixa o apoio na posição anterior da bola.
+visao|acompanhar_deslocamento|Acompanhar onde termina o toque preparatório|Você percebe de onde realmente fará a batida.|Você escolhe o apoio antes de a bola terminar de andar.
+@2134 T01.finalizacao_precisa|O auxiliar usa uma faixa estreita como alvo. A distância é curta, mas o passe de preparação vem rápido.|{}
+chute|dosar_curto|Dosar a batida em vez de buscar potência|Você coloca a bola dentro da faixa.|Você reduz a força sem controlar a direção.
+tecnica|amortecer_batida|Absorver parte da velocidade no contato|O contato aproveita a entrega sem devolver força demais.|Você devolve toda a força e passa do alvo.
+visao|ver_faixa|Localizar a faixa antes da entrega|Você não precisa procurar o alvo durante a batida.|Você olha a faixa por tempo demais e perde a entrega.
+disciplina|repetir_distancia|Repetir a mesma distância até estabilizar|Você reconhece uma força que consegue reproduzir.|Você muda o gesto a cada tentativa e perde a referência.
+@2135 T01.finalizacao_precisa|A comissão pede uma finalização depois de uma finta curta, sem acrescentar um drible desnecessário.|{}
+drible|finta_minima|Usar uma finta curta antes da batida|A finta muda o corpo sem afastar a bola.|Você amplia a finta e perde a distância do chute.
+chute|tempo_finta|Bater logo depois de concluir a finta|Você encontra o contato no tempo combinado.|Você espera outro toque e interrompe a sequência.
+tecnica|toque_preparado|Deixar a bola preparada no último toque|O toque final cria espaço para a batida.|A bola fica debaixo do corpo e prende o chute.
+disciplina|limitar_contatos|Contar apenas os contatos previstos|Você elimina um toque que não ajudava a finalização.|Você conta os toques, mas mantém uma pausa entre eles.
+@2136 T01.finalizacao_precisa|O exercício de chute termina com você escolhendo um alvo antes de receber. A comissão quer uma decisão assumida, sem mudança de última hora.|{}
+visao|escolha_antecipada|Escolher uma região antes da entrega|Você prepara o gesto com uma intenção definida.|Você deixa a escolha aberta e decide com o pé já no ar.
+chute|sustentar_alvo|Sustentar a direção escolhida na batida|Você executa a direção sem uma correção brusca.|Você muda de ideia durante o contato e desvia o chute.
+tecnica|ensaio_gesto|Ensaiar o contato que corresponde ao alvo|Você relaciona a intenção ao movimento necessário.|Você ensaia um gesto que leva a outra região.
+disciplina|registrar_intencao|Dizer o alvo ao auxiliar antes de bater|A indicação permite comparar intenção e execução.|Você indica uma região ampla demais para avaliar o gesto.
+@2137 T01.finalizar_rebote|O auxiliar lança uma bola contra uma barreira de treino. Você trabalha a finalização na volta, sem saber o ângulo exato do rebote.|{}
+visao|ler_retorno|Acompanhar o retorno antes de armar a batida|Você ajusta o gesto ao ângulo real.|Você arma para o retorno esperado e não para o que veio.
+chute|contato_rebote|Finalizar depois de firmar o apoio|Você encontra a bola sem perder o equilíbrio.|Você tenta bater sem conseguir firmar o apoio.
+posicionamento|espera_ativa|Esperar com os apoios prontos para ajustar|Você reage ao rebote sem uma passada excessiva.|Você espera com a base fechada e demora na correção.
+tecnica|controlar_primeiro|Controlar o rebote antes de finalizar|O controle organiza uma batida segura.|O controle afasta a bola e desorganiza a finalização.
+@2138 T01.finalizar_rebote|O treino inclui uma segunda bola logo depois do seu primeiro chute. Você precisa terminar o gesto já preparado para se reposicionar.|{}
+posicionamento|recuperar_base|Recuperar a base após a primeira batida|Você fica disponível para a segunda bola.|Você termina o gesto apoiado demais numa perna.
+chute|segunda_batida|Buscar uma segunda finalização controlada|Você encontra a nova bola sem repetir o apoio anterior.|Você repete a batida sem ajustar a nova distância.
+visao|localizar_segunda|Localizar a segunda entrega cedo|Você percebe a nova trajetória antes de correr.|Você acompanha o primeiro chute e esquece a segunda bola.
+disciplina|separar_tentativas|Tratar cada bola como uma nova decisão|Você não carrega a pressa da primeira tentativa.|Você tenta compensar o primeiro chute e atropela o segundo.
+@2139 T01.finalizar_rebote|O auxiliar varia o intervalo entre duas entregas de chute. Você precisa reconhecer quando acelerar e quando reorganizar os apoios.|{}
+visao|ler_intervalo|Acompanhar o início da nova entrega|Você identifica o tempo disponível para ajustar.|Você presume um intervalo igual ao anterior.
+chute|batida_preparada|Bater apenas quando encontra a base|Você finaliza sem depender de um salto desequilibrado.|Você insiste na batida antes de encontrar apoio.
+posicionamento|passos_curtos|Usar passos curtos durante a espera|Os passos mantêm sua capacidade de reagir.|Os passos ficam contínuos sem ajudar a nova posição.
+apoio|trocar_observacao|Pedir ao auxiliar que indique onde você se apressa|O retorno aponta o momento que precisa de ajuste.|A conversa termina sem identificar o instante da pressa.
+@2140 T01.drible_curto|O circuito de drible tem uma saída livre só depois do primeiro obstáculo. Você precisa guardar espaço para acelerar após superá-lo.|{}
+drible|primeira_finta|Vencer o primeiro obstáculo com toque curto|Você supera sem gastar o espaço da saída.|Você amplia o toque e chega ao obstáculo seguinte sem controle.
+visao|ver_saida|Localizar a saída antes da finta|Você sabe para onde levar o segundo toque.|Você olha apenas o primeiro obstáculo.
+posicionamento|corpo_saida|Orientar o corpo para a continuação|Você termina a finta preparado para seguir.|Você vence o obstáculo, mas termina virado para outro lado.
+tecnica|distancia_toques|Ajustar a distância entre os contatos|Você mantém espaço para a aceleração final.|Você junta demais os contatos e trava o avanço.
+@2141 T01.drible_curto|A dupla de treino só pode tentar tirar a bola depois do seu primeiro toque. Você precisa usar esse toque sem entregá-la ao bote.|{}
+drible|afastar_bote|Levar o primeiro toque para longe do alcance|Você cria espaço antes de o parceiro disputar.|Você leva a bola ao lado que o parceiro já cobre.
+tecnica|toque_protegido|Manter a bola próxima ao sair|Você consegue proteger sem interromper o movimento.|O toque curto fica sob seu corpo e impede a saída.
+visao|ler_apoio_parceiro|Observar em qual apoio o parceiro está|Você escolhe o lado em que ele demora mais a reagir.|Você segue a primeira inclinação e ignora a recuperação dele.
+posicionamento|base_escape|Preparar o apoio para o segundo toque|Você mantém equilíbrio para continuar a fuga.|Você gasta o apoio no primeiro toque e fica sem continuidade.
+@2142 T01.drible_curto|O exercício permite fintar, mas proíbe atravessar o corredor vizinho. Você precisa criar espaço dentro de uma faixa limitada.|{}
+drible|finta_interna|Fintar sem sair da faixa|Você muda a direção preservando o corredor combinado.|Sua finta atravessa a marca da faixa.
+tecnica|sola_retorno|Puxar a bola antes de trocar o lado|A puxada cria espaço sem um deslocamento largo.|Você puxa a bola para longe do apoio.
+visao|reconhecer_margem|Observar a margem disponível para o segundo toque|Você escolhe um gesto que cabe na faixa.|Você escolhe o gesto antes de conferir a margem.
+disciplina|amplitude_menor|Reduzir a amplitude até acertar|Você domina a mudança dentro do limite.|Você reduz o gesto sem ajustar a posição da bola.
+@2143 T01.drible_curto|O auxiliar pede uma mudança de direção sem parar a bola. O desafio é não confundir controle com uma sequência de freios.|{}
+drible|continuidade|Mudar a direção mantendo a bola em movimento|Você troca o caminho sem interromper a condução.|Você prende a bola antes de conseguir mudar o lado.
+tecnica|contato_obliquo|Usar um contato oblíquo mais curto|O contato redireciona a bola sem pará-la.|Você toca de frente e interrompe a continuidade.
+posicionamento|passada_curva|Curvar a passada junto com a bola|Seu corpo acompanha a nova trajetória.|Você muda a bola, mas mantém a corrida no trajeto anterior.
+disciplina|ritmo_controlado|Ensaiar em velocidade constante|O ritmo permite reconhecer o gesto que dá continuidade.|Você acelera só na saída e esconde o problema do contato.
+@2144 T01.drible_curto|Seu parceiro de exercício acompanha seus ombros. Você precisa criar uma finta sem depender apenas de inclinar o tronco.|{}
+drible|finta_toque|Usar a direção do primeiro toque como finta|O toque atrai a reação antes da sua saída.|O parceiro acompanha a bola sem morder a finta.
+tecnica|contato_escondido|Esconder o contato atrás do corpo|Você muda a bola sem expor o gesto inteiro.|Você esconde tanto a bola que perde o próprio apoio.
+visao|ler_reacao|Esperar a reação do parceiro antes de sair|Você usa a reação em vez de repetir um lado fixo.|Você espera demais e permite o ajuste dele.
+posicionamento|separar_gestos|Separar a direção do corpo da saída|Você cria uma diferença útil entre os movimentos.|Você leva corpo e bola juntos sem produzir a finta.
+@2145 T01.drible_curto|O treino de condução exige mudar de ritmo depois de uma finta. Seu primeiro avanço precisa continuar sob controle.|{}
+drible|toque_saida|Dar um toque de saída compatível com a corrida|Você acelera sem perder contato com a bola.|O toque de saída supera a distância que consegue alcançar.
+velocidade|arranque_controlado|Treinar o arranque sem abandonar a bola|A aceleração acompanha a distância dos toques.|Você acelera o corpo e deixa a bola para trás.
+visao|espaco_saida|Medir o espaço depois da finta|Você escolhe uma aceleração que cabe no corredor.|Você considera só a finta e não vê o limite adiante.
+tecnica|progressao_toques|Aumentar o alcance dos toques aos poucos|Você relaciona o toque à velocidade do corpo.|Você amplia todos os toques de uma vez e perde o controle.
+@2146 T01.drible_curto|O auxiliar pede que você saia pelo lado não indicado pelo primeiro gesto do parceiro. É preciso ler a tentativa de antecipação.|{}
+visao|observar_antecipacao|Esperar o deslocamento do parceiro|Você identifica o lado que ele deixou disponível.|Você reage ao sinal inicial, não ao deslocamento real.
+drible|trocar_saida|Mudar a saída depois da reação|Você encontra espaço no lado oposto.|Você troca o lado tarde e encontra o corpo do parceiro.
+tecnica|bola_neutra|Manter a bola numa posição que permita escolher|Seu controle deixa as duas saídas possíveis.|Você coloca a bola num lado antes de ler a reação.
+disciplina|pausa_curta|Treinar uma pausa curta antes da decisão|A pausa impede uma escolha automática.|A pausa se alonga e permite que o parceiro se recomponha.
+@2147 T01.drible_curto|O exercício pede passar a bola por um lado do obstáculo e correr pelo outro. A retomada precisa acontecer sem uma corrida descontrolada.|{}
+drible|separar_trajetos|Separar o trajeto da bola e do corpo|Você reencontra a bola depois do obstáculo.|Você separa demais os trajetos e perde a retomada.
+velocidade|chegada_bola|Ajustar a corrida ao tempo da bola|Você chega à retomada com apoio para continuar.|Você chega rápido demais e passa da bola.
+visao|ponto_encontro|Escolher onde os dois trajetos se reencontram|Você define uma retomada possível dentro do circuito.|Você escolhe um encontro além do espaço disponível.
+tecnica|forca_escape|Dosar o toque que contorna o obstáculo|A bola passa sem escapar além da retomada.|Seu toque é fraco e para no lado do obstáculo.
+@2148 T01.drible_curto|Seu parceiro só pode acompanhar de lado no exercício. Você precisa mudar a direção sem usar contato para abrir passagem.|{}
+drible|corte_sincronizado|Cortar quando o parceiro transfere o apoio|Você muda o caminho no instante da transferência.|Você corta quando ele já está equilibrado.
+posicionamento|proteger_espaco|Usar o corpo para proteger a trajetória|Você mantém uma passagem sem empurrar o parceiro.|Você se aproxima demais e perde espaço para a bola.
+visao|identificar_base|Observar qual apoio sustenta o parceiro|Você reconhece quando ele demora a trocar o lado.|Você acompanha os ombros e ignora a base.
+tecnica|contato_curto|Reduzir o contato na mudança|Você consegue mudar de lado sem ampliar a disputa.|O contato fica curto demais e prende a condução.
+@2149 T01.drible_curto|O circuito exige terminar a finta com um passe, não com outra condução. Você precisa preparar a entrega enquanto muda de lado.|{}
+drible|finta_preparada|Fintar deixando a bola no pé da entrega|Você termina o gesto preparado para passar.|Você termina a finta no pé que exige outra correção.
+passe|entrega_apos_finta|Passar assim que a saída fica aberta|A entrega aproveita o espaço criado pela finta.|Você espera um toque extra e perde a abertura.
+visao|ver_destinatario|Localizar o destinatário antes da mudança|Você sabe onde entregar quando termina a finta.|Você termina o gesto e só então procura o colega.
+disciplina|limite_gestos|Respeitar a sequência sem acrescentar firulas|Você mantém a finalidade do drible na entrega.|Você acrescenta outro gesto e interrompe a combinação.
+@2150 T01.conducao|O exercício usa um trajeto em oito. Você precisa alternar o apoio de dentro da curva sem deixar a bola distante.|{}
+drible|curvas_continuas|Conduzir pelas duas curvas sem parar|Você liga as curvas preservando o controle.|Você amplia a segunda curva e perde a bola.
+tecnica|alternar_superficie|Alternar as superfícies de contato|Você encontra contatos úteis para os dois lados.|Você usa a mesma superfície e trava uma das curvas.
+posicionamento|inclinar_base|Ajustar a base ao entrar em cada curva|Você acompanha a bola sem inclinar demais o tronco.|Você inclina o tronco sem reorganizar os apoios.
+disciplina|ritmo_oito|Manter um ritmo repetível no percurso|Você reconhece onde precisa ajustar os contatos.|Você acelera numa metade e perde a referência da outra.
+@2151 T01.conducao|Você deve conduzir olhando alternadamente para duas referências laterais. O treino exige percepção sem abandonar o trajeto.|{}
+visao|alternar_referencias|Alternar as referências sem fixar o olhar|Você reconhece os dois lados e mantém a direção.|Você fixa um lado e desvia da condução.
+drible|toques_ritmados|Manter uma sequência regular de contatos|O ritmo permite observar sem perder a bola.|Os contatos variam demais para sustentar a observação.
+tecnica|controle_periferico|Treinar o controle com olhares mais curtos|Você reduz o tempo que precisa olhar para a bola.|Você tenta retirar o olhar antes de estabilizar o controle.
+apoio|relatar_sinais|Combinar com a dupla quais sinais deve relatar|Os sinais tornam sua observação verificável.|Vocês escolhem sinais pouco claros e não conseguem comparar.
+@2152 T01.conducao|O auxiliar coloca portões de larguras diferentes no circuito. Você precisa escolher o alcance do toque antes de cada passagem.|{}
+visao|ler_largura|Reconhecer a largura do próximo portão|Você prepara um contato adequado à passagem.|Você mantém o alcance usado no portão anterior.
+drible|adaptar_toque|Ajustar a condução à passagem estreita|Você atravessa sem tocar nas marcações.|Você tenta atravessar com a bola longe demais.
+tecnica|contatos_menores|Encurtar os contatos antes do portão|Você chega com controle suficiente para ajustar.|Você encurta só dentro do portão e reage tarde.
+disciplina|trajeto_planejado|Repassar o trajeto antes da tentativa|Você reconhece onde a condução precisa mudar.|Você memoriza a ordem, mas não considera as larguras.
+@2153 T01.conducao|O exercício termina com uma parada sobre a bola e uma saída de costas. A comissão quer controle, não velocidade de execução.|{}
+tecnica|parada_controlada|Parar a bola sem apoiar todo o peso|Você consegue liberar o pé para a saída.|Você põe peso demais e fica preso sobre a bola.
+drible|puxada_costas|Puxar a bola acompanhando o recuo|Você recua mantendo a bola protegida.|Você recua o corpo sem trazer a bola.
+posicionamento|base_recuo|Abrir a base antes de recuar|Você ganha espaço para o movimento de costas.|Você fecha os apoios e perde equilíbrio no recuo.
+disciplina|dividir_parada|Separar a parada da puxada nas primeiras tentativas|Você identifica o que impede a transição.|Você faz uma pausa tão longa que perde a relação dos gestos.
+@2154 T01.conducao|A dupla de treino se move diante de você sem tentar desarmar. Sua tarefa é conduzir preservando distância e direção.|{}
+visao|ler_deslocamento|Acompanhar o deslocamento antes de ajustar|Você reconhece quando precisa mudar o percurso.|Você reage ao primeiro movimento sem acompanhar o restante.
+drible|correcao_curta|Fazer uma correção curta de trajetória|Você evita a aproximação sem abandonar o trajeto.|Você corrige demais e perde a direção do exercício.
+posicionamento|distancia_dupla|Preservar uma distância útil da dupla|Você mantém espaço para reagir aos movimentos.|Você fica perto demais e precisa interromper a condução.
+tecnica|bola_ao_alcance|Manter a bola ao alcance do próximo passo|Você consegue mudar a direção sem outro ajuste.|A bola fica entre os apoios e dificulta a mudança.
+@2155 T01.conducao|O circuito pede acelerar e depois entregar a bola sem parar. O último toque da condução deve preparar o passe.|{}
+passe|entrega_corrida|Passar mantendo a corrida equilibrada|A entrega sai sem exigir uma parada completa.|Você bate no meio da passada e perde a direção.
+drible|preparar_ultimo|Controlar o alcance do último toque|Você deixa a bola na distância útil para passar.|O último toque fica longo e obriga uma correção.
+posicionamento|passada_entrega|Ajustar a passada antes da entrega|Você encontra apoio sem frear de repente.|Você muda a passada tarde e chega sem base.
+visao|alvo_antes_saida|Localizar o alvo antes de acelerar|Você mantém uma referência para a entrega final.|Você acelera sem saber onde terminar o passe.
+@2156 T01.conducao|O auxiliar pede mudanças de direção usando apenas a parte externa do pé. O objetivo é entender o contato, sem insistir quando perder a base.|{}
+drible|externa_curva|Contornar a marca com a parte externa|Você faz a curva sem abrir demais a bola.|Você toca de lado e leva a bola para fora do circuito.
+tecnica|tornozelo_contato|Ajustar o tornozelo no instante do toque|O contato externo mantém a bola junto da passada.|O tornozelo cede e muda o alcance do toque.
+posicionamento|base_curta|Usar uma base mais curta para mudar|Você encontra espaço para o contato externo.|Você encurta os passos sem ajustar a direção.
+disciplina|parar_corrigir|Reiniciar ao perder o apoio correto|Você corrige o gesto em vez de repetir a compensação.|Você reinicia sem identificar o apoio que falhou.
+@2157 T01.conducao|A comissão pede condução em velocidade confortável usando o pé menos treinado. A prioridade é manter uma trajetória previsível.|{}
+tecnica|toque_consistente|Repetir contatos de alcance parecido|Você encontra uma distância que consegue controlar.|Cada contato produz um alcance diferente.
+drible|corrigir_trajeto|Corrigir a direção com pequenos ajustes|Você mantém o corredor sem uma parada brusca.|Você faz ajustes grandes e passa de um lado ao outro.
+visao|olhar_adiante|Olhar o trajeto entre os contatos|Você percebe a direção sem fixar a bola.|Você olha adiante por tempo demais e perde o toque seguinte.
+disciplina|velocidade_possivel|Manter uma velocidade compatível com o controle|Você completa o percurso sem esconder as dificuldades.|Você acelera para compensar e amplia os erros.
+@2158 T01.desarme_tecnico|O exercício de desarme começa com o parceiro parado, protegendo a bola. A comissão pede que você encontre a bola sem usar empurrões.|{}
+desarme|lado_bola|Buscar o lado em que a bola aparece|Você alcança a bola sem deslocar o parceiro.|Você ataca um lado ainda protegido pelo corpo dele.
+posicionamento|base_lateral|Aproximar com base lateral|Você mantém condição de reagir a um giro.|Você aproxima com os pés alinhados e trava a reação.
+visao|ler_protecao|Observar a relação entre corpo e bola|Você identifica quando a proteção deixa uma abertura.|Você acompanha o tronco e não percebe a posição da bola.
+apoio|trocar_papel|Trocar os papéis para entender a proteção|A troca mostra onde seu bote ficava previsível.|Vocês repetem a disputa sem discutir o que mudou.
+@2159 T01.desarme_tecnico|Seu parceiro alterna toques curtos e longos no exercício. Você só deve tentar o bote quando houver distância real até a bola.|{}
+visao|reconhecer_exposicao|Distinguir o toque longo do curto|Você identifica uma exposição real antes de agir.|Você toma uma finta curta por um toque exposto.
+desarme|tempo_bote|Atacar a bola no toque longo|Você alcança a bola antes do próximo contato.|Você inicia depois de o parceiro recuperar o controle.
+posicionamento|distancia_bote|Manter uma distância que permita escolher|Você não precisa se lançar para chegar à bola.|Você se afasta tanto que toda tentativa exige um salto.
+disciplina|espera_ativa|Treinar a espera sem ficar parado|Você preserva os apoios enquanto espera a abertura.|Você espera rígido e perde a reação.
+@2160 T01.desarme_tecnico|O exercício trabalha interceptação de passes em uma faixa curta. O destino muda para impedir que você apenas memorize o caminho.|{}
+desarme|cortar_trajetoria|Atacar a trajetória depois da entrega|Você interrompe a bola antes da recepção.|Você escolhe a trajetória antes de ela existir.
+visao|ler_passador|Observar o apoio do passador|Você reconhece a direção possível da entrega.|Você segue o olhar de distração do parceiro.
+posicionamento|base_entre|Guardar uma base entre os destinos|Você mantém condição de reagir para os dois lados.|Você se coloca longe dos dois caminhos.
+disciplina|validar_leitura|Explicar qual sinal usou antes de repetir|Você distingue leitura de um palpite que deu certo.|Você descreve o resultado sem identificar o sinal.
+@2161 T01.desarme_tecnico|A dupla ensaia uma tentativa de desarme depois de um deslocamento lateral. Você precisa chegar equilibrado, não apenas alcançar a bola.|{}
+posicionamento|chegar_base|Chegar com a base pronta para parar|Você consegue disputar sem atravessar o espaço do parceiro.|Você chega embalado e não consegue ajustar a distância.
+desarme|contato_lateral|Tocar a bola durante a aproximação|Você alcança a bola mantendo o corpo sob controle.|Você estica a perna sem reorganizar o apoio.
+visao|calcular_encontro|Calcular o encontro com a condução|Você escolhe um ponto que consegue alcançar.|Você corre para a posição anterior da bola.
+disciplina|reduzir_aproximacao|Começar com uma aproximação menor|Você entende o apoio antes de ampliar a corrida.|Você reduz a distância, mas mantém a pressa do bote.
+@2162 T01.desarme_tecnico|O auxiliar pede que você desarme e já controle a bola. Apenas afastá-la não conclui o exercício.|{}
+desarme|tirar_controlando|Direcionar o desarme para seu próprio alcance|Você recupera sem deixar a bola escapar longe.|Você toca forte e só afasta a bola.
+tecnica|segundo_contato|Preparar o contato que vem depois do bote|Você liga recuperação e controle.|Você comemora o primeiro toque e perde o segundo.
+posicionamento|base_retomada|Terminar o bote com apoio para continuar|Você consegue sair da disputa equilibrado.|Você termina com o peso inteiro na perna esticada.
+visao|lado_livre|Escolher um lado livre para a recuperação|Você leva a bola para fora da disputa.|Você recupera para o espaço que o parceiro ainda ocupa.
+@2163 T01.desarme_tecnico|No treino, o parceiro tenta um giro com a bola. Sua tarefa é aprender a disputar sem seguir apenas os ombros.|{}
+visao|bola_quadril|Acompanhar bola e quadril em conjunto|Você distingue o giro real da finta.|Você olha só o tronco e segue a direção errada.
+desarme|momento_giro|Atacar a bola no instante do giro|Você aproveita a passagem em que a bola fica alcançável.|Você parte quando o giro já protegeu a bola.
+posicionamento|fechar_saida|Guardar a saída mais curta|Você limita o giro sem se agarrar ao parceiro.|Você fecha o lado que ele não pretendia usar.
+apoio|pedir_retorno|Pedir ao parceiro que explique onde você se precipitou|O retorno aponta o instante do bote antecipado.|Vocês discutem quem ganhou e não o gesto.
+@2164 T01.cabeceio|O exercício de cabeceio usa lançamentos leves para um alvo. A comissão quer contato controlado, sem buscar força máxima.|{}
+chute|direcionar_cabeca|Direcionar com a testa para o alvo|Você encontra um contato que orienta a bola.|Você toca na lateral da cabeça e perde a direção.
+posicionamento|base_cabeca|Ajustar o corpo antes da bola chegar|Você prepara o contato sem desequilibrar o tronco.|Você se inclina tarde e precisa alcançar com o pescoço.
+visao|seguir_bola|Acompanhar a bola até o ponto do contato|Você identifica a chegada sem fechar a leitura cedo.|Você perde a trajetória antes de tocar na bola.
+disciplina|menor_distancia|Pedir lançamentos mais próximos|Você trabalha o contato antes de ampliar a distância.|Você busca força mesmo com o lançamento curto.
+@2165 T01.cabeceio|O auxiliar alterna alvos à esquerda e à direita no exercício aéreo. Você precisa orientar o contato sem girar o corpo inteiro.|{}
+chute|mudar_destino|Cabecear para o alvo indicado|Você muda a direção mantendo o contato firme.|Você tenta mudar tarde e toca sem precisão.
+tecnica|angulo_contato|Ajustar o ângulo da superfície de contato|O ajuste orienta a bola sem um giro exagerado.|Você gira o tronco em vez de ajustar o contato.
+visao|escolher_alvo|Localizar o alvo antes do lançamento|Você prepara a intenção sem procurar durante o contato.|Você espera a bola para só então buscar o alvo.
+posicionamento|apoio_direcao|Preparar a base para o lado da entrega|Você sustenta o corpo na direção pretendida.|Você apoia no lado oposto e perde equilíbrio.
+@2166 T01.cabeceio|O exercício trabalha cabeceio para baixo. O alvo fica próximo, e o auxiliar pede cuidado para não atingir a bola apenas por baixo.|{}
+chute|contato_superior|Buscar contato que leve a bola para baixo|Você encontra a trajetória baixa pedida.|Você alcança por baixo e levanta a bola.
+posicionamento|tempo_chegada|Ajustar a chegada à altura do contato|Você encontra a bola num ponto útil para direcionar.|Você chega tarde e precisa esticar o corpo.
+visao|ler_altura_chegada|Observar onde a bola alcançará sua frente|Você escolhe o instante de contato com antecedência.|Você acompanha só a altura inicial do lançamento.
+disciplina|ensaiar_sem_forca|Priorizar direção sem aumentar a força|Você estabiliza a trajetória antes de buscar potência.|Você força o gesto e perde a direção baixa.
+@2167 T01.cabeceio|A comissão ensaia uma escorada de cabeça para um colega. O objetivo é entregar no caminho dele, não vencer uma disputa imaginária.|{}
+passe|escora_aerea|Escorar para a trajetória do colega|A bola encontra o deslocamento combinado.|Você escora para onde o colega estava parado.
+visao|olhar_apoio_aereo|Localizar o apoio antes do lançamento|Você prepara a direção sem precisar procurar depois.|Você segue o lançamento e esquece a posição do colega.
+tecnica|dosar_escora|Reduzir a força do contato|A escorada mantém a bola ao alcance do apoio.|Você devolve a força inteira do lançamento.
+apoio|combinar_distancia|Combinar a distância da aproximação|O colega entende onde poderá receber a escorada.|Vocês combinam o lado, mas não a distância.
+@2168 T01.cabeceio|O treino aéreo exige deslocar antes do cabeceio. Você precisa evitar chegar parado no ponto de contato cedo demais.|{}
+posicionamento|tempo_deslocamento|Ajustar o tempo da aproximação|Você chega em movimento no instante da bola.|Você chega cedo e precisa esperar desequilibrado.
+chute|cabecar_movendo|Direcionar o cabeceio durante a aproximação|Seu contato mantém a direção do alvo.|Você transfere a corrida para a bola sem controlar o rumo.
+visao|rastrear_queda|Recalcular a queda durante o lançamento|Você corrige o ponto de encontro a tempo.|Você mantém o ponto escolhido antes de ler a trajetória.
+disciplina|corrida_menor|Reduzir a corrida até entender o tempo|Você percebe a relação entre saída e chegada.|Você encurta a corrida sem ajustar o momento de sair.
+@2169 T01.cabeceio|O auxiliar pede uma intervenção aérea para longe de uma faixa central. O destino do afastamento faz parte do exercício.|{}
+desarme|afastar_lado|Direcionar o corte para uma faixa lateral|Você retira a bola da região central pedida.|Seu corte volta para a mesma faixa central.
+visao|escolher_zona|Escolher a região antes de disputar|Você prepara um destino além de apenas tocar na bola.|Você pensa só no contato e não escolhe o destino.
+posicionamento|base_afastamento|Colocar a base de acordo com o corte|Você sustenta o corpo na direção do afastamento.|Você se posiciona para o lado contrário do alvo.
+apoio|revezar_avaliacao|Revezar com a dupla a avaliação do destino|O retorno ajuda a distinguir contato e direção.|Vocês avaliam só a distância e ignoram a faixa pedida.
+@2170 T01.bola_parada_tecnica|O exercício de cobrança de falta usa uma barreira de treino fixa. Você precisa decidir qual trajetória quer praticar, sem prometer um gol.|{}
+chute|curva_barreira|Treinar uma curva ao redor da barreira|Você encontra a passagem com direção controlada.|Você exagera a curva e perde o alvo.
+tecnica|altura_contato|Ajustar o contato para superar a altura|O ajuste leva a bola acima do obstáculo.|Você busca altura demais e reduz o alcance útil.
+visao|margem_barreira|Identificar a margem real do percurso|Você escolhe uma trajetória compatível com o espaço.|Você escolhe uma passagem que o obstáculo não permite.
+disciplina|gesto_repetivel|Repetir a mesma aproximação antes de variar|Você estabelece uma referência para comparar batidas.|Você muda a corrida e o contato na mesma tentativa.
+@2171 T01.bola_parada_tecnica|A comissão pede cobranças de escanteio para zonas diferentes. O exercício não tem disputa real, apenas alvos de entrega.|{}
+passe|zona_escolhida|Entregar para a zona indicada|A bola chega à região pedida sem depender de uma disputa.|Você mantém o destino da cobrança anterior.
+tecnica|altura_alcance|Separar o ajuste de altura do de alcance|Você reconhece qual ajuste muda cada parte da trajetória.|Você altera tudo ao mesmo tempo e não identifica o efeito.
+visao|localizar_marcas|Conferir as marcas antes da aproximação|Você prepara o destino sem corrigir no último passo.|Você começa a corrida antes de localizar o alvo.
+disciplina|serie_por_zona|Fazer uma pequena série em cada zona|Você compara entregas na mesma referência.|Você troca de zona antes de reconhecer o padrão da batida.
+@2172 T01.bola_parada_tecnica|O auxiliar ensaia uma cobrança curta com devolução. A bola precisa sair parada corretamente antes de a combinação continuar.|{}
+passe|primeira_entrega|Fazer uma primeira entrega fácil de devolver|O colega recebe sem gastar um toque de ajuste.|A bola chega ao corpo e prende a devolução.
+posicionamento|abrir_retorno|Criar um ângulo depois da cobrança|Você oferece uma devolução fora da linha inicial.|Você permanece atrás do colega e fecha o retorno.
+visao|ler_tempo_curto|Reconhecer quando o colega pode devolver|Você ajusta a aproximação à condição dele.|Você espera uma devolução antes do domínio estar pronto.
+liderar|combinar_gatilho|Definir o sinal que inicia a combinação|Vocês executam sem depender de um chamado tardio.|O sinal é confundido com a preparação anterior.
+@2173 T01.bola_parada_tecnica|O treino de pênalti trabalha uma aproximação estável. O auxiliar pede que você avalie o próprio gesto, sem atribuir o resultado à sorte.|{}
+chute|direcao_assumida|Escolher o lado e executar o gesto|Você leva a bola ao lado que havia escolhido.|Você muda o contato durante a batida e perde a direção.
+tecnica|apoio_penalti|Repetir a posição do apoio|Você cria uma base consistente para comparar tentativas.|Seu apoio muda de distância a cada cobrança.
+visao|conferir_preparacao|Observar a relação entre bola e aproximação|Você reconhece um detalhe que altera sua batida.|Você observa apenas onde o chute termina.
+disciplina|rotina_cobranca|Repetir uma rotina curta antes de bater|A rotina ajuda a manter a intenção durante o gesto.|Você transforma a rotina em distração e perde o foco.
+@2174 T01.bola_parada_tecnica|A comissão prepara reposições laterais com os pés no chão e entrega precisa. Você precisa colocar a bola ao alcance do colega sem violar o gesto do exercício.|{}
+tecnica|gesto_reposicao|Ensaiar o movimento completo da reposição|Você executa o gesto mantendo os apoios previstos.|Você termina o gesto tirando um apoio do lugar.
+passe|destino_reposicao|Buscar a distância confortável do colega|A entrega chega sem obrigar o colega a recuar.|Você força a distância e manda além do alcance.
+visao|ler_movimento_apoio|Observar para onde o apoio se apresenta|Você escolhe o destino de acordo com o movimento.|Você entrega no ponto de onde o apoio já saiu.
+apoio|ajustar_apresentacao|Combinar como o colega mostrará a opção|A apresentação fica clara sem uma chamada longa.|Vocês usam sinais diferentes e não sincronizam a entrega.
+@2175 T01.cruzamento_tecnico|O exercício de cruzamento acontece depois de conduzir até uma marca. A entrega precisa sair antes de você ultrapassar essa referência.|{}
+passe|cruzar_na_marca|Entregar ao alcançar a marca|Você solta a bola no ponto de referência.|Você passa da marca e fecha o ângulo da entrega.
+tecnica|ultimo_toque|Preparar a distância com o último domínio|O domínio deixa espaço para o gesto de cruzamento.|O domínio aproxima demais a bola do apoio.
+visao|ver_alvo_correndo|Conferir o alvo durante a condução|Você chega à marca sem procurar o destino tarde.|Você olha o alvo e perde o limite do percurso.
+posicionamento|apoio_cruzamento|Ajustar o apoio à linha de corrida|Você bate sem atravessar o corpo.|Seu apoio acompanha a corrida, mas não prepara a entrega.
+@2176 T01.cruzamento_tecnico|O auxiliar pede cruzamentos rasteiros para uma faixa atrás da primeira marca. O objetivo é controlar a direção do recuo.|{}
+passe|passe_atras|Buscar a faixa recuada pelo chão|A bola chega à faixa sem atravessar o alvo.|A entrega segue adiante em vez de recuar.
+tecnica|contato_recuado|Ajustar o contato para levar a bola para trás|Você muda o destino sem prender o movimento.|Você arrasta o pé e perde a força da entrega.
+visao|localizar_faixa|Reconhecer a faixa antes de conduzir|Você sabe onde a bola precisa terminar.|Você olha a primeira marca e esquece a faixa atrás.
+apoio|retorno_alvo|Pedir que a dupla mostre onde a bola passou|O retorno ajuda a distinguir desvio e excesso de força.|Vocês avaliam posições diferentes como se fossem o mesmo alvo.
+@2177 T01.cruzamento_tecnico|O treino alterna entregas altas e tensas pelo mesmo corredor. Você precisa produzir duas trajetórias sem trocar todo o movimento.|{}
+passe|variar_trajetoria|Alternar a altura mantendo o destino|Você diferencia as entregas sem perder o corredor.|A mudança de altura também desvia a direção.
+tecnica|ponto_contato|Alterar apenas o ponto de contato|Você percebe como o contato muda a trajetória.|Você tenta variar a altura mexendo em vários gestos juntos.
+visao|imaginar_percurso|Definir o percurso antes da entrega|Você prepara uma intenção de trajetória clara.|Você escolhe apenas o destino e esquece o percurso.
+disciplina|comparacao_pares|Comparar uma entrega de cada tipo|Você distingue qual ajuste produziu a diferença.|Você muda também a distância e perde a comparação.
+@2178 T01.cruzamento_tecnico|A comissão trabalha entregas depois de receber uma inversão. O domínio da bola alta precisa preparar um passe pelo corredor.|{}
+tecnica|dominio_para_entrega|Dominar na distância útil para cruzar|O controle já prepara o gesto seguinte.|Você domina debaixo do corpo e precisa de outro ajuste.
+passe|entrega_apos_controle|Entregar depois de estabilizar a recepção|O passe sai com base apesar da chegada alta.|Você apressa a entrega com a bola ainda sem controle.
+visao|alvo_antes_queda|Localizar o alvo antes de a inversão cair|Você não precisa procurar a região depois do domínio.|Você observa o alvo e perde o ponto de queda.
+posicionamento|abrir_recepcao|Abrir o corpo para receber e continuar|Você une recepção e entrega sem outro giro.|Você recebe fechado e perde a linha do corredor.
+@2179 T01.cruzamento_tecnico|O auxiliar marca um alvo além de um obstáculo baixo. Você precisa passar por cima sem deixar a bola cair tarde demais.|{}
+passe|altura_util|Usar uma altura suficiente para o obstáculo|Você supera a marca e chega ao alvo.|Você dá altura demais e alonga a queda.
+tecnica|contato_curvo|Trabalhar o contato que encurta a queda|Você encontra uma curva útil para a distância.|A curva tira alcance antes de superar o obstáculo.
+visao|dividir_percurso|Separar mentalmente obstáculo e zona de queda|Você reconhece duas exigências na mesma entrega.|Você resolve a altura e ignora onde a bola cai.
+disciplina|aproximacao_constante|Manter a aproximação enquanto ajusta a batida|Você compara contatos sem outra variável na corrida.|Você altera a aproximação a cada tentativa.
+@2180 T01.protecao_tecnica|O exercício pede proteger a bola durante um giro completo e terminar de frente. O parceiro acompanha, mas não usa contato físico.|{}
+drible|giro_protegido|Conduzir a bola no lado afastado|Você mantém a bola longe do alcance durante o giro.|Você expõe a bola ao trocar o apoio.
+posicionamento|centro_giro|Ajustar o centro do giro antes de começar|Você termina orientado sem pisar sobre a bola.|Você gira em volta do lugar errado e perde o controle.
+tecnica|toques_giro|Usar contatos pequenos durante a volta|Você mantém a bola no alcance da passada.|Você junta os contatos e interrompe o giro.
+visao|olhar_saida_giro|Reconhecer a saída antes da volta terminar|Você encontra a continuação sem uma pausa longa.|Você termina a volta e só então procura o caminho.
+@2181 T01.protecao_tecnica|A dupla treina receber e manter a bola por poucos segundos dentro de um quadrado. O objetivo é preservar saídas, não só ficar parado.|{}
+drible|circular_quadrado|Circular sem encostar nos limites|Você protege a bola mantendo uma saída disponível.|Você conduz até um canto e fica sem saída.
+posicionamento|base_central|Guardar uma base que permita mudar o lado|Você consegue reagir sem um giro completo.|Você fecha a base e depende de voltar pelo mesmo caminho.
+visao|mapear_limites|Conferir os limites durante a proteção|Você evita entrar num espaço sem continuidade.|Você olha só o parceiro e esquece o limite atrás.
+apoio|trocar_analise|Pedir que o parceiro mostre onde fechou você|A análise revela qual saída você deixou de preservar.|Vocês descrevem apenas quem venceu a tentativa.
+@2182 T01.protecao_tecnica|O auxiliar pede proteção sem prender a bola sob o pé. Você precisa manter o controle usando deslocamentos pequenos.|{}
+tecnica|bola_em_movimento|Manter a bola andando perto do corpo|Você preserva controle sem ficar preso à sola.|Você afasta a bola ao tentar mantê-la em movimento.
+drible|mudar_apoiando|Trocar o lado acompanhando o próprio apoio|Você protege a transição entre os lados.|Você troca a bola antes de preparar o apoio.
+posicionamento|orientar_corpo|Usar a orientação do corpo como proteção|Você dificulta o acesso sem interromper a condução.|Você vira o corpo e perde a referência da bola.
+disciplina|ritmo_pequeno|Ensaiar deslocamentos menores|Você encontra uma proteção que consegue repetir.|Você reduz o deslocamento sem reduzir o alcance do toque.
+@2183 T01.protecao_tecnica|O exercício pede receber sob pressão simulada e sair pelo lado anunciado pelo auxiliar. O lado muda a cada tentativa.|{}
+visao|ler_comando|Relacionar o comando ao espaço real|Você identifica a saída indicada sem trocar as referências.|Você interpreta o comando pela posição anterior do corpo.
+tecnica|dominio_versatil|Preparar um domínio que permita os dois lados|Você mantém a escolha aberta até receber a indicação.|Você domina escolhendo um lado cedo demais.
+drible|saida_indicada|Sair pelo lado pedido mantendo a proteção|Você leva a bola sem expô-la no giro.|Você muda a bola, mas deixa o corpo fora da proteção.
+disciplina|comandos_lentos|Pedir comandos em um ritmo menor|Você acerta a relação entre leitura e execução.|Você decora a sequência em vez de reconhecer cada comando.
+@2184 T01.contato_bola|A comissão pede que você compare o mesmo passe usando a parte interna e o peito do pé. A meta é reconhecer a utilidade de cada contato.|{}
+passe|comparar_destino|Buscar o mesmo destino com os dois contatos|Você identifica como cada superfície muda o passe.|Você muda o destino junto com a superfície e perde a comparação.
+tecnica|sensibilidade|Concentrar-se na sensação do contato|Você percebe onde a bola encontra o pé em cada gesto.|Você avalia só a força e não identifica o contato.
+visao|ler_trajetorias|Comparar as trajetórias produzidas|Você reconhece qual trajetória serve a cada distância.|Você trata trajetórias diferentes como o mesmo passe.
+disciplina|serie_fixa|Manter distância e aproximação iguais|Você compara as superfícies com referências estáveis.|Você muda a aproximação a cada contato.
+@2185 T01.contato_bola|O auxiliar pede uma entrega sem deixar o calcanhar do apoio mudar de lugar. O exercício busca precisão do contato, não distância.|{}
+tecnica|contato_isolado|Trabalhar um contato curto e firme|Você orienta a bola sem mover a base.|Você tenta ganhar força deslocando o apoio.
+passe|alvo_proximo|Entregar para um alvo próximo|Você encontra precisão na distância do exercício.|Você força a entrega e ultrapassa o alvo.
+posicionamento|base_fixa|Ajustar o apoio antes de iniciar|Você prepara uma base que não exige correção.|Você começa desalinhado e precisa mover o apoio depois.
+disciplina|reconhecer_limite|Recomeçar ao perder a referência do apoio|Você separa uma tentativa válida de uma compensação.|Você continua a sequência sem perceber que mudou a base.
+@2186 T01.contato_bola|O treino pede um toque que retire força da bola antes de ela parar. Você precisa acompanhar o contato, não bloquear a trajetória.|{}
+tecnica|acompanhar_contato|Acompanhar a bola com o pé|Você reduz a velocidade de maneira controlada.|Você encontra a bola com o pé rígido e produz um rebote.
+visao|ler_velocidade_contato|Observar quanto a bola ainda avança|Você escolhe o tamanho do amortecimento.|Você prepara o mesmo contato para velocidades diferentes.
+posicionamento|corpo_caminho|Manter o corpo alinhado ao percurso|Você amortiza sem precisar alcançar de lado.|Você se posiciona atravessado e muda a direção.
+apoio|trocar_entregas|Pedir que a dupla mantenha entregas parecidas|As entregas comparáveis ajudam a ajustar o gesto.|Vocês variam força e direção sem conseguir avaliar o contato.
+@2187 T01.leitura_tecnica|O analista mostra uma sequência de recepções suas no treino. A pergunta é qual detalhe aparece antes de um domínio limpo.|{}
+visao|antecedente|Observar o instante anterior ao contato|Você identifica uma preparação que favorece o domínio.|Você olha só o resultado e não encontra a preparação.
+disciplina|comparar_pares|Comparar uma tentativa limpa com outra imprecisa|Você localiza uma diferença verificável nos gestos.|Você compara tentativas com condições muito diferentes.
+tecnica|reproduzir_ajuste|Voltar ao campo para testar o ajuste observado|Você reproduz o detalhe e entende sua utilidade.|Você tenta reproduzir o resultado sem ajustar o gesto.
+apoio|ouvir_analista|Pedir ao analista uma referência concreta|A referência orienta o que você observará no próximo treino.|A conversa fica ampla e não aponta um detalhe observável.
+@2188 T01.leitura_tecnica|O auxiliar pede que você explique por que um passe ficou difícil para o colega. Não basta dizer que a bola chegou.|{}
+visao|condicao_recebedor|Observar como o colega precisava receber|Você identifica a exigência que o passe criou.|Você olha só seu gesto e ignora a recepção.
+passe|refazer_entrega|Refazer a entrega para facilitar a continuidade|Você oferece um passe mais útil para o próximo gesto.|Você repete a direção sem corrigir a força.
+apoio|perguntar_recepcao|Perguntar ao colega o que dificultou|O colega descreve um ajuste que você consegue testar.|Vocês discutem a intenção sem esclarecer a dificuldade.
+disciplina|avaliar_criterio|Definir um critério além de acertar a pessoa|Você reconhece uma entrega útil, não apenas completa.|Você cria um critério amplo que não distingue as tentativas.
+@2189 T01.leitura_tecnica|O vídeo do exercício mostra você interrompendo a corrida antes de controlar. A comissão propõe comparar formas de receber em movimento.|{}
+tecnica|dominio_correndo|Testar um domínio mantendo a passada|Você controla sem precisar de uma parada completa.|Você mantém a corrida, mas deixa a bola escapar.
+visao|identificar_freio|Localizar o instante em que começa a frear|Você reconhece a decisão que antecede a parada.|Você observa o pé final e perde o início do freio.
+posicionamento|apoio_continuo|Ajustar a base para a continuidade|Você recebe com um apoio disponível para seguir.|Você termina a recepção com o peso travado.
+disciplina|comparar_velocidade|Comparar tentativas em velocidade parecida|Você avalia o gesto sem confundir com o ritmo.|Você muda a velocidade e não consegue atribuir a diferença.
+@2190 T01.leitura_tecnica|A comissão pede que você reconheça quando um toque extra realmente melhora a jogada. O exercício alterna espaço aberto e passagem estreita.|{}
+visao|funcao_toque|Identificar a função do toque extra|Você distingue preparação útil de correção desnecessária.|Você conta contatos sem perceber a função de cada um.
+passe|soltar_quando_pronto|Entregar assim que a linha fica utilizável|Você elimina uma espera que não ajudava.|Você solta antes de preparar uma entrega controlada.
+tecnica|preparar_primeiro|Melhorar o primeiro toque para decidir cedo|Seu domínio reduz a necessidade de correção.|Você acelera o domínio e cria outra correção.
+disciplina|descrever_decisao|Explicar por que usou cada contato|Você relaciona o gesto à condição do espaço.|Você justifica toda tentativa pelo resultado final.
+@2191 T01.combinacao_tecnica|O circuito junta recepção, mudança de direção e passe. A comissão quer continuidade sem sacrificar a qualidade de cada parte.|{}
+tecnica|ligar_contatos|Usar a recepção para preparar a mudança|Você liga os gestos sem reposicionar a bola.|Você domina para um lado que atrapalha a mudança.
+drible|mudanca_util|Fazer uma mudança curta antes da entrega|Você altera o caminho sem perder o tempo do passe.|Você prolonga a mudança e atrasa a entrega.
+passe|terminar_sequencia|Concluir com uma entrega controlada|A bola chega ao alvo depois da sequência.|Você relaxa no último gesto e erra a entrega.
+visao|planejar_proximo|Enxergar a próxima etapa antes de concluí-la|Você prepara a continuidade sem ignorar o gesto atual.|Você antecipa tanto que abandona o controle presente.
+@2192 T01.combinacao_tecnica|A dupla trabalha uma recepção seguida de passe por um portão que muda de lugar. O controle não pode escolher a direção cedo demais.|{}
+tecnica|dominio_aberto|Manter o domínio em posição neutra|Você preserva opções até reconhecer o portão.|Seu domínio fecha um lado antes da mudança.
+visao|localizar_portao|Localizar a abertura durante a recepção|Você identifica a nova linha sem perder o controle.|Você procura a abertura e abandona a recepção.
+passe|atravessar_abertura|Passar pela abertura recém-indicada|Você encontra a linha antes de ela mudar.|Você entrega para a posição anterior do portão.
+apoio|ritmo_troca|Combinar o ritmo de mudança do portão|A troca desafia sem impedir a leitura do exercício.|Vocês mudam sem referência e não conseguem avaliar o gesto.
+@2193 T01.combinacao_tecnica|O exercício pede recuperar uma bola solta e entregar em seguida. A comissão quer que o primeiro contato já organize a saída.|{}
+desarme|recuperar_orientando|Ganhar a bola levando-a para um lado útil|Você recupera preparando o passe seguinte.|Você recupera sob o corpo e precisa reorganizar tudo.
+passe|entrega_rapida|Entregar depois de estabilizar a recuperação|Você conclui a sequência sem um toque inútil.|Você entrega com a bola ainda fora de controle.
+posicionamento|apoio_recuperacao|Chegar com a base orientada para sair|Você não precisa girar inteiro depois de recuperar.|Você chega de frente para a bola e de costas para a saída.
+visao|alvo_antes_recuperar|Localizar o alvo antes do primeiro contato|Você sabe onde continuar ao recuperar.|Você procura o alvo só depois de dominar.
+@2194 T01.combinacao_tecnica|O auxiliar propõe terminar o circuito explicando seu ajuste mais importante. A ideia é transformar a repetição em uma referência para a próxima sessão.|{}
+disciplina|registrar_ajuste|Anotar um ajuste que consegue reconhecer|Você guarda uma referência observável para repetir.|Você registra uma intenção vaga sem indicar o gesto.
+visao|comparar_tentativas|Comparar a primeira e a última tentativa|Você identifica o que mudou na execução.|Você compara só os resultados e não encontra a mudança.
+tecnica|demonstrar_ajuste|Demonstrar o gesto corrigido em ritmo menor|Você reproduz o ajuste sem depender da velocidade.|Você reduz o ritmo, mas repete o gesto anterior.
+apoio|validar_com_dupla|Conferir sua leitura com a dupla|A dupla confirma o detalhe e aponta um limite.|Vocês concordam por educação sem discutir o gesto.
+@2195 T02.carga_recuperacao|O preparador apresenta duas intensidades para a sessão. Você precisa comunicar sua disposição com honestidade, sem disputar quem faz mais.|{}
+disciplina|relatar_disposicao|Descrever sua disposição sem exagerar|Seu relato ajuda a ajustar a atividade proposta.|Você responde de forma vaga e não esclarece sua condição.
+resistencia|carga_combinada|Cumprir a intensidade combinada|Você sustenta a carga sem transformar a série em disputa.|Você acelera além do combinado e não mantém a série.
+recuperar|pedir_intervalo|Pedir uma pausa antes de repetir|A pausa permite retomar com controle.|A pausa não recupera sua disposição como esperava.
+apoio|respeitar_ritmos|Combinar apoio sem copiar a carga do colega|Vocês se ajudam respeitando intensidades diferentes.|Vocês acabam disputando ritmo em vez de acompanhar o plano.
+@2196 T02.coletivo_tatico|A comissão ensaia a mudança de lado da equipe inteira. Seu setor precisa acompanhar sem correr para o mesmo lugar da bola.|{}
+posicionamento|deslocar_bloco|Acompanhar a mudança mantendo a distância|Você se desloca sem romper a ligação com o setor.|Você segue a bola e amplia o intervalo atrás.
+visao|ler_lado_oposto|Observar o setor distante antes de mover|Você percebe a largura que precisa ser preservada.|Você olha apenas a região em que a bola está.
+liderar|sinal_transicao|Combinar um sinal para iniciar o deslocamento|O setor muda de lado com uma referência comum.|O sinal chega depois de parte do setor sair.
+resistencia|repeticao_coletiva|Sustentar as repetições no ritmo pedido|Você mantém a coordenação até o fim do bloco.|O cansaço faz seu deslocamento se separar do grupo.
+@2197 T02.forca_funcional|O preparador orienta um exercício de força com movimento controlado. Ele pede que você não aumente a carga antes de acertar a execução.|{}
+forca|execucao|Completar a série com a carga indicada|Você mantém o gesto sem perder a postura.|Você compensa com o tronco e perde a execução.
+disciplina|pedir_conferencia|Pedir uma conferência da postura|A correção permite reconhecer seu ponto de compensação.|Você recebe a correção, mas não consegue reproduzi-la.
+recuperar|intervalo_serie|Respeitar o intervalo antes de repetir|Você retoma a série com controle do movimento.|Você ainda se sente cansado e precisa informar isso.
+apoio|revezar_observacao|Revezar a observação com o colega|Vocês identificam desvios sem disputar a carga.|Vocês comentam a carga e deixam de observar a execução.
+@2198 T02.pressao_coletiva|No treino, a pressão só começa depois de um sinal combinado. Sua tarefa é evitar uma perseguição individual fora do tempo do setor.|{}
+visao|reconhecer_sinal|Esperar o sinal real antes de avançar|Você inicia a pressão junto da referência combinada.|Você reage ao movimento de um colega antes do sinal.
+posicionamento|distancia_partida|Guardar a distância para começar a pressão|Você consegue encurtar sem uma corrida descontrolada.|Você começa longe demais e chega depois do setor.
+liderar|confirmar_gatilho|Confirmar com o setor qual gesto vale como sinal|A confirmação elimina uma interpretação diferente.|Vocês repetem a palavra sem esclarecer o gesto.
+resistencia|repetir_pressao|Completar o bloco mantendo o tempo coletivo|Você sustenta o ritmo sem antecipar as últimas repetições.|Você se cansa e começa a sair fora do tempo.
+@2199 T02.organizacao_treino|O auxiliar encerra um bloco coletivo e pede uma observação objetiva de cada setor. Você precisa avaliar a coordenação sem culpar uma pessoa.|{}
+visao|apontar_distancia|Indicar uma distância que dificultou o exercício|Você apresenta uma referência que o setor consegue testar.|Você descreve uma impressão sem localizar o problema.
+liderar|propor_ajuste|Propor um ajuste simples para a próxima série|A proposta dá uma tarefa clara ao setor.|A proposta muda várias tarefas e confunde o grupo.
+apoio|ouvir_setor|Ouvir a leitura dos colegas antes de concluir|Você reconhece uma dificuldade que não tinha percebido.|Você prepara sua resposta e deixa de ouvir a dificuldade.
+disciplina|registro_comum|Registrar um combinado verificável|O setor termina com uma referência para conferir depois.|O registro fica genérico e não permite verificar o combinado.

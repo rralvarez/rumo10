@@ -1,0 +1,5 @@
+{
+    "checks": 4,
+    "actual_dotenv_numeric_keys": "passed",
+    "no_secrets_recorded": true
+}

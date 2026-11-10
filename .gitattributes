@@ -1,2 +1,6 @@
-*.sh text eol=lf
-*.yml text eol=lf
+/app/** -text
+/bin/** -text
+/database/** -text
+/public/** -text
+/release.json -text
+/approved-release/** -text

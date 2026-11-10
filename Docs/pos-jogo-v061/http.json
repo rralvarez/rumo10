@@ -1,0 +1,8 @@
+{
+    "checks": 17,
+    "environment": "Isolated loopback PHP HTTP process, local login fallback; NOT authenticated IIS\/Hub login",
+    "fixtures_cleaned": true,
+    "historical_unlocked": 7,
+    "rh_writes": false,
+    "result": "passed"
+}
