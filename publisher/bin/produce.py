@@ -28,7 +28,7 @@ def produce(repo,commit,project,metadata,out,*,functional_reference=None):
  if project=="rumo10" and functional_reference is not None:
   actual_reference=subprocess.check_output(["git","-C",str(repo),"rev-parse",functional_reference+"^{commit}"],text=True).strip()
   if actual_reference!=functional_reference:raise ValueError("Exact functional reference required")
-  subprocess.run(["git","-C",str(repo),"diff","--quiet",functional_reference,commit,"--","app","database","public","run_tests_f01.php"],check=True)
+  subprocess.run(["git","-C",str(repo),"diff","--quiet",functional_reference,commit,"--","app","database","public"],check=True)
   metadata=dict(metadata, functional_commit=functional_reference)
  elif project=="rumo10":
   policy_path=pathlib.Path(repo)/"publisher"/"config"/"update-policy.json"
