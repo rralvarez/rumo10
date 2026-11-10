@@ -109,7 +109,7 @@ jobs:
           path: source
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          ref: b859e81709b382be9d9e34a52378654e5cd78e9a
+          ref: bb654298f52df1e18cc2cef908b545981fad1e9b
           persist-credentials: false
           path: trusted
       - name: Obtain exact completed run metadata

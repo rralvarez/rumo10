@@ -69,15 +69,16 @@ def main():
             return sp.check_output(["git", "rev-parse", "HEAD"], cwd=source, text=True).strip()
 
         def candidate(name, number):
-            with (source / name).open("ab") as file:
-                file.write(f"\n/* synthetic fixture {number} */\n".encode())
+            if name.endswith(".php"):
+                with (source / name).open("ab") as file:
+                    file.write(f"\n/* synthetic fixture {number} */\n".encode())
             sp.run(["git", "add", "--", name], cwd=source, check=True)
             sp.run(["git", "-c", "user.name=DEP-050 Fixture", "-c", "user.email=fixture@example.invalid",
                     "-c", "commit.gpgsign=false", "commit", "-qm", f"Synthetic candidate {number}"],
                    cwd=source, check=True)
             return head()
 
-        def pack(name, sha, number, recovery=False, pr=False):
+        def pack(name, sha, number, recovery=False, pr=False, reject_archive=False):
             event = "workflow_dispatch" if recovery else ("pull_request" if pr else "push")
             meta = {"workflow_id": 2 if recovery else 1, "id": number, "run_number": number,
                     "run_attempt": 1, "head_sha": sha, "event": event, "head_branch": "main",
@@ -90,9 +91,10 @@ def main():
                        GITHUB_RUN_NUMBER=str(number), GITHUB_RUN_ATTEMPT="1")
             command = [sys.executable, str(tooling / "main-release.py"), str(source), str(run), str(work / name)]
             result = sp.run(command + (["--recovery"] if recovery else []), env=env)
-            if pr:
-                assert result.returncode != 0 and not (work / name).exists()
-                print("PASS PR cannot package", flush=True)
+            if pr or reject_archive:
+                assert result.returncode != 0 and not (work / name / "candidate.json").exists()
+                assert not (work / name / "release.tar.gz").exists()
+                print("PASS PR cannot package" if pr else "PASS altered Git archive refused", flush=True)
             else:
                 result.check_returncode()
 
@@ -103,6 +105,10 @@ def main():
         pack("next-a", candidate("app/Presentation.php", 3), 3)
         pack("next-b", candidate("app/Presentation.php", 4), 4)
         pack("forbidden", candidate("app/Repository.php", 5), 5)
+        with (source / ".gitattributes").open("ab") as file:
+            file.write(b"\n/app/Game.php export-ignore\n")
+        rejected_sha = candidate(".gitattributes", 6)
+        pack("altered-archive", rejected_sha, 6, reject_archive=True)
         baseline = work / "recovery" / "release.tar.gz"
         with ThreadPoolExecutor() as pool:
             def launch(label, port, first, recovery, extra):
