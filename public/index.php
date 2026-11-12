@@ -123,6 +123,7 @@ try {
             if($path==='/conquistas/reconciliar'){$result=AchievementReconciliation::run($r,$_SESSION['account']);if($result['recognized'])$_SESSION['historical_achievements']=(int)($_SESSION['historical_achievements']??0)+count($result['recognized']);redirect('/conquistas');}
             if($path==='/carreira/compactar'){RetiredCareer::compactExisting($r,$_SESSION['account'],(int)($_POST['career']??0),(string)($_POST['confirm']??''));redirect('/carreira/resumo?career='.(int)$_POST['career']);}
             if($path==='/carreira/excluir'){CareerSlots::delete($r,$_SESSION['account'],(int)($_POST['career']??0),(string)($_POST['confirm']??''));redirect('/carreiras');}
+            $savedId = 0;
             if(in_array($path,['/carreira/criar','/carreira/nova'],true)) {
                 $newGame=EntryCountries::create(trim((string)($_POST['name']??'')),trim((string)($_POST['city']??'')),strtoupper((string)($_POST['uf']??'')),(string)($_POST['position']??''),(string)($_POST['country']??'BR'),$careerPlan,(string)($_POST['residence_country']??'BR'),trim((string)($_POST['residence_region']??'')),(string)($_POST['entry_uf']??'SP'));
                 $newGame['play_mode']=PlayMode::validate((string)($_POST['mode']??'normal'));

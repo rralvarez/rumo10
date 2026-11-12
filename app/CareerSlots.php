@@ -7,8 +7,7 @@ final class CareerSlots {
     }
     public static function quota(Repository $r,int $account):array {
         if(CareerBenefits::enabled())return CareerBenefits::quota($r,$account);
-        $plan=$r->query('SELECT plano FROM rumo10_conta_planos WHERE conta_id=?',[$account])->fetchColumn()?:'gratuito';
-        return ['plan'=>$plan,'limit'=>$plan==='pago'?10:3,'used'=>count(self::listing($r,$account))];
+        return ['plan'=>'gratuito','limit'=>2,'used'=>count(self::listing($r,$account))];
     }
     public static function owned(Repository $r,int $account,int $id,bool $lock=false):array {
         $c=$r->query('SELECT c.id,c.nome,c.clube,c.temporada FROM rumo10_carreiras c WHERE c.id=? AND (c.conta_id=? OR (c.conta_id IS NULL AND EXISTS(SELECT 1 FROM rumo10_carreiras_arquivadas a WHERE a.carreira_id=c.id AND a.conta_id=?)))'.($lock?' FOR UPDATE':''),[$id,$account,$account])->fetch();
@@ -49,7 +48,9 @@ final class CareerSlots {
             echo '<p><a href="/carreira/excluir?career='.e($c['id']).'">Excluir esta carreira</a></p></article>';
         }
         echo '</div>';
-        if($q['used']<$q['limit'] && (!CareerBenefits::enabled() || $q['plan']==='pago' || $q['used']<5))echo '<a class="btn btn-primary" href="/carreira/nova">Criar nova carreira</a>';else echo '<p>Para criar outra carreira, é preciso espaço disponível e, nas vagas extras gratuitas, um novo crédito de indicação.</p>';echo '</section>';RetiredCareer::listing($r,$account);
+        if($q['used']<$q['limit'] && (!CareerBenefits::enabled() || $q['plan']==='pago' || $q['used']<5))echo '<a class="btn btn-primary" href="/carreira/nova">Criar nova carreira</a>';else echo CareerBenefits::enabled()
+            ? '<p>Para criar outra carreira, é preciso espaço disponível e, nas vagas extras gratuitas, um novo crédito de indicação.</p>'
+            : '<p>As duas vagas-base estão ocupadas. Suas carreiras existentes continuam disponíveis.</p>';echo '</section>';RetiredCareer::listing($r,$account);
     }
     public static function confirmation(array $c):void {
         echo '<section class="panel"><h1>Excluir carreira?</h1><p><strong>'.e($c['nome']).'</strong> · '.e($c['clube']).'</p><p>Todos os dados desta carreira serão apagados permanentemente, incluindo partidas, escolhas, estatísticas e histórico. Essa ação não pode ser desfeita.</p>';form('/carreira/excluir');echo '<input type="hidden" name="career" value="'.e($c['id']).'"><label><input type="checkbox" name="confirm" value="delete" required> Confirmo a exclusão permanente desta carreira</label><button class="btn btn-danger">Excluir permanentemente</button></form><a href="/carreiras">Cancelar</a></section>';

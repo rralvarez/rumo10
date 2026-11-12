@@ -3,9 +3,7 @@ declare(strict_types=1);
 final class Game {
     public static function create(string $name,string $city,string $uf,string $position,?string $club=null): array {
         $g=self::legacyCreate($name,$city,$uf,$position);
-        $flag=config('RUMO10_DEVELOPMENT_V2','');
-        $active=$flag==='1'||($flag===''&&class_exists('BalanceService')&&BalanceService::isDevelopmentV3Active());
-        if($active)PlayerDevelopment::initialize($g);
+        if (BalanceService::isDevelopmentV3Active()) PlayerDevelopment::initialize($g);
         return $club!==null?Competition::attach($g,$club):Onboarding::prepare($g);
     }
     public static function legacyCreate(string $name,string $city,string $uf,string $position): array {
