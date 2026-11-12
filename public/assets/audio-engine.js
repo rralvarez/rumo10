@@ -6,7 +6,8 @@
   const AudioEngine = {
     ctx: null,
     prefs: { muted: false, volume: 0.7 },
-    pendingQueue: [],
+    pendingQueue: new Map(),
+    handled: new Set(),
     unlockingPromise: null,
 
     init() {
@@ -32,38 +33,54 @@
     },
 
     unlock() {
-      if (!this.ctx) return Promise.resolve(false);
-      if (this.ctx.state === 'running') return Promise.resolve(true);
-      if (this.unlockingPromise) return this.unlockingPromise;
-
-      this.unlockingPromise = this.ctx.resume().then(() => {
-        this.unlockingPromise = null;
+      if (!this.ctx) return;
+      if (this.ctx.state === 'running') {
         this.flushPendingQueue();
-        return true;
-      }).catch(() => {
-        this.unlockingPromise = null;
-        return false;
-      });
-
-      return this.unlockingPromise;
+        return;
+      }
+      if (this.unlockingPromise) return;
+      this.unlockingPromise = this.ctx.resume()
+        .then(() => this.flushPendingQueue())
+        .catch(() => {})
+        .finally(() => { this.unlockingPromise = null; });
     },
 
     flushPendingQueue() {
       if (!this.ctx || this.ctx.state !== 'running' || this.prefs.muted) return;
-      while (this.pendingQueue.length > 0) {
-        const eventKey = this.pendingQueue.shift();
+      for (const [eventId, eventKey] of this.pendingQueue) {
         this.playDirect(eventKey);
+        this.markHandled(eventId);
+        this.pendingQueue.delete(eventId);
       }
+    },
+
+    markHandled(eventId) {
+      this.handled.add(eventId);
+      try { sessionStorage.setItem('rumo10_sound_played:' + eventId, '1'); } catch (_) {}
+    },
+
+    enqueue(eventId, eventKey) {
+      if (!this.ctx || this.handled.has(eventId) || this.pendingQueue.has(eventId)) return;
+      try {
+        if (sessionStorage.getItem('rumo10_sound_played:' + eventId)) return;
+      } catch (_) {}
+      if (this.prefs.muted) {
+        this.markHandled(eventId);
+        return;
+      }
+      this.pendingQueue.set(eventId, eventKey);
+      this.flushPendingQueue();
     },
 
     setMuted(muted) {
       this.prefs.muted = !!muted;
       this.savePrefs();
       this.updateUI();
-      if (!this.prefs.muted) {
-        this.unlock();
+      if (this.prefs.muted) {
+        for (const eventId of this.pendingQueue.keys()) this.markHandled(eventId);
+        this.pendingQueue.clear();
       } else {
-        this.pendingQueue = [];
+        this.unlock();
       }
     },
 
@@ -79,20 +96,8 @@
       } catch (_) {}
     },
 
-    enqueue(eventKey) {
-      if (this.prefs.muted || !this.ctx) return;
-      if (this.ctx.state === 'running') {
-        this.playDirect(eventKey);
-      } else {
-        // Enfileira limitando a 5 eventos para evitar acúmulo ilimitado de sons antigos
-        if (this.pendingQueue.length < 5) {
-          this.pendingQueue.push(eventKey);
-        }
-      }
-    },
-
     playDirect(eventKey) {
-      if (this.prefs.muted || !this.ctx || this.ctx.state !== 'running') return;
+      if (this.prefs.volume === 0) return;
       const now = this.ctx.currentTime;
       const vol = this.prefs.volume;
 
@@ -218,31 +223,15 @@
   AudioEngine.init();
   window.__rumo10Audio = AudioEngine;
 
-  // Executa sons emitidos pelo servidor se ainda não foram reproduzidos nesta tela
-  function scanAndPlayServerEvents() {
-    document.querySelectorAll('[data-sound-event]').forEach(el => {
-      const eventKey = el.dataset.soundEvent;
-      const eventId = el.dataset.soundEventId || (eventKey + ':' + window.location.pathname);
-      const storageKey = 'rumo10_sound_played:' + eventId;
-      try {
-        if (!sessionStorage.getItem(storageKey)) {
-          sessionStorage.setItem(storageKey, '1');
-          AudioEngine.enqueue(eventKey);
-        }
-      } catch (_) {
-        AudioEngine.enqueue(eventKey);
-      }
+  ['click', 'pointerdown', 'keydown', 'submit'].forEach(event => {
+    window.addEventListener(event, () => AudioEngine.unlock(), { capture: true });
+  });
+
+  function scanServerEvents() {
+    document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(el => {
+      AudioEngine.enqueue(el.dataset.soundEventId, el.dataset.soundEvent);
     });
   }
-
-  // Desbloqueia na interação do usuário (click/touch/submit) e descarrega a fila com garantia da promessa
-  ['click', 'pointerdown', 'keydown', 'submit'].forEach(ev => {
-    window.addEventListener(ev, () => {
-      AudioEngine.unlock().then(() => {
-        scanAndPlayServerEvents();
-      });
-    }, { capture: true });
-  });
 
   // Monitora controles de áudio na interface
   document.addEventListener('click', e => {
@@ -257,10 +246,10 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       AudioEngine.updateUI();
-      scanAndPlayServerEvents();
+      scanServerEvents();
     });
   } else {
     AudioEngine.updateUI();
-    scanAndPlayServerEvents();
+    scanServerEvents();
   }
 })();
