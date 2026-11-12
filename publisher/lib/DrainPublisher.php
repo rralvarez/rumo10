@@ -42,8 +42,21 @@ class DrainPublisher extends Publisher {
    $receipt['state']='validated';record($this->session,$receipt);$this->sessionCheckpoint('before-release');$this->drain->release();return $result;
   }catch(\Throwable $e){$receipt['state']='blocked';record($this->session,$receipt);throw $e;}
  }
- public function recover():array{
+ private function acceptTesteCodexRetirement(array $session):void{
+  $folder=$this->ops['public'].'/testeCodex';
+  $path='public/testeCodex/.htaccess';
+  $expectedHash='fd5720626d7a72b9a808212700660d5dab8698c5200975d49a0e6942dfae2af7';
+  $before=$session['content_before'];
+  clearstatcache(true,$folder);
+  need($this->ops['project']==='rumo10'&&$session['state']==='blocked'&&
+      ($before[$path]??null)===$expectedHash&&!file_exists($folder)&&!is_link($folder),
+      'Authorized testeCodex retirement not demonstrated');
+  unset($before[$path]);
+  need($this->content()===$before,'Unstarted attempt code drift; manual reconciliation required');
+ }
+ public function recover(bool $retireTesteCodex=false):array{
   $this->enroll();$s=json(file_get_contents($this->session));
+  if($retireTesteCodex)need($this->drain->closed(),'Retirement requires the original closed drain');
   if(!$this->drain->closed()){
    $j=$this->ops['private'].'/journal.json';$prior=(is_file($j)?digest($j):null);
    need($prior===($s['journal_before']??null)&&!file_exists($this->ops['control'].'/deployment.lock')&&$this->content()===$s['content_before'],'Open gate with changed attempt; manual reconciliation required');
@@ -51,8 +64,13 @@ class DrainPublisher extends Publisher {
   }
   $this->drain->resume($s['owner']);$this->drain->drain((float)($this->ops['request_gate']['timeout_seconds']??30));
   $journal=$this->ops['private'].'/journal.json';$unchanged=(is_file($journal)?digest($journal):null)===($s['journal_before']??null);
+  if($retireTesteCodex)need($unchanged&&!file_exists($this->ops['control'].'/deployment.lock'),
+      'Retirement requires an unstarted installation');
   if($unchanged&&!file_exists($this->ops['control'].'/deployment.lock')){
-   need($this->content()===$s['content_before'],'Unstarted attempt code drift; manual reconciliation required');$this->verifyUnstartedBaseline();$this->hook('smoke',['project'=>$this->ops['project'],'action'=>'abort-before-install']);
+   if($retireTesteCodex)$this->acceptTesteCodexRetirement($s);
+   else need($this->content()===$s['content_before'],'Unstarted attempt code drift; manual reconciliation required');
+   $this->verifyUnstartedBaseline();$this->hook('smoke',['project'=>$this->ops['project'],'action'=>'abort-before-install']);
+   if($retireTesteCodex)$s['authorized_retirement']='public/testeCodex';
    $s['state']='recovered';record($this->session,$s);$this->drain->release();return ['state'=>'recovered','content_transferred'=>false,'database_restored'=>false];
   }
   $completed=is_file($journal)&&json(file_get_contents($journal))['state']==='validated'&&!file_exists($this->ops['control'].'/deployment.lock');
