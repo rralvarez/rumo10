@@ -33,7 +33,17 @@ final class MatchExperience {
   $goalsLabel=($goals===1?'Gol':'Gols');
   $assistsLabel=($assists===1?'Assistência':'Assistências');
   $x=$m['experience']??null;
-  $total=$x && !empty($x['complete']) && isset($x['earned']) && is_array($x['earned'])?array_sum($x['earned']):0;
+  $isValidXp=false;
+  if(is_array($x) && !empty($x['complete']) && isset($x['earned']) && is_array($x['earned'])) {
+   $isValidXp=true;
+   foreach(Rules::SKILLS as $skillKey) {
+    if(!array_key_exists($skillKey, $x['earned']) || !is_numeric($x['earned'][$skillKey])) {
+     $isValidXp=false;
+     break;
+    }
+   }
+  }
+  $total=$isValidXp?(int)array_sum($x['earned']):0;
 
   echo '<div class="match-protagonist-strip" role="group" aria-label="Estatísticas do jogador na partida">';
 
@@ -80,7 +90,7 @@ final class MatchExperience {
 
   echo '</div>';
 
-  if(!$x || empty($x['complete']) || !isset($x['earned']) || !is_array($x['earned'])){
+  if(!$isValidXp){
    echo '<p class="subtle">Partida anterior à medição: não há delta de XP confiável.</p></section>';
    return;
   }

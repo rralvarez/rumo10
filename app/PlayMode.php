@@ -178,11 +178,20 @@ final class PlayMode {
                 }
             }
 
-            // XP: medição confiável requer complete=true E estrutura válida de earned (array)
+            // XP: medição confiável requer complete=true E earned contendo valores numéricos válidos para todos os Rules::SKILLS
             $exp = $m['experience'] ?? null;
             if(is_array($exp) && !empty($exp['complete']) && isset($exp['earned']) && is_array($exp['earned'])) {
-                $countMeasuredXp++;
-                $totXp += array_sum($exp['earned']);
+                $isValidXp = true;
+                foreach(Rules::SKILLS as $skillKey) {
+                    if(!array_key_exists($skillKey, $exp['earned']) || !is_numeric($exp['earned'][$skillKey])) {
+                        $isValidXp = false;
+                        break;
+                    }
+                }
+                if($isValidXp) {
+                    $countMeasuredXp++;
+                    $totXp += (int)array_sum($exp['earned']);
+                }
             }
         }
 

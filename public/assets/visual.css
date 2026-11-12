@@ -624,10 +624,10 @@ main.container {
 
 .post-match .stat-chip .stat-label,
 .pace-report .stat-chip .stat-label {
-  font-size: 9px !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
+  letter-spacing: 0.03em !important;
   color: #8fa7ad !important;
   margin-top: 3px !important;
   line-height: 1.15 !important;
@@ -642,13 +642,13 @@ main.container {
 .post-match .stat-chip .stat-sublabel,
 .pace-report .stat-chip .stat-sublabel {
   display: block !important;
-  font-size: 7.5px !important;
+  font-size: 10px !important;
   font-weight: 600 !important;
   text-transform: none !important;
   letter-spacing: 0 !important;
   color: #72d6ec !important;
-  margin-top: 1px !important;
-  line-height: 1.1 !important;
+  margin-top: 2px !important;
+  line-height: 1.15 !important;
 }
 
 /* Bloco de XP discreto e separado */
@@ -748,16 +748,48 @@ main.container {
   color: var(--lime) !important;
 }
 
-/* Responsividade Mobile: Grid adaptativo compacto para até 5 estatísticas */
+/* Responsividade Mobile: Grid em 2 colunas para manter legibilidade e rótulos completos */
 @media (max-width: 600px) {
   .post-match .match-protagonist-strip,
   .pace-report .match-protagonist-strip {
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 3px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+  /* O último chip (5º) expande elegantemente em largura total na linha seguinte */
+  .post-match .match-protagonist-strip > .stat-chip:nth-child(5):last-child,
+  .pace-report .match-protagonist-strip > .stat-chip:nth-child(5):last-child {
+    grid-column: 1 / -1 !important;
   }
   .post-match .stat-chip,
   .pace-report .stat-chip {
-    padding: 4px 1px 4px !important;
+    padding: 6px 4px !important;
+  }
+  .post-match .stat-chip .stat-value,
+  .pace-report .stat-chip .stat-value {
+    font-size: 14px !important;
+  }
+  .post-match .stat-chip .stat-label,
+  .pace-report .stat-chip .stat-label {
+    font-size: 11px !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+  }
+  .post-match .stat-chip .stat-sublabel,
+  .pace-report .stat-chip .stat-sublabel {
+    font-size: 10px !important;
+    line-height: 1.15 !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .post-match .match-protagonist-strip,
+  .pace-report .match-protagonist-strip {
+    gap: 5px !important;
+  }
+  .post-match .stat-chip,
+  .pace-report .stat-chip {
+    padding: 5px 3px !important;
   }
   .post-match .stat-chip .stat-value,
   .pace-report .stat-chip .stat-value {
@@ -765,40 +797,13 @@ main.container {
   }
   .post-match .stat-chip .stat-label,
   .pace-report .stat-chip .stat-label {
-    font-size: 7.5px !important;
+    font-size: 11px !important;
     letter-spacing: 0.01em !important;
-    line-height: 1.1 !important;
-    white-space: normal !important;
+    line-height: 1.15 !important;
   }
   .post-match .stat-chip .stat-sublabel,
   .pace-report .stat-chip .stat-sublabel {
-    font-size: 6.5px !important;
-    line-height: 1.05 !important;
-  }
-}
-
-@media (max-width: 360px) {
-  .post-match .match-protagonist-strip,
-  .pace-report .match-protagonist-strip {
-    gap: 2px !important;
-  }
-  .post-match .stat-chip,
-  .pace-report .stat-chip {
-    padding: 3px 1px 3px !important;
-  }
-  .post-match .stat-chip .stat-value,
-  .pace-report .stat-chip .stat-value {
-    font-size: 12px !important;
-  }
-  .post-match .stat-chip .stat-label,
-  .pace-report .stat-chip .stat-label {
-    font-size: 7px !important;
-    letter-spacing: 0 !important;
-    line-height: 1.05 !important;
-  }
-  .post-match .stat-chip .stat-sublabel,
-  .pace-report .stat-chip .stat-sublabel {
-    font-size: 6px !important;
+    font-size: 10px !important;
   }
 }
 
