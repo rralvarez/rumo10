@@ -630,11 +630,25 @@ main.container {
   letter-spacing: 0.04em !important;
   color: #8fa7ad !important;
   margin-top: 3px !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+  text-align: center !important;
   max-width: 100% !important;
+}
+
+.post-match .stat-chip .stat-sublabel,
+.pace-report .stat-chip .stat-sublabel {
+  display: block !important;
+  font-size: 7.5px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  color: #72d6ec !important;
+  margin-top: 1px !important;
+  line-height: 1.1 !important;
 }
 
 /* Bloco de XP discreto e separado */
@@ -738,12 +752,12 @@ main.container {
 @media (max-width: 600px) {
   .post-match .match-protagonist-strip,
   .pace-report .match-protagonist-strip {
-    grid-template-columns: repeat(auto-fit, minmax(54px, 1fr)) !important;
-    gap: 4px !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 3px !important;
   }
   .post-match .stat-chip,
   .pace-report .stat-chip {
-    padding: 5px 2px 4px !important;
+    padding: 4px 1px 4px !important;
   }
   .post-match .stat-chip .stat-value,
   .pace-report .stat-chip .stat-value {
@@ -751,8 +765,40 @@ main.container {
   }
   .post-match .stat-chip .stat-label,
   .pace-report .stat-chip .stat-label {
-    font-size: 8px !important;
-    letter-spacing: 0.02em !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1.1 !important;
+    white-space: normal !important;
+  }
+  .post-match .stat-chip .stat-sublabel,
+  .pace-report .stat-chip .stat-sublabel {
+    font-size: 6.5px !important;
+    line-height: 1.05 !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .post-match .match-protagonist-strip,
+  .pace-report .match-protagonist-strip {
+    gap: 2px !important;
+  }
+  .post-match .stat-chip,
+  .pace-report .stat-chip {
+    padding: 3px 1px 3px !important;
+  }
+  .post-match .stat-chip .stat-value,
+  .pace-report .stat-chip .stat-value {
+    font-size: 12px !important;
+  }
+  .post-match .stat-chip .stat-label,
+  .pace-report .stat-chip .stat-label {
+    font-size: 7px !important;
+    letter-spacing: 0 !important;
+    line-height: 1.05 !important;
+  }
+  .post-match .stat-chip .stat-sublabel,
+  .pace-report .stat-chip .stat-sublabel {
+    font-size: 6px !important;
   }
 }
 

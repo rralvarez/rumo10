@@ -120,109 +120,179 @@ final class PlayMode {
     }
     private static function renderSeasonSummary(array $r): void {
         $matches = $r['matches'] ?? [];
+        $totalMatches = count($matches);
+
         $totMinutes = 0;
+        $countMinutes = 0;
+
         $totGoals = 0;
+        $countGoals = 0;
+
         $totAssists = 0;
+        $countAssists = 0;
+
         $totShots = 0;
-        $hasAnyShots = false;
-        $hasMissingShots = false;
+        $countShots = 0;
+
         $sumRating = 0.0;
         $ratedMatches = 0;
+        $eligibleMatches = 0;
+
         $totXp = 0;
-        $completeXpMatches = 0;
-        $totalMatches = count($matches);
+        $countMeasuredXp = 0;
 
         foreach($matches as $m) {
             $stats = $m['stats'] ?? [];
-            $totMinutes += (int)($stats['minutes'] ?? 0);
-            $totGoals += (int)($stats['goals'] ?? 0);
-            $totAssists += (int)($stats['assists'] ?? 0);
 
+            // Minutos
+            if(array_key_exists('minutes', $stats) && $stats['minutes'] !== null) {
+                $countMinutes++;
+                $totMinutes += (int)$stats['minutes'];
+            }
+
+            // Gols
+            if(array_key_exists('goals', $stats) && $stats['goals'] !== null) {
+                $countGoals++;
+                $totGoals += (int)$stats['goals'];
+            }
+
+            // Assistências
+            if(array_key_exists('assists', $stats) && $stats['assists'] !== null) {
+                $countAssists++;
+                $totAssists += (int)$stats['assists'];
+            }
+
+            // Finalizações
             if(array_key_exists('shots', $stats) && $stats['shots'] !== null) {
-                $hasAnyShots = true;
+                $countShots++;
                 $totShots += (int)$stats['shots'];
-            } else {
-                $hasMissingShots = true;
             }
 
-            if((int)($stats['minutes'] ?? 0) > 0 && isset($stats['rating']) && (float)$stats['rating'] > 0) {
-                $sumRating += (float)$stats['rating'];
-                $ratedMatches++;
+            // Nota média: somente entre partidas com participação e avaliação válida
+            $mins = (int)($stats['minutes'] ?? 0);
+            if($mins > 0) {
+                $eligibleMatches++;
+                if(isset($stats['rating']) && $stats['rating'] !== null && (float)$stats['rating'] > 0) {
+                    $sumRating += (float)$stats['rating'];
+                    $ratedMatches++;
+                }
             }
 
-            if(!empty($m['experience']['complete'])) {
-                $totXp += array_sum($m['experience']['earned'] ?? []);
-                $completeXpMatches++;
+            // XP: medição confiável requer complete=true E estrutura válida de earned (array)
+            $exp = $m['experience'] ?? null;
+            if(is_array($exp) && !empty($exp['complete']) && isset($exp['earned']) && is_array($exp['earned'])) {
+                $countMeasuredXp++;
+                $totXp += array_sum($exp['earned']);
             }
         }
-
-        $goalsLabel = ($totGoals === 1 ? 'Gol' : 'Gols');
-        $assistsLabel = ($totAssists === 1 ? 'Assistência' : 'Assistências');
 
         echo '<section class="match-experience" aria-label="Resumo das partidas simuladas">';
         echo '<div class="match-protagonist-strip" role="group" aria-label="Estatísticas do jogador nas partidas simuladas">';
 
         // 1. Minutos
-        echo '<div class="stat-chip stat-chip-minutes" aria-label="Minutos jogados: '.e($totMinutes).'">';
-        echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span class="stat-value">'.e($totMinutes).'</span></div>';
-        echo '<span class="stat-label">Minutos</span>';
-        echo '</div>';
+        $minPartial = ($countMinutes > 0 && $countMinutes < $totalMatches);
+        $minLabel = 'Minutos' . ($minPartial ? '<span class="stat-sublabel">Medição parcial</span>' : '');
+        if($countMinutes === 0) {
+            echo '<div class="stat-chip stat-chip-minutes" aria-label="Minutos indisponíveis">';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span class="stat-value">—</span></div>';
+            echo '<span class="stat-label">Minutos</span>';
+            echo '</div>';
+        } else {
+            $chipAria = 'Minutos jogados: '.$totMinutes . ($minPartial ? ' (medição parcial)' : '');
+            echo '<div class="stat-chip stat-chip-minutes" aria-label="'.e($chipAria).'">';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg><span class="stat-value">'.e($totMinutes).'</span></div>';
+            echo '<span class="stat-label">'.$minLabel.'</span>';
+            echo '</div>';
+        }
 
         // 2. Nota média
         if($ratedMatches > 0) {
             $avgRating = round($sumRating / $ratedMatches, 1);
             $ratingStr = number_format($avgRating, 1, ',', '.');
-            echo '<div class="stat-chip stat-chip-rating" aria-label="Nota média do jogador: '.e($ratingStr).'">';
+            $hasMissingEligible = ($eligibleMatches > $ratedMatches);
+            $ratingLabelText = $hasMissingEligible ? 'Média das partidas avaliadas' : 'Nota média';
+            $ratingSublabel = $hasMissingEligible ? '<span class="stat-sublabel">Média das partidas avaliadas</span>' : '';
+            $ratingAria = $hasMissingEligible ? 'Nota média: '.$ratingStr.' (Média das partidas avaliadas)' : 'Nota média do jogador: '.$ratingStr;
+            echo '<div class="stat-chip stat-chip-rating" aria-label="'.e($ratingAria).'">';
             echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="stat-value">'.e($ratingStr).'</span></div>';
-            echo '<span class="stat-label">Nota média</span>';
+            echo '<span class="stat-label">Nota média'.$ratingSublabel.'</span>';
             echo '</div>';
         } else {
             echo '<div class="stat-chip stat-chip-rating" aria-label="Nota média indisponível">';
-            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="stat-value">–</span></div>';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="stat-value">—</span></div>';
             echo '<span class="stat-label">Nota média</span>';
             echo '</div>';
         }
 
         // 3. Gols
-        echo '<div class="stat-chip stat-chip-goals" aria-label="'.e($totGoals.' '.$goalsLabel).'">';
-        echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7l3 2v3.5l-3 2-3-2V9z"/><path d="M12 3v4M15 9l3.5-1.5M15 12.5l3.5 1.5M12 14.5v4.5M9 12.5L5.5 14M9 9L5.5 7.5"/></svg><span class="stat-value">'.e($totGoals).'</span></div>';
-        echo '<span class="stat-label">'.e($goalsLabel).'</span>';
-        echo '</div>';
+        $goalsPartial = ($countGoals > 0 && $countGoals < $totalMatches);
+        $goalsText = ($totGoals === 1 ? 'Gol' : 'Gols');
+        $goalsLabelHtml = $goalsText . ($goalsPartial ? '<span class="stat-sublabel">Medição parcial</span>' : '');
+        if($countGoals === 0) {
+            echo '<div class="stat-chip stat-chip-goals" aria-label="Gols indisponíveis">';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7l3 2v3.5l-3 2-3-2V9z"/><path d="M12 3v4M15 9l3.5-1.5M15 12.5l3.5 1.5M12 14.5v4.5M9 12.5L5.5 14M9 9L5.5 7.5"/></svg><span class="stat-value">—</span></div>';
+            echo '<span class="stat-label">Gols</span>';
+            echo '</div>';
+        } else {
+            $chipAria = $totGoals.' '.$goalsText . ($goalsPartial ? ' (medição parcial)' : '');
+            echo '<div class="stat-chip stat-chip-goals" aria-label="'.e($chipAria).'">';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7l3 2v3.5l-3 2-3-2V9z"/><path d="M12 3v4M15 9l3.5-1.5M15 12.5l3.5 1.5M12 14.5v4.5M9 12.5L5.5 14M9 9L5.5 7.5"/></svg><span class="stat-value">'.e($totGoals).'</span></div>';
+            echo '<span class="stat-label">'.$goalsLabelHtml.'</span>';
+            echo '</div>';
+        }
 
         // 4. Assistências
-        echo '<div class="stat-chip stat-chip-assists" aria-label="'.e($totAssists.' '.$assistsLabel).'">';
-        echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 17l4-1 6 3h5a2 2 0 0 0 2-2v-1l-3-4-5-1-4 2-5 3z"/><path d="M10 11l-2 3M13 12l-1 3"/></svg><span class="stat-value">'.e($totAssists).'</span></div>';
-        echo '<span class="stat-label">'.e($assistsLabel).'</span>';
-        echo '</div>';
+        $assistsPartial = ($countAssists > 0 && $countAssists < $totalMatches);
+        $assistsText = ($totAssists === 1 ? 'Assistência' : 'Assistências');
+        $assistsLabelHtml = $assistsText . ($assistsPartial ? '<span class="stat-sublabel">Medição parcial</span>' : '');
+        if($countAssists === 0) {
+            echo '<div class="stat-chip stat-chip-assists" aria-label="Assistências indisponíveis">';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 17l4-1 6 3h5a2 2 0 0 0 2-2v-1l-3-4-5-1-4 2-5 3z"/><path d="M10 11l-2 3M13 12l-1 3"/></svg><span class="stat-value">—</span></div>';
+            echo '<span class="stat-label">Assistências</span>';
+            echo '</div>';
+        } else {
+            $chipAria = $totAssists.' '.$assistsText . ($assistsPartial ? ' (medição parcial)' : '');
+            echo '<div class="stat-chip stat-chip-assists" aria-label="'.e($chipAria).'">';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 17l4-1 6 3h5a2 2 0 0 0 2-2v-1l-3-4-5-1-4 2-5 3z"/><path d="M10 11l-2 3M13 12l-1 3"/></svg><span class="stat-value">'.e($totAssists).'</span></div>';
+            echo '<span class="stat-label">'.$assistsLabelHtml.'</span>';
+            echo '</div>';
+        }
 
         // 5. Finalizações
-        if(!$hasAnyShots) {
+        $shotsPartial = ($countShots > 0 && $countShots < $totalMatches);
+        $shotsText = ($totShots === 1 ? 'Finalização' : 'Finalizações');
+        $shotsLabelHtml = $shotsText . ($shotsPartial ? '<span class="stat-sublabel">Medição parcial</span>' : '');
+        if($countShots === 0) {
             echo '<div class="stat-chip stat-chip-shots" aria-label="Finalizações indisponíveis">';
-            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg><span class="stat-value">–</span></div>';
+            echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg><span class="stat-value">—</span></div>';
             echo '<span class="stat-label">Finalizações</span>';
             echo '</div>';
         } else {
-            $shotsLabel = ($totShots === 1 ? 'Finalização' : 'Finalizações');
-            $chipAria = $hasMissingShots ? $totShots.' '.$shotsLabel.' (medição parcial)' : $totShots.' '.$shotsLabel;
+            $chipAria = $totShots.' '.$shotsText . ($shotsPartial ? ' (medição parcial)' : '');
             echo '<div class="stat-chip stat-chip-shots" aria-label="'.e($chipAria).'">';
             echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg><span class="stat-value">'.e($totShots).'</span></div>';
-            echo '<span class="stat-label">'.e($shotsLabel).'</span>';
+            echo '<span class="stat-label">'.$shotsLabelHtml.'</span>';
             echo '</div>';
         }
 
         echo '</div>';
 
-        if($totXp > 0) {
-            $isPartial = ($completeXpMatches < $totalMatches);
-            $xpDesc = '· XP registrado nas partidas simuladas' . ($isPartial ? ' (medição parcial)' : '');
-            echo '<div class="match-xp-summary">';
-            echo '<div class="xp-badge">';
-            echo '<svg class="xp-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
-            echo '<span class="xp-val">+'.e($totXp).' XP</span>';
+        // Bloco de XP: Medido zero (0 XP), Parcial (subtotal + Medição parcial) ou Indisponível (—)
+        echo '<div class="match-xp-summary">';
+        echo '<div class="xp-badge">';
+        echo '<svg class="xp-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
+        if($countMeasuredXp === 0) {
+            echo '<span class="xp-val">—</span>';
+            echo '<span class="xp-desc">· XP registrado nas partidas simuladas (indisponível)</span>';
+        } else {
+            $isPartialXp = ($countMeasuredXp < $totalMatches);
+            $xpValPrefix = ($totXp > 0 ? '+' : '');
+            $xpDesc = '· XP registrado nas partidas simuladas' . ($isPartialXp ? ' (Medição parcial)' : '');
+            echo '<span class="xp-val">'.e($xpValPrefix.$totXp.' XP').'</span>';
             echo '<span class="xp-desc">'.e($xpDesc).'</span>';
-            echo '</div>';
-            echo '</div>';
         }
+        echo '</div>';
+        echo '</div>';
 
         echo '</section>';
     }
