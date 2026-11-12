@@ -545,6 +545,11 @@ main.container {
   color: var(--lime)
 }
 
+.post-match,
+.pace-report {
+  container-type: inline-size;
+}
+
 .post-match .match-experience,
 .pace-report .match-experience {
   margin-top: 6px;
@@ -559,6 +564,38 @@ main.container {
   margin: 6px 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
+}
+
+/* Container Queries: Adaptação à largura real do painel (ex: 360px a 480px em desktop ou mobile) */
+@container (max-width: 500px) {
+  .post-match .match-protagonist-strip,
+  .pace-report .match-protagonist-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+  .post-match .match-protagonist-strip > .stat-chip:nth-child(5):last-child,
+  .pace-report .match-protagonist-strip > .stat-chip:nth-child(5):last-child {
+    grid-column: 1 / -1 !important;
+  }
+  .post-match .stat-chip,
+  .pace-report .stat-chip {
+    padding: 6px 4px !important;
+  }
+  .post-match .stat-chip .stat-value,
+  .pace-report .stat-chip .stat-value {
+    font-size: 14px !important;
+  }
+  .post-match .stat-chip .stat-label,
+  .pace-report .stat-chip .stat-label {
+    font-size: 11px !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.15 !important;
+  }
+  .post-match .stat-chip .stat-sublabel,
+  .pace-report .stat-chip .stat-sublabel {
+    font-size: 10px !important;
+    line-height: 1.15 !important;
+  }
 }
 
 .post-match .stat-chip,
