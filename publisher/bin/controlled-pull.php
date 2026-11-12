@@ -9,9 +9,13 @@ use Rumo\Publisher\GitHub;
 use function Rumo\Publisher\need;
 use function Rumo\Publisher\json;
 try {
-    $opts=getopt('',['config:','mode:','run:','artifact:','stage:','recover','discover']);
+    $opts=getopt('',['config:','mode:','run:','artifact:','stage:','recover','discover','retire-testecodex']);
     need(isset($opts['config'],$opts['mode']),'Usage: --config=private.json --mode=verify-only|stage|apply --run=ID --artifact=ID OR --stage=PATH OR --recover');
     $mode=$opts['mode']; need(in_array($mode,['verify-only','stage','apply'],true),'Unknown mode');
+    $retireTesteCodex=isset($opts['retire-testecodex']);
+    if($retireTesteCodex)need($mode==='apply'&&isset($opts['recover'])&&
+        !isset($opts['discover'])&&!isset($opts['stage'])&&
+        !isset($opts['run'])&&!isset($opts['artifact']),'Retirement is only available for recovery');
     $configPath=$opts['config']; need(is_file($configPath) && !is_link($configPath),'Private config required');
     if(PHP_OS_FAMILY!=='Windows')need((fileperms($configPath)&0077)===0,'Config must be 0600');
     $c=json(file_get_contents($configPath)); $publisher=!isset($c['update_policy'])||($c['request_gate']['coverage_approved']??false)===true?new DrainPublisher($c):new Publisher($c); $publisher->acquire();
@@ -20,7 +24,10 @@ try {
         $channel=$c['release_channel']??null;
         if($channel!==null)need($publisher instanceof DrainPublisher && isset($c['update_policy']),
             'Production channel requires a private drain policy');
-        if(isset($opts['recover'])) $result=$publisher->recover();
+        if($retireTesteCodex) {
+            need($publisher instanceof DrainPublisher,'Retirement requires shared drain');
+            $result=$publisher->recover(true);
+        } elseif(isset($opts['recover'])) $result=$publisher->recover();
         elseif(isset($opts['discover'])) {
             $source=new GitHub($c); $ids=$source->discover();
             $input=$source->fetch($ids[0],$ids[1],$c['private'].'/downloads');
