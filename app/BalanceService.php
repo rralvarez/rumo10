@@ -10,6 +10,7 @@ final class BalanceService {
     private static ?array $activeCache = null;
     private static ?array $activeMetadata = null;
     private static bool $fallbackActive = false;
+    private static array $linkedFormulas = [];
 
     // Fallbacks nativos estritos (idênticos às fórmulas e constantes homologadas)
     private const NATIVE_FALLBACKS = [
@@ -103,6 +104,7 @@ final class BalanceService {
         self::$activeCache = null;
         self::$activeMetadata = null;
         self::$fallbackActive = false;
+        self::$linkedFormulas = [];
     }
 
     public static function isFallbackActive(): bool {
@@ -110,7 +112,7 @@ final class BalanceService {
     }
 
     public static function isDevelopmentV3Active(): bool {
-        return true; // Padrão da versão consolidada
+        return config('RUMO10_DEVELOPMENT_V2','0') === '1';
     }
 
     public static function activeBalance(): ?array {
@@ -174,6 +176,24 @@ final class BalanceService {
         return self::$activeCache[$formulaId] ?? (self::NATIVE_FALLBACKS[$formulaId] ?? []);
     }
 
+    public static function effectiveFormulas(): array {
+        self::ensureLoaded();
+        $formulas = [];
+        foreach (self::$activeCache as $id => $values) {
+            $linked = self::$linkedFormulas[$id] ?? null;
+            $parameters = [];
+            foreach ($values as $key => $value) {
+                $fromDatabase = isset($linked['stored'][$key]);
+                $parameters[$key] = ['value'=>$value, 'source'=>$fromDatabase ? 'MySQL' : 'fallback PHP',
+                    'stored'=>$fromDatabase ? $linked['stored'][$key]['value'] : null,
+                    'type'=>$fromDatabase ? $linked['stored'][$key]['type'] : null];
+            }
+            $formulas[$id] = ['version'=>$linked['version'] ?? null, 'version_id'=>$linked['version_id'] ?? null,
+                'parameters'=>$parameters];
+        }
+        return $formulas;
+    }
+
     public static function param(string $formulaId, string $key, float|int|null $default = null): float|int {
         self::ensureLoaded();
         if (isset(self::$activeCache[$formulaId][$key])) {
@@ -225,21 +245,29 @@ final class BalanceService {
             self::$activeMetadata = $balance;
 
             // Busca os parâmetros vinculados ao balanceamento ativo
-            $sql = "SELECT bf.formula_id, fp.chave, fp.tipo, fp.valor_float, fp.valor_int, fp.valor_texto, fp.valor_json, fp.limite_min, fp.limite_max
+            $sql = "SELECT bf.formula_id, fv.versao AS version, bf.versao_id AS version_id, fp.chave, fp.tipo, fp.valor_float, fp.valor_int, fp.valor_texto, fp.valor_json, fp.limite_min, fp.limite_max
                     FROM rumo10_balanceamento_formulas bf
-                    JOIN rumo10_formula_parametros fp ON fp.versao_id = bf.versao_id
+                    JOIN rumo10_formula_versoes fv ON fv.id = bf.versao_id
+                    LEFT JOIN rumo10_formula_parametros fp ON fp.versao_id = fv.id
                     WHERE bf.balanceamento_id = ?";
             $pStmt = $db->prepare($sql);
             $pStmt->execute([(int)$balance['id']]);
             $rows = $pStmt->fetchAll();
 
             foreach ($rows as $r) {
+                $id = $r['formula_id'];
+                self::$linkedFormulas[$id] ??= ['version'=>(int)$r['version'], 'version_id'=>(int)$r['version_id'], 'stored'=>[]];
+                self::$activeCache[$id] ??= [];
+                if ($r['chave'] === null) continue;
                 $val = match($r['tipo']) {
                     'float' => (float)$r['valor_float'],
                     'int' => (int)$r['valor_int'],
                     'json' => json_decode((string)$r['valor_json'], true, 512, JSON_THROW_ON_ERROR),
                     default => $r['valor_texto']
                 };
+
+                // Mantém o valor persistido disponível para edição, inclusive quando houver clamp.
+                self::$linkedFormulas[$id]['stored'][$r['chave']] = ['value'=>$val, 'type'=>$r['tipo']];
 
                 // Aplica clamps de segurança
                 if (is_numeric($val)) {
@@ -275,6 +303,7 @@ final class BalanceService {
     }
 
     private static function useFallback(): void {
+        self::$linkedFormulas = [];
         self::$activeCache = self::NATIVE_FALLBACKS;
         self::$activeMetadata = [
             'id' => 0,

@@ -45,6 +45,31 @@ final class Presentation {
         foreach($f['attribute_changes']??[] as $k=>$v)echo '<span class="effect-chip">'.e(self::label($k)).': '.e($v['before']).' → '.e($v['after']).'</span>';
         echo '</div></div></aside>';
     }
+    public static function matchSounds(array $g, array $match): void {
+        if (PlayMode::name($g) !== 'normal') return;
+
+        Game::reconcileSoundEvents($match, $g);
+        $events = $match['sound_events'] ?? [];
+        $whistle = match (true) {
+            $g['stage'] === 'partida' && $match['status'] === 'em_andamento' && $match['minute'] === 15 => 'MATCH_WHISTLE_START',
+            $g['stage'] === 'fim_semana' && $match['status'] === 'finalizada' => 'MATCH_WHISTLE_END',
+            default => null,
+        };
+        if ($whistle !== null && !in_array($whistle, array_column($events, 'type'), true)) {
+            $matchId = implode(':', [
+                $g['id'] ?? '0', $g['season'] ?? 1, $match['competition'] ?? ($g['competition_id'] ?? 'c'),
+                $match['round'] ?? ($g['round'] ?? 1), $match['home'], $match['away'],
+            ]);
+            $event = ['type' => $whistle, 'id' => $matchId.':'.$whistle];
+            if ($whistle === 'MATCH_WHISTLE_START') array_unshift($events, $event);
+            else $events[] = $event;
+        }
+
+        foreach ($events as $event) {
+            echo '<div data-sound-event="'.e($event['type'] ?? 'GENERIC').'" data-sound-event-id="'.e($event['id']).'" class="sr-only" aria-hidden="true"></div>';
+        }
+    }
+
     public static function label(string $k): string {
         return strtr(ucfirst(str_replace('_',' ',$k)),['Confianca'=>'Confiança','Finalizacao'=>'Finalização','Visao'=>'Visão','Resistencia'=>'Resistência','Forca'=>'Força','lesao'=>'lesão','polemica'=>'polêmica','cartao'=>'cartão']);
     }

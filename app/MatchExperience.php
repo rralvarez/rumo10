@@ -33,7 +33,17 @@ final class MatchExperience {
   $goalsLabel=($goals===1?'Gol':'Gols');
   $assistsLabel=($assists===1?'Assistência':'Assistências');
   $x=$m['experience']??null;
-  $total=$x && !empty($x['complete'])?array_sum($x['earned']):0;
+  $isValidXp=false;
+  if(is_array($x) && !empty($x['complete']) && isset($x['earned']) && is_array($x['earned'])) {
+   $isValidXp=true;
+   foreach(Rules::SKILLS as $skillKey) {
+    if(!array_key_exists($skillKey, $x['earned']) || !is_numeric($x['earned'][$skillKey])) {
+     $isValidXp=false;
+     break;
+    }
+   }
+  }
+  $total=$isValidXp?(int)array_sum($x['earned']):0;
 
   echo '<div class="match-protagonist-strip" role="group" aria-label="Estatísticas do jogador na partida">';
 
@@ -61,9 +71,26 @@ final class MatchExperience {
   echo '<span class="stat-label">'.e($assistsLabel).'</span>';
   echo '</div>';
 
+  // 5. Finalizações (quando presentes nos dados da partida)
+  if(array_key_exists('shots', $s)) {
+   if($s['shots'] === null) {
+    echo '<div class="stat-chip stat-chip-shots" aria-label="Finalizações indisponíveis">';
+    echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg><span class="stat-value">—</span></div>';
+    echo '<span class="stat-label">Finalizações</span>';
+    echo '</div>';
+   } else {
+    $shots=(int)$s['shots'];
+    $shotsLabel=($shots===1?'Finalização':'Finalizações');
+    echo '<div class="stat-chip stat-chip-shots" aria-label="'.e($shots.' '.$shotsLabel).'">';
+    echo '<div class="stat-chip-top"><svg class="stat-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg><span class="stat-value">'.e($shots).'</span></div>';
+    echo '<span class="stat-label">'.e($shotsLabel).'</span>';
+    echo '</div>';
+   }
+  }
+
   echo '</div>';
 
-  if(!$x || empty($x['complete'])){
+  if(!$isValidXp){
    echo '<p class="subtle">Partida anterior à medição: não há delta de XP confiável.</p></section>';
    return;
   }

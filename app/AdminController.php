@@ -146,66 +146,99 @@ final class AdminController {
         exit;
     }
 
+    private static function parameterInput(mixed $value, ?string $type = null): string {
+        return ($type === 'json' || is_array($value)) ? json_encode($value, JSON_THROW_ON_ERROR) : (string)$value;
+    }
+
     private static function saveBalance(PDO $db): void {
-        $formulaId = trim((string)($_POST['formula_id'] ?? ''));
-        $params = $_POST['param'] ?? [];
-
-        if (!$formulaId || !is_array($params)) {
-            header('Location: /admin?error=Parâmetros inválidos');
-            exit;
-        }
-
-        $db->beginTransaction();
         try {
-            // Obter versão atual mais recente
-            $stmt = $db->prepare("SELECT MAX(versao) FROM rumo10_formula_versoes WHERE formula_id=?");
-            $stmt->execute([$formulaId]);
-            $currentVer = (int)$stmt->fetchColumn() ?: 1;
-            $newVer = $currentVer + 1;
-
-            $checksum = hash('sha256', $formulaId . '|v' . $newVer . '|' . microtime());
-            $stmt = $db->prepare("INSERT INTO rumo10_formula_versoes (formula_id, versao, estado, checksum, autor, motivo) VALUES (?, ?, 'homologado', ?, ?, ?)");
-            $stmt->execute([$formulaId, $newVer, $checksum, 'admin', 'Ajuste de balanceamento via painel administrativo']);
-            $versaoId = (int)$db->lastInsertId();
-
-            $schemaStmt=$db->prepare("SELECT p.* FROM rumo10_formula_parametros p JOIN rumo10_balanceamento_formulas bf ON bf.versao_id=p.versao_id JOIN rumo10_balanceamentos b ON b.id=bf.balanceamento_id WHERE b.estado='ativo' AND bf.formula_id=?");
-            $schemaStmt->execute([$formulaId]);$spec=[];foreach($schemaStmt->fetchAll() as $row)$spec[$row['chave']]=$row;
-            if (!$spec || array_diff(array_keys($params),array_keys($spec)) || array_diff(array_keys($spec),array_keys($params))) throw new InvalidArgumentException('Conjunto de parametros invalido.');
-            foreach ($params as $chave => $val) {
-                if(!is_string($val))throw new InvalidArgumentException('Parametro invalido.');
-                $def=$spec[$chave];$tipo=$def['tipo'];$fVal=null;$iVal=null;$textVal=null;$jsonVal=null;
-                if(in_array($tipo,['float','int'],true)){
-                    if(!is_numeric($val)||!is_finite((float)$val))throw new InvalidArgumentException('Numero invalido.');
-                    $number=(float)$val;if(($def['limite_min']!==null&&$number<(float)$def['limite_min'])||($def['limite_max']!==null&&$number>(float)$def['limite_max']))throw new InvalidArgumentException('Parametro fora dos limites homologados.');
-                    if($tipo==='int'&&floor($number)!==$number)throw new InvalidArgumentException('Inteiro obrigatorio.');
-                    if($tipo==='int')$iVal=(int)$number;else $fVal=$number;
-                }elseif($tipo==='json'){$jsonVal=json_encode(json_decode($val,true,512,JSON_THROW_ON_ERROR),JSON_THROW_ON_ERROR);}
-                else $textVal=$val;
-                $stmt=$db->prepare("INSERT INTO rumo10_formula_parametros (versao_id,chave,tipo,valor_float,valor_int,valor_texto,valor_json,limite_min,limite_max,descricao) VALUES (?,?,?,?,?,?,?,?,?,?)");
-                $stmt->execute([$versaoId,$chave,$tipo,$fVal,$iVal,$textVal,$jsonVal,$def['limite_min'],$def['limite_max'],$def['descricao']]);
-            }
-
-            // Atualiza no balanceamento ativo atual
-            $stmt = $db->query("SELECT id FROM rumo10_balanceamentos WHERE estado='ativo' LIMIT 1");
-            $balId = $stmt->fetchColumn();
-            if ($balId) {
-                $stmt = $db->prepare("REPLACE INTO rumo10_balanceamento_formulas (balanceamento_id, formula_id, versao_id) VALUES (?, ?, ?)");
-                $stmt->execute([(int)$balId, $formulaId, $versaoId]);
-            }
-
-            // Registra auditoria
-            $stmt = $db->prepare("INSERT INTO rumo10_formula_alteracoes (formula_id, versao_anterior, versao_nova, usuario_responsavel, acao, diff_json, justificativa) VALUES (?, ?, ?, 'admin', 'editar_rascunho', ?, ?)");
-            $stmt->execute([$formulaId, $currentVer, $newVer, json_encode($params), 'Alteração de parâmetros via painel']);
-
+            $db->beginTransaction();
+            $formulaId = trim((string)($_POST['formula_id'] ?? ''));
+            $params = $_POST['param'] ?? null;
+            if ($formulaId === '' || !is_array($params)) throw new InvalidArgumentException('Parâmetros inválidos.');
+            $newVersion = self::saveFormulaVersion(
+                $db, $formulaId, $params, (int)($_POST['balance_id'] ?? 0), (int)($_POST['version_id'] ?? 0)
+            );
             $db->commit();
             BalanceService::resetCache();
-            header('Location: /admin?msg=Fórmula ' . urlencode($formulaId) . ' atualizada para v' . $newVer);
-            exit;
+            header('Location: /admin?msg=Fórmula ' . urlencode($formulaId) . ' atualizada para v' . $newVersion);
         } catch (Throwable $e) {
-            $db->rollBack();
+            if ($db->inTransaction()) $db->rollBack();
             header('Location: /admin?error=' . urlencode($e->getMessage()));
-            exit;
         }
+        exit;
+    }
+
+    private static function saveFormulaVersion(PDO $db, string $formulaId, array $params, int $balanceId, int $versionId): int {
+        $active = $db->query("SELECT id FROM rumo10_balanceamentos WHERE estado='ativo' ORDER BY ativado_em DESC, id DESC LIMIT 1 FOR UPDATE");
+        if ($balanceId < 1 || (int)$active->fetchColumn() !== $balanceId) {
+            throw new InvalidArgumentException('O conjunto ativo mudou. Recarregue o painel.');
+        }
+        $link = $db->prepare('SELECT v.id, v.versao FROM rumo10_balanceamento_formulas bf JOIN rumo10_formula_versoes v ON v.id=bf.versao_id WHERE bf.balanceamento_id=? AND bf.formula_id=? FOR UPDATE');
+        $link->execute([$balanceId, $formulaId]);
+        $current = $link->fetch();
+        if (!$current || (int)$current['id'] !== $versionId) {
+            throw new InvalidArgumentException('A versão vinculada mudou. Recarregue o painel.');
+        }
+        $schema = $db->prepare('SELECT * FROM rumo10_formula_parametros WHERE versao_id=?');
+        $schema->execute([$versionId]);
+        $spec = array_column($schema->fetchAll(), null, 'chave');
+        if (!$spec || array_diff_key($spec, $params) || array_diff_key($params, $spec)) {
+            throw new InvalidArgumentException('Conjunto de parâmetros inválido.');
+        }
+
+        $columns = ['valor_float','valor_int','valor_texto','valor_json'];
+        $rows = [];
+        foreach ($spec as $key => $def) {
+            $input = $params[$key];
+            if (!is_string($input)) throw new InvalidArgumentException('Parâmetro inválido.');
+            $type = $def['tipo'];
+            $column = match ($type) {
+                'float' => 'valor_float',
+                'int' => 'valor_int',
+                'json' => 'valor_json',
+                default => 'valor_texto',
+            };
+            $stored = match ($type) {
+                'float' => (float)$def[$column],
+                'int' => (int)$def[$column],
+                'json' => json_decode((string)$def[$column], true, 512, JSON_THROW_ON_ERROR),
+                default => $def[$column],
+            };
+            if ($input !== self::parameterInput($stored, $type)) {
+                if ($type === 'float' || $type === 'int') {
+                    if (!is_numeric($input) || !is_finite((float)$input)) throw new InvalidArgumentException('Número inválido.');
+                    $number = (float)$input;
+                    if (($def['limite_min'] !== null && $number < (float)$def['limite_min']) ||
+                        ($def['limite_max'] !== null && $number > (float)$def['limite_max'])) {
+                        throw new InvalidArgumentException('Parâmetro fora dos limites homologados.');
+                    }
+                    if ($type === 'int' && floor($number) !== $number) throw new InvalidArgumentException('Inteiro obrigatório.');
+                    $input = $type === 'int' ? (int)$number : $number;
+                } elseif ($type === 'json') {
+                    $input = json_encode(json_decode($input, true, 512, JSON_THROW_ON_ERROR), JSON_THROW_ON_ERROR);
+                }
+                $def[$column] = $input;
+            }
+            $rows[] = [$key, $type, ...array_map(fn($field) => $def[$field], $columns),
+                $def['limite_min'], $def['limite_max'], $def['descricao']];
+        }
+
+        $latest = $db->prepare('SELECT MAX(versao) FROM rumo10_formula_versoes WHERE formula_id=?');
+        $latest->execute([$formulaId]);
+        $newVersion = (int)$latest->fetchColumn() + 1;
+        $checksum = hash('sha256', $formulaId . '|v' . $newVersion . '|' . microtime());
+        $insert = $db->prepare("INSERT INTO rumo10_formula_versoes (formula_id, versao, estado, checksum, autor, motivo) VALUES (?, ?, 'homologado', ?, 'admin', 'Ajuste de balanceamento via painel administrativo')");
+        $insert->execute([$formulaId, $newVersion, $checksum]);
+        $newId = (int)$db->lastInsertId();
+        $insert = $db->prepare('INSERT INTO rumo10_formula_parametros (versao_id,chave,tipo,valor_float,valor_int,valor_texto,valor_json,limite_min,limite_max,descricao) VALUES (?,?,?,?,?,?,?,?,?,?)');
+        foreach ($rows as $row) $insert->execute([$newId, ...$row]);
+        $update = $db->prepare('UPDATE rumo10_balanceamento_formulas SET versao_id=? WHERE balanceamento_id=? AND formula_id=? AND versao_id=?');
+        $update->execute([$newId, $balanceId, $formulaId, $versionId]);
+        if ($update->rowCount() !== 1) throw new RuntimeException('Não foi possível atualizar o vínculo.');
+        $audit = $db->prepare("INSERT INTO rumo10_formula_alteracoes (formula_id, versao_anterior, versao_nova, usuario_responsavel, acao, diff_json, justificativa) VALUES (?, ?, ?, 'admin', 'editar_rascunho', ?, 'Alteração de parâmetros via painel')");
+        $audit->execute([$formulaId, $current['versao'], $newVersion, json_encode($params, JSON_THROW_ON_ERROR)]);
+        return $newVersion;
     }
 
     private static function activateBalance(PDO $db): void {
@@ -264,7 +297,13 @@ final class AdminController {
     private static function renderDashboard(PDO $db, string $msg = ''): void {
         $mState = Maintenance::state();
         $balance = BalanceService::activeBalance();
-        $formulas = $db->query("SELECT f.*, MAX(fv.versao) as ultima_versao FROM rumo10_formulas f LEFT JOIN rumo10_formula_versoes fv ON fv.formula_id=f.id GROUP BY f.id ORDER BY f.categoria, f.nome")->fetchAll();
+        $formulas = array_column($db->query("SELECT * FROM rumo10_formulas ORDER BY categoria, nome")->fetchAll(), null, 'id');
+        $effective = BalanceService::effectiveFormulas();
+        $hasFallback = false;
+        foreach ($effective as $id => $details) {
+            $formulas[$id] ??= ['id'=>$id, 'nome'=>$id, 'categoria'=>'PHP', 'descricao'=>'', 'expressao_padrao'=>''];
+            $hasFallback = $hasFallback || in_array('fallback PHP', array_column($details['parameters'], 'source'), true);
+        }
         $history = $db->query("SELECT * FROM rumo10_formula_alteracoes ORDER BY criado_em DESC LIMIT 10")->fetchAll();
 
         header('Content-Type: text/html; charset=utf-8');
@@ -350,7 +389,12 @@ final class AdminController {
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <h5 class="card-title text-warning mb-1"><?= htmlspecialchars($balance['nome'] ?? 'Balanceamento Padrão') ?></h5>
-                    <p class="card-text text-secondary mb-0">Código: <code><?= htmlspecialchars($balance['codigo'] ?? 'bal-v061-v3-oficial') ?></code> · Versão: <?= (int)($balance['versao'] ?? 1) ?></p>
+                    <p class="card-text text-secondary mb-0">Código <code><?= e($balance['codigo']) ?></code> · versão <?= (int)$balance['versao'] ?> · checksum <code><?= e($balance['checksum']) ?></code></p>
+                    <?php if (BalanceService::isFallbackActive()): ?>
+                        <p class="text-warning">Fallback PHP integral.</p>
+                    <?php elseif ($hasFallback): ?>
+                        <p class="text-warning">Fallback parcial. Alguns parâmetros vêm do PHP.</p>
+                    <?php endif; ?>
                 </div>
                 <div>
                     <a href="/admin/simulacao" class="btn btn-gold">🔬 Abrir Simulador de Impacto (Sandbox)</a>
@@ -364,36 +408,49 @@ final class AdminController {
         <div class="card-header">3. Catálogo de Fórmulas e Ajuste de Coeficientes</div>
         <div class="card-body">
             <div class="accordion" id="formulaAccordion">
-                <?php foreach ($formulas as $f): 
-                    $pList = BalanceService::params($f['id']);
+                <?php foreach ($formulas as $f):
+                    $details = $effective[$f['id']] ?? ['version'=>null, 'version_id'=>null, 'parameters'=>[]];
+                    $editable = in_array('MySQL', array_column($details['parameters'], 'source'), true);
                 ?>
                     <details class="accordion-item bg-dark border-secondary mb-2">
-                        <h2 class="accordion-header" id="heading_<?= md5($f['id']) ?>">
-                            <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#col_<?= md5($f['id']) ?>">
-                                <div>
-                                    <strong class="text-emerald"><?= htmlspecialchars($f['nome']) ?></strong>
-                                    <span class="badge bg-secondary ms-2"><?= htmlspecialchars($f['categoria']) ?></span>
-                                    <small class="text-secondary ms-2"><code><?= htmlspecialchars($f['id']) ?></code> (v<?= $f['ultima_versao'] ?: 1 ?>)</small>
-                                </div>
+                        <summary class="accordion-header p-3">
+                            <strong class="text-emerald"><?= e($f['nome']) ?></strong>
+                            <span class="badge bg-secondary ms-2"><?= e($f['categoria']) ?></span>
+                            <small class="text-secondary ms-2"><code><?= e($f['id']) ?></code> · <?= $details['version'] === null ? 'Sem versão vinculada' : 'Versão vinculada '.$details['version'] ?></small>
                         </summary>
-                        <div id="col_<?= md5($f['id']) ?>" class="accordion-body" data-bs-parent="#formulaAccordion">
-                            <div class="accordion-body border-top border-secondary">
-                                <p class="text-secondary small mb-2"><?= htmlspecialchars($f['descricao']) ?></p>
-                                <div class="bg-black p-2 rounded mb-3 font-monospace small text-info"><?= htmlspecialchars($f['expressao_padrao']) ?></div>
-                                <form action="/admin/balance_save" method="POST">
-<input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                    <input type="hidden" name="formula_id" value="<?= htmlspecialchars($f['id']) ?>">
-                                    <div class="row g-2 mb-3">
-                                        <?php foreach ($pList as $k => $v): ?>
-                                            <div class="col-md-4 col-sm-6">
-                                                <label class="form-label small text-secondary mb-0"><?= htmlspecialchars($k) ?></label>
-                                                <input type="text" class="form-control form-control-sm bg-black text-light border-secondary" name="param[<?= htmlspecialchars($k) ?>]" value="<?= htmlspecialchars(is_array($v)?json_encode($v,JSON_THROW_ON_ERROR):(string)$v) ?>" required>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                    <button type="submit" class="btn btn-sm btn-primary">Salvar Nova Versão desta Regra</button>
-                                </form>
-                            </div>
+                        <div class="accordion-body border-top border-secondary">
+                            <?php if ($f['descricao'] !== ''): ?><p class="text-secondary small mb-2"><?= e($f['descricao']) ?></p><?php endif; ?>
+                            <?php if ($f['expressao_padrao'] !== ''): ?><div class="bg-black p-2 rounded mb-3 font-monospace small text-info"><?= e($f['expressao_padrao']) ?></div><?php endif; ?>
+                            <?php if ($editable): ?>
+                            <form action="/admin/balance_save" method="POST">
+                                <input type="hidden" name="csrf" value="<?= e($_SESSION['csrf'] ?? '') ?>">
+                                <input type="hidden" name="formula_id" value="<?= e($f['id']) ?>">
+                                <input type="hidden" name="balance_id" value="<?= (int)$balance['id'] ?>">
+                                <input type="hidden" name="version_id" value="<?= $details['version_id'] ?>">
+                            <?php endif; ?>
+                                <div class="row g-2 mb-3">
+                                    <?php foreach ($details['parameters'] as $key => $parameter):
+                                        $label = $key.' · '.$parameter['source'];
+                                    ?>
+                                        <div class="col-md-4 col-sm-6">
+                                            <?php if ($parameter['source'] === 'MySQL'): ?>
+                                                <label class="form-label small text-secondary mb-0"><?= e($label) ?>
+                                                    <input type="text" class="form-control form-control-sm bg-black text-light border-secondary" name="param[<?= e($key) ?>]" value="<?= e(self::parameterInput($parameter['stored'], $parameter['type'])) ?>" required>
+                                                </label>
+                                                <?php if ($parameter['stored'] !== $parameter['value']): ?>
+                                                    <small>Valor efetivo <?= e(self::parameterInput($parameter['value'], $parameter['type'])) ?></small>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <span class="small text-secondary"><?= e($label) ?></span>
+                                                <div><?= e(self::parameterInput($parameter['value'])) ?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php if ($editable): ?>
+                                <button type="submit" class="btn btn-sm btn-primary">Salvar nova versão da fórmula</button>
+                            </form>
+                            <?php endif; ?>
                         </div>
                     </details>
                 <?php endforeach; ?>
