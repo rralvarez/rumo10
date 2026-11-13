@@ -96,7 +96,7 @@ try {
         $r=new Repository(Database::connect());
         if(!in_array($path,['/feedback','/conquistas','/conquistas/reconciliar','/api/v1/command/response'],true)&&CareerBenefits::enabled())CareerBenefits::flush($r,$_SESSION['account']);
         $careerPlan=in_array($path,['/feedback','/conquistas','/conquistas/reconciliar','/api/v1/command/response'],true)?'gratuito':CareerSlots::quota($r,$_SESSION['account'])['plan'];
-        if(!in_array($path,['/feedback','/conquistas/reconciliar','/conquistas','/carreiras','/carreira/excluir','/carreira/resumo','/carreira/compactar','/api/v1/command/response'],true))$g=$r->load($_SESSION['account']);
+        if(!($method==='POST' && $path==='/carreira/simular') && !in_array($path,['/feedback','/conquistas/reconciliar','/conquistas','/carreiras','/carreira/excluir','/carreira/resumo','/carreira/compactar','/api/v1/command/response'],true))$g=$r->load($_SESSION['account']);
         if($path==='/conquistas'){$reconciliation=AchievementReconciliation::run($r,$_SESSION['account']);if($reconciliation['recognized'])$_SESSION['historical_achievements']=(int)($_SESSION['historical_achievements']??0)+count($reconciliation['recognized']);}
         if($method==='POST') {
             if($path==='/api/v1/telemetry/drain') {
@@ -181,14 +181,13 @@ try {
             echo json_encode(['error'=>'Acesso negado à carreira.'], JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);
             exit;
         }
-        $row = $r->query('SELECT contract_version, command_uid, request_hash, versao_anterior, versao_resultante, resposta_json, received_at_utc, persisted_at_utc FROM rumo10_f01_respostas WHERE carreira_id=? AND chave=?', [$careerId, $key])->fetch();
+        $row = $r->query('SELECT contract_version, command_uid, request_hash, versao_anterior, versao_resultante, JSON_EXTRACT(resposta_json, "$.game_state.feedback") AS feedback_json, JSON_UNQUOTE(JSON_EXTRACT(resposta_json, "$.game_state.stage")) AS game_stage, JSON_EXTRACT(resposta_json, "$.game_state.version") AS game_version, received_at_utc, persisted_at_utc FROM rumo10_f01_respostas WHERE carreira_id=? AND chave=?', [$careerId, $key])->fetch();
         if(!$row) {
             http_response_code(404);
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode(['error'=>'Resposta original não encontrada para esta chave.'], JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);
             exit;
         }
-        $respData = json_decode((string)$row['resposta_json'], true, 512, JSON_THROW_ON_ERROR);
         // Expor estritamente os metadados de auditoria e conformidade da resposta canônica autorizados pelo contrato
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode([
@@ -201,9 +200,9 @@ try {
             'received_at_utc' => $row['received_at_utc'],
             'persisted_at_utc' => $row['persisted_at_utc'],
             'command_summary' => [
-                'feedback' => $respData['game_state']['feedback'] ?? null,
-                'stage' => $respData['game_state']['stage'] ?? null,
-                'version' => $respData['game_state']['version'] ?? null,
+                'feedback' => json_decode((string)($row['feedback_json'] ?? 'null'), true, 512, JSON_THROW_ON_ERROR),
+                'stage' => $row['game_stage'] === 'null' ? null : $row['game_stage'],
+                'version' => json_decode((string)($row['game_version'] ?? 'null'), true, 512, JSON_THROW_ON_ERROR),
             ]
         ], JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);
         exit;

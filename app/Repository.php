@@ -83,18 +83,20 @@ final class Repository {
         $this->db->beginTransaction(); try {
             $this->query("SET time_zone = '+00:00'");
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
+            // Uma repetição confirmada carrega somente o estado da resposta original.
+            $cachedResp=$this->query('SELECT f.request_hash,f.resposta_json FROM rumo10_f01_respostas f JOIN rumo10_carreiras c ON c.id=f.carreira_id WHERE c.conta_id=? AND f.chave=?',[$account,$key])->fetch();
+            if($cachedResp) {
+                if(!hash_equals($cachedResp['request_hash'],$hash)) throw new InvalidArgumentException('Token já usado para outra ação.');
+                $respEnvelope=json_decode($cachedResp['resposta_json'],true,512,JSON_THROW_ON_ERROR);
+                unset($cachedResp);
+                $confirmed=$respEnvelope['game_state'] ?? $this->load($account,true);
+                $this->db->commit();
+                return $confirmed;
+            }
+
             $start=RequestMetrics::start();$g=$this->load($account,true);RequestMetrics::end('load',$start); if(!$g) throw new InvalidArgumentException('Crie seu personagem.');
             $closing=$g['retired_summary']['closing_command']??null;
             if($closing && hash_equals($closing['key'],$key)) {if(!hash_equals($closing['hash'],$hash))throw new InvalidArgumentException('Token já usado para outra ação.');$this->db->commit();return $g;}
-
-            // F01: Verificação em rumo10_f01_respostas para idempotência com envelope canônico
-            $cachedResp=$this->query('SELECT request_hash,resposta_json FROM rumo10_f01_respostas WHERE carreira_id=? AND chave=?',[$g['id'],$key])->fetch();
-            if($cachedResp) {
-                if(!hash_equals($cachedResp['request_hash'],$hash)) throw new InvalidArgumentException('Token já usado para outra ação.');
-                $this->db->commit();
-                $respEnvelope=json_decode($cachedResp['resposta_json'],true,512,JSON_THROW_ON_ERROR);
-                return $respEnvelope['game_state'] ?? $g;
-            }
 
             $old=$this->query('SELECT request_hash FROM rumo10_decisoes WHERE carreira_id=? AND chave=?',[$g['id'],$key])->fetchColumn();
             if($old) { if(!hash_equals($old,$hash)) throw new InvalidArgumentException('Token já usado para outra ação.'); $this->db->commit(); return $g; }
@@ -126,21 +128,40 @@ final class Repository {
                 );
             }
 
+            unset($telemetryEnvelope);
+
             if($action==='relocate')$this->query('UPDATE rumo10_carreiras SET cidade=?,uf=? WHERE id=?',[$next['city'],$next['uf'],$careerId]);
-            $start=RequestMetrics::start();$this->save($next);RequestMetrics::end('save',$start); $f=$next['feedback']??[];
+            $start=RequestMetrics::start();$hasUniverse=$this->save($next);RequestMetrics::end('save',$start); $f=$next['feedback']??[];
             $audit=['before'=>$before,'after'=>['skills'=>$next['skills'],'states'=>$next['states']],'feedback'=>$f];
             if($action==='simulate' && isset($next['pace_report']))$audit['simulation']=$next['pace_report'];
             if($action==='mode')$audit['mode']=PlayMode::name($next);
             $this->query('INSERT INTO rumo10_decisoes(carreira_id,chave,comando,request_hash,versao_anterior,chance,sorteio,classe,regras,resultado_json) VALUES(?,?,?,?,?,?,?,?,?,?)',[$careerId,$key,$action,$hash,$version,$f['chance']??null,$f['roll']??null,$f['class']??null,Rules::VERSION,json_encode($audit,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE)]);
 
-            unset($next,$audit,$f); // Libere o universo antes de reler o JSON normalizado pelo MySQL.
-            $persisted=$this->load($account);
+            $resultVersion=$next['version'];
+            unset($next,$audit,$f);
 
             // F01: Persistência da resposta versionada
             if (self::$testPreResponseHook !== null) {
                 (self::$testPreResponseHook)($careerId, $key, $this->db);
             }
 
+            if ($hasUniverse) {
+                // Reuse o JSON normalizado pelo MySQL dentro da mesma transação.
+                $insert=$this->query(
+                    "INSERT INTO rumo10_f01_respostas (carreira_id, chave, command_uid, request_hash, versao_anterior, versao_resultante, contract_version, resposta_json, received_at_utc, persisted_at_utc)
+                     SELECT carreira_id, ?, ?, ?, ?, ?, 1,
+                            JSON_OBJECT('contract_version', 1, 'command_uid', ?, 'carreira_id', carreira_id, 'versao_anterior', CAST(? AS SIGNED), 'versao_resultante', CAST(? AS SIGNED), 'game_state', estado_json),
+                            ?, CURRENT_TIMESTAMP(6)
+                     FROM rumo10_universos WHERE carreira_id=?",
+                    [$key, $commandUid, $hash, $version, $resultVersion, $commandUid, $version, $resultVersion, $receivedAt, $careerId]
+                );
+                if ($insert->rowCount() !== 1) throw new RuntimeException('Universo ausente ao registrar a resposta F01.');
+                $persisted=$this->load($account);
+                $this->db->commit();
+                return $persisted;
+            }
+
+            $persisted=$this->load($account);
             $envelopeResposta=[
                 'contract_version'=>1,
                 'command_uid'=>$commandUid,
@@ -157,7 +178,7 @@ final class Repository {
             $this->db->commit();return $persisted;
         } catch(Throwable $e) { if($this->db->inTransaction()) $this->db->rollBack(); throw $e; }
     }
-    private function save(array $g): void {
+    private function save(array $g): bool {
         $id=$g['id'];
         $this->query('UPDATE rumo10_carreiras SET idade=?,temporada=?,rodada=?,etapa=?,clube=?,tier=?,handicap=?,versao=?,feedback_json=? WHERE id=?',[$g['age'],$g['season'],$g['round'],$g['stage'],$g['club'],$g['tier'],$g['handicap'],$g['version'],json_encode($g['feedback'],JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE),$id]);
         foreach($g['skills'] as $k=>$a) $this->query('INSERT INTO rumo10_atributos VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE valor=?,xp=?',[$id,$k,$a['value'],$a['xp'],$a['value'],$a['xp']]);
@@ -166,7 +187,7 @@ final class Repository {
             $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
             // O universo pode ter dezenas de MB: vincular o mesmo JSON duas vezes duplica buffers do PDO.
             $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=VALUES(estado_json)',[$id,$json]);
-            return;
+            return true;
         }
         $this->query('INSERT IGNORE INTO rumo10_temporadas(carreira_id,numero,clube) VALUES(?,?,?)',[$id,$g['season'],$g['club']]);
         $season=$this->query('SELECT id FROM rumo10_temporadas WHERE carreira_id=? AND numero=?',[$id,$g['season']])->fetchColumn();
@@ -185,9 +206,6 @@ final class Repository {
             $this->query('UPDATE rumo10_temporadas SET finalizada=1,resumo_json=? WHERE carreira_id=? AND numero=?',[json_encode($h,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE),$id,$h['season']]);
             $this->query('INSERT IGNORE INTO rumo10_transferencias(carreira_id,temporada,origem,destino) VALUES(?,?,?,?)',[$id,$h['season'],$h['club'],$h['next_club']]);
         }
-        if(isset($g['story_seed']) || isset($g['play_mode']) || isset($g['initial_profile']) || isset($g['market_draw']) || isset($g['progression_version'])) {
-            $json=json_encode($g,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION);
-            $this->query('INSERT INTO rumo10_universos(carreira_id,estado_json) VALUES(?,?) ON DUPLICATE KEY UPDATE estado_json=VALUES(estado_json)',[$id,$json]);
-        }
+        return false;
     }
 }
