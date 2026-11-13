@@ -28,8 +28,10 @@ function runFixtureProcess(array $args,string $scenario,string $input=''): array
         $result=json_decode($raw,true);
         if(!is_array($result) || !is_bool($result['ok']??null)){
             $reason=trim($raw)===''?'empty response':'invalid JSON response';
-            throw new RuntimeException(sprintf('%s — exit %d, %s, stderr bytes %d',
-                $scenario,$code,$reason,fstat($stderr)['size']));
+            rewind($stderr);
+            $diagnostic = trim((string)stream_get_contents($stderr));
+            throw new RuntimeException(sprintf('%s — exit %d, %s, stderr: %s',
+                $scenario,$code,$reason,substr($diagnostic,0,1000)));
         }
         return [$code,$result];
     } finally {
