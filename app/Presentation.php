@@ -118,10 +118,109 @@ final class Presentation {
         echo '</div></div>';
     }
     public static function score(array $g,array $m): void {
-        echo '<article class="panel match compact-score"><div class="match-time">'.e(str_replace('_',' ',strtoupper($m['status']))).' · '.e($m['minute']).'′</div><div class="score-row"><span class="score-team">';ClubBadge::render($m['home']);echo '<span>'.e(ClubBadge::name($m['home'])).'</span></span><strong>'.e($m['hg']).' <small>×</small> '.e($m['ag']).'</strong><span class="score-team">';ClubBadge::render($m['away']);echo '<span>'.e(ClubBadge::name($m['away'])).'</span></span></div>';
+        $status = $m['status'] ?? 'em_andamento';
+        $minute = (int)($m['minute'] ?? 0);
+        $entry = (int)($m['entry'] ?? 0);
+        $exit = (int)($m['exit'] ?? 90);
+
+        if ($status === 'intervalo') {
+            $periodLabel = 'Intervalo';
+            $periodClass = 'intervalo';
+        } elseif ($status === 'finalizada') {
+            $periodLabel = 'Fim de jogo';
+            $periodClass = 'finalizada';
+        } elseif ($status === 'pre_jogo') {
+            $periodLabel = 'Pré-jogo';
+            $periodClass = 'pre-jogo';
+        } else {
+            $periodLabel = ($minute <= 45) ? '1º Tempo' : '2º Tempo';
+            $periodClass = ($minute <= 45) ? '1t' : '2t';
+        }
+
+        $progressPercent = min(100, max(0, round(($minute / 90) * 100)));
+        $isHomeUser = ($m['home'] === ($g['club'] ?? ''));
+        $isAwayUser = ($m['away'] === ($g['club'] ?? ''));
+
+        if ($status === 'finalizada') {
+            $playerStatus = 'Partida encerrada';
+            $playerStatusClass = 'status-finished';
+        } elseif ($minute < $entry) {
+            $playerStatus = 'No banco (entra aos '.$entry.'′)';
+            $playerStatusClass = 'status-bench';
+        } elseif ($minute >= $exit) {
+            $playerStatus = 'Substituído aos '.$exit.'′';
+            $playerStatusClass = 'status-subbed';
+        } else {
+            $playerStatus = 'Em campo';
+            $playerStatusClass = 'status-onfield';
+        }
+
+        $roundText = isset($m['round']) ? 'Rodada '.(int)$m['round'] : (isset($g['round']) ? 'Rodada '.(int)$g['round'] : '');
+
+        echo '<article class="panel match compact-score r10-scoreboard" aria-label="Placar da partida">';
+        echo '<div class="match-time">';
+        echo '<div class="match-time-left">';
+        echo '<span class="match-period-badge badge-'.e($periodClass).'">'.e($periodLabel).'</span>';
+        if ($status === 'em_andamento') {
+            echo '<span class="match-clock" title="Minuto oficial"><span class="match-live-dot" aria-hidden="true"></span><b>'.e($minute).'′</b></span>';
+        } else {
+            echo '<span class="match-clock-static"><b>'.e($minute).'′</b></span>';
+        }
+        echo '</div>';
+        if ($roundText !== '') {
+            echo '<div class="match-round-tag">'.e($roundText).'</div>';
+        }
+        echo '</div>';
+
+        echo '<div class="score-row">';
+        echo '<div class="score-team team-home'.($isHomeUser ? ' team-user' : '').'">';
+        echo '<div class="team-meta">';
+        echo '<span class="team-name" title="'.e(ClubBadge::name($m['home'])).'">'.e(ClubBadge::name($m['home'])).'</span>';
+        if ($isHomeUser) echo '<span class="team-user-pill">Seu clube</span>';
+        echo '</div>';
+        echo '<div class="team-badge-wrap">';
+        ClubBadge::render($m['home']);
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="score-center">';
+        echo '<strong class="score-numbers" aria-label="Placar: '.e($m['hg']).' a '.e($m['ag']).'">'.e($m['hg']).' <small>×</small> '.e($m['ag']).'</strong>';
+        echo '</div>';
+
+        echo '<div class="score-team team-away'.($isAwayUser ? ' team-user' : '').'">';
+        echo '<div class="team-badge-wrap">';
+        ClubBadge::render($m['away']);
+        echo '</div>';
+        echo '<div class="team-meta">';
+        echo '<span class="team-name" title="'.e(ClubBadge::name($m['away'])).'">'.e(ClubBadge::name($m['away'])).'</span>';
+        if ($isAwayUser) echo '<span class="team-user-pill">Seu clube</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="match-progress-wrap" role="progressbar" aria-valuenow="'.e($minute).'" aria-valuemin="0" aria-valuemax="90" aria-label="Progresso da partida: '.e($minute).' minutos">';
+        echo '<div class="match-progress-track">';
+        echo '<div class="match-progress-fill" style="width: '.e($progressPercent).'%;"></div>';
+        echo '<span class="match-progress-pin pin-45" title="Intervalo (45′)"></span>';
+        echo '</div>';
+        echo '<div class="match-progress-labels" aria-hidden="true">';
+        echo '<span>0′</span>';
+        echo '<span class="label-half">INT</span>';
+        echo '<span>90′</span>';
+        echo '</div>';
+        echo '</div>';
+
         $agg = Competition::aggregateContext($g, $m);
         if ($agg) self::renderAggregate($agg);
-        echo '<div class="live-player-stats"><span>⚽ <b data-stat="goals">'.e($m['stats']['goals']).'</b> seus gols</span><span>↗ <b data-stat="assists">'.e($m['stats']['assists']).'</b> assistências</span></div></article>';
+
+        echo '<div class="live-player-stats">';
+        echo '<span class="player-field-indicator '.e($playerStatusClass).'">'.e($playerStatus).'</span>';
+        echo '<div class="player-stats-counts">';
+        echo '<span>⚽ <b data-stat="goals">'.e($m['stats']['goals'] ?? 0).'</b> seus gols</span>';
+        echo '<span>↗ <b data-stat="assists">'.e($m['stats']['assists'] ?? 0).'</b> assistências</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '</article>';
     }
     public static function radio(array $m): void {
         if($m['status']!=='finalizada') return;
