@@ -69,8 +69,15 @@ assertCheck(!in_array('rumohub_tenants', $valResult['tables'], true), 'Banco com
 $expectedTables008 = DatabaseSchemaValidator::resolveExpectedTables($manifest, ['006', '006-seed', '007', '008']);
 assertCheck(count($expectedTables008) === 33, 'Manifesto define 33 tabelas para versão 008');
 
-$expectedTables010 = DatabaseSchemaValidator::resolveExpectedTables($manifest, ['006', '006-seed', '007', '008', '009', '010-future-feature']);
-assertCheck(count($expectedTables010) === 39, 'Manifesto evolui dinamicamente para 39 tabelas com a migração 010');
+// O exemplo 010 pertence somente ao teste, não ao manifesto canônico de produção.
+$futureManifest = $manifest;
+$futureManifest['versions']['010'] = [
+    'label' => 'Synthetic migration 010 for isolated testing',
+    'tracked_in_migrations' => true,
+    'tables' => ['rumo10_future_data'],
+];
+$expectedTables010 = DatabaseSchemaValidator::resolveExpectedTables($futureManifest, ['006', '006-seed', '007', '008', '009', '010-future-feature']);
+assertCheck(count($expectedTables010) === 39, 'Manifesto de teste evolui dinamicamente para 39 tabelas com a migração 010');
 echo "\n";
 
 // =========================================================================
