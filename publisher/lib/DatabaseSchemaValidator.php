@@ -454,7 +454,9 @@ final class DatabaseSchemaValidator {
                         $actualFk['columns'] === $expFk['columns'] &&
                         $actualFk['ref_columns'] === $expFk['ref_columns']) {
                         $expDelete = strtoupper($expFk['on_delete'] ?? 'RESTRICT');
-                        if ($actualFk['on_delete'] !== $expDelete) {
+                        // MySQL treats NO ACTION and RESTRICT as equivalent for InnoDB.
+                        $actualDelete = $actualFk['on_delete'] === 'NO ACTION' ? 'RESTRICT' : $actualFk['on_delete'];
+                        if ($actualDelete !== $expDelete) {
                             throw new RuntimeException("Table `{$table}` foreign key `{$fkName}` ON DELETE rule mismatch: expected {$expDelete}, got {$actualFk['on_delete']}");
                         }
                         $found = true;
