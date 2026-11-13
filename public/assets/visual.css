@@ -725,7 +725,7 @@ main.container {
   margin: 0 6px;
 }
 
-/* Barra Discreta de Progresso (0 a 90 min) */
+/* Barra Discreta de Progresso (0 a 90 min) via HTML5 <progress> */
 .match-progress-wrap {
   margin: 8px 0 4px;
   padding: 0 2px;
@@ -734,17 +734,41 @@ main.container {
 
 .match-progress-track {
   position: relative;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px;
-  overflow: visible;
+  height: 6px;
+  display: flex;
+  align-items: center;
 }
 
-.match-progress-fill {
-  height: 100%;
+progress.match-progress-bar {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 6px;
+  border: none;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: block;
+}
+
+/* Chrome / Safari / Edge / Blink */
+progress.match-progress-bar::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+progress.match-progress-bar::-webkit-progress-value {
   background: linear-gradient(90deg, #5ea857 0%, var(--lime) 100%);
   border-radius: 3px;
   transition: width 0.4s ease-out;
+  box-shadow: 0 0 6px rgba(215, 255, 96, 0.35);
+}
+
+/* Firefox / Gecko */
+progress.match-progress-bar::-moz-progress-bar {
+  background: linear-gradient(90deg, #5ea857 0%, var(--lime) 100%);
+  border-radius: 3px;
   box-shadow: 0 0 6px rgba(215, 255, 96, 0.35);
 }
 
@@ -753,10 +777,11 @@ main.container {
   left: 50%;
   top: -2px;
   width: 2px;
-  height: 9px;
-  background: rgba(255, 255, 255, 0.3);
+  height: 10px;
+  background: rgba(255, 255, 255, 0.35);
   transform: translateX(-50%);
   border-radius: 1px;
+  pointer-events: none;
 }
 
 .match-progress-labels {
@@ -809,6 +834,16 @@ main.container {
   box-shadow: 0 0 4px var(--lime);
 }
 
+.player-field-indicator.status-starting::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #78bd71;
+  box-shadow: 0 0 4px #78bd71;
+}
+
 .player-field-indicator.status-bench::before {
   content: "";
   display: inline-block;
@@ -819,6 +854,44 @@ main.container {
 }
 
 .player-field-indicator.status-subbed::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #9dafb3;
+}
+
+.player-field-indicator.status-sent-off::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 2px;
+  background: #dc3545;
+  box-shadow: 0 0 4px #dc3545;
+}
+
+.player-field-indicator.status-suspended::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #e05260;
+  box-shadow: 0 0 4px #e05260;
+}
+
+.player-field-indicator.status-not-selected::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #6c757d;
+}
+
+.player-field-indicator.status-finished::before {
   content: "";
   display: inline-block;
   width: 6.5px;
@@ -2033,6 +2106,15 @@ body.post-match-decision .season-recap {
   .in-match .compact-score .aggregate-total strong {
     font-size: 12px;
   }
+  .in-match progress.match-progress-bar {
+    height: 5px;
+  }
+  .in-match .match-progress-track {
+    height: 5px;
+  }
+  .in-match .match-progress-pin.pin-45 {
+    height: 9px;
+  }
   .in-match .compact-score .live-player-stats {
     margin-top: 6px;
     padding-top: 6px;
@@ -2205,7 +2287,8 @@ body.post-match-decision .season-recap {
   .score-numbers,
   .compact-score .score-row>strong,
   .match-live-dot,
-  .match-progress-fill {
+  progress.match-progress-bar,
+  progress.match-progress-bar::-webkit-progress-value {
     animation: none !important;
     transition: none !important;
   }

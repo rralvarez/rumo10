@@ -12,14 +12,29 @@ if (!fs.existsSync(outDir)) {
 }
 
 const targets = [
-  { file: 'preview-1t.html', name: '01-partida-1tempo-desktop', vp: { width: 1200, height: 820 }, mobile: false },
-  { file: 'preview-1t.html', name: '01-partida-1tempo-mobile', vp: { width: 390, height: 844 }, mobile: true },
-  { file: 'preview-intervalo.html', name: '02-partida-intervalo-desktop', vp: { width: 1200, height: 820 }, mobile: false },
-  { file: 'preview-intervalo.html', name: '02-partida-intervalo-mobile', vp: { width: 390, height: 844 }, mobile: true },
-  { file: 'preview-2t.html', name: '03-partida-2tempo-desktop', vp: { width: 1200, height: 820 }, mobile: false },
-  { file: 'preview-2t.html', name: '03-partida-2tempo-mobile', vp: { width: 390, height: 844 }, mobile: true },
-  { file: 'preview-banco.html', name: '04-partida-banco-mobile', vp: { width: 390, height: 844 }, mobile: true },
-  { file: 'preview-substituido.html', name: '05-partida-substituido-mobile', vp: { width: 390, height: 844 }, mobile: true }
+  // 1200px Desktop
+  { file: 'preview-30m.html', name: '01-progresso-30m-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+  { file: 'preview-45m.html', name: '02-progresso-45m-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+  { file: 'preview-60m.html', name: '03-progresso-60m-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+  { file: 'preview-90m.html', name: '04-progresso-90m-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+  { file: 'preview-expulso.html', name: '05-jogador-expulso-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+
+  // 390px Mobile (iPhone padrão)
+  { file: 'preview-30m.html', name: '01-progresso-30m-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'preview-45m.html', name: '02-progresso-45m-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'preview-60m.html', name: '03-progresso-60m-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'preview-90m.html', name: '04-progresso-90m-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'preview-expulso.html', name: '05-jogador-expulso-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'preview-substituido.html', name: '06-jogador-substituido-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'preview-suspenso.html', name: '07-jogador-suspenso-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'preview-legado-banco.html', name: '08-legado-banco-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+
+  // 320px Mobile Pequeno (compacto)
+  { file: 'preview-30m.html', name: '01-progresso-30m-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
+  { file: 'preview-45m.html', name: '02-progresso-45m-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
+  { file: 'preview-60m.html', name: '03-progresso-60m-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
+  { file: 'preview-90m.html', name: '04-progresso-90m-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
+  { file: 'preview-expulso.html', name: '05-jogador-expulso-mobile-320', vp: { width: 320, height: 600 }, mobile: true }
 ];
 
 (async () => {
@@ -38,13 +53,15 @@ const targets = [
       const page = await context.newPage();
       const url = 'http://rumo10.local/' + t.file;
       await page.goto(url, { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(400);
       
       const outPath = path.join(outDir, t.name + '.png');
       const brainPath = path.join(brainDir, t.name + '.png');
       
       await page.screenshot({ path: outPath, fullPage: false });
-      fs.copyFileSync(outPath, brainPath);
+      if (fs.existsSync(brainDir)) {
+        fs.copyFileSync(outPath, brainPath);
+      }
       
       console.log('Capturado: ' + t.name + ' (' + t.vp.width + 'x' + t.vp.height + ')');
       await context.close();
@@ -52,7 +69,7 @@ const targets = [
   } finally {
     await browser.close();
   }
-  console.log('Todas as capturas foram salvas com sucesso!');
+  console.log('Todas as capturas de correção F03 foram salvas com sucesso!');
 })().catch(err => {
   console.error(err);
   process.exitCode = 1;

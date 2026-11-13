@@ -32,6 +32,7 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
 
 ## Verificação e Homologação
 - Baterias de testes executadas e aprovadas:
+  - `tests/test-f03-corrections.php` (OK - 224 verificações cobrindo CSP e situações de participação)
   - `tests/presentation.php` (OK)
   - `tests/aggregate-score-v07.php` (OK - 63 verificações)
   - `tests/test-mobile-ux-flow.php` (OK - 17 verificações)
@@ -39,4 +40,25 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
   - `tests/penalty-shootout-v07.php` (OK - 46 verificações)
   - `tests/compact-results.php` (OK)
   - `tests/normal-xp.php` (OK - 369 verificações)
-- Capturas de evidência salvas em `Docs/f03-evidencias/`.
+- Capturas de evidência salvas em `Docs/f03-evidencias/` (1200px, 390px e 320px).
+
+## Correções Pontuais (OS-COR-F03)
+
+### 1. Barra de progresso da partida (Compatibilidade CSP do IIS)
+- **Causa raiz:** O IIS impõe `style-src 'self'`, bloqueando `style="width: ...%"` inline e preenchendo 100% da barra inadvertidamente.
+- **Solução:** Substituição por elemento HTML5 nativo `<progress class="match-progress-bar" value="..." max="90">` sem atributos `style` inline.
+- **Comportamento visual:** Proporcionalidade estrita aos 30′ (~33.3%), 45′ (50%), 60′ (~66.7%) e 90′ (100%), com valor visual restrito a `0..90` e minuto real preservado no display do relógio.
+- **Estilização:** CSS externo em `visual.css` com pseudo-elementos `::-webkit-progress-bar`, `::-webkit-progress-value` e `::-moz-progress-bar`, preservando responsividade e acessibilidade.
+
+### 2. Situação real do jogador (Consistência entre Placar e Card de Avanço)
+- **Causa raiz:** Divergência no uso de heurísticas baseadas em minutos que exibiam titular em campo antes do apito inicial, previsão de entrada aos 90′ para atletas indisponíveis e jogadores expulsos rotulados como substituídos.
+- **Solução:** Implementação do método canônico `Presentation::playerParticipation(array $g, array $m)`, consumido uniformemente pelo placar (`Presentation::score`) e pelo card de avanço (`view.php`).
+- **Estados mapeados:**
+  - `pre_jogo`: Exibe `Escalado (titular)` ou `No banco (reserva)`, nunca indicando `Em campo` pré-jogo.
+  - `banco`: Exibe `No banco de reservas` durante a partida sem anunciar minutos antecipadamente. Ao término, identifica `Permaneceu no banco`.
+  - `suspenso` / `não relacionado`: Identificados como `Suspenso` e `Não relacionado`, sem falsa entrada aos 90′.
+  - `expulso`: Identificado com clareza como `Expulso aos X′` (ou `Expulso`), ícone 🟥 e nunca como `Substituído`.
+  - `substituído`: Exibe `Substituído aos X′`, ícone 🔄.
+  - `saves legados`: Fallback gracioso com inferência robusta quando `participation_state` não estiver presente.
+
+

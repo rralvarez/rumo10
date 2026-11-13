@@ -3,7 +3,18 @@ declare(strict_types=1);
 
 require dirname(__DIR__).'/app/bootstrap.php';
 
-function sampleMatchGame(int $minute, int $hg, int $ag, string $status = 'em_andamento', int $entry = 0, int $exit = 90, string $lineup = 'titular', ?array $feedback = null, bool $clearChance = false): array {
+function sampleMatchGame(
+    int $minute,
+    int $hg,
+    int $ag,
+    string $status = 'em_andamento',
+    int $entry = 0,
+    int $exit = 90,
+    string $lineup = 'titular',
+    ?array $feedback = null,
+    bool $clearChance = false,
+    array $extraMatch = []
+): array {
     $g = Game::legacyCreate('Rodrigo Rodrigues Alvarez', 'São Paulo', 'SP', 'centroavante');
     $g['id'] = 999;
     $g['version'] = 42;
@@ -34,6 +45,9 @@ function sampleMatchGame(int $minute, int $hg, int $ag, string $status = 'em_and
             if ($clearChance) {
                 $match['clear_chance'] = true;
             }
+            foreach ($extraMatch as $k => $v) {
+                $match[$k] = $v;
+            }
         }
     }
     unset($match);
@@ -42,7 +56,7 @@ function sampleMatchGame(int $minute, int $hg, int $ag, string $status = 'em_and
         'success' => true,
         'class' => 'sucesso',
         'highlight' => null,
-        'text' => 'A jogada avança pelo meio com boa troca de passes.',
+        'text' => 'A jogada avança com boa troca de passes.',
         'effects' => ['confianca' => 3, 'energia' => -2]
     ];
     return $g;
@@ -55,42 +69,72 @@ if (!function_exists('form')) {
 }
 
 $scenarios = [
-    'preview-1t.html' => function() {
-        return sampleMatchGame(35, 1, 0, 'em_andamento', 0, 90, 'titular', [
+    // 1. Minuto 30' - Titular em campo (~33% barra)
+    'preview-30m.html' => function() {
+        return sampleMatchGame(30, 1, 0, 'em_andamento', 0, 90, 'titular', [
             'success' => true,
             'class' => 'sucesso',
-            'highlight' => 'goal',
-            'text' => 'Finalização colocada no canto direito! A bola toca a trave e morre no fundo das redes.',
-            'effects' => ['confianca' => 5, 'energia' => -3]
-        ]);
+            'highlight' => null,
+            'text' => 'A equipe constrói a jogada no campo de ataque aos 30 minutos.',
+            'effects' => ['confianca' => 2]
+        ], false, ['participation_state' => 'ON_FIELD']);
     },
-    'preview-intervalo.html' => function() {
+    // 2. Minuto 45' - Intervalo (50% barra)
+    'preview-45m.html' => function() {
         return sampleMatchGame(45, 1, 1, 'intervalo', 0, 90, 'titular', [
             'success' => true,
             'class' => 'sucesso',
             'highlight' => null,
-            'text' => 'Você protege a posse e segura a bola até o apito do árbitro encerrando o primeiro tempo.',
-            'effects' => ['energia' => -2]
-        ]);
-    },
-    'preview-2t.html' => function() {
-        return sampleMatchGame(70, 2, 1, 'em_andamento', 0, 90, 'titular', [
-            'success' => true,
-            'class' => 'sucesso',
-            'highlight' => null,
-            'text' => 'A tabela deu certo e desmontou a defesa adversária: você tem uma chance clara de gol!',
-            'effects' => ['confianca' => 4]
-        ], true);
-    },
-    'preview-banco.html' => function() {
-        return sampleMatchGame(15, 0, 0, 'em_andamento', 60, 90, 'reserva', [
-            'success' => true,
-            'class' => 'sucesso',
-            'highlight' => null,
-            'text' => 'O treinador observa o posicionamento das linhas adversárias e instrui os suplentes.',
+            'text' => 'Apito do árbitro: fim da primeira etapa.',
             'effects' => []
-        ]);
+        ], false, ['participation_state' => 'ON_FIELD']);
     },
+    // 3. Minuto 60' - Reserva que entrou (~67% barra)
+    'preview-60m.html' => function() {
+        return sampleMatchGame(60, 1, 1, 'em_andamento', 60, 90, 'reserva', [
+            'success' => true,
+            'class' => 'sucesso',
+            'highlight' => null,
+            'text' => 'Você entra em campo no segundo tempo pronto para fazer a diferença.',
+            'effects' => ['energia' => -1]
+        ], false, ['participation_state' => 'ON_FIELD']);
+    },
+    // 4. Minuto 90' - Reserva que NÃO entra (permaneceu no banco, 100% barra)
+    'preview-90m.html' => function() {
+        return sampleMatchGame(90, 2, 1, 'finalizada', 90, 90, 'reserva', [
+            'success' => true,
+            'class' => 'sucesso',
+            'highlight' => null,
+            'text' => 'O árbitro finaliza a partida com vitória da sua equipe.',
+            'effects' => []
+        ], false, ['participation_state' => 'ON_BENCH']);
+    },
+    // 5. Expulso aos 68'
+    'preview-expulso.html' => function() {
+        $g = sampleMatchGame(70, 0, 1, 'em_andamento', 0, 68, 'titular', [
+            'success' => false,
+            'class' => 'falha',
+            'highlight' => null,
+            'text' => 'Falta dura na intermediária: o árbitro apresenta o cartão vermelho direto!',
+            'effects' => ['confianca' => -10]
+        ], false, [
+            'participation_state' => 'SENT_OFF',
+            'red_card_minute' => 68,
+            'stats' => ['goals' => 0, 'assists' => 0, 'shots' => 1, 'passes' => 3, 'completed' => 2, 'minutes' => 68, 'rating' => 4.5, 'red_cards' => 1]
+        ]);
+        return $g;
+    },
+    // 6. Suspenso
+    'preview-suspenso.html' => function() {
+        return sampleMatchGame(0, 0, 0, 'em_andamento', 90, 90, 'suspenso', [
+            'success' => true,
+            'class' => 'sucesso',
+            'highlight' => null,
+            'text' => 'Você acompanha o início da partida das tribunas cumprindo suspensão.',
+            'effects' => []
+        ], false, ['participation_state' => 'SUSPENDED']);
+    },
+    // 7. Substituído
     'preview-substituido.html' => function() {
         return sampleMatchGame(80, 2, 2, 'em_andamento', 0, 70, 'titular', [
             'success' => true,
@@ -98,6 +142,16 @@ $scenarios = [
             'highlight' => null,
             'text' => 'Após intenso desgaste físico em campo, você deixa o gramado sob aplausos.',
             'effects' => ['energia' => -4]
+        ], false, ['participation_state' => 'SUBSTITUTED_OUT']);
+    },
+    // 8. Legado - Reserva no banco sem participation_state
+    'preview-legado-banco.html' => function() {
+        return sampleMatchGame(15, 0, 0, 'em_andamento', 60, 90, 'reserva', [
+            'success' => true,
+            'class' => 'sucesso',
+            'highlight' => null,
+            'text' => 'No banco de reservas aguardando a oportunidade da comissão técnica.',
+            'effects' => []
         ]);
     }
 ];

@@ -117,11 +117,141 @@ final class Presentation {
         }
         echo '</div></div>';
     }
-    public static function score(array $g,array $m): void {
+    public static function playerParticipation(array $g, array $m): array {
         $status = $m['status'] ?? 'em_andamento';
         $minute = (int)($m['minute'] ?? 0);
         $entry = (int)($m['entry'] ?? 0);
         $exit = (int)($m['exit'] ?? 90);
+        $partState = $m['participation_state'] ?? null;
+        $lineup = $m['lineup'] ?? 'titular';
+        $st = $m['stats'] ?? [];
+        $isRedCard = ($partState === 'SENT_OFF') || (!empty($st['red_cards']) && $st['red_cards'] > 0) || !empty($m['red_card_minute']);
+        $redMinute = (int)($m['red_card_minute'] ?? ($exit < 90 ? $exit : $minute));
+
+        // 1. Atleta suspenso
+        if ($partState === 'SUSPENDED' || $lineup === 'suspenso') {
+            return [
+                'type' => 'suspended',
+                'label' => 'Suspenso',
+                'class' => 'status-suspended',
+                'note_icon' => '🚫',
+                'note_title' => 'Atleta suspenso',
+                'note_desc' => 'Você cumpre suspensão e não pode atuar nesta partida.',
+            ];
+        }
+
+        // 2. Atleta não relacionado
+        if ($partState === 'NOT_SELECTED' || $lineup === 'não relacionado') {
+            return [
+                'type' => 'not_selected',
+                'label' => 'Não relacionado',
+                'class' => 'status-not-selected',
+                'note_icon' => '📋',
+                'note_title' => 'Não relacionado',
+                'note_desc' => 'Você foi poupado devido ao desgaste físico e acompanha a partida de fora.',
+            ];
+        }
+
+        // 3. Atleta expulso (cartão vermelho)
+        if ($isRedCard) {
+            $label = $redMinute > 0 ? 'Expulso aos '.$redMinute.'′' : 'Expulso';
+            return [
+                'type' => 'sent_off',
+                'label' => $label,
+                'class' => 'status-sent-off',
+                'note_icon' => '🟥',
+                'note_title' => 'Expulsão de campo',
+                'note_desc' => $redMinute > 0 ? "Você foi expulso aos {$redMinute}′ e desfalca a equipe até o encerramento do jogo." : "Você foi expulso e desfalca a equipe até o encerramento do jogo.",
+            ];
+        }
+
+        // 4. Pré-jogo
+        if ($status === 'pre_jogo' || ($g['stage'] ?? '') === 'pre_jogo') {
+            $isStarter = ($partState === 'STARTING' || $lineup === 'titular');
+            return [
+                'type' => 'pre_jogo',
+                'label' => $isStarter ? 'Escalado (titular)' : 'No banco (reserva)',
+                'class' => $isStarter ? 'status-starting' : 'status-bench',
+                'note_icon' => '👕',
+                'note_title' => 'Pré-jogo',
+                'note_desc' => 'Aquecimento concluído. Prepare-se para o início do confronto.',
+            ];
+        }
+
+        // 5. Atleta substituído (saiu de campo antes do fim sem expulsão)
+        $isSubstituted = ($partState === 'SUBSTITUTED_OUT') || ($exit < 90 && $minute >= $exit);
+        if ($isSubstituted) {
+            return [
+                'type' => 'substituted',
+                'label' => 'Substituído aos '.$exit.'′',
+                'class' => 'status-subbed',
+                'note_icon' => '🔄',
+                'note_title' => 'Substituição realizada',
+                'note_desc' => 'Você foi substituído aos '.$exit.'′ e acompanha os momentos finais da sua equipe.',
+            ];
+        }
+
+        // 6. Partida finalizada
+        if ($status === 'finalizada' || $partState === 'FULL_TIME' || $minute >= 90) {
+            if (($entry >= 90 && $lineup === 'reserva') || ($partState === 'ON_BENCH')) {
+                return [
+                    'type' => 'unused_bench',
+                    'label' => 'Permaneceu no banco',
+                    'class' => 'status-bench',
+                    'note_icon' => '🪑',
+                    'note_title' => 'Partida finalizada',
+                    'note_desc' => 'Você permaneceu como opção no banco e não chegou a entrar em campo.',
+                ];
+            }
+            return [
+                'type' => 'finished',
+                'label' => 'Partida encerrada',
+                'class' => 'status-finished',
+                'note_icon' => '🏁',
+                'note_title' => 'Partida finalizada',
+                'note_desc' => 'O árbitro encerrou a partida.',
+            ];
+        }
+
+        // 7. Atleta no banco de reservas durante a partida
+        $isOnBench = ($partState === 'ON_BENCH') || ($lineup === 'reserva' && $minute < $entry);
+        if ($isOnBench) {
+            return [
+                'type' => 'bench',
+                'label' => 'No banco de reservas',
+                'class' => 'status-bench',
+                'note_icon' => '🪑',
+                'note_title' => 'No banco de reservas',
+                'note_desc' => 'Você inicia como opção no banco e aguarda a decisão do treinador.',
+            ];
+        }
+
+        // 8. Intervalo de jogo
+        if ($status === 'intervalo' || $minute === 45) {
+            return [
+                'type' => 'intervalo',
+                'label' => 'Em campo',
+                'class' => 'status-onfield',
+                'note_icon' => '⏱️',
+                'note_title' => 'Intervalo de jogo (45′)',
+                'note_desc' => 'Fim do primeiro tempo. Descanse no vestiário e ajuste as instruções para a etapa final.',
+            ];
+        }
+
+        // 9. Em campo (padrão quando ativo no jogo)
+        return [
+            'type' => 'on_field',
+            'label' => 'Em campo',
+            'class' => 'status-onfield',
+            'note_icon' => '⚽',
+            'note_title' => 'Em campo',
+            'note_desc' => 'Partida em andamento.',
+        ];
+    }
+
+    public static function score(array $g,array $m): void {
+        $status = $m['status'] ?? 'em_andamento';
+        $minute = (int)($m['minute'] ?? 0);
 
         if ($status === 'intervalo') {
             $periodLabel = 'Intervalo';
@@ -137,23 +267,9 @@ final class Presentation {
             $periodClass = ($minute <= 45) ? '1t' : '2t';
         }
 
-        $progressPercent = min(100, max(0, round(($minute / 90) * 100)));
+        $progressMinute = min(90, max(0, $minute));
         $isHomeUser = ($m['home'] === ($g['club'] ?? ''));
         $isAwayUser = ($m['away'] === ($g['club'] ?? ''));
-
-        if ($status === 'finalizada') {
-            $playerStatus = 'Partida encerrada';
-            $playerStatusClass = 'status-finished';
-        } elseif ($minute < $entry) {
-            $playerStatus = 'No banco (entra aos '.$entry.'′)';
-            $playerStatusClass = 'status-bench';
-        } elseif ($minute >= $exit) {
-            $playerStatus = 'Substituído aos '.$exit.'′';
-            $playerStatusClass = 'status-subbed';
-        } else {
-            $playerStatus = 'Em campo';
-            $playerStatusClass = 'status-onfield';
-        }
 
         $roundText = isset($m['round']) ? 'Rodada '.(int)$m['round'] : (isset($g['round']) ? 'Rodada '.(int)$g['round'] : '');
 
@@ -198,9 +314,9 @@ final class Presentation {
         echo '</div>';
         echo '</div>';
 
-        echo '<div class="match-progress-wrap" role="progressbar" aria-valuenow="'.e($minute).'" aria-valuemin="0" aria-valuemax="90" aria-label="Progresso da partida: '.e($minute).' minutos">';
+        echo '<div class="match-progress-wrap">';
         echo '<div class="match-progress-track">';
-        echo '<div class="match-progress-fill" style="width: '.e($progressPercent).'%;"></div>';
+        echo '<progress class="match-progress-bar" value="'.e($progressMinute).'" max="90" aria-label="Progresso da partida: '.e($minute).' minutos">'.e($progressMinute).'/90</progress>';
         echo '<span class="match-progress-pin pin-45" title="Intervalo (45′)"></span>';
         echo '</div>';
         echo '<div class="match-progress-labels" aria-hidden="true">';
@@ -213,8 +329,10 @@ final class Presentation {
         $agg = Competition::aggregateContext($g, $m);
         if ($agg) self::renderAggregate($agg);
 
+        $part = self::playerParticipation($g, $m);
+
         echo '<div class="live-player-stats">';
-        echo '<span class="player-field-indicator '.e($playerStatusClass).'">'.e($playerStatus).'</span>';
+        echo '<span class="player-field-indicator '.e($part['class']).'">'.e($part['label']).'</span>';
         echo '<div class="player-stats-counts">';
         echo '<span>⚽ <b data-stat="goals">'.e($m['stats']['goals'] ?? 0).'</b> seus gols</span>';
         echo '<span>↗ <b data-stat="assists">'.e($m['stats']['assists'] ?? 0).'</b> assistências</span>';
