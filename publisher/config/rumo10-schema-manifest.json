@@ -98,13 +98,6 @@
         "rumo10_f01_eventos",
         "rumo10_f01_outbox"
       ]
-    },
-    "010": {
-      "label": "Future Extensible Migration Example",
-      "tracked_in_migrations": true,
-      "tables": [
-        "rumo10_future_data"
-      ]
     }
   }
 }
