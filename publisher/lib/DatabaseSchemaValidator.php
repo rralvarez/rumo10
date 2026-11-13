@@ -74,7 +74,7 @@ final class DatabaseSchemaValidator {
             'rumo10_carreiras' => [
                 'columns' => [
                     'id' => ['type' => 'bigint unsigned', 'nullable' => false, 'extra' => 'auto_increment'],
-                    'conta_id' => ['type' => 'bigint unsigned', 'nullable' => false],
+                    'conta_id' => ['type' => 'bigint unsigned', 'nullable' => true],
                     'nome' => ['type' => 'varchar(60)', 'nullable' => false],
                     'clube' => ['type' => 'varchar(120)', 'nullable' => false],
                     'posicao' => ['type' => 'varchar(20)', 'nullable' => false],
