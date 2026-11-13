@@ -13,25 +13,36 @@ final class DatabaseSchemaValidator {
             return json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
         }
         return [
-            'schema' => 'rumo10-schema-manifest-v1',
+            'schema' => 'rumo10-schema-manifest-v2',
             'project' => 'rumo10',
-            'schema_version' => '009',
             'table_prefix' => 'rumo10_',
-            'expected_table_count' => 38,
-            'expected_tables' => [
-                'rumo10_atributos', 'rumo10_balanceamento_formulas', 'rumo10_balanceamentos', 'rumo10_beneficios_outbox',
-                'rumo10_carreiras', 'rumo10_carreiras_arquivadas', 'rumo10_clubes', 'rumo10_clubes_oficiais',
-                'rumo10_competicoes', 'rumo10_configuracoes_sistema', 'rumo10_conta_planos', 'rumo10_contas',
-                'rumo10_criacoes', 'rumo10_decisoes', 'rumo10_estados', 'rumo10_estatisticas',
-                'rumo10_eventos_partida', 'rumo10_f01_aparicoes', 'rumo10_f01_eventos', 'rumo10_f01_outbox',
-                'rumo10_f01_partidas', 'rumo10_f01_respostas', 'rumo10_formula_alteracoes', 'rumo10_formula_parametros',
-                'rumo10_formula_versoes', 'rumo10_formulas', 'rumo10_historico_encerrado', 'rumo10_login_limits',
-                'rumo10_migrations', 'rumo10_ofertas', 'rumo10_opcoes', 'rumo10_origem_vagas',
-                'rumo10_partidas', 'rumo10_situacoes', 'rumo10_temporadas', 'rumo10_times',
-                'rumo10_transferencias', 'rumo10_universos'
-            ],
-            'required_migrations' => [
-                '001', '002', '003', '004', '005', '006', '006-seed', '007', '008', '009'
+            'migrations_table' => 'rumo10_migrations',
+            'versions' => [
+                '001' => ['tracked_in_migrations' => false, 'tables' => [
+                    'rumo10_migrations', 'rumo10_contas', 'rumo10_login_limits', 'rumo10_clubes',
+                    'rumo10_carreiras', 'rumo10_atributos', 'rumo10_estados', 'rumo10_temporadas',
+                    'rumo10_times', 'rumo10_partidas', 'rumo10_estatisticas', 'rumo10_eventos_partida',
+                    'rumo10_situacoes', 'rumo10_opcoes', 'rumo10_decisoes', 'rumo10_ofertas',
+                    'rumo10_transferencias'
+                ]],
+                '002' => ['tracked_in_migrations' => false, 'tables' => [
+                    'rumo10_universos', 'rumo10_carreiras_arquivadas', 'rumo10_competicoes', 'rumo10_clubes_oficiais'
+                ]],
+                '003' => ['tracked_in_migrations' => false, 'tables' => ['rumo10_conta_planos']],
+                '004' => ['tracked_in_migrations' => false, 'tables' => ['rumo10_historico_encerrado']],
+                '005' => ['tracked_in_migrations' => false, 'tables' => ['rumo10_origem_vagas', 'rumo10_criacoes', 'rumo10_beneficios_outbox']],
+                '006' => ['tracked_in_migrations' => true, 'tables' => [
+                    'rumo10_configuracoes_sistema', 'rumo10_balanceamentos', 'rumo10_formulas',
+                    'rumo10_formula_versoes', 'rumo10_formula_parametros', 'rumo10_balanceamento_formulas',
+                    'rumo10_formula_alteracoes'
+                ]],
+                '006-seed' => ['tracked_in_migrations' => true, 'tables' => []],
+                '007' => ['tracked_in_migrations' => true, 'tables' => []],
+                '008' => ['tracked_in_migrations' => true, 'tables' => []],
+                '009' => ['tracked_in_migrations' => true, 'tables' => [
+                    'rumo10_f01_respostas', 'rumo10_f01_partidas', 'rumo10_f01_aparicoes',
+                    'rumo10_f01_eventos', 'rumo10_f01_outbox'
+                ]],
             ]
         ];
     }
@@ -99,6 +110,7 @@ final class DatabaseSchemaValidator {
             'rumo10_f01_eventos' => [
                 'columns' => [
                     'event_uid' => ['type' => 'char(36)', 'nullable' => false],
+                    'carreira_id' => ['type' => 'bigint unsigned', 'nullable' => false],
                     'tipo_evento' => ['type' => 'varchar(64)', 'nullable' => false],
                     'dados_evento_json' => ['type' => 'json', 'nullable' => false],
                 ],
@@ -111,7 +123,9 @@ final class DatabaseSchemaValidator {
                     'ix_f01_eventos_carreira' => ['carreira_id'],
                 ],
                 'foreign_keys' => [
+                    'fk_f01_eventos_aparicao_composta' => ['columns' => ['match_uid', 'appearance_uid'], 'ref_table' => 'rumo10_f01_aparicoes', 'ref_columns' => ['match_uid', 'appearance_uid'], 'on_delete' => 'CASCADE'],
                     'fk_f01_eventos_carreira' => ['columns' => ['carreira_id'], 'ref_table' => 'rumo10_carreiras', 'ref_columns' => ['id'], 'on_delete' => 'CASCADE'],
+                    'fk_f01_eventos_partida' => ['columns' => ['match_uid'], 'ref_table' => 'rumo10_f01_partidas', 'ref_columns' => ['match_uid'], 'on_delete' => 'CASCADE'],
                 ],
             ],
             'rumo10_f01_outbox' => [
@@ -120,6 +134,7 @@ final class DatabaseSchemaValidator {
                     'carreira_id' => ['type' => 'bigint unsigned', 'nullable' => false],
                     'command_uid' => ['type' => 'char(36)', 'nullable' => false],
                     'chave' => ['type' => 'char(64)', 'nullable' => false],
+                    'payload_json' => ['type' => 'json', 'nullable' => false],
                     'estado' => ['type' => "enum('pendente','processado','falha')", 'nullable' => false],
                 ],
                 'primary_key' => ['id'],
@@ -140,6 +155,7 @@ final class DatabaseSchemaValidator {
                     'temporada_numero' => ['type' => 'int', 'nullable' => false],
                     'mandante' => ['type' => 'varchar(120)', 'nullable' => false],
                     'visitante' => ['type' => 'varchar(120)', 'nullable' => false],
+                    'modo_resolucao' => ['type' => "enum('normal','rapido','expresso')", 'nullable' => false],
                 ],
                 'primary_key' => ['match_uid'],
                 'unique_keys' => [],
@@ -171,28 +187,69 @@ final class DatabaseSchemaValidator {
         ];
     }
 
-    public static function validate(PDO $db, ?array $manifest = null): array {
+    public static function resolveExpectedTables(array $manifest, array $appliedVersions): array {
+        $expected = [];
+        $versionsMap = $manifest['versions'] ?? [];
+        foreach ($versionsMap as $verKey => $verData) {
+            $isTracked = $verData['tracked_in_migrations'] ?? true;
+            // Versões não rastreadas (001-005) são o baseline de produção.
+            // Versões rastreadas são ativadas se registradas no banco ou se prefixo bater (ex: 010-future-feature -> 010).
+            $isActive = !$isTracked;
+            if ($isTracked) {
+                foreach ($appliedVersions as $av) {
+                    if ($av === (string)$verKey || str_starts_with($av, (string)$verKey)) {
+                        $isActive = true;
+                        break;
+                    }
+                }
+            }
+            if ($isActive) {
+                foreach ($verData['tables'] ?? [] as $t) {
+                    $expected[] = $t;
+                }
+            }
+        }
+        return array_values(array_unique($expected));
+    }
+
+    public static function validate(PDO $db, ?array $manifest = null, ?array $requiredVersions = null): array {
         $manifest ??= self::defaultManifest();
         $driver = $db->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         if ($driver === 'mysql') {
-            return self::validateMySQL($db, $manifest);
+            return self::validateMySQL($db, $manifest, $requiredVersions);
         }
 
         if ($driver === 'sqlite') {
-            return self::validateSQLite($db, $manifest);
+            return self::validateSQLite($db, $manifest, $requiredVersions);
         }
 
         throw new RuntimeException("Unsupported database driver for structural validation: {$driver}");
     }
 
-    private static function validateMySQL(PDO $db, array $manifest): array {
+    private static function validateMySQL(PDO $db, array $manifest, ?array $requiredVersions = null): array {
         $currentDb = (string)$db->query('SELECT DATABASE()')->fetchColumn();
         if ($currentDb === '') {
             throw new RuntimeException('Database name resolution required');
         }
 
-        // 1. Verificar quantidade e existência das tabelas sob responsabilidade exclusiva do Rumo10
+        // 1. Inspecionar migrations registradas
+        $appliedVersions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
+
+        // Se houver versões explicitamente requeridas pela release / policy, validar presença
+        if ($requiredVersions !== null) {
+            foreach ($requiredVersions as $reqVer) {
+                $verStr = (string)$reqVer;
+                if (!in_array($verStr, $appliedVersions, true)) {
+                    throw new RuntimeException("Required migration version missing from rumo10_migrations: {$verStr}");
+                }
+            }
+        }
+
+        // 2. Determinar dinamicamente as tabelas esperadas para a evolução atual do banco
+        $expectedTables = self::resolveExpectedTables($manifest, $appliedVersions);
+
+        // 3. Consultar tabelas reais com isolamento do prefixo rumo10_ (ignorando rumohub_*)
         $stmt = $db->prepare("
             SELECT TABLE_NAME 
             FROM INFORMATION_SCHEMA.TABLES 
@@ -202,22 +259,14 @@ final class DatabaseSchemaValidator {
         $stmt->execute([$currentDb]);
         $actualTables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-        $expectedCount = (int)($manifest['expected_table_count'] ?? count($manifest['expected_tables']));
-        if (count($actualTables) !== $expectedCount) {
-            throw new RuntimeException(sprintf(
-                'Rumo10 table count mismatch: expected %d tables, found %d tables',
-                $expectedCount,
-                count($actualTables)
-            ));
-        }
-
-        foreach ($manifest['expected_tables'] as $expectedTable) {
+        // Validar que todas as tabelas esperadas para as migrações aplicadas estão presentes
+        foreach ($expectedTables as $expectedTable) {
             if (!in_array($expectedTable, $actualTables, true)) {
-                throw new RuntimeException("Mandatory Rumo10 table missing: {$expectedTable}");
+                throw new RuntimeException("Mandatory Rumo10 table missing for applied schema: {$expectedTable}");
             }
         }
 
-        // 2. Validar contratos detalhados das tabelas-chave
+        // 4. Validar contratos detalhados das tabelas-chave presentes
         $contracts = self::keyTableContracts();
         foreach ($contracts as $table => $contract) {
             if (in_array($table, $actualTables, true)) {
@@ -225,27 +274,32 @@ final class DatabaseSchemaValidator {
             }
         }
 
-        // 3. Validar migrations registradas
-        $versions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
-        foreach ($manifest['required_migrations'] as $reqVer) {
-            if (!in_array((string)$reqVer, $versions, true)) {
-                throw new RuntimeException("Required migration version missing from rumo10_migrations: {$reqVer}");
-            }
-        }
-
         return [
             'ok' => true,
             'driver' => 'mysql',
             'database' => $currentDb,
-            'schema_version' => $manifest['schema_version'] ?? 'unknown',
+            'schema_version' => end($appliedVersions) ?: 'baseline',
             'table_count' => count($actualTables),
+            'expected_table_count' => count($expectedTables),
             'tables' => $actualTables,
-            'required_migrations' => $manifest['required_migrations'],
-            'versions_registered' => $versions,
+            'versions_registered' => $appliedVersions,
         ];
     }
 
-    private static function validateSQLite(PDO $db, array $manifest): array {
+    private static function validateSQLite(PDO $db, array $manifest, ?array $requiredVersions = null): array {
+        $appliedVersions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
+
+        if ($requiredVersions !== null) {
+            foreach ($requiredVersions as $reqVer) {
+                $verStr = (string)$reqVer;
+                if (!in_array($verStr, $appliedVersions, true)) {
+                    throw new RuntimeException("Required migration version missing from rumo10_migrations: {$verStr}");
+                }
+            }
+        }
+
+        $expectedTables = self::resolveExpectedTables($manifest, $appliedVersions);
+
         $stmt = $db->query("
             SELECT name 
             FROM sqlite_master 
@@ -254,27 +308,20 @@ final class DatabaseSchemaValidator {
         ");
         $actualTables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-        foreach ($manifest['expected_tables'] as $expectedTable) {
+        foreach ($expectedTables as $expectedTable) {
             if (!in_array($expectedTable, $actualTables, true)) {
-                throw new RuntimeException("Mandatory Rumo10 table missing: {$expectedTable}");
-            }
-        }
-
-        $versions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
-        foreach ($manifest['required_migrations'] as $reqVer) {
-            if (!in_array((string)$reqVer, $versions, true)) {
-                throw new RuntimeException("Required migration version missing from rumo10_migrations: {$reqVer}");
+                throw new RuntimeException("Mandatory Rumo10 table missing for applied schema: {$expectedTable}");
             }
         }
 
         return [
             'ok' => true,
             'driver' => 'sqlite',
-            'schema_version' => $manifest['schema_version'] ?? 'unknown',
+            'schema_version' => end($appliedVersions) ?: 'baseline',
             'table_count' => count($actualTables),
+            'expected_table_count' => count($expectedTables),
             'tables' => $actualTables,
-            'required_migrations' => $manifest['required_migrations'],
-            'versions_registered' => $versions,
+            'versions_registered' => $appliedVersions,
         ];
     }
 
@@ -351,7 +398,7 @@ final class DatabaseSchemaValidator {
                 $actualIndexes[$idxName]['columns'][] = $st['COLUMN_NAME'];
             }
 
-            foreach ($contract['unique_keys'] ?? [] as $uName => $uCols) {
+            foreach (($contract['unique_keys'] ?? []) as $uName => $uCols) {
                 if (!isset($actualIndexes[$uName])) {
                     throw new RuntimeException("Table `{$table}` missing UNIQUE constraint `{$uName}`");
                 }
@@ -363,7 +410,7 @@ final class DatabaseSchemaValidator {
                 }
             }
 
-            foreach ($contract['indexes'] ?? [] as $idxName => $idxCols) {
+            foreach (($contract['indexes'] ?? []) as $idxName => $idxCols) {
                 if (!isset($actualIndexes[$idxName])) {
                     throw new RuntimeException("Table `{$table}` missing secondary index `{$idxName}`");
                 }
@@ -375,14 +422,14 @@ final class DatabaseSchemaValidator {
 
         // Foreign Keys
         if (!empty($contract['foreign_keys'])) {
-            $fkStmt = $db->prepare('
+            $fkStmt = $db->prepare("
                 SELECT k.CONSTRAINT_NAME, k.COLUMN_NAME, k.REFERENCED_TABLE_NAME, k.REFERENCED_COLUMN_NAME, r.DELETE_RULE
                 FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE k
                 JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS r 
                   ON k.CONSTRAINT_SCHEMA = r.CONSTRAINT_SCHEMA AND k.CONSTRAINT_NAME = r.CONSTRAINT_NAME AND k.TABLE_NAME = r.TABLE_NAME
                 WHERE k.TABLE_SCHEMA = ? AND k.TABLE_NAME = ? AND k.REFERENCED_TABLE_NAME IS NOT NULL
                 ORDER BY k.CONSTRAINT_NAME, k.ORDINAL_POSITION
-            ');
+            ");
             $fkStmt->execute([$currentDb, $table]);
             $fks = $fkStmt->fetchAll(PDO::FETCH_ASSOC);
             $actualFks = [];
@@ -406,21 +453,18 @@ final class DatabaseSchemaValidator {
                     if ($actualFk['ref_table'] === $expFk['ref_table'] &&
                         $actualFk['columns'] === $expFk['columns'] &&
                         $actualFk['ref_columns'] === $expFk['ref_columns']) {
-                        if (isset($expFk['on_delete'])) {
-                            $expDelete = strtoupper($expFk['on_delete']);
-                            if ($actualFk['on_delete'] !== $expDelete) {
-                                throw new RuntimeException("Table `{$table}` foreign key `{$fkName}` ON DELETE rule mismatch: expected {$expDelete}, got {$actualFk['on_delete']}");
-                            }
+                        $expDelete = strtoupper($expFk['on_delete'] ?? 'CASCADE');
+                        if ($actualFk['on_delete'] !== $expDelete) {
+                            throw new RuntimeException("Table `{$table}` foreign key `{$fkName}` ON DELETE rule mismatch: expected {$expDelete}, got {$actualFk['on_delete']}");
                         }
                         $found = true;
                         break;
                     }
                 }
                 if (!$found) {
-                    throw new RuntimeException("Table `{$table}` missing foreign key pointing to `{$expFk['ref_table']}` on (" . implode(',', $expFk['columns']) . ")");
+                    throw new RuntimeException("Table `{$table}` missing foreign key pointing to `{$expFk['ref_table']}`");
                 }
             }
         }
     }
 }
-

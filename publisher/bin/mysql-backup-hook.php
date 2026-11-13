@@ -95,41 +95,43 @@ try {
   $run(array_merge($restoreMysql,['--execute=DROP DATABASE '.$restore]),$null,$null);
   need(unlink($redump),'Cannot remove verified temporary redump');
  } else {
-  // Production single-server verified backup
+  // Production single-server verified backup with mysqldump
   $phase='source-dump';
-  if (isset($c['dump_bin']) && is_file($c['dump_bin'])) {
-   $run(array_merge([$c['dump_bin'],'--defaults-file='.$c['source_mysql_defaults']],$options,[$name]),$null,$dump);
-  } else {
-   // Portable fallback when dump_bin CLI is not configured
-   $fp = fopen($dump, 'wb'); need($fp !== false, 'Cannot create dump file');
-   fwrite($fp, "-- Rumo10 verified production backup\n-- Database: {$name}\n-- Created: ".date('c')."\n\n");
-   foreach($tables as $tRow) {
-    $t = $tRow['TABLE_NAME'];
-    $create = $source->query("SHOW CREATE TABLE `{$t}`")->fetch(PDO::FETCH_NUM)[1] ?? '';
-    fwrite($fp, "DROP TABLE IF EXISTS `{$t}`;\n{$create};\n\n");
-    $rows = $source->query("SELECT * FROM `{$t}`")->fetchAll(PDO::FETCH_ASSOC);
-    if (!empty($rows)) {
-     $cols = array_keys($rows[0]);
-     $colList = '`'.implode('`,`', $cols).'`';
-     foreach($rows as $row) {
-      $vals = array_map(function($v) use ($source) {
-       return $v === null ? 'NULL' : $source->quote((string)$v);
-      }, array_values($row));
-      fwrite($fp, "INSERT INTO `{$t}` ({$colList}) VALUES (".implode(',', $vals).");\n");
-     }
-     fwrite($fp, "\n");
-    }
+  $dumpBin = $c['dump_bin'] ?? null;
+  if (!$dumpBin || !is_file($dumpBin)) {
+   $candidates = PHP_OS_FAMILY === 'Windows'
+       ? ['C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe', 'C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\mysqldump.exe', 'mysqldump.exe']
+       : ['/usr/bin/mysqldump', '/usr/local/bin/mysqldump', '/usr/bin/mariadb-dump', 'mysqldump'];
+   foreach ($candidates as $cand) {
+       if (is_file($cand) && is_executable($cand)) {
+           $dumpBin = $cand;
+           break;
+       }
    }
-   fwrite($fp, "-- Dump completed\n");
-   fclose($fp);
+   if (!$dumpBin) {
+       $whichCmd = PHP_OS_FAMILY === 'Windows' ? 'where mysqldump 2>NUL' : 'which mysqldump 2>/dev/null';
+       $found = trim((string)shell_exec($whichCmd));
+       if ($found !== '') {
+           $lines = explode("\n", str_replace("\r", "", $found));
+           if (is_file($lines[0])) { $dumpBin = $lines[0]; }
+       }
+   }
   }
-  need(is_file($dump) && filesize($dump)>0,'Empty database backup');chmod($dump,0600);
-  $restoredAt=time();$restoredHash=digest($dump);
+  need($dumpBin !== null && (is_file($dumpBin) || PHP_OS_FAMILY !== 'Windows'), 'mysqldump binary required for consistent transactional snapshot backup');
+  $dumpCmd = [$dumpBin];
+  if (isset($c['source_mysql_defaults'])) {
+   $dumpCmd[] = '--defaults-file='.$c['source_mysql_defaults'];
+  }
+  $run(array_merge($dumpCmd, $options, [$name]), $null, $dump);
+  need(is_file($dump) && filesize($dump) > 0, 'Empty database backup');
+  chmod($dump, 0600);
+  $restoredAt = time();
+  $restoredHash = digest($dump);
  }
 
  $out=['restored_at'=>$restoredAt,'created_at'=>$restoredAt,'dump_sha256'=>$restoredHash,'restored_dump_sha256'=>$restoredHash,
  'source_uuid'=>$sourceUuid,'restore_uuid'=>$targetUuid,
- 'package_sha256'=>$candidate['package_sha256'],'artifact_id'=>$candidate['artifact_id'],'ok'=>true,'attempt'=>$r['attempt'],'consistent'=>true,'restore_tested'=>true,'engine'=>'mysql',
+ 'package_sha256'=>$candidate['package_sha256'],'artifact_id'=>$candidate['artifact_id'],'ok'=>true,'attempt'=>$r['attempt'],'consistent'=>true,'restore_tested'=>$isolatedRestore,'engine'=>'mysql',
  'files'=>[$dump=>$restoredHash]];
  echo json_encode($out,JSON_THROW_ON_ERROR);
 } catch(Throwable $e){fwrite(STDERR,'Backup provider blocked: '.$phase.PHP_EOL);exit(1);}

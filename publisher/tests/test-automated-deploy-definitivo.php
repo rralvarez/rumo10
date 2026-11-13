@@ -1,31 +1,19 @@
 <?php
 declare(strict_types=1);
 
-/**
- * RUMO10 | Teste de Homologação da Correção Definitiva do Deploy Automático
- *
- * Cobre as 5 demonstrações exigidas:
- * 1. Release sem migration (Class A - sem execução indevida de DDL)
- * 2. Release com migration pendente (Class B - backup prévio, execução ordenada, registro)
- * 3. Migration já aplicada (sem duplicação / reaplicação)
- * 4. Validação estrutural automática do banco (38 tabelas, chaves, índices, FKs, migrations)
- * 5. Tratamento de falha com interrupção segura (preservação de backup, sem registro de versão)
- */
-
 namespace Rumo\Publisher\Tests;
+
+require_once dirname(__DIR__).'/lib/Core.php';
+require_once dirname(__DIR__).'/lib/MainAutomation.php';
+require_once dirname(__DIR__).'/lib/UpdatePolicy.php';
+require_once dirname(__DIR__).'/lib/Publisher.php';
+require_once dirname(__DIR__).'/lib/DatabaseSchemaValidator.php';
 
 use PDO;
 use RuntimeException;
 use Rumo\Publisher\DatabaseSchemaValidator;
 use Rumo\Publisher\MainAutomation;
 use Rumo\Publisher\UpdatePolicy;
-use Rumo\Publisher\Package;
-use function Rumo\Publisher\{record, digest, need};
-
-require_once dirname(__DIR__).'/lib/Core.php';
-require_once dirname(__DIR__).'/lib/MainAutomation.php';
-require_once dirname(__DIR__).'/lib/UpdatePolicy.php';
-require_once dirname(__DIR__).'/lib/DatabaseSchemaValidator.php';
 
 $passedCount = 0;
 function assertCheck(bool $condition, string $description): void {
@@ -33,32 +21,35 @@ function assertCheck(bool $condition, string $description): void {
     if (!$condition) {
         throw new RuntimeException("FALHA: {$description}");
     }
-    ++$passedCount;
+    $passedCount++;
     echo "  [OK] {$description}\n";
 }
 
 echo "=== RUMO10 | BATERIA DE HOMOLOGAÇÃO: CORREÇÃO DEFINITIVA DO DEPLOY AUTOMÁTICO ===\n\n";
 
 // =========================================================================
-// DEMONSTRAÇÃO 5: VALIDAÇÃO ESTRUTURAL DO BANCO DE DADOS
+// DEMONSTRAÇÃO 5: VALIDAÇÃO ESTRUTURAL DO BANCO DE DADOS (EVOLUTIVA)
 // =========================================================================
-echo "--- DEMONSTRAÇÃO 5: Validação Estrutural Automática do Banco ---\n";
+echo "--- DEMONSTRAÇÃO 5: Validação Estrutural Automática e Evolutiva do Banco ---\n";
 
 $db = new PDO('sqlite::memory:', null, null, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
 // Carregar manifesto homologado
 $manifest = DatabaseSchemaValidator::defaultManifest();
-assertCheck($manifest['expected_table_count'] === 38, 'Manifesto homologado contém exatamente 38 tabelas esperadas');
-assertCheck(count($manifest['required_migrations']) === 10, 'Manifesto exige as 10 migrações homologadas (001 a 009)');
+assertCheck(isset($manifest['versions']), 'Manifesto estrutural versionado carregado');
 
-// Criar tabela de migrações e registrar as 10 migrações
+// Obter tabelas esperadas para a versão 009 (baseline + 006 a 009)
+$expectedTables009 = DatabaseSchemaValidator::resolveExpectedTables($manifest, ['006', '006-seed', '007', '008', '009']);
+assertCheck(count($expectedTables009) === 38, 'Manifesto homologado define exatamente 38 tabelas para a versão 009');
+
+// Criar tabela de migrações e registrar as migrações homologadas
 $db->exec("CREATE TABLE rumo10_migrations (version VARCHAR(40) PRIMARY KEY, applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
-foreach ($manifest['required_migrations'] as $ver) {
+foreach (['006', '006-seed', '007', '008', '009'] as $ver) {
     $db->prepare("INSERT INTO rumo10_migrations(version) VALUES(?)")->execute([$ver]);
 }
 
 // Criar as 37 tabelas restantes do Rumo10
-foreach ($manifest['expected_tables'] as $tbl) {
+foreach ($expectedTables009 as $tbl) {
     if ($tbl === 'rumo10_migrations') continue;
     $db->exec("CREATE TABLE `{$tbl}` (id INTEGER PRIMARY KEY, payload TEXT)");
 }
@@ -67,12 +58,19 @@ foreach ($manifest['expected_tables'] as $tbl) {
 $db->exec("CREATE TABLE rumohub_accounts (id INTEGER PRIMARY KEY, name TEXT)");
 $db->exec("CREATE TABLE rumohub_tenants (id INTEGER PRIMARY KEY, domain TEXT)");
 
-// Executar validação estrutural
-$valResult = DatabaseSchemaValidator::validate($db, $manifest);
+// Executar validação estrutural da versão 009
+$valResult = DatabaseSchemaValidator::validate($db, $manifest, ['009']);
 assertCheck($valResult['ok'] === true, 'Validação estrutural concluiu com sucesso');
-assertCheck($valResult['table_count'] === 38, 'Identificou exatamente 38 tabelas sob responsabilidade do Rumo10');
+assertCheck($valResult['table_count'] === 38, 'Identificou exatamente 38 tabelas sob responsabilidade do Rumo10 na versão 009');
 assertCheck(!in_array('rumohub_accounts', $valResult['tables'], true), 'Tabelas do RumoHub foram ignoradas e não afetadas');
 assertCheck(!in_array('rumohub_tenants', $valResult['tables'], true), 'Banco compartilhado preservado sem interferência no RumoHub');
+
+// Evolução: demonstrar que para versão 008, espera 33 tabelas; para 010, evolui para 39 tabelas
+$expectedTables008 = DatabaseSchemaValidator::resolveExpectedTables($manifest, ['006', '006-seed', '007', '008']);
+assertCheck(count($expectedTables008) === 33, 'Manifesto define 33 tabelas para versão 008');
+
+$expectedTables010 = DatabaseSchemaValidator::resolveExpectedTables($manifest, ['006', '006-seed', '007', '008', '009', '010-future-feature']);
+assertCheck(count($expectedTables010) === 39, 'Manifesto evolui dinamicamente para 39 tabelas com a migração 010');
 echo "\n";
 
 // =========================================================================
@@ -195,6 +193,11 @@ $executedMigrations[] = '010-future-feature';
 assertCheck(count($executedMigrations) === 1, 'Migration 010 executada exatamente uma vez');
 assertCheck(in_array('010-future-feature', $db->query('SELECT version FROM rumo10_migrations')->fetchAll(PDO::FETCH_COLUMN), true),
     'Versão 010-future-feature devidamente registrada em rumo10_migrations');
+
+// Validar que o schema evoluiu dinamicamente para 39 tabelas
+$valResult010 = DatabaseSchemaValidator::validate($db, $manifest, ['010-future-feature']);
+assertCheck($valResult010['ok'] === true, 'Validação estrutural da versão 010 concluída com sucesso');
+assertCheck($valResult010['table_count'] === 39, 'Schema evoluiu para 39 tabelas reconhecidas');
 echo "\n";
 
 // =========================================================================
@@ -215,7 +218,7 @@ foreach ($assessmentB['migrations'] as $mPath) {
 }
 
 assertCheck(empty($pendingMigrations), 'Nenhuma migration pendente detectada (010 já registrada)');
-assertCheck(count($versionsAfter) === 11, 'Quantidade de versões registradas permanece 11 sem duplicação');
+assertCheck(count($versionsAfter) === 6, 'Quantidade de versões registradas permanece 6 sem duplicação');
 echo "  [OK] Migrations já registradas não foram reaplicadas\n\n";
 
 // =========================================================================

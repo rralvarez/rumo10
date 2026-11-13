@@ -337,7 +337,7 @@ try {
             }
 
             // Validar estrutura do banco de dados (modo leitura)
-            DatabaseSchemaValidator::validate($db);
+            DatabaseSchemaValidator::validate($db, null, $requiredMigrations);
 
             $out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$allVersions,'executed_migrations'=>[]];
             record($q['private'].'/migrations-'.$q['attempt'].'.json',$out+['approved_hashes'=>$c['approved_incremental_migrations']??[]]);
@@ -503,15 +503,15 @@ try {
             }
         }
 
-        // Validação estrutural automática pós-migração
-        DatabaseSchemaValidator::validate($db);
-
-        $allVersions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
-        
         $requiredMigrations = $policy['required_migrations']
             ?? $q['candidate']['envelope']['required_migrations']
             ?? ($c['authorized_releases'][$q['candidate']['envelope']['functional_commit'] ?? '']['requires_migration'] ?? []);
 
+        // Validação estrutural automática pós-migração
+        DatabaseSchemaValidator::validate($db, null, $requiredMigrations);
+
+        $allVersions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
+        
         foreach ($requiredMigrations as $rm) {
             need(in_array((string)$rm, $allVersions, true), "Release requires validated {$rm} migration");
         }
