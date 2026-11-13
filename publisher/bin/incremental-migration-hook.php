@@ -316,7 +316,7 @@ try {
         $versions=$db->query('SELECT version FROM rumo10_migrations')->fetchAll(PDO::FETCH_COLUMN);
 
         // Se for Classe A (sem DDL pendente), modo estritamente de leitura: não executar DDL, DML ou mutações
-        if ($isClassA) {
+        if ($isClassA || ($policy['validation_only']??false)===true) {
             need(empty($policy['migrations']), 'Class A cannot execute pending migration files');
 
             $allVersions = $versions;

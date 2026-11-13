@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Rumo\Publisher;
 require_once __DIR__.'/Core.php';
 require_once __DIR__.'/Zip.php';
+require_once __DIR__.'/MainAutomation.php';
 
 class GitHub {
     private array $c;
@@ -72,10 +73,116 @@ class GitHub {
         need(count($found)===1,'No unique artifact for latest successful run; no fallback to old run');
         return [$run['id'],$found[0]['id']];
     }
+    public function automatic(Publisher $publisher): array {
+        $repo='/repos/'.$this->c['repository'];
+        $head=$this->api($repo.'/git/ref/heads/main')['object']['sha']??'';
+        need(preg_match('/^[a-f0-9]{40}$/D',$head)===1,'Invalid main tip');
+        $runs=$this->api($repo.'/actions/workflows/'.$this->c['workflow_id'].'/runs?branch=main&event=push&head_sha='.$head.'&per_page=100');
+        $items=$runs['workflow_runs']??[];
+        need(is_array($items) && count($items)<=1,'No unique canonical run for main tip');
+        if(!$items){
+            $this->report(['id'=>null,'head_sha'=>$head],'pending','Aguardando execucao do workflow oficial');
+            return ['state'=>'waiting','commit'=>$head];
+        }
+        $run=$items[0];
+        need(($run['head_sha']??null)===$head && ($run['head_branch']??null)==='main' &&
+            ($run['repository']['full_name']??null)===$this->c['repository'] &&
+            ($run['workflow_id']??null)===$this->c['workflow_id'] && ($run['event']??null)==='push' &&
+            is_int($run['id']??null) && $run['id']>0,'Unexpected canonical run identity');
+        $checkpointPath=$this->c['private'].'/installed.json';
+        $checkpoint=is_file($checkpointPath)?json(file_get_contents($checkpointPath)):[];
+        if(($checkpoint['commit']??null)===$head && is_int($checkpoint['artifact_id']??null) &&
+            MainAutomation::outcome($this->c,$run,['id'=>$checkpoint['artifact_id']])){
+            $this->report($run,'success','Recibo UOL validado; artefato '.$checkpoint['artifact_id']);
+            return ['state'=>'validated','commit'=>$head,'already_installed'=>true];
+        }
+        $status='pending';$reason='Aguardando CI oficial';$result=['state'=>'waiting','commit'=>$head];
+        try {
+            if(($run['status']??null)==='completed'){
+                need(($run['conclusion']??null)==='success','Official CI failed');
+                $reason='Artefato oficial indisponivel';
+                $a=$this->api($repo.'/actions/runs/'.$run['id'].'/artifacts?per_page=100');
+                need(($a['total_count']??101)<=100,'Artifact discovery pagination bound');
+                $found=array_values(array_filter($a['artifacts']??[],fn($v)=>
+                    ($v['name']??null)==='release-'.$this->c['project'].'-'.$head && ($v['expired']??true)===false));
+                need(count($found)===1 && is_int($found[0]['id']??null),'No unique unexpired canonical artifact');
+                $artifact=$found[0];$reason='Politica ou integridade do receptor bloqueou a publicacao';
+                if(MainAutomation::outcome($this->c,$run,$artifact)) {
+                    $result=['state'=>'validated','commit'=>$head,'already_installed'=>true];
+                } else {
+                    $input=$this->fetch($run['id'],$artifact['id'],$this->c['private'].'/downloads');
+                    $staged=$publisher->stage(...$input);
+                    $this->assertMainTip($staged['commit']);
+                    $this->assertApprovedMerge($staged['commit'],$staged['run']['merged_pr']);
+                    $reason='Publicacao bloqueada pelo receptor';
+                    $result=$publisher->apply($staged['stage']);
+                    need(MainAutomation::outcome($this->c,$run,$artifact),'Validated production receipt not confirmed');
+                }
+                $status='success';$reason='Recibo UOL validado; artefato '.$artifact['id'];
+            }
+        } catch(\Throwable $e) {
+            $details=[
+                'Exact main merge by the approved owner not confirmed'=>'Merge nao autorizado pelo proprietario',
+                'Sensitive release requires an exact private permit and authenticated transition'=>'Transicao sensivel sem autorizacao especifica',
+                'Structural change or Class C'=>'Mudanca estrutural ou Classe C bloqueada',
+                'Workflow definition changed'=>'Hash do workflow divergiu da politica privada',
+                'Hook failed: fence'=>'Fence de publicacao reprovado',
+                'Hook failed: backup'=>'Backup e restauracao isolada nao comprovados',
+                'Hook timeout: backup'=>'Tempo limite da prova de restauracao',
+                'Fresh isolated restore proof'=>'Prova de restauracao ausente ou vencida',
+                'Hook failed: maintenance'=>'Manutencao ou drenagem nao comprovada',
+                'Hook failed: migrate'=>'Validacao somente leitura da migration 009 falhou',
+                'Hook failed: smoke'=>'Smoke produtivo reprovado; manutencao preservada',
+                'Pending drain session'=>'Sessao pendente; recuperacao necessaria',
+                'Pending journal'=>'Journal pendente; recuperacao necessaria',
+            ];
+            foreach($details as $match=>$message)if(str_contains($e->getMessage(),$match)){$reason=$message;break;}
+            try{$this->report($run,'failure',($run['conclusion']??null)!=='success'?'CI oficial reprovado':$reason);}
+            catch(\Throwable){fwrite(STDERR,"GitHub status unavailable; receiver state retained\n");}
+            throw $e;
+        }
+        $this->report($run,$status,$reason);
+        return $result;
+    }
+    protected function report(array $run,string $state,string $reason): void {
+        $a=$this->c['main_automation'];
+        $file=$a['status_token_file'];
+        need(is_file($file) && !is_link($file) && lstat($file)['nlink']===1 &&
+            (PHP_OS_FAMILY==='Windows'||(fileperms($file)&0077)===0),'Private status token required');
+        $token=trim(file_get_contents($file));
+        need($token!=='' && !preg_match('/[\r\n]/',$token),'Invalid status token');
+        $cache=$this->c['private'].'/main-automation-status.json';
+        $payload=['state'=>$state,'context'=>'rumo10/uol-deploy','description'=>$reason,
+            'target_url'=>'https://github.com/'.$this->c['repository'].
+                (isset($run['id'])?'/actions/runs/'.$run['id']:'/actions')];
+        $receipt=['commit'=>$run['head_sha'],'payload'=>$payload];
+        if(is_file($cache) && json(file_get_contents($cache))===$receipt)return;
+        $url='https://api.github.com/repos/'.$this->c['repository'].'/statuses/'.$run['head_sha'];
+        self::checkUrl($url,true);
+        $ch=curl_init($url);
+        curl_setopt_array($ch,[CURLOPT_POST=>true,CURLOPT_POSTFIELDS=>json_encode($payload,JSON_THROW_ON_ERROR),
+            CURLOPT_HTTPHEADER=>['Authorization: Bearer '.$token,'Accept: application/vnd.github+json',
+                'Content-Type: application/json','X-GitHub-Api-Version: 2022-11-28'],
+            CURLOPT_USERAGENT=>'Rumo-private-pull/1',CURLOPT_SSL_VERIFYPEER=>true,CURLOPT_SSL_VERIFYHOST=>2,
+            CURLOPT_PROTOCOLS=>CURLPROTO_HTTPS,CURLOPT_FOLLOWLOCATION=>false,CURLOPT_CONNECTTIMEOUT=>5,
+            CURLOPT_TIMEOUT=>10,CURLOPT_WRITEFUNCTION=>static fn($ch,$b)=>strlen($b)]);
+        $ok=curl_exec($ch);$status=curl_getinfo($ch,CURLINFO_RESPONSE_CODE);curl_close($ch);
+        need($ok!==false && $status===201,'GitHub deployment status rejected (HTTP '.$status.')');
+        record($cache,$receipt);
+    }
+
     public function assertMainTip(string $head): void {
         if(($this->c['release_channel']??null)!=='main')return;
         $ref=$this->api('/repos/'.$this->c['repository'].'/git/ref/heads/main');
         need(($ref['object']['sha']??null)===$head,'Latest main commit has no eligible candidate');
+    }
+    public function assertApprovedMerge(string $head,int $number): void {
+        $cfg=$this->c['main_automation'];
+        $repo='/repos/'.$this->c['repository'];
+        need($number>0 && preg_match('/^[a-f0-9]{40}$/D',$head)===1,'Invalid merge identity');
+        $pr=$this->api($repo.'/pulls/'.$number);
+        $commit=$this->api($repo.'/commits/'.$head);
+        MainAutomation::merge($cfg,$this->c['repository'],$head,$number,$pr,$commit);
     }
     private function mergedMainPr(string $head): int {
         $repo=$this->c['repository'];
@@ -126,7 +233,7 @@ class GitHub {
         need(preg_match('#^\.github/workflows/[a-zA-Z0-9_.-]+\.ya?ml$#D',$path)===1,'Pinned workflow path required');
         $definition=$this->api('/repos/'.$this->c['repository'].'/contents/'.$path.'?ref='.$run['head_sha']);
         need(($definition['encoding']??null)==='base64','Workflow content encoding invalid');
-        $definitionBytes=base64_decode($definition['content']??'',true);
+        $definitionBytes=base64_decode(preg_replace('/\s+/','',$definition['content']??''),true);
         need($definitionBytes!==false && hash('sha256',$definitionBytes)===($this->c['workflow_sha256']??''),
             'Workflow definition changed; operator approval required');
         need(($artifact['expired']??true)===false && preg_match('/^sha256:([a-f0-9]{64})$/D',$artifact['digest']??'', $match)===1,'Immutable artifact digest required');
@@ -147,6 +254,7 @@ class GitHub {
         if($channel==='main'){
             $this->assertMainTip($run['head_sha']);
             $run['merged_pr']=$this->mergedMainPr($run['head_sha']);
+            if(isset($this->c['main_automation']))$this->assertApprovedMerge($run['head_sha'],$run['merged_pr']);
         }
         // PharData reads ZIP; do not extract archive-controlled paths.
         $zipFinal=$dir.'/artifact-'.$artifactId.'.zip';

@@ -6,6 +6,7 @@ require_once dirname(__DIR__).'/lib/GitHub.php';
 use Rumo\Publisher\DrainPublisher;
 use Rumo\Publisher\Publisher;
 use Rumo\Publisher\GitHub;
+use Rumo\Publisher\MainAutomation;
 use function Rumo\Publisher\need;
 use function Rumo\Publisher\json;
 try {
@@ -18,7 +19,12 @@ try {
         !isset($opts['run'])&&!isset($opts['artifact']),'Retirement is only available for recovery');
     $configPath=$opts['config']; need(is_file($configPath) && !is_link($configPath),'Private config required');
     if(PHP_OS_FAMILY!=='Windows')need((fileperms($configPath)&0077)===0,'Config must be 0600');
-    $c=json(file_get_contents($configPath)); $publisher=!isset($c['update_policy'])||($c['request_gate']['coverage_approved']??false)===true?new DrainPublisher($c):new Publisher($c); $publisher->acquire();
+    $c=json(file_get_contents($configPath)); MainAutomation::configuration($c);
+    if(isset($c['main_automation']) && $mode==='apply' && !isset($opts['recover'])){
+        need(isset($opts['discover']) && !isset($opts['stage']) && !isset($opts['run']) && !isset($opts['artifact']),
+            'Automatic main apply requires authenticated discovery');
+    }
+    $publisher=!isset($c['update_policy'])||($c['request_gate']['coverage_approved']??false)===true?new DrainPublisher($c):new Publisher($c); $publisher->acquire();
     if($mode==='apply') {
         need(($c['apply_enabled']??false)===true,'apply disabled by default');
         $channel=$c['release_channel']??null;
@@ -29,11 +35,16 @@ try {
             $result=$publisher->recover(true);
         } elseif(isset($opts['recover'])) $result=$publisher->recover();
         elseif(isset($opts['discover'])) {
-            $source=new GitHub($c); $ids=$source->discover();
-            $input=$source->fetch($ids[0],$ids[1],$c['private'].'/downloads');
-            $staged=$publisher->stage(...$input);
-            $source->assertMainTip($staged['commit']);
-            $result=$publisher->apply($staged['stage']);
+            $source=new GitHub($c);
+            if(isset($c['main_automation'])) {
+                $result=$source->automatic($publisher);
+            } else {
+                $ids=$source->discover();
+                $input=$source->fetch($ids[0],$ids[1],$c['private'].'/downloads');
+                $staged=$publisher->stage(...$input);
+                $source->assertMainTip($staged['commit']);
+                $result=$publisher->apply($staged['stage']);
+            }
         } else {
             $stage=$opts['stage']??'';
             if($channel==='main'){

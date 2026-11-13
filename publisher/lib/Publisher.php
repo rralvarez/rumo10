@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace Rumo\Publisher;
 require_once __DIR__.'/Core.php';
 require_once __DIR__.'/PrivateBackup.php';require_once __DIR__.'/UpdatePolicy.php';
+require_once __DIR__.'/MainAutomation.php';
 
 /**
  * Hooks are operator-owned, hash-pinned local CLI programs, NEVER package code.
@@ -139,7 +140,8 @@ class Publisher {
                     'First main artifact not explicitly authorized');
             }
             $delegated=$channel==='main' && !$initialMain && ($this->c['delegate_main']??false)===true;
-            if($delegated && $declaredFunctional!==$f01){
+            $automated=isset($this->c['main_automation']);
+            if(($delegated || ($automated && !$initialMain && !isset($authorizedReleases[$declaredFunctional]))) && $declaredFunctional!==$f01){
                 $migration='database/009-f01-canonical-telemetry.sql';
                 $hash=$this->c['update_policy']['approved_incremental_migrations'][$migration]??null;
                 need($declaredFunctional===$run['head_sha'] && $declaredFunctional!==$v8 &&
@@ -241,6 +243,10 @@ class Publisher {
             need(is_file($dir.'/ready.json'),'Incomplete stage retained; use a new artifact or reconcile privately');
             $old=json(file_get_contents($dir.'/ready.json'));
             need($old['package_sha256']===$v['package_sha256'],'Stage identity mismatch');
+            if(isset($this->c['main_automation'])){
+                foreach(['run','artifact','jobs','envelope'] as $key)
+                    need(($old[$key]??null)===$v[$key],'Existing stage metadata differs from authenticated source');
+            }
             Package::inspect($dir.'/release.tar.gz',$this->c['project']);
             $this->verifyPayload($dir,$old); return $old;
         }
@@ -384,6 +390,11 @@ class Publisher {
             $request['source_functional_commit']=$this->transitionOrigin($old,$v);
             $request['update_policy']=$this->transitionPolicy($old,$v,$request['source_functional_commit']);
             need($request['update_policy']['class']!=='C','Class C requires separately proven exclusive window');
+            if(isset($this->c['main_automation'])){
+                MainAutomation::change($this->c['main_automation'],$v,$request['update_policy']);
+                // For automation, 009 is a prerequisite, never an implicit DDL action.
+                $request['update_policy']['validation_only']=true;
+            }
             if($request['update_policy']['requires_full_drain'])$this->assertWriterDrain();
         }
         $g=$this->hook('preflight',$request);
@@ -393,6 +404,22 @@ class Publisher {
             in_array(json(file_get_contents($this->c['control'].'/deployment-journal.json'))['state']??'', ['validated','recovered'],true),
             'Unresolved legacy FTPS journal');
         return $request;
+    }
+    protected function assertAutomaticStage(string $stage): void {
+        if(!isset($this->c['main_automation']))return;
+        need(!is_file($this->journal()) || in_array(json(file_get_contents($this->journal()))['state'],['validated','recovered'],true),
+            'Pending journal: reconcile with apply --recover, never overwrite');
+        $root=str_replace(chr(92),'/',realpath($this->private));
+        need(str_starts_with(str_replace(chr(92),'/',realpath($stage)?:''),$root.'/stage-'),'Stage outside private root');
+        $ready=json(file_get_contents($stage.'/ready.json'));
+        $v=$this->verify($stage.'/release.tar.gz',$ready['run'],$ready['artifact'],$ready['jobs'],$ready['envelope']);
+        $this->verifyPayload($stage,$v);
+        $old=$this->baseline();
+        $this->controls();
+        $this->operations($old,$v);
+        need(digest($stage.'/payload/public/.htaccess')===$old['files']['public/.htaccess'],'Apache rule change needs separate approval');
+        $assessment=$this->transitionPolicy($old,$v,$this->transitionOrigin($old,$v));
+        MainAutomation::change($this->c['main_automation'],$v,$assessment);
     }
     public function apply(string $stage): array {
         $this->lock();
@@ -447,6 +474,8 @@ class Publisher {
                 isset($b['files']) && count($b['files'])>0,'Backup/restore proof missing');
             foreach ($b['files'] as $p=>$h) need(str_starts_with(str_replace(chr(92),'/',$p),str_replace(chr(92),'/',$backup).'/') &&
                 digest($p)===$h,'Backup receipt digest invalid');
+            if(isset($this->c['main_automation']))MainAutomation::proof($b,$v,time());
+            $j['validation_only']=$request['update_policy']['validation_only']??false;
             $j['backup_receipt']=$b; $j['state']='installing'; $this->save($j);
             $this->checkpoint('after-backup');
             return $this->continueInstallation($j,$request);
@@ -457,11 +486,14 @@ class Publisher {
     }
     private function continueInstallation(array &$j,array $request):array {
         $v=$j['candidate'];$stage=$j['stage'];$id=$j['attempt'];
+        if(($j['validation_only']??false)===true)$request['update_policy']['validation_only']=true;
         $requiredMigrations = $v['envelope']['required_migrations']
             ?? $request['update_policy']['required_migrations']
             ?? ($this->c['update_policy']['authorized_releases'][$v['envelope']['functional_commit'] ?? '']['requires_migration'] ?? []);
         $hasMigrationsToRun = !empty($request['update_policy']['migrations']) || !empty($requiredMigrations);
         if(!isset($j['migration_receipt']) && $hasMigrationsToRun) {
+            if(isset($this->c['main_automation']) || ($j['validation_only']??false)===true)
+                MainAutomation::proof($j['backup_receipt']??[],$v,time());
             $this->own($j);$j['state']='migrating';$this->save($j);
             $receipt=$this->hook('migrate',$request+['attempt'=>$id]);
             need(($receipt['compatible_expansion']??false)===true,'Incremental migration proof missing');
@@ -549,6 +581,7 @@ class Publisher {
             record($this->private.'/installed.json',array_intersect_key($v,array_flip(['commit','run_number','artifact_id','package_sha256','data_contracts']))+
                 ['functional_commit'=>$functionalCommit,'manifest_sha256'=>digest($this->c['current'].'/release.json'),
                  'release_channel'=>$v['envelope']['release_channel']??null,'source_commit'=>$v['envelope']['source_commit']??$v['commit'],
+                 'run_id'=>$v['run']['id'],'installed_at'=>gmdate(DATE_ATOM),
                  'build_manifest_sha256'=>digest($this->c['current'].'/build-manifest.json'),'public_inventory'=>$publicInventory]+$previous);
             $j['state']='validated'; $this->save($j); $this->checkpoint('before-unlock');
             $this->own($j); need(unlink($this->marker()),'Cannot release own maintenance lock');

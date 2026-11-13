@@ -69,6 +69,7 @@ if opts.project!='rumohub':
 else:results.append({"name":"saves-tests","status":"NOT_TESTED","reason":"Rumo10-only runtime, not Hub test"})
 command("drain-processes",[sys.executable,str(ROOT/"tests/drain-processes.py")])
 command("legacy-fence",[PHP,*ARGS,str(ROOT/"tests/legacy-fence.php")])
+if opts.project!='rumohub':command("main-automation",[PHP,*ARGS,str(ROOT/"tests/main-automation.php")])
 command("workflow-static",[sys.executable,str(ROOT/"tests/workflow-static.py")])
 if opts.project!='rumohub':command("qa-probe",[sys.executable,str(ROOT/"tests/qa-probe.py")])
 # Lint all implementation/provider/test PHP, never production.
