@@ -55,8 +55,18 @@ final class MainAutomation {
             }
             return;
         }
-        // Class B (with migrations or protected/expanded files):
+        // Class B: public/index.php is permitted ONLY for an exact, authenticated
+        // from/to transition explicitly listing the path in the private policy.
         foreach($assessment['changed'] as $path){
+            if($path==='public/index.php'){
+                need(($assessment['transition_to']??null)===$v['commit'] &&
+                    is_string($assessment['transition_from']??null) &&
+                    preg_match('/^[a-f0-9]{40}$/D',$assessment['transition_from'])===1 &&
+                    ($assessment['requires_full_drain']??false)===true &&
+                    in_array($path,$assessment['authorized_protected_paths']??[],true),
+                    'Public entrypoint requires exact authorized, fully drained transition');
+                continue;
+            }
             need(preg_match('#^(?:database/.+\\.(?:sql|php)|app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2))$#iD',$path)===1,
                 'Path outside approved Class B release policy: '.$path);
         }

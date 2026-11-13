@@ -44,6 +44,43 @@ check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['
 check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['public/.htaccess'=>'new']))),'Infrastructure change'),'htaccess blocked');
 check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_diff_key($base['files'],['app/view.php'=>true]))),'Class C'),'Deletion blocked');
 
+// The F01-to-current one-time authorized transition may replace the web
+// entrypoint, but a routine release or an unrelated path must never do so.
+$entryOld=['files'=>['public/index.php'=>'old','app/Repository.php'=>'old','app/view.php'=>'old']];
+$entryNew=['files'=>array_replace($entryOld['files'],[
+    'public/index.php'=>'new','app/Repository.php'=>'new'
+])];
+$entryPolicy=['schema'=>'rumo-update-policy-v1',
+    'protected_contract_paths'=>['app/Repository.php'],'approved_incremental_migrations'=>[],
+    'authorized_transitions'=>[$parent.':'.$sha=>[
+        'label'=>'F01-to-F03 exact transition','from_release'=>$parent,
+        'to_release'=>$sha,'requires_full_drain'=>true,
+        'allowed_protected_paths'=>['app/Repository.php','public/index.php'],
+        'allowed_deletions'=>[]
+    ]]];
+$entryAssessment=UpdatePolicy::assess($entryOld,$entryNew,$entryPolicy,$jobs,$parent,$sha);
+check($entryAssessment['class']==='B' && $entryAssessment['requires_full_drain']===true &&
+    $entryAssessment['transition_to']===$sha &&
+    in_array('public/index.php',$entryAssessment['authorized_protected_paths'],true),
+    'Exact protected entrypoint transition classified as B');
+MainAutomation::change($cfg,$v,$entryAssessment);
+check(true,'Exact approved public/index.php is accepted with full drain');
+$wrongTarget=UpdatePolicy::assess($entryOld,$entryNew,$entryPolicy,$jobs,$parent,$head);
+check($wrongTarget['class']==='C','Another target cannot reuse transition permit');
+$withoutTransition=UpdatePolicy::assess($entryOld,$entryNew,$entryPolicy,$jobs);
+check($withoutTransition['class']==='C','No automatic public entrypoint changes outside transitions');
+$entryPolicyNoIndex=$entryPolicy;
+$entryPolicyNoIndex['authorized_transitions'][$parent.':'.$sha]['allowed_protected_paths']=['app/Repository.php'];
+$missingPermission=UpdatePolicy::assess($entryOld,$entryNew,$entryPolicyNoIndex,$jobs,$parent,$sha);
+check($missingPermission['class']==='C','Transition without entrypoint permit remains blocked');
+check(rejects(fn()=>MainAutomation::change($cfg,$v,array_replace($entryAssessment,[
+    'transition_to'=>$head
+])),'exact authorized'),'Transition assessment cannot be reused for another target');
+$unexpectedFiles=['files'=>array_replace($entryNew['files'],['public/admin.php'=>'new'])];
+$unexpectedAssessment=UpdatePolicy::assess($entryOld,$unexpectedFiles,$entryPolicy,$jobs,$parent,$sha);
+check(rejects(fn()=>MainAutomation::change($cfg,$v,$unexpectedAssessment),'Path outside approved'),
+    'Unapproved public PHP surface remains blocked');
+
 $proof=['created_at'=>500,'artifact_id'=>123,'package_sha256'=>$v['package_sha256'],
     'consistent'=>true,'source_uuid'=>'s',
     'dump_sha256'=>str_repeat('d',64),'files'=>['dump'=>str_repeat('d',64)]];

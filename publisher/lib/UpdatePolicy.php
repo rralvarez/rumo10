@@ -25,6 +25,16 @@ final class UpdatePolicy {
     $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
    }
    if(protectedPath($p)){$class='C';$reasons[]='destructive/protected contract: '.$p;continue;}
+   // The public entrypoint is never a routine deploy path. An exact, private
+   // from/to transition must explicitly permit it before Class B assessment.
+   if($p==='public/index.php'){
+    if($transition!==null && in_array($p,$allowedProtected,true)){
+     if($class==='A')$class='B';
+    }else{
+     $class='C';$reasons[]='unauthorized public entrypoint change: '.$p;
+    }
+    continue;
+   }
    if(in_array($p,$policy['protected_contract_paths']??[],true)){
     if(in_array($p,$allowedProtected,true)){if($class==='A')$class='B';continue;}
     $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
@@ -43,7 +53,11 @@ final class UpdatePolicy {
   $compatible=false;
   foreach($jobs as $job)if(($job['name']??'')==='compatibility'&&($job['status']??'')==='completed'&&($job['conclusion']??'')==='success')$compatible=true;
   $requiresFullDrain=($class==='C')||($class==='B')||$transition!==null;
-  return ['class'=>$class,'changed'=>$changed,'migrations'=>$migrations,'reasons'=>$reasons,'requires_full_drain'=>$requiresFullDrain,'compatible_writers_ci'=>$compatible,'transition'=>$transition['label']??null];
+  return ['class'=>$class,'changed'=>$changed,'migrations'=>$migrations,'reasons'=>$reasons,
+   'requires_full_drain'=>$requiresFullDrain,'compatible_writers_ci'=>$compatible,'transition'=>$transition['label']??null,
+   'transition_from'=>$transition!==null?$fromCommit:null,
+   'transition_to'=>$transition!==null?$toCommit:null,
+   'authorized_protected_paths'=>$transition!==null?array_values(array_intersect($changed,$allowedProtected)):[]];
  }
  public static function maintenance(array $receipt,array $policy):void{
   need(($receipt['http_status']??null)===503,'Maintenance HTTP503 required');
