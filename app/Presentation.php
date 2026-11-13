@@ -126,7 +126,8 @@ final class Presentation {
         $lineup = $m['lineup'] ?? 'titular';
         $st = $m['stats'] ?? [];
         $isRedCard = ($partState === 'SENT_OFF') || (!empty($st['red_cards']) && $st['red_cards'] > 0) || !empty($m['red_card_minute']);
-        $redMinute = (int)($m['red_card_minute'] ?? ($exit < 90 ? $exit : $minute));
+        $hasRedMinute = isset($m['red_card_minute']) && is_numeric($m['red_card_minute']) && (int)$m['red_card_minute'] > 0;
+        $redMinute = $hasRedMinute ? (int)$m['red_card_minute'] : null;
 
         // 1. Atleta suspenso
         if ($partState === 'SUSPENDED' || $lineup === 'suspenso') {
@@ -148,20 +149,23 @@ final class Presentation {
                 'class' => 'status-not-selected',
                 'note_icon' => '📋',
                 'note_title' => 'Não relacionado',
-                'note_desc' => 'Você foi poupado devido ao desgaste físico e acompanha a partida de fora.',
+                'note_desc' => 'Você não foi relacionado para esta partida e acompanha o jogo de fora.',
             ];
         }
 
         // 3. Atleta expulso (cartão vermelho)
         if ($isRedCard) {
-            $label = $redMinute > 0 ? 'Expulso aos '.$redMinute.'′' : 'Expulso';
+            $label = $redMinute !== null ? 'Expulso aos '.$redMinute.'′' : 'Expulso';
+            $desc = $redMinute !== null
+                ? "Você foi expulso aos {$redMinute}′ e desfalca a equipe até o encerramento do jogo."
+                : "Você foi expulso e desfalca a equipe até o encerramento do jogo.";
             return [
                 'type' => 'sent_off',
                 'label' => $label,
                 'class' => 'status-sent-off',
                 'note_icon' => '🟥',
                 'note_title' => 'Expulsão de campo',
-                'note_desc' => $redMinute > 0 ? "Você foi expulso aos {$redMinute}′ e desfalca a equipe até o encerramento do jogo." : "Você foi expulso e desfalca a equipe até o encerramento do jogo.",
+                'note_desc' => $desc,
             ];
         }
 
@@ -179,20 +183,27 @@ final class Presentation {
         }
 
         // 5. Atleta substituído (saiu de campo antes do fim sem expulsão)
-        $isSubstituted = ($partState === 'SUBSTITUTED_OUT') || ($exit < 90 && $minute >= $exit);
+        $hasExitMinute = isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0 && (int)$m['exit'] < 90;
+        $exitMinute = $hasExitMinute ? (int)$m['exit'] : null;
+        $isSubstituted = ($partState === 'SUBSTITUTED_OUT') || ($exitMinute !== null && $minute >= $exitMinute);
         if ($isSubstituted) {
+            $label = $exitMinute !== null ? 'Substituído aos '.$exitMinute.'′' : 'Substituído';
+            $desc = $exitMinute !== null
+                ? 'Você foi substituído aos '.$exitMinute.'′ e acompanha os momentos finais da sua equipe.'
+                : 'Você foi substituído e acompanha os momentos finais da sua equipe.';
             return [
                 'type' => 'substituted',
-                'label' => 'Substituído aos '.$exit.'′',
+                'label' => $label,
                 'class' => 'status-subbed',
                 'note_icon' => '🔄',
                 'note_title' => 'Substituição realizada',
-                'note_desc' => 'Você foi substituído aos '.$exit.'′ e acompanha os momentos finais da sua equipe.',
+                'note_desc' => $desc,
             ];
         }
 
-        // 6. Partida finalizada
-        if ($status === 'finalizada' || $partState === 'FULL_TIME' || $minute >= 90) {
+        // 6. Partida finalizada (estritamente pelo status real do servidor)
+        $isFinished = ($status === 'finalizada' || ($g['stage'] ?? '') === 'fim_semana');
+        if ($isFinished) {
             if (($entry >= 90 && $lineup === 'reserva') || ($partState === 'ON_BENCH')) {
                 return [
                     'type' => 'unused_bench',
@@ -227,7 +238,7 @@ final class Presentation {
         }
 
         // 8. Intervalo de jogo
-        if ($status === 'intervalo' || $minute === 45) {
+        if ($status === 'intervalo' || ($minute === 45 && $status !== 'em_andamento')) {
             return [
                 'type' => 'intervalo',
                 'label' => 'Em campo',
@@ -238,7 +249,7 @@ final class Presentation {
             ];
         }
 
-        // 9. Em campo (padrão quando ativo no jogo)
+        // 9. Em campo (padrão quando ativo no jogo, inclusive acréscimos)
         return [
             'type' => 'on_field',
             'label' => 'Em campo',

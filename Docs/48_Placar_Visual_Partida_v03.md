@@ -32,7 +32,7 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
 
 ## Verificação e Homologação
 - Baterias de testes executadas e aprovadas:
-  - `tests/test-f03-corrections.php` (OK - 224 verificações cobrindo CSP e situações de participação)
+  - `tests/test-f03-corrections.php` (OK - 226 verificações cobrindo CSP, estados reais e OS-COR-F03-R3)
   - `tests/presentation.php` (OK)
   - `tests/aggregate-score-v07.php` (OK - 63 verificações)
   - `tests/test-mobile-ux-flow.php` (OK - 17 verificações)
@@ -53,12 +53,17 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
 ### 2. Situação real do jogador (Consistência entre Placar e Card de Avanço)
 - **Causa raiz:** Divergência no uso de heurísticas baseadas em minutos que exibiam titular em campo antes do apito inicial, previsão de entrada aos 90′ para atletas indisponíveis e jogadores expulsos rotulados como substituídos.
 - **Solução:** Implementação do método canônico `Presentation::playerParticipation(array $g, array $m)`, consumido uniformemente pelo placar (`Presentation::score`) e pelo card de avanço (`view.php`).
-- **Estados mapeados:**
-  - `pre_jogo`: Exibe `Escalado (titular)` ou `No banco (reserva)`, nunca indicando `Em campo` pré-jogo.
-  - `banco`: Exibe `No banco de reservas` durante a partida sem anunciar minutos antecipadamente. Ao término, identifica `Permaneceu no banco`.
-  - `suspenso` / `não relacionado`: Identificados como `Suspenso` e `Não relacionado`, sem falsa entrada aos 90′.
-  - `expulso`: Identificado com clareza como `Expulso aos X′` (ou `Expulso`), ícone 🟥 e nunca como `Substituído`.
-  - `substituído`: Exibe `Substituído aos X′`, ícone 🔄.
-  - `saves legados`: Fallback gracioso com inferência robusta quando `participation_state` não estiver presente.
+
+## Correção Final de Estados (OS-COR-F03-R3)
+
+### 1. Não inventar informações de participação
+- **Expulsão:** Exibe `"Expulso aos X′"` exclusivamente quando `red_card_minute` estiver explicitamente registrado no servidor. Se o minuto não estiver disponível, apresenta apenas `"Expulso"`, sem preencher com minuto atual ou saída de campo.
+- **Atleta não relacionado:** Descrição neutra `"Você não foi relacionado para esta partida e acompanha o jogo de fora."`, sem inferir desgaste físico, lesão ou suspensão não comprovados no estado.
+- **Eventos históricos:** Minuto atual da partida não é utilizado para preencher horários desconhecidos de eventos passados.
+
+### 2. Encerramento somente pelo status efetivo do servidor
+- **Status do servidor:** Partida encerrada é determinada estritamente por `$status === 'finalizada'` (ou estágio de encerramento).
+- **Acréscimos / Minuto >= 90:** Partida com `$status === 'em_andamento'` e minuto 93′ permanece ativa em 2º Tempo com o atleta em campo (`ON_FIELD`), sem declarar falso encerramento. O limite de 90 restringe-se exclusivamente ao preenchimento visual da barra de progresso.
+
 
 
