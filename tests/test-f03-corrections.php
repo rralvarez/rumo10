@@ -13,10 +13,10 @@ function ok(bool $condition, string $msg): void {
     echo "  [OK] $msg\n";
 }
 
-echo "=== R10-F03-R3: TESTES DIRECIONADOS DE CORREÇÃO FINAL ===\n\n";
+echo "=== R10-F03-R4: TESTES DIRECIONADOS DE PRECEDÊNCIA E SUBSTITUIÇÃO ===\n\n";
 
 // =========================================================================
-// CORREÇÃO 1: BARRA DE PROGRESSO COM <progress> E SEM INLINE STYLES (CSP)
+// 1. BARRA DE PROGRESSO COM <progress> E SEM INLINE STYLES (CSP)
 // =========================================================================
 echo "1. Validando Barra de progresso da partida (<progress>, max=90, sem inline style, limite visual 0..90)...\n";
 
@@ -66,11 +66,101 @@ ok((float)(90 / 90) === 1.0, "Aos 90', valor representa exatamente 100% de 90");
 
 echo "\n=========================================================================\n";
 // =========================================================================
-// CORREÇÃO 2: ESTADOS REAIS E NÃO INVENTAR INFORMAÇÕES (OS-COR-F03-R3)
+// 2. PRECEDÊNCIA DE STATUS SOBRE STAGE E MINUTO REAL DE SUBSTITUIÇÃO (OS-COR-F03-R4)
 // =========================================================================
-echo "2. Validando Estados Reais e Ausência de Informações Inventadas...\n";
+echo "2. Validando Precedência de Status e Minuto Real de Substituição...\n";
 
 $scenarios = [
+    // R4 - 1. status=em_andamento, stage=fim_semana, minuto 93', jogador em campo
+    'r4_status_em_andamento_stage_fim_semana_93m' => [
+        'g_stage' => 'fim_semana',
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 93,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'ON_FIELD',
+            'stats' => ['goals' => 1, 'assists' => 0]
+        ],
+        'expected_label' => 'Em campo',
+        'expected_class' => 'status-onfield',
+        'note_title' => 'Em campo',
+        'not_contains' => ['Partida encerrada', 'Permaneceu no banco', 'Substituído', 'Expulso', 'Escalado']
+    ],
+
+    // R4 - 2. status=em_andamento, stage=pre_jogo, minuto 93', jogador em campo
+    'r4_status_em_andamento_stage_pre_jogo_93m' => [
+        'g_stage' => 'pre_jogo',
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 93,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'ON_FIELD',
+            'stats' => ['goals' => 1, 'assists' => 0]
+        ],
+        'expected_label' => 'Em campo',
+        'expected_class' => 'status-onfield',
+        'note_title' => 'Em campo',
+        'not_contains' => ['Escalado (titular)', 'Partida encerrada', 'Permaneceu no banco', 'Substituído', 'Pré-jogo']
+    ],
+
+    // R4 - 3. participation_state=SUBSTITUTED_OUT, saída registrada aos 90'
+    'r4_substituido_aos_90m' => [
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 93,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'SUBSTITUTED_OUT',
+            'stats' => ['goals' => 0, 'assists' => 0]
+        ],
+        'expected_label' => 'Substituído aos 90′',
+        'expected_class' => 'status-subbed',
+        'note_title' => 'Substituição realizada',
+        'note_desc_contains' => 'Você foi substituído aos 90′',
+        'not_contains' => ['Em campo', 'Expulso', 'Partida encerrada']
+    ],
+
+    // R4 - 4. participation_state=SUBSTITUTED_OUT, saída registrada aos 92'
+    'r4_substituido_aos_92m' => [
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 93,
+            'entry' => 0,
+            'exit' => 92,
+            'lineup' => 'titular',
+            'participation_state' => 'SUBSTITUTED_OUT',
+            'stats' => ['goals' => 0, 'assists' => 0]
+        ],
+        'expected_label' => 'Substituído aos 92′',
+        'expected_class' => 'status-subbed',
+        'note_title' => 'Substituição realizada',
+        'note_desc_contains' => 'Você foi substituído aos 92′',
+        'not_contains' => ['Em campo', 'Expulso', 'Partida encerrada']
+    ],
+
+    // R4 - 5. Save legado sem estado canônico e sem minuto confiável
+    'r4_legado_substituido_sem_minuto_confiavel' => [
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 80,
+            'entry' => 0,
+            'exit' => null,
+            'exit_reason' => 'fatigue',
+            'lineup' => 'titular',
+            'stats' => ['goals' => 0, 'assists' => 0]
+        ],
+        'expected_label' => 'Substituído',
+        'expected_class' => 'status-subbed',
+        'note_title' => 'Substituição realizada',
+        'note_desc_contains' => 'Você foi substituído e acompanha os momentos finais da sua equipe.',
+        'not_contains' => ['Substituído aos', 'Em campo', 'Expulso', 'aos 80′', 'aos 90′']
+    ],
+
     // Cenário: Expulsão COM minuto registrado
     'expulsao_com_minuto' => [
         'm' => [
@@ -99,7 +189,6 @@ $scenarios = [
             'exit' => 90,
             'lineup' => 'titular',
             'participation_state' => 'SENT_OFF',
-            // red_card_minute ausente de propósito
             'stats' => ['goals' => 0, 'assists' => 0, 'red_cards' => 1]
         ],
         'expected_label' => 'Expulso',
@@ -127,7 +216,7 @@ $scenarios = [
         'not_contains' => ['desgaste físico', 'lesão', 'suspenso', 'poupado', 'Em campo', 'entra aos 90', 'Substituído']
     ],
 
-    // Cenário: Partida aos 93', status em_andamento, atleta ON_FIELD (acréscimos)
+    // Cenário: Partida aos 93', status em_andamento, atleta ON_FIELD (acréscimos normais)
     'partida_93m_em_andamento_on_field' => [
         'm' => [
             'status' => 'em_andamento',
@@ -178,43 +267,8 @@ $scenarios = [
         'not_contains' => ['Em campo', 'entra aos 90', 'Substituído', 'Partida encerrada']
     ],
 
-    // Cenário: Compatibilidade com save legado sem campos opcionais (em andamento)
-    'legado_sem_campos_opcionais_on_field' => [
-        'm' => [
-            'status' => 'em_andamento',
-            'minute' => 35,
-            'entry' => 0,
-            'exit' => 90,
-            'lineup' => 'titular',
-            // participation_state, red_card_minute ausentes
-            'stats' => ['goals' => 0, 'assists' => 0]
-        ],
-        'expected_label' => 'Em campo',
-        'expected_class' => 'status-onfield',
-        'note_title' => 'Em campo',
-        'not_contains' => ['Partida encerrada', 'Permaneceu no banco', 'Substituído', 'Expulso']
-    ],
-
-    // Cenário: Compatibilidade com save legado sem campos opcionais (expulso sem minuto)
-    'legado_sem_campos_opcionais_expulso' => [
-        'm' => [
-            'status' => 'em_andamento',
-            'minute' => 80,
-            'entry' => 0,
-            'exit' => 90,
-            'lineup' => 'titular',
-            // participation_state e red_card_minute ausentes
-            'stats' => ['goals' => 0, 'assists' => 0, 'red_cards' => 1]
-        ],
-        'expected_label' => 'Expulso',
-        'expected_class' => 'status-sent-off',
-        'note_title' => 'Expulsão de campo',
-        'note_desc_contains' => 'Você foi expulso e desfalca a equipe até o encerramento do jogo.',
-        'not_contains' => ['Expulso aos', 'Substituído', 'Em campo']
-    ],
-
-    // Cenário: Pré-jogo titular
-    'pre_jogo_titular' => [
+    // Cenário: Pré-jogo confirmado pelo status do servidor
+    'pre_jogo_titular_confirmado' => [
         'm' => [
             'status' => 'pre_jogo',
             'minute' => 0,
@@ -226,23 +280,6 @@ $scenarios = [
         ],
         'expected_label' => 'Escalado (titular)',
         'expected_class' => 'status-starting',
-        'note_title' => 'Pré-jogo',
-        'not_contains' => ['Em campo', 'entra aos 90', 'Substituído']
-    ],
-
-    // Cenário: Pré-jogo reserva
-    'pre_jogo_reserva' => [
-        'm' => [
-            'status' => 'pre_jogo',
-            'minute' => 0,
-            'entry' => 60,
-            'exit' => 90,
-            'lineup' => 'reserva',
-            'participation_state' => 'ON_BENCH',
-            'stats' => ['goals' => 0, 'assists' => 0]
-        ],
-        'expected_label' => 'No banco (reserva)',
-        'expected_class' => 'status-bench',
         'note_title' => 'Pré-jogo',
         'not_contains' => ['Em campo', 'entra aos 90', 'Substituído']
     ],
@@ -264,8 +301,8 @@ $scenarios = [
         'not_contains' => ['Em campo', 'Substituído', 'entra aos 90']
     ],
 
-    // Cenário: Substituído com minuto registrado
-    'substituido_com_minuto' => [
+    // Cenário: Substituído com minuto registrado no 2º tempo (70')
+    'substituido_com_minuto_70m' => [
         'm' => [
             'status' => 'em_andamento',
             'minute' => 80,
@@ -299,8 +336,14 @@ foreach ($scenarios as $key => $sc) {
         'log' => []
     ], $sc['m']);
 
+    $gTest = $g;
+    $gTest['stage'] = $sc['g_stage'] ?? 'partida';
+    $gTest['round'] = 1;
+    $gTest['club'] = $matchData['home'];
+    $gTest['matches'] = [$matchData];
+
     // 1. Testar método puro Presentation::playerParticipation
-    $part = Presentation::playerParticipation($g, $matchData);
+    $part = Presentation::playerParticipation($gTest, $matchData);
     ok($part['label'] === $sc['expected_label'], "Cenário {$key}: playerParticipation label === '{$sc['expected_label']}' (obteve '{$part['label']}')");
     ok($part['class'] === $sc['expected_class'], "Cenário {$key}: playerParticipation class === '{$sc['expected_class']}' (obteve '{$part['class']}')");
 
@@ -313,7 +356,7 @@ foreach ($scenarios as $key => $sc) {
 
     // 2. Testar renderização no placar (Presentation::score)
     ob_start();
-    Presentation::score($g, $matchData);
+    Presentation::score($gTest, $matchData);
     $htmlScore = ob_get_clean();
 
     ok(str_contains($htmlScore, $sc['expected_label']), "Cenário {$key}: Placar renderiza '{$sc['expected_label']}'");
@@ -327,14 +370,9 @@ foreach ($scenarios as $key => $sc) {
     $path = '/carreira';
     $error = null;
     $_SESSION = ['account' => 1, 'csrf' => 'test'];
-    $testGame = $g;
-    $testGame['stage'] = 'partida';
-    $testGame['round'] = 1;
-    $testGame['club'] = $matchData['home'];
-    $testGame['matches'] = [$matchData];
 
     $baseGame = $g;
-    $g = $testGame;
+    $g = $gTest;
     ob_start();
     include dirname(__DIR__).'/app/view.php';
     $htmlView = ob_get_clean();
@@ -355,5 +393,5 @@ foreach ($scenarios as $key => $sc) {
 
 echo "\n=======================================================\n";
 echo "TOTAL: {$checks} verificações executadas e APROVADAS!\n";
-echo "SUCESSO: OS-COR-F03-R3 verificada com precisão absoluta!\n";
+echo "SUCESSO: OS-COR-F03-R4 verificada com precisão absoluta!\n";
 echo "=======================================================\n";

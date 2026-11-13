@@ -118,10 +118,16 @@ final class Presentation {
         echo '</div></div>';
     }
     public static function playerParticipation(array $g, array $m): array {
-        $status = $m['status'] ?? 'em_andamento';
+        $status = $m['status'] ?? null;
+        if ($status === null || $status === '') {
+            $stage = $g['stage'] ?? '';
+            if ($stage === 'pre_jogo') $status = 'pre_jogo';
+            elseif ($stage === 'fim_semana') $status = 'finalizada';
+            else $status = 'em_andamento';
+        }
+
         $minute = (int)($m['minute'] ?? 0);
         $entry = (int)($m['entry'] ?? 0);
-        $exit = (int)($m['exit'] ?? 90);
         $partState = $m['participation_state'] ?? null;
         $lineup = $m['lineup'] ?? 'titular';
         $st = $m['stats'] ?? [];
@@ -169,8 +175,8 @@ final class Presentation {
             ];
         }
 
-        // 4. Pré-jogo
-        if ($status === 'pre_jogo' || ($g['stage'] ?? '') === 'pre_jogo') {
+        // 4. Pré-jogo (precedência estrita do status da partida sobre stage)
+        if ($status === 'pre_jogo') {
             $isStarter = ($partState === 'STARTING' || $lineup === 'titular');
             return [
                 'type' => 'pre_jogo',
@@ -182,10 +188,30 @@ final class Presentation {
             ];
         }
 
-        // 5. Atleta substituído (saiu de campo antes do fim sem expulsão)
-        $hasExitMinute = isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0 && (int)$m['exit'] < 90;
-        $exitMinute = $hasExitMinute ? (int)$m['exit'] : null;
-        $isSubstituted = ($partState === 'SUBSTITUTED_OUT') || ($exitMinute !== null && $minute >= $exitMinute);
+        // 5. Atleta substituído (utiliza minuto real inclusive >= 90 para canonical SUBSTITUTED_OUT)
+        $isSubstituted = false;
+        $exitMinute = null;
+
+        if ($partState === 'SUBSTITUTED_OUT') {
+            $isSubstituted = true;
+            if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
+                $exitMinute = (int)$m['exit'];
+            }
+        } elseif (isset($m['exit']) && is_numeric($m['exit'])) {
+            // Inferência legada (sem estado canônico): exclusivamente quando exit < 90 e minute >= exit
+            $rawExit = (int)$m['exit'];
+            if ($rawExit > 0 && $rawExit < 90 && $minute >= $rawExit) {
+                $isSubstituted = true;
+                $exitMinute = $rawExit;
+            }
+        } elseif (($m['exit_reason'] ?? '') === 'fatigue' || !empty($m['substituido']) || ($m['lineup'] ?? '') === 'substituído') {
+            // Inferência legada sem estado canônico e sem minuto confiável
+            $isSubstituted = true;
+            if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
+                $exitMinute = (int)$m['exit'];
+            }
+        }
+
         if ($isSubstituted) {
             $label = $exitMinute !== null ? 'Substituído aos '.$exitMinute.'′' : 'Substituído';
             $desc = $exitMinute !== null
@@ -201,9 +227,8 @@ final class Presentation {
             ];
         }
 
-        // 6. Partida finalizada (estritamente pelo status real do servidor)
-        $isFinished = ($status === 'finalizada' || ($g['stage'] ?? '') === 'fim_semana');
-        if ($isFinished) {
+        // 6. Partida finalizada (precedência estrita do status da partida sobre stage)
+        if ($status === 'finalizada') {
             if (($entry >= 90 && $lineup === 'reserva') || ($partState === 'ON_BENCH')) {
                 return [
                     'type' => 'unused_bench',
@@ -261,7 +286,13 @@ final class Presentation {
     }
 
     public static function score(array $g,array $m): void {
-        $status = $m['status'] ?? 'em_andamento';
+        $status = $m['status'] ?? null;
+        if ($status === null || $status === '') {
+            $stage = $g['stage'] ?? '';
+            if ($stage === 'pre_jogo') $status = 'pre_jogo';
+            elseif ($stage === 'fim_semana') $status = 'finalizada';
+            else $status = 'em_andamento';
+        }
         $minute = (int)($m['minute'] ?? 0);
 
         if ($status === 'intervalo') {

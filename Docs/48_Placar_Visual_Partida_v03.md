@@ -32,7 +32,7 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
 
 ## Verificação e Homologação
 - Baterias de testes executadas e aprovadas:
-  - `tests/test-f03-corrections.php` (OK - 226 verificações cobrindo CSP, estados reais e OS-COR-F03-R3)
+  - `tests/test-f03-corrections.php` (OK - 264 verificações cobrindo CSP, estados reais, precedência e minutos de substituição R4)
   - `tests/presentation.php` (OK)
   - `tests/aggregate-score-v07.php` (OK - 63 verificações)
   - `tests/test-mobile-ux-flow.php` (OK - 17 verificações)
@@ -62,8 +62,20 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
 - **Eventos históricos:** Minuto atual da partida não é utilizado para preencher horários desconhecidos de eventos passados.
 
 ### 2. Encerramento somente pelo status efetivo do servidor
-- **Status do servidor:** Partida encerrada é determinada estritamente por `$status === 'finalizada'` (ou estágio de encerramento).
+- **Status do servidor:** Partida encerrada é determinada estritamente por `$status === 'finalizada'`.
 - **Acréscimos / Minuto >= 90:** Partida com `$status === 'em_andamento'` e minuto 93′ permanece ativa em 2º Tempo com o atleta em campo (`ON_FIELD`), sem declarar falso encerramento. O limite de 90 restringe-se exclusivamente ao preenchimento visual da barra de progresso.
+
+## Correção de Precedência e Substituição (OS-COR-F03-R4)
+
+### 1. Precedência do status da partida sobre stage
+- O `$status` efetivo da partida (`$m['status']`) tem precedência absoluta sobre `$g['stage']`.
+- Se `$m['status'] === 'em_andamento'`, a partida nunca é apresentada como `"Partida encerrada"` ou `"Escalado (titular)"`, mesmo se `$g['stage']` contiver transitoriamente `fim_semana` ou `pre_jogo`.
+- `$g['stage']` atua exclusivamente como fallback caso `$m['status']` esteja ausente ou vazio.
+
+### 2. Minuto verdadeiro da substituição (inclusive >= 90′)
+- Quando `participation_state === 'SUBSTITUTED_OUT'`, o minuto registrado em `exit` é preservado e exibido fielmente (ex: `"Substituído aos 90′"` ou `"Substituído aos 92′"`).
+- O limite `< 90` foi preservado exclusivamente na inferência heurística de saves legados sem estado canônico de substituição.
+- Quando não houver minuto confiável em `exit`, apresenta apenas `"Substituído"`, sem criar horários fictícios.
 
 
 
