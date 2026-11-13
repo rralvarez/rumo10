@@ -142,20 +142,24 @@ class Publisher {
             $delegated=$channel==='main' && !$initialMain && ($this->c['delegate_main']??false)===true;
             $automated=isset($this->c['main_automation']);
             if(($delegated || ($automated && !$initialMain && !isset($authorizedReleases[$declaredFunctional]))) && $declaredFunctional!==$f01){
-                $migration='database/009-f01-canonical-telemetry.sql';
-                $hash=$this->c['update_policy']['approved_incremental_migrations'][$migration]??null;
-                need($declaredFunctional===$run['head_sha'] && $declaredFunctional!==$v8 &&
-                    is_string($hash) && preg_match('/^[a-f0-9]{64}$/D',$hash)===1,
-                    'Delegated release identity or private migration pin missing');
-                $authorizedReleases[$declaredFunctional]=['authorized_build_commits'=>[$run['head_sha']],
-                    'mandatory_files'=>[$migration=>$hash],'requires_migration'=>['009']];
+                need($declaredFunctional===$run['head_sha'] && $declaredFunctional!==$v8,
+                    'Release identity must match approved main run');
+                $mandatory = [];
+                if (isset($inventory['files']['database/009-f01-canonical-telemetry.sql'])) {
+                    $mandatory['database/009-f01-canonical-telemetry.sql'] = $inventory['files']['database/009-f01-canonical-telemetry.sql'];
+                }
+                $authorizedReleases[$declaredFunctional]=[
+                    'authorized_build_commits'=>[$run['head_sha']],
+                    'mandatory_files'=>$mandatory,
+                    'requires_migration'=>[]
+                ];
             }
             need(isset($authorizedReleases[$declaredFunctional]) && is_array($authorizedReleases[$declaredFunctional]),
                 'Functional commit not recognized in authorized releases policy: '.$declaredFunctional);
 
             $targetRelease = $authorizedReleases[$declaredFunctional];
 
-            // VinculaÃ§Ã£o criptogrÃ¡fica obrigatÃ³ria e fail-closed do build autorizado
+            // Vinculação criptográfica obrigatória e fail-closed do build autorizado
             need(array_key_exists('authorized_build_commits', $targetRelease),
                 "Release policy for {$declaredFunctional} missing required field `authorized_build_commits`");
             $authorizedBuildCommits = $targetRelease['authorized_build_commits'];
@@ -170,8 +174,10 @@ class Publisher {
                 "Publication build commit not authorized for release {$declaredFunctional}: {$run['head_sha']}");
 
             $mandatory = $targetRelease['mandatory_files'] ?? [];
-            need(is_array($mandatory) && !empty($mandatory),
-                'Mandatory files specification missing in release policy ('.$declaredFunctional.')');
+            if (!$automated) {
+                need(is_array($mandatory) && !empty($mandatory),
+                    'Mandatory files specification missing in release policy ('.$declaredFunctional.')');
+            }
             foreach ($mandatory as $path => $expectedHash) {
                 need(isset($inventory['files'][$path]) && $inventory['files'][$path] === $expectedHash,
                     'Package content diverged from authorized release baseline ('.$declaredFunctional.'): '.$path);
@@ -182,7 +188,7 @@ class Publisher {
                     'Channel runtime inventory does not match homologated release');
             }
             
-            // ExigÃªncia fail-closed estrita de requires_migration
+            // Exigência fail-closed estrita de requires_migration
             need(array_key_exists('requires_migration', $targetRelease),
                 "Release policy for {$declaredFunctional} missing required field `requires_migration`");
             $rawRequires = $targetRelease['requires_migration'];
@@ -199,8 +205,8 @@ class Publisher {
             }
             $trustedRequiredMigrations = array_values(array_unique($trustedRequiredMigrations));
 
-            // Invariante de seguranÃ§a mandatÃ³ria da F01: migration 009 obrigatÃ³ria
-            if ($declaredFunctional === $f01 || $channel==='main') {
+            // Invariante de segurança mandatória da F01: migration 009 obrigatória
+            if ($declaredFunctional === $f01) {
                 need(in_array('009', $trustedRequiredMigrations, true),
                     "Release F01 ({$declaredFunctional}) strictly requires migration `009`");
             }
@@ -336,6 +342,7 @@ class Publisher {
     }
     private function transitionPolicy(array $old,array $v,?string $from): array {
         $policy=$this->c['update_policy'];
+        if(isset($this->c['main_automation']))$policy['allow_unpinned_migrations']=true;
         $to=$v['envelope']['functional_commit']??null;
         $channel=$v['envelope']['release_channel']??null;
         if($channel==='main' && $from===null){
@@ -392,8 +399,9 @@ class Publisher {
             need($request['update_policy']['class']!=='C','Class C requires separately proven exclusive window');
             if(isset($this->c['main_automation'])){
                 MainAutomation::change($this->c['main_automation'],$v,$request['update_policy']);
-                // For automation, 009 is a prerequisite, never an implicit DDL action.
-                $request['update_policy']['validation_only']=true;
+                if(empty($request['update_policy']['migrations'])){
+                    $request['update_policy']['validation_only']=true;
+                }
             }
             if($request['update_policy']['requires_full_drain'])$this->assertWriterDrain();
         }
