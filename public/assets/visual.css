@@ -492,40 +492,466 @@ main.container {
 }
 
 .compact-score {
-  padding: 10px 14px;
-  margin: 0 0 10px;
-  border-radius: 12px
+  padding: 14px 18px;
+  margin: 0 0 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(23, 39, 45, 0.95) 0%, rgba(14, 24, 28, 0.98) 100%);
+  border: 1px solid var(--border);
+  border-top: 1px solid rgba(215, 255, 96, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Animação sutil de destaque no placar em gols e assistências */
+.playing:has(.result-goal) .compact-score,
+.playing:has(.result-assist) .compact-score {
+  animation: scoreGlowPulse 0.8s ease-out;
+}
+
+@keyframes scoreGlowPulse {
+  0% { border-color: rgba(120, 189, 113, 0.3); box-shadow: 0 0 8px rgba(120, 189, 113, 0.15); }
+  50% { border-color: var(--lime); box-shadow: 0 0 20px rgba(215, 255, 96, 0.3); }
+  100% { border-color: var(--border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); }
+}
+
+/* Cabeçalho do Placar: Período, Relógio oficial e Rodada */
 .compact-score .match-time {
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--lime);
-  margin-bottom: 4px
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(52, 73, 78, 0.45);
+  font-size: 11px;
 }
 
+.match-time-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.match-period-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  background: rgba(215, 255, 96, 0.12);
+  color: var(--lime);
+  border: 1px solid rgba(215, 255, 96, 0.25);
+}
+
+.match-period-badge.badge-intervalo {
+  background: rgba(255, 193, 7, 0.14);
+  color: #ffd15c;
+  border-color: rgba(255, 193, 7, 0.35);
+}
+
+.match-period-badge.badge-finalizada {
+  background: rgba(181, 199, 203, 0.12);
+  color: var(--muted);
+  border-color: rgba(181, 199, 203, 0.25);
+}
+
+.match-clock {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--lime);
+  letter-spacing: 0.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.match-clock-static {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.match-live-dot {
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background-color: var(--lime);
+  margin-right: 5px;
+  box-shadow: 0 0 6px var(--lime);
+  animation: liveDotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.match-round-tag {
+  font-size: 10.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+
+/* Linha Principal do Placar */
 .compact-score .score-row {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 4px 0 8px;
+}
+
+.score-team {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  align-items: center
+  min-width: 0;
 }
 
-.compact-score .score-row>strong {
-  font-size: 28px;
+.score-team.team-home {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.score-team.team-away {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.team-badge-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compact-score .score-team .club-badge {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+}
+
+.compact-score .badge-pending {
+  width: 42px;
+  height: 42px;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1.5px solid rgba(157, 175, 179, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.team-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.team-home .team-meta {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.team-away .team-meta {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.team-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.team-user-pill {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(215, 255, 96, 0.18);
+  color: var(--lime);
+  border: 1px solid rgba(215, 255, 96, 0.3);
+}
+
+.score-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.compact-score .score-row>strong,
+.score-numbers {
+  font-size: 38px;
   line-height: 1;
-  color: var(--lime)
+  font-weight: 900;
+  color: var(--lime);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  animation: scoreDigitPop 0.35s ease-out;
 }
 
-.compact-score .score-team {
-  font-size: 12px
+@keyframes scoreDigitPop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.08); text-shadow: 0 0 10px rgba(215, 255, 96, 0.4); }
+  100% { transform: scale(1); text-shadow: none; }
 }
 
+.compact-score .score-row small,
+.score-numbers small {
+  font-size: 20px;
+  color: var(--muted);
+  opacity: 0.7;
+  margin: 0 6px;
+}
+
+/* Barra Discreta de Progresso (0 a 90 min) via HTML5 <progress> */
+.match-progress-wrap {
+  margin: 8px 0 4px;
+  padding: 0 2px;
+  position: relative;
+}
+
+.match-progress-track {
+  position: relative;
+  height: 6px;
+  display: flex;
+  align-items: center;
+}
+
+progress.match-progress-bar {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 6px;
+  border: none;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: block;
+}
+
+/* Chrome / Safari / Edge / Blink */
+progress.match-progress-bar::-webkit-progress-bar {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+progress.match-progress-bar::-webkit-progress-value {
+  background: linear-gradient(90deg, #5ea857 0%, var(--lime) 100%);
+  border-radius: 3px;
+  transition: width 0.4s ease-out;
+  box-shadow: 0 0 6px rgba(215, 255, 96, 0.35);
+}
+
+/* Firefox / Gecko */
+progress.match-progress-bar::-moz-progress-bar {
+  background: linear-gradient(90deg, #5ea857 0%, var(--lime) 100%);
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(215, 255, 96, 0.35);
+}
+
+.match-progress-pin.pin-45 {
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.match-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
+  font-size: 9px;
+  color: var(--muted);
+  opacity: 0.7;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.match-progress-labels .label-half {
+  transform: translateX(-50%);
+  margin-left: 50%;
+  position: absolute;
+}
+
+/* Estatísticas do Jogador e Status em Campo */
 .compact-score .live-player-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  border-top: 1px solid rgba(52, 73, 78, 0.5);
+  margin-top: 8px;
+  padding-top: 8px;
+  color: var(--muted);
+}
+
+.player-field-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 11px;
-  margin-top: 6px;
-  padding-top: 6px;
-  gap: 14px
+  font-weight: 600;
+  color: var(--text);
+}
+
+.player-field-indicator.status-onfield::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 4px var(--lime);
+}
+
+.player-field-indicator.status-starting::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #78bd71;
+  box-shadow: 0 0 4px #78bd71;
+}
+
+.player-field-indicator.status-bench::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #ffd15c;
+}
+
+.player-field-indicator.status-subbed::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #9dafb3;
+}
+
+.player-field-indicator.status-sent-off::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 2px;
+  background: #dc3545;
+  box-shadow: 0 0 4px #dc3545;
+}
+
+.player-field-indicator.status-suspended::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #e05260;
+  box-shadow: 0 0 4px #e05260;
+}
+
+.player-field-indicator.status-not-selected::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #6c757d;
+}
+
+.player-field-indicator.status-finished::before {
+  content: "";
+  display: inline-block;
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #9dafb3;
+}
+
+.player-stats-counts {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.compact-score .live-player-stats b {
+  color: var(--lime);
+}
+
+/* Card de Transição / Avanço de Partida */
+.match-advance-card {
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.match-step-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.match-step-note .step-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.match-step-note strong {
+  display: block;
+  font-size: 14px;
+  color: var(--lime);
+  margin-bottom: 2px;
+}
+
+.match-step-note p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.btn-match-advance {
+  width: 100%;
 }
 
 .post-match {
@@ -1081,12 +1507,28 @@ footer strong {
   }
 }
 
+/* Elementos de áudio e acessibilidade ocultos que não devem gerar caixas de layout ou faixas de grid */
+.sr-only,
+.visually-hidden,
+div[data-sound-event].sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 /* Requisito 5: Duas colunas em telas desktop quando houver informações complementares */
 @media(min-width:761px) {
   .playing main.container:has(>.game-layout) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 12px;
+    align-items: start;
     max-width: 960px;
     min-height: 0;
     padding-top: 14px;
@@ -1109,26 +1551,34 @@ footer strong {
     width: 100%;
     max-width: none;
     margin: 0;
+    align-self: start;
   }
 
   .playing .compact-score,
   .playing .post-match {
     grid-column: 1/-1;
     margin: 0;
+    align-self: start;
   }
 
   /* Duas colunas quando houver resultado + placar/pós-jogo */
   .playing main:has(>.action-result):has(.compact-score) .action-result,
   .playing main:has(>.action-result):has(.post-match) .action-result {
     grid-column: 1;
+    grid-row: 2;
+    align-self: start;
   }
 
   .playing main:has(>.action-result) .compact-score {
     grid-column: 2;
+    grid-row: 2;
+    align-self: start;
   }
 
   .playing main:has(>.action-result) .post-match {
     grid-column: 2;
+    grid-row: 2;
+    align-self: start;
   }
 
   /* Painel de decisão central */
@@ -1605,30 +2055,74 @@ body.post-match-decision .season-recap {
   /* 1. Resumo da partida no topo */
   .in-match .compact-score {
     order: 2;
-    padding: 7px 10px;
-    margin: 0 0 6px;
-    border-radius: 10px;
+    padding: 9px 12px;
+    margin: 0 0 8px;
+    border-radius: 12px;
   }
   .in-match .compact-score .match-time {
+    font-size: 10px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+  }
+  .in-match .match-period-badge {
     font-size: 9.5px;
-    margin-bottom: 2px;
-    letter-spacing: 0.8px;
+    padding: 1px 6px;
+  }
+  .in-match .match-clock {
+    font-size: 12px;
   }
   .in-match .compact-score .score-row {
-    gap: 6px;
+    gap: 8px;
+    padding: 2px 0 4px;
   }
-  .in-match .compact-score .score-row > strong {
-    font-size: 21px;
+  .in-match .compact-score .score-row > strong,
+  .in-match .score-numbers {
+    font-size: 26px;
     line-height: 1;
   }
-  .in-match .compact-score .score-team {
-    font-size: 11.5px;
-    flex-direction: row;
-    gap: 5px;
+  .in-match .compact-score .score-row small,
+  .in-match .score-numbers small {
+    font-size: 15px;
+    margin: 0 3px;
   }
-  .in-match .compact-score .score-team .club-badge {
-    width: 18px;
-    height: 18px;
+  .in-match .compact-score .score-team {
+    font-size: 11px;
+    gap: 6px;
+    align-items: center;
+  }
+  .in-match .compact-score .score-team.team-home {
+    flex-direction: column-reverse;
+  }
+  .in-match .compact-score .score-team.team-away {
+    flex-direction: column;
+  }
+  .in-match .team-home .team-meta,
+  .in-match .team-away .team-meta {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    min-width: 0;
+  }
+  .in-match .compact-score .score-team .club-badge,
+  .in-match .compact-score .badge-pending {
+    width: 30px;
+    height: 30px;
+  }
+  .in-match .compact-score .badge-pending {
+    font-size: 10px;
+  }
+  .in-match .team-name {
+    font-size: 11.5px;
+    line-height: 1.2;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    text-align: center;
+  }
+  .in-match .team-user-pill {
+    font-size: 8px;
+    padding: 1px 4px;
   }
   .in-match .compact-score .aggregate-strip {
     margin: 4px 0 2px;
@@ -1646,11 +2140,40 @@ body.post-match-decision .season-recap {
   .in-match .compact-score .aggregate-total strong {
     font-size: 12px;
   }
+  .in-match progress.match-progress-bar {
+    height: 5px;
+  }
+  .in-match .match-progress-track {
+    height: 5px;
+  }
+  .in-match .match-progress-pin.pin-45 {
+    height: 9px;
+  }
   .in-match .compact-score .live-player-stats {
-    margin-top: 4px;
-    padding-top: 4px;
-    font-size: 10.5px;
+    margin-top: 6px;
+    padding-top: 6px;
+    font-size: 11px;
+    gap: 8px;
+  }
+  .in-match .player-stats-counts {
     gap: 10px;
+  }
+  .in-match .player-field-indicator {
+    font-size: 10px;
+  }
+  .in-match .match-advance-card {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .in-match .match-step-note {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .in-match .match-step-note strong {
+    font-size: 13px;
+  }
+  .in-match .match-step-note p {
+    font-size: 11.5px;
   }
   /* 2. Resultado da ação anterior logo abaixo do placar */
   .in-match .action-result {
@@ -1792,3 +2315,16 @@ body.post-match-decision .season-recap {
   }
   header nav.authenticated details.menu-more > summary svg { width:21px; height:21px; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .compact-score,
+  .score-numbers,
+  .compact-score .score-row>strong,
+  .match-live-dot,
+  progress.match-progress-bar,
+  progress.match-progress-bar::-webkit-progress-value {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
