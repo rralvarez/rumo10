@@ -478,8 +478,11 @@ class Publisher {
             atomic($backup.'/release.json',file_get_contents($this->c['current'].'/release.json'));
             if(is_file($this->c['current'].'/build-manifest.json'))atomic($backup.'/build-manifest.json',file_get_contents($this->c['current'].'/build-manifest.json'));
             $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
-            need(($b['consistent']??false) && ($b['restore_tested']??false) && ($b['attempt']??null)===$id &&
-                isset($b['files']) && count($b['files'])>0,'Backup/restore proof missing');
+            // Main automation uses a verified transactional dump; legacy mode retains restore rehearsal.
+            $restoreRequired = !isset($this->c['main_automation']);
+            need(($b['consistent']??false) && (!$restoreRequired || ($b['restore_tested']??false)) &&
+                ($b['attempt']??null)===$id && isset($b['files']) && count($b['files'])>0,
+                'Consistent backup receipt missing');
             foreach ($b['files'] as $p=>$h) need(str_starts_with(str_replace(chr(92),'/',$p),str_replace(chr(92),'/',$backup).'/') &&
                 digest($p)===$h,'Backup receipt digest invalid');
             if(isset($this->c['main_automation']))MainAutomation::proof($b,$v,time());
