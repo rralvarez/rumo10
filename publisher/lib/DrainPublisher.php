@@ -35,7 +35,9 @@ class DrainPublisher extends Publisher {
   }ksort($out);return $out;
  }
  public function apply(string $stage):array{
-  $this->enroll();need(!is_file($this->session)||in_array(json(file_get_contents($this->session))['state'],['validated','recovered'],true),'Pending drain session: recover first');
+  $this->acquire();
+  need(!is_file($this->session)||in_array(json(file_get_contents($this->session))['state'],['validated','recovered'],true),'Pending drain session: recover first');
+  $this->assertAutomaticStage($stage);$this->enroll();
   $owner=bin2hex(random_bytes(16));$receipt=['owner'=>$owner,'state'=>'closing','stage'=>$stage,'content_before'=>$this->content(),'journal_before'=>is_file($this->ops['private'].'/journal.json')?digest($this->ops['private'].'/journal.json'):null];record($this->session,$receipt);$this->sessionCheckpoint('before-close');$this->drain->close($owner);
   try{$this->sessionCheckpoint('after-close');$this->drain->drain((float)($this->ops['request_gate']['timeout_seconds']??30));$receipt['state']='installing';record($this->session,$receipt);$this->sessionCheckpoint('after-drain');
    $result=parent::apply($stage);$this->drain->assertDrained();need($result['state']==='validated','Installation not validated');
