@@ -103,10 +103,22 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
 ### 2. Alinhamento dos painéis de encerramento no desktop (`public/assets/visual.css`)
 - **Causa raiz:** Na tela de encerramento (`stage=fim_semana`), a chamada `Presentation::matchSounds($g,$m)` renderiza uma tag invisível `<div data-sound-event="MATCH_WHISTLE_END" class="sr-only" aria-hidden="true"></div>` diretamente no container principal (`main.container`). Por ser um container CSS Grid de 2 colunas no desktop, o elemento `.sr-only` não possuía regras CSS de isolamento e era posicionado pelo algoritmo de auto-placement na linha 2, coluna 2. Isso empurrava o painel pós-jogo (`.post-match`, restrito à coluna 2) para a **linha 3**, criando um vão vertical de 95.6px em relação ao painel de acontecimentos (`.action-result`, linha 2, coluna 1).
 - **Solução:**
-  - Regra CSS estrita para `.sr-only`, `.visually-hidden` e `div[data-sound-event].sr-only` com `position: absolute !important; display: none !important;`, impedindo qualquer geração de caixas ou faixas no grid.
+  - Isolamento de `.sr-only` com `position: absolute !important;` e recorte acessível `clip: rect(0, 0, 0, 0) !important;`, impedindo qualquer interferência na grade do grid.
   - Fixação explícita de `grid-row: 2` e `align-self: start` em `.action-result` e `.post-match`, combinada com `align-items: start` no container desktop.
   - Os dois painéis passam a iniciar no mesmo pixel vertical (`top: 159.39px`), com alturas naturais e independentes.
-  - No mobile, empilhamento fluido e sequencial sem rolagem horizontal ou sobreposições.
+
+## Correção Final de Acessibilidade (OS-COR-F03-R7)
+
+### 1. Preservação de Nome Acessível em Elementos Ocultos (`public/assets/visual.css`)
+- **Problema:** A declaração `display: none !important;` na regra global de `.sr-only` e `.visually-hidden` removia os elementos da árvore de acessibilidade do navegador, fazendo com que inputs com rótulo apenas acessível (como a opção "1 estrela" do formulário de feedback) perdessem seu nome acessível para tecnologias assistivas.
+- **Solução:** Removida estritamente a linha `display: none !important;` da regra global em `public/assets/visual.css` (próximo à linha 1511), mantendo o padrão canônico de acessibilidade: `position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;`.
+- **Confirmação dos 4 Comportamentos:**
+  1. A opção de avaliação "1 estrela" recuperou seu nome acessível íntegro (`★ 1 estrela`).
+  2. O apito final continua sendo capturado normalmente pelo mecanismo de áudio (`audio-engine.js`).
+  3. Os painéis de acontecimentos (`.action-result`) e resultado (`.post-match`) permanecem perfeitamente alinhados no desktop (`top: 159.39px`), pois `position: absolute` retira o elemento do fluxo de grade sem gerar faixas ou células adicionais.
+  4. O placar visual permanece impecável, sem cortes ou sobreposições em nenhuma largura.
+
+
 
 
 

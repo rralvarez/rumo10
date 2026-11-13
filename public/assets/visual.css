@@ -1520,7 +1520,6 @@ div[data-sound-event].sr-only {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
-  display: none !important;
 }
 
 /* Requisito 5: Duas colunas em telas desktop quando houver informações complementares */

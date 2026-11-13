@@ -530,10 +530,11 @@ ok(str_contains($cssContent, 'max-width: 100%'), 'R6: .team-name se adapta ao es
 ok(!str_contains($cssContent, 'max-width: 170px'), 'R6: Limite fixo de 170px removido de .team-name');
 ok(!str_contains($cssContent, 'max-width: 105px'), 'R6: Limite fixo de 105px no mobile removido de .team-name');
 
-// 4.2 Validação de Isolamento de Elementos de Áudio e Acessibilidade (sr-only)
-ok(str_contains($cssContent, 'div[data-sound-event].sr-only') || str_contains($cssContent, '.sr-only'), 'R6: Regra para elementos .sr-only / áudio presente');
-ok(str_contains($cssContent, 'position: absolute !important'), 'R6: .sr-only é removido do fluxo normal com position: absolute');
-ok(str_contains($cssContent, 'display: none !important'), 'R6: .sr-only não cria caixas de layout no grid (display: none !important)');
+// 4.2 Validação de Isolamento de Elementos de Áudio e Acessibilidade (sr-only / visually-hidden)
+ok(str_contains($cssContent, 'div[data-sound-event].sr-only') || str_contains($cssContent, '.sr-only'), 'R6/R7: Regra para elementos .sr-only / .visually-hidden presente');
+ok(str_contains($cssContent, 'position: absolute !important'), 'R6/R7: .sr-only é removido do fluxo de layout com position: absolute');
+ok(str_contains($cssContent, 'clip: rect(0, 0, 0, 0) !important'), 'R6/R7: .sr-only mantém recorte acessível');
+ok(!str_contains(substr($cssContent, strpos($cssContent, '.sr-only'), 350), 'display: none'), 'R7: display: none removido da regra global de .sr-only/.visually-hidden preservando nome acessível');
 
 // 4.3 Validação de Alinhamento Superior no Desktop (align-items: start / align-self: start / grid-row: 2)
 ok(str_contains($cssContent, 'align-items: start'), 'R6: Container desktop utiliza align-items: start');
