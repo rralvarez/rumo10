@@ -453,7 +453,7 @@ final class DatabaseSchemaValidator {
                     if ($actualFk['ref_table'] === $expFk['ref_table'] &&
                         $actualFk['columns'] === $expFk['columns'] &&
                         $actualFk['ref_columns'] === $expFk['ref_columns']) {
-                        $expDelete = strtoupper($expFk['on_delete'] ?? 'CASCADE');
+                        $expDelete = strtoupper($expFk['on_delete'] ?? 'RESTRICT');
                         if ($actualFk['on_delete'] !== $expDelete) {
                             throw new RuntimeException("Table `{$table}` foreign key `{$fkName}` ON DELETE rule mismatch: expected {$expDelete}, got {$actualFk['on_delete']}");
                         }
