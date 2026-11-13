@@ -655,25 +655,28 @@ main.container {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .team-home .team-meta {
   align-items: flex-end;
+  text-align: right;
 }
 
 .team-away .team-meta {
   align-items: flex-start;
+  text-align: left;
 }
 
 .team-name {
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text);
   line-height: 1.25;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 170px;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .team-user-pill {
@@ -1504,12 +1507,29 @@ footer strong {
   }
 }
 
+/* Elementos de áudio e acessibilidade ocultos que não devem gerar caixas de layout ou faixas de grid */
+.sr-only,
+.visually-hidden,
+div[data-sound-event].sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  display: none !important;
+}
+
 /* Requisito 5: Duas colunas em telas desktop quando houver informações complementares */
 @media(min-width:761px) {
   .playing main.container:has(>.game-layout) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 12px;
+    align-items: start;
     max-width: 960px;
     min-height: 0;
     padding-top: 14px;
@@ -1532,26 +1552,34 @@ footer strong {
     width: 100%;
     max-width: none;
     margin: 0;
+    align-self: start;
   }
 
   .playing .compact-score,
   .playing .post-match {
     grid-column: 1/-1;
     margin: 0;
+    align-self: start;
   }
 
   /* Duas colunas quando houver resultado + placar/pós-jogo */
   .playing main:has(>.action-result):has(.compact-score) .action-result,
   .playing main:has(>.action-result):has(.post-match) .action-result {
     grid-column: 1;
+    grid-row: 2;
+    align-self: start;
   }
 
   .playing main:has(>.action-result) .compact-score {
     grid-column: 2;
+    grid-row: 2;
+    align-self: start;
   }
 
   .playing main:has(>.action-result) .post-match {
     grid-column: 2;
+    grid-row: 2;
+    align-self: start;
   }
 
   /* Painel de decisão central */
@@ -2073,6 +2101,8 @@ body.post-match-decision .season-recap {
   .in-match .team-away .team-meta {
     align-items: center;
     text-align: center;
+    width: 100%;
+    min-width: 0;
   }
   .in-match .compact-score .score-team .club-badge,
   .in-match .compact-score .badge-pending {
@@ -2083,8 +2113,13 @@ body.post-match-decision .season-recap {
     font-size: 10px;
   }
   .in-match .team-name {
-    font-size: 12px;
-    max-width: 105px;
+    font-size: 11.5px;
+    line-height: 1.2;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    text-align: center;
   }
   .in-match .team-user-pill {
     font-size: 8px;

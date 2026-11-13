@@ -34,7 +34,23 @@ const targets = [
   { file: 'preview-45m.html', name: '02-progresso-45m-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
   { file: 'preview-60m.html', name: '03-progresso-60m-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
   { file: 'preview-90m.html', name: '04-progresso-90m-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
-  { file: 'preview-expulso.html', name: '05-jogador-expulso-mobile-320', vp: { width: 320, height: 600 }, mobile: true }
+  { file: 'preview-expulso.html', name: '05-jogador-expulso-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
+
+  // OS-COR-F03-R6: Validações Visuais Específicas
+  // 1. EC São Bernardo-SP x Marília-SP no intervalo (nome longo sem corte na borda)
+  { file: 'test-r6-halftime.html', name: 'r6-01-bernardo-marilia-intervalo-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+  { file: 'test-r6-halftime.html', name: 'r6-01-bernardo-marilia-intervalo-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'test-r6-halftime.html', name: 'r6-01-bernardo-marilia-intervalo-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
+
+  // 2. Tela de encerramento (acontecimentos e resultado final perfeitamente alinhados no topo)
+  { file: 'test-r6-fim.html', name: 'r6-02-encerramento-alinhado-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+  { file: 'test-r6-fim.html', name: 'r6-02-encerramento-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'test-r6-fim.html', name: 'r6-02-encerramento-mobile-320', vp: { width: 320, height: 600 }, mobile: true },
+
+  // 3. Casos extremos: dois dígitos e nomes longos (12 x 10)
+  { file: 'extreme-andamento.html', name: 'r6-03-dois-digitos-nomes-longos-desktop-1200', vp: { width: 1200, height: 820 }, mobile: false },
+  { file: 'extreme-andamento.html', name: 'r6-03-dois-digitos-nomes-longos-mobile-390', vp: { width: 390, height: 844 }, mobile: true },
+  { file: 'extreme-andamento.html', name: 'r6-03-dois-digitos-nomes-longos-mobile-320', vp: { width: 320, height: 600 }, mobile: true }
 ];
 
 (async () => {

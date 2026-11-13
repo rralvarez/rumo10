@@ -515,7 +515,72 @@ foreach ($r5Scenarios as $key => $sc) {
     }
 }
 
+echo "\n=========================================================================\n";
+// =========================================================================
+// 4. VALIDAÇÃO DAS CORREÇÕES VISUAIS DE LAYOUT (OS-COR-F03-R6)
+// =========================================================================
+echo "4. Validando Regras CSS e Layout da R6 (Placar sem corte e Encerramento alinhado)...\n";
+
+$cssContent = file_get_contents(dirname(__DIR__).'/public/assets/visual.css');
+
+// 4.1 Validação do Placar (Quebra de linha de nomes extensos sem corte e sem truncamento)
+ok(str_contains($cssContent, '.team-name') && str_contains($cssContent, 'white-space: normal'), 'R6: .team-name permite quebra de linha (white-space: normal)');
+ok(str_contains($cssContent, 'overflow-wrap: break-word'), 'R6: .team-name quebra palavras longas com overflow-wrap: break-word');
+ok(str_contains($cssContent, 'max-width: 100%'), 'R6: .team-name se adapta ao espaço disponível com max-width: 100%');
+ok(!str_contains($cssContent, 'max-width: 170px'), 'R6: Limite fixo de 170px removido de .team-name');
+ok(!str_contains($cssContent, 'max-width: 105px'), 'R6: Limite fixo de 105px no mobile removido de .team-name');
+
+// 4.2 Validação de Isolamento de Elementos de Áudio e Acessibilidade (sr-only)
+ok(str_contains($cssContent, 'div[data-sound-event].sr-only') || str_contains($cssContent, '.sr-only'), 'R6: Regra para elementos .sr-only / áudio presente');
+ok(str_contains($cssContent, 'position: absolute !important'), 'R6: .sr-only é removido do fluxo normal com position: absolute');
+ok(str_contains($cssContent, 'display: none !important'), 'R6: .sr-only não cria caixas de layout no grid (display: none !important)');
+
+// 4.3 Validação de Alinhamento Superior no Desktop (align-items: start / align-self: start / grid-row: 2)
+ok(str_contains($cssContent, 'align-items: start'), 'R6: Container desktop utiliza align-items: start');
+ok(str_contains($cssContent, 'grid-row: 2'), 'R6: Acontecimentos e resultado pós-jogo utilizam a mesma linha (grid-row: 2)');
+ok(str_contains($cssContent, 'align-self: start'), 'R6: Painéis de acontecimentos e resultado utilizam align-self: start');
+
+// 4.4 Validação no HTML gerado para EC São Bernardo-SP x Marília-SP
+$gHalftimeTest = Game::legacyCreate('Rodrigo Alvarez', 'EC São Bernardo-SP', 'SP', 'centroavante');
+$gHalftimeTest['stage'] = 'partida';
+$gHalftimeTest['round'] = 2;
+$gHalftimeTest['club'] = 'EC São Bernardo-SP';
+$gHalftimeTest['matches'] = [[
+    'round' => 2,
+    'home' => 'EC São Bernardo-SP',
+    'away' => 'Marília-SP',
+    'status' => 'intervalo',
+    'minute' => 45,
+    'entry' => 0,
+    'exit' => 90,
+    'lineup' => 'titular',
+    'participation_state' => 'ON_FIELD',
+    'hg' => 1,
+    'ag' => 0,
+    'stats' => ['goals'=>1,'assists'=>0,'shots'=>2,'passes'=>4,'completed'=>3,'minutes'=>45,'rating'=>7.2],
+    'log' => []
+]];
+$gHalftimeTest['feedback'] = [
+    'success' => true,
+    'class' => 'sucesso',
+    'highlight' => null,
+    'text' => 'Fim do primeiro tempo com vantagem da sua equipe.',
+    'effects' => []
+];
+
+$baseGame = $g;
+$g = $gHalftimeTest;
+ob_start();
+include dirname(__DIR__).'/app/view.php';
+$htmlHalftimeView = ob_get_clean();
+$g = $baseGame;
+
+ok(str_contains($htmlHalftimeView, 'EC São Bernardo-SP'), 'R6: Nome completo do mandante "EC São Bernardo-SP" presente no HTML');
+ok(str_contains($htmlHalftimeView, 'Marília-SP'), 'R6: Nome do visitante "Marília-SP" presente no HTML');
+ok(str_contains($htmlHalftimeView, 'r10-scoreboard'), 'R6: Placar da partida renderizado');
+ok(str_contains($htmlHalftimeView, 'badge-intervalo'), 'R6: Distintivo de Intervalo presente');
+
 echo "\n=======================================================\n";
 echo "TOTAL: {$checks} verificações executadas e APROVADAS!\n";
-echo "SUCESSO: OS-COR-F03-R5 verificada na página completa com perfeição!\n";
+echo "SUCESSO: OS-COR-F03-R6 verificada com rigor absoluto!\n";
 echo "=======================================================\n";

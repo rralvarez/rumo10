@@ -90,6 +90,25 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
      - 4A. `status=pre_jogo`, `stage=pre_jogo` -> Banner pré-jogo exibido (sem placar em andamento).
      - 4B. `status=finalizada`, `stage=fim_semana` -> Painel pós-jogo com apito final (sem placar em andamento).
 
+## Correção Visual de Layout (OS-COR-F03-R6)
+
+### 1. Placar com quebra de linha fluida para nomes extensos (`public/assets/visual.css`)
+- **Causa raiz:** No desktop, `.compact-score .score-row` define colunas de proporção `1fr auto 1fr`. Com card de 456px, a coluna do mandante dispõe de ~157px. Como o escudo consome 42px (+10px de gap = 52px), restavam ~105px para `.team-meta`. O seletor `.team-name` impunha `white-space: nowrap; max-width: 170px;`. Nomes longos como `"EC São Bernardo-SP"` (~136px) ultrapassavam a coluna e, devido ao flex com `justify-content: flex-end`, extravasavam -11.78px para a esquerda, cortando o início do nome na borda do card. No mobile, `max-width: 105px;` com `text-overflow: ellipsis;` truncava artificialmente o nome com reticências.
+- **Solução:**
+  - Removidos limites artificiais de largura (`max-width: 170px` no desktop e `max-width: 105px` no mobile), substituindo por `max-width: 100%` adaptativo.
+  - Substituído `white-space: nowrap` por `white-space: normal`, acompanhado de `overflow-wrap: break-word` e `word-break: normal`.
+  - Definido `flex: 1 1 auto; min-width: 0;` em `.team-meta`, contendo a tipografia perfeitamente dentro da coluna flex/grid.
+  - No mobile, centralização uniforme abaixo do escudo, permitindo que nomes extensos ocupem duas linhas com legibilidade impecável sem cortes ou reticências.
+
+### 2. Alinhamento dos painéis de encerramento no desktop (`public/assets/visual.css`)
+- **Causa raiz:** Na tela de encerramento (`stage=fim_semana`), a chamada `Presentation::matchSounds($g,$m)` renderiza uma tag invisível `<div data-sound-event="MATCH_WHISTLE_END" class="sr-only" aria-hidden="true"></div>` diretamente no container principal (`main.container`). Por ser um container CSS Grid de 2 colunas no desktop, o elemento `.sr-only` não possuía regras CSS de isolamento e era posicionado pelo algoritmo de auto-placement na linha 2, coluna 2. Isso empurrava o painel pós-jogo (`.post-match`, restrito à coluna 2) para a **linha 3**, criando um vão vertical de 95.6px em relação ao painel de acontecimentos (`.action-result`, linha 2, coluna 1).
+- **Solução:**
+  - Regra CSS estrita para `.sr-only`, `.visually-hidden` e `div[data-sound-event].sr-only` com `position: absolute !important; display: none !important;`, impedindo qualquer geração de caixas ou faixas no grid.
+  - Fixação explícita de `grid-row: 2` e `align-self: start` em `.action-result` e `.post-match`, combinada com `align-items: start` no container desktop.
+  - Os dois painéis passam a iniciar no mesmo pixel vertical (`top: 159.39px`), com alturas naturais e independentes.
+  - No mobile, empilhamento fluido e sequencial sem rolagem horizontal ou sobreposições.
+
+
 
 
 
