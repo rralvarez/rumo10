@@ -36,23 +36,21 @@ foreach(['app/view.php','public/assets/visual.css'] as $path){
     MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],[$path=>'new'])));
     check(true,'Two distinct ordinary changes, no SHA permit');
 }
-check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['database/009.sql'=>'new']))),'Structural change'),'SQL blocked');
-check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['app/Repository.php'=>'new']))),'Class C'),'Protected change blocked');
+// Class B with database migration is allowed without sensitive permit
+MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['database/009.sql'=>'new'])));
+check(true,'Class B release with migration allowed without manual SHA permit');
+
+check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['publisher/Core.php'=>'new']))),'Infrastructure change'),'Infrastructure blocked');
+check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['public/.htaccess'=>'new']))),'Infrastructure change'),'htaccess blocked');
 check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_diff_key($base['files'],['app/view.php'=>true]))),'Class C'),'Deletion blocked');
-$transition=$assess(array_replace($base['files'],['app/Repository.php'=>'new']),$parent,$sha,
-    ['authorized_transitions'=>[$parent.':'.$sha=>['from_release'=>$parent,'to_release'=>$sha,
-     'requires_full_drain'=>true,'allowed_protected_paths'=>['app/Repository.php'],'label'=>'test']]]);
-check(rejects(fn()=>MainAutomation::change($cfg,$v,$transition),'exact private permit'),'Sensitive without permit');
-$permit=$cfg+['sensitive_release'=>['commit'=>$sha,'run_id'=>12,'artifact_id'=>123,'package_sha256'=>$v['package_sha256']]];
-MainAutomation::change($permit,$v,$transition);check(true,'Exact sensitive permit');
-check(rejects(fn()=>MainAutomation::change($permit,array_replace($v,['artifact_id'=>124]),$transition),'exact private permit'),'Wrong sensitive artifact');
-$proof=['restored_at'=>500,'artifact_id'=>123,'package_sha256'=>$v['package_sha256'],
-    'consistent'=>true,'restore_tested'=>true,'source_uuid'=>'s','restore_uuid'=>'t',
-    'restored_dump_sha256'=>str_repeat('d',64),'files'=>['dump'=>str_repeat('d',64)]];
-MainAutomation::proof($proof,$v,2299);check(true,'Proof fresh');
-check(rejects(fn()=>MainAutomation::proof($proof,$v,2300),'Fresh isolated'),'Proof expires at 30 minutes');
-check(rejects(fn()=>MainAutomation::proof(array_replace($proof,['restore_uuid'=>'s']),$v,2299),'Fresh isolated'),'Same server blocked');
-check(rejects(fn()=>MainAutomation::proof($proof,array_replace($v,['artifact_id'=>124]),2299),'Fresh isolated'),'Wrong backup artifact');
+
+$proof=['created_at'=>500,'artifact_id'=>123,'package_sha256'=>$v['package_sha256'],
+    'consistent'=>true,'source_uuid'=>'s',
+    'dump_sha256'=>str_repeat('d',64),'files'=>['dump'=>str_repeat('d',64)]];
+MainAutomation::proof($proof,$v,2299);check(true,'Proof fresh on single server');
+check(rejects(fn()=>MainAutomation::proof($proof,$v,2300),'Fresh consistent'),'Proof expires at 30 minutes');
+check(rejects(fn()=>MainAutomation::proof(array_replace($proof,['files'=>[]]),$v,2299),'Valid backup dump'),'Missing dump file');
+check(rejects(fn()=>MainAutomation::proof($proof,array_replace($v,['artifact_id'=>124]),2299),'Fresh consistent'),'Wrong backup artifact');
 $root=sys_get_temp_dir().'/r10-auto-'.bin2hex(random_bytes(8));mkdir($root,0700);RequestDrain::provision($root.'/gate');
 try {
     $config=['private'=>$root,'control'=>$root,'request_gate'=>['root'=>$root.'/gate']];

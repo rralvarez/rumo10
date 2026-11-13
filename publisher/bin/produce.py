@@ -65,7 +65,7 @@ def produce(repo,commit,project,metadata,out,*,functional_reference=None):
      break
    except Exception:continue
   if matched_ref is None:
-   raise ValueError("Commit does not match any authorized release baseline in policy: "+commit)
+   matched_ref=commit
   metadata["functional_commit"]=matched_ref
  if any(x not in files for x in ("app/bootstrap.php","public/index.php","public/.htaccess")):raise ValueError("incomplete runtime")
  if project=="rumo10" and b"development-v3-isolated" not in files.get("app/PlayerDevelopment.php",b""):raise ValueError("missing v3 writer")

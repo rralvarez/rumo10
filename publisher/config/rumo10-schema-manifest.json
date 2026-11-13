@@ -1,0 +1,103 @@
+{
+  "schema": "rumo10-schema-manifest-v2",
+  "project": "rumo10",
+  "table_prefix": "rumo10_",
+  "migrations_table": "rumo10_migrations",
+  "versions": {
+    "001": {
+      "label": "Initial Schema",
+      "tracked_in_migrations": false,
+      "tables": [
+        "rumo10_migrations",
+        "rumo10_contas",
+        "rumo10_login_limits",
+        "rumo10_clubes",
+        "rumo10_carreiras",
+        "rumo10_atributos",
+        "rumo10_estados",
+        "rumo10_temporadas",
+        "rumo10_times",
+        "rumo10_partidas",
+        "rumo10_estatisticas",
+        "rumo10_eventos_partida",
+        "rumo10_situacoes",
+        "rumo10_opcoes",
+        "rumo10_decisoes",
+        "rumo10_ofertas",
+        "rumo10_transferencias"
+      ]
+    },
+    "002": {
+      "label": "Universes and Archived Careers",
+      "tracked_in_migrations": false,
+      "tables": [
+        "rumo10_universos",
+        "rumo10_carreiras_arquivadas",
+        "rumo10_competicoes",
+        "rumo10_clubes_oficiais"
+      ]
+    },
+    "003": {
+      "label": "Account Plans",
+      "tracked_in_migrations": false,
+      "tables": [
+        "rumo10_conta_planos"
+      ]
+    },
+    "004": {
+      "label": "Closed Careers History",
+      "tracked_in_migrations": false,
+      "tables": [
+        "rumo10_historico_encerrado"
+      ]
+    },
+    "005": {
+      "label": "Growth and Benefits",
+      "tracked_in_migrations": false,
+      "tables": [
+        "rumo10_origem_vagas",
+        "rumo10_criacoes",
+        "rumo10_beneficios_outbox"
+      ]
+    },
+    "006": {
+      "label": "System Maintenance and Balance",
+      "tracked_in_migrations": true,
+      "tables": [
+        "rumo10_configuracoes_sistema",
+        "rumo10_balanceamentos",
+        "rumo10_formulas",
+        "rumo10_formula_versoes",
+        "rumo10_formula_parametros",
+        "rumo10_balanceamento_formulas",
+        "rumo10_formula_alteracoes"
+      ]
+    },
+    "006-seed": {
+      "label": "Balance Seed Data",
+      "tracked_in_migrations": true,
+      "tables": []
+    },
+    "007": {
+      "label": "Offensive Recalibration",
+      "tracked_in_migrations": true,
+      "tables": []
+    },
+    "008": {
+      "label": "Penalties Balance",
+      "tracked_in_migrations": true,
+      "tables": []
+    },
+    "009": {
+      "label": "F01 Canonical Telemetry",
+      "tracked_in_migrations": true,
+      "tables": [
+        "rumo10_f01_respostas",
+        "rumo10_f01_partidas",
+        "rumo10_f01_aparicoes",
+        "rumo10_f01_eventos",
+        "rumo10_f01_outbox"
+      ]
+    }
+  }
+}

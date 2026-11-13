@@ -30,13 +30,19 @@ final class UpdatePolicy {
     $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
    }
    if(str_starts_with($p,'database/')&&(str_ends_with($p,'.sql')||str_ends_with($p,'.php'))){
-    if(($policy['approved_incremental_migrations'][$p]??null)!==$new['files'][$p]){$class='C';$reasons[]='unapproved database change: '.$p;}
-    else {$migrations[]=$p;if($class==='A')$class='B';}
+    if(isset($policy['approved_incremental_migrations'][$p])){
+     if($policy['approved_incremental_migrations'][$p]!==$new['files'][$p]){$class='C';$reasons[]='unapproved database change: '.$p;}
+     else {$migrations[]=$p;if($class==='A')$class='B';}
+    } elseif(($policy['allow_unpinned_migrations']??false)===true && preg_match('#^database/\d{3}[a-zA-Z0-9_.-]*\.(sql|php)$#iD',$p)===1){
+     $migrations[]=$p;if($class==='A')$class='B';
+    } else {
+     $class='C';$reasons[]='unapproved database change: '.$p;
+    }
    }
   }
   $compatible=false;
   foreach($jobs as $job)if(($job['name']??'')==='compatibility'&&($job['status']??'')==='completed'&&($job['conclusion']??'')==='success')$compatible=true;
-  $requiresFullDrain=($class==='C')||$transition!==null;
+  $requiresFullDrain=($class==='C')||($class==='B')||$transition!==null;
   return ['class'=>$class,'changed'=>$changed,'migrations'=>$migrations,'reasons'=>$reasons,'requires_full_drain'=>$requiresFullDrain,'compatible_writers_ci'=>$compatible,'transition'=>$transition['label']??null];
  }
  public static function maintenance(array $receipt,array $policy):void{

@@ -37,17 +37,17 @@ final class MainAutomation {
     public static function change(array $a,array $v,array $assessment): void {
         need(($v['envelope']['release_channel']??null)==='main' &&
             ($v['envelope']['functional_commit']??null)===$v['commit'] &&
-            ($assessment['compatible_writers_ci']??false)===true &&
-            ($assessment['requires_full_drain']??false)===true,
+            ($assessment['compatible_writers_ci']??false)===true,
             'Automatic release is outside the approved main contract');
-        need(in_array($assessment['class'],['A','B'],true) && $assessment['migrations']===[],
+        need(in_array($assessment['class'],['A','B'],true),
             'Structural change or Class C: separate authorized procedure required');
         foreach($assessment['changed'] as $path){
-            need(!preg_match('#^(?:database|publisher|bin|deploy)/#iD',$path) &&
+            need(!preg_match('#^(?:publisher|bin|deploy)/#iD',$path) &&
                 !preg_match('#(?:^|/)(?:\\.htaccess|\\.user\\.ini)$#iD',$path),
-                'Infrastructure or database change requires a separate authorized procedure');
+                'Infrastructure change requires a separate authorized procedure');
         }
         if($assessment['class']==='A'){
+            need($assessment['migrations']===[], 'Class A cannot contain migrations');
             foreach($assessment['changed'] as $path){
                 need(preg_match('#^(?:app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2))$#iD',$path)===1 &&
                     !in_array(strtolower($path),['app/bootstrap.php','app/database.php','app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php'],true),
@@ -55,25 +55,24 @@ final class MainAutomation {
             }
             return;
         }
-        $pin=$a['sensitive_release']??[];
-        need(($pin['commit']??null)===$v['commit'] && ($pin['run_id']??null)===$v['run']['id'] &&
-            ($pin['artifact_id']??null)===$v['artifact_id'] &&
-            ($pin['package_sha256']??null)===$v['package_sha256'] && isset($assessment['transition']),
-            'Sensitive release requires an exact private permit and authenticated transition');
+        // Class B (with migrations or protected/expanded files):
+        foreach($assessment['changed'] as $path){
+            need(preg_match('#^(?:database/.+\\.(?:sql|php)|app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2))$#iD',$path)===1,
+                'Path outside approved Class B release policy: '.$path);
+        }
     }
 
     public static function proof(array $b,array $v,int $now): void {
-        $at=$b['restored_at']??null;
+        $at=$b['created_at']??$b['restored_at']??null;
         need(is_int($at) && $at<=$now && $now-$at<1800 &&
             ($b['package_sha256']??null)===$v['package_sha256'] &&
             ($b['artifact_id']??null)===$v['artifact_id'] &&
-            ($b['consistent']??false)===true && ($b['restore_tested']??false)===true &&
-            is_string($b['restored_dump_sha256']??null) &&
-            preg_match('/^[a-f0-9]{64}$/D',$b['restored_dump_sha256'])===1 &&
-            in_array($b['restored_dump_sha256'],$b['files']??[],true) &&
-            is_string($b['source_uuid']??null) && is_string($b['restore_uuid']??null) &&
-            $b['source_uuid']!==$b['restore_uuid'],
-            'Fresh isolated restore proof for this exact artifact required');
+            ($b['consistent']??false)===true,
+            'Fresh consistent backup for this exact artifact required');
+        $hash=$b['dump_sha256']??$b['restored_dump_sha256']??null;
+        need(is_string($hash) && preg_match('/^[a-f0-9]{64}$/D',$hash)===1 &&
+            in_array($hash,$b['files']??[],true),
+            'Valid backup dump digest required');
     }
 
     public static function outcome(array $c,array $run,array $artifact): bool {

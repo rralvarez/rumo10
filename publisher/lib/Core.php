@@ -28,7 +28,12 @@ function atomic(string $file, string $bytes): void {
         }
         need(fflush($stream) && fsync($stream), 'Cannot sync file');
     } finally { fclose($stream); }
-    need(rename($tmp, $file), 'Atomic file replacement failed');
+    $renamed = false;
+    for ($i = 0; $i < 10; $i++) {
+        if (@rename($tmp, $file)) { $renamed = true; break; }
+        usleep(20000);
+    }
+    need($renamed, 'Atomic file replacement failed');
 }
 function record(string $file, array $value): void {
     atomic($file, json_encode($value, JSON_THROW_ON_ERROR|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES)."\n");

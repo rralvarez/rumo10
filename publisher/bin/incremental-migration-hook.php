@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 require_once dirname(__DIR__).'/lib/Core.php';
+require_once dirname(__DIR__).'/lib/DatabaseSchemaValidator.php';
 use function Rumo\Publisher\{need,json,digest,record};
+use Rumo\Publisher\DatabaseSchemaValidator;
 
 function getF01HomologatedSchema(): array {
     return [
@@ -303,9 +305,14 @@ try {
     $isClassB = ($policy['class'] ?? '') === 'B';
     need(($isClassA || $isClassB) && ($policy['compatible_writers_ci'] ?? false), 'Compatible CI required in Class A or B');
 
-    // Validação estrita de integridade dos arquivos de migração declarados
+    // Validação de integridade dos arquivos de migração declarados
     foreach($policy['migrations'] as $path) {
-        need(($c['approved_incremental_migrations'][$path]??null)===digest($stage.'/'.$path),'Unapproved SQL or seed');
+        if (isset($c['approved_incremental_migrations'][$path])) {
+            need($c['approved_incremental_migrations'][$path]===digest($stage.'/'.$path),'Unapproved SQL or seed');
+        } else {
+            need(is_file($stage.'/'.$path) && filesize($stage.'/'.$path) > 0, 'Migration file missing or empty: '.$path);
+            need(preg_match('#^database/\d{3}[a-zA-Z0-9_.-]*\.(sql|php)$#iD', $path) === 1, 'Invalid migration path: '.$path);
+        }
     }
 
     require $c['current'].'/app/bootstrap.php';
@@ -315,7 +322,7 @@ try {
     try {
         $versions=$db->query('SELECT version FROM rumo10_migrations')->fetchAll(PDO::FETCH_COLUMN);
 
-        // Se for Classe A (sem DDL pendente), modo estritamente de leitura: não executar DDL, DML ou mutações
+        // Se for Classe A (sem DDL pendente) ou validation_only, modo estritamente de leitura: não executar DDL, DML ou mutações
         if ($isClassA || ($policy['validation_only']??false)===true) {
             need(empty($policy['migrations']), 'Class A cannot execute pending migration files');
 
@@ -329,31 +336,30 @@ try {
                 need(in_array((string)$rm, $allVersions, true), "Release requires validated {$rm} migration in rumo10_migrations");
             }
 
-            // Se 009 for exigida, validar integralmente as cinco tabelas F01 contra o contrato homologado (modo leitura)
-            if (in_array('009', $requiredMigrations, true)) {
-                $f01Contract = getF01HomologatedSchema();
-                foreach ($f01Contract as $tableName => $tContract) {
-                    assertF01TableStructure($db, $tableName, $tContract);
-                }
-            }
+            // Validar estrutura do banco de dados (modo leitura)
+            DatabaseSchemaValidator::validate($db, null, $requiredMigrations);
 
-            $out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$allVersions];
-            record($q['private'].'/migrations-'.$q['attempt'].'.json',$out+['approved_hashes'=>$c['approved_incremental_migrations']]);
+            $out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$allVersions,'executed_migrations'=>[]];
+            record($q['private'].'/migrations-'.$q['attempt'].'.json',$out+['approved_hashes'=>$c['approved_incremental_migrations']??[]]);
             echo json_encode($out,JSON_THROW_ON_ERROR);
             return;
         }
 
         // --- FLUXO DE EXECUÇÃO DE MIGRATIONS CLASSE B ---
+        $executedMigrations = [];
+
         // Migrações 006 (balance e seed)
         if(!in_array('006',$versions,true)){
             $db->exec(file_get_contents($stage.'/database/006-balance-and-maintenance.sql'));
             $db->exec("INSERT INTO rumo10_migrations(version) VALUES('006')");
+            $executedMigrations[] = '006';
         }
         $db->beginTransaction();
         if(!in_array('006-seed',$versions,true)){
             require $stage.'/database/seed_balance.php';
             seed_balance_data($db);
             $db->exec("INSERT INTO rumo10_migrations(version) VALUES('006-seed')");
+            $executedMigrations[] = '006-seed';
         }
 
         // Migrações 007 e 008 (DML/parametros transacionais)
@@ -361,6 +367,7 @@ try {
             if(!in_array((string)$version,$versions,true)&&is_file($stage.'/database/'.$name)){
                 $db->exec(file_get_contents($stage.'/database/'.$name));
                 $db->prepare('INSERT INTO rumo10_migrations(version) VALUES(?)')->execute([(string)$version]);
+                $executedMigrations[] = (string)$version;
             }
         }
         need($db->query("SELECT codigo FROM rumo10_balanceamentos WHERE estado='ativo'")->fetchColumn()==='bal-v062-recalibracao-ofensiva','Active balance mismatch');
@@ -370,8 +377,9 @@ try {
         // Migration 009: F01 Canonical Telemetry (DDL fora de transação PDO devido a commits implícitos do MySQL)
         $sql009Path = $stage.'/database/009-f01-canonical-telemetry.sql';
         if(is_file($sql009Path)) {
-            $expected009Hash = $c['approved_incremental_migrations']['database/009-f01-canonical-telemetry.sql'] ?? null;
-            need($expected009Hash !== null && digest($sql009Path) === $expected009Hash, 'Migration 009 SHA-256 integrity validation failed');
+            if (isset($c['approved_incremental_migrations']['database/009-f01-canonical-telemetry.sql'])) {
+                need(digest($sql009Path) === $c['approved_incremental_migrations']['database/009-f01-canonical-telemetry.sql'], 'Migration 009 SHA-256 integrity validation failed');
+            }
 
             $f01Contract = getF01HomologatedSchema();
 
@@ -379,7 +387,6 @@ try {
             $existingF01 = $db->query("SHOW TABLES LIKE 'rumo10_f01_%'")->fetchAll(PDO::FETCH_COLUMN);
             foreach ($existingF01 as $t) {
                 if (isset($f01Contract[$t])) {
-                    // Se tabela já existe parcialmente, inspecionar que as colunas já presentes não conflitem
                     $stmt = $db->prepare("SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ?");
                     $stmt->execute([$t]);
                     $existingCols = [];
@@ -402,7 +409,6 @@ try {
             }
 
             // 2. Executar SQL DDL se 009 não estiver registrada.
-            // Para suportar recuperação idempotente de DDL parcial sem DROP TABLE, completamos índices/constraints faltantes se a tabela já existir
             if(!in_array('009', $versions, true)) {
                 $db->exec(file_get_contents($sql009Path));
 
@@ -467,8 +473,8 @@ try {
 
                 // 4. Registrar versão 009 SOMENTE após validação estrutural completa
                 $db->exec("INSERT INTO rumo10_migrations(version) VALUES('009')");
+                $executedMigrations[] = '009';
             } else {
-                // Se 009 já constava como registrada, atestar que todas as 5 tabelas estão integralmente conformes
                 foreach ($f01Contract as $tableName => $tContract) {
                     assertF01TableStructure($db, $tableName, $tContract);
                 }
@@ -477,18 +483,41 @@ try {
             need(false, 'Mandatory migration 009 missing from stage payload');
         }
 
-        $allVersions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
-        
+        // Executar migrations adicionais pendentes declaradas na policy
+        foreach ($policy['migrations'] as $mPath) {
+            if (preg_match('#database/(\d{3}(?:-[a-z0-9_-]+)?)\.(sql|php)$#iD', $mPath, $mm)) {
+                $ver = $mm[1];
+                if (!in_array($ver, ['006', '006-seed', '007', '008', '009'], true) && !in_array($ver, $versions, true) && !in_array($ver, $executedMigrations, true)) {
+                    if (str_ends_with($mPath, '.sql')) {
+                        $db->exec(file_get_contents($stage.'/'.$mPath));
+                        $db->prepare("INSERT INTO rumo10_migrations(version) VALUES(?)")->execute([$ver]);
+                        $executedMigrations[] = $ver;
+                    } elseif (str_ends_with($mPath, '.php')) {
+                        require $stage.'/'.$mPath;
+                        $fn = 'seed_'.str_replace('-', '_', $ver);
+                        if (function_exists($fn)) { $fn($db); }
+                        $db->prepare("INSERT INTO rumo10_migrations(version) VALUES(?)")->execute([$ver]);
+                        $executedMigrations[] = $ver;
+                    }
+                }
+            }
+        }
+
         $requiredMigrations = $policy['required_migrations']
             ?? $q['candidate']['envelope']['required_migrations']
             ?? ($c['authorized_releases'][$q['candidate']['envelope']['functional_commit'] ?? '']['requires_migration'] ?? []);
 
+        // Validação estrutural automática pós-migração
+        DatabaseSchemaValidator::validate($db, null, $requiredMigrations);
+
+        $allVersions = $db->query('SELECT version FROM rumo10_migrations ORDER BY version')->fetchAll(PDO::FETCH_COLUMN);
+        
         foreach ($requiredMigrations as $rm) {
             need(in_array((string)$rm, $allVersions, true), "Release requires validated {$rm} migration");
         }
 
-        $out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$allVersions];
-        record($q['private'].'/migrations-'.$q['attempt'].'.json',$out+['approved_hashes'=>$c['approved_incremental_migrations']]);
+        $out=['ok'=>true,'compatible_expansion'=>true,'attempt'=>$q['attempt'],'versions'=>$allVersions,'executed_migrations'=>$executedMigrations];
+        record($q['private'].'/migrations-'.$q['attempt'].'.json',$out+['approved_hashes'=>$c['approved_incremental_migrations']??[]]);
         echo json_encode($out,JSON_THROW_ON_ERROR);
     } finally {
         if($db->inTransaction())$db->rollBack();

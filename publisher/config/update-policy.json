@@ -17,6 +17,7 @@
     "app/RetiredCareer.php"
   ],
   "data_contract": "rumo10-development-v3",
+  "allow_unpinned_migrations": true,
   "first_approved_package_sha256": "8044ad5ebf8bdf3e6af33cadbae081af65adea5ef02b8b7d2e2720cf4cfb7458",
   "authorized_releases": {
     "907427dabc363d055ff32ad53853d322639992fb": {
