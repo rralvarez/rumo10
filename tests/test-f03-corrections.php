@@ -391,7 +391,131 @@ foreach ($scenarios as $key => $sc) {
     }
 }
 
+echo "\n=========================================================================\n";
+// =========================================================================
+// 3. VALIDAÇÃO DA PÁGINA COMPLETA NOS QUATRO CENÁRIOS DEFINIDOS NA R5
+// =========================================================================
+echo "3. Validando Seleção do Painel na Página Completa (OS-COR-F03-R5 - Quatro Cenários)...\n";
+
+$r5Scenarios = [
+    // Cenário 1: status=em_andamento, stage=partida (partida normal em andamento)
+    'r5_cenario_1_em_andamento_stage_partida' => [
+        'stage' => 'partida',
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 35,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'ON_FIELD',
+            'stats' => ['goals' => 0, 'assists' => 0]
+        ],
+        'assert_contains' => ['r10-scoreboard', 'name="option"'],
+        'assert_not_contains' => ['pre-match-banner', 'class="panel post-match"']
+    ],
+
+    // Cenário 2: status=em_andamento, stage=pre_jogo (partida em andamento com divergência de stage pre_jogo)
+    'r5_cenario_2_em_andamento_stage_pre_jogo' => [
+        'stage' => 'pre_jogo',
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 93,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'ON_FIELD',
+            'stats' => ['goals' => 1, 'assists' => 0]
+        ],
+        'assert_contains' => ['r10-scoreboard', 'name="option"'],
+        'assert_not_contains' => ['pre-match-banner', 'class="panel post-match"']
+    ],
+
+    // Cenário 3: status=em_andamento, stage=fim_semana (partida em andamento aos 93' com divergência de stage fim_semana)
+    'r5_cenario_3_em_andamento_stage_fim_semana' => [
+        'stage' => 'fim_semana',
+        'm' => [
+            'status' => 'em_andamento',
+            'minute' => 93,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'ON_FIELD',
+            'stats' => ['goals' => 1, 'assists' => 0]
+        ],
+        'assert_contains' => ['r10-scoreboard', 'name="option"'],
+        'assert_not_contains' => ['pre-match-banner', 'class="panel post-match"']
+    ],
+
+    // Cenário 4A: status=pre_jogo, stage=pre_jogo (estado pré-jogo confirmado)
+    'r5_cenario_4a_pre_jogo_confirmado' => [
+        'stage' => 'pre_jogo',
+        'm' => [
+            'status' => 'pre_jogo',
+            'minute' => 0,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'STARTING',
+            'stats' => ['goals' => 0, 'assists' => 0]
+        ],
+        'assert_contains' => ['pre-match-banner'],
+        'assert_not_contains' => ['r10-scoreboard', 'class="panel post-match"']
+    ],
+
+    // Cenário 4B: status=finalizada, stage=fim_semana (estado pós-jogo confirmado)
+    'r5_cenario_4b_finalizada_confirmada' => [
+        'stage' => 'fim_semana',
+        'm' => [
+            'status' => 'finalizada',
+            'minute' => 90,
+            'entry' => 0,
+            'exit' => 90,
+            'lineup' => 'titular',
+            'participation_state' => 'FULL_TIME',
+            'stats' => ['goals' => 1, 'assists' => 1]
+        ],
+        'assert_contains' => ['class="panel post-match"'],
+        'assert_not_contains' => ['r10-scoreboard', 'pre-match-banner']
+    ]
+];
+
+foreach ($r5Scenarios as $key => $sc) {
+    $matchData = array_merge([
+        'round' => 1,
+        'home' => 'São Paulo',
+        'away' => 'Santos',
+        'hg' => 1,
+        'ag' => 0,
+        'stats' => ['goals' => 0, 'assists' => 0, 'shots' => 0, 'passes' => 0, 'completed' => 0, 'minutes' => 0, 'rating' => 6.0],
+        'log' => []
+    ], $sc['m']);
+
+    $path = '/carreira';
+    $error = null;
+    $_SESSION = ['account' => 1, 'csrf' => 'test'];
+
+    $gTest = $g;
+    $gTest['stage'] = $sc['stage'];
+    $gTest['round'] = 1;
+    $gTest['club'] = $matchData['home'];
+    $gTest['matches'] = [$matchData];
+
+    $baseGame = $g;
+    $g = $gTest;
+    ob_start();
+    include dirname(__DIR__).'/app/view.php';
+    $htmlView = ob_get_clean();
+    $g = $baseGame;
+
+    foreach ($sc['assert_contains'] as $expected) {
+        ok(str_contains($htmlView, $expected), "R5 [{$key}]: view.php contém '{$expected}'");
+    }
+    foreach ($sc['assert_not_contains'] as $forbidden) {
+        ok(!str_contains($htmlView, $forbidden), "R5 [{$key}]: view.php NÃO contém '{$forbidden}'");
+    }
+}
+
 echo "\n=======================================================\n";
 echo "TOTAL: {$checks} verificações executadas e APROVADAS!\n";
-echo "SUCESSO: OS-COR-F03-R4 verificada com precisão absoluta!\n";
+echo "SUCESSO: OS-COR-F03-R5 verificada na página completa com perfeição!\n";
 echo "=======================================================\n";

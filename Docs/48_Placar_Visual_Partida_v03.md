@@ -77,5 +77,19 @@ Melhorar a apresentação visual das partidas do Rumo10, mantendo integralmente 
 - O limite `< 90` foi preservado exclusivamente na inferência heurística de saves legados sem estado canônico de substituição.
 - Quando não houver minuto confiável em `exit`, apresenta apenas `"Substituído"`, sem criar horários fictícios.
 
+## Correção da Seleção do Painel na Página Completa (OS-COR-F03-R5)
+
+### 1. Seleção do painel da partida por status em andamento (`app/view.php`)
+- **Problema:** Na renderização da página completa em `app/view.php`, a ramificação principal que selecionava o placar e as decisões da partida avaliava estritamente `elseif($g['stage']==='partida'):`. Se a partida estivesse com `$m['status'] === 'em_andamento'` e `$g['stage']` divergente (como `pre_jogo` ou `fim_semana`), o painel da partida não era selecionado, caindo inadvertidamente no banner pré-jogo ou no painel de pós-jogo.
+- **Solução:** A condição foi ajustada para `elseif(($m && ($m['status']??'')==='em_andamento') || $g['stage']==='partida'): Presentation::score($g,$m);`, garantindo que qualquer partida com status efetivo em andamento renderize o painel da partida (placar, relógio, progresso e escolhas/card de avanço).
+- **Validação:** Homologado na página completa através de `tests/test-f03-corrections.php` nos 4 cenários da R5:
+  1. `status=em_andamento`, `stage=partida` -> Placar + decisões em campo.
+  2. `status=em_andamento`, `stage=pre_jogo` -> Placar + decisões em campo (sem banner pré-jogo).
+  3. `status=em_andamento`, `stage=fim_semana` (93′) -> Placar + decisões em campo (sem painel de apito final).
+  4. Estados confirmados não em andamento:
+     - 4A. `status=pre_jogo`, `stage=pre_jogo` -> Banner pré-jogo exibido (sem placar em andamento).
+     - 4B. `status=finalizada`, `stage=fim_semana` -> Painel pós-jogo com apito final (sem placar em andamento).
+
+
 
 
