@@ -159,26 +159,43 @@ try {
     $views = $viewsStmt->fetchAll(PDO::FETCH_COLUMN);
     $report['database']['views_in_db'] = count($views);
 
-    // Grants check (booleans only, NO raw statements printed)
+    // Grants check (rigorous parsing for database/global scope)
     $stmt = $pdo->query('SHOW GRANTS');
     while ($row = $stmt->fetchColumn()) {
         $line = strtoupper((string)$row);
-        if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'EVENT')) {
-            $report['privilege_capabilities']['has_event_privilege'] = true;
-        }
-        if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) {
-            $report['privilege_capabilities']['has_routine_privilege'] = true;
-        }
-        if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'TRIGGER')) {
-            $report['privilege_capabilities']['has_trigger_privilege'] = true;
-        }
-        if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'LOCK TABLES')) {
-            $report['privilege_capabilities']['has_lock_tables_privilege'] = true;
+        $appliesToDb = str_contains($line, 'ON *.*') || 
+                       str_contains($line, 'ON `' . strtoupper($dbName) . '`.*') ||
+                       str_contains($line, 'ON ' . strtoupper($dbName) . '.*');
+
+        if ($appliesToDb) {
+            if (str_contains($line, 'ALL PRIVILEGES')) {
+                $report['privilege_capabilities']['has_event_privilege'] = true;
+                $report['privilege_capabilities']['has_routine_privilege'] = true;
+                $report['privilege_capabilities']['has_trigger_privilege'] = true;
+                $report['privilege_capabilities']['has_lock_tables_privilege'] = true;
+            }
+            if (str_contains($line, 'EVENT')) $report['privilege_capabilities']['has_event_privilege'] = true;
+            if (str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) $report['privilege_capabilities']['has_routine_privilege'] = true;
+            if (str_contains($line, 'TRIGGER')) $report['privilege_capabilities']['has_trigger_privilege'] = true;
+            if (str_contains($line, 'LOCK TABLES')) $report['privilege_capabilities']['has_lock_tables_privilege'] = true;
         }
     }
 } catch (\Throwable $e) {
     $report['database']['connection'] = 'FAILED: ' . $e->getMessage();
 }
+
+// Check missing dependencies
+$missingDeps = [];
+if (!$report['privilege_capabilities']['has_trigger_privilege']) {
+    $missingDeps[] = "Privilégio 'TRIGGER' no banco '{$dbName}' não comprovado em SHOW GRANTS";
+}
+if (!$report['privilege_capabilities']['has_event_privilege']) {
+    $missingDeps[] = "Privilégio 'EVENT' no banco '{$dbName}' não comprovado em SHOW GRANTS";
+}
+if (!$report['privilege_capabilities']['has_routine_privilege']) {
+    $missingDeps[] = "Privilégio 'ROUTINE'/'EXECUTE' no banco '{$dbName}' não comprovado em SHOW GRANTS";
+}
+$report['privilege_capabilities']['missing_dependencies'] = $missingDeps;
 
 // Dump binary discovery
 $configuredBin = $profileData['dump_bin'] ?? null;
@@ -194,6 +211,7 @@ $foundBin = null;
 $supportsColumnStats = false;
 $supportsTablespaces = false;
 $supportsGtid = false;
+$supportsSkipNoData = false;
 
 foreach ($candidates as $cand) {
     if (is_file($cand) && (PHP_OS_FAMILY === 'Windows' || is_executable($cand))) {
@@ -210,6 +228,7 @@ foreach ($candidates as $cand) {
             $supportsColumnStats = str_contains($helpOut, 'column-statistics');
             $supportsTablespaces = str_contains($helpOut, 'no-tablespaces') || str_contains($helpOut, 'all-tablespaces');
             $supportsGtid = str_contains($helpOut, 'set-gtid-purged');
+            $supportsSkipNoData = str_contains($helpOut, 'no-data');
 
             $report['dump_binary']['supports_column_statistics'] = $supportsColumnStats;
             $report['dump_binary']['supports_tablespaces'] = $supportsTablespaces;
@@ -220,9 +239,12 @@ foreach ($candidates as $cand) {
 }
 
 // Dry run test with mysqldump
-if ($foundBin && $pdo && $dbName && count($tables) > 0) {
-    $options = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--hex-blob'];
+if ($foundBin && $pdo && $dbName && count($tables) > 0 && empty($missingDeps)) {
+    $options = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--hex-blob', '--triggers'];
 
+    if ($supportsSkipNoData) {
+        $options[] = '--skip-no-data';
+    }
     if ($supportsColumnStats) {
         $options[] = '--skip-column-statistics';
     }
@@ -232,21 +254,21 @@ if ($foundBin && $pdo && $dbName && count($tables) > 0) {
     if ($supportsGtid && $report['database']['engine'] !== 'MariaDB') {
         $options[] = '--set-gtid-purged=OFF';
     }
-    if ($report['privilege_capabilities']['has_event_privilege'] && $report['database']['events_in_db'] > 0) {
+    if ($report['database']['events_in_db'] > 0) {
         $options[] = '--events';
     }
-    if ($report['privilege_capabilities']['has_routine_privilege'] && $report['database']['routines_in_db'] > 0) {
+    if ($report['database']['routines_in_db'] > 0) {
         $options[] = '--routines';
-    }
-    if ($report['privilege_capabilities']['has_trigger_privilege'] && $report['database']['triggers_in_db'] > 0) {
-        $options[] = '--triggers';
-    } else {
-        $options[] = '--skip-triggers';
     }
 
     $report['options_compatibility'] = $options;
 
-    $tempCnf = sys_get_temp_dir() . '/diag-cnf-' . bin2hex(random_bytes(6)) . '.cnf';
+    $diagPrivBase = $configData['private'] ?? dirname($configPath) . '/private';
+    if (!is_dir($diagPrivBase)) @mkdir($diagPrivBase, 0700, true);
+    $secureDiagDir = $diagPrivBase . '/.diag-tmp-' . bin2hex(random_bytes(6));
+    @mkdir($secureDiagDir, 0700, true);
+
+    $tempCnf = $secureDiagDir . '/diag-cnf.cnf';
     $host = '127.0.0.1';
     $port = 3306;
     if (!empty($profileData['source_dsn'])) {
@@ -256,29 +278,35 @@ if ($foundBin && $pdo && $dbName && count($tables) > 0) {
     file_put_contents($tempCnf, "[client]\nuser=" . ($profileData['source_user'] ?? 'root') . "\npassword=" . $password . "\nhost=" . $host . "\nport=" . $port . "\n");
     chmod($tempCnf, 0600);
 
-    $dryDump = tempnam(sys_get_temp_dir(), 'diag_dump_');
-    // True preflight in diagnostic: test schema of ALL tables in database
-    $cmd = array_merge([$foundBin, '--defaults-file=' . $tempCnf], $options, ['--no-data', $dbName]);
+    $dryDump = $secureDiagDir . '/diag-dump.sql';
+    // True preflight in diagnostic: test FULL export with data
+    $cmd = array_merge([$foundBin, '--defaults-file=' . $tempCnf], $options, [$dbName]);
 
-    $errLog = tempnam(sys_get_temp_dir(), 'diag_err_');
+    $errLog = $secureDiagDir . '/diag-err.log';
     $p = proc_open($cmd, [0 => ['pipe', 'r'], 1 => ['file', $dryDump, 'wb'], 2 => ['file', $errLog, 'wb']], $pipes);
     if (is_resource($p)) {
         fclose($pipes[0]);
         $exit = proc_close($p);
         $errOut = is_file($errLog) ? trim(file_get_contents($errLog)) : '';
         if ($exit === 0 && is_file($dryDump) && filesize($dryDump) > 0) {
-            $report['dry_run_dump'] = 'SUCCESS';
+            $report['dry_run_dump'] = 'SUCCESS (Full data test passed)';
             $report['preflight_verdict'] = 'PASS';
         } else {
             $cleanErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errOut);
+            $cleanErr = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $cleanErr);
             $report['dry_run_dump'] = 'FAILED (exit ' . $exit . '): ' . $cleanErr;
             $report['preflight_verdict'] = 'BLOCKED';
-            @file_put_contents(sys_get_temp_dir() . '/diag-mysqldump-error.log', $cleanErr);
+            @file_put_contents($diagPrivBase . '/diagnostic-error.log', $cleanErr);
+            @chmod($diagPrivBase . '/diagnostic-error.log', 0600);
         }
     }
-    if (is_file($errLog)) @unlink($errLog);
-    if (is_file($dryDump)) @unlink($dryDump);
-    if (is_file($tempCnf)) @unlink($tempCnf);
+    if (is_dir($secureDiagDir)) {
+        $tFiles = glob($secureDiagDir . '/*');
+        foreach ($tFiles as $tf) { if (is_file($tf)) @unlink($tf); }
+        @rmdir($secureDiagDir);
+    }
+} elseif (!empty($missingDeps)) {
+    $report['preflight_verdict'] = 'BLOCKED: Missing database privileges (' . implode(', ', $missingDeps) . ')';
 }
 
 $outputJson = json_encode($report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);

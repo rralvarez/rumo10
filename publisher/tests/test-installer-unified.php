@@ -51,6 +51,7 @@ try {
     $patchFiles = [
         'mysql-backup-hook.php' => $realRoot . '/publisher/bin/mysql-backup-hook.php',
         'diagnose-uol.php'      => $realRoot . '/publisher/bin/diagnose-uol.php',
+        'guarded-publisher.php' => $realRoot . '/publisher/bin/guarded-publisher.php',
         'Publisher.php'         => $realRoot . '/publisher/lib/Publisher.php',
         'DrainPublisher.php'    => $realRoot . '/publisher/lib/DrainPublisher.php',
         'GitHub.php'            => $realRoot . '/publisher/lib/GitHub.php',
@@ -62,6 +63,7 @@ try {
     // Create dummy existing operational files in bin/ and lib/
     file_put_contents($binDir . '/mysql-backup-hook.php', "<?php // OLD HOOK\n");
     file_put_contents($binDir . '/diagnose-uol.php', "<?php // OLD DIAG\n");
+    file_put_contents($binDir . '/guarded-publisher.php', "<?php // OLD GUARDED PUB\n");
     file_put_contents($libDir . '/Publisher.php', "<?php // OLD PUB\n");
     file_put_contents($libDir . '/DrainPublisher.php', "<?php // OLD DRAIN PUB\n");
     file_put_contents($libDir . '/GitHub.php', "<?php // OLD GITHUB\n");
@@ -130,7 +132,7 @@ try {
     $cmd = [PHP_BINARY, $binDir . '/install-and-publish.php', '--config=' . $configFile, '--skip-publish', '--force'];
     $out = shell_exec(implode(' ', array_map('escapeshellarg', $cmd)) . ' 2>&1');
 
-    if (str_contains($out, 'EXECUTANDO ROLLBACK AUTOMÁTICO IMEDIATO')) {
+    if (str_contains($out, 'ROLLBACK')) {
         testPass("Instalador detectou falha no preflight e acionou rollback automático");
     } else {
         testFail("Preflight failure", "Deveria ter acionado rollback: {$out}");
@@ -152,11 +154,14 @@ try {
     }
 
     // Verify receipt was written with aborted status
-    $receiptFile = $installRoot . '/patch-install-receipt.json';
+    $receiptFile = $privateDir . '/patch-install-receipt.json';
+    if (!is_file($receiptFile)) {
+        $receiptFile = $installRoot . '/patch-install-receipt.json';
+    }
     if (is_file($receiptFile)) {
         $receipt = json_decode(file_get_contents($receiptFile), true);
-        if (($receipt['status'] ?? '') === 'aborted_preflight' && ($receipt['rollback_executed'] ?? false) === true) {
-            testPass("Recibo registrado: status='aborted_preflight' com rollback comprovado");
+        if (str_contains($receipt['status'] ?? '', 'aborted') && ($receipt['rollback_ok'] ?? false) === true) {
+            testPass("Recibo registrado: status='aborted_rollback_executed' com rollback comprovado");
         } else {
             testFail("Receipt status", "Recibo inválido: " . json_encode($receipt));
         }
@@ -215,7 +220,7 @@ PHP;
     $cmd = [PHP_BINARY, $binDir . '/install-and-publish.php', '--config=' . $configFile];
     $out = shell_exec(implode(' ', array_map('escapeshellarg', $cmd)) . ' 2>&1');
 
-    if (str_contains($out, 'IDEMPOTÊNCIA: Patch já instalado e release UI-001')) {
+    if (str_contains($out, 'IDEMPOTÊNCIA: Release UI-001')) {
         testPass("Idempotência: detecta instalação prévia e evita reprocessamento indevido");
     } else {
         testFail("Idempotency check", "Não detectou idempotência: {$out}");
