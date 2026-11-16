@@ -257,7 +257,70 @@ ok(str_contains($htmlScore, 'Ida:'), 'Presentation::score exibe resultado da ida
 ok(str_contains($htmlScore, 'Agregado: <strong>2 <small>×</small> 2</strong>'), 'Presentation::score exibe agregado');
 $checks += 3;
 
-// 8.1 Teste de renderização no view.php para pre_jogo e fim_semana
+// 8.1 Validação estrutural rigorosa do pre-match-banner (OS-R/R10-UI-001-CI03)
+function validatePreMatchBanner(string $html, string $expectedComp, int $expectedRound, bool $requireAggregate = true): array {
+    // Localiza o elemento <article> cuja lista de classes contenha pre-match-banner
+    if (!preg_match('#<article(?:\s+[^>]*?)?\s+class="([^"]*)"[^>]*>#s', $html, $openMatch, PREG_OFFSET_CAPTURE)) {
+        return ['ok' => false, 'error' => 'Elemento <article> com classe pre-match-banner não foi localizado'];
+    }
+
+    $classes = preg_split('/\s+/', trim($openMatch[1][0]));
+    if (!in_array('pre-match-banner', $classes, true)) {
+        return ['ok' => false, 'error' => 'Elemento <article> não possui classe pre-match-banner isolada'];
+    }
+
+    $openTagEnd = $openMatch[0][1] + strlen($openMatch[0][0]);
+    $restHtml = substr($html, $openTagEnd);
+
+    // Exige fechamento correto com </article>, sem fallback
+    $closePos = strpos($restHtml, '</article>');
+    if ($closePos === false) {
+        return ['ok' => false, 'error' => 'Banner pré-jogo não possui tag de fechamento </article> correspondente'];
+    }
+
+    // Rejeita abertura de outro <article> antes do fechamento do banner atual
+    $nextOpenArticle = strpos($restHtml, '<article');
+    if ($nextOpenArticle !== false && $nextOpenArticle < $closePos) {
+        return ['ok' => false, 'error' => 'Banner pré-jogo não foi fechado antes da abertura de um novo <article>'];
+    }
+
+    $bannerInner = substr($restHtml, 0, $closePos);
+
+    // 1. Verificar o badge PRÓXIMA PARTIDA dentro do banner
+    if (!preg_match('#<span(?:\s+[^>]*?)?\s+class="[^"]*\bbadge-pre-jogo\b[^"]*"[^>]*>\s*PRÓXIMA PARTIDA\s*</span>#s', $bannerInner)) {
+        if (!str_contains($bannerInner, 'PRÓXIMA PARTIDA')) {
+            return ['ok' => false, 'error' => 'Banner não contém a identificação "PRÓXIMA PARTIDA"'];
+        }
+    }
+
+    // 2. Extrair o conteúdo do elemento match-competition-name e comparar seu texto efetivo com expectedComp
+    if (!preg_match('#<span(?:\s+[^>]*?)?\s+class="[^"]*\bmatch-competition-name\b[^"]*"[^>]*>(.*?)</span>#s', $bannerInner, $compMatch)) {
+        return ['ok' => false, 'error' => 'Banner não contém elemento <span class="match-competition-name">'];
+    }
+    $actualComp = trim(strip_tags($compMatch[1]));
+    if ($actualComp !== $expectedComp) {
+        return ['ok' => false, 'error' => "Elemento match-competition-name contém '{$actualComp}', esperado '{$expectedComp}'"];
+    }
+
+    // 3. Exigir a identificação correta da rodada no componente correspondente
+    if (!preg_match('#<span(?:\s+[^>]*?)?\s+class="[^"]*\bmatch-round-tag\b[^"]*"[^>]*>(.*?)</span>#s', $bannerInner, $roundMatch)) {
+        return ['ok' => false, 'error' => 'Banner não contém elemento <span class="match-round-tag">'];
+    }
+    $actualRoundText = trim(strip_tags($roundMatch[1]));
+    if (!preg_match('/\bRODADA\s+' . $expectedRound . '\b/u', $actualRoundText)) {
+        return ['ok' => false, 'error' => "Elemento match-round-tag não contém 'RODADA {$expectedRound}' (obteve '{$actualRoundText}')"];
+    }
+
+    // 4. Verificar o placar agregado esperado dentro do próprio banner
+    if ($requireAggregate) {
+        if (!preg_match('#<div(?:\s+[^>]*?)?\s+class="[^"]*\baggregate-strip\b[^"]*"[^>]*>#s', $bannerInner)) {
+            return ['ok' => false, 'error' => 'Banner não contém container .aggregate-strip do placar agregado'];
+        }
+    }
+
+    return ['ok' => true, 'banner' => $bannerInner];
+}
+
 if (!function_exists('form')) {
     function form(string $path, ?array $g = null): void { echo '<form method="post" action="'.e($path).'">'; }
 }
@@ -274,16 +337,49 @@ $g = $gPre;
 ob_start();
 require dirname(__DIR__).'/app/view.php';
 $htmlViewPre = ob_get_clean();
-// Localiza e valida os componentes internos do pre-match-banner conforme homologado na UI-001
-$bannerStart = strpos($htmlViewPre, 'pre-match-banner');
-ok($bannerStart !== false, 'view.php renderiza container pre-match-banner');
-$bannerEnd = strpos($htmlViewPre, '</article>', $bannerStart);
-$bannerHtml = $bannerEnd !== false ? substr($htmlViewPre, $bannerStart, $bannerEnd - $bannerStart) : $htmlViewPre;
 
-ok(str_contains($bannerHtml, 'PRÓXIMA PARTIDA'), 'view.php exibe badge "PRÓXIMA PARTIDA" no banner');
-ok(str_contains($bannerHtml, 'class="match-competition-name"') && str_contains($bannerHtml, Competition::label($gPre)), 'view.php exibe nome da competição no banner');
-ok(str_contains($bannerHtml, 'RODADA 16'), 'view.php exibe identificação "RODADA 16" no banner');
-ok(str_contains($bannerHtml, 'class="aggregate-strip"'), 'view.php preserva apresentação do placar agregado no pre_jogo');
+// P1. HTML real homologado
+$resPre = validatePreMatchBanner($htmlViewPre, Competition::label($gPre), 16, true);
+ok($resPre['ok'], 'P1: view.php renderiza pre-match-banner estruturalmente válido e fechado (' . ($resPre['error'] ?? '') . ')');
+ok(str_contains($resPre['banner'], 'PRÓXIMA PARTIDA'), 'P1: badge "PRÓXIMA PARTIDA" restrito ao banner');
+ok(str_contains($resPre['banner'], 'class="match-competition-name"'), 'P1: elemento match-competition-name restrito ao banner');
+ok(str_contains($resPre['banner'], 'class="match-round-tag"'), 'P1: elemento match-round-tag restrito ao banner');
+ok(str_contains($resPre['banner'], 'class="aggregate-strip"'), 'P1: container aggregate-strip restrito ao banner');
+$checks += 5;
+
+// =========================================================================
+// 8.2 Testes negativos obrigatórios de integridade estrutural (OS-R/R10-UI-001-CI03)
+// =========================================================================
+
+// N1. Banner sem fechamento (sem </article> ou abre outro <article> antes de fechar)
+$htmlN1_sem_fechamento = str_replace('</article>', '', $htmlViewPre);
+$resN1_a = validatePreMatchBanner($htmlN1_sem_fechamento, Competition::label($gPre), 16, true);
+ok(!$resN1_a['ok'], 'N1-A: Validador rejeita banner sem tag de fechamento </article>');
+
+$htmlN1_abre_outro = preg_replace('#</article>#', '<article class="panel other-panel">Outro</article>', $htmlViewPre, 1);
+$resN1_b = validatePreMatchBanner($htmlN1_abre_outro, Competition::label($gPre), 16, true);
+ok(!$resN1_b['ok'], 'N1-B: Validador rejeita banner que abre outro <article> sem fechar o anterior');
+
+// N2. Competição incorreta em match-competition-name, mesmo que o nome esperado apareça fora
+$htmlN2 = str_replace(
+    '<span class="match-competition-name">' . e(Competition::label($gPre)) . '</span>',
+    '<span class="match-competition-name">Copa Fictícia</span><div class="outside-comp">' . e(Competition::label($gPre)) . '</div>',
+    $htmlViewPre
+);
+$resN2 = validatePreMatchBanner($htmlN2, Competition::label($gPre), 16, true);
+ok(!$resN2['ok'], 'N2: Validador rejeita competição incorreta em match-competition-name mesmo com nome fora');
+
+// N3. Placar agregado fora do banner
+$htmlN3 = preg_replace('#<div class="aggregate-strip".*?(?=<div class="live-player-stats">)#s', '', $htmlViewPre);
+$htmlN3 .= '<div class="aggregate-strip" data-aggregate="true">Agregado fora do banner</div>';
+$resN3 = validatePreMatchBanner($htmlN3, Competition::label($gPre), 16, true);
+ok(!$resN3['ok'], 'N3: Validador rejeita placar agregado presente apenas fora do banner');
+
+// N4. Rodada fora do banner (ausente de match-round-tag e presente fora)
+$htmlN4 = preg_replace('#<span class="match-round-tag">.*?</span>#s', '', $htmlViewPre, 1);
+$htmlN4 = str_replace('</article>', '</article><span class="match-round-tag"> · RODADA 16</span>', $htmlN4);
+$resN4 = validatePreMatchBanner($htmlN4, Competition::label($gPre), 16, true);
+ok(!$resN4['ok'], 'N4: Validador rejeita rodada presente apenas fora do banner');
 $checks += 5;
 
 // fim_semana
