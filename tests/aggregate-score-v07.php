@@ -257,7 +257,7 @@ ok(str_contains($htmlScore, 'Ida:'), 'Presentation::score exibe resultado da ida
 ok(str_contains($htmlScore, 'Agregado: <strong>2 <small>×</small> 2</strong>'), 'Presentation::score exibe agregado');
 $checks += 3;
 
-// 8.1 Validação estrutural rigorosa do pre-match-banner (OS-R/R10-UI-001-CI05)
+// 8.1 Validação estrutural rigorosa do pre-match-banner (OS-R/R10-UI-001-CI05 / CI06)
 function validatePreMatchBanner(
     string $html,
     string $expectedComp,
@@ -360,8 +360,8 @@ function validatePreMatchBanner(
         }
 
         $totalText = trim($totalNodes->item(0)->textContent);
-        if (!preg_match('/(\d+)\s*(?:[×xX-]|\D+)\s*(\d+)/u', $totalText, $scoreMatch)) {
-            return ['ok' => false, 'error' => 'Container .aggregate-strip não contém valores numéricos do placar agregado'];
+        if (!preg_match('/^Agregado:\s*([0-9]+)\s*×\s*([0-9]+)$/u', $totalText, $scoreMatch)) {
+            return ['ok' => false, 'error' => 'Formato inválido do placar agregado'];
         }
 
         $actualHomeAgg = (int)$scoreMatch[1];
@@ -494,7 +494,19 @@ $htmlN11 = str_replace('</article>', '</article><aside><div class="aggregate-str
 ok(str_contains($htmlN11, '<aside><div class="aggregate-strip"'), 'N11: mutação inseriu aggregate-strip exclusivamente fora do artigo');
 $resN11 = validatePreMatchBanner($htmlN11, $expectedCompPre, $expectedRoundPre, $expectedHomeAggPre, $expectedAwayAggPre);
 ok(!$resN11['ok'], 'N11: Validador rejeita aggregate-total posicionado totalmente fora do artigo pré-jogo');
-$checks += 12;
+
+// N12. Separador inválido no aggregate-total (ex.: '+' em vez de '×') (OS-R/R10-UI-001-CI06)
+$htmlN12 = str_replace(
+    '<span class="aggregate-total">Agregado: <strong>2 <small>×</small> 1</strong></span>',
+    '<span class="aggregate-total">Agregado: <strong>2 <small>+</small> 1</strong></span>',
+    $htmlViewPre
+);
+ok(str_contains($htmlN12, '<span class="aggregate-total">Agregado: <strong>2 <small>+</small> 1</strong></span>'), 'N12: mutação alterou o elemento aggregate-total com separador +');
+ok(str_contains($htmlN12, '<strong>2 <small>+</small> 1</strong>'), 'N12: mutação preservou os valores numéricos 2 e 1 inalterados');
+$resN12 = validatePreMatchBanner($htmlN12, $expectedCompPre, $expectedRoundPre, $expectedHomeAggPre, $expectedAwayAggPre);
+ok(!$resN12['ok'], 'N12: Validador rejeita aggregate-total com separador + em vez de ×');
+ok(($resN12['error'] ?? '') === 'Formato inválido do placar agregado', 'N12: rejeição foi motivada especificamente pelo formato inválido');
+$checks += 16;
 
 // fim_semana
 $gPost = $gSample;
