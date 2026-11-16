@@ -274,9 +274,17 @@ $g = $gPre;
 ob_start();
 require dirname(__DIR__).'/app/view.php';
 $htmlViewPre = ob_get_clean();
-ok(str_contains($htmlViewPre, 'class="aggregate-strip"'), 'view.php renderiza aggregate-strip no pre_jogo');
-ok(str_contains($htmlViewPre, 'PRÓXIMA PARTIDA · RODADA 16'), 'view.php exibe banner de pre_jogo');
-$checks += 2;
+// Localiza e valida os componentes internos do pre-match-banner conforme homologado na UI-001
+$bannerStart = strpos($htmlViewPre, 'pre-match-banner');
+ok($bannerStart !== false, 'view.php renderiza container pre-match-banner');
+$bannerEnd = strpos($htmlViewPre, '</article>', $bannerStart);
+$bannerHtml = $bannerEnd !== false ? substr($htmlViewPre, $bannerStart, $bannerEnd - $bannerStart) : $htmlViewPre;
+
+ok(str_contains($bannerHtml, 'PRÓXIMA PARTIDA'), 'view.php exibe badge "PRÓXIMA PARTIDA" no banner');
+ok(str_contains($bannerHtml, 'class="match-competition-name"') && str_contains($bannerHtml, Competition::label($gPre)), 'view.php exibe nome da competição no banner');
+ok(str_contains($bannerHtml, 'RODADA 16'), 'view.php exibe identificação "RODADA 16" no banner');
+ok(str_contains($bannerHtml, 'class="aggregate-strip"'), 'view.php preserva apresentação do placar agregado no pre_jogo');
+$checks += 5;
 
 // fim_semana
 $gPost = $gSample;
