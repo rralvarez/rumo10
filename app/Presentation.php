@@ -325,9 +325,12 @@ final class Presentation {
             echo '<span class="match-clock-static"><b>'.e($minute).'′</b></span>';
         }
         echo '</div>';
+        echo '<div class="match-meta-right">';
+        echo '<span class="match-competition-name">'.e(Competition::label($g)).'</span>';
         if ($roundText !== '') {
-            echo '<div class="match-round-tag">'.e($roundText).'</div>';
+            echo '<span class="match-round-tag"> · '.e($roundText).'</span>';
         }
+        echo '</div>';
         echo '</div>';
 
         echo '<div class="score-row">';
@@ -402,7 +405,40 @@ final class Presentation {
         if(!empty($g['official']))$rows=array_reverse($rows);
         else usort($rows,fn($a,$b)=>$b['round']<=>$a['round']);
         $summary=Game::summary($g);
-        echo '<section class="panel goal-history"><p class="tag">TEMPORADA '.e($g['season']).'</p><h2>Seus gols no campeonato</h2><div class="stat-strip"><div><strong data-stat="season-goals">'.e($summary['goals']).'</strong><span>Gols marcados</span></div><div><strong>'.e($summary['assists']).'</strong><span>Assistências</span></div><div><strong>'.e($summary['games']).'</strong><span>Jogos em campo</span></div></div>';
+
+        $compGoals = 0;
+        $compAssists = 0;
+        $compMatches = 0;
+        if (!empty($g['matches'])) {
+            foreach ($g['matches'] as $cm) {
+                if (($cm['status'] ?? '') === 'finalizada' && in_array($g['club'], [$cm['home'], $cm['away']], true)) {
+                    $st = $cm['stats'] ?? [];
+                    $compGoals += (int)($st['goals'] ?? 0);
+                    $compAssists += (int)($st['assists'] ?? 0);
+                    if ((int)($st['minutes'] ?? 0) > 0) {
+                        $compMatches++;
+                    }
+                }
+            }
+        }
+
+        echo '<section class="panel goal-history">';
+        echo '<p class="tag">TEMPORADA '.e($g['season']).' · '.e(Competition::label($g)).' · '.e(Competition::phaseLabel($g)).'</p>';
+        echo '<h2>Seus gols no campeonato</h2>';
+        echo '<div class="history-stat-group">';
+        echo '<h3 class="history-stat-title">Competição atual: '.e(Competition::label($g)).'</h3>';
+        echo '<div class="stat-strip" aria-label="Estatísticas na competição atual">';
+        echo '<div><strong data-stat="competition-goals">'.e($compGoals).'</strong><span>Gols na competição</span></div>';
+        echo '<div><strong data-stat="competition-assists">'.e($compAssists).'</strong><span>Assistências</span></div>';
+        echo '<div><strong data-stat="competition-matches">'.e($compMatches).'</strong><span>Partidas jogadas</span></div>';
+        echo '</div></div>';
+        echo '<div class="history-stat-group">';
+        echo '<h3 class="history-stat-title">Temporada '.e($g['season']).' (Total acumulado)</h3>';
+        echo '<div class="stat-strip" aria-label="Estatísticas na temporada">';
+        echo '<div><strong data-stat="season-goals">'.e($summary['goals']).'</strong><span>Gols na temporada</span></div>';
+        echo '<div><strong data-stat="season-assists">'.e($summary['assists']).'</strong><span>Assistências</span></div>';
+        echo '<div><strong data-stat="season-matches">'.e($summary['games']).'</strong><span>Jogos em campo</span></div>';
+        echo '</div></div>';
         if(!$rows) echo '<p class="subtle">Seu histórico aparecerá após a primeira partida.</p>';
         else {
             echo '<details'.($g['stage']==='fim_semana'?' open':'').'><summary>Gols por rodada</summary><ol class="goal-list">';

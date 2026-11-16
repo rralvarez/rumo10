@@ -194,7 +194,8 @@ main.container {
 }
 
 .career-head .competition-name {
-  display: none
+  color: #e5ff85;
+  font-weight: 700;
 }
 
 .career-head>div.tag {
@@ -602,6 +603,24 @@ main.container {
   font-weight: 600;
 }
 
+.match-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  color: var(--muted);
+  text-align: right;
+  max-width: 65%;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.match-competition-name {
+  font-weight: 700;
+  color: var(--lime);
+  letter-spacing: 0.4px;
+}
+
 /* Linha Principal do Placar */
 .compact-score .score-row {
   display: grid;
@@ -971,6 +990,26 @@ progress.match-progress-bar::-moz-progress-bar {
   color: var(--lime)
 }
 
+.post-match .match-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(52, 73, 78, 0.45);
+  font-size: 11px;
+}
+
+.post-match .score-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 4px 0 10px;
+  margin-bottom: 8px;
+}
+
 .post-match,
 .pace-report {
   container-type: inline-size;
@@ -1291,6 +1330,18 @@ progress.match-progress-bar::-moz-progress-bar {
 .goal-history h2 {
   font-size: 15px;
   margin: 0 0 6px
+}
+
+.history-stat-group {
+  margin-bottom: 12px;
+}
+
+.history-stat-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--lime);
+  margin: 10px 0 2px;
+  letter-spacing: 0.3px;
 }
 
 .career-extras {
@@ -2278,6 +2329,16 @@ body.post-match-decision .season-recap {
     order: 2;
     padding: 10px 12px;
     margin: 0 0 6px;
+  }
+  body.post-match-summary .post-match .match-time {
+    font-size: 10px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+  }
+  body.post-match-summary .post-match .score-row {
+    gap: 8px;
+    padding: 2px 0 6px;
+    margin-bottom: 6px;
   }
   body.post-match-summary .action-result {
     order: 3;
