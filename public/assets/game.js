@@ -149,11 +149,7 @@ document.querySelector('[data-copy-invite]')?.addEventListener('click', async ()
 document.addEventListener('click', event => {
   const btn = event.target instanceof Element ? event.target.closest('[data-action="continue-post-match"]') : null;
   if (!btn) return;
-  event.preventDefault();
-  document.body.classList.remove('post-match-summary');
-  document.body.classList.add('post-match-decision');
-  try { history.replaceState(null, '', '/carreira?etapa=pos_jogo'); } catch (_) {}
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Permite navegação GET convencional para /carreira?etapa=pos_jogo (etapa post-match-decision renderizada no servidor)
 });
 
 })();
