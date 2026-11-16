@@ -185,15 +185,20 @@ assertCheck(str_contains($htmlFimA, 'data-action="continue-post-match"'), 'Etapa
 assertCheck(str_contains($htmlFimA, 'Avançar →'), 'Etapa A: Botão primário possui rótulo "Avançar →"');
 assertCheck(str_contains($htmlFimA, 'href="/carreira?etapa=pos_jogo"'), 'Etapa A: Fallback do botão direciona para /carreira?etapa=pos_jogo');
 
-// Decisões de fim de semana na Etapa A:
-assertCheck(str_contains($htmlFimA, 'weekend-decision-panel'), 'Etapa A: Painel weekend-decision-panel presente na árvore DOM para transição instantânea');
-assertCheck(str_contains($css, 'body.post-match-summary .weekend-decision-panel'), 'CSS: Regra que oculta .weekend-decision-panel durante post-match-summary está presente');
-assertCheck(str_contains($css, 'body.post-match-decision .post-match'), 'CSS: Regra que oculta .post-match durante post-match-decision está presente');
+// Decisões de fim de semana na Etapa A (NÃO renderizadas no HTML do servidor):
+assertCheck(!str_contains($htmlFimA, 'weekend-decision-panel'), 'Etapa A: Painel weekend-decision-panel AUSENTE do HTML inicial');
+assertCheck(!str_contains($htmlFimA, 'action="/decisao/registrar"'), 'Etapa A: Formulário de decisões AUSENTE do HTML inicial');
+assertCheck(!str_contains($htmlFimA, 'name="option"'), 'Etapa A: Opções de decisão AUSENTES do DOM inicial');
+assertCheck(str_contains($css, 'body.post-match-summary .weekend-decision-panel'), 'CSS: Regra defensiva para .weekend-decision-panel presente');
+assertCheck(str_contains($css, 'body.post-match-decision .post-match'), 'CSS: Regra que oculta .post-match durante post-match-decision presente');
 
 // Etapa C (Decisão pós-jogo: com ?etapa=pos_jogo)
 $htmlFimC = renderView($gPost, '/carreira', ['etapa' => 'pos_jogo']);
 assertCheck(str_contains($htmlFimC, 'post-match-decision'), 'Etapa C: Body possui classe post-match-decision');
 assertCheck(!str_contains($htmlFimC, 'post-match-summary'), 'Etapa C: Body NÃO possui classe post-match-summary');
+assertCheck(str_contains($htmlFimC, 'weekend-decision-panel'), 'Etapa C: Painel weekend-decision-panel PRESENTE no HTML');
+assertCheck(str_contains($htmlFimC, 'action="/decisao/registrar"'), 'Etapa C: Formulário de decisões PRESENTE no HTML');
+assertCheck(substr_count($htmlFimC, 'name="option"') === 4, 'Etapa C: Exatamente 4 opções de decisão renderizadas');
 
 // -------------------------------------------------------------
 echo "\n4. Validando Suporte a Refresh (F5) e Idempotência...\n";
@@ -202,10 +207,13 @@ echo "\n4. Validando Suporte a Refresh (F5) e Idempotência...\n";
 $htmlRefreshA = renderView($gPost, '/carreira', []);
 assertCheck(str_contains($htmlRefreshA, 'post-match-summary'), 'Refresh F5 na Etapa A mantém estado post-match-summary');
 assertCheck(str_contains($htmlRefreshA, 'FIM DE JOGO'), 'Refresh F5 na Etapa A preserva tela de Fim de Jogo');
+assertCheck(!str_contains($htmlRefreshA, 'weekend-decision-panel'), 'Refresh F5 na Etapa A NÃO renderiza decisões');
 
 // F5 na Etapa C
 $htmlRefreshC = renderView($gPost, '/carreira', ['etapa' => 'pos_jogo']);
 assertCheck(str_contains($htmlRefreshC, 'post-match-decision'), 'Refresh F5 na Etapa C mantém estado post-match-decision');
+assertCheck(str_contains($htmlRefreshC, 'weekend-decision-panel'), 'Refresh F5 na Etapa C preserva formulário de decisões');
+assertCheck(substr_count($htmlRefreshC, 'name="option"') === 4, 'Refresh F5 na Etapa C preserva 4 opções de decisão');
 
 // -------------------------------------------------------------
 echo "\n5. Validando Preservação de Disputa de Pênaltis Pendente...\n";
@@ -257,6 +265,10 @@ if (class_exists('PenaltyShootout') && PenaltyShootout::requiresShootout($gShoot
     assertCheck(str_contains($htmlShootout, 'shootout-start-card'), 'Shootout pendente: Card de CTA para pênaltis é exibido');
     assertCheck(str_contains($htmlShootout, 'Começar as cobranças de pênaltis →'), 'Shootout pendente: Botão de cobranças presente');
     assertCheck(!str_contains($htmlShootout, 'data-action="continue-post-match"'), 'Shootout pendente: Botão avançar para decisões NÃO é exibido antes dos pênaltis');
+    assertCheck(!str_contains($htmlShootout, 'weekend-decision-panel'), 'Shootout pendente: Painel de decisões AUSENTE no fim do tempo regulamentar');
+
+    $htmlShootoutPosJogo = renderView($gShootout, '/carreira', ['etapa' => 'pos_jogo']);
+    assertCheck(!str_contains($htmlShootoutPosJogo, 'weekend-decision-panel'), 'Shootout pendente: Mesmo com ?etapa=pos_jogo decisões permanecem BLOQUEADAS');
 } else {
     echo "  [INFO] Disputa de pênaltis simulada através dos critérios do motor.\n";
 }

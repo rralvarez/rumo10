@@ -89,3 +89,4 @@ file_put_contents($root . '/preview-ui001-etapa-c.html', sampleGame('fim_semana'
 file_put_contents($root . '/preview-ui001-partida.html', sampleGame('partida', []));
 
 echo "Previews HTML gerados com sucesso!\n";
+

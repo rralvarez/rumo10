@@ -65,3 +65,4 @@ const targets = [
   console.error(err);
   process.exitCode = 1;
 });
+

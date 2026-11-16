@@ -83,7 +83,8 @@ check(str_contains($htmlFimStep1, 'post-match-summary'), 'Post-match Step 1 body
 check(!str_contains($htmlFimStep1, 'post-match-decision'), 'Post-match Step 1 body does not have class "post-match-decision"');
 check(str_contains($htmlFimStep1, 'data-action="continue-post-match"'), 'Post-match Step 1 renders "Continuar ->" continuation button');
 check(str_contains($htmlFimStep1, 'href="/carreira?etapa=pos_jogo"'), 'Continuation button has fallback href="/carreira?etapa=pos_jogo"');
-check(str_contains($htmlFimStep1, 'weekend-decision-panel'), 'Weekend decision panel has class "weekend-decision-panel" for step separation');
+check(!str_contains($htmlFimStep1, 'weekend-decision-panel'), 'Post-match Step 1 does not render weekend-decision-panel in HTML');
+check(!str_contains($htmlFimStep1, 'action="/decisao/registrar"'), 'Post-match Step 1 does not render decision form in HTML');
 
 // Render Post-Match Step 2 (/carreira?etapa=pos_jogo)
 $_GET = ['etapa' => 'pos_jogo'];
@@ -93,6 +94,8 @@ $htmlFimStep2 = ob_get_clean();
 
 check(str_contains($htmlFimStep2, 'post-match-decision'), 'Post-match Step 2 body has class "post-match-decision"');
 check(!str_contains($htmlFimStep2, 'post-match-summary'), 'Post-match Step 2 body does not have class "post-match-summary"');
+check(str_contains($htmlFimStep2, 'weekend-decision-panel'), 'Post-match Step 2 renders weekend-decision-panel');
+check(str_contains($htmlFimStep2, 'action="/decisao/registrar"'), 'Post-match Step 2 renders decision form');
 
 // Verify CSS rules in visual.css and JS handler in game.js
 $css = file_get_contents(__DIR__ . '/../public/assets/visual.css');
