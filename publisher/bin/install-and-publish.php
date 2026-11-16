@@ -131,8 +131,8 @@ if (!is_file($manifestPath) && is_file(dirname($configPath) . '/manifest.json'))
 }
 
 $expectedHashes = [
-    'mysql-backup-hook.php' => '45903c7e8cfcaa7c7625be1443fbb4909edd778a75b176d395b77c0df1fe4bd6',
-    'diagnose-uol.php'      => 'eb595d5db972d08f0e731d7ea4cc443856e82917b74d67c0932595a3ed270982',
+    'mysql-backup-hook.php' => 'be832b4f275822644f1d0efdbda24f16b1009038ddba9d335e587e2b8f0a27a4',
+    'diagnose-uol.php'      => 'cc2dfc20e9079368835334df2cfc5d457d877c61cdd571840e2ae7e60055ccd7',
     'Publisher.php'         => '38e9a5784ac3f9cd4fdb1ab3e2ae184b8ebe20eefc7803831fcfb250ced7313e',
     'DrainPublisher.php'    => '4fbcd95202349212a6ede3d2d9be0a441450cc4d27634550279d0f9e44eb991a',
     'GitHub.php'            => 'af564c8293737c053f5dac5c3f7bca3509232c62e9b1942fed316aef0649c66d',

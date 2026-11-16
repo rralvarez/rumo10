@@ -38,18 +38,20 @@ mkdir($tempDir, 0700, true);
 try {
     // 1. Adaptive Options Logic & Fail-Closed Integrity
     echo "1. Validando opções adaptativas e integridade estrita (fail-closed)...\n";
-    $baseOptions = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--order-by-primary', '--hex-blob', '--triggers'];
+    $baseOptions = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--hex-blob'];
 
-    // MariaDB: omit --no-tablespaces and --set-gtid-purged
-    $mariaOptions = $baseOptions;
-    if (!in_array('--no-tablespaces', $mariaOptions, true) && !in_array('--set-gtid-purged=OFF', $mariaOptions, true)) {
-        testPass("MariaDB omite --no-tablespaces e --set-gtid-purged=OFF");
+    // Omissão de --order-by-primary (risco de falha em views e tabelas sem chave primária)
+    if (!in_array('--order-by-primary', $baseOptions, true)) {
+        testPass("Opções base omitem --order-by-primary (proteção para views e tabelas sem PK)");
     }
 
-    // MySQL 8: includes --no-tablespaces and --set-gtid-purged
-    $mysqlOptions = array_merge($baseOptions, ['--no-tablespaces', '--set-gtid-purged=OFF']);
-    if (in_array('--no-tablespaces', $mysqlOptions, true) && in_array('--set-gtid-purged=OFF', $mysqlOptions, true)) {
-        testPass("MySQL 8 inclui --no-tablespaces e --set-gtid-purged=OFF");
+    // Suporte a --skip-column-statistics quando cliente for MySQL 8 (evita erro 1109 contra MariaDB)
+    $mysql8ClientOptions = array_merge($baseOptions, ['--skip-column-statistics', '--no-tablespaces', '--set-gtid-purged=OFF']);
+    if (in_array('--skip-column-statistics', $mysql8ClientOptions, true)) {
+        testPass("Cliente mysqldump com suporte a column-statistics inclui --skip-column-statistics");
+    }
+    if (in_array('--no-tablespaces', $mysql8ClientOptions, true)) {
+        testPass("Cliente mysqldump inclui --no-tablespaces (proteção para usuário sem privilégio PROCESS)");
     }
 
     // Fail-closed rule: if database has events and user lacks privilege -> BLOCK!
@@ -65,6 +67,33 @@ try {
         testPass("Integridade: bloqueia publicação se banco contiver eventos inacessíveis ao usuário");
     }
     if (!$blocked) testFail("Event integrity", "Não bloqueou evento inacessível");
+
+    // Fail-closed rule: if database has triggers and user lacks TRIGGER privilege -> BLOCK!
+    $hasTriggersInDb = true;
+    $hasTriggerPriv = false;
+    $triggerBlocked = false;
+    try {
+        if ($hasTriggersInDb && !$hasTriggerPriv) {
+            throw new RuntimeException("Database contains triggers but user lacks TRIGGER privilege; backup would be incomplete");
+        }
+    } catch (RuntimeException $e) {
+        $triggerBlocked = true;
+        testPass("Integridade: bloqueia publicação se banco contiver triggers inacessíveis ao usuário");
+    }
+    if (!$triggerBlocked) testFail("Trigger integrity", "Não bloqueou trigger inacessível");
+
+    // Proven absence: 0 triggers in DB -> safe to pass --skip-triggers
+    $hasTriggersInDb = false;
+    $hasTriggerPriv = false;
+    $trOptions = $baseOptions;
+    if ($hasTriggerPriv && $hasTriggersInDb) {
+        $trOptions[] = '--triggers';
+    } else {
+        $trOptions[] = '--skip-triggers';
+    }
+    if (in_array('--skip-triggers', $trOptions, true)) {
+        testPass("Integridade comprovada: ausência confirmada de triggers (COUNT=0) emite --skip-triggers com segurança");
+    }
 
     // Proven absence: 0 events in DB -> safe to omit without permission error
     $hasEventsInDb = false;

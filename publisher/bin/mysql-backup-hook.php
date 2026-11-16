@@ -67,76 +67,6 @@ try {
   }
  } catch (\Throwable) {}
 
- $hasEventPriv = false;
- $hasRoutinePriv = false;
- try {
-  $stmt = $source->query('SHOW GRANTS');
-  while ($row = $stmt->fetchColumn()) {
-   $line = strtoupper((string)$row);
-   if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'EVENT')) {
-    $hasEventPriv = true;
-   }
-   if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) {
-    $hasRoutinePriv = true;
-   }
-  }
- } catch (\Throwable $e) {
-  throw new \RuntimeException('Cannot verify user grants via SHOW GRANTS: ' . $e->getMessage());
- }
-
- // Fail-closed integrity check on events and routines
- $hasEventsInDb = false;
- $hasRoutinesInDb = false;
- try {
-  $evStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ?");
-  $evStmt->execute([$name]);
-  $evCount = (int)$evStmt->fetchColumn();
-  $hasEventsInDb = $evCount > 0;
- } catch (\Throwable $e) {
-  throw new \RuntimeException('Cannot verify database events count in information_schema: ' . $e->getMessage());
- }
-
- try {
-  $rtStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ?");
-  $rtStmt->execute([$name]);
-  $rtCount = (int)$rtStmt->fetchColumn();
-  $hasRoutinesInDb = $rtCount > 0;
- } catch (\Throwable $e) {
-  throw new \RuntimeException('Cannot verify database routines count in information_schema: ' . $e->getMessage());
- }
-
- // Strict integrity: block publication if database contains objects the user cannot dump
- if ($hasEventsInDb && !$hasEventPriv) {
-  throw new \RuntimeException("Database contains {$evCount} events but user lacks EVENT privilege; backup would be incomplete");
- }
- if ($hasRoutinesInDb && !$hasRoutinePriv) {
-  throw new \RuntimeException("Database contains {$rtCount} routines but user lacks ROUTINE privilege; backup would be incomplete");
- }
-
- $options = [
-  '--single-transaction',
-  '--quick',
-  '--skip-lock-tables',
-  '--skip-add-locks',
-  '--skip-comments',
-  '--order-by-primary',
-  '--hex-blob',
-  '--triggers',
- ];
-
- if (!$isMariaDB) {
-  $options[] = '--no-tablespaces';
-  $options[] = '--set-gtid-purged=OFF';
- }
-
- if ($hasEventPriv && $hasEventsInDb) {
-  $options[] = '--events';
- }
-
- if ($hasRoutinePriv && $hasRoutinesInDb) {
-  $options[] = '--routines';
- }
-
  $phase='dump-bin-discovery';
  $dumpBin = $c['dump_bin'] ?? null;
  if (!$dumpBin || !is_file($dumpBin)) {
@@ -160,21 +90,161 @@ try {
  }
  need($dumpBin !== null && (is_file($dumpBin) || PHP_OS_FAMILY !== 'Windows'), 'mysqldump binary required for consistent transactional snapshot backup');
 
+ // Discover dump binary CLI capabilities
+ $binQuoted = (PHP_OS_FAMILY === 'Windows' && str_contains($dumpBin, ' ')) ? '"' . $dumpBin . '"' : escapeshellcmd($dumpBin);
+ $binHelp = (string)@shell_exec($binQuoted . ' --help 2>&1');
+ $supportsColumnStats = str_contains($binHelp, 'column-statistics');
+ $supportsTablespaces = str_contains($binHelp, 'no-tablespaces') || str_contains($binHelp, 'all-tablespaces');
+ $supportsGtid = str_contains($binHelp, 'set-gtid-purged');
+
+ $hasEventPriv = false;
+ $hasRoutinePriv = false;
+ $hasTriggerPriv = false;
+ try {
+  $stmt = $source->query('SHOW GRANTS');
+  while ($row = $stmt->fetchColumn()) {
+   $line = strtoupper((string)$row);
+   if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'EVENT')) {
+    $hasEventPriv = true;
+   }
+   if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) {
+    $hasRoutinePriv = true;
+   }
+   if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'TRIGGER')) {
+    $hasTriggerPriv = true;
+   }
+  }
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify user grants via SHOW GRANTS: ' . $e->getMessage());
+ }
+
+ // Fail-closed integrity check on events, routines, triggers and views
+ $hasEventsInDb = false;
+ $hasRoutinesInDb = false;
+ $hasTriggersInDb = false;
+ try {
+  $evStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ?");
+  $evStmt->execute([$name]);
+  $evCount = (int)$evStmt->fetchColumn();
+  $hasEventsInDb = $evCount > 0;
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify database events count in information_schema: ' . $e->getMessage());
+ }
+
+ try {
+  $rtStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ?");
+  $rtStmt->execute([$name]);
+  $rtCount = (int)$rtStmt->fetchColumn();
+  $hasRoutinesInDb = $rtCount > 0;
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify database routines count in information_schema: ' . $e->getMessage());
+ }
+
+ try {
+  $trStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = ?");
+  $trStmt->execute([$name]);
+  $trCount = (int)$trStmt->fetchColumn();
+  $hasTriggersInDb = $trCount > 0;
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify database triggers count in information_schema: ' . $e->getMessage());
+ }
+
+ $views = [];
+ try {
+  $vwStmt = $source->prepare("SELECT TABLE_NAME FROM information_schema.VIEWS WHERE TABLE_SCHEMA = ?");
+  $vwStmt->execute([$name]);
+  $views = $vwStmt->fetchAll(\PDO::FETCH_COLUMN);
+  foreach ($views as $vName) {
+   $source->query("SELECT 1 FROM `" . str_replace("`", "``", $vName) . "` LIMIT 0");
+  }
+ } catch (\Throwable $e) {
+  throw new \RuntimeException("Database view validation failed ({$vName}): " . $e->getMessage());
+ }
+
+ // Strict integrity: block publication if database contains objects the user cannot dump
+ if ($hasEventsInDb && !$hasEventPriv) {
+  throw new \RuntimeException("Database contains {$evCount} events but user lacks EVENT privilege; backup would be incomplete");
+ }
+ if ($hasRoutinesInDb && !$hasRoutinePriv) {
+  throw new \RuntimeException("Database contains {$rtCount} routines but user lacks ROUTINE privilege; backup would be incomplete");
+ }
+ if ($hasTriggersInDb && !$hasTriggerPriv) {
+  throw new \RuntimeException("Database contains {$trCount} triggers but user lacks TRIGGER privilege; backup would be incomplete");
+ }
+
+ $options = [
+  '--single-transaction',
+  '--quick',
+  '--skip-lock-tables',
+  '--skip-add-locks',
+  '--skip-comments',
+  '--hex-blob',
+ ];
+
+ if ($supportsColumnStats) {
+  $options[] = '--skip-column-statistics';
+ }
+
+ if ($supportsTablespaces) {
+  $options[] = '--no-tablespaces';
+ }
+
+ if ($supportsGtid && !$isMariaDB) {
+  $options[] = '--set-gtid-purged=OFF';
+ }
+
+ if ($hasEventPriv && $hasEventsInDb) {
+  $options[] = '--events';
+ }
+
+ if ($hasRoutinePriv && $hasRoutinesInDb) {
+  $options[] = '--routines';
+ }
+
+ if ($hasTriggerPriv && $hasTriggersInDb) {
+  $options[] = '--triggers';
+ } else {
+  $options[] = '--skip-triggers';
+ }
+
  // Credentials are NEVER command-line values; option files are outside web roots.
- $run=static function(array $cmd,string $in,string $out):void {
+ $run = static function(array $cmd, string $in, string $out) use (&$phase, $r, $c): void {
   $errPath = tempnam(sys_get_temp_dir(), 'bk_err_');
-  $p=proc_open($cmd,[0=>['file',$in,'rb'],1=>['file',$out,'wb'],2=>['file',$errPath,'wb']],$pipes);
-  need(is_resource($p),'Backup command unavailable');$end=microtime(true)+300;$exit=-1;
-  do{$s=proc_get_status($p);if(!$s['running']){$exit=$s['exitcode'];break;}if(microtime(true)>$end){proc_terminate($p);break;}usleep(100000);}while(true);
+  $p = proc_open($cmd, [0 => ['file', $in, 'rb'], 1 => ['file', $out, 'wb'], 2 => ['file', $errPath, 'wb']], $pipes);
+  need(is_resource($p), 'Backup command unavailable');
+  $end = microtime(true) + 300;
+  $exit = -1;
+  do {
+   $s = proc_get_status($p);
+   if (!$s['running']) {
+    $exit = $s['exitcode'];
+    break;
+   }
+   if (microtime(true) > $end) {
+    proc_terminate($p);
+    break;
+   }
+   usleep(100000);
+  } while (true);
   proc_close($p);
   $errText = is_file($errPath) ? trim(file_get_contents($errPath)) : '';
   if (is_file($errPath)) @unlink($errPath);
   if ($exit !== 0) {
    $clean = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errText);
-   throw new \RuntimeException('Backup command failed (exit code ' . $exit . '): ' . $clean);
+   $logPayload = date('c') . " | Phase: {$phase} | Exit: {$exit}\n" . $clean . "\n" . str_repeat('-', 60) . "\n";
+   if (!empty($r['backup']) && is_dir($r['backup'])) {
+    @file_put_contents($r['backup'] . '/mysqldump-error.log', $logPayload, FILE_APPEND);
+   }
+   if (!empty($c['source_password_file']) && is_dir(dirname($c['source_password_file']))) {
+    @file_put_contents(dirname($c['source_password_file']) . '/backup-last-error.log', $logPayload);
+   }
+   @file_put_contents(sys_get_temp_dir() . '/last-mysqldump-error.log', $logPayload);
+
+   $firstLine = explode("\n", $clean)[0] ?? 'unknown mysqldump error';
+   throw new \RuntimeException('mysqldump failed (code ' . $exit . '): ' . $firstLine . ($clean !== $firstLine ? ' | ' . substr($clean, 0, 500) : ''));
   }
  };
- $null=PHP_OS_FAMILY==='Windows'?'NUL':'/dev/null';
+ $null = PHP_OS_FAMILY === 'Windows' ? 'NUL' : '/dev/null';
 
  // Build credentials invocation
  $dumpCmd = [$dumpBin];
@@ -198,8 +268,8 @@ try {
  if ($isPreflight) {
   $phase='preflight-dry-run';
   $dryDump = tempnam(sys_get_temp_dir(), 'dry_dump_');
-  $firstTable = $tables[0]['TABLE_NAME'];
-  $dryCmd = array_merge($dumpCmd, $options, ['--no-data', $name, $firstTable]);
+  // True preflight: test full schema of ENTIRE database using the EXACT same options
+  $dryCmd = array_merge($dumpCmd, $options, ['--no-data', $name]);
   $run($dryCmd, $null, $dryDump);
   if (is_file($dryDump)) @unlink($dryDump);
   if ($tempDefaults !== null && is_file($tempDefaults)) {
@@ -209,12 +279,16 @@ try {
   echo json_encode([
    'ok' => true,
    'preflight' => true,
-   'engine' => 'mysql',
+   'engine' => $isMariaDB ? 'mariadb' : 'mysql',
    'database' => $name,
    'source_uuid' => $sourceUuid,
    'dump_bin' => $dumpBin,
    'options' => $options,
    'is_mariadb' => $isMariaDB,
+   'events_count' => $evCount,
+   'routines_count' => $rtCount,
+   'triggers_count' => $trCount,
+   'views_count' => count($views),
    'dry_run_success' => true,
   ], JSON_THROW_ON_ERROR);
   exit(0);
@@ -283,6 +357,8 @@ try {
   @unlink($tempDefaults);
  }
  $cleanErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $e->getMessage());
+ $destFile = sys_get_temp_dir() . '/backup-hook-fatal.log';
+ @file_put_contents($destFile, date('c') . " | {$phase} | {$cleanErr}\n", FILE_APPEND);
  fwrite(STDERR,'Backup provider blocked: '.$phase.' - '.$cleanErr.PHP_EOL);
  exit(1);
 }

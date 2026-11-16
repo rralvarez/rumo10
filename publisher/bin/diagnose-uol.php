@@ -83,16 +83,22 @@ $report = [
         'table_count' => 0,
         'events_in_db' => 0,
         'routines_in_db' => 0,
+        'triggers_in_db' => 0,
+        'views_in_db' => 0,
     ],
     'privilege_capabilities' => [
         'has_event_privilege' => false,
         'has_routine_privilege' => false,
+        'has_trigger_privilege' => false,
         'has_lock_tables_privilege' => false,
     ],
     'dump_binary' => [
         'selected_path' => 'NONE',
         'executable' => false,
         'version' => 'NONE',
+        'supports_column_statistics' => false,
+        'supports_tablespaces' => false,
+        'supports_gtid' => false,
     ],
     'options_compatibility' => [],
     'dry_run_dump' => 'NOT_TESTED',
@@ -138,12 +144,20 @@ try {
     }
     $report['database']['all_tables_innodb'] = $allInnoDB;
 
-    // Events and routines counts
+    // Events, routines, triggers and views counts
     $evCount = (int)$pdo->query("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = " . $pdo->quote($dbName))->fetchColumn();
     $report['database']['events_in_db'] = $evCount;
 
     $rtCount = (int)$pdo->query("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = " . $pdo->quote($dbName))->fetchColumn();
     $report['database']['routines_in_db'] = $rtCount;
+
+    $trCount = (int)$pdo->query("SELECT COUNT(*) FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = " . $pdo->quote($dbName))->fetchColumn();
+    $report['database']['triggers_in_db'] = $trCount;
+
+    $viewsStmt = $pdo->prepare("SELECT TABLE_NAME FROM information_schema.VIEWS WHERE TABLE_SCHEMA = ?");
+    $viewsStmt->execute([$dbName]);
+    $views = $viewsStmt->fetchAll(PDO::FETCH_COLUMN);
+    $report['database']['views_in_db'] = count($views);
 
     // Grants check (booleans only, NO raw statements printed)
     $stmt = $pdo->query('SHOW GRANTS');
@@ -154,6 +168,9 @@ try {
         }
         if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) {
             $report['privilege_capabilities']['has_routine_privilege'] = true;
+        }
+        if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'TRIGGER')) {
+            $report['privilege_capabilities']['has_trigger_privilege'] = true;
         }
         if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'LOCK TABLES')) {
             $report['privilege_capabilities']['has_lock_tables_privilege'] = true;
@@ -174,6 +191,10 @@ if ($configuredBin) {
 }
 
 $foundBin = null;
+$supportsColumnStats = false;
+$supportsTablespaces = false;
+$supportsGtid = false;
+
 foreach ($candidates as $cand) {
     if (is_file($cand) && (PHP_OS_FAMILY === 'Windows' || is_executable($cand))) {
         $binQuoted = (PHP_OS_FAMILY === 'Windows' && str_contains($cand, ' ')) ? '"' . $cand . '"' : escapeshellcmd($cand);
@@ -184,6 +205,15 @@ foreach ($candidates as $cand) {
             $report['dump_binary']['selected_path'] = $cand;
             $report['dump_binary']['executable'] = true;
             $report['dump_binary']['version'] = trim($out);
+
+            $helpOut = (string)@shell_exec($binQuoted . ' --help 2>&1');
+            $supportsColumnStats = str_contains($helpOut, 'column-statistics');
+            $supportsTablespaces = str_contains($helpOut, 'no-tablespaces') || str_contains($helpOut, 'all-tablespaces');
+            $supportsGtid = str_contains($helpOut, 'set-gtid-purged');
+
+            $report['dump_binary']['supports_column_statistics'] = $supportsColumnStats;
+            $report['dump_binary']['supports_tablespaces'] = $supportsTablespaces;
+            $report['dump_binary']['supports_gtid'] = $supportsGtid;
             break;
         }
     }
@@ -191,9 +221,15 @@ foreach ($candidates as $cand) {
 
 // Dry run test with mysqldump
 if ($foundBin && $pdo && $dbName && count($tables) > 0) {
-    $options = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--order-by-primary', '--hex-blob', '--triggers'];
-    if ($report['database']['engine'] === 'MySQL 8') {
+    $options = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--hex-blob'];
+
+    if ($supportsColumnStats) {
+        $options[] = '--skip-column-statistics';
+    }
+    if ($supportsTablespaces) {
         $options[] = '--no-tablespaces';
+    }
+    if ($supportsGtid && $report['database']['engine'] !== 'MariaDB') {
         $options[] = '--set-gtid-purged=OFF';
     }
     if ($report['privilege_capabilities']['has_event_privilege'] && $report['database']['events_in_db'] > 0) {
@@ -201,6 +237,11 @@ if ($foundBin && $pdo && $dbName && count($tables) > 0) {
     }
     if ($report['privilege_capabilities']['has_routine_privilege'] && $report['database']['routines_in_db'] > 0) {
         $options[] = '--routines';
+    }
+    if ($report['privilege_capabilities']['has_trigger_privilege'] && $report['database']['triggers_in_db'] > 0) {
+        $options[] = '--triggers';
+    } else {
+        $options[] = '--skip-triggers';
     }
 
     $report['options_compatibility'] = $options;
@@ -216,8 +257,8 @@ if ($foundBin && $pdo && $dbName && count($tables) > 0) {
     chmod($tempCnf, 0600);
 
     $dryDump = tempnam(sys_get_temp_dir(), 'diag_dump_');
-    $firstTable = $tables[0]['TABLE_NAME'];
-    $cmd = array_merge([$foundBin, '--defaults-file=' . $tempCnf], $options, ['--no-data', $dbName, $firstTable]);
+    // True preflight in diagnostic: test schema of ALL tables in database
+    $cmd = array_merge([$foundBin, '--defaults-file=' . $tempCnf], $options, ['--no-data', $dbName]);
 
     $errLog = tempnam(sys_get_temp_dir(), 'diag_err_');
     $p = proc_open($cmd, [0 => ['pipe', 'r'], 1 => ['file', $dryDump, 'wb'], 2 => ['file', $errLog, 'wb']], $pipes);
@@ -229,8 +270,10 @@ if ($foundBin && $pdo && $dbName && count($tables) > 0) {
             $report['dry_run_dump'] = 'SUCCESS';
             $report['preflight_verdict'] = 'PASS';
         } else {
-            $report['dry_run_dump'] = 'FAILED (exit ' . $exit . '): ' . preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errOut);
+            $cleanErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errOut);
+            $report['dry_run_dump'] = 'FAILED (exit ' . $exit . '): ' . $cleanErr;
             $report['preflight_verdict'] = 'BLOCKED';
+            @file_put_contents(sys_get_temp_dir() . '/diag-mysqldump-error.log', $cleanErr);
         }
     }
     if (is_file($errLog)) @unlink($errLog);
