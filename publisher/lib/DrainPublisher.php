@@ -10,6 +10,9 @@ class DrainPublisher extends Publisher {
   need($this->drain!==null,'Drain integration missing');$this->drain->assertDrained();
  }
  protected function hook(string $name,array $request):array{
+  if(($request['action']??'')==='preflight'){
+   return parent::hook($name,$request);
+  }
   $this->assertWriterDrain();
   $receipt=parent::hook($name,$request);
   $this->assertWriterDrain();

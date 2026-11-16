@@ -72,24 +72,46 @@ try {
  try {
   $stmt = $source->query('SHOW GRANTS');
   while ($row = $stmt->fetchColumn()) {
-   $line = (string)$row;
-   if (stripos($line, 'ALL PRIVILEGES') !== false) {
+   $line = strtoupper((string)$row);
+   if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'EVENT')) {
     $hasEventPriv = true;
+   }
+   if (str_contains($line, 'ALL PRIVILEGES') || str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) {
     $hasRoutinePriv = true;
    }
-   if (stripos($line, 'EVENT') !== false) $hasEventPriv = true;
-   if (stripos($line, 'ROUTINE') !== false || stripos($line, 'EXECUTE') !== false) $hasRoutinePriv = true;
   }
- } catch (\Throwable) {}
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify user grants via SHOW GRANTS: ' . $e->getMessage());
+ }
 
+ // Fail-closed integrity check on events and routines
  $hasEventsInDb = false;
  $hasRoutinesInDb = false;
  try {
-  $hasEventsInDb = ((int)$source->query("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = " . $source->quote($name))->fetchColumn()) > 0;
- } catch (\Throwable) {}
+  $evStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ?");
+  $evStmt->execute([$name]);
+  $evCount = (int)$evStmt->fetchColumn();
+  $hasEventsInDb = $evCount > 0;
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify database events count in information_schema: ' . $e->getMessage());
+ }
+
  try {
-  $hasRoutinesInDb = ((int)$source->query("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = " . $source->quote($name))->fetchColumn()) > 0;
- } catch (\Throwable) {}
+  $rtStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ?");
+  $rtStmt->execute([$name]);
+  $rtCount = (int)$rtStmt->fetchColumn();
+  $hasRoutinesInDb = $rtCount > 0;
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify database routines count in information_schema: ' . $e->getMessage());
+ }
+
+ // Strict integrity: block publication if database contains objects the user cannot dump
+ if ($hasEventsInDb && !$hasEventPriv) {
+  throw new \RuntimeException("Database contains {$evCount} events but user lacks EVENT privilege; backup would be incomplete");
+ }
+ if ($hasRoutinesInDb && !$hasRoutinePriv) {
+  throw new \RuntimeException("Database contains {$rtCount} routines but user lacks ROUTINE privilege; backup would be incomplete");
+ }
 
  $options = [
   '--single-transaction',
@@ -138,20 +160,6 @@ try {
  }
  need($dumpBin !== null && (is_file($dumpBin) || PHP_OS_FAMILY !== 'Windows'), 'mysqldump binary required for consistent transactional snapshot backup');
 
- if ($isPreflight) {
-  echo json_encode([
-   'ok' => true,
-   'preflight' => true,
-   'engine' => 'mysql',
-   'database' => $name,
-   'source_uuid' => $sourceUuid,
-   'dump_bin' => $dumpBin,
-   'options' => $options,
-   'is_mariadb' => $isMariaDB,
-  ], JSON_THROW_ON_ERROR);
-  exit(0);
- }
-
  // Credentials are NEVER command-line values; option files are outside web roots.
  $run=static function(array $cmd,string $in,string $out):void {
   $errPath = tempnam(sys_get_temp_dir(), 'bk_err_');
@@ -167,6 +175,51 @@ try {
   }
  };
  $null=PHP_OS_FAMILY==='Windows'?'NUL':'/dev/null';
+
+ // Build credentials invocation
+ $dumpCmd = [$dumpBin];
+ if (isset($c['source_mysql_defaults']) && is_file($c['source_mysql_defaults'])) {
+  $dumpCmd[] = '--defaults-file='.$c['source_mysql_defaults'];
+ } else {
+  $host = '127.0.0.1';
+  $port = 3306;
+  if (isset($c['source_dsn'])) {
+   if (preg_match('/host=([^;]+)/', $c['source_dsn'], $m)) $host = $m[1];
+   if (preg_match('/port=([0-9]+)/', $c['source_dsn'], $m)) $port = (int)$m[1];
+  }
+  $baseTemp = (!empty($r['backup']) && is_dir($r['backup'])) ? $r['backup'] : sys_get_temp_dir();
+  $tempDefaults = $baseTemp . '/temp-dump-defaults-' . bin2hex(random_bytes(8)) . '.cnf';
+  $cnf = "[client]\nuser=" . ($c['source_user'] ?? 'root') . "\npassword=" . $sourcePass . "\nhost=" . $host . "\nport=" . $port . "\n";
+  file_put_contents($tempDefaults, $cnf);
+  chmod($tempDefaults, 0600);
+  $dumpCmd[] = '--defaults-file='.$tempDefaults;
+ }
+
+ if ($isPreflight) {
+  $phase='preflight-dry-run';
+  $dryDump = tempnam(sys_get_temp_dir(), 'dry_dump_');
+  $firstTable = $tables[0]['TABLE_NAME'];
+  $dryCmd = array_merge($dumpCmd, $options, ['--no-data', $name, $firstTable]);
+  $run($dryCmd, $null, $dryDump);
+  if (is_file($dryDump)) @unlink($dryDump);
+  if ($tempDefaults !== null && is_file($tempDefaults)) {
+   @unlink($tempDefaults);
+   $tempDefaults = null;
+  }
+  echo json_encode([
+   'ok' => true,
+   'preflight' => true,
+   'engine' => 'mysql',
+   'database' => $name,
+   'source_uuid' => $sourceUuid,
+   'dump_bin' => $dumpBin,
+   'options' => $options,
+   'is_mariadb' => $isMariaDB,
+   'dry_run_success' => true,
+  ], JSON_THROW_ON_ERROR);
+  exit(0);
+ }
+
  $dump=$r['backup'].'/database.sql';
 
  if ($isolatedRestore) {
@@ -208,23 +261,6 @@ try {
  } else {
   // Production single-server verified backup with mysqldump
   $phase='source-dump';
-  $dumpCmd = [$dumpBin];
-  if (isset($c['source_mysql_defaults']) && is_file($c['source_mysql_defaults'])) {
-   $dumpCmd[] = '--defaults-file='.$c['source_mysql_defaults'];
-  } else {
-   $host = '127.0.0.1';
-   $port = 3306;
-   if (isset($c['source_dsn'])) {
-    if (preg_match('/host=([^;]+)/', $c['source_dsn'], $m)) $host = $m[1];
-    if (preg_match('/port=([0-9]+)/', $c['source_dsn'], $m)) $port = (int)$m[1];
-   }
-   $tempDefaults = $r['backup'] . '/temp-dump-defaults-' . bin2hex(random_bytes(8)) . '.cnf';
-   $cnf = "[client]\nuser=" . ($c['source_user'] ?? 'root') . "\npassword=" . $sourcePass . "\nhost=" . $host . "\nport=" . $port . "\n";
-   file_put_contents($tempDefaults, $cnf);
-   chmod($tempDefaults, 0600);
-   $dumpCmd[] = '--defaults-file='.$tempDefaults;
-  }
-
   $run(array_merge($dumpCmd, $options, [$name]), $null, $dump);
   need(is_file($dump) && filesize($dump) > 0, 'Empty database backup');
   chmod($dump, 0600);

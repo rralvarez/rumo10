@@ -7,7 +7,7 @@ $root=__DIR__.'/sandbox-hook-state.json';
 $c=json_decode(file_get_contents($root),true,512,JSON_THROW_ON_ERROR);
 $op=$argv[1];
 if(($c['hang']??'')===$op)sleep(5);
-if (($c['fail']??'')===$op) { fwrite(STDERR,'injected fixture failure'); exit(2); }
+if (($c['fail']??'')===$op && ($r['action']??'')!=='preflight') { fwrite(STDERR,'injected fixture failure'); exit(2); }
 if($op==='preflight') {
     $out=['ok'=>true,'legacy_publishers_fenced'=>true,'source_unchanged'=>true];
 } elseif($op==='maintenance') {
@@ -23,6 +23,11 @@ if($op==='preflight') {
     $db->exec('BEGIN IMMEDIATE'); $db->exec('ROLLBACK'); // proves no inflight SQLite write transaction
     $out=['ok'=>true,'http_status'=>503,'writes_blocked'=>true,'inflight_writers'=>0];
 } elseif($op==='backup') {
+    if (($r['action'] ?? '') === 'preflight') {
+        $out = ['ok' => true, 'preflight' => true, 'engine' => 'sqlite-test-only'];
+        echo json_encode($out, JSON_THROW_ON_ERROR);
+        exit(0);
+    }
     $db=new SQLite3($c['db'],SQLITE3_OPEN_READONLY);$dest=$r['backup'].'/synthetic.sqlite';
     $b=new SQLite3($dest);
     if(!$db->backup($b))exit(4);

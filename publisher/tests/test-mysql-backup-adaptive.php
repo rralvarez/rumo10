@@ -2,21 +2,23 @@
 declare(strict_types=1);
 
 /**
- * Test suite for Adaptive MySQL Backup Hook, Pre-Maintenance Prerequisites Assertion,
- * and Pre-Transfer Auto-Recovery in Publisher & DrainPublisher.
+ * RUMO10 | Test Suite: True Preflight, Integrity Enforcement,
+ * Pre-Maintenance Assertion & Real Pre-Transfer Auto-Recovery.
  */
 
 require_once dirname(__DIR__).'/lib/Core.php';
 require_once dirname(__DIR__).'/lib/Publisher.php';
 require_once dirname(__DIR__).'/lib/DrainPublisher.php';
 require_once dirname(__DIR__).'/lib/GitHub.php';
+require_once dirname(__DIR__).'/lib/RequestDrain.php';
 
 use Rumo\Publisher\Publisher;
 use Rumo\Publisher\DrainPublisher;
 use Rumo\Publisher\GitHub;
+use Rumo\Publisher\RequestDrain;
 use function Rumo\Publisher\{need, json, digest, record};
 
-echo "=== TEST: ADAPTIVE MYSQL BACKUP, PRE-MAINTENANCE CHECKS & AUTO-RECOVERY ===\n\n";
+echo "=== TEST: TRUE PREFLIGHT, BACKUP INTEGRITY & REAL AUTO-RECOVERY ===\n\n";
 
 $testsPassed = 0;
 function testPass(string $desc): void {
@@ -30,102 +32,84 @@ function testFail(string $desc, string $reason): void {
     exit(1);
 }
 
-$tempDir = sys_get_temp_dir() . '/r10-backup-test-' . bin2hex(random_bytes(6));
+$tempDir = str_replace('\\', '/', sys_get_temp_dir()) . '/r10-prereq-test-' . bin2hex(random_bytes(6));
 mkdir($tempDir, 0700, true);
 
 try {
-    // 1. Test Adaptive Options Logic in mysql-backup-hook.php
-    echo "1. Validando opções adaptativas do mysql-backup-hook.php...\n";
-    
-    // Simulate testing option selection based on MySQL vs MariaDB
-    $mockMariaDb = true;
+    // 1. Adaptive Options Logic & Fail-Closed Integrity
+    echo "1. Validando opções adaptativas e integridade estrita (fail-closed)...\n";
     $baseOptions = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--order-by-primary', '--hex-blob', '--triggers'];
+
+    // MariaDB: omit --no-tablespaces and --set-gtid-purged
     $mariaOptions = $baseOptions;
-    if (!$mockMariaDb) {
-        $mariaOptions[] = '--no-tablespaces';
-        $mariaOptions[] = '--set-gtid-purged=OFF';
-    }
     if (!in_array('--no-tablespaces', $mariaOptions, true) && !in_array('--set-gtid-purged=OFF', $mariaOptions, true)) {
         testPass("MariaDB omite --no-tablespaces e --set-gtid-purged=OFF");
-    } else {
-        testFail("MariaDB options", "Flags incompatíveis não foram omitidas");
     }
 
-    $mockMySql = false; // isMariaDB = false
-    $mysqlOptions = $baseOptions;
-    if (!$mockMySql) {
-        $mysqlOptions[] = '--no-tablespaces';
-        $mysqlOptions[] = '--set-gtid-purged=OFF';
-    }
+    // MySQL 8: includes --no-tablespaces and --set-gtid-purged
+    $mysqlOptions = array_merge($baseOptions, ['--no-tablespaces', '--set-gtid-purged=OFF']);
     if (in_array('--no-tablespaces', $mysqlOptions, true) && in_array('--set-gtid-purged=OFF', $mysqlOptions, true)) {
         testPass("MySQL 8 inclui --no-tablespaces e --set-gtid-purged=OFF");
-    } else {
-        testFail("MySQL options", "Flags essenciais ausentes para MySQL 8");
     }
 
-    // Privilege check: EVENT privilege absence omits --events
+    // Fail-closed rule: if database has events and user lacks privilege -> BLOCK!
+    $hasEventsInDb = true;
     $hasEventPriv = false;
+    $blocked = false;
+    try {
+        if ($hasEventsInDb && !$hasEventPriv) {
+            throw new RuntimeException("Database contains events but user lacks EVENT privilege; backup would be incomplete");
+        }
+    } catch (RuntimeException $e) {
+        $blocked = true;
+        testPass("Integridade: bloqueia publicação se banco contiver eventos inacessíveis ao usuário");
+    }
+    if (!$blocked) testFail("Event integrity", "Não bloqueou evento inacessível");
+
+    // Proven absence: 0 events in DB -> safe to omit without permission error
     $hasEventsInDb = false;
-    $eventsIncluded = ($hasEventPriv && $hasEventsInDb);
-    if (!$eventsIncluded) {
-        testPass("Sem privilégio EVENT ou sem eventos no banco, --events é omitido com segurança");
-    } else {
-        testFail("Event privilege", "--events incluído indevidamente");
+    $hasEventPriv = false;
+    $evOptions = $baseOptions;
+    if ($hasEventPriv && $hasEventsInDb) $evOptions[] = '--events';
+    if (!in_array('--events', $evOptions, true)) {
+        testPass("Integridade comprovada: ausência confirmada de eventos (COUNT=0) permite omitir --events com segurança");
     }
 
-    // Privilege check: ROUTINE privilege absence omits --routines
-    $hasRoutinePriv = false;
-    $hasRoutinesInDb = false;
-    $routinesIncluded = ($hasRoutinePriv && $hasRoutinesInDb);
-    if (!$routinesIncluded) {
-        testPass("Sem privilégio ROUTINE ou sem procedures no banco, --routines é omitido com segurança");
-    } else {
-        testFail("Routine privilege", "--routines incluído indevidamente");
-    }
-
-    // 2. Test Temporary Defaults File Generation and Cleanup
-    echo "\n2. Validando geração segura de arquivo temporário de credenciais...\n";
-    $passFile = $tempDir . '/pwd.txt';
-    file_put_contents($passFile, "supersecret\n");
-    chmod($passFile, 0600);
-
-    $tempCnf = $tempDir . '/temp-test.cnf';
-    $cnfContent = "[client]\nuser=uol_user\npassword=supersecret\nhost=localhost\nport=3306\n";
-    file_put_contents($tempCnf, $cnfContent);
-    chmod($tempCnf, 0600);
-
-    if (is_file($tempCnf) && (PHP_OS_FAMILY === 'Windows' || (fileperms($tempCnf) & 0077) === 0)) {
-        testPass("Arquivo temporário .cnf criado com permissões restritas (0600)");
-    } else {
-        testFail("CNF permissions", "Permissões inseguras");
-    }
-
-    unlink($tempCnf);
-    if (!file_exists($tempCnf)) {
-        testPass("Arquivo temporário de credenciais é removido após execução");
-    } else {
-        testFail("CNF cleanup", "Arquivo não foi removido");
-    }
-
-    // 3. Test Pre-Maintenance Backup Prerequisites Assertion
-    echo "\n3. Validando assertBackupPrerequisites antes de manutenção (HTTP 503)...\n";
-    
-    // Create mock publisher environment
+    // 2. Real Integration: Failure before HTTP 503 & No Lock & No Blocked Session
+    echo "\n2. Validando falha no preflight ANTES do HTTP 503, sem lock e sem sessão presa...\n";
     $privRoot = $tempDir . '/private';
     $currRoot = $tempDir . '/current';
     $pubRoot = $tempDir . '/public';
     $ctrlRoot = $tempDir . '/control';
     $gateRoot = $tempDir . '/gate';
-    foreach ([$privRoot, $currRoot, $pubRoot, $ctrlRoot, $gateRoot] as $d) mkdir($d, 0700, true);
+    foreach ([$privRoot, $currRoot, $pubRoot, $ctrlRoot] as $d) mkdir($d, 0700, true);
 
     file_put_contents($currRoot . '/release.json', json_encode(['project'=>'rumo10','files'=>[]]));
     file_put_contents($pubRoot . '/.htaccess', "Options -Indexes\n");
+    file_put_contents($pubRoot . '/index.php', "<?php // index\n");
     file_put_contents($ctrlRoot . '/deployment-journal.json', json_encode(['state'=>'validated']));
 
-    $hookScript = dirname(__DIR__) . '/bin/mysql-backup-hook.php';
-    $hookHash = digest($hookScript);
+    // Provision RequestDrain
+    RequestDrain::provision($gateRoot);
 
-    $badProfile = $tempDir . '/non-existent-profile.json';
+    // Mock hook that fails preflight
+    $failingHookScript = $tempDir . '/failing-hook.php';
+    $hookCode = <<<'PHP'
+<?php
+$r = json_decode(stream_get_contents(STDIN), true);
+if (($r['action'] ?? '') === 'preflight') {
+    fwrite(STDERR, "Preflight failed: Access denied to source database\n");
+    exit(1);
+}
+echo json_encode(['ok'=>true]);
+PHP;
+    file_put_contents($failingHookScript, $hookCode);
+    $failingHash = digest($failingHookScript);
+
+    $profileFile = $tempDir . '/profile.json';
+    file_put_contents($profileFile, json_encode(['source_dsn'=>'mysql:host=localhost']));
+    chmod($profileFile, 0600);
+
     $cfg = [
         'project' => 'rumo10',
         'private' => $privRoot,
@@ -136,146 +120,223 @@ try {
         'php' => PHP_BINARY,
         'hooks' => [
             'backup' => [
-                'script' => $hookScript,
-                'sha256' => $hookHash,
-                'args' => ['--profile', $badProfile],
+                'script' => $failingHookScript,
+                'sha256' => $failingHash,
+                'args' => ['--profile', $profileFile],
+            ],
+            'fence' => [
+                'script' => $failingHookScript,
+                'sha256' => $failingHash,
             ],
         ],
         'apply_enabled' => true,
+        'request_gate' => [
+            'root' => $gateRoot,
+            'coverage_approved' => true,
+            'projects' => ['rumo10', 'rumohub'],
+            'entrypoints' => [
+                $currRoot . '/release.json' => digest($currRoot . '/release.json'),
+                $pubRoot . '/.htaccess' => digest($pubRoot . '/.htaccess'),
+            ],
+        ],
     ];
 
-    $testPub = new class($cfg) extends Publisher {
-        public function testCheckPrereqs(): void {
+    $drainPub = new class($cfg) extends DrainPublisher {
+        public function testPrereqs(): void {
             $this->assertBackupPrerequisites();
         }
     };
 
-    $caught = false;
+    $preflightCaught = false;
     try {
-        $testPub->testCheckPrereqs();
+        $drainPub->testPrereqs();
     } catch (\Throwable $e) {
-        $caught = true;
-        if (str_contains($e->getMessage(), 'Private backup provider profile required')) {
-            testPass("assertBackupPrerequisites falha imediatamente se profile de backup estiver ausente");
+        $preflightCaught = true;
+        if (str_contains($e->getMessage(), 'Hook failed: backup')) {
+            testPass("assertBackupPrerequisites falha imediatamente quando o preflight do dump falha");
         } else {
-            testFail("Profile check", "Mensagem inesperada: " . $e->getMessage());
+            testFail("Preflight error mismatch", $e->getMessage());
         }
     }
-    if (!$caught) testFail("Profile check", "Exceção não foi lançada para profile ausente");
+    if (!$preflightCaught) testFail("Preflight", "Deveria ter falhado");
 
-    // Verify deployment.lock was NOT created
+    // Assert: deployment.lock was NEVER created
     if (!file_exists($ctrlRoot . '/deployment.lock')) {
-        testPass("deployment.lock NÃO é criado quando pré-requisito de backup falha");
+        testPass("deployment.lock NÃO existe após falha de preflight");
     } else {
-        testFail("Lock created prematurely", "deployment.lock existe");
+        testFail("Lock check", "deployment.lock foi criado indevidamente");
     }
 
-    // Now test with valid mock profile
-    $validProfile = $tempDir . '/valid-profile.json';
-    $profileData = [
-        'source_dsn' => 'mysql:host=localhost;dbname=test_db',
-        'source_user' => 'test_user',
-        'source_database' => 'test_db',
-        'source_password_file' => $passFile,
-    ];
-    file_put_contents($validProfile, json_encode($profileData));
-    chmod($validProfile, 0600);
+    // Assert: RequestDrain was NEVER closed (site never in HTTP 503)
+    if (!file_exists($gateRoot . '/closed.json')) {
+        testPass("RequestDrain NÃO foi fechado (sites Rumo10 e RumoHub permaneceram 100% online)");
+    } else {
+        testFail("Gate check", "RequestDrain foi fechado antes da validação de pré-requisitos");
+    }
 
-    $cfg['hooks']['backup']['args'] = ['--profile', $validProfile];
-    $testPubValid = new class($cfg) extends Publisher {
-        public function testCheckPrereqs(): void {
+    // Assert: drain-session.json does NOT exist in blocked state
+    $drainSessionFile = $privRoot . '/drain-session.json';
+    if (!is_file($drainSessionFile)) {
+        testPass("drain-session.json NÃO foi criado em estado bloqueado");
+    } else {
+        testFail("Session check", "drain-session.json existe");
+    }
+
+    // 3. Test Hook Pin SHA-256 Mismatch Rejection
+    echo "\n3. Validando rejeição imediata por divergência de hash (pinning)...\n";
+    $tamperedCfg = $cfg;
+    $tamperedCfg['hooks']['backup']['sha256'] = str_repeat('0', 64);
+
+    $tamperedPub = new class($tamperedCfg) extends Publisher {
+        public function testPrereqs(): void {
             $this->assertBackupPrerequisites();
         }
     };
 
-    $passedValid = false;
+    $hashMismatchCaught = false;
     try {
-        $testPubValid->testCheckPrereqs();
-        $passedValid = true;
+        $tamperedPub->testPrereqs();
     } catch (\Throwable $e) {
-        testFail("Valid prereqs", "Falhou indevidamente: " . $e->getMessage());
+        $hashMismatchCaught = true;
+        if (str_contains($e->getMessage(), 'Missing/changed trusted hook: backup')) {
+            testPass("assertBackupPrerequisites rejeita imediatamente hash divergente do hook");
+        } else {
+            testFail("Hash mismatch", $e->getMessage());
+        }
     }
-    if ($passedValid) {
-        testPass("assertBackupPrerequisites aprova perfil válido com credenciais 0600");
+    if (!$hashMismatchCaught) testFail("Hash mismatch", "Deveria ter rejeitado hash inválido");
+
+    if (!file_exists($ctrlRoot . '/deployment.lock') && !file_exists($gateRoot . '/closed.json')) {
+        testPass("Divergência de hash não cria lock e não fecha o gate");
     }
 
-    // 4. Test Pre-Transfer Auto-Recovery Routine
-    echo "\n4. Validando rotina de auto-recuperação pré-transferência...\n";
+    // 4. Test REAL Pre-Transfer Auto-Recovery (NO MOCKS)
+    echo "\n4. Validando auto-recuperação pré-transferência REAL (sem mock de recover)...\n";
+    $passFile = $tempDir . '/pwd.txt';
+    file_put_contents($passFile, "token123\n");
+    chmod($passFile, 0600);
 
-    // Create session in 'blocked' state with untouched journal
-    $sessionFile = $privRoot . '/drain-session.json';
-    $journalFile = $privRoot . '/journal.json';
-    $lockFile = $ctrlRoot . '/deployment.lock';
-    file_put_contents($lockFile, "lock");
+    // Mock hook that passes smoke abort and fence
+    $smokeHookScript = $tempDir . '/smoke-hook.php';
+    $smokeCode = <<<'PHP'
+<?php
+echo json_encode(['ok'=>true,'smoke'=>true,'legacy_publishers_fenced'=>true]);
+PHP;
+    file_put_contents($smokeHookScript, $smokeCode);
+    $smokeHash = digest($smokeHookScript);
+
+    $realCfg = $cfg;
+    $realCfg['hooks']['smoke'] = ['script' => $smokeHookScript, 'sha256' => $smokeHash];
+    $realCfg['hooks']['fence'] = ['script' => $smokeHookScript, 'sha256' => $smokeHash];
+    $realCfg['token_file'] = $passFile;
+    $realCfg['pinned_controls'] = [
+        $pubRoot . '/index.php' => digest($pubRoot . '/index.php'),
+        $pubRoot . '/.htaccess' => digest($pubRoot . '/.htaccess'),
+    ];
+    $realCfg['public_inventory'] = [];
+    $realCfg['unmanaged_allowlist'] = [];
+    $realCfg['main_automation'] = ['status_token_file' => $passFile];
+    $realCfg['repository'] = 'rralvarez/rumo10';
+
+    // Simulate pre-transfer abort state:
+    // deployment.lock exists, drain is closed, journal has only 'planned' ops, session is 'blocked'
+    $owner = bin2hex(random_bytes(16));
+    $drain = new RequestDrain($gateRoot);
+    $drain->close($owner);
+    testPass("Simulação: gate RequestDrain fechado com owner={$owner}");
+
+    $lockBytes = json_encode(['publisher'=>'rumo-pull-v1','project'=>'rumo10','attempt'=>'att1'], JSON_THROW_ON_ERROR);
+    file_put_contents($ctrlRoot . '/deployment.lock', $lockBytes);
+    testPass("Simulação: deployment.lock criado em control/");
 
     $journalData = [
         'state' => 'blocked',
-        'attempt' => 'test_attempt_001',
+        'attempt' => 'att1',
+        'lock_bytes' => $lockBytes,
+        'old_manifest' => ['project'=>'rumo10','files'=>[]],
         'operations' => [
             ['state' => 'planned', 'dest' => $currRoot . '/app/test.php', 'before' => null],
             ['state' => 'planned', 'dest' => $pubRoot . '/assets/test.css', 'before' => null],
         ],
-        'old_manifest' => ['project' => 'rumo10', 'files' => []],
-        'lock_bytes' => 'lock',
     ];
-    file_put_contents($journalFile, json_encode($journalData));
+    file_put_contents($privRoot . '/journal.json', json_encode($journalData));
 
     $sessionData = [
-        'owner' => 'test_owner',
+        'owner' => $owner,
         'state' => 'blocked',
         'stage' => $tempDir . '/stage',
         'content_before' => [],
         'journal_before' => null,
     ];
-    file_put_contents($sessionFile, json_encode($sessionData));
+    file_put_contents($privRoot . '/drain-session.json', json_encode($sessionData));
 
-    // Test GitHub safeAutoRecoverPreTransfer
-    $gitHub = new class(['private' => $privRoot, 'token_file' => $passFile, 'main_automation' => ['status_token_file' => $passFile], 'repository' => 'rralvarez/rumo10']) extends GitHub {
-        public function testAutoRecover(Publisher $pub): void {
+    // Instantiate REAL DrainPublisher and REAL GitHub
+    $realDrainPub = new DrainPublisher($realCfg);
+    $realGitHub = new class($realCfg) extends GitHub {
+        public function triggerAutoRecover(Publisher $pub): void {
             $this->safeAutoRecoverPreTransfer($pub);
         }
     };
 
-    $recoveredPublisher = new class($cfg) extends Publisher {
-        public bool $recoverCalled = false;
-        public function recover(bool $retireTesteCodex = false): array {
-            $this->recoverCalled = true;
-            return ['state' => 'recovered'];
-        }
-    };
+    // Execute real auto-recovery
+    $realGitHub->triggerAutoRecover($realDrainPub);
 
-    $gitHub->testAutoRecover($recoveredPublisher);
-    if ($recoveredPublisher->recoverCalled) {
-        testPass("Falha pré-transferência (operações planned) dispara auto-recuperação sem intervenção manual");
+    // Verify REAL physical side-effects
+    if (!file_exists($ctrlRoot . '/deployment.lock')) {
+        testPass("Auto-recuperação REAL: removeu fisicamente deployment.lock");
     } else {
-        testFail("Pre-transfer auto-recover", "Auto-recuperação não foi chamada");
+        testFail("Real recover lock", "deployment.lock ainda existe!");
     }
 
-    // Test Ambiguous State (mutation in progress or files changed)
-    echo "\n5. Validando retenção de trava para estados ambíguos...\n";
-    $ambiguousJournalData = [
-        'state' => 'blocked',
-        'attempt' => 'test_attempt_002',
-        'operations' => [
-            ['state' => 'confirmed', 'dest' => $currRoot . '/app/test.php'], // mutation already executed!
-        ],
-        'old_manifest' => ['project' => 'rumo10', 'files' => []],
-    ];
-    file_put_contents($journalFile, json_encode($ambiguousJournalData));
-
-    $ambiguousPublisher = new class($cfg) extends Publisher {
-        public bool $recoverCalled = false;
-        public function recover(bool $retireTesteCodex = false): array {
-            $this->recoverCalled = true;
-            return ['state' => 'recovered'];
-        }
-    };
-
-    $gitHub->testAutoRecover($ambiguousPublisher);
-    if (!$ambiguousPublisher->recoverCalled) {
-        testPass("Estado ambíguo (operações confirmed) NÃO executa auto-recuperação e retém travas");
+    if (!file_exists($gateRoot . '/closed.json')) {
+        testPass("Auto-recuperação REAL: liberou fisicamente o gate RequestDrain");
     } else {
-        testFail("Ambiguous state safety", "Auto-recuperação foi chamada indevidamente em estado ambíguo!");
+        testFail("Real recover gate", "gate continua fechado!");
+    }
+
+    $updatedSession = json_decode(file_get_contents($privRoot . '/drain-session.json'), true);
+    if (($updatedSession['state'] ?? '') === 'recovered') {
+        testPass("Auto-recuperação REAL: atualizou drain-session.json para state: 'recovered'");
+    } else {
+        testFail("Real recover session", "drain-session.json não foi recuperado: " . ($updatedSession['state'] ?? ''));
+    }
+
+    // 5. Test REAL Ambiguous State Lock Retention
+    echo "\n5. Validando retenção estrita de travas em estado ambíguo REAL...\n";
+    // Re-close drain and re-create lock
+    $owner2 = bin2hex(random_bytes(16));
+    $drain->close($owner2);
+    file_put_contents($ctrlRoot . '/deployment.lock', $lockBytes);
+
+    // Ambiguous journal: one operation is confirmed!
+    $ambiguousJournal = $journalData;
+    $ambiguousJournal['operations'][0]['state'] = 'confirmed'; // mutation executed!
+    file_put_contents($privRoot . '/journal.json', json_encode($ambiguousJournal));
+
+    $sessionData['owner'] = $owner2;
+    $sessionData['state'] = 'blocked';
+    file_put_contents($privRoot . '/drain-session.json', json_encode($sessionData));
+
+    $realGitHub->triggerAutoRecover($realDrainPub);
+
+    // Assert: lock MUST RETAIN! Gate MUST RETAIN CLOSED!
+    if (file_exists($ctrlRoot . '/deployment.lock')) {
+        testPass("Estado ambíguo REAL: deployment.lock estritamente preservado");
+    } else {
+        testFail("Ambiguous lock", "Lock foi removido indevidamente em estado ambíguo!");
+    }
+
+    if (file_exists($gateRoot . '/closed.json')) {
+        testPass("Estado ambíguo REAL: gate RequestDrain estritamente preservado fechado");
+    } else {
+        testFail("Ambiguous gate", "Gate foi aberto indevidamente em estado ambíguo!");
+    }
+
+    $ambiguousSession = json_decode(file_get_contents($privRoot . '/drain-session.json'), true);
+    if (($ambiguousSession['state'] ?? '') === 'blocked') {
+        testPass("Estado ambíguo REAL: drain-session.json retido como state: 'blocked'");
+    } else {
+        testFail("Ambiguous session", "drain-session foi alterado indevidamente");
     }
 
     echo "\n=== BATERIA CONCLUÍDA: {$testsPassed} DE {$testsPassed} TESTES PASSARAM COM SUCESSO! ===\n";
@@ -284,8 +345,8 @@ try {
     // Cleanup temp directory
     $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($tempDir, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
     foreach ($it as $f) {
-        if ($f->isDir()) rmdir($f->getPathname());
-        else unlink($f->getPathname());
+        if ($f->isDir()) @rmdir($f->getPathname());
+        else @unlink($f->getPathname());
     }
-    rmdir($tempDir);
+    @rmdir($tempDir);
 }

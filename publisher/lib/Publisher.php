@@ -74,6 +74,9 @@ class Publisher {
                 need(is_file($dumpBin)&&(PHP_OS_FAMILY==='Windows'||is_executable($dumpBin)),'Configured mysqldump binary unavailable or non-executable');
             }
         }
+        // True preflight proof: read-only effective execution using exact executable, credentials and options
+        $preflight = $this->hook('backup', ['action' => 'preflight', 'project' => $this->c['project']]);
+        need(($preflight['ok'] ?? false) === true && ($preflight['preflight'] ?? false) === true, 'Backup preflight proof failed');
     }
     private function own(array $j): void {
         if($j['requires_full_drain']??false)$this->assertWriterDrain();
