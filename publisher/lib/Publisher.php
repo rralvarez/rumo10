@@ -45,6 +45,36 @@ class Publisher {
     protected function assertWriterDrain(): void {
         need(false,'Exclusive request drain required for this transition');
     }
+    protected function assertBackupPrerequisites(): void {
+        $h=$this->c['hooks']['backup']??null;
+        if(!is_array($h))return;
+        need(digest($h['script'])===$h['sha256'],'Missing/changed trusted hook: backup');
+        $args=$h['args']??[];
+        $profile=null;
+        for($i=0;$i<count($args);$i++){
+            if($args[$i]==='--profile'&&isset($args[$i+1])){
+                $profile=$args[$i+1];
+                break;
+            }
+        }
+        if($profile!==null){
+            need(is_file($profile)&&!is_link($profile),'Private backup provider profile required');
+            if(PHP_OS_FAMILY!=='Windows')need((fileperms($profile)&0077)===0,'Backup profile must be 0600');
+            $pData=json(file_get_contents($profile));
+            if(isset($pData['source_password_file'])){
+                need(is_file($pData['source_password_file'])&&!is_link($pData['source_password_file']),'Source password file required');
+                if(PHP_OS_FAMILY!=='Windows')need((fileperms($pData['source_password_file'])&0077)===0,'Password file must be 0600');
+            }
+            if(isset($pData['source_mysql_defaults'])){
+                need(is_file($pData['source_mysql_defaults'])&&!is_link($pData['source_mysql_defaults']),'Source mysql defaults file required');
+                if(PHP_OS_FAMILY!=='Windows')need((fileperms($pData['source_mysql_defaults'])&0077)===0,'Defaults file must be 0600');
+            }
+            $dumpBin=$pData['dump_bin']??null;
+            if($dumpBin!==null){
+                need(is_file($dumpBin)&&(PHP_OS_FAMILY==='Windows'||is_executable($dumpBin)),'Configured mysqldump binary unavailable or non-executable');
+            }
+        }
+    }
     private function own(array $j): void {
         if($j['requires_full_drain']??false)$this->assertWriterDrain();
         need(is_file($this->marker()) && file_get_contents($this->marker())===$j['lock_bytes'],'Deployment lock lost/replaced');
@@ -58,21 +88,24 @@ class Publisher {
         $nonce=bin2hex(random_bytes(10));
         $input=$this->private.'/hook-'.$nonce.'.request.json'; $output=$this->private.'/hook-'.$nonce.'.receipt.json';
         record($input,$request); $outFile=fopen($output,'xb');need($outFile!==false,'Cannot create hook receipt');chmod($output,0600);fclose($outFile);
+        $errPath=$this->private.'/hook-'.$nonce.'.err.log';
         // File descriptors, not pipes: Windows PHP cannot make anonymous pipes reliably nonblocking.
-        $p=proc_open($cmd,[0=>['file',$input,'rb'],1=>['file',$output,'wb'],2=>['file',PHP_OS_FAMILY==='Windows'?'NUL':'/dev/null','ab']],$pipes);
+        $p=proc_open($cmd,[0=>['file',$input,'rb'],1=>['file',$output,'wb'],2=>['file',$errPath,'wb']],$pipes);
         need(is_resource($p),'Hook launch failed');
         $deadline=microtime(true)+($h['timeout_seconds']??120); $code=null;
         while(true) {
             clearstatcache(true,$output);
-            if(filesize($output)>1024*1024) {proc_terminate($p);proc_close($p);throw new \RuntimeException('Hook output bound exceeded');}
+            if(filesize($output)>1024*1024) {proc_terminate($p);proc_close($p);if(is_file($errPath))@unlink($errPath);throw new \RuntimeException('Hook output bound exceeded');}
             $status=proc_get_status($p);
             if(!$status['running']) { $code=$status['exitcode']; break; }
-            if(microtime(true)>$deadline) { proc_terminate($p); proc_close($p); throw new \RuntimeException('Hook timeout: '.$name); }
+            if(microtime(true)>$deadline) { proc_terminate($p); proc_close($p); if(is_file($errPath))@unlink($errPath); throw new \RuntimeException('Hook timeout: '.$name); }
             usleep(10000);
         }
         $closed=proc_close($p); $exit=$code>=0?$code:$closed;
         $out=file_get_contents($output);
-        need($exit===0,'Hook failed: '.$name); $r=json($out);
+        $errContent=is_file($errPath)?trim(file_get_contents($errPath)):'';
+        if(is_file($errPath))@unlink($errPath);
+        need($exit===0,'Hook failed: '.$name.($errContent!==''?' ('.$errContent.')':'')); $r=json($out);
         need(($r['ok']??false)===true,'Hook rejected: '.$name);
         return $r;
     }
@@ -450,6 +483,7 @@ class Publisher {
         $request=$this->gate($v); $controls=$this->controls(); $old=$this->baseline(); $ops=$this->operations($old,$v);
         // Never silently change Apache rules: public bridge and htaccess are pinned and preserved.
         need(digest($stage.'/payload/public/.htaccess')===$old['files']['public/.htaccess'],'Apache rule change needs separate approval');
+        $this->assertBackupPrerequisites();
         $id=bin2hex(random_bytes(16)); $backup=$this->private.'/backup-'.$id; privateDir($backup);
         $lockBytes=json_encode(['publisher'=>'rumo-pull-v1','project'=>$this->c['project'],'attempt'=>$id],JSON_THROW_ON_ERROR);
         $j=['state'=>'locking','attempt'=>$id,'lock_bytes'=>$lockBytes,'stage'=>$stage,'candidate'=>$v,

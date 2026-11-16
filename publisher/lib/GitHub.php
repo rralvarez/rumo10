@@ -139,10 +139,34 @@ class GitHub {
             foreach($details as $match=>$message)if(str_contains($e->getMessage(),$match)){$reason=$message;break;}
             try{$this->report($run,'failure',($run['conclusion']??null)!=='success'?'CI oficial reprovado':$reason);}
             catch(\Throwable){fwrite(STDERR,"GitHub status unavailable; receiver state retained\n");}
+            $this->safeAutoRecoverPreTransfer($publisher);
             throw $e;
         }
         $this->report($run,$status,$reason);
         return $result;
+    }
+    protected function safeAutoRecoverPreTransfer(Publisher $publisher): void {
+        try {
+            $private = $this->c['private'] ?? '';
+            $journalPath = $private . '/journal.json';
+            $sessionPath = $private . '/drain-session.json';
+            if (!is_file($sessionPath)) return;
+            $s = json(file_get_contents($sessionPath));
+            if (($s['state'] ?? '') !== 'blocked') return;
+
+            $isUntouched = true;
+            if (is_file($journalPath)) {
+                $j = json(file_get_contents($journalPath));
+                $allPlanned = count(array_filter($j['operations'] ?? [], fn($o) => ($o['state'] ?? '') !== 'planned' || isset($o['temp']))) === 0;
+                $noMigrations = !isset($j['migration_receipt']);
+                $isUntouched = $allPlanned && $noMigrations;
+            }
+            if ($isUntouched) {
+                $publisher->recover();
+            }
+        } catch (\Throwable $recoverErr) {
+            fwrite(STDERR, "Pre-transfer auto-recovery skipped: " . $recoverErr->getMessage() . "\n");
+        }
     }
     protected function report(array $run,string $state,string $reason): void {
         $a=$this->c['main_automation'];

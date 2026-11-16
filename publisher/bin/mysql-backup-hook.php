@@ -5,16 +5,21 @@ declare(strict_types=1);
 require_once dirname(__DIR__).'/lib/Core.php';
 use function Rumo\Publisher\{need,json,digest,record};
 $phase='profile';
+$tempDefaults=null;
 try {
- need(PHP_SAPI==='cli' && ($argv[1]??'')==='backup' && ($argv[2]??'')==='--profile','Private backup hook only');
+ need(PHP_SAPI==='cli' && in_array($argv[1]??'', ['backup', 'preflight'], true) && ($argv[2]??'')==='--profile','Private backup hook only');
+ $action=$argv[1];
  $file=$argv[3]??''; need(is_file($file) && !is_link($file),'Private provider profile required');
  if(PHP_OS_FAMILY!=='Windows')need((fileperms($file)&0077)===0,'Profile must be 0600');
  $c=json(file_get_contents($file));$r=json(stream_get_contents(STDIN));
  umask(0077);
+ $isPreflight = ($action === 'preflight') || (($r['action'] ?? '') === 'preflight');
  $attempt=$r['attempt']??'';$candidate=$r['candidate']??[];
- need(preg_match('/^[a-f0-9]{32}$/D',$attempt)===1 && is_dir($r['backup']) && !is_link($r['backup']) &&
-     preg_match('/^[a-f0-9]{64}$/D',$candidate['package_sha256']??'')===1 &&
-     is_int($candidate['artifact_id']??null),'Invalid backup attempt or release');
+ if (!$isPreflight) {
+  need(preg_match('/^[a-f0-9]{32}$/D',$attempt)===1 && is_dir($r['backup']) && !is_link($r['backup']) &&
+      preg_match('/^[a-f0-9]{64}$/D',$candidate['package_sha256']??'')===1 &&
+      is_int($candidate['artifact_id']??null),'Invalid backup attempt or release');
+ }
  $restore='rumo_restore_sandbox_'.$attempt;
  $isolatedRestore = ($c['restore_isolation_approved'] ?? false) === true && !empty($c['restore_host']);
  if ($isolatedRestore) {
@@ -34,7 +39,11 @@ try {
  $phase='source-connect';
  $sourcePass = isset($c['source_password_file']) ? trim(file_get_contents($c['source_password_file'])) : ($c['source_password'] ?? '');
  $source=new PDO($c['source_dsn'],$c['source_user'],$sourcePass,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
- $sourceUuid=(string)($source->query('SELECT @@server_uuid')->fetchColumn() ?: 'uol-source');
+ try {
+  $sourceUuid=(string)($source->query('SELECT @@server_uuid')->fetchColumn() ?: 'uol-source');
+ } catch(\Throwable) {
+  $sourceUuid='uol-source';
+ }
  $targetUuid=$c['restore_uuid']??$sourceUuid;
  $name=$source->query('SELECT DATABASE()')->fetchColumn();
  need($name===$c['source_database'] && $name!==$restore &&
@@ -47,13 +56,115 @@ try {
  foreach($tables as $table)need(strtoupper($table['ENGINE'])==='INNODB','Nontransactional table: consistent snapshot not demonstrated');
  $collation=$source->query('SELECT @@collation_database')->fetchColumn();
  need(preg_match('/^[a-z0-9_]+$/D',$collation)===1,'Unknown source collation');
- $options=['--single-transaction','--quick','--skip-lock-tables','--skip-add-locks','--skip-comments','--no-tablespaces','--set-gtid-purged=OFF','--order-by-primary','--hex-blob','--routines','--triggers','--events'];
+
+ // Adaptive options detection: MariaDB vs MySQL, user grants and schema objects
+ $isMariaDB = false;
+ try {
+  $vStr = (string)$source->query('SELECT VERSION()')->fetchColumn();
+  $vComment = (string)$source->query('SELECT @@version_comment')->fetchColumn();
+  if (stripos($vStr, 'MariaDB') !== false || stripos($vComment, 'MariaDB') !== false) {
+   $isMariaDB = true;
+  }
+ } catch (\Throwable) {}
+
+ $hasEventPriv = false;
+ $hasRoutinePriv = false;
+ try {
+  $stmt = $source->query('SHOW GRANTS');
+  while ($row = $stmt->fetchColumn()) {
+   $line = (string)$row;
+   if (stripos($line, 'ALL PRIVILEGES') !== false) {
+    $hasEventPriv = true;
+    $hasRoutinePriv = true;
+   }
+   if (stripos($line, 'EVENT') !== false) $hasEventPriv = true;
+   if (stripos($line, 'ROUTINE') !== false || stripos($line, 'EXECUTE') !== false) $hasRoutinePriv = true;
+  }
+ } catch (\Throwable) {}
+
+ $hasEventsInDb = false;
+ $hasRoutinesInDb = false;
+ try {
+  $hasEventsInDb = ((int)$source->query("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = " . $source->quote($name))->fetchColumn()) > 0;
+ } catch (\Throwable) {}
+ try {
+  $hasRoutinesInDb = ((int)$source->query("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = " . $source->quote($name))->fetchColumn()) > 0;
+ } catch (\Throwable) {}
+
+ $options = [
+  '--single-transaction',
+  '--quick',
+  '--skip-lock-tables',
+  '--skip-add-locks',
+  '--skip-comments',
+  '--order-by-primary',
+  '--hex-blob',
+  '--triggers',
+ ];
+
+ if (!$isMariaDB) {
+  $options[] = '--no-tablespaces';
+  $options[] = '--set-gtid-purged=OFF';
+ }
+
+ if ($hasEventPriv && $hasEventsInDb) {
+  $options[] = '--events';
+ }
+
+ if ($hasRoutinePriv && $hasRoutinesInDb) {
+  $options[] = '--routines';
+ }
+
+ $phase='dump-bin-discovery';
+ $dumpBin = $c['dump_bin'] ?? null;
+ if (!$dumpBin || !is_file($dumpBin)) {
+  $candidates = PHP_OS_FAMILY === 'Windows'
+      ? ['C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe', 'C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\mysqldump.exe', 'mysqldump.exe']
+      : ['/usr/bin/mysqldump', '/usr/local/bin/mysqldump', '/usr/bin/mariadb-dump', '/usr/local/cpanel/3rdparty/bin/mysqldump', 'mysqldump'];
+  foreach ($candidates as $cand) {
+      if (is_file($cand) && (PHP_OS_FAMILY === 'Windows' || is_executable($cand))) {
+          $dumpBin = $cand;
+          break;
+      }
+  }
+  if (!$dumpBin) {
+      $whichCmd = PHP_OS_FAMILY === 'Windows' ? 'where mysqldump 2>NUL' : 'which mysqldump 2>/dev/null';
+      $found = trim((string)shell_exec($whichCmd));
+      if ($found !== '') {
+          $lines = explode("\n", str_replace("\r", "", $found));
+          if (is_file($lines[0])) { $dumpBin = $lines[0]; }
+      }
+  }
+ }
+ need($dumpBin !== null && (is_file($dumpBin) || PHP_OS_FAMILY !== 'Windows'), 'mysqldump binary required for consistent transactional snapshot backup');
+
+ if ($isPreflight) {
+  echo json_encode([
+   'ok' => true,
+   'preflight' => true,
+   'engine' => 'mysql',
+   'database' => $name,
+   'source_uuid' => $sourceUuid,
+   'dump_bin' => $dumpBin,
+   'options' => $options,
+   'is_mariadb' => $isMariaDB,
+  ], JSON_THROW_ON_ERROR);
+  exit(0);
+ }
+
  // Credentials are NEVER command-line values; option files are outside web roots.
  $run=static function(array $cmd,string $in,string $out):void {
-  $p=proc_open($cmd,[0=>['file',$in,'rb'],1=>['file',$out,'wb'],2=>['file',PHP_OS_FAMILY==='Windows'?'NUL':'/dev/null','ab']],$pipes);
+  $errPath = tempnam(sys_get_temp_dir(), 'bk_err_');
+  $p=proc_open($cmd,[0=>['file',$in,'rb'],1=>['file',$out,'wb'],2=>['file',$errPath,'wb']],$pipes);
   need(is_resource($p),'Backup command unavailable');$end=microtime(true)+300;$exit=-1;
   do{$s=proc_get_status($p);if(!$s['running']){$exit=$s['exitcode'];break;}if(microtime(true)>$end){proc_terminate($p);break;}usleep(100000);}while(true);
-  proc_close($p);need($exit===0,'Backup/isolated restore command failed');
+  proc_close($p);
+  $errText = is_file($errPath) ? trim(file_get_contents($errPath)) : '';
+  if (is_file($errPath)) @unlink($errPath);
+  if ($exit !== 0) {
+   $clean = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errText);
+   throw new \RuntimeException('Backup command failed (exit code ' . $exit . '): ' . $clean);
+  }
  };
  $null=PHP_OS_FAMILY==='Windows'?'NUL':'/dev/null';
  $dump=$r['backup'].'/database.sql';
@@ -97,36 +208,33 @@ try {
  } else {
   // Production single-server verified backup with mysqldump
   $phase='source-dump';
-  $dumpBin = $c['dump_bin'] ?? null;
-  if (!$dumpBin || !is_file($dumpBin)) {
-   $candidates = PHP_OS_FAMILY === 'Windows'
-       ? ['C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe', 'C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\mysqldump.exe', 'mysqldump.exe']
-       : ['/usr/bin/mysqldump', '/usr/local/bin/mysqldump', '/usr/bin/mariadb-dump', 'mysqldump'];
-   foreach ($candidates as $cand) {
-       if (is_file($cand) && is_executable($cand)) {
-           $dumpBin = $cand;
-           break;
-       }
-   }
-   if (!$dumpBin) {
-       $whichCmd = PHP_OS_FAMILY === 'Windows' ? 'where mysqldump 2>NUL' : 'which mysqldump 2>/dev/null';
-       $found = trim((string)shell_exec($whichCmd));
-       if ($found !== '') {
-           $lines = explode("\n", str_replace("\r", "", $found));
-           if (is_file($lines[0])) { $dumpBin = $lines[0]; }
-       }
-   }
-  }
-  need($dumpBin !== null && (is_file($dumpBin) || PHP_OS_FAMILY !== 'Windows'), 'mysqldump binary required for consistent transactional snapshot backup');
   $dumpCmd = [$dumpBin];
-  if (isset($c['source_mysql_defaults'])) {
+  if (isset($c['source_mysql_defaults']) && is_file($c['source_mysql_defaults'])) {
    $dumpCmd[] = '--defaults-file='.$c['source_mysql_defaults'];
+  } else {
+   $host = '127.0.0.1';
+   $port = 3306;
+   if (isset($c['source_dsn'])) {
+    if (preg_match('/host=([^;]+)/', $c['source_dsn'], $m)) $host = $m[1];
+    if (preg_match('/port=([0-9]+)/', $c['source_dsn'], $m)) $port = (int)$m[1];
+   }
+   $tempDefaults = $r['backup'] . '/temp-dump-defaults-' . bin2hex(random_bytes(8)) . '.cnf';
+   $cnf = "[client]\nuser=" . ($c['source_user'] ?? 'root') . "\npassword=" . $sourcePass . "\nhost=" . $host . "\nport=" . $port . "\n";
+   file_put_contents($tempDefaults, $cnf);
+   chmod($tempDefaults, 0600);
+   $dumpCmd[] = '--defaults-file='.$tempDefaults;
   }
+
   $run(array_merge($dumpCmd, $options, [$name]), $null, $dump);
   need(is_file($dump) && filesize($dump) > 0, 'Empty database backup');
   chmod($dump, 0600);
   $restoredAt = time();
   $restoredHash = digest($dump);
+
+  if ($tempDefaults !== null && is_file($tempDefaults)) {
+   @unlink($tempDefaults);
+   $tempDefaults = null;
+  }
  }
 
  $out=['restored_at'=>$restoredAt,'created_at'=>$restoredAt,'dump_sha256'=>$restoredHash,'restored_dump_sha256'=>$restoredHash,
@@ -134,4 +242,11 @@ try {
  'package_sha256'=>$candidate['package_sha256'],'artifact_id'=>$candidate['artifact_id'],'ok'=>true,'attempt'=>$r['attempt'],'consistent'=>true,'restore_tested'=>$isolatedRestore,'engine'=>'mysql',
  'files'=>[$dump=>$restoredHash]];
  echo json_encode($out,JSON_THROW_ON_ERROR);
-} catch(Throwable $e){fwrite(STDERR,'Backup provider blocked: '.$phase.PHP_EOL);exit(1);}
+} catch(Throwable $e){
+ if (isset($tempDefaults) && $tempDefaults !== null && is_file($tempDefaults)) {
+  @unlink($tempDefaults);
+ }
+ $cleanErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $e->getMessage());
+ fwrite(STDERR,'Backup provider blocked: '.$phase.' - '.$cleanErr.PHP_EOL);
+ exit(1);
+}
