@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 if (PHP_SAPI!=='cli') { http_response_code(404); exit(1); }
-require_once dirname(__DIR__).'/lib/DrainPublisher.php';
-require_once dirname(__DIR__).'/lib/GitHub.php';
+$publisherLibrary = dirname(__DIR__).'/lib';
+require_once $publisherLibrary.'/DrainPublisher.php';
+require_once $publisherLibrary.'/GitHub.php';
 use Rumo\Publisher\DrainPublisher;
 use Rumo\Publisher\Publisher;
 use Rumo\Publisher\GitHub;
@@ -10,7 +11,7 @@ use Rumo\Publisher\MainAutomation;
 use function Rumo\Publisher\need;
 use function Rumo\Publisher\json;
 try {
-    $opts=getopt('',['config:','mode:','run:','artifact:','stage:','recover','discover','retire-testecodex']);
+    $opts=getopt('',['config:','mode:','run:','artifact:','stage:','recover','discover','retire-testecodex','ui001-bootstrap']);
     need(isset($opts['config'],$opts['mode']),'Usage: --config=private.json --mode=verify-only|stage|apply --run=ID --artifact=ID OR --stage=PATH OR --recover');
     $mode=$opts['mode']; need(in_array($mode,['verify-only','stage','apply'],true),'Unknown mode');
     $retireTesteCodex=isset($opts['retire-testecodex']);
@@ -20,6 +21,13 @@ try {
     $configPath=$opts['config']; need(is_file($configPath) && !is_link($configPath),'Private config required');
     if(PHP_OS_FAMILY!=='Windows')need((fileperms($configPath)&0077)===0,'Config must be 0600');
     $c=json(file_get_contents($configPath)); MainAutomation::configuration($c);
+    $exception=isset($opts['ui001-bootstrap']);
+    if(isset($c['main_automation'])){
+        need(!$exception || ($mode==='apply' && ($c['main_automation']['allow_ui001_bootstrap']??false)===true &&
+            (isset($opts['discover']) xor isset($opts['recover'])) && !$retireTesteCodex &&
+            !isset($opts['run']) && !isset($opts['artifact']) && !isset($opts['stage'])), 'Invalid UI-001 exception invocation');
+        $c['main_automation']['ui001_bootstrap_request']=$exception;
+    }else need(!$exception, 'UI-001 exception requires main automation');
     if(isset($c['main_automation']) && $mode==='apply' && !isset($opts['recover'])){
         need(isset($opts['discover']) && !isset($opts['stage']) && !isset($opts['run']) && !isset($opts['artifact']),
             'Automatic main apply requires authenticated discovery');
@@ -33,11 +41,17 @@ try {
         if($retireTesteCodex) {
             need($publisher instanceof DrainPublisher,'Retirement requires shared drain');
             $result=$publisher->recover(true);
-        } elseif(isset($opts['recover'])) $result=$publisher->recover();
+        } elseif(isset($opts['recover'])){
+            $result=$publisher->recover();
+            if(isset($c['main_automation'])){
+                need(in_array($result['state']??null,['validated','recovered'],true),'Unstable recovery result');
+                $publisher->verifyPublicAvailability();
+            }
+        }
         elseif(isset($opts['discover'])) {
             $source=new GitHub($c);
             if(isset($c['main_automation'])) {
-                $result=$source->automatic($publisher);
+                $result=$source->automatic($publisher,$exception?MainAutomation::UI001:null);
             } else {
                 $ids=$source->discover();
                 $input=$source->fetch($ids[0],$ids[1],$c['private'].'/downloads');

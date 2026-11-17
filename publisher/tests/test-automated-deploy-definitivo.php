@@ -107,7 +107,8 @@ $pr = [
     'merged_by' => ['id' => $ownerId],
     'base' => ['repo' => ['full_name' => 'rralvarez/rumo10'], 'ref' => 'main'],
     'merge_commit_sha' => $sha,
-    'head' => ['sha' => $prHeadSha]
+    'head' => ['sha' => $prHeadSha],
+    'body' => 'Backup manual confirmado pelo proprietário antes do merge',
 ];
 $commit = ['sha' => $sha, 'parents' => [['sha' => $parentSha], ['sha' => $prHeadSha]]];
 

@@ -10,6 +10,9 @@ class DrainPublisher extends Publisher {
   need($this->drain!==null,'Drain integration missing');$this->drain->assertDrained();
  }
  protected function hook(string $name,array $request):array{
+  if(($request['action']??'')==='preflight'){
+   return parent::hook($name,$request);
+  }
   $this->assertWriterDrain();
   $receipt=parent::hook($name,$request);
   $this->assertWriterDrain();
@@ -37,10 +40,11 @@ class DrainPublisher extends Publisher {
  public function apply(string $stage):array{
   $this->acquire();
   need(!is_file($this->session)||in_array(json(file_get_contents($this->session))['state'],['validated','recovered'],true),'Pending drain session: recover first');
-  $this->assertAutomaticStage($stage);$this->enroll();
+  $this->enroll();$prepared=$this->prepareApply($stage);
+  if(!isset($prepared['replay']))$this->assertBackupPrerequisites($prepared['classA']);
   $owner=bin2hex(random_bytes(16));$receipt=['owner'=>$owner,'state'=>'closing','stage'=>$stage,'content_before'=>$this->content(),'journal_before'=>is_file($this->ops['private'].'/journal.json')?digest($this->ops['private'].'/journal.json'):null];record($this->session,$receipt);$this->sessionCheckpoint('before-close');$this->drain->close($owner);
   try{$this->sessionCheckpoint('after-close');$this->drain->drain((float)($this->ops['request_gate']['timeout_seconds']??30));$receipt['state']='installing';record($this->session,$receipt);$this->sessionCheckpoint('after-drain');
-   $result=parent::apply($stage);$this->drain->assertDrained();need($result['state']==='validated','Installation not validated');
+   $result=$this->applyPrepared($stage,$prepared);$this->drain->assertDrained();need($result['state']==='validated','Installation not validated');
    $receipt['state']='validated';record($this->session,$receipt);$this->sessionCheckpoint('before-release');$this->drain->release();return $result;
   }catch(\Throwable $e){$receipt['state']='blocked';record($this->session,$receipt);throw $e;}
  }
@@ -60,6 +64,14 @@ class DrainPublisher extends Publisher {
   $this->enroll();$s=json(file_get_contents($this->session));
   if($retireTesteCodex)need($this->drain->closed(),'Retirement requires the original closed drain');
   if(!$this->drain->closed()){
+   if(($s['state']??null)==='recovered'){
+    $journal=$this->ops['private'].'/journal.json';
+    MainAutomation::stable($this->ops);
+    need(!is_file($journal) || in_array(json(file_get_contents($journal))['state']??null,['validated','recovered'],true),
+        'Open gate with pending journal');
+    $this->verifyUnstartedBaseline();
+    return ['state'=>'recovered','already_recovered'=>true];
+   }
    $j=$this->ops['private'].'/journal.json';$prior=(is_file($j)?digest($j):null);
    need($prior===($s['journal_before']??null)&&!file_exists($this->ops['control'].'/deployment.lock')&&$this->content()===$s['content_before'],'Open gate with changed attempt; manual reconciliation required');
    $this->verifyUnstartedBaseline();$s['state']='recovered';record($this->session,$s);return ['state'=>'recovered','content_transferred'=>false,'database_restored'=>false,'gate_never_closed'=>true];

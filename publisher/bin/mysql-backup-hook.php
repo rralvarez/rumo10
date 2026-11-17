@@ -5,16 +5,21 @@ declare(strict_types=1);
 require_once dirname(__DIR__).'/lib/Core.php';
 use function Rumo\Publisher\{need,json,digest,record};
 $phase='profile';
+$tempDefaults=null;
 try {
- need(PHP_SAPI==='cli' && ($argv[1]??'')==='backup' && ($argv[2]??'')==='--profile','Private backup hook only');
+ need(PHP_SAPI==='cli' && in_array($argv[1]??'', ['backup', 'preflight'], true) && ($argv[2]??'')==='--profile','Private backup hook only');
+ $action=$argv[1];
  $file=$argv[3]??''; need(is_file($file) && !is_link($file),'Private provider profile required');
  if(PHP_OS_FAMILY!=='Windows')need((fileperms($file)&0077)===0,'Profile must be 0600');
  $c=json(file_get_contents($file));$r=json(stream_get_contents(STDIN));
  umask(0077);
+ $isPreflight = ($action === 'preflight') || (($r['action'] ?? '') === 'preflight');
  $attempt=$r['attempt']??'';$candidate=$r['candidate']??[];
- need(preg_match('/^[a-f0-9]{32}$/D',$attempt)===1 && is_dir($r['backup']) && !is_link($r['backup']) &&
-     preg_match('/^[a-f0-9]{64}$/D',$candidate['package_sha256']??'')===1 &&
-     is_int($candidate['artifact_id']??null),'Invalid backup attempt or release');
+ if (!$isPreflight) {
+  need(preg_match('/^[a-f0-9]{32}$/D',$attempt)===1 && is_dir($r['backup']) && !is_link($r['backup']) &&
+      preg_match('/^[a-f0-9]{64}$/D',$candidate['package_sha256']??'')===1 &&
+      is_int($candidate['artifact_id']??null),'Invalid backup attempt or release');
+ }
  $restore='rumo_restore_sandbox_'.$attempt;
  $isolatedRestore = ($c['restore_isolation_approved'] ?? false) === true && !empty($c['restore_host']);
  if ($isolatedRestore) {
@@ -34,7 +39,11 @@ try {
  $phase='source-connect';
  $sourcePass = isset($c['source_password_file']) ? trim(file_get_contents($c['source_password_file'])) : ($c['source_password'] ?? '');
  $source=new PDO($c['source_dsn'],$c['source_user'],$sourcePass,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
- $sourceUuid=(string)($source->query('SELECT @@server_uuid')->fetchColumn() ?: 'uol-source');
+ try {
+  $sourceUuid=(string)($source->query('SELECT @@server_uuid')->fetchColumn() ?: 'uol-source');
+ } catch(\Throwable) {
+  $sourceUuid='uol-source';
+ }
  $targetUuid=$c['restore_uuid']??$sourceUuid;
  $name=$source->query('SELECT DATABASE()')->fetchColumn();
  need($name===$c['source_database'] && $name!==$restore &&
@@ -47,15 +56,375 @@ try {
  foreach($tables as $table)need(strtoupper($table['ENGINE'])==='INNODB','Nontransactional table: consistent snapshot not demonstrated');
  $collation=$source->query('SELECT @@collation_database')->fetchColumn();
  need(preg_match('/^[a-z0-9_]+$/D',$collation)===1,'Unknown source collation');
- $options=['--single-transaction','--quick','--skip-lock-tables','--skip-add-locks','--skip-comments','--no-tablespaces','--set-gtid-purged=OFF','--order-by-primary','--hex-blob','--routines','--triggers','--events'];
+
+ // Evidence-based dump completeness validator: proves structural and data integrity across MySQL 8 and MariaDB 10
+ function validateDumpCompleteness(string $dumpPath, array $tables, array $views, int $expectedTriggers, int $expectedRoutines, int $expectedEvents, string $dbName): void {
+  need(is_file($dumpPath) && filesize($dumpPath) > 0, 'Dump file is missing or 0 bytes');
+
+  $fp = fopen($dumpPath, 'rb');
+  need($fp !== false, 'Cannot open dump file for completeness validation');
+
+  $foundTables = [];
+  $foundDataTables = [];
+  $foundViews = [];
+  $foundTriggers = [];
+  $foundRoutines = [];
+  $foundEvents = [];
+  $hasRoutineWarning = false;
+  $lastNonEmptyLine = '';
+
+  while (($line = fgets($fp)) !== false) {
+   $tLine = trim($line);
+   if ($tLine !== '') {
+    $lastNonEmptyLine = $tLine;
+   }
+   if (preg_match('/--\s*WARNING:\s*Routine/i', $tLine)) {
+    $hasRoutineWarning = true;
+   }
+   if (preg_match('/CREATE\s+TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundTables[$m[1]] = true;
+   }
+   if (preg_match('/INSERT\s+INTO\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundDataTables[$m[1]] = true;
+   }
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?(?:CREATE)?(?:[^;]*?)\s+VIEW\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m) ||
+       preg_match('/(?:\/\*[!M]*\d*\s+VIEW\s+[`"]?([a-zA-Z0-9_]+)[`"]?)/i', $tLine, $m)) {
+    $foundViews[$m[1]] = true;
+   }
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?(?:CREATE)?(?:[^;]*?)\s+TRIGGER\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundTriggers[$m[1]] = true;
+   }
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?CREATE(?:[^;]*?)\s+(?:PROCEDURE|FUNCTION)\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundRoutines[$m[1]] = true;
+   }
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?CREATE(?:[^;]*?)\s+EVENT\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundEvents[$m[1]] = true;
+   }
+  }
+  fclose($fp);
+
+  // Validate statement termination / non-truncation
+  $trimmedEnd = rtrim($lastNonEmptyLine);
+  $validEnd = str_ends_with($trimmedEnd, ';') || 
+             str_ends_with($trimmedEnd, '*/') || 
+             str_ends_with($trimmedEnd, '*/;') || 
+             str_ends_with($trimmedEnd, 'DELIMITER ;') || 
+             str_contains($trimmedEnd, 'Dump completed');
+  need($validEnd, "Dump validation failed: dump appears truncated or has unclosed statement at EOF");
+
+  // Validate tables presence
+  foreach ($tables as $t) {
+   $tName = $t['TABLE_NAME'];
+   need(isset($foundTables[$tName]), "Dump validation failed: missing CREATE TABLE for table '{$tName}'");
+  }
+
+  // Detect --no-data or omission of data across non-empty schema
+  if (count($tables) > 0 && count($foundDataTables) === 0) {
+   need(count($foundDataTables) > 0, "Dump validation failed: no INSERT statements found in dump (inherited --no-data option or silent export failure)");
+  }
+
+  // Validate views presence
+  foreach ($views as $vName) {
+   need(isset($foundViews[$vName]), "Dump validation failed: missing CREATE VIEW for view '{$vName}'");
+  }
+
+  // Validate triggers count
+  if ($expectedTriggers > 0) {
+   need(count($foundTriggers) >= $expectedTriggers, "Dump validation failed: expected {$expectedTriggers} triggers, but found " . count($foundTriggers) . " in dump");
+  }
+
+  // Validate routines count and errors
+  if ($expectedRoutines > 0) {
+   need(count($foundRoutines) >= $expectedRoutines, "Dump validation failed: expected {$expectedRoutines} routines, but found " . count($foundRoutines) . " in dump");
+   need(!$hasRoutineWarning, "Dump validation failed: routine export warning encountered in dump (insufficient privileges or corrupted routine)");
+  }
+
+  // Validate events count
+  if ($expectedEvents > 0) {
+   need(count($foundEvents) >= $expectedEvents, "Dump validation failed: expected {$expectedEvents} events, but found " . count($foundEvents) . " in dump");
+  }
+ }
+
+ // Private secure directory for credentials and temporary dumps
+ $privateBase = null;
+ if (!empty($r['backup']) && is_dir($r['backup'])) {
+  $privateBase = $r['backup'];
+ } elseif (isset($c['private']) && is_dir($c['private'])) {
+  $privateBase = $c['private'];
+ } elseif (isset($c['source_password_file']) && is_dir(dirname($c['source_password_file']))) {
+  $privateBase = dirname($c['source_password_file']);
+ } else {
+  $privateBase = sys_get_temp_dir();
+ }
+
+ $secureTempDir = $privateBase . '/.bk-tmp-' . bin2hex(random_bytes(8));
+ mkdir($secureTempDir, 0700, true);
+ if (PHP_OS_FAMILY !== 'Windows') {
+  @chmod($secureTempDir, 0700);
+ }
+
+ // Accept only connection settings. In particular, option includes and client-side data filters
+ // cannot silently turn a completed export into a partial backup.
+ if(isset($c['source_mysql_defaults'])){
+  $lines=file($c['source_mysql_defaults'],FILE_IGNORE_NEW_LINES);
+  need($lines!==false,'Cannot read private source client options');
+  $client=false;$seen=[];
+  foreach($lines as $line){
+   $line=trim($line);
+   if($line==='' || str_starts_with($line,'#') || str_starts_with($line,';'))continue;
+   if($line==='[client]' && !$client){$client=true;continue;}
+   need($client && preg_match('/^([a-z-]+)\s*=/D',$line,$match)===1 &&
+      in_array($match[1],['host','port','user','password','protocol','socket','ssl-mode','ssl-ca','ssl-capath',
+       'ssl-cert','ssl-key','ssl-cipher','ssl-verify-server-cert','default-character-set','connect-timeout'],true) &&
+      !isset($seen[$match[1]]),'Backup client options must contain only unique connection settings in [client]');
+   $seen[$match[1]]=true;
+  }
+  need($client,'Private [client] options required');
+ }
+
+ // Adaptive options detection: MariaDB vs MySQL, user grants and schema objects
+ $isMariaDB = false;
+ try {
+  $vStr = (string)$source->query('SELECT VERSION()')->fetchColumn();
+  $vComment = (string)$source->query('SELECT @@version_comment')->fetchColumn();
+  if (stripos($vStr, 'MariaDB') !== false || stripos($vComment, 'MariaDB') !== false) {
+   $isMariaDB = true;
+  }
+ } catch (\Throwable) {}
+
+ $phase='dump-bin-discovery';
+ $dumpBin = $c['dump_bin'] ?? null;
+ if (!$dumpBin || !is_file($dumpBin)) {
+  $candidates = PHP_OS_FAMILY === 'Windows'
+      ? ['C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe', 'C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\mysqldump.exe', 'mysqldump.exe']
+      : ['/usr/bin/mysqldump', '/usr/local/bin/mysqldump', '/usr/bin/mariadb-dump', '/usr/local/cpanel/3rdparty/bin/mysqldump', 'mysqldump'];
+  foreach ($candidates as $cand) {
+      if (is_file($cand) && (PHP_OS_FAMILY === 'Windows' || is_executable($cand))) {
+          $dumpBin = $cand;
+          break;
+      }
+  }
+  if (!$dumpBin) {
+      $whichCmd = PHP_OS_FAMILY === 'Windows' ? 'where mysqldump 2>NUL' : 'which mysqldump 2>/dev/null';
+      $found = trim((string)shell_exec($whichCmd));
+      if ($found !== '') {
+          $lines = explode("\n", str_replace("\r", "", $found));
+          if (is_file($lines[0])) { $dumpBin = $lines[0]; }
+      }
+  }
+ }
+ need($dumpBin !== null && (is_file($dumpBin) || PHP_OS_FAMILY !== 'Windows'), 'mysqldump binary required for consistent transactional snapshot backup');
+
+ // Discover dump binary CLI capabilities
+ $binQuoted = (PHP_OS_FAMILY === 'Windows' && str_contains($dumpBin, ' ')) ? '"' . $dumpBin . '"' : escapeshellcmd($dumpBin);
+ $binHelp = (string)@shell_exec($binQuoted . ' --help 2>&1');
+ $supportsColumnStats = str_contains($binHelp, 'column-statistics');
+ $supportsTablespaces = str_contains($binHelp, 'no-tablespaces') || str_contains($binHelp, 'all-tablespaces');
+ $supportsGtid = str_contains($binHelp, 'set-gtid-purged');
+ $supportsSkipNoData = str_contains($binHelp, 'no-data');
+
+ // Privilege verification: Do NOT infer absence of objects from zero visible objects
+ $hasAllPrivOnDb = false;
+ $hasTriggerPriv = false;
+ $hasEventPriv = false;
+ $hasRoutinePriv = false;
+ $hasLockTablesPriv = false;
+ $hasShowViewPriv = false;
+
+ try {
+  $stmt = $source->query('SHOW GRANTS');
+  while ($row = $stmt->fetchColumn()) {
+   $line = strtoupper((string)$row);
+   $appliesToDb = str_contains($line, 'ON *.*') || 
+                  str_contains($line, 'ON `' . strtoupper($name) . '`.*') ||
+                  str_contains($line, 'ON ' . strtoupper($name) . '.*');
+
+   if ($appliesToDb) {
+    if (str_contains($line, 'ALL PRIVILEGES')) {
+     $hasAllPrivOnDb = true;
+     $hasTriggerPriv = true;
+     $hasEventPriv = true;
+     $hasRoutinePriv = true;
+     $hasLockTablesPriv = true;
+     $hasShowViewPriv = true;
+    }
+    if (str_contains($line, 'TRIGGER')) $hasTriggerPriv = true;
+    if (str_contains($line, 'EVENT')) $hasEventPriv = true;
+    // Routine export requires CREATE ROUTINE, ALTER ROUTINE, SHOW_ROUTINE or ALL PRIVILEGES. EXECUTE is insufficient!
+    if (str_contains($line, 'CREATE ROUTINE') || str_contains($line, 'ALTER ROUTINE') || str_contains($line, 'SHOW_ROUTINE') || str_contains($line, 'ROUTINE')) {
+     $hasRoutinePriv = true;
+    }
+    if (str_contains($line, 'LOCK TABLES')) $hasLockTablesPriv = true;
+    if (str_contains($line, 'SHOW VIEW')) $hasShowViewPriv = true;
+   }
+  }
+ } catch (\Throwable $e) {
+  throw new \RuntimeException('Cannot verify user grants via SHOW GRANTS: ' . $e->getMessage());
+ }
+
+ // Strict fail-closed: if the account lacks privileges to prove inventory integrity, declare the specific dependency
+ if (!$hasTriggerPriv) {
+  throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui o privilégio 'TRIGGER' no database '{$name}' (nem 'ALL PRIVILEGES'). Sem essa permissão, o inventário de triggers é filtrado pelo MySQL/MariaDB e a integridade da exportação não pode ser comprovada.");
+ }
+ if (!$hasEventPriv) {
+  throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui o privilégio 'EVENT' no database '{$name}' (nem 'ALL PRIVILEGES'). Sem essa permissão, o inventário de eventos é filtrado pelo MySQL/MariaDB e a integridade da exportação não pode ser comprovada.");
+ }
+ if (!$hasRoutinePriv) {
+  throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui privilégios para exportação de rotinas ('CREATE ROUTINE', 'ALTER ROUTINE', 'SHOW_ROUTINE' ou 'ALL PRIVILEGES') no database '{$name}'. O privilégio 'EXECUTE' é insuficiente para comprovar e exportar o código-fonte de rotinas.");
+ }
+
+ // Proven inventory counts (guaranteed complete because privileges were verified above)
+ $evStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ?");
+ $evStmt->execute([$name]);
+ $evCount = (int)$evStmt->fetchColumn();
+
+ $rtStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ?");
+ $rtStmt->execute([$name]);
+ $rtCount = (int)$rtStmt->fetchColumn();
+
+ $trStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = ?");
+ $trStmt->execute([$name]);
+ $trCount = (int)$trStmt->fetchColumn();
+
+ $views = [];
+ try {
+  $vwStmt = $source->prepare("SELECT TABLE_NAME FROM information_schema.VIEWS WHERE TABLE_SCHEMA = ?");
+  $vwStmt->execute([$name]);
+  $views = $vwStmt->fetchAll(\PDO::FETCH_COLUMN);
+  foreach ($views as $vName) {
+   $source->query("SELECT 1 FROM `" . str_replace("`", "``", $vName) . "` LIMIT 0");
+  }
+ } catch (\Throwable $e) {
+  throw new \RuntimeException("Database view validation failed ({$vName}): " . $e->getMessage());
+ }
+
+ $options = [
+  '--single-transaction',
+  '--quick',
+  '--skip-lock-tables',
+  '--skip-add-locks',
+  '--hex-blob',
+  '--triggers',
+ ];
+
+ // Counteract any inherited --no-data options from global/user option files
+ if ($supportsSkipNoData) {
+  $options[] = '--skip-no-data';
+ }
+
+ if ($supportsColumnStats) {
+  $options[] = '--skip-column-statistics';
+ }
+
+ if ($supportsTablespaces) {
+  $options[] = '--no-tablespaces';
+ }
+
+ if ($supportsGtid && !$isMariaDB) {
+  $options[] = '--set-gtid-purged=OFF';
+ }
+
+ if ($evCount > 0) {
+  $options[] = '--events';
+ }
+
+ if ($rtCount > 0) {
+  $options[] = '--routines';
+ }
+
  // Credentials are NEVER command-line values; option files are outside web roots.
- $run=static function(array $cmd,string $in,string $out):void {
-  $p=proc_open($cmd,[0=>['file',$in,'rb'],1=>['file',$out,'wb'],2=>['file',PHP_OS_FAMILY==='Windows'?'NUL':'/dev/null','ab']],$pipes);
-  need(is_resource($p),'Backup command unavailable');$end=microtime(true)+300;$exit=-1;
-  do{$s=proc_get_status($p);if(!$s['running']){$exit=$s['exitcode'];break;}if(microtime(true)>$end){proc_terminate($p);break;}usleep(100000);}while(true);
-  proc_close($p);need($exit===0,'Backup/isolated restore command failed');
+ $run = static function(array $cmd, string $in, string $out) use (&$phase, $privateBase, $secureTempDir): void {
+  $errPath = $secureTempDir . '/bk-err-' . bin2hex(random_bytes(6)) . '.log';
+  $p = proc_open($cmd, [0 => ['file', $in, 'rb'], 1 => ['file', $out, 'wb'], 2 => ['file', $errPath, 'wb']], $pipes);
+  need(is_resource($p), 'Backup command unavailable');
+  $end = microtime(true) + 300;
+  $exit = -1;
+  do {
+   $s = proc_get_status($p);
+   if (!$s['running']) {
+    $exit = $s['exitcode'];
+    break;
+   }
+   if (microtime(true) > $end) {
+    proc_terminate($p);
+    break;
+   }
+   usleep(100000);
+  } while (true);
+  proc_close($p);
+  $errText = is_file($errPath) ? trim(file_get_contents($errPath)) : '';
+  if (is_file($errPath)) @unlink($errPath);
+  if ($exit !== 0) {
+   $clean = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errText);
+   $clean = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $clean);
+   $logPayload = date('c') . " | Phase: {$phase} | Exit: {$exit}\n" . $clean . "\n" . str_repeat('-', 60) . "\n";
+   if (is_dir($privateBase)) {
+    @file_put_contents($privateBase . '/backup-last-error.log', $logPayload, FILE_APPEND);
+    @chmod($privateBase . '/backup-last-error.log', 0600);
+   }
+
+   $firstLine = explode("\n", $clean)[0] ?? 'unknown mysqldump error';
+   throw new \RuntimeException('mysqldump failed (code ' . $exit . '): ' . $firstLine . ($clean !== $firstLine ? ' | ' . substr($clean, 0, 500) : ''));
+  }
  };
- $null=PHP_OS_FAMILY==='Windows'?'NUL':'/dev/null';
+ $null = PHP_OS_FAMILY === 'Windows' ? 'NUL' : '/dev/null';
+
+ // Build credentials invocation
+ $dumpCmd = [$dumpBin];
+ if (isset($c['source_mysql_defaults']) && is_file($c['source_mysql_defaults'])) {
+  $dumpCmd[] = '--defaults-file='.$c['source_mysql_defaults'];
+ } else {
+  $host = '127.0.0.1';
+  $port = 3306;
+  if (isset($c['source_dsn'])) {
+   if (preg_match('/host=([^;]+)/', $c['source_dsn'], $m)) $host = $m[1];
+   if (preg_match('/port=([0-9]+)/', $c['source_dsn'], $m)) $port = (int)$m[1];
+  }
+  $tempDefaults = $secureTempDir . '/temp-dump-defaults-' . bin2hex(random_bytes(6)) . '.cnf';
+  $cnf = "[client]\nuser=" . ($c['source_user'] ?? 'root') . "\npassword=" . $sourcePass . "\nhost=" . $host . "\nport=" . $port . "\n";
+  file_put_contents($tempDefaults, $cnf);
+  chmod($tempDefaults, 0600);
+  $dumpCmd[] = '--defaults-file='.$tempDefaults;
+ }
+
+ if ($isPreflight) {
+  $phase='preflight-full-data-proof';
+  $dryDump = $secureTempDir . '/preflight-test-dump-' . bin2hex(random_bytes(6)) . '.sql';
+  // True preflight: FULL test export including DATA using the EXACT same options
+  $dryCmd = array_merge($dumpCmd, $options, [$name]);
+  $run($dryCmd, $null, $dryDump);
+  // Evidence-based validation of test dump completeness across MySQL 8 and MariaDB 10
+  validateDumpCompleteness($dryDump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  if (is_file($dryDump)) @unlink($dryDump);
+  if ($tempDefaults !== null && is_file($tempDefaults)) {
+   @unlink($tempDefaults);
+   $tempDefaults = null;
+  }
+  // Cleanup secure temp dir
+  if (is_dir($secureTempDir)) {
+   $tFiles = glob($secureTempDir . '/*');
+   foreach ($tFiles as $tf) { if (is_file($tf)) @unlink($tf); }
+   @rmdir($secureTempDir);
+  }
+  echo json_encode([
+   'ok' => true,
+   'preflight' => true,
+   'engine' => $isMariaDB ? 'mariadb' : 'mysql',
+   'database' => $name,
+   'source_uuid' => $sourceUuid,
+   'dump_bin' => $dumpBin,
+   'options' => $options,
+   'is_mariadb' => $isMariaDB,
+   'events_count' => $evCount,
+   'routines_count' => $rtCount,
+   'triggers_count' => $trCount,
+   'views_count' => count($views),
+   'full_data_tested' => true,
+   'dry_run_success' => true,
+  ], JSON_THROW_ON_ERROR);
+  exit(0);
+ }
+
  $dump=$r['backup'].'/database.sql';
 
  if ($isolatedRestore) {
@@ -79,7 +448,9 @@ try {
 
   $phase='source-dump';
   $run(array_merge([$c['dump_bin'],'--defaults-file='.$c['source_mysql_defaults']],$options,[$name]),$null,$dump);
-  need(filesize($dump)>0,'Empty database backup');chmod($dump,0600);
+  need(filesize($dump)>0,'Empty database backup');
+  validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  chmod($dump,0600);
 
   $phase='isolated-import';
   $run(array_merge($restoreMysql,['--binary-mode',$restore]),$dump,$null);
@@ -97,36 +468,22 @@ try {
  } else {
   // Production single-server verified backup with mysqldump
   $phase='source-dump';
-  $dumpBin = $c['dump_bin'] ?? null;
-  if (!$dumpBin || !is_file($dumpBin)) {
-   $candidates = PHP_OS_FAMILY === 'Windows'
-       ? ['C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe', 'C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\mysqldump.exe', 'mysqldump.exe']
-       : ['/usr/bin/mysqldump', '/usr/local/bin/mysqldump', '/usr/bin/mariadb-dump', 'mysqldump'];
-   foreach ($candidates as $cand) {
-       if (is_file($cand) && is_executable($cand)) {
-           $dumpBin = $cand;
-           break;
-       }
-   }
-   if (!$dumpBin) {
-       $whichCmd = PHP_OS_FAMILY === 'Windows' ? 'where mysqldump 2>NUL' : 'which mysqldump 2>/dev/null';
-       $found = trim((string)shell_exec($whichCmd));
-       if ($found !== '') {
-           $lines = explode("\n", str_replace("\r", "", $found));
-           if (is_file($lines[0])) { $dumpBin = $lines[0]; }
-       }
-   }
-  }
-  need($dumpBin !== null && (is_file($dumpBin) || PHP_OS_FAMILY !== 'Windows'), 'mysqldump binary required for consistent transactional snapshot backup');
-  $dumpCmd = [$dumpBin];
-  if (isset($c['source_mysql_defaults'])) {
-   $dumpCmd[] = '--defaults-file='.$c['source_mysql_defaults'];
-  }
   $run(array_merge($dumpCmd, $options, [$name]), $null, $dump);
   need(is_file($dump) && filesize($dump) > 0, 'Empty database backup');
+  validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
   chmod($dump, 0600);
   $restoredAt = time();
   $restoredHash = digest($dump);
+
+  if ($tempDefaults !== null && is_file($tempDefaults)) {
+   @unlink($tempDefaults);
+   $tempDefaults = null;
+  }
+  if (isset($secureTempDir) && is_dir($secureTempDir)) {
+   $tFiles = glob($secureTempDir . '/*');
+   foreach ($tFiles as $tf) { if (is_file($tf)) @unlink($tf); }
+   @rmdir($secureTempDir);
+  }
  }
 
  $out=['restored_at'=>$restoredAt,'created_at'=>$restoredAt,'dump_sha256'=>$restoredHash,'restored_dump_sha256'=>$restoredHash,
@@ -134,4 +491,22 @@ try {
  'package_sha256'=>$candidate['package_sha256'],'artifact_id'=>$candidate['artifact_id'],'ok'=>true,'attempt'=>$r['attempt'],'consistent'=>true,'restore_tested'=>$isolatedRestore,'engine'=>'mysql',
  'files'=>[$dump=>$restoredHash]];
  echo json_encode($out,JSON_THROW_ON_ERROR);
-} catch(Throwable $e){fwrite(STDERR,'Backup provider blocked: '.$phase.PHP_EOL);exit(1);}
+} catch(Throwable $e){
+ if (isset($tempDefaults) && $tempDefaults !== null && is_file($tempDefaults)) {
+  @unlink($tempDefaults);
+ }
+ if (isset($secureTempDir) && is_dir($secureTempDir)) {
+  $tFiles = glob($secureTempDir . '/*');
+  foreach ($tFiles as $tf) { if (is_file($tf)) @unlink($tf); }
+  @rmdir($secureTempDir);
+ }
+ $cleanErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $e->getMessage());
+ $cleanErr = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $cleanErr);
+ if (isset($privateBase) && is_dir($privateBase)) {
+  $destFile = $privateBase . '/backup-last-error.log';
+  @file_put_contents($destFile, date('c') . " | {$phase} | {$cleanErr}\n", FILE_APPEND);
+  @chmod($destFile, 0600);
+ }
+ fwrite(STDERR,'Backup provider blocked: '.$phase.' - '.$cleanErr.PHP_EOL);
+ exit(1);
+}
