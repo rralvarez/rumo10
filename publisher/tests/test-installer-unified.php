@@ -51,9 +51,9 @@ try {
     $patchFiles = [
         'mysql-backup-hook.php' => $realRoot . '/publisher/bin/mysql-backup-hook.php',
         'diagnose-uol.php'      => $realRoot . '/publisher/bin/diagnose-uol.php',
-        'guarded-publisher.php' => $realRoot . '/publisher/bin/guarded-publisher.php',
         'Publisher.php'         => $realRoot . '/publisher/lib/Publisher.php',
         'DrainPublisher.php'    => $realRoot . '/publisher/lib/DrainPublisher.php',
+        'MainAutomation.php'    => $realRoot . '/publisher/lib/MainAutomation.php',
         'GitHub.php'            => $realRoot . '/publisher/lib/GitHub.php',
     ];
     foreach ($patchFiles as $name => $src) {
@@ -63,9 +63,9 @@ try {
     // Create dummy existing operational files in bin/ and lib/
     file_put_contents($binDir . '/mysql-backup-hook.php', "<?php // OLD HOOK\n");
     file_put_contents($binDir . '/diagnose-uol.php', "<?php // OLD DIAG\n");
-    file_put_contents($binDir . '/guarded-publisher.php', "<?php // OLD GUARDED PUB\n");
     file_put_contents($libDir . '/Publisher.php', "<?php // OLD PUB\n");
     file_put_contents($libDir . '/DrainPublisher.php', "<?php // OLD DRAIN PUB\n");
+    file_put_contents($libDir . '/MainAutomation.php', "<?php // OLD MAIN AUTO\n");
     file_put_contents($libDir . '/GitHub.php', "<?php // OLD GITHUB\n");
 
     // Copy installer into bin/
@@ -132,25 +132,25 @@ try {
     $cmd = [PHP_BINARY, $binDir . '/install-and-publish.php', '--config=' . $configFile, '--skip-publish', '--force'];
     $out = shell_exec(implode(' ', array_map('escapeshellarg', $cmd)) . ' 2>&1');
 
-    if (str_contains($out, 'ROLLBACK')) {
-        testPass("Instalador detectou falha no preflight e acionou rollback automático");
+    if (str_contains($out, 'FALHA BLOQUEANTE NO PREFLIGHT') || str_contains($out, 'ROLLBACK')) {
+        testPass("Instalador detectou falha no preflight em staging isolado e abortou com segurança");
     } else {
-        testFail("Preflight failure", "Deveria ter acionado rollback: {$out}");
+        testFail("Preflight failure", "Deveria ter detectado falha no preflight: {$out}");
     }
 
-    // Verify rollback restored receiver-config.json
+    // Verify receiver-config.json was preserved
     $restoredConfig = json_decode(file_get_contents($configFile), true);
     if (($restoredConfig['hooks']['backup']['sha256'] ?? '') === str_repeat('a', 64)) {
-        testPass("Rollback automático: receiver-config.json restaurado com hash anterior");
+        testPass("Configuração ativa preservada com hash anterior");
     } else {
-        testFail("Config rollback", "Configuração não foi restaurada: " . json_encode($restoredConfig));
+        testFail("Config preserved", "Configuração não foi preservada: " . json_encode($restoredConfig));
     }
 
-    // Verify rollback restored previous operational files
+    // Verify operational files were preserved
     if (file_get_contents($binDir . '/mysql-backup-hook.php') === "<?php // OLD HOOK\n") {
-        testPass("Rollback automático: arquivos operacionais restaurados ao estado anterior");
+        testPass("Arquivos operacionais ativos 100% preservados");
     } else {
-        testFail("Files rollback", "Arquivos não foram restaurados ao estado anterior");
+        testFail("Files preserved", "Arquivos não foram preservados");
     }
 
     // Verify receipt was written with aborted status

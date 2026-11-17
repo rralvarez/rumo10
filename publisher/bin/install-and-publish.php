@@ -2,13 +2,11 @@
 declare(strict_types=1);
 
 /**
- * RUMO10 | Transactional & Recoverable Operational Installer & Publisher (v5)
+ * RUMO10 | Hardened Transactional & Isolated Bootstrap Installer & Publisher (V6 Architecture)
  *
- * Implements strict phase separation:
- *  - Phase A (Preparation): Staging & True Preflight on staged code (zero active changes).
- *  - Phase B (Operational Promotion): Account mutex mutual exclusion, atomic promotion & pin update.
- *  - Phase C (Handover & Publication): Account mutex release, official controlled-pull apply,
- *    and strict two-tier recovery (official --recover without reverting publisher files).
+ * Implements strict phase separation, complete isolated staging hierarchy,
+ * mutex-protected operational backup, atomic file promotion per file via rename(),
+ * and strict 2-tier recovery state machine (official controlled-pull --recover post-apply).
  *
  * Target: commit fb03b614c337845671cf6cbf1eb36abe01308bfd | artifact 14257772333 | run 43929021873
  */
@@ -54,17 +52,50 @@ function atomicWrite(string $path, string $content, int $mode = 0600): void {
     }
 }
 
+function atomicPromote(string $source, string $dest, int $mode = 0600): void {
+    if (!is_dir(dirname($dest))) {
+        mkdir(dirname($dest), 0755, true);
+    }
+    $tmpDest = $dest . '.tmp.' . bin2hex(random_bytes(6));
+    if (!copy($source, $tmpDest)) {
+        throw new \RuntimeException("Failed to copy temporary file: {$tmpDest}");
+    }
+    if (PHP_OS_FAMILY !== 'Windows') {
+        @chmod($tmpDest, $mode);
+    }
+    if (digestFile($tmpDest) !== digestFile($source)) {
+        @unlink($tmpDest);
+        throw new \RuntimeException("Hash verification failed on staged copy: {$tmpDest}");
+    }
+    if (!rename($tmpDest, $dest)) {
+        @unlink($tmpDest);
+        throw new \RuntimeException("Failed to atomically rename {$tmpDest} to {$dest}");
+    }
+}
+
 // -------------------------------------------------------------------------
 // Configuration and Paths
 // -------------------------------------------------------------------------
 $opts = getopt('', ['config:', 'force', 'skip-publish']);
 
-$baseDir = dirname(__DIR__, 2);
 $defaultConfig = '/home/rumoacame144a99e/rumo10-production-v062-ee8f175/receiver-config.json';
-$configPath = $opts['config'] ?? (is_file($defaultConfig) ? $defaultConfig : $baseDir . '/receiver-config.json');
+$possibleConfigs = [
+    $opts['config'] ?? null,
+    $defaultConfig,
+    dirname(__DIR__, 2) . '/receiver-config.json',
+    dirname(__DIR__, 3) . '/receiver-config.json',
+];
 
-if (!is_file($configPath)) {
-    fwrite(STDERR, "BLOCKED: Configuration file not found at {$configPath}\n");
+$configPath = null;
+foreach ($possibleConfigs as $cand) {
+    if ($cand && is_file($cand)) {
+        $configPath = $cand;
+        break;
+    }
+}
+
+if (!$configPath || !is_file($configPath)) {
+    fwrite(STDERR, "BLOCKED: receiver-config.json não encontrado. Especifique --config=/caminho/para/receiver-config.json\n");
     exit(1);
 }
 
@@ -86,13 +117,30 @@ $installedJsonPath = $privateDir . '/installed.json';
 $journalFile = $privateDir . '/patch-install-journal.json';
 $receiptPath = $privateDir . '/patch-install-receipt.json';
 
-$binDir = dirname(__DIR__) . '/bin';
-$libDir = dirname(__DIR__) . '/lib';
-$patchDir = dirname(__DIR__) . '/patch';
+// Active production directories
+$prodRoot = dirname($configPath);
+$activeBinDir = $prodRoot . '/publisher/bin';
+$activeLibDir = $prodRoot . '/publisher/lib';
 
-logMsg("=== RUMO10 | INICIALIZANDO INSTALADOR TRANSACIONAL E PUBLICADOR DEFINITIVO (V5) ===");
-logMsg("Configuração: {$configPath}");
+// Source payload directories: can run from bootstrap package or repository publisher
+$payloadDirs = [
+    __DIR__ . '/../payload',
+    dirname(__DIR__) . '/patch',
+    dirname(__DIR__),
+];
+$resolvedPayload = null;
+foreach ($payloadDirs as $pd) {
+    if (is_dir($pd)) {
+        $resolvedPayload = $pd;
+        break;
+    }
+}
+
+logMsg("=== RUMO10 | INICIALIZANDO BOOTSTRAP INSTALLER ISOLADO (V6) ===");
+logMsg("Configuração ativa: {$configPath}");
 logMsg("Diretório privado: {$privateDir}");
+logMsg("Diretório ativo bin: {$activeBinDir}");
+logMsg("Diretório ativo lib: {$activeLibDir}");
 
 // -------------------------------------------------------------------------
 // 1. Mutual Exclusion for Installer (installer.lock)
@@ -109,7 +157,7 @@ if (!flock($lockFp, LOCK_EX | LOCK_NB)) {
 }
 
 // Check publisher deployment lock
-$controlDir = $configData['control'] ?? dirname($configPath) . '/control';
+$controlDir = $configData['control'] ?? $prodRoot . '/control';
 $deployLock = $controlDir . '/deployment.lock';
 if (file_exists($deployLock)) {
     fwrite(STDERR, "BLOCKED: deployment.lock ativo em {$deployLock}. Não é seguro promover arquivos durante deployment.\n");
@@ -125,18 +173,15 @@ function executePreApplyRollback(array $j, string $cfgPath, string $jPath): bool
     logMsg("EXECUTANDO ROLLBACK TRANSACIONAL PRÉ-APPLY...");
     $success = true;
 
-    // 1. Restore modified files from backup
+    // 1. Restore modified files from backup atomically
     $backupDir = $j['backup_dir'] ?? null;
     $modifiedFiles = $j['modified_files'] ?? [];
     if ($backupDir && is_dir($backupDir)) {
         foreach ($modifiedFiles as $dest => $meta) {
             $backupCopy = $backupDir . '/' . basename($dest);
             if (is_file($backupCopy)) {
-                if (!copy($backupCopy, $dest)) {
-                    logMsg("  [ERRO] Falha ao restaurar: {$dest}");
-                    $success = false;
-                } else {
-                    if (PHP_OS_FAMILY !== 'Windows') @chmod($dest, 0600);
+                try {
+                    atomicPromote($backupCopy, $dest, 0600);
                     $restoredHash = digestFile($dest);
                     if ($restoredHash !== $meta['hash']) {
                         logMsg("  [ERRO] Hash divergente após restauração em {$dest}: {$restoredHash} vs {$meta['hash']}");
@@ -144,6 +189,9 @@ function executePreApplyRollback(array $j, string $cfgPath, string $jPath): bool
                     } else {
                         logMsg("  [RESTAURADO] {$dest} (hash verificado)");
                     }
+                } catch (\Throwable $err) {
+                    logMsg("  [ERRO] Falha ao restaurar {$dest}: " . $err->getMessage());
+                    $success = false;
                 }
             }
         }
@@ -206,13 +254,14 @@ $isInstalled = ($currInstalled['commit'] ?? '') === $targetCommit;
 $hasSuccessReceipt = is_file($receiptPath) && (json_decode(file_get_contents($receiptPath), true)['status'] ?? '') === 'success';
 $hasValidatedJournal = is_file($journalFile) && (json_decode(file_get_contents($journalFile), true)['state'] ?? '') === 'validated';
 
+$phpBin = (PHP_OS_FAMILY !== 'Windows' && is_executable('/opt/alt/php84/usr/bin/php')) ? '/opt/alt/php84/usr/bin/php' : PHP_BINARY;
+$controlledPull = $activeBinDir . '/controlled-pull.php';
+
 if (!$force && $isInstalled && ($hasSuccessReceipt || $hasValidatedJournal)) {
     logMsg("IDEMPOTÊNCIA: Release UI-001 ({$targetCommit}) já está validada e instalada em {$installedJsonPath}.");
-    logMsg("Delegando para guarded-publisher.php em modo contínuo...");
-    $guardedPub = $binDir . '/guarded-publisher.php';
-    if (is_file($guardedPub)) {
-        $phpBin = (PHP_OS_FAMILY !== 'Windows' && is_executable('/opt/alt/php84/usr/bin/php')) ? '/opt/alt/php84/usr/bin/php' : PHP_BINARY;
-        passthru(escapeshellarg($phpBin) . ' ' . escapeshellarg($guardedPub) . ' --config=' . escapeshellarg($configPath), $exitCode);
+    if (is_file($controlledPull)) {
+        logMsg("Delegando para controlled-pull.php --mode=apply --discover...");
+        passthru(escapeshellarg($phpBin) . ' ' . escapeshellarg($controlledPull) . ' --config=' . escapeshellarg($configPath) . ' --mode=apply --discover', $exitCode);
         flock($lockFp, LOCK_UN);
         fclose($lockFp);
         exit($exitCode);
@@ -222,134 +271,115 @@ if (!$force && $isInstalled && ($hasSuccessReceipt || $hasValidatedJournal)) {
     exit(0);
 }
 
+// Strict 2-tier recovery state machine (Defect 4)
 if (is_file($journalFile)) {
     $priorJournal = json_decode(file_get_contents($journalFile), true);
     $priorState = $priorJournal['state'] ?? 'unknown';
 
     if (!in_array($priorState, ['validated', 'rolled_back'], true)) {
-        logMsg("RECUPERAÇÃO DE INTERRUPÇÃO: Detectada tentativa anterior incompleta no estado '{$priorState}'.");
-        if ($priorState === 'transferring_to_publisher' || $priorState === 'apply_started') {
-            logMsg("A tentativa anterior foi interrompida durante ou após transferência ao publisher. Preservando publisher e acionando recuperação oficial.");
-            $phpBin = (PHP_OS_FAMILY !== 'Windows' && is_executable('/opt/alt/php84/usr/bin/php')) ? '/opt/alt/php84/usr/bin/php' : PHP_BINARY;
-            $controlledPull = $binDir . '/controlled-pull.php';
+        logMsg("RECUPERAÇÃO DE INTERRUPÇÃO: Detectada tentativa anterior no estado '{$priorState}'.");
+        
+        $postApplyStates = ['transferring_to_publisher', 'apply_started', 'apply_failed', 'pending_recovery'];
+        if (in_array($priorState, $postApplyStates, true)) {
+            // Post-apply state: NEVER revert publisher files! Acionar exclusivamente controlled-pull --recover.
+            logMsg("Estado pós-apply identificado ('{$priorState}'). Preservando publisher compatível e acionando recuperação oficial (--recover)...");
             if (is_file($controlledPull)) {
-                passthru(escapeshellarg($phpBin) . ' ' . escapeshellarg($controlledPull) . ' --config=' . escapeshellarg($configPath) . ' --mode=apply --recover');
+                passthru(escapeshellarg($phpBin) . ' ' . escapeshellarg($controlledPull) . ' --config=' . escapeshellarg($configPath) . ' --mode=apply --recover', $recExit);
+                logMsg("Resultado da recuperação oficial: código {$recExit}");
             }
         } else {
+            // Pre-apply state: rollback operational patch
+            logMsg("Estado pré-apply identificado ('{$priorState}'). Executando rollback do patch operacional...");
             $rbOk = executePreApplyRollback($priorJournal, $configPath, $journalFile);
             need($rbOk, "Falha na recuperação de tentativa anterior interrompida. Intervenção necessária.");
-            logMsg("Recuperação pré-apply concluída: ambiente restaurado ao estado íntegro original.");
+            logMsg("Recuperação pré-apply concluída com sucesso.");
         }
     }
 }
 
 // -------------------------------------------------------------------------
-// FASE A: PREPARAÇÃO (Zero Alteração no Código Ativo)
+// FASE A: PREPARAÇÃO COM STAGING COMPLETO E ISOLADO (Defeito 1 & 2)
 // -------------------------------------------------------------------------
-logMsg("FASE A: Preparação, verificação de hashes e preflight completo em staging privado...");
+logMsg("FASE A: Preparação com staging hierárquico isolado e preflight verdadeiro...");
 
 $expectedHashes = [
-    'mysql-backup-hook.php' => '4f63075ab85d1f740a611da3e619eaa0e3ffdcab6d75be211dc4fcc167945eed',
-    'diagnose-uol.php'      => '9d4d6fb9f58b3daa49cd798fe7a8975ea2a00ef6c0292dc26756077066e19a6b',
-    'guarded-publisher.php' => 'ad5f0410087d7635db1dc3cdf466459e5d44526210dd9552c35df317978983bd',
-    'Publisher.php'         => '38e9a5784ac3f9cd4fdb1ab3e2ae184b8ebe20eefc7803831fcfb250ced7313e',
-    'DrainPublisher.php'    => '4fbcd95202349212a6ede3d2d9be0a441450cc4d27634550279d0f9e44eb991a',
-    'GitHub.php'            => 'af564c8293737c053f5dac5c3f7bca3509232c62e9b1942fed316aef0649c66d',
+    'publisher/bin/mysql-backup-hook.php' => '4f63075ab85d1f740a611da3e619eaa0e3ffdcab6d75be211dc4fcc167945eed',
+    'publisher/bin/diagnose-uol.php'      => '9d4d6fb9f58b3daa49cd798fe7a8975ea2a00ef6c0292dc26756077066e19a6b',
+    'publisher/lib/Publisher.php'         => '9bd5c7555970b37ade0ebe74d53ea913a028c921812e79272acc375927185f5c',
+    'publisher/lib/DrainPublisher.php'    => 'a67da133454fdbb21347e7a75ce1726fe303c65f9fbf0e1a6e21a9c6eda924b8',
+    'publisher/lib/MainAutomation.php'    => '0824c9c9a55e302fdab9060f0322df2646adf88c564903e91d0f27696ab9ff6d',
+    'publisher/lib/GitHub.php'            => 'af564c8293737c053f5dac5c3f7bca3509232c62e9b1942fed316aef0649c66d',
 ];
-
-$filesPlan = [];
-foreach ($expectedHashes as $file => $expectedHash) {
-    $candPatch = is_dir($patchDir) ? $patchDir . '/' . $file : null;
-    $candBin = $binDir . '/' . $file;
-    $candLib = $libDir . '/' . $file;
-
-    $sourceCandidate = ($candPatch && is_file($candPatch)) ? $candPatch : (is_file($candLib) ? $candLib : $candBin);
-    if (!is_file($sourceCandidate)) {
-        fwrite(STDERR, "BLOCKED: Arquivo obrigatório do patch não encontrado: {$file}\n");
-        flock($lockFp, LOCK_UN);
-        fclose($lockFp);
-        exit(1);
-    }
-
-    $actualHash = digestFile($sourceCandidate);
-    if ($actualHash !== $expectedHash) {
-        fwrite(STDERR, "BLOCKED: Divergência de hash SHA-256 no arquivo {$file}. Esperado: {$expectedHash}, Obtido: {$actualHash}\n");
-        flock($lockFp, LOCK_UN);
-        fclose($lockFp);
-        exit(1);
-    }
-
-    $destPath = (str_ends_with($file, '.php') && str_contains('Publisher.php DrainPublisher.php GitHub.php', $file))
-        ? $libDir . '/' . $file
-        : $binDir . '/' . $file;
-
-    $filesPlan[$file] = [
-        'source' => $sourceCandidate,
-        'dest'   => $destPath,
-        'hash'   => $expectedHash,
-    ];
-}
-logMsg("Integridade prévia dos " . count($filesPlan) . " arquivos do patch 100% comprovada via SHA-256.");
 
 $attemptId = bin2hex(random_bytes(8));
 $stagingDir = $privateDir . '/patch-staging-' . $attemptId;
-mkdir($stagingDir, 0700, true);
-if (PHP_OS_FAMILY !== 'Windows') @chmod($stagingDir, 0700);
 
-// Stage all files
-foreach ($filesPlan as $file => $info) {
-    $stagedFile = $stagingDir . '/' . $file;
-    copy($info['source'], $stagedFile);
-    if (PHP_OS_FAMILY !== 'Windows') @chmod($stagedFile, 0600);
-    $stagedHash = digestFile($stagedFile);
-    need($stagedHash === $info['hash'], "Falha de integridade no staging de {$file}");
-}
+try {
+    // Build complete functional staging hierarchy (publisher/bin and publisher/lib)
+    $stagedBinDir = $stagingDir . '/publisher/bin';
+    $stagedLibDir = $stagingDir . '/publisher/lib';
+    mkdir($stagedBinDir, 0700, true);
+    mkdir($stagedLibDir, 0700, true);
 
-// Backup directory preparation
-$backupDir = $privateDir . '/operational-backups/backup-' . time() . '-' . $attemptId;
-mkdir($backupDir, 0700, true);
-if (PHP_OS_FAMILY !== 'Windows') @chmod($backupDir, 0700);
-copy($configPath, $backupDir . '/receiver-config.json');
-
-$modifiedFiles = [];
-$createdFiles = [];
-foreach ($filesPlan as $file => $info) {
-    $dest = $info['dest'];
-    if (file_exists($dest)) {
-        $backupDest = $backupDir . '/' . $file;
-        copy($dest, $backupDest);
-        $modifiedFiles[$dest] = [
-            'file' => $file,
-            'hash' => digestFile($dest),
-        ];
-    } else {
-        $createdFiles[] = $dest;
+    // Also copy Core.php and other foundational libs to staging lib
+    $coreLib = is_file($activeLibDir . '/Core.php') ? $activeLibDir . '/Core.php' : (dirname(__DIR__) . '/lib/Core.php');
+    if (is_file($coreLib)) {
+        copy($coreLib, $stagedLibDir . '/Core.php');
     }
+    $reqDrainLib = is_file($activeLibDir . '/RequestDrain.php') ? $activeLibDir . '/RequestDrain.php' : (dirname(__DIR__) . '/lib/RequestDrain.php');
+    if (is_file($reqDrainLib)) {
+        copy($reqDrainLib, $stagedLibDir . '/RequestDrain.php');
+    }
+
+    $filesPlan = [];
+    foreach ($expectedHashes as $relPath => $expectedHash) {
+        $candStaged = $stagingDir . '/' . $relPath;
+        $candSrc = null;
+        $searchPaths = [
+            dirname(__DIR__) . '/patch/' . basename($relPath),
+            dirname(__DIR__, 2) . '/publisher/patch/' . basename($relPath),
+            dirname(__DIR__) . '/payload/' . $relPath,
+            __DIR__ . '/payload/' . $relPath,
+            dirname(__DIR__, 2) . '/' . $relPath,
+            dirname(__DIR__) . '/' . basename($relPath),
+            __DIR__ . '/' . basename($relPath),
+        ];
+        foreach ($searchPaths as $sp) {
+            if (is_file($sp)) {
+                $candSrc = $sp;
+                break;
+            }
+        }
+        need($candSrc !== null && is_file($candSrc), "Arquivo obrigatório do payload não encontrado: {$relPath}");
+
+        $actualHash = digestFile($candSrc);
+        need($actualHash === $expectedHash, "Divergência de hash SHA-256 no arquivo " . basename($relPath) . ": {$actualHash} vs esperado {$expectedHash}");
+        atomicPromote($candSrc, $candStaged, 0600);
+        $stagedHash = digestFile($candStaged);
+
+        $destPath = $prodRoot . '/' . $relPath;
+        $filesPlan[$relPath] = [
+            'staged' => $candStaged,
+            'dest'   => $destPath,
+            'hash'   => $stagedHash,
+        ];
+    }
+    logMsg("Staging isolado construído com sucesso (" . count($filesPlan) . " componentes verificados).");
+} catch (\Throwable $phaseAErr) {
+    logMsg("FALHA BLOQUEANTE NA FASE A (STAGING): " . $phaseAErr->getMessage());
+    if (is_dir($stagingDir)) {
+        $stFiles = glob($stagingDir . '/*');
+        foreach ($stFiles as $sf) { if (is_file($sf)) @unlink($sf); }
+        @rmdir($stagingDir);
+    }
+    flock($lockFp, LOCK_UN);
+    fclose($lockFp);
+    exit(1);
 }
 
-// Record journal state: staged
-$journalData = [
-    'attempt_id'             => $attemptId,
-    'started_at'             => date('c'),
-    'state'                  => 'staged',
-    'staging_dir'            => $stagingDir,
-    'backup_dir'             => $backupDir,
-    'modified_files'         => $modifiedFiles,
-    'created_files'          => $createdFiles,
-    'original_config_content'=> $configRaw,
-    'original_config_hash'   => digestFile($configPath),
-    'target_release'         => [
-        'commit'      => $targetCommit,
-        'artifact_id' => $targetArtifactId,
-        'run_id'      => $targetRunId,
-    ],
-];
-atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-
-// Execute True Preflight ON THE STAGED CODE (Zero active code/pin modified!)
-logMsg("Executando preflight verdadeiro sobre o código em staging privado...");
-$phpBin = (PHP_OS_FAMILY !== 'Windows' && is_executable('/opt/alt/php84/usr/bin/php')) ? '/opt/alt/php84/usr/bin/php' : PHP_BINARY;
-$stagedHook = $stagingDir . '/mysql-backup-hook.php';
+// True preflight on the STAGED code with isolated libraries (Defect 1)
+logMsg("Executando preflight verdadeiro com dados reais sobre o código em staging isolado...");
+$stagedHook = $stagedBinDir . '/mysql-backup-hook.php';
 $hookArgs = $configData['hooks']['backup']['args'] ?? [];
 $preflightCmd = array_merge([$phpBin, $stagedHook, 'preflight'], $hookArgs);
 $preflightInput = json_encode(['action' => 'preflight', 'project' => $configData['project'] ?? 'rumo10']);
@@ -381,7 +411,11 @@ if (!$preflightSuccess) {
     $cleanPrefErr = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $cleanPrefErr);
     logMsg("FALHA BLOQUEANTE NO PREFLIGHT STAGED (código {$preflightExit}): " . $cleanPrefErr);
 
-    executePreApplyRollback($journalData, $configPath, $journalFile);
+    // Clean staging
+    $stFiles = glob($stagingDir . '/*');
+    foreach ($stFiles as $sf) { if (is_file($sf)) @unlink($sf); }
+    @rmdir($stagingDir);
+
     $receipt = [
         'status' => 'aborted_preflight_failed',
         'attempt_id' => $attemptId,
@@ -398,20 +432,17 @@ if (!$preflightSuccess) {
     exit(1);
 }
 
-logMsg("Preflight com dump completo de dados APROVADO com 100% de sucesso.");
+logMsg("Preflight verdadeiro aprovado com 100% de integridade.");
 logMsg("  Database: " . ($preflightData['database'] ?? ''));
 logMsg("  Engine: " . ($preflightData['engine'] ?? ''));
 logMsg("  Triggers verificados: " . ($preflightData['triggers_count'] ?? 0));
 logMsg("  Routines verificadas: " . ($preflightData['routines_count'] ?? 0));
 logMsg("  Views verificadas: " . ($preflightData['views_count'] ?? 0));
 
-$journalData['state'] = 'preflight_passed';
-atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-
 // -------------------------------------------------------------------------
-// FASE B: PROMOÇÃO OPERACIONAL SOB MUTEX DA CONTA
+// FASE B: PROMOÇÃO OPERACIONAL SOB MUTEX DA CONTA (Defeito 5 & 6)
 // -------------------------------------------------------------------------
-logMsg("FASE B: Adquirindo account_mutex para promoção operacional atômica...");
+logMsg("FASE B: Adquirindo account_mutex antes de qualquer captura ou promoção...");
 
 $accountMutexFile = $configData['account_mutex'] ?? ($privateDir . '/account.lock');
 if (!is_dir(dirname($accountMutexFile))) {
@@ -421,30 +452,60 @@ $accountFp = fopen($accountMutexFile, 'c+b');
 need($accountFp !== false, "Cannot open account mutex file: {$accountMutexFile}");
 need(flock($accountFp, LOCK_EX | LOCK_NB), "BLOCKED: account.lock retido por outro processo do publisher. Impossível promover concorrentemente.");
 
-$journalData['state'] = 'promoting';
+// Capture operational backup of active files strictly UNDER account_mutex
+$backupDir = $privateDir . '/operational-backups/backup-' . time() . '-' . $attemptId;
+mkdir($backupDir, 0700, true);
+if (PHP_OS_FAMILY !== 'Windows') @chmod($backupDir, 0700);
+copy($configPath, $backupDir . '/receiver-config.json');
+
+$modifiedFiles = [];
+$createdFiles = [];
+foreach ($filesPlan as $relPath => $info) {
+    $dest = $info['dest'];
+    if (file_exists($dest)) {
+        $backupDest = $backupDir . '/' . basename($dest);
+        copy($dest, $backupDest);
+        $modifiedFiles[$dest] = [
+            'file' => basename($dest),
+            'hash' => digestFile($dest),
+        ];
+    } else {
+        $createdFiles[] = $dest;
+    }
+}
+
+// Record durable journal
+$journalData = [
+    'attempt_id'             => $attemptId,
+    'started_at'             => date('c'),
+    'state'                  => 'promoting',
+    'staging_dir'            => $stagingDir,
+    'backup_dir'             => $backupDir,
+    'modified_files'         => $modifiedFiles,
+    'created_files'          => $createdFiles,
+    'original_config_content'=> $configRaw,
+    'original_config_hash'   => digestFile($configPath),
+    'target_release'         => [
+        'commit'      => $targetCommit,
+        'artifact_id' => $targetArtifactId,
+        'run_id'      => $targetRunId,
+    ],
+];
 atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
 
 try {
-    // 1. Promote files atomically
-    foreach ($filesPlan as $file => $info) {
-        $stagedSource = $stagingDir . '/' . $file;
+    // Promote files atomically via atomicPromote (rename per file)
+    foreach ($filesPlan as $relPath => $info) {
+        $stagedSource = $info['staged'];
         $dest = $info['dest'];
-        if (!is_dir(dirname($dest))) {
-            mkdir(dirname($dest), 0700, true);
-        }
-        if (!copy($stagedSource, $dest)) {
-            throw new \RuntimeException("Falha ao promover {$file} para {$dest}");
-        }
-        if (PHP_OS_FAMILY !== 'Windows') {
-            @chmod($dest, 0600);
-        }
+        atomicPromote($stagedSource, $dest, 0600);
         $promotedHash = digestFile($dest);
-        need($promotedHash === $info['hash'], "Divergência de hash pós-cópia em {$dest}: {$promotedHash} vs {$info['hash']}");
-        logMsg("  [OK] Promovido e verificado: {$dest} ({$promotedHash})");
+        need($promotedHash === $info['hash'], "Divergência de hash pós-cópia em {$dest}");
+        logMsg("  [OK] Promovido atomicamente: {$dest} ({$promotedHash})");
     }
 
-    // 2. Update pin in receiver-config.json
-    $newHookHash = $expectedHashes['mysql-backup-hook.php'];
+    // Update hook pin in receiver-config.json
+    $newHookHash = digestFile($filesPlan['publisher/bin/mysql-backup-hook.php']['dest']);
     need(isset($configData['hooks']['backup']), "hooks.backup ausente em {$configPath}");
     $oldHookHash = $configData['hooks']['backup']['sha256'] ?? 'none';
     logMsg("Sincronizando hash do hook em receiver-config.json: {$oldHookHash} -> {$newHookHash}");
@@ -467,13 +528,12 @@ try {
 // -------------------------------------------------------------------------
 // FASE C: TRANSFERÊNCIA AO PUBLISHER E EXECUÇÃO
 // -------------------------------------------------------------------------
-logMsg("FASE C: Transferindo controle ao publisher oficial...");
+logMsg("FASE C: Transferindo controle ao publisher oficial (controlled-pull.php)...");
 
 $journalData['state'] = 'transferring_to_publisher';
 atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
 
-// Crucial: Release account mutex BEFORE launching controlled-pull!
-// This allows controlled-pull.php to acquire account_mutex cleanly.
+// Release account mutex before launching controlled-pull so it acquires it cleanly
 flock($accountFp, LOCK_UN);
 fclose($accountFp);
 
@@ -487,7 +547,6 @@ if (isset($opts['skip-publish'])) {
 }
 
 logMsg("Disparando controlled-pull.php --mode=apply --discover para release autorizada...");
-$controlledPull = $binDir . '/controlled-pull.php';
 need(is_file($controlledPull), "controlled-pull.php não encontrado em {$controlledPull}");
 
 $publishCmd = [
@@ -513,7 +572,7 @@ $p = proc_open($publishCmd, [
 need(is_resource($p), "Falha ao iniciar processo do publisher");
 fclose($pipes[0]);
 
-$deadline = microtime(true) + 300;
+$deadline = microtime(true) + 600;
 $pubExit = -1;
 do {
     $st = proc_get_status($p);
@@ -575,7 +634,7 @@ if ($pubExit !== 0) {
     $drainSession = is_file($drainSessionFile) ? json_decode(file_get_contents($drainSessionFile), true) : [];
     $isRecovered = ($drainSession['state'] ?? '') === 'recovered';
 
-    $gateClosedR10 = file_exists(($configData['request_gate']['root'] ?? dirname($configPath) . '/public') . '/closed.json');
+    $gateClosedR10 = file_exists(($configData['request_gate']['root'] ?? $prodRoot . '/public') . '/closed.json');
     $gateIsOpen = !$gateClosedR10;
 
     if ($isRecovered && $gateIsOpen) {
@@ -622,8 +681,11 @@ need($actualCommit === $targetCommit, "Divergência de commit instalado: esperad
 need((int)$actualArtifactId === $targetArtifactId, "Divergência de artifact_id instalado: esperado {$targetArtifactId}, obtido {$actualArtifactId}");
 
 // Verify RequestDrain is open
-$gateClosed = file_exists(($configData['request_gate']['root'] ?? dirname($configPath) . '/public') . '/closed.json');
+$gateClosed = file_exists(($configData['request_gate']['root'] ?? $prodRoot . '/public') . '/closed.json');
 need(!$gateClosed, "RequestDrain permaneceu fechado após conclusão do deploy");
+
+// Verify deployment.lock is absent
+need(!file_exists($deployLock), "deployment.lock ainda presente após publicação bem-sucedida");
 
 // Clean staging directory
 if (is_dir($stagingDir)) {
@@ -647,6 +709,7 @@ $receipt = [
     'preflight_passed' => true,
     'full_data_tested' => true,
     'drain_open' => true,
+    'deployment_lock_absent' => true,
 ];
 atomicWrite($receiptPath, json_encode($receipt, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
 

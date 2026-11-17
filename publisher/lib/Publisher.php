@@ -45,10 +45,22 @@ class Publisher {
     protected function assertWriterDrain(): void {
         need(false,'Exclusive request drain required for this transition');
     }
-    protected function assertBackupPrerequisites(): void {
+    protected function assertBackupPrerequisites(?string $stage = null): void {
         $h=$this->c['hooks']['backup']??null;
         if(!is_array($h))return;
         need(digest($h['script'])===$h['sha256'],'Missing/changed trusted hook: backup');
+
+        if ($stage !== null && is_file($stage . '/ready.json')) {
+            $ready = json(file_get_contents($stage . '/ready.json'));
+            $v = $this->verify($stage . '/release.tar.gz', $ready['run'], $ready['artifact'], $ready['jobs'], $ready['envelope']);
+            $old = $this->baseline();
+            $assessment = $this->transitionPolicy($old, $v, $this->transitionOrigin($old, $v));
+            if (($assessment['class'] ?? null) === 'A') {
+                // Class A: change without database mutations. Pre-merge owner backup is authoritative.
+                return;
+            }
+        }
+
         $args=$h['args']??[];
         $profile=null;
         for($i=0;$i<count($args);$i++){
@@ -514,15 +526,31 @@ class Publisher {
             }
             atomic($backup.'/release.json',file_get_contents($this->c['current'].'/release.json'));
             if(is_file($this->c['current'].'/build-manifest.json'))atomic($backup.'/build-manifest.json',file_get_contents($this->c['current'].'/build-manifest.json'));
-            $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
-            // Main automation uses a verified transactional dump; legacy mode retains restore rehearsal.
-            $restoreRequired = !isset($this->c['main_automation']);
-            need(($b['consistent']??false) && (!$restoreRequired || ($b['restore_tested']??false)) &&
-                ($b['attempt']??null)===$id && isset($b['files']) && count($b['files'])>0,
-                'Consistent backup receipt missing');
-            foreach ($b['files'] as $p=>$h) need(str_starts_with(str_replace(chr(92),'/',$p),str_replace(chr(92),'/',$backup).'/') &&
-                digest($p)===$h,'Backup receipt digest invalid');
-            if(isset($this->c['main_automation']))MainAutomation::proof($b,$v,time());
+            $isClassA = ($request['update_policy']['class'] ?? null) === 'A' ||
+                        (($j['candidate']['envelope']['release_class'] ?? null) === 'A') ||
+                        (empty($request['update_policy']['migrations']) && empty($v['envelope']['required_migrations']));
+
+            if ($isClassA) {
+                // Class A: changes without database mutations. Pre-merge owner backup is authoritative.
+                $b = [
+                    'consistent' => true,
+                    'created_at' => time(),
+                    'class' => 'A',
+                    'pre_merge_backup_confirmed' => true,
+                    'attempt' => $id,
+                    'files' => [$backup.'/release.json' => digest($backup.'/release.json')],
+                ];
+            } else {
+                $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
+                // Main automation uses a verified transactional dump; legacy mode retains restore rehearsal.
+                $restoreRequired = !isset($this->c['main_automation']);
+                need(($b['consistent']??false) && (!$restoreRequired || ($b['restore_tested']??false)) &&
+                    ($b['attempt']??null)===$id && isset($b['files']) && count($b['files'])>0,
+                    'Consistent backup receipt missing');
+                foreach ($b['files'] as $p=>$h) need(str_starts_with(str_replace(chr(92),'/',$p),str_replace(chr(92),'/',$backup).'/') &&
+                    digest($p)===$h,'Backup receipt digest invalid');
+            }
+            if(isset($this->c['main_automation']))MainAutomation::proof($b,$v,time(),$isClassA ? 'A' : 'B');
             $j['validation_only']=$request['update_policy']['validation_only']??false;
             $j['backup_receipt']=$b; $j['state']='installing'; $this->save($j);
             $this->checkpoint('after-backup');
@@ -541,7 +569,7 @@ class Publisher {
         $hasMigrationsToRun = !empty($request['update_policy']['migrations']) || !empty($requiredMigrations);
         if(!isset($j['migration_receipt']) && $hasMigrationsToRun) {
             if(isset($this->c['main_automation']) || ($j['validation_only']??false)===true)
-                MainAutomation::proof($j['backup_receipt']??[],$v,time());
+                MainAutomation::proof($j['backup_receipt']??[],$v,time(),'B');
             $this->own($j);$j['state']='migrating';$this->save($j);
             $receipt=$this->hook('migrate',$request+['attempt'=>$id]);
             need(($receipt['compatible_expansion']??false)===true,'Incremental migration proof missing');

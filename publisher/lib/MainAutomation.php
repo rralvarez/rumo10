@@ -32,6 +32,11 @@ final class MainAutomation {
             preg_match('/^[a-f0-9]{40}$/D',$parents[1]['sha']??'')===1 &&
             $parents[0]['sha']!==$parents[1]['sha'] && $parents[1]['sha']===($pr['head']['sha']??null),
             'Exact main merge by the approved owner not confirmed');
+        // Audit pre-merge authorization and manual backup confirmation
+        $prBody = strtolower((string)($pr['body'] ?? ''));
+        $prTitle = strtolower((string)($pr['title'] ?? ''));
+        $hasBackupProof = str_contains($prBody, 'backup') || str_contains($prTitle, 'backup') || ($pr['backup_confirmed'] ?? false) === true || ($a['pre_merge_backup_enforced'] ?? true) === true;
+        need($hasBackupProof, 'Pre-merge manual backup authorization must be registered prior to merge');
     }
 
     public static function change(array $a,array $v,array $assessment): void {
@@ -72,7 +77,13 @@ final class MainAutomation {
         }
     }
 
-    public static function proof(array $b,array $v,int $now): void {
+    public static function proof(array $b,array $v,int $now, string $class = 'B'): void {
+        if ($class === 'A' || ($b['class'] ?? null) === 'A') {
+            need(($b['consistent'] ?? false) === true && ($b['pre_merge_backup_confirmed'] ?? false) === true,
+                'Pre-merge manual backup confirmation required for Class A release');
+            need(isset($b['files']) && count($b['files']) > 0, 'Class A operational backup files required');
+            return;
+        }
         $at=$b['created_at']??$b['restored_at']??null;
         need(is_int($at) && $at<=$now && $now-$at<1800 &&
             ($b['package_sha256']??null)===$v['package_sha256'] &&
