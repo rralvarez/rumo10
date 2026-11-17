@@ -1,120 +1,115 @@
-# Bootstrap privado do receptor HTTPS | Sequência corrigida
+# Receptor HTTPS do Rumo10 | Ativação inicial
 
-Esta é a única instalação excepcional do receptor. Depois dela, cada release
-funcional deve seguir: PR e CI aprovados, backup manual confirmado pelo proprietário,
-status obrigatório da GitHub App, merge na `main`, Actions e Cron HTTPS automático.
+## Regra irrevogável para releases comuns
 
-**Nunca mesclar a PR #9 antes do piloto UI-001.** A exceção UI-001 só é válida
-enquanto a ponta da `main` for
-`fb03b614c337845671cf6cbf1eb36abe01308bfd` (run `43929021873`,
-artefato `14257772333`).
+**O backup manual é responsabilidade do proprietário e ocorre antes do merge.**
+O publicador NÃO solicita confirmação de backup, não consulta comentário de
+backup, não exige status `rumo10/manual-backup` e não executa `mysqldump`
+para releases Classe A. Não há GitHub App de backup a instalar.
+A autorização do merge é uma decisão humana; o receptor verifica o merge
+realizado pelo proprietário, a política da release e o artefato oficial.
 
-## Preparação sem alterações produtivas
+O fluxo permanente é: PR revisada, CI aprovado, backup manual quando o
+proprietário decidir, merge na `main`, Actions e publicação HTTPS automática
+via Cron do receptor. Sem ZIP e sem ajustes de Cron a cada release.
 
-1. Revisar o estado real do receptor, `installed.json`, journal, RequestDrain, locks,
-   hooks, Cron e caminhos dos dois projetos. Confirmar que não existe sessão pendente.
-2. Conferir que `receiver-config.json` e os arquivos de token são privados (0600),
-   que `main_automation` está configurado e que `public_smoke_urls` contém
-   **dois hosts HTTPS distintos e reais** para `rumo10` e `rumohub`, respondendo
-   diretamente HTTP 200. Se o segundo host não existir, não inventar um endereço
-   e não ativar o receptor.
-3. Conferir que o pacote de bootstrap vem do **HEAD final da PR #9**, sem alterações
-   posteriores. Construir o ZIP com `publisher/bin/package-receiver-bootstrap.py`,
-   conferir o manifesto e os SHA-256. O ZIP não deve ser extraído sobre
-   `publisher/bin` ou `publisher/lib` ativos.
-4. Verificar que nenhum Cron antigo ou wrapper poderá iniciar outra publicação
-   durante a janela. Não remover locks ou arquivos de sessão pendentes manualmente.
+Mudanças de banco de dados (Classe B) conservam salvaguardas de integridade
+e precisam de procedimento de migração autorizado separadamente; **isso
+não pode bloquear a UI-001, que não tem migrations**.
 
-## Fase A: publicar UI-001 ANTES do merge de PR #9
+## O que já está aprovado e o que não deve ser repetido
 
-5. Solicitar ao proprietário um **backup manual real** e a autorização específica
-   para o piloto, sem presumir que um backup anterior foi realizado.
-6. Enquanto `main` continuar em `fb03b614...`, o proprietário publica o comentário
-   exato abaixo no PR #8, após confirmar o backup. Não editar o comentário:
+- UI-001 já está na `main`: `fb03b614c337845671cf6cbf1eb36abe01308bfd`.
+- Workflow oficial: run `43929021873`.
+- Artefato oficial: `14257772333`.
+- O proprietário informou que **o backup manual já foi realizado**.
+  Não pedir outro backup nem criar declaração artificial em PR #8.
+- Manter PR #9 em draft e NÃO mesclar antes do piloto UI-001.
 
-   ```text
-   RUMO10 BACKUP CONFIRMADO UI-001 POS-MERGE PR #8 fb03b614c337845671cf6cbf1eb36abe01308bfd RUN 43929021873 ARTEFATO 14257772333
-   ```
+## Pré-verificação da UOL, antes de qualquer escrita
 
-7. Com a autorização produtiva específica, extrair o ZIP em diretório privado
-   **separado** do publisher ativo, por exemplo
-   `/home/rumoacame144a99e/dep058-staging/receiver-bootstrap`.
-   Configurar `allow_ui001_bootstrap=true` temporariamente no
-   `receiver-config.json`, somente após validar a integridade do arquivo.
-8. Executar o bootstrap uma única vez pelo Cron temporário do cPanel:
+Verificar o estado real de `receiver-config.json`, `installed.json`,
+`journal.json`, `drain-session.json`, mutex, RequestDrain, Crons e
+permissões. Confirmar o estado estável e a cobertura dos dois projetos.
+Não apagar locks nem `closed.json` manualmente. Os endpoints públicos
+`public_smoke_urls.rumo10` e `public_smoke_urls.rumohub` devem ser
+HTTPS reais, em hosts distintos, com HTTP 200 direto.
 
-   ```sh
-   /opt/alt/php84/usr/bin/php /home/rumoacame144a99e/dep058-staging/receiver-bootstrap/publisher/bin/install-and-publish.php --config=/home/rumoacame144a99e/rumo10-production-v062-ee8f175/receiver-config.json --manifest-sha256=<SHA256_REAL_DO_MANIFESTO>
-   ```
+O token de leitura do GitHub deve comprovar a release e o merge do
+proprietário. O token para reportar status de implantação é separado.
+Não cadastrar GitHub App ou status check de backup. As permissões
+dos arquivos privados permanecem 0600. A configuração deve conter
+`main_automation`, com os campos exigidos pelo código, sem atribuir
+permissões ou IDs inventados.
 
-   Verificar `installed-held`, journal e hash da entrada antes de prosseguir.
-   Uma falha exige inspeção do journal e do procedimento de recuperação, nunca
-   repetição indiscriminada nem substituição manual de arquivos ativos.
+## Fase 1: bootstrap isolado e piloto UI-001, sem merge
 
-9. Com `main` ainda apontando à UI-001, executar **uma vez**:
+O pacote de bootstrap é gerado do HEAD **validado** da PR #9 usando
+`publisher/bin/package-receiver-bootstrap.py`, após CI aprovado.
+Confirmar SHA-256 do ZIP e do manifesto. Extraí-lo somente em uma
+pasta privada separada, jamais sobre `publisher/bin` e
+`publisher/lib` ativos, por exemplo:
 
-   ```sh
-   /opt/alt/php84/usr/bin/php -d memory_limit=512M /home/rumoacame144a99e/rumo10-production-v062-ee8f175/publisher/bin/controlled-pull.php --config=/home/rumoacame144a99e/rumo10-production-v062-ee8f175/receiver-config.json --mode=apply --discover --ui001-bootstrap
-   ```
+`/home/rumoacame144a99e/dep058-staging/receiver-bootstrap`
 
-   Verificar no receptor commit, run e artefato exatos, `installed.json`,
-   `journal.json`, `drain-session.json`, RequestDrain aberto, travas ausentes
-   e HTTP 200 real de Rumo10 e RumoHub. Remover `allow_ui001_bootstrap`
-   depois do sucesso. Não declarar sucesso sem essas provas.
+Desarmar e verificar ausência de Crons paralelos durante a intervenção
+autorizada. Na configuração privada, habilitar temporariamente
+`main_automation.allow_ui001_bootstrap=true`. Essa flag autoriza apenas
+o trio explícito da UI-001, sem exigir qualquer declaração de backup.
 
-## Fase B: integrar PR #9 como atualização EXCLUSIVA da infraestrutura
+Executar o bootstrap UMA vez usando uma tarefa temporária do cPanel:
 
-10. Com UI-001 validada em produção, solicitar novo backup manual e autorização
-    antes do merge da PR #9. Marcar a PR como pronta somente após a revisão do HEAD
-    final e CI verde. Mesclar via **Create a merge commit**, sem squash.
-11. O merge da PR #9 muda a ponta de `main`, mas **não corresponde a outra
-    atualização de aplicação**. O receptor tem uma exceção de no-op restrita a:
-    PR #9 mesclada pelo proprietário, primeiro pai UI-001, segundo pai HEAD
-    revisado da PR, árvore do merge idêntica à da PR e comparação sem arquivos
-    de aplicação, banco ou outras superfícies não autorizadas. Exige também
-    recibo da UI-001 validado e os dois sites disponíveis.
-    O resultado é `infrastructure-held` e status de implantação **pending**,
-    nunca um recibo fictício de aplicação publicada.
-12. Se essa identidade não for comprovada, não ativar o Cron contínuo. Não
-    alterar o `installed.json` manualmente. Após a PR #9, nenhuma outra
-    PR recebe essa exceção.
+```sh
+/opt/alt/php84/usr/bin/php /home/rumoacame144a99e/dep058-staging/receiver-bootstrap/publisher/bin/install-and-publish.php --config=/home/rumoacame144a99e/rumo10-production-v062-ee8f175/receiver-config.json --manifest-sha256=<HASH_REAL_DO_MANIFESTO>
+```
 
-## Fase C: ativar o bloqueio efetivo de backup antes de merges futuros
+Exigir resultado `installed-held`, identidade do manifesto e
+journal sem inconsistências. Não prosseguir em caso de erro.
 
-13. Criar e instalar uma GitHub App dedicada ao repositório, com apenas
-    **Commit statuses: Read and write**; armazenar sua chave privada no segredo
-    `RUMO10_BACKUP_APP_KEY` do environment `rumo10-backup-approval`,
-    limitado à branch padrão. Configurar `RUMO10_BACKUP_APP_ID` e
-    `RUMO10_OWNER_ID=35331184`. Nunca compartilhar a chave no chat.
-14. O workflow `.github/workflows/manual-backup-approval.yml` passa a existir
-    na branch padrão após o merge da PR #9. Em uma PR descartável de teste,
-    validar a emissão do status da App para o HEAD exato após o comentário
-    autenticado e depois habilitar no ruleset de `main` o status obrigatório
-    `rumo10/manual-backup` associado à própria App, preservando
-    `rumo10-ci-gate`, PR obrigatória, política strict e bypass vazio.
-    Demonstrar que outro HEAD sem comentário/status fica impedido de mesclar.
-    Não mesclar a PR de teste.
-15. Configurar no receptor os IDs reais de App, bot e ruleset. Conferir por
-    leitura autenticada a regra ativa, sem bypass e com a App fixada como
-    origem do status. Uma release funcional futura deve comprovar o mesmo
-    PR e SHA antes de ser publicada.
+Enquanto a ponta de `main` for exatamente a UI-001, executar uma
+única vez pelo Cron temporário:
 
-## Fase D: Cron permanente, sem reinstalação por release
+```sh
+/opt/alt/php84/usr/bin/php -d memory_limit=512M /home/rumoacame144a99e/rumo10-production-v062-ee8f175/publisher/bin/controlled-pull.php --config=/home/rumoacame144a99e/rumo10-production-v062-ee8f175/receiver-config.json --mode=apply --discover --ui001-bootstrap
+```
 
-16. Só depois das fases anteriores, ativar o Cron oficial direto:
+Para comprovar sucesso, validar `installed.json`, `journal.json`,
+`drain-session.json`, commit, run, artefato, RequestDrain reaberto,
+locks liberados e ambos os URLs públicos retornando HTTP 200.
+Depois do piloto, retirar `allow_ui001_bootstrap`.
 
-    ```sh
-    /opt/alt/php84/usr/bin/php -d memory_limit=512M /home/rumoacame144a99e/rumo10-production-v062-ee8f175/publisher/bin/controlled-pull.php --config=/home/rumoacame144a99e/rumo10-production-v062-ee8f175/receiver-config.json --mode=apply --discover >> <CAMINHO_REAL_DE_LOG_PRIVADO> 2>&1
-    ```
+Se ocorrer falha após início da publicação, usar somente a recuperação
+oficial `--mode=apply --recover`, com inspeção da sessão; não
+substituir arquivos operacionais nem eliminar travas manualmente.
 
-    Remover os Crons temporários e verificar que nenhuma tarefa duplicada existe.
-    Não colocar um timeout externo capaz de encerrar uma sessão em manutenção.
+## Fase 2: integrar a PR #9 como infraestrutura, nunca como release do jogo
 
-Para uma release Classe A futura, nenhum dump MySQL é executado após o merge;
-para uma Classe B, o preflight integral do banco, backup consistente e regras de
-recuperação continuam exigidos. O Cron não é alterado por release.
+Com UI-001 instalada e validada, revisar o HEAD e o CI da PR #9.
+O proprietário autoriza o merge via **Create a merge commit**.
+O receptor reconhece estritamente esse PR de infraestrutura quando
+o primeiro pai é a UI-001, o segundo pai é o HEAD revisado, a árvore
+de merge é idêntica à da PR e a comparação não inclui alterações de
+aplicação ou banco. O resultado `infrastructure-held` **não**
+significa aplicação publicada e não produz recibo fictício.
 
-**Limites de validação:** o CI e as fixtures locais não comprovam permissões,
-quota, limites de execução nem endpoints reais da UOL. A instalação inicial
-depende da conferência dos dois sites e dos recibos produtivos, sem afirmar
-zero indisponibilidade quando o RequestDrain efetivamente fecha o gate.
+## Fase 3: automação permanente
+
+Preservar ruleset de `main` exigindo PR e `rumo10-ci-gate`,
+sem adicionar `rumo10/manual-backup`. Nenhuma GitHub App de backup
+é requerida. Cada release comum segue a revisão e a autorização
+humana antes do merge; o publicador não reabre a discussão de backup.
+
+Após validar configuração, estado do receptor, estabilidade dos dois sites
+e ausência de Cron duplicado, habilitar somente o Cron oficial:
+
+```sh
+/opt/alt/php84/usr/bin/php -d memory_limit=512M /home/rumoacame144a99e/rumo10-production-v062-ee8f175/publisher/bin/controlled-pull.php --config=/home/rumoacame144a99e/rumo10-production-v062-ee8f175/receiver-config.json --mode=apply --discover >> <LOG_PRIVADO_REAL> 2>&1
+```
+
+A partir daí não há nova instalação de publisher por release.
+Não afirmar disponibilidade produtiva apenas com CI verde: ela deve
+ser comprovada por recibo e HTTP reais dos dois sites.
+
+**Limites:** os testes de CI não substituem a verificação das condições
+reais do cPanel: paths, permissões, limites de PHP, Cron, endpoints,
+sessões, mutex e integridade atual. Não agir em produção sem autorização.
