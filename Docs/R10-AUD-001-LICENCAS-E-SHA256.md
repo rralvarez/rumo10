@@ -166,3 +166,19 @@ Após a auditoria independente do commit `6ac88bb5`, foram identificados e sanad
    - *Causa:* A mera igualdade `minute == currentMinute` em `Presentation.php` permitia que eventos persistidos de ações anteriores no mesmo minuto fossem reclassificados indevidamente como frescos.
    - *Solução:* Identidade expressa vinculada aos `sound_event_ids` do feedback da última ação como critério primário de frescor. Eventos persistidos sem essa vinculação recebem `data-sound-historical="1"`. Apitos de estado atual da partida permanecem frescos durante a transição.
    - *Evidência:* Teste PHP 3.4 aprovado.
+
+---
+
+## 6. Auditoria Independente Codex R2 e Correções Definitivas
+
+1. **P1-C R2 | Fila Contemporânea Completa sem Descarte Arbitrário:**
+   - Removido o limite posicional `slice(0, 3)`. Todos os eventos legítimos não-históricos e deduplicados por ID são agendados e reproduzidos na ordem de prioridade com espaçamento de 250ms.
+   - Testado o cenário real quádruplo: Gol (100) + Pênalti Concedido (82) + Substituição (70) + Apito Final (50), com preservação e reprodução integral de todos os 4 sons.
+
+2. **P2-A R2 | Ciclo de Vida de `current_command_sound_event_ids` Desacoplado de Feedback:**
+   - No comando `advance`, o jogador pode entrar em campo aos 60 min enquanto `$g['feedback']` permanece `null`.
+   - `Game::command()` inicializa `$g['current_command_sound_event_ids'] = []`, `emitSoundEvent()` adiciona cada ID emitido no comando, e `Presentation::matchSounds()` consome essa coleção como evidência primária de frescor quando `feedback` é `null`. No comando seguinte, a coleção é reiniciada e o evento passa a ser histórico.
+
+3. **P2 Residual | Blindagem de Mute Durante Download Assíncrono:**
+   - Em `AudioEngine.setMuted(true)`, todos os IDs em `inFlight` são marcados tratados.
+   - Em `playDirect()`, se `this.handled.has(id)` for verdadeiro após `await bufferFor()`, o áudio retorna `{ status: 'cancelled' }` sem executar `source.start()`, impedindo vazamento de som caso o usuário desative o mute antes do término do download.

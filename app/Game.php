@@ -73,6 +73,7 @@ final class Game {
             self::reconcileSoundEvents($match, $g);
         }
         unset($match);
+        $g['current_command_sound_event_ids'] = [];
         return self::applyCommand($g, $action, $input, $automated, $rng);
     }
 
@@ -510,6 +511,10 @@ final class Game {
             'minute' => $minute,
             'seq' => $seq
         ];
+        $g['current_command_sound_event_ids'] = $g['current_command_sound_event_ids'] ?? [];
+        if (!in_array($eventId, $g['current_command_sound_event_ids'], true)) {
+            $g['current_command_sound_event_ids'][] = $eventId;
+        }
         if (isset($g['feedback']) && is_array($g['feedback'])) {
             $g['feedback']['sound_event_ids'] = $g['feedback']['sound_event_ids'] ?? [];
             if (!in_array($eventId, $g['feedback']['sound_event_ids'], true)) {

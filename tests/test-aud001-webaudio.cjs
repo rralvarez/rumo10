@@ -542,63 +542,81 @@ async function runTestSuite() {
     assert(envOut.startedSources[0].buffer === envOut.dummyBuffers['substitution_out.ogg'], 'Buffer utilizado é substitution_out.ogg');
   }
 
-  // 12. Validação da Fila de 3 Eventos Contemporâneos (Gol + Cartão + Apito Final aos 90 min)
-  console.log('\n12. Validando Fila Contemporânea de 3 Eventos Legítimos (Gol + Cartão + Apito Final)...');
+  // 12. Validação da Fila de 4 Eventos Contemporâneos Legítimos (P1-C R2: Gol + Pênalti + Substituição + Apito Final)
+  console.log('\n12. Validando Fila Contemporânea de 4 Eventos Legítimos (Gol + Pênalti + Substituição + Apito Final)...');
   {
     const env = createMockEnvironment();
-    // Cenário aos 90 min: gol marcado + cartão na jogada + apito final de encerramento + evento excedente (4º de menor prioridade)
+    // Cenário real com 4 eventos legítimos emitidos no mesmo segmento final:
+    // 1. Gol (100)
+    // 2. Pênalti concedido (82 - sintetizado)
+    // 3. Substituição por desgaste (70)
+    // 4. Apito final (50 - 3 pulsos)
     const elements = [
-      { dataset: { soundEvent: 'MATCH_WHISTLE_END', soundEventId: 'whistle:90:triple' } },
-      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'goal:90:triple' } },
-      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'card:90:triple' } },
-      { dataset: { soundEvent: 'MATCH_WHISTLE_START', soundEventId: 'burst:90:drop' } }, // 4º evento de menor prioridade deve ser descartado com segurança
+      { dataset: { soundEvent: 'MATCH_WHISTLE_END', soundEventId: 'act:90:whistle' } },
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'act:90:goal' } },
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 'act:90:penalty' } },
+      { dataset: { soundEvent: 'PLAYER_SUBSTITUTION_IN', soundEventId: 'act:90:sub' } },
     ];
 
     env.startedSources.length = 0;
+    env.startedOscillators.length = 0;
     const audio = env.runScript(elements);
     await new Promise(r => setTimeout(r, 50));
 
-    // O 4º evento excedente foi descartado e marcado como handled para proteção de rajadas
-    assert(env.sessionData.get('rumo10_sound_played:burst:90:drop') === '1', '4º evento excedente descartado e marcado handled (proteção contra rajada)');
+    // P1-C R2 CRUCIAL: O 4º evento (MATCH_WHISTLE_END) NÃO pode ser descartado arbitrariamente!
+    // Ele DEVE permanecer na fila pendente e NÃO pode receber markHandled precocemente.
+    assert(audio.pendingQueue.has('act:90:whistle'), 'P1-C R2: O 4º evento (apito final) foi PRESERVADO na fila pendente (sem descarte)');
+    assert(env.sessionData.get('rumo10_sound_played:act:90:whistle') !== '1', 'P1-C R2: O 4º evento NÃO recebe markHandled antes do efetivo agendamento');
+    assert(audio.pendingQueue.has('act:90:penalty'), 'P1-C R2: Pênalti concedido preservado na fila');
+    assert(audio.pendingQueue.has('act:90:sub'), 'P1-C R2: Substituição preservada na fila');
 
     // 1º evento reproduzido: GOAL_SCORED (prioridade 100)
-    assert(env.startedSources.length === 1, 'Primeiro evento da trinca inicia reprodução');
-    assert(env.startedSources[0].buffer === env.dummyBuffers['goal.ogg'], '1º a tocar: GOAL_SCORED (maior prioridade)');
+    assert(env.startedSources.length === 1, 'P1-C R2: 1º evento da fila inicia reprodução imediatamente');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['goal.ogg'], 'P1-C R2: 1º a tocar: GOAL_SCORED (prioridade 100)');
+    assert(env.sessionData.get('rumo10_sound_played:act:90:goal') === '1', 'P1-C R2: Gol registrado como tocado');
 
-    // Conclui o gol -> deve iniciar o 2º evento: CARD_YELLOW (prioridade 60)
-    const firstSource = env.startedSources[0].source;
-    firstSource.triggerEnd();
+    // Conclui o gol -> transição de 250ms -> 2º evento: PENALTY_AWARDED (prioridade 82)
+    const goalSource = env.startedSources[0].source;
+    goalSource.triggerEnd();
     await new Promise(r => setTimeout(r, 350));
 
-    assert(env.startedSources.length === 2, '2º evento inicia após término do gol com espaçamento regulamentar');
-    assert(env.startedSources[1].buffer === env.dummyBuffers['yellow_card.ogg'], '2º a tocar: CARD_YELLOW (prioridade intermediária)');
+    assert(env.startedOscillators.length === 1, 'P1-C R2: 2º a tocar: PENALTY_AWARDED sintetizado (prioridade 82)');
+    assert(env.sessionData.get('rumo10_sound_played:act:90:penalty') === '1', 'P1-C R2: Pênalti concedido registrado como tocado');
+    assert(audio.pendingQueue.has('act:90:whistle'), 'P1-C R2: O 4º evento permanece na fila após o 2º som');
 
-    // Conclui o cartão -> deve iniciar o 3º evento: MATCH_WHISTLE_END (prioridade 50, 3 apitos)
-    const secondSource = env.startedSources[1].source;
-    secondSource.triggerEnd();
+    // Aguarda término da síntese do apito (~350ms) + 250ms de espaçamento -> 3º evento: PLAYER_SUBSTITUTION_IN (prioridade 70)
+    await new Promise(r => setTimeout(r, 650));
+
+    assert(env.startedSources.length === 2, 'P1-C R2: 3º a tocar: PLAYER_SUBSTITUTION_IN inicia (prioridade 70)');
+    assert(env.startedSources[1].buffer === env.dummyBuffers['substitution_in.ogg'], 'P1-C R2: Buffer é substitution_in.ogg');
+    assert(env.sessionData.get('rumo10_sound_played:act:90:sub') === '1', 'P1-C R2: Substituição registrada como tocada');
+    assert(audio.pendingQueue.has('act:90:whistle'), 'P1-C R2: O 4º evento permanece na fila após o 3º som');
+
+    // Conclui a substituição -> transição de 250ms -> 4º evento: MATCH_WHISTLE_END (prioridade 50, 3 apitos)
+    const subSource = env.startedSources[1].source;
+    subSource.triggerEnd();
     await new Promise(r => setTimeout(r, 350));
 
-    assert(env.startedSources.length === 5, '3º evento (MATCH_WHISTLE_END) reproduz seus 3 apitos sobrepostos (total de 5 sources)');
-    assert(env.startedSources[2].buffer === env.dummyBuffers['match_whistle.ogg'], '3º a tocar: MATCH_WHISTLE_END pulso 1');
-    assert(env.startedSources[3].buffer === env.dummyBuffers['match_whistle.ogg'], '3º a tocar: MATCH_WHISTLE_END pulso 2');
-    assert(env.startedSources[4].buffer === env.dummyBuffers['match_whistle.ogg'], '3º a tocar: MATCH_WHISTLE_END pulso 3');
+    assert(env.startedSources.length === 5, 'P1-C R2: 4º a tocar: MATCH_WHISTLE_END reproduz seus 3 pulsos sobrepostos (total de 5 sources)');
+    assert(env.startedSources[2].buffer === env.dummyBuffers['match_whistle.ogg'], 'P1-C R2: MATCH_WHISTLE_END pulso 1 agendado');
+    assert(env.startedSources[3].buffer === env.dummyBuffers['match_whistle.ogg'], 'P1-C R2: MATCH_WHISTLE_END pulso 2 agendado');
+    assert(env.startedSources[4].buffer === env.dummyBuffers['match_whistle.ogg'], 'P1-C R2: MATCH_WHISTLE_END pulso 3 agendado');
+    assert(env.sessionData.get('rumo10_sound_played:act:90:whistle') === '1', 'P1-C R2: O 4º evento é registrado como tocado no agendamento');
 
-    // Todos os 3 eventos legítimos foram devidamente registrados como tratados
-    assert(env.sessionData.get('rumo10_sound_played:goal:90:triple') === '1', 'Gol registrado como tocado');
-    assert(env.sessionData.get('rumo10_sound_played:card:90:triple') === '1', 'Cartão registrado como tocado');
-
-    // Conclui os apitos para marcar handled no apito final
+    // Conclui os apitos finais
     const whistleSources = env.startedSources.filter(s => s.buffer === env.dummyBuffers['match_whistle.ogg']);
     whistleSources.forEach(s => s.source.triggerEnd());
     await new Promise(r => setTimeout(r, 50));
 
-    assert(env.sessionData.get('rumo10_sound_played:whistle:90:triple') === '1', 'Apito final registrado como tocado');
+    assert(audio.pendingQueue.size === 0, 'P1-C R2: Fila de 4 eventos contemporâneos totalmente esvaziada');
 
-    // F5 após tríplice evento: NENHUM som é re-executado
+    // F5 após os 4 eventos: NENHUM som é re-executado
     env.startedSources.length = 0;
+    env.startedOscillators.length = 0;
     env.runScript(elements);
     await new Promise(r => setTimeout(r, 50));
-    assert(env.startedSources.length === 0, 'Deduplicação no F5 após tríplice evento mantém silêncio absoluto');
+    assert(env.startedSources.length === 0, 'P1-C R2: Deduplicação no F5 após 4 eventos mantém silêncio absoluto');
+    assert(env.startedOscillators.length === 0, 'P1-C R2: Zero osciladores sintetizados no reload F5');
   }
 
   // 13. Validação de Cartão Vermelho Direto e Segundo Amarelo (CARD_RED)
@@ -798,6 +816,51 @@ async function runTestSuite() {
     assert(envMixed.sessionData.get('rumo10_sound_played:mix:post:88') === '1', 'P1-C: BALL_HIT_POST registrado no sessionStorage');
     assert(envMixed.sessionData.get('rumo10_sound_played:mix:nogoal:85') === '1', 'P1-C: NO_GOAL registrado no sessionStorage');
     assert(envMixed.sessionData.get('rumo10_sound_played:mix:card:75') === '1', 'P1-C: CARD_YELLOW registrado no sessionStorage');
+  }
+
+  // 18. Validando Pendência Residual de Mute (P2 Residual: Mute ativado e desativado durante download)
+  console.log('\n18. Validando Pendência Residual de Mute (Mute ativado e desativado durante download assíncrono)...');
+  {
+    const env = createMockEnvironment();
+    let resolveFetch = null;
+    // Intercepta fetch para simular download assíncrono em andamento
+    const originalFetch = env.mockWindow.fetch;
+    env.mockWindow.fetch = (url) => {
+      if (url.includes('goal.ogg')) {
+        return new Promise(resolve => {
+          resolveFetch = () => resolve(originalFetch(url));
+        });
+      }
+      return originalFetch(url);
+    };
+
+    const elements = [
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'mute:during:download' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    // O áudio está em download (inFlight)
+    assert(audio.inFlight.has('mute:during:download'), 'P2 Residual: Evento está inFlight aguardando download do buffer');
+    assert(env.startedSources.length === 0, 'P2 Residual: Nenhum source disparado antes do download completar');
+
+    // Usuário ativa mute enquanto o download está ocorrendo
+    audio.setMuted(true);
+    assert(audio.wasHandled('mute:during:download'), 'P2 Residual: Evento inFlight é marcado handled ao ativar mute');
+    assert(env.sessionData.get('rumo10_sound_played:mute:during:download') === '1', 'P2 Residual: Registrado no sessionStorage');
+
+    // Usuário desativa mute ANTES do download completar
+    audio.setMuted(false);
+    assert(!audio.prefs.muted, 'P2 Residual: Mute desativado pelo usuário antes do download completar');
+
+    // O download finalmente termina
+    resolveFetch();
+    await new Promise(r => setTimeout(r, 100));
+
+    // COMPROVAÇÃO: O áudio cancelado NÃO toca! Zero sons disparados!
+    assert(env.startedSources.length === 0, 'P2 Residual: Áudio cancelado durante download NÃO toca ao resolver fetch (zero vazamentos)');
   }
 
   console.log('\n=======================================================');

@@ -285,6 +285,96 @@ function resolveChromePath() {
   });
   assert(reloadDeduplicated, 'P1-A: Deduplicação mantida após reload no meio da reprodução (sem eco nem re-trigger)');
 
+  // 10. Teste do Cenário Real de 4 Eventos Contemporâneos no Chrome (P1-C R2)
+  console.log('\n10. Testando Cenário Real de 4 Eventos Contemporâneos (Gol + Pênalti + Substituição + Apito Final)...');
+  const quadResult = await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    sessionStorage.clear();
+
+    const events = [
+      { id: 'e2e:quad:whistle', key: 'MATCH_WHISTLE_END' },
+      { id: 'e2e:quad:goal', key: 'GOAL_SCORED' },
+      { id: 'e2e:quad:pen', key: 'PENALTY_AWARDED' },
+      { id: 'e2e:quad:sub', key: 'PLAYER_SUBSTITUTION_IN' },
+    ];
+
+    // Enfileira todos os 4 eventos contemporâneos legítimos
+    for (const ev of events) {
+      audio.enqueue(ev.id, ev.key);
+    }
+
+    // P1-C R2: O 4º evento NÃO pode ser descartado da pendingQueue
+    const whistleInQueueBefore = audio.pendingQueue.has('e2e:quad:whistle');
+    const whistleSessionBefore = sessionStorage.getItem('rumo10_sound_played:e2e:quad:whistle');
+
+    // Aguardar o primeiro evento (Gol) tocar
+    const goalStarted = audio.playing || audio.wasHandled('e2e:quad:goal');
+
+    // Aguardar término de toda a sequência (aproximadamente 7.5s)
+    await new Promise(r => setTimeout(r, 7800));
+
+    const allHandled =
+      audio.wasHandled('e2e:quad:goal') &&
+      audio.wasHandled('e2e:quad:pen') &&
+      audio.wasHandled('e2e:quad:sub') &&
+      audio.wasHandled('e2e:quad:whistle');
+
+    const allInSession =
+      sessionStorage.getItem('rumo10_sound_played:e2e:quad:goal') === '1' &&
+      sessionStorage.getItem('rumo10_sound_played:e2e:quad:pen') === '1' &&
+      sessionStorage.getItem('rumo10_sound_played:e2e:quad:sub') === '1' &&
+      sessionStorage.getItem('rumo10_sound_played:e2e:quad:whistle') === '1';
+
+    return {
+      whistleInQueueBefore,
+      whistleSessionBefore,
+      goalStarted,
+      allHandled,
+      allInSession,
+      pendingEmpty: audio.pendingQueue.size === 0
+    };
+  });
+
+  assert(quadResult.whistleInQueueBefore, 'P1-C R2: 4º evento (apito final) retido na fila sem descarte');
+  assert(quadResult.whistleSessionBefore !== '1', 'P1-C R2: 4º evento NÃO recebe markHandled antes do agendamento');
+  assert(quadResult.goalStarted, 'P1-C R2: GOAL_SCORED assume reprodução prioritária');
+  assert(quadResult.allHandled && quadResult.allInSession, 'P1-C R2: Todos os 4 eventos reproduzidos e registrados no sessionStorage');
+  assert(quadResult.pendingEmpty, 'P1-C R2: Fila de 4 eventos completamente esvaziada');
+
+  // Teste de F5 após os 4 eventos: nenhum som deve tocar
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  const reloadQuadQuiet = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    return audio.pendingQueue.size === 0 && !audio.playing;
+  });
+  assert(reloadQuadQuiet, 'P1-C R2: F5 após 4 eventos mantém silêncio absoluto no navegador');
+
+  // Teste de Sessão Nova com Eventos Históricos: sem rajadas sonoras
+  const freshSessionQuiet = await page.evaluate(() => {
+    sessionStorage.clear();
+    const audio = window.__rumo10Audio;
+
+    // Simula 4 eventos históricos no DOM
+    const historicals = ['h1:15', 'h2:30', 'h3:45', 'h4:60'];
+    for (const hid of historicals) {
+      const el = document.createElement('div');
+      el.dataset.soundEvent = 'CARD_YELLOW';
+      el.dataset.soundEventId = hid;
+      el.dataset.soundHistorical = '1';
+      document.body.appendChild(el);
+    }
+
+    // Executa scan
+    document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(el => {
+      if (el.dataset.soundHistorical === '1') {
+        audio.markHandled(el.dataset.soundEventId);
+      }
+    });
+
+    return audio.pendingQueue.size === 0 && !audio.playing;
+  });
+  assert(freshSessionQuiet, 'P1-C R2: Nova sessão com eventos históricos não gera rajadas sonoras');
+
   await browser.close();
 
   console.log('\n=======================================================');

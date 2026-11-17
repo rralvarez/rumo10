@@ -83,6 +83,7 @@
       this.updateMasterVolume();
       this.updateUI();
       if (this.prefs.muted) {
+        for (const id of this.inFlight) this.markHandled(id);
         for (const id of this.pendingQueue.keys()) this.markHandled(id);
         this.pendingQueue.clear();
       } else {
@@ -202,6 +203,11 @@
 
       // Efeitos naturais com arquivos OGG
       const buffer = await this.bufferFor(effect.file);
+
+      // P2 Residual Mute: se o evento foi cancelado durante o download assíncrono (ex: mute ativado)
+      if (id && this.handled.has(id)) {
+        return { status: 'cancelled' };
+      }
 
       // P1-B: Verifica se o contexto foi suspenso durante o fetch assíncrono do arquivo
       if (this.prefs.muted || this.prefs.volume <= 0) {
@@ -326,14 +332,9 @@
     const ordered = [...uniqueMap.values()].sort((a, b) =>
       (EVENT_PRIORITY[b.key] || 0) - (EVENT_PRIORITY[a.key] || 0));
 
-    // Permite enfileirar até 3 eventos contemporâneos legítimos (ex: gol + cartão disciplinar + apito de encerramento).
-    // Quaisquer excedentes são marcados como tratados para prevenir rajadas.
-    const toQueue = ordered.slice(0, 3);
-    const toDrop = ordered.slice(3);
-    for (const item of toDrop) {
-      AudioEngine.markHandled(item.id);
-    }
-    for (const item of toQueue) {
+    // Todos os eventos contemporâneos legítimos (já filtrados de históricos e deduplicados por ID)
+    // são enfileirados na ordem de prioridade para reprodução sequencial com espaçamento de 250ms.
+    for (const item of ordered) {
       AudioEngine.enqueue(item.id, item.key);
     }
   }

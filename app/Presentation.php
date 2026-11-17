@@ -68,7 +68,11 @@ final class Presentation {
         }
 
         $currentMinute = (int)($match['minute'] ?? 90);
-        $freshEventIds = $g['feedback']['sound_event_ids'] ?? [];
+        if ($g['feedback'] !== null && isset($g['feedback']['sound_event_ids']) && is_array($g['feedback']['sound_event_ids'])) {
+            $freshEventIds = $g['feedback']['sound_event_ids'];
+        } else {
+            $freshEventIds = $g['current_command_sound_event_ids'] ?? [];
+        }
         if (!empty($g['feedback']['sound_event_id']) && !in_array($g['feedback']['sound_event_id'], $freshEventIds, true)) {
             $freshEventIds[] = $g['feedback']['sound_event_id'];
         }

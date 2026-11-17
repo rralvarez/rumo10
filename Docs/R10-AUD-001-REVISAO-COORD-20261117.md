@@ -115,44 +115,74 @@ Em atendimento à ordem de fechamento complementar da Coordenação Técnica:
 
 ---
 
-## [ATUAL] 4. Auditoria Independente Codex e Correções Conclusivas (17/11/2026)
+---
+
+## [HISTÓRICO] 4. Primeira Auditoria Independente Codex R1 (commit 6ac88bb5)
 
 **Base auditada:** commit `6ac88bb5685f53cc2c34799635376c228393b497`  
 **Parecer:** Devolvido para correção de três regressões P1 e uma falha P2.
 
-### 4.1. Apontamentos do Codex e Soluções Adotadas
+### 4.1. Apontamentos do Codex R1 e Soluções Adotadas
 
 1. **P1-A | Deduplicação no F5 durante a reprodução (`public/assets/audio-engine.js`):**
    - *Problema:* O evento era registrado em `sessionStorage` e `this.handled` somente no callback assíncrono `onended`. Recarregamentos de página (F5) aos ~159ms de reprodução reexecutavam o som do início.
    - *Solução:* Registro imediato em `sessionStorage` e `this.handled` assim que a chamada `source.start(...)` ou oscilador sintetizado é agendada com sucesso (t=0). Criação de conjunto `this.inFlight` para blindar o agendamento assíncrono durante `bufferFor`.
-   - *Evidências:* Teste determinístico 15 (`tests/test-aud001-webaudio.cjs`) e teste E2E 9 no Chrome real contra o IIS aprovados com silêncio absoluto no reload F5.
 
 2. **P1-B | Preservação de eventos durante suspensão do AudioContext (`public/assets/audio-engine.js`):**
    - *Problema:* Se o `AudioContext` estivesse em estado `suspended` pelo navegador (política de autoplay), o evento não podia ser marcado como tratado nem descartado prematuramente.
    - *Solução:* Se `this.ctx.state !== 'running'`, o método retorna status `suspended` sem marcar handled. O evento permanece preservado em `pendingQueue` e o conjunto `inFlight` é limpo. Quando o usuário interage e dispara `AudioEngine.unlock()`, a fila é retomada e o áudio é reproduzido integralmente. Falhas terminais (HTTP 404 e erros de decode) mantêm marcação handled no catch para prevenir loops infinitos.
-   - *Evidências:* Teste determinístico 16 aprovado.
 
 3. **P1-C | Restauração de compatibilidade com efeitos legados sintetizados (`public/assets/audio-engine.js`):**
    - *Problema:* Os eventos `BALL_HIT_POST` e `PENALTY_AWARDED`, presentes na `main`, não estavam mapeados para reprodução.
    - *Solução:* Restauração via síntese Web Audio procedural pura (`playWhistle` e `playTone`) sem novos arquivos OGG externos. Efeitos roteados diretamente através do nó mestre (`this.master`), respeitando volume, mudo, prioridade (88 e 82) e deduplicação.
-   - *Evidências:* Teste PHP 3.5, teste determinístico 17 e teste E2E 8 no Chrome aprovados.
 
 4. **P2-A | Critério primário de frescor e histórico no mesmo minuto (`app/Presentation.php`):**
    - *Problema:* A verificação antiga baseava-se em `minute < currentMinute`. Em ações sucessivas no mesmo minuto sem avanço de relógio, um evento persistido da ação 1 era considerado fresco na ação 2.
    - *Solução:* A vinculação expressa aos `sound_event_ids` do feedback da última ação é o critério primário e exclusivo de frescor para eventos de partida. Eventos persistidos sem essa vinculação recebem obrigatoriamente `data-sound-historical="1"`, independentemente de igualdade ou avanço de minuto. Apitos derivados do estado atual da partida permanecem frescos durante a transição.
-   - *Evidências:* Teste PHP 3.4 (`tests/test-aud001-audio.php`) aprovado.
 
 5. **P2-B | Alinhamento Documental e Cálculo Real do Ganho dos Apitos:**
    - *Correção:* Substituição da menção incorreta a `whistleGain = 0.55` pela fórmula real da implementação: ganho por pulso `gain = 1 / count` (`count` = 1 para início, 2 para intervalo, 3 para fim de jogo) conectado ao nó de ganho mestre (`master gain`). Atualização dos documentos contratuais e marcos históricos.
 
 ---
 
-### 4.2. Resultados Objetivos dos Testes
+## [ATUAL] 5. Auditoria Independente Codex R2 e Correções Definitivas (commit fdfe3af)
 
-- **PHP CLI (`tests/test-aud001-audio.php`):** **127/127 verificações APROVADAS** (incluindo P2-A, P1-C, P0-4, tríplice evento aos 90 min, 8 arquivos físicos OGG com Vorbis e duração $\le$ 3.0s).
-- **Web Audio Determinístico (`tests/test-aud001-webaudio.cjs`):** **98/98 verificações APROVADAS** (incluindo P1-A, P1-B, P1-C, F5 imediato, autoplay unlock, fila mista com OGG e sintetizados, descarte a partir do 4º evento contemporâneo).
-- **Chrome E2E com Áudio Real no IIS (`tests/test-aud001-browser-e2e.cjs`):** **31/31 verificações APROVADAS** (resolução portável, HTTP 200 para todos os 8 áudios OGG, playback real com sobreposição, síntese de `BALL_HIT_POST` e `PENALTY_AWARDED`, e deduplicação no reload F5 aos 200ms de reprodução).
-- **Regressões Sistêmicas:** UI-001 (5/5), F03 (17/17), Mobile UX (23/23), Placar e Carreira sem regressões.
+**Base auditada:** commit `fdfe3afe888fd376021986acbff4ad112adaf817`  
+**Parecer:** P1-A e P1-B aprovados; P1-C e P2-A parcialmente corrigidos; identificada pendência residual de mute (P2).
 
-A branch `feat/aud001-sons-partida` encontra-se 100% pronta e com evidências auditáveis. **Nenhum merge na main foi executado e nenhuma publicação na UOL foi acionada.**
+### 5.1. Soluções Adotadas para os Bloqueios R2
+
+1. **P1-C | Preservação de todos os eventos contemporâneos legítimos (`public/assets/audio-engine.js`):**
+   - *Defeito confirmado:* O limite fixo `ordered.slice(0, 3)` descartava o 4º evento contemporâneo legítimo (ex: Gol + Pênalti Concedido + Substituição + Apito Final), aplicando `markHandled()` sem agendamento nem reprodução.
+   - *Solução definitiva:* Eliminação do fatiamento numérico arbitrário. Todos os eventos não-históricos e deduplicados por ID são enfileirados em `AudioEngine.enqueue()` e reproduzidos sequencialmente com espaçamento de 250 ms e ordenação por prioridade canônica. O descarte somente ocorre para duplicatas, históricos (`data-sound-historical="1"`) ou cancelamentos explícitos.
+   - *Evidências:* Teste determinístico 12 (`tests/test-aud001-webaudio.cjs`) e teste E2E 10 no Chrome (`tests/test-aud001-browser-e2e.cjs`) aprovados: todos os 4 efeitos executados em sequência, 4º evento não recebe `markHandled` antes do agendamento, F5 mantém silêncio e sessão nova com históricos não gera rajadas.
+
+2. **P2-A | Identificação de eventos emitidos no comando corrente sem depender de feedback (`app/Game.php` e `app/Presentation.php`):**
+   - *Defeito confirmado:* No comando `advance` (ex: avanço de 45' para 60' no intervalo com entrada de reserva), `MatchParticipation::sync()` emite `PLAYER_SUBSTITUTION_IN`, mas `$g['feedback']` permanece `null`. A ausência de feedback fazia `Presentation::matchSounds()` classificar a substituição indevidamente como histórica.
+   - *Solução arquitetural:*
+     - Criada a coleção `$g['current_command_sound_event_ids']` no estado do jogo.
+     - `Game::command()` reinicia essa coleção (`[]`) no início de cada comando válido.
+     - `Game::emitSoundEvent()` registra todo ID emitido nessa coleção e, se houver feedback, também em `feedback.sound_event_ids`.
+     - `Presentation::matchSounds()` adota essa coleção como evidência primária de frescor quando `feedback` é `null` (ou ausente de `sound_event_ids`), mantendo compatibilidade retroativa total.
+   - *Evidências:* Teste 3.6 em `tests/test-aud001-audio.php` cobre avanço de 45' para 60' com entrada de reserva e `feedback=null`, saída aos 70', transição para o próximo comando sem eventos (onde a substituição passa a histórica), F5 idempotente e ausência de rajadas em sessão nova.
+
+3. **P2 Residual | Cancelamento e prevenção de vazamento de áudio durante download assíncrono com mute:**
+   - *Cenário diagnosticado:* Se o usuário ativasse e desativasse o mute enquanto um arquivo OGG ainda estava sendo baixado/decodificado (`bufferFor`), o callback resolvia com `this.prefs.muted === false` e reproduzia o áudio cancelado.
+   - *Solução mínima:* Em `setMuted(true)`, todos os IDs registrados em `this.inFlight` são marcados como tratados imediatamente. Em `playDirect()`, após o `await this.bufferFor()`, verifica-se `if (id && this.handled.has(id)) return { status: 'cancelled' };`, impedindo que o som cancelado seja disparado.
+   - *Evidências:* Teste determinístico 18 em `tests/test-aud001-webaudio.cjs` reproduz o ciclo de mute/desmute durante download e comprova zero sons disparados.
+
+---
+
+### 5.2. Resultados Objetivos dos Testes
+
+- **PHP CLI (`tests/test-aud001-audio.php`):** **143/143 verificações APROVADAS** (incluindo 3.6 completo com Game::command).
+- **Web Audio Determinístico (`tests/test-aud001-webaudio.cjs`):** **113/113 verificações APROVADAS** (incluindo fila de 4 eventos contemporâneos e pendência residual de mute).
+- **Chrome E2E com Áudio Real no IIS (`tests/test-aud001-browser-e2e.cjs`):** **38/38 verificações APROVADAS** (incluindo cenário real dos 4 eventos e silêncio no F5).
+- **Regressão Apresentação e Contadores UI-001 (`tests/test-ui-001-flow.php`):** **76/76 verificações APROVADAS** (sem alterações no teste).
+- **Regressão F03 Correções (`tests/test-f03-corrections.php`):** **298/298 verificações APROVADAS**.
+- **Regressão Mobile UX (`tests/test-mobile-ux-flow.php`):** **20/20 verificações APROVADAS**.
+- **Regressão Placar Agregado v0.7 (`tests/aggregate-score-v07.php`):** **82/82 verificações APROVADAS**.
+- **Regressão Geral de Temporadas (`tests/run.php` com `RUMOHUB_ENABLED=0`):** **27.981/27.981 verificações APROVADAS** (30 temporadas em 6 posições).
+
+A branch `feat/aud001-sons-partida` encontra-se pronta para nova validação independente direcionada do Codex. **Nenhum merge na main foi executado e nenhuma publicação na UOL foi acionada.**
 

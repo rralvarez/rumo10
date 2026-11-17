@@ -364,6 +364,102 @@ assertAud(str_contains($outLegacy, 'data-sound-event="BALL_HIT_POST"'), 'P1-C: m
 assertAud(str_contains($outLegacy, 'data-sound-event="PENALTY_AWARDED"'), 'P1-C: matchSounds renderiza evento legado PENALTY_AWARDED');
 assertAud(!str_contains($outLegacy, 'data-sound-historical="1"'), 'P1-C: Efeitos legados frescos renderizados sem marcação histórica');
 
+// 3.6 Validando P2-A R2: Ciclo de Vida de current_command_sound_event_ids via Game::command()
+echo "\n3.6 Validando P2-A R2: Eventos emitidos via Game::command() sem depender de feedback...\n";
+
+// Cenário 1: Avanço de intervalo (45') para 60' via Game::command('advance') com atleta reserva
+$gAdv = Game::legacyCreate('Reserva R2', 'Santos', 'SP', 'centroavante');
+$gAdv['stage'] = 'partida';
+$iAdv = Game::currentIndex($gAdv);
+$mAdv = &$gAdv['matches'][$iAdv];
+$mAdv['status'] = 'intervalo';
+$mAdv['minute'] = 45;
+$mAdv['entry'] = 60;
+$mAdv['exit'] = 90;
+$mAdv['lineup'] = 'banco';
+$mAdv['participation_state'] = MatchParticipation::STATE_ON_BENCH;
+$mAdv['sound_events'] = [];
+
+// Registra apito de intervalo como evento anterior persistido
+$idHalftime = Game::emitSoundEvent($mAdv, $gAdv, 'MATCH_HALFTIME', 45);
+
+// Executa o comando advance pelo Game::command
+$gAdvAfter = Game::command($gAdv, 'advance');
+$mAdvAfter = $gAdvAfter['matches'][$iAdv];
+
+assertAud($mAdvAfter['minute'] === 60, 'P2-A R2: Game::command("advance") avança relógio de 45 para 60 min');
+assertAud($mAdvAfter['participation_state'] === MatchParticipation::STATE_ON_FIELD, 'P2-A R2: Atleta entra em campo aos 60 min');
+assertAud(($gAdvAfter['feedback'] ?? null) === null, 'P2-A R2: Comando advance mantém feedback estritamente null');
+assertAud(!empty($gAdvAfter['current_command_sound_event_ids']), 'P2-A R2: current_command_sound_event_ids populado pelo comando advance');
+
+// Extrai o ID da substituição gerada
+$subInId = null;
+foreach ($mAdvAfter['sound_events'] as $sev) {
+    if (($sev['type'] ?? '') === 'PLAYER_SUBSTITUTION_IN') {
+        $subInId = $sev['id'];
+        break;
+    }
+}
+assertAud($subInId !== null, 'P2-A R2: PLAYER_SUBSTITUTION_IN emitido nos sound_events da partida');
+assertAud(in_array($subInId, $gAdvAfter['current_command_sound_event_ids'], true), 'P2-A R2: ID da substituição presente em current_command_sound_event_ids');
+
+// Renderiza apresentação sonora na página resultante
+ob_start();
+Presentation::matchSounds($gAdvAfter, $mAdvAfter);
+$outAdvSounds = ob_get_clean();
+
+assertAud(str_contains($outAdvSounds, 'data-sound-event="PLAYER_SUBSTITUTION_IN"'), 'P2-A R2: matchSounds renderiza PLAYER_SUBSTITUTION_IN no avanço');
+assertAud(!str_contains($outAdvSounds, 'data-sound-event-id="'.$subInId.'" data-sound-historical="1"') &&
+          !str_contains($outAdvSounds, 'data-sound-historical="1" class="sr-only" aria-hidden="true"></div>') ||
+          !str_contains($outAdvSounds, 'data-sound-event-id="'.$subInId.'" data-sound-historical="1"'),
+          'P2-A R2: PLAYER_SUBSTITUTION_IN NÃO é marcado histórico mesmo com feedback=null');
+assertAud(str_contains($outAdvSounds, 'data-sound-event-id="'.$idHalftime.'" data-sound-historical="1"'), 'P2-A R2: Apito de intervalo anterior é classificado como histórico');
+
+// Cenário 2: Próximo comando sem eventos novos limpa current_command_sound_event_ids
+// Simula execução do próximo comando
+$gNext = Game::command($gAdvAfter, 'choice', ['option' => 0]);
+assertAud(!in_array($subInId, $gNext['current_command_sound_event_ids'] ?? [], true), 'P2-A R2: Próximo comando reinicia coleção e NÃO retém ID da substituição anterior');
+
+ob_start();
+Presentation::matchSounds($gNext, $gNext['matches'][$iAdv]);
+$outNextSounds = ob_get_clean();
+
+assertAud(str_contains($outNextSounds, 'data-sound-event-id="'.$subInId.'" data-sound-historical="1"'), 'P2-A R2: No comando subsequente, a substituição anterior passa a ser histórica');
+
+// Cenário 3: Saída de campo por substituição efetiva via MatchParticipation::sync
+$gSubOut = Game::legacyCreate('Titular Cansado', 'Palmeiras', 'SP', 'meia');
+$gSubOut['stage'] = 'partida';
+$iSubOut = Game::currentIndex($gSubOut);
+$mSubOut = &$gSubOut['matches'][$iSubOut];
+$mSubOut['status'] = 'em_andamento';
+$mSubOut['minute'] = 60;
+$mSubOut['entry'] = 0;
+$mSubOut['exit'] = 70;
+$mSubOut['lineup'] = 'titular';
+$mSubOut['participation_state'] = MatchParticipation::STATE_ON_FIELD;
+$mSubOut['sound_events'] = [];
+
+// Avança para 70 min disparando substituição de saída
+$gSubOut['current_command_sound_event_ids'] = [];
+MatchParticipation::sync($mSubOut, $gSubOut, 70);
+
+assertAud($mSubOut['participation_state'] === MatchParticipation::STATE_SUBSTITUTED_OUT, 'P2-A R2: Atleta substituído aos 70 min');
+$subOutId = null;
+foreach ($mSubOut['sound_events'] as $sev) {
+    if (($sev['type'] ?? '') === 'PLAYER_SUBSTITUTION_OUT') {
+        $subOutId = $sev['id'];
+        break;
+    }
+}
+assertAud($subOutId !== null, 'P2-A R2: PLAYER_SUBSTITUTION_OUT emitido');
+assertAud(in_array($subOutId, $gSubOut['current_command_sound_event_ids'], true), 'P2-A R2: ID de saída presente em current_command_sound_event_ids');
+
+ob_start();
+Presentation::matchSounds($gSubOut, $mSubOut);
+$outSubOutSounds = ob_get_clean();
+assertAud(str_contains($outSubOutSounds, 'data-sound-event="PLAYER_SUBSTITUTION_OUT"'), 'P2-A R2: matchSounds renderiza PLAYER_SUBSTITUTION_OUT');
+assertAud(!str_contains($outSubOutSounds, 'data-sound-event-id="'.$subOutId.'" data-sound-historical="1"'), 'P2-A R2: PLAYER_SUBSTITUTION_OUT fresco NÃO marcado como histórico');
+
 // -------------------------------------------------------------------------
 // 4. Isolamento dos Modos de Jogo (Normal vs Rápido / Expresso)
 // -------------------------------------------------------------------------
