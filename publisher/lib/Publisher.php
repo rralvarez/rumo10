@@ -467,9 +467,9 @@ class Publisher {
     final protected function prepareApply(string $stage): array {
         $this->lock();
         need(($this->c['apply_enabled']??false)===true,'apply disabled by default');
-        need(($this->c['homologation']['backup']??false) && ($this->c['homologation']['maintenance']??false) &&
+        need(($this->c['homologation']['maintenance']??false) &&
             ($this->c['homologation']['recovery']??false) && ($this->c['homologation']['legacy_publishers_fenced']??false),
-            'Unhomologated backup / drain / recovery / legacy-writer fencing');
+            'Unhomologated drain / recovery / legacy-writer fencing');
         need(!is_file($this->journal()) || in_array(json(file_get_contents($this->journal()))['state'],['validated','recovered'],true),
             'Pending journal: reconcile with apply --recover, never overwrite');
         need(!file_exists($this->marker()) && !is_link($this->marker()),'Foreign deployment lock exists');
@@ -505,6 +505,10 @@ class Publisher {
             if($assessment['migrations']===[])$assessment['validation_only']=true;
         }
         $classA=isset($this->c['main_automation']) && ($assessment['class']??null)==='A';
+        // Database-changing transitions retain their own integrity safeguards.
+        // Class A has no backup homologation, evidence or dump prerequisite.
+        if(!$classA)need(($this->c['homologation']['backup']??false)===true,
+            'Database transition requires separately homologated recovery safeguards');
         if(($this->c['main_automation']['ui001_bootstrap_request']??false)===true){
             need($classA && ['commit'=>$v['commit'],'run_id'=>$v['run']['id'],
                 'artifact_id'=>$v['artifact_id']]===MainAutomation::UI001,
