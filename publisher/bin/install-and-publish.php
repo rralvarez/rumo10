@@ -2,11 +2,13 @@
 declare(strict_types=1);
 
 /**
- * RUMO10 | Transactional & Recoverable Operational Installer & Publisher (v4)
+ * RUMO10 | Transactional & Recoverable Operational Installer & Publisher (v5)
  *
- * Implements strict mutual exclusion, durable step-by-step journaling,
- * private staging, post-copy hash/permission verification, preflight full data dump proof,
- * verified idempotent recovery and rollback, and end-to-end production verification.
+ * Implements strict phase separation:
+ *  - Phase A (Preparation): Staging & True Preflight on staged code (zero active changes).
+ *  - Phase B (Operational Promotion): Account mutex mutual exclusion, atomic promotion & pin update.
+ *  - Phase C (Handover & Publication): Account mutex release, official controlled-pull apply,
+ *    and strict two-tier recovery (official --recover without reverting publisher files).
  *
  * Target: commit fb03b614c337845671cf6cbf1eb36abe01308bfd | artifact 14257772333 | run 43929021873
  */
@@ -74,7 +76,6 @@ if (PHP_OS_FAMILY !== 'Windows' && (fileperms($configPath) & 0077) !== 0) {
 $configRaw = file_get_contents($configPath);
 $configData = json_decode($configRaw, true, 512, JSON_THROW_ON_ERROR);
 
-// Requirement 4: Obtain private dir and installed.json EXCLUSIVELY via config
 need(!empty($configData['private']), "Configuration missing mandatory 'private' directory field");
 $privateDir = $configData['private'];
 if (!is_dir($privateDir)) {
@@ -89,12 +90,12 @@ $binDir = dirname(__DIR__) . '/bin';
 $libDir = dirname(__DIR__) . '/lib';
 $patchDir = dirname(__DIR__) . '/patch';
 
-logMsg("=== RUMO10 | INICIALIZANDO INSTALADOR TRANSACIONAL E PUBLICADOR DEFINITIVO (V4) ===");
+logMsg("=== RUMO10 | INICIALIZANDO INSTALADOR TRANSACIONAL E PUBLICADOR DEFINITIVO (V5) ===");
 logMsg("Configuração: {$configPath}");
 logMsg("Diretório privado: {$privateDir}");
 
 // -------------------------------------------------------------------------
-// 1. Mutual Exclusion & Lock Compatibility
+// 1. Mutual Exclusion for Installer (installer.lock)
 // -------------------------------------------------------------------------
 $installerLock = $privateDir . '/installer.lock';
 $lockFp = fopen($installerLock, 'c+');
@@ -107,7 +108,7 @@ if (!flock($lockFp, LOCK_EX | LOCK_NB)) {
     exit(1);
 }
 
-// Check publisher locks
+// Check publisher deployment lock
 $controlDir = $configData['control'] ?? dirname($configPath) . '/control';
 $deployLock = $controlDir . '/deployment.lock';
 if (file_exists($deployLock)) {
@@ -117,27 +118,11 @@ if (file_exists($deployLock)) {
     exit(1);
 }
 
-$accountLock = $configData['account_mutex'] ?? ($privateDir . '/account.lock');
-if (file_exists($accountLock)) {
-    $afp = @fopen($accountLock, 'r+');
-    if ($afp && !flock($afp, LOCK_EX | LOCK_NB)) {
-        fwrite(STDERR, "BLOCKED: account.lock retido por outro processo do publisher.\n");
-        fclose($afp);
-        flock($lockFp, LOCK_UN);
-        fclose($lockFp);
-        exit(1);
-    }
-    if ($afp) {
-        flock($afp, LOCK_UN);
-        fclose($afp);
-    }
-}
-
 // -------------------------------------------------------------------------
-// Verified Rollback Function
+// Rollback Functions
 // -------------------------------------------------------------------------
-function executeRollback(array $j, string $cfgPath, string $jPath): bool {
-    logMsg("EXECUTANDO ROLLBACK TRANSACIONAL VERIFICADO...");
+function executePreApplyRollback(array $j, string $cfgPath, string $jPath): bool {
+    logMsg("EXECUTANDO ROLLBACK TRANSACIONAL PRÉ-APPLY...");
     $success = true;
 
     // 1. Restore modified files from backup
@@ -226,7 +211,7 @@ if (!$force && $isInstalled && ($hasSuccessReceipt || $hasValidatedJournal)) {
     logMsg("Delegando para guarded-publisher.php em modo contínuo...");
     $guardedPub = $binDir . '/guarded-publisher.php';
     if (is_file($guardedPub)) {
-        $phpBin = PHP_BINARY;
+        $phpBin = (PHP_OS_FAMILY !== 'Windows' && is_executable('/opt/alt/php84/usr/bin/php')) ? '/opt/alt/php84/usr/bin/php' : PHP_BINARY;
         passthru(escapeshellarg($phpBin) . ' ' . escapeshellarg($guardedPub) . ' --config=' . escapeshellarg($configPath), $exitCode);
         flock($lockFp, LOCK_UN);
         fclose($lockFp);
@@ -242,22 +227,31 @@ if (is_file($journalFile)) {
     $priorState = $priorJournal['state'] ?? 'unknown';
 
     if (!in_array($priorState, ['validated', 'rolled_back'], true)) {
-        logMsg("RECUPERAÇÃO DE INTERRUPÇÃO: Detectada tentativa anterior interrompida no estado '{$priorState}'.");
-        $rbOk = executeRollback($priorJournal, $configPath, $journalFile);
-        need($rbOk, "Falha na recuperação de tentativa anterior interrompida. Intervenção necessária.");
-        logMsg("Recuperação concluída: ambiente restaurado ao estado íntegro original.");
+        logMsg("RECUPERAÇÃO DE INTERRUPÇÃO: Detectada tentativa anterior incompleta no estado '{$priorState}'.");
+        if ($priorState === 'transferring_to_publisher' || $priorState === 'apply_started') {
+            logMsg("A tentativa anterior foi interrompida durante ou após transferência ao publisher. Preservando publisher e acionando recuperação oficial.");
+            $phpBin = (PHP_OS_FAMILY !== 'Windows' && is_executable('/opt/alt/php84/usr/bin/php')) ? '/opt/alt/php84/usr/bin/php' : PHP_BINARY;
+            $controlledPull = $binDir . '/controlled-pull.php';
+            if (is_file($controlledPull)) {
+                passthru(escapeshellarg($phpBin) . ' ' . escapeshellarg($controlledPull) . ' --config=' . escapeshellarg($configPath) . ' --mode=apply --recover');
+            }
+        } else {
+            $rbOk = executePreApplyRollback($priorJournal, $configPath, $journalFile);
+            need($rbOk, "Falha na recuperação de tentativa anterior interrompida. Intervenção necessária.");
+            logMsg("Recuperação pré-apply concluída: ambiente restaurado ao estado íntegro original.");
+        }
     }
 }
 
 // -------------------------------------------------------------------------
-// 3. Pre-validation of Patch Files and Hashes
+// FASE A: PREPARAÇÃO (Zero Alteração no Código Ativo)
 // -------------------------------------------------------------------------
-logMsg("Fase 1: Verificação estrita de integridade prévia dos arquivos do patch...");
+logMsg("FASE A: Preparação, verificação de hashes e preflight completo em staging privado...");
 
 $expectedHashes = [
-    'mysql-backup-hook.php' => 'f32510fab84346c19b0164a03aa694829f1a2778746e12cdc2d6468bd1f08aaa',
-    'diagnose-uol.php'      => '801dc65e94020b2a5e23a16673c04e4b0b945be7c701076f19368a6286843d51',
-    'guarded-publisher.php' => '4bcddba4b8d717bc5eb045da77358eb7298e63f4d65877caf9e3cf61d4249015',
+    'mysql-backup-hook.php' => '4f63075ab85d1f740a611da3e619eaa0e3ffdcab6d75be211dc4fcc167945eed',
+    'diagnose-uol.php'      => '9d4d6fb9f58b3daa49cd798fe7a8975ea2a00ef6c0292dc26756077066e19a6b',
+    'guarded-publisher.php' => 'ad5f0410087d7635db1dc3cdf466459e5d44526210dd9552c35df317978983bd',
     'Publisher.php'         => '38e9a5784ac3f9cd4fdb1ab3e2ae184b8ebe20eefc7803831fcfb250ced7313e',
     'DrainPublisher.php'    => '4fbcd95202349212a6ede3d2d9be0a441450cc4d27634550279d0f9e44eb991a',
     'GitHub.php'            => 'af564c8293737c053f5dac5c3f7bca3509232c62e9b1942fed316aef0649c66d',
@@ -295,19 +289,14 @@ foreach ($expectedHashes as $file => $expectedHash) {
         'hash'   => $expectedHash,
     ];
 }
-logMsg("Integridade dos " . count($filesPlan) . " arquivos do patch 100% comprovada via SHA-256.");
-
-// -------------------------------------------------------------------------
-// 4. Private Staging & Backup Creation
-// -------------------------------------------------------------------------
-logMsg("Fase 2: Preparando staging privado e backup de salvaguarda...");
+logMsg("Integridade prévia dos " . count($filesPlan) . " arquivos do patch 100% comprovada via SHA-256.");
 
 $attemptId = bin2hex(random_bytes(8));
 $stagingDir = $privateDir . '/patch-staging-' . $attemptId;
 mkdir($stagingDir, 0700, true);
 if (PHP_OS_FAMILY !== 'Windows') @chmod($stagingDir, 0700);
 
-// Stage files
+// Stage all files
 foreach ($filesPlan as $file => $info) {
     $stagedFile = $stagingDir . '/' . $file;
     copy($info['source'], $stagedFile);
@@ -316,16 +305,14 @@ foreach ($filesPlan as $file => $info) {
     need($stagedHash === $info['hash'], "Falha de integridade no staging de {$file}");
 }
 
-// Backup existing files and categorize
+// Backup directory preparation
 $backupDir = $privateDir . '/operational-backups/backup-' . time() . '-' . $attemptId;
 mkdir($backupDir, 0700, true);
 if (PHP_OS_FAMILY !== 'Windows') @chmod($backupDir, 0700);
-
 copy($configPath, $backupDir . '/receiver-config.json');
 
 $modifiedFiles = [];
 $createdFiles = [];
-
 foreach ($filesPlan as $file => $info) {
     $dest = $info['dest'];
     if (file_exists($dest)) {
@@ -340,7 +327,7 @@ foreach ($filesPlan as $file => $info) {
     }
 }
 
-// Initialize durable journal
+// Record journal state: staged
 $journalData = [
     'attempt_id'             => $attemptId,
     'started_at'             => date('c'),
@@ -358,14 +345,87 @@ $journalData = [
     ],
 ];
 atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-logMsg("Journal durável registrado em {$journalFile} (estado: staged).");
+
+// Execute True Preflight ON THE STAGED CODE (Zero active code/pin modified!)
+logMsg("Executando preflight verdadeiro sobre o código em staging privado...");
+$phpBin = (PHP_OS_FAMILY !== 'Windows' && is_executable('/opt/alt/php84/usr/bin/php')) ? '/opt/alt/php84/usr/bin/php' : PHP_BINARY;
+$stagedHook = $stagingDir . '/mysql-backup-hook.php';
+$hookArgs = $configData['hooks']['backup']['args'] ?? [];
+$preflightCmd = array_merge([$phpBin, $stagedHook, 'preflight'], $hookArgs);
+$preflightInput = json_encode(['action' => 'preflight', 'project' => $configData['project'] ?? 'rumo10']);
+
+$prefErrLog = $privateDir . '/pref-err-' . $attemptId . '.log';
+$p = proc_open($preflightCmd, [
+    0 => ['pipe', 'r'],
+    1 => ['pipe', 'w'],
+    2 => ['file', $prefErrLog, 'wb']
+], $pipes);
+
+$preflightOutput = '';
+$preflightExit = -1;
+if (is_resource($p)) {
+    fwrite($pipes[0], $preflightInput);
+    fclose($pipes[0]);
+    $preflightOutput = stream_get_contents($pipes[1]);
+    fclose($pipes[1]);
+    $preflightExit = proc_close($p);
+}
+$prefErrContent = is_file($prefErrLog) ? trim(file_get_contents($prefErrLog)) : '';
+if (is_file($prefErrLog)) @unlink($prefErrLog);
+
+$preflightData = json_decode($preflightOutput, true);
+$preflightSuccess = ($preflightExit === 0 && ($preflightData['ok'] ?? false) === true && ($preflightData['full_data_tested'] ?? false) === true);
+
+if (!$preflightSuccess) {
+    $cleanPrefErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $prefErrContent);
+    $cleanPrefErr = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $cleanPrefErr);
+    logMsg("FALHA BLOQUEANTE NO PREFLIGHT STAGED (código {$preflightExit}): " . $cleanPrefErr);
+
+    executePreApplyRollback($journalData, $configPath, $journalFile);
+    $receipt = [
+        'status' => 'aborted_preflight_failed',
+        'attempt_id' => $attemptId,
+        'timestamp' => date('c'),
+        'error' => $cleanPrefErr,
+        'preflight_passed' => false,
+        'rollback_ok' => true,
+        'active_code_modified' => false,
+        'request_drain_never_closed' => true,
+    ];
+    atomicWrite($receiptPath, json_encode($receipt, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+    flock($lockFp, LOCK_UN);
+    fclose($lockFp);
+    exit(1);
+}
+
+logMsg("Preflight com dump completo de dados APROVADO com 100% de sucesso.");
+logMsg("  Database: " . ($preflightData['database'] ?? ''));
+logMsg("  Engine: " . ($preflightData['engine'] ?? ''));
+logMsg("  Triggers verificados: " . ($preflightData['triggers_count'] ?? 0));
+logMsg("  Routines verificadas: " . ($preflightData['routines_count'] ?? 0));
+logMsg("  Views verificadas: " . ($preflightData['views_count'] ?? 0));
+
+$journalData['state'] = 'preflight_passed';
+atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
 
 // -------------------------------------------------------------------------
-// 5. Atomic Promotion & Post-Copy Verification
+// FASE B: PROMOÇÃO OPERACIONAL SOB MUTEX DA CONTA
 // -------------------------------------------------------------------------
-logMsg("Fase 3: Promovendo arquivos operacionais e verificando permissões e hashes...");
+logMsg("FASE B: Adquirindo account_mutex para promoção operacional atômica...");
+
+$accountMutexFile = $configData['account_mutex'] ?? ($privateDir . '/account.lock');
+if (!is_dir(dirname($accountMutexFile))) {
+    @mkdir(dirname($accountMutexFile), 0700, true);
+}
+$accountFp = fopen($accountMutexFile, 'c+b');
+need($accountFp !== false, "Cannot open account mutex file: {$accountMutexFile}");
+need(flock($accountFp, LOCK_EX | LOCK_NB), "BLOCKED: account.lock retido por outro processo do publisher. Impossível promover concorrentemente.");
+
+$journalData['state'] = 'promoting';
+atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
 
 try {
+    // 1. Promote files atomically
     foreach ($filesPlan as $file => $info) {
         $stagedSource = $stagingDir . '/' . $file;
         $dest = $info['dest'];
@@ -373,7 +433,7 @@ try {
             mkdir(dirname($dest), 0700, true);
         }
         if (!copy($stagedSource, $dest)) {
-            throw new \RuntimeException("Falha ao copiar {$file} para {$dest}");
+            throw new \RuntimeException("Falha ao promover {$file} para {$dest}");
         }
         if (PHP_OS_FAMILY !== 'Windows') {
             @chmod($dest, 0600);
@@ -383,229 +443,216 @@ try {
         logMsg("  [OK] Promovido e verificado: {$dest} ({$promotedHash})");
     }
 
-    $journalData['state'] = 'promoted';
-    atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-
-    // -------------------------------------------------------------------------
-    // 6. Update Hook Pin in receiver-config.json
-    // -------------------------------------------------------------------------
-    logMsg("Fase 4: Sincronizando hash SHA-256 do hook em receiver-config.json...");
-
+    // 2. Update pin in receiver-config.json
     $newHookHash = $expectedHashes['mysql-backup-hook.php'];
     need(isset($configData['hooks']['backup']), "hooks.backup ausente em {$configPath}");
     $oldHookHash = $configData['hooks']['backup']['sha256'] ?? 'none';
-    logMsg("Hash anterior: {$oldHookHash}");
-    logMsg("Novo hash homologado: {$newHookHash}");
-
+    logMsg("Sincronizando hash do hook em receiver-config.json: {$oldHookHash} -> {$newHookHash}");
     $configData['hooks']['backup']['sha256'] = $newHookHash;
     atomicWrite($configPath, json_encode($configData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
 
-    $journalData['state'] = 'pinned';
+    $journalData['state'] = 'promotion_complete';
     atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-
-    // -------------------------------------------------------------------------
-    // 7. True Preflight Proof (Full Data Dump Test Before Maintenance)
-    // -------------------------------------------------------------------------
-    logMsg("Fase 5: Executando preflight verdadeiro (exportação completa com dados)...");
-
-    $phpBin = PHP_BINARY;
-    $uolPhp = '/opt/alt/php84/usr/bin/php';
-    if (PHP_OS_FAMILY !== 'Windows' && is_executable($uolPhp)) {
-        $phpBin = $uolPhp;
-    }
-
-    $hookScript = $filesPlan['mysql-backup-hook.php']['dest'];
-    $hookArgs = $configData['hooks']['backup']['args'] ?? [];
-
-    $preflightCmd = array_merge([$phpBin, $hookScript, 'preflight'], $hookArgs);
-    $preflightInput = json_encode(['action' => 'preflight', 'project' => $configData['project'] ?? 'rumo10']);
-
-    $prefErrLog = $privateDir . '/pref-err-' . $attemptId . '.log';
-    $p = proc_open($preflightCmd, [
-        0 => ['pipe', 'r'],
-        1 => ['pipe', 'w'],
-        2 => ['file', $prefErrLog, 'wb']
-    ], $pipes);
-
-    $preflightOutput = '';
-    $preflightExit = -1;
-    if (is_resource($p)) {
-        fwrite($pipes[0], $preflightInput);
-        fclose($pipes[0]);
-        $preflightOutput = stream_get_contents($pipes[1]);
-        fclose($pipes[1]);
-        $preflightExit = proc_close($p);
-    }
-    $prefErrContent = is_file($prefErrLog) ? trim(file_get_contents($prefErrLog)) : '';
-    if (is_file($prefErrLog)) @unlink($prefErrLog);
-
-    $preflightData = json_decode($preflightOutput, true);
-    $preflightSuccess = ($preflightExit === 0 && ($preflightData['ok'] ?? false) === true && ($preflightData['full_data_tested'] ?? false) === true);
-
-    if (!$preflightSuccess) {
-        $cleanPrefErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $prefErrContent);
-        $cleanPrefErr = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $cleanPrefErr);
-        throw new \RuntimeException("FALHA BLOQUEANTE NO PREFLIGHT COMPLETO (código {$preflightExit}): " . $cleanPrefErr);
-    }
-
-    logMsg("Preflight com dump completo de dados APROVADO com 100% de sucesso.");
-    logMsg("  Database: " . ($preflightData['database'] ?? ''));
-    logMsg("  Engine: " . ($preflightData['engine'] ?? ''));
-    logMsg("  Triggers verificados: " . ($preflightData['triggers_count'] ?? 0));
-    logMsg("  Views verificadas: " . ($preflightData['views_count'] ?? 0));
-
-    $journalData['state'] = 'preflight_passed';
-    atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-
-    // -------------------------------------------------------------------------
-    // 8. Publish Authorized Release (Commit fb03b614)
-    // -------------------------------------------------------------------------
-    if (isset($opts['skip-publish'])) {
-        logMsg("AVISO: Publicação ignorada devido ao parâmetro --skip-publish.");
-        $journalData['state'] = 'validated';
-        atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-        flock($lockFp, LOCK_UN);
-        fclose($lockFp);
-        exit(0);
-    }
-
-    logMsg("Fase 6: Disparando publicação HTTPS da release autorizada UI-001...");
-    $controlledPull = $binDir . '/controlled-pull.php';
-    need(is_file($controlledPull), "controlled-pull.php não encontrado em {$controlledPull}");
-
-    $publishCmd = [
-        $phpBin,
-        $controlledPull,
-        '--config=' . $configPath,
-        '--mode=apply',
-        '--discover',
-    ];
-
-    $pubErrLog = $privateDir . '/pub-err-' . $attemptId . '.log';
-    $pubOutLog = $privateDir . '/pub-out-' . $attemptId . '.log';
-
-    $p = proc_open($publishCmd, [
-        0 => ['pipe', 'r'],
-        1 => ['file', $pubOutLog, 'wb'],
-        2 => ['file', $pubErrLog, 'wb'],
-    ], $pipes);
-
-    need(is_resource($p), "Falha ao iniciar processo do publisher");
-    fclose($pipes[0]);
-
-    $deadline = microtime(true) + 300;
-    $pubExit = -1;
-    do {
-        $st = proc_get_status($p);
-        if (!$st['running']) {
-            $pubExit = $st['exitcode'];
-            break;
-        }
-        if (microtime(true) > $deadline) {
-            proc_terminate($p);
-            break;
-        }
-        usleep(100000);
-    } while (true);
-    proc_close($p);
-
-    $pubOut = is_file($pubOutLog) ? trim(file_get_contents($pubOutLog)) : '';
-    $pubErr = is_file($pubErrLog) ? trim(file_get_contents($pubErrLog)) : '';
-    if (is_file($pubOutLog)) @unlink($pubOutLog);
-    if (is_file($pubErrLog)) @unlink($pubErrLog);
-
-    if ($pubExit !== 0) {
-        $cleanPubErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $pubErr);
-        $cleanPubErr = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $cleanPubErr);
-        throw new \RuntimeException("FALHA NA PUBLICAÇÃO (código {$pubExit}): " . $cleanPubErr);
-    }
-
-    logMsg("Publicação concluída com código 0.");
-
-    // -------------------------------------------------------------------------
-    // 9. Comprehensive Post-Publish Verification
-    // -------------------------------------------------------------------------
-    logMsg("Fase 7: Verificação integral pós-publicação da release e do ambiente...");
-
-    // A. Check installed.json
-    need(is_file($installedJsonPath), "installed.json ausente em {$installedJsonPath}");
-    $installed = json_decode(file_get_contents($installedJsonPath), true);
-    need(($installed['commit'] ?? '') === $targetCommit, "Commit divergente em installed.json: esperava {$targetCommit}, obteve " . ($installed['commit'] ?? ''));
-    need((int)($installed['artifact_id'] ?? 0) === $targetArtifactId, "Artifact ID divergente em installed.json");
-    logMsg("  [OK] installed.json confirmado: commit {$targetCommit}, artifact {$targetArtifactId}");
-
-    // B. Check journal.json
-    $prodJournal = $privateDir . '/journal.json';
-    need(is_file($prodJournal), "journal.json ausente em {$prodJournal}");
-    $pJourn = json_decode(file_get_contents($prodJournal), true);
-    need(($pJourn['state'] ?? '') === 'validated', "Estado do journal.json não é 'validated'");
-    logMsg("  [OK] journal.json confirmado: state validated");
-
-    // C. Check locks and RequestDrain
-    need(!file_exists($deployLock), "deployment.lock ainda retido após publicação");
-    logMsg("  [OK] deployment.lock ausente e liberado");
-
-    // D. Smoke verification of public entrypoint
-    $publicDir = $configData['public'] ?? (dirname($configPath) . '/public_html');
-    $indexFile = $publicDir . '/index.php';
-    need(is_file($indexFile), "index.php público ausente em {$indexFile}");
-    logMsg("  [OK] index.php público preservado e acessível");
-
-    // Success receipt
-    $receipt = [
-        'status'         => 'success',
-        'attempt_id'     => $attemptId,
-        'installed_at'   => date('c'),
-        'target_commit'  => $targetCommit,
-        'artifact_id'    => $targetArtifactId,
-        'run_id'         => $targetRunId,
-        'config_file'    => $configPath,
-        'files_installed'=> array_keys($filesPlan),
-        'backup_dir'     => $backupDir,
-        'preflight'      => $preflightData,
-    ];
-
-    atomicWrite($receiptPath, json_encode($receipt, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-    @copy($receiptPath, dirname($configPath) . '/patch-install-receipt.json');
-
-    $journalData['state'] = 'validated';
-    $journalData['completed_at'] = date('c');
-    atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-
-    // Clean up staging
-    if (is_dir($stagingDir)) {
-        $stFiles = glob($stagingDir . '/*');
-        foreach ($stFiles as $sf) { if (is_file($sf)) @unlink($sf); }
-        @rmdir($stagingDir);
-    }
-
-    logMsg("=== INSTALAÇÃO E PUBLICAÇÃO DEFINITIVA CONCLUÍDAS COM SUCESSO! ===");
-    logMsg("Recibo registrado em {$receiptPath}");
-
-    flock($lockFp, LOCK_UN);
-    fclose($lockFp);
-    exit(0);
-
-} catch (\Throwable $e) {
-    logMsg("ERRO BLOQUEANTE DETECTADO: " . $e->getMessage());
-    $rbOk = executeRollback($journalData, $configPath, $journalFile);
-    if ($rbOk) {
-        logMsg("Rollback transacional concluído com sucesso e verificado.");
-    } else {
-        logMsg("ALERTA CRÍTICO: Falha na verificação final do rollback!");
-    }
-
-    $failedReceipt = [
-        'status'       => 'aborted_rollback_executed',
-        'attempt_id'   => $attemptId,
-        'failed_at'    => date('c'),
-        'error'        => $e->getMessage(),
-        'rollback_ok'  => $rbOk,
-        'backup_dir'   => $backupDir,
-    ];
-    @atomicWrite($receiptPath, json_encode($failedReceipt, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
-
+    logMsg("Promoção operacional concluída e validada integralmente.");
+} catch (\Throwable $promoErr) {
+    logMsg("ERRO DURANTE PROMOÇÃO OPERACIONAL: " . $promoErr->getMessage());
+    flock($accountFp, LOCK_UN);
+    fclose($accountFp);
+    executePreApplyRollback($journalData, $configPath, $journalFile);
     flock($lockFp, LOCK_UN);
     fclose($lockFp);
     exit(1);
 }
+
+// -------------------------------------------------------------------------
+// FASE C: TRANSFERÊNCIA AO PUBLISHER E EXECUÇÃO
+// -------------------------------------------------------------------------
+logMsg("FASE C: Transferindo controle ao publisher oficial...");
+
+$journalData['state'] = 'transferring_to_publisher';
+atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+
+// Crucial: Release account mutex BEFORE launching controlled-pull!
+// This allows controlled-pull.php to acquire account_mutex cleanly.
+flock($accountFp, LOCK_UN);
+fclose($accountFp);
+
+if (isset($opts['skip-publish'])) {
+    logMsg("AVISO: Publicação ignorada devido ao parâmetro --skip-publish.");
+    $journalData['state'] = 'validated';
+    atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+    flock($lockFp, LOCK_UN);
+    fclose($lockFp);
+    exit(0);
+}
+
+logMsg("Disparando controlled-pull.php --mode=apply --discover para release autorizada...");
+$controlledPull = $binDir . '/controlled-pull.php';
+need(is_file($controlledPull), "controlled-pull.php não encontrado em {$controlledPull}");
+
+$publishCmd = [
+    $phpBin,
+    $controlledPull,
+    '--config=' . $configPath,
+    '--mode=apply',
+    '--discover',
+];
+
+$pubErrLog = $privateDir . '/pub-err-' . $attemptId . '.log';
+$pubOutLog = $privateDir . '/pub-out-' . $attemptId . '.log';
+
+$journalData['state'] = 'apply_started';
+atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+
+$p = proc_open($publishCmd, [
+    0 => ['pipe', 'r'],
+    1 => ['file', $pubOutLog, 'wb'],
+    2 => ['file', $pubErrLog, 'wb'],
+], $pipes);
+
+need(is_resource($p), "Falha ao iniciar processo do publisher");
+fclose($pipes[0]);
+
+$deadline = microtime(true) + 300;
+$pubExit = -1;
+do {
+    $st = proc_get_status($p);
+    if (!$st['running']) {
+        $pubExit = $st['exitcode'];
+        break;
+    }
+    if (microtime(true) > $deadline) {
+        proc_terminate($p);
+        break;
+    }
+    usleep(100000);
+} while (true);
+proc_close($p);
+
+$pubOutContent = is_file($pubOutLog) ? trim(file_get_contents($pubOutLog)) : '';
+$pubErrContent = is_file($pubErrLog) ? trim(file_get_contents($pubErrLog)) : '';
+if (is_file($pubOutLog)) @unlink($pubOutLog);
+if (is_file($pubErrLog)) @unlink($pubErrLog);
+
+$cleanPubErr = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $pubErrContent);
+$cleanPubErr = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $cleanPubErr);
+
+if ($pubExit !== 0) {
+    logMsg("FALHA NO APPLY DO PUBLISHER (código {$pubExit}): " . $cleanPubErr);
+    logMsg("Regra estrita pós-apply: preservando publisher compatível e acionando recuperação oficial (--recover)...");
+
+    $journalData['state'] = 'apply_failed';
+    atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+
+    // Trigger official recovery of controlled-pull.php
+    $recoverCmd = [$phpBin, $controlledPull, '--config=' . $configPath, '--mode=apply', '--recover'];
+    $recErrLog = $privateDir . '/rec-err-' . $attemptId . '.log';
+    $recOutLog = $privateDir . '/rec-out-' . $attemptId . '.log';
+
+    $rp = proc_open($recoverCmd, [
+        0 => ['pipe', 'r'],
+        1 => ['file', $recOutLog, 'wb'],
+        2 => ['file', $recErrLog, 'wb'],
+    ], $rpipes);
+
+    $recExit = -1;
+    if (is_resource($rp)) {
+        fclose($rpipes[0]);
+        $rDeadline = microtime(true) + 120;
+        do {
+            $rst = proc_get_status($rp);
+            if (!$rst['running']) { $recExit = $rst['exitcode']; break; }
+            if (microtime(true) > $rDeadline) { proc_terminate($rp); break; }
+            usleep(100000);
+        } while (true);
+        proc_close($rp);
+    }
+    if (is_file($recOutLog)) @unlink($recOutLog);
+    if (is_file($recErrLog)) @unlink($recErrLog);
+
+    // Verify recovery proof
+    $drainSessionFile = $privateDir . '/drain-session.json';
+    $drainSession = is_file($drainSessionFile) ? json_decode(file_get_contents($drainSessionFile), true) : [];
+    $isRecovered = ($drainSession['state'] ?? '') === 'recovered';
+
+    $gateClosedR10 = file_exists(($configData['request_gate']['root'] ?? dirname($configPath) . '/public') . '/closed.json');
+    $gateIsOpen = !$gateClosedR10;
+
+    if ($isRecovered && $gateIsOpen) {
+        logMsg("Recuperação oficial de sessão comprovada com sucesso (drain-session: recovered, gate aberto).");
+        $journalData['state'] = 'recovered';
+        atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+        $receipt = [
+            'status' => 'apply_failed_recovered',
+            'attempt_id' => $attemptId,
+            'timestamp' => date('c'),
+            'apply_exit_code' => $pubExit,
+            'apply_error' => $cleanPubErr,
+            'recovery_proven' => true,
+            'gate_open' => true,
+        ];
+    } else {
+        logMsg("ALERTA: Recuperação de sessão NÃO comprovada. Estado pendente registrado.");
+        $journalData['state'] = 'pending_recovery';
+        atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+        $receipt = [
+            'status' => 'pending_recovery',
+            'attempt_id' => $attemptId,
+            'timestamp' => date('c'),
+            'apply_exit_code' => $pubExit,
+            'apply_error' => $cleanPubErr,
+            'recovery_proven' => false,
+            'gate_open' => $gateIsOpen,
+        ];
+    }
+    atomicWrite($receiptPath, json_encode($receipt, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+    flock($lockFp, LOCK_UN);
+    fclose($lockFp);
+    exit(1);
+}
+
+// Verify production deployment
+logMsg("Publicação concluída com código 0. Verificando installed.json e integridade da release...");
+
+$installedData = is_file($installedJsonPath) ? json_decode(file_get_contents($installedJsonPath), true) : [];
+$actualCommit = $installedData['commit'] ?? '';
+$actualArtifactId = $installedData['artifact_id'] ?? null;
+
+need($actualCommit === $targetCommit, "Divergência de commit instalado: esperado {$targetCommit}, obtido {$actualCommit}");
+need((int)$actualArtifactId === $targetArtifactId, "Divergência de artifact_id instalado: esperado {$targetArtifactId}, obtido {$actualArtifactId}");
+
+// Verify RequestDrain is open
+$gateClosed = file_exists(($configData['request_gate']['root'] ?? dirname($configPath) . '/public') . '/closed.json');
+need(!$gateClosed, "RequestDrain permaneceu fechado após conclusão do deploy");
+
+// Clean staging directory
+if (is_dir($stagingDir)) {
+    $stFiles = glob($stagingDir . '/*');
+    foreach ($stFiles as $sf) { if (is_file($sf)) @unlink($sf); }
+    @rmdir($stagingDir);
+}
+
+$journalData['state'] = 'validated';
+$journalData['completed_at'] = date('c');
+$journalData['installed'] = $installedData;
+atomicWrite($journalFile, json_encode($journalData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+
+$receipt = [
+    'status' => 'success',
+    'attempt_id' => $attemptId,
+    'timestamp' => date('c'),
+    'published_commit' => $actualCommit,
+    'artifact_id' => $actualArtifactId,
+    'run_id' => $targetRunId,
+    'preflight_passed' => true,
+    'full_data_tested' => true,
+    'drain_open' => true,
+];
+atomicWrite($receiptPath, json_encode($receipt, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, 0600);
+
+logMsg("=== SUCESSO DEFINITIVO: RELEASE UI-001 INSTALADA E HOMOLOGADA ===");
+logMsg("Recibo registrado em: {$receiptPath}");
+
+flock($lockFp, LOCK_UN);
+fclose($lockFp);
+exit(0);

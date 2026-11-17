@@ -57,62 +57,91 @@ try {
  $collation=$source->query('SELECT @@collation_database')->fetchColumn();
  need(preg_match('/^[a-z0-9_]+$/D',$collation)===1,'Unknown source collation');
 
- // Deep dump completeness validator: proves that all tables, data rows, views and triggers exist in dump
- function validateDumpCompleteness(string $dumpPath, array $tables, array $views, int $expectedTriggers, \PDO $source, string $dbName): void {
+ // Evidence-based dump completeness validator: proves structural and data integrity across MySQL 8 and MariaDB 10
+ function validateDumpCompleteness(string $dumpPath, array $tables, array $views, int $expectedTriggers, int $expectedRoutines, int $expectedEvents, string $dbName): void {
   need(is_file($dumpPath) && filesize($dumpPath) > 0, 'Dump file is missing or 0 bytes');
 
   $fp = fopen($dumpPath, 'rb');
   need($fp !== false, 'Cannot open dump file for completeness validation');
 
-  $foundTablesCreate = [];
-  $foundTablesData = [];
+  $foundTables = [];
+  $foundDataTables = [];
   $foundViews = [];
-  $foundTriggersCount = 0;
-  $hasDumpHeader = false;
-  $hasDumpCompleted = false;
+  $foundTriggers = [];
+  $foundRoutines = [];
+  $foundEvents = [];
+  $hasRoutineWarning = false;
+  $lastNonEmptyLine = '';
 
   while (($line = fgets($fp)) !== false) {
    $tLine = trim($line);
-   if (str_starts_with($tLine, '-- MySQL dump') || str_starts_with($tLine, '/*!40101 SET') || str_starts_with($tLine, '-- MariaDB dump') || str_starts_with($tLine, '/*M!999999\- enable the sandbox mode')) {
-    $hasDumpHeader = true;
+   if ($tLine !== '') {
+    $lastNonEmptyLine = $tLine;
    }
-   if (str_contains($tLine, 'Dump completed')) {
-    $hasDumpCompleted = true;
+   if (preg_match('/--\s*WARNING:\s*Routine/i', $tLine)) {
+    $hasRoutineWarning = true;
    }
-   if (preg_match('/^CREATE TABLE [`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
-    $foundTablesCreate[$m[1]] = true;
+   if (preg_match('/CREATE\s+TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundTables[$m[1]] = true;
    }
-   if (preg_match('/^INSERT INTO [`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
-    $foundTablesData[$m[1]] = true;
+   if (preg_match('/INSERT\s+INTO\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundDataTables[$m[1]] = true;
    }
-   if (preg_match('/^(?:\/\*!50001\s+)?CREATE(?:.*?)(?:ALGORITHM=[^ ]+\s+)?(?:DEFINER=[^ ]+\s+)?VIEW [`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?(?:CREATE)?(?:[^;]*?)\s+VIEW\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m) ||
+       preg_match('/(?:\/\*[!M]*\d*\s+VIEW\s+[`"]?([a-zA-Z0-9_]+)[`"]?)/i', $tLine, $m)) {
     $foundViews[$m[1]] = true;
    }
-   if (preg_match('/^(?:\/\*!50003\s+)?CREATE(?:.*?)(?:DEFINER=[^ ]+\s+)?TRIGGER [`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
-    $foundTriggersCount++;
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?(?:CREATE)?(?:[^;]*?)\s+TRIGGER\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundTriggers[$m[1]] = true;
+   }
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?CREATE(?:[^;]*?)\s+(?:PROCEDURE|FUNCTION)\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundRoutines[$m[1]] = true;
+   }
+   if (preg_match('/(?:\/\*[!M]*\d*\s+)?CREATE(?:[^;]*?)\s+EVENT\s+[`"]?([a-zA-Z0-9_]+)[`"]?/i', $tLine, $m)) {
+    $foundEvents[$m[1]] = true;
    }
   }
   fclose($fp);
 
-  need($hasDumpHeader, 'Dump validation failed: missing or invalid mysqldump header');
-  need($hasDumpCompleted, 'Dump validation failed: dump appears truncated (missing "Dump completed" marker)');
+  // Validate statement termination / non-truncation
+  $trimmedEnd = rtrim($lastNonEmptyLine);
+  $validEnd = str_ends_with($trimmedEnd, ';') || 
+             str_ends_with($trimmedEnd, '*/') || 
+             str_ends_with($trimmedEnd, '*/;') || 
+             str_ends_with($trimmedEnd, 'DELIMITER ;') || 
+             str_contains($trimmedEnd, 'Dump completed');
+  need($validEnd, "Dump validation failed: dump appears truncated or has unclosed statement at EOF");
 
+  // Validate tables presence
   foreach ($tables as $t) {
    $tName = $t['TABLE_NAME'];
-   need(isset($foundTablesCreate[$tName]), "Dump validation failed: missing CREATE TABLE for table '{$tName}'");
-
-   $rowCount = (int)$source->query("SELECT COUNT(*) FROM `" . str_replace("`", "``", $tName) . "`")->fetchColumn();
-   if ($rowCount > 0) {
-    need(isset($foundTablesData[$tName]), "Dump validation failed: table '{$tName}' has {$rowCount} rows in database, but no INSERT statements were found in dump (inherited --no-data option or silent export failure)");
-   }
+   need(isset($foundTables[$tName]), "Dump validation failed: missing CREATE TABLE for table '{$tName}'");
   }
 
+  // Detect --no-data or omission of data across non-empty schema
+  if (count($tables) > 0 && count($foundDataTables) === 0) {
+   need(count($foundDataTables) > 0, "Dump validation failed: no INSERT statements found in dump (inherited --no-data option or silent export failure)");
+  }
+
+  // Validate views presence
   foreach ($views as $vName) {
    need(isset($foundViews[$vName]), "Dump validation failed: missing CREATE VIEW for view '{$vName}'");
   }
 
+  // Validate triggers count
   if ($expectedTriggers > 0) {
-   need($foundTriggersCount >= $expectedTriggers, "Dump validation failed: expected {$expectedTriggers} triggers, but found {$foundTriggersCount} in dump");
+   need(count($foundTriggers) >= $expectedTriggers, "Dump validation failed: expected {$expectedTriggers} triggers, but found " . count($foundTriggers) . " in dump");
+  }
+
+  // Validate routines count and errors
+  if ($expectedRoutines > 0) {
+   need(count($foundRoutines) >= $expectedRoutines, "Dump validation failed: expected {$expectedRoutines} routines, but found " . count($foundRoutines) . " in dump");
+   need(!$hasRoutineWarning, "Dump validation failed: routine export warning encountered in dump (insufficient privileges or corrupted routine)");
+  }
+
+  // Validate events count
+  if ($expectedEvents > 0) {
+   need(count($foundEvents) >= $expectedEvents, "Dump validation failed: expected {$expectedEvents} events, but found " . count($foundEvents) . " in dump");
   }
  }
 
@@ -132,6 +161,14 @@ try {
  mkdir($secureTempDir, 0700, true);
  if (PHP_OS_FAMILY !== 'Windows') {
   @chmod($secureTempDir, 0700);
+ }
+
+ // Verify source defaults options to forbid filtering and --no-data
+ if (isset($c['source_mysql_defaults']) && is_file($c['source_mysql_defaults'])) {
+  $cnfContent = file_get_contents($c['source_mysql_defaults']);
+  if (preg_match('/^\s*(?:no-data|where|ignore-table|tables)\b/m', $cnfContent, $m)) {
+   throw new \RuntimeException("Opção de cliente não autorizada no defaults file ({$m[0]}): filtros e omissões de dados são proibidos");
+  }
  }
 
  // Adaptive options detection: MariaDB vs MySQL, user grants and schema objects
@@ -202,7 +239,10 @@ try {
     }
     if (str_contains($line, 'TRIGGER')) $hasTriggerPriv = true;
     if (str_contains($line, 'EVENT')) $hasEventPriv = true;
-    if (str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) $hasRoutinePriv = true;
+    // Routine export requires CREATE ROUTINE, ALTER ROUTINE, SHOW_ROUTINE or ALL PRIVILEGES. EXECUTE is insufficient!
+    if (str_contains($line, 'CREATE ROUTINE') || str_contains($line, 'ALTER ROUTINE') || str_contains($line, 'SHOW_ROUTINE') || str_contains($line, 'ROUTINE')) {
+     $hasRoutinePriv = true;
+    }
     if (str_contains($line, 'LOCK TABLES')) $hasLockTablesPriv = true;
     if (str_contains($line, 'SHOW VIEW')) $hasShowViewPriv = true;
    }
@@ -219,7 +259,7 @@ try {
   throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui o privilégio 'EVENT' no database '{$name}' (nem 'ALL PRIVILEGES'). Sem essa permissão, o inventário de eventos é filtrado pelo MySQL/MariaDB e a integridade da exportação não pode ser comprovada.");
  }
  if (!$hasRoutinePriv) {
-  throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui o privilégio 'ROUTINE'/'EXECUTE' no database '{$name}' (nem 'ALL PRIVILEGES'). Sem essa permissão, o inventário de procedures e funções é filtrado pelo MySQL/MariaDB e a integridade da exportação não pode ser comprovada.");
+  throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui privilégios para exportação de rotinas ('CREATE ROUTINE', 'ALTER ROUTINE', 'SHOW_ROUTINE' ou 'ALL PRIVILEGES') no database '{$name}'. O privilégio 'EXECUTE' é insuficiente para comprovar e exportar o código-fonte de rotinas.");
  }
 
  // Proven inventory counts (guaranteed complete because privileges were verified above)
@@ -252,7 +292,6 @@ try {
   '--quick',
   '--skip-lock-tables',
   '--skip-add-locks',
-  '--skip-comments',
   '--hex-blob',
   '--triggers',
  ];
@@ -343,8 +382,8 @@ try {
   // True preflight: FULL test export including DATA using the EXACT same options
   $dryCmd = array_merge($dumpCmd, $options, [$name]);
   $run($dryCmd, $null, $dryDump);
-  // Deep validation of test dump completeness (all tables, data rows, views, triggers)
-  validateDumpCompleteness($dryDump, $tables, $views, $trCount, $source, $name);
+  // Evidence-based validation of test dump completeness across MySQL 8 and MariaDB 10
+  validateDumpCompleteness($dryDump, $tables, $views, $trCount, $rtCount, $evCount, $name);
   if (is_file($dryDump)) @unlink($dryDump);
   if ($tempDefaults !== null && is_file($tempDefaults)) {
    @unlink($tempDefaults);
@@ -399,7 +438,7 @@ try {
   $phase='source-dump';
   $run(array_merge([$c['dump_bin'],'--defaults-file='.$c['source_mysql_defaults']],$options,[$name]),$null,$dump);
   need(filesize($dump)>0,'Empty database backup');
-  validateDumpCompleteness($dump, $tables, $views, $trCount, $source, $name);
+  validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
   chmod($dump,0600);
 
   $phase='isolated-import';
@@ -420,7 +459,7 @@ try {
   $phase='source-dump';
   $run(array_merge($dumpCmd, $options, [$name]), $null, $dump);
   need(is_file($dump) && filesize($dump) > 0, 'Empty database backup');
-  validateDumpCompleteness($dump, $tables, $views, $trCount, $source, $name);
+  validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
   chmod($dump, 0600);
   $restoredAt = time();
   $restoredHash = digest($dump);

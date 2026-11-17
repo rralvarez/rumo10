@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 /**
  * RUMO10 | Guarded Publisher Cron Wrapper for UOL Host.
- * Provides mutual exclusion, environment verification, secure execution,
- * and structured diagnostic logging for continuous cron runs.
+ * Provides mutual exclusion for Cron executions (guarded-cron.lock),
+ * environment verification, secure execution without interfering with account_mutex,
+ * and structured diagnostic logging.
  *
  * Usage: php guarded-publisher.php --config=/path/to/receiver-config.json
  */
@@ -36,20 +37,21 @@ if (PHP_OS_FAMILY !== 'Windows' && (fileperms($configPath) & 0077) !== 0) {
 $configRaw = file_get_contents($configPath);
 $c = json_decode($configRaw, true, 512, JSON_THROW_ON_ERROR);
 
-// Mutual exclusion lock to prevent concurrent cron collisions
-$lockFile = $c['account_mutex'] ?? ($c['private'] ?? dirname($configPath) . '/private') . '/guarded-cron.lock';
-if (!is_dir(dirname($lockFile))) {
-    @mkdir(dirname($lockFile), 0700, true);
+// Mutual exclusion lock strictly for Cron wrapper to prevent concurrent cron overlaps.
+// Note: account_mutex is NEVER acquired here; account_mutex belongs exclusively to controlled-pull / Publisher.
+$cronLockFile = ($c['private'] ?? dirname($configPath) . '/private') . '/guarded-cron.lock';
+if (!is_dir(dirname($cronLockFile))) {
+    @mkdir(dirname($cronLockFile), 0700, true);
 }
 
-$lockFp = fopen($lockFile, 'c+');
+$lockFp = fopen($cronLockFile, 'c+');
 if ($lockFp === false) {
-    fwrite(STDERR, "BLOCKED: Cannot open cron lock file: {$lockFile}\n");
+    fwrite(STDERR, "BLOCKED: Cannot open cron lock file: {$cronLockFile}\n");
     exit(1);
 }
 
 if (!flock($lockFp, LOCK_EX | LOCK_NB)) {
-    echo "[" . date('c') . "] [NOTICE] Outra instância do publicador já está em execução. Encerrando execução do cron com segurança.\n";
+    echo "[" . date('c') . "] [NOTICE] Outra instância do cron já está em execução. Encerrando execução do cron com segurança.\n";
     fclose($lockFp);
     exit(0);
 }

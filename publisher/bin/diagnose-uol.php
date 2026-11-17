@@ -175,7 +175,9 @@ try {
                 $report['privilege_capabilities']['has_lock_tables_privilege'] = true;
             }
             if (str_contains($line, 'EVENT')) $report['privilege_capabilities']['has_event_privilege'] = true;
-            if (str_contains($line, 'ROUTINE') || str_contains($line, 'EXECUTE')) $report['privilege_capabilities']['has_routine_privilege'] = true;
+            if (str_contains($line, 'CREATE ROUTINE') || str_contains($line, 'ALTER ROUTINE') || str_contains($line, 'SHOW_ROUTINE') || str_contains($line, 'ROUTINE')) {
+                $report['privilege_capabilities']['has_routine_privilege'] = true;
+            }
             if (str_contains($line, 'TRIGGER')) $report['privilege_capabilities']['has_trigger_privilege'] = true;
             if (str_contains($line, 'LOCK TABLES')) $report['privilege_capabilities']['has_lock_tables_privilege'] = true;
         }
@@ -193,7 +195,7 @@ if (!$report['privilege_capabilities']['has_event_privilege']) {
     $missingDeps[] = "Privilégio 'EVENT' no banco '{$dbName}' não comprovado em SHOW GRANTS";
 }
 if (!$report['privilege_capabilities']['has_routine_privilege']) {
-    $missingDeps[] = "Privilégio 'ROUTINE'/'EXECUTE' no banco '{$dbName}' não comprovado em SHOW GRANTS";
+    $missingDeps[] = "Privilégio para exportação de rotinas ('CREATE ROUTINE', 'ALTER ROUTINE', 'SHOW_ROUTINE' ou 'ALL PRIVILEGES') no banco '{$dbName}' não comprovado em SHOW GRANTS (o privilégio 'EXECUTE' é insuficiente)";
 }
 $report['privilege_capabilities']['missing_dependencies'] = $missingDeps;
 
@@ -240,7 +242,7 @@ foreach ($candidates as $cand) {
 
 // Dry run test with mysqldump
 if ($foundBin && $pdo && $dbName && count($tables) > 0 && empty($missingDeps)) {
-    $options = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--skip-comments', '--hex-blob', '--triggers'];
+    $options = ['--single-transaction', '--quick', '--skip-lock-tables', '--skip-add-locks', '--hex-blob', '--triggers'];
 
     if ($supportsSkipNoData) {
         $options[] = '--skip-no-data';
