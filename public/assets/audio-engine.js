@@ -197,9 +197,19 @@
   });
 
   function scanServerEvents() {
+    const pending = new Map();
     document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(element => {
-      AudioEngine.enqueue(element.dataset.soundEventId, element.dataset.soundEvent);
+      const id = element.dataset.soundEventId;
+      const key = element.dataset.soundEvent;
+      if (id && SOUNDS[key] && !AudioEngine.wasHandled(id)) pending.set(id, key);
     });
+    const ordered = [...pending].sort((a, b) =>
+      (EVENT_PRIORITY[b[1]] || 0) - (EVENT_PRIORITY[a[1]] || 0));
+    if (!ordered.length) return;
+    // Um único evento audível por renderização; eventos históricos não
+    // geram uma sequência de reprodução enquanto a partida é recarregada.
+    for (const [id] of ordered.slice(1)) AudioEngine.markHandled(id);
+    AudioEngine.enqueue(ordered[0][0], ordered[0][1]);
   }
 
   document.addEventListener('click', event => {
