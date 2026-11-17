@@ -275,7 +275,8 @@ Os oito arquivos OGG aprovados permanecem intocados em `public/assets/audio/`. A
 
 2. **Falha de `stop()` programado após `start()` bem-sucedido (Oscilador Órfão):**
    - **Causa Raiz:** Em `playWhistle()` e `playTone()`, após `osc.start(startTime)`, a chamada de agendamento `osc.stop(startTime + duration)` podia lançar uma exceção em implementações de mock ou condições atípicas. O bloco `catch` capturava o erro e executava diretamente `cleanup()` (desconectando o nó), mas **sem** tentar interromper o oscilador. O oscilador permanecia em execução indefinida no grafo Web Audio como fonte órfã.
-   - **Correção (Patch P1-B):** Rastreamento de `started = true` imediatamente após `osc.start(startTime)`. No bloco `catch (err)`, se `started && osc`, é feita uma tentativa imediata de interrupção com `try { osc.stop(); } catch (stopErr) { console.warn('[AudioEngine] Falha persistente ao interromper oscilador; parada da fonte não comprovada:', stopErr); }`, seguida da desconexão (`cleanup()`) e rejeição terminal da Promise, garantindo que o oscilador seja interrompido ou que a limitação seja explicitamente registrada sem travar a fila.
+   - **Correção (Patch P1-B):** Rastreamento de `started = true` imediatamente após `osc.start(startTime)`. No bloco `catch (err)`, se `started && osc`, é feita uma tentativa imediata de interrupção com `try { osc.stop(); } catch (stopErr) { console.warn('[AudioEngine] Falha persistente ao interromper oscilador; parada da fonte não comprovada:', stopErr); }`, seguida da desconexão (`cleanup()`) e rejeição terminal da Promise.
+   - **Distinção Técnica e Limitação Remanescente:** Uma falha única de `stop()` programado é recuperada com sucesso pela segunda tentativa imediata no `catch`, garantindo a interrupção da fonte (`stopped=true`). Todavia, caso ambas as tentativas falhem (cenário de falha persistente), a implementação silencia a saída desconectando os nós e emite aviso explícito em `console.warn`, mas **não pode comprovar** a parada do oscilador no grafo nativo. Não se deve afirmar genericamente a eliminação de fontes órfãs sob falha persistente irrecuperável.
 
 ### 8.2. Evidência Vermelha Pré-Correção (Testes Falhando no Commit-Base `e83c5c9`)
 
@@ -299,17 +300,41 @@ Antes de alterar o motor, os defeitos foram reproduzidos em ambiente de isolamen
     - T7: Cliques simultâneos concorrentes não disparam chamadas duplicadas a `resume()`.
 
 - **Testes Chrome E2E Real no IIS Local (`tests/test-aud001-browser-e2e.cjs`):**
-  - **77/77 verificações APROVADAS** (0 falhas).
+  - **105/105 verificações APROVADAS** (0 falhas).
   - Cenários C1 a C8 executados contra áudio real no IIS (`http://rumo10.local`):
-    - C6: Pênalti suspenso durante reprodução e retomado via clique físico real no `body`: transição para `running`, ambos os sons concluídos, gap de 254.8 ms $\ge 250$ ms.
-    - C7: Bola na trave suspensa e retomada via clique físico real no `body`: transição para `running`, ambos os osciladores e apito concluídos, gap de 254.3 ms $\ge 250$ ms.
-    - C8: Rajada de múltiplos cliques concorrentes em contexto suspenso: contexto transita para `running`, `unlockingPromise` limpa, exatamente 1 reprodução sem ecos ou duplicações concorrentes.
+    - C6: Sequência obrigatória completa de duas retomadas por clique físico no mesmo `AudioContext` com `PENALTY_AWARDED`:
+      1. Contexto suspenso inicialmente (`resumeCalls=0`).
+      2. Eventos `c6:pen` e `c6:card` enfileirados sem reprodução em suspensão.
+      3. Primeiro clique físico na página.
+      4. Primeira chamada efetiva a `ctx.resume()` comprovada (`resumeCalls=1`).
+      5. Contexto `running`, oscilador criado e iniciado sem `ended` prematuro.
+      6. `unlockingPromise` liberada (`null`) enquanto `playing` permanece estritamente `true`.
+      7. Nova suspensão do mesmo contexto antes do término do oscilador.
+      8. Sintetizador logicamente ativo sem `ended`, próximo efeito retido na fila pendente.
+      9. Segundo clique físico sem invocar diretamente `ctx.resume()`.
+      10. Segunda chamada efetiva a `ctx.resume()` comprovada (`resumeCalls=2`, sem deadlock).
+      11. Contexto retornado para `running`.
+      12. `ended` verdadeiro do pênalti confirmado.
+      13. Efeito seguinte (`c6:card`) iniciado após intervalo de **256.1 ms** $\ge 250$ ms.
+      14. Ausência de eventos perdidos ou duplicados; ambos persistidos no `sessionStorage`.
+      15. Limpeza final estrita de `playing`, `pendingQueue`, `inFlight` e `unlockingPromise`.
+    - C7: Sequência idêntica de duas retomadas por clique físico aplicada a `BALL_HIT_POST`:
+      - 2 osciladores criados e iniciados no 1º clique (`resumeCalls=1`).
+      - Contexto suspenso durante síntese e retomado no 2º clique (`resumeCalls=2`).
+      - Primeiro `ended` comprovadamente **NÃO** libera a fila (`playing` permanece `true`, apito não inicia).
+      - Segundo `ended` libera a conclusão da trave.
+      - Efeito seguinte iniciado após **260.8 ms** $\ge 250$ ms.
+      - Ambos os eventos persistidos no `sessionStorage` e fila limpa.
+    - C8: Verificação de concorrência estrita em `ctx.resume()` com latência controlada de 120 ms:
+      - Rajada de 3 cliques simultâneos gerou exatamente 1 chamada a `ctx.resume()` (`resumeCalls=1`, `concurrentViolations=0`).
+      - `unlockingPromise` liberada após conclusão.
+      - Nova suspensão após término da 1ª rodada permitiu com sucesso novo `ctx.resume()` no clique subsequente (`resumeCalls=2`, `concurrentViolations=0`).
 
 - **Suíte de Regressão Integral:**
   - `tests/test-aud001-audio.php`: **143/143 verificações APROVADAS**.
   - `tests/test-ui-001-flow.php`: **76/76 verificações APROVADAS**.
   - `tests/test-f03-corrections.php`: **298/298 verificações APROVADAS**.
-  - `tests/test-mobile-ux-flow.php`: **20/20 verificações APROVADAS**.
+  - `tests/mobile-ux-flow.php`: **20/20 verificações APROVADAS**.
   - `tests/aggregate-score-v07.php`: **82/82 verificações APROVADAS**.
   - `tests/consolidated-independent-flow.php`: **102/102 verificações APROVADAS**.
   - `tests/run.php` (`RUMOHUB_ENABLED=0`): **27.981/27.981 verificações APROVADAS** (30 temporadas em 6 posições).
@@ -317,10 +342,10 @@ Antes de alterar o motor, os defeitos foram reproduzidos em ambiente de isolamen
 
 ### 8.4. Conclusão e Status de Entrega
 
-O pacote de correções cumpre integralmente os requisitos da Missão `R10-AUD-001-FIX-R5-UNLOCK-STOP`:
-- Modificação restrita a `public/assets/audio-engine.js` (desacoplamento em `unlock()` e `try/catch` de `stop()` com `started = true`).
-- Regras esportivas, motor de partida, persistência de saves e os 8 arquivos OGG aprovados mantidos estritamente intactos.
-- Designação de entrega: **CANDIDATO À AUDITORIA INDEPENDENTE CODEX R5**.
+O pacote de evidências cumpre integralmente os requisitos da Missão `R10-AUD-001-FIX-R5-UNLOCK-STOP` e a complementação pós-R5:
+- Modificação restrita aos testes e documentação de evidências.
+- Regras esportivas, motor de partida, persistência de saves e os 8 arquivos OGG aprovados mantidos estritamente intactos com hashes 100% reconciliados ao inventário oficial `Docs/R10-AUD-001-LICENCAS-E-SHA256.md`.
+- Designação de entrega: **CANDIDATO À AUDITORIA INDEPENDENTE CODEX R6**.
 - Nenhuma alteração foi realizada na branch `main`, nenhum deploy foi disparado para a UOL Host e nenhum cron ou banco produtivo foi alterado.
 
 

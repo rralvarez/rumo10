@@ -402,6 +402,43 @@ function resolveChromePath() {
       window.__r4AudioLogs = [];
       window.__lastClickInfo = null;
 
+      if (!audio.ctx.__origResume) {
+        audio.ctx.__origResume = audio.ctx.resume.bind(audio.ctx);
+      }
+      audio.ctx.__resumeCalls = 0;
+      audio.ctx.resume = async function() {
+        audio.ctx.__resumeCalls++;
+        return await audio.ctx.__origResume();
+      };
+
+      if (!audio.ctx.__origCreateOsc) {
+        audio.ctx.__origCreateOsc = audio.ctx.createOscillator.bind(audio.ctx);
+      }
+      window.__oscLogs = [];
+      audio.ctx.createOscillator = function() {
+        const osc = audio.ctx.__origCreateOsc();
+        const oscLog = {
+          id: window.__oscLogs.length + 1,
+          createdTime: performance.now(),
+          startTime: null,
+          endedTime: null,
+          started: false,
+          ended: false
+        };
+        window.__oscLogs.push(oscLog);
+        const origStart = osc.start.bind(osc);
+        osc.start = function(when) {
+          oscLog.started = true;
+          oscLog.startTime = performance.now();
+          return origStart(when);
+        };
+        osc.addEventListener('ended', () => {
+          oscLog.ended = true;
+          oscLog.endedTime = performance.now();
+        });
+        return osc;
+      };
+
       if (!window.__origPlayDirectR4) {
         window.__origPlayDirectR4 = audio.playDirect.bind(audio);
       }
@@ -685,138 +722,394 @@ function resolveChromePath() {
   assert(c5Result.gap >= 250.0, `C5: Gap protegido contra múltiplos cliques: ${c5Result.gap.toFixed(1)}ms >= 250ms`);
   assert(c5Result.pendingEmpty, 'C5: Fila limpa com sucesso');
 
-  // C6. PENALTY_AWARDED com suspensão e retomada via clique físico real no body (T1/T3 no Chrome Real)
-  console.log('  -> Executando C6: PENALTY_AWARDED com suspensão e retomada via clique real no body (Codex R5)...');
+  // C6. Sequência obrigatória de duas retomadas por clique físico no mesmo AudioContext (PENALTY_AWARDED)
+  console.log('  -> Executando C6: Sequência estrita de 2 retomadas por clique físico com PENALTY_AWARDED (Codex R6)...');
   await setupInstrumentation();
+
+  // 1. Começar com o AudioContext suspenso
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+    audio.ctx.__resumeCalls = 0;
+    window.__oscLogs = [];
+  });
+  const c6InitCheck = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    return { ctxState: audio.ctx.state, resumeCalls: audio.ctx.__resumeCalls };
+  });
+  assert(c6InitCheck.ctxState === 'suspended', 'C6 (1): AudioContext iniciado em estado suspenso');
+  assert(c6InitCheck.resumeCalls === 0, 'C6 (1): Zero chamadas a ctx.resume() antes do primeiro clique');
+
+  // 2. Enfileirar PENALTY_AWARDED e um segundo efeito válido (CARD_YELLOW)
   await page.evaluate(() => {
     const audio = window.__rumo10Audio;
     audio.enqueue('c6:pen', 'PENALTY_AWARDED');
     audio.enqueue('c6:card', 'CARD_YELLOW');
   });
+  const c6QueueCheck = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    return {
+      penPending: audio.pendingQueue.has('c6:pen'),
+      cardPending: audio.pendingQueue.has('c6:card'),
+      playing: audio.playing
+    };
+  });
+  assert(c6QueueCheck.penPending && c6QueueCheck.cardPending, 'C6 (2): PENALTY_AWARDED e CARD_YELLOW enfileirados');
+  assert(!c6QueueCheck.playing, 'C6 (2): Fila retida sem reprodução enquanto suspenso');
 
-  // Aguarda ~40ms para início
-  await page.waitForTimeout(40);
+  // 3. Executar o primeiro clique físico na página
+  await page.click('body');
+  for (let i = 0; i < 30; i++) {
+    const ready = await page.evaluate(() => {
+      const osc = window.__oscLogs && window.__oscLogs[0];
+      return osc && osc.started;
+    });
+    if (ready) break;
+    await page.waitForTimeout(10);
+  }
+
+  // 4, 5 e 6. Confirmar 1ª chamada a ctx.resume(), contexto running, oscilador iniciado e unlockingPromise liberada
+  const c6AfterClick1 = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const osc = window.__oscLogs[0];
+    return {
+      resumeCalls: audio.ctx.__resumeCalls,
+      ctxState: audio.ctx.state,
+      playing: audio.playing,
+      unlockingPromise: audio.unlockingPromise !== null,
+      oscCreated: !!osc,
+      oscStarted: osc ? osc.started : false,
+      oscEnded: osc ? osc.ended : false
+    };
+  });
+  assert(c6AfterClick1.resumeCalls === 1, 'C6 (4): Primeiro clique provocou a 1ª chamada efetiva a ctx.resume() (resumeCalls=1)');
+  assert(c6AfterClick1.ctxState === 'running', 'C6 (5): Contexto está running após 1º clique');
+  assert(c6AfterClick1.oscCreated && c6AfterClick1.oscStarted && !c6AfterClick1.oscEnded, 'C6 (5): Pênalti sintetizado começou sem emitir ended prematuro');
+  assert(!c6AfterClick1.unlockingPromise && c6AfterClick1.playing, 'C6 (6): unlockingPromise já liberada (null) enquanto playing permanece estritamente true');
+
+  // 7. Antes do ended do oscilador, suspender novamente o mesmo AudioContext
   await page.evaluate(async () => {
     const audio = window.__rumo10Audio;
     await audio.ctx.suspend();
   });
-  await page.waitForTimeout(600);
+  await page.waitForTimeout(150);
 
+  // 8. Confirmar que o sintetizador permanece ativo logicamente, sem ended, e que o próximo efeito continua na fila
   const c6SuspCheck = await page.evaluate(() => {
     const audio = window.__rumo10Audio;
-    const logs = window.__r4AudioLogs;
+    const osc = window.__oscLogs[0];
     return {
+      resumeCalls: audio.ctx.__resumeCalls,
       ctxState: audio.ctx.state,
       playing: audio.playing,
-      firstEnded: logs.length > 0 && logs[0].endTime !== null,
-      cardStarted: logs.length > 1
+      unlockingPromise: audio.unlockingPromise !== null,
+      oscEnded: osc ? osc.ended : false,
+      penDone: window.__r4AudioLogs.length > 0 && window.__r4AudioLogs[0].endTime !== null,
+      cardPending: audio.pendingQueue.has('c6:card'),
+      cardStarted: window.__r4AudioLogs.length > 1
     };
   });
-  assert(c6SuspCheck.ctxState === 'suspended', 'C6 (Codex R5): Contexto suspenso durante síntese de pênalti');
-  assert(c6SuspCheck.playing === true && !c6SuspCheck.firstEnded && !c6SuspCheck.cardStarted, 'C6 (Codex R5): Pênalti retém reprodução e fila bloqueada em suspensão');
+  assert(c6SuspCheck.ctxState === 'suspended', 'C6 (7): Mesmo AudioContext suspenso novamente durante a síntese');
+  assert(c6SuspCheck.resumeCalls === 1, 'C6 (7): Contador de resumeCalls permanece em 1 durante suspensão');
+  assert(c6SuspCheck.playing === true && !c6SuspCheck.oscEnded && !c6SuspCheck.penDone, 'C6 (8): Sintetizador permanece logicamente ativo sem ended durante suspensão');
+  assert(c6SuspCheck.cardPending && !c6SuspCheck.cardStarted, 'C6 (8): Próximo efeito (CARD_YELLOW) permanece intacto na pendingQueue');
 
-  // Dispara clique físico real no body para acionar unlock() -> ctx.resume()
+  // 9. Executar o segundo clique físico, sem chamar diretamente ctx.resume()
   await page.click('body');
+  for (let i = 0; i < 30; i++) {
+    const resumed = await page.evaluate(() => {
+      const audio = window.__rumo10Audio;
+      return audio && audio.ctx && audio.ctx.__resumeCalls >= 2 && audio.ctx.state === 'running';
+    });
+    if (resumed) break;
+    await page.waitForTimeout(10);
+  }
 
-  // Aguarda conclusão real
-  await page.waitForTimeout(1500);
+  // 10 e 11. Confirmar que o segundo clique provocou nova chamada efetiva a ctx.resume() e contexto running
+  const c6AfterClick2 = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    return {
+      resumeCalls: audio.ctx.__resumeCalls,
+      ctxState: audio.ctx.state
+    };
+  });
+  assert(c6AfterClick2.resumeCalls === 2, 'C6 (10): Segundo clique provocou a 2ª chamada efetiva a ctx.resume() (resumeCalls=2, sem deadlock)');
+  assert(c6AfterClick2.ctxState === 'running', 'C6 (11): Contexto retornou para running após 2º clique');
 
+  // 12. Aguardar o ended verdadeiro do pênalti e conclusão de ambos os efeitos
+  for (let i = 0; i < 60; i++) {
+    const done = await page.evaluate(() => {
+      const logs = window.__r4AudioLogs;
+      return logs.length === 2 && logs[1].endTime !== null;
+    });
+    if (done) break;
+    await page.waitForTimeout(50);
+  }
+
+  // 13, 14 e 15. Confirmar espaçamento >= 250ms, ausência de perdas/duplicações e limpeza final
   const c6FinalResult = await page.evaluate(() => {
     const audio = window.__rumo10Audio;
     const logs = window.__r4AudioLogs;
-    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
-      ? (logs[1].startTime - logs[0].endTime)
-      : 0;
+    const osc = window.__oscLogs[0];
+    const firstEnd = (logs.length >= 1 && logs[0].endTime) ? logs[0].endTime : 0;
+    const secondStart = (logs.length >= 2 && logs[1].startTime) ? logs[1].startTime : 0;
+    const gap = (secondStart > 0 && firstEnd > 0) ? (secondStart - firstEnd) : 0;
     return {
+      resumeCalls: audio.ctx.__resumeCalls,
       count: logs.length,
-      ctxState: audio.ctx.state,
+      oscEnded: osc ? osc.ended : false,
       gap,
       penHandled: audio.wasHandled('c6:pen'),
       cardHandled: audio.wasHandled('c6:card'),
-      pendingEmpty: audio.pendingQueue.size === 0
+      playing: audio.playing,
+      pendingEmpty: audio.pendingQueue.size === 0,
+      inFlightEmpty: audio.inFlight.size === 0,
+      unlockingPromise: audio.unlockingPromise !== null
     };
   });
-  assert(c6FinalResult.ctxState === 'running', 'C6 (Codex R5): Contexto retornou para running via clique sem deadlock');
-  assert(c6FinalResult.count === 2, 'C6 (Codex R5): Ambos os efeitos concluídos após retomada por clique');
-  assert(c6FinalResult.gap >= 250.0, `C6 (Codex R5): Espaçamento de 250ms respeitado após retomada por clique: ${c6FinalResult.gap.toFixed(1)}ms >= 250ms`);
-  assert(c6FinalResult.penHandled && c6FinalResult.cardHandled, 'C6 (Codex R5): Ambos os eventos persistidos');
-  assert(c6FinalResult.pendingEmpty, 'C6 (Codex R5): Fila limpa com sucesso');
+  assert(c6FinalResult.oscEnded, 'C6 (12): Ended verdadeiro do oscilador de pênalti confirmado');
+  assert(c6FinalResult.count === 2, 'C6 (14): Exatamente dois efeitos executados no navegador real');
+  assert(c6FinalResult.gap >= 250.0, `C6 (13): Efeito seguinte começou pelo menos 250ms após ended: ${c6FinalResult.gap.toFixed(1)}ms >= 250ms`);
+  assert(c6FinalResult.penHandled && c6FinalResult.cardHandled, 'C6 (14): Ambos os eventos persistidos no sessionStorage sem perdas');
+  assert(!c6FinalResult.playing && c6FinalResult.pendingEmpty && c6FinalResult.inFlightEmpty && !c6FinalResult.unlockingPromise, 'C6 (15): Limpeza final rigorosa de playing, pendingQueue, inFlight e unlockingPromise');
 
-  // C7. BALL_HIT_POST com suspensão e retomada via clique físico real no body (T4 no Chrome Real)
-  console.log('  -> Executando C7: BALL_HIT_POST com suspensão e retomada via clique real no body (Codex R5)...');
+  // C7. Sequência de duas retomadas por clique no mesmo AudioContext com BALL_HIT_POST (2 osciladores)
+  console.log('  -> Executando C7: Sequência estrita de 2 retomadas por clique físico com BALL_HIT_POST (Codex R6)...');
   await setupInstrumentation();
+
+  // 1. Iniciar suspenso
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+    audio.ctx.__resumeCalls = 0;
+    window.__oscLogs = [];
+  });
+
+  // 2. Enfileirar BALL_HIT_POST e MATCH_WHISTLE_START
   await page.evaluate(() => {
     const audio = window.__rumo10Audio;
     audio.enqueue('c7:post', 'BALL_HIT_POST');
     audio.enqueue('c7:whistle', 'MATCH_WHISTLE_START');
   });
 
-  await page.waitForTimeout(30);
+  // 3. Primeiro clique físico na página
+  await page.click('body');
+  for (let i = 0; i < 30; i++) {
+    const ready = await page.evaluate(() => {
+      const oscs = window.__oscLogs;
+      return oscs && oscs.length === 2 && oscs[0].started && oscs[1].started;
+    });
+    if (ready) break;
+    await page.waitForTimeout(10);
+  }
+
+  const c7AfterClick1 = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const oscs = window.__oscLogs;
+    return {
+      resumeCalls: audio.ctx.__resumeCalls,
+      ctxState: audio.ctx.state,
+      playing: audio.playing,
+      unlockingPromise: audio.unlockingPromise !== null,
+      oscCount: oscs.length,
+      allStarted: oscs.length === 2 && oscs[0].started && oscs[1].started,
+      anyEnded: oscs.some(o => o.ended)
+    };
+  });
+  assert(c7AfterClick1.resumeCalls === 1, 'C7: Primeiro clique provocou 1ª chamada a ctx.resume() (resumeCalls=1)');
+  assert(c7AfterClick1.ctxState === 'running', 'C7: Contexto transitou para running');
+  assert(c7AfterClick1.oscCount === 2 && c7AfterClick1.allStarted, 'C7: Exatamente 2 osciladores criados e iniciados para BALL_HIT_POST');
+  assert(!c7AfterClick1.unlockingPromise && c7AfterClick1.playing, 'C7: unlockingPromise liberada enquanto playing permanece true');
+
+  // 4. Nova suspensão durante a síntese (antes do término dos osciladores)
   await page.evaluate(async () => {
     const audio = window.__rumo10Audio;
     await audio.ctx.suspend();
   });
-  await page.waitForTimeout(600);
+  await page.waitForTimeout(150);
 
-  // Retomada via clique físico real
+  const c7SuspCheck = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const oscs = window.__oscLogs;
+    return {
+      resumeCalls: audio.ctx.__resumeCalls,
+      ctxState: audio.ctx.state,
+      playing: audio.playing,
+      allEnded: oscs.every(o => o.ended),
+      whistlePending: audio.pendingQueue.has('c7:whistle')
+    };
+  });
+  assert(c7SuspCheck.ctxState === 'suspended', 'C7: Contexto suspenso durante síntese da trave');
+  assert(c7SuspCheck.resumeCalls === 1, 'C7: resumeCalls permanece 1 durante suspensão');
+  assert(c7SuspCheck.playing && !c7SuspCheck.allEnded && c7SuspCheck.whistlePending, 'C7: Trave preserva reprodução ativa e apito na fila durante suspensão');
+
+  // 5. Segundo clique físico na página
   await page.click('body');
-  await page.waitForTimeout(1500);
+  for (let i = 0; i < 30; i++) {
+    const resumed = await page.evaluate(() => {
+      const audio = window.__rumo10Audio;
+      return audio && audio.ctx && audio.ctx.__resumeCalls >= 2 && audio.ctx.state === 'running';
+    });
+    if (resumed) break;
+    await page.waitForTimeout(10);
+  }
+
+  const c7AfterClick2 = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    return {
+      resumeCalls: audio.ctx.__resumeCalls,
+      ctxState: audio.ctx.state
+    };
+  });
+  assert(c7AfterClick2.resumeCalls === 2, 'C7: Segundo clique provocou 2ª chamada efetiva a ctx.resume() (resumeCalls=2, sem deadlock)');
+  assert(c7AfterClick2.ctxState === 'running', 'C7: Contexto retornou para running após 2º clique');
+
+  // 6. Monitorar os dois ended: primeiro ended não libera a fila; segundo ended libera conclusão
+  let sawFirstEndedWithoutRelease = false;
+  for (let i = 0; i < 50; i++) {
+    const checkEnded = await page.evaluate(() => {
+      const oscs = window.__oscLogs;
+      const audio = window.__rumo10Audio;
+      const logs = window.__r4AudioLogs;
+      const firstOscEnded = oscs.length >= 2 && (oscs[0].ended || oscs[1].ended);
+      const secondOscEnded = oscs.length >= 2 && (oscs[0].ended && oscs[1].ended);
+      return {
+        firstOscEnded,
+        secondOscEnded,
+        playing: audio.playing,
+        postCompleted: logs.length > 0 && logs[0].endTime !== null,
+        whistleStarted: logs.length > 1
+      };
+    });
+    if (checkEnded.firstOscEnded && !checkEnded.secondOscEnded && checkEnded.playing && !checkEnded.postCompleted && !checkEnded.whistleStarted) {
+      sawFirstEndedWithoutRelease = true;
+      break;
+    }
+    await page.waitForTimeout(10);
+  }
+  assert(sawFirstEndedWithoutRelease, 'C7: Primeiro ended de oscilador NÃO libera a fila (playing continua true e apito não inicia)');
+
+  // Aguardar segundo ended e conclusão de ambos os efeitos
+  for (let i = 0; i < 60; i++) {
+    const allDone = await page.evaluate(() => {
+      const logs = window.__r4AudioLogs;
+      return logs.length === 2 && logs[1].endTime !== null;
+    });
+    if (allDone) break;
+    await page.waitForTimeout(50);
+  }
 
   const c7FinalResult = await page.evaluate(() => {
     const audio = window.__rumo10Audio;
     const logs = window.__r4AudioLogs;
-    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
-      ? (logs[1].startTime - logs[0].endTime)
-      : 0;
+    const oscs = window.__oscLogs;
+    const firstEnd = (logs.length >= 1 && logs[0].endTime) ? logs[0].endTime : 0;
+    const secondStart = (logs.length >= 2 && logs[1].startTime) ? logs[1].startTime : 0;
+    const gap = (secondStart > 0 && firstEnd > 0) ? (secondStart - firstEnd) : 0;
     return {
       count: logs.length,
-      ctxState: audio.ctx.state,
+      bothOscEnded: oscs.length === 2 && oscs[0].ended && oscs[1].ended,
       gap,
       postHandled: audio.wasHandled('c7:post'),
       whistleHandled: audio.wasHandled('c7:whistle'),
+      playing: audio.playing,
       pendingEmpty: audio.pendingQueue.size === 0
     };
   });
-  assert(c7FinalResult.ctxState === 'running', 'C7 (Codex R5): Contexto transitou para running via clique para BALL_HIT_POST');
-  assert(c7FinalResult.count === 2, 'C7 (Codex R5): Dois efeitos concluídos com sucesso');
-  assert(c7FinalResult.gap >= 250.0, `C7 (Codex R5): Espaçamento após término dos 2 osciladores via clique: ${c7FinalResult.gap.toFixed(1)}ms >= 250ms`);
-  assert(c7FinalResult.postHandled && c7FinalResult.whistleHandled, 'C7 (Codex R5): Ambos os eventos persistidos');
-  assert(c7FinalResult.pendingEmpty, 'C7 (Codex R5): Fila limpa');
+  assert(c7FinalResult.bothOscEnded, 'C7: Segundo ended liberou com sucesso a conclusão da trave');
+  assert(c7FinalResult.count === 2, 'C7: Dois efeitos executados no navegador real');
+  assert(c7FinalResult.gap >= 250.0, `C7: Intervalo mínimo de 250ms após término de BALL_HIT_POST: ${c7FinalResult.gap.toFixed(1)}ms >= 250ms`);
+  assert(c7FinalResult.postHandled && c7FinalResult.whistleHandled, 'C7: Ambos os eventos persistidos no sessionStorage');
+  assert(!c7FinalResult.playing && c7FinalResult.pendingEmpty, 'C7: Fila limpa com sucesso');
 
-  // C8. Rajada de cliques físicos concorrentes durante retomada de contexto suspenso (T7 no Chrome Real)
-  console.log('  -> Executando C8: Cliques múltiplos concorrentes durante retomada de contexto suspenso (Codex R5)...');
+  // C8. Verificação de concorrência estrita em cliques simultâneos e retomada após nova suspensão
+  console.log('  -> Executando C8: Instrumentação direta de concorrência em ctx.resume() (Codex R6)...');
   await setupInstrumentation();
+
   await page.evaluate(async () => {
     const audio = window.__rumo10Audio;
     await audio.ctx.suspend();
-    audio.enqueue('c8:card', 'CARD_YELLOW');
-  });
-  await page.waitForTimeout(50);
+    sessionStorage.clear();
+    window.__r4AudioLogs = [];
 
-  // Rajada simultânea de cliques reais
+    window.__c8ResumeCalls = 0;
+    window.__c8ActiveResumePromise = false;
+    window.__c8ConcurrentViolations = 0;
+
+    const baseResume = audio.ctx.__origResume || audio.ctx.resume.bind(audio.ctx);
+    audio.ctx.resume = async function() {
+      window.__c8ResumeCalls++;
+      if (window.__c8ActiveResumePromise) {
+        window.__c8ConcurrentViolations++;
+      }
+      window.__c8ActiveResumePromise = true;
+      // Latência controlada para garantir que cliques simultâneos cheguem durante a Promise pendente
+      await new Promise(r => setTimeout(r, 120));
+      const res = await baseResume();
+      window.__c8ActiveResumePromise = false;
+      return res;
+    };
+
+    audio.enqueue('c8:card1', 'CARD_YELLOW');
+  });
+
+  // Dispara rajada simultânea de cliques reais enquanto a retomada está ativamente pendente
   await Promise.all([
     page.click('body'),
     page.click('body'),
     page.click('body')
   ]);
+
   await page.waitForTimeout(800);
 
-  const c8Result = await page.evaluate(() => {
+  const c8BurstCheck = await page.evaluate(() => {
     const audio = window.__rumo10Audio;
-    const logs = window.__r4AudioLogs;
     return {
-      count: logs.length,
+      resumeCalls: window.__c8ResumeCalls,
+      concurrentViolations: window.__c8ConcurrentViolations,
       ctxState: audio.ctx.state,
       unlockingPromise: audio.unlockingPromise !== null,
-      cardHandled: audio.wasHandled('c8:card'),
+      card1Handled: audio.wasHandled('c8:card1'),
       pendingEmpty: audio.pendingQueue.size === 0
     };
   });
-  assert(c8Result.ctxState === 'running', 'C8 (Codex R5): Contexto retomado para running após cliques concorrentes');
-  assert(!c8Result.unlockingPromise, 'C8 (Codex R5): unlockingPromise devidamente limpa após retomada');
-  assert(c8Result.count === 1, 'C8 (Codex R5): Exatamente 1 som reproduzido (sem duplicações concorrentes)');
-  assert(c8Result.cardHandled, 'C8 (Codex R5): Som de cartão registrado como persistido');
-  assert(c8Result.pendingEmpty, 'C8 (Codex R5): Fila vazia');
+  assert(c8BurstCheck.resumeCalls === 1, 'C8: Exatamente 1 chamada a ctx.resume() durante rajada simultânea (resumeCalls=1)');
+  assert(c8BurstCheck.concurrentViolations === 0, 'C8: Zero chamadas concorrentes a ctx.resume() enquanto Promise esteve pendente');
+  assert(c8BurstCheck.ctxState === 'running', 'C8: Contexto transitou para running');
+  assert(!c8BurstCheck.unlockingPromise, 'C8: unlockingPromise liberada após término da primeira retomada');
+  assert(c8BurstCheck.card1Handled, 'C8: Primeiro som de cartão executado e persistido');
+
+  // Testar requisito adicional: após primeira retomada concluir, uma nova suspensão DEVE permitir outro resume()
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+    audio.enqueue('c8:card2', 'CARD_YELLOW');
+  });
+  await page.waitForTimeout(50);
+
+  const c8SuspState = await page.evaluate(() => window.__rumo10Audio.ctx.state);
+  assert(c8SuspState === 'suspended', 'C8: Contexto colocado em nova suspensão após término da primeira rodada');
+
+  // Novo clique físico para segunda retomada
+  await page.click('body');
+  await page.waitForTimeout(800);
+
+  const c8SecondCheck = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    return {
+      resumeCalls: window.__c8ResumeCalls,
+      concurrentViolations: window.__c8ConcurrentViolations,
+      ctxState: audio.ctx.state,
+      card2Handled: audio.wasHandled('c8:card2'),
+      pendingEmpty: audio.pendingQueue.size === 0,
+      unlockingPromise: audio.unlockingPromise !== null
+    };
+  });
+  assert(c8SecondCheck.resumeCalls === 2, 'C8: Nova suspensão permitiu com sucesso novo ctx.resume() via clique (resumeCalls=2)');
+  assert(c8SecondCheck.concurrentViolations === 0, 'C8: Concorrência continuou estritamente zero');
+  assert(c8SecondCheck.ctxState === 'running', 'C8: Contexto retornou para running');
+  assert(c8SecondCheck.card2Handled, 'C8: Segundo som executado e persistido');
+  assert(c8SecondCheck.pendingEmpty && !c8SecondCheck.unlockingPromise, 'C8: Fila vazia e unlockingPromise devidamente limpa');
 
   await browser.close();
 
