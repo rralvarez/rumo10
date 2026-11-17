@@ -500,11 +500,16 @@ class Publisher {
         if(isset($this->c['main_automation'])){
             need($assessment!==null,'Main automation requires transition policy');
             MainAutomation::change($this->c['main_automation'],$v,$assessment);
-            $authorization=$this->backupAuthorization($v);
+            // A manual backup, if required by the operator, is handled before
+            // the merge. The receiver never requests proof of a backup.
             if($assessment['migrations']===[])$assessment['validation_only']=true;
         }
-        $classA=$authorization!==null && $assessment['class']==='A';
-        if(($authorization?->evidence['exception']??false)===true)need($classA,'UI-001 exception requires transition policy Class A');
+        $classA=isset($this->c['main_automation']) && ($assessment['class']??null)==='A';
+        if(($this->c['main_automation']['ui001_bootstrap_request']??false)===true){
+            need($classA && ['commit'=>$v['commit'],'run_id'=>$v['run']['id'],
+                'artifact_id'=>$v['artifact_id']]===MainAutomation::UI001,
+                'UI-001 exception requires the exact pinned Class A release');
+        }
         if($classA)MainAutomation::proof([],$v,time(),'A',$authorization);
         return compact('v','old','controls','ops','from','assessment','authorization','classA');
     }
@@ -553,7 +558,7 @@ class Publisher {
             if(is_file($this->c['current'].'/build-manifest.json'))atomic($backup.'/build-manifest.json',file_get_contents($this->c['current'].'/build-manifest.json'));
             if($classA){
                 MainAutomation::proof([],$v,time(),'A',$authorization);
-                $j['backup_authorization']=$authorization->evidence;
+                $j['backup_policy']='operator-managed-before-merge';
                 $b=['attempt'=>$id,'files'=>[$backup.'/release.json'=>digest($backup.'/release.json')]];
             }else{
                 $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
@@ -752,7 +757,7 @@ class Publisher {
             need($policy['class']!=='C','Forward recovery requires approved compatible policy');
             if(isset($this->c['main_automation'])){
                 MainAutomation::change($this->c['main_automation'],$v,$policy);
-                if($policy['class']==='A')MainAutomation::proof([],$v,time(),'A',$this->backupAuthorization($v));
+                if($policy['class']==='A')MainAutomation::proof([],$v,time(),'A');
                 else need(isset($j['backup_receipt']['dump_sha256']) || isset($j['backup_receipt']['restored_dump_sha256']),
                     'Class B recovery requires database backup evidence');
             }
