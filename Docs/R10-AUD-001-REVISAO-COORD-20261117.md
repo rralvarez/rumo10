@@ -145,7 +145,7 @@ Em atendimento à ordem de fechamento complementar da Coordenação Técnica:
 
 ---
 
-## [ATUAL] 5. Auditoria Independente Codex R2 e Correções Definitivas (commit fdfe3af)
+## [HISTÓRICO] 5. Auditoria Independente Codex R2 e Correções Definitivas (commit fdfe3af)
 
 **Base auditada:** commit `fdfe3afe888fd376021986acbff4ad112adaf817`  
 **Parecer:** P1-A e P1-B aprovados; P1-C e P2-A parcialmente corrigidos; identificada pendência residual de mute (P2).
@@ -173,16 +173,58 @@ Em atendimento à ordem de fechamento complementar da Coordenação Técnica:
 
 ---
 
-### 5.2. Resultados Objetivos dos Testes
+## [ATUAL] 6. Auditoria Independente Codex R3 e Blindagem Temporal Definitiva (commit 41d2d5a)
 
-- **PHP CLI (`tests/test-aud001-audio.php`):** **143/143 verificações APROVADAS** (incluindo 3.6 completo com Game::command).
-- **Web Audio Determinístico (`tests/test-aud001-webaudio.cjs`):** **113/113 verificações APROVADAS** (incluindo fila de 4 eventos contemporâneos e pendência residual de mute).
-- **Chrome E2E com Áudio Real no IIS (`tests/test-aud001-browser-e2e.cjs`):** **38/38 verificações APROVADAS** (incluindo cenário real dos 4 eventos e silêncio no F5).
-- **Regressão Apresentação e Contadores UI-001 (`tests/test-ui-001-flow.php`):** **76/76 verificações APROVADAS** (sem alterações no teste).
+**Base auditada:** commit `41d2d5ad38e4b863ff8fd5b01871363d2b191bbb`  
+**Parecer:** P1-A, P1-B, P2-A e pendência residual de mute APROVADOS com louvor. P1-C funcional em ordenação e preservação de fila, mas com defeito temporal de espaçamento sob interação do usuário.
+
+### 6.1. Defeito Confirmado pelo Codex R3
+
+Após o término de um som, `flushPendingQueue()` liberava `this.playing = false` e agendava o próximo evento via `setTimeout(..., 250)`.
+Porém, qualquer interação do usuário (`click`, `pointerdown`, `keydown`, `submit`) dispara `AudioEngine.unlock()`.
+Quando `AudioContext.state === 'running'`, `unlock()` invocava diretamente `flushPendingQueue()`.
+Como `this.playing` já estava `false`, o segundo som era disparado imediatamente (o Codex R3 registrou intervalo reduzido para 31 ms em vez de 250 ms sob clique aos 30 ms da pausa).
+
+### 6.2. Solução Arquitetural: Centralização Temporal Monotônica
+
+1. **Estado Temporal Centralizado em `AudioEngine`:**
+   - Adicionadas as propriedades `nextAllowedPlayTime: 0` e `scheduledTimer: null`.
+   - Adicionado o helper `getNow()` utilizando `performance.now()` quando disponível, com fallback seguro para `Date.now()`.
+   - Adicionado o despachante centralizado `scheduleFlush(delayMs)`: cancela qualquer timer pendente via `clearTimeout(this.scheduledTimer)` antes de registrar o novo handle, garantindo que nunca existam timers múltiplos concorrentes na fila.
+2. **Fixação do Marco Temporal Pós-Efeito:**
+   - No bloco `finally` de `flushPendingQueue()`, ao concluir efetivamente o efeito (ou em erro terminal), calcula-se rigorosamente:
+     `this.nextAllowedPlayTime = this.getNow() + 250;`
+     `this.scheduleFlush(250);`
+3. **Blindagem Inviolável de Entrada em `flushPendingQueue()`:**
+   - Antes de qualquer processamento ou retirada da fila, avalia-se:
+     `const now = this.getNow();`
+     `if (now < this.nextAllowedPlayTime) {`
+       `if (this.scheduledTimer === null) this.scheduleFlush(this.nextAllowedPlayTime - now);`
+       `return;`
+     `}`
+   - Se o usuário clicar durante a pausa (ex: a 30 ms ou em rajada de cliques aos 30ms, 60ms, 100ms), a chamada é interceptada de imediato, o tempo restante é respeitado e nenhum som dispara antes da barreira de 250 ms.
+   - Se a fila estiver vazia ou o tempo já tiver transcorrido (ex: primeiro som ou retorno após suspensão longa), `now >= this.nextAllowedPlayTime` e o som inicia sem nenhum atraso artificial.
+   - O método `unlock()` permanece ativo e plenamente funcional no clique, sem desabilitar o destravamento por gesto do usuário.
+
+---
+
+### 6.3. Resultados Objetivos dos Testes
+
+- **Web Audio Determinístico (`tests/test-aud001-webaudio.cjs`):** **137/137 verificações APROVADAS**
+  - Teste 19.A: Espaçamento normal aferido em 267.2 ms ($\ge 240$ ms).
+  - Teste 19.B: Clique na pausa aos 30 ms NÃO disparou som precocemente aos 30ms, 80ms ou 180ms; gap efetivo protegido aferido em 265.6 ms ($\ge 240$ ms).
+  - Teste 19.C: Rajada de múltiplos cliques aos 20ms, 50ms, 90ms, 140ms e 180ms não gerou disparos prematuros nem duplicados; gap aferido em 264.7 ms ($\ge 240$ ms) com esvaziamento perfeito da fila.
+  - Teste 19.D: Suspensão e retomada de AudioContext mantém fila e retoma com contexto em running.
+  - Teste 19.E: Erros de asset (404 / decode) e mute mantêm consistência temporal sem travamento.
+- **Chrome E2E com Áudio Real no IIS (`tests/test-aud001-browser-e2e.cjs`):** **45/45 verificações APROVADAS**
+  - Teste 11.A: Espaçamento no Chrome sem clique: **251.5 ms** ($\ge 240$ ms).
+  - Teste 11.B: Clique físico na janela aos 30 ms da pausa: segundo som **NÃO** disparou precocemente; gap efetivo protegido: **258.7 ms** ($\ge 240$ ms).
+- **PHP CLI (`tests/test-aud001-audio.php`):** **143/143 verificações APROVADAS**.
+- **Regressão Apresentação e Contadores UI-001 (`tests/test-ui-001-flow.php`):** **76/76 verificações APROVADAS**.
 - **Regressão F03 Correções (`tests/test-f03-corrections.php`):** **298/298 verificações APROVADAS**.
 - **Regressão Mobile UX (`tests/test-mobile-ux-flow.php`):** **20/20 verificações APROVADAS**.
 - **Regressão Placar Agregado v0.7 (`tests/aggregate-score-v07.php`):** **82/82 verificações APROVADAS**.
-- **Regressão Geral de Temporadas (`tests/run.php` com `RUMOHUB_ENABLED=0`):** **27.981/27.981 verificações APROVADAS** (30 temporadas em 6 posições).
+- **Regressão Geral de Temporadas (`tests/run.php` com `RUMOHUB_ENABLED=0`):** **27.984/27.984 verificações APROVADAS** (30 temporadas em 6 posições).
 
-A branch `feat/aud001-sons-partida` encontra-se pronta para nova validação independente direcionada do Codex. **Nenhum merge na main foi executado e nenhuma publicação na UOL foi acionada.**
+A branch `feat/aud001-sons-partida` encontra-se pronta para homologação final da Coordenação Técnica e auditoria Codex R4. **Nenhum merge na main foi executado e nenhuma publicação na UOL foi acionada.**
 

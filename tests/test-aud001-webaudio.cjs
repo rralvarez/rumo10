@@ -216,10 +216,9 @@ function createMockEnvironment() {
         return [];
       }
     },
-    setTimeout: (fn, ms) => {
-      // In synchronous tests, run immediately or allow controlled stepping
-      return setTimeout(fn, 1);
-    }
+    setTimeout: (fn, ms) => setTimeout(fn, ms),
+    clearTimeout: (id) => clearTimeout(id),
+    performance: { now: () => performance.now() }
   };
 
   mockWindow.window = mockWindow;
@@ -861,6 +860,201 @@ async function runTestSuite() {
 
     // COMPROVAÇÃO: O áudio cancelado NÃO toca! Zero sons disparados!
     assert(env.startedSources.length === 0, 'P2 Residual: Áudio cancelado durante download NÃO toca ao resolver fetch (zero vazamentos)');
+  }
+
+  // 19. Validando R3: Blindagem Temporal do Espaçamento de 250ms contra Cliques na Pausa (Codex R3)
+  console.log('\n19. Validando R3: Blindagem Temporal do Espaçamento de 250ms contra Cliques na Pausa (Codex R3)...');
+
+  // 19.A: Espaçamento normal >= 250ms entre eventos sucessivos
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'gap:goal' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'gap:card' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, '19.A: Primeiro evento (Gol) inicia imediatamente');
+    const goalSource = env.startedSources[0].source;
+
+    const tEndGoal = env.mockWindow.performance.now();
+    goalSource.triggerEnd();
+
+    // Aguarda até o segundo evento iniciar
+    while (env.startedSources.length < 2) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    const tStartCard = env.mockWindow.performance.now();
+    const gap = tStartCard - tEndGoal;
+
+    assert(gap >= 240, `19.A: Espaçamento regulamentar aferido: ${gap.toFixed(1)}ms >= 240ms`);
+    assert(env.startedSources[1].buffer === env.dummyBuffers['yellow_card.ogg'], '19.A: Segundo evento executado com sucesso');
+  }
+
+  // 19.B: Clique / unlock() aos 30ms da pausa NÃO inicia o som antes de 250ms
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'click:goal' } },
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 'click:penalty' } }
+    ];
+
+    env.startedSources.length = 0;
+    env.startedOscillators.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, '19.B: 1º evento (Gol) inicia imediatamente');
+    const goalSource = env.startedSources[0].source;
+
+    // Conclui o gol
+    const tEndGoal = env.mockWindow.performance.now();
+    goalSource.triggerEnd();
+
+    // Aguarda 30ms após a conclusão (dentro da pausa contratual de 250ms)
+    await new Promise(r => setTimeout(r, 30));
+
+    // SIMULAÇÃO DO DEFEITO DO CODEX R3: Usuário clica na tela aos 30ms da pausa!
+    audio.unlock();
+
+    // Imediatamente e aos 50ms, 100ms e 200ms da pausa: o 2º som NÃO pode ter iniciado!
+    assert(env.startedOscillators.length === 0, '19.B (Codex R3): Aos 30ms após clique, 2º som NÃO disparou precocemente');
+    await new Promise(r => setTimeout(r, 50)); // t ≈ 80ms
+    assert(env.startedOscillators.length === 0, '19.B: Aos 80ms, 2º som permanece aguardando a janela de 250ms');
+    await new Promise(r => setTimeout(r, 100)); // t ≈ 180ms
+    assert(env.startedOscillators.length === 0, '19.B: Aos 180ms, 2º som permanece aguardando a janela de 250ms');
+
+    // Aguarda até o segundo evento iniciar após completar os 250ms
+    while (env.startedOscillators.length === 0) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    const tStartPenalty = env.mockWindow.performance.now();
+    const measuredGap = tStartPenalty - tEndGoal;
+
+    assert(measuredGap >= 240, `19.B (Codex R3): Gap efetivo protegido contra clique: ${measuredGap.toFixed(1)}ms >= 240ms`);
+    assert(env.startedOscillators.length === 1, '19.B: PENALTY_AWARDED tocou pontualmente após 250ms');
+  }
+
+  // 19.C: Cliques múltiplos e rápidos durante a pausa não duplicam, não criam timers concorrentes e não perdem eventos
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'multi:goal' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'multi:card' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, '19.C: Primeiro evento inicia');
+    const goalSource = env.startedSources[0].source;
+
+    const tEnd = env.mockWindow.performance.now();
+    goalSource.triggerEnd();
+
+    // Rajada de interações do usuário durante a pausa
+    await new Promise(r => setTimeout(r, 20));
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 30));
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 40));
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 50));
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 40)); // t ≈ 180ms
+    audio.unlock();
+
+    // Até este momento (180ms), zero execuções antecipadas
+    assert(env.startedSources.length === 1, '19.C: Cliques repetidos na pausa não adiantam o disparo');
+
+    // Aguarda término da pausa
+    while (env.startedSources.length < 2) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    const tStart = env.mockWindow.performance.now();
+    const gapMulti = tStart - tEnd;
+
+    assert(gapMulti >= 240, `19.C: Gap protegido contra múltiplos cliques: ${gapMulti.toFixed(1)}ms >= 240ms`);
+    assert(env.startedSources.length === 2, '19.C: Exatamente 1 disparo para o segundo evento (sem duplicações)');
+
+    // Conclui o segundo evento
+    env.startedSources[1].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audio.pendingQueue.size === 0, '19.C: Fila esvaziada sem perda de eventos');
+  }
+
+  // 19.D: Suspensão do AudioContext durante a fila e retomada mantendo integridade e espaçamento
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'susp:goal' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'susp:card' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    const goalSource = env.startedSources[0].source;
+    goalSource.triggerEnd();
+
+    // Contexto é suspenso pelo navegador durante a pausa (ex: troca de aba / background)
+    audio.ctx.state = 'suspended';
+    await new Promise(r => setTimeout(r, 300)); // Tempo normal transcorreu, mas contexto está suspenso
+
+    // Nenhum som novo deve ter tocado enquanto suspenso
+    assert(env.startedSources.length === 1, '19.D: Zero sons enquanto AudioContext estiver suspenso');
+    assert(audio.pendingQueue.has('susp:card'), '19.D: Segundo som retido intacto na fila pendente');
+
+    // Usuário retorna e clica (unlock)
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 80));
+
+    // O contexto voltou para running e o som retido foi tocado imediatamente (já que os 250ms já haviam passado)
+    assert(audio.ctx.state === 'running', '19.D: Contexto retomado para running');
+    assert(env.startedSources.length === 2, '19.D: Som pendente reproduzido após unlock');
+    assert(env.startedSources[1].buffer === env.dummyBuffers['yellow_card.ogg'], '19.D: Buffer yellow_card.ogg executado');
+
+    // Conclui o cartão amarelo
+    env.startedSources[1].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audio.pendingQueue.size === 0, '19.D: Fila limpa com integridade garantida');
+  }
+
+  // 19.E: Falha de asset (404 / decode) e mute mantêm consistência temporal sem travamento
+  {
+    const env = createMockEnvironment();
+    env.filesTo404.add('red_card.ogg');
+
+    const elements = [
+      { dataset: { soundEvent: 'CARD_RED', soundEventId: 'err:card:red' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'valid:card:yellow' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    // Aguarda o tratamento do 404 (assíncrono)
+    await new Promise(r => setTimeout(r, 50));
+
+    // O erro terminal 404 foi tratado graciosamente, removeu o item e agendou o próximo com espaçamento
+    assert(audio.wasHandled('err:card:red'), '19.E: Item com erro marcado como handled sem travar');
+
+    // Aguarda o espaçamento regulamentar (250ms) para o próximo som (Cartão Amarelo)
+    await new Promise(r => setTimeout(r, 350));
+
+    assert(env.startedSources.length === 1, '19.E: Próximo som válido tocou normalmente após o erro');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['yellow_card.ogg'], '19.E: Buffer yellow_card.ogg tocou');
+
+    // Conclui o som válido
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+    assert(audio.pendingQueue.size === 0, '19.E: Fila limpa após recuperação de erro');
   }
 
   console.log('\n=======================================================');

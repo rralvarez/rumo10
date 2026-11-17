@@ -310,8 +310,11 @@ function resolveChromePath() {
     // Aguardar o primeiro evento (Gol) tocar
     const goalStarted = audio.playing || audio.wasHandled('e2e:quad:goal');
 
-    // Aguardar término de toda a sequência (aproximadamente 7.5s)
-    await new Promise(r => setTimeout(r, 7800));
+    // Aguardar término de toda a sequência com polling seguro (até 10s)
+    const deadline = Date.now() + 10000;
+    while (audio.pendingQueue.size > 0 && Date.now() < deadline) {
+      await new Promise(r => setTimeout(r, 100));
+    }
 
     const allHandled =
       audio.wasHandled('e2e:quad:goal') &&
@@ -374,6 +377,117 @@ function resolveChromePath() {
     return audio.pendingQueue.size === 0 && !audio.playing;
   });
   assert(freshSessionQuiet, 'P1-C R2: Nova sessão com eventos históricos não gera rajadas sonoras');
+
+  // 11. Testando Blindagem Temporal do Espaçamento de 250ms no Chrome Real contra Clique na Pausa (Codex R3)
+  console.log('\n11. Testando Blindagem Temporal do Espaçamento de 250ms no Chrome Real (Codex R3)...');
+
+  // 11.A: Espaçamento normal sem clique no Chrome real
+  const timingNoClick = await page.evaluate(async () => {
+    sessionStorage.clear();
+    const audio = window.__rumo10Audio;
+    const playLogs = [];
+    const origPlay = audio.playDirect.bind(audio);
+    audio.playDirect = async function(key, id) {
+      const entry = { key, id, start: performance.now(), end: null };
+      playLogs.push(entry);
+      const res = await origPlay(key, id);
+      entry.end = performance.now();
+      return res;
+    };
+
+    audio.enqueue('timing:1:card', 'CARD_YELLOW');
+    audio.enqueue('timing:1:whistle', 'MATCH_WHISTLE_START');
+
+    // Aguarda término de ambos os efeitos (yellow_card ~0.53s + 250ms gap + whistle ~0.53s)
+    await new Promise(r => setTimeout(r, 2000));
+
+    // Restaura
+    audio.playDirect = origPlay;
+
+    if (playLogs.length >= 2 && playLogs[0].end && playLogs[1].start) {
+      return {
+        count: playLogs.length,
+        gap: playLogs[1].start - playLogs[0].end,
+        firstHandled: audio.wasHandled('timing:1:card'),
+        secondHandled: audio.wasHandled('timing:1:whistle')
+      };
+    }
+    return { count: playLogs.length, gap: 0, firstHandled: false, secondHandled: false };
+  });
+
+  assert(timingNoClick.count === 2, 'P1-C R3: Exatamente 2 eventos executados no Chrome');
+  assert(timingNoClick.gap >= 240, `P1-C R3: Espaçamento sem clique no Chrome: ${timingNoClick.gap.toFixed(1)}ms >= 240ms`);
+  assert(timingNoClick.firstHandled && timingNoClick.secondHandled, 'P1-C R3: Ambos os eventos registrados no sessionStorage');
+
+  // 11.B: Espaçamento COM clique aos 30ms da pausa no Chrome real (Reprodução do Defeito Codex R3)
+  const timingWithClick = await (async () => {
+    // Configura a instrumentação na página
+    await page.evaluate(() => {
+      sessionStorage.clear();
+      const audio = window.__rumo10Audio;
+      window.__r3PlayLogs = [];
+      window.__r3OrigPlay = audio.playDirect.bind(audio);
+      audio.playDirect = async function(key, id) {
+        const entry = { key, id, start: performance.now(), end: null };
+        window.__r3PlayLogs.push(entry);
+        const res = await window.__r3OrigPlay(key, id);
+        entry.end = performance.now();
+        return res;
+      };
+
+      audio.enqueue('click:1:card', 'CARD_YELLOW');
+      audio.enqueue('click:1:whistle', 'MATCH_WHISTLE_START');
+    });
+
+    // Aguarda até o primeiro evento concluir efetivamente
+    let firstEnded = false;
+    for (let i = 0; i < 40; i++) {
+      firstEnded = await page.evaluate(() => {
+        return window.__r3PlayLogs.length >= 1 && window.__r3PlayLogs[0].end !== null;
+      });
+      if (firstEnded) break;
+      await page.waitForTimeout(50);
+    }
+
+    // Aguarda exatamente 30ms na pausa (momento exato onde ocorria o corte prematuro no Codex R3)
+    await page.waitForTimeout(30);
+
+    // Dispara clique físico real na página
+    await page.click('body');
+
+    // Imediatamente após o clique aos 30ms, verifica se o 2º som foi disparado precocemente
+    const triggeredEarly = await page.evaluate(() => {
+      return window.__r3PlayLogs.length > 1;
+    });
+
+    // Aguarda conclusão total
+    await page.waitForTimeout(1500);
+
+    const result = await page.evaluate(() => {
+      const audio = window.__rumo10Audio;
+      audio.playDirect = window.__r3OrigPlay;
+      const logs = window.__r3PlayLogs;
+      const gap = (logs.length >= 2 && logs[0].end && logs[1].start)
+        ? (logs[1].start - logs[0].end)
+        : 0;
+      return {
+        count: logs.length,
+        gap,
+        firstHandled: audio.wasHandled('click:1:card'),
+        secondHandled: audio.wasHandled('click:1:whistle')
+      };
+    });
+
+    return {
+      triggeredEarly,
+      ...result
+    };
+  })();
+
+  assert(!timingWithClick.triggeredEarly, 'P1-C R3 (Chrome): Aos 30ms após clique na pausa, 2º som NÃO disparou precocemente');
+  assert(timingWithClick.count === 2, 'P1-C R3 (Chrome): Exatamente 2 eventos reproduzidos');
+  assert(timingWithClick.gap >= 240, `P1-C R3 (Chrome): Gap efetivo protegido contra clique no Chrome: ${timingWithClick.gap.toFixed(1)}ms >= 240ms`);
+  assert(timingWithClick.firstHandled && timingWithClick.secondHandled, 'P1-C R3 (Chrome): Ambos os eventos concluídos e persistidos');
 
   await browser.close();
 

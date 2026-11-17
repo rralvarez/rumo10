@@ -44,6 +44,8 @@
     cachedBuffers: new Map(),
     unlockingPromise: null,
     playing: false,
+    nextAllowedPlayTime: 0,
+    scheduledTimer: null,
 
     init() {
       try {
@@ -83,12 +85,35 @@
       this.updateMasterVolume();
       this.updateUI();
       if (this.prefs.muted) {
+        if (this.scheduledTimer !== null) {
+          clearTimeout(this.scheduledTimer);
+          this.scheduledTimer = null;
+        }
         for (const id of this.inFlight) this.markHandled(id);
         for (const id of this.pendingQueue.keys()) this.markHandled(id);
         this.pendingQueue.clear();
       } else {
         this.unlock();
       }
+    },
+
+    getNow() {
+      if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+        return performance.now();
+      }
+      return Date.now();
+    },
+
+    scheduleFlush(delayMs) {
+      if (this.scheduledTimer !== null) {
+        clearTimeout(this.scheduledTimer);
+        this.scheduledTimer = null;
+      }
+      const wait = Math.max(0, Math.ceil(delayMs));
+      this.scheduledTimer = setTimeout(() => {
+        this.scheduledTimer = null;
+        this.flushPendingQueue();
+      }, wait);
     },
 
     setVolume(volume) {
@@ -251,6 +276,21 @@
       if (!this.ctx || this.ctx.state !== 'running' || this.prefs.muted || this.playing) return;
       if (this.pendingQueue.size === 0) return;
 
+      const now = this.getNow();
+      if (now < this.nextAllowedPlayTime) {
+        // Ainda dentro do intervalo mínimo de 250ms após conclusão do efeito anterior:
+        // agenda a execução estritamente para o tempo restante sem disparar precocemente
+        if (this.scheduledTimer === null) {
+          this.scheduleFlush(this.nextAllowedPlayTime - now);
+        }
+        return;
+      }
+
+      if (this.scheduledTimer !== null) {
+        clearTimeout(this.scheduledTimer);
+        this.scheduledTimer = null;
+      }
+
       const entry = this.pendingQueue.entries().next().value;
       if (!entry) return;
       const [id, key] = entry;
@@ -258,6 +298,7 @@
       this.inFlight.add(id);
       this.playing = true;
 
+      let scheduledOrHandled = false;
       try {
         const result = await this.playDirect(key, id);
         if (result && result.status === 'suspended') {
@@ -268,17 +309,23 @@
           return;
         }
         // Agendado ou mudo: remove da fila pendente
+        scheduledOrHandled = true;
         this.pendingQueue.delete(id);
       } catch (_) {
         // Falha terminal (ex: 404 ou erro de decode): marca manipulado e remove da fila
+        scheduledOrHandled = true;
         this.markHandled(id);
         this.pendingQueue.delete(id);
       } finally {
         this.inFlight.delete(id);
         this.playing = false;
-        if (this.pendingQueue.size > 0 && !this.prefs.muted && this.ctx && this.ctx.state === 'running') {
-          // Espaçamento regulamentar de 250ms entre eventos contemporâneos sucessivos
-          setTimeout(() => this.flushPendingQueue(), 250);
+        if (scheduledOrHandled) {
+          // Ao concluir efetivamente o efeito, fixa o marco temporal de +250ms
+          this.nextAllowedPlayTime = this.getNow() + 250;
+          if (this.pendingQueue.size > 0 && !this.prefs.muted && this.ctx && this.ctx.state === 'running') {
+            // Espaçamento regulamentar de 250ms entre eventos contemporâneos sucessivos
+            this.scheduleFlush(250);
+          }
         }
       }
     },
