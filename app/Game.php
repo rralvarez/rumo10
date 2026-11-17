@@ -179,6 +179,9 @@ final class Game {
                 if($roll['success']) {
                     $m[$own]++; $st['goals']++; $st['penalties_scored'] = ($st['penalties_scored'] ?? 0) + 1;
                     $g['feedback']['highlight'] = 'goal';
+                    $beforeConf = $g['states']['confianca'];
+                    $g['states']['confianca'] = self::clamp($beforeConf + 4);
+                    $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + ($g['states']['confianca'] - $beforeConf);
                     $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
                     $g['feedback']['text'] = 'GOL DE PÊNALTI! Você cobra com frieza e balança as redes!';
                     $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | GOL DE PÊNALTI! Cobrança impecável!"];
@@ -285,7 +288,7 @@ final class Game {
             } else { $before=$g['states'][$k]; $g['states'][$k]=self::clamp($before+$delta); $applied[$k]=$g['states'][$k]-$before; }
         }
         if(!$roll['success']) {
-            $failure=$choice['failure_effects']??['confianca'=>$roll['class']==='falha_grave'?-5:-2];
+            $failure=$choice['failure_effects']??['confianca'=>$roll['class']==='falha_grave'?-3:-1];
             if($roll['class']==='falha_grave')$failure=$choice['severe_failure_effects']??$failure;
             foreach($failure as $key=>$value){$before=$g['states'][$key];$g['states'][$key]=self::clamp($before+$value);$applied[$key]=($applied[$key]??0)+$g['states'][$key]-$before;}
         }
@@ -334,7 +337,13 @@ final class Game {
                     $text.=' A bola não entrou.';
                 }
             }
-            if($type==='desarme' && $roll['success']) $st['tackles']++;
+            if($type==='desarme' && $roll['success']) {
+                $st['tackles']++;
+                if(in_array($g['position'],['zagueiro','volante','lateral'],true) && $st['tackles']>=2 && empty($st['tackle_confidence_awarded'])) {
+                    $st['tackle_confidence_awarded']=true;
+                    $g['states']['confianca']=self::clamp($g['states']['confianca']+1);
+                }
+            }
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
                 $st['tackles']++;foreach(self::effects(['desarme'=>1],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
             }
@@ -461,6 +470,31 @@ final class Game {
             $wPassErr = (float)($rParams['w_pass_err'] ?? 0.15);
             $wCard = (float)($rParams['w_card'] ?? 0.60);
             $s['rating']=$s['minutes']===0?0:round(max(0,min(10,$rBase+$s['goals']*$wGoal+$s['assists']*$wAssist+$s['tackles']*$wTackle+$s['completed']*$wPassOk-($s['passes']-$s['completed'])*$wPassErr-$s['cards']*$wCard)),1);
+            $ledgerKey='bal001:confidence:'.$g['season'].':'.($g['competition_id']??'legacy').':'.$m['round'].':'.$m['home'].':'.$m['away'];
+            if(!isset($g['reward_ledger'][$ledgerKey])){
+                $postRaw=0;$curConf=$g['states']['confianca'];$r=$s['rating'];
+                if($r>=8.8){$postRaw=($curConf<90)?2:0;}
+                elseif($r>=7.8){$postRaw=($curConf<75)?1:0;}
+                elseif($r>=6.8){$postRaw=($curConf<70)?1:0;}
+                elseif($r>=6.0){$postRaw=($curConf<50)?2:(($curConf<60)?1:0);}
+                $part=min(1.0,max(0,$s['minutes'])/60.0);
+                $nominalBonus=(int)round($postRaw*$part);
+                $beforeConf=$g['states']['confianca'];$appliedBonus=0;
+                if($s['minutes']>0 && $nominalBonus>0){
+                    $newConf=self::clamp($beforeConf+$nominalBonus);
+                    $appliedBonus=$newConf-$beforeConf;
+                    $g['states']['confianca']=$newConf;
+                }
+                $g['reward_ledger'][$ledgerKey]=[
+                    'nominal'=>$nominalBonus,
+                    'applied'=>$appliedBonus,
+                    'rating'=>$r,
+                    'minutes'=>$s['minutes'],
+                    'conf_before'=>$beforeConf,
+                    'conf_after'=>$g['states']['confianca'],
+                    'ts'=>time()
+                ];
+            }
             Progression::match($g,$m);
             MatchExperience::finish($g);
             MatchDiscipline::processMatchEnd($g, $m);
