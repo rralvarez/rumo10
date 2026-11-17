@@ -466,31 +466,28 @@ assertAud(in_array($resDirectRed['sound_event_id'], $gDiscRed['feedback']['sound
 
 // 6.4 Fluxo Real via Game::command() com avanço de segmento e deduplicação F5
 echo "\n6.4 Validando Cartão Real via Game::command(), avanço de segmento e F5...\n";
-$cardDetected = false;
-$gCmdCard = null;
-for ($attempt = 0; $attempt < 30; $attempt++) {
-    $gTry = Game::legacyCreate('Craque Disciplinar', 'São Paulo', 'SP', 'meia');
-    $gTry['stage'] = 'partida';
-    $iTry = Game::currentIndex($gTry);
-    $gTry['matches'][$iTry]['minute'] = 35; // Situação 8 (Reclamação com Árbitro / Dissent) ocorre no minuto 35
-    $gTry['matches'][$iTry]['entry'] = 0;
-    $gTry['matches'][$iTry]['exit'] = 90;
-    $gTry['matches'][$iTry]['status'] = 'em_andamento';
-    $gTry['matches'][$iTry]['lineup'] = 'titular';
-    $gTry['states']['risco_cartao'] = 100;
-    
-    $gRes = Game::command($gTry, 'choice', ['option' => '0']);
-    $mRes = $gRes['matches'][$iTry];
-    if (($mRes['stats']['yellow_cards'] ?? 0) >= 1) {
-        $cardDetected = true;
-        $gCmdCard = $gRes;
-        break;
-    }
-}
-assertAud($cardDetected, 'Game::command() executa ação e gera cartão amarelo de forma real');
-$iCmd = Game::currentIndex($gCmdCard);
+
+// Reprodução 100% controlada e determinística via RNG injetável regulamentar de Game::command():
+// Na Situação 7 aos 80 min (empate), a opção 3 (simulação de pênalti) combinada a falha grave
+// aciona estritamente MatchDiscipline::recordFoul($g, $m, 'simulation') em Game.php (linha 353),
+// sem dependência de laço estocástico ou alteração de regras do jogo.
+$gCmdSim = Game::legacyCreate('Craque Disciplinar', 'São Paulo', 'SP', 'centroavante');
+$gCmdSim['stage'] = 'partida';
+$iCmd = Game::currentIndex($gCmdSim);
+$gCmdSim['matches'][$iCmd]['minute'] = 80;
+$gCmdSim['matches'][$iCmd]['hg'] = 0;
+$gCmdSim['matches'][$iCmd]['ag'] = 0;
+$gCmdSim['matches'][$iCmd]['entry'] = 0;
+$gCmdSim['matches'][$iCmd]['exit'] = 90;
+$gCmdSim['matches'][$iCmd]['status'] = 'em_andamento';
+$gCmdSim['matches'][$iCmd]['lineup'] = 'titular';
+
+$rngFalhaGrave = static fn(int $min, int $max): int => ($max === 10000 ? 10000 : 1);
+$gCmdCard = Game::command($gCmdSim, 'choice', ['option' => '3'], false, $rngFalhaGrave);
+
 $mCmd = $gCmdCard['matches'][$iCmd];
-assertAud($mCmd['minute'] > 35, 'nextSegment avança minuto após lance (de 35 para ' . $mCmd['minute'] . ')');
+assertAud(($mCmd['stats']['yellow_cards'] ?? 0) === 1, 'Game::command() executa ação e gera cartão amarelo de forma 100% controlada');
+assertAud($mCmd['minute'] > 80, 'nextSegment avança minuto após lance (de 80 para ' . $mCmd['minute'] . ')');
 assertAud(!empty($gCmdCard['feedback']['sound_event_ids']), 'feedback.sound_event_ids contém ID do cartão gerado no lance');
 
 // Renderização: cartão da jogada NÃO é marcado histórico
