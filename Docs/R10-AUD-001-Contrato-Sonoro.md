@@ -1,6 +1,6 @@
 # R10-AUD-001 | Contrato de áudio e validação local
 
-Status: implementação parcial em `feat/aud001-sons-partida`. Nenhuma publicação autorizada.
+Status: implementação concluída na branch `feat/aud001-sons-partida`, com todos os 8 arquivos OGG integrados localmente, validados com hashes SHA-256 e suítes completas aprovadas. Nenhuma publicação autorizada.
 Decisão do proprietário: 17/11/2026. As dez fontes foram aprovadas; o não gol utiliza exclusivamente a opção B de Universfield.
 A aprovação das fontes não substitui a obtenção dos arquivos, confirmação documental de licença e audição do recorte final.
 
@@ -44,4 +44,4 @@ As licenças das fontes Freesound foram apontadas como CC0 na pré-seleção de 
 7. Validar autoria, licença e SHA-256 de cada amostra e obter aceite do proprietário. Só então abrir ou finalizar PR e realizar merge autorizado na main.
 8. O primeiro deploy funcional após o merge deve ser a prova da automação permanente. Conferir recibo UOL e ambos os domínios.
 
-**Estado atual:** estrutura de áudio e eventos em implementação, arquivos OGG finais ainda não presentes no repositório. Não executar merge nem publicar até completar as evidências e o aceite local.
+**Estado atual:** todos os oito arquivos OGG aprovados estão presentes localmente em `public/assets/audio/`, verificados por hashes SHA-256 e ffprobe, e validados pelas suítes determinísticas e E2E no IIS. Aguardando homologação auditiva do proprietário e revisão independente. Não executar merge nem publicar na UOL nesta etapa.

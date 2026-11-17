@@ -554,6 +554,7 @@ $expectedFiles = [
     'substitution_out.ogg',
     'red_card.ogg',
     'substitution_in.ogg',
+    'no_goal.ogg',
 ];
 
 foreach ($expectedFiles as $file) {

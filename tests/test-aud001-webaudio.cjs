@@ -33,6 +33,7 @@ function createMockEnvironment() {
   const createdGains = [];
   const sessionData = new Map();
   const localData = new Map();
+  const filesTo404 = new Set();
 
   class MockAudioBuffer {
     constructor(duration = 2.0) {
@@ -45,6 +46,7 @@ function createMockEnvironment() {
   const dummyBuffers = {
     'match_whistle.ogg': new MockAudioBuffer(0.54),
     'goal.ogg': new MockAudioBuffer(2.8),
+    'no_goal.ogg': new MockAudioBuffer(2.95),
     'assist.ogg': new MockAudioBuffer(2.8),
     'yellow_card.ogg': new MockAudioBuffer(0.54),
     'red_card.ogg': new MockAudioBuffer(2.5),
@@ -149,7 +151,7 @@ function createMockEnvironment() {
     addEventListener: () => {},
     fetch: async (url) => {
       const filename = path.basename(url);
-      if (dummyBuffers[filename]) {
+      if (dummyBuffers[filename] && !filesTo404.has(filename)) {
         lastFetchedFile = filename;
         return {
           ok: true,
@@ -199,7 +201,8 @@ function createMockEnvironment() {
     sessionData,
     localData,
     mockDomElements,
-    dummyBuffers
+    dummyBuffers,
+    filesTo404
   };
 }
 
@@ -421,9 +424,10 @@ async function runTestSuite() {
   console.log('\n9. Validando Resiliência a HTTP 404 de Áudio (sem bips nem crash)...');
   {
     const env = createMockEnvironment();
-    // Elemento apontando para arquivo ausente (ex: no_goal.ogg com 404)
+    // Simula resposta HTTP 404 no endpoint de áudio
+    env.filesTo404.add('substitution_out.ogg');
     const elements = [
-      { dataset: { soundEvent: 'NO_GOAL', soundEventId: 'missing:nogoal' } },
+      { dataset: { soundEvent: 'PLAYER_SUBSTITUTION_OUT', soundEventId: 'missing:404:test' } },
       { dataset: { soundEvent: 'MATCH_WHISTLE_START', soundEventId: 'valid:whistle' } }
     ];
 
@@ -434,7 +438,7 @@ async function runTestSuite() {
     await new Promise(r => setTimeout(r, 350));
 
     // O som com 404 deve ter sido capturado pelo catch sem lançar erro não tratado
-    assert(env.sessionData.get('rumo10_sound_played:missing:nogoal') === '1', 'Arquivo 404 marcado handled para evitar loop infinito');
+    assert(env.sessionData.get('rumo10_sound_played:missing:404:test') === '1', 'Arquivo 404 marcado handled para evitar loop infinito');
     // E o som válido subsequente na fila pôde tocar normalmente
     assert(env.startedSources.length === 1, 'Fila continuou normalmente e tocou o som válido seguinte');
     assert(env.startedSources[0].buffer === env.dummyBuffers['match_whistle.ogg'], 'Segundo som válido reproduzido');
@@ -579,6 +583,32 @@ async function runTestSuite() {
     env.startedSources.length = 0;
     env.runScript(elements);
     assert(env.startedSources.length === 0, 'Deduplicação no F5 para CARD_RED confirmada');
+  }
+
+  // 14. Validação de NO_GOAL com no_goal.ogg (chute para fora / pênalti desperdiçado)
+  console.log('\n14. Validando Reprodução de NO_GOAL com no_goal.ogg...');
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'NO_GOAL', soundEventId: 'act:nogoal:pen:30' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, 'NO_GOAL reproduzido pelo motor Web Audio');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['no_goal.ogg'], 'Buffer utilizado é no_goal.ogg (2.95s)');
+
+    // Conclui o som
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+    assert(env.sessionData.get('rumo10_sound_played:act:nogoal:pen:30') === '1', 'NO_GOAL registrado no sessionStorage');
+
+    // F5 não repete
+    env.startedSources.length = 0;
+    env.runScript(elements);
+    assert(env.startedSources.length === 0, 'Deduplicação no F5 para NO_GOAL confirmada');
   }
 
   console.log('\n=======================================================');

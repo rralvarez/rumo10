@@ -166,7 +166,7 @@ function resolveChromePath() {
 
   // 4. Teste de decodificação real de todos os arquivos OGG disponíveis
   console.log('\n4. Testando decodificação real de todas as amostras OGG via HTTP local...');
-  const filesToTest = ['goal.ogg', 'assist.ogg', 'yellow_card.ogg', 'red_card.ogg', 'substitution_in.ogg', 'substitution_out.ogg'];
+  const filesToTest = ['goal.ogg', 'no_goal.ogg', 'assist.ogg', 'yellow_card.ogg', 'red_card.ogg', 'substitution_in.ogg', 'substitution_out.ogg'];
   for (const f of filesToTest) {
     const res = await page.evaluate(async (file) => {
       const audio = window.__rumo10Audio;

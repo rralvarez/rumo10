@@ -18,7 +18,7 @@
 | 5 | `substitution_out.ogg` | Saída do atleta de campo | 2.50s | 41.734 B | `788fa6cbecc9a04dcecb77b24f6876cd8a2afa32876e6645ff8c271fd5e8ae6e` | cognito perceptu (`57587`) |
 | 6 | `red_card.ogg` | Cartão vermelho (expulsão) | 2.50s | 23.326 B | `01e382b354aa76fee1acc105e148c2cfe073962c3d266913f107a6fc86b8c656` | SpliceSound (`218318`) |
 | 7 | `substitution_in.ogg` | Entrada do atleta em campo | 2.80s | 49.860 B | `1d9e91273033211f1ed0d6f3c6fbf67f4d155f6b0073697d75b4c508068eb01a` | NobodyYouKnowOf (`410868`) |
-| 8 | `no_goal.ogg` | Finalização desperdiçada / Pênalti perdido | *Pendente* | *Pendente* | *Pendente de fornecimento manual* | Universfield (`352718`) |
+| 8 | `no_goal.ogg` | Finalização desperdiçada / Pênalti perdido | 2.95s | 40.128 B | `d9d1972ba0905a32dd67a3c73a24705c39232a70ddd8b6a6f9ded866cecfa302` | Universfield (`352718`) |
 
 ---
 
@@ -102,16 +102,23 @@
 - **SHA-256 do OGG final:** `1d9e91273033211f1ed0d6f3c6fbf67f4d155f6b0073697d75b4c508068eb01a`
 - **Duração final:** 2.80s (palmas e vibração da torcida pela entrada em campo).
 
+### 2.8. Não Gol / Finalização Desperdiçada (`no_goal.ogg`)
+- **Efeito mapeado:** `NO_GOAL` (chute para fora/defendido e pênalti desperdiçado)
+- **Autor:** Universfield
+- **Título original:** `universfield-crowd-disappointment-reaction-352718.mp3`
+- **Página oficial:** https://pixabay.com/sound-effects/people-crowd-disappointment-reaction-352718/
+- **Licença verificada:** Pixabay Content License (Livre para uso comercial e não comercial em plataformas e aplicações; proibida a redistribuição autônoma ou revenda isolada do arquivo de áudio).
+- **Data de fornecimento pelo proprietário:** 17/11/2026.
+- **SHA-256 do arquivo original (MP3):** `15e496de50c195819f16ea7324b504c59b416e7a0e81c07d665648ca40d80805`
+- **SHA-256 do OGG final:** `d9d1972ba0905a32dd67a3c73a24705c39232a70ddd8b6a6f9ded866cecfa302`
+- **Formato:** Ogg Vorbis | Estéreo | 48.000 Hz | 2,950 s | 40.128 bytes
+- **Processamento:** corte de 3,12s para 2,95s com fade-out linear de 2,60s a 2,95s; sem alteração artificial de ganho; pico medido de aproximadamente -4,2 dBFS (ffmpeg volumedetect); ferramenta: ffmpeg/libvorbis.
+
 ---
 
-## 3. Pendência Bloqueante de Fornecimento: `no_goal.ogg`
+## 3. Resolução do Bloqueio de Obtenção (P0-1)
 
-- **Efeito mapeado:** `NO_GOAL` (chute sem gol e pênalti desperdiçado)
-- **Opção aprovada pelo proprietário:** Opção B — *Crowd Disappointment Reaction*
-- **Autor:** Universfield
-- **Página oficial:** https://pixabay.com/sound-effects/people-crowd-disappointment-reaction-352718/
-- **Licença:** Pixabay Content License (Livre para uso comercial e não comercial sem atribuição obrigatória).
-- **Status de obtenção:** **BLOQUEADO POR DESAFIO ANTI-ROBÔ (Cloudflare Turnstile)**.
-  - O endpoint de download do Pixabay retorna `HTTP 403 Forbidden` com cabeçalho de mitigação `Cf-Mitigated: challenge`.
-  - Em estrito cumprimento às diretrizes de conformidade da DeepMind e às ordens expressas da Coordenação Técnica em `Docs/R10-AUD-001-ORDEM-EXECUCAO-ANTIGRAVITY.md` (*"nunca inventar binários, usar sons alternativos ou gerar clipes silenciosos para encerrar a tarefa"*), o arquivo não foi forjado nem substituído.
-  - **Ação requerida:** O proprietário deve efetuar o download direto do áudio original no navegador autenticado e disponibilizá-lo para conversão/inclusão em `public/assets/audio/no_goal.ogg`.
+- O download direto do Pixabay via CLI/curl havia sido impedido por barreira anti-robô (Cloudflare Turnstile, mitigação `Cf-Mitigated: challenge`, HTTP 403).
+- Em cumprimento estrito às diretrizes de conformidade do projeto e à determinação da Coordenação Técnica de não forjar áudio substituto nem burlar proteções de rede, a integração aguardou a intervenção autorizada do proprietário.
+- O proprietário realizou o download do MP3 autêntico pelo navegador em 17/11/2026 e forneceu o pacote `R10-AUD-001-no_goal-integracao.zip`.
+- O hash SHA-256 do arquivo integrado corresponde estritamente ao artefato auditado (`d9d1972ba0905a32dd67a3c73a24705c39232a70ddd8b6a6f9ded866cecfa302`), com inventário de 8 arquivos OGG 100% completo e operacional.

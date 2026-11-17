@@ -109,8 +109,9 @@ Em atendimento à ordem de fechamento complementar da Coordenação Técnica:
      - Fila contemporânea dos 3 eventos legítimos com descarte seguro do 4º evento.
      - Execução e deduplicação de `CARD_RED` (`red_card.ogg`).
 
-4. **Estado de P0-1 (`no_goal.ogg`):**
-   - Mantida integralmente a branch `feat/aud001-sons-partida`.
-   - A Opção B de Universfield (Pixabay #352718) permanece aprovada, aguardando fornecimento do arquivo MP3 original localmente pelo proprietário.
-   - Assim que disponibilizado, será convertido via ffmpeg em OGG Vorbis $\le 3.0$s com normalização e fade, SHA-256 documentado e a suíte completa com 8 arquivos será reexecutada.
+4. **Conclusão de P0-1 (`no_goal.ogg`) e Integração dos 8 Áudios:**
+   - Em 17/11/2026, o proprietário disponibilizou o MP3 original aprovado de Universfield (Pixabay #352718) no pacote `R10-AUD-001-no_goal-integracao.zip`.
+   - O arquivo `no_goal.ogg` (40.128 bytes, 2,95s, Vorbis, 48kHz estéreo, fade-out linear 2,60-2,95s, pico -4,2 dBFS) foi integrado em `public/assets/audio/no_goal.ogg`.
+   - Hashes SHA-256 estritamente validados: MP3 original (`15e496de50c195819f16ea7324b504c59b416e7a0e81c07d665648ca40d80805`) e OGG final (`d9d1972ba0905a32dd67a3c73a24705c39232a70ddd8b6a6f9ded866cecfa302`).
+   - Inventário físico completo com os oito arquivos OGG aprovados, testados no IIS via HTTP 200, Web Audio determinístico e Chrome E2E.
 
