@@ -202,6 +202,10 @@ def main(root):
     call("pilot",{**first,"comment":{**first["comment"],"body":"No deployment-time backup request"}})
     assert load(roots["private"]/"installed.json")["commit"]==UI
     assert "backup:" not in trace.read_text()
+    # After the one-time pilot, the operator removes its exceptional flag.
+    # The next ordinary release must not need a backup comment or status.
+    cfg["main_automation"]["ui001_bootstrap_request"] = False
+    put(cfg_path, cfg)
     call("automatic",{**regular,"statuses":[],"comment":{**regular["comment"],"body":"No backup status"}})
     assert load(roots["private"]/"installed.json")["commit"]=="c"*40
     assert "backup:" not in trace.read_text()
