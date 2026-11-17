@@ -76,6 +76,40 @@ final class MainAutomation {
         throw new \RuntimeException('Required backup ruleset lacks the pinned App status');
     }
 
+    /**
+     * One-time no-op transition for the reviewed infrastructure-only PR #9.
+     * This does NOT authorize application deployment or bypass backup checks
+     * for any following functional PR.
+     */
+    public static function infrastructureOnlyPr9(array $a,array $pr,array $merge,array $source,array $comparison): void {
+        $base=self::UI001['commit'];
+        $parents=$merge['parents']??[];
+        $files=$comparison['files']??null;
+        need(($pr['number']??null)===9 && ($pr['state']??null)==='closed' &&
+            ($pr['merged']??false)===true && !empty($pr['merged_at']) &&
+            ($pr['merged_by']['id']??null)===($a['owner_id']??null) &&
+            ($pr['base']['repo']['full_name']??null)==='rralvarez/rumo10' &&
+            ($pr['base']['ref']??null)==='main' &&
+            ($pr['merge_commit_sha']??null)===($merge['sha']??null) &&
+            is_array($parents) && count($parents)===2 &&
+            ($parents[0]['sha']??null)===$base &&
+            ($parents[1]['sha']??null)===($pr['head']['sha']??null) &&
+            ($source['sha']??null)===($pr['head']['sha']??null) &&
+            is_string($merge['commit']['tree']['sha']??null) &&
+            ($merge['commit']['tree']['sha']??null)===($source['commit']['tree']['sha']??null) &&
+            ($comparison['status']??null)==='ahead' &&
+            ($comparison['merge_base_commit']['sha']??null)===$base &&
+            is_array($files) && count($files)>0 && count($files)<300,
+            'Pinned PR #9 infrastructure transition identity not proven');
+        foreach($files as $file){
+            $path=$file['filename']??null;
+            need(is_string($path) &&
+                (str_starts_with($path,'publisher/') ||
+                 $path==='.github/workflows/manual-backup-approval.yml'),
+                'PR #9 changes application or another unauthorized operational surface');
+        }
+    }
+
     public static function change(array $a,array $v,array $assessment): void {
         need(($v['envelope']['release_channel']??null)==='main' &&
             ($v['envelope']['functional_commit']??null)===$v['commit'] &&
