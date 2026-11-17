@@ -54,3 +54,32 @@ Não supor que verificação textual das linhas de JS com `source.start` prova e
 Entregar: SHA da branch, lista de arquivos, SHA e duração dos oito OGG, logs reais dos testes (incluindo novos casos de concorrência/prioridade), evidência de audição local e pendências. A revisão final pertence à Coordenação Técnica. A publicação após merge, quando autorizada, será o primeiro teste de deploy automático de funcionalidade Classe A.
 
 **Não alterar** `main`, Cron, receptor UOL, diretórios de produção, banco ou saves de produção, e não substituir a amostra B já aprovada.
+
+
+## Revisão da segunda entrega do Antigravity, commit 8a68fcef, 17/11/2026
+
+**Conferência direta:** HEAD `8a68fcef2e9b995adcbdb72eac8fe9632e478f83`, `main` preservada em `b541c85d862e64f37d95c50ea7865a167b445e17`. Os arquivos efetivamente alterados foram `app/Game.php`, `app/Presentation.php`, `public/assets/audio-engine.js`, `tests/test-aud001-audio.php` e os dois novos testes JS. Permanecem sete OGG, sem `no_goal.ogg`. Os resultados 67/67, 37/37, 23/23 e regressões foram **relatados pelo Antigravity**; não foram reexecutados pela coordenação no IIS.
+
+**P0-2 e P0-3: melhoras incorporadas:** `EVENT_PRIORITY` passa a dar precedência a gol sobre apito final; a fila de `playDirect` aguarda `AudioBufferSourceNode.onended`, o apito ainda agenda um mesmo buffer 1/2/3 vezes, e os novos testes em Node/Chrome simulam concorrência, autoplay, mute e decodificação real dos sete arquivos. Isso corrige a colisão evidente da versão anterior, sujeito à audição com os oito arquivos finais.
+
+### P0-4 | NOVO BLOQUEIO DETECTADO NA SEGUNDA AUDITORIA: cartão pode ser marcado histórico antes de tocar
+
+Evidência na árvore atual:
+
+1. `MatchDiscipline::recordFoul` emite `CARD_YELLOW` ou `CARD_RED` com `minute=$m['minute']`, mas não põe o ID emitido no `feedback` da jogada.
+2. Em `Game::fieldDecision`, há caminhos que chamam `recordFoul` e depois `nextSegment($g)` no final da decisão, avançando `$m['minute']` para o segmento seguinte.
+3. `Presentation::matchSounds` compara `(int)$event['minute'] < (int)$match['minute']` e renderiza `data-sound-historical="1"`. O `audio-engine.js` marca tal ID como tratado sem tocar. Assim um cartão recém-gerado no minuto 15 pode aparecer no HTML com o minuto da partida já em 35 e ser descartado como histórico sem nunca reproduzir o apito.
+
+**Corrigir sem mudar regras, fases, probabilidades ou minuto de jogo.** Preservar a identificação explícita de eventos sonoros gerados pela **última ação** nos dados de `feedback` (como uma coleção de IDs frescos, incluindo cartão), e fazer a apresentação usar essa identidade para não classificá-los como históricos, mesmo que o motor tenha avançado o minuto. Preservar idempotência e não suprimir gol ou não gol quando houver mais de um evento contemporâneo. NÃO resolver simplesmente removendo toda filtragem de históricos ou emitindo novamente cartão após o avanço.
+
+Adicionar regressão determinística que simule cartão gerado no minuto anterior ao corrente **pela última ação** e confirme que o áudio do cartão toca uma única vez; confirmar que cartão de jogada antiga NÃO toca na recarga. Executar caso integrado com `MatchDiscipline::recordFoul`, avanço de segmento e `Presentation::matchSounds`, além do teste Web Audio correspondente. Revisar também entrada/saída do jogador nas transições que avançam o minuto, com o mesmo critério.
+
+### P1 | Portabilidade do teste E2E
+
+`tests/test-aud001-browser-e2e.cjs` importa Playwright com caminho absoluto `C:/Users/rodri/.cache/codex-runtimes/...` e usa Chrome em `C:/Program Files/Google/Chrome/Application/chrome.exe`. São válidos para aquele computador local, mas não reproduzíveis em outra estação ou CI. Tornar a resolução configurável e fornecer instruções de dependências sem alterar o workflow oficial ou introduzir dependências no runtime de produção.
+
+### P0-1 | A fonte do não gol continua pendente
+
+A página oficial da opção B, Universfield, foi confirmada em fonte pública: https://pixabay.com/sound-effects/people-crowd-disappointment-reaction-352718/ (MP3, 3s, Pixabay Content License). Solicitar o download normal via navegador pelo proprietário e fornecer o caminho local ao Antigravity. Criar e testar `no_goal.ogg`, registrar hash e licença, repetir testes com **oito** arquivos. Não fazer bypass de desafio anti-robô, não substituir fonte aprovada.
+
+**Decisão de coordenação:** manter AUD-001 BLOQUEADA PARA MERGE até P0-1 e P0-4 resolvidos, reexecução das suítes, CI da PR e homologação auditiva do proprietário. Não publicar na UOL.
