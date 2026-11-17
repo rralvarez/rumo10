@@ -13,13 +13,18 @@
     CARD_YELLOW: { file: 'yellow_card.ogg' },
     CARD_RED: { file: 'red_card.ogg' },
     PLAYER_SUBSTITUTION_IN: { file: 'substitution_in.ogg' },
-    PLAYER_SUBSTITUTION_OUT: { file: 'substitution_out.ogg' }
+    PLAYER_SUBSTITUTION_OUT: { file: 'substitution_out.ogg' },
+    // Efeitos legados sintetizados mantidos para compatibilidade retroativa
+    BALL_HIT_POST: { synth: 'ball_hit_post', duration: 0.30 },
+    PENALTY_AWARDED: { synth: 'penalty_awarded', duration: 0.35 }
   });
   const WHISTLE_GAP_SECONDS = 0.18; // Ponto inicial para homologação auditiva.
   const EVENT_PRIORITY = Object.freeze({
     GOAL_SCORED: 100,
     ASSIST_RECORDED: 90,
+    BALL_HIT_POST: 88,
     NO_GOAL: 85,
+    PENALTY_AWARDED: 82,
     CARD_RED: 80,
     CARD_YELLOW: 75,
     PLAYER_SUBSTITUTION_IN: 70,
@@ -35,6 +40,7 @@
     prefs: { muted: false, volume: 0.7 },
     pendingQueue: new Map(),
     handled: new Set(),
+    inFlight: new Set(),
     cachedBuffers: new Map(),
     unlockingPromise: null,
     playing: false,
@@ -107,7 +113,7 @@
     },
 
     wasHandled(id) {
-      if (this.handled.has(id)) return true;
+      if (this.handled.has(id) || this.inFlight.has(id)) return true;
       try { return sessionStorage.getItem('rumo10_sound_played:' + id) === '1'; }
       catch (_) { return false; }
     },
@@ -117,6 +123,40 @@
       if (this.prefs.muted) { this.markHandled(id); return; }
       this.pendingQueue.set(id, key);
       this.flushPendingQueue();
+    },
+
+    playWhistle(startTime, freq, duration, gainVal) {
+      if (!this.ctx || !this.master) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.95, startTime + duration);
+
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(gainVal * 0.4, startTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+      osc.connect(gain);
+      gain.connect(this.master);
+      osc.start(startTime);
+      osc.stop(startTime + duration);
+    },
+
+    playTone(startTime, freq, duration, type, gainVal) {
+      if (!this.ctx || !this.master) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+
+      gain.gain.setValueAtTime(gainVal * 0.3, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+      osc.connect(gain);
+      gain.connect(this.master);
+      osc.start(startTime);
+      osc.stop(startTime + duration);
     },
 
     async bufferFor(file) {
@@ -136,15 +176,46 @@
       return this.cachedBuffers.get(file);
     },
 
-    async playDirect(key) {
+    async playDirect(key, id) {
       const effect = SOUNDS[key];
-      if (!effect || !this.ctx || !this.master) return false;
+      if (!effect || !this.ctx || !this.master) return { status: 'failed' };
+      if (this.prefs.muted || this.prefs.volume <= 0) {
+        if (id) this.markHandled(id);
+        return { status: 'muted' };
+      }
+
+      // Efeitos legados sintetizados (BALL_HIT_POST e PENALTY_AWARDED)
+      if (effect.synth) {
+        if (this.ctx.state !== 'running') return { status: 'suspended' };
+        const now = this.ctx.currentTime + 0.02;
+        const vol = this.prefs.volume;
+        if (effect.synth === 'penalty_awarded') {
+          this.playWhistle(now, 2500, 0.35, vol);
+        } else if (effect.synth === 'ball_hit_post') {
+          this.playTone(now, 160, 0.15, 'triangle', vol * 0.8);
+          this.playTone(now + 0.05, 80, 0.25, 'sine', vol * 0.9);
+        }
+        if (id) this.markHandled(id);
+        const duration = effect.duration || 0.35;
+        return new Promise(resolve => setTimeout(() => resolve({ status: 'scheduled' }), duration * 1000));
+      }
+
+      // Efeitos naturais com arquivos OGG
       const buffer = await this.bufferFor(effect.file);
-      if (this.prefs.muted || this.prefs.volume <= 0 || this.ctx.state !== 'running') return true;
+
+      // P1-B: Verifica se o contexto foi suspenso durante o fetch assíncrono do arquivo
+      if (this.prefs.muted || this.prefs.volume <= 0) {
+        if (id) this.markHandled(id);
+        return { status: 'muted' };
+      }
+      if (this.ctx.state !== 'running') {
+        return { status: 'suspended' };
+      }
+
       const count = effect.repeats || 1;
-      // A divisão do ganho mantém margem para a soma dos disparos sobrepostos.
       const level = 1 / count;
       const startAt = this.ctx.currentTime + 0.02;
+
       return new Promise((resolve) => {
         let completed = 0;
         for (let index = 0; index < count; index++) {
@@ -158,10 +229,14 @@
             try { source.disconnect(); gain.disconnect(); } catch (_) {}
             completed++;
             if (completed === count) {
-              resolve(true);
+              resolve({ status: 'scheduled' });
             }
           };
           source.start(startAt + index * WHISTLE_GAP_SECONDS);
+        }
+        // P1-A: Registra como manipulado assim que o primeiro disparo foi agendado com sucesso
+        if (id) {
+          this.markHandled(id);
         }
       });
     },
@@ -173,19 +248,30 @@
       const entry = this.pendingQueue.entries().next().value;
       if (!entry) return;
       const [id, key] = entry;
-      this.pendingQueue.delete(id);
+
+      this.inFlight.add(id);
       this.playing = true;
 
       try {
-        await this.playDirect(key);
-        this.markHandled(id);
+        const result = await this.playDirect(key, id);
+        if (result && result.status === 'suspended') {
+          // P1-B: O contexto foi suspenso antes do agendamento; preserva na fila pendente
+          // sem marcar como tratado, para tocar no próximo desbloqueio
+          this.inFlight.delete(id);
+          this.playing = false;
+          return;
+        }
+        // Agendado ou mudo: remove da fila pendente
+        this.pendingQueue.delete(id);
       } catch (_) {
-        // Arquivo ausente ou erro de decodificação: marcar manipulado para evitar loop
+        // Falha terminal (ex: 404 ou erro de decode): marca manipulado e remove da fila
         this.markHandled(id);
+        this.pendingQueue.delete(id);
       } finally {
+        this.inFlight.delete(id);
         this.playing = false;
         if (this.pendingQueue.size > 0 && !this.prefs.muted && this.ctx && this.ctx.state === 'running') {
-          // Espaçamento natural entre eventos contemporâneos (ex: gol seguido do apito final)
+          // Espaçamento regulamentar de 250ms entre eventos contemporâneos sucessivos
           setTimeout(() => this.flushPendingQueue(), 250);
         }
       }

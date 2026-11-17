@@ -30,10 +30,29 @@ function assert(condition, message) {
 
 function createMockEnvironment() {
   const startedSources = [];
+  const startedOscillators = [];
   const createdGains = [];
   const sessionData = new Map();
   const localData = new Map();
   const filesTo404 = new Set();
+
+  class MockAudioParam {
+    constructor(val = 1.0) {
+      this.value = val;
+    }
+    setValueAtTime(val, time) {
+      this.value = val;
+    }
+    linearRampToValueAtTime(val, time) {
+      this.value = val;
+    }
+    exponentialRampToValueAtTime(val, time) {
+      this.value = val;
+    }
+    setTargetAtTime(val, time, constant) {
+      this.value = val;
+    }
+  }
 
   class MockAudioBuffer {
     constructor(duration = 2.0) {
@@ -85,15 +104,34 @@ function createMockEnvironment() {
     }
   }
 
+  class MockOscillatorNode {
+    constructor(ctx) {
+      this.ctx = ctx;
+      this.type = 'sine';
+      this.frequency = new MockAudioParam(440);
+      this.connectedTo = null;
+      this.startTime = null;
+      this.stopTime = null;
+    }
+    connect(dest) {
+      this.connectedTo = dest;
+    }
+    disconnect() {
+      this.connectedTo = null;
+    }
+    start(time) {
+      this.startTime = time;
+      startedOscillators.push(this);
+    }
+    stop(time) {
+      this.stopTime = time;
+    }
+  }
+
   class MockGainNode {
     constructor(ctx) {
       this.ctx = ctx;
-      this.gain = {
-        value: 1.0,
-        setTargetAtTime: (val, time, constant) => {
-          this.gain.value = val;
-        }
-      };
+      this.gain = new MockAudioParam(1.0);
       this.connectedTo = null;
       createdGains.push(this);
     }
@@ -115,6 +153,9 @@ function createMockEnvironment() {
     }
     createBufferSource() {
       return new MockAudioBufferSourceNode(this);
+    }
+    createOscillator() {
+      return new MockOscillatorNode(this);
     }
     createGain() {
       return new MockGainNode(this);
@@ -197,6 +238,7 @@ function createMockEnvironment() {
     mockWindow,
     runScript,
     startedSources,
+    startedOscillators,
     createdGains,
     sessionData,
     localData,
@@ -609,6 +651,153 @@ async function runTestSuite() {
     env.startedSources.length = 0;
     env.runScript(elements);
     assert(env.startedSources.length === 0, 'Deduplicação no F5 para NO_GOAL confirmada');
+  }
+
+  // 15. Regressão P1-A: Deduplicação Imediata no F5 DURANTE a reprodução (antes de onended)
+  console.log('\n15. Validando Regressão P1-A: Deduplicação no F5 DURANTE a reprodução ativa...');
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'goal:p1a:midflight' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, 'P1-A: GOAL_SCORED iniciou reprodução');
+    // P1-A CRUCIAL: O evento DEVE ser marcado em sessionStorage e handled no momento do source.start(),
+    // ANTES de source.onended ser disparado!
+    assert(env.sessionData.get('rumo10_sound_played:goal:p1a:midflight') === '1', 'P1-A: sessionStorage registrado IMEDIATAMENTE ao agendar source.start() (t=0)');
+    assert(audio.handled.has('goal:p1a:midflight'), 'P1-A: this.handled contém o evento imediatamente');
+
+    // Simula recarga de página (F5) aos 159ms de reprodução (quando o som ainda está tocando)
+    const envReload = createMockEnvironment();
+    // Compartilha o sessionStorage da sessão da aba
+    env.sessionData.forEach((v, k) => envReload.sessionData.set(k, v));
+    envReload.startedSources.length = 0;
+    const audioReload = envReload.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(envReload.startedSources.length === 0, 'P1-A: F5 durante reprodução em andamento mantém silêncio absoluto (zero reexecuções)');
+    assert(audioReload.pendingQueue.size === 0, 'P1-A: Fila vazia na nova página');
+
+    // Conclui o som original para resolução limpa
+    env.startedSources[0].source.triggerEnd();
+  }
+
+  // 16. Regressão P1-B: Preservação de evento em pendingQueue com AudioContext suspenso
+  console.log('\n16. Validando Regressão P1-B: Preservação em pendingQueue com AudioContext suspenso...');
+  {
+    const env = createMockEnvironment();
+    // Simula AudioContext suspenso por autoplay policy do navegador
+    env.mockWindow.__rumo10AudioCtx = new env.mockWindow.AudioContext();
+    env.mockWindow.__rumo10AudioCtx.state = 'suspended';
+
+    const elements = [
+      { dataset: { soundEvent: 'NO_GOAL', soundEventId: 'act:p1b:suspended' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    audio.cachedBuffers.set('no_goal.ogg', Promise.resolve(env.dummyBuffers['no_goal.ogg']));
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 0, 'P1-B: Nenhum som toca enquanto AudioContext estiver suspenso');
+    // P1-B CRUCIAL: NÃO marcar handled enquanto suspenso, pois o som ainda não foi ouvido pelo usuário!
+    assert(env.sessionData.get('rumo10_sound_played:act:p1b:suspended') !== '1', 'P1-B: Evento NÃO é marcado como handled no sessionStorage enquanto suspenso');
+    assert(!audio.handled.has('act:p1b:suspended'), 'P1-B: this.handled NÃO contém o ID enquanto suspenso');
+    assert(!audio.inFlight.has('act:p1b:suspended'), 'P1-B: this.inFlight limpo após tentativa com suspenso');
+    assert(audio.pendingQueue.has('act:p1b:suspended'), 'P1-B: Evento preservado na pendingQueue para reprodução pós-unlock');
+
+    // Usuário interage com a página -> AudioEngine.unlock()
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 100));
+
+    assert(env.mockWindow.__rumo10AudioCtx.state === 'running', 'P1-B: AudioContext transitou para running após unlock');
+    assert(env.startedSources.length === 1, 'P1-B: Evento preservado entra em reprodução imediatamente após unlock');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['no_goal.ogg'], 'P1-B: Buffer utilizado é no_goal.ogg');
+    assert(env.sessionData.get('rumo10_sound_played:act:p1b:suspended') === '1', 'P1-B: Evento devidamente marcado como handled após início do playback');
+  }
+
+  // 17. Regressão P1-C: Compatibilidade com Efeitos Sintetizados Legados (BALL_HIT_POST e PENALTY_AWARDED)
+  console.log('\n17. Validando Regressão P1-C: Compatibilidade com Efeitos Sintetizados (BALL_HIT_POST e PENALTY_AWARDED)...');
+  {
+    // 17.1 BALL_HIT_POST isolado
+    const envPost = createMockEnvironment();
+    const elementsPost = [
+      { dataset: { soundEvent: 'BALL_HIT_POST', soundEventId: 'synth:post:1' } }
+    ];
+
+    envPost.startedOscillators.length = 0;
+    const audioPost = envPost.runScript(elementsPost);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(envPost.startedOscillators.length === 2, 'P1-C: BALL_HIT_POST sintetiza 2 osciladores (triângulo 160Hz + senoide 80Hz)');
+    assert(audioPost.wasHandled('synth:post:1'), 'P1-C: BALL_HIT_POST marcado como handled imediatamente');
+    assert(envPost.sessionData.get('rumo10_sound_played:synth:post:1') === '1', 'P1-C: BALL_HIT_POST registrado no sessionStorage');
+
+    // F5 para BALL_HIT_POST
+    envPost.startedOscillators.length = 0;
+    envPost.runScript(elementsPost);
+    assert(envPost.startedOscillators.length === 0, 'P1-C: F5 para BALL_HIT_POST mantém silêncio');
+
+    // 17.2 PENALTY_AWARDED isolado
+    const envPen = createMockEnvironment();
+    const elementsPen = [
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 'synth:pen:1' } }
+    ];
+
+    envPen.startedOscillators.length = 0;
+    const audioPen = envPen.runScript(elementsPen);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(envPen.startedOscillators.length === 1, 'P1-C: PENALTY_AWARDED sintetiza 1 apito enérgico longo (2500Hz)');
+    assert(audioPen.wasHandled('synth:pen:1'), 'P1-C: PENALTY_AWARDED marcado como handled imediatamente');
+    assert(envPen.sessionData.get('rumo10_sound_played:synth:pen:1') === '1', 'P1-C: PENALTY_AWARDED registrado no sessionStorage');
+
+    // 17.3 Prioridade na fila mista com OGG e Efeitos Sintetizados
+    // BALL_HIT_POST (prioridade 88) deve tocar antes de NO_GOAL (85) e CARD_YELLOW (75)
+    const envMixed = createMockEnvironment();
+    const elementsMixed = [
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'mix:card:75' } },
+      { dataset: { soundEvent: 'BALL_HIT_POST', soundEventId: 'mix:post:88' } },
+      { dataset: { soundEvent: 'NO_GOAL', soundEventId: 'mix:nogoal:85' } }
+    ];
+
+    envMixed.startedSources.length = 0;
+    envMixed.startedOscillators.length = 0;
+    const audioMixed = envMixed.runScript(elementsMixed);
+    await new Promise(r => setTimeout(r, 50));
+
+    // O primeiro a tocar DEVE ser BALL_HIT_POST (maior prioridade 88)
+    assert(envMixed.startedOscillators.length === 2, 'P1-C: BALL_HIT_POST (prioridade 88) toca PRIMEIRO na fila mista');
+    assert(audioMixed.pendingQueue.has('mix:nogoal:85'), 'P1-C: NO_GOAL (prioridade 85) aguarda na fila');
+    assert(audioMixed.pendingQueue.has('mix:card:75'), 'P1-C: CARD_YELLOW (prioridade 75) aguarda na fila');
+
+    // Aguardar término do efeito sintetizado (~300ms) + espaçamento regulamentar de 250ms
+    await new Promise(r => setTimeout(r, 600));
+
+    // O segundo a tocar DEVE ser NO_GOAL (prioridade 85)
+    assert(envMixed.startedSources.length === 1, 'P1-C: NO_GOAL inicia em segundo lugar na fila mista');
+    assert(envMixed.startedSources[0].buffer === envMixed.dummyBuffers['no_goal.ogg'], 'P1-C: Buffer é no_goal.ogg');
+
+    // Conclui NO_GOAL
+    envMixed.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 350));
+
+    // O terceiro a tocar DEVE ser CARD_YELLOW (prioridade 75)
+    assert(envMixed.startedSources.length === 2, 'P1-C: CARD_YELLOW inicia em terceiro lugar na fila mista');
+    assert(envMixed.startedSources[1].buffer === envMixed.dummyBuffers['yellow_card.ogg'], 'P1-C: Buffer é yellow_card.ogg');
+
+    // Conclui CARD_YELLOW
+    envMixed.startedSources[1].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audioMixed.pendingQueue.size === 0, 'P1-C: Fila mista totalmente processada');
+    assert(envMixed.sessionData.get('rumo10_sound_played:mix:post:88') === '1', 'P1-C: BALL_HIT_POST registrado no sessionStorage');
+    assert(envMixed.sessionData.get('rumo10_sound_played:mix:nogoal:85') === '1', 'P1-C: NO_GOAL registrado no sessionStorage');
+    assert(envMixed.sessionData.get('rumo10_sound_played:mix:card:75') === '1', 'P1-C: CARD_YELLOW registrado no sessionStorage');
   }
 
   console.log('\n=======================================================');

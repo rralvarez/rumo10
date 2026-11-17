@@ -242,6 +242,49 @@ function resolveChromePath() {
   });
   assert(muteResult.wasMuted && muteResult.wasUnmuted, 'Controles de mudo/desmudo operacionais');
 
+  // 8. Teste de Efeitos Sintetizados Web Audio (P1-C: BALL_HIT_POST e PENALTY_AWARDED) no Chrome
+  console.log('\n8. Testando Efeitos Sintetizados Legados (BALL_HIT_POST e PENALTY_AWARDED) no Chrome...');
+  const synthResult = await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    const postRes = await audio.playDirect('BALL_HIT_POST', 'e2e:synth:post');
+    const penRes = await audio.playDirect('PENALTY_AWARDED', 'e2e:synth:pen');
+    return {
+      postStatus: postRes.status,
+      penStatus: penRes.status,
+      postHandled: audio.wasHandled('e2e:synth:post'),
+      penHandled: audio.wasHandled('e2e:synth:pen'),
+      postSession: sessionStorage.getItem('rumo10_sound_played:e2e:synth:post'),
+      penSession: sessionStorage.getItem('rumo10_sound_played:e2e:synth:pen')
+    };
+  });
+  assert(synthResult.postStatus === 'scheduled', 'BALL_HIT_POST sintetizado e agendado com sucesso no Chrome');
+  assert(synthResult.penStatus === 'scheduled', 'PENALTY_AWARDED sintetizado e agendado com sucesso no Chrome');
+  assert(synthResult.postHandled && synthResult.postSession === '1', 'BALL_HIT_POST registrado no sessionStorage do navegador');
+  assert(synthResult.penHandled && synthResult.penSession === '1', 'PENALTY_AWARDED registrado no sessionStorage do navegador');
+
+  // 9. Teste de Deduplicação no F5 durante reprodução (P1-A)
+  console.log('\n9. Testando Deduplicação no F5 DURANTE a reprodução no navegador real (P1-A)...');
+  // Dispara um som longo (goal.ogg) e logo aos ~200ms recarrega a página
+  await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    audio.playDirect('GOAL_SCORED', 'e2e:midflight:goal');
+  });
+
+  // Imediatamente verifica se já foi marcado antes do reload
+  const markedMidflight = await page.evaluate(() => {
+    return sessionStorage.getItem('rumo10_sound_played:e2e:midflight:goal') === '1';
+  });
+  assert(markedMidflight, 'P1-A: Evento marcado no sessionStorage imediatamente ao iniciar reprodução');
+
+  // Recarrega a página (F5) enquanto o som original ainda estaria tocando
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  const reloadDeduplicated = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    return audio.wasHandled('e2e:midflight:goal') &&
+           sessionStorage.getItem('rumo10_sound_played:e2e:midflight:goal') === '1';
+  });
+  assert(reloadDeduplicated, 'P1-A: Deduplicação mantida após reload no meio da reprodução (sem eco nem re-trigger)');
+
   await browser.close();
 
   console.log('\n=======================================================');

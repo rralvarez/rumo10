@@ -74,11 +74,24 @@ final class Presentation {
         }
 
         foreach ($events as $event) {
-            $isHistorical = isset($event['minute']) 
-                && (int)$event['minute'] < $currentMinute 
-                && !in_array($event['id'] ?? '', $freshEventIds, true);
+            $type = $event['type'] ?? 'GENERIC';
+            $id = (string)($event['id'] ?? '');
+            $isCurrentStateWhistle = ($whistle !== null && $type === $whistle);
+
+            if ($isCurrentStateWhistle) {
+                // O apito derivado do estado atual da partida é contemporâneo à transição
+                $isHistorical = false;
+            } elseif ($id !== '' && in_array($id, $freshEventIds, true)) {
+                // Eventos expressamente vinculados à ação recém-concluída são sempre frescos,
+                // mesmo que o motor já tenha avançado o minuto da partida
+                $isHistorical = false;
+            } else {
+                // Eventos persistidos não pertencentes ao feedback da ação atual (ou apitos de períodos anteriores)
+                // são históricos, independentemente de igualdade ou avanço do relógio da partida
+                $isHistorical = true;
+            }
             $histAttr = $isHistorical ? ' data-sound-historical="1"' : '';
-            echo '<div data-sound-event="'.e($event['type'] ?? 'GENERIC').'" data-sound-event-id="'.e($event['id']).'"'.$histAttr.' class="sr-only" aria-hidden="true"></div>';
+            echo '<div data-sound-event="'.e($type).'" data-sound-event-id="'.e($id).'"'.$histAttr.' class="sr-only" aria-hidden="true"></div>';
         }
     }
 

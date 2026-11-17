@@ -19,7 +19,7 @@ Todos os arquivos a seguir são exigidos em `public/assets/audio/`, hospedados l
 | `substitution_in.ogg` | Entrada do jogador | NobodyYouKnowOf, crowd_cheering_and_clapping.wav, https://freesound.org/people/NobodyYouKnowOf/sounds/410868/ |
 | `substitution_out.ogg` | Saída do jogador | cognito perceptu, applause.wav, mesmo URL da assistência |
 
-O efeito `match_whistle.ogg` é a MESMA gravação em todos os três momentos. Os disparos não devem ser concatenados. Usar uma instância de `AudioBufferSourceNode` por disparo, com início em `t0 + n * 0,18s`, e sobreposição de playback; 180 ms é ponto inicial de ajuste auditivo, não um intervalo definitivo. Controlar ganho para evitar clipping.
+O efeito `match_whistle.ogg` é a MESMA gravação em todos os três momentos. Os disparos não devem ser concatenados. Usar uma instância de `AudioBufferSourceNode` por disparo, com início em `t0 + n * 0,18s`, e sobreposição de playback; 180 ms é ponto inicial de ajuste auditivo, não um intervalo definitivo. O controle de atenuação para evitar clipping é calculado proporcionalmente pelo número de disparos simultâneos (`gain = 1 / count` por pulso, sendo 1 no início, 2 no intervalo e 3 no fim), roteado ao nó mestre (`master gain`).
 
 As licenças das fontes Freesound foram apontadas como CC0 na pré-seleção de 16/11. Para Universfield, foi apontada a Pixabay Content License. É necessário reconfirmar a licença e guardar a origem, autor, data de obtenção, hashes SHA-256, duração final, transformação aplicada e créditos quando exigidos. Não distribuir os áudios de origem de forma independente.
 
@@ -28,9 +28,10 @@ As licenças das fontes Freesound foram apontadas como CC0 na pré-seleção de 
 - `MATCH_WHISTLE_START`, `MATCH_HALFTIME`, `MATCH_WHISTLE_END`: sinalização de período a partir do estado real da partida. Não simular relógio.
 - `GOAL_SCORED`, `ASSIST_RECORDED`, `CARD_YELLOW`, `CARD_RED`: eventos existentes do jogo.
 - `NO_GOAL`: nova sinalização sonora de finalização desperdiçada ou pênalti desperdiçado, sem mudar probabilidade/resultado.
-- `PLAYER_SUBSTITUTION_IN` e `PLAYER_SUBSTITUTION_OUT`: preparados no tocador. O vínculo com substituições reais depende de eventos canônicos da F04. Não criar substituições fictícias para reproduzir áudio.
-- `PENALTY_AWARDED`, `WHISTLE_FOUL` e `BALL_HIT_POST`: fora desta seleção de dez efeitos.
-- A execução deve ser idempotente por identidade de evento, com controle de mute/volume e desbloqueio por interação real.
+- `PLAYER_SUBSTITUTION_IN` e `PLAYER_SUBSTITUTION_OUT`: preparados no tocador e integrados a `MatchParticipation`. O vínculo com substituições reais depende de eventos canônicos da F04. Não criar substituições fictícias para reproduzir áudio.
+- `BALL_HIT_POST` e `PENALTY_AWARDED`: mantidos como efeitos legados sintetizados proceduralmente via Web Audio nativo (sem arquivos OGG adicionais na distribuição), preservando estrita compatibilidade retroativa com o motor esportivo.
+- `WHISTLE_FOUL`: fora desta seleção.
+- A execução deve ser idempotente por identidade de evento, com deduplicação imediata no agendamento do playback (t=0) via `sessionStorage`, controle de mute/volume e desbloqueio por interação real.
 - No modo Normal, são utilizados eventos detalhados da partida. Nos modos Rápido e Expresso, NÃO reproduzir toda a coleção de eventos antigos de uma simulação: a aceitação deve demonstrar ausência de rajadas, preservação de saves e relatório correto.
 
 ## Homologação antes do merge
@@ -44,4 +45,12 @@ As licenças das fontes Freesound foram apontadas como CC0 na pré-seleção de 
 7. Validar autoria, licença e SHA-256 de cada amostra e obter aceite do proprietário. Só então abrir ou finalizar PR e realizar merge autorizado na main.
 8. O primeiro deploy funcional após o merge deve ser a prova da automação permanente. Conferir recibo UOL e ambos os domínios.
 
-**Estado atual:** todos os oito arquivos OGG aprovados estão presentes localmente em `public/assets/audio/`, verificados por hashes SHA-256 e ffprobe, e validados pelas suítes determinísticas e E2E no IIS. Aguardando homologação auditiva do proprietário e revisão independente. Não executar merge nem publicar na UOL nesta etapa.
+---
+
+## Histórico de Auditorias e Status Atual
+
+> **[HISTÓRICO - 17/11/2026 Manhã]:** Etapa preliminar com 7 arquivos OGG entregues; pendência da obtenção de `no_goal.ogg` (P0-1) e correção da prioridade na fila (P0-2/P0-3).
+> **[HISTÓRICO - 17/11/2026 Tarde]:** Integração de `no_goal.ogg` concluída pelo proprietário, correção da classificação de cartão recente (P0-4) e portabilidade E2E.
+> **[HISTÓRICO - 17/11/2026 Auditoria Codex]:** Apontamentos P1-A (deduplicação no F5 durante reprodução), P1-B (preservação na suspensão do AudioContext), P1-C (restauração de BALL_HIT_POST e PENALTY_AWARDED) e P2-A (histórico no mesmo minuto).
+
+**Estado atual pós-auditoria:** Todas as correções P1-A, P1-B, P1-C, P2-A e alinhamentos P2-B foram incorporadas e testadas. Os oito arquivos OGG aprovados estão presentes localmente em `public/assets/audio/`, verificados por hashes SHA-256 e ffprobe, e validados pelas suítes determinísticas (PHP 127/127, Web Audio 98/98, Chrome E2E 31/31 no IIS). Aguardando parecer final e homologação auditiva do proprietário. Não executar merge nem publicar na UOL nesta etapa.

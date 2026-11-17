@@ -295,6 +295,75 @@ $outP04Sub = ob_get_clean();
 assertAud(str_contains($outP04Sub, 'data-sound-event="PLAYER_SUBSTITUTION_IN"'), 'P0-4: matchSounds renderiza PLAYER_SUBSTITUTION_IN');
 assertAud(!str_contains($outP04Sub, 'data-sound-historical="1"'), 'P0-4: PLAYER_SUBSTITUTION_IN da ação recente NÃO é marcado como histórico com minuto avançado de 60 para 70');
 
+// 3.4 Regressão P2-A: Classificação de histórico no mesmo minuto (duas ações no mesmo minuto)
+echo "\n3.4 Validando Regressão P2-A: Histórico no mesmo minuto (ações sucessivas sem avanço de relógio)...\n";
+
+$gP2A = Game::legacyCreate('Atacante Teste', 'São Paulo', 'SP', 'centroavante');
+$gP2A['stage'] = 'partida';
+$iP2A = Game::currentIndex($gP2A);
+$mP2A = &$gP2A['matches'][$iP2A];
+$mP2A['minute'] = 35;
+$mP2A['entry'] = 0;
+$mP2A['exit'] = 90;
+$mP2A['status'] = 'em_andamento';
+$mP2A['lineup'] = 'titular';
+$mP2A['sound_events'] = [];
+
+// Ação 1: lance aos 35 min gera cartão amarelo
+$idCard35 = Game::emitSoundEvent($mP2A, $gP2A, 'CARD_YELLOW', 35);
+$gP2A['feedback'] = [
+    'text' => 'Falta cometida no minuto 35',
+    'sound_event_ids' => [$idCard35],
+    'sound_event_id' => $idCard35
+];
+
+ob_start();
+Presentation::matchSounds($gP2A, $mP2A);
+$outAct1 = ob_get_clean();
+assertAud(str_contains($outAct1, 'data-sound-event="CARD_YELLOW"'), 'P2-A: Ação 1 renderiza CARD_YELLOW');
+assertAud(!str_contains($outAct1, 'data-sound-historical="1"'), 'P2-A: Ação 1 NÃO é marcada como histórica na ação corrente');
+
+// Ação 2: lance seguinte no MESMO minuto 35 (relógio continua em 35') gera chute para fora
+$idNoGoal35 = Game::emitSoundEvent($mP2A, $gP2A, 'NO_GOAL', 35);
+$gP2A['feedback'] = [
+    'text' => 'Chute para fora no mesmo minuto 35',
+    'sound_event' => 'NO_GOAL',
+    'sound_event_ids' => [$idNoGoal35],
+    'sound_event_id' => $idNoGoal35
+];
+
+ob_start();
+Presentation::matchSounds($gP2A, $mP2A);
+$outAct2 = ob_get_clean();
+
+// P2-A: O evento da Ação 1 (CARD_YELLOW aos 35') DEVE ter data-sound-historical="1",
+// mesmo tendo minuto 35 == minuto corrente 35!
+assertAud(str_contains($outAct2, 'data-sound-event-id="'.$idCard35.'" data-sound-historical="1"') ||
+          str_contains($outAct2, 'data-sound-historical="1" class="sr-only" aria-hidden="true"></div>') && str_contains($outAct2, 'data-sound-event-id="'.$idCard35.'"'),
+          'P2-A: Evento persistido da Ação 1 no minuto 35 É classificado como histórico na Ação 2 (mesmo minuto)');
+
+// E o evento da Ação 2 (NO_GOAL aos 35') NÃO deve ser histórico
+assertAud(str_contains($outAct2, 'data-sound-event="NO_GOAL"'), 'P2-A: Ação 2 renderiza NO_GOAL');
+assertAud(!str_contains($outAct2, 'data-sound-event-id="'.$idNoGoal35.'" data-sound-historical="1"'), 'P2-A: Evento fresco da Ação 2 NÃO tem marcação histórica');
+
+// 3.5 Compatibilidade com Efeitos Sintetizados Legados (P1-C: BALL_HIT_POST e PENALTY_AWARDED)
+echo "\n3.5 Validando Compatibilidade com Efeitos Legados Sintetizados (BALL_HIT_POST e PENALTY_AWARDED)...\n";
+$mLegacy = $mP2A;
+$mLegacy['sound_events'] = [];
+$gLegacy = $gP2A;
+
+$idPost = Game::emitSoundEvent($mLegacy, $gLegacy, 'BALL_HIT_POST', 35);
+$idPenalty = Game::emitSoundEvent($mLegacy, $gLegacy, 'PENALTY_AWARDED', 35);
+$gLegacy['feedback']['sound_event_ids'] = [$idPost, $idPenalty];
+
+ob_start();
+Presentation::matchSounds($gLegacy, $mLegacy);
+$outLegacy = ob_get_clean();
+
+assertAud(str_contains($outLegacy, 'data-sound-event="BALL_HIT_POST"'), 'P1-C: matchSounds renderiza evento legado BALL_HIT_POST');
+assertAud(str_contains($outLegacy, 'data-sound-event="PENALTY_AWARDED"'), 'P1-C: matchSounds renderiza evento legado PENALTY_AWARDED');
+assertAud(!str_contains($outLegacy, 'data-sound-historical="1"'), 'P1-C: Efeitos legados frescos renderizados sem marcação histórica');
+
 // -------------------------------------------------------------------------
 // 4. Isolamento dos Modos de Jogo (Normal vs Rápido / Expresso)
 // -------------------------------------------------------------------------

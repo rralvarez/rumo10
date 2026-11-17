@@ -34,7 +34,7 @@
 - **SHA-256 do arquivo original:** `1bc56409d3439a16fd54bc8fa83affb7e2bc69519b15ac49979d924e895910bf`
 - **SHA-256 do OGG final:** `b85499315a2ed418fbb7c651e3b2a53be4507076e4585183661799194ddc97f9`
 - **Duração final:** 0.54s (recorte cirúrgico do sopro nítido com fade-out de 0.05s).
-- **Regra de playback:** Execução através de nós `AudioBufferSourceNode` instanciados dinamicamente com ganho atenuado (`whistleGain = 0.55`) para garantir headroom e prevenir clipping digital na sobreposição polifônica.
+- **Regra de playback:** Execução através de nós `AudioBufferSourceNode` instanciados dinamicamente com atenuação proporcional calculada dinamicamente pelo número de pulsos simultâneos (`gain = 1 / count` por pulso, sendo `count = 1` no início, `count = 2` no intervalo e `count = 3` no fim de partida), roteados através do nó mestre (`master gain`) e respeitando o controle de volume/mudo para garantir headroom e prevenir clipping digital na sobreposição polifônica.
 
 ### 2.2. Cartão Amarelo (`yellow_card.ogg`)
 - **Efeito mapeado:** `CARD_YELLOW`
@@ -122,3 +122,47 @@
 - Em cumprimento estrito às diretrizes de conformidade do projeto e à determinação da Coordenação Técnica de não forjar áudio substituto nem burlar proteções de rede, a integração aguardou a intervenção autorizada do proprietário.
 - O proprietário realizou o download do MP3 autêntico pelo navegador em 17/11/2026 e forneceu o pacote `R10-AUD-001-no_goal-integracao.zip`.
 - O hash SHA-256 do arquivo integrado corresponde estritamente ao artefato auditado (`d9d1972ba0905a32dd67a3c73a24705c39232a70ddd8b6a6f9ded866cecfa302`), com inventário de 8 arquivos OGG 100% completo e operacional.
+
+---
+
+## 4. Efeitos Legados Sintetizados em Web Audio (P1-C)
+
+Para assegurar estrita retrocompatibilidade com marcações e regras esportivas legadas sem requerer arquivos de áudio adicionais na distribuição, dois efeitos permanecem sintetizados proceduralmente através de osciladores nativos da Web Audio API (`AudioEngine.playTone` e `AudioEngine.playWhistle`), roteados diretamente através do nó de ganho mestre (`this.master`):
+
+1. **`BALL_HIT_POST` (Bola na Trave):**
+   - **Mecanismo:** Oscilador de onda triangular a 160 Hz (duração 0.15s, ganho $0.8 \times \text{vol}$) seguido de oscilador senoidal a 80 Hz (duração 0.25s, ganho $0.9 \times \text{vol}$, offset +0.05s) simulando o impacto do poste e ressonância da trave.
+   - **Prioridade:** 88 (precede `NO_GOAL` na fila de reprodução).
+   - **Duração total:** 0.30s.
+
+2. **`PENALTY_AWARDED` (Pênalti Assinalado):**
+   - **Mecanismo:** Oscilador senoidal a 2.500 Hz com rampa exponencial descendente até $0.95 \times 2.500$ Hz (duração 0.35s, ganho atenuado linear com fade-out exponencial).
+   - **Prioridade:** 82 (precede advertências e expulsões disciplinares).
+   - **Duração total:** 0.35s.
+
+Ambos os efeitos sintetizados respeitam o volume global, o modo mudo, a deduplicação em `sessionStorage` e a fila ordenada contemporânea.
+
+---
+
+## 5. Auditoria Independente Codex e Correções Conclusivas
+
+Após a auditoria independente do commit `6ac88bb5`, foram identificados e sanados quatro apontamentos técnicos:
+
+1. **P1-A | Deduplicação no F5 durante a reprodução:**
+   - *Causa:* O registro em `sessionStorage` e `this.handled` ocorria apenas no evento assíncrono `onended`. Uma recarga de página (F5) em meio ao playback reexecutava o áudio.
+   - *Solução:* Registro imediato em `this.handled` e `sessionStorage` no agendamento do primeiro disparo (`source.start(...)` ou oscilador). Adição de conjunto `this.inFlight` para blindar operações assíncronas.
+   - *Evidência:* Teste determinístico 15 e teste E2E 9 no Chrome com recarga ativa aprovados.
+
+2. **P1-B | Preservação de eventos durante suspensão do AudioContext:**
+   - *Causa:* Se o `AudioContext` estivesse suspenso pelo navegador (política de autoplay), o evento não podia ser marcado como tratado precocemente nem descartado.
+   - *Solução:* Verificação de `this.ctx.state !== 'running'`; retenção na `pendingQueue` sem gravação em `sessionStorage`, com liberação e reprodução imediata quando `AudioEngine.unlock()` é chamado pelo gesto do usuário. Falhas terminais (404/decode) continuam marcadas para evitar loops.
+   - *Evidência:* Teste determinístico 16 aprovado.
+
+3. **P1-C | Restauração de compatibilidade com efeitos sintetizados:**
+   - *Causa:* Os efeitos sintetizados legados (`BALL_HIT_POST` e `PENALTY_AWARDED`) haviam sido omitidos no mapa de sons naturais.
+   - *Solução:* Restauração via Web Audio puro conectados a `this.master`, com prioridades canônicas (88 e 82) e fila ordenada.
+   - *Evidência:* Testes PHP 3.5, determinístico 17 e teste E2E 8 aprovados.
+
+4. **P2-A | Critério primário de frescor e histórico no mesmo minuto:**
+   - *Causa:* A mera igualdade `minute == currentMinute` em `Presentation.php` permitia que eventos persistidos de ações anteriores no mesmo minuto fossem reclassificados indevidamente como frescos.
+   - *Solução:* Identidade expressa vinculada aos `sound_event_ids` do feedback da última ação como critério primário de frescor. Eventos persistidos sem essa vinculação recebem `data-sound-historical="1"`. Apitos de estado atual da partida permanecem frescos durante a transição.
+   - *Evidência:* Teste PHP 3.4 aprovado.
