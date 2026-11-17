@@ -22,8 +22,9 @@ final class Presentation {
         if($highlight==='goal') $title='GOOOL! Você marcou!';
         if($highlight==='assist') $title='Assistência sua!';
         $soundAttr = '';
-        if ($highlight === 'goal' || $highlight === 'assist') {
-            $eventType = ($highlight === 'goal') ? 'GOAL_SCORED' : 'ASSIST_RECORDED';
+        $feedbackEvent = $f['sound_event'] ?? ($highlight === 'goal' ? 'GOAL_SCORED' : ($highlight === 'assist' ? 'ASSIST_RECORDED' : null));
+        if ($feedbackEvent) {
+            $eventType = $feedbackEvent;
             if (!empty($f['sound_event_id'])) {
                 $soundEventId = $f['sound_event_id'];
             } else {
@@ -35,7 +36,7 @@ final class Presentation {
                 $matchKey = ($m['home'] ?? 'h') . '-' . ($m['away'] ?? 'a');
                 $soundEventId = ($g['id']??'0').':s'.$season.':'.$compId.':m'.$round.':'.$matchKey.':min'.$minute.':'.$eventType.':fb';
             }
-            $soundAttr = ' data-sound-event="'.$eventType.'" data-sound-event-id="'.e($soundEventId).'"';
+            $soundAttr = ' data-sound-event="'.$eventType.'" data-sound-event-id="'.e($soundEventId).'" data-sound-source="action"';
         }
         $text=str_replace([': a intenção deu certo.',': a intenção não teve o efeito esperado.'],'.',$f['text']);
         echo '<aside class="action-result result-'.$tone.($highlight==='goal'?' result-goal':($highlight==='assist'?' result-assist':'')).'" data-result-id="'.e($g['id'].':'.$g['version']).'"'.$soundAttr.' aria-live="polite">';
@@ -52,6 +53,7 @@ final class Presentation {
         $events = $match['sound_events'] ?? [];
         $whistle = match (true) {
             $g['stage'] === 'partida' && $match['status'] === 'em_andamento' && $match['minute'] === 15 => 'MATCH_WHISTLE_START',
+            $g['stage'] === 'partida' && $match['status'] === 'intervalo' && $match['minute'] === 45 => 'MATCH_HALFTIME',
             $g['stage'] === 'fim_semana' && $match['status'] === 'finalizada' => 'MATCH_WHISTLE_END',
             default => null,
         };
@@ -65,8 +67,35 @@ final class Presentation {
             else $events[] = $event;
         }
 
+        $currentMinute = (int)($match['minute'] ?? 90);
+        if ($g['feedback'] !== null && isset($g['feedback']['sound_event_ids']) && is_array($g['feedback']['sound_event_ids'])) {
+            $freshEventIds = $g['feedback']['sound_event_ids'];
+        } else {
+            $freshEventIds = $g['current_command_sound_event_ids'] ?? [];
+        }
+        if (!empty($g['feedback']['sound_event_id']) && !in_array($g['feedback']['sound_event_id'], $freshEventIds, true)) {
+            $freshEventIds[] = $g['feedback']['sound_event_id'];
+        }
+
         foreach ($events as $event) {
-            echo '<div data-sound-event="'.e($event['type'] ?? 'GENERIC').'" data-sound-event-id="'.e($event['id']).'" class="sr-only" aria-hidden="true"></div>';
+            $type = $event['type'] ?? 'GENERIC';
+            $id = (string)($event['id'] ?? '');
+            $isCurrentStateWhistle = ($whistle !== null && $type === $whistle);
+
+            if ($isCurrentStateWhistle) {
+                // O apito derivado do estado atual da partida é contemporâneo à transição
+                $isHistorical = false;
+            } elseif ($id !== '' && in_array($id, $freshEventIds, true)) {
+                // Eventos expressamente vinculados à ação recém-concluída são sempre frescos,
+                // mesmo que o motor já tenha avançado o minuto da partida
+                $isHistorical = false;
+            } else {
+                // Eventos persistidos não pertencentes ao feedback da ação atual (ou apitos de períodos anteriores)
+                // são históricos, independentemente de igualdade ou avanço do relógio da partida
+                $isHistorical = true;
+            }
+            $histAttr = $isHistorical ? ' data-sound-historical="1"' : '';
+            echo '<div data-sound-event="'.e($type).'" data-sound-event-id="'.e($id).'"'.$histAttr.' class="sr-only" aria-hidden="true"></div>';
         }
     }
 

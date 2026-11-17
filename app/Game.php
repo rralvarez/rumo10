@@ -73,6 +73,7 @@ final class Game {
             self::reconcileSoundEvents($match, $g);
         }
         unset($match);
+        $g['current_command_sound_event_ids'] = [];
         return self::applyCommand($g, $action, $input, $automated, $rng);
     }
 
@@ -183,6 +184,8 @@ final class Game {
                     $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | GOL DE PÊNALTI! Cobrança impecável!"];
                 } else {
                     $st['penalties_missed'] = ($st['penalties_missed'] ?? 0) + 1;
+                    $g['feedback']['sound_event'] = 'NO_GOAL';
+                    $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'NO_GOAL', (int)$m['minute']);
                     $missKind = match(random_int(1,3)) { 1 => 'saved', 2 => 'post', default => 'wide' };
                     if ($missKind === 'saved') {
                         $g['feedback']['text'] = 'DEFENDE O GOLEIRO! O arqueiro acerta o canto e espalma o pênalti!';
@@ -325,7 +328,11 @@ final class Game {
                     $g['feedback']['highlight']='goal';
                     $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
                     $text.=' Gol do seu jogador!';
-                } else $text.=' A bola não entrou.';
+                } else {
+                    $g['feedback']['sound_event'] = 'NO_GOAL';
+                    $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'NO_GOAL', (int)$m['minute']);
+                    $text.=' A bola não entrou.';
+                }
             }
             if($type==='desarme' && $roll['success']) $st['tackles']++;
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
@@ -478,7 +485,7 @@ final class Game {
     /**
      * Registra evento sonoro autoritativo persistente com ID único imutável
      */
-    public static function emitSoundEvent(array &$m, array $g, string $type, int $minute): string {
+    public static function emitSoundEvent(array &$m, array &$g, string $type, int $minute): string {
         $m['sound_events'] = $m['sound_events'] ?? [];
         $m['sound_event_counters'] = $m['sound_event_counters'] ?? [];
         // Reconcilia com eventos existentes que já possuam seq para evitar reuso
@@ -504,6 +511,19 @@ final class Game {
             'minute' => $minute,
             'seq' => $seq
         ];
+        $g['current_command_sound_event_ids'] = $g['current_command_sound_event_ids'] ?? [];
+        if (!in_array($eventId, $g['current_command_sound_event_ids'], true)) {
+            $g['current_command_sound_event_ids'][] = $eventId;
+        }
+        if (isset($g['feedback']) && is_array($g['feedback'])) {
+            $g['feedback']['sound_event_ids'] = $g['feedback']['sound_event_ids'] ?? [];
+            if (!in_array($eventId, $g['feedback']['sound_event_ids'], true)) {
+                $g['feedback']['sound_event_ids'][] = $eventId;
+            }
+            if (empty($g['feedback']['sound_event_id'])) {
+                $g['feedback']['sound_event_id'] = $eventId;
+            }
+        }
         return $eventId;
     }
 

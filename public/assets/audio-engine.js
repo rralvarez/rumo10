@@ -1,248 +1,546 @@
 (() => {
   'use strict';
 
-  // Gerenciador de Áudio Web Audio API (Sintetizador Puro de Alta Qualidade)
-  // Sem chamadas de rede externas, em conformidade estrita com Content-Security-Policy: default-src 'self'
+  // AUD-001: sons naturais, com arquivos hospedados no próprio Rumo10.
+  // O mesmo buffer do apito é disparado 1, 2 ou 3 vezes, em sobreposição.
+  const SOUNDS = Object.freeze({
+    MATCH_WHISTLE_START: { file: 'match_whistle.ogg', repeats: 1 },
+    MATCH_HALFTIME: { file: 'match_whistle.ogg', repeats: 2 },
+    MATCH_WHISTLE_END: { file: 'match_whistle.ogg', repeats: 3 },
+    GOAL_SCORED: { file: 'goal.ogg' },
+    NO_GOAL: { file: 'no_goal.ogg' },
+    ASSIST_RECORDED: { file: 'assist.ogg' },
+    CARD_YELLOW: { file: 'yellow_card.ogg' },
+    CARD_RED: { file: 'red_card.ogg' },
+    PLAYER_SUBSTITUTION_IN: { file: 'substitution_in.ogg' },
+    PLAYER_SUBSTITUTION_OUT: { file: 'substitution_out.ogg' },
+    // Efeitos legados sintetizados mantidos para compatibilidade retroativa
+    BALL_HIT_POST: { synth: 'ball_hit_post', duration: 0.30 },
+    PENALTY_AWARDED: { synth: 'penalty_awarded', duration: 0.35 }
+  });
+  const WHISTLE_GAP_SECONDS = 0.18; // Ponto inicial para homologação auditiva.
+  const EVENT_PRIORITY = Object.freeze({
+    GOAL_SCORED: 100,
+    ASSIST_RECORDED: 90,
+    BALL_HIT_POST: 88,
+    NO_GOAL: 85,
+    PENALTY_AWARDED: 82,
+    CARD_RED: 80,
+    CARD_YELLOW: 75,
+    PLAYER_SUBSTITUTION_IN: 70,
+    PLAYER_SUBSTITUTION_OUT: 65,
+    MATCH_WHISTLE_END: 50,
+    MATCH_HALFTIME: 45,
+    MATCH_WHISTLE_START: 40
+  });
+
   const AudioEngine = {
     ctx: null,
+    master: null,
     prefs: { muted: false, volume: 0.7 },
     pendingQueue: new Map(),
     handled: new Set(),
+    inFlight: new Set(),
+    cachedBuffers: new Map(),
     unlockingPromise: null,
+    playing: false,
+    nextAllowedPlayTime: 0,
+    scheduledTimer: null,
 
     init() {
       try {
-        const saved = localStorage.getItem('rumo10_audio_prefs');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (typeof parsed.muted === 'boolean') this.prefs.muted = parsed.muted;
-          if (typeof parsed.volume === 'number') this.prefs.volume = Math.max(0, Math.min(1, parsed.volume));
+        const saved = JSON.parse(localStorage.getItem('rumo10_audio_prefs') || 'null');
+        if (saved && typeof saved.muted === 'boolean') this.prefs.muted = saved.muted;
+        if (saved && Number.isFinite(saved.volume)) {
+          this.prefs.volume = Math.max(0, Math.min(1, saved.volume));
         }
       } catch (_) {}
-
-      // Cria ou reutiliza contexto global que sobrevive à substituição do DOM
-      if (!window.__rumo10AudioCtx) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioContextClass) {
-          try {
-            window.__rumo10AudioCtx = new AudioContextClass();
-          } catch (_) {}
-        }
-      }
-      this.ctx = window.__rumo10AudioCtx || null;
-    },
-
-    unlock() {
-      if (!this.ctx) return;
-      if (this.ctx.state === 'running') {
-        this.flushPendingQueue();
-        return;
-      }
-      if (this.unlockingPromise) return;
-      this.unlockingPromise = this.ctx.resume()
-        .then(() => this.flushPendingQueue())
-        .catch(() => {})
-        .finally(() => { this.unlockingPromise = null; });
-    },
-
-    flushPendingQueue() {
-      if (!this.ctx || this.ctx.state !== 'running' || this.prefs.muted) return;
-      for (const [eventId, eventKey] of this.pendingQueue) {
-        this.playDirect(eventKey);
-        this.markHandled(eventId);
-        this.pendingQueue.delete(eventId);
-      }
-    },
-
-    markHandled(eventId) {
-      this.handled.add(eventId);
-      try { sessionStorage.setItem('rumo10_sound_played:' + eventId, '1'); } catch (_) {}
-    },
-
-    enqueue(eventId, eventKey) {
-      if (!this.ctx || this.handled.has(eventId) || this.pendingQueue.has(eventId)) return;
       try {
-        if (sessionStorage.getItem('rumo10_sound_played:' + eventId)) return;
-      } catch (_) {}
-      if (this.prefs.muted) {
-        this.markHandled(eventId);
-        return;
-      }
-      this.pendingQueue.set(eventId, eventKey);
-      this.flushPendingQueue();
+        if (!window.__rumo10AudioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) window.__rumo10AudioCtx = new AudioContextClass();
+        }
+        this.ctx = window.__rumo10AudioCtx || null;
+        if (this.ctx) {
+          this.master = this.ctx.createGain();
+          this.master.connect(this.ctx.destination);
+          this.updateMasterVolume();
+        }
+      } catch (_) { this.ctx = null; this.master = null; }
+    },
+
+    updateMasterVolume() {
+      if (!this.master || !this.ctx) return;
+      const level = this.prefs.muted ? 0 : Math.min(0.65, this.prefs.volume * 0.65);
+      this.master.gain.setTargetAtTime(level, this.ctx.currentTime, 0.008);
+    },
+
+    savePrefs() {
+      try { localStorage.setItem('rumo10_audio_prefs', JSON.stringify(this.prefs)); } catch (_) {}
     },
 
     setMuted(muted) {
       this.prefs.muted = !!muted;
       this.savePrefs();
+      this.updateMasterVolume();
       this.updateUI();
       if (this.prefs.muted) {
-        for (const eventId of this.pendingQueue.keys()) this.markHandled(eventId);
+        if (this.scheduledTimer !== null) {
+          clearTimeout(this.scheduledTimer);
+          this.scheduledTimer = null;
+        }
+        for (const id of this.inFlight) this.markHandled(id);
+        for (const id of this.pendingQueue.keys()) this.markHandled(id);
         this.pendingQueue.clear();
       } else {
         this.unlock();
       }
     },
 
-    setVolume(vol) {
-      this.prefs.volume = Math.max(0, Math.min(1, vol));
+    getNow() {
+      if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+        return performance.now();
+      }
+      return Date.now();
+    },
+
+    scheduleFlush(delayMs) {
+      if (this.scheduledTimer !== null) {
+        clearTimeout(this.scheduledTimer);
+        this.scheduledTimer = null;
+      }
+      const wait = Math.max(0, Math.ceil(delayMs));
+      this.scheduledTimer = setTimeout(() => {
+        this.scheduledTimer = null;
+        this.flushPendingQueue();
+      }, wait);
+    },
+
+    setVolume(volume) {
+      this.prefs.volume = Math.max(0, Math.min(1, Number(volume) || 0));
       this.savePrefs();
+      this.updateMasterVolume();
       this.updateUI();
     },
 
-    savePrefs() {
-      try {
-        localStorage.setItem('rumo10_audio_prefs', JSON.stringify(this.prefs));
-      } catch (_) {}
+    unlock() {
+      if (!this.ctx) return;
+      if (this.ctx.state === 'running') { this.flushPendingQueue(); return; }
+      if (this.unlockingPromise) return;
+      this.unlockingPromise = this.ctx.resume()
+        .then(() => {
+          this.flushPendingQueue();
+        })
+        .catch(() => {})
+        .finally(() => {
+          this.unlockingPromise = null;
+        });
     },
 
-    playDirect(eventKey) {
-      if (this.prefs.volume === 0) return;
-      const now = this.ctx.currentTime;
-      const vol = this.prefs.volume;
+    markHandled(id) {
+      this.handled.add(id);
+      try { sessionStorage.setItem('rumo10_sound_played:' + id, '1'); } catch (_) {}
+    },
 
-      switch (eventKey) {
-        case 'MATCH_WHISTLE_START': // Dois apitos curtos e claros
-          this.playWhistle(now, 2200, 0.12, vol);
-          this.playWhistle(now + 0.16, 2400, 0.22, vol);
-          break;
+    wasHandled(id) {
+      if (this.handled.has(id) || this.inFlight.has(id)) return true;
+      try { return sessionStorage.getItem('rumo10_sound_played:' + id) === '1'; }
+      catch (_) { return false; }
+    },
 
-        case 'MATCH_WHISTLE_END': // Três apitos (dois curtos, um longo)
-          this.playWhistle(now, 2200, 0.12, vol);
-          this.playWhistle(now + 0.18, 2200, 0.12, vol);
-          this.playWhistle(now + 0.38, 2400, 0.55, vol);
-          break;
+    enqueue(id, key) {
+      if (!this.ctx || !SOUNDS[key] || !id || this.wasHandled(id)) return;
+      if (this.prefs.muted) { this.markHandled(id); return; }
+      this.pendingQueue.set(id, key);
+      this.flushPendingQueue();
+    },
 
-        case 'PLAYER_SUBSTITUTION_IN': // Tom ascendente elegante de entrada
-          this.playChime(now, [440, 659.25, 880], 0.25, vol * 0.85);
-          break;
+    playWhistle(startTime, freq, duration, gainVal, onEnded = null) {
+      if (!this.ctx || !this.master) return null;
+      let osc = null;
+      let gain = null;
+      let endedFired = false;
+      let started = false;
 
-        case 'PLAYER_SUBSTITUTION_OUT': // Tom descendente elegante de saída
-          this.playChime(now, [880, 659.25, 523.25], 0.28, vol * 0.85);
-          break;
+      const cleanup = () => {
+        try { if (osc) osc.disconnect(); } catch (_) {}
+        try { if (gain) gain.disconnect(); } catch (_) {}
+      };
 
-        case 'GOAL_SCORED': // Acorde solene triunfante com brilho sonoro
-          this.playChime(now, [523.25, 659.25, 783.99, 1046.50], 0.7, vol);
-          break;
+      const handleEnded = () => {
+        if (endedFired) return;
+        endedFired = true;
+        cleanup();
+        if (typeof onEnded === 'function') {
+          try { onEnded(); } catch (_) {}
+        }
+      };
 
-        case 'ASSIST_RECORDED': // Acorde límpido de assistência
-          this.playChime(now, [587.33, 739.99, 880], 0.5, vol * 0.9);
-          break;
+      try {
+        osc = this.ctx.createOscillator();
+        gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 0.95, startTime + duration);
 
-        case 'CARD_YELLOW': // Apito curto com advertência
-          this.playWhistle(now, 1900, 0.18, vol * 0.85);
-          this.playTone(now + 0.20, 330, 0.22, 'triangle', vol * 0.5);
-          break;
+        gain.gain.setValueAtTime(0, startTime);
+        gain.gain.linearRampToValueAtTime(gainVal * 0.4, startTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
 
-        case 'CARD_RED': // Apito penetrante com tom grave
-          this.playWhistle(now, 2600, 0.40, vol);
-          this.playTone(now + 0.15, 180, 0.50, 'sawtooth', vol * 0.6);
-          break;
+        if (typeof osc.addEventListener === 'function') {
+          osc.addEventListener('ended', handleEnded, { once: true });
+        }
+        osc.onended = handleEnded;
 
-        case 'PENALTY_AWARDED': // Apito enérgico longo
-          this.playWhistle(now, 2500, 0.35, vol);
-          break;
+        osc.connect(gain);
+        gain.connect(this.master);
+        osc.start(startTime);
+        started = true;
+        osc.stop(startTime + duration);
 
-        case 'BALL_HIT_POST': // Impacto metálico no poste
-          this.playTone(now, 160, 0.15, 'triangle', vol * 0.8);
-          this.playTone(now + 0.05, 80, 0.25, 'sine', vol * 0.9);
-          break;
+        return {
+          osc,
+          gain,
+          stop: () => {
+            try { osc.stop(); } catch (_) {}
+            handleEnded();
+          },
+          cleanup: () => {
+            cleanup();
+          }
+        };
+      } catch (err) {
+        if (started && osc) {
+          try {
+            osc.stop();
+          } catch (stopErr) {
+            console.warn('[AudioEngine] Falha persistente ao interromper oscilador; parada da fonte não comprovada:', stopErr);
+          }
+        }
+        cleanup();
+        throw err;
       }
     },
 
-    playWhistle(startTime, freq, duration, gainVal) {
-      if (!this.ctx) return;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, startTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 0.95, startTime + duration);
+    playTone(startTime, freq, duration, type, gainVal, onEnded = null) {
+      if (!this.ctx || !this.master) return null;
+      let osc = null;
+      let gain = null;
+      let endedFired = false;
+      let started = false;
 
-      gain.gain.setValueAtTime(0, startTime);
-      gain.gain.linearRampToValueAtTime(gainVal * 0.4, startTime + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+      const cleanup = () => {
+        try { if (osc) osc.disconnect(); } catch (_) {}
+        try { if (gain) gain.disconnect(); } catch (_) {}
+      };
 
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
-    },
+      const handleEnded = () => {
+        if (endedFired) return;
+        endedFired = true;
+        cleanup();
+        if (typeof onEnded === 'function') {
+          try { onEnded(); } catch (_) {}
+        }
+      };
 
-    playTone(startTime, freq, duration, type, gainVal) {
-      if (!this.ctx) return;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = type || 'sine';
-      osc.frequency.setValueAtTime(freq, startTime);
+      try {
+        osc = this.ctx.createOscillator();
+        gain = this.ctx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
 
-      gain.gain.setValueAtTime(gainVal * 0.3, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+        gain.gain.setValueAtTime(gainVal * 0.3, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
 
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
-    },
-
-    playChime(startTime, freqs, duration, gainVal) {
-      if (!this.ctx) return;
-      freqs.forEach((freq, idx) => {
-        const noteStart = startTime + idx * 0.07;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, noteStart);
-
-        gain.gain.setValueAtTime(0, noteStart);
-        gain.gain.linearRampToValueAtTime((gainVal / freqs.length) * 0.8, noteStart + 0.03);
-        gain.gain.exponentialRampToValueAtTime(0.001, noteStart + duration);
+        if (typeof osc.addEventListener === 'function') {
+          osc.addEventListener('ended', handleEnded, { once: true });
+        }
+        osc.onended = handleEnded;
 
         osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(noteStart);
-        osc.stop(noteStart + duration);
+        gain.connect(this.master);
+        osc.start(startTime);
+        started = true;
+        osc.stop(startTime + duration);
+
+        return {
+          osc,
+          gain,
+          stop: () => {
+            try { osc.stop(); } catch (_) {}
+            handleEnded();
+          },
+          cleanup: () => {
+            cleanup();
+          }
+        };
+      } catch (err) {
+        if (started && osc) {
+          try {
+            osc.stop();
+          } catch (stopErr) {
+            console.warn('[AudioEngine] Falha persistente ao interromper oscilador; parada da fonte não comprovada:', stopErr);
+          }
+        }
+        cleanup();
+        throw err;
+      }
+    },
+
+    async bufferFor(file) {
+      if (!this.cachedBuffers.has(file)) {
+        const promise = fetch('/assets/audio/' + file, { credentials: 'same-origin' })
+          .then(response => {
+            if (!response.ok) throw new Error('Audio asset unavailable: ' + file);
+            return response.arrayBuffer();
+          })
+          .then(bytes => this.ctx.decodeAudioData(bytes))
+          .catch(error => {
+            this.cachedBuffers.delete(file);
+            throw error;
+          });
+        this.cachedBuffers.set(file, promise);
+      }
+      return this.cachedBuffers.get(file);
+    },
+
+    async playDirect(key, id) {
+      const effect = SOUNDS[key];
+      if (!effect || !this.ctx || !this.master) return { status: 'failed' };
+      if (this.prefs.muted || this.prefs.volume <= 0) {
+        if (id) this.markHandled(id);
+        return { status: 'muted' };
+      }
+
+      // Efeitos legados sintetizados (BALL_HIT_POST e PENALTY_AWARDED)
+      if (effect.synth) {
+        if (this.ctx.state !== 'running') return { status: 'suspended' };
+        const now = this.ctx.currentTime + 0.02;
+        const vol = this.prefs.volume;
+
+        return new Promise((resolve, reject) => {
+          let state = 'pending'; // pending -> active -> completed / failed
+          let resolved = false;
+          const handles = [];
+          const totalExpected = (effect.synth === 'penalty_awarded') ? 1 : 2;
+          let completedCount = 0;
+
+          const onEndedCallback = () => {
+            if (state !== 'active') return;
+            completedCount++;
+            if (completedCount === totalExpected) {
+              state = 'completed';
+              if (!resolved) {
+                resolved = true;
+                resolve({ status: 'scheduled' });
+              }
+            }
+          };
+
+          const abortAll = (error) => {
+            if (state === 'failed' || resolved) return;
+            state = 'failed';
+            resolved = true;
+            for (const h of handles) {
+              if (h && typeof h.stop === 'function') {
+                try { h.stop(); } catch (_) {}
+              }
+              if (h && typeof h.cleanup === 'function') {
+                try { h.cleanup(); } catch (_) {}
+              }
+            }
+            reject(error || new Error('Synth playback failed'));
+          };
+
+          try {
+            if (effect.synth === 'penalty_awarded') {
+              const h = this.playWhistle(now, 2500, 0.35, vol, onEndedCallback);
+              if (h) handles.push(h);
+            } else if (effect.synth === 'ball_hit_post') {
+              const h1 = this.playTone(now, 160, 0.15, 'triangle', vol * 0.8, onEndedCallback);
+              if (h1) handles.push(h1);
+              const h2 = this.playTone(now + 0.05, 80, 0.25, 'sine', vol * 0.9, onEndedCallback);
+              if (h2) handles.push(h2);
+            }
+            state = 'active';
+            // P1-A: Registra como manipulado assim que o agendamento foi concluído com sucesso
+            if (id) {
+              this.markHandled(id);
+            }
+          } catch (err) {
+            abortAll(err);
+          }
+        });
+      }
+
+      // Efeitos naturais com arquivos OGG
+      const buffer = await this.bufferFor(effect.file);
+
+      // P2 Residual Mute: se o evento foi cancelado durante o download assíncrono (ex: mute ativado)
+      if (id && this.handled.has(id)) {
+        return { status: 'cancelled' };
+      }
+
+      // P1-B: Verifica se o contexto foi suspenso durante o fetch assíncrono do arquivo
+      if (this.prefs.muted || this.prefs.volume <= 0) {
+        if (id) this.markHandled(id);
+        return { status: 'muted' };
+      }
+      if (this.ctx.state !== 'running') {
+        return { status: 'suspended' };
+      }
+
+      const count = effect.repeats || 1;
+      const level = 1 / count;
+      const startAt = this.ctx.currentTime + 0.02;
+
+      return new Promise((resolve) => {
+        let completed = 0;
+        for (let index = 0; index < count; index++) {
+          const source = this.ctx.createBufferSource();
+          const gain = this.ctx.createGain();
+          source.buffer = buffer;
+          gain.gain.value = level;
+          source.connect(gain);
+          gain.connect(this.master);
+          source.onended = () => {
+            try { source.disconnect(); gain.disconnect(); } catch (_) {}
+            completed++;
+            if (completed === count) {
+              resolve({ status: 'scheduled' });
+            }
+          };
+          source.start(startAt + index * WHISTLE_GAP_SECONDS);
+        }
+        // P1-A: Registra como manipulado assim que o primeiro disparo foi agendado com sucesso
+        if (id) {
+          this.markHandled(id);
+        }
       });
+    },
+
+    async flushPendingQueue() {
+      if (!this.ctx || this.ctx.state !== 'running' || this.prefs.muted || this.playing) return;
+      if (this.pendingQueue.size === 0) return;
+
+      const now = this.getNow();
+      if (now < this.nextAllowedPlayTime) {
+        // Ainda dentro do intervalo mínimo de 250ms após conclusão do efeito anterior:
+        // agenda a execução estritamente para o tempo restante sem disparar precocemente
+        if (this.scheduledTimer === null) {
+          this.scheduleFlush(this.nextAllowedPlayTime - now);
+        }
+        return;
+      }
+
+      if (this.scheduledTimer !== null) {
+        clearTimeout(this.scheduledTimer);
+        this.scheduledTimer = null;
+      }
+
+      const entry = this.pendingQueue.entries().next().value;
+      if (!entry) return;
+      const [id, key] = entry;
+
+      this.inFlight.add(id);
+      this.playing = true;
+
+      let scheduledOrHandled = false;
+      try {
+        const result = await this.playDirect(key, id);
+        if (result && result.status === 'suspended') {
+          // P1-B: O contexto foi suspenso antes do agendamento; preserva na fila pendente
+          // sem marcar como tratado, para tocar no próximo desbloqueio
+          this.inFlight.delete(id);
+          this.playing = false;
+          return;
+        }
+        // Agendado ou mudo: remove da fila pendente
+        scheduledOrHandled = true;
+        this.pendingQueue.delete(id);
+      } catch (_) {
+        // Falha terminal (ex: 404 ou erro de decode): marca manipulado e remove da fila
+        scheduledOrHandled = true;
+        this.markHandled(id);
+        this.pendingQueue.delete(id);
+      } finally {
+        this.inFlight.delete(id);
+        this.playing = false;
+        if (scheduledOrHandled) {
+          // Ao concluir efetivamente o efeito, fixa o marco temporal de +250ms
+          this.nextAllowedPlayTime = this.getNow() + 250;
+          if (this.pendingQueue.size > 0 && !this.prefs.muted && this.ctx && this.ctx.state === 'running') {
+            // Espaçamento regulamentar de 250ms entre eventos contemporâneos sucessivos
+            this.scheduleFlush(250);
+          }
+        }
+      }
     },
 
     updateUI() {
       const btn = document.querySelector('[data-action="toggle-audio"]');
-      if (btn) {
-        btn.setAttribute('aria-pressed', (!this.prefs.muted).toString());
-        btn.classList.toggle('is-muted', this.prefs.muted);
-        const icon = btn.querySelector('.audio-icon');
-        if (icon) {
-          icon.innerHTML = this.prefs.muted
-            ? '<path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>'
-            : '<path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>';
-        }
+      if (!btn) return;
+      btn.setAttribute('aria-pressed', (!this.prefs.muted).toString());
+      btn.classList.toggle('is-muted', this.prefs.muted);
+      const icon = btn.querySelector('.audio-icon');
+      if (icon) {
+        icon.innerHTML = this.prefs.muted
+          ? '<path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>'
+          : '<path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>';
       }
     }
   };
 
-  // Inicializa o Engine
   AudioEngine.init();
   window.__rumo10Audio = AudioEngine;
 
-  ['click', 'pointerdown', 'keydown', 'submit'].forEach(event => {
-    window.addEventListener(event, () => AudioEngine.unlock(), { capture: true });
+  ['click', 'pointerdown', 'keydown', 'submit'].forEach(name => {
+    window.addEventListener(name, () => AudioEngine.unlock(), { capture: true });
   });
 
   function scanServerEvents() {
-    document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(el => {
-      AudioEngine.enqueue(el.dataset.soundEventId, el.dataset.soundEvent);
+    const unhandled = [];
+    document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(element => {
+      const id = element.dataset.soundEventId;
+      const key = element.dataset.soundEvent;
+      const isHistorical = element.dataset.soundHistorical === '1';
+      if (!id || !SOUNDS[key]) return;
+      if (AudioEngine.wasHandled(id)) return;
+      if (isHistorical) {
+        AudioEngine.markHandled(id);
+        return;
+      }
+      unhandled.push({ id, key, element });
     });
+
+    if (!unhandled.length) return;
+
+    // Deduplica por ID caso o mesmo evento apareça no feedback e no matchSounds
+    const uniqueMap = new Map();
+    for (const item of unhandled) {
+      if (!uniqueMap.has(item.id)) {
+        uniqueMap.set(item.id, item);
+      }
+    }
+
+    const ordered = [...uniqueMap.values()].sort((a, b) =>
+      (EVENT_PRIORITY[b.key] || 0) - (EVENT_PRIORITY[a.key] || 0));
+
+    // Todos os eventos contemporâneos legítimos (já filtrados de históricos e deduplicados por ID)
+    // são enfileirados na ordem de prioridade para reprodução sequencial com espaçamento de 250ms.
+    for (const item of ordered) {
+      AudioEngine.enqueue(item.id, item.key);
+    }
   }
 
-  // Monitora controles de áudio na interface
-  document.addEventListener('click', e => {
-    const btn = e.target.closest('[data-action="toggle-audio"]');
+  document.addEventListener('click', event => {
+    const btn = event.target.closest('[data-action="toggle-audio"]');
     if (btn) {
-      e.preventDefault();
+      event.preventDefault();
       AudioEngine.setMuted(!AudioEngine.prefs.muted);
     }
   });
 
-  // Executa na carga da página
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       AudioEngine.updateUI();
