@@ -70,6 +70,7 @@ else:results.append({"name":"saves-tests","status":"NOT_TESTED","reason":"Rumo10
 command("drain-processes",[sys.executable,str(ROOT/"tests/drain-processes.py")])
 command("legacy-fence",[PHP,*ARGS,str(ROOT/"tests/legacy-fence.php")])
 if opts.project!='rumohub':command("main-automation",[PHP,*ARGS,str(ROOT/"tests/main-automation.php")])
+if opts.project!='rumohub':command("manual-backup-integration",[sys.executable,str(ROOT/"tests/manual-backup-integration.py")])
 if opts.project!='rumohub':command("automated-deploy-definitivo",[PHP,*saveargs,"-d","extension=php_pdo_sqlite.dll",str(ROOT/"tests/test-automated-deploy-definitivo.php")])
 if opts.project!='rumohub':command("mysql-backup-adaptive",[PHP,*ARGS,str(ROOT/"tests/test-mysql-backup-adaptive.php")])
 command("workflow-static",[sys.executable,str(ROOT/"tests/workflow-static.py")])

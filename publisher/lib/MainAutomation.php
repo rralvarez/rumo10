@@ -4,6 +4,9 @@ namespace Rumo\Publisher;
 require_once __DIR__.'/RequestDrain.php';
 
 final class MainAutomation {
+    public const BACKUP_CONTEXT = 'rumo10/manual-backup';
+    public const UI001 = ['commit'=>'fb03b614c337845671cf6cbf1eb36abe01308bfd','run_id'=>43929021873,'artifact_id'=>14257772333];
+
     public static function configuration(array $c): void {
         $a=$c['main_automation']??null;
         if(!array_key_exists('main_automation',$c))return;
@@ -18,6 +21,22 @@ final class MainAutomation {
             array_diff(['syntax','regression','compatibility','publisher-safety','rumo10-ci-gate','artifact'],$c['required_jobs'])===[] &&
             ($c['request_gate']['coverage_approved']??false)===true,
             'Invalid private main automation configuration');
+        self::smokeUrls($a);
+    }
+
+    public static function smokeUrls(array $a): array {
+        $urls=$a['public_smoke_urls']??[];
+        need(is_array($urls) && isset($urls['rumo10'],$urls['rumohub']) && count($urls)===2,
+            'Both public HTTPS smoke endpoints required');
+        $hosts=[];
+        foreach($urls as $url){
+            $u=is_string($url)?parse_url($url):false;
+            need(($u['scheme']??null)==='https' && !empty($u['host']) && !isset($u['user']) && !isset($u['pass']) &&
+                (!isset($u['port']) || $u['port']===443),'Invalid public HTTPS smoke endpoint');
+            $hosts[]=strtolower($u['host']);
+        }
+        need(count(array_unique($hosts))===2,'The public smoke endpoints must cover separate hosts');
+        return $urls;
     }
 
     public static function merge(array $a,string $repo,string $sha,int $number,array $pr,array $commit): void {
@@ -32,11 +51,29 @@ final class MainAutomation {
             preg_match('/^[a-f0-9]{40}$/D',$parents[1]['sha']??'')===1 &&
             $parents[0]['sha']!==$parents[1]['sha'] && $parents[1]['sha']===($pr['head']['sha']??null),
             'Exact main merge by the approved owner not confirmed');
-        // Audit pre-merge authorization and manual backup confirmation
-        $prBody = strtolower((string)($pr['body'] ?? ''));
-        $prTitle = strtolower((string)($pr['title'] ?? ''));
-        $hasBackupProof = str_contains($prBody, 'backup') || str_contains($prTitle, 'backup') || ($pr['backup_confirmed'] ?? false) === true || ($a['pre_merge_backup_enforced'] ?? true) === true;
-        need($hasBackupProof, 'Pre-merge manual backup authorization must be registered prior to merge');
+    }
+
+    public static function backupStatement(int $pr, string $head, bool $exception): string {
+        return $exception
+            ? 'RUMO10 BACKUP CONFIRMADO UI-001 POS-MERGE PR #8 '.self::UI001['commit'].' RUN 43929021873 ARTEFATO 14257772333'
+            : "RUMO10 BACKUP CONFIRMADO E MERGE AUTORIZADO PR #{$pr} HEAD {$head}";
+    }
+
+    public static function backupRule(array $ruleset,int $id,int $app): void {
+        $ref=$ruleset['conditions']['ref_name']??[];
+        need(($ruleset['id']??null)===$id && ($ruleset['target']??null)==='branch' &&
+            ($ruleset['enforcement']??null)==='active' && ($ruleset['bypass_actors']??null)===[] &&
+            ($ref['include']??null)===['refs/heads/main'] && ($ref['exclude']??null)===[],
+            'Required backup ruleset must be active on main without bypass');
+        need(in_array('pull_request',array_column($ruleset['rules']??[],'type'),true),
+            'Required backup ruleset must also require a pull request');
+        foreach($ruleset['rules']??[] as $rule){
+            if(($rule['type']??null)!=='required_status_checks' ||
+                ($rule['parameters']['strict_required_status_checks_policy']??false)!==true)continue;
+            foreach($rule['parameters']['required_status_checks']??[] as $check)
+                if(($check['context']??null)===self::BACKUP_CONTEXT && ($check['integration_id']??null)===$app)return;
+        }
+        throw new \RuntimeException('Required backup ruleset lacks the pinned App status');
     }
 
     public static function change(array $a,array $v,array $assessment): void {
@@ -52,7 +89,7 @@ final class MainAutomation {
                 'Infrastructure change requires a separate authorized procedure');
         }
         if($assessment['class']==='A'){
-            need($assessment['migrations']===[], 'Class A cannot contain migrations');
+            need($assessment['migrations']===[] && ($assessment['required_migrations']??[])===[], 'Class A cannot contain migrations');
             foreach($assessment['changed'] as $path){
                 need(preg_match('#^(?:app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2))$#iD',$path)===1 &&
                     !in_array(strtolower($path),['app/bootstrap.php','app/database.php','app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php'],true),
@@ -77,13 +114,13 @@ final class MainAutomation {
         }
     }
 
-    public static function proof(array $b,array $v,int $now, string $class = 'B'): void {
-        if ($class === 'A' || ($b['class'] ?? null) === 'A') {
-            need(($b['consistent'] ?? false) === true && ($b['pre_merge_backup_confirmed'] ?? false) === true,
-                'Pre-merge manual backup confirmation required for Class A release');
-            need(isset($b['files']) && count($b['files']) > 0, 'Class A operational backup files required');
+    public static function proof(array $b,array $v,int $now, string $class = 'B', ?BackupAuthorization $authorization = null): void {
+        if ($class === 'A') {
+            need($authorization !== null && $authorization->matches($v),
+                'Authenticated manual backup confirmation required for this Class A release');
             return;
         }
+        need($class === 'B', 'Unknown database backup policy');
         $at=$b['created_at']??$b['restored_at']??null;
         need(is_int($at) && $at<=$now && $now-$at<1800 &&
             ($b['package_sha256']??null)===$v['package_sha256'] &&
@@ -94,6 +131,14 @@ final class MainAutomation {
         need(is_string($hash) && preg_match('/^[a-f0-9]{64}$/D',$hash)===1 &&
             in_array($hash,$b['files']??[],true),
             'Valid backup dump digest required');
+    }
+
+    public static function stable(array $c): void {
+        $lock=$c['control'].'/deployment.lock';
+        $closed=$c['request_gate']['root'].'/closed.json';
+        clearstatcache();
+        need(!file_exists($lock) && !is_link($lock) && !is_link($closed) &&
+            !(new RequestDrain($c['request_gate']['root']))->closed(),'Publication gate or deployment lock retained');
     }
 
     public static function outcome(array $c,array $run,array $artifact): bool {
@@ -116,3 +161,43 @@ final class MainAutomation {
     }
 }
 
+
+
+/** Evidence fetched from GitHub for one exact artifact. Stages and journals never construct it. */
+final class BackupAuthorization {
+    private function __construct(private array $identity, public readonly array $evidence) {}
+
+    public static function fromGitHub(array $a, string $repo, array $identity, array $pr, array $comment, ?array $status): self {
+        $number=$pr['number'];
+        $head=$pr['head']['sha'];
+        $exception=$identity===MainAutomation::UI001 && $number===8 && ($a['ui001_bootstrap_request']??false)===true;
+        $created=strtotime($comment['created_at']??'');
+        $merged=strtotime($pr['merged_at']??'');
+        need(is_int($comment['id']??null) && $comment['id']>0 &&
+            ($comment['issue_url']??null)==="https://api.github.com/repos/{$repo}/issues/{$number}" &&
+            ($comment['user']['id']??null)===$a['owner_id'] && ($comment['user']['type']??null)==='User' &&
+            ($comment['performed_via_github_app']??null)===null &&
+            ($comment['created_at']??null)===($comment['updated_at']??null) &&
+            ($comment['body']??null)===MainAutomation::backupStatement($number,$head,$exception) &&
+            $created!==false && $merged!==false && $created<=time(),
+            'Authenticated owner backup statement missing or altered');
+        if ($exception) {
+            need($created>$merged, 'UI-001 exception requires an explicit post-merge confirmation');
+        } else {
+            $statusAt=strtotime($status['created_at']??'');
+            need(is_int($a['backup_app_bot_id']??null) && $a['backup_app_bot_id']>0 &&
+                ($status['creator']['id']??null)===$a['backup_app_bot_id'] && ($status['creator']['type']??null)==='Bot' &&
+                ($status['context']??null)===MainAutomation::BACKUP_CONTEXT && ($status['state']??null)==='success' &&
+                ($status['target_url']??null)==="https://github.com/{$repo}/pull/{$number}#issuecomment-{$comment['id']}" &&
+                $statusAt!==false && $created<=$statusAt && $statusAt<$merged,
+                'Required backup approval status missing, invalid or created after merge');
+        }
+        return new self($identity, ['pr'=>$number,'head'=>$head,'owner_id'=>$a['owner_id'],
+            'comment_id'=>$comment['id'],'confirmed_at'=>$comment['created_at'],'status_id'=>$status['id']??null,
+            'exception'=>$exception]+$identity);
+    }
+
+    public function matches(array $v): bool {
+        return $this->identity===['commit'=>$v['commit']??null,'run_id'=>$v['run']['id']??null,'artifact_id'=>$v['artifact_id']??null];
+    }
+}

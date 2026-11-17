@@ -84,6 +84,8 @@ check(rejects(fn()=>MainAutomation::change($cfg,$v,$unexpectedAssessment),'Path 
 $proof=['created_at'=>500,'artifact_id'=>123,'package_sha256'=>$v['package_sha256'],
     'consistent'=>true,'source_uuid'=>'s',
     'dump_sha256'=>str_repeat('d',64),'files'=>['dump'=>str_repeat('d',64)]];
+check(rejects(fn()=>MainAutomation::proof(['class'=>'A','consistent'=>true,'pre_merge_backup_confirmed'=>true],$v,2299,'A'),
+    'Authenticated manual backup confirmation'),'Local self-declared backup proof refused');
 MainAutomation::proof($proof,$v,2299);check(true,'Proof fresh on single server');
 check(rejects(fn()=>MainAutomation::proof($proof,$v,2300),'Fresh consistent'),'Proof expires at 30 minutes');
 check(rejects(fn()=>MainAutomation::proof(array_replace($proof,['files'=>[]]),$v,2299),'Valid backup dump'),'Missing dump file');
@@ -118,7 +120,10 @@ try {
         }
         protected function report(array $run,string $state,string $reason):void{$this->reported[]=[$state,$reason];}
     };
-    $unused=(new ReflectionClass(Publisher::class))->newInstanceWithoutConstructor();
+    $unused=new class extends Publisher {
+        public function __construct(){}
+        public function verifyPublicAvailability(): void {}
+    };
     $out=$source->automatic($unused);
     check(($out['already_installed']??false)===true && $source->reported===[['success','Recibo UOL validado; artefato 123']],
         'Rerun reports validated production receipt without apply or download');

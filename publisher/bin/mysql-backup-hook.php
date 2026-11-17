@@ -163,12 +163,23 @@ try {
   @chmod($secureTempDir, 0700);
  }
 
- // Verify source defaults options to forbid filtering and --no-data
- if (isset($c['source_mysql_defaults']) && is_file($c['source_mysql_defaults'])) {
-  $cnfContent = file_get_contents($c['source_mysql_defaults']);
-  if (preg_match('/^\s*(?:no-data|where|ignore-table|tables)\b/m', $cnfContent, $m)) {
-   throw new \RuntimeException("Opção de cliente não autorizada no defaults file ({$m[0]}): filtros e omissões de dados são proibidos");
+ // Accept only connection settings. In particular, option includes and client-side data filters
+ // cannot silently turn a completed export into a partial backup.
+ if(isset($c['source_mysql_defaults'])){
+  $lines=file($c['source_mysql_defaults'],FILE_IGNORE_NEW_LINES);
+  need($lines!==false,'Cannot read private source client options');
+  $client=false;$seen=[];
+  foreach($lines as $line){
+   $line=trim($line);
+   if($line==='' || str_starts_with($line,'#') || str_starts_with($line,';'))continue;
+   if($line==='[client]' && !$client){$client=true;continue;}
+   need($client && preg_match('/^([a-z-]+)\s*=/D',$line,$match)===1 &&
+      in_array($match[1],['host','port','user','password','protocol','socket','ssl-mode','ssl-ca','ssl-capath',
+       'ssl-cert','ssl-key','ssl-cipher','ssl-verify-server-cert','default-character-set','connect-timeout'],true) &&
+      !isset($seen[$match[1]]),'Backup client options must contain only unique connection settings in [client]');
+   $seen[$match[1]]=true;
   }
+  need($client,'Private [client] options required');
  }
 
  // Adaptive options detection: MariaDB vs MySQL, user grants and schema objects
