@@ -128,9 +128,13 @@
       if (this.ctx.state === 'running') { this.flushPendingQueue(); return; }
       if (this.unlockingPromise) return;
       this.unlockingPromise = this.ctx.resume()
-        .then(() => this.flushPendingQueue())
+        .then(() => {
+          this.flushPendingQueue();
+        })
         .catch(() => {})
-        .finally(() => { this.unlockingPromise = null; });
+        .finally(() => {
+          this.unlockingPromise = null;
+        });
     },
 
     markHandled(id) {
@@ -156,6 +160,7 @@
       let osc = null;
       let gain = null;
       let endedFired = false;
+      let started = false;
 
       const cleanup = () => {
         try { if (osc) osc.disconnect(); } catch (_) {}
@@ -190,6 +195,7 @@
         osc.connect(gain);
         gain.connect(this.master);
         osc.start(startTime);
+        started = true;
         osc.stop(startTime + duration);
 
         return {
@@ -204,6 +210,13 @@
           }
         };
       } catch (err) {
+        if (started && osc) {
+          try {
+            osc.stop();
+          } catch (stopErr) {
+            console.warn('[AudioEngine] Falha persistente ao interromper oscilador; parada da fonte não comprovada:', stopErr);
+          }
+        }
         cleanup();
         throw err;
       }
@@ -214,6 +227,7 @@
       let osc = null;
       let gain = null;
       let endedFired = false;
+      let started = false;
 
       const cleanup = () => {
         try { if (osc) osc.disconnect(); } catch (_) {}
@@ -246,6 +260,7 @@
         osc.connect(gain);
         gain.connect(this.master);
         osc.start(startTime);
+        started = true;
         osc.stop(startTime + duration);
 
         return {
@@ -260,6 +275,13 @@
           }
         };
       } catch (err) {
+        if (started && osc) {
+          try {
+            osc.stop();
+          } catch (stopErr) {
+            console.warn('[AudioEngine] Falha persistente ao interromper oscilador; parada da fonte não comprovada:', stopErr);
+          }
+        }
         cleanup();
         throw err;
       }

@@ -116,6 +116,10 @@ function createMockEnvironment() {
       this.stopped = false;
       this.ended = false;
       this.onended = null;
+      this.startCalls = 0;
+      this.stopCalls = 0;
+      this.failFirstStop = false;
+      this.failPersistentStop = false;
       this.listeners = new Map();
       this.id = startedOscillators.length + 1;
     }
@@ -138,11 +142,19 @@ function createMockEnvironment() {
       }
     }
     start(time) {
+      this.startCalls++;
       this.started = true;
       this.startTime = time;
       startedOscillators.push(this);
     }
     stop(time) {
+      this.stopCalls++;
+      if (this.failPersistentStop) {
+        throw new Error('Falha persistente simulada em stop()');
+      }
+      if (this.failFirstStop && this.stopCalls === 1) {
+        throw new Error('Falha simulada no primeiro stop() programado');
+      }
       this.stopped = true;
       this.stopTime = time;
     }
@@ -191,6 +203,7 @@ function createMockEnvironment() {
       this.state = 'running';
       this.currentTime = 10.0;
       this.destination = { id: 'speakers' };
+      this.resumeCalls = 0;
     }
     createBufferSource() {
       return new MockAudioBufferSourceNode(this);
@@ -206,6 +219,7 @@ function createMockEnvironment() {
       return Promise.resolve(buf);
     }
     async resume() {
+      this.resumeCalls++;
       this.state = 'running';
       return Promise.resolve();
     }
@@ -218,6 +232,7 @@ function createMockEnvironment() {
   const mockDomElements = [];
 
   const mockWindow = {
+    console: console,
     AudioContext: MockAudioContext,
     webkitAudioContext: MockAudioContext,
     __rumo10AudioCtx: null,
@@ -1391,6 +1406,329 @@ async function runTestSuite() {
     env.startedOscillators[0].triggerEnd();
     await new Promise(r => setTimeout(r, 50));
     assert(audio.pendingQueue.size === 0, 'N8: Fila limpa');
+  }
+
+  // 21. Validando R5: Desbloqueio por Clique e Recuperação em Falha de Stop (Codex R5 - T1 a T7)
+  console.log('\n21. Validando R5: Desbloqueio por Clique e Recuperação de Stop (Codex R5 - T1 a T7)...');
+
+  // T1. Deadlock de retomada por clique
+  {
+    const env = createMockEnvironment();
+    const preCtx = new env.mockWindow.AudioContext();
+    preCtx.state = 'suspended';
+    env.mockWindow.__rumo10AudioCtx = preCtx;
+
+    const elements = [
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 't1:pen' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 't1:card' } }
+    ];
+
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    // 1º clique: desbloqueia contexto e inicia pênalti
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audio.ctx.resumeCalls === 1, 'T1: 1ª chamada a resume() efetuada no 1º clique');
+    assert(audio.ctx.state === 'running', 'T1: Contexto running após 1º clique');
+    assert(audio.unlockingPromise === null, 'T1: unlockingPromise liberada após conclusão de resume() (desacoplada da fila)');
+
+    // Suspende novamente o contexto durante a reprodução do sintetizador
+    audio.ctx.state = 'suspended';
+
+    // 2º clique do usuário para retomar
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audio.ctx.resumeCalls === 2, 'T1: 2ª chamada a resume() efetuada no 2º clique (sem deadlock)');
+    assert(audio.ctx.state === 'running', 'T1: Contexto voltou para running após 2º clique');
+
+    // Conclui o pênalti via ended real
+    const penOsc = env.startedOscillators[0];
+    const tEnd = env.mockWindow.performance.now();
+    penOsc.triggerEnd();
+
+    // Aguarda o próximo som iniciar
+    while (env.startedSources.length === 0) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    const tStartCard = env.mockWindow.performance.now();
+    const gap = tStartCard - tEnd;
+
+    assert(gap >= 250, `T1: Espaçamento de 250ms respeitado após retomada por clique: ${gap.toFixed(1)}ms >= 250ms`);
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+    assert(audio.pendingQueue.size === 0, 'T1: Fila limpa');
+  }
+
+  // T2. Falha de stop() depois de start() com recuperação na 2ª tentativa
+  {
+    // T2.1 PENALTY_AWARDED
+    const envPen = createMockEnvironment();
+    const origCreateOsc = envPen.mockWindow.AudioContext.prototype.createOscillator;
+    let penOsc = null;
+    envPen.mockWindow.AudioContext.prototype.createOscillator = function() {
+      const osc = origCreateOsc.call(this);
+      osc.failFirstStop = true;
+      penOsc = osc;
+      return osc;
+    };
+
+    const elementsPen = [
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 't2:pen' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 't2:card' } }
+    ];
+
+    const audioPen = envPen.runScript(elementsPen);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(penOsc && penOsc.startCalls === 1, 'T2.1: start() ocorreu com sucesso no oscilador de pênalti');
+    assert(penOsc && penOsc.stopCalls === 2 && penOsc.stopped, 'T2.1: 2ª tentativa de stop() no catch interrompeu com sucesso o oscilador');
+    assert(audioPen.wasHandled('t2:pen'), 'T2.1: Evento com erro tratado como terminal');
+
+    // Aguarda o próximo som (Cartão) após o erro
+    while (envPen.startedSources.length === 0) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    assert(envPen.startedSources.length === 1, 'T2.1: Próximo som (Cartão) processado com sucesso');
+    envPen.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+
+    // T2.2 BALL_HIT_POST
+    const envPost = createMockEnvironment();
+    let postOscs = [];
+    envPost.mockWindow.AudioContext.prototype.createOscillator = function() {
+      const osc = origCreateOsc.call(this);
+      osc.failFirstStop = true;
+      postOscs.push(osc);
+      return osc;
+    };
+
+    const elementsPost = [
+      { dataset: { soundEvent: 'BALL_HIT_POST', soundEventId: 't2:post' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 't2:post:card' } }
+    ];
+
+    const audioPost = envPost.runScript(elementsPost);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(postOscs.length > 0 && postOscs[0].stopCalls === 2 && postOscs[0].stopped, 'T2.2: 2ª tentativa de stop() interrompeu o oscilador de BALL_HIT_POST');
+    assert(audioPost.wasHandled('t2:post'), 'T2.2: Evento com erro tratado como terminal');
+
+    while (envPost.startedSources.length === 0) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    assert(envPost.startedSources.length === 1, 'T2.2: Próximo som processado com sucesso');
+    envPost.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+  }
+
+  // T3. Nova suspensão durante PENALTY_AWARDED, retomada exclusivamente por clique
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 't3:pen' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 't3:card' } }
+    ];
+
+    env.startedSources.length = 0;
+    env.startedOscillators.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedOscillators.length === 1, 'T3: Pênalti iniciado');
+    const osc = env.startedOscillators[0];
+
+    // Suspende durante execução
+    audio.ctx.state = 'suspended';
+    await new Promise(r => setTimeout(r, 500));
+
+    assert(!osc.ended, 'T3: Oscilador não finaliza em suspensão');
+
+    // Retomada acionada EXCLUSIVAMENTE por clique (audio.unlock()), sem chamada direta a ctx.resume()
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audio.ctx.state === 'running', 'T3: Contexto retomado exclusivamente por clique');
+
+    const tEnd = env.mockWindow.performance.now();
+    osc.triggerEnd();
+
+    while (env.startedSources.length === 0) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    const tStartCard = env.mockWindow.performance.now();
+    const gap = tStartCard - tEnd;
+
+    assert(gap >= 250, `T3: Espaçamento regulamentar garantido após retomada por clique: ${gap.toFixed(1)}ms >= 250ms`);
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+  }
+
+  // T4. Repetir com BALL_HIT_POST validando os dois osciladores e retomada por clique
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'BALL_HIT_POST', soundEventId: 't4:post' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 't4:card' } }
+    ];
+
+    env.startedSources.length = 0;
+    env.startedOscillators.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedOscillators.length === 2, 'T4: Dois osciladores iniciados para BALL_HIT_POST');
+    const osc1 = env.startedOscillators[0];
+    const osc2 = env.startedOscillators[1];
+
+    // Suspende durante execução
+    audio.ctx.state = 'suspended';
+    await new Promise(r => setTimeout(r, 400));
+
+    // Retomada exclusivamente por clique
+    audio.unlock();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audio.ctx.state === 'running', 'T4: Contexto retomado por clique');
+
+    // Conclui o 1º oscilador
+    osc1.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+    assert(audio.playing === true && env.startedSources.length === 0, 'T4: Fila continua bloqueada após 1º oscilador');
+
+    // Conclui o 2º oscilador
+    const tEnd = env.mockWindow.performance.now();
+    osc2.triggerEnd();
+
+    while (env.startedSources.length === 0) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    const tStart = env.mockWindow.performance.now();
+    const gap = tStart - tEnd;
+
+    assert(gap >= 250, `T4: Espaçamento de 250ms após término dos 2 osciladores: ${gap.toFixed(1)}ms >= 250ms`);
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+  }
+
+  // T5. Falha única de stop() comprovando interrupção real (não apenas desconexão)
+  {
+    const env = createMockEnvironment();
+    let oscCreated = null;
+    const origCreateOsc = env.mockWindow.AudioContext.prototype.createOscillator;
+    env.mockWindow.AudioContext.prototype.createOscillator = function() {
+      const osc = origCreateOsc.call(this);
+      osc.failFirstStop = true;
+      oscCreated = osc;
+      return osc;
+    };
+
+    const elements = [
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 't5:pen' } }
+    ];
+
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(oscCreated.startCalls === 1, 'T5: Oscilador iniciou antes da falha de stop');
+    assert(oscCreated.stopCalls === 2, 'T5: Exatamente 2 chamadas a stop() efetuadas');
+    assert(oscCreated.stopped === true, 'T5: Oscilador está comprovadamente parado (stopped=true)');
+    assert(oscCreated.connectedTo === null, 'T5: Oscilador desconectado com sucesso');
+    assert(audio.pendingQueue.size === 0, 'T5: Fila esvaziada sem travamento');
+  }
+
+  // T6. Falha persistente de stop() com registro explícito da limitação
+  {
+    const env = createMockEnvironment();
+    let oscPersistent = null;
+    const origCreateOsc = env.mockWindow.AudioContext.prototype.createOscillator;
+    env.mockWindow.AudioContext.prototype.createOscillator = function() {
+      const osc = origCreateOsc.call(this);
+      osc.failPersistentStop = true; // ambas as chamadas a stop() falham
+      oscPersistent = osc;
+      return osc;
+    };
+
+    let warnCaptured = null;
+    const origWarn = console.warn;
+    console.warn = (...args) => {
+      warnCaptured = args.join(' ');
+      origWarn(...args);
+    };
+
+    const elements = [
+      { dataset: { soundEvent: 'PENALTY_AWARDED', soundEventId: 't6:pen' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 't6:card' } }
+    ];
+
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    console.warn = origWarn;
+
+    assert(oscPersistent.startCalls === 1, 'T6: Oscilador foi iniciado');
+    assert(oscPersistent.stopCalls === 2, 'T6: Tentou parar 2 vezes');
+    assert(warnCaptured && warnCaptured.includes('parada da fonte não comprovada'), 'T6: Relatório explícito emitido informando que a parada não pôde ser comprovada');
+    assert(oscPersistent.connectedTo === null, 'T6: Nós foram desconectados para silenciar áudio');
+    assert(audio.wasHandled('t6:pen'), 'T6: Falha tratada como terminal');
+
+    // Aguarda processamento do próximo som
+    while (env.startedSources.length === 0) {
+      await new Promise(r => setTimeout(r, 10));
+    }
+    assert(env.startedSources.length === 1, 'T6: Próximo som processado normalmente');
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+  }
+
+  // T7. Múltiplos cliques durante a retomada não provocam chamadas concorrentes a resume()
+  {
+    const env = createMockEnvironment();
+    let resolveResume = null;
+    const preCtx = new env.mockWindow.AudioContext();
+    preCtx.state = 'suspended';
+    preCtx.resume = function() {
+      this.resumeCalls++;
+      return new Promise(resolve => {
+        resolveResume = () => {
+          this.state = 'running';
+          resolve();
+        };
+      });
+    };
+    env.mockWindow.__rumo10AudioCtx = preCtx;
+
+    const elements = [
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 't7:card' } }
+    ];
+
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    // Dispara 1º clique: inicia resume() (que fica pendente aguardando resolveResume)
+    audio.unlock();
+    assert(preCtx.resumeCalls === 1, 'T7: 1ª chamada a resume() disparada');
+
+    // Dispara múltiplos cliques adicionais enquanto resume() está em andamento
+    audio.unlock();
+    audio.unlock();
+    audio.unlock();
+    audio.unlock();
+
+    // Comprova que unlockingPromise impediu novas chamadas concorrentes a resume()
+    assert(preCtx.resumeCalls === 1, 'T7: unlockingPromise impediu chamadas concorrentes a resume()');
+
+    // Resolve a retomada
+    resolveResume();
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(audio.ctx.state === 'running', 'T7: Contexto transitou para running');
+    assert(audio.unlockingPromise === null, 'T7: unlockingPromise liberada após conclusão');
+    assert(env.startedSources.length === 1, 'T7: Som executado com sucesso');
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
   }
 
   console.log('\n=======================================================');

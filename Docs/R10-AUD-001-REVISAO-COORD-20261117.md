@@ -261,30 +261,66 @@ O Codex R4 aprovou a fila de 4 eventos contemporâneos, a ordenação e os inter
 - **Regressão Fluxo Consolidado Independente (`tests/consolidated-independent-flow.php`):** **102/102 verificações APROVADAS**.
 - **Regressão Geral de Temporadas (`tests/run.php` com `RUMOHUB_ENABLED=0`):** **27.985/27.985 verificações APROVADAS** (30 temporadas em 6 posições).
 
-Os oito arquivos OGG aprovados permanecem intocados em `public/assets/audio/`. A branch `feat/aud001-sons-partida` encontra-se pronta para submissão à auditoria independente Codex R5. **Nenhum merge na main foi executado e nenhuma publicação na UOL foi acionada.**
-   - Se o usuário clicar durante a pausa (ex: a 30 ms ou em rajada de cliques aos 30ms, 60ms, 100ms), a chamada é interceptada de imediato, o tempo restante é respeitado e nenhum som dispara antes da barreira de 250 ms.
-   - Se a fila estiver vazia ou o tempo já tiver transcorrido (ex: primeiro som ou retorno após suspensão longa), `now >= this.nextAllowedPlayTime` e o som inicia sem nenhum atraso artificial.
-   - O método `unlock()` permanece ativo e plenamente funcional no clique, sem desabilitar o destravamento por gesto do usuário.
+Os oito arquivos OGG aprovados permanecem intocados em `public/assets/audio/`. A branch `feat/aud001-sons-partida` foi submetida à auditoria independente Codex R5.
 
 ---
 
-### 6.3. Resultados Objetivos dos Testes
+## 8. Correção Pós-Auditoria Codex R5 (Missão R10-AUD-001-FIX-R5-UNLOCK-STOP)
 
-- **Web Audio Determinístico (`tests/test-aud001-webaudio.cjs`):** **137/137 verificações APROVADAS**
-  - Teste 19.A: Espaçamento normal aferido em 267.2 ms ($\ge 240$ ms).
-  - Teste 19.B: Clique na pausa aos 30 ms NÃO disparou som precocemente aos 30ms, 80ms ou 180ms; gap efetivo protegido aferido em 265.6 ms ($\ge 240$ ms).
-  - Teste 19.C: Rajada de múltiplos cliques aos 20ms, 50ms, 90ms, 140ms e 180ms não gerou disparos prematuros nem duplicados; gap aferido em 264.7 ms ($\ge 240$ ms) com esvaziamento perfeito da fila.
-  - Teste 19.D: Suspensão e retomada de AudioContext mantém fila e retoma com contexto em running.
-  - Teste 19.E: Erros de asset (404 / decode) e mute mantêm consistência temporal sem travamento.
-- **Chrome E2E com Áudio Real no IIS (`tests/test-aud001-browser-e2e.cjs`):** **45/45 verificações APROVADAS**
-  - Teste 11.A: Espaçamento no Chrome sem clique: **251.5 ms** ($\ge 240$ ms).
-  - Teste 11.B: Clique físico na janela aos 30 ms da pausa: segundo som **NÃO** disparou precocemente; gap efetivo protegido: **258.7 ms** ($\ge 240$ ms).
-- **PHP CLI (`tests/test-aud001-audio.php`):** **143/143 verificações APROVADAS**.
-- **Regressão Apresentação e Contadores UI-001 (`tests/test-ui-001-flow.php`):** **76/76 verificações APROVADAS**.
-- **Regressão F03 Correções (`tests/test-f03-corrections.php`):** **298/298 verificações APROVADAS**.
-- **Regressão Mobile UX (`tests/test-mobile-ux-flow.php`):** **20/20 verificações APROVADAS**.
-- **Regressão Placar Agregado v0.7 (`tests/aggregate-score-v07.php`):** **82/82 verificações APROVADAS**.
-- **Regressão Geral de Temporadas (`tests/run.php` com `RUMOHUB_ENABLED=0`):** **27.984/27.984 verificações APROVADAS** (30 temporadas em 6 posições).
+### 8.1. Diagnóstico dos Dois Defeitos Apontados
 
-A branch `feat/aud001-sons-partida` encontra-se pronta para homologação final da Coordenação Técnica e auditoria Codex R4. **Nenhum merge na main foi executado e nenhuma publicação na UOL foi acionada.**
+1. **Deadlock de retomada por clique (`unlockingPromise` acoplada à fila):**
+   - **Causa Raiz:** Em `unlock()`, a cadeia `.then(() => this.flushPendingQueue())` retornava a Promise da fila para `this.unlockingPromise`. Como a fila aguarda o término do áudio (`ended`), `this.unlockingPromise` permanecia pendente durante todo o tempo de reprodução. Se o `AudioContext` fosse suspenso externamente (ex.: aba em segundo plano ou política de áudio do sistema) durante a execução, qualquer clique subsequente do usuário batia na guarda `if (this.unlockingPromise) return;` e era descartado, nunca chamando `ctx.resume()`.
+   - **Correção (Patch P1-A):** Desacoplamento estrito entre a Promise de desbloqueio do contexto e o ciclo de processamento da fila. Ao usar bloco explícito `() => { this.flushPendingQueue(); }`, `unlockingPromise` resolve imediatamente assim que `ctx.resume()` conclui, liberando a flag e permitindo que cliques futuros chamem `resume()` se o contexto voltar a ser suspenso.
+
+2. **Falha de `stop()` programado após `start()` bem-sucedido (Oscilador Órfão):**
+   - **Causa Raiz:** Em `playWhistle()` e `playTone()`, após `osc.start(startTime)`, a chamada de agendamento `osc.stop(startTime + duration)` podia lançar uma exceção em implementações de mock ou condições atípicas. O bloco `catch` capturava o erro e executava diretamente `cleanup()` (desconectando o nó), mas **sem** tentar interromper o oscilador. O oscilador permanecia em execução indefinida no grafo Web Audio como fonte órfã.
+   - **Correção (Patch P1-B):** Rastreamento de `started = true` imediatamente após `osc.start(startTime)`. No bloco `catch (err)`, se `started && osc`, é feita uma tentativa imediata de interrupção com `try { osc.stop(); } catch (stopErr) { console.warn('[AudioEngine] Falha persistente ao interromper oscilador; parada da fonte não comprovada:', stopErr); }`, seguida da desconexão (`cleanup()`) e rejeição terminal da Promise, garantindo que o oscilador seja interrompido ou que a limitação seja explicitamente registrada sem travar a fila.
+
+### 8.2. Evidência Vermelha Pré-Correção (Testes Falhando no Commit-Base `e83c5c9`)
+
+Antes de alterar o motor, os defeitos foram reproduzidos em ambiente de isolamento (`tests/test-r5-repro-t1-t2.cjs`):
+- **T1 (Deadlock de retomada por clique):** Após suspensão no meio do som e disparo de 2º clique, `resumeCalls` permaneceu em 1 (segunda chamada ignorada), contexto permaneceu `suspended` e `unlockingPromise` continuou ocupada. **FALHA COMPROVADA.**
+- **T2 (Oscilador órfão em falha de stop):** Na simulação de falha no primeiro `stop()`, o oscilador de `PENALTY_AWARDED` e de `BALL_HIT_POST` permaneceu com `stopped=false` e `stopCalls=1` sem nova tentativa no catch. **FALHA COMPROVADA.**
+- Resultado da fase vermelha: **1 PASSOU, 4 FALHOU (FALHAS ESPERADAS COMPROVADAS).**
+
+### 8.3. Implementação e Evidência Verde Pós-Correção
+
+- **Testes Determinísticos Web Audio (`tests/test-aud001-webaudio.cjs`):**
+  - **220/220 verificações APROVADAS** (0 falhas).
+  - Seção 21 com testes T1 a T7 cobrindo:
+    - T1: Retomada por clique em contexto suspenso sem deadlock, `unlockingPromise` desacoplada, gap pós-término de 263.7 ms $\ge 250$ ms.
+    - T2.1: Recuperação de stop no oscilador de `PENALTY_AWARDED` com 2 chamadas a `stop()` e tratamento terminal limpo.
+    - T2.2: Recuperação de stop no oscilador de `BALL_HIT_POST` com 2 chamadas a `stop()` e tratamento terminal limpo.
+    - T3: Pênalti não encerra em suspensão e retoma exclusivamente por clique com gap de 264.8 ms $\ge 250$ ms.
+    - T4: Bola na trave (2 osciladores) com suspensão e retomada por clique, respeitando gap de 265.7 ms $\ge 250$ ms.
+    - T5: Oscilador parado comprovadamente (`stopped=true`, 2 chamadas a `stop()`) e nós desconectados.
+    - T6: Falha persistente de stop emite log explícito via `console.warn` e desconecta nós sem travar a fila.
+    - T7: Cliques simultâneos concorrentes não disparam chamadas duplicadas a `resume()`.
+
+- **Testes Chrome E2E Real no IIS Local (`tests/test-aud001-browser-e2e.cjs`):**
+  - **77/77 verificações APROVADAS** (0 falhas).
+  - Cenários C1 a C8 executados contra áudio real no IIS (`http://rumo10.local`):
+    - C6: Pênalti suspenso durante reprodução e retomado via clique físico real no `body`: transição para `running`, ambos os sons concluídos, gap de 254.8 ms $\ge 250$ ms.
+    - C7: Bola na trave suspensa e retomada via clique físico real no `body`: transição para `running`, ambos os osciladores e apito concluídos, gap de 254.3 ms $\ge 250$ ms.
+    - C8: Rajada de múltiplos cliques concorrentes em contexto suspenso: contexto transita para `running`, `unlockingPromise` limpa, exatamente 1 reprodução sem ecos ou duplicações concorrentes.
+
+- **Suíte de Regressão Integral:**
+  - `tests/test-aud001-audio.php`: **143/143 verificações APROVADAS**.
+  - `tests/test-ui-001-flow.php`: **76/76 verificações APROVADAS**.
+  - `tests/test-f03-corrections.php`: **298/298 verificações APROVADAS**.
+  - `tests/test-mobile-ux-flow.php`: **20/20 verificações APROVADAS**.
+  - `tests/aggregate-score-v07.php`: **82/82 verificações APROVADAS**.
+  - `tests/consolidated-independent-flow.php`: **102/102 verificações APROVADAS**.
+  - `tests/run.php` (`RUMOHUB_ENABLED=0`): **27.981/27.981 verificações APROVADAS** (30 temporadas em 6 posições).
+  - Verificação de sintaxe: PHP e Node.js 100% limpos.
+
+### 8.4. Conclusão e Status de Entrega
+
+O pacote de correções cumpre integralmente os requisitos da Missão `R10-AUD-001-FIX-R5-UNLOCK-STOP`:
+- Modificação restrita a `public/assets/audio-engine.js` (desacoplamento em `unlock()` e `try/catch` de `stop()` com `started = true`).
+- Regras esportivas, motor de partida, persistência de saves e os 8 arquivos OGG aprovados mantidos estritamente intactos.
+- Designação de entrega: **CANDIDATO À AUDITORIA INDEPENDENTE CODEX R5**.
+- Nenhuma alteração foi realizada na branch `main`, nenhum deploy foi disparado para a UOL Host e nenhum cron ou banco produtivo foi alterado.
+
 

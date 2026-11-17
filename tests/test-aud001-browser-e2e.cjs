@@ -685,6 +685,139 @@ function resolveChromePath() {
   assert(c5Result.gap >= 250.0, `C5: Gap protegido contra múltiplos cliques: ${c5Result.gap.toFixed(1)}ms >= 250ms`);
   assert(c5Result.pendingEmpty, 'C5: Fila limpa com sucesso');
 
+  // C6. PENALTY_AWARDED com suspensão e retomada via clique físico real no body (T1/T3 no Chrome Real)
+  console.log('  -> Executando C6: PENALTY_AWARDED com suspensão e retomada via clique real no body (Codex R5)...');
+  await setupInstrumentation();
+  await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    audio.enqueue('c6:pen', 'PENALTY_AWARDED');
+    audio.enqueue('c6:card', 'CARD_YELLOW');
+  });
+
+  // Aguarda ~40ms para início
+  await page.waitForTimeout(40);
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+  });
+  await page.waitForTimeout(600);
+
+  const c6SuspCheck = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    return {
+      ctxState: audio.ctx.state,
+      playing: audio.playing,
+      firstEnded: logs.length > 0 && logs[0].endTime !== null,
+      cardStarted: logs.length > 1
+    };
+  });
+  assert(c6SuspCheck.ctxState === 'suspended', 'C6 (Codex R5): Contexto suspenso durante síntese de pênalti');
+  assert(c6SuspCheck.playing === true && !c6SuspCheck.firstEnded && !c6SuspCheck.cardStarted, 'C6 (Codex R5): Pênalti retém reprodução e fila bloqueada em suspensão');
+
+  // Dispara clique físico real no body para acionar unlock() -> ctx.resume()
+  await page.click('body');
+
+  // Aguarda conclusão real
+  await page.waitForTimeout(1500);
+
+  const c6FinalResult = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
+      ? (logs[1].startTime - logs[0].endTime)
+      : 0;
+    return {
+      count: logs.length,
+      ctxState: audio.ctx.state,
+      gap,
+      penHandled: audio.wasHandled('c6:pen'),
+      cardHandled: audio.wasHandled('c6:card'),
+      pendingEmpty: audio.pendingQueue.size === 0
+    };
+  });
+  assert(c6FinalResult.ctxState === 'running', 'C6 (Codex R5): Contexto retornou para running via clique sem deadlock');
+  assert(c6FinalResult.count === 2, 'C6 (Codex R5): Ambos os efeitos concluídos após retomada por clique');
+  assert(c6FinalResult.gap >= 250.0, `C6 (Codex R5): Espaçamento de 250ms respeitado após retomada por clique: ${c6FinalResult.gap.toFixed(1)}ms >= 250ms`);
+  assert(c6FinalResult.penHandled && c6FinalResult.cardHandled, 'C6 (Codex R5): Ambos os eventos persistidos');
+  assert(c6FinalResult.pendingEmpty, 'C6 (Codex R5): Fila limpa com sucesso');
+
+  // C7. BALL_HIT_POST com suspensão e retomada via clique físico real no body (T4 no Chrome Real)
+  console.log('  -> Executando C7: BALL_HIT_POST com suspensão e retomada via clique real no body (Codex R5)...');
+  await setupInstrumentation();
+  await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    audio.enqueue('c7:post', 'BALL_HIT_POST');
+    audio.enqueue('c7:whistle', 'MATCH_WHISTLE_START');
+  });
+
+  await page.waitForTimeout(30);
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+  });
+  await page.waitForTimeout(600);
+
+  // Retomada via clique físico real
+  await page.click('body');
+  await page.waitForTimeout(1500);
+
+  const c7FinalResult = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
+      ? (logs[1].startTime - logs[0].endTime)
+      : 0;
+    return {
+      count: logs.length,
+      ctxState: audio.ctx.state,
+      gap,
+      postHandled: audio.wasHandled('c7:post'),
+      whistleHandled: audio.wasHandled('c7:whistle'),
+      pendingEmpty: audio.pendingQueue.size === 0
+    };
+  });
+  assert(c7FinalResult.ctxState === 'running', 'C7 (Codex R5): Contexto transitou para running via clique para BALL_HIT_POST');
+  assert(c7FinalResult.count === 2, 'C7 (Codex R5): Dois efeitos concluídos com sucesso');
+  assert(c7FinalResult.gap >= 250.0, `C7 (Codex R5): Espaçamento após término dos 2 osciladores via clique: ${c7FinalResult.gap.toFixed(1)}ms >= 250ms`);
+  assert(c7FinalResult.postHandled && c7FinalResult.whistleHandled, 'C7 (Codex R5): Ambos os eventos persistidos');
+  assert(c7FinalResult.pendingEmpty, 'C7 (Codex R5): Fila limpa');
+
+  // C8. Rajada de cliques físicos concorrentes durante retomada de contexto suspenso (T7 no Chrome Real)
+  console.log('  -> Executando C8: Cliques múltiplos concorrentes durante retomada de contexto suspenso (Codex R5)...');
+  await setupInstrumentation();
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+    audio.enqueue('c8:card', 'CARD_YELLOW');
+  });
+  await page.waitForTimeout(50);
+
+  // Rajada simultânea de cliques reais
+  await Promise.all([
+    page.click('body'),
+    page.click('body'),
+    page.click('body')
+  ]);
+  await page.waitForTimeout(800);
+
+  const c8Result = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    return {
+      count: logs.length,
+      ctxState: audio.ctx.state,
+      unlockingPromise: audio.unlockingPromise !== null,
+      cardHandled: audio.wasHandled('c8:card'),
+      pendingEmpty: audio.pendingQueue.size === 0
+    };
+  });
+  assert(c8Result.ctxState === 'running', 'C8 (Codex R5): Contexto retomado para running após cliques concorrentes');
+  assert(!c8Result.unlockingPromise, 'C8 (Codex R5): unlockingPromise devidamente limpa após retomada');
+  assert(c8Result.count === 1, 'C8 (Codex R5): Exatamente 1 som reproduzido (sem duplicações concorrentes)');
+  assert(c8Result.cardHandled, 'C8 (Codex R5): Som de cartão registrado como persistido');
+  assert(c8Result.pendingEmpty, 'C8 (Codex R5): Fila vazia');
+
   await browser.close();
 
   console.log('\n=======================================================');
