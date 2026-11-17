@@ -199,13 +199,13 @@ def main(root):
         "body": f"RUMO10 BACKUP CONFIRMADO UI-001 POS-MERGE PR #8 {UI} RUN 43929021873 ARTEFATO 14257772333"}
     call("pilot",{**first,"artifact":{**first["artifact"],"id":9}},1,"Unexpected artifact")
     call("pilot",{**first,"run":{**first["run"],"id":9}},1,"Unexpected run")
-    call("pilot",first)
+    call("pilot",{**first,"comment":{**first["comment"],"body":"No deployment-time backup request"}})
     assert load(roots["private"]/"installed.json")["commit"]==UI
     assert "backup:" not in trace.read_text()
-    call("automatic",regular)
+    call("automatic",{**regular,"statuses":[],"comment":{**regular["comment"],"body":"No backup status"}})
     assert load(roots["private"]/"installed.json")["commit"]=="c"*40
     assert "backup:" not in trace.read_text()
-    print("Exact UI-001 pilot and second automatic Class A release, zero database hook invocations PASS")
+    print("UI-001 and next Class A publish with NO backup comment/status/dump after merge PASS")
 
     b_content = {**ui_content, "app/view.php": b"<?php // second", "app/protected.php": b"<?php // B"}
     protected = release(root, "third", "c"*40, "e"*40, 10, 444, 555, 4, b_content, "f"*40)
