@@ -32,13 +32,14 @@ $assess=static function(array $new,?string $from=null,?string $to=null,array $ex
     $a=UpdatePolicy::assess($base,['files'=>$new],$policy+$extra,$jobs,$from,$to);
     $a['requires_full_drain']=true;return $a;
 };
-foreach(['app/view.php','public/assets/visual.css'] as $path){
+foreach(['app/view.php','public/assets/visual.css','public/assets/audio/match_start.ogg','public/assets/audio/no_goal.mp3'] as $path){
     MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],[$path=>'new'])));
-    check(true,'Two distinct ordinary changes, no SHA permit');
+    check(true,'Ordinary PHP, CSS and approved audio assets require no SHA permit');
 }
 // Class B with database migration is allowed without sensitive permit
-MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['database/009.sql'=>'new'])));
-check(true,'Class B release with migration allowed without manual SHA permit');
+MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['database/009.sql'=>'new','public/assets/audio/crowd.ogg'=>'new'])));
+check(true,'Class B release with migration and audio file allowed by scoped policy');
+check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['public/assets/audio/untrusted.php'=>'new']))),'Path outside ordinary automatic release policy'),'Executable file in public audio directory remains blocked');
 
 check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['publisher/Core.php'=>'new']))),'Infrastructure change'),'Infrastructure blocked');
 check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['public/.htaccess'=>'new']))),'Infrastructure change'),'htaccess blocked');
