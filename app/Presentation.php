@@ -68,8 +68,15 @@ final class Presentation {
         }
 
         $currentMinute = (int)($match['minute'] ?? 90);
+        $freshEventIds = $g['feedback']['sound_event_ids'] ?? [];
+        if (!empty($g['feedback']['sound_event_id']) && !in_array($g['feedback']['sound_event_id'], $freshEventIds, true)) {
+            $freshEventIds[] = $g['feedback']['sound_event_id'];
+        }
+
         foreach ($events as $event) {
-            $isHistorical = isset($event['minute']) && (int)$event['minute'] < $currentMinute;
+            $isHistorical = isset($event['minute']) 
+                && (int)$event['minute'] < $currentMinute 
+                && !in_array($event['id'] ?? '', $freshEventIds, true);
             $histAttr = $isHistorical ? ' data-sound-historical="1"' : '';
             echo '<div data-sound-event="'.e($event['type'] ?? 'GENERIC').'" data-sound-event-id="'.e($event['id']).'"'.$histAttr.' class="sr-only" aria-hidden="true"></div>';
         }

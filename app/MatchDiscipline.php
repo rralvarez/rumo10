@@ -62,7 +62,7 @@ final class MatchDiscipline {
             $m['red_card_minute'] = $minute;
             $result['card'] = 'direct_red';
             $result['text'] = "{$minute}' | Cartão vermelho direto! Você foi expulso da partida.";
-            Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
+            $result['sound_event_id'] = Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
             return $result;
         }
 
@@ -72,7 +72,7 @@ final class MatchDiscipline {
             $st['cards'] = 1;
             $result['card'] = 'yellow';
             $result['text'] = "{$minute}' | Cartão amarelo! Você foi advertido pela arbitragem.";
-            Game::emitSoundEvent($m, $g, 'CARD_YELLOW', (int)$minute);
+            $result['sound_event_id'] = Game::emitSoundEvent($m, $g, 'CARD_YELLOW', (int)$minute);
             return $result;
         }
 
@@ -88,7 +88,7 @@ final class MatchDiscipline {
             $m['red_card_minute'] = $minute;
             $result['card'] = 'second_yellow';
             $result['text'] = "{$minute}' | Segundo cartão amarelo! Você está expulso da partida.";
-            Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
+            $result['sound_event_id'] = Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
             return $result;
         }
 

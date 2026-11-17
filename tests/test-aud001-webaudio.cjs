@@ -440,6 +440,62 @@ async function runTestSuite() {
     assert(env.startedSources[0].buffer === env.dummyBuffers['match_whistle.ogg'], 'Segundo som válido reproduzido');
   }
 
+  // 10. Regressão P0-4: Cartão amarelo emitido no lance da última ação após avanço de minuto
+  console.log('\n10. Validando P0-4: Cartão de última ação após avanço de minuto toca sem ser descartado...');
+  {
+    const env = createMockEnvironment();
+    // Simula markup gerado por Presentation::matchSounds onde o minuto avançou para 35, mas o cartão é recente (sem data-sound-historical="1")
+    const elements = [
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'act:card:yellow:15' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, 'P0-4: CARD_YELLOW é reproduzido imediatamente pelo motor');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['yellow_card.ogg'], 'P0-4: Buffer utilizado é yellow_card.ogg');
+    
+    // Conclui reprodução
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+    assert(env.sessionData.get('rumo10_sound_played:act:card:yellow:15') === '1', 'P0-4: Cartão registrado como tocado no sessionStorage');
+
+    // Simula reload (F5): não deve tocar novamente
+    env.startedSources.length = 0;
+    env.runScript(elements);
+    assert(env.startedSources.length === 0, 'P0-4: Recarga não reexecuta o som de cartão já ouvido');
+  }
+
+  // 11. Sons de Substituição (PLAYER_SUBSTITUTION_IN e OUT)
+  console.log('\n11. Validando Sons de Substituição (Entrada e Saída)...');
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'PLAYER_SUBSTITUTION_IN', soundEventId: 'sub:in:60' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, 'PLAYER_SUBSTITUTION_IN reproduzido pelo motor');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['substitution_in.ogg'], 'Buffer utilizado é substitution_in.ogg');
+
+    // Teste de saída
+    const envOut = createMockEnvironment();
+    const elementsOut = [
+      { dataset: { soundEvent: 'PLAYER_SUBSTITUTION_OUT', soundEventId: 'sub:out:70' } }
+    ];
+
+    envOut.startedSources.length = 0;
+    const audioOut = envOut.runScript(elementsOut);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(envOut.startedSources.length === 1, 'PLAYER_SUBSTITUTION_OUT reproduzido pelo motor');
+    assert(envOut.startedSources[0].buffer === envOut.dummyBuffers['substitution_out.ogg'], 'Buffer utilizado é substitution_out.ogg');
+  }
+
   console.log('\n=======================================================');
   console.log(`TOTAL P0-3 WEB AUDIO: ${passCount} verificações PASSOU, ${failCount} FALHOU`);
   console.log('=======================================================');

@@ -484,7 +484,7 @@ final class Game {
     /**
      * Registra evento sonoro autoritativo persistente com ID único imutável
      */
-    public static function emitSoundEvent(array &$m, array $g, string $type, int $minute): string {
+    public static function emitSoundEvent(array &$m, array &$g, string $type, int $minute): string {
         $m['sound_events'] = $m['sound_events'] ?? [];
         $m['sound_event_counters'] = $m['sound_event_counters'] ?? [];
         // Reconcilia com eventos existentes que já possuam seq para evitar reuso
@@ -510,6 +510,15 @@ final class Game {
             'minute' => $minute,
             'seq' => $seq
         ];
+        if (isset($g['feedback']) && is_array($g['feedback'])) {
+            $g['feedback']['sound_event_ids'] = $g['feedback']['sound_event_ids'] ?? [];
+            if (!in_array($eventId, $g['feedback']['sound_event_ids'], true)) {
+                $g['feedback']['sound_event_ids'][] = $eventId;
+            }
+            if (empty($g['feedback']['sound_event_id'])) {
+                $g['feedback']['sound_event_id'] = $eventId;
+            }
+        }
         return $eventId;
     }
 

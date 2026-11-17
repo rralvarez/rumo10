@@ -6,7 +6,8 @@
  * requisições de rede, reprodução de buffers OGG físicos e deduplicação em sessionStorage.
  */
 
-const { chromium } = require('C:/Users/rodri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs = require('fs');
+const path = require('path');
 
 let passCount = 0;
 let failCount = 0;
@@ -22,18 +23,94 @@ function assert(cond, msg) {
   }
 }
 
+// 1. Resolução dinâmica e portável do Playwright
+function resolvePlaywright() {
+  if (process.env.PLAYWRIGHT_PATH) {
+    try { return require(process.env.PLAYWRIGHT_PATH); } catch (_) {}
+  }
+  try { return require('playwright'); } catch (_) {}
+  try { return require('playwright-core'); } catch (_) {}
+
+  const candidates = [
+    path.join(process.env.USERPROFILE || '', '.cache', 'codex-runtimes', 'codex-primary-runtime', 'dependencies', 'node', 'node_modules', 'playwright'),
+    path.join(process.env.HOME || '', '.cache', 'node_modules', 'playwright')
+  ];
+  for (const cand of candidates) {
+    if (cand && fs.existsSync(cand)) {
+      try { return require(cand); } catch (_) {}
+    }
+  }
+  return null;
+}
+
+// 2. Resolução dinâmica e portável do executável Chrome / Chromium
+function resolveChromePath() {
+  if (process.env.CHROME_BIN && fs.existsSync(process.env.CHROME_BIN)) {
+    return process.env.CHROME_BIN;
+  }
+  if (process.env.PUPPETEER_EXECUTABLE_PATH && fs.existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) {
+    return process.env.PUPPETEER_EXECUTABLE_PATH;
+  }
+
+  const isWin = process.platform === 'win32';
+  const isMac = process.platform === 'darwin';
+
+  if (isWin) {
+    const winPaths = [
+      'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+      'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+      path.join(process.env.LOCALAPPDATA || '', 'Google', 'Chrome', 'Application', 'chrome.exe'),
+      'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe'
+    ];
+    for (const p of winPaths) {
+      if (fs.existsSync(p)) return p;
+    }
+  } else if (isMac) {
+    const macPaths = [
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      '/Applications/Chromium.app/Contents/MacOS/Chromium'
+    ];
+    for (const p of macPaths) {
+      if (fs.existsSync(p)) return p;
+    }
+  } else {
+    const linuxPaths = [
+      '/usr/bin/google-chrome',
+      '/usr/bin/chromium',
+      '/usr/bin/chromium-browser'
+    ];
+    for (const p of linuxPaths) {
+      if (fs.existsSync(p)) return p;
+    }
+  }
+  return undefined;
+}
+
 (async () => {
   console.log('=== R10-AUD-001: TESTE E2E NO CHROME COM ÁUDIO REAL NO IIS ===\n');
 
-  const browser = await chromium.launch({
-    executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
+  const pw = resolvePlaywright();
+  if (!pw || !pw.chromium) {
+    console.log('  [SKIP] Playwright não disponível no ambiente de execução.');
+    console.log('  Para executar o teste E2E do navegador: npm install -D playwright (ou configure PLAYWRIGHT_PATH).');
+    process.exit(0);
+  }
+  const { chromium } = pw;
+  const chromePath = resolveChromePath();
+
+  const launchOptions = {
     headless: true,
     args: [
       '--autoplay-policy=no-user-gesture-required',
       '--disable-features=PreloadMediaEngagementData,AutoplayIgnoreWebAudio',
       '--no-sandbox'
     ]
-  });
+  };
+  if (chromePath) {
+    launchOptions.executablePath = chromePath;
+  }
+
+  const browser = await chromium.launch(launchOptions);
 
   const context = await browser.newContext();
   const page = await context.newPage();

@@ -228,6 +228,73 @@ assertAud(str_contains($outFeedback, 'data-sound-source="action"'), 'Feedback id
 assertAud(str_contains($outMatchSounds, 'data-sound-event="MATCH_WHISTLE_END"'), 'MatchSounds renderiza data-sound-event="MATCH_WHISTLE_END"');
 assertAud(str_contains($outMatchSounds, 'data-sound-historical="1"'), 'Evento de minuto 15 marcado com data-sound-historical="1" aos 90 min');
 
+// 3.3 Regressão P0-4: Cartão e Substituição emitidos antes do avanço do minuto
+echo "\n3.3 Validando Regressão P0-4: Cartões e substituições da última ação após avanço de segmento...\n";
+
+// Cenário A: Cartão Amarelo aos 15 min, com segmento avançado para 35 min
+$gP04Yellow = Game::legacyCreate('Zagueiro Teste', 'São Paulo', 'SP', 'zagueiro');
+$gP04Yellow['stage'] = 'partida';
+$iY = Game::currentIndex($gP04Yellow);
+$mY = &$gP04Yellow['matches'][$iY];
+$mY['minute'] = 15;
+$mY['entry'] = 0;
+$mY['exit'] = 90;
+$mY['status'] = 'em_andamento';
+$mY['lineup'] = 'titular';
+$mY['sound_events'] = [];
+$mY['stats']['yellow_cards'] = 0;
+$gP04Yellow['feedback'] = ['text' => 'Lance faltoso', 'effects' => []];
+
+// Aplica falta aos 15 min
+$foulRes = MatchDiscipline::recordFoul($gP04Yellow, $mY, 'reckless_tackle', false);
+assertAud(!empty($foulRes['sound_event_id']), 'MatchDiscipline::recordFoul retorna sound_event_id');
+assertAud(in_array($foulRes['sound_event_id'], $gP04Yellow['feedback']['sound_event_ids'] ?? [], true), 'ID do cartão amarelo registrado na coleção sound_event_ids do feedback');
+
+// Motor avança segmento: de 15 para 35 minutos
+$mY['minute'] = 35;
+
+// Renderização: Presentation::matchSounds não deve classificar o cartão da última ação como histórico!
+ob_start();
+Presentation::matchSounds($gP04Yellow, $mY);
+$outP04Yellow = ob_get_clean();
+
+assertAud(str_contains($outP04Yellow, 'data-sound-event="CARD_YELLOW"'), 'P0-4: matchSounds renderiza CARD_YELLOW');
+assertAud(!str_contains($outP04Yellow, 'data-sound-historical="1"'), 'P0-4: Cartão amarelo da ação recente NÃO é marcado como histórico mesmo com minuto avançado de 15 para 35');
+
+// Cenário B: Na jogada seguinte (outro feedback), o cartão antigo de 15 min DEVE ser classificado como histórico aos 35 min
+$gP04NextTurn = $gP04Yellow;
+$gP04NextTurn['feedback'] = ['text' => 'Nova jogada no minuto 35', 'effects' => [], 'sound_event_ids' => []]; // sem o cartão na última ação
+ob_start();
+Presentation::matchSounds($gP04NextTurn, $mY);
+$outP04OldCard = ob_get_clean();
+assertAud(str_contains($outP04OldCard, 'data-sound-historical="1"'), 'P0-4: Cartão da rodada anterior é corretamente classificado como histórico no turno subsequente');
+
+// Cenário C: Substituição aos 60 min com minuto avançado para 70 min
+$gP04Sub = Game::legacyCreate('Reserva Teste', 'São Paulo', 'SP', 'meia');
+$gP04Sub['stage'] = 'partida';
+$iS = Game::currentIndex($gP04Sub);
+$mS = &$gP04Sub['matches'][$iS];
+$mS['entry'] = 60;
+$mS['exit'] = 90;
+$mS['minute'] = 60;
+$mS['lineup'] = 'reserva';
+$mS['participation_state'] = MatchParticipation::STATE_ON_BENCH;
+$mS['sound_events'] = [];
+$gP04Sub['feedback'] = ['text' => 'Entrada em campo', 'effects' => []];
+
+MatchParticipation::sync($mS, $gP04Sub, 60);
+assertAud(in_array('PLAYER_SUBSTITUTION_IN', array_column($mS['sound_events'], 'type'), true), 'MatchParticipation emite PLAYER_SUBSTITUTION_IN');
+$subId = $mS['sound_events'][0]['id'];
+assertAud(in_array($subId, $gP04Sub['feedback']['sound_event_ids'] ?? [], true), 'ID da substituição registrado em sound_event_ids do feedback');
+
+// Avança para 70 min
+$mS['minute'] = 70;
+ob_start();
+Presentation::matchSounds($gP04Sub, $mS);
+$outP04Sub = ob_get_clean();
+assertAud(str_contains($outP04Sub, 'data-sound-event="PLAYER_SUBSTITUTION_IN"'), 'P0-4: matchSounds renderiza PLAYER_SUBSTITUTION_IN');
+assertAud(!str_contains($outP04Sub, 'data-sound-historical="1"'), 'P0-4: PLAYER_SUBSTITUTION_IN da ação recente NÃO é marcado como histórico com minuto avançado de 60 para 70');
+
 // -------------------------------------------------------------------------
 // 4. Isolamento dos Modos de Jogo (Normal vs Rápido / Expresso)
 // -------------------------------------------------------------------------
