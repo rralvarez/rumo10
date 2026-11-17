@@ -378,116 +378,312 @@ function resolveChromePath() {
   });
   assert(freshSessionQuiet, 'P1-C R2: Nova sessão com eventos históricos não gera rajadas sonoras');
 
-  // 11. Testando Blindagem Temporal do Espaçamento de 250ms no Chrome Real contra Clique na Pausa (Codex R3)
-  console.log('\n11. Testando Blindagem Temporal do Espaçamento de 250ms no Chrome Real (Codex R3)...');
+  // 11. Validação R4: Ciclo de Vida dos Sintetizadores e Temporização Estrita (Codex R4 - C1 a C5)
+  console.log('\n11. Validando R4: Ciclo de Vida dos Sintetizadores e Temporização Estrita (Codex R4 - C1 a C5)...');
 
-  // 11.A: Espaçamento normal sem clique no Chrome real
-  const timingNoClick = await page.evaluate(async () => {
-    sessionStorage.clear();
-    const audio = window.__rumo10Audio;
-    const playLogs = [];
-    const origPlay = audio.playDirect.bind(audio);
-    audio.playDirect = async function(key, id) {
-      const entry = { key, id, start: performance.now(), end: null };
-      playLogs.push(entry);
-      const res = await origPlay(key, id);
-      entry.end = performance.now();
-      return res;
-    };
-
-    audio.enqueue('timing:1:card', 'CARD_YELLOW');
-    audio.enqueue('timing:1:whistle', 'MATCH_WHISTLE_START');
-
-    // Aguarda término de ambos os efeitos (yellow_card ~0.53s + 250ms gap + whistle ~0.53s)
-    await new Promise(r => setTimeout(r, 2000));
-
-    // Restaura
-    audio.playDirect = origPlay;
-
-    if (playLogs.length >= 2 && playLogs[0].end && playLogs[1].start) {
-      return {
-        count: playLogs.length,
-        gap: playLogs[1].start - playLogs[0].end,
-        firstHandled: audio.wasHandled('timing:1:card'),
-        secondHandled: audio.wasHandled('timing:1:whistle')
+  // Inicializa listener global de captura para cliques reais no navegador
+  await page.evaluate(() => {
+    window.__lastClickInfo = null;
+    window.addEventListener('click', (e) => {
+      window.__lastClickInfo = {
+        type: e.type,
+        time: performance.now(),
+        audioTime: window.__rumo10AudioCtx ? window.__rumo10AudioCtx.currentTime : null,
+        target: e.target ? e.target.tagName : null
       };
-    }
-    return { count: playLogs.length, gap: 0, firstHandled: false, secondHandled: false };
+    }, true);
   });
 
-  assert(timingNoClick.count === 2, 'P1-C R3: Exatamente 2 eventos executados no Chrome');
-  assert(timingNoClick.gap >= 240, `P1-C R3: Espaçamento sem clique no Chrome: ${timingNoClick.gap.toFixed(1)}ms >= 240ms`);
-  assert(timingNoClick.firstHandled && timingNoClick.secondHandled, 'P1-C R3: Ambos os eventos registrados no sessionStorage');
-
-  // 11.B: Espaçamento COM clique aos 30ms da pausa no Chrome real (Reprodução do Defeito Codex R3)
-  const timingWithClick = await (async () => {
-    // Configura a instrumentação na página
+  // Função auxiliar para preparar a instrumentação completa de cada efeito
+  const setupInstrumentation = async () => {
     await page.evaluate(() => {
       sessionStorage.clear();
       const audio = window.__rumo10Audio;
-      window.__r3PlayLogs = [];
-      window.__r3OrigPlay = audio.playDirect.bind(audio);
+      window.__r4AudioLogs = [];
+      window.__lastClickInfo = null;
+
+      if (!window.__origPlayDirectR4) {
+        window.__origPlayDirectR4 = audio.playDirect.bind(audio);
+      }
       audio.playDirect = async function(key, id) {
-        const entry = { key, id, start: performance.now(), end: null };
-        window.__r3PlayLogs.push(entry);
-        const res = await window.__r3OrigPlay(key, id);
-        entry.end = performance.now();
+        const entry = {
+          key,
+          id,
+          callTime: performance.now(),
+          startTime: performance.now(),
+          audioTimeStart: audio.ctx ? audio.ctx.currentTime : null,
+          endTime: null,
+          audioTimeEnd: null,
+          ctxStateAtStart: audio.ctx ? audio.ctx.state : null,
+          ctxStateAtEnd: null,
+          status: null
+        };
+        window.__r4AudioLogs.push(entry);
+        const res = await window.__origPlayDirectR4(key, id);
+        entry.endTime = performance.now();
+        entry.audioTimeEnd = audio.ctx ? audio.ctx.currentTime : null;
+        entry.ctxStateAtEnd = audio.ctx ? audio.ctx.state : null;
+        entry.status = res ? res.status : null;
         return res;
       };
-
-      audio.enqueue('click:1:card', 'CARD_YELLOW');
-      audio.enqueue('click:1:whistle', 'MATCH_WHISTLE_START');
     });
+  };
 
-    // Aguarda até o primeiro evento concluir efetivamente
-    let firstEnded = false;
-    for (let i = 0; i < 40; i++) {
-      firstEnded = await page.evaluate(() => {
-        return window.__r3PlayLogs.length >= 1 && window.__r3PlayLogs[0].end !== null;
-      });
-      if (firstEnded) break;
-      await page.waitForTimeout(50);
+  // C1. PENALTY_AWARDED sem suspensão no Chrome real
+  console.log('  -> Executando C1: PENALTY_AWARDED sem suspensão...');
+  await setupInstrumentation();
+  const c1Result = await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    audio.enqueue('c1:pen', 'PENALTY_AWARDED');
+    audio.enqueue('c1:whistle', 'MATCH_WHISTLE_START');
+
+    // Aguarda término de ambos os efeitos (pen ~0.35s + 250ms gap + whistle ~0.53s)
+    const deadline = Date.now() + 4000;
+    while (audio.pendingQueue.size > 0 && Date.now() < deadline) {
+      await new Promise(r => setTimeout(r, 50));
     }
+    // Aguarda conclusão do último som
+    await new Promise(r => setTimeout(r, 600));
 
-    // Aguarda exatamente 30ms na pausa (momento exato onde ocorria o corte prematuro no Codex R3)
-    await page.waitForTimeout(30);
-
-    // Dispara clique físico real na página
-    await page.click('body');
-
-    // Imediatamente após o clique aos 30ms, verifica se o 2º som foi disparado precocemente
-    const triggeredEarly = await page.evaluate(() => {
-      return window.__r3PlayLogs.length > 1;
-    });
-
-    // Aguarda conclusão total
-    await page.waitForTimeout(1500);
-
-    const result = await page.evaluate(() => {
-      const audio = window.__rumo10Audio;
-      audio.playDirect = window.__r3OrigPlay;
-      const logs = window.__r3PlayLogs;
-      const gap = (logs.length >= 2 && logs[0].end && logs[1].start)
-        ? (logs[1].start - logs[0].end)
-        : 0;
-      return {
-        count: logs.length,
-        gap,
-        firstHandled: audio.wasHandled('click:1:card'),
-        secondHandled: audio.wasHandled('click:1:whistle')
-      };
-    });
-
+    const logs = window.__r4AudioLogs;
+    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
+      ? (logs[1].startTime - logs[0].endTime)
+      : 0;
     return {
-      triggeredEarly,
-      ...result
+      count: logs.length,
+      gap,
+      penHandled: audio.wasHandled('c1:pen'),
+      whistleHandled: audio.wasHandled('c1:whistle'),
+      pendingEmpty: audio.pendingQueue.size === 0
     };
-  })();
+  });
 
-  assert(!timingWithClick.triggeredEarly, 'P1-C R3 (Chrome): Aos 30ms após clique na pausa, 2º som NÃO disparou precocemente');
-  assert(timingWithClick.count === 2, 'P1-C R3 (Chrome): Exatamente 2 eventos reproduzidos');
-  assert(timingWithClick.gap >= 240, `P1-C R3 (Chrome): Gap efetivo protegido contra clique no Chrome: ${timingWithClick.gap.toFixed(1)}ms >= 240ms`);
-  assert(timingWithClick.firstHandled && timingWithClick.secondHandled, 'P1-C R3 (Chrome): Ambos os eventos concluídos e persistidos');
+  assert(c1Result.count === 2, 'C1: Exatamente 2 efeitos executados no Chrome');
+  assert(c1Result.gap >= 250.0, `C1: Espaçamento regulamentar estrito após ended do pênalti: ${c1Result.gap.toFixed(1)}ms >= 250ms`);
+  assert(c1Result.penHandled && c1Result.whistleHandled, 'C1: Ambos os eventos persistidos no sessionStorage');
+  assert(c1Result.pendingEmpty, 'C1: Fila limpa sem travas');
+
+  // C2. PENALTY_AWARDED com suspensão durante a síntese (Bloqueante Principal do Codex R4)
+  console.log('  -> Executando C2: PENALTY_AWARDED com suspensão durante a síntese...');
+  await setupInstrumentation();
+
+  // Inicia o pênalti e enfileira o próximo
+  await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    audio.enqueue('c2:pen', 'PENALTY_AWARDED');
+    audio.enqueue('c2:card', 'CARD_YELLOW');
+  });
+
+  // Aguarda ~40ms para o oscilador ser criado e iniciar
+  await page.waitForTimeout(40);
+
+  // Suspende o AudioContext enquanto o oscilador está em plena reprodução
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+  });
+
+  // Aguarda 1.0 segundo de tempo real (muito superior à duração nominal de 0.35s do pênalti)
+  await page.waitForTimeout(1000);
+
+  // Comprova que durante a suspensão NENHUM ended ocorreu e a fila permaneceu bloqueada
+  const c2SuspendedCheck = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    return {
+      ctxState: audio.ctx.state,
+      playing: audio.playing,
+      logsCount: logs.length,
+      firstEnded: logs.length > 0 && logs[0].endTime !== null,
+      cardPending: audio.pendingQueue.has('c2:card'),
+      cardStarted: logs.length > 1
+    };
+  });
+
+  assert(c2SuspendedCheck.ctxState === 'suspended', 'C2 (Codex R4): AudioContext suspenso no Chrome');
+  assert(c2SuspendedCheck.playing === true, 'C2 (Codex R4): playing continua estritamente true após 1.0s de relógio JS em suspensão');
+  assert(!c2SuspendedCheck.firstEnded, 'C2 (Codex R4): Oscilador de pênalti NÃO emitiu ended prematuro durante suspensão');
+  assert(c2SuspendedCheck.cardPending && !c2SuspendedCheck.cardStarted, 'C2 (Codex R4): Segundo evento retido intacto na fila pendente sem disparar antes do término real');
+
+  // Retoma o AudioContext
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.resume();
+  });
+
+  // Aguarda conclusão real do pênalti e do segundo efeito
+  await page.waitForTimeout(1500);
+
+  const c2FinalResult = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
+      ? (logs[1].startTime - logs[0].endTime)
+      : 0;
+    return {
+      count: logs.length,
+      gap,
+      penHandled: audio.wasHandled('c2:pen'),
+      cardHandled: audio.wasHandled('c2:card'),
+      pendingEmpty: audio.pendingQueue.size === 0
+    };
+  });
+
+  assert(c2FinalResult.count === 2, 'C2 (Codex R4): Ambos os efeitos concluídos após retomada');
+  assert(c2FinalResult.gap >= 250.0, `C2 (Codex R4): Espaçamento de 250ms respeitado após término real no Chrome: ${c2FinalResult.gap.toFixed(1)}ms >= 250ms`);
+  assert(c2FinalResult.penHandled && c2FinalResult.cardHandled, 'C2 (Codex R4): Ambos os eventos persistidos');
+  assert(c2FinalResult.pendingEmpty, 'C2 (Codex R4): Fila limpa');
+
+  // C3. BALL_HIT_POST com suspensão (2 osciladores)
+  console.log('  -> Executando C3: BALL_HIT_POST com suspensão (2 osciladores)...');
+  await setupInstrumentation();
+  await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    audio.enqueue('c3:post', 'BALL_HIT_POST');
+    audio.enqueue('c3:whistle', 'MATCH_WHISTLE_START');
+  });
+
+  // Aguarda ~30ms para início
+  await page.waitForTimeout(30);
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.suspend();
+  });
+  await page.waitForTimeout(600);
+
+  const c3SuspCheck = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    return {
+      playing: audio.playing,
+      firstEnded: logs.length > 0 && logs[0].endTime !== null,
+      whistleStarted: logs.length > 1
+    };
+  });
+  assert(c3SuspCheck.playing === true && !c3SuspCheck.firstEnded && !c3SuspCheck.whistleStarted, 'C3: BALL_HIT_POST preserva fila bloqueada durante suspensão');
+
+  // Retoma e aguarda
+  await page.evaluate(async () => {
+    const audio = window.__rumo10Audio;
+    await audio.ctx.resume();
+  });
+  await page.waitForTimeout(1500);
+
+  const c3FinalResult = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
+      ? (logs[1].startTime - logs[0].endTime)
+      : 0;
+    return {
+      count: logs.length,
+      gap,
+      postHandled: audio.wasHandled('c3:post'),
+      whistleHandled: audio.wasHandled('c3:whistle')
+    };
+  });
+  assert(c3FinalResult.count === 2, 'C3: BALL_HIT_POST e apito finalizados');
+  assert(c3FinalResult.gap >= 250.0, `C3: Espaçamento após término dos 2 osciladores de BALL_HIT_POST: ${c3FinalResult.gap.toFixed(1)}ms >= 250ms`);
+
+  // C4. Clique durante a pausa com medição do instante efetivo de chegada no navegador
+  console.log('  -> Executando C4: Clique durante a pausa com medição efetiva no Chrome...');
+  await setupInstrumentation();
+  await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    audio.enqueue('c4:card', 'CARD_YELLOW');
+    audio.enqueue('c4:whistle', 'MATCH_WHISTLE_START');
+  });
+
+  // Observa término efetivo (ended) do 1º evento
+  let firstEndedTime = null;
+  for (let i = 0; i < 40; i++) {
+    firstEndedTime = await page.evaluate(() => {
+      const logs = window.__r4AudioLogs;
+      return (logs.length >= 1 && logs[0].endTime !== null) ? logs[0].endTime : null;
+    });
+    if (firstEndedTime !== null) break;
+    await page.waitForTimeout(30);
+  }
+
+  // Aguarda ~30ms para disparar clique dentro da janela regulamentar de 250ms
+  await page.waitForTimeout(30);
+  await page.click('body');
+
+  // Aguarda término completo do 2º evento
+  await page.waitForTimeout(1500);
+
+  const c4Result = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    const click = window.__lastClickInfo;
+    const firstEnd = (logs.length >= 1 && logs[0].endTime) ? logs[0].endTime : 0;
+    const secondStart = (logs.length >= 2 && logs[1].startTime) ? logs[1].startTime : 0;
+    const clickDelta = click ? (click.time - firstEnd) : -1;
+    const gap = (secondStart > 0 && firstEnd > 0) ? (secondStart - firstEnd) : 0;
+    return {
+      count: logs.length,
+      firstEnd,
+      secondStart,
+      clickReceived: !!click,
+      clickDelta,
+      gap,
+      firstHandled: audio.wasHandled('c4:card'),
+      secondHandled: audio.wasHandled('c4:whistle')
+    };
+  });
+
+  assert(c4Result.clickReceived, 'C4: Clique físico capturado com precisão pelo navegador');
+  assert(c4Result.clickDelta > 0 && c4Result.clickDelta < 240, `C4: Clique efetivo chegou dentro da pausa regulamentar (${c4Result.clickDelta.toFixed(1)}ms após ended)`);
+  assert(c4Result.count === 2, 'C4: Exatamente 2 eventos executados no Chrome');
+  assert(c4Result.gap >= 250.0, `C4 (Codex R4): Gap efetivo protegido contra clique: ${c4Result.gap.toFixed(1)}ms >= 250ms`);
+
+  // C5. Cliques múltiplos rápidos durante a pausa
+  console.log('  -> Executando C5: Cliques múltiplos durante a pausa no Chrome...');
+  await setupInstrumentation();
+  await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    audio.enqueue('c5:card', 'CARD_YELLOW');
+    audio.enqueue('c5:whistle', 'MATCH_WHISTLE_START');
+  });
+
+  // Aguarda término do 1º evento
+  for (let i = 0; i < 40; i++) {
+    const ended = await page.evaluate(() => {
+      const logs = window.__r4AudioLogs;
+      return logs.length >= 1 && logs[0].endTime !== null;
+    });
+    if (ended) break;
+    await page.waitForTimeout(30);
+  }
+
+  // Rajada de 4 cliques rápidos durante a pausa
+  await page.waitForTimeout(20);
+  await page.click('body');
+  await page.waitForTimeout(30);
+  await page.click('body');
+  await page.waitForTimeout(40);
+  await page.click('body');
+  await page.waitForTimeout(40);
+  await page.click('body');
+
+  await page.waitForTimeout(1500);
+
+  const c5Result = await page.evaluate(() => {
+    const audio = window.__rumo10Audio;
+    const logs = window.__r4AudioLogs;
+    const gap = (logs.length >= 2 && logs[0].endTime && logs[1].startTime)
+      ? (logs[1].startTime - logs[0].endTime)
+      : 0;
+    return {
+      count: logs.length,
+      gap,
+      pendingEmpty: audio.pendingQueue.size === 0
+    };
+  });
+
+  assert(c5Result.count === 2, 'C5: Rajada de cliques não gerou duplicações nem descarte de eventos');
+  assert(c5Result.gap >= 250.0, `C5: Gap protegido contra múltiplos cliques: ${c5Result.gap.toFixed(1)}ms >= 250ms`);
+  assert(c5Result.pendingEmpty, 'C5: Fila limpa com sucesso');
 
   await browser.close();
 

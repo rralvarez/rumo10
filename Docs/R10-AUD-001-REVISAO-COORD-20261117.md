@@ -173,7 +173,7 @@ Em atendimento à ordem de fechamento complementar da Coordenação Técnica:
 
 ---
 
-## [ATUAL] 6. Auditoria Independente Codex R3 e Blindagem Temporal Definitiva (commit 41d2d5a)
+## [HISTÓRICO] 6. Auditoria Independente Codex R3 e Blindagem Temporal Definitiva (commit 41d2d5a)
 
 **Base auditada:** commit `41d2d5ad38e4b863ff8fd5b01871363d2b191bbb`  
 **Parecer:** P1-A, P1-B, P2-A e pendência residual de mute APROVADOS com louvor. P1-C funcional em ordenação e preservação de fila, mas com defeito temporal de espaçamento sob interação do usuário.
@@ -202,6 +202,66 @@ Como `this.playing` já estava `false`, o segundo som era disparado imediatament
        `if (this.scheduledTimer === null) this.scheduleFlush(this.nextAllowedPlayTime - now);`
        `return;`
      `}`
+
+---
+
+## [ATUAL] 7. Auditoria Independente Codex R4 e Ciclo de Vida dos Sintetizadores (commit 13f52a0 -> R5)
+
+**Missão:** `R10-AUD-001-FIX-R4-SYNTH-END-001`  
+**Base auditada:** commit `13f52a0fdeba86c44ddacbbee918a762fcaebc7e`  
+**Status:** CANDIDATO À AUDITORIA INDEPENDENTE CODEX R5
+
+### 7.1. Diagnóstico do Defeito Confirmado no Codex R4
+
+O Codex R4 aprovou a fila de 4 eventos contemporâneos, a ordenação e os intervalos com cliques comuns. Porém, identificou um defeito bloqueante de ciclo de vida nos efeitos legados sintetizados (`PENALTY_AWARDED` e `BALL_HIT_POST`):
+- A conclusão da síntese dependia de um temporizador artificial JavaScript `setTimeout(..., duration * 1000)`.
+- Esse temporizador continuava correndo no tempo do sistema enquanto o `AudioContext` estivesse suspenso (cujo relógio interno `currentTime` fica congelado).
+- Durante suspensão no meio de `PENALTY_AWARDED`, o temporizador expirava prematuramente, resolvia a Promise de `playDirect()`, liberava `playing = false` e agendava o próximo som antes do término real do oscilador Web Audio (iniciando até 230 ms antes do encerramento sonoro real).
+
+### 7.2. Implementação da Resolução Obrigatória
+
+1. **`playWhistle(startTime, freq, duration, gainVal, onEnded = null)` e `playTone(startTime, freq, duration, type, gainVal, onEnded = null)`:**
+   - Assinaturas ampliadas preservando integralmente os parâmetros existentes e frequências/envelopes (2.500 Hz para pênalti, 160 Hz triângulo e 80 Hz senoide para trave).
+   - Registrado tratamento prévio de `ended` (`addEventListener('ended', ...)` e `osc.onended`), com garantia de disparo único (`endedFired`).
+   - Desconexão limpa e idempotente de `osc` e `gain` ao término.
+   - Retorno de referência estruturada `{ osc, gain, stop, cleanup }` para gestão de ciclo de vida e tratamento de falhas parciais.
+2. **Reestruturação do ramo `effect.synth` em `playDirect()`:**
+   - Eliminação completa e definitiva de `setTimeout()`.
+   - Máquina de estados: `pending` -> `active` -> `completed` / `failed`.
+   - `PENALTY_AWARDED`: resolução estritamente condicionada ao evento `ended` do seu oscilador.
+   - `BALL_HIT_POST`: contador de fontes esperadas (2) e fontes encerradas; resolução única exclusivamente quando **ambos** os osciladores emitirem `ended`. O término do primeiro oscilador não libera a fila.
+   - Marcação P1-A mantida: ID é registrado em `sessionStorage` assim que os osciladores são agendados com sucesso (estado `active`), blindando contra F5 no meio da reprodução.
+   - Tratamento de falha parcial: se a criação/agendamento do segundo oscilador falhar, o primeiro é interrompido com segurança (`stop()`), desconectado e a Promise é rejeitada de imediato, acionando o tratamento terminal sem deixar fontes órfãs ou promessas eternamente pendentes.
+3. **Mocks Node.js (`tests/test-aud001-webaudio.cjs`):**
+   - `MockOscillatorNode` atualizado com suporte a `addEventListener('ended', ...)`, `onended`, estados `started`/`stopped`/`ended` e disparo controlado `triggerEnd()`.
+   - Respeito à suspensão: `triggerEnd()` não emite `ended` enquanto `ctx.state === 'suspended'`.
+   - Implementados os testes determinísticos N1 a N8 cobrindo todos os cenários exigidos pela Coordenação Técnica.
+4. **Chrome E2E no IIS Local (`tests/test-aud001-browser-e2e.cjs`):**
+   - Instrumentação completa registrando instante de chamada, início, `currentTime` e `performance.now()` no `ended`.
+   - Listener de captura para eventos de clique físico no navegador, medindo o intervalo exato entre o `ended` do som anterior e a chegada do clique (`clickDelta`).
+   - Exigência estrita do mínimo contratual de 250 ms (todas as asserções usam `gap >= 250.0 ms`, sem aprovação artificial por 240 ms).
+   - Cenários C1 a C5 executados com sucesso no navegador real:
+     - C1: Pênalti sem suspensão (gap = 264.9 ms >= 250ms).
+     - C2: Pênalti suspenso por 1.0s: nenhum `ended` prematuro, `playing=true` ininterrupto, retomada com término real e espaçamento de 265.1 ms >= 250ms.
+     - C3: Bola na trave com suspensão e 2 osciladores (gap = 264.1 ms >= 250ms).
+     - C4: Clique na pausa capturado aos 150.5 ms após `ended`, sem antecipação (gap = 265.3 ms >= 250ms).
+     - C5: Rajada de múltiplos cliques com gap = 258.6 ms >= 250ms e fila limpa.
+
+---
+
+### 7.3. Resultados Objetivos dos Testes
+
+- **Web Audio Determinístico (`tests/test-aud001-webaudio.cjs`):** **182/182 verificações APROVADAS** (incluindo N1 a N8).
+- **Chrome E2E com Áudio Real no IIS (`tests/test-aud001-browser-e2e.cjs`):** **60/60 verificações APROVADAS** (incluindo C1 a C5).
+- **PHP CLI (`tests/test-aud001-audio.php`):** **143/143 verificações APROVADAS**.
+- **Regressão Apresentação e Contadores UI-001 (`tests/test-ui-001-flow.php`):** **76/76 verificações APROVADAS**.
+- **Regressão F03 Correções (`tests/test-f03-corrections.php`):** **298/298 verificações APROVADAS**.
+- **Regressão Mobile UX (`tests/test-mobile-ux-flow.php`):** **20/20 verificações APROVADAS**.
+- **Regressão Placar Agregado v0.7 (`tests/aggregate-score-v07.php`):** **82/82 verificações APROVADAS**.
+- **Regressão Fluxo Consolidado Independente (`tests/consolidated-independent-flow.php`):** **102/102 verificações APROVADAS**.
+- **Regressão Geral de Temporadas (`tests/run.php` com `RUMOHUB_ENABLED=0`):** **27.985/27.985 verificações APROVADAS** (30 temporadas em 6 posições).
+
+Os oito arquivos OGG aprovados permanecem intocados em `public/assets/audio/`. A branch `feat/aud001-sons-partida` encontra-se pronta para submissão à auditoria independente Codex R5. **Nenhum merge na main foi executado e nenhuma publicação na UOL foi acionada.**
    - Se o usuário clicar durante a pausa (ex: a 30 ms ou em rajada de cliques aos 30ms, 60ms, 100ms), a chamada é interceptada de imediato, o tempo restante é respeitado e nenhum som dispara antes da barreira de 250 ms.
    - Se a fila estiver vazia ou o tempo já tiver transcorrido (ex: primeiro som ou retorno após suspensão longa), `now >= this.nextAllowedPlayTime` e o som inicia sem nenhum atraso artificial.
    - O método `unlock()` permanece ativo e plenamente funcional no clique, sem desabilitar o destravamento por gesto do usuário.

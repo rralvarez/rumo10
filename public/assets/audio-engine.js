@@ -151,38 +151,118 @@
       this.flushPendingQueue();
     },
 
-    playWhistle(startTime, freq, duration, gainVal) {
-      if (!this.ctx || !this.master) return;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, startTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 0.95, startTime + duration);
+    playWhistle(startTime, freq, duration, gainVal, onEnded = null) {
+      if (!this.ctx || !this.master) return null;
+      let osc = null;
+      let gain = null;
+      let endedFired = false;
 
-      gain.gain.setValueAtTime(0, startTime);
-      gain.gain.linearRampToValueAtTime(gainVal * 0.4, startTime + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+      const cleanup = () => {
+        try { if (osc) osc.disconnect(); } catch (_) {}
+        try { if (gain) gain.disconnect(); } catch (_) {}
+      };
 
-      osc.connect(gain);
-      gain.connect(this.master);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
+      const handleEnded = () => {
+        if (endedFired) return;
+        endedFired = true;
+        cleanup();
+        if (typeof onEnded === 'function') {
+          try { onEnded(); } catch (_) {}
+        }
+      };
+
+      try {
+        osc = this.ctx.createOscillator();
+        gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 0.95, startTime + duration);
+
+        gain.gain.setValueAtTime(0, startTime);
+        gain.gain.linearRampToValueAtTime(gainVal * 0.4, startTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+        if (typeof osc.addEventListener === 'function') {
+          osc.addEventListener('ended', handleEnded, { once: true });
+        }
+        osc.onended = handleEnded;
+
+        osc.connect(gain);
+        gain.connect(this.master);
+        osc.start(startTime);
+        osc.stop(startTime + duration);
+
+        return {
+          osc,
+          gain,
+          stop: () => {
+            try { osc.stop(); } catch (_) {}
+            handleEnded();
+          },
+          cleanup: () => {
+            cleanup();
+          }
+        };
+      } catch (err) {
+        cleanup();
+        throw err;
+      }
     },
 
-    playTone(startTime, freq, duration, type, gainVal) {
-      if (!this.ctx || !this.master) return;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = type || 'sine';
-      osc.frequency.setValueAtTime(freq, startTime);
+    playTone(startTime, freq, duration, type, gainVal, onEnded = null) {
+      if (!this.ctx || !this.master) return null;
+      let osc = null;
+      let gain = null;
+      let endedFired = false;
 
-      gain.gain.setValueAtTime(gainVal * 0.3, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+      const cleanup = () => {
+        try { if (osc) osc.disconnect(); } catch (_) {}
+        try { if (gain) gain.disconnect(); } catch (_) {}
+      };
 
-      osc.connect(gain);
-      gain.connect(this.master);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
+      const handleEnded = () => {
+        if (endedFired) return;
+        endedFired = true;
+        cleanup();
+        if (typeof onEnded === 'function') {
+          try { onEnded(); } catch (_) {}
+        }
+      };
+
+      try {
+        osc = this.ctx.createOscillator();
+        gain = this.ctx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
+
+        gain.gain.setValueAtTime(gainVal * 0.3, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+        if (typeof osc.addEventListener === 'function') {
+          osc.addEventListener('ended', handleEnded, { once: true });
+        }
+        osc.onended = handleEnded;
+
+        osc.connect(gain);
+        gain.connect(this.master);
+        osc.start(startTime);
+        osc.stop(startTime + duration);
+
+        return {
+          osc,
+          gain,
+          stop: () => {
+            try { osc.stop(); } catch (_) {}
+            handleEnded();
+          },
+          cleanup: () => {
+            cleanup();
+          }
+        };
+      } catch (err) {
+        cleanup();
+        throw err;
+      }
     },
 
     async bufferFor(file) {
@@ -215,15 +295,60 @@
         if (this.ctx.state !== 'running') return { status: 'suspended' };
         const now = this.ctx.currentTime + 0.02;
         const vol = this.prefs.volume;
-        if (effect.synth === 'penalty_awarded') {
-          this.playWhistle(now, 2500, 0.35, vol);
-        } else if (effect.synth === 'ball_hit_post') {
-          this.playTone(now, 160, 0.15, 'triangle', vol * 0.8);
-          this.playTone(now + 0.05, 80, 0.25, 'sine', vol * 0.9);
-        }
-        if (id) this.markHandled(id);
-        const duration = effect.duration || 0.35;
-        return new Promise(resolve => setTimeout(() => resolve({ status: 'scheduled' }), duration * 1000));
+
+        return new Promise((resolve, reject) => {
+          let state = 'pending'; // pending -> active -> completed / failed
+          let resolved = false;
+          const handles = [];
+          const totalExpected = (effect.synth === 'penalty_awarded') ? 1 : 2;
+          let completedCount = 0;
+
+          const onEndedCallback = () => {
+            if (state !== 'active') return;
+            completedCount++;
+            if (completedCount === totalExpected) {
+              state = 'completed';
+              if (!resolved) {
+                resolved = true;
+                resolve({ status: 'scheduled' });
+              }
+            }
+          };
+
+          const abortAll = (error) => {
+            if (state === 'failed' || resolved) return;
+            state = 'failed';
+            resolved = true;
+            for (const h of handles) {
+              if (h && typeof h.stop === 'function') {
+                try { h.stop(); } catch (_) {}
+              }
+              if (h && typeof h.cleanup === 'function') {
+                try { h.cleanup(); } catch (_) {}
+              }
+            }
+            reject(error || new Error('Synth playback failed'));
+          };
+
+          try {
+            if (effect.synth === 'penalty_awarded') {
+              const h = this.playWhistle(now, 2500, 0.35, vol, onEndedCallback);
+              if (h) handles.push(h);
+            } else if (effect.synth === 'ball_hit_post') {
+              const h1 = this.playTone(now, 160, 0.15, 'triangle', vol * 0.8, onEndedCallback);
+              if (h1) handles.push(h1);
+              const h2 = this.playTone(now + 0.05, 80, 0.25, 'sine', vol * 0.9, onEndedCallback);
+              if (h2) handles.push(h2);
+            }
+            state = 'active';
+            // P1-A: Registra como manipulado assim que o agendamento foi concluído com sucesso
+            if (id) {
+              this.markHandled(id);
+            }
+          } catch (err) {
+            abortAll(err);
+          }
+        });
       }
 
       // Efeitos naturais com arquivos OGG
