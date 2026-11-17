@@ -22,8 +22,9 @@ final class Presentation {
         if($highlight==='goal') $title='GOOOL! Você marcou!';
         if($highlight==='assist') $title='Assistência sua!';
         $soundAttr = '';
-        if ($highlight === 'goal' || $highlight === 'assist') {
-            $eventType = ($highlight === 'goal') ? 'GOAL_SCORED' : 'ASSIST_RECORDED';
+        $feedbackEvent = $f['sound_event'] ?? ($highlight === 'goal' ? 'GOAL_SCORED' : ($highlight === 'assist' ? 'ASSIST_RECORDED' : null));
+        if ($feedbackEvent) {
+            $eventType = $feedbackEvent;
             if (!empty($f['sound_event_id'])) {
                 $soundEventId = $f['sound_event_id'];
             } else {
@@ -35,7 +36,7 @@ final class Presentation {
                 $matchKey = ($m['home'] ?? 'h') . '-' . ($m['away'] ?? 'a');
                 $soundEventId = ($g['id']??'0').':s'.$season.':'.$compId.':m'.$round.':'.$matchKey.':min'.$minute.':'.$eventType.':fb';
             }
-            $soundAttr = ' data-sound-event="'.$eventType.'" data-sound-event-id="'.e($soundEventId).'"';
+            $soundAttr = ' data-sound-event="'.$eventType.'" data-sound-event-id="'.e($soundEventId).'" data-sound-source="action"';
         }
         $text=str_replace([': a intenção deu certo.',': a intenção não teve o efeito esperado.'],'.',$f['text']);
         echo '<aside class="action-result result-'.$tone.($highlight==='goal'?' result-goal':($highlight==='assist'?' result-assist':'')).'" data-result-id="'.e($g['id'].':'.$g['version']).'"'.$soundAttr.' aria-live="polite">';
@@ -66,8 +67,11 @@ final class Presentation {
             else $events[] = $event;
         }
 
+        $currentMinute = (int)($match['minute'] ?? 90);
         foreach ($events as $event) {
-            echo '<div data-sound-event="'.e($event['type'] ?? 'GENERIC').'" data-sound-event-id="'.e($event['id']).'" class="sr-only" aria-hidden="true"></div>';
+            $isHistorical = isset($event['minute']) && (int)$event['minute'] < $currentMinute;
+            $histAttr = $isHistorical ? ' data-sound-historical="1"' : '';
+            echo '<div data-sound-event="'.e($event['type'] ?? 'GENERIC').'" data-sound-event-id="'.e($event['id']).'"'.$histAttr.' class="sr-only" aria-hidden="true"></div>';
         }
     }
 

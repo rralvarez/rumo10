@@ -72,6 +72,48 @@ assertAud($match3['sound_events'][0]['type'] === 'GOAL_SCORED', 'Gol marcado emi
 $hasNoGoal = in_array('NO_GOAL', array_column($match3['sound_events'], 'type'), true);
 assertAud(!$hasNoGoal, 'Gol marcado NÃO emite evento NO_GOAL');
 
+// 1.4 Caminho Real de Game::command em Situação de Pênalti
+$gRealPen = Game::legacyCreate('Jogador Teste', 'São Paulo', 'SP', 'centroavante');
+$gRealPen['stage'] = 'partida';
+$iCur = Game::currentIndex($gRealPen);
+$gRealPen['matches'][$iCur]['entry'] = 0;
+$gRealPen['matches'][$iCur]['exit'] = 90;
+$gRealPen['matches'][$iCur]['minute'] = 30;
+$gRealPen['matches'][$iCur]['status'] = 'em_andamento';
+$gRealPen['matches'][$iCur]['lineup'] = 'titular';
+$gRealPen['matches'][$iCur]['sound_events'] = [];
+$gRealPen['matches'][$iCur]['active_match_penalty'] = [
+    'status' => 'taking_kick',
+    'taker' => 'user',
+    'context_message' => 'Pênalti a seu favor!'
+];
+$gRealPenResult = Game::command($gRealPen, 'choice', ['option' => '0']);
+$mPenRes = $gRealPenResult['matches'][$iCur];
+$penEventTypes = array_column($mPenRes['sound_events'], 'type');
+$hasValidPenSound = in_array('GOAL_SCORED', $penEventTypes, true) || in_array('NO_GOAL', $penEventTypes, true);
+assertAud($hasValidPenSound, 'Game::command em cobrança de pênalti emite GOAL_SCORED ou NO_GOAL de acordo com o lance');
+assertAud(!empty($gRealPenResult['feedback']['sound_event_id']), 'Game::command preenche sound_event_id no feedback da ação');
+
+// 1.5 Caminho Real de Game::command em Chute de Jogo Aberto (Situação 7 aos 80')
+$gRealShot = Game::legacyCreate('Artilheiro', 'São Paulo', 'SP', 'centroavante');
+$gRealShot['stage'] = 'partida';
+$iShot = Game::currentIndex($gRealShot);
+$gRealShot['matches'][$iShot]['entry'] = 0;
+$gRealShot['matches'][$iShot]['exit'] = 90;
+$gRealShot['matches'][$iShot]['minute'] = 80;
+$gRealShot['matches'][$iShot]['hg'] = 0;
+$gRealShot['matches'][$iShot]['ag'] = 0;
+$gRealShot['matches'][$iShot]['status'] = 'em_andamento';
+$gRealShot['matches'][$iShot]['lineup'] = 'titular';
+$gRealShot['matches'][$iShot]['sound_events'] = [];
+
+$gRealShotResult = Game::command($gRealShot, 'choice', ['option' => '0']); // Opção 0 da situação 7 é chute
+$mShotRes = $gRealShotResult['matches'][$iShot];
+$shotEventTypes = array_column($mShotRes['sound_events'], 'type');
+$hasValidShotSound = in_array('GOAL_SCORED', $shotEventTypes, true) || in_array('NO_GOAL', $shotEventTypes, true);
+assertAud($hasValidShotSound, 'Game::command em chute de jogo aberto (S7 aos 80m) emite GOAL_SCORED ou NO_GOAL');
+assertAud(!empty($gRealShotResult['feedback']['sound_event_id']), 'Game::command preenche sound_event_id no feedback de chute');
+
 // -------------------------------------------------------------------------
 // 2. Apitos de Período (MATCH_WHISTLE_START, MATCH_HALFTIME, MATCH_WHISTLE_END)
 // -------------------------------------------------------------------------
@@ -149,6 +191,42 @@ assertAud($matchRec['sound_events'][0]['id'] !== $matchRec['sound_events'][1]['i
 $firstGenId = $matchRec['sound_events'][0]['id'];
 Game::reconcileSoundEvents($matchRec, $gameNormal);
 assertAud($matchRec['sound_events'][0]['id'] === $firstGenId, 'Reconciliação subsequente é estritamente idempotente');
+
+// 3.2 Coexistência Contemporânea e Separação de Históricos (P0-2)
+$matchP02 = [
+    'minute' => 90, 'entry' => 0, 'exit' => 90, 'lineup' => 'titular',
+    'hg' => 1, 'ag' => 0, 'home' => 'SP', 'away' => 'SAN', 'competition' => 'c1', 'round' => 1,
+    'status' => 'finalizada',
+    'sound_events' => [
+        ['type' => 'MATCH_WHISTLE_START', 'minute' => 15, 'id' => 'hist:15'],
+        ['type' => 'GOAL_SCORED', 'minute' => 90, 'id' => 'current:goal:90']
+    ],
+    'log' => []
+];
+$gameP02 = [
+    'id' => 'p02_test', 'season' => 1, 'club' => 'SP', 'stage' => 'fim_semana',
+    'version' => 10,
+    'feedback' => [
+        'highlight' => 'goal',
+        'sound_event' => 'GOAL_SCORED',
+        'sound_event_id' => 'current:goal:90',
+        'text' => 'Gooool!',
+        'success' => true
+    ]
+];
+
+ob_start();
+Presentation::feedback($gameP02);
+$outFeedback = ob_get_clean();
+
+ob_start();
+Presentation::matchSounds($gameP02, $matchP02);
+$outMatchSounds = ob_get_clean();
+
+assertAud(str_contains($outFeedback, 'data-sound-event="GOAL_SCORED"'), 'Feedback renderiza data-sound-event="GOAL_SCORED"');
+assertAud(str_contains($outFeedback, 'data-sound-source="action"'), 'Feedback identifica evento com data-sound-source="action"');
+assertAud(str_contains($outMatchSounds, 'data-sound-event="MATCH_WHISTLE_END"'), 'MatchSounds renderiza data-sound-event="MATCH_WHISTLE_END"');
+assertAud(str_contains($outMatchSounds, 'data-sound-historical="1"'), 'Evento de minuto 15 marcado com data-sound-historical="1" aos 90 min');
 
 // -------------------------------------------------------------------------
 // 4. Isolamento dos Modos de Jogo (Normal vs Rápido / Expresso)
@@ -268,6 +346,14 @@ foreach ($expectedFiles as $file) {
     $magic = fread($fp, 4);
     fclose($fp);
     assertAud($magic === 'OggS', "Arquivo {$file} possui cabeçalho válido OggS");
+
+    // Validação profunda com ffprobe (codec vorbis, duração <= 3s, canais)
+    $probeOutput = shell_exec("ffprobe -v error -show_entries format=duration:stream=codec_name,channels,sample_rate -of default=noprint_wrappers=1 ".escapeshellarg($fullPath));
+    assertAud(str_contains($probeOutput, 'codec_name=vorbis'), "Arquivo {$file} usa codec vorbis");
+    
+    preg_match('/duration=([0-9.]+)/', $probeOutput, $mDur);
+    $dur = isset($mDur[1]) ? (float)$mDur[1] : 999.0;
+    assertAud($dur > 0 && $dur <= 3.0, "Arquivo {$file} tem duração rigorosamente <= 3.0s ({$dur}s aferido)");
 }
 
 // -------------------------------------------------------------------------

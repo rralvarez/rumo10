@@ -17,10 +17,16 @@
   });
   const WHISTLE_GAP_SECONDS = 0.18; // Ponto inicial para homologação auditiva.
   const EVENT_PRIORITY = Object.freeze({
-    MATCH_WHISTLE_END: 100, MATCH_HALFTIME: 95, MATCH_WHISTLE_START: 90,
-    GOAL_SCORED: 85, NO_GOAL: 80, CARD_RED: 75,
-    ASSIST_RECORDED: 70, CARD_YELLOW: 65,
-    PLAYER_SUBSTITUTION_IN: 60, PLAYER_SUBSTITUTION_OUT: 55
+    GOAL_SCORED: 100,
+    ASSIST_RECORDED: 90,
+    NO_GOAL: 85,
+    CARD_RED: 80,
+    CARD_YELLOW: 75,
+    PLAYER_SUBSTITUTION_IN: 70,
+    PLAYER_SUBSTITUTION_OUT: 65,
+    MATCH_WHISTLE_END: 50,
+    MATCH_HALFTIME: 45,
+    MATCH_WHISTLE_START: 40
   });
 
   const AudioEngine = {
@@ -139,39 +145,49 @@
       // A divisão do ganho mantém margem para a soma dos disparos sobrepostos.
       const level = 1 / count;
       const startAt = this.ctx.currentTime + 0.02;
-      for (let index = 0; index < count; index++) {
-        const source = this.ctx.createBufferSource();
-        const gain = this.ctx.createGain();
-        source.buffer = buffer;
-        gain.gain.value = level;
-        source.connect(gain);
-        gain.connect(this.master);
-        source.onended = () => { source.disconnect(); gain.disconnect(); };
-        source.start(startAt + index * WHISTLE_GAP_SECONDS);
-      }
-      return true;
+      return new Promise((resolve) => {
+        let completed = 0;
+        for (let index = 0; index < count; index++) {
+          const source = this.ctx.createBufferSource();
+          const gain = this.ctx.createGain();
+          source.buffer = buffer;
+          gain.gain.value = level;
+          source.connect(gain);
+          gain.connect(this.master);
+          source.onended = () => {
+            try { source.disconnect(); gain.disconnect(); } catch (_) {}
+            completed++;
+            if (completed === count) {
+              resolve(true);
+            }
+          };
+          source.start(startAt + index * WHISTLE_GAP_SECONDS);
+        }
+      });
     },
 
     async flushPendingQueue() {
       if (!this.ctx || this.ctx.state !== 'running' || this.prefs.muted || this.playing) return;
       if (this.pendingQueue.size === 0) return;
-      // Muitos eventos históricos chegam no mesmo DOM. Um único efeito por
-      // atualização evita uma rajada de sons, sem alterar o estado do jogo.
-      const candidates = [...this.pendingQueue].sort((a, b) =>
-        (EVENT_PRIORITY[b[1]] || 0) - (EVENT_PRIORITY[a[1]] || 0));
-      const [id, key] = candidates[0];
-      this.pendingQueue.clear();
-      for (const [otherId] of candidates.slice(1)) this.markHandled(otherId);
+
+      const entry = this.pendingQueue.entries().next().value;
+      if (!entry) return;
+      const [id, key] = entry;
+      this.pendingQueue.delete(id);
       this.playing = true;
+
       try {
-        const started = await this.playDirect(key);
-        if (started) this.markHandled(id);
+        await this.playDirect(key);
+        this.markHandled(id);
       } catch (_) {
-        // Arquivo ausente ou não decodificável: não simular efeito sintético.
-        // A falha permanece recuperável na próxima interação/visita.
+        // Arquivo ausente ou erro de decodificação: marcar manipulado para evitar loop
+        this.markHandled(id);
       } finally {
         this.playing = false;
-        if (this.pendingQueue.size) this.flushPendingQueue();
+        if (this.pendingQueue.size > 0 && !this.prefs.muted && this.ctx && this.ctx.state === 'running') {
+          // Espaçamento natural entre eventos contemporâneos (ex: gol seguido do apito final)
+          setTimeout(() => this.flushPendingQueue(), 250);
+        }
       }
     },
 
@@ -197,19 +213,43 @@
   });
 
   function scanServerEvents() {
-    const pending = new Map();
+    const unhandled = [];
     document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(element => {
       const id = element.dataset.soundEventId;
       const key = element.dataset.soundEvent;
-      if (id && SOUNDS[key] && !AudioEngine.wasHandled(id)) pending.set(id, key);
+      const isHistorical = element.dataset.soundHistorical === '1';
+      if (!id || !SOUNDS[key]) return;
+      if (AudioEngine.wasHandled(id)) return;
+      if (isHistorical) {
+        AudioEngine.markHandled(id);
+        return;
+      }
+      unhandled.push({ id, key, element });
     });
-    const ordered = [...pending].sort((a, b) =>
-      (EVENT_PRIORITY[b[1]] || 0) - (EVENT_PRIORITY[a[1]] || 0));
-    if (!ordered.length) return;
-    // Um único evento audível por renderização; eventos históricos não
-    // geram uma sequência de reprodução enquanto a partida é recarregada.
-    for (const [id] of ordered.slice(1)) AudioEngine.markHandled(id);
-    AudioEngine.enqueue(ordered[0][0], ordered[0][1]);
+
+    if (!unhandled.length) return;
+
+    // Deduplica por ID caso o mesmo evento apareça no feedback e no matchSounds
+    const uniqueMap = new Map();
+    for (const item of unhandled) {
+      if (!uniqueMap.has(item.id)) {
+        uniqueMap.set(item.id, item);
+      }
+    }
+
+    const ordered = [...uniqueMap.values()].sort((a, b) =>
+      (EVENT_PRIORITY[b.key] || 0) - (EVENT_PRIORITY[a.key] || 0));
+
+    // Permite enfileirar até 2 eventos contemporâneos legítimos (ex: lance de ação + apito de período).
+    // Quaisquer excedentes são marcados como tratados para prevenir rajadas.
+    const toQueue = ordered.slice(0, 2);
+    const toDrop = ordered.slice(2);
+    for (const item of toDrop) {
+      AudioEngine.markHandled(item.id);
+    }
+    for (const item of toQueue) {
+      AudioEngine.enqueue(item.id, item.key);
+    }
   }
 
   document.addEventListener('click', event => {
