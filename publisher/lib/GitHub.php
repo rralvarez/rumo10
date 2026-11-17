@@ -109,6 +109,7 @@ class GitHub {
                 // must already be validated before that PR merges. Never apply or
                 // label its infrastructure-only artifact as an application release.
                 if($expected===null && isset($this->c['main_automation']) &&
+                    ($this->c['main_automation']['owner_id']??null)===35331184 &&
                     ($checkpoint['commit']??null)===MainAutomation::UI001['commit']){
                     $merge=$this->api($repo.'/commits/'.$head);
                     $parents=$merge['parents']??[];
