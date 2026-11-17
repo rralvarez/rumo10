@@ -105,6 +105,39 @@ class GitHub {
             }
             if(($run['status']??null)==='completed'){
                 need(($run['conclusion']??null)==='success','Official CI failed');
+                // PR #9 installs receiver infrastructure only. The prior UI-001 pilot
+                // must already be validated before that PR merges. Never apply or
+                // label its infrastructure-only artifact as an application release.
+                if($expected===null && isset($this->c['main_automation']) &&
+                    ($checkpoint['commit']??null)===MainAutomation::UI001['commit']){
+                    $merge=$this->api($repo.'/commits/'.$head);
+                    $parents=$merge['parents']??[];
+                    if(count($parents)===2 &&
+                        ($parents[0]['sha']??null)===MainAutomation::UI001['commit']){
+                        $pr=$this->api($repo.'/pulls/9');
+                        if(($pr['merge_commit_sha']??null)===$head){
+                            $reviewHead=$pr['head']['sha']??'';
+                            need(is_string($reviewHead) &&
+                                preg_match('/^[a-f0-9]{40}$/D',$reviewHead)===1,
+                                'PR #9 reviewed head not proven');
+                            $review=$this->api($repo.'/commits/'.$reviewHead);
+                            $comparison=$this->api($repo.'/compare/'.MainAutomation::UI001['commit'].'...'.$head);
+                            MainAutomation::infrastructureOnlyPr9($this->c['main_automation'],
+                                $pr,$merge,$review,$comparison);
+                            need(MainAutomation::outcome($this->c,
+                                ['id'=>MainAutomation::UI001['run_id'],
+                                 'head_sha'=>MainAutomation::UI001['commit']],
+                                ['id'=>MainAutomation::UI001['artifact_id']]),
+                                'UI-001 production receipt must remain validated before PR #9');
+                            $publisher->verifyPublicAvailability();
+                            $reason='Infrastructure PR #9 retained without application deployment';
+                            $this->report($run,'pending',$reason);
+                            return ['state'=>'infrastructure-held','main_commit'=>$head,
+                                'installed_commit'=>MainAutomation::UI001['commit'],
+                                'application_deployed'=>false];
+                        }
+                    }
+                }
                 $reason='Artefato oficial indisponivel';
                 $a=$this->api($repo.'/actions/runs/'.$run['id'].'/artifacts?per_page=100');
                 need(($a['total_count']??101)<=100,'Artifact discovery pagination bound');
