@@ -1,43 +1,93 @@
 (() => {
   'use strict';
 
-  // Gerenciador de Áudio Web Audio API (Sintetizador Puro de Alta Qualidade)
-  // Sem chamadas de rede externas, em conformidade estrita com Content-Security-Policy: default-src 'self'
+  // AUD-001: sons naturais, com arquivos hospedados no próprio Rumo10.
+  // O mesmo buffer do apito é disparado 1, 2 ou 3 vezes, em sobreposição.
+  const SOUNDS = Object.freeze({
+    MATCH_WHISTLE_START: { file: 'match_whistle.ogg', repeats: 1 },
+    MATCH_HALFTIME: { file: 'match_whistle.ogg', repeats: 2 },
+    MATCH_WHISTLE_END: { file: 'match_whistle.ogg', repeats: 3 },
+    GOAL_SCORED: { file: 'goal.ogg' },
+    NO_GOAL: { file: 'no_goal.ogg' },
+    ASSIST_RECORDED: { file: 'assist.ogg' },
+    CARD_YELLOW: { file: 'yellow_card.ogg' },
+    CARD_RED: { file: 'red_card.ogg' },
+    PLAYER_SUBSTITUTION_IN: { file: 'substitution_in.ogg' },
+    PLAYER_SUBSTITUTION_OUT: { file: 'substitution_out.ogg' }
+  });
+  const WHISTLE_GAP_SECONDS = 0.18; // Ponto inicial para homologação auditiva.
+  const EVENT_PRIORITY = Object.freeze({
+    MATCH_WHISTLE_END: 100, MATCH_HALFTIME: 95, MATCH_WHISTLE_START: 90,
+    GOAL_SCORED: 85, NO_GOAL: 80, CARD_RED: 75,
+    ASSIST_RECORDED: 70, CARD_YELLOW: 65,
+    PLAYER_SUBSTITUTION_IN: 60, PLAYER_SUBSTITUTION_OUT: 55
+  });
+
   const AudioEngine = {
     ctx: null,
+    master: null,
     prefs: { muted: false, volume: 0.7 },
     pendingQueue: new Map(),
     handled: new Set(),
+    cachedBuffers: new Map(),
     unlockingPromise: null,
+    playing: false,
 
     init() {
       try {
-        const saved = localStorage.getItem('rumo10_audio_prefs');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (typeof parsed.muted === 'boolean') this.prefs.muted = parsed.muted;
-          if (typeof parsed.volume === 'number') this.prefs.volume = Math.max(0, Math.min(1, parsed.volume));
+        const saved = JSON.parse(localStorage.getItem('rumo10_audio_prefs') || 'null');
+        if (saved && typeof saved.muted === 'boolean') this.prefs.muted = saved.muted;
+        if (saved && Number.isFinite(saved.volume)) {
+          this.prefs.volume = Math.max(0, Math.min(1, saved.volume));
         }
       } catch (_) {}
-
-      // Cria ou reutiliza contexto global que sobrevive à substituição do DOM
-      if (!window.__rumo10AudioCtx) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioContextClass) {
-          try {
-            window.__rumo10AudioCtx = new AudioContextClass();
-          } catch (_) {}
+      try {
+        if (!window.__rumo10AudioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) window.__rumo10AudioCtx = new AudioContextClass();
         }
+        this.ctx = window.__rumo10AudioCtx || null;
+        if (this.ctx) {
+          this.master = this.ctx.createGain();
+          this.master.connect(this.ctx.destination);
+          this.updateMasterVolume();
+        }
+      } catch (_) { this.ctx = null; this.master = null; }
+    },
+
+    updateMasterVolume() {
+      if (!this.master || !this.ctx) return;
+      const level = this.prefs.muted ? 0 : Math.min(0.65, this.prefs.volume * 0.65);
+      this.master.gain.setTargetAtTime(level, this.ctx.currentTime, 0.008);
+    },
+
+    savePrefs() {
+      try { localStorage.setItem('rumo10_audio_prefs', JSON.stringify(this.prefs)); } catch (_) {}
+    },
+
+    setMuted(muted) {
+      this.prefs.muted = !!muted;
+      this.savePrefs();
+      this.updateMasterVolume();
+      this.updateUI();
+      if (this.prefs.muted) {
+        for (const id of this.pendingQueue.keys()) this.markHandled(id);
+        this.pendingQueue.clear();
+      } else {
+        this.unlock();
       }
-      this.ctx = window.__rumo10AudioCtx || null;
+    },
+
+    setVolume(volume) {
+      this.prefs.volume = Math.max(0, Math.min(1, Number(volume) || 0));
+      this.savePrefs();
+      this.updateMasterVolume();
+      this.updateUI();
     },
 
     unlock() {
       if (!this.ctx) return;
-      if (this.ctx.state === 'running') {
-        this.flushPendingQueue();
-        return;
-      }
+      if (this.ctx.state === 'running') { this.flushPendingQueue(); return; }
       if (this.unlockingPromise) return;
       this.unlockingPromise = this.ctx.resume()
         .then(() => this.flushPendingQueue())
@@ -45,204 +95,121 @@
         .finally(() => { this.unlockingPromise = null; });
     },
 
-    flushPendingQueue() {
-      if (!this.ctx || this.ctx.state !== 'running' || this.prefs.muted) return;
-      for (const [eventId, eventKey] of this.pendingQueue) {
-        this.playDirect(eventKey);
-        this.markHandled(eventId);
-        this.pendingQueue.delete(eventId);
-      }
+    markHandled(id) {
+      this.handled.add(id);
+      try { sessionStorage.setItem('rumo10_sound_played:' + id, '1'); } catch (_) {}
     },
 
-    markHandled(eventId) {
-      this.handled.add(eventId);
-      try { sessionStorage.setItem('rumo10_sound_played:' + eventId, '1'); } catch (_) {}
+    wasHandled(id) {
+      if (this.handled.has(id)) return true;
+      try { return sessionStorage.getItem('rumo10_sound_played:' + id) === '1'; }
+      catch (_) { return false; }
     },
 
-    enqueue(eventId, eventKey) {
-      if (!this.ctx || this.handled.has(eventId) || this.pendingQueue.has(eventId)) return;
-      try {
-        if (sessionStorage.getItem('rumo10_sound_played:' + eventId)) return;
-      } catch (_) {}
-      if (this.prefs.muted) {
-        this.markHandled(eventId);
-        return;
-      }
-      this.pendingQueue.set(eventId, eventKey);
+    enqueue(id, key) {
+      if (!this.ctx || !SOUNDS[key] || !id || this.wasHandled(id)) return;
+      if (this.prefs.muted) { this.markHandled(id); return; }
+      this.pendingQueue.set(id, key);
       this.flushPendingQueue();
     },
 
-    setMuted(muted) {
-      this.prefs.muted = !!muted;
-      this.savePrefs();
-      this.updateUI();
-      if (this.prefs.muted) {
-        for (const eventId of this.pendingQueue.keys()) this.markHandled(eventId);
-        this.pendingQueue.clear();
-      } else {
-        this.unlock();
+    async bufferFor(file) {
+      if (!this.cachedBuffers.has(file)) {
+        const promise = fetch('/assets/audio/' + file, { credentials: 'same-origin' })
+          .then(response => {
+            if (!response.ok) throw new Error('Audio asset unavailable: ' + file);
+            return response.arrayBuffer();
+          })
+          .then(bytes => this.ctx.decodeAudioData(bytes))
+          .catch(error => {
+            this.cachedBuffers.delete(file);
+            throw error;
+          });
+        this.cachedBuffers.set(file, promise);
       }
+      return this.cachedBuffers.get(file);
     },
 
-    setVolume(vol) {
-      this.prefs.volume = Math.max(0, Math.min(1, vol));
-      this.savePrefs();
-      this.updateUI();
-    },
-
-    savePrefs() {
-      try {
-        localStorage.setItem('rumo10_audio_prefs', JSON.stringify(this.prefs));
-      } catch (_) {}
-    },
-
-    playDirect(eventKey) {
-      if (this.prefs.volume === 0) return;
-      const now = this.ctx.currentTime;
-      const vol = this.prefs.volume;
-
-      switch (eventKey) {
-        case 'MATCH_WHISTLE_START': // Dois apitos curtos e claros
-          this.playWhistle(now, 2200, 0.12, vol);
-          this.playWhistle(now + 0.16, 2400, 0.22, vol);
-          break;
-
-        case 'MATCH_WHISTLE_END': // Três apitos (dois curtos, um longo)
-          this.playWhistle(now, 2200, 0.12, vol);
-          this.playWhistle(now + 0.18, 2200, 0.12, vol);
-          this.playWhistle(now + 0.38, 2400, 0.55, vol);
-          break;
-
-        case 'PLAYER_SUBSTITUTION_IN': // Tom ascendente elegante de entrada
-          this.playChime(now, [440, 659.25, 880], 0.25, vol * 0.85);
-          break;
-
-        case 'PLAYER_SUBSTITUTION_OUT': // Tom descendente elegante de saída
-          this.playChime(now, [880, 659.25, 523.25], 0.28, vol * 0.85);
-          break;
-
-        case 'GOAL_SCORED': // Acorde solene triunfante com brilho sonoro
-          this.playChime(now, [523.25, 659.25, 783.99, 1046.50], 0.7, vol);
-          break;
-
-        case 'ASSIST_RECORDED': // Acorde límpido de assistência
-          this.playChime(now, [587.33, 739.99, 880], 0.5, vol * 0.9);
-          break;
-
-        case 'CARD_YELLOW': // Apito curto com advertência
-          this.playWhistle(now, 1900, 0.18, vol * 0.85);
-          this.playTone(now + 0.20, 330, 0.22, 'triangle', vol * 0.5);
-          break;
-
-        case 'CARD_RED': // Apito penetrante com tom grave
-          this.playWhistle(now, 2600, 0.40, vol);
-          this.playTone(now + 0.15, 180, 0.50, 'sawtooth', vol * 0.6);
-          break;
-
-        case 'PENALTY_AWARDED': // Apito enérgico longo
-          this.playWhistle(now, 2500, 0.35, vol);
-          break;
-
-        case 'BALL_HIT_POST': // Impacto metálico no poste
-          this.playTone(now, 160, 0.15, 'triangle', vol * 0.8);
-          this.playTone(now + 0.05, 80, 0.25, 'sine', vol * 0.9);
-          break;
-      }
-    },
-
-    playWhistle(startTime, freq, duration, gainVal) {
-      if (!this.ctx) return;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, startTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 0.95, startTime + duration);
-
-      gain.gain.setValueAtTime(0, startTime);
-      gain.gain.linearRampToValueAtTime(gainVal * 0.4, startTime + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
-    },
-
-    playTone(startTime, freq, duration, type, gainVal) {
-      if (!this.ctx) return;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = type || 'sine';
-      osc.frequency.setValueAtTime(freq, startTime);
-
-      gain.gain.setValueAtTime(gainVal * 0.3, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
-    },
-
-    playChime(startTime, freqs, duration, gainVal) {
-      if (!this.ctx) return;
-      freqs.forEach((freq, idx) => {
-        const noteStart = startTime + idx * 0.07;
-        const osc = this.ctx.createOscillator();
+    async playDirect(key) {
+      const effect = SOUNDS[key];
+      if (!effect || !this.ctx || !this.master) return false;
+      const buffer = await this.bufferFor(effect.file);
+      if (this.prefs.muted || this.prefs.volume <= 0 || this.ctx.state !== 'running') return true;
+      const count = effect.repeats || 1;
+      // A divisão do ganho mantém margem para a soma dos disparos sobrepostos.
+      const level = 1 / count;
+      const startAt = this.ctx.currentTime + 0.02;
+      for (let index = 0; index < count; index++) {
+        const source = this.ctx.createBufferSource();
         const gain = this.ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, noteStart);
+        source.buffer = buffer;
+        gain.gain.value = level;
+        source.connect(gain);
+        gain.connect(this.master);
+        source.onended = () => { source.disconnect(); gain.disconnect(); };
+        source.start(startAt + index * WHISTLE_GAP_SECONDS);
+      }
+      return true;
+    },
 
-        gain.gain.setValueAtTime(0, noteStart);
-        gain.gain.linearRampToValueAtTime((gainVal / freqs.length) * 0.8, noteStart + 0.03);
-        gain.gain.exponentialRampToValueAtTime(0.001, noteStart + duration);
-
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(noteStart);
-        osc.stop(noteStart + duration);
-      });
+    async flushPendingQueue() {
+      if (!this.ctx || this.ctx.state !== 'running' || this.prefs.muted || this.playing) return;
+      if (this.pendingQueue.size === 0) return;
+      // Muitos eventos históricos chegam no mesmo DOM. Um único efeito por
+      // atualização evita uma rajada de sons, sem alterar o estado do jogo.
+      const candidates = [...this.pendingQueue].sort((a, b) =>
+        (EVENT_PRIORITY[b[1]] || 0) - (EVENT_PRIORITY[a[1]] || 0));
+      const [id, key] = candidates[0];
+      this.pendingQueue.clear();
+      for (const [otherId] of candidates.slice(1)) this.markHandled(otherId);
+      this.playing = true;
+      try {
+        const started = await this.playDirect(key);
+        if (started) this.markHandled(id);
+      } catch (_) {
+        // Arquivo ausente ou não decodificável: não simular efeito sintético.
+        // A falha permanece recuperável na próxima interação/visita.
+      } finally {
+        this.playing = false;
+        if (this.pendingQueue.size) this.flushPendingQueue();
+      }
     },
 
     updateUI() {
       const btn = document.querySelector('[data-action="toggle-audio"]');
-      if (btn) {
-        btn.setAttribute('aria-pressed', (!this.prefs.muted).toString());
-        btn.classList.toggle('is-muted', this.prefs.muted);
-        const icon = btn.querySelector('.audio-icon');
-        if (icon) {
-          icon.innerHTML = this.prefs.muted
-            ? '<path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>'
-            : '<path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>';
-        }
+      if (!btn) return;
+      btn.setAttribute('aria-pressed', (!this.prefs.muted).toString());
+      btn.classList.toggle('is-muted', this.prefs.muted);
+      const icon = btn.querySelector('.audio-icon');
+      if (icon) {
+        icon.innerHTML = this.prefs.muted
+          ? '<path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/>'
+          : '<path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>';
       }
     }
   };
 
-  // Inicializa o Engine
   AudioEngine.init();
   window.__rumo10Audio = AudioEngine;
 
-  ['click', 'pointerdown', 'keydown', 'submit'].forEach(event => {
-    window.addEventListener(event, () => AudioEngine.unlock(), { capture: true });
+  ['click', 'pointerdown', 'keydown', 'submit'].forEach(name => {
+    window.addEventListener(name, () => AudioEngine.unlock(), { capture: true });
   });
 
   function scanServerEvents() {
-    document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(el => {
-      AudioEngine.enqueue(el.dataset.soundEventId, el.dataset.soundEvent);
+    document.querySelectorAll('[data-sound-event][data-sound-event-id]').forEach(element => {
+      AudioEngine.enqueue(element.dataset.soundEventId, element.dataset.soundEvent);
     });
   }
 
-  // Monitora controles de áudio na interface
-  document.addEventListener('click', e => {
-    const btn = e.target.closest('[data-action="toggle-audio"]');
+  document.addEventListener('click', event => {
+    const btn = event.target.closest('[data-action="toggle-audio"]');
     if (btn) {
-      e.preventDefault();
+      event.preventDefault();
       AudioEngine.setMuted(!AudioEngine.prefs.muted);
     }
   });
 
-  // Executa na carga da página
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       AudioEngine.updateUI();
