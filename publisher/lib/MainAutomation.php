@@ -125,7 +125,7 @@ final class MainAutomation {
         if($assessment['class']==='A'){
             need($assessment['migrations']===[] && ($assessment['required_migrations']??[])===[], 'Class A cannot contain migrations');
             foreach($assessment['changed'] as $path){
-                need(preg_match('#^(?:app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2))$#iD',$path)===1 &&
+                need(preg_match('#^(?:app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2|ogg|mp3))$#iD',$path)===1 &&
                     !in_array(strtolower($path),['app/bootstrap.php','app/database.php','app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php'],true),
                     'Path outside ordinary automatic release policy');
             }
@@ -143,7 +143,7 @@ final class MainAutomation {
                     'Public entrypoint requires exact authorized, fully drained transition');
                 continue;
             }
-            need(preg_match('#^(?:database/.+\\.(?:sql|php)|app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2))$#iD',$path)===1,
+            need(preg_match('#^(?:database/.+\\.(?:sql|php)|app/.+\\.php|public/assets/.+\\.(?:css|js|svg|png|webp|woff2|ogg|mp3))$#iD',$path)===1,
                 'Path outside approved Class B release policy: '.$path);
         }
     }
