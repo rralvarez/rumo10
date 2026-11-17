@@ -52,6 +52,7 @@ final class Presentation {
         $events = $match['sound_events'] ?? [];
         $whistle = match (true) {
             $g['stage'] === 'partida' && $match['status'] === 'em_andamento' && $match['minute'] === 15 => 'MATCH_WHISTLE_START',
+            $g['stage'] === 'partida' && $match['status'] === 'intervalo' && $match['minute'] === 45 => 'MATCH_HALFTIME',
             $g['stage'] === 'fim_semana' && $match['status'] === 'finalizada' => 'MATCH_WHISTLE_END',
             default => null,
         };
