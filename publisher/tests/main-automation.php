@@ -84,8 +84,8 @@ check(rejects(fn()=>MainAutomation::change($cfg,$v,$unexpectedAssessment),'Path 
 $proof=['created_at'=>500,'artifact_id'=>123,'package_sha256'=>$v['package_sha256'],
     'consistent'=>true,'source_uuid'=>'s',
     'dump_sha256'=>str_repeat('d',64),'files'=>['dump'=>str_repeat('d',64)]];
-check(rejects(fn()=>MainAutomation::proof(['class'=>'A','consistent'=>true,'pre_merge_backup_confirmed'=>true],$v,2299,'A'),
-    'Authenticated manual backup confirmation'),'Local self-declared backup proof refused');
+MainAutomation::proof([],$v,2299,'A');
+check(true,'Class A never requests database backup or a manual backup receipt at deploy');
 MainAutomation::proof($proof,$v,2299);check(true,'Proof fresh on single server');
 check(rejects(fn()=>MainAutomation::proof($proof,$v,2300),'Fresh consistent'),'Proof expires at 30 minutes');
 check(rejects(fn()=>MainAutomation::proof(array_replace($proof,['files'=>[]]),$v,2299),'Valid backup dump'),'Missing dump file');
