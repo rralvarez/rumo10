@@ -366,25 +366,182 @@ $hasSubFull = in_array('PLAYER_SUBSTITUTION_OUT', array_column($matchFullTime['s
 assertAud(!$hasSubFull, 'Titular que atua os 90 minutos NÃO emite PLAYER_SUBSTITUTION_OUT fictício');
 
 // -------------------------------------------------------------------------
-// 6. Disciplina: Cartões Amarelos e Vermelhos
+// 6. Disciplina: Cartões Amarelos, Segundo Amarelo e Vermelho Direto
 // -------------------------------------------------------------------------
-echo "\n6. Validando emissão de eventos sonoros disciplinares (CARD_YELLOW e CARD_RED)...\n";
+echo "\n6. Validando disciplina integrada: Primeiro Amarelo, Segundo Amarelo e Vermelho Direto...\n";
 
-$matchDisc = [
-    'minute' => 55, 'entry' => 0, 'exit' => 90, 'lineup' => 'titular',
+// 6.1 Primeiro Cartão Amarelo via MatchDiscipline::recordFoul
+$gDisc1 = $gameNormal;
+$gDisc1['feedback'] = ['text' => '', 'effects' => []];
+$matchDisc1 = [
+    'minute' => 20, 'entry' => 0, 'exit' => 90, 'lineup' => 'titular',
     'hg' => 0, 'ag' => 0, 'home' => 'SP', 'away' => 'SAN', 'competition' => 'c1', 'round' => 1,
-    'status' => 'em_andamento', 'sound_events' => [], 'log' => [], 'stats' => ['cards' => 0]
+    'status' => 'em_andamento', 'sound_events' => [], 'log' => [], 'stats' => ['cards' => 0, 'yellow_cards' => 0, 'red_cards' => 0]
 ];
-$resYellow = MatchDiscipline::recordFoul($gameNormal, $matchDisc, 'reckless_tackle', false);
-assertAud(in_array('CARD_YELLOW', array_column($matchDisc['sound_events'], 'type'), true), 'Aplicação de cartão amarelo emite CARD_YELLOW');
+$resYellow1 = MatchDiscipline::recordFoul($gDisc1, $matchDisc1, 'reckless_tackle', false);
+assertAud($resYellow1['card'] === 'yellow', 'Primeiro cartão classificado como yellow');
+assertAud(in_array('CARD_YELLOW', array_column($matchDisc1['sound_events'], 'type'), true), 'Primeira infração emite CARD_YELLOW');
+assertAud(!empty($resYellow1['sound_event_id']), 'recordFoul retorna sound_event_id para primeiro amarelo');
+assertAud(in_array($resYellow1['sound_event_id'], $gDisc1['feedback']['sound_event_ids'] ?? [], true), 'ID do primeiro amarelo registrado em feedback.sound_event_ids');
+assertAud($matchDisc1['stats']['yellow_cards'] === 1 && $matchDisc1['stats']['cards'] === 1, 'Estatísticas registram yellow_cards=1 e cards=1');
 
-$matchRed = [
-    'minute' => 80, 'entry' => 0, 'exit' => 90, 'lineup' => 'titular',
+// Avanço de segmento após primeiro amarelo (de 20 para 35)
+$matchDisc1['minute'] = 35;
+ob_start();
+Presentation::matchSounds($gDisc1, $matchDisc1);
+$outDisc1 = ob_get_clean();
+assertAud(str_contains($outDisc1, 'data-sound-event="CARD_YELLOW"'), 'matchSounds renderiza CARD_YELLOW');
+assertAud(!str_contains($outDisc1, 'data-sound-historical="1"'), 'CARD_YELLOW da ação recente não é marcado histórico após avanço de minuto');
+
+// Deduplicação no F5: re-renderização imediata mantém o mesmo ID determinístico
+ob_start();
+Presentation::matchSounds($gDisc1, $matchDisc1);
+$outDisc1F5 = ob_get_clean();
+assertAud($outDisc1 === $outDisc1F5, 'Re-renderização no F5 produz marcação idêntica com o mesmo sound-event-id para deduplicação no cliente');
+
+// Turno seguinte: com novo feedback sem o cartão, o evento de 20 min passa a ser histórico aos 35 min
+$gDisc1Next = $gDisc1;
+$gDisc1Next['feedback'] = ['text' => 'Passe completado aos 35 min', 'effects' => [], 'sound_event_ids' => []];
+ob_start();
+Presentation::matchSounds($gDisc1Next, $matchDisc1);
+$outDisc1Next = ob_get_clean();
+assertAud(str_contains($outDisc1Next, 'data-sound-historical="1"'), 'No turno subsequente, o primeiro cartão é classificado como histórico');
+
+// 6.2 Segundo Cartão Amarelo -> Expulsão (CARD_RED)
+$gDisc2 = $gameNormal;
+$gDisc2['feedback'] = ['text' => '', 'effects' => []];
+$matchDisc2 = [
+    'minute' => 50, 'entry' => 0, 'exit' => 90, 'lineup' => 'titular',
+    'participation_state' => MatchParticipation::STATE_ON_FIELD,
     'hg' => 0, 'ag' => 0, 'home' => 'SP', 'away' => 'SAN', 'competition' => 'c1', 'round' => 1,
-    'status' => 'em_andamento', 'sound_events' => [], 'log' => [], 'stats' => ['cards' => 0]
+    'status' => 'em_andamento', 'sound_events' => [
+        ['type' => 'CARD_YELLOW', 'minute' => 20, 'id' => 'card:yellow:20']
+    ],
+    'log' => [],
+    'stats' => ['cards' => 1, 'yellow_cards' => 1, 'red_cards' => 0]
 ];
-$resRed = MatchDiscipline::recordFoul($gameNormal, $matchRed, 'violent_conduct', true);
-assertAud(in_array('CARD_RED', array_column($matchRed['sound_events'], 'type'), true), 'Expulsão direta emite CARD_RED');
+$resYellow2 = MatchDiscipline::recordFoul($gDisc2, $matchDisc2, 'tactical_foul', false);
+assertAud($resYellow2['card'] === 'second_yellow', 'Segunda advertência classificada como second_yellow');
+assertAud($matchDisc2['stats']['yellow_cards'] === 2, 'yellow_cards atualizado para 2');
+assertAud($matchDisc2['stats']['second_yellow'] === 1, 'second_yellow marcado como 1');
+assertAud($matchDisc2['stats']['red_cards'] === 1, 'red_cards incrementado para 1');
+assertAud($matchDisc2['stats']['cards'] === 2, 'Total de cards igual a 2');
+assertAud($matchDisc2['participation_state'] === MatchParticipation::STATE_SENT_OFF, 'Atleta entra em STATE_SENT_OFF');
+assertAud($matchDisc2['team_reduced'] === true, 'Equipe tem desvantagem numérica assinalada (team_reduced=true)');
+assertAud($matchDisc2['exit'] === 50, 'Minuto de saída ajustado imediatamente para o minuto do cartão (50)');
+assertAud($resYellow2['sound_event_id'] !== null, 'Segundo amarelo gera sound_event_id');
+assertAud(in_array($resYellow2['sound_event_id'], $gDisc2['feedback']['sound_event_ids'] ?? [], true), 'ID do segundo amarelo inserido em feedback.sound_event_ids');
+
+// O som emitido no segundo amarelo DEVE ser CARD_RED e não outro amarelo
+$recentEventsDisc2 = array_filter($matchDisc2['sound_events'], fn($ev) => ($ev['id'] ?? '') === $resYellow2['sound_event_id']);
+$recentEventDisc2 = reset($recentEventsDisc2);
+assertAud($recentEventDisc2 !== false && $recentEventDisc2['type'] === 'CARD_RED', 'Segundo amarelo emite som canônico CARD_RED');
+
+// Renderização do segundo amarelo: CARD_RED contemporâneo
+ob_start();
+Presentation::matchSounds($gDisc2, $matchDisc2);
+$outDisc2 = ob_get_clean();
+assertAud(str_contains($outDisc2, 'data-sound-event="CARD_RED"'), 'Segundo amarelo renderiza data-sound-event="CARD_RED"');
+assertAud(!str_contains($outDisc2, 'data-sound-historical="1" data-sound-event="CARD_RED"') && !str_contains($outDisc2, 'data-sound-event="CARD_RED" data-sound-historical="1"'), 'CARD_RED da expulsão recente não é classificado como histórico');
+
+// 6.3 Cartão Vermelho Direto (Violent Conduct)
+$gDiscRed = $gameNormal;
+$gDiscRed['feedback'] = ['text' => '', 'effects' => []];
+$matchDiscRed = [
+    'minute' => 75, 'entry' => 0, 'exit' => 90, 'lineup' => 'titular',
+    'participation_state' => MatchParticipation::STATE_ON_FIELD,
+    'hg' => 0, 'ag' => 0, 'home' => 'SP', 'away' => 'SAN', 'competition' => 'c1', 'round' => 1,
+    'status' => 'em_andamento', 'sound_events' => [], 'log' => [],
+    'stats' => ['cards' => 0, 'yellow_cards' => 0, 'red_cards' => 0]
+];
+$resDirectRed = MatchDiscipline::recordFoul($gDiscRed, $matchDiscRed, 'violent_conduct', true);
+assertAud($resDirectRed['card'] === 'direct_red', 'Infração violenta classificada como direct_red');
+assertAud($matchDiscRed['stats']['direct_red'] === 1, 'direct_red marcado como 1');
+assertAud($matchDiscRed['stats']['red_cards'] === 1, 'red_cards igual a 1');
+assertAud($matchDiscRed['participation_state'] === MatchParticipation::STATE_SENT_OFF, 'Atleta expulso diretamente');
+assertAud($matchDiscRed['team_reduced'] === true, 'Time em desvantagem numérica');
+assertAud($matchDiscRed['exit'] === 75, 'Minuto de saída definido para 75');
+assertAud(in_array('CARD_RED', array_column($matchDiscRed['sound_events'], 'type'), true), 'Expulsão direta emite som CARD_RED');
+assertAud(in_array($resDirectRed['sound_event_id'], $gDiscRed['feedback']['sound_event_ids'] ?? [], true), 'ID do vermelho direto registrado no feedback');
+
+// 6.4 Fluxo Real via Game::command() com avanço de segmento e deduplicação F5
+echo "\n6.4 Validando Cartão Real via Game::command(), avanço de segmento e F5...\n";
+$cardDetected = false;
+$gCmdCard = null;
+for ($attempt = 0; $attempt < 30; $attempt++) {
+    $gTry = Game::legacyCreate('Craque Disciplinar', 'São Paulo', 'SP', 'meia');
+    $gTry['stage'] = 'partida';
+    $iTry = Game::currentIndex($gTry);
+    $gTry['matches'][$iTry]['minute'] = 35; // Situação 8 (Reclamação com Árbitro / Dissent) ocorre no minuto 35
+    $gTry['matches'][$iTry]['entry'] = 0;
+    $gTry['matches'][$iTry]['exit'] = 90;
+    $gTry['matches'][$iTry]['status'] = 'em_andamento';
+    $gTry['matches'][$iTry]['lineup'] = 'titular';
+    $gTry['states']['risco_cartao'] = 100;
+    
+    $gRes = Game::command($gTry, 'choice', ['option' => '0']);
+    $mRes = $gRes['matches'][$iTry];
+    if (($mRes['stats']['yellow_cards'] ?? 0) >= 1) {
+        $cardDetected = true;
+        $gCmdCard = $gRes;
+        break;
+    }
+}
+assertAud($cardDetected, 'Game::command() executa ação e gera cartão amarelo de forma real');
+$iCmd = Game::currentIndex($gCmdCard);
+$mCmd = $gCmdCard['matches'][$iCmd];
+assertAud($mCmd['minute'] > 35, 'nextSegment avança minuto após lance (de 35 para ' . $mCmd['minute'] . ')');
+assertAud(!empty($gCmdCard['feedback']['sound_event_ids']), 'feedback.sound_event_ids contém ID do cartão gerado no lance');
+
+// Renderização: cartão da jogada NÃO é marcado histórico
+ob_start();
+Presentation::matchSounds($gCmdCard, $mCmd);
+$outCmdCard = ob_get_clean();
+assertAud(str_contains($outCmdCard, 'data-sound-event="CARD_YELLOW"'), 'matchSounds renderiza CARD_YELLOW disparado por Game::command');
+assertAud(!str_contains($outCmdCard, 'data-sound-historical="1"'), 'CARD_YELLOW da ação recente com Game::command NÃO é marcado histórico');
+
+// Deduplicação no F5 após Game::command
+ob_start();
+Presentation::matchSounds($gCmdCard, $mCmd);
+$outCmdCardF5 = ob_get_clean();
+assertAud($outCmdCard === $outCmdCardF5, 'F5 após Game::command produz marcação idêntica com mesmo ID estável');
+
+// 6.5 Tríplice Evento Contemporâneo aos 90 minutos (Gol + Cartão + Apito de Fim)
+echo "\n6.5 Validando Tríplice Evento Contemporâneo aos 90 min (Gol + Cartão + Apito Final)...\n";
+$gTriple = [
+    'id' => 'triple_test', 'season' => 1, 'club' => 'SP', 'stage' => 'fim_semana',
+    'version' => 20,
+    'feedback' => [
+        'highlight' => 'goal',
+        'sound_event' => 'GOAL_SCORED',
+        'sound_event_ids' => ['goal:90:triple', 'card:90:triple'],
+        'text' => 'Gol épico no último minuto seguido de cartão na comemoração!',
+        'success' => true
+    ]
+];
+$matchTriple = [
+    'minute' => 90, 'entry' => 0, 'exit' => 90, 'lineup' => 'titular',
+    'hg' => 1, 'ag' => 0, 'home' => 'SP', 'away' => 'SAN', 'competition' => 'c1', 'round' => 1,
+    'status' => 'finalizada',
+    'sound_events' => [
+        ['type' => 'GOAL_SCORED', 'minute' => 90, 'id' => 'goal:90:triple'],
+        ['type' => 'CARD_YELLOW', 'minute' => 90, 'id' => 'card:90:triple']
+    ],
+    'log' => []
+];
+
+ob_start();
+Presentation::feedback($gTriple);
+$outTripleFeedback = ob_get_clean();
+
+ob_start();
+Presentation::matchSounds($gTriple, $matchTriple);
+$outTripleMatchSounds = ob_get_clean();
+
+assertAud(str_contains($outTripleFeedback, 'data-sound-event="GOAL_SCORED"'), 'Feedback renderiza GOAL_SCORED contemporâneo');
+assertAud(str_contains($outTripleMatchSounds, 'data-sound-event="CARD_YELLOW"'), 'MatchSounds renderiza CARD_YELLOW contemporâneo');
+assertAud(str_contains($outTripleMatchSounds, 'data-sound-event="MATCH_WHISTLE_END"'), 'MatchSounds renderiza MATCH_WHISTLE_END contemporâneo');
+assertAud(!str_contains($outTripleMatchSounds, 'data-sound-historical="1"'), 'Nenhum dos três eventos legítimos aos 90 min é classificado como histórico');
 
 // -------------------------------------------------------------------------
 // 7. Validação dos Arquivos OGG Físicos em public/assets/audio/

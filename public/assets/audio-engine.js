@@ -240,10 +240,10 @@
     const ordered = [...uniqueMap.values()].sort((a, b) =>
       (EVENT_PRIORITY[b.key] || 0) - (EVENT_PRIORITY[a.key] || 0));
 
-    // Permite enfileirar até 2 eventos contemporâneos legítimos (ex: lance de ação + apito de período).
+    // Permite enfileirar até 3 eventos contemporâneos legítimos (ex: gol + cartão disciplinar + apito de encerramento).
     // Quaisquer excedentes são marcados como tratados para prevenir rajadas.
-    const toQueue = ordered.slice(0, 2);
-    const toDrop = ordered.slice(2);
+    const toQueue = ordered.slice(0, 3);
+    const toDrop = ordered.slice(3);
     for (const item of toDrop) {
       AudioEngine.markHandled(item.id);
     }

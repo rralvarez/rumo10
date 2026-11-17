@@ -496,6 +496,91 @@ async function runTestSuite() {
     assert(envOut.startedSources[0].buffer === envOut.dummyBuffers['substitution_out.ogg'], 'Buffer utilizado é substitution_out.ogg');
   }
 
+  // 12. Validação da Fila de 3 Eventos Contemporâneos (Gol + Cartão + Apito Final aos 90 min)
+  console.log('\n12. Validando Fila Contemporânea de 3 Eventos Legítimos (Gol + Cartão + Apito Final)...');
+  {
+    const env = createMockEnvironment();
+    // Cenário aos 90 min: gol marcado + cartão na jogada + apito final de encerramento + evento excedente (4º de menor prioridade)
+    const elements = [
+      { dataset: { soundEvent: 'MATCH_WHISTLE_END', soundEventId: 'whistle:90:triple' } },
+      { dataset: { soundEvent: 'GOAL_SCORED', soundEventId: 'goal:90:triple' } },
+      { dataset: { soundEvent: 'CARD_YELLOW', soundEventId: 'card:90:triple' } },
+      { dataset: { soundEvent: 'MATCH_WHISTLE_START', soundEventId: 'burst:90:drop' } }, // 4º evento de menor prioridade deve ser descartado com segurança
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    // O 4º evento excedente foi descartado e marcado como handled para proteção de rajadas
+    assert(env.sessionData.get('rumo10_sound_played:burst:90:drop') === '1', '4º evento excedente descartado e marcado handled (proteção contra rajada)');
+
+    // 1º evento reproduzido: GOAL_SCORED (prioridade 100)
+    assert(env.startedSources.length === 1, 'Primeiro evento da trinca inicia reprodução');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['goal.ogg'], '1º a tocar: GOAL_SCORED (maior prioridade)');
+
+    // Conclui o gol -> deve iniciar o 2º evento: CARD_YELLOW (prioridade 60)
+    const firstSource = env.startedSources[0].source;
+    firstSource.triggerEnd();
+    await new Promise(r => setTimeout(r, 350));
+
+    assert(env.startedSources.length === 2, '2º evento inicia após término do gol com espaçamento regulamentar');
+    assert(env.startedSources[1].buffer === env.dummyBuffers['yellow_card.ogg'], '2º a tocar: CARD_YELLOW (prioridade intermediária)');
+
+    // Conclui o cartão -> deve iniciar o 3º evento: MATCH_WHISTLE_END (prioridade 50, 3 apitos)
+    const secondSource = env.startedSources[1].source;
+    secondSource.triggerEnd();
+    await new Promise(r => setTimeout(r, 350));
+
+    assert(env.startedSources.length === 5, '3º evento (MATCH_WHISTLE_END) reproduz seus 3 apitos sobrepostos (total de 5 sources)');
+    assert(env.startedSources[2].buffer === env.dummyBuffers['match_whistle.ogg'], '3º a tocar: MATCH_WHISTLE_END pulso 1');
+    assert(env.startedSources[3].buffer === env.dummyBuffers['match_whistle.ogg'], '3º a tocar: MATCH_WHISTLE_END pulso 2');
+    assert(env.startedSources[4].buffer === env.dummyBuffers['match_whistle.ogg'], '3º a tocar: MATCH_WHISTLE_END pulso 3');
+
+    // Todos os 3 eventos legítimos foram devidamente registrados como tratados
+    assert(env.sessionData.get('rumo10_sound_played:goal:90:triple') === '1', 'Gol registrado como tocado');
+    assert(env.sessionData.get('rumo10_sound_played:card:90:triple') === '1', 'Cartão registrado como tocado');
+
+    // Conclui os apitos para marcar handled no apito final
+    const whistleSources = env.startedSources.filter(s => s.buffer === env.dummyBuffers['match_whistle.ogg']);
+    whistleSources.forEach(s => s.source.triggerEnd());
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.sessionData.get('rumo10_sound_played:whistle:90:triple') === '1', 'Apito final registrado como tocado');
+
+    // F5 após tríplice evento: NENHUM som é re-executado
+    env.startedSources.length = 0;
+    env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+    assert(env.startedSources.length === 0, 'Deduplicação no F5 após tríplice evento mantém silêncio absoluto');
+  }
+
+  // 13. Validação de Cartão Vermelho Direto e Segundo Amarelo (CARD_RED)
+  console.log('\n13. Validando Expulsão e Segundo Amarelo (CARD_RED)...');
+  {
+    const env = createMockEnvironment();
+    const elements = [
+      { dataset: { soundEvent: 'CARD_RED', soundEventId: 'card:red:75' } }
+    ];
+
+    env.startedSources.length = 0;
+    const audio = env.runScript(elements);
+    await new Promise(r => setTimeout(r, 50));
+
+    assert(env.startedSources.length === 1, 'CARD_RED reproduzido pelo motor Web Audio');
+    assert(env.startedSources[0].buffer === env.dummyBuffers['red_card.ogg'], 'Buffer utilizado é red_card.ogg');
+
+    // Conclui o som
+    env.startedSources[0].source.triggerEnd();
+    await new Promise(r => setTimeout(r, 50));
+    assert(env.sessionData.get('rumo10_sound_played:card:red:75') === '1', 'CARD_RED registrado no sessionStorage');
+
+    // F5 não repete
+    env.startedSources.length = 0;
+    env.runScript(elements);
+    assert(env.startedSources.length === 0, 'Deduplicação no F5 para CARD_RED confirmada');
+  }
+
   console.log('\n=======================================================');
   console.log(`TOTAL P0-3 WEB AUDIO: ${passCount} verificações PASSOU, ${failCount} FALHOU`);
   console.log('=======================================================');

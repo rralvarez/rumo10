@@ -83,3 +83,34 @@ Adicionar regressão determinística que simule cartão gerado no minuto anterio
 A página oficial da opção B, Universfield, foi confirmada em fonte pública: https://pixabay.com/sound-effects/people-crowd-disappointment-reaction-352718/ (MP3, 3s, Pixabay Content License). Solicitar o download normal via navegador pelo proprietário e fornecer o caminho local ao Antigravity. Criar e testar `no_goal.ogg`, registrar hash e licença, repetir testes com **oito** arquivos. Não fazer bypass de desafio anti-robô, não substituir fonte aprovada.
 
 **Decisão de coordenação:** manter AUD-001 BLOQUEADA PARA MERGE até P0-1 e P0-4 resolvidos, reexecução das suítes, CI da PR e homologação auditiva do proprietário. Não publicar na UOL.
+
+---
+
+## Fechamento Complementar da Entrega | Antigravity (17/11/2026)
+
+Em atendimento à ordem de fechamento complementar da Coordenação Técnica:
+
+1. **E2E Estrito e Prevenção de Aprovação Artificial:**
+   - `tests/test-aud001-browser-e2e.cjs` foi atualizado para falhar com código de saída 1 (`process.exit(1)`) caso o Playwright/Chromium não esteja presente, eliminando saídas artificiais com código 0. O pulo (`exit(0)`) foi restrito explicitamente à presença da flag `--allow-skip` ou variável `ALLOW_SKIP=1`.
+   - Execução local comprovada com Playwright e Chrome nativo no IIS (`rumo10.local`): **23/23 verificações aprovadas com sucesso**, com decodificação real via HTTP 200 de todas as amostras OGG ativas.
+
+2. **Ampliação do Teto da Fila Contemporânea para 3 Eventos Legítimos:**
+   - Comprovada a possibilidade matemática e desportiva do tríplice evento contemporâneo aos 90 minutos: `GOAL_SCORED` (ação recente) + `CARD_YELLOW`/`CARD_RED` (falta/comemoração no lance) + `MATCH_WHISTLE_END` (encerramento de período).
+   - O limite em `public/assets/audio-engine.js` foi ajustado de 2 para 3 (`toQueue = ordered.slice(0, 3)`), garantindo que os 3 eventos legítimos sejam integralmente agendados na fila de reprodução sequencial (com 250ms de intervalo regulamentar e prioridade canônica), descartando (`markHandled`) apenas eventos a partir do 4º para resguardar a proteção contra rajadas sonoras.
+
+3. **Complementação dos Testes Integrados de Disciplina (Amarelo, Segundo Amarelo e Vermelho):**
+   - Em `tests/test-aud001-audio.php` (total ampliado de 76 para **114 testes unitários/integrados aprovados**):
+     - *Primeiro Amarelo:* `MatchDiscipline::recordFoul` emite `CARD_YELLOW`, popula `feedback.sound_event_ids`, não é marcado como histórico após avanço de minuto de 20 para 35, preserva o mesmo ID no reload F5 para deduplicação no cliente e torna-se histórico no turno seguinte.
+     - *Segundo Amarelo $\to$ Expulsão:* `yellow_cards = 2`, `second_yellow = 1`, `red_cards = 1`, `cards = 2`, `participation_state = STATE_SENT_OFF`, `team_reduced = true`, `exit = minuto`; som emitido é canonicamente `CARD_RED` (não amarelo), registrado no feedback e renderizado no DOM sem classificação histórica espúria.
+     - *Vermelho Direto:* `direct_red = 1`, `red_cards = 1`, emissão de `CARD_RED`.
+     - *Fluxo Real com `Game::command()`:* simulação real de lance na Situação 8 (Reclamação com Árbitro aos 35 min) gerando advertência disciplinar real, avanço de minuto pelo motor (`nextSegment` de 35 para 45), permanência do ID fresco no feedback e deduplicação no F5.
+     - *Tríplice Evento Contemporâneo aos 90 min:* renderização simultânea de gol, cartão e apito final como eventos frescos.
+   - Em `tests/test-aud001-webaudio.cjs` (total ampliado de 45 para **62 verificações determinísticas aprovadas**):
+     - Fila contemporânea dos 3 eventos legítimos com descarte seguro do 4º evento.
+     - Execução e deduplicação de `CARD_RED` (`red_card.ogg`).
+
+4. **Estado de P0-1 (`no_goal.ogg`):**
+   - Mantida integralmente a branch `feat/aud001-sons-partida`.
+   - A Opção B de Universfield (Pixabay #352718) permanece aprovada, aguardando fornecimento do arquivo MP3 original localmente pelo proprietário.
+   - Assim que disponibilizado, será convertido via ffmpeg em OGG Vorbis $\le 3.0$s com normalização e fade, SHA-256 documentado e a suíte completa com 8 arquivos será reexecutada.
+

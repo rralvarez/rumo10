@@ -89,11 +89,18 @@ function resolveChromePath() {
 (async () => {
   console.log('=== R10-AUD-001: TESTE E2E NO CHROME COM ÁUDIO REAL NO IIS ===\n');
 
+  const allowSkip = process.argv.includes('--allow-skip') || process.env.ALLOW_SKIP === '1';
   const pw = resolvePlaywright();
   if (!pw || !pw.chromium) {
-    console.log('  [SKIP] Playwright não disponível no ambiente de execução.');
-    console.log('  Para executar o teste E2E do navegador: npm install -D playwright (ou configure PLAYWRIGHT_PATH).');
-    process.exit(0);
+    if (allowSkip) {
+      console.log('  [SKIP] Playwright não disponível no ambiente de execução (--allow-skip ativo).');
+      console.log('  Para executar o teste E2E do navegador: npm install -D playwright (ou configure PLAYWRIGHT_PATH).');
+      process.exit(0);
+    }
+    console.error('  [FAIL] Playwright não disponível no ambiente de execução.');
+    console.error('  A execução dos testes E2E é obrigatória e sua ausência não pode produzir aprovação artificial.');
+    console.error('  Instale com "npm install -D playwright" ou aponte PLAYWRIGHT_PATH.');
+    process.exit(1);
   }
   const { chromium } = pw;
   const chromePath = resolveChromePath();
