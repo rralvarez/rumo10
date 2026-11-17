@@ -353,8 +353,15 @@ class GitHub {
         if($channel==='main'){
             $this->assertMainTip($run['head_sha']);
             $run['merged_pr']=$this->mergedMainPr($run['head_sha']);
-            if(isset($this->c['main_automation']))$this->assertApprovedMerge(
-                ['commit'=>$run['head_sha'],'run_id'=>$runId,'artifact_id'=>$artifactId],$run['merged_pr']);
+            if(isset($this->c['main_automation'])){
+                // The operator handles manual backup BEFORE merge. Publication checks
+                // the signed workflow artifact and actual owner merge, not a backup
+                // comment, GitHub App or database dump receipt.
+                $pr=$this->api('/repos/'.$this->c['repository'].'/pulls/'.$run['merged_pr']);
+                $merge=$this->api('/repos/'.$this->c['repository'].'/commits/'.$run['head_sha']);
+                MainAutomation::merge($this->c['main_automation'],$this->c['repository'],
+                    $run['head_sha'],$run['merged_pr'],$pr,$merge);
+            }
         }
         // PharData reads ZIP; do not extract archive-controlled paths.
         $zipFinal=$dir.'/artifact-'.$artifactId.'.zip';
