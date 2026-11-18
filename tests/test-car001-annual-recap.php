@@ -158,6 +158,26 @@ check(str_contains($htmlLegacy, 'Liga regional'), 'Modo legado exibe Liga region
 check(str_contains($htmlLegacy, 'Terminou em <b>1º lugar</b> com 3 pontos.') || str_contains($htmlLegacy, 'Título conquistado!'), 'Modo legado calcula e exibe tabela do Schedule::table');
 check(str_contains($htmlLegacy, 'Ver minha proposta →'), 'Modo legado preserva botão de janela de transferências');
 
+// Ausência de classificação comprovada no modo legado (P2 Codex)
+$gLegacyEmpty = $gLegacy;
+$gLegacyEmpty['matches'] = [];
+$gLegacyEmpty['teams'] = [];
+$htmlLegacyEmpty = renderAnnualRecap($gLegacyEmpty);
+check(str_contains($htmlLegacyEmpty, 'Não há classificação detalhada disponível para esta temporada.'), 'Sem tabela válida, exibe mensagem neutra de classificação indisponível');
+check(!str_contains($htmlLegacyEmpty, '1º lugar') && !str_contains($htmlLegacyEmpty, '0 pontos') && !str_contains($htmlLegacyEmpty, 'Título conquistado!'), 'Sem tabela válida, não inventa 1º lugar, 0 pontos ou título');
+
+// Resultado legítimo com 0 pontos quando há tabela válida e clube identificado (P2 Codex)
+$gLegacyZeroPts = $gLegacy;
+$gLegacyZeroPts['matches'] = [
+    [
+        'round' => 1, 'home' => 'São Paulo-SP', 'away' => 'Santos-SP', 'hg' => 2, 'ag' => 0,
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'entry' => 0, 'exit' => 90,
+        'stats' => ['goals' => 0, 'assists' => 0, 'minutes' => 90, 'rating' => 6.0, 'shots' => 1, 'tackles' => 0]
+    ]
+];
+$htmlLegacyZeroPts = renderAnnualRecap($gLegacyZeroPts);
+check(str_contains($htmlLegacyZeroPts, 'com 0 pontos.') && !str_contains($htmlLegacyZeroPts, '1º lugar'), 'Preserva resultado legítimo com 0 pontos quando há tabela válida e clube identificado');
+
 // -------------------------------------------------------------
 // 5. Cenário: Temporada com Títulos e Sala de Troféus (sem duplicação)
 // -------------------------------------------------------------

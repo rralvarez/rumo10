@@ -82,8 +82,16 @@ final class Game {
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
         if($action==='retire') {
             if(!Retirement::eligible($g) || ($input['confirm']??'')!=='retire')throw new InvalidArgumentException('A aposentadoria não está disponível para esta carreira ou falta a confirmação.');
-            Retirement::close($g,'voluntary');$g['version']++;return $g;
+            if(Retirement::mandatory($g)){
+                $g['age']=max(40,$g['age']);
+                if(PlayerDevelopment::enabled($g))Evolution::birthday($g);
+                Retirement::close($g,'mandatory');
+            } else {
+                Retirement::close($g,'voluntary');
+            }
+            $g['version']++;return $g;
         }
+        if($g['age']>=40)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória para encerrar a carreira.');
         if($action==='mode')return PlayMode::change($g,(string)($input['mode']??''));
         if($action==='relocate'){
             if($g['stage']==='partida' || !empty($g['starting']))throw new InvalidArgumentException('Atualize a residência depois da partida e do primeiro contrato.');
@@ -239,28 +247,35 @@ final class Game {
             elseif($m['minute']<$m['entry'] || $m['minute']>=$m['exit']) { self::nextSegment($g); }
             else throw new InvalidArgumentException('Resolva a decisão em campo.');
         } elseif($action==='offers' && $g['stage']==='resumo') {
-            if($g['age']>=39){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}
+            if($g['age']>=39)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória com confirmação explícita.');
             CompetitionContinuity::reconcileAmazonas($g);
             $g['market_draw']=TransferInterest::draw($g);$g['offers']=$g['market_draw']['offers'];
             $g['stage']='oferta';$g['feedback']=['text'=>count($g['offers']).' proposta(s) nesta janela. Escolha um clube ou permaneça.'];
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
-            if($g['age']>=39){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}
+            $isSchema2=(($g['market_draw']['schema']??1)===2);
+            $selected=$isSchema2?null:current(array_filter($g['offers'],fn($o)=>!empty($o['selected'])));
+            if($input['accept']==='yes'){
+                if($isSchema2){
+                    $index=filter_var($input['option']??null,FILTER_VALIDATE_INT,['options'=>['min_range'=>0,'max_range'=>2]]);
+                    if($index===false||$index===null||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
+                    $selected=$g['offers'][$index];
+                } elseif(isset($input['option']) && $input['option']!=='') {
+                    $index=filter_var($input['option'],FILTER_VALIDATE_INT);
+                    if($index===false||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
+                    $selected=$g['offers'][$index];
+                }
+                if(!$selected)throw new InvalidArgumentException('Não há proposta para aceitar nesta janela.');
+            }
+            if($g['age']>=39)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória com confirmação explícita.');
             unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
             $summary['evaluation']=SeasonEvaluation::evaluate($g);
             $summary['technical_average']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['official']))$summary['competitions']=$g['competition_results'];
-            $selected=current(array_filter($g['offers'],fn($o)=>$o['selected']));
-            if(($g['market_draw']['schema']??1)===2){
-                $selected=null;
-                if($input['accept']==='yes'){
-                    $index=filter_var($input['option']??null,FILTER_VALIDATE_INT,['options'=>['min_range'=>0,'max_range'=>2]]);
-                    if($index===false||$index===null||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
-                    $selected=$g['offers'][$index];
-                }
+            if($isSchema2){
                 $summary['market']=$g['market_draw'];$summary['market']['choice']=$selected['club']??$old;
             }
-            if($input['accept']==='yes') { if(!$selected)throw new InvalidArgumentException('Não há proposta para aceitar nesta janela.');$g['club']=$selected['club']; $g['tier']=$selected['tier']; }
+            if($input['accept']==='yes') { $g['club']=$selected['club']; $g['tier']=$selected['tier']; }
             $summary['next_club']=$g['club']; $g['history'][]=$summary;
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
             $g['teams']=$teams; $g['season']++; $g['age']++; $g['round']=1; $g['stage']='treino'; $g['matches']=Schedule::generate($teams); $g['offers']=[]; $g['states']['energia']=85;
@@ -273,7 +288,6 @@ final class Game {
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
         if($g['stage']==='resumo')Progression::season($g);
         AchievementEvents::capture($g,$previousStage);
-        if($g['age']>=40){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');}
         $g['version']++;$selectionStart=RequestMetrics::start();Scenes::prepare($g);RequestMetrics::end('scene_selection',$selectionStart); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }

@@ -532,7 +532,7 @@ final class Presentation {
         if (!empty($g['official'])) {
             $results = $g['competition_results'] ?? [];
             if (!$results) {
-                echo '<p class="recap-comp-detail subtle">Resultados detalhados não registrados nos dados da carreira.</p>';
+                echo '<p class="recap-comp-detail subtle">Não há classificação detalhada disponível para esta temporada.</p>';
             } else {
                 foreach ($results as $compId => $r) {
                     $cName = $r['name'] ?? (Competition::catalog()[$compId]['name'] ?? $compId);
@@ -540,7 +540,7 @@ final class Presentation {
                     $isChamp = ($champ !== '' && $champ === $club);
                     $promoted = !empty($r['promoted']);
                     $relegated = !empty($r['relegated']);
-                    $pos = (isset($r['position']) && is_numeric($r['position'])) ? (int)$r['position'] : null;
+                    $pos = (isset($r['position']) && is_numeric($r['position']) && (int)$r['position'] > 0) ? (int)$r['position'] : null;
                     $grp = !empty($r['group']) ? (int)$r['group'] : null;
 
                     echo '<div class="recap-comp-item">';
@@ -557,6 +557,8 @@ final class Presentation {
                             echo '<p class="recap-comp-detail text-danger"><b>Rebaixamento:</b> Terminou na zona de descenso.</p>';
                         } elseif ($pos !== null) {
                             echo '<p class="recap-comp-detail">Terminou em <b>' . $pos . 'º lugar</b>' . ($grp !== null ? ' no Grupo ' . $grp . '.' : ' na primeira fase.') . '</p>';
+                        } else {
+                            echo '<p class="recap-comp-detail subtle">Não há classificação detalhada disponível para esta temporada.</p>';
                         }
                     }
                     if (!empty($r['access_pending'])) {
@@ -574,25 +576,30 @@ final class Presentation {
         } else {
             // Modo legado com liga regional
             $table = Schedule::table($g['matches'] ?? [], $g['teams'] ?? []);
-            $foundPos = 1;
-            $foundPts = 0;
+            $foundPos = null;
+            $foundPts = null;
             foreach ($table as $i => $row) {
-                if (($row['team'] ?? '') === $club) {
+                if ($club !== '' && ($row['team'] ?? '') === $club) {
                     $foundPos = $i + 1;
                     $foundPts = (int)($row['points'] ?? 0);
                     break;
                 }
             }
-            $legacyChamp = $table[0]['team'] ?? '';
+            $totalPlayed = array_sum(array_column($table, 'played'));
             echo '<div class="recap-comp-item">';
             echo '<div class="recap-comp-name">Liga regional</div>';
-            if ($legacyChamp === $club) {
-                echo '<p class="recap-comp-detail recap-comp-champion">🏆 <b>Título conquistado!</b> Seu clube terminou na liderança com ' . $foundPts . ' pontos.</p>';
+            if ($foundPos === null || $totalPlayed <= 0) {
+                echo '<p class="recap-comp-detail subtle">Não há classificação detalhada disponível para esta temporada.</p>';
             } else {
-                if ($legacyChamp !== '') {
-                    echo '<p class="recap-comp-detail">Campeão: <b>' . e(ClubBadge::name($legacyChamp)) . '</b></p>';
+                $legacyChamp = $table[0]['team'] ?? '';
+                if ($legacyChamp === $club) {
+                    echo '<p class="recap-comp-detail recap-comp-champion">🏆 <b>Título conquistado!</b> Seu clube terminou na liderança com ' . $foundPts . ' pontos.</p>';
+                } else {
+                    if ($legacyChamp !== '') {
+                        echo '<p class="recap-comp-detail">Campeão: <b>' . e(ClubBadge::name($legacyChamp)) . '</b></p>';
+                    }
+                    echo '<p class="recap-comp-detail">Terminou em <b>' . $foundPos . 'º lugar</b> com ' . $foundPts . ' pontos.</p>';
                 }
-                echo '<p class="recap-comp-detail">Terminou em <b>' . $foundPos . 'º lugar</b> com ' . $foundPts . ' pontos.</p>';
             }
             echo '</div>';
         }
@@ -653,16 +660,7 @@ final class Presentation {
             echo '<p>Esta foi a sua última temporada como jogador de futebol profissional. Ao completar 40 anos, seu ciclo competitivo nos gramados chega ao fim.</p>';
             echo '<p class="recap-retirement-notice">Ao concluir sua carreira, o jogo guardará permanentemente suas estatísticas, clubes, temporadas e conquistas no histórico. Os detalhes das partidas, eventos individuais e decisões serão removidos e não poderão ser recuperados.</p>';
             echo '<p class="subtle recap-retirement-distinction">A conclusão da carreira preserva seu resumo permanente no histórico e libera sua vaga ativa — diferente da opção de excluir o resumo permanente, que apaga definitivamente todo o registro histórico.</p>';
-            if (function_exists('form')) {
-                form('/transferencia/roleta', $g);
-            } else {
-                echo '<form method="post" action="/transferencia/roleta">';
-                echo '<input type="hidden" name="csrf" value="' . e($_SESSION['csrf'] ?? '') . '">';
-                echo '<input type="hidden" name="version" value="' . e($g['version'] ?? 1) . '">';
-                echo '<input type="hidden" name="key" value="' . bin2hex(random_bytes(32)) . '">';
-            }
-            echo '<button class="btn btn-primary btn-lg btn-retire-career" type="submit">Concluir minha carreira →</button>';
-            echo '</form>';
+            echo '<a class="btn btn-primary btn-lg btn-retire-career" href="/carreira/aposentar">Concluir minha carreira →</a>';
             echo '</div>';
         } else {
             echo '<div class="recap-market-cta">';
