@@ -480,4 +480,197 @@ final class Presentation {
         }
         echo '</section>';
     }
+
+    public static function annualRecap(array $g): void {
+        $season = (int)($g['season'] ?? 1);
+        $name = (string)($g['name'] ?? 'Jogador');
+        $club = (string)($g['club'] ?? '');
+        $clubName = ClubBadge::name($club);
+
+        $summary = Game::summary($g);
+        $eval = class_exists('SeasonEvaluation') ? SeasonEvaluation::current($g) : ['totals' => []];
+
+        $games = (int)($summary['games'] ?? ($summary['played'] ?? 0));
+        $goals = (int)($summary['goals'] ?? 0);
+        $assists = (int)($summary['assists'] ?? 0);
+        $minutes = (int)($summary['minutes'] ?? 0);
+        $rating = (float)($summary['average'] ?? 6.0);
+        $ratingFormatted = number_format($rating, 2, ',', '.');
+        $tackles = (int)($eval['totals']['tackles'] ?? 0);
+        $isDefensive = in_array($g['position'] ?? '', ['zagueiro', 'lateral', 'volante'], true);
+
+        echo '<article class="panel annual-recap-panel">';
+
+        // 1. Identificação da temporada
+        echo '<div class="recap-header">';
+        echo '<p class="tag">TEMPORADA CONCLUÍDA · BALANÇO ANUAL</p>';
+        echo '<h1>Temporada ' . $season . ' · ' . e($name) . '</h1>';
+        echo '<div class="recap-club-line">';
+        ClubBadge::render($club);
+        echo '<span>' . e(ucfirst((string)($g['position'] ?? 'jogador'))) . ' · <b>' . e($clubName) . '</b> · Calendário competitivo encerrado</span>';
+        echo '</div>';
+        echo '</div>';
+
+        // 2. Desempenho individual na temporada
+        echo '<section class="recap-section recap-individual">';
+        echo '<h2 class="recap-section-title">Desempenho individual na temporada</h2>';
+        echo '<div class="recap-stats-grid" role="group" aria-label="Estatísticas do jogador na temporada">';
+        echo '<div class="recap-stat-card"><strong data-stat="recap-games">' . $games . '</strong><span>' . ($games === 1 ? 'Partida' : 'Partidas') . '</span></div>';
+        echo '<div class="recap-stat-card"><strong data-stat="recap-goals">' . $goals . '</strong><span>' . ($goals === 1 ? 'Gol' : 'Gols') . '</span></div>';
+        echo '<div class="recap-stat-card"><strong data-stat="recap-assists">' . $assists . '</strong><span>' . ($assists === 1 ? 'Assistência' : 'Assistências') . '</span></div>';
+        echo '<div class="recap-stat-card"><strong data-stat="recap-rating">' . $ratingFormatted . '</strong><span>Nota média</span></div>';
+        echo '<div class="recap-stat-card"><strong data-stat="recap-minutes">' . $minutes . '′</strong><span>Minutos</span></div>';
+        if ($isDefensive || $tackles > 0) {
+            echo '<div class="recap-stat-card"><strong data-stat="recap-tackles">' . $tackles . '</strong><span>' . ($tackles === 1 ? 'Desarme' : 'Desarmes') . '</span></div>';
+        }
+        echo '</div>';
+        echo '</section>';
+
+        // 3. Resultados das competições da temporada
+        echo '<section class="recap-section recap-competitions">';
+        echo '<h2 class="recap-section-title">Competições disputadas</h2>';
+        if (!empty($g['official'])) {
+            $results = $g['competition_results'] ?? [];
+            if (!$results) {
+                echo '<p class="recap-comp-detail subtle">Resultados detalhados não registrados nos dados da carreira.</p>';
+            } else {
+                foreach ($results as $compId => $r) {
+                    $cName = $r['name'] ?? (Competition::catalog()[$compId]['name'] ?? $compId);
+                    $champ = $r['champion'] ?? '';
+                    $isChamp = ($champ !== '' && $champ === $club);
+                    $promoted = !empty($r['promoted']);
+                    $relegated = !empty($r['relegated']);
+                    $pos = (isset($r['position']) && is_numeric($r['position'])) ? (int)$r['position'] : null;
+                    $grp = !empty($r['group']) ? (int)$r['group'] : null;
+
+                    echo '<div class="recap-comp-item">';
+                    echo '<div class="recap-comp-name">' . e($cName) . '</div>';
+                    if ($isChamp) {
+                        echo '<p class="recap-comp-detail recap-comp-champion">🏆 <b>Título conquistado!</b> Seu clube foi o campeão desta edição.</p>';
+                    } else {
+                        if ($champ !== '') {
+                            echo '<p class="recap-comp-detail">Campeão: <b>' . e(ClubBadge::name($champ)) . '</b></p>';
+                        }
+                        if ($promoted) {
+                            echo '<p class="recap-comp-detail text-success"><b>Acesso conquistado!</b> Vaga garantida na divisão superior.</p>';
+                        } elseif ($relegated) {
+                            echo '<p class="recap-comp-detail text-danger"><b>Rebaixamento:</b> Terminou na zona de descenso.</p>';
+                        } elseif ($pos !== null) {
+                            echo '<p class="recap-comp-detail">Terminou em <b>' . $pos . 'º lugar</b>' . ($grp !== null ? ' no Grupo ' . $grp . '.' : ' na primeira fase.') . '</p>';
+                        }
+                    }
+                    if (!empty($r['access_pending'])) {
+                        echo '<p class="subtle">A divisão seguinte deste estado ainda não está disponível no protótipo.</p>';
+                    }
+                    if (!empty($r['continuity']['simulation_ceiling'])) {
+                        echo '<p class="subtle">A divisão superior ainda não está disponível no jogo.</p>';
+                    }
+                    if (!empty($r['relegation_pending'])) {
+                        echo '<p class="subtle">A terceira divisão ainda não está disponível; permanecer no clube repete a divisão cadastrada.</p>';
+                    }
+                    echo '</div>';
+                }
+            }
+        } else {
+            // Modo legado com liga regional
+            $table = Schedule::table($g['matches'] ?? [], $g['teams'] ?? []);
+            $foundPos = 1;
+            $foundPts = 0;
+            foreach ($table as $i => $row) {
+                if (($row['team'] ?? '') === $club) {
+                    $foundPos = $i + 1;
+                    $foundPts = (int)($row['points'] ?? 0);
+                    break;
+                }
+            }
+            $legacyChamp = $table[0]['team'] ?? '';
+            echo '<div class="recap-comp-item">';
+            echo '<div class="recap-comp-name">Liga regional</div>';
+            if ($legacyChamp === $club) {
+                echo '<p class="recap-comp-detail recap-comp-champion">🏆 <b>Título conquistado!</b> Seu clube terminou na liderança com ' . $foundPts . ' pontos.</p>';
+            } else {
+                if ($legacyChamp !== '') {
+                    echo '<p class="recap-comp-detail">Campeão: <b>' . e(ClubBadge::name($legacyChamp)) . '</b></p>';
+                }
+                echo '<p class="recap-comp-detail">Terminou em <b>' . $foundPos . 'º lugar</b> com ' . $foundPts . ' pontos.</p>';
+            }
+            echo '</div>';
+        }
+        echo '</section>';
+
+        // 4. Conquistas e Títulos do ano
+        echo '<section class="recap-section recap-trophies">';
+        echo '<h2 class="recap-section-title">Títulos e conquistas da temporada</h2>';
+        $allTrophies = class_exists('Trophies') ? Trophies::collect($g) : [];
+        $seasonTrophies = array_values(array_filter($allTrophies, fn($t) => ($t['season'] ?? 0) === $season && ($t['club'] ?? '') === $club));
+        if ($seasonTrophies) {
+            echo '<div class="recap-trophies-list">';
+            foreach ($seasonTrophies as $tr) {
+                echo '<span class="recap-trophy-badge">🏆 ' . e($tr['title'] ?? 'Campeão') . '</span>';
+            }
+            echo '</div>';
+        } else {
+            echo '<p class="subtle">Nenhum título conquistado nesta temporada.</p>';
+        }
+        echo '</section>';
+
+        // 5. Evolução técnica
+        echo '<section class="recap-section recap-evolution">';
+        echo '<h2 class="recap-section-title">Evolução do jogador</h2>';
+        $skills = $g['skills'] ?? [];
+        $currentTech = $skills ? array_sum(array_column($skills, 'value')) / count($skills) : 50.0;
+        $baseline = $g['season_skill_baseline'] ?? null;
+        if ($baseline !== null && is_numeric($baseline)) {
+            $delta = round($currentTech - (float)$baseline, 1);
+            if ($delta > 0) {
+                $growthText = 'Média técnica: <b>' . number_format($currentTech, 1, ',', '.') . '</b> <span class="text-success">(+' . number_format($delta, 1, ',', '.') . ' na temporada)</span>';
+            } elseif ($delta < 0) {
+                $growthText = 'Média técnica: <b>' . number_format($currentTech, 1, ',', '.') . '</b> <span class="text-danger">(' . number_format($delta, 1, ',', '.') . ' na temporada)</span>';
+            } else {
+                $growthText = 'Média técnica: <b>' . number_format($currentTech, 1, ',', '.') . '</b> <span class="subtle">(estável na temporada)</span>';
+            }
+            echo '<p>' . $growthText . '</p>';
+        } else {
+            echo '<p>Média técnica: <b>' . number_format($currentTech, 1, ',', '.') . '</b></p>';
+        }
+        if (!empty($g['pace_report']['growth'])) {
+            echo '<div class="result-effects">';
+            foreach ($g['pace_report']['growth'] as $k => $v) {
+                if ($v > 0) {
+                    echo '<span class="effect-chip">' . e(self::label($k)) . ' +' . (int)$v . '</span> ';
+                }
+            }
+            echo '</div>';
+        }
+        echo '</section>';
+
+        // 6. Próximo passo / Janela de transferências (Formulário e rota oficiais)
+        echo '<div class="recap-market-cta">';
+        echo '<h3>Janela de transferências</h3>';
+        echo '<p>O ano de competições está concluído. Você pode optar por renovar com o <b>' . e($clubName) . '</b> ou conhecer as propostas de outros clubes para a próxima temporada.</p>';
+        if (function_exists('form')) {
+            form('/transferencia/roleta', $g);
+        } else {
+            echo '<form method="post" action="/transferencia/roleta">';
+            echo '<input type="hidden" name="csrf" value="' . e($_SESSION['csrf'] ?? '') . '">';
+            echo '<input type="hidden" name="version" value="' . e($g['version'] ?? 1) . '">';
+            echo '<input type="hidden" name="key" value="' . bin2hex(random_bytes(32)) . '">';
+        }
+        echo '<button class="btn btn-primary btn-lg" type="submit">Ver minha proposta →</button>';
+        echo '</form>';
+        echo '</div>';
+
+        echo '</article>';
+
+        // 7. Detalhes de histórico e partidas complementares (recolhidos)
+        echo '<details class="panel season-recap"><summary>Ver histórico de partidas e gols</summary>';
+        if (!empty($g['pace_report'])) {
+            PlayMode::report($g);
+        }
+        echo '<p>' . e(self::seasonStory($g)) . '</p>';
+        echo '<p>Nota média: ' . e($ratingFormatted) . '</p>';
+        echo '<a href="/classificacao">Classificação final e calendário →</a>';
+        self::goalHistory($g);
+        echo '</details>';
+    }
 }

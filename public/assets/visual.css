@@ -2399,4 +2399,26 @@ body.post-match-decision .season-recap {
 .competition-recap-panel .recap-next-step { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
 .competition-recap-panel .recap-transition-text { font-size: 0.95rem; color: var(--text); margin-bottom: 14px; }
 
+/* R10-CAR-001-R2: Retrospectiva Anual Completa */
+.annual-recap-panel { margin-bottom: 24px; }
+.annual-recap-panel .recap-header { margin-bottom: 20px; }
+.annual-recap-panel .recap-club-line { display: flex; align-items: center; gap: 8px; font-size: 1rem; color: var(--text); margin-top: 6px; }
+.annual-recap-panel .recap-club-line .club-badge { width: 32px; height: 32px; }
+.annual-recap-panel .recap-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+.annual-recap-panel .recap-section-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.annual-recap-panel .recap-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin: 16px 0; }
+.annual-recap-panel .recap-stat-card { background: #0d1b20; border: 1px solid #253b3f; border-radius: 9px; padding: 12px 8px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.annual-recap-panel .recap-stat-card strong { font-size: 26px; color: var(--lime); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.annual-recap-panel .recap-stat-card span { font-size: 11px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.annual-recap-panel .recap-comp-item { background: #132227; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; }
+.annual-recap-panel .recap-comp-name { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.annual-recap-panel .recap-comp-detail { font-size: 0.95rem; margin: 4px 0; color: var(--muted); }
+.annual-recap-panel .recap-comp-champion { color: var(--text); }
+.annual-recap-panel .recap-trophies-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.annual-recap-panel .recap-trophy-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(210, 243, 107, 0.12); border: 1px solid var(--lime); border-radius: 6px; padding: 6px 12px; color: var(--lime); font-weight: 600; font-size: 0.95rem; }
+.annual-recap-panel .recap-market-cta { margin-top: 28px; padding: 20px; background: #102025; border: 1px solid #3d555a; border-radius: 10px; }
+.annual-recap-panel .recap-market-cta h3 { font-size: 1.15rem; color: var(--text); margin: 0 0 8px; }
+.annual-recap-panel .recap-market-cta p { font-size: 0.95rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+
+
 
