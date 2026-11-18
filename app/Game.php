@@ -80,7 +80,6 @@ final class Game {
     private static function applyCommand(array $g,string $action,array $input,bool $automated,?callable $rng): array {
         $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
-        if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}
         if($action==='retire') {
             if(!Retirement::eligible($g) || ($input['confirm']??'')!=='retire')throw new InvalidArgumentException('A aposentadoria não está disponível para esta carreira ou falta a confirmação.');
             Retirement::close($g,'voluntary');$g['version']++;return $g;
@@ -240,10 +239,12 @@ final class Game {
             elseif($m['minute']<$m['entry'] || $m['minute']>=$m['exit']) { self::nextSegment($g); }
             else throw new InvalidArgumentException('Resolva a decisão em campo.');
         } elseif($action==='offers' && $g['stage']==='resumo') {
+            if($g['age']>=39){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}
             CompetitionContinuity::reconcileAmazonas($g);
             $g['market_draw']=TransferInterest::draw($g);$g['offers']=$g['market_draw']['offers'];
             $g['stage']='oferta';$g['feedback']=['text'=>count($g['offers']).' proposta(s) nesta janela. Escolha um clube ou permaneça.'];
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
+            if($g['age']>=39){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}
             unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
             $summary['evaluation']=SeasonEvaluation::evaluate($g);

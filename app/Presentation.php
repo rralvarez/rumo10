@@ -650,7 +650,9 @@ final class Presentation {
             echo '<div class="recap-market-cta recap-retirement-cta">';
             echo '<span class="tag">DESPEDIDA DOS GRAMADOS · ÚLTIMA TEMPORADA</span>';
             echo '<h3>Encerramento da Carreira Profissional</h3>';
-            echo '<p>Esta foi a sua última temporada como jogador de futebol profissional. Ao completar 40 anos, seu ciclo competitivo nos gramados chega ao fim. Você encerra sua trajetória em alto nível e agora pode conferir o memorial permanente com todas as suas estatísticas, títulos e clubes defendidos.</p>';
+            echo '<p>Esta foi a sua última temporada como jogador de futebol profissional. Ao completar 40 anos, seu ciclo competitivo nos gramados chega ao fim.</p>';
+            echo '<p class="recap-retirement-notice">Ao concluir sua carreira, o jogo guardará permanentemente suas estatísticas, clubes, temporadas e conquistas no histórico. Os detalhes das partidas, eventos individuais e decisões serão removidos e não poderão ser recuperados.</p>';
+            echo '<p class="subtle recap-retirement-distinction">A conclusão da carreira preserva seu resumo permanente no histórico e libera sua vaga ativa — diferente da opção de excluir o resumo permanente, que apaga definitivamente todo o registro histórico.</p>';
             if (function_exists('form')) {
                 form('/transferencia/roleta', $g);
             } else {

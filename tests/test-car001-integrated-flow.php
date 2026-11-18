@@ -243,6 +243,7 @@ $gVeteran = [
 $gVeteranResumo = Game::command($gVeteran, 'continue');
 check($gVeteranResumo['stage'] === 'resumo', 'Veterano aos 39 anos entra normalmente em resumo');
 check($gVeteranResumo['age'] === 39, 'Veterano preserva idade de 39 anos durante a visualização do resumo');
+check($gVeteranResumo['version'] === 100, 'Versão incrementada exatamente uma vez ao entrar em resumo (99 -> 100)');
 
 // Renderização da retrospectiva anual da sua última temporada
 ob_start();
@@ -251,15 +252,99 @@ $vetRecapHtml = ob_get_clean();
 check(str_contains($vetRecapHtml, 'TEMPORADA CONCLUÍDA · BALANÇO ANUAL'), 'Retrospectiva anual completa visível para o veterano');
 check(str_contains($vetRecapHtml, 'DESPEDIDA DOS GRAMADOS'), 'Retrospectiva exibe tag de despedida dos gramados');
 check(str_contains($vetRecapHtml, 'Encerramento da Carreira Profissional'), 'Retrospectiva exibe título de encerramento da carreira');
+$expectedWarning = 'Ao concluir sua carreira, o jogo guardará permanentemente suas estatísticas, clubes, temporadas e conquistas no histórico. Os detalhes das partidas, eventos individuais e decisões serão removidos e não poderão ser recuperados.';
+check(str_contains($vetRecapHtml, $expectedWarning), 'Aviso explícito sobre remoção de detalhes presente');
+$beforeDetailsPos = strpos($vetRecapHtml, '<details');
+$warningPos = strpos($vetRecapHtml, $expectedWarning);
+check($warningPos !== false && ($beforeDetailsPos === false || $warningPos < $beforeDetailsPos), 'Aviso de remoção de detalhes está visível fora do painel recolhido');
+check(str_contains($vetRecapHtml, 'diferente da opção de excluir o resumo permanente'), 'Diferencia encerramento da carreira da exclusão completa do resumo permanente');
 check(str_contains($vetRecapHtml, 'Concluir minha carreira →'), 'Botão principal é Concluir minha carreira');
 check(!str_contains($vetRecapHtml, 'Ver minha proposta →'), 'Não oferece propostas de mercado');
 
-// Confirmação do encerramento (submetendo o formulário existente de resumo)
+// Proteção contra aposentadoria desencadeada por comandos inválidos na etapa resumo
+foreach (['choice', 'advance', 'simulate', 'continue', 'transfer', 'join', 'handicap', 'mode'] as $invalidAction) {
+    $copyVet = $gVeteranResumo;
+    $rejectedInvalid = false;
+    try {
+        Game::command($copyVet, $invalidAction, $invalidAction === 'simulate' ? ['plan' => 'equilibrio'] : ($invalidAction === 'transfer' ? ['accept' => 'no'] : ($invalidAction === 'choice' ? ['option' => 0] : [])));
+    } catch (InvalidArgumentException $e) {
+        $rejectedInvalid = true;
+    }
+    check($rejectedInvalid && $copyVet['stage'] === 'resumo' && $copyVet['age'] === 39, "Comando inválido '$invalidAction' em resumo não conclui a carreira precocemente");
+}
+
+// Confirmação do encerramento (submetendo o comando válido 'offers' da retrospectiva)
+$versionBeforeClose = $gVeteranResumo['version'];
+$seasonBeforeClose = $gVeteranResumo['season'];
 $gAposentado = Game::command($gVeteranResumo, 'offers');
 check($gAposentado['stage'] === 'aposentado', 'Carreira encerrada após confirmação explícita');
-check($gAposentado['age'] === 40, 'Idade é elevada a 40 anos na aposentadoria compulsória');
+check($gAposentado['version'] === $versionBeforeClose + 1, 'Versão incrementada exatamente uma vez no encerramento compulsório (100 -> 101)');
+check($gAposentado['age'] === 40, 'Idade final de 40 anos para atleta de 39');
+check($gAposentado['season'] === $seasonBeforeClose, 'Nenhuma nova temporada é criada no encerramento compulsório');
 check($gAposentado['retirement']['reason'] === 'mandatory', 'Motivo da aposentadoria registrado como mandatory');
-check(empty($gAposentado['offers']), 'Nenhuma proposta de mercado é gerada');
+check(empty($gAposentado['offers']) && !isset($gAposentado['market_draw']), 'Aposentadoria compulsória sem sorteio de mercado nem ofertas');
+
+// Verificação de idade 40 não avançando para 41 e envelhecimento técnico aplicado no máximo uma vez
+$gAlready40 = $gVeteranResumo;
+$gAlready40['age'] = 40;
+$gAlready40['player_development'] = [
+    'version' => PlayerDevelopment::VERSION,
+    'seed' => 'vet-40-seed',
+    'parameters' => [
+        'calibration' => 'calendar-log250-smooth024016-budget410-isolated',
+        'normalization' => ['schema' => 'marginal-log-v1', 'scale' => 250],
+        'learning_model' => ['schema' => 'smooth-log-learning-v1', 'linear' => .24, 'saturating' => .16],
+        'cost' => ['base' => 20, 'divisor' => 5],
+        'annual_base' => 410,
+        'annual_merit' => 175,
+        'rates' => [1.45, 1.2, .85, .15, .08],
+        'ceiling_open_age' => 27,
+        'aging_acceleration' => 0.075
+    ],
+    'learning' => 1.0,
+    'ceilings' => array_fill_keys(Rules::SKILLS, 90),
+    'physical_decline_start' => 33,
+    'aging_rate' => 1.0,
+    'technical_decline_start' => 37,
+    'received' => array_fill_keys(Rules::SKILLS, 0),
+    'spent' => array_fill_keys(Rules::SKILLS, 0),
+    'points' => array_fill_keys(Rules::SKILLS, 0),
+];
+foreach (Rules::SKILLS as $sk) {
+    $gAlready40['skills'][$sk] = ['value' => 75, 'xp' => 0];
+}
+$gClosed40 = Game::command($gAlready40, 'offers');
+check($gClosed40['age'] === 40, 'Idade 40 não avança para 41 no encerramento');
+check($gClosed40['version'] === $gAlready40['version'] + 1, 'Versão incrementada exatamente uma vez para atleta já com 40 anos');
+$skillsAfterFirstBirthday = $gClosed40['skills'];
+$secondAgingChanges = Evolution::birthday($gClosed40);
+check($secondAgingChanges === [] && $gClosed40['skills'] === $skillsAfterFirstBirthday, 'Envelhecimento técnico aplicado no máximo uma vez por encerramento');
+
+// Carreira legada com idade superior (> 40) não é alterada arbitrariamente
+$gLegacy42 = $gVeteranResumo;
+$gLegacy42['age'] = 42;
+$gClosed42 = Game::command($gLegacy42, 'offers');
+check($gClosed42['age'] === 42 && $gClosed42['stage'] === 'aposentado', 'Carreira legada com idade superior (42) preserva idade sem alteração arbitrária');
+
+// Compatibilidade com save legado em 'oferta' aos 39 anos
+$gLegacyOferta = $gVeteranResumo;
+$gLegacyOferta['stage'] = 'oferta';
+$gLegacyOferta['age'] = 39;
+$gLegacyOferta['offers'] = [['club' => 'Flamengo-RJ', 'tier' => 1, 'peso' => 10, 'selected' => true]];
+$invalidInOfertaRejected = false;
+try {
+    Game::command($gLegacyOferta, 'choice', ['option' => 0]);
+} catch (InvalidArgumentException $e) {
+    $invalidInOfertaRejected = true;
+}
+check($invalidInOfertaRejected, 'Comando inválido em save legado na etapa oferta é rejeitado');
+$gLegacyOfertaClosed = Game::command($gLegacyOferta, 'transfer', ['accept' => 'yes', 'option' => 0]);
+check($gLegacyOfertaClosed['stage'] === 'aposentado', 'Save legado em oferta aos 39 anos encerra carreira ao responder transferência');
+check($gLegacyOfertaClosed['age'] === 40, 'Save legado em oferta aos 39 anos normaliza idade para 40');
+check($gLegacyOfertaClosed['club'] === 'Santos-SP', 'Save legado em oferta aos 39 anos impede nova contratação');
+check($gLegacyOfertaClosed['season'] === $gLegacyOferta['season'], 'Save legado em oferta aos 39 anos impede início de nova temporada');
+check(empty($gLegacyOfertaClosed['offers']), 'Save legado em oferta limpa ofertas ao aposentar');
+check($gLegacyOfertaClosed['version'] === $gLegacyOferta['version'] + 1, 'Save legado em oferta incrementa versão exatamente uma vez');
 
 // Renderização da tela de carreira aposentada
 ob_start();
@@ -275,8 +360,10 @@ echo "\n7. Validando Aposentadoria Voluntária e Bloqueios...\n";
 $g35 = Game::legacyCreate('Craque Decidido', 'São Paulo', 'SP', 'lateral');
 $g35['age'] = 35;
 $g35['stage'] = 'treino';
+$v35Before = $g35['version'];
 $g35Aposentado = Game::command($g35, 'retire', ['confirm' => 'retire']);
 check($g35Aposentado['stage'] === 'aposentado', 'Aposentadoria voluntária aos 35 anos funciona');
+check($g35Aposentado['version'] === $v35Before + 1, 'Aposentadoria voluntária incrementa versão exatamente uma vez');
 check($g35Aposentado['retirement']['reason'] === 'voluntary', 'Motivo registrado como voluntary');
 
 $g34 = Game::legacyCreate('Craque Jovem', 'São Paulo', 'SP', 'lateral');
@@ -294,10 +381,10 @@ check($blocked, 'Aposentadoria voluntária bloqueada para jogadores com menos de
 // 8. Cenário: Impossibilidade de Jogar Nova Temporada Após Aposentadoria
 // -------------------------------------------------------------
 echo "\n8. Validando Bloqueio de Comandos em Carreira Aposentada...\n";
-foreach (['choice', 'advance', 'offers', 'transfer', 'continue', 'simulate', 'mode'] as $act) {
+foreach (['choice', 'advance', 'offers', 'transfer', 'continue', 'simulate', 'mode', 'retire'] as $act) {
     $commandBlocked = false;
     try {
-        Game::command($gAposentado, $act);
+        Game::command($gAposentado, $act, $act === 'retire' ? ['confirm' => 'retire'] : []);
     } catch (InvalidArgumentException $e) {
         $commandBlocked = true;
     }
@@ -305,15 +392,55 @@ foreach (['choice', 'advance', 'offers', 'transfer', 'continue', 'simulate', 'mo
 }
 
 // -------------------------------------------------------------
-// 9. Cenário: Preservação de Estatísticas e Conquistas no Resumo Final
+// 9. Cenário: Preservação de Estatísticas, Compactação e Idempotência em Memória
 // -------------------------------------------------------------
-echo "\n9. Validando Preservação de Totais e Conquistas no Memorial...\n";
-$stats = CareerStats::collect($gAposentado);
-check(isset($stats['totals']), 'Totais históricos coletados com sucesso');
-check(isset($stats['clubs']), 'Totais por clube preservados');
-$trophies = Trophies::collect($gAposentado);
-check(is_array($trophies), 'Sala de troféus preservada e consultável');
+echo "\n9. Validando Preservação de Totais, Compactação e Idempotência em Memória...\n";
+$statsBeforeCompact = CareerStats::collect($gAposentado);
+$trophiesBeforeCompact = Trophies::collect($gAposentado);
+check(isset($statsBeforeCompact['totals']), 'Totais históricos coletados com sucesso');
+check(isset($statsBeforeCompact['clubs']), 'Totais por clube preservados');
+check(is_array($trophiesBeforeCompact) && count($trophiesBeforeCompact) > 0, 'Sala de troféus preservada e consultável');
+
+$closingKey = bin2hex(random_bytes(32));
+$closingHash = hash('sha256', json_encode(['offers', []], JSON_THROW_ON_ERROR));
+$compactSummary = RetiredCareer::build($gAposentado, ['key' => $closingKey, 'hash' => $closingHash]);
+$compactedState = RetiredCareer::state($compactSummary);
+
+check($compactedState['stage'] === 'aposentado', 'Estado compactado mantém stage=aposentado');
+check($compactedState['age'] === 40 && $compactedState['version'] === $gAposentado['version'], 'Estado compactado preserva idade 40 e versão final');
+check(CareerStats::collect($compactedState)['totals'] === $statsBeforeCompact['totals'], 'Estado compactado preserva totais históricos idênticos');
+check(CareerStats::collect($compactedState)['clubs'] === $statsBeforeCompact['clubs'], 'Estado compactado preserva totais por clube idênticos');
+check(Trophies::collect($compactedState) === $trophiesBeforeCompact, 'Estado compactado preserva troféus idênticos');
+check(empty($compactedState['matches']) && empty($compactedState['history']) && empty($compactedState['offers']), 'Estado compactado remove detalhes de partidas, histórico bruto e ofertas');
+
+// Simulação da guarda de idempotência de Repository::command() sobre o closing_command
+$closingMeta = $compactedState['retired_summary']['closing_command'] ?? null;
+check($closingMeta !== null && hash_equals($closingMeta['key'], $closingKey) && hash_equals($closingMeta['hash'], $closingHash), 'Metadado closing_command gravado com key e hash exatos');
+
+// Retentativa idempotente com mesmo token e mesma ação
+$retryHashSame = hash('sha256', json_encode(['offers', []], JSON_THROW_ON_ERROR));
+$isIdempotentReplay = ($closingMeta && hash_equals($closingMeta['key'], $closingKey) && hash_equals($closingMeta['hash'], $retryHashSame));
+check($isIdempotentReplay, 'Retentativa do mesmo token com a mesma ação é reconhecida de forma idempotente');
+
+// Reutilização do mesmo token com outra ação deve ser rejeitada
+$retryHashDifferent = hash('sha256', json_encode(['transfer', ['accept' => 'no']], JSON_THROW_ON_ERROR));
+$tokenReuseRejected = false;
+if ($closingMeta && hash_equals($closingMeta['key'], $closingKey)) {
+    if (!hash_equals($closingMeta['hash'], $retryHashDifferent)) {
+        $tokenReuseRejected = true;
+    }
+}
+check($tokenReuseRejected, 'Reutilização do mesmo token de encerramento com outra ação é rejeitada');
+
+// Impossibilidade de executar comandos sobre o estado compactado
+$compactedBlocked = false;
+try {
+    Game::command($compactedState, 'offers');
+} catch (InvalidArgumentException $e) {
+    $compactedBlocked = true;
+}
+check($compactedBlocked, 'Estado compactado também bloqueia novos comandos de jogo');
 
 echo "\n=======================================================\n";
-echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R4 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R4.1 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
