@@ -575,20 +575,51 @@ final class Presentation {
             }
         } else {
             // Modo legado com liga regional
-            $table = Schedule::table($g['matches'] ?? [], $g['teams'] ?? []);
+            $rawTeams = is_array($g['teams'] ?? null) ? array_values($g['teams']) : [];
+            $rawMatches = is_array($g['matches'] ?? null) ? $g['matches'] : [];
+            $validTeams = $rawTeams !== [] && count(array_filter($rawTeams, 'is_string')) === count($rawTeams);
+            $teamCount = $validTeams ? count($rawTeams) : 0;
+            $expectedMatchCount = ($teamCount >= 2 && ($teamCount % 2 === 0) && count(array_unique($rawTeams)) === $teamCount)
+                ? $teamCount * ($teamCount - 1)
+                : 0;
+            $calendarComplete = false;
+            if ($expectedMatchCount > 0 && $club !== '' && in_array($club, $rawTeams, true) && count($rawMatches) === $expectedMatchCount) {
+                $teamSet = array_fill_keys($rawTeams, true);
+                $completedPairs = [];
+                $allValid = true;
+                foreach ($rawMatches as $m) {
+                    if (!is_array($m) || ($m['status'] ?? '') !== 'finalizada') {
+                        $allValid = false;
+                        break;
+                    }
+                    $home = $m['home'] ?? '';
+                    $away = $m['away'] ?? '';
+                    if (!is_string($home) || !is_string($away) || $home === '' || $away === '' || $home === $away || !isset($teamSet[$home], $teamSet[$away])) {
+                        $allValid = false;
+                        break;
+                    }
+                    $pairKey = $home . "\0" . $away;
+                    if (isset($completedPairs[$pairKey])) {
+                        $allValid = false;
+                        break;
+                    }
+                    $completedPairs[$pairKey] = true;
+                }
+                $calendarComplete = $allValid && count($completedPairs) === $expectedMatchCount;
+            }
+            $table = $calendarComplete ? Schedule::table($rawMatches, $rawTeams) : [];
             $foundPos = null;
             $foundPts = null;
             foreach ($table as $i => $row) {
-                if ($club !== '' && ($row['team'] ?? '') === $club) {
+                if (($row['team'] ?? '') === $club) {
                     $foundPos = $i + 1;
                     $foundPts = (int)($row['points'] ?? 0);
                     break;
                 }
             }
-            $totalPlayed = array_sum(array_column($table, 'played'));
             echo '<div class="recap-comp-item">';
             echo '<div class="recap-comp-name">Liga regional</div>';
-            if ($foundPos === null || $totalPlayed <= 0) {
+            if (!$calendarComplete || $foundPos === null) {
                 echo '<p class="recap-comp-detail subtle">Não há classificação detalhada disponível para esta temporada.</p>';
             } else {
                 $legacyChamp = $table[0]['team'] ?? '';
@@ -686,7 +717,10 @@ final class Presentation {
         if (!empty($g['pace_report'])) {
             PlayMode::report($g);
         }
-        echo '<p>' . e(self::seasonStory($g)) . '</p>';
+        $storyText = (!empty($g['official']) || (!empty($calendarComplete) && ($foundPos ?? null) !== null))
+            ? self::seasonStory($g)
+            : 'A temporada terminou. Você entrou em campo em ' . $games . ' jogos, marcou ' . $goals . ' gols e deu ' . $assists . ' assistências.';
+        echo '<p>' . e($storyText) . '</p>';
         echo '<p>Nota média: ' . e($ratingFormatted) . '</p>';
         echo '<a href="/classificacao">Classificação final e calendário →</a>';
         self::goalHistory($g);

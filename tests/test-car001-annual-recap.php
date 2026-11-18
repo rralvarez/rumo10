@@ -142,20 +142,25 @@ $gLegacy = [
     'version' => 14,
     'stage' => 'resumo',
     'official' => false, // Liga regional legada
-    'teams' => ['Santos-SP', 'São Paulo-SP', 'Palmeiras-SP', 'Corinthians-SP'],
+    'teams' => ['Santos-SP', 'São Paulo-SP'],
     'skills' => ['finalizacao' => ['value' => 60, 'xp' => 0]],
     'matches' => [
         [
             'round' => 1, 'home' => 'Santos-SP', 'away' => 'São Paulo-SP', 'hg' => 3, 'ag' => 0,
             'status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'entry' => 0, 'exit' => 90,
             'stats' => ['goals' => 2, 'assists' => 1, 'minutes' => 90, 'rating' => 8.0, 'shots' => 4, 'tackles' => 0]
+        ],
+        [
+            'round' => 2, 'home' => 'São Paulo-SP', 'away' => 'Santos-SP', 'hg' => 0, 'ag' => 1,
+            'status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'entry' => 0, 'exit' => 90,
+            'stats' => ['goals' => 1, 'assists' => 0, 'minutes' => 90, 'rating' => 7.5, 'shots' => 2, 'tackles' => 0]
         ]
     ]
 ];
 
 $htmlLegacy = renderAnnualRecap($gLegacy);
 check(str_contains($htmlLegacy, 'Liga regional'), 'Modo legado exibe Liga regional');
-check(str_contains($htmlLegacy, 'Terminou em <b>1º lugar</b> com 3 pontos.') || str_contains($htmlLegacy, 'Título conquistado!'), 'Modo legado calcula e exibe tabela do Schedule::table');
+check(str_contains($htmlLegacy, 'Terminou em <b>1º lugar</b> com 6 pontos.') || str_contains($htmlLegacy, 'Título conquistado!'), 'Modo legado calcula e exibe tabela do Schedule::table');
 check(str_contains($htmlLegacy, 'Ver minha proposta →'), 'Modo legado preserva botão de janela de transferências');
 
 // Ausência de classificação comprovada no modo legado (P2 Codex)
@@ -171,6 +176,11 @@ $gLegacyZeroPts = $gLegacy;
 $gLegacyZeroPts['matches'] = [
     [
         'round' => 1, 'home' => 'São Paulo-SP', 'away' => 'Santos-SP', 'hg' => 2, 'ag' => 0,
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'entry' => 0, 'exit' => 90,
+        'stats' => ['goals' => 0, 'assists' => 0, 'minutes' => 90, 'rating' => 6.0, 'shots' => 1, 'tackles' => 0]
+    ],
+    [
+        'round' => 2, 'home' => 'Santos-SP', 'away' => 'São Paulo-SP', 'hg' => 0, 'ag' => 1,
         'status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'entry' => 0, 'exit' => 90,
         'stats' => ['goals' => 0, 'assists' => 0, 'minutes' => 90, 'rating' => 6.0, 'shots' => 1, 'tackles' => 0]
     ]
@@ -282,6 +292,147 @@ $htmlExpresso = renderAnnualRecap($gExpresso);
 check(str_contains($htmlExpresso, 'Paulistão A1') && str_contains($htmlExpresso, 'Brasileirão Série A'), 'Modo Expresso recupera todas as competições concluídas');
 check(str_contains($htmlExpresso, 'Finalização +2') && str_contains($htmlExpresso, 'Passe +1'), 'Modo Expresso integra ganhos de habilidades registrados pelo pace report');
 
+// -------------------------------------------------------------
+// 12. Casos Obrigatórios R10-CAR-001-R5.3 (TC-D4-01 a TC-D4-10 e Imutabilidade)
+// -------------------------------------------------------------
+echo "\n12. Validando Casos Obrigatórios R10-CAR-001-R5.3 (TC-D4-01 a TC-D4-10)...\n";
+
+$neutralMsg = 'Não há classificação detalhada disponível para esta temporada.';
+
+// TC-D4-01: ida finalizada, volta agendada
+$tc01 = $gLegacy;
+$tc01['teams'] = ['Santos-SP', 'São Paulo-SP'];
+$tc01['matches'] = [
+    [
+        'round' => 1, 'home' => 'Santos-SP', 'away' => 'São Paulo-SP', 'hg' => 1, 'ag' => 0,
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'entry' => 0, 'exit' => 90,
+        'stats' => Schedule::stats(), 'log' => []
+    ],
+    [
+        'round' => 2, 'home' => 'São Paulo-SP', 'away' => 'Santos-SP', 'hg' => 0, 'ag' => 0,
+        'status' => 'agendada', 'minute' => 0, 'lineup' => '', 'entry' => 0, 'exit' => 0,
+        'stats' => Schedule::stats(), 'log' => []
+    ]
+];
+$htmlTc01 = renderAnnualRecap($tc01);
+check(str_contains($htmlTc01, $neutralMsg), 'TC-D4-01: Ida finalizada e volta agendada exibe mensagem neutra');
+check(!str_contains($htmlTc01, 'Título conquistado!') && !str_contains($htmlTc01, 'terminou na liderança') && !str_contains($htmlTc01, 'º lugar'), 'TC-D4-01: Não declara título, liderança provisória nem colocação definitiva');
+
+// TC-D4-02: campeonato integralmente encerrado
+$tc02 = $tc01;
+$tc02['matches'][1]['status'] = 'finalizada';
+$tc02['matches'][1]['hg'] = 1;
+$tc02['matches'][1]['ag'] = 1;
+$htmlTc02 = renderAnnualRecap($tc02);
+check(str_contains($htmlTc02, 'Título conquistado!') && str_contains($htmlTc02, 'terminou na liderança com 4 pontos.') && !str_contains($htmlTc02, $neutralMsg), 'TC-D4-02: Campeonato integralmente encerrado exibe título e pontuação real (4 pontos)');
+
+// TC-D4-03: zero pontos legítimos
+$tc03 = $tc01;
+$tc03['matches'][0]['hg'] = 0;
+$tc03['matches'][0]['ag'] = 2;
+$tc03['matches'][1]['status'] = 'finalizada';
+$tc03['matches'][1]['hg'] = 3;
+$tc03['matches'][1]['ag'] = 1;
+$htmlTc03 = renderAnnualRecap($tc03);
+check(str_contains($htmlTc03, 'Campeão: <b>São Paulo-SP</b>') && str_contains($htmlTc03, 'Terminou em <b>2º lugar</b> com 0 pontos.') && !str_contains($htmlTc03, 'Título conquistado!'), 'TC-D4-03: Zero pontos legítimos apresenta 2º lugar com 0 pontos e campeão real');
+
+// TC-D4-04: calendário totalmente pendente
+$tc04 = $tc01;
+$tc04['matches'][0]['status'] = 'agendada';
+$tc04['matches'][1]['status'] = 'agendada';
+$htmlTc04 = renderAnnualRecap($tc04);
+check(str_contains($htmlTc04, $neutralMsg) && !str_contains($htmlTc04, 'Campeão:') && !str_contains($htmlTc04, 'Título conquistado!') && !str_contains($htmlTc04, 'º lugar'), 'TC-D4-04: Calendário totalmente pendente exibe mensagem neutra sem campeão ou posição');
+
+// TC-D4-05: calendário vazio
+$tc05 = $tc01;
+$tc05['matches'] = [];
+$htmlTc05 = renderAnnualRecap($tc05);
+check(str_contains($htmlTc05, $neutralMsg) && !str_contains($htmlTc05, 'º lugar') && !str_contains($htmlTc05, 'Título conquistado!'), 'TC-D4-05: Calendário vazio exibe mensagem neutra sem erro fatal');
+
+// TC-D4-06: clube ausente da tabela
+$tc06 = $tc02;
+$tc06['teams'] = ['São Paulo-SP', 'Palmeiras-SP'];
+$tc06['matches'][0]['home'] = 'São Paulo-SP';
+$tc06['matches'][0]['away'] = 'Palmeiras-SP';
+$tc06['matches'][1]['home'] = 'Palmeiras-SP';
+$tc06['matches'][1]['away'] = 'São Paulo-SP';
+$htmlTc06 = renderAnnualRecap($tc06);
+check(str_contains($htmlTc06, $neutralMsg) && !str_contains($htmlTc06, 'Título conquistado!') && !str_contains($htmlTc06, 'º lugar'), 'TC-D4-06: Clube ausente da tabela exibe mensagem neutra sem posição inventada');
+
+// TC-D4-07: calendário truncado (apenas jogo de ida presente, volta ausente do array)
+$tc07 = $tc01;
+$tc07['matches'] = [$tc01['matches'][0]];
+$htmlTc07 = renderAnnualRecap($tc07);
+check(str_contains($htmlTc07, $neutralMsg) && !str_contains($htmlTc07, 'Título conquistado!') && !str_contains($htmlTc07, 'Campeão:') && !str_contains($htmlTc07, 'º lugar'), 'TC-D4-07: Calendário truncado não declara campeão nem colocação definitiva');
+
+// TC-D4-08: calendário inconsistente (equipes duplicadas / confrontos duplicados)
+$tc08a = $tc02;
+$tc08a['teams'] = ['Santos-SP', 'Santos-SP'];
+$htmlTc08a = renderAnnualRecap($tc08a);
+check(str_contains($htmlTc08a, $neutralMsg) && !str_contains($htmlTc08a, 'Título conquistado!') && !str_contains($htmlTc08a, 'º lugar'), 'TC-D4-08a: Equipes duplicadas exibe mensagem neutra sem erro fatal');
+
+$tc08b = $tc02;
+$tc08b['matches'][1] = $tc02['matches'][0]; // Dois jogos de ida idênticos, faltando o jogo de volta
+$htmlTc08b = renderAnnualRecap($tc08b);
+check(str_contains($htmlTc08b, $neutralMsg) && !str_contains($htmlTc08b, 'Título conquistado!') && !str_contains($htmlTc08b, 'º lugar'), 'TC-D4-08b: Confrontos duplicados sem o jogo de volta exibe mensagem neutra');
+
+// TC-D4-09: calendário completo com quatro equipes gerado por Schedule::generate()
+$teams4 = ['Santos-SP', 'São Paulo-SP', 'Palmeiras-SP', 'Corinthians-SP'];
+$matches4 = Schedule::generate($teams4);
+foreach ($matches4 as &$m4) {
+    $m4['status'] = 'finalizada';
+    $m4['minute'] = 90;
+    if ($m4['home'] === 'Palmeiras-SP') {
+        $m4['hg'] = 2; $m4['ag'] = 0;
+    } elseif ($m4['away'] === 'Palmeiras-SP') {
+        $m4['hg'] = 0; $m4['ag'] = 2;
+    } elseif ($m4['home'] === 'Santos-SP') {
+        $m4['hg'] = 1; $m4['ag'] = 0;
+    } elseif ($m4['away'] === 'Santos-SP') {
+        $m4['hg'] = 0; $m4['ag'] = 1;
+    } else {
+        $m4['hg'] = 1; $m4['ag'] = 1;
+    }
+}
+unset($m4);
+$tc09 = $gLegacy;
+$tc09['teams'] = $teams4;
+$tc09['matches'] = $matches4;
+$expectedTable4 = Schedule::table($matches4, $teams4);
+$htmlTc09 = renderAnnualRecap($tc09);
+check($expectedTable4[0]['team'] === 'Palmeiras-SP' && $expectedTable4[1]['team'] === 'Santos-SP' && $expectedTable4[1]['points'] === 12, 'TC-D4-09: Tabela oficial de 4 equipes calculada corretamente');
+check(str_contains($htmlTc09, 'Campeão: <b>Palmeiras-SP</b>') && str_contains($htmlTc09, 'Terminou em <b>2º lugar</b> com 12 pontos.'), 'TC-D4-09: Calendário completo com 4 equipes exibe campeão e colocação coerentes com Schedule::table()');
+
+// TC-D4-10: competição oficial com resultado persistido
+$tc10 = $gBase;
+$htmlTc10 = renderAnnualRecap($tc10);
+check(str_contains($htmlTc10, 'Paulistão A1') && str_contains($htmlTc10, 'Título conquistado!') && str_contains($htmlTc10, 'Brasileirão Série A') && str_contains($htmlTc10, 'Terminou em <b>3º lugar</b> na primeira fase.'), 'TC-D4-10: Competição oficial com resultado persistido continua funcionando inalterada');
+
+// Verificações explícitas de imutabilidade em múltiplos estados (Seção 8)
+foreach (['tc01' => $tc01, 'tc02' => $tc02, 'tc07' => $tc07, 'tc09' => $tc09, 'tc10' => $tc10] as $label => $stateFixture) {
+    $stateFixture['competition_results'] = $stateFixture['competition_results'] ?? [];
+    $stateFixture['history'] = $stateFixture['history'] ?? [];
+    $stateFixture['market_draw'] = $stateFixture['market_draw'] ?? null;
+    $snapBefore = serialize($stateFixture);
+    $fieldsBefore = [
+        'matches' => $stateFixture['matches'],
+        'teams' => $stateFixture['teams'] ?? [],
+        'stage' => $stateFixture['stage'],
+        'season' => $stateFixture['season'],
+        'version' => $stateFixture['version'],
+        'competition_results' => $stateFixture['competition_results'],
+        'history' => $stateFixture['history'],
+        'market_draw' => $stateFixture['market_draw'],
+    ];
+    ob_start(); Presentation::annualRecap($stateFixture); ob_end_clean();
+    check(serialize($stateFixture) === $snapBefore, "Imutabilidade ($label): 1ª renderização não altera estado");
+    ob_start(); Presentation::annualRecap($stateFixture); ob_end_clean();
+    check(serialize($stateFixture) === $snapBefore, "Imutabilidade ($label): 2ª renderização mantém estado rigorosamente igual");
+    foreach ($fieldsBefore as $fieldKey => $fieldVal) {
+        check(($stateFixture[$fieldKey] ?? ($fieldKey === 'teams' ? [] : null)) === $fieldVal, "Imutabilidade ($label): campo '$fieldKey' intacto");
+    }
+}
+
 echo "\n=======================================================\n";
-echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R2 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R5.3 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
