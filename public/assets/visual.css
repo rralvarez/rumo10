@@ -2389,3 +2389,14 @@ body.post-match-decision .season-recap {
   }
 }
 
+/* R10-CAR-001-R1: Encerramento de Competição */
+.competition-recap-panel .recap-outcome { margin: 16px 0; }
+.competition-recap-panel .recap-highlight-lead { font-size: 1.15rem; color: var(--lime); font-weight: 600; margin: 8px 0; }
+.competition-recap-panel .recap-champion-line { font-size: 1rem; color: var(--text); margin: 6px 0; }
+.competition-recap-panel .recap-status-line { font-size: 0.95rem; margin: 6px 0; }
+.competition-recap-panel .recap-status-promoted b { color: var(--lime); }
+.competition-recap-panel .recap-status-relegated b { color: #f87171; }
+.competition-recap-panel .recap-next-step { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+.competition-recap-panel .recap-transition-text { font-size: 0.95rem; color: var(--text); margin-bottom: 14px; }
+
+
