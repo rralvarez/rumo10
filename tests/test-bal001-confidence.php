@@ -18,7 +18,7 @@ function check(bool $v, string $message): void {
     echo "  [PASS] $message\n";
 }
 
-echo "=== INICIANDO SUÍTE DE TESTES R10-BAL-001-G1-R3: AUTOCONFIANÇA ===\n\n";
+echo "=== INICIANDO SUÍTE DE TESTES R10-BAL-001-G1-R4: AUTOCONFIANÇA ===\n\n";
 
 // -------------------------------------------------------------
 // 1. Penalidades técnicas comuns e graves, fallback e catálogo
@@ -241,6 +241,8 @@ check($gAtt['states']['confianca'] === 50, 'Atacante mantém confiança inaltera
 // 4. Cobrança de pênalti no tempo normal (MatchPenalty)
 // -------------------------------------------------------------
 echo "\n4. Validando cobrança de pênalti no tempo normal...\n";
+
+// 4.1 Pênalti convertido com controle de janela subsequente na fixture (isolando destruição do active_match_penalty)
 $gPen = Game::create('Cobrador Test', 'Santos', 'SP', 'centroavante', 'Santos-SP');
 $gPen['stage'] = 'partida';
 $iP = Game::currentIndex($gPen);
@@ -249,6 +251,7 @@ $mP['status'] = 'em_andamento';
 $mP['entry'] = 0;
 $mP['exit'] = 90;
 $mP['minute'] = 35;
+$mP['evaluated_penalties'] = ['35-45']; // Controla janela seguinte para isolar destruição do active_match_penalty
 $mP['active_match_penalty'] = [
     'status' => 'taking_kick',
     'victim' => $gPen['name'],
@@ -257,11 +260,41 @@ $mP['active_match_penalty'] = [
 ];
 $rngSuccess = static fn(int $min, int $max): int => $min;
 $resPen = Game::command($gPen, 'choice', ['option' => '0'], false, $rngSuccess);
+$mP_res = $resPen['matches'][$iP];
 check(($resPen['feedback']['highlight'] ?? '') === 'goal', 'Pênalti convertido registra highlight de goal');
 check(($resPen['feedback']['effects']['confianca'] ?? 0) === 4, 'Feedback do pênalti registra +4 de confiança');
-check($resPen['states']['confianca'] === 54, 'Confiança avança de 50 para 54 no gol de pênalti');
-check(empty($resPen['matches'][$iP]['active_match_penalty']), 'active_match_penalty é devidamente destruído');
+check($resPen['states']['confianca'] === 54, 'Confiança avança de 50 para 54 no gol de pênalti (aplicada uma única vez)');
+check(($mP_res['stats']['goals'] ?? 0) === 1, 'Estatística de gols do jogador incrementada para 1');
+check(($mP_res['stats']['penalties_taken'] ?? 0) === 1, 'Estatística de penalties_taken incrementada para 1');
+check(($mP_res['stats']['penalties_scored'] ?? 0) === 1, 'Estatística de penalties_scored incrementada para 1');
+check(empty($mP_res['active_match_penalty']), 'Cobrança original é destruída e active_match_penalty permanece vazio quando janela seguinte não gera pênalti');
 
+// 4.2 Pênalti convertido com sorteio aberto e verificação estrita de identidade da cobrança
+$gPenOpen = Game::create('Cobrador Open', 'Santos', 'SP', 'centroavante', 'Santos-SP');
+$gPenOpen['stage'] = 'partida';
+$iPO = Game::currentIndex($gPenOpen);
+$mPO = &$gPenOpen['matches'][$iPO];
+$mPO['status'] = 'em_andamento';
+$mPO['entry'] = 0;
+$mPO['exit'] = 90;
+$mPO['minute'] = 35;
+$mPO['active_match_penalty'] = [
+    'status' => 'taking_kick',
+    'victim' => $gPenOpen['name'],
+    'window' => '15-35',
+    'context_message' => 'Pênalti a favor!'
+];
+$resPenOpen = Game::command($gPenOpen, 'choice', ['option' => '0'], false, $rngSuccess);
+$mPO_res = $resPenOpen['matches'][$iPO];
+check(($mPO_res['active_match_penalty']['window'] ?? '') !== '15-35', 'Cobrança original (janela 15-35) foi resolvida e não permanece pendente');
+if (!empty($mPO_res['active_match_penalty'])) {
+    check($mPO_res['active_match_penalty']['window'] === '35-45', 'Novo pênalti ativo pertence à janela subsequente 35-45 (não é duplicação)');
+    check(in_array($mPO_res['active_match_penalty']['status'] ?? '', ['taking_kick', 'pending_request'], true), 'Novo pênalti possui status válido de sorteio');
+}
+check($resPenOpen['states']['confianca'] === 54, 'Confiança permanece em 54 com bônus de +4 aplicado');
+check(($mPO_res['stats']['goals'] ?? 0) === 1, 'Gol da cobrança original registrado com sucesso nas estatísticas');
+
+// 4.3 Cobrança de pênalti desperdiçada
 $gPenMiss = Game::create('Errou Test', 'Santos', 'SP', 'centroavante', 'Santos-SP');
 $gPenMiss['stage'] = 'partida';
 $iPM = Game::currentIndex($gPenMiss);
@@ -278,9 +311,42 @@ $mPM['active_match_penalty'] = [
 ];
 $confBeforeMiss = $gPenMiss['states']['confianca']; // 50
 $resPenMiss = Game::command($gPenMiss, 'choice', ['option' => '0'], false, $rngCommonFail);
+$mPM_res = $resPenMiss['matches'][$iPM];
 check(!($resPenMiss['feedback']['success'] ?? true), 'Pênalti falho registrado com sucesso=false');
 $missDelta = $resPenMiss['states']['confianca'] - $confBeforeMiss;
 check($missDelta === -1 || $missDelta === -3, "Pênalti falho aplica penalidade técnica padrão ($missDelta)");
+check(($mPM_res['active_match_penalty']['window'] ?? '') !== '15-35', 'Cobrança original de pênalti falho resolvida e não permanece pendente');
+check(($mPM_res['stats']['penalties_taken'] ?? 0) === 1, 'Estatística penalties_taken incrementada para 1 em falha');
+check(($mPM_res['stats']['penalties_missed'] ?? 0) === 1, 'Estatística penalties_missed incrementada para 1');
+check(($mPM_res['stats']['goals'] ?? 0) === 0, 'Nenhum gol concedido em cobrança desperdiçada');
+
+// 4.4 Teste de estabilidade repetida (50 execuções com sorteio aberto)
+$repeatFailures = 0;
+for ($rIter = 0; $rIter < 50; $rIter++) {
+    $gRep = Game::create("Repeat $rIter", 'Santos', 'SP', 'centroavante', 'Santos-SP');
+    $gRep['stage'] = 'partida';
+    $iRep = Game::currentIndex($gRep);
+    $gRep['matches'][$iRep]['status'] = 'em_andamento';
+    $gRep['matches'][$iRep]['entry'] = 0;
+    $gRep['matches'][$iRep]['exit'] = 90;
+    $gRep['matches'][$iRep]['minute'] = 35;
+    $gRep['matches'][$iRep]['active_match_penalty'] = [
+        'status' => 'taking_kick',
+        'victim' => $gRep['name'],
+        'window' => '15-35',
+        'context_message' => 'Pênalti a favor!'
+    ];
+    $resRep = Game::command($gRep, 'choice', ['option' => '0'], false, $rngSuccess);
+    $mRep = $resRep['matches'][$iRep];
+    $origStillPending = ($mRep['active_match_penalty']['window'] ?? '') === '15-35';
+    $goalOk = ($mRep['stats']['goals'] ?? 0) === 1;
+    $confOk = $resRep['states']['confianca'] === 54;
+    $subsequentOk = empty($mRep['active_match_penalty']) || ($mRep['active_match_penalty']['window'] !== '15-35');
+    if ($origStillPending || !$goalOk || !$confOk || !$subsequentOk) {
+        $repeatFailures++;
+    }
+}
+check($repeatFailures === 0, 'Estabilidade repetida comprovada: 50 execuções consecutivas com zero falhas');
 
 // -------------------------------------------------------------
 // 5. Validação real no motor: faixas de nota, monotonicidade e amortecimento
@@ -548,5 +614,5 @@ foreach (['normal', 'rapido', 'expresso'] as $mode) {
 }
 
 echo "\n=======================================================\n";
-echo "TODOS OS $checks TESTES DA MISSÃO R10-BAL-001-G1-R3 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS $checks TESTES DA MISSÃO R10-BAL-001-G1-R4 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
