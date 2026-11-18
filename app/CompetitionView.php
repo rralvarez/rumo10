@@ -63,16 +63,17 @@ final class CompetitionView {
     public static function recap(array $g): void {
         $compId = $g['competition_id'] ?? '';
         $r = $g['competition_results'][$compId] ?? null;
-        if (!$r) {
-            $compName = Competition::label($g);
-            $r = ['name' => $compName, 'champion' => '', 'promoted' => false, 'relegated' => false, 'position' => 1];
-        }
-        $compName = $r['name'] ?? (Competition::catalog()[$compId]['name'] ?? Competition::label($g));
-        $userClub = $g['club'];
-        $champion = $r['champion'] ?? '';
-        $isChampion = ($champion !== '' && $champion === $userClub);
-        $isPromoted = !empty($r['promoted']);
-        $isRelegated = !empty($r['relegated']);
+        $compName = (is_array($r) && isset($r['name'])) ? $r['name'] : (Competition::catalog()[$compId]['name'] ?? Competition::label($g));
+        $userClub = $g['club'] ?? '';
+        $hasResult = is_array($r);
+
+        $champion = $hasResult ? ($r['champion'] ?? '') : '';
+        $isChampion = ($hasResult && $champion !== '' && $champion === $userClub);
+        $isPromoted = $hasResult && !empty($r['promoted']);
+        $isRelegated = $hasResult && !empty($r['relegated']);
+        $position = ($hasResult && isset($r['position']) && is_numeric($r['position'])) ? (int)$r['position'] : null;
+        $group = ($hasResult && !empty($r['group']) && is_numeric($r['group'])) ? (int)$r['group'] : null;
+
         $nextId = $g['season_competitions'][$g['competition_cursor'] + 1] ?? null;
         $nextName = $nextId ? (Competition::catalog()[$nextId]['name'] ?? $nextId) : null;
 
@@ -89,7 +90,9 @@ final class CompetitionView {
 
         // 2. Desfecho esportivo comprovado da competição
         echo '<div class="recap-outcome">';
-        if ($isChampion) {
+        if (!$hasResult) {
+            echo '<p class="recap-status-line subtle">O resultado detalhado desta competição não está disponível nos dados da carreira.</p>';
+        } elseif ($isChampion) {
             echo '<p class="recap-highlight-lead">Parabéns! Seu clube levantou a taça de campeão de <b>' . e($compName) . '</b>.</p>';
         } else {
             if ($champion !== '') {
@@ -99,22 +102,24 @@ final class CompetitionView {
                 echo '<p class="recap-status-line recap-status-promoted"><b>Acesso conquistado!</b> ' . e(ClubBadge::name($userClub)) . ' garantiu vaga na divisão superior.</p>';
             } elseif ($isRelegated) {
                 echo '<p class="recap-status-line recap-status-relegated"><b>Rebaixamento:</b> ' . e(ClubBadge::name($userClub)) . ' terminou na zona de descenso.</p>';
-            } else {
-                $posText = 'Seu clube terminou em <b>' . (int)$r['position'] . 'º lugar</b>' . (!empty($r['group']) ? ' no Grupo ' . (int)$r['group'] : ' na classificação final') . '.';
+            } elseif ($position !== null) {
+                $posText = 'Seu clube terminou em <b>' . $position . 'º lugar</b>' . ($group !== null ? ' no Grupo ' . $group . '.' : ' na primeira fase.');
                 echo '<p class="recap-status-line">' . $posText . '</p>';
             }
         }
         echo '</div>';
 
         // 3. Ressalvas regulamentares e notas existentes
-        if (!empty($r['access_pending'])) {
-            echo '<p class="subtle">Se permanecer neste clube, a próxima temporada repetirá a divisão cadastrada. Você também poderá avaliar propostas de outros clubes.</p>';
-        }
-        if (!empty($r['continuity']['simulation_ceiling'])) {
-            echo '<p class="subtle">Na próxima temporada, este clube continua no mesmo campeonato. A divisão superior ainda não está disponível no jogo.</p>';
-        }
-        if (!empty($r['relegation_pending'])) {
-            echo '<p class="subtle">A terceira divisão ainda não está disponível; permanecer no clube repete a divisão cadastrada.</p>';
+        if ($hasResult) {
+            if (!empty($r['access_pending'])) {
+                echo '<p class="subtle">Se permanecer neste clube, a próxima temporada repetirá a divisão cadastrada. Você também poderá avaliar propostas de outros clubes.</p>';
+            }
+            if (!empty($r['continuity']['simulation_ceiling'])) {
+                echo '<p class="subtle">Na próxima temporada, este clube continua no mesmo campeonato. A divisão superior ainda não está disponível no jogo.</p>';
+            }
+            if (!empty($r['relegation_pending'])) {
+                echo '<p class="subtle">A terceira divisão ainda não está disponível; permanecer no clube repete a divisão cadastrada.</p>';
+            }
         }
         $note = Competition::catalog()[$compId]['rules']['note'] ?? null;
         if ($note) {
@@ -149,10 +154,10 @@ final class CompetitionView {
         echo '</details>';
 
         // 7. Campeões de torneios internacionais/secundários, se houver
-        if (!empty($r['titles'])) {
+        if ($hasResult && !empty($r['titles'])) {
             echo '<details class="panel"><summary>Campeões dos torneios</summary>';
-            foreach ($r['titles'] as $title => $champion) {
-                echo '<p>' . e($title) . ': <b>' . e($champion) . '</b></p>';
+            foreach ($r['titles'] as $title => $championName) {
+                echo '<p>' . e($title) . ': <b>' . e($championName) . '</b></p>';
             }
             echo '</details>';
         }

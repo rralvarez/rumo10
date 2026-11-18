@@ -18,7 +18,7 @@ function check(bool $v, string $message): void {
     echo "  [PASS] $message\n";
 }
 
-echo "=== INICIANDO SUÍTE DE TESTES R10-CAR-001-R1: ENCERRAMENTO VISUAL DE COMPETIÇÃO ===\n\n";
+echo "=== INICIANDO SUÍTE DE TESTES R10-CAR-001-R1.1: FIDELIDADE DOS RESULTADOS ===\n\n";
 
 // Helper para capturar saída HTML de CompetitionView::recap($g)
 function renderRecap(array $g): string {
@@ -29,9 +29,9 @@ function renderRecap(array $g): string {
 }
 
 // -------------------------------------------------------------
-// 1. Cenário A: Clube campeão
+// 1. Cenário A: Clube campeão comprovado
 // -------------------------------------------------------------
-echo "1. Validando Cenário A: Clube campeão...\n";
+echo "1. Validando Cenário A: Clube campeão comprovado...\n";
 $gChampion = [
     'id' => 101,
     'name' => 'Craque Campeão',
@@ -75,9 +75,9 @@ check(str_contains($htmlA, 'Seu clube levantou a taça de campeão de <b>Paulist
 check(str_contains($htmlA, 'action="/competicao/continuar"'), 'Cenário A preserva rota POST /competicao/continuar');
 
 // -------------------------------------------------------------
-// 2. Cenário B: Clube não campeão
+// 2. Cenário B: Clube não campeão (posição na primeira fase sem mata-mata fictício)
 // -------------------------------------------------------------
-echo "\n2. Validando Cenário B: Clube não campeão...\n";
+echo "\n2. Validando Cenário B: Clube não campeão (posição na primeira fase sem classificação final fictícia)...\n";
 $gRunnerUp = [
     'id' => 102,
     'name' => 'Craque Vice',
@@ -118,11 +118,13 @@ $htmlB = renderRecap($gRunnerUp);
 check(str_contains($htmlB, 'COMPETIÇÃO ENCERRADA'), 'Cenário B exibe tag padrão de competição encerrada');
 check(str_contains($htmlB, 'O campeonato terminou · Paulistão A1'), 'Cenário B exibe cabeçalho factual com nome da competição');
 check(str_contains($htmlB, 'Campeão da edição: <b>Palmeiras-SP</b>'), 'Cenário B exibe o campeão efetivo da edição');
-check(str_contains($htmlB, 'Seu clube terminou em <b>2º lugar</b> na classificação final.'), 'Cenário B exibe a posição real alcançada');
+check(str_contains($htmlB, 'Seu clube terminou em <b>2º lugar</b> na primeira fase.'), 'Cenário B exibe posição na primeira fase com semântica conservadora');
+check(!str_contains($htmlB, 'classificação final'), 'Cenário B NÃO afirma classificação final quando dado deriva da primeira fase');
+check(!str_contains($htmlB, 'vice-campeão'), 'Cenário B NÃO inventa vice-campeonato sem dados');
 check(!str_contains($htmlB, 'É campeão! Santos-SP'), 'Cenário B não atribui título ao clube não campeão');
 
 // -------------------------------------------------------------
-// 3. Cenário C: Acesso e Rebaixamento (com ressalvas de continuidade)
+// 3. Cenário C: Acesso e Rebaixamento (com ressalvas regulamentares)
 // -------------------------------------------------------------
 echo "\n3. Validando Cenário C: Acesso e rebaixamento com ressalvas...\n";
 $gPromoted = [
@@ -209,10 +211,10 @@ check(str_contains($htmlC2, 'Água Santa-SP') && str_contains($htmlC2, 'terminou
 check(str_contains($htmlC2, 'A terceira divisão ainda não está disponível; permanecer no clube repete a divisão cadastrada'), 'Cenário C2 preserva ressalva de relegation_pending');
 
 // -------------------------------------------------------------
-// 4. Cenário D: Existe próxima competição na temporada
+// 4. Cenário D: Próxima competição na temporada
 // -------------------------------------------------------------
 echo "\n4. Validando Cenário D: Próxima competição na temporada...\n";
-$gNextComp = $gChampion; // cursor=0 de 2 (próximo é br-a)
+$gNextComp = $gChampion;
 $htmlD = renderRecap($gNextComp);
 check(str_contains($htmlD, 'Próximo desafio:'), 'Cenário D destaca bloco de próximo desafio');
 check(str_contains($htmlD, 'Agora vem o <b>Brasileirão Série A</b>'), 'Cenário D informa explicitamente o próximo campeonato');
@@ -264,10 +266,10 @@ check(str_contains($htmlE, 'Concluir temporada e ver retrospectiva anual →'), 
 check(!str_contains($htmlE, 'Começar próximo campeonato:'), 'Cenário E não exibe botão de próximo campeonato');
 
 // -------------------------------------------------------------
-// 6. Cenário de Eliminação Antecipada em Mata-Mata
+// 6. Eliminação Antecipada em Mata-Mata e Competições com Grupos
 // -------------------------------------------------------------
-echo "\n6. Validando eliminação antecipada em mata-mata...\n";
-$gEliminated = [
+echo "\n6. Validando eliminação antecipada e torneios com grupos...\n";
+$gEliminatedGroup = [
     'id' => 106,
     'name' => 'Craque Eliminado',
     'club' => 'Santos-SP',
@@ -282,7 +284,7 @@ $gEliminated = [
             'champion' => 'São Paulo-SP',
             'promoted' => false,
             'relegated' => false,
-            'position' => 6,
+            'position' => 3,
             'group' => 2,
             'access_pending' => false,
             'continuity' => ['valid' => true],
@@ -303,15 +305,80 @@ $gEliminated = [
     ]
 ];
 
-$htmlElim = renderRecap($gEliminated);
+$htmlElim = renderRecap($gEliminatedGroup);
 check(str_contains($htmlElim, 'Campeão da edição: <b>São Paulo-SP</b>'), 'Eliminação antecipada exibe campeão efetivo do torneio');
-check(str_contains($htmlElim, 'Seu clube terminou em <b>6º lugar</b> no Grupo 2.'), 'Eliminação antecipada exibe posição e grupo reais registrados nos dados');
-check(!str_contains($htmlElim, 'eliminado na fase'), 'Eliminação antecipada não inventa terminologia não suportada pelo modelo de dados');
+check(str_contains($htmlElim, 'Seu clube terminou em <b>3º lugar</b> no Grupo 2.'), 'Torneio com grupos exibe colocação específica no grupo');
+check(!str_contains($htmlElim, 'classificação final'), 'Torneio com grupos NÃO afirma classificação final');
+check(!str_contains($htmlElim, 'vice-campeão'), 'Eliminação não afirma vice-campeonato fictício');
+check(!str_contains($htmlElim, 'semifinal'), 'Eliminação não afirma fase inventada sem comprovação');
 
 // -------------------------------------------------------------
-// 7. Retomada e Renderização sem mutação de estado (Idempotência)
+// 7. Correção R1.1 A: Resultado Ausente (Sem position => 1 inventada)
 // -------------------------------------------------------------
-echo "\n7. Validando que a renderização não altera o estado da carreira (idempotência)...\n";
+echo "\n7. Validando Correção R1.1 A: Resultado ausente sem primeira colocação fictícia...\n";
+$gMissingResult = [
+    'id' => 108,
+    'name' => 'Craque Sem Resultado',
+    'club' => 'Santos-SP',
+    'season' => 1,
+    'version' => 3,
+    'competition_id' => 'sp-a1',
+    'competition_cursor' => 0,
+    'season_competitions' => ['sp-a1', 'br-a'],
+    'competition_results' => [], // NENHUM resultado consolidado para sp-a1
+    'competitions' => []
+];
+
+$htmlMissing = renderRecap($gMissingResult);
+check(str_contains($htmlMissing, 'COMPETIÇÃO ENCERRADA'), 'Resultado ausente exibe tag neutra de competição encerrada');
+check(str_contains($htmlMissing, 'O campeonato terminou · Paulistão A1'), 'Resultado ausente exibe nome da competição a partir do catálogo');
+check(str_contains($htmlMissing, 'O resultado detalhado desta competição não está disponível nos dados da carreira.'), 'Resultado ausente exibe mensagem neutra sem invenções');
+check(!str_contains($htmlMissing, '1º lugar'), 'Resultado ausente NÃO inventa 1º lugar');
+check(!str_contains($htmlMissing, 'Campeão da edição:'), 'Resultado ausente NÃO inventa campeão da edição');
+check(!str_contains($htmlMissing, 'É campeão!'), 'Resultado ausente NÃO atribui título');
+check(!str_contains($htmlMissing, 'Acesso conquistado'), 'Resultado ausente NÃO inventa acesso');
+check(!str_contains($htmlMissing, 'Rebaixamento:'), 'Resultado ausente NÃO inventa rebaixamento');
+check(str_contains($htmlMissing, 'Começar próximo campeonato: Brasileirão Série A →'), 'Resultado ausente preserva continuidade quando há próximo campeonato');
+
+// -------------------------------------------------------------
+// 8. Correção R1.1 B: Campeão Desconhecido (Sem campeão inventado)
+// -------------------------------------------------------------
+echo "\n8. Validando Correção R1.1 B: Campeão vazio/desconhecido sem atribuição inventada...\n";
+$gUnknownChampion = [
+    'id' => 109,
+    'name' => 'Craque Campeão Oculto',
+    'club' => 'Santos-SP',
+    'season' => 1,
+    'version' => 4,
+    'competition_id' => 'sp-a1',
+    'competition_cursor' => 1,
+    'season_competitions' => ['sp-a1'],
+    'competition_results' => [
+        'sp-a1' => [
+            'name' => 'Paulistão A1',
+            'champion' => '', // Campeão não identificado
+            'promoted' => false,
+            'relegated' => false,
+            'position' => 4,
+            'group' => null,
+            'access_pending' => false,
+            'continuity' => ['valid' => true],
+            'relegation_pending' => false,
+            'titles' => []
+        ]
+    ],
+    'competitions' => []
+];
+
+$htmlUnknown = renderRecap($gUnknownChampion);
+check(!str_contains($htmlUnknown, 'Campeão da edição:'), 'Campeão desconhecido não renderiza linha de campeão inventado');
+check(str_contains($htmlUnknown, 'Seu clube terminou em <b>4º lugar</b> na primeira fase.'), 'Campeão desconhecido preserva posição comprovada na primeira fase');
+check(str_contains($htmlUnknown, 'Concluir temporada e ver retrospectiva anual →'), 'Campeão desconhecido preserva botão para última competição');
+
+// -------------------------------------------------------------
+// 9. Retomada e Renderização sem mutação de estado (Idempotência)
+// -------------------------------------------------------------
+echo "\n9. Validando que a renderização não altera o estado da carreira (idempotência)...\n";
 $gStateBefore = $gChampion;
 $snapshotBefore = serialize($gStateBefore);
 
@@ -325,11 +392,11 @@ check($snapshotBefore === $snapshotAfter2, 'Segunda renderização (simulando F5
 check(strlen($htmlFirst) > 500 && strlen($htmlSecond) > 500, 'Renderizações consecutivas geram HTML completo');
 
 // -------------------------------------------------------------
-// 8. Compatibilidade com saves legados / informações ausentes
+// 10. Compatibilidade com saves legados
 // -------------------------------------------------------------
-echo "\n8. Validando compatibilidade com saves legados...\n";
+echo "\n10. Validando compatibilidade com saves legados...\n";
 $gLegacy = [
-    'id' => 107,
+    'id' => 110,
     'name' => 'Craque Legado',
     'club' => 'Santos-SP',
     'season' => 1,
@@ -342,9 +409,10 @@ $gLegacy = [
 
 $htmlLegacy = renderRecap($gLegacy);
 check(str_contains($htmlLegacy, 'COMPETIÇÃO ENCERRADA'), 'Save legado renderiza painel de encerramento sem fatal error');
+check(str_contains($htmlLegacy, 'O resultado detalhado desta competição não está disponível nos dados da carreira.'), 'Save legado sem resultado estruturado exibe aviso neutro em vez de 1º lugar');
 check(str_contains($htmlLegacy, 'action="/competicao/continuar"'), 'Save legado possui formulário funcional com rota /competicao/continuar');
 check(str_contains($htmlLegacy, 'Concluir temporada e ver retrospectiva anual →'), 'Save legado com uma competição única aponta para encerramento de temporada');
 
 echo "\n=======================================================\n";
-echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R1 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R1.1 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
