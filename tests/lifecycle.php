@@ -13,7 +13,7 @@ $r['age']=35;$totals=CareerStats::collect($r)['totals'];$retired=Game::command($
 foreach(['choice','offers','transfer','simulate','mode'] as $action)try{Game::command($retired,$action);lifeCheck(false,'Não reabre carreira');}catch(InvalidArgumentException){lifeCheck(true,'Não reabre carreira');}
 $r['age']=39;$r['stage']='resumo';$forced=Game::command($r,'offers');lifeCheck($forced['stage']==='aposentado' && $forced['age']===40 && !$forced['offers'],'Não oferece contrato aos 40');
 $r['stage']='oferta';$forced=Game::command($r,'transfer',['accept'=>'no']);lifeCheck($forced['stage']==='aposentado' && $forced['season']===$r['season'],'Oferta antiga não inicia temporada aos 40');
-$r=$base;$r['age']=39;$r['play_mode']='expresso';$r=Game::command($r,'simulate',['plan'=>'equilibrio']);lifeCheck($r['stage']==='aposentado' && $r['age']===40,'Expresso termina na aposentadoria');
+$r=$base;$r['age']=39;$r['play_mode']='expresso';$r=Game::command($r,'simulate',['plan'=>'equilibrio']);lifeCheck($r['stage']==='resumo' && $r['age']===39,'Expresso chega ao resumo da temporada final aos 39');$r=Game::command($r,'offers');lifeCheck($r['stage']==='aposentado' && $r['age']===40,'Expresso termina na aposentadoria');
 function form(string $path,?array $g=null):void{echo '<form method="post">';}
 ob_start();Retirement::confirmation($retired);$html=ob_get_clean();lifeCheck(!str_contains($html,'name="confirm"'),'Aposentado sem formulário de retorno');
 echo "OK: $checks verificações de evolução e aposentadoria.\n";

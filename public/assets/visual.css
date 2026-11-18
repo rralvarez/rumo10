@@ -2419,6 +2419,8 @@ body.post-match-decision .season-recap {
 .annual-recap-panel .recap-market-cta { margin-top: 28px; padding: 20px; background: #102025; border: 1px solid #3d555a; border-radius: 10px; }
 .annual-recap-panel .recap-market-cta h3 { font-size: 1.15rem; color: var(--text); margin: 0 0 8px; }
 .annual-recap-panel .recap-market-cta p { font-size: 0.95rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+.annual-recap-panel .recap-retirement-cta { border-color: #614d24; background: #18150d; }
+.annual-recap-panel .recap-retirement-cta h3 { color: #f3c26b; }
 
 /* R10-CAR-001-R3: Janela de Transferências e Roleta */
 .transfer-panel .transfer-intro-text { font-size: 1rem; color: var(--text); margin-bottom: 20px; line-height: 1.5; }

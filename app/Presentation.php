@@ -644,21 +644,40 @@ final class Presentation {
         }
         echo '</section>';
 
-        // 6. Próximo passo / Janela de transferências (Formulário e rota oficiais)
-        echo '<div class="recap-market-cta">';
-        echo '<h3>Janela de transferências</h3>';
-        echo '<p>O ano de competições está concluído. Você pode optar por renovar com o <b>' . e($clubName) . '</b> ou conhecer as propostas de outros clubes para a próxima temporada.</p>';
-        if (function_exists('form')) {
-            form('/transferencia/roleta', $g);
+        // 6. Próximo passo / Janela de transferências ou Aposentadoria Compulsória
+        $isRetiring = ($g['age'] ?? 0) >= 39;
+        if ($isRetiring) {
+            echo '<div class="recap-market-cta recap-retirement-cta">';
+            echo '<span class="tag">DESPEDIDA DOS GRAMADOS · ÚLTIMA TEMPORADA</span>';
+            echo '<h3>Encerramento da Carreira Profissional</h3>';
+            echo '<p>Esta foi a sua última temporada como jogador de futebol profissional. Ao completar 40 anos, seu ciclo competitivo nos gramados chega ao fim. Você encerra sua trajetória em alto nível e agora pode conferir o memorial permanente com todas as suas estatísticas, títulos e clubes defendidos.</p>';
+            if (function_exists('form')) {
+                form('/transferencia/roleta', $g);
+            } else {
+                echo '<form method="post" action="/transferencia/roleta">';
+                echo '<input type="hidden" name="csrf" value="' . e($_SESSION['csrf'] ?? '') . '">';
+                echo '<input type="hidden" name="version" value="' . e($g['version'] ?? 1) . '">';
+                echo '<input type="hidden" name="key" value="' . bin2hex(random_bytes(32)) . '">';
+            }
+            echo '<button class="btn btn-primary btn-lg btn-retire-career" type="submit">Concluir minha carreira →</button>';
+            echo '</form>';
+            echo '</div>';
         } else {
-            echo '<form method="post" action="/transferencia/roleta">';
-            echo '<input type="hidden" name="csrf" value="' . e($_SESSION['csrf'] ?? '') . '">';
-            echo '<input type="hidden" name="version" value="' . e($g['version'] ?? 1) . '">';
-            echo '<input type="hidden" name="key" value="' . bin2hex(random_bytes(32)) . '">';
+            echo '<div class="recap-market-cta">';
+            echo '<h3>Janela de transferências</h3>';
+            echo '<p>O ano de competições está concluído. Você pode optar por renovar com o <b>' . e($clubName) . '</b> ou conhecer as propostas de outros clubes para a próxima temporada.</p>';
+            if (function_exists('form')) {
+                form('/transferencia/roleta', $g);
+            } else {
+                echo '<form method="post" action="/transferencia/roleta">';
+                echo '<input type="hidden" name="csrf" value="' . e($_SESSION['csrf'] ?? '') . '">';
+                echo '<input type="hidden" name="version" value="' . e($g['version'] ?? 1) . '">';
+                echo '<input type="hidden" name="key" value="' . bin2hex(random_bytes(32)) . '">';
+            }
+            echo '<button class="btn btn-primary btn-lg" type="submit">Ver minha proposta →</button>';
+            echo '</form>';
+            echo '</div>';
         }
-        echo '<button class="btn btn-primary btn-lg" type="submit">Ver minha proposta →</button>';
-        echo '</form>';
-        echo '</div>';
 
         echo '</article>';
 

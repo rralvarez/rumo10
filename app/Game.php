@@ -272,7 +272,7 @@ final class Game {
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
         if($g['stage']==='resumo')Progression::season($g);
         AchievementEvents::capture($g,$previousStage);
-        if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');}
+        if($g['age']>=40){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');}
         $g['version']++;$selectionStart=RequestMetrics::start();Scenes::prepare($g);RequestMetrics::end('scene_selection',$selectionStart); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }
