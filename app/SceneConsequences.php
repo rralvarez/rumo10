@@ -34,7 +34,10 @@ final class SceneConsequences {
                 'disciplina','tatico','visao'=>['foco'=>-2],
                 default=>['confianca'=>-1],
             };
-            $o['severe_failure_effects']=array_map(fn($v)=>$v<0?($v===-1?-3:$v*2):$v,$o['failure_effects']);
+            $o['severe_failure_effects']=[];
+            foreach($o['failure_effects'] as $k=>$v){
+                $o['severe_failure_effects'][$k]=($k==='confianca' && $v===-1)?-3:($v<0?$v*2:$v);
+            }
         }
         static $editorial;$editorial??=require dirname(__DIR__).'/database/weekend-outcomes.php';
         if(isset($editorial[$id][$index])){[$o['success_text'],$o['failure_text']]=$editorial[$id][$index];}

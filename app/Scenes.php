@@ -59,7 +59,7 @@ final class Scenes {
     }
     public static function current(array $g): ?array {
         $active=$g['active_situation']??null;if(!$active || $active['key']!==self::key($g))return null;
-        if($active['id']>=2000){$s=$active['snapshot']??(self::catalog()[$active['id']]??null);return $s?['id'=>$s['id'],'text'=>$s['text'],'options'=>$s['options'],'bench'=>(bool)($s['gating']['bench']??false),'module'=>$s['module'],'family'=>$s['family']]:null;}
+        if($active['id']>=2000){$s=$active['snapshot']??(self::catalog()[$active['id']]??null);return $s?['id'=>$s['id'],'text'=>$s['text'],'options'=>($s['stage']==='partida'?ActionResolution::options($s['options'],$s['id']):$s['options']),'bench'=>(bool)($s['gating']['bench']??false),'module'=>$s['module'],'family'=>$s['family']]:null;}
         $s=self::catalog()[$active['id']];
         static $failures;$failures??=require dirname(__DIR__).'/database/scene-failures.php';
         if(isset($s['legacy'])) {

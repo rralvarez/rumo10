@@ -290,6 +290,10 @@ final class Game {
         if(!$roll['success']) {
             $failure=$choice['failure_effects']??['confianca'=>$roll['class']==='falha_grave'?-3:-1];
             if($roll['class']==='falha_grave')$failure=$choice['severe_failure_effects']??$failure;
+            if(($g['stage']??'')==='partida' && in_array($choice['action']??'',['passe','chute','drible','desarme'],true)){
+                if(($failure['confianca']??null)===-2)$failure['confianca']=-1;
+                elseif(($failure['confianca']??null)===-4)$failure['confianca']=-3;
+            }
             foreach($failure as $key=>$value){$before=$g['states'][$key];$g['states'][$key]=self::clamp($before+$value);$applied[$key]=($applied[$key]??0)+$g['states'][$key]-$before;}
         }
         return $applied;
@@ -339,13 +343,13 @@ final class Game {
             }
             if($type==='desarme' && $roll['success']) {
                 $st['tackles']++;
-                if(in_array($g['position'],['zagueiro','volante','lateral'],true) && $st['tackles']>=2 && empty($st['tackle_confidence_awarded'])) {
-                    $st['tackle_confidence_awarded']=true;
-                    $g['states']['confianca']=self::clamp($g['states']['confianca']+1);
-                }
             }
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
                 $st['tackles']++;foreach(self::effects(['desarme'=>1],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
+            }
+            if(in_array($g['position'],['zagueiro','volante','lateral'],true) && $st['tackles']>=2 && empty($st['tackle_confidence_awarded'])) {
+                $st['tackle_confidence_awarded']=true;
+                $g['states']['confianca']=self::clamp($g['states']['confianca']+1);
             }
             if($roll['success'] && in_array($type,['passe','chute','drible','desarme'],true)){
                 $skill=['passe'=>'passe','chute'=>'finalizacao','drible'=>'drible','desarme'=>'desarme'][$type];
@@ -474,8 +478,8 @@ final class Game {
             if(!isset($g['reward_ledger'][$ledgerKey])){
                 $postRaw=0;$curConf=$g['states']['confianca'];$r=$s['rating'];
                 if($r>=8.8){$postRaw=($curConf<90)?2:0;}
-                elseif($r>=7.8){$postRaw=($curConf<75)?1:0;}
-                elseif($r>=6.8){$postRaw=($curConf<70)?1:0;}
+                elseif($r>=7.8){$postRaw=($curConf<50)?2:(($curConf<75)?1:0);}
+                elseif($r>=6.8){$postRaw=($curConf<50)?2:(($curConf<70)?1:0);}
                 elseif($r>=6.0){$postRaw=($curConf<50)?2:(($curConf<60)?1:0);}
                 $part=min(1.0,max(0,$s['minutes'])/60.0);
                 $nominalBonus=(int)round($postRaw*$part);
