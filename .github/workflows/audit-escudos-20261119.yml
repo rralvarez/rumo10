@@ -1,0 +1,47 @@
+name: Auditoria e proposta de limpeza dos escudos
+on:
+  push:
+    branches: [audit/escudos-transparentes-20261119]
+    paths:
+      - bin/repair-crest-backgrounds.py
+      - .github/workflows/audit-escudos-20261119.yml
+      - bin/import-crest-candidates.py
+      - Docs/escudos_fontes_candidatas_20261119.csv
+permissions:
+  contents: write
+jobs:
+  preparar-escudos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout somente da branch de revisao
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar processamento de imagem
+        run: python -m pip install 'Pillow>=11,<13'
+      - name: Baixar candidatas verificadas de fonte direta, sem inventar imagens
+        run: python bin/import-crest-candidates.py --root . --kind rumo10 --sources Docs/escudos_fontes_candidatas_20261119.csv --output escudos_auditoria_20261119 --write
+      - name: Corrigir apenas pixels brancos externos e salvar relatorio
+        run: python bin/repair-crest-backgrounds.py --root . --kind rumo10 --output escudos_auditoria_20261119 --write
+      - name: Guardar relatorio auditavel
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-escudos-rumo10
+          path: escudos_auditoria_20261119/
+          retention-days: 30
+      - name: Commit apenas em branch de revisao
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/assets/clubs database/club-badges.json database/escudos_resgatados_20261119.json
+          if git diff --cached --quiet; then
+            echo "Nenhuma imagem foi alterada pela regra conservadora."
+          else
+            git commit -m "fix(escudos): eliminar fundos brancos externos de alta confianca"
+            git push origin "HEAD:audit/escudos-transparentes-20261119"
+          fi
