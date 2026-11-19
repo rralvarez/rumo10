@@ -193,13 +193,15 @@ final class MatchParticipation {
     public static function sync(array &$m, array &$g, int $minute): void {
         $state = $m['participation_state'] ?? null;
         $hadCanonicalState = is_string($state) && $state !== '';
+        $isFinished = (($m['status'] ?? '') === 'finalizada');
         $lineup = (string)($m['lineup'] ?? '');
         $entry = isset($m['entry']) && is_numeric($m['entry']) ? (int)$m['entry'] : null;
         $exit = isset($m['exit']) && is_numeric($m['exit']) ? (int)$m['exit'] : null;
         $validWindow = ($entry !== null && $exit !== null && $entry >= 0 && $entry < 90 && $exit > $entry && $exit <= self::MAX_VALID_MINUTE);
 
         if (!$hadCanonicalState) {
-            // Reconciliação legada estrita: exige marcadores explícitos ou escalação reconhecida
+            // Reconciliação legada estrita: exige marcadores explícitos ou escalação reconhecida.
+            // Evidências de entrada comprovada são avaliadas antes de classificar reserva como não utilizado.
             if (self::isSentOff($m)) {
                 $state = self::STATE_SENT_OFF;
             } elseif (in_array($lineup, ['não relacionado', 'nao_relacionado'], true)) {
@@ -209,13 +211,21 @@ final class MatchParticipation {
             } elseif (self::hasExitMarker($m) || ($exit !== null && $exit > 0 && $exit < 90 && $minute >= $exit && in_array($lineup, ['titular', 'reserva', 'banco'], true))) {
                 $state = self::STATE_SUBSTITUTED_OUT;
             } elseif (in_array($lineup, ['reserva', 'banco'], true)) {
-                $state = (self::hasEntryEvidence($m) && $validWindow && $minute >= $entry && $minute < $exit)
-                    ? self::STATE_ON_FIELD
-                    : self::STATE_ON_BENCH;
+                if (self::hasEntryEvidence($m) && $validWindow) {
+                    $state = ($minute >= $entry && ($minute < $exit || ($isFinished && $exit >= 90)))
+                        ? self::STATE_ON_FIELD
+                        : self::STATE_ON_BENCH;
+                } else {
+                    $state = self::STATE_ON_BENCH;
+                }
             } elseif ($lineup === 'titular') {
-                $state = ($validWindow && $minute >= $entry && $minute < $exit)
-                    ? self::STATE_ON_FIELD
-                    : ((self::hasEntryEvidence($m) && $validWindow && $exit >= 90) ? self::STATE_ON_FIELD : self::STATE_STARTING);
+                if ($validWindow && $minute >= $entry && $minute < $exit) {
+                    $state = self::STATE_ON_FIELD;
+                } elseif (self::hasEntryEvidence($m) && $validWindow && $isFinished && $exit >= 90) {
+                    $state = self::STATE_ON_FIELD;
+                } else {
+                    $state = self::STATE_STARTING;
+                }
             } else {
                 // Escalação desconhecida/ausente sem estado canônico: preserva dados sem fabricar participação
                 return;
@@ -227,8 +237,6 @@ final class MatchParticipation {
             $m['participation_state'] = $state;
             return;
         }
-
-        $isFinished = (($m['status'] ?? '') === 'finalizada');
 
         // Checagem de entrada em campo do banco (apenas com partida em curso e janela válida)
         if (!$isFinished && $state === self::STATE_ON_BENCH && $validWindow && $minute >= $entry && $minute < $exit) {
@@ -330,19 +338,67 @@ final class MatchParticipation {
             }
         }
 
-        $raw = $exit - $entry;
-        if ($raw > 0) {
-            // Estado terminal isolado sem qualquer evidência coerente de participação não fabrica minutos
-            if ($hasCanonicalState
-                && in_array($state, [self::STATE_SUBSTITUTED_OUT, self::STATE_SENT_OFF], true)
-                && in_array($lineup, ['reserva', 'banco'], true)
-                && !self::hasEntryEvidence($m)
-                && empty($m['sub_out_recorded'])
-                && empty($m['exit_reason'])
-                && !(array_key_exists('red_card_minute', $m) && $m['red_card_minute'] !== null && is_numeric($m['red_card_minute']) && (int)$m['red_card_minute'] > 0)
-            ) {
+        $isExpelled = self::isSentOff($m) || $state === self::STATE_SENT_OFF;
+        $isSubstitutedOrInjured = !$isExpelled && ($state === self::STATE_SUBSTITUTED_OUT || self::hasExitMarker($m));
+
+        // Saída confirmada impede presumir automaticamente o horário planejado (90') como horário real de saída
+        if ($isExpelled || $isSubstitutedOrInjured) {
+            // Entrada precisa estar demonstrada (titular com entry=0 ou evidência explícita de entrada)
+            $entryDemonstrated = ($lineup === 'titular' && $entry === 0) || self::hasEntryEvidence($m);
+            if (!$entryDemonstrated) {
                 return 0;
             }
+
+            if ($isExpelled) {
+                $hasRedMinuteKey = array_key_exists('red_card_minute', $m) && $m['red_card_minute'] !== null;
+                if ($hasRedMinuteKey) {
+                    if (!is_numeric($m['red_card_minute'])) {
+                        return 0;
+                    }
+                    $redMin = (int)$m['red_card_minute'];
+                    if ($redMin <= 0 || $redMin < $entry || $redMin > self::MAX_VALID_MINUTE) {
+                        return 0;
+                    }
+                    if ($redMin > 90 && ($matchMinute === null || $matchMinute < $redMin)) {
+                        return 0;
+                    }
+                    // Contradição entre minuto de saída anterior (< 90) e minuto de expulsão distinto
+                    if ($exit < 90 && $exit !== $redMin) {
+                        return 0;
+                    }
+                    $effectiveExit = $redMin;
+                } elseif ($exit > 0 && $exit < 90) {
+                    $effectiveExit = $exit;
+                } else {
+                    // Expulsão sem minuto confiável e exit planejado (>= 90): não presume 90 minutos
+                    return 0;
+                }
+            } else {
+                if ($exit > 0 && $exit < 90) {
+                    $effectiveExit = $exit;
+                } elseif ($state === self::STATE_SUBSTITUTED_OUT
+                    && !empty($m['sub_out_recorded'])
+                    && self::hasEntryEvidence($m)
+                    && $matchMinute !== null
+                    && $matchMinute >= $exit
+                ) {
+                    // Substituição canônica comprovadamente registrada no próprio minuto >= 90
+                    $effectiveExit = $exit;
+                } else {
+                    // Saída (ex.: lesão/desgaste) com horário planejado (>= 90) sem registro confiável de saída
+                    return 0;
+                }
+            }
+
+            $raw = $effectiveExit - $entry;
+            if ($raw > 0) {
+                return $raw;
+            }
+            return self::hasEntryEvidence($m) ? 1 : 0;
+        }
+
+        $raw = $exit - $entry;
+        if ($raw > 0) {
             return $raw;
         }
 
@@ -459,22 +515,13 @@ final class MatchParticipation {
             return false;
         }
 
-        if ($minute < $entry || $minute > self::MAX_VALID_MINUTE) {
+        // Elegibilidade esportiva estrita: nunca autoriza decisão quando minute >= exit (inclusive acréscimos)
+        if ($minute < $entry || $minute >= $exit) {
             return false;
         }
 
         $state = $m['participation_state'] ?? null;
         $hasCanonicalState = is_string($state) && $state !== '';
-
-        if ($exit < 90 && $minute >= $exit) {
-            return false;
-        }
-        if ($exit >= 90 && $minute >= $exit) {
-            // Acréscimos (>= 90 com status='em_andamento'): exige estado canônico explícito ON_FIELD (compatibilidade F03)
-            if (!$hasCanonicalState || $state !== self::STATE_ON_FIELD) {
-                return false;
-            }
-        }
 
         if ($hasCanonicalState) {
             return $state === self::STATE_ON_FIELD;

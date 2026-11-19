@@ -311,8 +311,18 @@ final class Presentation {
             ];
         }
 
-        // 9. Regra autoritativa única para interação esportiva em campo
-        if (!MatchParticipation::canActOnField($m)) {
+        // 9. Distinção entre estado visual F03 em acréscimos (90..105 em STATE_ON_FIELD) e elegibilidade esportiva
+        $isVisualStoppageOnField = ($status === 'em_andamento'
+            && $partState === MatchParticipation::STATE_ON_FIELD
+            && !MatchParticipation::isSentOff($m)
+            && !$isSubstituted
+            && isset($m['entry'], $m['exit'])
+            && is_numeric($m['entry']) && is_numeric($m['exit'])
+            && (int)$m['entry'] >= 0 && (int)$m['entry'] < 90
+            && (int)$m['exit'] >= 90 && (int)$m['exit'] <= MatchParticipation::MAX_VALID_MINUTE
+            && $minute >= 90 && $minute <= MatchParticipation::MAX_VALID_MINUTE);
+
+        if (!MatchParticipation::canActOnField($m) && !$isVisualStoppageOnField) {
             if ($partState === 'STARTING') {
                 return [
                     'type' => 'pre_jogo',

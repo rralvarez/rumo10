@@ -1283,9 +1283,10 @@ f04Check(
     'R1-R3 [13]: save ambíguo avança passivamente de 15\' até fim_semana sem travamento, com 0 minutos, 0 bônus e sem elegibilidade para pênaltis'
 );
 
-// 8.15 (P1 + F03) Compatibilidade com F03: acréscimos aos 93' em ON_FIELD permanecem coerentes entre motor, narrativa e view.php
-$gF03Stop = Game::legacyCreate('F03 Acrescimos 93 R3', 'São Paulo', 'SP', 'meia');
+// 8.15 (P1-01 + F03) Distinção entre estado visual F03 e elegibilidade esportiva aos 93' (exit=90)
+$gF03Stop = Game::legacyCreate('F03 Acrescimos 93 R4', 'São Paulo', 'SP', 'centroavante');
 $gF03Stop['stage'] = 'partida';
+$gF03Stop['states']['ritmo_jogo'] = 50;
 $idxF93 = Game::currentIndex($gF03Stop);
 $gF03Stop['matches'][$idxF93] = array_merge($gF03Stop['matches'][$idxF93], [
     'status' => 'em_andamento',
@@ -1294,19 +1295,348 @@ $gF03Stop['matches'][$idxF93] = array_merge($gF03Stop['matches'][$idxF93], [
     'participation_state' => MatchParticipation::STATE_ON_FIELD,
     'entry' => 0,
     'exit' => 90,
+    'entered_on_field' => true,
+    'evaluated_penalties' => ['93-93'],
 ]);
 $partF93 = Presentation::playerParticipation($gF03Stop, $gF03Stop['matches'][$idxF93]);
 $htmlF93 = $renderCareerMatchView($gF03Stop);
+$f93ChoiceBlocked = false;
+try {
+    Game::command($gF03Stop, 'choice', ['option' => 0], false, static fn(int $min, int $max): int => $min);
+} catch (InvalidArgumentException $e) {
+    $f93ChoiceBlocked = true;
+}
 f04Check(
-    MatchParticipation::canActOnField($gF03Stop['matches'][$idxF93]) === true
-    && NarrativeContext::values($gF03Stop)['on_field'] === true
-    && $partF93['type'] === 'on_field'
+    $f93ChoiceBlocked
+    && MatchParticipation::canActOnField($gF03Stop['matches'][$idxF93]) === false
+    && NarrativeContext::values($gF03Stop)['on_field'] === false
+    && Scenes::eligible($gF03Stop) === []
+    && Game::situation($gF03Stop) === null
+    && Game::choices($gF03Stop) === [],
+    'R1-R4 [P1-01]: aos 93\' com janela encerrada aos 90\', decisão esportiva é rejeitada em motor, NarrativeContext, Scenes e Game::choices'
+);
+f04Check(
+    $partF93['type'] === 'on_field'
     && $partF93['label'] === 'Em campo'
-    && str_contains($htmlF93, 'name="option"')
-    && !str_contains($htmlF93, 'class="match-advance-card panel"'),
-    'R1-R3 [15]: compatibilidade F03 preservada aos 93\' em andamento com STATE_ON_FIELD (motor, narrativa, Presentation e view.php coerentes)'
+    && $partF93['class'] === 'status-onfield'
+    && str_contains($htmlF93, '93′')
+    && str_contains($htmlF93, 'Em campo')
+    && str_contains($htmlF93, 'class="match-advance-card panel"')
+    && !str_contains($htmlF93, 'name="option"')
+    && !str_contains($htmlF93, 'action="/partida/decidir"'),
+    'R1-R4 [P1-01]: apresentação visual F03 (93′ e "Em campo") preservada, mas app/view.php oferece apenas avanço passivo sem escolhas esportivas'
+);
+$gF03StopEnd = Game::command($gF03Stop, 'advance');
+$mF93End = $gF03StopEnd['matches'][$idxF93];
+$snapF93Match = $mF93End;
+$snapF93States = $gF03StopEnd['states'];
+$refSegment->invokeArgs(null, [&$gF03StopEnd, 93]);
+f04Check(
+    $gF03StopEnd['stage'] === 'fim_semana'
+    && $mF93End['status'] === 'finalizada'
+    && $mF93End['minute'] === 93
+    && $mF93End['stats']['goals'] === 0
+    && $mF93End['stats']['shots'] === 0
+    && $gF03StopEnd['matches'][$idxF93] === $snapF93Match
+    && $gF03StopEnd['states'] === $snapF93States,
+    'R1-R4 [P1-01]: avanço passivo aos 93\' encerra sem retroceder relógio para 90\', sem gol indevido e com encerramento idempotente'
+);
+
+// =========================================================================
+// 9. MATRIZ ADVERSARIAL R1-R4 (P1-02 Reserva Legado e P1-03 Saída Contraditória)
+// =========================================================================
+echo "\n9. Validando Matriz Adversarial R1-R4 (Reserva Legado e Saída com Horário Contraditório)...\n";
+
+$rngAlwaysSuccess = static fn(int $min, int $max): int => $min;
+
+// 9.1 (P1-02 [1]) Reserva legado com entrada comprovada (sub_in_recorded + log 60') e sem saída
+$gLegSubOk = Game::create('Reserva Legado OK R4', 'São Paulo', 'SP', 'meia', 'Santos-SP');
+$gLegSubOk = Game::command($gLegSubOk, 'handicap');
+$gLegSubOk['stage'] = 'partida';
+$gLegSubOk['states']['ritmo_jogo'] = 50;
+$gLegSubOk['states']['energia'] = 90;
+$gLegSubOk['states']['risco_lesao'] = 0;
+$idxLSO = Game::currentIndex($gLegSubOk);
+$gLegSubOk['matches'][$idxLSO] = array_merge($gLegSubOk['matches'][$idxLSO], [
+    'status' => 'em_andamento',
+    'minute' => 80,
+    'lineup' => 'reserva',
+    'entry' => 60,
+    'exit' => 90,
+    'sub_in_recorded' => true,
+    'log' => [['minute' => 60, 'text' => "60' | Você entra em campo no lugar de um companheiro."]],
+    'evaluated_penalties' => ['80-90'],
+]);
+unset($gLegSubOk['matches'][$idxLSO]['participation_state']);
+$gLegSubOk = Game::command($gLegSubOk, 'choice', ['option' => 0], false, $rngAlwaysSuccess);
+while ($gLegSubOk['stage'] === 'partida') {
+    $gLegSubOk = MatchParticipation::canActOnField($gLegSubOk['matches'][$idxLSO])
+        ? Game::command($gLegSubOk, 'choice', ['option' => 0], false, $rngAlwaysSuccess)
+        : Game::command($gLegSubOk, 'advance');
+}
+$mLSO = $gLegSubOk['matches'][$idxLSO];
+$rhythmKeyLSO = 'f04:rhythm:' . $gLegSubOk['season'] . ':' . ($gLegSubOk['competition_id'] ?? 'legacy') . ':' . $mLSO['round'] . ':' . $mLSO['home'] . ':' . $mLSO['away'];
+$gPenLSO = $gLegSubOk;
+$stPenLSO = PenaltyShootout::start($gPenLSO, $mLSO);
+f04Check(
+    $mLSO['participation_state'] === MatchParticipation::STATE_FULL_TIME
+    && $mLSO['stats']['minutes'] === 30
+    && $mLSO['stats']['rating'] > 0
+    && Game::summary($gLegSubOk)['games'] === 1
+    && ($gLegSubOk['reward_ledger'][$rhythmKeyLSO]['delta'] ?? 0) === 3
+    && ($gLegSubOk['reward_ledger'][$rhythmKeyLSO]['minutes'] ?? 0) === 30
+    && $gLegSubOk['states']['ritmo_jogo'] >= 53
+    && MatchParticipation::finishedOnField($mLSO)
+    && $stPenLSO['protagonist_eligible'] === true,
+    'R1-R4 [P1-02.1]: reserva legado com entrada comprovada aos 60\' preserva FULL_TIME, 30\', 1 jogo, bônus de ritmo (+3 no ledger) e elegibilidade para pênaltis'
+);
+// Reexecução idempotente do encerramento no reserva legado
+$snapLSO = $gLegSubOk['matches'][$idxLSO];
+$snapLSOStates = $gLegSubOk['states'];
+$snapLSOLedger = $gLegSubOk['reward_ledger'] ?? [];
+$refSegment->invokeArgs(null, [&$gLegSubOk, 90]);
+f04Check(
+    $gLegSubOk['matches'][$idxLSO] === $snapLSO
+    && $gLegSubOk['states'] === $snapLSOStates
+    && ($gLegSubOk['reward_ledger'] ?? []) === $snapLSOLedger,
+    'R1-R4 [P1-02.7]: reexecução do encerramento no reserva legado não altera logs, stats, ritmo ou ledger'
+);
+
+// 9.2 (P1-02 [2]) Reserva legado com entrada comprovada e saída registrada (60' -> 75')
+$gLegSubOut = Game::legacyCreate('Reserva Legado Saiu R4', 'São Paulo', 'SP', 'meia');
+$gLegSubOut['stage'] = 'partida';
+$gLegSubOut['states']['ritmo_jogo'] = 50;
+$idxLSO2 = Game::currentIndex($gLegSubOut);
+$gLegSubOut['matches'][$idxLSO2] = array_merge($gLegSubOut['matches'][$idxLSO2], [
+    'status' => 'em_andamento',
+    'minute' => 80,
+    'lineup' => 'reserva',
+    'entry' => 60,
+    'exit' => 75,
+    'sub_in_recorded' => true,
+    'exit_reason' => 'fatigue',
+    'evaluated_penalties' => ['80-90'],
+]);
+unset($gLegSubOut['matches'][$idxLSO2]['participation_state']);
+$gLegSubOut = Game::command($gLegSubOut, 'advance');
+$mLSO2 = $gLegSubOut['matches'][$idxLSO2];
+f04Check(
+    $mLSO2['participation_state'] === MatchParticipation::STATE_SUBSTITUTED_OUT
+    && $mLSO2['stats']['minutes'] === 15
+    && Game::summary($gLegSubOut)['games'] === 1
+    && $gLegSubOut['states']['ritmo_jogo'] === 53
+    && !MatchParticipation::finishedOnField($mLSO2),
+    'R1-R4 [P1-02.2]: reserva legado com entrada comprovada e saída aos 75\' registra 15\', 1 jogo, ritmo +3 e fica inelegível para pênaltis'
+);
+
+// 9.3 (P1-02 [3]) Reserva legado sem evidência de entrada (60-90 planejado apenas)
+$gLegSubNoEv = Game::legacyCreate('Reserva Legado Sem Ev R4', 'São Paulo', 'SP', 'meia');
+$gLegSubNoEv['stage'] = 'partida';
+$gLegSubNoEv['states']['ritmo_jogo'] = 50;
+$idxLSN = Game::currentIndex($gLegSubNoEv);
+$gLegSubNoEv['matches'][$idxLSN] = array_merge($gLegSubNoEv['matches'][$idxLSN], [
+    'status' => 'em_andamento',
+    'minute' => 80,
+    'lineup' => 'reserva',
+    'entry' => 60,
+    'exit' => 90,
+    'evaluated_penalties' => ['80-90'],
+]);
+unset($gLegSubNoEv['matches'][$idxLSN]['participation_state']);
+$gLegSubNoEv = Game::command($gLegSubNoEv, 'advance');
+$mLSN = $gLegSubNoEv['matches'][$idxLSN];
+f04Check(
+    $mLSN['participation_state'] === MatchParticipation::STATE_ON_BENCH
+    && $mLSN['stats']['minutes'] === 0
+    && Game::summary($gLegSubNoEv)['games'] === 0
+    && $gLegSubNoEv['states']['ritmo_jogo'] === 50
+    && !MatchParticipation::finishedOnField($mLSN),
+    'R1-R4 [P1-02.3]: reserva legado sem evidência de entrada (apenas janela 60-90) permanece ON_BENCH com 0\', 0 jogos e ritmo inalterado'
+);
+
+// 9.4 (P1-02 [5]) Reserva novo com entrada aos 70' (fluxo real intervalo -> 60' -> 70' -> 90')
+$gNewSub70 = Game::legacyCreate('Reserva Novo 70 R4', 'São Paulo', 'SP', 'meia');
+$gNewSub70['stage'] = 'partida';
+$gNewSub70['states']['energia'] = 90;
+$gNewSub70['states']['risco_lesao'] = 0;
+$gNewSub70['states']['ritmo_jogo'] = 50;
+$idxNS70 = Game::currentIndex($gNewSub70);
+$gNewSub70['matches'][$idxNS70] = array_merge($gNewSub70['matches'][$idxNS70], [
+    'status' => 'intervalo',
+    'minute' => 45,
+    'lineup' => 'reserva',
+    'participation_state' => MatchParticipation::STATE_ON_BENCH,
+    'entry' => 70,
+    'exit' => 90,
+    'evaluated_penalties' => ['45-60', '60-70', '70-80', '80-90'],
+]);
+for ($st70 = 0; $st70 < 20 && $gNewSub70['stage'] === 'partida'; $st70++) {
+    $gNewSub70 = MatchParticipation::canActOnField($gNewSub70['matches'][$idxNS70])
+        ? Game::command($gNewSub70, 'choice', ['option' => 0], false, $rngAlwaysSuccess)
+        : Game::command($gNewSub70, 'advance');
+}
+$mNS70 = $gNewSub70['matches'][$idxNS70];
+$rhythmKeyNS70 = 'f04:rhythm:' . $gNewSub70['season'] . ':legacy:' . $mNS70['round'] . ':' . $mNS70['home'] . ':' . $mNS70['away'];
+f04Check(
+    $mNS70['participation_state'] === MatchParticipation::STATE_FULL_TIME
+    && !empty($mNS70['sub_in_recorded'])
+    && $mNS70['stats']['minutes'] === 20
+    && ($gNewSub70['reward_ledger'][$rhythmKeyNS70]['delta'] ?? 0) === 3
+    && ($gNewSub70['reward_ledger'][$rhythmKeyNS70]['minutes'] ?? 0) === 20
+    && $gNewSub70['states']['ritmo_jogo'] >= 53
+    && MatchParticipation::finishedOnField($mNS70),
+    'R1-R4 [P1-02.5]: reserva novo com entrada aos 70\' conclui com FULL_TIME, 20\', bônus de ritmo (+3 no ledger) e elegibilidade para pênaltis'
+);
+
+// 9.5 (P1-03 Cenário A) Lesão legada aos 80' com exit=90 (horário contraditório, sem estado canônico)
+$gInj90 = Game::create('Lesao Contraditoria R4', 'São Paulo', 'SP', 'meia', 'Santos-SP');
+$gInj90 = Game::command($gInj90, 'handicap');
+$gInj90['stage'] = 'partida';
+$gInj90['states']['ritmo_jogo'] = 50;
+$gInj90['states']['confianca'] = 45;
+$xpBeforeInj90 = array_sum(array_column($gInj90['skills'], 'xp'));
+$idxI90 = Game::currentIndex($gInj90);
+$gInj90['matches'][$idxI90] = array_merge($gInj90['matches'][$idxI90], [
+    'status' => 'em_andamento',
+    'minute' => 80,
+    'lineup' => 'titular',
+    'entry' => 0,
+    'exit' => 90,
+    'exit_reason' => 'injury',
+    'evaluated_penalties' => ['80-90'],
+]);
+unset($gInj90['matches'][$idxI90]['participation_state']);
+$inj90Blocked = false;
+try { Game::command($gInj90, 'choice', ['option' => 0], false, $rngAlwaysSuccess); } catch (InvalidArgumentException $e) { $inj90Blocked = true; }
+$gInj90End = Game::command($gInj90, 'advance');
+$mI90End = $gInj90End['matches'][$idxI90];
+$xpAfterInj90 = array_sum(array_column($gInj90End['skills'], 'xp'));
+$rhythmKeyI90 = 'f04:rhythm:' . $gInj90End['season'] . ':' . ($gInj90End['competition_id'] ?? 'legacy') . ':' . $mI90End['round'] . ':' . $mI90End['home'] . ':' . $mI90End['away'];
+f04Check(
+    $inj90Blocked
+    && $mI90End['participation_state'] === MatchParticipation::STATE_SUBSTITUTED_OUT
+    && $mI90End['stats']['minutes'] === 0
+    && $mI90End['stats']['rating'] === 0
+    && Game::summary($gInj90End)['games'] === 0
+    && $gInj90End['states']['ritmo_jogo'] === 50
+    && $gInj90End['states']['confianca'] === 45
+    && $xpAfterInj90 === $xpBeforeInj90
+    && !isset($gInj90End['reward_ledger'][$rhythmKeyI90])
+    && !MatchParticipation::finishedOnField($mI90End),
+    'R1-R4 [P1-03A]: lesão legada com exit=90 contraditório não fabrica 90\', mantém 0 min, 0 XP, confiança/ritmo intactos e sem pênaltis'
+);
+
+// 9.6 (P1-03 Cenário B) Expulsão legada direct_red=1 aos 80' com exit=90 (sem red_card_minute)
+$gRed90 = Game::create('Red Contraditorio R4', 'São Paulo', 'SP', 'meia', 'Santos-SP');
+$gRed90 = Game::command($gRed90, 'handicap');
+$gRed90['stage'] = 'partida';
+$gRed90['states']['ritmo_jogo'] = 50;
+$gRed90['states']['confianca'] = 45;
+$xpBeforeRed90 = array_sum(array_column($gRed90['skills'], 'xp'));
+$idxR90 = Game::currentIndex($gRed90);
+$gRed90['matches'][$idxR90] = array_merge($gRed90['matches'][$idxR90], [
+    'status' => 'em_andamento',
+    'minute' => 80,
+    'lineup' => 'titular',
+    'entry' => 0,
+    'exit' => 90,
+    'evaluated_penalties' => ['80-90'],
+]);
+$gRed90['matches'][$idxR90]['stats']['direct_red'] = 1;
+unset($gRed90['matches'][$idxR90]['participation_state']);
+$red90Blocked = false;
+try { Game::command($gRed90, 'choice', ['option' => 0], false, $rngAlwaysSuccess); } catch (InvalidArgumentException $e) { $red90Blocked = true; }
+$gRed90End = Game::command($gRed90, 'advance');
+$mR90End = $gRed90End['matches'][$idxR90];
+$xpAfterRed90 = array_sum(array_column($gRed90End['skills'], 'xp'));
+$rhythmKeyR90 = 'f04:rhythm:' . $gRed90End['season'] . ':' . ($gRed90End['competition_id'] ?? 'legacy') . ':' . $mR90End['round'] . ':' . $mR90End['home'] . ':' . $mR90End['away'];
+f04Check(
+    $red90Blocked
+    && $mR90End['participation_state'] === MatchParticipation::STATE_SENT_OFF
+    && $mR90End['stats']['minutes'] === 0
+    && $mR90End['stats']['rating'] === 0
+    && Game::summary($gRed90End)['games'] === 0
+    && $gRed90End['states']['ritmo_jogo'] === 50
+    && $gRed90End['states']['confianca'] === 45
+    && $xpAfterRed90 === $xpBeforeRed90
+    && !isset($gRed90End['reward_ledger'][$rhythmKeyR90])
+    && !MatchParticipation::finishedOnField($mR90End),
+    'R1-R4 [P1-03B]: direct_red=1 legado com exit=90 contraditório não fabrica 90\', mantém 0 min, 0 XP, confiança/ritmo intactos e sem pênaltis'
+);
+// Reexecução do encerramento sobre P1-03B permanece inócua
+$snapR90 = $gRed90End['matches'][$idxR90];
+$snapR90States = $gRed90End['states'];
+$refSegment->invokeArgs(null, [&$gRed90End, 90]);
+f04Check($gRed90End['matches'][$idxR90] === $snapR90 && $gRed90End['states'] === $snapR90States, 'R1-R4 [P1-03]: repetição do encerramento em saída contraditória permanece inócua');
+
+// 9.7 (P1-03 Positivos com horário real conhecido + contraditórios adicionais)
+// Lesão legada com horário real conhecido (0 -> 35) preserva 35 minutos
+$gInj35 = Game::legacyCreate('Lesao 35 Conhecida R4', 'São Paulo', 'SP', 'meia');
+$gInj35['stage'] = 'partida';
+$gInj35['states']['ritmo_jogo'] = 50;
+$idxI35 = Game::currentIndex($gInj35);
+$gInj35['matches'][$idxI35] = array_merge($gInj35['matches'][$idxI35], [
+    'status' => 'em_andamento',
+    'minute' => 80,
+    'lineup' => 'titular',
+    'entry' => 0,
+    'exit' => 35,
+    'exit_reason' => 'injury',
+    'evaluated_penalties' => ['80-90'],
+]);
+unset($gInj35['matches'][$idxI35]['participation_state']);
+$gInj35End = Game::command($gInj35, 'advance');
+f04Check(
+    $gInj35End['matches'][$idxI35]['stats']['minutes'] === 35
+    && $gInj35End['matches'][$idxI35]['stats']['rating'] > 0
+    && $gInj35End['states']['ritmo_jogo'] === 53
+    && !MatchParticipation::finishedOnField($gInj35End['matches'][$idxI35]),
+    'R1-R4 [P1-03]: lesão legada com horário real conhecido (exit=35) preserva 35\', nota > 0, ritmo +3 e bloqueia pênaltis'
+);
+
+// Expulsão com red_card_minute=40 conhecido (mesmo com exit=90 legado) preserva 40 minutos (não 90!)
+$gRed40 = Game::legacyCreate('Expulsao 40 Conhecida R4', 'São Paulo', 'SP', 'meia');
+$gRed40['stage'] = 'partida';
+$gRed40['states']['ritmo_jogo'] = 50;
+$idxR40 = Game::currentIndex($gRed40);
+$gRed40['matches'][$idxR40] = array_merge($gRed40['matches'][$idxR40], [
+    'status' => 'em_andamento',
+    'minute' => 80,
+    'lineup' => 'titular',
+    'entry' => 0,
+    'exit' => 90,
+    'red_card_minute' => 40,
+    'evaluated_penalties' => ['80-90'],
+]);
+$gRed40['matches'][$idxR40]['stats']['direct_red'] = 1;
+unset($gRed40['matches'][$idxR40]['participation_state']);
+$gRed40End = Game::command($gRed40, 'advance');
+f04Check(
+    $gRed40End['matches'][$idxR40]['stats']['minutes'] === 40
+    && $gRed40End['matches'][$idxR40]['stats']['rating'] > 0
+    && $gRed40End['states']['ritmo_jogo'] === 53
+    && !MatchParticipation::finishedOnField($gRed40End['matches'][$idxR40]),
+    'R1-R4 [P1-03]: expulsão com red_card_minute=40 (e exit=90 legado) calcula 40\' reais em vez de 90\', concede ritmo +3 e bloqueia pênaltis'
+);
+
+// Expulsão contraditória (red_card_minute=70 vs exit=40, ou red_card_minute=0) e reserva lesionado sem entrada comprovada -> 0 min
+f04Check(
+    MatchParticipation::playedMinutes(['status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'participation_state' => MatchParticipation::STATE_SENT_OFF, 'entry' => 0, 'exit' => 40, 'red_card_minute' => 70]) === 0,
+    'R1-R4 [P1-03]: expulsão com red_card_minute=70 contradizendo exit=40 retorna 0 minutos'
+);
+f04Check(
+    MatchParticipation::playedMinutes(['status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'participation_state' => MatchParticipation::STATE_SENT_OFF, 'entry' => 0, 'exit' => 60, 'red_card_minute' => 0]) === 0,
+    'R1-R4 [P1-03]: expulsão com red_card_minute=0 não confiável retorna 0 minutos'
+);
+f04Check(
+    MatchParticipation::playedMinutes(['status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'participation_state' => MatchParticipation::STATE_SUBSTITUTED_OUT, 'entry' => 60, 'exit' => 75, 'exit_reason' => 'injury']) === 0,
+    'R1-R4 [P1-03]: lesão canônica em reserva sem entrada demonstrada retorna 0 minutos'
+);
+f04Check(
+    MatchParticipation::playedMinutes(['status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'participation_state' => MatchParticipation::STATE_SUBSTITUTED_OUT, 'entry' => 60, 'exit' => 75, 'exit_reason' => 'injury', 'sub_in_recorded' => true, 'entered_on_field' => true]) === 15,
+    'R1-R4 [P1-03]: lesão canônica em reserva com entrada demonstrada e exit=75 preserva 15 minutos'
 );
 
 echo "\n=======================================================\n";
-echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R3 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R4 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
