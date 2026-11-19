@@ -2,7 +2,8 @@
 declare(strict_types=1);
 final class Retirement {
     public const VOLUNTARY=35,MANDATORY=40;
-    public static function eligible(array $g):bool {return $g['age']>=35 && $g['stage']!=='aposentado' && $g['stage']!=='partida';}
+    public static function mandatory(array $g):bool {return $g['stage']!=='aposentado' && ($g['age']>=self::MANDATORY || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true)));}
+    public static function eligible(array $g):bool {return self::mandatory($g) || ($g['age']>=self::VOLUNTARY && $g['stage']!=='aposentado' && $g['stage']!=='partida');}
     public static function close(array &$g,string $reason):void {
         $g['retirement']=['reason'=>$reason,'age'=>$g['age'],'season'=>$g['season'],'club'=>$g['club'],'totals'=>CareerStats::collect($g)['totals']];
         $g['stage']='aposentado';$g['offers']=[];$g['feedback']=['text'=>$reason==='mandatory'?'Você encerrou sua carreira nos gramados.':'Você decidiu encerrar sua carreira nos gramados.'];
@@ -13,8 +14,9 @@ final class Retirement {
     }
     public static function confirmation(array $g):void {
         if($g['stage']==='aposentado'){self::render($g);return;}
+        $mandatory=self::mandatory($g);
         echo '<section class="panel"><h1>Encerrar minha carreira</h1><p>Seus totais, clubes, temporadas e conquistas serão preservados no histórico. Partidas, gols individuais e escolhas detalhadas serão apagados permanentemente; a vaga será liberada e este personagem não poderá voltar a jogar.</p>';
         if(!self::eligible($g)){echo '<p>Esta opção ainda não está disponível para seu personagem. Se estiver em uma partida, conclua o jogo primeiro.</p><a href="/carreira">Voltar</a></section>';return;}
-        form('/carreira/aposentar',$g);echo '<label><input type="checkbox" name="confirm" value="retire" required> Quero encerrar definitivamente esta carreira.</label><button class="btn btn-primary">Confirmar aposentadoria</button></form><a href="/jogador">Continuar jogando</a></section>';
+        form('/carreira/aposentar',$g);echo '<label><input type="checkbox" name="confirm" value="retire" required> Quero encerrar definitivamente esta carreira.</label><button class="btn btn-primary">Confirmar aposentadoria</button></form><a href="'.($mandatory?'/carreira':'/jogador').'">'.($mandatory?'Voltar à carreira':'Continuar jogando').'</a></section>';
     }
 }

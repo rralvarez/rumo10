@@ -27,7 +27,7 @@ try{
  RetiredCareer::compactExisting($r,$account,$oldId,'compact');$compact=$r->load($account);RetiredCareer::compactExisting($r,$account,$oldId,'compact');retireCheck($r->load($account)===$compact,'Compactação antiga idempotente');
  retireCheck(CareerStats::collect($compact)['totals']===$expected['totals'],'Legado preserva estatísticas');
  CareerSlots::delete($r,$account,$oldId,'delete');retireCheck((int)$r->query('SELECT COUNT(*) FROM rumo10_historico_encerrado WHERE carreira_id=?',[$oldId])->fetchColumn()===0,'Exclusão apaga também resumo');
- // Aposentadoria obrigatória pelo comando que encerra a temporada.
- $forced=$g;$forced['age']=39;$forced['stage']='resumo';$r->create($account,$forced);$f=$r->load($account);$f=$r->command($account,'offers',[],bin2hex(random_bytes(32)),$f['version']);retireCheck($f['age']===40 && isset($f['retired_summary']) && $f['retirement']['reason']==='mandatory','Obrigatória também compacta');
+ // Aposentadoria obrigatória com confirmação explícita ao encerrar a temporada.
+ $forced=$g;$forced['age']=39;$forced['stage']='resumo';$r->create($account,$forced);$f=$r->load($account);$f=$r->command($account,'retire',['confirm'=>'retire'],bin2hex(random_bytes(32)),$f['version']);retireCheck($f['age']===40 && isset($f['retired_summary']) && $f['retirement']['reason']==='mandatory','Obrigatória também compacta');
  echo "OK: $checks verificações de histórico compacto e aposentadoria.\n";
 }finally{foreach($accounts as $account){$ids=$r->query('SELECT id FROM rumo10_carreiras WHERE conta_id=? UNION SELECT carreira_id FROM rumo10_carreiras_arquivadas WHERE conta_id=? UNION SELECT carreira_id FROM rumo10_historico_encerrado WHERE conta_id=?',[$account,$account,$account])->fetchAll(PDO::FETCH_COLUMN);foreach($ids as $id)CareerSlots::delete($r,$account,(int)$id,'delete');$r->query('DELETE FROM rumo10_contas WHERE id=?',[$account]);}}

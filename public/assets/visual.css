@@ -2389,3 +2389,74 @@ body.post-match-decision .season-recap {
   }
 }
 
+/* R10-CAR-001-R1: Encerramento de Competição */
+.competition-recap-panel .recap-outcome { margin: 16px 0; }
+.competition-recap-panel .recap-highlight-lead { font-size: 1.15rem; color: var(--lime); font-weight: 600; margin: 8px 0; }
+.competition-recap-panel .recap-champion-line { font-size: 1rem; color: var(--text); margin: 6px 0; }
+.competition-recap-panel .recap-status-line { font-size: 0.95rem; margin: 6px 0; }
+.competition-recap-panel .recap-status-promoted b { color: var(--lime); }
+.competition-recap-panel .recap-status-relegated b { color: #f87171; }
+.competition-recap-panel .recap-next-step { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+.competition-recap-panel .recap-transition-text { font-size: 0.95rem; color: var(--text); margin-bottom: 14px; }
+
+/* R10-CAR-001-R2: Retrospectiva Anual Completa */
+.annual-recap-panel { margin-bottom: 24px; }
+.annual-recap-panel .recap-header { margin-bottom: 20px; }
+.annual-recap-panel .recap-club-line { display: flex; align-items: center; gap: 8px; font-size: 1rem; color: var(--text); margin-top: 6px; }
+.annual-recap-panel .recap-club-line .club-badge { width: 32px; height: 32px; }
+.annual-recap-panel .recap-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+.annual-recap-panel .recap-section-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.annual-recap-panel .recap-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin: 16px 0; }
+.annual-recap-panel .recap-stat-card { background: #0d1b20; border: 1px solid #253b3f; border-radius: 9px; padding: 12px 8px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.annual-recap-panel .recap-stat-card strong { font-size: 26px; color: var(--lime); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.annual-recap-panel .recap-stat-card span { font-size: 11px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.annual-recap-panel .recap-comp-item { background: #132227; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; }
+.annual-recap-panel .recap-comp-name { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.annual-recap-panel .recap-comp-detail { font-size: 0.95rem; margin: 4px 0; color: var(--muted); }
+.annual-recap-panel .recap-comp-champion { color: var(--text); }
+.annual-recap-panel .recap-trophies-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.annual-recap-panel .recap-trophy-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(210, 243, 107, 0.12); border: 1px solid var(--lime); border-radius: 6px; padding: 6px 12px; color: var(--lime); font-weight: 600; font-size: 0.95rem; }
+.annual-recap-panel .recap-market-cta { margin-top: 28px; padding: 20px; background: #102025; border: 1px solid #3d555a; border-radius: 10px; }
+.annual-recap-panel .recap-market-cta h3 { font-size: 1.15rem; color: var(--text); margin: 0 0 8px; }
+.annual-recap-panel .recap-market-cta p { font-size: 0.95rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+.annual-recap-panel .recap-retirement-cta { border-color: #614d24; background: #18150d; }
+.annual-recap-panel .recap-retirement-cta h3 { color: #f3c26b; }
+.annual-recap-panel .recap-retirement-notice { color: var(--text); font-weight: 500; margin-bottom: 10px; }
+.annual-recap-panel .recap-retirement-distinction { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; }
+
+/* R10-CAR-001-R3: Janela de Transferências e Roleta */
+.transfer-panel .transfer-intro-text { font-size: 1rem; color: var(--text); margin-bottom: 20px; line-height: 1.5; }
+.scenario-outcome-panel { background: #102025; border: 1px solid #2f454a; border-radius: 9px; padding: 16px 18px; margin: 18px 0; }
+.scenario-outcome-panel h3 { font-size: 1.15rem; color: var(--lime); margin: 6px 0 8px; }
+.scenario-outcome-panel p { font-size: 0.95rem; color: var(--text); line-height: 1.45; margin: 0; }
+.market-probabilities-panel { margin: 24px 0; padding-top: 18px; border-top: 1px solid var(--border); }
+.market-probabilities-panel h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 4px; }
+.market-probabilities-panel p.subtle { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; line-height: 1.4; }
+.market-scenarios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 14px 0; }
+.market-scenario-card { background: #0c181c; border: 1px solid #23363b; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
+.market-scenario-card.scenario-drawn { border-color: var(--lime); background: rgba(210, 243, 107, 0.08); box-shadow: 0 0 0 1px rgba(210, 243, 107, 0.25); }
+.market-scenario-card .scenario-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; margin-bottom: 6px; }
+.market-scenario-card .scenario-name { font-size: 0.85rem; color: var(--text); font-weight: 500; line-height: 1.25; }
+.market-scenario-card .drawn-badge { font-size: 0.7rem; background: var(--lime); color: #0c171b; font-weight: 700; padding: 2px 5px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; }
+.market-scenario-card .scenario-percent { font-size: 1.1rem; color: var(--lime); font-variant-numeric: tabular-nums; }
+.no-offers-panel { background: #132227; border: 1px solid #30464c; border-radius: 9px; padding: 16px 18px; margin: 20px 0; }
+.no-offers-panel .no-offers-status { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.no-offers-panel .no-offers-message { font-size: 0.95rem; color: var(--muted); line-height: 1.5; margin: 0; }
+.transfer-offers-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+.transfer-offers-title { font-size: 1.2rem; color: var(--text); margin-bottom: 4px; }
+.transfer-offer-card, .transfer-stay-card { background: #111f24; border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 16px 0; }
+.transfer-stay-card.stay-card-highlighted { border-color: #4a7548; background: #112520; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+.transfer-offer-card .offer-header, .transfer-stay-card .offer-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.transfer-offer-card .offer-header .club-badge, .transfer-stay-card .offer-header .club-badge { width: 44px; height: 44px; }
+.transfer-offer-card .offer-header h3, .transfer-stay-card .offer-header h3 { margin: 2px 0 0; font-size: 1.2rem; color: var(--text); }
+.offer-overall-line { font-size: 0.95rem; color: var(--text); margin-bottom: 10px; }
+.transfer-stay-card .btn-stay-priority { min-width: 220px; }
+@media (max-width: 640px) {
+    .market-scenarios-grid { grid-template-columns: repeat(2, 1fr); }
+    .transfer-offer-card, .transfer-stay-card { padding: 14px 14px; }
+    .transfer-offer-card .offer-header h3, .transfer-stay-card .offer-header h3 { font-size: 1.05rem; }
+}
+
+
+
+

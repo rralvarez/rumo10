@@ -7,7 +7,14 @@ final class ActionResolution {
  // Classificação mecânica revisada; não lê palavras nem altera snapshots editoriais.
  private const SHOTS=[1104=>[2=>'long'],1107=>[2=>'long'],1115=>[3=>'long'],1113=>[2=>'difficult'],1117=>[2=>'difficult'],1123=>[3=>'difficult'],2579=>[2=>'difficult'],2649=>[0=>'difficult']];
  public static function options(array $options,int $id):array {
-  foreach($options as $index=>&$o)if($o['action']==='chute')$o['shot_kind']=self::SHOTS[$id][$index]??($id===0 && $index===3?'long':'normal');unset($o);return $options;
+  foreach($options as $index=>&$o){
+   if($o['action']==='chute')$o['shot_kind']=self::SHOTS[$id][$index]??($id===0 && $index===3?'long':'normal');
+   if(in_array($o['action']??'',['passe','chute','drible','desarme'],true)){
+    if(($o['failure_effects']['confianca']??null)===-2)$o['failure_effects']['confianca']=-1;
+    if(($o['severe_failure_effects']['confianca']??null)===-4)$o['severe_failure_effects']['confianca']=-3;
+   }
+  }
+  unset($o);return $options;
  }
  public static function trace(array $g,array $o):array {
   $type=$o['action'];$clear=!empty($o['clear_chance']);$goal=$type==='chute'||($clear&&in_array($type,['passe','drible'],true));

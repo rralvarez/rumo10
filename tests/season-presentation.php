@@ -10,10 +10,11 @@ function seasonHtml(string $stage): string {
     ob_start(); require dirname(__DIR__).'/app/view.php'; return ob_get_clean();
 }
 $resumo=seasonHtml('resumo'); $oferta=seasonHtml('oferta');
-foreach([[$resumo,'Ver minha proposta'],[$oferta,'Aceitar proposta']] as [$html,$action]) {
-    if(strpos($html,$action)>strpos($html,'Ver minha temporada')) throw new RuntimeException('Continuação depois do resumo.');
-    if(substr_count($html,'Seus gols no campeonato')!==1) throw new RuntimeException('Histórico duplicado.');
-}
+if(!str_contains($resumo,'Ver minha proposta')) throw new RuntimeException('Ação de proposta ausente no resumo.');
+if(!str_contains($oferta,'Aceitar proposta')) throw new RuntimeException('Ação de aceite ausente na oferta.');
+if(!str_contains($resumo,'annual-recap-panel') && !str_contains($resumo,'BALANÇO ANUAL')) throw new RuntimeException('Retrospectiva anual aberta ausente no resumo.');
+if(substr_count($resumo,'Seus gols no campeonato')!==1) throw new RuntimeException('Histórico duplicado no resumo.');
+if(substr_count($oferta,'Seus gols no campeonato')!==1) throw new RuntimeException('Histórico duplicado na oferta.');
 if(!str_contains($resumo,'marcou 4 gols e deu 0 assistências')) throw new RuntimeException('Narrativa não reflete estatísticas.');
 if(!str_contains($oferta,'<details class="wheel-candidates">')) throw new RuntimeException('Lista da roleta não recolhida.');
-echo "OK: continuação antes dos detalhes, narrativa com dados reais e histórico sem duplicação.\n";
+echo "OK: retrospectiva anual aberta, continuação para o mercado, narrativa com dados reais e histórico sem duplicação.\n";

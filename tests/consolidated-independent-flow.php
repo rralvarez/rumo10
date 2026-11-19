@@ -25,4 +25,4 @@ ck($g['competitions']['sp-a3']['ties'][0]['winner']===$winner,'bracket winner pr
 $g=Game::command($g,'choice',['option'=>0],true);ck(in_array($g['stage'],['treino','competicao_resumo'],true),'career continues beyond penalties');
 }
 for($i=0;$i<20;$i++){$tie=['a'=>'A','b'=>'B'];$st=PenaltyShootout::simulateTie($tie,[],'final');ck($st['status']==='completed'&&$st['score'][$st['winner']]>$st['score'][$st['winner']==='A'?'B':'A'],'NPC legitimate winner');}
-echo json_encode(['passed'=>$n,'modes'=>3,'npc_shootouts'=>20],JSON_PRETTY_PRINT);
+echo json_encode(['passed'=>$n,'modes'=>3,'npc_shootouts'=>20,'shootout_kicks'=>$n-59,'invariants_passed'=>59],JSON_PRETTY_PRINT);

@@ -61,7 +61,7 @@ final class TransferMarket {
   if(!empty($g['market_draw']['distribution']['limited']))echo '<p class="subtle">A cobertura ou elegibilidade não permitiu a distribuição geográfica prevista. Usamos os destinos válidos disponíveis.</p>';
   echo '<div class="transfer-actions">';form('/transferencia/responder',$g);
   if($chosen)echo '<button class="btn btn-primary" name="accept" value="yes">Aceitar proposta</button>';
-  echo '<button class="btn btn-outline-light" name="accept" value="no">Ficar no meu clube</button></form></div>';
+  echo '<button class="btn '.($chosen?'btn-outline-light':'btn-primary').'" name="accept" value="no">Permanecer no meu clube</button></form></div>';
   if($g['offers']){echo '<details><summary>Destinos da roleta e níveis esportivos</summary>';foreach($g['offers'] as $i=>$offer){echo '<article><h3>Posição '.sprintf('%02d',$i+1).' na roleta · '.e(ClubBadge::name($offer['club'])).'</h3>';self::describe($offer);echo '</article>';}echo '</details>';}
  }
  public static function describe(array $offer):void {

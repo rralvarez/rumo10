@@ -80,11 +80,18 @@ final class Game {
     private static function applyCommand(array $g,string $action,array $input,bool $automated,?callable $rng): array {
         $previousStage=$g['stage'];
         if($g['stage']==='aposentado')throw new InvalidArgumentException('Esta carreira está encerrada. Você pode consultar o histórico ou criar outro jogador.');
-        if($g['age']>=40 || ($g['age']===39 && in_array($g['stage'],['resumo','oferta'],true))){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');$g['version']++;return $g;}
         if($action==='retire') {
             if(!Retirement::eligible($g) || ($input['confirm']??'')!=='retire')throw new InvalidArgumentException('A aposentadoria não está disponível para esta carreira ou falta a confirmação.');
-            Retirement::close($g,'voluntary');$g['version']++;return $g;
+            if(Retirement::mandatory($g)){
+                $g['age']=max(40,$g['age']);
+                if(PlayerDevelopment::enabled($g))Evolution::birthday($g);
+                Retirement::close($g,'mandatory');
+            } else {
+                Retirement::close($g,'voluntary');
+            }
+            $g['version']++;return $g;
         }
+        if($g['age']>=40)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória para encerrar a carreira.');
         if($action==='mode')return PlayMode::change($g,(string)($input['mode']??''));
         if($action==='relocate'){
             if($g['stage']==='partida' || !empty($g['starting']))throw new InvalidArgumentException('Atualize a residência depois da partida e do primeiro contrato.');
@@ -179,6 +186,9 @@ final class Game {
                 if($roll['success']) {
                     $m[$own]++; $st['goals']++; $st['penalties_scored'] = ($st['penalties_scored'] ?? 0) + 1;
                     $g['feedback']['highlight'] = 'goal';
+                    $beforeConf = $g['states']['confianca'];
+                    $g['states']['confianca'] = self::clamp($beforeConf + 4);
+                    $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + ($g['states']['confianca'] - $beforeConf);
                     $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
                     $g['feedback']['text'] = 'GOL DE PÊNALTI! Você cobra com frieza e balança as redes!';
                     $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | GOL DE PÊNALTI! Cobrança impecável!"];
@@ -237,26 +247,35 @@ final class Game {
             elseif($m['minute']<$m['entry'] || $m['minute']>=$m['exit']) { self::nextSegment($g); }
             else throw new InvalidArgumentException('Resolva a decisão em campo.');
         } elseif($action==='offers' && $g['stage']==='resumo') {
+            if($g['age']>=39)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória com confirmação explícita.');
             CompetitionContinuity::reconcileAmazonas($g);
             $g['market_draw']=TransferInterest::draw($g);$g['offers']=$g['market_draw']['offers'];
             $g['stage']='oferta';$g['feedback']=['text'=>count($g['offers']).' proposta(s) nesta janela. Escolha um clube ou permaneça.'];
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
+            $isSchema2=(($g['market_draw']['schema']??1)===2);
+            $selected=$isSchema2?null:current(array_filter($g['offers'],fn($o)=>!empty($o['selected'])));
+            if($input['accept']==='yes'){
+                if($isSchema2){
+                    $index=filter_var($input['option']??null,FILTER_VALIDATE_INT,['options'=>['min_range'=>0,'max_range'=>2]]);
+                    if($index===false||$index===null||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
+                    $selected=$g['offers'][$index];
+                } elseif(isset($input['option']) && $input['option']!=='') {
+                    $index=filter_var($input['option'],FILTER_VALIDATE_INT);
+                    if($index===false||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
+                    $selected=$g['offers'][$index];
+                }
+                if(!$selected)throw new InvalidArgumentException('Não há proposta para aceitar nesta janela.');
+            }
+            if($g['age']>=39)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória com confirmação explícita.');
             unset($g['pace_report']);
             $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
             $summary['evaluation']=SeasonEvaluation::evaluate($g);
             $summary['technical_average']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['official']))$summary['competitions']=$g['competition_results'];
-            $selected=current(array_filter($g['offers'],fn($o)=>$o['selected']));
-            if(($g['market_draw']['schema']??1)===2){
-                $selected=null;
-                if($input['accept']==='yes'){
-                    $index=filter_var($input['option']??null,FILTER_VALIDATE_INT,['options'=>['min_range'=>0,'max_range'=>2]]);
-                    if($index===false||$index===null||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
-                    $selected=$g['offers'][$index];
-                }
+            if($isSchema2){
                 $summary['market']=$g['market_draw'];$summary['market']['choice']=$selected['club']??$old;
             }
-            if($input['accept']==='yes') { if(!$selected)throw new InvalidArgumentException('Não há proposta para aceitar nesta janela.');$g['club']=$selected['club']; $g['tier']=$selected['tier']; }
+            if($input['accept']==='yes') { $g['club']=$selected['club']; $g['tier']=$selected['tier']; }
             $summary['next_club']=$g['club']; $g['history'][]=$summary;
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
             $g['teams']=$teams; $g['season']++; $g['age']++; $g['round']=1; $g['stage']='treino'; $g['matches']=Schedule::generate($teams); $g['offers']=[]; $g['states']['energia']=85;
@@ -269,7 +288,6 @@ final class Game {
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
         if($g['stage']==='resumo')Progression::season($g);
         AchievementEvents::capture($g,$previousStage);
-        if($g['age']>=40 || ($g['age']===39 && $g['stage']==='resumo')){$g['age']=max(40,$g['age']);if(PlayerDevelopment::enabled($g))Evolution::birthday($g);Retirement::close($g,'mandatory');}
         $g['version']++;$selectionStart=RequestMetrics::start();Scenes::prepare($g);RequestMetrics::end('scene_selection',$selectionStart); return $g;
     }
     private static function clamp(float|int $v): int { return (int)max(0,min(100,round($v))); }
@@ -285,8 +303,12 @@ final class Game {
             } else { $before=$g['states'][$k]; $g['states'][$k]=self::clamp($before+$delta); $applied[$k]=$g['states'][$k]-$before; }
         }
         if(!$roll['success']) {
-            $failure=$choice['failure_effects']??['confianca'=>$roll['class']==='falha_grave'?-5:-2];
+            $failure=$choice['failure_effects']??['confianca'=>$roll['class']==='falha_grave'?-3:-1];
             if($roll['class']==='falha_grave')$failure=$choice['severe_failure_effects']??$failure;
+            if(($g['stage']??'')==='partida' && in_array($choice['action']??'',['passe','chute','drible','desarme'],true)){
+                if(($failure['confianca']??null)===-2)$failure['confianca']=-1;
+                elseif(($failure['confianca']??null)===-4)$failure['confianca']=-3;
+            }
             foreach($failure as $key=>$value){$before=$g['states'][$key];$g['states'][$key]=self::clamp($before+$value);$applied[$key]=($applied[$key]??0)+$g['states'][$key]-$before;}
         }
         return $applied;
@@ -334,9 +356,15 @@ final class Game {
                     $text.=' A bola não entrou.';
                 }
             }
-            if($type==='desarme' && $roll['success']) $st['tackles']++;
+            if($type==='desarme' && $roll['success']) {
+                $st['tackles']++;
+            }
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
                 $st['tackles']++;foreach(self::effects(['desarme'=>1],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
+            }
+            if(in_array($g['position'],['zagueiro','volante','lateral'],true) && $st['tackles']>=2 && empty($st['tackle_confidence_awarded'])) {
+                $st['tackle_confidence_awarded']=true;
+                $g['states']['confianca']=self::clamp($g['states']['confianca']+1);
             }
             if($roll['success'] && in_array($type,['passe','chute','drible','desarme'],true)){
                 $skill=['passe'=>'passe','chute'=>'finalizacao','drible'=>'drible','desarme'=>'desarme'][$type];
@@ -461,6 +489,31 @@ final class Game {
             $wPassErr = (float)($rParams['w_pass_err'] ?? 0.15);
             $wCard = (float)($rParams['w_card'] ?? 0.60);
             $s['rating']=$s['minutes']===0?0:round(max(0,min(10,$rBase+$s['goals']*$wGoal+$s['assists']*$wAssist+$s['tackles']*$wTackle+$s['completed']*$wPassOk-($s['passes']-$s['completed'])*$wPassErr-$s['cards']*$wCard)),1);
+            $ledgerKey='bal001:confidence:'.$g['season'].':'.($g['competition_id']??'legacy').':'.$m['round'].':'.$m['home'].':'.$m['away'];
+            if(!isset($g['reward_ledger'][$ledgerKey])){
+                $postRaw=0;$curConf=$g['states']['confianca'];$r=$s['rating'];
+                if($r>=8.8){$postRaw=($curConf<90)?2:0;}
+                elseif($r>=7.8){$postRaw=($curConf<50)?2:(($curConf<75)?1:0);}
+                elseif($r>=6.8){$postRaw=($curConf<50)?2:(($curConf<70)?1:0);}
+                elseif($r>=6.0){$postRaw=($curConf<50)?2:(($curConf<60)?1:0);}
+                $part=min(1.0,max(0,$s['minutes'])/60.0);
+                $nominalBonus=(int)round($postRaw*$part);
+                $beforeConf=$g['states']['confianca'];$appliedBonus=0;
+                if($s['minutes']>0 && $nominalBonus>0){
+                    $newConf=self::clamp($beforeConf+$nominalBonus);
+                    $appliedBonus=$newConf-$beforeConf;
+                    $g['states']['confianca']=$newConf;
+                }
+                $g['reward_ledger'][$ledgerKey]=[
+                    'nominal'=>$nominalBonus,
+                    'applied'=>$appliedBonus,
+                    'rating'=>$r,
+                    'minutes'=>$s['minutes'],
+                    'conf_before'=>$beforeConf,
+                    'conf_after'=>$g['states']['confianca'],
+                    'ts'=>time()
+                ];
+            }
             Progression::match($g,$m);
             MatchExperience::finish($g);
             MatchDiscipline::processMatchEnd($g, $m);
