@@ -5,7 +5,7 @@ $checks=0;$options=0;
 function consequenceCheck(bool $ok,string $message):void{global $checks;$checks++;if(!$ok)throw new RuntimeException($message);}
 function consequenceGame(string $stage='treino',int $id=1000):array{
     $g=Game::legacyCreate('Teste de efeitos','São Paulo','SP','meia');$g['stage']=$stage;$g['states']['risco_lesao']=0;
-    if($stage==='partida'){$i=Game::currentIndex($g);$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['minute']=15;$g['matches'][$i]['exit']=90;}
+    if($stage==='partida'){$i=Game::currentIndex($g);$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['lineup']='titular';$g['matches'][$i]['participation_state']=MatchParticipation::STATE_ON_FIELD;$g['matches'][$i]['minute']=15;$g['matches'][$i]['exit']=90;}
     $g['active_situation']=['id'=>$id,'key'=>Scenes::key($g)];return $g;
 }
 $apply=new ReflectionMethod(Game::class,'effects');$field=new ReflectionMethod(Game::class,'fieldDecision');

@@ -21,6 +21,7 @@ final class Game {
     public static function situation(array $g): ?array {
         if(($g['stage']??'')==='partida') {
             $m=$g['matches'][self::currentIndex($g)];
+            if(!MatchParticipation::canActOnField($m)) return null;
             if(!empty($m['active_match_penalty'])) {
                 if(($m['active_match_penalty']['status']??'')==='pending_request') return MatchPenalty::triggerRequestSituation($m, $m['active_match_penalty']['victim']??'companheiro');
                 if(($m['active_match_penalty']['status']??'')==='taking_kick') return MatchPenalty::triggerKickSituation($m, $m['active_match_penalty']['context_message']??'O árbitro aponta para a marca da cal. A responsabilidade da cobrança é sua.');
@@ -51,6 +52,7 @@ final class Game {
     }
     public static function choices(array $g): array {
         if(($g['stage']??'')==='penaltis')return class_exists('PenaltyShootout')?PenaltyShootout::choices($g):[];
+        if(($g['stage']??'')==='partida' && !MatchParticipation::canActOnField($g['matches'][self::currentIndex($g)])) return [];
         if(($g['stage']??'')==='fim_semana') {
             $m = !empty($g['matches']) ? ($g['matches'][self::currentIndex($g)] ?? null) : null;
             if ($m && class_exists('PenaltyShootout') && PenaltyShootout::requiresShootout($g, $m)) {
@@ -155,7 +157,7 @@ final class Game {
                 if(!empty($g['official'])) Competition::afterWeekend($g);
                 elseif($g['round']===14) $g['stage']='resumo'; else { $g['round']++; $g['stage']='treino'; }
             } elseif(($s['id']??0)===MatchPenalty::SITUATION_REQUEST) {
-                $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true;
+                $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $m['entered_on_field']=true;
                 if($n===0) {
                     $conf = $g['states']['confianca'] ?? 50;
                     $coach = $g['states']['confianca_treinador'] ?? 50;
@@ -179,7 +181,7 @@ final class Game {
                     self::nextSegment($g);
                 }
             } elseif(($s['id']??0)===MatchPenalty::SITUATION_KICK) {
-                $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
+                $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $m['entered_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
                 $st['shots']++;
                 $st['penalties_taken'] = ($st['penalties_taken'] ?? 0) + 1;
                 unset($m['active_match_penalty']);
@@ -314,7 +316,7 @@ final class Game {
         return $applied;
     }
     private static function fieldDecision(array &$g,array $o,array $roll,int $sid,int $choice): void {
-        $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
+        $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $m['entered_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
         $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139) || !empty($o['match_event']);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
         $auditScore=$m[$own];$auditActions=MatchMomentum::builtActions($g);

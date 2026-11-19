@@ -160,7 +160,7 @@ final class Presentation {
         $partState = $m['participation_state'] ?? null;
         $lineup = $m['lineup'] ?? 'titular';
         $st = $m['stats'] ?? [];
-        $isRedCard = ($partState === 'SENT_OFF') || (!empty($st['red_cards']) && $st['red_cards'] > 0) || !empty($m['red_card_minute']);
+        $isRedCard = MatchParticipation::isSentOff($m);
         $hasRedMinute = isset($m['red_card_minute']) && is_numeric($m['red_card_minute']) && (int)$m['red_card_minute'] > 0;
         $redMinute = $hasRedMinute ? (int)$m['red_card_minute'] : null;
 
@@ -177,7 +177,7 @@ final class Presentation {
         }
 
         // 2. Atleta não relacionado
-        if ($partState === 'NOT_SELECTED' || $lineup === 'não relacionado') {
+        if ($partState === 'NOT_SELECTED' || in_array($lineup, ['não relacionado', 'nao_relacionado'], true)) {
             return [
                 'type' => 'not_selected',
                 'label' => 'Não relacionado',
@@ -220,24 +220,31 @@ final class Presentation {
         // 5. Atleta substituído (utiliza minuto real inclusive >= 90 para canonical SUBSTITUTED_OUT)
         $isSubstituted = false;
         $exitMinute = null;
+        $exitReason = (string)($m['exit_reason'] ?? '');
 
         if ($partState === 'SUBSTITUTED_OUT') {
             $isSubstituted = true;
             if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
                 $exitMinute = (int)$m['exit'];
             }
-        } elseif (isset($m['exit']) && is_numeric($m['exit'])) {
-            // Inferência legada (sem estado canônico): exclusivamente quando exit < 90 e minute >= exit
-            $rawExit = (int)$m['exit'];
-            if ($rawExit > 0 && $rawExit < 90 && $minute >= $rawExit) {
-                $isSubstituted = true;
-                $exitMinute = $rawExit;
+        } else {
+            $hasLegacySubMarker = in_array($exitReason, ['injury', 'fatigue', 'tactical'], true)
+                || !empty($m['substituido'])
+                || !empty($m['sub_out_recorded'])
+                || ($m['lineup'] ?? '') === 'substituído';
+            if (isset($m['exit']) && is_numeric($m['exit'])) {
+                // Inferência legada (sem estado canônico): exclusivamente quando exit < 90 e minute >= exit
+                $rawExit = (int)$m['exit'];
+                if ($rawExit > 0 && $rawExit < 90 && $minute >= $rawExit) {
+                    $isSubstituted = true;
+                    $exitMinute = $rawExit;
+                }
             }
-        } elseif (($m['exit_reason'] ?? '') === 'fatigue' || !empty($m['substituido']) || ($m['lineup'] ?? '') === 'substituído') {
-            // Inferência legada sem estado canônico e sem minuto confiável
-            $isSubstituted = true;
-            if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
-                $exitMinute = (int)$m['exit'];
+            if (!$isSubstituted && $hasLegacySubMarker) {
+                $isSubstituted = true;
+                if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0 && (int)$m['exit'] < 90) {
+                    $exitMinute = (int)$m['exit'];
+                }
             }
         }
 
@@ -279,7 +286,8 @@ final class Presentation {
         }
 
         // 7. Atleta no banco de reservas durante a partida
-        $isOnBench = ($partState === 'ON_BENCH') || ($lineup === 'reserva' && $minute < $entry);
+        $isLegacyUnenteredBench = (!$partState && in_array($lineup, ['reserva', 'banco'], true) && !MatchParticipation::canActOnField($m));
+        $isOnBench = ($partState === 'ON_BENCH') || ($lineup === 'reserva' && $minute < $entry) || $isLegacyUnenteredBench;
         if ($isOnBench) {
             return [
                 'type' => 'bench',
@@ -303,7 +311,29 @@ final class Presentation {
             ];
         }
 
-        // 9. Em campo (padrão quando ativo no jogo, inclusive acréscimos)
+        // 9. Regra autoritativa única para interação esportiva em campo
+        if (!MatchParticipation::canActOnField($m)) {
+            if ($partState === 'STARTING') {
+                return [
+                    'type' => 'pre_jogo',
+                    'label' => 'Escalado (titular)',
+                    'class' => 'status-starting',
+                    'note_icon' => '👕',
+                    'note_title' => 'Aguardando entrada em campo',
+                    'note_desc' => 'Avance a partida para acompanhar a sequência do jogo.',
+                ];
+            }
+            return [
+                'type' => 'off_field',
+                'label' => 'Fora de campo',
+                'class' => 'status-bench',
+                'note_icon' => '⏱️',
+                'note_title' => 'Acompanhando a partida',
+                'note_desc' => 'Você não está em campo neste momento. Avance a partida para continuar.',
+            ];
+        }
+
+        // 10. Em campo (confirmado pela regra autoritativa, inclusive acréscimos)
         return [
             'type' => 'on_field',
             'label' => 'Em campo',

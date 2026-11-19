@@ -20,7 +20,7 @@ final class Scenes {
         if(!in_array($g['stage'],['treino','pre_jogo','partida','fim_semana'],true))return [];
         if($g['stage']==='partida') {
             $m=$g['matches'][Game::currentIndex($g)];
-            if($m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'])return [];
+            if(!MatchParticipation::canActOnField($m))return [];
         }
         $pool=[];$context=NarrativeContext::values($g);
         foreach(self::catalog() as $id=>$s) {
@@ -46,6 +46,7 @@ final class Scenes {
     }
     public static function prepare(array &$g): void {
         $g['story_seed']??=bin2hex(random_bytes(16));$key=self::key($g);
+        if($g['stage']==='partida' && !MatchParticipation::canActOnField($g['matches'][Game::currentIndex($g)])){unset($g['active_situation']);return;}
         if(($g['active_situation']['key']??'')===$key)return;
         $pool=self::eligible($g);
         if(!$pool && (!in_array($g['stage'],['treino','pre_jogo','partida','fim_semana'],true) || ($g['stage']==='partida' && empty(NarrativeContext::values($g)['on_field'])))){unset($g['active_situation']);return;}
@@ -58,6 +59,7 @@ final class Scenes {
         NarrativeSelection::remember($g,$s);
     }
     public static function current(array $g): ?array {
+        if(($g['stage']??'')==='partida' && !MatchParticipation::canActOnField($g['matches'][Game::currentIndex($g)]))return null;
         $active=$g['active_situation']??null;if(!$active || $active['key']!==self::key($g))return null;
         if($active['id']>=2000){$s=$active['snapshot']??(self::catalog()[$active['id']]??null);return $s?['id'=>$s['id'],'text'=>$s['text'],'options'=>($s['stage']==='partida'?ActionResolution::options($s['options'],$s['id']):$s['options']),'bench'=>(bool)($s['gating']['bench']??false),'module'=>$s['module'],'family'=>$s['family']]:null;}
         $s=self::catalog()[$active['id']];

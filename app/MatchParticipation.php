@@ -86,40 +86,75 @@ final class MatchParticipation {
     }
 
     /**
-     * Evidência positiva de participação efetiva (flags do motor ou estatísticas registradas).
+     * Evidência em log de entrada em campo vinda do banco.
      */
-    private static function hasPositiveEvidence(array $m): bool {
-        if (!empty($m['participated_on_field']) || !empty($m['entered_on_field']) || !empty($m['sub_in_recorded'])) {
-            return true;
+    private static function hasSubInLog(array $m): bool {
+        foreach (($m['log'] ?? []) as $entry) {
+            if (str_contains((string)($entry['text'] ?? ''), 'Você entra em campo')) {
+                return true;
+            }
         }
-        $st = is_array($m['stats'] ?? null) ? $m['stats'] : [];
-        return (int)($st['minutes'] ?? 0) > 0
-            || (int)($st['goals'] ?? 0) > 0
-            || (int)($st['assists'] ?? 0) > 0
-            || (int)($st['passes'] ?? 0) > 0
-            || (int)($st['shots'] ?? 0) > 0
-            || (int)($st['tackles'] ?? 0) > 0
-            || (int)($st['fouls'] ?? 0) > 0;
+        return false;
+    }
+
+    /**
+     * Evidência em log de saída/expulsão do protagonista.
+     */
+    private static function hasExitLog(array $m): bool {
+        foreach (($m['log'] ?? []) as $entry) {
+            $t = (string)($entry['text'] ?? '');
+            if (str_contains($t, 'Lesão: você deixa o campo.')
+                || str_contains($t, 'Substituído por desgaste.')
+                || str_contains($t, 'Você é substituído')
+                || str_contains($t, 'Expulso: segundo cartão.')
+                || str_contains($t, 'Você foi expulso da partida')
+                || str_contains($t, 'Você está expulso da partida')
+            ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Evidência explícita de entrada efetiva em campo produzida por transição legítima
+     * ou por ação já autorizada (nunca por estatística isolada ou janela planejada).
+     */
+    private static function hasEntryEvidence(array $m): bool {
+        return !empty($m['entered_on_field'])
+            || !empty($m['sub_in_recorded'])
+            || !empty($m['participated_on_field'])
+            || self::hasSubInLog($m);
+    }
+
+    /**
+     * Verifica marcadores estruturados ou legados de saída de campo (substituição, lesão, desgaste ou expulsão).
+     */
+    private static function hasExitMarker(array $m): bool {
+        $exitReason = (string)($m['exit_reason'] ?? '');
+        $lineup = (string)($m['lineup'] ?? '');
+        return in_array($exitReason, ['injury', 'fatigue', 'tactical', 'sent_off'], true)
+            || !empty($m['substituido'])
+            || !empty($m['sub_out_recorded'])
+            || $lineup === 'substituído'
+            || self::hasExitLog($m);
     }
 
     /**
      * Registra imediatamente uma saída de campo (expulsão, lesão, desgaste ou tática)
-     * de forma estritamente idempotente, preservando a primeira saída/expulsão confirmada.
+     * de forma estritamente idempotente, preservando a primeira saída/expulsão confirmada
+     * (inclusive red_card_minute = 0 explicitamente persistido, sem inferir a partir de exit).
      */
     public static function recordExit(array &$m, array &$g, int $minute, string $reason): void {
         $state = $m['participation_state'] ?? null;
+        $hasRedMinuteKey = array_key_exists('red_card_minute', $m) && $m['red_card_minute'] !== null;
+        $hasPositiveRedMinute = $hasRedMinuteKey && is_numeric($m['red_card_minute']) && (int)$m['red_card_minute'] > 0;
 
-        // Expulsão já registrada é imutável: preserva minuto, motivo e estado originais
-        if ($state === self::STATE_SENT_OFF || ($m['exit_reason'] ?? '') === 'sent_off' || !empty($m['red_card_minute'])) {
+        // Expulsão já registrada é imutável: preserva minuto (inclusive 0), motivo e estado originais
+        if ($state === self::STATE_SENT_OFF || ($m['exit_reason'] ?? '') === 'sent_off' || $hasPositiveRedMinute) {
             $m['participation_state'] = self::STATE_SENT_OFF;
             $m['exit_reason'] = 'sent_off';
             $m['team_reduced'] = true;
-            if (empty($m['red_card_minute']) && isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
-                $m['red_card_minute'] = (int)$m['exit'];
-            }
-            if ((!isset($m['exit']) || !is_numeric($m['exit']) || (int)$m['exit'] <= 0) && !empty($m['red_card_minute'])) {
-                $m['exit'] = (int)$m['red_card_minute'];
-            }
             return;
         }
 
@@ -135,7 +170,9 @@ final class MatchParticipation {
             $m['participation_state'] = self::STATE_SENT_OFF;
             $m['exit_reason'] = 'sent_off';
             $m['team_reduced'] = true;
-            $m['red_card_minute'] = $minute;
+            if (!$hasRedMinuteKey) {
+                $m['red_card_minute'] = $minute;
+            }
             return;
         }
 
@@ -149,22 +186,40 @@ final class MatchParticipation {
     }
 
     /**
-     * Atualiza o estado de participação ao transitar minutos/segmentos (idempotente)
+     * Atualiza o estado de participação ao transitar minutos/segmentos (idempotente).
+     * Não utiliza fallback permissivo para escalações desconhecidas e nunca fabrica
+     * entered_on_field=true durante o encerramento a partir de janela temporal.
      */
     public static function sync(array &$m, array &$g, int $minute): void {
         $state = $m['participation_state'] ?? null;
         $hadCanonicalState = is_string($state) && $state !== '';
+        $lineup = (string)($m['lineup'] ?? '');
+        $entry = isset($m['entry']) && is_numeric($m['entry']) ? (int)$m['entry'] : null;
+        $exit = isset($m['exit']) && is_numeric($m['exit']) ? (int)$m['exit'] : null;
+        $validWindow = ($entry !== null && $exit !== null && $entry >= 0 && $entry < 90 && $exit > $entry && $exit <= self::MAX_VALID_MINUTE);
+
         if (!$hadCanonicalState) {
-            // Reconciliação legada
-            if (self::isSentOff($m)) $state = self::STATE_SENT_OFF;
-            elseif (($m['lineup'] ?? '') === 'não relacionado' || ($m['lineup'] ?? '') === 'nao_relacionado') $state = self::STATE_NOT_SELECTED;
-            elseif (($m['lineup'] ?? '') === 'suspenso') $state = self::STATE_SUSPENDED;
-            elseif (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0 && (int)$m['exit'] < 90 && $minute >= (int)$m['exit']) $state = self::STATE_SUBSTITUTED_OUT;
-            elseif (in_array($m['lineup'] ?? '', ['reserva', 'banco'], true)) {
-                $entered = !empty($m['sub_in_recorded']) || !empty($m['entered_on_field']) || !empty($m['participated_on_field']);
-                $state = ($entered && $minute >= ($m['entry'] ?? 90) && $minute < ($m['exit'] ?? 90)) ? self::STATE_ON_FIELD : self::STATE_ON_BENCH;
+            // Reconciliação legada estrita: exige marcadores explícitos ou escalação reconhecida
+            if (self::isSentOff($m)) {
+                $state = self::STATE_SENT_OFF;
+            } elseif (in_array($lineup, ['não relacionado', 'nao_relacionado'], true)) {
+                $state = self::STATE_NOT_SELECTED;
+            } elseif ($lineup === 'suspenso') {
+                $state = self::STATE_SUSPENDED;
+            } elseif (self::hasExitMarker($m) || ($exit !== null && $exit > 0 && $exit < 90 && $minute >= $exit && in_array($lineup, ['titular', 'reserva', 'banco'], true))) {
+                $state = self::STATE_SUBSTITUTED_OUT;
+            } elseif (in_array($lineup, ['reserva', 'banco'], true)) {
+                $state = (self::hasEntryEvidence($m) && $validWindow && $minute >= $entry && $minute < $exit)
+                    ? self::STATE_ON_FIELD
+                    : self::STATE_ON_BENCH;
+            } elseif ($lineup === 'titular') {
+                $state = ($validWindow && $minute >= $entry && $minute < $exit)
+                    ? self::STATE_ON_FIELD
+                    : ((self::hasEntryEvidence($m) && $validWindow && $exit >= 90) ? self::STATE_ON_FIELD : self::STATE_STARTING);
+            } else {
+                // Escalação desconhecida/ausente sem estado canônico: preserva dados sem fabricar participação
+                return;
             }
-            else $state = ($minute >= ($m['entry'] ?? 0) && $minute < ($m['exit'] ?? 90)) ? self::STATE_ON_FIELD : self::STATE_STARTING;
         }
 
         // Estados terminais imutáveis: expulsos, substituídos, ausentes e encerrados não retornam a campo
@@ -174,9 +229,6 @@ final class MatchParticipation {
         }
 
         $isFinished = (($m['status'] ?? '') === 'finalizada');
-        $entry = isset($m['entry']) && is_numeric($m['entry']) ? (int)$m['entry'] : 0;
-        $exit = isset($m['exit']) && is_numeric($m['exit']) ? (int)$m['exit'] : 90;
-        $validWindow = ($entry >= 0 && $entry < 90 && $exit > $entry && $exit <= self::MAX_VALID_MINUTE);
 
         // Checagem de entrada em campo do banco (apenas com partida em curso e janela válida)
         if (!$isFinished && $state === self::STATE_ON_BENCH && $validWindow && $minute >= $entry && $minute < $exit) {
@@ -191,7 +243,7 @@ final class MatchParticipation {
         }
 
         // Checagem de saída por substituição (idempotente)
-        if ($state === self::STATE_ON_FIELD && $exit > 0 && $exit < 90 && $minute >= $exit) {
+        if ($state === self::STATE_ON_FIELD && $exit !== null && $exit > 0 && $exit < 90 && $minute >= $exit) {
             $m['participation_state'] = self::STATE_SUBSTITUTED_OUT;
             if (empty($m['exit_reason'])) {
                 $m['exit_reason'] = 'tactical';
@@ -204,15 +256,11 @@ final class MatchParticipation {
             return;
         }
 
-        // Encerramento efetivo da partida: FULL_TIME vinculado ao status 'finalizada'
+        // Encerramento efetivo da partida: FULL_TIME vinculado ao status 'finalizada' apenas para quem já estava ON_FIELD
+        // (nunca fabrica entered_on_field=true retroativamente no encerramento)
         if ($isFinished) {
             if ($state === self::STATE_ON_FIELD) {
                 $m['participation_state'] = self::STATE_FULL_TIME;
-                $m['entered_on_field'] = true;
-            } elseif ($state === self::STATE_STARTING && !$hadCanonicalState && $validWindow && $exit >= 90) {
-                // Reconciliação legada para saves/fixtures sem participation_state que encerram com janela titular válida
-                $m['participation_state'] = self::STATE_FULL_TIME;
-                $m['entered_on_field'] = true;
             } elseif ($state === self::STATE_ON_BENCH) {
                 $m['participation_state'] = self::STATE_ON_BENCH;
                 if (empty($m['unused_bench_logged'])) {
@@ -231,8 +279,8 @@ final class MatchParticipation {
 
     /**
      * Calcula minutos estatísticos efetivamente disputados sem adulterar entry/exit.
-     * Distingue escalação planejada de participação efetiva, valida limites temporais
-     * e exige evidência positiva para o piso estatístico de 1 minuto em saídas imediatas.
+     * Distingue escalação planejada, entrada efetiva, tempo disputado e encerramento.
+     * Rejeita escalações desconhecidas sem estado canônico e intervalos inválidos.
      */
     public static function playedMinutes(array $m): int {
         if (in_array($m['status'] ?? '', ['agendada', 'pre_jogo'], true)) {
@@ -272,9 +320,14 @@ final class MatchParticipation {
             return 0;
         }
 
-        // Save legado de reserva sem estado canônico: janela planejada sem evidência de entrada não gera minutos
-        if (!$hasCanonicalState && in_array($lineup, ['reserva', 'banco'], true) && !self::hasPositiveEvidence($m)) {
-            return 0;
+        // Save legado sem estado canônico: rejeita escalação desconhecida e exige entrada efetiva para reserva
+        if (!$hasCanonicalState) {
+            if (!in_array($lineup, ['titular', 'reserva', 'banco'], true)) {
+                return 0;
+            }
+            if (in_array($lineup, ['reserva', 'banco'], true) && !self::hasEntryEvidence($m)) {
+                return 0;
+            }
         }
 
         $raw = $exit - $entry;
@@ -283,46 +336,38 @@ final class MatchParticipation {
             if ($hasCanonicalState
                 && in_array($state, [self::STATE_SUBSTITUTED_OUT, self::STATE_SENT_OFF], true)
                 && in_array($lineup, ['reserva', 'banco'], true)
-                && !self::hasPositiveEvidence($m)
+                && !self::hasEntryEvidence($m)
                 && empty($m['sub_out_recorded'])
                 && empty($m['exit_reason'])
-                && empty($m['red_card_minute'])
+                && !(array_key_exists('red_card_minute', $m) && $m['red_card_minute'] !== null && is_numeric($m['red_card_minute']) && (int)$m['red_card_minute'] > 0)
             ) {
                 return 0;
             }
             return $raw;
         }
 
-        // Piso estatístico de 1 minuto exclusivamente quando há evidência positiva de entrada/atuação real
+        // Piso estatístico de 1 minuto exclusivamente quando há evidência explícita de entrada/atuação real
         // no mesmo minuto da entrada (estados terminais isolados sem evidência retornam 0).
-        $actedInField = !empty($m['participated_on_field'])
-            || !empty($m['entered_on_field'])
-            || !empty($m['sub_in_recorded']);
-
-        return $actedInField ? 1 : 0;
+        return self::hasEntryEvidence($m) ? 1 : 0;
     }
 
     /**
      * Verifica se o atleta efetivamente permaneceu em campo até o término da partida
      * (elegibilidade para cobrança em disputa de pênaltis).
-     * Exige evidência positiva e consistente de participação até o apito final.
+     * Exige entrada comprovada e permanência até o encerramento; nunca aceita estatística isolada
+     * ou apenas stats.minutes > 0 como prova de permanência final.
      */
     public static function finishedOnField(array $m): bool {
         if (($m['status'] ?? '') !== 'finalizada') {
             return false;
         }
 
-        if (self::isSentOff($m)) {
+        if (self::isSentOff($m) || self::hasExitMarker($m)) {
             return false;
         }
 
         $lineup = (string)($m['lineup'] ?? '');
-        $exitReason = (string)($m['exit_reason'] ?? '');
-
-        if (in_array($lineup, ['suspenso', 'não relacionado', 'nao_relacionado', 'substituído'], true)
-            || in_array($exitReason, ['injury', 'fatigue', 'tactical', 'sent_off'], true)
-            || !empty($m['substituido'])
-        ) {
+        if (in_array($lineup, ['suspenso', 'não relacionado', 'nao_relacionado', 'substituído'], true)) {
             return false;
         }
 
@@ -341,38 +386,55 @@ final class MatchParticipation {
             return false;
         }
 
+        $st = is_array($m['stats'] ?? null) ? $m['stats'] : [];
+        $recordedMinutes = (int)($st['minutes'] ?? 0);
+        $expectedMinutes = $exit - $entry;
         $state = $m['participation_state'] ?? null;
+
         if (is_string($state) && $state !== '') {
-            if (!in_array($state, [self::STATE_FULL_TIME, self::STATE_ON_FIELD], true)) {
+            // Em partida finalizada com estado canônico, apenas FULL_TIME comprova permanência no apito final
+            if ($state !== self::STATE_FULL_TIME) {
                 return false;
             }
-            return self::hasPositiveEvidence($m);
+            if (self::hasEntryEvidence($m)) {
+                return true;
+            }
+            // Compatibilidade conservadora com registros FULL_TIME sem flag de entrada, exigindo escalação e minutagem + nota coerentes
+            return in_array($lineup, ['titular', 'reserva'], true)
+                && ($lineup === 'titular' ? $entry === 0 : $entry > 0)
+                && $recordedMinutes === $expectedMinutes
+                && (float)($st['rating'] ?? 0) > 0;
         }
 
-        // Save legado sem participation_state: exige escalação válida (titular/reserva) e evidência positiva
-        if (!in_array($lineup, ['titular', 'reserva'], true)) {
-            return false;
+        // Save legado sem participation_state: comportamento conservador, nunca aceita escalação desconhecida
+        // nem estatística isolada (ex.: fouls=1) ou stats.minutes > 0 isolado.
+        if ($lineup === 'reserva') {
+            return self::hasEntryEvidence($m)
+                && $entry > 0
+                && $recordedMinutes === $expectedMinutes;
         }
 
-        return self::hasPositiveEvidence($m);
+        if ($lineup === 'titular') {
+            return $entry === 0
+                && $recordedMinutes === $expectedMinutes
+                && (self::hasEntryEvidence($m) || (float)($st['rating'] ?? 0) > 0);
+        }
+
+        return false;
     }
 
     /**
      * Decisão canônica única que autoriza atuação esportiva do protagonista em campo.
-     * Considera conjuntamente status, estado canônico, evidência de entrada, ausência de saída/expulsão
-     * e compatibilidade temporal. Nunca promove automaticamente ON_BENCH para ON_FIELD.
+     * Considera conjuntamente status, estado canônico, escalação reconhecida, evidência de entrada,
+     * ausência de saída/expulsão e compatibilidade temporal (incluindo acréscimos em STATE_ON_FIELD).
+     * Nunca utiliza fallback permissivo para escalações desconhecidas nem promove ON_BENCH para ON_FIELD.
      */
     public static function canActOnField(array $m): bool {
         if (($m['status'] ?? '') !== 'em_andamento') {
             return false;
         }
 
-        if (self::isSentOff($m)) {
-            return false;
-        }
-
-        $exitReason = (string)($m['exit_reason'] ?? '');
-        if (in_array($exitReason, ['injury', 'fatigue', 'tactical', 'sent_off'], true) || !empty($m['substituido'])) {
+        if (self::isSentOff($m) || self::hasExitMarker($m)) {
             return false;
         }
 
@@ -397,24 +459,37 @@ final class MatchParticipation {
             return false;
         }
 
-        if ($minute < $entry || $minute >= $exit) {
+        if ($minute < $entry || $minute > self::MAX_VALID_MINUTE) {
             return false;
         }
 
         $state = $m['participation_state'] ?? null;
-        if (is_string($state) && $state !== '') {
+        $hasCanonicalState = is_string($state) && $state !== '';
+
+        if ($exit < 90 && $minute >= $exit) {
+            return false;
+        }
+        if ($exit >= 90 && $minute >= $exit) {
+            // Acréscimos (>= 90 com status='em_andamento'): exige estado canônico explícito ON_FIELD (compatibilidade F03)
+            if (!$hasCanonicalState || $state !== self::STATE_ON_FIELD) {
+                return false;
+            }
+        }
+
+        if ($hasCanonicalState) {
             return $state === self::STATE_ON_FIELD;
         }
 
         // Reconciliação explícita para saves legados sem participation_state:
-        // reserva precisa de evidência explícita de entrada; titular/legado sem estado usa janela válida.
+        // exige escalação explicitamente reconhecida (titular ou reserva com entrada comprovada).
+        if ($lineup === 'titular') {
+            return true;
+        }
         if (in_array($lineup, ['reserva', 'banco'], true)) {
-            return !empty($m['sub_in_recorded'])
-                || !empty($m['entered_on_field'])
-                || !empty($m['participated_on_field']);
+            return self::hasEntryEvidence($m);
         }
 
-        return true;
+        return false;
     }
 
     public static function isOnField(array $m): bool {
