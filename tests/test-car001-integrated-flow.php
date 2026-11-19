@@ -556,6 +556,115 @@ try {
 }
 check($compactedBlocked, 'Estado compactado também bloqueia novos comandos de jogo');
 
+// -------------------------------------------------------------
+// 10. Cenário R4.1: Navegação e Renderização HTML de app/view.php na Aposentadoria
+// -------------------------------------------------------------
+echo "\n10. Validando Navegação e Renderização HTML de app/view.php (R4.1)...\n";
+
+function renderCareerViewForTest(array &$g, string $path = '/carreira', ?string $error = null): string {
+    $_SESSION['account'] = 9999;
+    $_SESSION['csrf'] = 'fixture-csrf-r41';
+    ob_start();
+    require dirname(__DIR__) . '/app/view.php';
+    return (string) ob_get_clean();
+}
+
+// 10.1. 39 anos em resumo, preservando retrospectiva e CTA
+$g39ResumoView = $gVeteranResumo;
+$snap39ResumoView = serialize($g39ResumoView);
+$html39Resumo = renderCareerViewForTest($g39ResumoView, '/carreira');
+check(serialize($g39ResumoView) === $snap39ResumoView, 'Renderização de 39 anos em resumo é imutável');
+check(str_contains($html39Resumo, 'TEMPORADA CONCLUÍDA · BALANÇO ANUAL'), '39 anos em resumo preserva retrospectiva anual completa em app/view.php');
+check(str_contains($html39Resumo, 'href="/carreira/aposentar"'), '39 anos em resumo exibe CTA direto para /carreira/aposentar');
+check(str_contains($html39Resumo, 'Concluir minha carreira →'), '39 anos em resumo exibe botão Concluir minha carreira');
+check(!str_contains($html39Resumo, 'action="/transferencia/roleta"'), '39 anos em resumo não exibe formulário de roleta de transferência');
+
+// 10.2. 39 anos em oferta, exibindo aposentadoria sem formulários de transferência
+$g39OfertaView = $gLegacyOferta;
+$snap39OfertaView = serialize($g39OfertaView);
+$html39Oferta = renderCareerViewForTest($g39OfertaView, '/carreira');
+check(serialize($g39OfertaView) === $snap39OfertaView, 'Renderização de 39 anos em oferta é imutável');
+check(str_contains($html39Oferta, 'APOSENTADORIA OBRIGATÓRIA · LIMITE DE IDADE'), '39 anos em oferta exibe painel de aposentadoria obrigatória');
+check(str_contains($html39Oferta, 'href="/carreira/aposentar"'), '39 anos em oferta exibe botão direto para /carreira/aposentar');
+check(str_contains($html39Oferta, 'Concluir minha carreira →'), '39 anos em oferta exibe CTA Concluir minha carreira');
+check(!str_contains($html39Oferta, 'action="/transferencia/responder"'), '39 anos em oferta não exibe formulários de transferência bloqueados');
+check(!str_contains($html39Oferta, 'transfer-panel'), '39 anos em oferta oculta painel de transferência bloqueado');
+
+// 10.3. 40 anos nos seis estágios: treino, pre_jogo, partida, fim_semana, resumo e oferta
+foreach (['treino', 'pre_jogo', 'partida', 'fim_semana', 'resumo', 'oferta'] as $stage40View) {
+    $g40View = Game::legacyCreate('Veterano 40 View ' . $stage40View, 'São Paulo', 'SP', 'meia');
+    $g40View['age'] = 40;
+    $g40View['stage'] = $stage40View;
+    $g40View['play_mode'] = 'rapido';
+    if ($stage40View === 'partida') {
+        $idxV = Game::currentIndex($g40View);
+        $g40View['matches'][$idxV]['status'] = 'em_andamento';
+        $g40View['matches'][$idxV]['minute'] = 45;
+        $g40View['matches'][$idxV]['entry'] = 0;
+        $g40View['matches'][$idxV]['exit'] = 90;
+    } elseif ($stage40View === 'oferta') {
+        $g40View['offers'] = [['club' => 'Palmeiras-SP', 'tier' => 1, 'peso' => 10]];
+    }
+    $snap40View = serialize($g40View);
+    $html40 = renderCareerViewForTest($g40View, '/carreira');
+    check(serialize($g40View) === $snap40View, "Renderização de 40 anos em '$stage40View' é imutável");
+    check(str_contains($html40, 'href="/carreira/aposentar"') && str_contains($html40, 'Concluir minha carreira →'), "40 anos em '$stage40View' exibe botão direto para /carreira/aposentar");
+    if ($stage40View === 'resumo') {
+        check(str_contains($html40, 'TEMPORADA CONCLUÍDA · BALANÇO ANUAL'), "40 anos em 'resumo' preserva a retrospectiva anual");
+    } else {
+        check(str_contains($html40, 'APOSENTADORIA OBRIGATÓRIA · LIMITE DE IDADE'), "40 anos em '$stage40View' exibe painel de aposentadoria obrigatória");
+    }
+    foreach (['/decisao/registrar', '/carreira/simular', '/partida/decidir', '/partida/avancar', '/transferencia/responder', '/transferencia/roleta'] as $blockedActionUrl) {
+        check(!str_contains($html40, 'action="' . $blockedActionUrl . '"'), "40 anos em '$stage40View' não exibe formulário bloqueado '$blockedActionUrl'");
+    }
+}
+
+// 10.4. 25 anos com controles esportivos normais
+$g25View = Game::legacyCreate('Atleta 25 Normal', 'São Paulo', 'SP', 'meia');
+$g25View['age'] = 25;
+$g25View['stage'] = 'treino';
+$snap25View = serialize($g25View);
+$html25 = renderCareerViewForTest($g25View, '/carreira');
+check(serialize($g25View) === $snap25View, 'Renderização de 25 anos em treino é imutável');
+check(str_contains($html25, 'action="/decisao/registrar"'), '25 anos em treino exibe controles esportivos normais (/decisao/registrar)');
+check(!str_contains($html25, 'APOSENTADORIA OBRIGATÓRIA'), '25 anos não exibe painel de aposentadoria obrigatória');
+
+// 10.5. 35 anos com aposentadoria voluntária, sem bloqueio esportivo
+$g35View = Game::legacyCreate('Atleta 35 Voluntário', 'São Paulo', 'SP', 'meia');
+$g35View['age'] = 35;
+$g35View['stage'] = 'treino';
+$snap35View = serialize($g35View);
+$html35 = renderCareerViewForTest($g35View, '/carreira');
+check(serialize($g35View) === $snap35View, 'Renderização de 35 anos em treino é imutável');
+check(str_contains($html35, 'action="/decisao/registrar"'), '35 anos em treino mantém controles esportivos normais sem bloqueio');
+check(!str_contains($html35, 'APOSENTADORIA OBRIGATÓRIA'), '35 anos em treino não exibe bloqueio de aposentadoria obrigatória');
+$html35Profile = renderCareerViewForTest($g35View, '/jogador');
+check(str_contains($html35Profile, 'href="/carreira/aposentar"') && serialize($g35View) === $snap35View, '35 anos acessa aposentadoria voluntária via /jogador sem mutação');
+$html35Confirm = renderCareerViewForTest($g35View, '/carreira/aposentar');
+check(str_contains($html35Confirm, 'action="/carreira/aposentar"') && str_contains($html35Confirm, 'name="confirm" value="retire" required') && serialize($g35View) === $snap35View, '35 anos visualiza confirmação explícita de aposentadoria voluntária em /carreira/aposentar');
+
+// 10.6. 39 anos em partida legítima, ainda sem aposentadoria obrigatória
+$g39MatchLegit = Game::legacyCreate('Veterano 39 Em Campo', 'São Paulo', 'SP', 'centroavante');
+$g39MatchLegit['age'] = 39;
+$g39MatchLegit['stage'] = 'partida';
+$idx39Legit = Game::currentIndex($g39MatchLegit);
+$g39MatchLegit['matches'][$idx39Legit]['status'] = 'em_andamento';
+$g39MatchLegit['matches'][$idx39Legit]['minute'] = 30;
+$g39MatchLegit['matches'][$idx39Legit]['entry'] = 0;
+$g39MatchLegit['matches'][$idx39Legit]['exit'] = 90;
+$snap39MatchLegit = serialize($g39MatchLegit);
+$html39MatchLegit = renderCareerViewForTest($g39MatchLegit, '/carreira');
+check(serialize($g39MatchLegit) === $snap39MatchLegit, 'Renderização de 39 anos em partida legítima é imutável');
+check(!Retirement::mandatory($g39MatchLegit), '39 anos em partida legítima ainda não está em aposentadoria obrigatória');
+check(str_contains($html39MatchLegit, 'action="/partida/decidir"') || str_contains($html39MatchLegit, 'action="/partida/avancar"'), '39 anos em partida legítima exibe controles normais de partida');
+check(!str_contains($html39MatchLegit, 'APOSENTADORIA OBRIGATÓRIA'), '39 anos em partida legítima não exibe painel de aposentadoria obrigatória');
+
+// 10.7. Confirmação explícita em /carreira/aposentar via app/view.php e imutabilidade
+$snapConfirmView = serialize($g39OfertaView);
+$htmlConfirmView = renderCareerViewForTest($g39OfertaView, '/carreira/aposentar');
+check(serialize($g39OfertaView) === $snapConfirmView, 'Renderização de /carreira/aposentar em app/view.php é imutável');
+check(str_contains($htmlConfirmView, 'action="/carreira/aposentar"') && str_contains($htmlConfirmView, 'name="confirm" value="retire" required'), 'Tela /carreira/aposentar em app/view.php exige confirmação explícita confirm=retire');
+
 echo "\n=======================================================\n";
-echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R5.1 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS $checks TESTES DA MISSÃO R10-CAR-001-R5.1 / R4.1 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
