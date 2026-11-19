@@ -133,8 +133,7 @@ final class Game {
             if($n===false || !isset($choices[$n])) throw new InvalidArgumentException('Escolha inválida.');
             if($g['stage']==='partida') {
                 $m=$g['matches'][self::currentIndex($g)];
-                $inactiveState=in_array($m['participation_state']??'',[MatchParticipation::STATE_NOT_SELECTED,MatchParticipation::STATE_SUSPENDED,MatchParticipation::STATE_SENT_OFF,MatchParticipation::STATE_SUBSTITUTED_OUT,MatchParticipation::STATE_FULL_TIME],true);
-                if($m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'] || $inactiveState) throw new InvalidArgumentException('Você não está em campo.');
+                if(!MatchParticipation::canActOnField($m)) throw new InvalidArgumentException('Você não está em campo.');
             }
             $o=$choices[$n];$probabilityTrace=ActionResolution::trace($g,$o);$roll=Probability::roll($probabilityTrace['chance'],$rng); $effects=self::effects($o['effects'],$roll,$g,$o);
             $s=self::situation($g);
@@ -243,10 +242,9 @@ final class Game {
                 $g['version']++; return $g;
             }
             $i=self::currentIndex($g); $m=&$g['matches'][$i];
-            $inactiveState=in_array($m['participation_state']??'',[MatchParticipation::STATE_NOT_SELECTED,MatchParticipation::STATE_SUSPENDED,MatchParticipation::STATE_SENT_OFF,MatchParticipation::STATE_SUBSTITUTED_OUT,MatchParticipation::STATE_FULL_TIME],true);
             if($m['status']==='pre_jogo') { $m['status']='em_andamento'; self::segment($g,15); }
             elseif($m['status']==='intervalo') { $m['status']='em_andamento'; self::segment($g,60); }
-            elseif($m['minute']<$m['entry'] || $m['minute']>=$m['exit'] || $inactiveState) { self::nextSegment($g); }
+            elseif(!MatchParticipation::canActOnField($m)) { self::nextSegment($g); }
             else throw new InvalidArgumentException('Resolva a decisão em campo.');
         } elseif($action==='offers' && $g['stage']==='resumo') {
             if($g['age']>=39)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória com confirmação explícita.');
@@ -412,10 +410,7 @@ final class Game {
             $before=$g['states']['confianca'];$g['states']['confianca']=self::clamp($before+($g['feedback']['highlight']==='goal'?4:3));
         }
         $g['states']['energia']=self::clamp($g['states']['energia']-3);
-        $alreadySentOff = (($m['participation_state'] ?? '') === MatchParticipation::STATE_SENT_OFF)
-            || ((int)($st['red_cards'] ?? 0) > 0)
-            || ((int)($st['direct_red'] ?? 0) > 0)
-            || ((int)($st['second_yellow'] ?? 0) > 0);
+        $alreadySentOff = MatchParticipation::isSentOff($m);
         if ($alreadySentOff) {
             MatchParticipation::recordExit($m, $g, (int)$m['minute'], 'sent_off');
         } elseif ((int)($st['cards'] ?? 0) >= 2) {
@@ -447,6 +442,10 @@ final class Game {
     }
     private static function segment(array &$g,int $next): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i];
+        if(($m['status']??'')==='finalizada' || !empty($m['match_end_processed'])) {
+            $g['stage']='fim_semana';
+            return;
+        }
         $next=max((int)$m['minute'],$next);
         $span=max(0,$next-(int)$m['minute']);
         // Outro segmento representa outra janela de jogo, nunca a mesma posse.
@@ -458,7 +457,7 @@ final class Game {
         $windowKey = $m['minute'] . '-' . $next;
         if (empty($m['active_match_penalty']) && !in_array($windowKey, $m['evaluated_penalties'], true)) {
             $m['evaluated_penalties'][] = $windowKey;
-            $isProtagonistOnField = ($m['entry'] <= $m['minute'] && $m['minute'] < $m['exit']);
+            $isProtagonistOnField = MatchParticipation::canActOnField($m);
             $penaltyRoll = random_int(1, 100);
             if ($penaltyRoll <= 5) {
                 // Team penalty awarded!
@@ -552,6 +551,7 @@ final class Game {
             Progression::match($g,$m);
             MatchExperience::finish($g);
             MatchDiscipline::processMatchEnd($g, $m);
+            $m['match_end_processed'] = true;
             unset($m,$s);
             if(!empty($g['official'])) {
                 $ownIndex=self::currentIndex($g);$played=&$g['matches'][$ownIndex];
@@ -559,7 +559,7 @@ final class Game {
                 $side=$played['home']===$g['club']?'home':'away';
                 $stPlayed=$played['stats']??[];
                 $playerYellows=array_key_exists('yellow_cards',$stPlayed)?(int)$stPlayed['yellow_cards']:(int)($stPlayed['cards']??0);
-                $playerRed=((int)($stPlayed['red_cards']??0)>0||(int)($stPlayed['direct_red']??0)>0||(int)($stPlayed['second_yellow']??0)>0||(!array_key_exists('red_cards',$stPlayed)&&(int)($stPlayed['cards']??0)>=2))?1:0;
+                $playerRed=MatchParticipation::isSentOff($played)?1:0;
                 $played[$side.'_yellow']+=$playerYellows;
                 $played[$side.'_red']+=$playerRed;
                 unset($played);
