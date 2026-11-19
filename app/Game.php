@@ -454,50 +454,53 @@ final class Game {
         MatchMomentum::reset($m);
         $own=$m['home']===$g['club']?'hg':'ag';
 
-        // Check for in-match penalty event during segment (idempotente e avaliado uma única vez por janela lógica)
-        $m['evaluated_penalties'] = $m['evaluated_penalties'] ?? [];
-        $windowKey = $m['minute'] . '-' . $next;
-        if (empty($m['active_match_penalty']) && !in_array($windowKey, $m['evaluated_penalties'], true)) {
-            $m['evaluated_penalties'][] = $windowKey;
-            $isProtagonistOnField = MatchParticipation::canActOnField($m);
-            $penaltyRoll = random_int(1, 100);
-            if ($penaltyRoll <= 5) {
-                // Team penalty awarded!
-                self::emitSoundEvent($m, $g, 'WHISTLE_FOUL', (int)$m['minute']);
-                $victim = $g['name'];
-                $isOfficialTaker = MatchPenalty::isProtagonistOfficialTaker($g, $m);
-                if ($isProtagonistOnField && $isOfficialTaker) {
-                    $m['active_match_penalty'] = [
-                        'status' => 'taking_kick',
-                        'victim' => $victim,
-                        'window' => $windowKey,
-                        'context_message' => 'PÊNALTI A FAVOR! Como cobrador oficial da equipe, você assume a marca da cal.'
-                    ];
-                    $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti a favor da sua equipe! Você se posiciona na marca da cal."];
-                    return;
-                } elseif ($isProtagonistOnField) {
-                    $m['active_match_penalty'] = [
-                        'status' => 'pending_request',
-                        'victim' => 'companheiro',
-                        'window' => $windowKey
-                    ];
-                    $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti a favor da sua equipe! O cobrador oficial pega a bola."];
-                    return;
-                } else {
-                    MatchPenalty::resolveTeammatePenalty($g, $m, false);
+        // Invariante: segmento com duração zero não pode gerar eventos esportivos dependentes de tempo transcorrido
+        if ($span > 0) {
+            // Check for in-match penalty event during segment (idempotente e avaliado uma única vez por janela lógica)
+            $m['evaluated_penalties'] = $m['evaluated_penalties'] ?? [];
+            $windowKey = $m['minute'] . '-' . $next;
+            if (empty($m['active_match_penalty']) && !in_array($windowKey, $m['evaluated_penalties'], true)) {
+                $m['evaluated_penalties'][] = $windowKey;
+                $isProtagonistOnField = MatchParticipation::canActOnField($m);
+                $penaltyRoll = random_int(1, 100);
+                if ($penaltyRoll <= 5) {
+                    // Team penalty awarded!
+                    self::emitSoundEvent($m, $g, 'WHISTLE_FOUL', (int)$m['minute']);
+                    $victim = $g['name'];
+                    $isOfficialTaker = MatchPenalty::isProtagonistOfficialTaker($g, $m);
+                    if ($isProtagonistOnField && $isOfficialTaker) {
+                        $m['active_match_penalty'] = [
+                            'status' => 'taking_kick',
+                            'victim' => $victim,
+                            'window' => $windowKey,
+                            'context_message' => 'PÊNALTI A FAVOR! Como cobrador oficial da equipe, você assume a marca da cal.'
+                        ];
+                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti a favor da sua equipe! Você se posiciona na marca da cal."];
+                        return;
+                    } elseif ($isProtagonistOnField) {
+                        $m['active_match_penalty'] = [
+                            'status' => 'pending_request',
+                            'victim' => 'companheiro',
+                            'window' => $windowKey
+                        ];
+                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti a favor da sua equipe! O cobrador oficial pega a bola."];
+                        return;
+                    } else {
+                        MatchPenalty::resolveTeammatePenalty($g, $m, false);
+                    }
+                } elseif ($penaltyRoll >= 96) {
+                    // Opponent penalty
+                    MatchPenalty::resolveOpponentPenalty($g, $m);
                 }
-            } elseif ($penaltyRoll >= 96) {
-                // Opponent penalty
-                MatchPenalty::resolveOpponentPenalty($g, $m);
             }
-        }
 
-        TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
-        if(($m['balance_version']??0)<2){$difference=max(-60,min(60,$m['home_overall']-$m['away_overall']));$means=[max(.25,min(3.5,1.35*exp($difference/55))),max(.25,min(3.5,1.10*exp(-$difference/55)))];}
-        foreach(['hg','ag'] as $index=>$side) {
-            $mean=($m['balance_version']??0)>=2?MatchBalance::collectiveMean($m,$side,$g['club'],$m['minute'],$next):$means[$index]*$span/90;
-            $goals=TeamStrength::goals($mean);
-            for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $auditMinute=$m['minute'];$m['minute']=$next;GoalAudit::score($m,$side,$g['club']);$m['minute']=$auditMinute; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
+            TeamStrength::snapshot($m,$g);$means=TeamStrength::expectations($m['home_overall'],$m['away_overall']);
+            if(($m['balance_version']??0)<2){$difference=max(-60,min(60,$m['home_overall']-$m['away_overall']));$means=[max(.25,min(3.5,1.35*exp($difference/55))),max(.25,min(3.5,1.10*exp(-$difference/55)))];}
+            foreach(['hg','ag'] as $index=>$side) {
+                $mean=($m['balance_version']??0)>=2?MatchBalance::collectiveMean($m,$side,$g['club'],$m['minute'],$next):$means[$index]*$span/90;
+                $goals=TeamStrength::goals($mean);
+                for($goal=0;$goal<$goals;$goal++) { $m[$side]++; $auditMinute=$m['minute'];$m['minute']=$next;GoalAudit::score($m,$side,$g['club']);$m['minute']=$auditMinute; $m['log'][]=['minute'=>$next,'text'=>$side===$own?'Gol da equipe em jogada coletiva.':'Gol adversário em contra-ataque.']; }
+            }
         }
         $m['minute']=$next;
         if($next===45) $m['status']='intervalo';

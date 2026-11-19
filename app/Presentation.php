@@ -231,7 +231,8 @@ final class Presentation {
             $hasLegacySubMarker = in_array($exitReason, ['injury', 'fatigue', 'tactical'], true)
                 || !empty($m['substituido'])
                 || !empty($m['sub_out_recorded'])
-                || ($m['lineup'] ?? '') === 'substituído';
+                || ($m['lineup'] ?? '') === 'substituído'
+                || MatchParticipation::hasExitMarker($m);
             if (isset($m['exit']) && is_numeric($m['exit'])) {
                 // Inferência legada (sem estado canônico): exclusivamente quando exit < 90 e minute >= exit
                 $rawExit = (int)$m['exit'];
