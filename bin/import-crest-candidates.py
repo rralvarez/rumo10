@@ -85,6 +85,13 @@ def main():
         p.error('Manifesto incompleto: esperado inventario dos 60 clubes')
     spec = importlib.util.spec_from_file_location('crest_repair',root/'bin/repair-crest-backgrounds.py')
     module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
+    evidence=root/'database/escudos_resgatados_20261119.json'
+    previously={}
+    if evidence.is_file():
+        existing=json.loads(evidence.read_text(encoding='utf-8'))
+        if existing.get('kind') != a.kind:
+            raise ValueError('A procedencia pertence a outro repositorio')
+        previously=existing.get('clubs',{})
     report=[]; mapped={}
     for r in records:
         name = r['clube']
@@ -101,7 +108,9 @@ def main():
             report.append(base | {'estado':'NOME_DE_ARQUIVO_INVALIDO'}); continue
         target = assets / filename
         if target.exists():
-            report.append(base | {'estado':'ARQUIVO_JA_EXISTENTE_SEM_ALTERACAO'}); continue
+            if name in previously and previously[name].get('path') == '/assets/clubs/'+filename:
+                report.append(base | {'estado':'ARQUIVO_RECUPERADO_ANTERIORMENTE'}); continue
+            report.append(base | {'estado':'ARQUIVO_JA_EXISTENTE_SEM_IDENTIDADE_VALIDADA'}); continue
         try:
             raw,img = import_reviewed_source(url)
             if a.write:
@@ -122,20 +131,21 @@ def main():
                                   'hash_fonte':hashlib.sha256(raw).hexdigest()})
         except Exception as ex:
             report.append(base | {'estado':'FALHA_FONTE_SEM_INVENTAR_IMAGEM','detalhe':f'{type(ex).__name__}: {ex}'})
-    if a.write and mapped:
+    if a.write and (mapped or previously):
         if a.kind=='rumo10':
             append_json_entries_without_reformat(root/'database/club-badges.json', {
                 n:{'path':m['path'],'source':m['source'],'download_url':m['download_url'],'retrieved':m['retrieved']}
                 for n,m in mapped.items()
             })
         # Em ambos: relatorio novo de procedencia, nunca alterar IDs nem tabelas.
-        evidence=root/'database/escudos_resgatados_20261119.json'
-        evidence.write_text(json.dumps({'kind':a.kind,'clubs':mapped},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+        accumulated=dict(previously)
+        accumulated.update(mapped)
+        evidence.write_text(json.dumps({'kind':a.kind,'clubs':accumulated},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         if a.kind=='rumohub':
             sql=['-- PROPOSTA, NAO EXECUTAR AUTOMATICAMENTE. Verificar backup e versoes antes da importacao.',
                  '-- Apenas preenche badges vazios ou troca caminho de arquivo ja convertido.',
                  'START TRANSACTION;']
-            for n,m in sorted(mapped.items()):
+            for n,m in sorted(accumulated.items()):
                 name=n.replace("'","''")
                 sql.append("UPDATE rh_clubes SET escudo_caminho='{}' WHERE codigo='{}' AND (escudo_caminho IS NULL OR escudo_caminho='');".format(m['path'],name))
             # PNGs gerados a partir de JPG/GIF nos quais o caminho historico nao muda sozinho.
@@ -150,7 +160,7 @@ def main():
     fields=['clube','origem','imagem','estado','detalhe','bytes','largura','altura','hash_fonte']
     with (output/'relatorio_importacao.csv').open('w',encoding='utf-8-sig',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=fields,delimiter=';',extrasaction='ignore');writer.writeheader();writer.writerows(report)
-    summary={'universo_revisado':len(report),'candidatos_processados':sum(r['estado']=='IMAGEM_PREPARADA_PARA_REVISAO' for r in report),'falhas_download':sum(r['estado']=='FALHA_FONTE_SEM_INVENTAR_IMAGEM' for r in report),'pendencias_restantes':sum(r['estado']!='IMAGEM_PREPARADA_PARA_REVISAO' for r in report)}
+    summary={'universo_revisado':len(report),'candidatos_processados_nesta_execucao':len(mapped),'candidatos_processados_acumulados':len(previously)+len(mapped),'falhas_download':sum(r['estado']=='FALHA_FONTE_SEM_INVENTAR_IMAGEM' for r in report),'pendencias_restantes':sum(r['estado'] not in ('IMAGEM_PREPARADA_PARA_REVISAO','ARQUIVO_RECUPERADO_ANTERIORMENTE') for r in report)}
     (output/'resumo_importacao.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding='utf-8')
     print(json.dumps(summary,ensure_ascii=False,indent=2))
 
