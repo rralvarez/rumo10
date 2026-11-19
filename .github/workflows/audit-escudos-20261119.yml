@@ -1,0 +1,43 @@
+name: Auditoria e proposta de limpeza dos escudos
+on:
+  push:
+    branches: [audit/escudos-transparentes-20261119]
+    paths:
+      - bin/repair-crest-backgrounds.py
+      - .github/workflows/audit-escudos-20261119.yml
+permissions:
+  contents: write
+jobs:
+  preparar-escudos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout somente da branch de revisao
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar processamento de imagem
+        run: python -m pip install 'Pillow>=11,<13'
+      - name: Corrigir apenas pixels brancos externos e salvar relatorio
+        run: python bin/repair-crest-backgrounds.py --root . --kind rumo10 --output .audit-escudos --write
+      - name: Guardar relatorio auditavel
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-escudos-rumo10
+          path: .audit-escudos/
+          retention-days: 30
+      - name: Commit apenas em branch de revisao
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/assets/clubs database/club-badges.json
+          if git diff --cached --quiet; then
+            echo "Nenhuma imagem foi alterada pela regra conservadora."
+          else
+            git commit -m "fix(escudos): eliminar fundos brancos externos de alta confianca"
+            git push origin "HEAD:audit/escudos-transparentes-20261119"
+          fi
