@@ -66,52 +66,196 @@ final class MatchParticipation {
     }
 
     /**
-     * Atualiza o estado de participação ao transitar minutos/segmentos
+     * Registra imediatamente uma saída de campo (expulsão, lesão, desgaste ou tática)
+     * preservando a causa estruturada e evitando múltiplas causas na mesma jogada.
+     */
+    public static function recordExit(array &$m, array &$g, int $minute, string $reason): void {
+        $state = $m['participation_state'] ?? null;
+        if ($reason === 'sent_off') {
+            $m['exit'] = $minute;
+            $m['participation_state'] = self::STATE_SENT_OFF;
+            $m['exit_reason'] = 'sent_off';
+            $m['team_reduced'] = true;
+            $m['red_card_minute'] = $minute;
+            return;
+        }
+
+        // Não sobrescrever um estado terminal já consolidado (ex.: expulso ou já substituído)
+        if (in_array($state, [self::STATE_SENT_OFF, self::STATE_SUBSTITUTED_OUT, self::STATE_FULL_TIME, self::STATE_NOT_SELECTED, self::STATE_SUSPENDED], true)) {
+            return;
+        }
+
+        $m['exit'] = $minute;
+        $m['participation_state'] = self::STATE_SUBSTITUTED_OUT;
+        $m['exit_reason'] = $reason;
+        if (empty($m['sub_out_recorded'])) {
+            $m['sub_out_recorded'] = true;
+            Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_OUT', $minute);
+        }
+    }
+
+    /**
+     * Atualiza o estado de participação ao transitar minutos/segmentos (idempotente)
      */
     public static function sync(array &$m, array &$g, int $minute): void {
         $state = $m['participation_state'] ?? null;
         if (!$state) {
             // Reconciliação legada
-            if (($m['lineup'] ?? '') === 'não relacionado') $state = self::STATE_NOT_SELECTED;
+            $st = $m['stats'] ?? [];
+            $isRed = !empty($m['red_card_minute'])
+                || (int)($st['red_cards'] ?? 0) > 0
+                || (int)($st['direct_red'] ?? 0) > 0
+                || (int)($st['second_yellow'] ?? 0) > 0;
+            if ($isRed) $state = self::STATE_SENT_OFF;
+            elseif (($m['lineup'] ?? '') === 'não relacionado') $state = self::STATE_NOT_SELECTED;
             elseif (($m['lineup'] ?? '') === 'suspenso') $state = self::STATE_SUSPENDED;
-            elseif (($m['lineup'] ?? '') === 'reserva') $state = ($minute >= $m['entry'] && $minute < $m['exit']) ? self::STATE_ON_FIELD : self::STATE_ON_BENCH;
-            else $state = ($minute >= $m['entry'] && $minute < $m['exit']) ? self::STATE_ON_FIELD : self::STATE_STARTING;
+            elseif (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0 && (int)$m['exit'] < 90 && $minute >= (int)$m['exit']) $state = self::STATE_SUBSTITUTED_OUT;
+            elseif (($m['lineup'] ?? '') === 'reserva') $state = ($minute >= ($m['entry'] ?? 90) && $minute < ($m['exit'] ?? 90)) ? self::STATE_ON_FIELD : self::STATE_ON_BENCH;
+            else $state = ($minute >= ($m['entry'] ?? 0) && $minute < ($m['exit'] ?? 90)) ? self::STATE_ON_FIELD : self::STATE_STARTING;
         }
 
-        if (in_array($state, [self::STATE_NOT_SELECTED, self::STATE_SUSPENDED, self::STATE_SENT_OFF], true)) {
+        // Estados terminais imutáveis: expulsos, substituídos, ausentes e encerrados não retornam a campo
+        if (in_array($state, [self::STATE_NOT_SELECTED, self::STATE_SUSPENDED, self::STATE_SENT_OFF, self::STATE_SUBSTITUTED_OUT, self::STATE_FULL_TIME], true)) {
             $m['participation_state'] = $state;
             return;
         }
 
-        // Checagem de entrada em campo do banco
-        if ($state === self::STATE_ON_BENCH && $m['entry'] < 90 && $minute >= $m['entry'] && $minute < $m['exit']) {
+        $isFinished = (($m['status'] ?? '') === 'finalizada');
+        $entry = (int)($m['entry'] ?? 0);
+        $exit = (int)($m['exit'] ?? 90);
+
+        // Checagem de entrada em campo do banco (apenas com partida em curso)
+        if (!$isFinished && $state === self::STATE_ON_BENCH && $entry < 90 && $minute >= $entry && $minute < $exit) {
             $m['participation_state'] = self::STATE_ON_FIELD;
-            $m['log'][] = ['minute' => $m['entry'], 'text' => "{$m['entry']}' | Você entra em campo no lugar de um companheiro."];
-            Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_IN', (int)$m['entry']);
-            return;
-        }
-
-        // Checagem de saída por substituição
-        if ($state === self::STATE_ON_FIELD && $minute >= $m['exit'] && $m['exit'] < 90) {
-            $m['participation_state'] = self::STATE_SUBSTITUTED_OUT;
-            $m['log'][] = ['minute' => $m['exit'], 'text' => "{$m['exit']}' | Você é substituído após participar da partida."];
-            Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_OUT', (int)$m['exit']);
-            return;
-        }
-
-        // Checagem de término de partida
-        if ($minute >= 90) {
-            if ($state === self::STATE_ON_FIELD) {
-                $m['participation_state'] = self::STATE_FULL_TIME;
-            } elseif ($state === self::STATE_ON_BENCH && $m['entry'] >= 90) {
-                $m['log'][] = ['minute' => 90, 'text' => 'Você permaneceu no banco e não entrou em campo.'];
+            if (empty($m['sub_in_recorded'])) {
+                $m['sub_in_recorded'] = true;
+                $m['log'][] = ['minute' => $entry, 'text' => "{$entry}' | Você entra em campo no lugar de um companheiro."];
+                Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_IN', $entry);
             }
             return;
         }
 
-        if ($minute >= $m['entry'] && $minute < $m['exit']) {
+        // Checagem de saída por substituição (idempotente)
+        if ($state === self::STATE_ON_FIELD && $exit < 90 && $minute >= $exit) {
+            $m['participation_state'] = self::STATE_SUBSTITUTED_OUT;
+            if (empty($m['exit_reason'])) {
+                $m['exit_reason'] = 'tactical';
+            }
+            if (empty($m['sub_out_recorded'])) {
+                $m['sub_out_recorded'] = true;
+                $m['log'][] = ['minute' => $exit, 'text' => "{$exit}' | Você é substituído após participar da partida."];
+                Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_OUT', $exit);
+            }
+            return;
+        }
+
+        // Encerramento efetivo da partida: FULL_TIME vinculado ao status 'finalizada'
+        if ($isFinished) {
+            if ($state === self::STATE_ON_FIELD || ($state === self::STATE_STARTING && $entry < 90 && $exit >= 90)) {
+                $m['participation_state'] = self::STATE_FULL_TIME;
+            } elseif ($state === self::STATE_ON_BENCH && $entry >= 90) {
+                $m['participation_state'] = self::STATE_ON_BENCH;
+                if (empty($m['unused_bench_logged'])) {
+                    $m['unused_bench_logged'] = true;
+                    $m['log'][] = ['minute' => max(90, $minute), 'text' => 'Você permaneceu no banco e não entrou em campo.'];
+                }
+            }
+            return;
+        }
+
+        if ($state === self::STATE_STARTING && $minute >= $entry && $minute < $exit) {
             $m['participation_state'] = self::STATE_ON_FIELD;
         }
+    }
+
+    /**
+     * Calcula minutos estatísticos efetivamente disputados sem adulterar entry/exit.
+     * Admite mínimo de 1 minuto quando houve ação válida em campo no mesmo minuto da entrada.
+     */
+    public static function playedMinutes(array $m): int {
+        $entry = (int)($m['entry'] ?? 0);
+        $exit = (int)($m['exit'] ?? 0);
+        $state = $m['participation_state'] ?? null;
+        $lineup = (string)($m['lineup'] ?? '');
+
+        if (in_array($state, [self::STATE_SUSPENDED, self::STATE_NOT_SELECTED], true)
+            || in_array($lineup, ['suspenso', 'não relacionado', 'nao_relacionado'], true)
+            || $entry >= 90
+        ) {
+            return 0;
+        }
+
+        $raw = max(0, $exit - $entry);
+        if ($raw > 0) {
+            return $raw;
+        }
+
+        // Somente contabiliza mínimo de 1 minuto quando houver evidência real de atuação em campo
+        // no mesmo minuto da entrada (participated_on_field gravado pelo motor ou reserva que entrou
+        // em entry > 0 e saiu por expulsão/substituição no mesmo minuto).
+        $actedInField = !empty($m['participated_on_field'])
+            || ($entry > 0 && $entry < 90 && $exit === $entry && in_array($state, [self::STATE_SENT_OFF, self::STATE_SUBSTITUTED_OUT], true));
+
+        return $actedInField ? 1 : 0;
+    }
+
+    /**
+     * Verifica se o atleta efetivamente permaneceu em campo até o término da partida
+     * (elegibilidade para cobrança em disputa de pênaltis).
+     */
+    public static function finishedOnField(array $m): bool {
+        $state = $m['participation_state'] ?? null;
+        $lineup = (string)($m['lineup'] ?? '');
+        $st = $m['stats'] ?? [];
+        $exitReason = (string)($m['exit_reason'] ?? '');
+
+        if ($state === self::STATE_SENT_OFF
+            || $exitReason === 'sent_off'
+            || !empty($m['red_card_minute'])
+            || (int)($st['red_cards'] ?? 0) > 0
+            || (int)($st['direct_red'] ?? 0) > 0
+            || (int)($st['second_yellow'] ?? 0) > 0
+            || (int)($st['cards_red'] ?? 0) > 0
+            || (!array_key_exists('red_cards', $st) && (int)($st['cards'] ?? 0) >= 2)
+        ) {
+            return false;
+        }
+
+        if (in_array($lineup, ['suspenso', 'não relacionado', 'nao_relacionado', 'substituído'], true)
+            || in_array($exitReason, ['injury', 'fatigue', 'tactical', 'sent_off'], true)
+            || !empty($m['substituido'])
+        ) {
+            return false;
+        }
+
+        $entry = isset($m['entry']) && is_numeric($m['entry']) ? (int)$m['entry'] : null;
+        $exit = isset($m['exit']) && is_numeric($m['exit']) ? (int)$m['exit'] : null;
+
+        if ($entry !== null && $entry >= 90) {
+            return false;
+        }
+        if ($exit !== null && $exit > 0 && $exit < 90) {
+            return false;
+        }
+
+        if (is_string($state) && $state !== '') {
+            if (!in_array($state, [self::STATE_FULL_TIME, self::STATE_ON_FIELD], true)) {
+                return false;
+            }
+            return $entry !== null && $entry < 90 && $exit !== null && $exit >= 90;
+        }
+
+        if ($entry === null || $exit === null) {
+            return false;
+        }
+        if ($exit >= 90) {
+            return $entry >= 0 && $entry < 90;
+        }
+        // Compatibilidade com saves/fixtures legados sem participation_state nem lineup
+        if ($entry === 0 && $exit === 0 && $lineup === '' && ($m['status'] ?? '') === 'finalizada' && (int)($m['minute'] ?? 0) >= 90) {
+            return true;
+        }
+        return false;
     }
 
     public static function isOnField(array $m): bool {

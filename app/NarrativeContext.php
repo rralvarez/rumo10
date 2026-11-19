@@ -15,7 +15,8 @@ final class NarrativeContext {
    $out+=['home_away'=>$home?'home':'away','score_state'=>$diff>0?'ganhando':($diff<0?'perdendo':'empatando'),'margin'=>abs($diff),'minute'=>$m['minute'],'played_minutes'=>max(0,min($m['minute'],$m['exit'])-$m['entry']),'own_goals'=>$m['stats']['goals'],'own_cards'=>$m['stats']['cards'],'on_field'=>$m['status']==='em_andamento' && $m['minute']>=$m['entry'] && $m['minute']<$m['exit'],'finished'=>$m['status']==='finalizada'];
    foreach(['assists','shots','completed','tackles'] as $stat)$out['own_'.$stat]=$m['stats'][$stat];
    if($out['finished'])$out['played_minutes']=$m['stats']['minutes'];
-   foreach($m['log'] as $entry)foreach(['injury'=>'Lesão: você deixa o campo.','fatigue'=>'Substituído por desgaste.','red'=>'Expulso: segundo cartão.'] as $reason=>$marker)if(str_contains($entry['text'],$marker))$out['exit_reason']=$reason;
+   if(!empty($m['exit_reason']))$out['exit_reason']=$m['exit_reason']==='sent_off'?'red':$m['exit_reason'];
+   if(!isset($out['exit_reason']))foreach($m['log'] as $entry)foreach(['injury'=>'Lesão: você deixa o campo.','fatigue'=>'Substituído por desgaste.','red'=>'Expulso'] as $reason=>$marker)if(str_contains($entry['text'],$marker))$out['exit_reason']=$reason;
    $out['bench']=($m['lineup']??'')==='reserva';$out['starter']=($m['lineup']??'')==='titular';$out['bench_confirmed']=$out['bench'];
   }
   $teamPlayed=array_values(array_filter($g['matches'],fn($m)=>$m['status']==='finalizada' && in_array($g['club'],[$m['home'],$m['away']],true)));

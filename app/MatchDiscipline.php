@@ -36,11 +36,16 @@ final class MatchDiscipline {
      */
     public static function recordFoul(array &$g, array &$m, string $context, bool $severe = false): array {
         $st = &$m['stats'];
-        $st['fouls'] = ($st['fouls'] ?? 0) + 1;
         $st['yellow_cards'] = $st['yellow_cards'] ?? 0;
         $st['red_cards'] = $st['red_cards'] ?? 0;
         $st['direct_red'] = $st['direct_red'] ?? 0;
         $st['second_yellow'] = $st['second_yellow'] ?? 0;
+
+        if (($m['participation_state'] ?? '') === MatchParticipation::STATE_SENT_OFF || (int)$st['red_cards'] > 0) {
+            return ['card' => null, 'text' => ''];
+        }
+
+        $st['fouls'] = ($st['fouls'] ?? 0) + 1;
 
         $minute = $m['minute'];
         $result = ['card' => null, 'text' => ''];
@@ -56,10 +61,7 @@ final class MatchDiscipline {
             $st['direct_red'] = 1;
             $st['red_cards'] = 1;
             $st['cards'] = $st['yellow_cards'] + 1;
-            $m['exit'] = $minute;
-            $m['participation_state'] = MatchParticipation::STATE_SENT_OFF;
-            $m['team_reduced'] = true;
-            $m['red_card_minute'] = $minute;
+            MatchParticipation::recordExit($m, $g, (int)$minute, 'sent_off');
             $result['card'] = 'direct_red';
             $result['text'] = "{$minute}' | Cartão vermelho direto! Você foi expulso da partida.";
             $result['sound_event_id'] = Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
@@ -82,10 +84,7 @@ final class MatchDiscipline {
             $st['second_yellow'] = 1;
             $st['red_cards'] = 1;
             $st['cards'] = 2;
-            $m['exit'] = $minute;
-            $m['participation_state'] = MatchParticipation::STATE_SENT_OFF;
-            $m['team_reduced'] = true;
-            $m['red_card_minute'] = $minute;
+            MatchParticipation::recordExit($m, $g, (int)$minute, 'sent_off');
             $result['card'] = 'second_yellow';
             $result['text'] = "{$minute}' | Segundo cartão amarelo! Você está expulso da partida.";
             $result['sound_event_id'] = Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
