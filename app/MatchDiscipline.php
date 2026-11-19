@@ -35,7 +35,7 @@ final class MatchDiscipline {
      * Aplica falta e avalia cartão no protagonista com distinção entre falta tática e infrações disciplinares.
      */
     public static function recordFoul(array &$g, array &$m, string $context, bool $severe = false): array {
-        if (MatchParticipation::isSentOff($m)) {
+        if (MatchParticipation::resolveExit($m)['status'] !== 'none') {
             return ['card' => null, 'text' => ''];
         }
 

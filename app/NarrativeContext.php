@@ -15,8 +15,8 @@ final class NarrativeContext {
    $out+=['home_away'=>$home?'home':'away','score_state'=>$diff>0?'ganhando':($diff<0?'perdendo':'empatando'),'margin'=>abs($diff),'minute'=>$m['minute'],'played_minutes'=>max(0,min($m['minute'],$m['exit'])-$m['entry']),'own_goals'=>$m['stats']['goals'],'own_cards'=>$m['stats']['cards'],'on_field'=>MatchParticipation::canActOnField($m),'finished'=>$m['status']==='finalizada'];
    foreach(['assists','shots','completed','tackles'] as $stat)$out['own_'.$stat]=$m['stats'][$stat];
    if($out['finished'])$out['played_minutes']=$m['stats']['minutes'];
-   if(!empty($m['exit_reason']))$out['exit_reason']=$m['exit_reason']==='sent_off'?'red':$m['exit_reason'];
-   if(!isset($out['exit_reason']))foreach($m['log'] as $entry){$t=(string)($entry['text']??'');if(str_contains($t,'Lesão: você deixa o campo.'))$out['exit_reason']='injury';elseif(str_contains($t,'Substituído por desgaste.'))$out['exit_reason']='fatigue';elseif(str_contains($t,'Expulso: segundo cartão.')||str_contains($t,'Você foi expulso da partida')||str_contains($t,'Você está expulso da partida'))$out['exit_reason']='red';}
+   $exitInfo=MatchParticipation::resolveExit($m);
+   if(!$exitInfo['cause_conflict'] && $exitInfo['kind']!==null)$out['exit_reason']=$exitInfo['kind']==='sent_off'?'red':$exitInfo['kind'];
    $out['bench']=($m['lineup']??'')==='reserva';$out['starter']=($m['lineup']??'')==='titular';$out['bench_confirmed']=$out['bench'];
   }
   $teamPlayed=array_values(array_filter($g['matches'],fn($m)=>$m['status']==='finalizada' && in_array($g['club'],[$m['home'],$m['away']],true)));

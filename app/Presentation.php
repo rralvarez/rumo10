@@ -160,9 +160,9 @@ final class Presentation {
         $partState = $m['participation_state'] ?? null;
         $lineup = $m['lineup'] ?? 'titular';
         $st = $m['stats'] ?? [];
-        $isRedCard = MatchParticipation::isSentOff($m);
-        $hasRedMinute = isset($m['red_card_minute']) && is_numeric($m['red_card_minute']) && (int)$m['red_card_minute'] > 0;
-        $redMinute = $hasRedMinute ? (int)$m['red_card_minute'] : null;
+        $exitInfo = MatchParticipation::resolveExit($m);
+        $isRedCard = !$exitInfo['cause_conflict'] && $exitInfo['kind'] === 'sent_off';
+        $redMinute = $isRedCard ? $exitInfo['minute'] : null;
 
         // 1. Atleta suspenso
         if ($partState === 'SUSPENDED' || $lineup === 'suspenso') {
@@ -185,6 +185,18 @@ final class Presentation {
                 'note_icon' => '📋',
                 'note_title' => 'Não relacionado',
                 'note_desc' => 'Você não foi relacionado para esta partida e acompanha o jogo de fora.',
+            ];
+        }
+
+        // 2.5. Conflito irreconciliável de causa de saída: apresentação neutra de ausência de campo sem inventar classificação esportiva
+        if ($exitInfo['cause_conflict']) {
+            return [
+                'type' => 'off_field',
+                'label' => 'Fora de campo',
+                'class' => 'status-bench',
+                'note_icon' => 'ℹ️',
+                'note_title' => 'Fora de campo',
+                'note_desc' => 'Você não está em campo no momento e acompanha a sequência da partida.',
             ];
         }
 
@@ -217,35 +229,26 @@ final class Presentation {
             ];
         }
 
-        // 5. Atleta substituído (utiliza minuto real inclusive >= 90 para canonical SUBSTITUTED_OUT)
+        // 5. Atleta substituído (utiliza reconciliação canônica e preserva minuto >= 90 para SUBSTITUTED_OUT sem conflito)
         $isSubstituted = false;
         $exitMinute = null;
-        $exitReason = (string)($m['exit_reason'] ?? '');
 
-        if ($partState === 'SUBSTITUTED_OUT') {
+        if ($exitInfo['status'] !== 'none' && $exitInfo['kind'] !== 'sent_off') {
             $isSubstituted = true;
-            if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
+            $exitMinute = $exitInfo['minute'];
+            if ($exitMinute === null
+                && !$exitInfo['time_conflict']
+                && $partState === MatchParticipation::STATE_SUBSTITUTED_OUT
+                && isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0
+            ) {
                 $exitMinute = (int)$m['exit'];
             }
-        } else {
-            $hasLegacySubMarker = in_array($exitReason, ['injury', 'fatigue', 'tactical'], true)
-                || !empty($m['substituido'])
-                || !empty($m['sub_out_recorded'])
-                || ($m['lineup'] ?? '') === 'substituído'
-                || MatchParticipation::hasExitMarker($m);
-            if (isset($m['exit']) && is_numeric($m['exit'])) {
-                // Inferência legada (sem estado canônico): exclusivamente quando exit < 90 e minute >= exit
-                $rawExit = (int)$m['exit'];
-                if ($rawExit > 0 && $rawExit < 90 && $minute >= $rawExit) {
-                    $isSubstituted = true;
-                    $exitMinute = $rawExit;
-                }
-            }
-            if (!$isSubstituted && $hasLegacySubMarker) {
+        } elseif (!$partState && isset($m['exit']) && is_numeric($m['exit'])) {
+            // Inferência legada (sem estado canônico): exclusivamente quando exit < 90 e minute >= exit
+            $rawExit = (int)$m['exit'];
+            if ($rawExit > 0 && $rawExit < 90 && $minute >= $rawExit) {
                 $isSubstituted = true;
-                if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0 && (int)$m['exit'] < 90) {
-                    $exitMinute = (int)$m['exit'];
-                }
+                $exitMinute = $rawExit;
             }
         }
 
