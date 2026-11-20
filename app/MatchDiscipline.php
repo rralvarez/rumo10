@@ -95,11 +95,36 @@ final class MatchDiscipline {
     }
 
     /**
+     * Classificação disciplinar canônica da partida, unificada com MatchParticipation::resolveExit().
+     * Distingue: none, direct_red, second_yellow, sent_off_unspecified e conflict.
+     *
+     * @return array{outcome:string,minute:?int}
+     */
+    public static function classifyExpulsion(array $m): array {
+        $exitInfo = MatchParticipation::resolveExit($m);
+        if ($exitInfo['cause_conflict']) {
+            return ['outcome' => 'conflict', 'minute' => null];
+        }
+        if ($exitInfo['kind'] !== 'sent_off') {
+            return ['outcome' => 'none', 'minute' => null];
+        }
+        if (!empty($exitInfo['subtype_conflict'])) {
+            return ['outcome' => 'conflict', 'minute' => null];
+        }
+        if ($exitInfo['subtype'] === 'direct_red') {
+            return ['outcome' => 'direct_red', 'minute' => $exitInfo['minute']];
+        }
+        if ($exitInfo['subtype'] === 'second_yellow') {
+            return ['outcome' => 'second_yellow', 'minute' => $exitInfo['minute']];
+        }
+        return ['outcome' => 'sent_off_unspecified', 'minute' => $exitInfo['minute']];
+    }
+
+    /**
      * Reconcilia disciplina ao fim da partida na competição correspondente.
-     * Segue estritamente a regulamentação por competição:
-     * - Se a competição não tiver regra explícita de suspensão, marca estado regulamentar pendente ('pending_tribunal')
-     *   sem aplicar suspensão automática cega.
-     * - Não contamina outras competições da mesma carreira.
+     * Consome exclusivamente a classificação canônica de expulsão (MatchDiscipline::classifyExpulsion /
+     * MatchParticipation::resolveExit), garantindo paridade entre log formal e campos estruturados
+     * e impedindo punição silenciosa em conflitos causais ou disciplinares irreconciliáveis.
      */
     public static function processMatchEnd(array &$g, array &$m): void {
         if (!empty($m['disciplinary_processed'])) {
@@ -133,12 +158,17 @@ final class MatchDiscipline {
 
         $rules = self::competitionRules($cid);
         $st = $m['stats'] ?? [];
-        $directRed = (int)($st['direct_red'] ?? 0);
-        $secondYellow = (int)($st['second_yellow'] ?? 0);
         $yellows = (int)($st['yellow_cards'] ?? 0);
+        $classification = self::classifyExpulsion($m);
 
-        // 1. Vermelho direto
-        if ($directRed > 0) {
+        // Conflito causal ou disciplinar irreconciliável: preserva ledger sem aplicar punição baseada em fonte divergente
+        if ($classification['outcome'] === 'conflict') {
+            $m['disciplinary_processed'] = true;
+            return;
+        }
+
+        // 1. Vermelho direto comprovado (estrutura, log formal ou ambos concordantes)
+        if ($classification['outcome'] === 'direct_red') {
             if (isset($rules['direct_red_suspension'])) {
                 $games = (int)$rules['direct_red_suspension'];
                 if ($games > 0) {
@@ -161,8 +191,8 @@ final class MatchDiscipline {
             return;
         }
 
-        // 2. Segundo amarelo
-        if ($secondYellow > 0) {
+        // 2. Segundo amarelo comprovado (estrutura, log formal ou ambos concordantes)
+        if ($classification['outcome'] === 'second_yellow') {
             if (isset($rules['second_yellow_suspension'])) {
                 $games = (int)$rules['second_yellow_suspension'];
                 if ($games > 0) {
@@ -181,7 +211,29 @@ final class MatchDiscipline {
             return;
         }
 
-        // 3. Acúmulo de cartões amarelos
+        // 3. Expulsão comprovada sem subtipo confiável: não atribui subtipo arbitrariamente
+        if ($classification['outcome'] === 'sent_off_unspecified') {
+            if (isset($rules['direct_red_suspension'], $rules['second_yellow_suspension'])) {
+                $games = min((int)$rules['direct_red_suspension'], (int)$rules['second_yellow_suspension']);
+                if ($games > 0) {
+                    $disp['pending_suspension'] = max($disp['pending_suspension'], $games);
+                    $disp['suspension_reason'] = 'Expulsão de campo (' . $games . ' partida' . ($games > 1 ? 's' : '') . ')';
+                    $disp['regulatory_status'] = 'suspended';
+                } else {
+                    $disp['regulatory_status'] = 'regular';
+                }
+            } elseif (!empty($rules['has_disciplinary_code'])) {
+                $disp['regulatory_status'] = 'pending_tribunal';
+                $disp['suspension_reason'] = 'Expulsão sem subtipo especificado — aguardando julgamento desportivo';
+            } else {
+                $disp['regulatory_status'] = 'no_rule_recorded';
+                $disp['suspension_reason'] = 'Expulsão sem subtipo disciplinar especificado e sem regra documentada';
+            }
+            $m['disciplinary_processed'] = true;
+            return;
+        }
+
+        // 4. Acúmulo de cartões amarelos (sem expulsão)
         if ($yellows === 1) {
             $threshold = $rules['yellow_suspension_threshold'] ?? null;
             if ($threshold !== null && $threshold > 0) {

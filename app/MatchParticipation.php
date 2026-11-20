@@ -67,113 +67,153 @@ final class MatchParticipation {
     }
 
     /**
-     * Interpreta uma linha de log segundo a gramática estrita dos eventos formais de saída
-     * efetivamente emitidos pelo motor (MatchParticipation, MatchDiscipline e Game).
-     * Rejeita perguntas, hipóteses, comentários narrativos, referências a terceiros e fragmentos parciais.
-     *
-     * @return array{kind:string,text_minute:?int,text_minute_conflict:bool,cause_conflict:bool}|null
+     * Valida se o prefixo anterior a um evento formal em log composto corresponde
+     * ao formato real de relato de jogada emitido por Game::fieldDecision() ou ao
+     * formato legado com minuto inicial, rejeitando relatos hipotéticos/arbitrários.
      */
-    private static function parseFormalExitLogText(string $text, bool $allowCompound = true): ?array {
-        $t = trim($text);
-        if ($t === '') {
-            return null;
+    private static function isValidCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute, bool $trustedEngine): bool {
+        if ($trustedEngine) {
+            return true;
         }
-
-        // 1. Substituição tática formal (MatchParticipation::sync) — sempre evento isolado
-        if (preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?Você é substituído após participar da partida\.$/u', $t, $m) === 1) {
-            return [
-                'kind' => 'tactical',
-                'text_minute' => ($m[1] ?? '') !== '' ? (int)$m[1] : null,
-                'text_minute_conflict' => false,
-                'cause_conflict' => false,
-            ];
+        $p = trim($prefixBody);
+        if ($p === '' || str_contains($p, '?')) {
+            return false;
         }
-
-        // 2. Cartão vermelho direto formal (MatchDiscipline::recordFoul) — isolado ou concatenado em Game::fieldDecision
-        if (preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?Cartão vermelho direto! Você foi expulso da partida\.$/u', $t, $m) === 1) {
-            return [
-                'kind' => 'sent_off',
-                'text_minute' => ($m[1] ?? '') !== '' ? (int)$m[1] : null,
-                'text_minute_conflict' => false,
-                'cause_conflict' => false,
-            ];
+        $lastChar = substr($p, -1);
+        if ($lastChar !== '.' && $lastChar !== '!') {
+            return false;
         }
-        if ($allowCompound && preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?(.+?[.!])\s+(\d{1,3})\s*[\'\x{2032}]\s*\|\s*Cartão vermelho direto! Você foi expulso da partida\.$/u', $t, $m) === 1) {
-            return self::buildCompoundExitResult('sent_off', $m[1], $m[3], $m[2]);
+        // Rejeita molduras hipotéticas, de simulação, meta-narrativas ou referências a terceiros/outras partidas
+        if (preg_match('/\b(hipot[eé]tic[oa]?|exemplo|simula[cç][aã]o|ensaio|treino|pr[oó]xim[oa]\s+(?:partida|jogo|rodada)|partida\s+anterior|rodada\s+(?:anterior|passada)|semana\s+passada|se\s+repetir|treinador|t[eé]cnico|auxiliar|m[eé]dico|comiss[aã]o|comentarista|entrevista|relato|lembra|pergunta|perguntou|avisou|comentou|disse|citou|mostrou|encena|advers[aá]rio|companheiro)\b/iu', $p) === 1) {
+            return false;
         }
-
-        // 3. Segundo cartão amarelo formal (MatchDiscipline::recordFoul) — isolado ou concatenado em Game::fieldDecision
-        if (preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?Segundo cartão amarelo! Você está expulso da partida\.$/u', $t, $m) === 1) {
-            return [
-                'kind' => 'sent_off',
-                'text_minute' => ($m[1] ?? '') !== '' ? (int)$m[1] : null,
-                'text_minute_conflict' => false,
-                'cause_conflict' => false,
-            ];
+        // Formato real de Game::fieldDecision(): "<Opção/Ação>: <Desfecho>." (com eventuais frases de jogada)
+        if (preg_match('/(?:^|[.!]\s+)[^:?!.]{2,90}:\s+[^?!]+[.!]$/u', $p) === 1) {
+            return true;
         }
-        if ($allowCompound && preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?(.+?[.!])\s+(\d{1,3})\s*[\'\x{2032}]\s*\|\s*Segundo cartão amarelo! Você está expulso da partida\.$/u', $t, $m) === 1) {
-            return self::buildCompoundExitResult('sent_off', $m[1], $m[3], $m[2]);
+        // Formato legado curto com minuto inicial explícito (ex.: "75' | Disputa dura.")
+        if ($hasLeadMinute && preg_match('/^[\p{L}\p{N}\s,-]{3,40}[.!]$/u', $p) === 1) {
+            return true;
         }
-
-        // 4. Formatos formais de sufixo em Game::fieldDecision (lesão, desgaste, segundo cartão legado)
-        $suffixPatterns = [
-            'sent_off' => 'Expulso: segundo cartão\.',
-            'injury' => 'Lesão: você deixa o campo\.',
-            'fatigue' => 'Substituído por desgaste\.',
-        ];
-        foreach ($suffixPatterns as $kind => $literalPattern) {
-            if (preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?' . $literalPattern . '$/u', $t, $m) === 1) {
-                return [
-                    'kind' => $kind,
-                    'text_minute' => ($m[1] ?? '') !== '' ? (int)$m[1] : null,
-                    'text_minute_conflict' => false,
-                    'cause_conflict' => false,
-                ];
-            }
-            if ($allowCompound && preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?(.+?[.!])\s+(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?' . $literalPattern . '$/u', $t, $m) === 1) {
-                return self::buildCompoundExitResult($kind, $m[1], $m[3] ?? '', $m[2]);
-            }
-        }
-
-        return null;
+        return false;
     }
 
     /**
-     * Consolida minuto e eventuais conflitos em registro composto (relato da jogada + evento formal de saída).
+     * Examina uma linha de log completa e identifica TODAS as ocorrências formais candidatas
+     * de saída/expulsão do protagonista, distinguindo procedência do motor de relatos arbitrários.
+     *
+     * @return array{kinds:array<string,bool>,subtypes:array<string,bool>,text_minutes:array<int,bool>,text_minute_conflict:bool,cause_conflict:bool,subtype_conflict:bool}|null
      */
-    private static function buildCompoundExitResult(string $kind, string $leadMinRaw, string $eventMinRaw, string $prefix): array {
-        $leadMin = $leadMinRaw !== '' ? (int)$leadMinRaw : null;
-        $eventMin = $eventMinRaw !== '' ? (int)$eventMinRaw : null;
-        $minConflict = ($leadMin !== null && $eventMin !== null && $leadMin !== $eventMin);
-        $resolvedMin = $minConflict ? null : ($eventMin ?? $leadMin);
-        $causeConflict = false;
+    private static function parseFormalExitLogEntry(array $entry): ?array {
+        $t = trim((string)($entry['text'] ?? ''));
+        if ($t === '') {
+            return null;
+        }
+        $trustedEngine = (($entry['source'] ?? null) === 'engine');
 
-        // Detecta duplo evento formal incompatível concatenado na mesma linha de log (sem recursão profunda)
-        $prefixEvent = self::parseFormalExitLogText($prefix, false);
-        if ($prefixEvent !== null) {
-            if ($prefixEvent['kind'] !== $kind) {
-                $causeConflict = true;
+        $pattern = '/(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?(?:'
+            . '(Você é substituído após participar da partida\.)'
+            . '|(Cartão vermelho direto! Você foi expulso da partida\.)'
+            . '|(Segundo cartão amarelo! Você está expulso da partida\.)'
+            . '|(Expulso: segundo cartão\.)'
+            . '|(Lesão: você deixa o campo\.)'
+            . '|(Substituído por desgaste\.)'
+            . ')/u';
+
+        $count = preg_match_all($pattern, $t, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+        if ($count === false || $count === 0) {
+            return null;
+        }
+
+        // Texto adicional após o último evento formal nunca é emitido pelo motor
+        $lastMatch = $matches[$count - 1][0];
+        $lastEnd = $lastMatch[1] + strlen($lastMatch[0]);
+        if (trim(substr($t, $lastEnd)) !== '') {
+            return null;
+        }
+
+        // Entre múltiplas ocorrências formais na mesma linha só pode haver separação em branco
+        for ($i = 1; $i < $count; $i++) {
+            $prevEnd = $matches[$i - 1][0][1] + strlen($matches[$i - 1][0][0]);
+            $gap = substr($t, $prevEnd, $matches[$i][0][1] - $prevEnd);
+            if (trim($gap) !== '') {
+                return null;
             }
-            if ($prefixEvent['text_minute'] !== null && $resolvedMin !== null && $prefixEvent['text_minute'] !== $resolvedMin) {
-                $minConflict = true;
-                $resolvedMin = null;
+        }
+
+        $firstOffset = $matches[0][0][1];
+        $prefix = trim(substr($t, 0, $firstOffset));
+        $leadMin = null;
+
+        if ($prefix !== '') {
+            $prefixBody = $prefix;
+            if (preg_match('/^(\d{1,3})\s*[\'\x{2032}]\s*\|\s*(.+)$/u', $prefix, $pm) === 1) {
+                $leadMin = (int)$pm[1];
+                $prefixBody = trim($pm[2]);
+            }
+            if (!self::isValidCompoundPlayPrefix($prefixBody, $leadMin !== null, $trustedEngine)) {
+                return null;
+            }
+        }
+
+        $kinds = [];
+        $subtypes = [];
+        $textMinutes = [];
+        if ($leadMin !== null) {
+            $textMinutes[$leadMin] = true;
+        }
+
+        foreach ($matches as $m) {
+            $evMinRaw = $m[1][0] ?? '';
+            if ($evMinRaw !== '') {
+                $textMinutes[(int)$evMinRaw] = true;
+            }
+            if (($m[2][0] ?? '') !== '') {
+                // Substituição tática (MatchParticipation::sync) nunca é concatenada a relato de jogada
+                if ($prefix !== '' && !$trustedEngine) {
+                    return null;
+                }
+                $kinds['tactical'] = true;
+            } elseif (($m[3][0] ?? '') !== '') {
+                $kinds['sent_off'] = true;
+                $subtypes['direct_red'] = true;
+            } elseif (($m[4][0] ?? '') !== '' || ($m[5][0] ?? '') !== '') {
+                $kinds['sent_off'] = true;
+                $subtypes['second_yellow'] = true;
+            } elseif (($m[6][0] ?? '') !== '') {
+                $kinds['injury'] = true;
+            } elseif (($m[7][0] ?? '') !== '') {
+                $kinds['fatigue'] = true;
             }
         }
 
         return [
-            'kind' => $kind,
-            'text_minute' => $resolvedMin,
-            'text_minute_conflict' => $minConflict,
-            'cause_conflict' => $causeConflict,
+            'kinds' => $kinds,
+            'subtypes' => $subtypes,
+            'text_minutes' => $textMinutes,
+            'text_minute_conflict' => count($textMinutes) > 1,
+            'cause_conflict' => count($kinds) > 1,
+            'subtype_conflict' => count($subtypes) > 1,
         ];
     }
 
     /**
-     * Evidência formal em log de entrada em campo vinda do banco (MatchParticipation::sync).
-     * Rejeita menções hipotéticas, perguntas ou fragmentos fora do formato oficial.
+     * Extrai evidência formal de entrada do banco em logs históricos, respeitando cronologia
+     * (entradas com minuto posterior ao relógio em partida em andamento ficam pendentes).
+     *
+     * @return array{found:bool,minute:?int,conflict:bool,pending_future:int}
      */
-    private static function hasSubInLog(array $m): bool {
-        foreach (($m['log'] ?? []) as $entry) {
+    private static function extractLogEntryEvent(array $m): array {
+        $result = ['found' => false, 'minute' => null, 'conflict' => false, 'pending_future' => 0];
+        if (!isset($m['log']) || !is_array($m['log'])) {
+            return $result;
+        }
+
+        $isFinished = (($m['status'] ?? '') === 'finalizada');
+        $matchMinute = isset($m['minute']) && is_numeric($m['minute']) ? (int)$m['minute'] : null;
+        $minutesSeen = [];
+
+        foreach ($m['log'] as $entry) {
             if (!is_array($entry)) {
                 continue;
             }
@@ -181,88 +221,237 @@ final class MatchParticipation {
             if (preg_match('/^(?:(\d{1,3})\s*[\'\x{2032}]\s*\|\s*)?Você entra em campo no lugar de um companheiro\.$/u', $t, $matches) !== 1) {
                 continue;
             }
-            $hasEntryMin = array_key_exists('minute', $entry) && $entry['minute'] !== null && is_numeric($entry['minute']);
-            $entryMin = $hasEntryMin ? (int)$entry['minute'] : null;
+            $hasEntryMinKey = array_key_exists('minute', $entry) && $entry['minute'] !== null;
+            $entryMin = null;
+            if ($hasEntryMinKey) {
+                if (!is_numeric($entry['minute'])) {
+                    $result['found'] = true;
+                    $result['conflict'] = true;
+                    continue;
+                }
+                $entryMin = (int)$entry['minute'];
+            }
             $textMin = ($matches[1] ?? '') !== '' ? (int)$matches[1] : null;
             if ($entryMin !== null && $textMin !== null && $entryMin !== $textMin) {
+                $result['found'] = true;
+                $result['conflict'] = true;
                 continue;
             }
             $resolvedMin = $entryMin ?? $textMin;
             if ($resolvedMin !== null && ($resolvedMin < 0 || $resolvedMin > self::MAX_VALID_MINUTE)) {
+                $result['found'] = true;
+                $result['conflict'] = true;
                 continue;
             }
-            return true;
+            if ($resolvedMin !== null && $matchMinute !== null && $resolvedMin > $matchMinute) {
+                if (!$isFinished) {
+                    $result['pending_future']++;
+                    continue;
+                }
+                $result['found'] = true;
+                $result['conflict'] = true;
+                continue;
+            }
+
+            $result['found'] = true;
+            if ($resolvedMin !== null) {
+                $minutesSeen[$resolvedMin] = true;
+            }
         }
-        return false;
+
+        if (count($minutesSeen) > 1) {
+            $result['conflict'] = true;
+        } elseif (count($minutesSeen) === 1 && !$result['conflict']) {
+            $result['minute'] = (int)array_key_first($minutesSeen);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Evidência formal ativa em log de entrada em campo vinda do banco (MatchParticipation::sync).
+     */
+    private static function hasSubInLog(array $m): bool {
+        $ev = self::extractLogEntryEvent($m);
+        return $ev['found'] && !$ev['conflict'];
+    }
+
+    /**
+     * Reconciliação canônica do minuto efetivo de entrada em campo, separando explicitamente
+     * janela planejada (entry) de entrada comprovada (transição canônica ou log histórico).
+     *
+     * @return array{status:string,minute:?int,source:string,pending_future:int}
+     */
+    public static function resolveEntry(array $m): array {
+        $state = (string)($m['participation_state'] ?? '');
+        $lineup = (string)($m['lineup'] ?? '');
+        $isFinished = (($m['status'] ?? '') === 'finalizada');
+        $matchMinute = isset($m['minute']) && is_numeric($m['minute']) ? (int)$m['minute'] : null;
+        $entry = isset($m['entry']) && is_numeric($m['entry']) ? (int)$m['entry'] : null;
+
+        $logEntry = self::extractLogEntryEvent($m);
+
+        if (in_array($state, [self::STATE_SUSPENDED, self::STATE_NOT_SELECTED, self::STATE_ON_BENCH, self::STATE_STARTING], true)
+            || in_array($lineup, ['suspenso', 'não relacionado', 'nao_relacionado'], true)
+        ) {
+            return ['status' => 'none', 'minute' => null, 'source' => 'none', 'pending_future' => $logEntry['pending_future']];
+        }
+
+        if ($state === '' && !in_array($lineup, ['titular', 'reserva', 'banco'], true)) {
+            return ['status' => 'none', 'minute' => null, 'source' => 'none', 'pending_future' => $logEntry['pending_future']];
+        }
+
+        if ($logEntry['conflict']) {
+            return ['status' => 'conflict', 'minute' => null, 'source' => 'conflict', 'pending_future' => $logEntry['pending_future']];
+        }
+
+        $hasSubInRecorded = !empty($m['sub_in_recorded']);
+        $hasParticipationFlag = !empty($m['entered_on_field']) || !empty($m['participated_on_field']);
+
+        // Titular com entrada 0
+        if ($lineup === 'titular' && $entry === 0) {
+            if ($logEntry['found'] && $logEntry['minute'] !== null && $logEntry['minute'] !== 0) {
+                return ['status' => 'conflict', 'minute' => null, 'source' => 'conflict', 'pending_future' => $logEntry['pending_future']];
+            }
+            return ['status' => 'valid', 'minute' => 0, 'source' => 'starter', 'pending_future' => $logEntry['pending_future']];
+        }
+
+        // Reserva (ou estado canônico com entry > 0): distingue janela planejada (entry) de entrada efetiva.
+        // sub_in_recorded comprova transição estruturada no minuto entry; entered_on_field/participated_on_field
+        // comprovam atuação em campo sem substituir o minuto de entrada registrado em log formal.
+        if ($hasSubInRecorded && $logEntry['found']) {
+            if ($entry !== null && $logEntry['minute'] !== null && $entry !== $logEntry['minute']) {
+                return ['status' => 'conflict', 'minute' => null, 'source' => 'conflict', 'pending_future' => $logEntry['pending_future']];
+            }
+            $min = $logEntry['minute'] ?? $entry;
+            if ($min === null || $min < 0 || $min >= 90) {
+                return ['status' => 'conflict', 'minute' => null, 'source' => 'conflict', 'pending_future' => $logEntry['pending_future']];
+            }
+            if (!$isFinished && $matchMinute !== null && $min > $matchMinute) {
+                return ['status' => 'none', 'minute' => null, 'source' => 'none', 'pending_future' => $logEntry['pending_future'] + 1];
+            }
+            return ['status' => 'valid', 'minute' => $min, 'source' => 'both', 'pending_future' => $logEntry['pending_future']];
+        }
+
+        if ($logEntry['found']) {
+            $min = $logEntry['minute'] ?? $entry;
+            if ($min === null || $min < 0 || $min >= 90) {
+                return ['status' => 'conflict', 'minute' => null, 'source' => 'conflict', 'pending_future' => $logEntry['pending_future']];
+            }
+            return ['status' => 'valid', 'minute' => $min, 'source' => 'log', 'pending_future' => $logEntry['pending_future']];
+        }
+
+        if ($hasSubInRecorded || $hasParticipationFlag) {
+            if ($entry === null || $entry < 0 || $entry >= 90) {
+                return ['status' => 'conflict', 'minute' => null, 'source' => 'conflict', 'pending_future' => $logEntry['pending_future']];
+            }
+            if (!$isFinished && $matchMinute !== null && $entry > $matchMinute) {
+                return ['status' => 'none', 'minute' => null, 'source' => 'none', 'pending_future' => $logEntry['pending_future'] + 1];
+            }
+            return ['status' => 'valid', 'minute' => $entry, 'source' => 'structured', 'pending_future' => $logEntry['pending_future']];
+        }
+
+        return ['status' => 'none', 'minute' => null, 'source' => 'none', 'pending_future' => $logEntry['pending_future']];
     }
 
     /**
      * Extrai evento formal e verificável de saída/expulsão do protagonista a partir dos logs históricos.
-     * Política conservadora: aceita apenas formatos formais completos emitidos pelo motor,
-     * valida limites temporais, trata duplicatas coerentes de forma idempotente e sinaliza
-     * explicitamente conflitos de causa ou horário.
+     * Aplica validação cronológica para todos os minutos (eventos futuros em partida em andamento
+     * ficam pendentes sem produzir efeito antecipado) e detecta conflitos de causa, subtipo e horário.
      */
     private static function extractLogExitEvent(array $m): array {
         $result = [
             'found' => false,
             'kind' => null,
+            'subtype' => null,
             'minute' => null,
             'conflict' => false,
             'cause_conflict' => false,
+            'subtype_conflict' => false,
             'time_conflict' => false,
+            'pending_future' => 0,
         ];
         if (!isset($m['log']) || !is_array($m['log'])) {
             return $result;
         }
 
+        $isFinished = (($m['status'] ?? '') === 'finalizada');
+        $matchMinute = isset($m['minute']) && is_numeric($m['minute']) ? (int)$m['minute'] : null;
         $kindsSeen = [];
+        $subtypesSeen = [];
         $minutesSeen = [];
 
         foreach ($m['log'] as $entry) {
             if (!is_array($entry)) {
                 continue;
             }
-            $parsed = self::parseFormalExitLogText((string)($entry['text'] ?? ''));
+            $parsed = self::parseFormalExitLogEntry($entry);
             if ($parsed === null) {
                 continue;
             }
 
+            $hasEntryMinKey = array_key_exists('minute', $entry) && $entry['minute'] !== null;
+            $entryMin = null;
+            $invalidMin = false;
+            if ($hasEntryMinKey) {
+                if (!is_numeric($entry['minute'])) {
+                    $invalidMin = true;
+                } else {
+                    $entryMin = (int)$entry['minute'];
+                    if ($entryMin <= 0 || $entryMin > self::MAX_VALID_MINUTE) {
+                        $invalidMin = true;
+                    }
+                }
+            }
+
+            $textMin = null;
+            if (!$parsed['text_minute_conflict'] && count($parsed['text_minutes']) === 1) {
+                $textMin = (int)array_key_first($parsed['text_minutes']);
+                if ($textMin <= 0 || $textMin > self::MAX_VALID_MINUTE) {
+                    $invalidMin = true;
+                }
+            } elseif (count($parsed['text_minutes']) > 1) {
+                foreach (array_keys($parsed['text_minutes']) as $tm) {
+                    if ($tm <= 0 || $tm > self::MAX_VALID_MINUTE) {
+                        $invalidMin = true;
+                    }
+                }
+            }
+
+            $entryTextMismatch = ($entryMin !== null && $textMin !== null && $entryMin !== $textMin);
+            $resolvedMin = (!$invalidMin && !$parsed['text_minute_conflict'] && !$entryTextMismatch)
+                ? ($entryMin ?? $textMin)
+                : null;
+
+            // Validação cronológica geral: evento futuro com partida em andamento não produz efeito antecipado
+            if ($resolvedMin !== null && $matchMinute !== null && $resolvedMin > $matchMinute && !$isFinished) {
+                $result['pending_future']++;
+                continue;
+            }
+
             $result['found'] = true;
-            $kindsSeen[$parsed['kind']] = true;
+            foreach ($parsed['kinds'] as $k => $_) {
+                $kindsSeen[$k] = true;
+            }
+            foreach ($parsed['subtypes'] as $st => $_) {
+                $subtypesSeen[$st] = true;
+            }
             if ($parsed['cause_conflict']) {
                 $result['cause_conflict'] = true;
             }
-            if ($parsed['text_minute_conflict']) {
-                $result['time_conflict'] = true;
+            if ($parsed['subtype_conflict']) {
+                $result['subtype_conflict'] = true;
             }
-
-            $hasEntryMinKey = array_key_exists('minute', $entry) && $entry['minute'] !== null;
-            $entryMin = null;
-            if ($hasEntryMinKey) {
-                if (!is_numeric($entry['minute'])) {
-                    $result['time_conflict'] = true;
-                    continue;
-                }
-                $entryMin = (int)$entry['minute'];
-                if ($entryMin <= 0 || $entryMin > self::MAX_VALID_MINUTE) {
-                    $result['time_conflict'] = true;
-                    continue;
-                }
-            }
-
-            $textMin = $parsed['text_minute'];
-            if ($textMin !== null && ($textMin <= 0 || $textMin > self::MAX_VALID_MINUTE)) {
+            if ($invalidMin || $parsed['text_minute_conflict'] || $entryTextMismatch) {
                 $result['time_conflict'] = true;
                 continue;
             }
 
-            if ($entryMin !== null && $textMin !== null && $entryMin !== $textMin) {
-                $result['time_conflict'] = true;
-                continue;
-            }
-
-            $resolvedMin = $entryMin ?? $textMin;
             if ($resolvedMin !== null) {
+                if ($isFinished && $matchMinute !== null && $resolvedMin > $matchMinute) {
+                    $result['time_conflict'] = true;
+                    continue;
+                }
                 $minutesSeen[$resolvedMin] = true;
             }
         }
@@ -271,6 +460,12 @@ final class MatchParticipation {
             $result['cause_conflict'] = true;
         } elseif (count($kindsSeen) === 1 && !$result['cause_conflict']) {
             $result['kind'] = (string)array_key_first($kindsSeen);
+        }
+
+        if (count($subtypesSeen) > 1) {
+            $result['subtype_conflict'] = true;
+        } elseif (count($subtypesSeen) === 1 && !$result['subtype_conflict']) {
+            $result['subtype'] = (string)array_key_first($subtypesSeen);
         }
 
         if (count($minutesSeen) > 1) {
@@ -284,10 +479,11 @@ final class MatchParticipation {
     }
 
     /**
-     * Reconciliação canônica única de saída de campo e conflitos entre dados estruturados e logs formais.
-     * Fonte única de verdade consumida por motor, disciplina, narrativa e interface (sem recursão).
+     * Reconciliação canônica única de saída de campo, subtipo disciplinar e conflitos
+     * entre dados estruturados e logs formais. Fonte única consumida por motor, disciplina,
+     * narrativa e interface (sem recursão).
      *
-     * @return array{status:string,cause_conflict:bool,time_conflict:bool,kind:?string,minute:?int}
+     * @return array{status:string,cause_conflict:bool,time_conflict:bool,subtype_conflict:bool,kind:?string,subtype:?string,minute:?int,pending_future:int}
      */
     public static function resolveExit(array $m): array {
         $state = (string)($m['participation_state'] ?? '');
@@ -295,15 +491,18 @@ final class MatchParticipation {
         $lineup = (string)($m['lineup'] ?? '');
         $st = is_array($m['stats'] ?? null) ? $m['stats'] : [];
 
+        $hasDirectRedStruct = (int)($st['direct_red'] ?? 0) > 0;
+        $hasSecondYellowStruct = (int)($st['second_yellow'] ?? 0) > 0
+            || (int)($st['yellow_cards'] ?? 0) >= 2
+            || (!array_key_exists('red_cards', $st) && (int)($st['cards'] ?? 0) >= 2);
+
         $hasStructuredExpulsion = $state === self::STATE_SENT_OFF
             || $exitReason === 'sent_off'
             || !empty($m['red_card_minute'])
             || (int)($st['red_cards'] ?? 0) > 0
-            || (int)($st['direct_red'] ?? 0) > 0
-            || (int)($st['second_yellow'] ?? 0) > 0
-            || (int)($st['cards_red'] ?? 0) > 0
-            || (int)($st['yellow_cards'] ?? 0) >= 2
-            || (!array_key_exists('red_cards', $st) && (int)($st['cards'] ?? 0) >= 2);
+            || $hasDirectRedStruct
+            || $hasSecondYellowStruct
+            || (int)($st['cards_red'] ?? 0) > 0;
 
         $structuredSubKind = in_array($exitReason, ['injury', 'fatigue', 'tactical'], true) ? $exitReason : null;
         $hasStructuredSub = $state === self::STATE_SUBSTITUTED_OUT
@@ -319,8 +518,11 @@ final class MatchParticipation {
                 'status' => 'none',
                 'cause_conflict' => false,
                 'time_conflict' => false,
+                'subtype_conflict' => false,
                 'kind' => null,
+                'subtype' => null,
                 'minute' => null,
+                'pending_future' => $logExit['pending_future'],
             ];
         }
 
@@ -341,8 +543,32 @@ final class MatchParticipation {
             }
         }
 
+        // Reconciliação de subtipo disciplinar (vermelho direto vs segundo amarelo)
+        $subtypeConflict = $logExit['subtype_conflict'];
+        $subtype = null;
+        if (!$causeConflict && $kind === 'sent_off') {
+            $subtypes = [];
+            if ($hasDirectRedStruct) {
+                $subtypes['direct_red'] = true;
+            }
+            if ($hasSecondYellowStruct) {
+                $subtypes['second_yellow'] = true;
+            }
+            if ($logExit['subtype'] !== null) {
+                $subtypes[$logExit['subtype']] = true;
+            }
+            if (count($subtypes) > 1) {
+                $subtypeConflict = true;
+            } elseif (count($subtypes) === 1 && !$subtypeConflict) {
+                $subtype = (string)array_key_first($subtypes);
+            }
+        }
+
         $timeConflict = $logExit['time_conflict'];
-        $entry = isset($m['entry']) && is_numeric($m['entry']) ? (int)$m['entry'] : null;
+        $entryInfo = self::resolveEntry($m);
+        $entry = ($entryInfo['status'] === 'valid' && $entryInfo['minute'] !== null)
+            ? $entryInfo['minute']
+            : (isset($m['entry']) && is_numeric($m['entry']) ? (int)$m['entry'] : null);
         $exit = isset($m['exit']) && is_numeric($m['exit']) ? (int)$m['exit'] : null;
         $matchMinute = isset($m['minute']) && is_numeric($m['minute']) ? (int)$m['minute'] : null;
         $logMin = $logExit['minute'];
@@ -420,8 +646,11 @@ final class MatchParticipation {
             'status' => ($causeConflict || $timeConflict) ? 'conflict' : 'valid',
             'cause_conflict' => $causeConflict,
             'time_conflict' => $timeConflict,
+            'subtype_conflict' => $subtypeConflict,
             'kind' => $causeConflict ? null : $kind,
+            'subtype' => ($causeConflict || $subtypeConflict) ? null : $subtype,
             'minute' => ($causeConflict || $timeConflict) ? null : $resolvedMin,
+            'pending_future' => $logExit['pending_future'],
         ];
     }
 
@@ -571,7 +800,7 @@ final class MatchParticipation {
             $m['entered_on_field'] = true;
             if (empty($m['sub_in_recorded'])) {
                 $m['sub_in_recorded'] = true;
-                $m['log'][] = ['minute' => $entry, 'text' => "{$entry}' | Você entra em campo no lugar de um companheiro."];
+                $m['log'][] = ['minute' => $entry, 'text' => "{$entry}' | Você entra em campo no lugar de um companheiro.", 'source' => 'engine'];
                 Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_IN', $entry);
             }
             return;
@@ -585,7 +814,7 @@ final class MatchParticipation {
             }
             if (empty($m['sub_out_recorded'])) {
                 $m['sub_out_recorded'] = true;
-                $m['log'][] = ['minute' => $exit, 'text' => "{$exit}' | Você é substituído após participar da partida."];
+                $m['log'][] = ['minute' => $exit, 'text' => "{$exit}' | Você é substituído após participar da partida.", 'source' => 'engine'];
                 Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_OUT', $exit);
             }
             return;
@@ -665,12 +894,21 @@ final class MatchParticipation {
             }
         }
 
+        $entryInfo = self::resolveEntry($m);
+        if ($entryInfo['status'] === 'conflict') {
+            return 0;
+        }
+        $effectiveEntry = ($entryInfo['status'] === 'valid' && $entryInfo['minute'] !== null) ? $entryInfo['minute'] : $entry;
+        if ($effectiveEntry < 0 || $effectiveEntry >= 90 || $exit < $effectiveEntry) {
+            return 0;
+        }
+
         $exitInfo = self::resolveExit($m);
 
         // Saída confirmada ou conflito de saída impede presumir o horário planejado (90') como horário real.
         // Utiliza exclusivamente a reconciliação canônica (resolveExit): conflito de causa/horário ou minuto ausente retorna 0.
         if ($exitInfo['status'] !== 'none') {
-            $entryDemonstrated = ($lineup === 'titular' && $entry === 0) || self::hasEntryEvidence($m);
+            $entryDemonstrated = ($lineup === 'titular' && $effectiveEntry === 0) || self::hasEntryEvidence($m);
             if (!$entryDemonstrated) {
                 return 0;
             }
@@ -680,14 +918,17 @@ final class MatchParticipation {
             }
 
             $effectiveExit = $exitInfo['minute'];
-            $raw = $effectiveExit - $entry;
+            $raw = $effectiveExit - $effectiveEntry;
             if ($raw > 0) {
                 return $raw;
+            }
+            if ($raw < 0) {
+                return 0;
             }
             return self::hasEntryEvidence($m) ? 1 : 0;
         }
 
-        $raw = $exit - $entry;
+        $raw = $exit - $effectiveEntry;
         if ($raw > 0) {
             return $raw;
         }
@@ -712,6 +953,11 @@ final class MatchParticipation {
             return false;
         }
 
+        $entryInfo = self::resolveEntry($m);
+        if ($entryInfo['status'] === 'conflict') {
+            return false;
+        }
+
         $lineup = (string)($m['lineup'] ?? '');
         if (in_array($lineup, ['suspenso', 'não relacionado', 'nao_relacionado', 'substituído'], true)) {
             return false;
@@ -721,7 +967,7 @@ final class MatchParticipation {
             return false;
         }
 
-        $entry = (int)$m['entry'];
+        $entry = ($entryInfo['status'] === 'valid' && $entryInfo['minute'] !== null) ? $entryInfo['minute'] : (int)$m['entry'];
         $exit = (int)$m['exit'];
         $matchMinute = isset($m['minute']) && is_numeric($m['minute']) ? (int)$m['minute'] : null;
 
@@ -784,6 +1030,11 @@ final class MatchParticipation {
             return false;
         }
 
+        $entryInfo = self::resolveEntry($m);
+        if ($entryInfo['status'] === 'conflict') {
+            return false;
+        }
+
         $lineup = (string)($m['lineup'] ?? '');
         if (in_array($lineup, ['suspenso', 'não relacionado', 'nao_relacionado', 'substituído'], true)) {
             return false;
@@ -798,14 +1049,14 @@ final class MatchParticipation {
         }
 
         $minute = (int)$m['minute'];
-        $entry = (int)$m['entry'];
+        $entry = ($entryInfo['status'] === 'valid' && $entryInfo['minute'] !== null) ? $entryInfo['minute'] : (int)$m['entry'];
         $exit = (int)$m['exit'];
 
         if ($entry < 0 || $entry >= 90 || $exit <= $entry || $exit > self::MAX_VALID_MINUTE) {
             return false;
         }
 
-        // Elegibilidade esportiva estrita: nunca autoriza decisão quando minute >= exit (inclusive acréscimos)
+        // Elegibilidade esportiva estrita: nunca autoriza decisão quando minute < entry efetivo ou minute >= exit
         if ($minute < $entry || $minute >= $exit) {
             return false;
         }
@@ -818,12 +1069,12 @@ final class MatchParticipation {
         }
 
         // Reconciliação explícita para saves legados sem participation_state:
-        // exige escalação explicitamente reconhecida (titular ou reserva com entrada comprovada).
+        // exige escalação explicitamente reconhecida (titular ou reserva com entrada comprovada e já ocorrida).
         if ($lineup === 'titular') {
             return true;
         }
         if (in_array($lineup, ['reserva', 'banco'], true)) {
-            return self::hasEntryEvidence($m);
+            return $entryInfo['status'] === 'valid';
         }
 
         return false;

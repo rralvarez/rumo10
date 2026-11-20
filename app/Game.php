@@ -433,7 +433,10 @@ final class Game {
         $created=MatchMomentum::record($m,$roll['success'],$constructive,isset($g['feedback']['highlight']));
         if($m['minute']>=$m['exit'] || in_array($m['participation_state']??'',[MatchParticipation::STATE_SENT_OFF,MatchParticipation::STATE_SUBSTITUTED_OUT],true)){MatchMomentum::reset($m);$created=false;}
         if($created)$text.=!empty($m['clear_chance'])?' A sequência abriu a defesa: você tem uma chance clara de gol!':' A bola continua com você: escolha como seguir este lance.';
-        $g['feedback']['text']=$text; foreach($beforeStates as $k=>$v) if($g['states'][$k]!==$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$g['states'][$k]-$v; $m['log'][]=['minute'=>$m['minute'],'text'=>$text];
+        $g['feedback']['text']=$text; foreach($beforeStates as $k=>$v) if($g['states'][$k]!==$v) $g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$g['states'][$k]-$v;
+        $logEntry=['minute'=>$m['minute'],'text'=>$text];
+        if(in_array($m['participation_state']??'',[MatchParticipation::STATE_SENT_OFF,MatchParticipation::STATE_SUBSTITUTED_OUT],true)){$logEntry['source']='engine';}
+        $m['log'][]=$logEntry;
         if(!$created)self::nextSegment($g);
     }
     private static function nextSegment(array &$g): void {
