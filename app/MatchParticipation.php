@@ -71,7 +71,7 @@ final class MatchParticipation {
      * (rótulo => desfecho => lista de ramos válidos) derivados diretamente de Game::fieldDecision(),
      * Scenes, NarrativeCatalog, SceneConsequences, MatchMomentum e formatos legados reconhecíveis.
      *
-     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool,allow_direct_red:bool}>>>
+     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool,can_emit_second_yellow:bool,can_emit_direct_red:bool}>>>
      */
     private static function knownPlayPrefixCatalog(): array {
         static $cache = null;
@@ -89,25 +89,27 @@ final class MatchParticipation {
             bool $clearChance = false,
             bool $endSequence = false,
             bool $allowDisciplinaryExtra = false,
-            bool $allowDirectRed = false
+            bool $canEmitDirectRed = false
         ) use (&$pairs): void {
             $l = trim($label);
             $o = trim($outcome);
             if ($l === '' || $o === '') {
                 return;
             }
+            $allowDisciplinary = $allowDisciplinaryExtra || ($onBall && $action === 'desarme' && !$success);
             $branch = [
                 'allow_assist' => $onBall && $action === 'passe' && $success && !$endSequence,
                 'allow_goal' => $onBall && (($action === 'chute' && $success) || ($clearChance && $action === 'drible' && $success)),
                 'allow_no_goal' => $onBall && $action === 'chute' && !$success,
                 'allow_late_tackle' => $onBall && $action === 'desarme' && !$success,
-                'allow_disciplinary' => $allowDisciplinaryExtra || ($onBall && $action === 'desarme' && !$success),
-                'allow_direct_red' => $allowDirectRed,
+                'allow_disciplinary' => $allowDisciplinary,
+                'can_emit_second_yellow' => $allowDisciplinary,
+                'can_emit_direct_red' => $canEmitDirectRed,
             ];
             $pairs[$l][$o][] = $branch;
         };
 
-        // 1. Formatos legados curtos de ação (Desarme legado admite vermelho direto sem complemento disciplinar prévio)
+        // 1. Formatos legados curtos de ação (somente falha de Desarme legado admite vermelho direto sem complemento disciplinar prévio)
         foreach (['Passe' => 'passe', 'Chute' => 'chute', 'Drible' => 'drible', 'Desarme' => 'desarme'] as $shortLabel => $shortAction) {
             $legacyRed = ($shortAction === 'desarme');
             $addBranch($shortLabel, 'a intenção deu certo.', $shortAction, true, true);
@@ -268,19 +270,8 @@ final class MatchParticipation {
                         $succ = isset($o['success_text']) ? (string)$o['success_text'] : $defaultSuccessByCode($code, $lbl);
                         $fail = $o['failure_text'] ?? ($failures[$id][$idx] ?? $defaultFailureByCode($code));
 
-                        if ($succ !== null) {
-                            $addBranch($lbl, $succ, $action, true, $onBall, false, $endSeq, $hasCardRisk);
-                        }
-                        if ($fail !== null) {
-                            $addBranch($lbl, (string)$fail, $action, false, $onBall, false, $endSeq, $hasCardRisk);
-                        }
-                        if (!empty($o['exceptional_text'])) {
-                            $addBranch($lbl, (string)$o['exceptional_text'], $action, true, $onBall, false, $endSeq, $hasCardRisk);
-                        }
-                        if (!empty($o['severe_failure_text'])) {
-                            $addBranch($lbl, (string)$o['severe_failure_text'], $action, false, $onBall, false, $endSeq, $hasCardRisk);
-                        }
-
+                        $enriched = null;
+                        $effCardRisk = $hasCardRisk;
                         if ($sid < 2000 && class_exists('SceneConsequences')) {
                             $enriched = SceneConsequences::option([
                                 'text' => $lbl,
@@ -290,15 +281,31 @@ final class MatchParticipation {
                                 'success_text' => $succ,
                                 'failure_text' => $fail,
                             ], 'partida', $sid, (int)$idx);
-                            $enCardRisk = $hasCardRisk || !empty($enriched['card_risk']);
+                            $effCardRisk = $hasCardRisk || !empty($enriched['card_risk']);
+                        }
+
+                        if ($succ !== null) {
+                            $addBranch($lbl, $succ, $action, true, $onBall, false, $endSeq, $effCardRisk);
+                        }
+                        if ($fail !== null) {
+                            $addBranch($lbl, (string)$fail, $action, false, $onBall, false, $endSeq, $effCardRisk);
+                        }
+                        if (!empty($o['exceptional_text'])) {
+                            $addBranch($lbl, (string)$o['exceptional_text'], $action, true, $onBall, false, $endSeq, $effCardRisk);
+                        }
+                        if (!empty($o['severe_failure_text'])) {
+                            $addBranch($lbl, (string)$o['severe_failure_text'], $action, false, $onBall, false, $endSeq, $effCardRisk);
+                        }
+
+                        if ($enriched !== null) {
                             foreach (['success_text', 'exceptional_text'] as $k) {
                                 if (!empty($enriched[$k])) {
-                                    $addBranch($lbl, (string)$enriched[$k], $action, true, $onBall, false, $endSeq, $enCardRisk);
+                                    $addBranch($lbl, (string)$enriched[$k], $action, true, $onBall, false, $endSeq, $effCardRisk);
                                 }
                             }
                             foreach (['failure_text', 'severe_failure_text'] as $k) {
                                 if (!empty($enriched[$k])) {
-                                    $addBranch($lbl, (string)$enriched[$k], $action, false, $onBall, false, $endSeq, $enCardRisk);
+                                    $addBranch($lbl, (string)$enriched[$k], $action, false, $onBall, false, $endSeq, $effCardRisk);
                                 }
                             }
                         }
@@ -321,7 +328,7 @@ final class MatchParticipation {
      * 4. Valida compatibilidade de todos os complementos contra pelo menos um ramo concreto do par.
      * 5. Retorna os minutos disciplinares embutidos para validação cronológica no chamador.
      *
-     * @return array{embedded_minutes:list<int>,has_disciplinary_complement:bool,has_late_tackle:bool,allows_direct_red:bool}|null
+     * @return array{embedded_minutes:list<int>,has_disciplinary_complement:bool,can_emit_second_yellow:bool,can_emit_direct_red:bool}|null
      */
     private static function parseCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute): ?array {
         $p = trim($prefixBody);
@@ -333,13 +340,14 @@ final class MatchParticipation {
             return null;
         }
 
-        // Formato histórico legado curto com minuto inicial explícito (ex.: "75' | Disputa dura.")
+        // Formato histórico legado curto com minuto inicial explícito (ex.: "75' | Disputa dura. Lesão: você deixa o campo.")
+        // Restrito a saídas não disciplinares (lesão/desgaste); não autoriza expulsões disciplinares.
         if ($hasLeadMinute && $p === 'Disputa dura.') {
             return [
                 'embedded_minutes' => [],
                 'has_disciplinary_complement' => false,
-                'has_late_tackle' => false,
-                'allows_direct_red' => true,
+                'can_emit_second_yellow' => false,
+                'can_emit_direct_red' => false,
             ];
         }
 
@@ -426,7 +434,8 @@ final class MatchParticipation {
 
         // Valida a combinação completa contra pelo menos um ramo concreto deste par (rótulo, desfecho)
         $branchValid = false;
-        $allowsDirectRed = false;
+        $canEmitSecondYellow = false;
+        $canEmitDirectRed = false;
         foreach ($matchedBranches as $b) {
             if ($hasAssist && !$b['allow_assist']) {
                 continue;
@@ -444,8 +453,11 @@ final class MatchParticipation {
                 continue;
             }
             $branchValid = true;
-            if (!empty($b['allow_direct_red'])) {
-                $allowsDirectRed = true;
+            if (!empty($b['can_emit_second_yellow'])) {
+                $canEmitSecondYellow = true;
+            }
+            if (!empty($b['can_emit_direct_red'])) {
+                $canEmitDirectRed = true;
             }
         }
 
@@ -456,8 +468,8 @@ final class MatchParticipation {
         return [
             'embedded_minutes' => $embeddedMinutes,
             'has_disciplinary_complement' => $hasDisciplinary,
-            'has_late_tackle' => $hasLateTackle,
-            'allows_direct_red' => $allowsDirectRed,
+            'can_emit_second_yellow' => $canEmitSecondYellow,
+            'can_emit_direct_red' => $canEmitDirectRed,
         ];
     }
 
@@ -516,8 +528,8 @@ final class MatchParticipation {
         $leadMin = null;
         $embeddedMinutes = [];
         $hasDisciplinaryComplement = false;
-        $hasLateTackle = false;
-        $allowsDirectRed = true;
+        $canEmitSecondYellow = true;
+        $canEmitDirectRed = true;
 
         if ($prefix !== '') {
             $prefixBody = $prefix;
@@ -531,8 +543,8 @@ final class MatchParticipation {
             }
             $embeddedMinutes = $prefixInfo['embedded_minutes'];
             $hasDisciplinaryComplement = $prefixInfo['has_disciplinary_complement'];
-            $hasLateTackle = $prefixInfo['has_late_tackle'];
-            $allowsDirectRed = $prefixInfo['allows_direct_red'];
+            $canEmitSecondYellow = $prefixInfo['can_emit_second_yellow'];
+            $canEmitDirectRed = $prefixInfo['can_emit_direct_red'];
         }
 
         $kinds = [];
@@ -596,11 +608,18 @@ final class MatchParticipation {
             return null;
         }
 
-        // Coerência de subtipo disciplinar com o ramo produtor: o ramo real de falta tardia em desarme
-        // (Game::fieldDecision() linha 401 -> recordFoul('late_tackle')) nunca invoca violent_conduct/severe=true
-        // e portanto não emite vermelho direto. Preserva conflitos explícitos (count($kinds) > 1) e formatos legados curtos.
-        if ($hasLateTackle && count($kinds) === 1 && isset($subtypes['direct_red']) && !$allowsDirectRed) {
-            return null;
+        // Validação do subtipo disciplinar pelo ramo produtor identificado (R12):
+        // Para qualquer relato composto com prefixo (moderno ou legado), exige que o ramo
+        // efetivamente identificado admita o subtipo disciplinar do sufixo (sem depender de
+        // $hasLateTackle e sem ser dispensado por source=engine). Preserva conflitos explícitos
+        // de múltiplas causas (count($kinds) > 1).
+        if ($prefix !== '' && count($kinds) === 1 && isset($kinds['sent_off'])) {
+            if (isset($subtypes['direct_red']) && !$canEmitDirectRed) {
+                return null;
+            }
+            if (isset($subtypes['second_yellow']) && !$canEmitSecondYellow) {
+                return null;
+            }
         }
 
         return [
