@@ -3794,6 +3794,177 @@ f04Check(
     'R9-P1 [válidos]: pares genuinamente associados (Finalizar no canto + goleiro; Combinar passe curto + interceptado) continuam reconhecidos'
 );
 
+// =========================================================================
+// 15. R1-R10 | Validação de complementos e cronologia em eventos compostos
+// =========================================================================
+echo "\n15. Validando R1-R10 (Compatibilidade de Complementos e Cronologia Disciplinar em Logs Compostos)...\n";
+
+// --- GRUPO A: COMBINAÇÕES IMPOSSÍVEIS (1-10) ---
+$r10InvalidComplements = [
+    'A1_falha_com_gol' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção não teve o efeito esperado. Gol do seu jogador! 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A2_falha_com_gol_engine' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção não teve o efeito esperado. Gol do seu jogador! 75' | Cartão vermelho direto! Você foi expulso da partida.", 'source' => 'engine'],
+    'A3_falha_com_assistencia' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção não teve o efeito esperado. O companheiro marca: assistência! 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A3_passe_falha_assistencia' => ['minute' => 75, 'text' => "Passe: a intenção não teve o efeito esperado. O companheiro marca: assistência! 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A4_gol_com_bola_nao_entrou' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção deu certo. Gol do seu jogador! A bola não entrou. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A4_sucesso_com_bola_nao_entrou' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção deu certo. A bola não entrou. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A5_falta_tardia_em_sucesso' => ['minute' => 75, 'text' => "Desarme: a intenção deu certo. Você chega atrasado e comete falta. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A5_falta_tardia_em_chute' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção não teve o efeito esperado. Você chega atrasado e comete falta. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A6_cartao_minuto_incompativel' => ['minute' => 75, 'text' => "Desarme: falhou. 68' | Falta marcada contra você. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A7_amarelo_20_embutido_75' => ['minute' => 75, 'text' => "Desarme: falhou. 20' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A7_amarelo_20_embutido_75_engine' => ['minute' => 75, 'text' => "Desarme: falhou. 20' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Cartão vermelho direto! Você foi expulso da partida.", 'source' => 'engine'],
+    'A8_complementos_duplicados' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção deu certo. Gol do seu jogador! Gol do seu jogador! 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A9_ordem_invalida_falta_antes_gol' => ['minute' => 75, 'text' => "Desarme: falhou. 75' | Cartão amarelo! Você foi advertido pela arbitragem. Você chega atrasado e comete falta. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'A10_texto_arbitrario_apos_complemento' => ['minute' => 75, 'text' => "Finalizar no canto: a intenção deu certo. Gol do seu jogador! Comentário extra. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+];
+Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspension' => 2, 'second_yellow_suspension' => 1]]], static function () use ($r10InvalidComplements, $r7Game, $r7OnFieldReserve, $r7EntryLog, $r7RunToEnd): void {
+    foreach ($r10InvalidComplements as $icKey => $icEntry) {
+        [$gIC, $idxIC] = $r7Game('R10 ' . $icKey, array_merge($r7OnFieldReserve, [
+            'competition' => 'sp-a3',
+            'log' => [$r7EntryLog, $icEntry],
+        ]), true);
+        $gIC['competition_id'] = 'sp-a3';
+        $mICBefore = $gIC['matches'][$idxIC];
+        $rIC = MatchParticipation::resolveExit($mICBefore);
+        $gICEnd = $r7RunToEnd($gIC, $idxIC);
+        $mICEnd = $gICEnd['matches'][$idxIC];
+        $presIC = Presentation::playerParticipation($gIC, $mICBefore);
+        $narrIC = NarrativeContext::values($gIC);
+        $suspIC = (int)($gICEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0);
+        f04Check(
+            $rIC['status'] === 'none'
+            && !MatchParticipation::isSentOff($mICBefore)
+            && !isset($narrIC['exit_reason'])
+            && $presIC['label'] === 'Em campo'
+            && $mICEnd['participation_state'] === MatchParticipation::STATE_FULL_TIME
+            && $mICEnd['stats']['minutes'] === 30
+            && MatchParticipation::finishedOnField($mICEnd)
+            && $suspIC === 0,
+            "R1-R10 [{$icKey}]: combinação impossível/cronologia incompatível rejeitada (FULL_TIME, 30', elegível, 0 suspensão)"
+        );
+    }
+
+    // Prova estruturada independente de expulsão continua válida mesmo se houver linha composta inválida no log
+    [$gIndep, $idxInd] = $r7Game('R10 Prova Estruturada Independente', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3', 'participation_state' => MatchParticipation::STATE_SENT_OFF,
+        'exit_reason' => 'sent_off', 'exit' => 75, 'red_card_minute' => 75,
+        'stats' => array_merge(Schedule::stats(), ['direct_red' => 1, 'red_cards' => 1, 'cards' => 1]),
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Finalizar no canto: a intenção não teve o efeito esperado. Gol do seu jogador! 75' | Cartão vermelho direto! Você foi expulso da partida."]],
+    ]), true);
+    $gIndep['competition_id'] = 'sp-a3';
+    $gIndep = Game::command($gIndep, 'advance');
+    f04Check(
+        $gIndep['matches'][$idxInd]['participation_state'] === MatchParticipation::STATE_SENT_OFF
+        && $gIndep['matches'][$idxInd]['stats']['minutes'] === 15
+        && (int)($gIndep['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 2,
+        'R1-R10 [C.23/24]: rejeição de log composto inválido não apaga expulsão comprovada por prova estruturada independente'
+    );
+});
+
+// --- GRUPO B: COMBINAÇÕES LEGÍTIMAS (11-21) ---
+$r10ValidComplements = [
+    'B11_chute_sucesso_gol_lesao' => [
+        'text' => "Finalizar no canto: a intenção deu certo. Gol do seu jogador! Lesão: você deixa o campo.",
+        'kind' => 'injury',
+    ],
+    'B12_chute_falha_nao_entrou_desgaste' => [
+        'text' => "Finalizar no canto: a intenção não teve o efeito esperado. A bola não entrou. Substituído por desgaste.",
+        'kind' => 'fatigue',
+    ],
+    'B13_passe_sucesso_assistencia_lesao' => [
+        'text' => "Passar para o companheiro: a intenção deu certo. O companheiro marca: assistência! Lesão: você deixa o campo.",
+        'kind' => 'injury',
+    ],
+    'B14_desarme_falha_falta_2amarelo' => [
+        'text' => "Desarme: a intenção não teve o efeito esperado. Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+        'kind' => 'sent_off',
+    ],
+    'B15_desarme_amarelo_mesmo_minuto_lesao' => [
+        'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. Lesão: você deixa o campo.",
+        'kind' => 'injury',
+    ],
+    'B16_vermelho_direto_isolado' => [
+        'text' => "75' | Cartão vermelho direto! Você foi expulso da partida.",
+        'kind' => 'sent_off',
+    ],
+    'B17_segundo_amarelo_isolado' => [
+        'text' => "75' | Segundo cartão amarelo! Você está expulso da partida.",
+        'kind' => 'sent_off',
+    ],
+    'B18_lesao_isolada' => [
+        'text' => "75' | Lesão: você deixa o campo.",
+        'kind' => 'injury',
+    ],
+    'B19_desgaste_isolado' => [
+        'text' => "75' | Substituído por desgaste.",
+        'kind' => 'fatigue',
+    ],
+    'B20_legado_sem_source' => [
+        'text' => "Desarme: falhou. 75' | Cartão vermelho direto! Você foi expulso da partida.",
+        'kind' => 'sent_off',
+    ],
+];
+foreach ($r10ValidComplements as $vcKey => $vcCfg) {
+    $mVC = [
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+        'sub_in_recorded' => true, 'entered_on_field' => true,
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $vcCfg['text']]],
+    ];
+    $rVC = MatchParticipation::resolveExit($mVC);
+    f04Check(
+        $rVC['status'] === 'valid' && $rVC['kind'] === $vcCfg['kind'] && $rVC['minute'] === 75
+        && MatchParticipation::playedMinutes($mVC) === 15
+        && !MatchParticipation::finishedOnField($mVC),
+        "R1-R10 [{$vcKey}]: combinação legítima do motor reconhecida ({$vcCfg['kind']} aos 75', 15')"
+    );
+}
+
+// Controle positivo produzido diretamente pelo motor real: finalização com gol + desgaste em Game::command('choice')
+[$gR10RealGoal, $idxRG] = $r7Game('R10 Gol Real Motor', [
+    'status' => 'em_andamento', 'minute' => 70, 'lineup' => 'titular',
+    'participation_state' => MatchParticipation::STATE_ON_FIELD,
+    'entry' => 0, 'exit' => 90, 'entered_on_field' => true, 'evaluated_penalties' => ['70-80', '80-90'],
+], true);
+$gR10RealGoal['states']['energia'] = 10;
+$gR10RealGoal['active_situation'] = ['id' => 7, 'key' => Scenes::key($gR10RealGoal)];
+$gR10RealGoal = Game::command($gR10RealGoal, 'choice', ['option' => 0], false, $rngAlwaysSuccess);
+$mRG = $gR10RealGoal['matches'][$idxRG];
+$rgLogText = '';
+foreach ($mRG['log'] as $lr) {
+    if (str_contains((string)($lr['text'] ?? ''), 'Gol do seu jogador!')) { $rgLogText = (string)$lr['text']; }
+}
+// Reavalia a mesma linha real SEM source=engine (simulando save legado)
+$mRGLegacy = ['status' => 'finalizada', 'minute' => 90, 'lineup' => 'titular', 'entry' => 0, 'exit' => 90, 'entered_on_field' => true,
+    'log' => [['minute' => 70, 'text' => $rgLogText]]];
+f04Check(
+    $rgLogText !== ''
+    && MatchParticipation::resolveExit($mRGLegacy)['status'] === 'valid'
+    && MatchParticipation::resolveExit($mRGLegacy)['kind'] === 'fatigue'
+    && MatchParticipation::playedMinutes($mRGLegacy) === 70,
+    'R1-R10 [B11/B21]: saída real de Game::command(choice) com Gol do seu jogador! + Substituído por desgaste. reconhecida mesmo sem source=engine'
+);
+
+// --- GRUPO C: INTEGRAÇÃO COMPLETA E IDEMPOTÊNCIA (22-30) ---
+[$gR10Int, $idxR10Int] = $r7Game('R10 Integracao', array_merge($r7OnFieldReserve, [
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Finalizar no canto: a intenção não teve o efeito esperado. Gol do seu jogador! 75' | Cartão vermelho direto! Você foi expulso da partida."]],
+]), true);
+$gR10IntEnd = $r7RunToEnd($gR10Int, $idxR10Int);
+$mR10IntEnd = $gR10IntEnd['matches'][$idxR10Int];
+$snapR10M = $mR10IntEnd;
+$snapR10S = $gR10IntEnd['states'];
+$snapR10L = $gR10IntEnd['reward_ledger'] ?? [];
+$refSegment->invokeArgs(null, [&$gR10IntEnd, 90]);
+f04Check(
+    $mR10IntEnd['participation_state'] === MatchParticipation::STATE_FULL_TIME
+    && $mR10IntEnd['stats']['minutes'] === 30
+    && $mR10IntEnd['stats']['rating'] > 0
+    && ($gR10IntEnd['reward_ledger'][$r7RhythmKey($gR10IntEnd, $mR10IntEnd)]['delta'] ?? 0) === 3
+    && MatchParticipation::finishedOnField($mR10IntEnd)
+    && $gR10IntEnd['matches'][$idxR10Int] === $snapR10M
+    && $gR10IntEnd['states'] === $snapR10S
+    && ($gR10IntEnd['reward_ledger'] ?? []) === $snapR10L,
+    'R1-R10 [C.22-29]: integração completa com log composto inválido conclui FULL_TIME, 30\', ritmo +3, elegível e encerramento idempotente'
+);
+
 echo "\n=======================================================\n";
-echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R9 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R10 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";

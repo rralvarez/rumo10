@@ -67,12 +67,11 @@ final class MatchParticipation {
     }
 
     /**
-     * Carrega e mantém em cache estático o mapa positivo de PARES (rótulo de opção => desfechos válidos)
-     * realmente produzidos por Game::fieldDecision() (Scenes, NarrativeCatalog, MatchMomentum,
-     * fallback de Game::choices e formatos legados reconhecíveis).
-     * Nunca valida produto cartesiano global entre rótulos e desfechos de opções distintas.
+     * Carrega e mantém em cache estático o mapa positivo de PARES com descritores reais de ramo
+     * (rótulo => desfecho => lista de ramos válidos) derivados diretamente de Game::fieldDecision(),
+     * Scenes, NarrativeCatalog, SceneConsequences, MatchMomentum e formatos legados reconhecíveis.
      *
-     * @return array<string,array<string,bool>>
+     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool}>>>
      */
     private static function knownPlayPrefixCatalog(): array {
         static $cache = null;
@@ -81,45 +80,68 @@ final class MatchParticipation {
         }
 
         $pairs = [];
-        $addPair = static function (string $label, string $outcome) use (&$pairs): void {
+        $addBranch = static function (
+            string $label,
+            string $outcome,
+            string $action,
+            bool $success,
+            bool $onBall,
+            bool $clearChance = false,
+            bool $endSequence = false,
+            bool $allowDisciplinaryExtra = false
+        ) use (&$pairs): void {
             $l = trim($label);
             $o = trim($outcome);
-            if ($l !== '' && $o !== '') {
-                $pairs[$l][$o] = true;
+            if ($l === '' || $o === '') {
+                return;
             }
+            $branch = [
+                'allow_assist' => $onBall && $action === 'passe' && $success && !$endSequence,
+                'allow_goal' => $onBall && (($action === 'chute' && $success) || ($clearChance && $action === 'drible' && $success)),
+                'allow_no_goal' => $onBall && $action === 'chute' && !$success,
+                'allow_late_tackle' => $onBall && $action === 'desarme' && !$success,
+                'allow_disciplinary' => $allowDisciplinaryExtra || ($onBall && $action === 'desarme' && !$success),
+            ];
+            $pairs[$l][$o][] = $branch;
         };
 
         // 1. Formatos legados curtos de ação
-        foreach (['Passe', 'Chute', 'Drible', 'Desarme'] as $shortAction) {
-            $addPair($shortAction, 'a intenção deu certo.');
-            $addPair($shortAction, 'a intenção não teve o efeito esperado.');
-            $addPair($shortAction, 'falhou.');
+        foreach (['Passe' => 'passe', 'Chute' => 'chute', 'Drible' => 'drible', 'Desarme' => 'desarme'] as $shortLabel => $shortAction) {
+            $addBranch($shortLabel, 'a intenção deu certo.', $shortAction, true, true);
+            $addBranch($shortLabel, 'a intenção não teve o efeito esperado.', $shortAction, false, true);
+            $addBranch($shortLabel, 'falhou.', $shortAction, false, true);
         }
 
-        // 2. Fallback de Game::choices()
-        foreach (['Antecipar e desarmar', 'Finalizar no canto', 'Passar para o companheiro', 'Avançar no drible', 'Chutar de longe'] as $fbLabel) {
-            $addPair($fbLabel, 'a intenção deu certo.');
-            $addPair($fbLabel, 'a intenção não teve o efeito esperado.');
-        }
-
-        // 3. Pares exatos de MatchMomentum::situation()
-        $momentumPairs = [
-            'Combinar um passe curto' => ['A combinação mantém a bola e abre espaço à frente.', 'O passe é interceptado e encerra a posse.'],
-            'Avançar com a bola' => ['Você supera a aproximação e ganha espaço para concluir.', 'O marcador tira a bola e encerra a jogada.'],
-            'Finalizar agora' => ['Você aproveita o espaço e marca.', 'A finalização não entra.'],
-            'Recuar e reorganizar' => ['Você encontra o apoio atrás e encerra esta tentativa de avanço.', 'A devolução é cortada e a bola fica com o adversário.'],
-            'Finalizar no canto' => ['Você coloca a bola no canto, fora do alcance do goleiro.', 'O goleiro fecha o canto e impede sua finalização.'],
-            'Bater de primeira' => ['Você acerta o chute de primeira e vence o goleiro.', 'Você pega mal na bola e o chute de primeira sai para fora.'],
-            'Tocar para o companheiro livre' => ['Seu passe encontra o companheiro livre, que finaliza para o gol.', 'O defensor chega antes do companheiro e corta seu passe.'],
-            'Driblar o goleiro' => ['Você passa pelo goleiro e toca para o gol vazio.', 'O goleiro acompanha seu movimento e tira a bola antes do drible.'],
+        // 2. Fallback de Game::choices() (sid = 0 -> onBall = true)
+        $fallbackActions = [
+            'Antecipar e desarmar' => 'desarme',
+            'Finalizar no canto' => 'chute',
+            'Passar para o companheiro' => 'passe',
+            'Avançar no drible' => 'drible',
+            'Chutar de longe' => 'chute',
         ];
-        foreach ($momentumPairs as $lbl => $outs) {
-            foreach ($outs as $out) {
-                $addPair($lbl, $out);
-            }
+        foreach ($fallbackActions as $fbLabel => $fbAction) {
+            $addBranch($fbLabel, 'a intenção deu certo.', $fbAction, true, true);
+            $addBranch($fbLabel, 'a intenção não teve o efeito esperado.', $fbAction, false, true);
         }
 
-        // 4. Catálogo real de Scenes (situations.php, scenes.json e NarrativeCatalog) vinculado por opção
+        // 3. Pares e ramos exatos de MatchMomentum::situation()
+        $momentumDefs = [
+            ['Combinar um passe curto', 'passe', true, false, false, 'A combinação mantém a bola e abre espaço à frente.', 'O passe é interceptado e encerra a posse.'],
+            ['Avançar com a bola', 'drible', true, false, false, 'Você supera a aproximação e ganha espaço para concluir.', 'O marcador tira a bola e encerra a jogada.'],
+            ['Finalizar agora', 'chute', true, false, false, 'Você aproveita o espaço e marca.', 'A finalização não entra.'],
+            ['Recuar e reorganizar', 'passe', true, false, true, 'Você encontra o apoio atrás e encerra esta tentativa de avanço.', 'A devolução é cortada e a bola fica com o adversário.'],
+            ['Finalizar no canto', 'chute', true, true, false, 'Você coloca a bola no canto, fora do alcance do goleiro.', 'O goleiro fecha o canto e impede sua finalização.'],
+            ['Bater de primeira', 'chute', true, true, false, 'Você acerta o chute de primeira e vence o goleiro.', 'Você pega mal na bola e o chute de primeira sai para fora.'],
+            ['Tocar para o companheiro livre', 'passe', true, true, false, 'Seu passe encontra o companheiro livre, que finaliza para o gol.', 'O defensor chega antes do companheiro e corta seu passe.'],
+            ['Driblar o goleiro', 'drible', true, true, false, 'Você passa pelo goleiro e toca para o gol vazio.', 'O goleiro acompanha seu movimento e tira a bola antes do drible.'],
+        ];
+        foreach ($momentumDefs as [$lbl, $act, $onBall, $clearChance, $endSeq, $succText, $failText]) {
+            $addBranch($lbl, $succText, $act, true, $onBall, $clearChance, $endSeq);
+            $addBranch($lbl, $failText, $act, false, $onBall, $clearChance, $endSeq);
+        }
+
+        // 4. Catálogo real de Scenes (situations.php, scenes.json e NarrativeCatalog) com ramos exatos
         $failures = [];
         $failuresPath = dirname(__DIR__) . '/database/scene-failures.php';
         if (is_file($failuresPath)) {
@@ -188,30 +210,42 @@ final class MatchParticipation {
                 if (($s['stage'] ?? '') !== 'partida') {
                     continue;
                 }
+                $sid = (int)$id;
                 if (isset($s['legacy'][2]) && is_array($s['legacy'][2])) {
                     foreach ($s['legacy'][2] as $idx => $o) {
                         $lbl = trim((string)($o[0] ?? ''));
                         if ($lbl === '') {
                             continue;
                         }
-                        $addPair($lbl, 'a intenção deu certo.');
+                        $action = match ($sid) {
+                            7 => ['chute', 'passe', 'drible', 'social'][$idx] ?? 'social',
+                            9 => ['drible', 'social', 'social', 'desarme'][$idx] ?? 'social',
+                            default => 'social',
+                        };
+                        $onBall = ($sid === 7);
+                        $discSucc = ($sid === 8 && in_array((int)$idx, [0, 2], true));
+                        $discFail = $discSucc || ($sid === 7 && (int)$idx === 3);
+
+                        $addBranch($lbl, 'a intenção deu certo.', $action, true, $onBall, false, false, $discSucc);
                         $fail = $failures[$id][$idx] ?? 'a intenção não teve o efeito esperado.';
-                        $addPair($lbl, (string)$fail);
+                        $addBranch($lbl, (string)$fail, $action, false, $onBall, false, false, $discFail);
+
                         if (class_exists('SceneConsequences')) {
-                            $action = match ((int)$id) {
-                                7 => ['chute', 'passe', 'drible', 'social'][$idx] ?? 'social',
-                                9 => ['drible', 'social', 'social', 'desarme'][$idx] ?? 'social',
-                                default => 'social',
-                            };
                             $enriched = SceneConsequences::option([
                                 'text' => $lbl,
                                 'effects' => $o[1] ?? [],
                                 'failure_text' => $failures[$id][$idx] ?? null,
                                 'action' => $action,
-                            ], 'partida', (int)$id, (int)$idx);
-                            foreach (['success_text', 'failure_text', 'exceptional_text', 'severe_failure_text'] as $k) {
+                            ], 'partida', $sid, (int)$idx);
+                            $hasCardRisk = !empty($enriched['card_risk']);
+                            foreach (['success_text', 'exceptional_text'] as $k) {
                                 if (!empty($enriched[$k])) {
-                                    $addPair($lbl, (string)$enriched[$k]);
+                                    $addBranch($lbl, (string)$enriched[$k], $action, true, $onBall, false, false, $discSucc || $hasCardRisk);
+                                }
+                            }
+                            foreach (['failure_text', 'severe_failure_text'] as $k) {
+                                if (!empty($enriched[$k])) {
+                                    $addBranch($lbl, (string)$enriched[$k], $action, false, $onBall, false, false, $discFail || $hasCardRisk);
                                 }
                             }
                         }
@@ -223,31 +257,45 @@ final class MatchParticipation {
                             continue;
                         }
                         $code = (string)($o['code'] ?? '');
+                        $action = (string)($o['action'] ?? (in_array($code, ['passe', 'chute', 'drible', 'desarme'], true) ? $code : 'social'));
+                        $onBall = ($sid >= 1100 && $sid <= 1139) || !empty($o['match_event']);
+                        $endSeq = !empty($o['end_sequence']);
+                        $hasCardRisk = !empty($o['card_risk']);
+
                         $succ = isset($o['success_text']) ? (string)$o['success_text'] : $defaultSuccessByCode($code, $lbl);
-                        if ($succ !== null) {
-                            $addPair($lbl, $succ);
-                        }
                         $fail = $o['failure_text'] ?? ($failures[$id][$idx] ?? $defaultFailureByCode($code));
+
+                        if ($succ !== null) {
+                            $addBranch($lbl, $succ, $action, true, $onBall, false, $endSeq, $hasCardRisk);
+                        }
                         if ($fail !== null) {
-                            $addPair($lbl, (string)$fail);
+                            $addBranch($lbl, (string)$fail, $action, false, $onBall, false, $endSeq, $hasCardRisk);
                         }
-                        foreach (['exceptional_text', 'severe_failure_text'] as $extraKey) {
-                            if (!empty($o[$extraKey])) {
-                                $addPair($lbl, (string)$o[$extraKey]);
-                            }
+                        if (!empty($o['exceptional_text'])) {
+                            $addBranch($lbl, (string)$o['exceptional_text'], $action, true, $onBall, false, $endSeq, $hasCardRisk);
                         }
-                        if ((int)$id < 2000 && class_exists('SceneConsequences')) {
+                        if (!empty($o['severe_failure_text'])) {
+                            $addBranch($lbl, (string)$o['severe_failure_text'], $action, false, $onBall, false, $endSeq, $hasCardRisk);
+                        }
+
+                        if ($sid < 2000 && class_exists('SceneConsequences')) {
                             $enriched = SceneConsequences::option([
                                 'text' => $lbl,
                                 'code' => $code,
-                                'action' => in_array($code, ['passe', 'chute', 'drible', 'desarme'], true) ? $code : 'social',
+                                'action' => $action,
                                 'effects' => [],
                                 'success_text' => $succ,
                                 'failure_text' => $fail,
-                            ], 'partida', (int)$id, (int)$idx);
-                            foreach (['success_text', 'failure_text', 'exceptional_text', 'severe_failure_text'] as $k) {
+                            ], 'partida', $sid, (int)$idx);
+                            $enCardRisk = $hasCardRisk || !empty($enriched['card_risk']);
+                            foreach (['success_text', 'exceptional_text'] as $k) {
                                 if (!empty($enriched[$k])) {
-                                    $addPair($lbl, (string)$enriched[$k]);
+                                    $addBranch($lbl, (string)$enriched[$k], $action, true, $onBall, false, $endSeq, $enCardRisk);
+                                }
+                            }
+                            foreach (['failure_text', 'severe_failure_text'] as $k) {
+                                if (!empty($enriched[$k])) {
+                                    $addBranch($lbl, (string)$enriched[$k], $action, false, $onBall, false, $endSeq, $enCardRisk);
                                 }
                             }
                         }
@@ -261,65 +309,147 @@ final class MatchParticipation {
     }
 
     /**
-     * Validação positiva do prefixo anterior a um evento formal em log composto.
-     * Exige par exato (opção => desfecho associado) efetivamente emitido por Game::fieldDecision()
-     * ou formato histórico comprovado ("75' | Disputa dura."); rejeita introduções arbitrárias
-     * ("Aos <min> ...") e combinações cruzadas, mesmo quando source=engine estiver presente.
+     * Validação estrutural completa do prefixo composto sem descartar complementos antes da verificação.
+     * Ordem estrita:
+     * 1. Preserva o texto integral.
+     * 2. Identifica rótulo da opção e desfecho-base conhecido para aquele rótulo.
+     * 3. Analisa complementos em ordem exata de Game::fieldDecision() (Slot 1: resultado em bola;
+     *    Slot 2: falta tardia em desarme; Slot 3: falta/amarelo com preservação do minuto explícito).
+     * 4. Valida compatibilidade de todos os complementos contra pelo menos um ramo concreto do par.
+     * 5. Retorna os minutos disciplinares embutidos para validação cronológica no chamador.
+     *
+     * @return array{embedded_minutes:list<int>}|null
      */
-    private static function isValidCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute): bool {
+    private static function parseCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute): ?array {
         $p = trim($prefixBody);
         if ($p === '' || str_contains($p, '?')) {
-            return false;
+            return null;
         }
         $lastChar = substr($p, -1);
         if ($lastChar !== '.' && $lastChar !== '!') {
-            return false;
+            return null;
         }
 
         // Formato histórico legado curto com minuto inicial explícito (ex.: "75' | Disputa dura.")
         if ($hasLeadMinute && $p === 'Disputa dura.') {
-            return true;
+            return ['embedded_minutes' => []];
         }
-
-        $pairs = self::knownPlayPrefixCatalog();
-
-        // Remove complementos finais realmente anexados por Game::fieldDecision()
-        $stripEngineFollowups = static function (string $outcome): string {
-            $cur = trim($outcome);
-            $followups = [
-                ' O companheiro marca: assistência!',
-                ' Gol do seu jogador!',
-                ' A bola não entrou.',
-                ' Você chega atrasado e comete falta.',
-            ];
-            $changed = true;
-            while ($changed) {
-                $changed = false;
-                foreach ($followups as $suffix) {
-                    if (str_ends_with($cur, $suffix)) {
-                        $cur = trim(substr($cur, 0, -strlen($suffix)));
-                        $changed = true;
-                    }
-                }
-                if (preg_match('/^(.+?[.!])\s+\d{1,3}\s*[\'\x{2032}]\s*\|\s*(?:Falta marcada contra você\.|Cartão amarelo! Você foi advertido pela arbitragem\.)$/u', $cur, $fm) === 1) {
-                    $cur = trim($fm[1]);
-                    $changed = true;
-                }
-            }
-            return $cur;
-        };
 
         $pos = strpos($p, ': ');
         if ($pos === false) {
-            return false;
+            return null;
         }
         $label = trim(substr($p, 0, $pos));
-        $outcome = trim(substr($p, $pos + 2));
-        if ($label === '' || $outcome === '' || !isset($pairs[$label])) {
-            return false;
+        $rest = trim(substr($p, $pos + 2));
+        if ($label === '' || $rest === '') {
+            return null;
         }
-        $baseOutcome = $stripEngineFollowups($outcome);
-        return isset($pairs[$label][$baseOutcome]);
+
+        $pairs = self::knownPlayPrefixCatalog();
+        if (!isset($pairs[$label])) {
+            return null;
+        }
+
+        // Identifica desfecho-base exato associado a este rótulo e isola a cauda de complementos sem removê-los antes da validação
+        $matchedBranches = null;
+        $tail = '';
+        $bestLen = -1;
+        foreach ($pairs[$label] as $baseOutcome => $branches) {
+            $len = strlen($baseOutcome);
+            if ($rest === $baseOutcome && $len > $bestLen) {
+                $matchedBranches = $branches;
+                $tail = '';
+                $bestLen = $len;
+            } elseif (str_starts_with($rest, $baseOutcome . ' ') && $len > $bestLen) {
+                $matchedBranches = $branches;
+                $tail = trim(substr($rest, $len));
+                $bestLen = $len;
+            }
+        }
+
+        if ($matchedBranches === null) {
+            return null;
+        }
+
+        // Analisa complementos da cauda estritamente na ordem real emitida por Game::fieldDecision()
+        $hasAssist = false;
+        $hasGoal = false;
+        $hasNoGoal = false;
+        $hasLateTackle = false;
+        $hasDisciplinary = false;
+        $embeddedMinutes = [];
+        $cursor = $tail;
+
+        // Slot 1: no máximo um complemento de conclusão em bola (mutuamente exclusivos)
+        if ($cursor !== '') {
+            if ($cursor === 'O companheiro marca: assistência!' || str_starts_with($cursor, 'O companheiro marca: assistência! ')) {
+                $hasAssist = true;
+                $cursor = trim(substr($cursor, strlen('O companheiro marca: assistência!')));
+            } elseif ($cursor === 'Gol do seu jogador!' || str_starts_with($cursor, 'Gol do seu jogador! ')) {
+                $hasGoal = true;
+                $cursor = trim(substr($cursor, strlen('Gol do seu jogador!')));
+            } elseif ($cursor === 'A bola não entrou.' || str_starts_with($cursor, 'A bola não entrou. ')) {
+                $hasNoGoal = true;
+                $cursor = trim(substr($cursor, strlen('A bola não entrou.')));
+            }
+        }
+
+        // Slot 2: falta tardia em desarme (estritamente após Slot 1, no máximo uma ocorrência)
+        if ($cursor !== '') {
+            if ($cursor === 'Você chega atrasado e comete falta.' || str_starts_with($cursor, 'Você chega atrasado e comete falta. ')) {
+                $hasLateTackle = true;
+                $cursor = trim(substr($cursor, strlen('Você chega atrasado e comete falta.')));
+            }
+        }
+
+        // Slot 3: complemento disciplinar não expulsivo com minuto preservado (estritamente no fim do prefixo)
+        if ($cursor !== '') {
+            if (preg_match('/^(\d{1,3})\s*[\'\x{2032}]\s*\|\s*(?:Falta marcada contra você\.|Cartão amarelo! Você foi advertido pela arbitragem\.)$/u', $cursor, $dm) === 1) {
+                $hasDisciplinary = true;
+                $embeddedMinutes[] = (int)$dm[1];
+                $cursor = '';
+            }
+        }
+
+        // Qualquer sobra (complemento duplicado, fora de ordem ou texto arbitrário adicional) invalida a linha
+        if ($cursor !== '') {
+            return null;
+        }
+
+        // Valida a combinação completa contra pelo menos um ramo concreto deste par (rótulo, desfecho)
+        $branchValid = false;
+        foreach ($matchedBranches as $b) {
+            if ($hasAssist && !$b['allow_assist']) {
+                continue;
+            }
+            if ($hasGoal && !$b['allow_goal']) {
+                continue;
+            }
+            if ($hasNoGoal && !$b['allow_no_goal']) {
+                continue;
+            }
+            if ($hasLateTackle && !$b['allow_late_tackle']) {
+                continue;
+            }
+            if ($hasDisciplinary && !$b['allow_disciplinary']) {
+                continue;
+            }
+            $branchValid = true;
+            break;
+        }
+
+        if (!$branchValid) {
+            return null;
+        }
+
+        return ['embedded_minutes' => $embeddedMinutes];
+    }
+
+    /**
+     * Compatibilidade para inspeção direta de prefixo composto.
+     */
+    private static function isValidCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute): bool {
+        return self::parseCompoundPlayPrefix($prefixBody, $hasLeadMinute) !== null;
     }
 
     /**
@@ -368,6 +498,7 @@ final class MatchParticipation {
         $firstOffset = $matches[0][0][1];
         $prefix = trim(substr($t, 0, $firstOffset));
         $leadMin = null;
+        $embeddedMinutes = [];
 
         if ($prefix !== '') {
             $prefixBody = $prefix;
@@ -375,9 +506,11 @@ final class MatchParticipation {
                 $leadMin = (int)$pm[1];
                 $prefixBody = trim($pm[2]);
             }
-            if (!self::isValidCompoundPlayPrefix($prefixBody, $leadMin !== null)) {
+            $prefixInfo = self::parseCompoundPlayPrefix($prefixBody, $leadMin !== null);
+            if ($prefixInfo === null) {
                 return null;
             }
+            $embeddedMinutes = $prefixInfo['embedded_minutes'];
         }
 
         $kinds = [];
@@ -386,6 +519,10 @@ final class MatchParticipation {
         if ($leadMin !== null) {
             $textMinutes[$leadMin] = true;
         }
+
+        $entryMinCheck = (array_key_exists('minute', $entry) && $entry['minute'] !== null && is_numeric($entry['minute']))
+            ? (int)$entry['minute']
+            : null;
 
         foreach ($matches as $m) {
             $evMinRaw = $m[1][0] ?? '';
@@ -409,6 +546,22 @@ final class MatchParticipation {
             } elseif (($m[7][0] ?? '') !== '') {
                 $kinds['fatigue'] = true;
             }
+        }
+
+        // Verifica cronologia dos minutos disciplinares embutidos no prefixo (nunca descartados!)
+        foreach ($embeddedMinutes as $embMin) {
+            if ($embMin <= 0 || $embMin > self::MAX_VALID_MINUTE) {
+                return null;
+            }
+            if ($entryMinCheck !== null && $embMin !== $entryMinCheck) {
+                return null;
+            }
+            foreach (array_keys($textMinutes) as $tm) {
+                if ($embMin !== $tm) {
+                    return null;
+                }
+            }
+            $textMinutes[$embMin] = true;
         }
 
         return [
