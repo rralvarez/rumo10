@@ -97,27 +97,34 @@ final class MatchDiscipline {
     /**
      * Classificação disciplinar canônica da partida, unificada com MatchParticipation::resolveExit().
      * Distingue: none, direct_red, second_yellow, sent_off_unspecified e conflict.
+     * Em conflito temporal sem prova estruturada independente (ou conflito causal/subtipo),
+     * sinaliza pending_reconciliation=true para impedir punição definitiva precipitada.
      *
-     * @return array{outcome:string,minute:?int}
+     * @return array{outcome:string,minute:?int,pending_reconciliation:bool}
      */
     public static function classifyExpulsion(array $m): array {
         $exitInfo = MatchParticipation::resolveExit($m);
-        if ($exitInfo['cause_conflict']) {
-            return ['outcome' => 'conflict', 'minute' => null];
+        if ($exitInfo['cause_conflict'] || !empty($exitInfo['subtype_conflict'])) {
+            return ['outcome' => 'conflict', 'minute' => null, 'pending_reconciliation' => true];
         }
         if ($exitInfo['kind'] !== 'sent_off') {
-            return ['outcome' => 'none', 'minute' => null];
+            return ['outcome' => 'none', 'minute' => null, 'pending_reconciliation' => false];
         }
-        if (!empty($exitInfo['subtype_conflict'])) {
-            return ['outcome' => 'conflict', 'minute' => null];
+        if (!empty($exitInfo['time_conflict'])) {
+            // Caso B: prova estruturada independente confirma infração e subtipo (regra não depende do minuto)
+            if (!empty($exitInfo['has_structured_expulsion']) && !empty($exitInfo['structured_subtype'])) {
+                return ['outcome' => $exitInfo['structured_subtype'], 'minute' => null, 'pending_reconciliation' => false];
+            }
+            // Caso A: registro internamente contraditório sem prova estruturada independente -> pendente de reconciliação
+            return ['outcome' => 'conflict', 'minute' => null, 'pending_reconciliation' => true];
         }
         if ($exitInfo['subtype'] === 'direct_red') {
-            return ['outcome' => 'direct_red', 'minute' => $exitInfo['minute']];
+            return ['outcome' => 'direct_red', 'minute' => $exitInfo['minute'], 'pending_reconciliation' => false];
         }
         if ($exitInfo['subtype'] === 'second_yellow') {
-            return ['outcome' => 'second_yellow', 'minute' => $exitInfo['minute']];
+            return ['outcome' => 'second_yellow', 'minute' => $exitInfo['minute'], 'pending_reconciliation' => false];
         }
-        return ['outcome' => 'sent_off_unspecified', 'minute' => $exitInfo['minute']];
+        return ['outcome' => 'sent_off_unspecified', 'minute' => $exitInfo['minute'], 'pending_reconciliation' => false];
     }
 
     /**
@@ -161,9 +168,9 @@ final class MatchDiscipline {
         $yellows = (int)($st['yellow_cards'] ?? 0);
         $classification = self::classifyExpulsion($m);
 
-        // Conflito causal ou disciplinar irreconciliável: preserva ledger sem aplicar punição baseada em fonte divergente
-        if ($classification['outcome'] === 'conflict') {
-            $m['disciplinary_processed'] = true;
+        // Evidência pendente (conflito causal, de subtipo ou temporal sem prova estruturada independente):
+        // preserva ledger sem punição e NÃO grava disciplinary_processed=true para permitir reconciliação posterior.
+        if ($classification['outcome'] === 'conflict' || !empty($classification['pending_reconciliation'])) {
             return;
         }
 
@@ -211,18 +218,9 @@ final class MatchDiscipline {
             return;
         }
 
-        // 3. Expulsão comprovada sem subtipo confiável: não atribui subtipo arbitrariamente
+        // 3. Expulsão comprovada sem subtipo confiável: não atribui subtipo nem infere pena pelo mínimo de regras
         if ($classification['outcome'] === 'sent_off_unspecified') {
-            if (isset($rules['direct_red_suspension'], $rules['second_yellow_suspension'])) {
-                $games = min((int)$rules['direct_red_suspension'], (int)$rules['second_yellow_suspension']);
-                if ($games > 0) {
-                    $disp['pending_suspension'] = max($disp['pending_suspension'], $games);
-                    $disp['suspension_reason'] = 'Expulsão de campo (' . $games . ' partida' . ($games > 1 ? 's' : '') . ')';
-                    $disp['regulatory_status'] = 'suspended';
-                } else {
-                    $disp['regulatory_status'] = 'regular';
-                }
-            } elseif (!empty($rules['has_disciplinary_code'])) {
+            if (!empty($rules['has_disciplinary_code'])) {
                 $disp['regulatory_status'] = 'pending_tribunal';
                 $disp['suspension_reason'] = 'Expulsão sem subtipo especificado — aguardando julgamento desportivo';
             } else {

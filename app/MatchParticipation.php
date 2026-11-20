@@ -67,14 +67,149 @@ final class MatchParticipation {
     }
 
     /**
-     * Valida se o prefixo anterior a um evento formal em log composto corresponde
-     * ao formato real de relato de jogada emitido por Game::fieldDecision() ou ao
-     * formato legado com minuto inicial, rejeitando relatos hipotéticos/arbitrários.
+     * Carrega e mantém em cache estático o catálogo positivo de rótulos de opção e desfechos
+     * realmente produzidos por Game::fieldDecision() (Scenes, NarrativeCatalog, MatchMomentum,
+     * fallback de Game::choices e formatos legados reconhecíveis).
+     *
+     * @return array{labels:array<string,bool>,outcomes:array<string,bool>}
      */
-    private static function isValidCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute, bool $trustedEngine): bool {
-        if ($trustedEngine) {
-            return true;
+    private static function knownPlayPrefixCatalog(): array {
+        static $cache = null;
+        if ($cache !== null) {
+            return $cache;
         }
+
+        $labels = [
+            // Rótulos legados curtos de ação
+            'Passe' => true,
+            'Chute' => true,
+            'Drible' => true,
+            'Desarme' => true,
+            // Fallback de Game::choices()
+            'Antecipar e desarmar' => true,
+            'Finalizar no canto' => true,
+            'Passar para o companheiro' => true,
+            'Avançar no drible' => true,
+            'Chutar de longe' => true,
+            // MatchMomentum::situation()
+            'Combinar um passe curto' => true,
+            'Avançar com a bola' => true,
+            'Finalizar agora' => true,
+            'Recuar e reorganizar' => true,
+            'Bater de primeira' => true,
+            'Tocar para o companheiro livre' => true,
+            'Driblar o goleiro' => true,
+        ];
+
+        $outcomes = [
+            // Desfechos padrão de Game::applyCommand() e testes legados
+            'a intenção deu certo.' => true,
+            'a intenção não teve o efeito esperado.' => true,
+            'falhou.' => true,
+            // Desfechos padrão de Scenes::option() em partida
+            'Você toca para o companheiro, recebe a devolução e ganha espaço à frente.' => true,
+            'Seu passe chega ao companheiro e mantém a jogada em movimento.' => true,
+            'Seu chute vence o goleiro.' => true,
+            'Você passa pelo marcador e ganha espaço para continuar a jogada.' => true,
+            'Você acerta o tempo do bote e recupera a bola.' => true,
+            'Você erra a direção do passe e a bola não chega ao companheiro.' => true,
+            'Você pega mal na bola e o chute sai sem a precisão que precisava.' => true,
+            'O marcador acompanha seu movimento e fecha o caminho do drible.' => true,
+            'Você chega atrasado no bote e não consegue tirar a bola do adversário.' => true,
+            'Você hesita ao ajustar a movimentação e a marcação fecha o espaço que pretendia usar.' => true,
+            'Você ajusta o toque e mantém o controle da bola durante o exercício.' => true,
+            'Você identifica o ajuste tático e entende como aplicá-lo na movimentação.' => true,
+            'Você ocupa o espaço a tempo e mantém a distância necessária.' => true,
+            'Você percebe o movimento e identifica a melhor opção antes de decidir.' => true,
+            'Você mantém a postura e completa a série de força prevista.' => true,
+            'Você mantém a intensidade até o fim da atividade.' => true,
+            'Você coordena as arrancadas e sustenta o ritmo do exercício.' => true,
+            'Você cuida da recuperação sem forçar o corpo.' => true,
+            'Sua disposição para ajudar é acolhida.' => true,
+            'Você organiza a proposta e deixa claro como pretende ajudar.' => true,
+            'Você mantém o foco e faz o que combinou.' => true,
+            'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.' => true,
+            'Tomar a iniciativa aumenta sua confiança.' => true,
+            'Sua mensagem esclarece sua posição sem ampliar a discussão.' => true,
+            'Você consegue relaxar durante a pausa.' => true,
+            'Você comunica sua decisão e evita um mal-entendido.' => true,
+            // Desfechos de MatchMomentum::situation()
+            'A combinação mantém a bola e abre espaço à frente.' => true,
+            'O passe é interceptado e encerra a posse.' => true,
+            'Você supera a aproximação e ganha espaço para concluir.' => true,
+            'O marcador tira a bola e encerra a jogada.' => true,
+            'Você aproveita o espaço e marca.' => true,
+            'A finalização não entra.' => true,
+            'Você encontra o apoio atrás e encerra esta tentativa de avanço.' => true,
+            'A devolução é cortada e a bola fica com o adversário.' => true,
+            'Você coloca a bola no canto, fora do alcance do goleiro.' => true,
+            'O goleiro fecha o canto e impede sua finalização.' => true,
+            'Você acerta o chute de primeira e vence o goleiro.' => true,
+            'Você pega mal na bola e o chute de primeira sai para fora.' => true,
+            'Seu passe encontra o companheiro livre, que finaliza para o gol.' => true,
+            'O defensor chega antes do companheiro e corta seu passe.' => true,
+            'Você passa pelo goleiro e toca para o gol vazio.' => true,
+            'O goleiro acompanha seu movimento e tira a bola antes do drible.' => true,
+        ];
+
+        $failuresPath = dirname(__DIR__) . '/database/scene-failures.php';
+        if (is_file($failuresPath)) {
+            $failures = require $failuresPath;
+            if (is_array($failures)) {
+                foreach ($failures as $fList) {
+                    if (!is_array($fList)) {
+                        continue;
+                    }
+                    foreach ($fList as $ft) {
+                        $ftTrim = trim((string)$ft);
+                        if ($ftTrim !== '') {
+                            $outcomes[$ftTrim] = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (class_exists('Scenes')) {
+            foreach (Scenes::catalog() as $s) {
+                if (($s['stage'] ?? '') !== 'partida') {
+                    continue;
+                }
+                if (isset($s['legacy'][2]) && is_array($s['legacy'][2])) {
+                    foreach ($s['legacy'][2] as $o) {
+                        $lbl = trim((string)($o[0] ?? ''));
+                        if ($lbl !== '') {
+                            $labels[$lbl] = true;
+                        }
+                    }
+                } elseif (isset($s['options']) && is_array($s['options'])) {
+                    foreach ($s['options'] as $o) {
+                        $lbl = trim((string)($o['text'] ?? ''));
+                        if ($lbl !== '') {
+                            $labels[$lbl] = true;
+                        }
+                        foreach (['success_text', 'failure_text', 'exceptional_text', 'severe_failure_text'] as $k) {
+                            $ot = trim((string)($o[$k] ?? ''));
+                            if ($ot !== '') {
+                                $outcomes[$ot] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $cache = ['labels' => $labels, 'outcomes' => $outcomes];
+        return $cache;
+    }
+
+    /**
+     * Validação positiva do prefixo anterior a um evento formal em log composto.
+     * Aceita exclusivamente estruturas concretas de opção e desfecho realmente emitidas por
+     * Game::fieldDecision() ou formatos históricos reconhecíveis; nunca dispensa a validação
+     * estrutural apenas por haver source=engine.
+     */
+    private static function isValidCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute): bool {
         $p = trim($prefixBody);
         if ($p === '' || str_contains($p, '?')) {
             return false;
@@ -83,18 +218,64 @@ final class MatchParticipation {
         if ($lastChar !== '.' && $lastChar !== '!') {
             return false;
         }
-        // Rejeita molduras hipotéticas, de simulação, meta-narrativas ou referências a terceiros/outras partidas
-        if (preg_match('/\b(hipot[eé]tic[oa]?|exemplo|simula[cç][aã]o|ensaio|treino|pr[oó]xim[oa]\s+(?:partida|jogo|rodada)|partida\s+anterior|rodada\s+(?:anterior|passada)|semana\s+passada|se\s+repetir|treinador|t[eé]cnico|auxiliar|m[eé]dico|comiss[aã]o|comentarista|entrevista|relato|lembra|pergunta|perguntou|avisou|comentou|disse|citou|mostrou|encena|advers[aá]rio|companheiro)\b/iu', $p) === 1) {
-            return false;
-        }
-        // Formato real de Game::fieldDecision(): "<Opção/Ação>: <Desfecho>." (com eventuais frases de jogada)
-        if (preg_match('/(?:^|[.!]\s+)[^:?!.]{2,90}:\s+[^?!]+[.!]$/u', $p) === 1) {
+
+        // Formato histórico legado curto com minuto inicial explícito (ex.: "75' | Disputa dura.")
+        if ($hasLeadMinute && $p === 'Disputa dura.') {
             return true;
         }
-        // Formato legado curto com minuto inicial explícito (ex.: "75' | Disputa dura.")
-        if ($hasLeadMinute && preg_match('/^[\p{L}\p{N}\s,-]{3,40}[.!]$/u', $p) === 1) {
+
+        $catalog = self::knownPlayPrefixCatalog();
+
+        // Remove complementos finais realmente anexados por Game::fieldDecision()
+        $stripEngineFollowups = static function (string $outcome): string {
+            $cur = trim($outcome);
+            $followups = [
+                ' O companheiro marca: assistência!',
+                ' Gol do seu jogador!',
+                ' A bola não entrou.',
+                ' Você chega atrasado e comete falta.',
+            ];
+            $changed = true;
+            while ($changed) {
+                $changed = false;
+                foreach ($followups as $suffix) {
+                    if (str_ends_with($cur, $suffix)) {
+                        $cur = trim(substr($cur, 0, -strlen($suffix)));
+                        $changed = true;
+                    }
+                }
+                if (preg_match('/^(.+?[.!])\s+\d{1,3}\s*[\'\x{2032}]\s*\|\s*(?:Falta marcada contra você\.|Cartão amarelo! Você foi advertido pela arbitragem\.)$/u', $cur, $fm) === 1) {
+                    $cur = trim($fm[1]);
+                    $changed = true;
+                }
+            }
+            return $cur;
+        };
+
+        $matchPair = static function (string $candidate) use ($catalog, $stripEngineFollowups): bool {
+            $pos = strpos($candidate, ': ');
+            if ($pos === false) {
+                return false;
+            }
+            $label = trim(substr($candidate, 0, $pos));
+            $outcome = trim(substr($candidate, $pos + 2));
+            if ($label === '' || $outcome === '' || !isset($catalog['labels'][$label])) {
+                return false;
+            }
+            $baseOutcome = $stripEngineFollowups($outcome);
+            return isset($catalog['outcomes'][$baseOutcome]);
+        };
+
+        if ($matchPair($p)) {
             return true;
         }
+
+        // Compatibilidade com relato histórico contendo frase introdutória antes de "<Ação>: <Desfecho>."
+        // (ex.: "Aos 50' houve advertência. Desarme: falhou.")
+        if (preg_match('/^Aos\s+\d{1,3}\s*[\'\x{2032}]\s+[^:?!.]+\.\s+(.+)$/u', $p, $lm) === 1) {
+            return $matchPair(trim($lm[1]));
+        }
+
         return false;
     }
 
@@ -151,7 +332,7 @@ final class MatchParticipation {
                 $leadMin = (int)$pm[1];
                 $prefixBody = trim($pm[2]);
             }
-            if (!self::isValidCompoundPlayPrefix($prefixBody, $leadMin !== null, $trustedEngine)) {
+            if (!self::isValidCompoundPlayPrefix($prefixBody, $leadMin !== null)) {
                 return null;
             }
         }
@@ -523,6 +704,8 @@ final class MatchParticipation {
                 'subtype' => null,
                 'minute' => null,
                 'pending_future' => $logExit['pending_future'],
+                'has_structured_expulsion' => false,
+                'structured_subtype' => null,
             ];
         }
 
@@ -642,6 +825,13 @@ final class MatchParticipation {
             }
         }
 
+        $structuredSubtype = null;
+        if ($hasDirectRedStruct && !$hasSecondYellowStruct) {
+            $structuredSubtype = 'direct_red';
+        } elseif ($hasSecondYellowStruct && !$hasDirectRedStruct) {
+            $structuredSubtype = 'second_yellow';
+        }
+
         return [
             'status' => ($causeConflict || $timeConflict) ? 'conflict' : 'valid',
             'cause_conflict' => $causeConflict,
@@ -651,6 +841,8 @@ final class MatchParticipation {
             'subtype' => ($causeConflict || $subtypeConflict) ? null : $subtype,
             'minute' => ($causeConflict || $timeConflict) ? null : $resolvedMin,
             'pending_future' => $logExit['pending_future'],
+            'has_structured_expulsion' => $hasStructuredExpulsion,
+            'structured_subtype' => $structuredSubtype,
         ];
     }
 
@@ -794,16 +986,61 @@ final class MatchParticipation {
             return;
         }
 
-        // Checagem de entrada em campo do banco (apenas com partida em curso e janela válida)
-        if (!$isFinished && $state === self::STATE_ON_BENCH && $validWindow && $minute >= $entry && $minute < $exit) {
-            $m['participation_state'] = self::STATE_ON_FIELD;
-            $m['entered_on_field'] = true;
-            if (empty($m['sub_in_recorded'])) {
-                $m['sub_in_recorded'] = true;
-                $m['log'][] = ['minute' => $entry, 'text' => "{$entry}' | Você entra em campo no lugar de um companheiro.", 'source' => 'engine'];
-                Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_IN', $entry);
+        // Checagem de entrada em campo do banco (consulta resolveEntry antes de promover ON_BENCH -> ON_FIELD)
+        if (!$isFinished && $state === self::STATE_ON_BENCH && $validWindow) {
+            $mAtMinute = $m;
+            $mAtMinute['minute'] = $minute;
+            unset($mAtMinute['participation_state']);
+            $entryInfo = self::resolveEntry($mAtMinute);
+
+            // Caso C: conflito real entre entradas comprovadas — bloqueio conservador sem promover nem fabricar log
+            if ($entryInfo['status'] === 'conflict') {
+                $m['participation_state'] = self::STATE_ON_BENCH;
+                return;
             }
-            return;
+
+            // Caso A (antes do minuto efetivo): entrada formal futura pendente — mantém no banco sem novo log nem sub_in_recorded
+            if ($entryInfo['pending_future'] > 0 && $entryInfo['status'] !== 'valid') {
+                $m['participation_state'] = self::STATE_ON_BENCH;
+                return;
+            }
+
+            // Caso A (alcançou o minuto efetivo documentado em log formal): promove uma única vez preservando o log original
+            if ($entryInfo['status'] === 'valid' && $entryInfo['source'] === 'log' && $entryInfo['minute'] !== null) {
+                $effEntry = $entryInfo['minute'];
+                if ($minute >= $effEntry && $minute < $exit) {
+                    $m['participation_state'] = self::STATE_ON_FIELD;
+                    $m['entered_on_field'] = true;
+                    if ($effEntry === $entry && empty($m['sub_in_recorded'])) {
+                        $m['sub_in_recorded'] = true;
+                    }
+                    $hasSubInSound = false;
+                    foreach (($m['sound_events'] ?? []) as $sev) {
+                        if (($sev['type'] ?? '') === 'PLAYER_SUBSTITUTION_IN') {
+                            $hasSubInSound = true;
+                            break;
+                        }
+                    }
+                    if (!$hasSubInSound) {
+                        Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_IN', $effEntry);
+                    }
+                } else {
+                    $m['participation_state'] = self::STATE_ON_BENCH;
+                }
+                return;
+            }
+
+            // Caso B: reserva novo programado pelo motor (sem entrada futura nem conflito histórico)
+            if ($minute >= $entry && $minute < $exit) {
+                $m['participation_state'] = self::STATE_ON_FIELD;
+                $m['entered_on_field'] = true;
+                if (empty($m['sub_in_recorded'])) {
+                    $m['sub_in_recorded'] = true;
+                    $m['log'][] = ['minute' => $entry, 'text' => "{$entry}' | Você entra em campo no lugar de um companheiro.", 'source' => 'engine'];
+                    Game::emitSoundEvent($m, $g, 'PLAYER_SUBSTITUTION_IN', $entry);
+                }
+                return;
+            }
         }
 
         // Checagem de saída por substituição (idempotente)
@@ -954,7 +1191,7 @@ final class MatchParticipation {
         }
 
         $entryInfo = self::resolveEntry($m);
-        if ($entryInfo['status'] === 'conflict') {
+        if ($entryInfo['status'] === 'conflict' || $entryInfo['pending_future'] > 0) {
             return false;
         }
 
@@ -1031,7 +1268,7 @@ final class MatchParticipation {
         }
 
         $entryInfo = self::resolveEntry($m);
-        if ($entryInfo['status'] === 'conflict') {
+        if ($entryInfo['status'] === 'conflict' || $entryInfo['pending_future'] > 0) {
             return false;
         }
 
