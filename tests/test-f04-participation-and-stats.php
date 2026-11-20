@@ -2280,8 +2280,8 @@ $validFormalCases = [
         'log' => [['minute' => 75, 'text' => "Desarme: a intenção não teve o efeito esperado. Você chega atrasado e comete falta. 75' | Cartão vermelho direto! Você foi expulso da partida."]],
         'state' => MatchParticipation::STATE_SENT_OFF, 'min' => 15, 'narr' => 'red', 'presType' => 'sent_off', 'presLabel' => 'Expulso aos 75′',
     ],
-    'B.12_concat_2amarelo_com_min_anterior' => [
-        'log' => [['minute' => 75, 'text' => "Aos 50' houve advertência. Desarme: falhou. 75' | Segundo cartão amarelo! Você está expulso da partida."]],
+    'B.12_concat_2amarelo_com_falta' => [
+        'log' => [['minute' => 75, 'text' => "Desarme: a intenção não teve o efeito esperado. Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida."]],
         'state' => MatchParticipation::STATE_SENT_OFF, 'min' => 15, 'narr' => 'red', 'presType' => 'sent_off', 'presLabel' => 'Expulso aos 75′',
     ],
     'B.12_concat_lesao' => [
@@ -3590,6 +3590,210 @@ f04Check(
     'R8-P1-B [11]: competição real sp-a3 sem regra disciplinar cadastrada registra no_rule_recorded sem inventar suspensão'
 );
 
+// =========================================================================
+// 14. MATRIZ DIRECIONADA R1-R9 (Último Segmento com Entrada Comprovada e Pares Reais)
+// =========================================================================
+echo "\n14. Validando Matriz Direcionada R1-R9 (Avanço Direto 74->90/80->90 e Validação de Pares)...\n";
+
+// --- GRUPO R9-P0: ENTRADA COMPROVADA NO ÚLTIMO SEGMENTO ---
+// [R9-P0.1] Reprodução exata 74' -> 90' com entrada formal aos 75' (sem preencher marcadores canônicos manualmente)
+$gR9_74 = Game::legacyCreate('R9 P0 74->90', 'São Paulo', 'SP', 'meia');
+$gR9_74['stage'] = 'partida';
+$gR9_74['states']['ritmo_jogo'] = 50;
+$idxR9_74 = Game::currentIndex($gR9_74);
+$gR9_74['matches'][$idxR9_74] = array_merge($gR9_74['matches'][$idxR9_74], [
+    'status' => 'em_andamento', 'minute' => 74, 'lineup' => 'reserva',
+    'participation_state' => MatchParticipation::STATE_ON_BENCH,
+    'entry' => 60, 'exit' => 90, 'sub_in_recorded' => false, 'entered_on_field' => false,
+    'log' => [['minute' => 75, 'text' => "75' | Você entra em campo no lugar de um companheiro."]],
+]);
+$gR9_74 = Game::command($gR9_74, 'advance');
+$mR9_74 = $gR9_74['matches'][$idxR9_74];
+$subLogs74 = count(array_filter($mR9_74['log'], fn($l) => str_contains((string)($l['text'] ?? ''), 'Você entra em campo')));
+$gPen74 = $gR9_74;
+$stPen74 = PenaltyShootout::start($gPen74, $mR9_74);
+f04Check(
+    $mR9_74['status'] === 'finalizada'
+    && $mR9_74['participation_state'] === MatchParticipation::STATE_FULL_TIME
+    && MatchParticipation::resolveEntry($mR9_74)['minute'] === 75
+    && $mR9_74['stats']['minutes'] === 15
+    && $mR9_74['stats']['rating'] > 0
+    && Game::summary($gR9_74)['games'] === 1
+    && $gR9_74['states']['ritmo_jogo'] === 53
+    && $subLogs74 === 1
+    && MatchParticipation::finishedOnField($mR9_74)
+    && $stPen74['protagonist_eligible'] === true,
+    'R9-P0 [1]: avanço direto 74\'->90\' com log formal aos 75\' conclui FULL_TIME, 15\', 1 jogo, ritmo +3, 1 log e elegível para pênaltis'
+);
+// Reexecução idempotente do encerramento em 74' -> 90'
+$snap74M = $gR9_74['matches'][$idxR9_74];
+$snap74S = $gR9_74['states'];
+$snap74L = $gR9_74['reward_ledger'] ?? [];
+$refSegment->invokeArgs(null, [&$gR9_74, 90]);
+f04Check(
+    $gR9_74['matches'][$idxR9_74] === $snap74M
+    && $gR9_74['states'] === $snap74S
+    && ($gR9_74['reward_ledger'] ?? []) === $snap74L,
+    'R9-P0 [10]: encerramento repetido após 74\'->90\' não altera nem duplica estatísticas, logs ou recompensas'
+);
+
+// [R9-P0.2] Segunda reprodução obrigatória: 80' -> 90' com entrada formal aos 85' (planejado 60) -> 5' (não 30'!)
+$gR9_80 = Game::legacyCreate('R9 P0 80->90', 'São Paulo', 'SP', 'meia');
+$gR9_80['stage'] = 'partida';
+$gR9_80['states']['ritmo_jogo'] = 50;
+$idxR9_80 = Game::currentIndex($gR9_80);
+$gR9_80['matches'][$idxR9_80] = array_merge($gR9_80['matches'][$idxR9_80], [
+    'status' => 'em_andamento', 'minute' => 80, 'lineup' => 'reserva',
+    'participation_state' => MatchParticipation::STATE_ON_BENCH,
+    'entry' => 60, 'exit' => 90, 'sub_in_recorded' => false, 'entered_on_field' => false,
+    'log' => [['minute' => 85, 'text' => "85' | Você entra em campo no lugar de um companheiro."]],
+]);
+$gR9_80 = Game::command($gR9_80, 'advance');
+$mR9_80 = $gR9_80['matches'][$idxR9_80];
+$subLogs80 = count(array_filter($mR9_80['log'], fn($l) => str_contains((string)($l['text'] ?? ''), 'Você entra em campo')));
+f04Check(
+    $mR9_80['participation_state'] === MatchParticipation::STATE_FULL_TIME
+    && MatchParticipation::resolveEntry($mR9_80)['minute'] === 85
+    && $mR9_80['stats']['minutes'] === 5
+    && Game::summary($gR9_80)['games'] === 1
+    && $gR9_80['states']['ritmo_jogo'] === 53
+    && $subLogs80 === 1
+    && MatchParticipation::finishedOnField($mR9_80),
+    'R9-P0 [2]: avanço direto 80\'->90\' com log formal aos 85\' (planejado 60) conclui FULL_TIME com 5\' (não 30\'), 1 jogo e elegível'
+);
+
+// [R9-P0.3] 74' -> 90', entrada apenas planejada 60' sem prova -> 0' e ON_BENCH
+$gR9_NoProof = Game::legacyCreate('R9 P0 SemProva', 'São Paulo', 'SP', 'meia');
+$gR9_NoProof['stage'] = 'partida';
+$gR9_NoProof['states']['ritmo_jogo'] = 50;
+$idxR9_NP = Game::currentIndex($gR9_NoProof);
+$gR9_NoProof['matches'][$idxR9_NP] = array_merge($gR9_NoProof['matches'][$idxR9_NP], [
+    'status' => 'em_andamento', 'minute' => 74, 'lineup' => 'reserva',
+    'participation_state' => MatchParticipation::STATE_ON_BENCH,
+    'entry' => 60, 'exit' => 90, 'sub_in_recorded' => false, 'entered_on_field' => false, 'log' => [],
+]);
+$gR9_NoProof = Game::command($gR9_NoProof, 'advance');
+$mR9_NP = $gR9_NoProof['matches'][$idxR9_NP];
+f04Check(
+    $mR9_NP['participation_state'] === MatchParticipation::STATE_ON_BENCH
+    && $mR9_NP['stats']['minutes'] === 0
+    && Game::summary($gR9_NoProof)['games'] === 0
+    && $gR9_NoProof['states']['ritmo_jogo'] === 50
+    && !MatchParticipation::finishedOnField($mR9_NP),
+    'R9-P0 [3]: 74\'->90\' com entrada apenas planejada aos 60\' sem prova permanece ON_BENCH com 0\' e sem recompensas'
+);
+
+// [R9-P0.4] 74' -> 90', entrada formal aos 95' (futura além do apito final aos 90') -> não reconhecida, 0'
+$gR9_Fut95 = Game::legacyCreate('R9 P0 Fut95', 'São Paulo', 'SP', 'meia');
+$gR9_Fut95['stage'] = 'partida';
+$gR9_Fut95['states']['ritmo_jogo'] = 50;
+$idxR9_F95 = Game::currentIndex($gR9_Fut95);
+$gR9_Fut95['matches'][$idxR9_F95] = array_merge($gR9_Fut95['matches'][$idxR9_F95], [
+    'status' => 'em_andamento', 'minute' => 74, 'lineup' => 'reserva',
+    'participation_state' => MatchParticipation::STATE_ON_BENCH,
+    'entry' => 60, 'exit' => 90, 'sub_in_recorded' => false, 'entered_on_field' => false,
+    'log' => [['minute' => 95, 'text' => "95' | Você entra em campo no lugar de um companheiro."]],
+]);
+$gR9_Fut95 = Game::command($gR9_Fut95, 'advance');
+$mR9_F95 = $gR9_Fut95['matches'][$idxR9_F95];
+f04Check(
+    $mR9_F95['participation_state'] === MatchParticipation::STATE_ON_BENCH
+    && $mR9_F95['stats']['minutes'] === 0
+    && $gR9_Fut95['states']['ritmo_jogo'] === 50
+    && !MatchParticipation::finishedOnField($mR9_F95),
+    'R9-P0 [4]: 74\'->90\' com log de entrada aos 95\' (não ocorrido) mantém 0\', ON_BENCH e inelegível'
+);
+
+// [R9-P0.5] 74' -> 90', entrada real 75' e saída comprovada 82' -> 7', SUBSTITUTED_OUT, inelegível para pênaltis
+$gR9_75_82 = Game::legacyCreate('R9 P0 75->82', 'São Paulo', 'SP', 'meia');
+$gR9_75_82['stage'] = 'partida';
+$gR9_75_82['states']['ritmo_jogo'] = 50;
+$idxR9_7582 = Game::currentIndex($gR9_75_82);
+$gR9_75_82['matches'][$idxR9_7582] = array_merge($gR9_75_82['matches'][$idxR9_7582], [
+    'status' => 'em_andamento', 'minute' => 74, 'lineup' => 'reserva',
+    'participation_state' => MatchParticipation::STATE_ON_BENCH,
+    'entry' => 60, 'exit' => 90, 'sub_in_recorded' => false, 'entered_on_field' => false,
+    'log' => [
+        ['minute' => 75, 'text' => "75' | Você entra em campo no lugar de um companheiro."],
+        ['minute' => 82, 'text' => "82' | Lesão: você deixa o campo."],
+    ],
+]);
+$gR9_75_82 = Game::command($gR9_75_82, 'advance');
+$mR9_7582 = $gR9_75_82['matches'][$idxR9_7582];
+f04Check(
+    $mR9_7582['participation_state'] === MatchParticipation::STATE_SUBSTITUTED_OUT
+    && $mR9_7582['stats']['minutes'] === 7
+    && Game::summary($gR9_75_82)['games'] === 1
+    && $gR9_75_82['states']['ritmo_jogo'] === 53
+    && !MatchParticipation::finishedOnField($mR9_7582),
+    'R9-P0 [5]: 74\'->90\' com entrada formal 75\' e lesão formal 82\' contabiliza 7\', SUBSTITUTED_OUT e bloqueia pênaltis'
+);
+
+// [R9-P0.6] 74' -> 90', entrada 75' contraditória com outra entrada comprovada (60') -> conflito, 0', sem benefícios
+$gR9_ConfEnt = Game::legacyCreate('R9 P0 Conflito Entrada', 'São Paulo', 'SP', 'meia');
+$gR9_ConfEnt['stage'] = 'partida';
+$gR9_ConfEnt['states']['ritmo_jogo'] = 50;
+$idxR9_CE = Game::currentIndex($gR9_ConfEnt);
+$gR9_ConfEnt['matches'][$idxR9_CE] = array_merge($gR9_ConfEnt['matches'][$idxR9_CE], [
+    'status' => 'em_andamento', 'minute' => 74, 'lineup' => 'reserva',
+    'participation_state' => MatchParticipation::STATE_ON_BENCH,
+    'entry' => 60, 'exit' => 90,
+    'log' => [
+        ['minute' => 60, 'text' => "60' | Você entra em campo no lugar de um companheiro."],
+        ['minute' => 75, 'text' => "75' | Você entra em campo no lugar de um companheiro."],
+    ],
+]);
+$gR9_ConfEnt = Game::command($gR9_ConfEnt, 'advance');
+$mR9_CE = $gR9_ConfEnt['matches'][$idxR9_CE];
+f04Check(
+    $mR9_CE['stats']['minutes'] === 0
+    && $gR9_ConfEnt['states']['ritmo_jogo'] === 50
+    && !MatchParticipation::finishedOnField($mR9_CE),
+    'R9-P0 [6]: 74\'->90\' com duas entradas comprovadas contraditórias (60\' vs 75\') bloqueia minutagem e benefícios'
+);
+
+// --- GRUPO R9-P1: VALIDAÇÃO DE PARES REAIS OPÇÃO/DESFECHO E REMOÇÃO DE INTRODUÇÃO ARBITRÁRIA ---
+$r9InvalidPairs = [
+    'par_sem_source' => ['minute' => 75, 'text' => "Finalizar no canto: O passe é interceptado e encerra a posse. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'par_com_engine' => ['minute' => 75, 'text' => "Finalizar no canto: O passe é interceptado e encerra a posse. 75' | Cartão vermelho direto! Você foi expulso da partida.", 'source' => 'engine'],
+    'aos50_par_invalido' => ['minute' => 75, 'text' => "Aos 50' conversamos sobre o jogo de ontem. Finalizar no canto: O passe é interceptado e encerra a posse. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'aos50_par_invalido_engine' => ['minute' => 75, 'text' => "Aos 50' conversamos sobre o jogo de ontem. Finalizar no canto: O passe é interceptado e encerra a posse. 75' | Cartão vermelho direto! Você foi expulso da partida.", 'source' => 'engine'],
+    'aos50_par_valido' => ['minute' => 75, 'text' => "Aos 50' conversamos sobre o jogo de ontem. Desarme: falhou. 75' | Cartão vermelho direto! Você foi expulso da partida."],
+    'outro_par_cruzado' => ['minute' => 75, 'text' => "Combinar um passe curto: O goleiro fecha o canto e impede sua finalização. 75' | Segundo cartão amarelo! Você está expulso da partida."],
+];
+foreach ($r9InvalidPairs as $ipKey => $ipEntry) {
+    [$gIP, $idxIP] = $r7Game('R9 P1 ' . $ipKey, $r7OnFieldReserve + ['log' => [$r7EntryLog, $ipEntry]], true);
+    $mIP = $gIP['matches'][$idxIP];
+    $rIP = MatchParticipation::resolveExit($mIP);
+    $presIP = Presentation::playerParticipation($gIP, $mIP);
+    $gIPEnd = $r7RunToEnd($gIP, $idxIP);
+    $mIPEnd = $gIPEnd['matches'][$idxIP];
+    f04Check(
+        $rIP['status'] === 'none'
+        && !MatchParticipation::isSentOff($mIP)
+        && MatchParticipation::canActOnField($mIP)
+        && $presIP['label'] === 'Em campo'
+        && $mIPEnd['participation_state'] === MatchParticipation::STATE_FULL_TIME
+        && $mIPEnd['stats']['minutes'] === 30
+        && ($gIPEnd['disciplinary']['legacy']['regulatory_status'] ?? 'regular') === 'regular'
+        && MatchParticipation::finishedOnField($mIPEnd),
+        "R9-P1 [{$ipKey}]: par opção/desfecho incompatível ou introdução arbitrária 'Aos 50' rejeitado (mantém Em campo, 30', disciplina regular e pênaltis)"
+    );
+}
+
+// Pares genuinamente associados no catálogo/MatchMomentum continuam aceitos
+$mR9ValidPair1 = ['status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90, 'sub_in_recorded' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Finalizar no canto: O goleiro fecha o canto e impede sua finalização. 75' | Cartão vermelho direto! Você foi expulso da partida."]]];
+$mR9ValidPair2 = ['status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90, 'sub_in_recorded' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Combinar um passe curto: O passe é interceptado e encerra a posse. Lesão: você deixa o campo."]]];
+f04Check(
+    MatchParticipation::resolveExit($mR9ValidPair1)['kind'] === 'sent_off'
+    && MatchParticipation::playedMinutes($mR9ValidPair1) === 15
+    && MatchParticipation::resolveExit($mR9ValidPair2)['kind'] === 'injury'
+    && MatchParticipation::playedMinutes($mR9ValidPair2) === 15,
+    'R9-P1 [válidos]: pares genuinamente associados (Finalizar no canto + goleiro; Combinar passe curto + interceptado) continuam reconhecidos'
+);
+
 echo "\n=======================================================\n";
-echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R8 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R9 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";

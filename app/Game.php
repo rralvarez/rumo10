@@ -508,6 +508,10 @@ final class Game {
         $m['minute']=$next;
         if($next===45) $m['status']='intervalo';
         if($next>=90) {
+            // Reconcilia entrada formal comprovada atravessada no último segmento antes da consolidação terminal
+            if ($span > 0 && ($m['participation_state'] ?? null) === MatchParticipation::STATE_ON_BENCH) {
+                MatchParticipation::sync($m, $g, $next);
+            }
             MatchMomentum::reset($m);
             $m['status']='finalizada';
         }

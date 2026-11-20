@@ -67,11 +67,12 @@ final class MatchParticipation {
     }
 
     /**
-     * Carrega e mantém em cache estático o catálogo positivo de rótulos de opção e desfechos
+     * Carrega e mantém em cache estático o mapa positivo de PARES (rótulo de opção => desfechos válidos)
      * realmente produzidos por Game::fieldDecision() (Scenes, NarrativeCatalog, MatchMomentum,
      * fallback de Game::choices e formatos legados reconhecíveis).
+     * Nunca valida produto cartesiano global entre rótulos e desfechos de opções distintas.
      *
-     * @return array{labels:array<string,bool>,outcomes:array<string,bool>}
+     * @return array<string,array<string,bool>>
      */
     private static function knownPlayPrefixCatalog(): array {
         static $cache = null;
@@ -79,119 +80,175 @@ final class MatchParticipation {
             return $cache;
         }
 
-        $labels = [
-            // Rótulos legados curtos de ação
-            'Passe' => true,
-            'Chute' => true,
-            'Drible' => true,
-            'Desarme' => true,
-            // Fallback de Game::choices()
-            'Antecipar e desarmar' => true,
-            'Finalizar no canto' => true,
-            'Passar para o companheiro' => true,
-            'Avançar no drible' => true,
-            'Chutar de longe' => true,
-            // MatchMomentum::situation()
-            'Combinar um passe curto' => true,
-            'Avançar com a bola' => true,
-            'Finalizar agora' => true,
-            'Recuar e reorganizar' => true,
-            'Bater de primeira' => true,
-            'Tocar para o companheiro livre' => true,
-            'Driblar o goleiro' => true,
-        ];
+        $pairs = [];
+        $addPair = static function (string $label, string $outcome) use (&$pairs): void {
+            $l = trim($label);
+            $o = trim($outcome);
+            if ($l !== '' && $o !== '') {
+                $pairs[$l][$o] = true;
+            }
+        };
 
-        $outcomes = [
-            // Desfechos padrão de Game::applyCommand() e testes legados
-            'a intenção deu certo.' => true,
-            'a intenção não teve o efeito esperado.' => true,
-            'falhou.' => true,
-            // Desfechos padrão de Scenes::option() em partida
-            'Você toca para o companheiro, recebe a devolução e ganha espaço à frente.' => true,
-            'Seu passe chega ao companheiro e mantém a jogada em movimento.' => true,
-            'Seu chute vence o goleiro.' => true,
-            'Você passa pelo marcador e ganha espaço para continuar a jogada.' => true,
-            'Você acerta o tempo do bote e recupera a bola.' => true,
-            'Você erra a direção do passe e a bola não chega ao companheiro.' => true,
-            'Você pega mal na bola e o chute sai sem a precisão que precisava.' => true,
-            'O marcador acompanha seu movimento e fecha o caminho do drible.' => true,
-            'Você chega atrasado no bote e não consegue tirar a bola do adversário.' => true,
-            'Você hesita ao ajustar a movimentação e a marcação fecha o espaço que pretendia usar.' => true,
-            'Você ajusta o toque e mantém o controle da bola durante o exercício.' => true,
-            'Você identifica o ajuste tático e entende como aplicá-lo na movimentação.' => true,
-            'Você ocupa o espaço a tempo e mantém a distância necessária.' => true,
-            'Você percebe o movimento e identifica a melhor opção antes de decidir.' => true,
-            'Você mantém a postura e completa a série de força prevista.' => true,
-            'Você mantém a intensidade até o fim da atividade.' => true,
-            'Você coordena as arrancadas e sustenta o ritmo do exercício.' => true,
-            'Você cuida da recuperação sem forçar o corpo.' => true,
-            'Sua disposição para ajudar é acolhida.' => true,
-            'Você organiza a proposta e deixa claro como pretende ajudar.' => true,
-            'Você mantém o foco e faz o que combinou.' => true,
-            'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.' => true,
-            'Tomar a iniciativa aumenta sua confiança.' => true,
-            'Sua mensagem esclarece sua posição sem ampliar a discussão.' => true,
-            'Você consegue relaxar durante a pausa.' => true,
-            'Você comunica sua decisão e evita um mal-entendido.' => true,
-            // Desfechos de MatchMomentum::situation()
-            'A combinação mantém a bola e abre espaço à frente.' => true,
-            'O passe é interceptado e encerra a posse.' => true,
-            'Você supera a aproximação e ganha espaço para concluir.' => true,
-            'O marcador tira a bola e encerra a jogada.' => true,
-            'Você aproveita o espaço e marca.' => true,
-            'A finalização não entra.' => true,
-            'Você encontra o apoio atrás e encerra esta tentativa de avanço.' => true,
-            'A devolução é cortada e a bola fica com o adversário.' => true,
-            'Você coloca a bola no canto, fora do alcance do goleiro.' => true,
-            'O goleiro fecha o canto e impede sua finalização.' => true,
-            'Você acerta o chute de primeira e vence o goleiro.' => true,
-            'Você pega mal na bola e o chute de primeira sai para fora.' => true,
-            'Seu passe encontra o companheiro livre, que finaliza para o gol.' => true,
-            'O defensor chega antes do companheiro e corta seu passe.' => true,
-            'Você passa pelo goleiro e toca para o gol vazio.' => true,
-            'O goleiro acompanha seu movimento e tira a bola antes do drible.' => true,
-        ];
+        // 1. Formatos legados curtos de ação
+        foreach (['Passe', 'Chute', 'Drible', 'Desarme'] as $shortAction) {
+            $addPair($shortAction, 'a intenção deu certo.');
+            $addPair($shortAction, 'a intenção não teve o efeito esperado.');
+            $addPair($shortAction, 'falhou.');
+        }
 
-        $failuresPath = dirname(__DIR__) . '/database/scene-failures.php';
-        if (is_file($failuresPath)) {
-            $failures = require $failuresPath;
-            if (is_array($failures)) {
-                foreach ($failures as $fList) {
-                    if (!is_array($fList)) {
-                        continue;
-                    }
-                    foreach ($fList as $ft) {
-                        $ftTrim = trim((string)$ft);
-                        if ($ftTrim !== '') {
-                            $outcomes[$ftTrim] = true;
-                        }
-                    }
-                }
+        // 2. Fallback de Game::choices()
+        foreach (['Antecipar e desarmar', 'Finalizar no canto', 'Passar para o companheiro', 'Avançar no drible', 'Chutar de longe'] as $fbLabel) {
+            $addPair($fbLabel, 'a intenção deu certo.');
+            $addPair($fbLabel, 'a intenção não teve o efeito esperado.');
+        }
+
+        // 3. Pares exatos de MatchMomentum::situation()
+        $momentumPairs = [
+            'Combinar um passe curto' => ['A combinação mantém a bola e abre espaço à frente.', 'O passe é interceptado e encerra a posse.'],
+            'Avançar com a bola' => ['Você supera a aproximação e ganha espaço para concluir.', 'O marcador tira a bola e encerra a jogada.'],
+            'Finalizar agora' => ['Você aproveita o espaço e marca.', 'A finalização não entra.'],
+            'Recuar e reorganizar' => ['Você encontra o apoio atrás e encerra esta tentativa de avanço.', 'A devolução é cortada e a bola fica com o adversário.'],
+            'Finalizar no canto' => ['Você coloca a bola no canto, fora do alcance do goleiro.', 'O goleiro fecha o canto e impede sua finalização.'],
+            'Bater de primeira' => ['Você acerta o chute de primeira e vence o goleiro.', 'Você pega mal na bola e o chute de primeira sai para fora.'],
+            'Tocar para o companheiro livre' => ['Seu passe encontra o companheiro livre, que finaliza para o gol.', 'O defensor chega antes do companheiro e corta seu passe.'],
+            'Driblar o goleiro' => ['Você passa pelo goleiro e toca para o gol vazio.', 'O goleiro acompanha seu movimento e tira a bola antes do drible.'],
+        ];
+        foreach ($momentumPairs as $lbl => $outs) {
+            foreach ($outs as $out) {
+                $addPair($lbl, $out);
             }
         }
 
+        // 4. Catálogo real de Scenes (situations.php, scenes.json e NarrativeCatalog) vinculado por opção
+        $failures = [];
+        $failuresPath = dirname(__DIR__) . '/database/scene-failures.php';
+        if (is_file($failuresPath)) {
+            $loaded = require $failuresPath;
+            if (is_array($loaded)) {
+                $failures = $loaded;
+            }
+        }
+
+        $defaultSuccessByCode = static function (string $code, string $label): ?string {
+            return match ($code) {
+                'passe' => $label === 'Pedir a tabela'
+                    ? 'Você toca para o companheiro, recebe a devolução e ganha espaço à frente.'
+                    : 'Seu passe chega ao companheiro e mantém a jogada em movimento.',
+                'chute' => 'Seu chute vence o goleiro.',
+                'drible' => 'Você passa pelo marcador e ganha espaço para continuar a jogada.',
+                'desarme' => 'Você acerta o tempo do bote e recupera a bola.',
+                'tecnica' => 'Você ajusta o toque e mantém o controle da bola durante o exercício.',
+                'tatico' => 'Você identifica o ajuste tático e entende como aplicá-lo na movimentação.',
+                'posicionamento' => 'Você ocupa o espaço a tempo e mantém a distância necessária.',
+                'visao' => 'Você percebe o movimento e identifica a melhor opção antes de decidir.',
+                'forca' => 'Você mantém a postura e completa a série de força prevista.',
+                'resistencia' => 'Você mantém a intensidade até o fim da atividade.',
+                'velocidade' => 'Você coordena as arrancadas e sustenta o ritmo do exercício.',
+                'recuperar' => 'Você cuida da recuperação sem forçar o corpo.',
+                'apoio' => 'Sua disposição para ajudar é acolhida.',
+                'liderar' => 'Você organiza a proposta e deixa claro como pretende ajudar.',
+                'disciplina' => 'Você mantém o foco e faz o que combinou.',
+                'reclamar' => 'Você é ouvido, mas a reclamação desgasta sua relação com o treinador.',
+                'ousar' => 'Tomar a iniciativa aumenta sua confiança.',
+                'imprensa' => 'Sua mensagem esclarece sua posição sem ampliar a discussão.',
+                'lazer' => 'Você consegue relaxar durante a pausa.',
+                'social' => 'Você comunica sua decisão e evita um mal-entendido.',
+                default => null,
+            };
+        };
+
+        $defaultFailureByCode = static function (string $code): ?string {
+            return match ($code) {
+                'passe' => 'Você erra a direção do passe e a bola não chega ao companheiro.',
+                'chute' => 'Você pega mal na bola e o chute sai sem a precisão que precisava.',
+                'drible' => 'O marcador acompanha seu movimento e fecha o caminho do drible.',
+                'desarme' => 'Você chega atrasado no bote e não consegue tirar a bola do adversário.',
+                'tecnica' => 'Você não ajusta o toque na bola e continua errando o movimento.',
+                'tatico' => 'Você termina a análise sem entender como aplicar o ajuste na próxima jogada.',
+                'posicionamento' => 'Você erra a distância que precisava manter e não consegue ocupar o espaço a tempo.',
+                'visao' => 'Você não identifica o detalhe que precisava observar para decidir melhor.',
+                'forca' => 'Você perde a postura durante o exercício e não consegue trabalhar a força como planejou.',
+                'resistencia' => 'Você se cansa antes de manter a intensidade prevista para a atividade.',
+                'velocidade' => 'Você perde o ritmo nas arrancadas e não consegue sustentar a velocidade.',
+                'recuperar' => 'Você termina a pausa ainda cansado, sem a sensação de recuperação que buscava.',
+                'apoio' => 'Sua tentativa de ajudar não esclarece o que a outra pessoa precisava, e a conversa termina sem resolver isso.',
+                'liderar' => 'Você não consegue explicar sua orientação com clareza, e o grupo fica sem saber como seguir.',
+                'disciplina' => 'Você se distrai e termina sem organizar o que precisava fazer. Isso abala sua confiança.',
+                'imprensa' => 'Sua mensagem dá margem a outra interpretação e não esclarece o que você queria dizer.',
+                'lazer' => 'Você continua pensando nos compromissos e não consegue relaxar durante a folga.',
+                'ousar' => 'Você se precipita e não consegue executar o que tinha em mente. A tentativa abala sua confiança.',
+                'reclamar' => 'A reclamação não muda a situação e a conversa termina mais tensa.',
+                'social' => 'Você hesita ao ajustar a movimentação e a marcação fecha o espaço que pretendia usar.',
+                default => null,
+            };
+        };
+
         if (class_exists('Scenes')) {
-            foreach (Scenes::catalog() as $s) {
+            foreach (Scenes::catalog() as $id => $s) {
                 if (($s['stage'] ?? '') !== 'partida') {
                     continue;
                 }
                 if (isset($s['legacy'][2]) && is_array($s['legacy'][2])) {
-                    foreach ($s['legacy'][2] as $o) {
+                    foreach ($s['legacy'][2] as $idx => $o) {
                         $lbl = trim((string)($o[0] ?? ''));
-                        if ($lbl !== '') {
-                            $labels[$lbl] = true;
+                        if ($lbl === '') {
+                            continue;
+                        }
+                        $addPair($lbl, 'a intenção deu certo.');
+                        $fail = $failures[$id][$idx] ?? 'a intenção não teve o efeito esperado.';
+                        $addPair($lbl, (string)$fail);
+                        if (class_exists('SceneConsequences')) {
+                            $action = match ((int)$id) {
+                                7 => ['chute', 'passe', 'drible', 'social'][$idx] ?? 'social',
+                                9 => ['drible', 'social', 'social', 'desarme'][$idx] ?? 'social',
+                                default => 'social',
+                            };
+                            $enriched = SceneConsequences::option([
+                                'text' => $lbl,
+                                'effects' => $o[1] ?? [],
+                                'failure_text' => $failures[$id][$idx] ?? null,
+                                'action' => $action,
+                            ], 'partida', (int)$id, (int)$idx);
+                            foreach (['success_text', 'failure_text', 'exceptional_text', 'severe_failure_text'] as $k) {
+                                if (!empty($enriched[$k])) {
+                                    $addPair($lbl, (string)$enriched[$k]);
+                                }
+                            }
                         }
                     }
                 } elseif (isset($s['options']) && is_array($s['options'])) {
-                    foreach ($s['options'] as $o) {
+                    foreach ($s['options'] as $idx => $o) {
                         $lbl = trim((string)($o['text'] ?? ''));
-                        if ($lbl !== '') {
-                            $labels[$lbl] = true;
+                        if ($lbl === '') {
+                            continue;
                         }
-                        foreach (['success_text', 'failure_text', 'exceptional_text', 'severe_failure_text'] as $k) {
-                            $ot = trim((string)($o[$k] ?? ''));
-                            if ($ot !== '') {
-                                $outcomes[$ot] = true;
+                        $code = (string)($o['code'] ?? '');
+                        $succ = isset($o['success_text']) ? (string)$o['success_text'] : $defaultSuccessByCode($code, $lbl);
+                        if ($succ !== null) {
+                            $addPair($lbl, $succ);
+                        }
+                        $fail = $o['failure_text'] ?? ($failures[$id][$idx] ?? $defaultFailureByCode($code));
+                        if ($fail !== null) {
+                            $addPair($lbl, (string)$fail);
+                        }
+                        foreach (['exceptional_text', 'severe_failure_text'] as $extraKey) {
+                            if (!empty($o[$extraKey])) {
+                                $addPair($lbl, (string)$o[$extraKey]);
+                            }
+                        }
+                        if ((int)$id < 2000 && class_exists('SceneConsequences')) {
+                            $enriched = SceneConsequences::option([
+                                'text' => $lbl,
+                                'code' => $code,
+                                'action' => in_array($code, ['passe', 'chute', 'drible', 'desarme'], true) ? $code : 'social',
+                                'effects' => [],
+                                'success_text' => $succ,
+                                'failure_text' => $fail,
+                            ], 'partida', (int)$id, (int)$idx);
+                            foreach (['success_text', 'failure_text', 'exceptional_text', 'severe_failure_text'] as $k) {
+                                if (!empty($enriched[$k])) {
+                                    $addPair($lbl, (string)$enriched[$k]);
+                                }
                             }
                         }
                     }
@@ -199,15 +256,15 @@ final class MatchParticipation {
             }
         }
 
-        $cache = ['labels' => $labels, 'outcomes' => $outcomes];
+        $cache = $pairs;
         return $cache;
     }
 
     /**
      * Validação positiva do prefixo anterior a um evento formal em log composto.
-     * Aceita exclusivamente estruturas concretas de opção e desfecho realmente emitidas por
-     * Game::fieldDecision() ou formatos históricos reconhecíveis; nunca dispensa a validação
-     * estrutural apenas por haver source=engine.
+     * Exige par exato (opção => desfecho associado) efetivamente emitido por Game::fieldDecision()
+     * ou formato histórico comprovado ("75' | Disputa dura."); rejeita introduções arbitrárias
+     * ("Aos <min> ...") e combinações cruzadas, mesmo quando source=engine estiver presente.
      */
     private static function isValidCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute): bool {
         $p = trim($prefixBody);
@@ -224,7 +281,7 @@ final class MatchParticipation {
             return true;
         }
 
-        $catalog = self::knownPlayPrefixCatalog();
+        $pairs = self::knownPlayPrefixCatalog();
 
         // Remove complementos finais realmente anexados por Game::fieldDecision()
         $stripEngineFollowups = static function (string $outcome): string {
@@ -252,31 +309,17 @@ final class MatchParticipation {
             return $cur;
         };
 
-        $matchPair = static function (string $candidate) use ($catalog, $stripEngineFollowups): bool {
-            $pos = strpos($candidate, ': ');
-            if ($pos === false) {
-                return false;
-            }
-            $label = trim(substr($candidate, 0, $pos));
-            $outcome = trim(substr($candidate, $pos + 2));
-            if ($label === '' || $outcome === '' || !isset($catalog['labels'][$label])) {
-                return false;
-            }
-            $baseOutcome = $stripEngineFollowups($outcome);
-            return isset($catalog['outcomes'][$baseOutcome]);
-        };
-
-        if ($matchPair($p)) {
-            return true;
+        $pos = strpos($p, ': ');
+        if ($pos === false) {
+            return false;
         }
-
-        // Compatibilidade com relato histórico contendo frase introdutória antes de "<Ação>: <Desfecho>."
-        // (ex.: "Aos 50' houve advertência. Desarme: falhou.")
-        if (preg_match('/^Aos\s+\d{1,3}\s*[\'\x{2032}]\s+[^:?!.]+\.\s+(.+)$/u', $p, $lm) === 1) {
-            return $matchPair(trim($lm[1]));
+        $label = trim(substr($p, 0, $pos));
+        $outcome = trim(substr($p, $pos + 2));
+        if ($label === '' || $outcome === '' || !isset($pairs[$label])) {
+            return false;
         }
-
-        return false;
+        $baseOutcome = $stripEngineFollowups($outcome);
+        return isset($pairs[$label][$baseOutcome]);
     }
 
     /**
@@ -1005,10 +1048,10 @@ final class MatchParticipation {
                 return;
             }
 
-            // Caso A (alcançou o minuto efetivo documentado em log formal): promove uma única vez preservando o log original
+            // Caso A (alcançou ou atravessou o minuto efetivo documentado em log formal): promove uma única vez preservando o log original
             if ($entryInfo['status'] === 'valid' && $entryInfo['source'] === 'log' && $entryInfo['minute'] !== null) {
                 $effEntry = $entryInfo['minute'];
-                if ($minute >= $effEntry && $minute < $exit) {
+                if ($minute >= $effEntry && $effEntry < $exit) {
                     $m['participation_state'] = self::STATE_ON_FIELD;
                     $m['entered_on_field'] = true;
                     if ($effEntry === $entry && empty($m['sub_in_recorded'])) {
