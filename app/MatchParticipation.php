@@ -71,7 +71,7 @@ final class MatchParticipation {
      * (rótulo => desfecho => lista de ramos válidos) derivados diretamente de Game::fieldDecision(),
      * Scenes, NarrativeCatalog, SceneConsequences, MatchMomentum e formatos legados reconhecíveis.
      *
-     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool}>>>
+     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool,allow_direct_red:bool}>>>
      */
     private static function knownPlayPrefixCatalog(): array {
         static $cache = null;
@@ -88,7 +88,8 @@ final class MatchParticipation {
             bool $onBall,
             bool $clearChance = false,
             bool $endSequence = false,
-            bool $allowDisciplinaryExtra = false
+            bool $allowDisciplinaryExtra = false,
+            bool $allowDirectRed = false
         ) use (&$pairs): void {
             $l = trim($label);
             $o = trim($outcome);
@@ -101,15 +102,17 @@ final class MatchParticipation {
                 'allow_no_goal' => $onBall && $action === 'chute' && !$success,
                 'allow_late_tackle' => $onBall && $action === 'desarme' && !$success,
                 'allow_disciplinary' => $allowDisciplinaryExtra || ($onBall && $action === 'desarme' && !$success),
+                'allow_direct_red' => $allowDirectRed,
             ];
             $pairs[$l][$o][] = $branch;
         };
 
-        // 1. Formatos legados curtos de ação
+        // 1. Formatos legados curtos de ação (Desarme legado admite vermelho direto sem complemento disciplinar prévio)
         foreach (['Passe' => 'passe', 'Chute' => 'chute', 'Drible' => 'drible', 'Desarme' => 'desarme'] as $shortLabel => $shortAction) {
+            $legacyRed = ($shortAction === 'desarme');
             $addBranch($shortLabel, 'a intenção deu certo.', $shortAction, true, true);
-            $addBranch($shortLabel, 'a intenção não teve o efeito esperado.', $shortAction, false, true);
-            $addBranch($shortLabel, 'falhou.', $shortAction, false, true);
+            $addBranch($shortLabel, 'a intenção não teve o efeito esperado.', $shortAction, false, true, false, false, false, $legacyRed);
+            $addBranch($shortLabel, 'falhou.', $shortAction, false, true, false, false, false, $legacyRed);
         }
 
         // 2. Fallback de Game::choices() (sid = 0 -> onBall = true)
@@ -318,7 +321,7 @@ final class MatchParticipation {
      * 4. Valida compatibilidade de todos os complementos contra pelo menos um ramo concreto do par.
      * 5. Retorna os minutos disciplinares embutidos para validação cronológica no chamador.
      *
-     * @return array{embedded_minutes:list<int>}|null
+     * @return array{embedded_minutes:list<int>,has_disciplinary_complement:bool,has_late_tackle:bool,allows_direct_red:bool}|null
      */
     private static function parseCompoundPlayPrefix(string $prefixBody, bool $hasLeadMinute): ?array {
         $p = trim($prefixBody);
@@ -332,7 +335,12 @@ final class MatchParticipation {
 
         // Formato histórico legado curto com minuto inicial explícito (ex.: "75' | Disputa dura.")
         if ($hasLeadMinute && $p === 'Disputa dura.') {
-            return ['embedded_minutes' => []];
+            return [
+                'embedded_minutes' => [],
+                'has_disciplinary_complement' => false,
+                'has_late_tackle' => false,
+                'allows_direct_red' => true,
+            ];
         }
 
         $pos = strpos($p, ': ');
@@ -418,6 +426,7 @@ final class MatchParticipation {
 
         // Valida a combinação completa contra pelo menos um ramo concreto deste par (rótulo, desfecho)
         $branchValid = false;
+        $allowsDirectRed = false;
         foreach ($matchedBranches as $b) {
             if ($hasAssist && !$b['allow_assist']) {
                 continue;
@@ -435,14 +444,21 @@ final class MatchParticipation {
                 continue;
             }
             $branchValid = true;
-            break;
+            if (!empty($b['allow_direct_red'])) {
+                $allowsDirectRed = true;
+            }
         }
 
         if (!$branchValid) {
             return null;
         }
 
-        return ['embedded_minutes' => $embeddedMinutes];
+        return [
+            'embedded_minutes' => $embeddedMinutes,
+            'has_disciplinary_complement' => $hasDisciplinary,
+            'has_late_tackle' => $hasLateTackle,
+            'allows_direct_red' => $allowsDirectRed,
+        ];
     }
 
     /**
@@ -499,6 +515,9 @@ final class MatchParticipation {
         $prefix = trim(substr($t, 0, $firstOffset));
         $leadMin = null;
         $embeddedMinutes = [];
+        $hasDisciplinaryComplement = false;
+        $hasLateTackle = false;
+        $allowsDirectRed = true;
 
         if ($prefix !== '') {
             $prefixBody = $prefix;
@@ -511,6 +530,9 @@ final class MatchParticipation {
                 return null;
             }
             $embeddedMinutes = $prefixInfo['embedded_minutes'];
+            $hasDisciplinaryComplement = $prefixInfo['has_disciplinary_complement'];
+            $hasLateTackle = $prefixInfo['has_late_tackle'];
+            $allowsDirectRed = $prefixInfo['allows_direct_red'];
         }
 
         $kinds = [];
@@ -562,6 +584,23 @@ final class MatchParticipation {
                 }
             }
             $textMinutes[$embMin] = true;
+        }
+
+        // Exclusividade disciplinar na mesma jogada: Game::fieldDecision() invoca
+        // MatchDiscipline::recordFoul() no máximo uma vez por lance (verificado em todo o catálogo).
+        // Um complemento disciplinar não expulsivo no Slot 3 ("Falta marcada" / "Cartão amarelo!")
+        // é mutuamente exclusivo com uma expulsão disciplinar na mesma jogada ("Segundo cartão amarelo!",
+        // "Cartão vermelho direto!" ou "Expulso: segundo cartão."), enquanto saídas não disciplinares
+        // posteriores (lesão / desgaste) permanecem válidas (Game::fieldDecision() linhas 422-431).
+        if ($hasDisciplinaryComplement && isset($kinds['sent_off'])) {
+            return null;
+        }
+
+        // Coerência de subtipo disciplinar com o ramo produtor: o ramo real de falta tardia em desarme
+        // (Game::fieldDecision() linha 401 -> recordFoul('late_tackle')) nunca invoca violent_conduct/severe=true
+        // e portanto não emite vermelho direto. Preserva conflitos explícitos (count($kinds) > 1) e formatos legados curtos.
+        if ($hasLateTackle && count($kinds) === 1 && isset($subtypes['direct_red']) && !$allowsDirectRed) {
+            return null;
         }
 
         return [

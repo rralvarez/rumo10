@@ -3965,6 +3965,345 @@ f04Check(
     'R1-R10 [C.22-29]: integração completa com log composto inválido conclui FULL_TIME, 30\', ritmo +3, elegível e encerramento idempotente'
 );
 
+echo "\n--- 16. R1-R11 | Exclusividade de resultados disciplinares ---\n";
+
+// --- GRUPO A: REPRODUÇÕES QUE DEVEM FALHAR NA R10 (1-6) ---
+$r11AnteciparFail = "Antecipar o próximo toque: Você chega atrasado no bote e não consegue tirar a bola do adversário.";
+$r11InvalidDisciplinaryCombos = [
+    'A1_desarme_amarelo_2amarelo' => [
+        'minute' => 75,
+        'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    ],
+    'A2_desarme_amarelo_2amarelo_engine' => [
+        'minute' => 75,
+        'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+        'source' => 'engine',
+    ],
+    'A3_desarme_amarelo_vermelho_direto' => [
+        'minute' => 75,
+        'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Cartão vermelho direto! Você foi expulso da partida.",
+    ],
+    'A4_desarme_amarelo_vermelho_direto_engine' => [
+        'minute' => 75,
+        'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Cartão vermelho direto! Você foi expulso da partida.",
+        'source' => 'engine',
+    ],
+    'A5a_antecipar_amarelo_2amarelo' => [
+        'minute' => 75,
+        'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    ],
+    'A5b_antecipar_amarelo_2amarelo_engine' => [
+        'minute' => 75,
+        'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+        'source' => 'engine',
+    ],
+    'A5c_antecipar_amarelo_vermelho_direto' => [
+        'minute' => 75,
+        'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Cartão vermelho direto! Você foi expulso da partida.",
+    ],
+    'A5d_antecipar_amarelo_vermelho_direto_engine' => [
+        'minute' => 75,
+        'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Cartão vermelho direto! Você foi expulso da partida.",
+        'source' => 'engine',
+    ],
+    'A5e_antecipar_falta_tardia_vermelho_direto' => [
+        'minute' => 75,
+        'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Cartão vermelho direto! Você foi expulso da partida.",
+    ],
+    'A5f_desarme_falta_marcada_2amarelo' => [
+        'minute' => 75,
+        'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Falta marcada contra você. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    ],
+    'A5g_desarme_amarelo_expulso_legado' => [
+        'minute' => 75,
+        'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. Expulso: segundo cartão.",
+    ],
+];
+
+// Partida limpa equivalente (sem registro disciplinar inválido) para comparação de recompensas
+[$gR11Clean, $idxR11Clean] = $r7Game('R11 Limpa', array_merge($r7OnFieldReserve, [
+    'competition' => 'sp-a3',
+    'log' => [$r7EntryLog],
+]), true);
+$gR11Clean['competition_id'] = 'sp-a3';
+$gR11CleanEnd = $r7RunToEnd($gR11Clean, $idxR11Clean);
+$mR11CleanEnd = $gR11CleanEnd['matches'][$idxR11Clean];
+
+Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspension' => 2, 'second_yellow_suspension' => 1]]], static function () use ($r11InvalidDisciplinaryCombos, $r7Game, $r7OnFieldReserve, $r7EntryLog, $r7RunToEnd, $gR11CleanEnd, $mR11CleanEnd): void {
+    foreach ($r11InvalidDisciplinaryCombos as $k => $entry) {
+        [$gBad, $idxBad] = $r7Game('R11 ' . $k, array_merge($r7OnFieldReserve, [
+            'competition' => 'sp-a3',
+            'log' => [$r7EntryLog, $entry],
+        ]), true);
+        $gBad['competition_id'] = 'sp-a3';
+        $mBefore = $gBad['matches'][$idxBad];
+        $rExit = MatchParticipation::resolveExit($mBefore);
+        $gEnd = $r7RunToEnd($gBad, $idxBad);
+        $mEnd = $gEnd['matches'][$idxBad];
+        $susp = (int)($gEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0);
+        $logIntact = false;
+        foreach ($mEnd['log'] as $le) {
+            if (($le['text'] ?? '') === $entry['text']) {
+                $logIntact = true;
+                break;
+            }
+        }
+        $gamesPlayed = count(array_filter($gEnd['matches'], static fn(array $x): bool => (int)($x['stats']['minutes'] ?? 0) > 0));
+        f04Check(
+            $rExit['status'] === 'none'
+            && !MatchParticipation::isSentOff($mBefore)
+            && MatchParticipation::canActOnField($mBefore)
+            && $mEnd['participation_state'] === MatchParticipation::STATE_FULL_TIME
+            && (int)$mEnd['stats']['minutes'] === 30
+            && $gamesPlayed === 1
+            && MatchParticipation::finishedOnField($mEnd)
+            && $susp === 0
+            && $logIntact
+            && (float)$mEnd['stats']['rating'] === (float)$mR11CleanEnd['stats']['rating']
+            && $gEnd['states']['confianca'] === $gR11CleanEnd['states']['confianca']
+            && $gEnd['states']['ritmo_jogo'] === $gR11CleanEnd['states']['ritmo_jogo'],
+            "R1-R11 [{$k}]: combinação disciplinar impossível rejeitada (status=none, FULL_TIME, 30', games=1, elegível, susp=0, recompensas=limpa, log intacto)"
+        );
+    }
+});
+
+// --- GRUPO B: CONTROLES POSITIVOS OBRIGATÓRIOS (7-16) ---
+// [B.7] Desarme real com primeiro amarelo (sem expulsão)
+[$gB7, $idxB7] = $r7Game('R11 B7 Primeiro Amarelo', array_merge($r7OnFieldReserve, [
+    'minute' => 75,
+    'log' => [$r7EntryLog],
+]), true);
+$resB7 = MatchDiscipline::recordFoul($gB7, $gB7['matches'][$idxB7], 'late_tackle');
+$b7Line = $r11AnteciparFail . ' Você chega atrasado e comete falta. ' . $resB7['text'];
+$gB7['matches'][$idxB7]['log'][] = ['minute' => 75, 'text' => $b7Line];
+f04Check(
+    $resB7['card'] === 'yellow'
+    && MatchParticipation::resolveExit($gB7['matches'][$idxB7])['status'] === 'none'
+    && !MatchParticipation::isSentOff($gB7['matches'][$idxB7])
+    && MatchParticipation::canActOnField($gB7['matches'][$idxB7]),
+    'R1-R11 [B.7]: desarme real com primeiro amarelo não expulsa e mantém atleta ativo em campo'
+);
+
+// [B.8] Desarme real que produz segundo amarelo (reconhecido somente pelo log, sem campos canônicos de expulsão)
+$resB8 = MatchDiscipline::recordFoul($gB7, $gB7['matches'][$idxB7], 'late_tackle');
+$b8Line = $r11AnteciparFail . ' Você chega atrasado e comete falta. ' . $resB8['text'];
+$mB8LogOnly = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => $b8Line]],
+];
+$rB8 = MatchParticipation::resolveExit($mB8LogOnly);
+f04Check(
+    $resB8['card'] === 'second_yellow'
+    && $rB8['status'] === 'valid' && $rB8['kind'] === 'sent_off' && $rB8['subtype'] === 'second_yellow' && $rB8['minute'] === 75
+    && MatchParticipation::playedMinutes($mB8LogOnly) === 15
+    && !MatchParticipation::finishedOnField($mB8LogOnly),
+    'R1-R11 [B.8]: desarme real com segundo amarelo (Antecipar o próximo toque) reconhecido exclusivamente pelo log (15\')'
+);
+
+// [B.9] Vermelho direto emitido por MatchDiscipline::recordFoul() no caminho adequado (violent_conduct + severe=true)
+[$gB9, $idxB9] = $r7Game('R11 B9 Vermelho Direto', array_merge($r7OnFieldReserve, [
+    'minute' => 75,
+    'log' => [$r7EntryLog],
+]), true);
+$resB9 = MatchDiscipline::recordFoul($gB9, $gB9['matches'][$idxB9], 'violent_conduct', true);
+$mB9LogOnly = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => $resB9['text']]],
+];
+$rB9 = MatchParticipation::resolveExit($mB9LogOnly);
+f04Check(
+    $resB9['card'] === 'direct_red'
+    && $rB9['status'] === 'valid' && $rB9['kind'] === 'sent_off' && $rB9['subtype'] === 'direct_red' && $rB9['minute'] === 75
+    && MatchParticipation::playedMinutes($mB9LogOnly) === 15,
+    'R1-R11 [B.9]: vermelho direto real (recordFoul violent_conduct/severe) reconhecido exclusivamente pelo log (15\')'
+);
+
+// [B.10] Falta tardia legítima sem expulsão
+$mB10 = [
+    'status' => 'em_andamento', 'minute' => 80, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'participation_state' => MatchParticipation::STATE_ON_FIELD, 'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r11AnteciparFail . ' Você chega atrasado e comete falta.']],
+];
+f04Check(
+    MatchParticipation::resolveExit($mB10)['status'] === 'none'
+    && !MatchParticipation::isSentOff($mB10)
+    && MatchParticipation::canActOnField($mB10),
+    'R1-R11 [B.10]: falta tardia legítima sem expulsão mantém atleta em campo'
+);
+
+// [B.11-B.16] Controles positivos exclusivos via log (sem campos canônicos de saída)
+$r11PositiveLogCases = [
+    'B11a_amarelo_lesao_desarme' => [
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. Lesão: você deixa o campo."]],
+        'kind' => 'injury', 'subtype' => null,
+    ],
+    'B11b_amarelo_lesao_antecipar' => [
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. Lesão: você deixa o campo."]],
+        'kind' => 'injury', 'subtype' => null,
+    ],
+    'B12a_amarelo_desgaste_desarme' => [
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. Substituído por desgaste."]],
+        'kind' => 'fatigue', 'subtype' => null,
+    ],
+    'B12b_amarelo_desgaste_antecipar' => [
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. Substituído por desgaste."]],
+        'kind' => 'fatigue', 'subtype' => null,
+    ],
+    'B13_segundo_amarelo_isolado' => [
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "75' | Segundo cartão amarelo! Você está expulso da partida."]],
+        'kind' => 'sent_off', 'subtype' => 'second_yellow',
+    ],
+    'B14_vermelho_direto_isolado' => [
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "75' | Cartão vermelho direto! Você foi expulso da partida."]],
+        'kind' => 'sent_off', 'subtype' => 'direct_red',
+    ],
+    'B15_dois_amarelos_jogadas_separadas' => [
+        'log' => [
+            $r7EntryLog,
+            ['minute' => 65, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 65' | Cartão amarelo! Você foi advertido pela arbitragem."],
+            ['minute' => 75, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida."],
+        ],
+        'kind' => 'sent_off', 'subtype' => 'second_yellow',
+    ],
+    'B16_legado_sem_source' => [
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Desarme: falhou. 75' | Cartão vermelho direto! Você foi expulso da partida."]],
+        'kind' => 'sent_off', 'subtype' => 'direct_red',
+    ],
+];
+foreach ($r11PositiveLogCases as $pk => $pc) {
+    $mP = [
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+        'sub_in_recorded' => true, 'entered_on_field' => true,
+        'log' => $pc['log'],
+    ];
+    $rP = MatchParticipation::resolveExit($mP);
+    f04Check(
+        $rP['status'] === 'valid' && $rP['kind'] === $pc['kind'] && $rP['subtype'] === $pc['subtype'] && $rP['minute'] === 75
+        && MatchParticipation::playedMinutes($mP) === 15
+        && !MatchParticipation::finishedOnField($mP),
+        "R1-R11 [{$pk}]: controle positivo reconhecido via log ({$pc['kind']}, 75', 15')"
+    );
+}
+
+// --- GRUPO C: INTEGRAÇÃO, DISCIPLINA E IDEMPOTÊNCIA (17-27) ---
+Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspension' => 2, 'second_yellow_suspension' => 1]]], static function () use ($r7Game, $r7OnFieldReserve, $r7EntryLog, $r7RunToEnd, $r7RhythmKey, $refSegment, $r11AnteciparFail): void {
+    // [C.17-23,26,27] Reserva entrada 60' + registro inválido aos 75' vs [C.18-25] expulsão real aos 75'
+    [$gInv, $idxInv] = $r7Game('R11 C Invalido', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Desarme: falhou. Você chega atrasado e comete falta. 75' | Cartão amarelo! Você foi advertido pela arbitragem. 75' | Segundo cartão amarelo! Você está expulso da partida.", 'source' => 'engine']],
+    ]), true);
+    $gInv['competition_id'] = 'sp-a3';
+    $gInvEnd = $r7RunToEnd($gInv, $idxInv);
+    $mInvEnd = $gInvEnd['matches'][$idxInv];
+
+    [$gReal2Y, $idx2Y] = $r7Game('R11 C Real 2Y', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida."]],
+    ]), true);
+    $gReal2Y['competition_id'] = 'sp-a3';
+    $gReal2YEnd = $r7RunToEnd($gReal2Y, $idx2Y);
+    $mReal2YEnd = $gReal2YEnd['matches'][$idx2Y];
+
+    [$gRealDR, $idxDR] = $r7Game('R11 C Real DR', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "75' | Cartão vermelho direto! Você foi expulso da partida."]],
+    ]), true);
+    $gRealDR['competition_id'] = 'sp-a3';
+    $gRealDREnd = $r7RunToEnd($gRealDR, $idxDR);
+    $mRealDREnd = $gRealDREnd['matches'][$idxDR];
+
+    $presInv = Presentation::playerParticipation($gInvEnd, $mInvEnd);
+    $pres2Y = Presentation::playerParticipation($gReal2YEnd, $mReal2YEnd);
+    $narrInv = NarrativeContext::values($gInvEnd);
+    $narr2Y = NarrativeContext::values($gReal2YEnd);
+
+    // Idempotência de encerramento repetido [C.27]
+    $snapM = $mInvEnd;
+    $snapS = $gInvEnd['states'];
+    $snapL = $gInvEnd['reward_ledger'] ?? [];
+    $snapD = $gInvEnd['disciplinary'] ?? [];
+    $refSegment->invokeArgs(null, [&$gInvEnd, 90]);
+
+    f04Check(
+        (int)$mInvEnd['stats']['minutes'] === 30 && (int)$mReal2YEnd['stats']['minutes'] === 15 && (int)$mRealDREnd['stats']['minutes'] === 15
+        && MatchParticipation::finishedOnField($mInvEnd)
+        && !MatchParticipation::finishedOnField($mReal2YEnd)
+        && !MatchParticipation::finishedOnField($mRealDREnd)
+        && $presInv['type'] !== 'sent_off' && $pres2Y['type'] === 'sent_off'
+        && ($narrInv['exit_reason'] ?? '') !== 'red' && ($narr2Y['exit_reason'] ?? '') === 'red'
+        && ($gInvEnd['reward_ledger'][$r7RhythmKey($gInvEnd, $mInvEnd)]['delta'] ?? 0) === 3
+        && (int)($gInvEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 0
+        && (int)($gReal2YEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 1
+        && (int)($gRealDREnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 2
+        && $gInvEnd['matches'][$idxInv] === $snapM
+        && $gInvEnd['states'] === $snapS
+        && ($gInvEnd['reward_ledger'] ?? []) === $snapL
+        && ($gInvEnd['disciplinary'] ?? []) === $snapD,
+        'R1-R11 [C.17-27]: integração completa (30\' vs 15\', elegibilidade, UI, NarrativeContext, ritmo +3, susp 0/1/2 e encerramento idempotente)'
+    );
+});
+
+// --- GRUPO D: CONDIÇÃO DE FALHA GRAVE (28-30) ---
+// [D.28-29] Verifica no catálogo real que desarme compartilha o mesmo failure_text entre falha e falha_grave
+$r11DesarmeDistinctSev = 0;
+$r11DesarmeTotal = 0;
+[$gD29, $idxD29] = $r7Game('R11 D29 Catalog', array_merge($r7OnFieldReserve, ['minute' => 75]), true);
+$kD29 = Scenes::key($gD29);
+foreach (Scenes::catalog() as $scId => $scDef) {
+    if (($scDef['stage'] ?? '') !== 'partida') {
+        continue;
+    }
+    $gD29['active_situation'] = ['id' => $scId, 'stage' => 'partida', 'key' => $kD29];
+    $curSc = Scenes::current($gD29);
+    if (!$curSc) {
+        continue;
+    }
+    foreach ($curSc['options'] as $scOpt) {
+        if (($scOpt['action'] ?? '') !== 'desarme') {
+            continue;
+        }
+        $r11DesarmeTotal++;
+        $tSimple = isset($scOpt['success_text'], $scOpt['failure_text'])
+            ? NarrativeCatalog::outcome($scOpt, ['success' => false, 'class' => 'falha'])
+            : 'a intenção não teve o efeito esperado.';
+        $tSevere = isset($scOpt['success_text'], $scOpt['failure_text'])
+            ? NarrativeCatalog::outcome($scOpt, ['success' => false, 'class' => 'falha_grave'])
+            : 'a intenção não teve o efeito esperado.';
+        if ($tSimple !== $tSevere) {
+            $r11DesarmeDistinctSev++;
+        }
+    }
+}
+f04Check(
+    $r11DesarmeTotal > 0 && $r11DesarmeDistinctSev === 0,
+    "R1-R11 [D.28-29]: catálogo real confirmado ({$r11DesarmeTotal} opções desarme compartilham o mesmo failure_text entre falha simples e falha_grave)"
+);
+
+// [D.30] Complemento de falta tardia aceito apenas em falha de desarme (rejeitado em sucesso de desarme e em chute/passe)
+$mD30Valid = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida."]],
+];
+$mD30SuccDesarme = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Antecipar o próximo toque: Você acerta o tempo do bote e recupera a bola. Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida."]],
+];
+$mD30Shot = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => "Finalizar no canto: a intenção não teve o efeito esperado. Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida."]],
+];
+f04Check(
+    MatchParticipation::resolveExit($mD30Valid)['status'] === 'valid'
+    && MatchParticipation::resolveExit($mD30SuccDesarme)['status'] === 'none'
+    && MatchParticipation::resolveExit($mD30Shot)['status'] === 'none',
+    'R1-R11 [D.30]: complemento de falta tardia admitido apenas em falha de desarme e rejeitado em sucesso de desarme ou chute'
+);
+
 echo "\n=======================================================\n";
-echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R10 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R11 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
