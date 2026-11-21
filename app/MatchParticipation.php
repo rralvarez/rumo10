@@ -71,7 +71,7 @@ final class MatchParticipation {
      * (rótulo => desfecho => lista de ramos válidos) derivados diretamente de Game::fieldDecision(),
      * Scenes, NarrativeCatalog, SceneConsequences, MatchMomentum e formatos legados reconhecíveis.
      *
-     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool,requires_late_tackle_for_disciplinary:bool,can_emit_second_yellow:bool,can_emit_direct_red:bool}>>>
+     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool,requires_late_tackle_for_disciplinary:bool,can_emit_second_yellow:bool,can_emit_direct_red:bool,is_legacy_short:bool}>>>
      */
     private static function knownPlayPrefixCatalog(): array {
         static $cache = null;
@@ -110,6 +110,7 @@ final class MatchParticipation {
                 'requires_late_tackle_for_disciplinary' => !$isLegacyShort && $isLateTackleBranch && !$allowDisciplinaryExtra,
                 'can_emit_second_yellow' => $allowDisciplinary,
                 'can_emit_direct_red' => $canEmitDirectRed,
+                'is_legacy_short' => $isLegacyShort,
             ];
             $pairs[$l][$o][] = $branch;
         };
@@ -461,7 +462,10 @@ final class MatchParticipation {
             if (!empty($b['can_emit_second_yellow']) && (empty($b['requires_late_tackle_for_disciplinary']) || $hasLateTackle)) {
                 $canEmitSecondYellow = true;
             }
-            if (!empty($b['can_emit_direct_red'])) {
+            // R14: a exceção histórica de vermelho direto em formato legado curto (Desarme: falhou. /
+            // Desarme: a intenção não teve o efeito esperado.) aplica-se exclusivamente à forma curta integral
+            // ($tail === ''), sem herança para relatos enriquecidos com complementos modernos (ex.: Slot 2).
+            if (!empty($b['can_emit_direct_red']) && (empty($b['is_legacy_short']) || $tail === '')) {
                 $canEmitDirectRed = true;
             }
         }
