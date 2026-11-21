@@ -71,7 +71,7 @@ final class MatchParticipation {
      * (rótulo => desfecho => lista de ramos válidos) derivados diretamente de Game::fieldDecision(),
      * Scenes, NarrativeCatalog, SceneConsequences, MatchMomentum e formatos legados reconhecíveis.
      *
-     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool,can_emit_second_yellow:bool,can_emit_direct_red:bool}>>>
+     * @return array<string,array<string,list<array{allow_assist:bool,allow_goal:bool,allow_no_goal:bool,allow_late_tackle:bool,allow_disciplinary:bool,requires_late_tackle_for_disciplinary:bool,can_emit_second_yellow:bool,can_emit_direct_red:bool}>>>
      */
     private static function knownPlayPrefixCatalog(): array {
         static $cache = null;
@@ -89,32 +89,37 @@ final class MatchParticipation {
             bool $clearChance = false,
             bool $endSequence = false,
             bool $allowDisciplinaryExtra = false,
-            bool $canEmitDirectRed = false
+            bool $canEmitDirectRed = false,
+            bool $isLegacyShort = false
         ) use (&$pairs): void {
             $l = trim($label);
             $o = trim($outcome);
             if ($l === '' || $o === '') {
                 return;
             }
-            $allowDisciplinary = $allowDisciplinaryExtra || ($onBall && $action === 'desarme' && !$success);
+            $isLateTackleBranch = ($onBall && $action === 'desarme' && !$success);
+            $allowDisciplinary = $allowDisciplinaryExtra || $isLateTackleBranch;
             $branch = [
                 'allow_assist' => $onBall && $action === 'passe' && $success && !$endSequence,
                 'allow_goal' => $onBall && (($action === 'chute' && $success) || ($clearChance && $action === 'drible' && $success)),
                 'allow_no_goal' => $onBall && $action === 'chute' && !$success,
-                'allow_late_tackle' => $onBall && $action === 'desarme' && !$success,
+                'allow_late_tackle' => $isLateTackleBranch,
                 'allow_disciplinary' => $allowDisciplinary,
+                // Em Game::fieldDecision() linha 398-402, late_tackle sempre emite Slot 2 ("Você chega atrasado e comete falta.")
+                // antes de invocar recordFoul('late_tackle'). Caminhos simulation/dissent/card_risk e o formato legado curto não exigem Slot 2.
+                'requires_late_tackle_for_disciplinary' => !$isLegacyShort && $isLateTackleBranch && !$allowDisciplinaryExtra,
                 'can_emit_second_yellow' => $allowDisciplinary,
                 'can_emit_direct_red' => $canEmitDirectRed,
             ];
             $pairs[$l][$o][] = $branch;
         };
 
-        // 1. Formatos legados curtos de ação (somente falha de Desarme legado admite vermelho direto sem complemento disciplinar prévio)
+        // 1. Formatos legados curtos de ação (somente falha de Desarme legado admite vermelho direto e 2º amarelo sem Slot 2)
         foreach (['Passe' => 'passe', 'Chute' => 'chute', 'Drible' => 'drible', 'Desarme' => 'desarme'] as $shortLabel => $shortAction) {
             $legacyRed = ($shortAction === 'desarme');
-            $addBranch($shortLabel, 'a intenção deu certo.', $shortAction, true, true);
-            $addBranch($shortLabel, 'a intenção não teve o efeito esperado.', $shortAction, false, true, false, false, false, $legacyRed);
-            $addBranch($shortLabel, 'falhou.', $shortAction, false, true, false, false, false, $legacyRed);
+            $addBranch($shortLabel, 'a intenção deu certo.', $shortAction, true, true, false, false, false, false, true);
+            $addBranch($shortLabel, 'a intenção não teve o efeito esperado.', $shortAction, false, true, false, false, false, $legacyRed, true);
+            $addBranch($shortLabel, 'falhou.', $shortAction, false, true, false, false, false, $legacyRed, true);
         }
 
         // 2. Fallback de Game::choices() (sid = 0 -> onBall = true)
@@ -449,11 +454,11 @@ final class MatchParticipation {
             if ($hasLateTackle && !$b['allow_late_tackle']) {
                 continue;
             }
-            if ($hasDisciplinary && !$b['allow_disciplinary']) {
+            if ($hasDisciplinary && (!$b['allow_disciplinary'] || (!empty($b['requires_late_tackle_for_disciplinary']) && !$hasLateTackle))) {
                 continue;
             }
             $branchValid = true;
-            if (!empty($b['can_emit_second_yellow'])) {
+            if (!empty($b['can_emit_second_yellow']) && (empty($b['requires_late_tackle_for_disciplinary']) || $hasLateTackle)) {
                 $canEmitSecondYellow = true;
             }
             if (!empty($b['can_emit_direct_red'])) {
@@ -608,12 +613,11 @@ final class MatchParticipation {
             return null;
         }
 
-        // Validação do subtipo disciplinar pelo ramo produtor identificado (R12):
-        // Para qualquer relato composto com prefixo (moderno ou legado), exige que o ramo
-        // efetivamente identificado admita o subtipo disciplinar do sufixo (sem depender de
-        // $hasLateTackle e sem ser dispensado por source=engine). Preserva conflitos explícitos
-        // de múltiplas causas (count($kinds) > 1).
-        if ($prefix !== '' && count($kinds) === 1 && isset($kinds['sent_off'])) {
+        // Validação do subtipo disciplinar pelo ramo produtor identificado ANTES da consolidação de conflitos (R13):
+        // Para qualquer relato composto com prefixo (moderno ou legado), cada componente disciplinar candidato
+        // deve ser individualmente admissível pelo ramo identificado — independentemente de haver outra causa
+        // na mesma linha (sem condicionar a count($kinds) === 1 e sem ser dispensado por source=engine).
+        if ($prefix !== '' && isset($kinds['sent_off'])) {
             if (isset($subtypes['direct_red']) && !$canEmitDirectRed) {
                 return null;
             }

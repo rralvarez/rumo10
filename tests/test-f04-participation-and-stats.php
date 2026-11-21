@@ -2969,7 +2969,7 @@ f04Check(
 // [P1-01.9] Duas saídas distintas na mesma linha (reprodução Codex B) e variante com prefixo real do motor
 foreach ([
     'codex_literal' => "Desarme: falhou. 75' | Cartão vermelho direto! Você foi expulso da partida. Lesão: você deixa o campo.",
-    'prefixo_real' => rtrim(substr($realLine, 0, (int)strrpos($realLine, ' Substituído por desgaste.'))) . " 75' | Cartão vermelho direto! Você foi expulso da partida. Lesão: você deixa o campo.",
+    'prefixo_real' => rtrim(substr($realLine, 0, (int)strrpos($realLine, ' Substituído por desgaste.'))) . ' Lesão: você deixa o campo. Substituído por desgaste.',
     'sem_prefixo' => "75' | Lesão: você deixa o campo. Substituído por desgaste.",
 ] as $dkKey => $dkText) {
     [$gDk, $idxDk] = $r7Game('R7 Duas Causas ' . $dkKey, $r7OnFieldReserve + ['log' => [$r7EntryLog, ['minute' => 75, 'text' => $dkText]]]);
@@ -4599,6 +4599,306 @@ Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspensi
     );
 });
 
+echo "\n--- 18. R1-R13 | Condições necessárias de emissão e validação anterior ao conflito ---\n";
+
+// --- GRUPO A: SEGUNDO AMARELO SEM COMPLEMENTO OBRIGATÓRIO VS CAMINHOS LEGÍTIMOS (1-7) ---
+$r13A1Text = $r11AnteciparFail . " 75' | Segundo cartão amarelo! Você está expulso da partida.";
+Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspension' => 2, 'second_yellow_suspension' => 1]]], static function () use ($r13A1Text, $r7Game, $r7OnFieldReserve, $r7EntryLog, $r7RunToEnd, $gR11CleanEnd, $mR11CleanEnd): void {
+    foreach ([
+        'A1_antecipar_sem_slot2_sem_source' => ['minute' => 75, 'text' => $r13A1Text],
+        'A2_antecipar_sem_slot2_engine' => ['minute' => 75, 'text' => $r13A1Text, 'source' => 'engine'],
+    ] as $ak => $aEntry) {
+        [$gA, $idxA] = $r7Game('R13 ' . $ak, array_merge($r7OnFieldReserve, [
+            'competition' => 'sp-a3',
+            'log' => [$r7EntryLog, $aEntry],
+        ]), true);
+        $gA['competition_id'] = 'sp-a3';
+        $mBefore = $gA['matches'][$idxA];
+        $rExit = MatchParticipation::resolveExit($mBefore);
+        $gEnd = $r7RunToEnd($gA, $idxA);
+        $mEnd = $gEnd['matches'][$idxA];
+        $susp = (int)($gEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0);
+        $gamesPlayed = count(array_filter($gEnd['matches'], static fn(array $x): bool => (int)($x['stats']['minutes'] ?? 0) > 0));
+        $logIntact = false;
+        foreach ($mEnd['log'] as $le) {
+            if (($le['text'] ?? '') === $aEntry['text']) {
+                $logIntact = true;
+                break;
+            }
+        }
+        f04Check(
+            $rExit['status'] === 'none'
+            && !MatchParticipation::isSentOff($mBefore)
+            && MatchParticipation::canActOnField($mBefore)
+            && $mEnd['participation_state'] === MatchParticipation::STATE_FULL_TIME
+            && (int)$mEnd['stats']['minutes'] === 30
+            && $gamesPlayed === 1
+            && MatchParticipation::finishedOnField($mEnd)
+            && $susp === 0
+            && $logIntact
+            && (float)$mEnd['stats']['rating'] === (float)$mR11CleanEnd['stats']['rating']
+            && $gEnd['states']['confianca'] === $gR11CleanEnd['states']['confianca']
+            && $gEnd['states']['ritmo_jogo'] === $gR11CleanEnd['states']['ritmo_jogo'],
+            "R1-R13 [{$ak}]: segundo amarelo em desarme moderno sem Slot 2 obrigatório rejeitado (FULL_TIME, 30', games=1, susp=0, log intacto)"
+        );
+    }
+});
+
+// [A.3-A.7] Caminhos legítimos que produzem segundo amarelo (com Slot 2 em late_tackle; SEM Slot 2 em simulation, dissent, card_risk e isolado)
+$r13ValidSecondYellowPaths = [
+    'A3_late_tackle_com_slot2' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    'A4_simulation_sem_slot2' => "Tentar cavar uma falta: O árbitro não vê falta na jogada e você não consegue a cobrança que buscava. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    'A5a_dissent_empurrar_sem_slot2' => "Empurrar o adversário: Você afasta o adversário, mas o empurrão aumenta a tensão em campo. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    'A5b_dissent_cobrar_sem_slot2' => "Cobrar um cartão gritando com o árbitro: O árbitro não muda sua avaliação e pede que você pare de reclamar. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    'A6_card_risk_sem_slot2' => "Reclamar junto com ele: A reclamação não muda a situação e a conversa termina mais tensa. 75' | Segundo cartão amarelo! Você está expulso da partida.",
+    'A7_isolado' => "75' | Segundo cartão amarelo! Você está expulso da partida.",
+];
+foreach ($r13ValidSecondYellowPaths as $pk => $pText) {
+    $mP = [
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+        'sub_in_recorded' => true, 'entered_on_field' => true,
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $pText]],
+    ];
+    $rP = MatchParticipation::resolveExit($mP);
+    f04Check(
+        $rP['status'] === 'valid' && $rP['kind'] === 'sent_off' && $rP['subtype'] === 'second_yellow' && $rP['minute'] === 75
+        && MatchParticipation::playedMinutes($mP) === 15
+        && !MatchParticipation::finishedOnField($mP),
+        "R1-R13 [{$pk}]: segundo amarelo legítimo reconhecido (sent_off/second_yellow, 75', 15')"
+    );
+}
+
+// --- GRUPO B: CONFLITO FABRICADO VS CONFLITO GENUÍNO (8-15) ---
+$r13B1Text = $r11AnteciparFail . " 75' | Cartão vermelho direto! Você foi expulso da partida. Lesão: você deixa o campo.";
+$r13B2Text = "Finalizar no canto: a intenção deu certo. Gol do seu jogador! 75' | Segundo cartão amarelo! Você está expulso da partida. Lesão: você deixa o campo.";
+Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspension' => 2, 'second_yellow_suspension' => 1]]], static function () use ($r13B1Text, $r13B2Text, $r7Game, $r7OnFieldReserve, $r7EntryLog, $r7RunToEnd, $gR11CleanEnd, $mR11CleanEnd): void {
+    foreach ([
+        'B8_vermelho_impossivel_com_lesao' => ['minute' => 75, 'text' => $r13B1Text],
+        'B9_vermelho_impossivel_com_lesao_engine' => ['minute' => 75, 'text' => $r13B1Text, 'source' => 'engine'],
+        'B10_2amarelo_impossivel_com_lesao' => ['minute' => 75, 'text' => $r13B2Text],
+        'B11_2amarelo_impossivel_com_lesao_engine' => ['minute' => 75, 'text' => $r13B2Text, 'source' => 'engine'],
+    ] as $bk => $bEntry) {
+        [$gB, $idxB] = $r7Game('R13 ' . $bk, array_merge($r7OnFieldReserve, [
+            'competition' => 'sp-a3',
+            'log' => [$r7EntryLog, $bEntry],
+        ]), true);
+        $gB['competition_id'] = 'sp-a3';
+        $mBefore = $gB['matches'][$idxB];
+        $rExit = MatchParticipation::resolveExit($mBefore);
+        $gEnd = $r7RunToEnd($gB, $idxB);
+        $mEnd = $gEnd['matches'][$idxB];
+        $susp = (int)($gEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0);
+        $gamesPlayed = count(array_filter($gEnd['matches'], static fn(array $x): bool => (int)($x['stats']['minutes'] ?? 0) > 0));
+        $logIntact = false;
+        foreach ($mEnd['log'] as $le) {
+            if (($le['text'] ?? '') === $bEntry['text']) {
+                $logIntact = true;
+                break;
+            }
+        }
+        f04Check(
+            $rExit['status'] === 'none'
+            && !MatchParticipation::isSentOff($mBefore)
+            && MatchParticipation::canActOnField($mBefore)
+            && $mEnd['participation_state'] === MatchParticipation::STATE_FULL_TIME
+            && (int)$mEnd['stats']['minutes'] === 30
+            && $gamesPlayed === 1
+            && MatchParticipation::finishedOnField($mEnd)
+            && $susp === 0
+            && $logIntact
+            && (float)$mEnd['stats']['rating'] === (float)$mR11CleanEnd['stats']['rating'],
+            "R1-R13 [{$bk}]: conflito fabricado com subtipo impossível rejeitado integralmente (sem conflict nem lesão parcial, FULL_TIME, 30', susp=0)"
+        );
+    }
+});
+
+// [B.12-B.14] Conflitos genuínos (duas causas individualmente admissíveis) e duplicatas coerentes preservados
+$mB12a = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida. Lesão: você deixa o campo."]],
+];
+$mB12b = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [$r7EntryLog, ['minute' => 75, 'text' => "75' | Lesão: você deixa o campo. Substituído por desgaste."]],
+];
+$mB13 = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [
+        $r7EntryLog,
+        ['minute' => 75, 'text' => "75' | Cartão vermelho direto! Você foi expulso da partida."],
+        ['minute' => 75, 'text' => "75' | Lesão: você deixa o campo."],
+    ],
+];
+$mB14 = [
+    'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+    'sub_in_recorded' => true, 'entered_on_field' => true,
+    'log' => [
+        $r7EntryLog,
+        ['minute' => 75, 'text' => "75' | Segundo cartão amarelo! Você está expulso da partida."],
+        ['minute' => 75, 'text' => "75' | Segundo cartão amarelo! Você está expulso da partida."],
+    ],
+];
+f04Check(
+    MatchParticipation::resolveExit($mB12a)['status'] === 'conflict' && MatchParticipation::playedMinutes($mB12a) === 0
+    && MatchParticipation::resolveExit($mB12b)['status'] === 'conflict' && MatchParticipation::playedMinutes($mB12b) === 0
+    && MatchParticipation::resolveExit($mB13)['status'] === 'conflict' && MatchParticipation::playedMinutes($mB13) === 0
+    && MatchParticipation::resolveExit($mB14)['status'] === 'valid' && MatchParticipation::resolveExit($mB14)['subtype'] === 'second_yellow' && MatchParticipation::playedMinutes($mB14) === 15,
+    'R1-R13 [B.12-B.14]: conflitos genuínos entre causas admissíveis preservam conflict (0\') e duplicata formal coerente consolida valid (15\')'
+);
+
+// --- GRUPO C: PROVA ESTRUTURADA INDEPENDENTE NÃO CONTAMINADA (16-21) ---
+Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspension' => 2, 'second_yellow_suspension' => 1]]], static function () use ($r13B1Text, $r13B2Text, $r7Game, $r7OnFieldReserve, $r7EntryLog, $r7RunToEnd, $refSegment): void {
+    // [C.16] Vermelho direto estruturado independente + relato inválido B1 -> prova estruturada prevalece (15', susp=2, discProc=true, idempotente)
+    [$gC16, $idxC16] = $r7Game('R13 C16 Estruturada DR', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'participation_state' => MatchParticipation::STATE_SENT_OFF,
+        'exit_reason' => 'sent_off',
+        'exit' => 75,
+        'red_card_minute' => 75,
+        'stats' => ['direct_red' => 1, 'red_cards' => 1, 'cards' => 1, 'yellow_cards' => 0, 'goals' => 0, 'assists' => 0, 'shots' => 0, 'passes' => 0, 'completed' => 0, 'tackles' => 0, 'fouls' => 1, 'minutes' => 0, 'rating' => 6.0],
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r13B1Text]],
+    ]), true);
+    $gC16['competition_id'] = 'sp-a3';
+    $rC16Before = MatchParticipation::resolveExit($gC16['matches'][$idxC16]);
+    $clsC16Before = MatchDiscipline::classifyExpulsion($gC16['matches'][$idxC16]);
+    $gC16End = $r7RunToEnd($gC16, $idxC16);
+    $mC16End = $gC16End['matches'][$idxC16];
+    $snapC16D = $gC16End['disciplinary'];
+    MatchDiscipline::processMatchEnd($gC16End, $gC16End['matches'][$idxC16]);
+    $refSegment->invokeArgs(null, [&$gC16End, 90]);
+    f04Check(
+        $rC16Before['status'] === 'valid' && $rC16Before['kind'] === 'sent_off' && $rC16Before['subtype'] === 'direct_red'
+        && $clsC16Before['outcome'] === 'direct_red' && !$clsC16Before['pending_reconciliation']
+        && $mC16End['participation_state'] === MatchParticipation::STATE_SENT_OFF
+        && (int)$mC16End['stats']['minutes'] === 15
+        && !MatchParticipation::finishedOnField($mC16End)
+        && (int)($gC16End['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 2
+        && !empty($mC16End['disciplinary_processed'])
+        && $gC16End['disciplinary'] === $snapC16D,
+        'R1-R13 [C.16/C.21]: prova estruturada independente de vermelho direto não é contaminada por relato B1 inválido (15\', susp=2, discProc=true, idempotente)'
+    );
+
+    // [C.18] Segundo amarelo estruturado independente + relato B2 inválido -> prova estruturada prevalece (15', susp=1)
+    [$gC18, $idxC18] = $r7Game('R13 C18 Estruturada 2Y', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'participation_state' => MatchParticipation::STATE_SENT_OFF,
+        'exit_reason' => 'sent_off',
+        'exit' => 75,
+        'red_card_minute' => 75,
+        'stats' => ['second_yellow' => 1, 'red_cards' => 1, 'cards' => 2, 'yellow_cards' => 2, 'goals' => 0, 'assists' => 0, 'shots' => 0, 'passes' => 0, 'completed' => 0, 'tackles' => 0, 'fouls' => 2, 'minutes' => 0, 'rating' => 6.0],
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r13B2Text]],
+    ]), true);
+    $gC18['competition_id'] = 'sp-a3';
+    $gC18End = $r7RunToEnd($gC18, $idxC18);
+    $mC18End = $gC18End['matches'][$idxC18];
+    f04Check(
+        $mC18End['participation_state'] === MatchParticipation::STATE_SENT_OFF
+        && (int)$mC18End['stats']['minutes'] === 15
+        && (int)($gC18End['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 1
+        && !empty($mC18End['disciplinary_processed']),
+        'R1-R13 [C.18]: prova estruturada independente de segundo amarelo não é contaminada por relato B2 inválido (15\', susp=1)'
+    );
+
+    // [C.19] Prova estruturada contraditória por si só mantém tratamento conservador (conflict, 0', susp=0)
+    $mC19 = [
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 75,
+        'sub_in_recorded' => true, 'entered_on_field' => true,
+        'participation_state' => MatchParticipation::STATE_SUBSTITUTED_OUT,
+        'exit_reason' => 'injury',
+        'stats' => ['direct_red' => 1, 'red_cards' => 1, 'cards' => 1],
+        'log' => [$r7EntryLog],
+    ];
+    $rC19 = MatchParticipation::resolveExit($mC19);
+    $gC19 = ['disciplinary' => [], 'competition_id' => 'sp-a3'];
+    MatchDiscipline::processMatchEnd($gC19, $mC19);
+    f04Check(
+        $rC19['status'] === 'conflict' && MatchParticipation::playedMinutes($mC19) === 0
+        && (int)($gC19['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 0
+        && empty($mC19['disciplinary_processed']),
+        'R1-R13 [C.19]: evidência estruturada contraditória por si só preserva conflict (0\', susp=0, pendente)'
+    );
+
+    // [C.20] Reconciliação posterior de conflito genuíno aplica suspensão válida uma única vez
+    $mC20 = [
+        'status' => 'finalizada', 'minute' => 90, 'lineup' => 'reserva', 'entry' => 60, 'exit' => 90,
+        'sub_in_recorded' => true, 'entered_on_field' => true, 'competition' => 'sp-a3',
+        'log' => [
+            $r7EntryLog,
+            ['minute' => 75, 'text' => "75' | Cartão vermelho direto! Você foi expulso da partida."],
+            ['minute' => 75, 'text' => "75' | Lesão: você deixa o campo."],
+        ],
+    ];
+    $gC20 = ['disciplinary' => [], 'competition_id' => 'sp-a3'];
+    MatchDiscipline::processMatchEnd($gC20, $mC20);
+    $pendBefore = empty($mC20['disciplinary_processed']) && (int)($gC20['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 0;
+    // Remove linha contraditória (reconciliação) e reprocessa
+    $mC20['log'] = [$r7EntryLog, ['minute' => 75, 'text' => "75' | Cartão vermelho direto! Você foi expulso da partida."]];
+    MatchDiscipline::processMatchEnd($gC20, $mC20);
+    $suspAfter = (int)($gC20['disciplinary']['sp-a3']['pending_suspension'] ?? 0);
+    MatchDiscipline::processMatchEnd($gC20, $mC20);
+    f04Check(
+        $pendBefore && $suspAfter === 2 && !empty($mC20['disciplinary_processed'])
+        && (int)($gC20['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 2,
+        'R1-R13 [C.20]: conflito genuíno fica pendente e, após reconciliação, aplica suspensão de 2 jogos exatamente uma vez'
+    );
+});
+
+// --- GRUPO D: EFEITOS INTEGRADOS E COMPATIBILIDADE LEGADA (22-32 + Seção 6) ---
+Competition::referenceScope(['sp-a3' => ['disciplinary' => ['direct_red_suspension' => 2, 'second_yellow_suspension' => 1]]], static function () use ($r13A1Text, $r13B1Text, $r7Game, $r7OnFieldReserve, $r7EntryLog, $r7RunToEnd, $r7RhythmKey, $refSegment, $r11AnteciparFail): void {
+    [$gDInv, $idxDInv] = $r7Game('R13 D Inv', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r13B1Text, 'source' => 'engine']],
+    ]), true);
+    $gDInv['competition_id'] = 'sp-a3';
+    $gDInvEnd = $r7RunToEnd($gDInv, $idxDInv);
+    $mDInvEnd = $gDInvEnd['matches'][$idxDInv];
+
+    [$gD2Y, $idxD2Y] = $r7Game('R13 D 2Y', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => $r11AnteciparFail . " Você chega atrasado e comete falta. 75' | Segundo cartão amarelo! Você está expulso da partida."]],
+    ]), true);
+    $gD2Y['competition_id'] = 'sp-a3';
+    $gD2YEnd = $r7RunToEnd($gD2Y, $idxD2Y);
+    $mD2YEnd = $gD2YEnd['matches'][$idxD2Y];
+
+    [$gDDR, $idxDDR] = $r7Game('R13 D DR', array_merge($r7OnFieldReserve, [
+        'competition' => 'sp-a3',
+        'log' => [$r7EntryLog, ['minute' => 75, 'text' => "75' | Cartão vermelho direto! Você foi expulso da partida."]],
+    ]), true);
+    $gDDR['competition_id'] = 'sp-a3';
+    $gDDREnd = $r7RunToEnd($gDDR, $idxDDR);
+    $mDDREnd = $gDDREnd['matches'][$idxDDR];
+
+    $presInv = Presentation::playerParticipation($gDInvEnd, $mDInvEnd);
+    $pres2Y = Presentation::playerParticipation($gD2YEnd, $mD2YEnd);
+    $narrInv = NarrativeContext::values($gDInvEnd);
+    $narr2Y = NarrativeContext::values($gD2YEnd);
+    $snapM = $mDInvEnd;
+    $snapS = $gDInvEnd['states'];
+    $snapL = $gDInvEnd['reward_ledger'] ?? [];
+    $snapD = $gDInvEnd['disciplinary'] ?? [];
+    $refSegment->invokeArgs(null, [&$gDInvEnd, 90]);
+
+    f04Check(
+        (int)$mDInvEnd['stats']['minutes'] === 30 && (int)$mD2YEnd['stats']['minutes'] === 15 && (int)$mDDREnd['stats']['minutes'] === 15
+        && MatchParticipation::finishedOnField($mDInvEnd) && !MatchParticipation::finishedOnField($mD2YEnd) && !MatchParticipation::finishedOnField($mDDREnd)
+        && $presInv['type'] !== 'sent_off' && $pres2Y['type'] === 'sent_off'
+        && ($narrInv['exit_reason'] ?? '') !== 'red' && ($narr2Y['exit_reason'] ?? '') === 'red'
+        && ($gDInvEnd['reward_ledger'][$r7RhythmKey($gDInvEnd, $mDInvEnd)]['delta'] ?? 0) === 3
+        && (int)($gDInvEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 0
+        && (int)($gD2YEnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 1
+        && (int)($gDDREnd['disciplinary']['sp-a3']['pending_suspension'] ?? 0) === 2
+        && $gDInvEnd['matches'][$idxDInv] === $snapM
+        && $gDInvEnd['states'] === $snapS
+        && ($gDInvEnd['reward_ledger'] ?? []) === $snapL
+        && ($gDInvEnd['disciplinary'] ?? []) === $snapD,
+        'R1-R13 [D.22-32]: integração completa (30\' vs 15\', elegibilidade, UI, NarrativeContext, ritmo +3, susp 0/1/2 e encerramento idempotente)'
+    );
+});
+
 echo "\n=======================================================\n";
-echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R12 PASSARAM COM SUCESSO!\n";
+echo "TODOS OS {$checks} TESTES DA MISSÃO R10-LOTE02-F04-R1-R13 PASSARAM COM SUCESSO!\n";
 echo "=======================================================\n";
