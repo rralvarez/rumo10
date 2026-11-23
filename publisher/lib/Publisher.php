@@ -45,10 +45,11 @@ class Publisher {
     protected function assertWriterDrain(): void {
         need(false,'Exclusive request drain required for this transition');
     }
-    protected function assertBackupPrerequisites(): void {
+    protected function assertBackupPrerequisites(bool $classA = false): void {
+        if($classA)return;
         $h=$this->c['hooks']['backup']??null;
-        if(!is_array($h))return;
-        need(digest($h['script'])===$h['sha256'],'Missing/changed trusted hook: backup');
+        need(is_array($h) && digest($h['script'])===$h['sha256'],'Missing/changed trusted hook: backup');
+
         $args=$h['args']??[];
         $profile=null;
         for($i=0;$i<count($args);$i++){
@@ -76,7 +77,9 @@ class Publisher {
         }
         // True preflight proof: read-only effective execution using exact executable, credentials and options
         $preflight = $this->hook('backup', ['action' => 'preflight', 'project' => $this->c['project']]);
-        need(($preflight['ok'] ?? false) === true && ($preflight['preflight'] ?? false) === true, 'Backup preflight proof failed');
+        need(($preflight['ok']??false)===true && ($preflight['preflight']??false)===true &&
+            (!isset($this->c['main_automation']) || ($preflight['full_data_tested']??false)===true),
+            'Backup preflight proof failed');
     }
     private function own(array $j): void {
         if($j['requires_full_drain']??false)$this->assertWriterDrain();
@@ -376,10 +379,6 @@ class Publisher {
         ksort($files,SORT_STRING);
         return hash('sha256',json_encode($files,JSON_THROW_ON_ERROR|JSON_UNESCAPED_SLASHES));
     }
-    protected function source(): GitHub {
-        require_once __DIR__.'/GitHub.php';
-        return new GitHub($this->c);
-    }
     private function installedCommit(): ?string {
         $receiptPath=$this->private.'/installed.json';
         if(!is_file($receiptPath))return null;
@@ -448,24 +447,12 @@ class Publisher {
         }
         return $from;
     }
-    private function gate(array $v): array {
-        need(($this->c['apply_enabled']??false)===true,'apply disabled by default');
-        need(($this->c['homologation']['backup']??false) && ($this->c['homologation']['maintenance']??false) &&
-            ($this->c['homologation']['recovery']??false) && ($this->c['homologation']['legacy_publishers_fenced']??false),
-            'Unhomologated backup / drain / recovery / legacy-writer fencing');
+    private function gate(array $v, ?array $assessment, ?string $from): array {
         $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private];
-        if(isset($this->c['update_policy'])){
-            $old=$this->baseline();
-            $request['source_functional_commit']=$this->transitionOrigin($old,$v);
-            $request['update_policy']=$this->transitionPolicy($old,$v,$request['source_functional_commit']);
-            need($request['update_policy']['class']!=='C','Class C requires separately proven exclusive window');
-            if(isset($this->c['main_automation'])){
-                MainAutomation::change($this->c['main_automation'],$v,$request['update_policy']);
-                if(empty($request['update_policy']['migrations'])){
-                    $request['update_policy']['validation_only']=true;
-                }
-            }
-            if($request['update_policy']['requires_full_drain'])$this->assertWriterDrain();
+        if($assessment!==null){
+            $request['source_functional_commit']=$from;
+            $request['update_policy']=$assessment;
+            if(($assessment['requires_full_drain']??false)===true)$this->assertWriterDrain();
         }
         $g=$this->hook('preflight',$request);
         need(($g['legacy_publishers_fenced']??false) && ($g['source_unchanged']??false),'Source/concurrency fence not confirmed');
@@ -475,44 +462,99 @@ class Publisher {
             'Unresolved legacy FTPS journal');
         return $request;
     }
-    protected function assertAutomaticStage(string $stage): void {
+    public function verifyPublicAvailability(): void {
         if(!isset($this->c['main_automation']))return;
+        MainAutomation::stable($this->c);
+        foreach(MainAutomation::smokeUrls($this->c['main_automation']) as $project=>$url){
+            $curl=curl_init($url);
+            curl_setopt_array($curl,[CURLOPT_FOLLOWLOCATION=>false,CURLOPT_SSL_VERIFYPEER=>true,
+                CURLOPT_SSL_VERIFYHOST=>2,CURLOPT_PROTOCOLS=>CURLPROTO_HTTPS,CURLOPT_CONNECTTIMEOUT=>3,
+                CURLOPT_TIMEOUT=>8,CURLOPT_WRITEFUNCTION=>static fn($ch,$bytes)=>strlen($bytes)]);
+            $ok=curl_exec($curl);$status=curl_getinfo($curl,CURLINFO_RESPONSE_CODE);curl_close($curl);
+            need($ok!==false && $status===200,'Public smoke failed for '.$project.' (HTTP '.$status.')');
+        }
+    }
+
+    protected function source(): GitHub {
+        require_once __DIR__.'/GitHub.php';
+        return new GitHub($this->c);
+    }
+
+    private function backupAuthorization(array $v): BackupAuthorization {
+        return $this->source()->assertApprovedMerge(
+            ['commit'=>$v['commit'],'run_id'=>$v['run']['id'],'artifact_id'=>$v['artifact_id']],$v['run']['merged_pr']);
+    }
+
+    /** Assess once while holding the account mutex, before changing admission or calling the database. */
+    final protected function prepareApply(string $stage): array {
+        $this->lock();
+        need(($this->c['apply_enabled']??false)===true,'apply disabled by default');
+        need(($this->c['homologation']['maintenance']??false) &&
+            ($this->c['homologation']['recovery']??false) && ($this->c['homologation']['legacy_publishers_fenced']??false),
+            'Unhomologated drain / recovery / legacy-writer fencing');
         need(!is_file($this->journal()) || in_array(json(file_get_contents($this->journal()))['state'],['validated','recovered'],true),
             'Pending journal: reconcile with apply --recover, never overwrite');
+        need(!file_exists($this->marker()) && !is_link($this->marker()),'Foreign deployment lock exists');
         $root=str_replace(chr(92),'/',realpath($this->private));
         need(str_starts_with(str_replace(chr(92),'/',realpath($stage)?:''),$root.'/stage-'),'Stage outside private root');
         $ready=json(file_get_contents($stage.'/ready.json'));
-        $v=$this->verify($stage.'/release.tar.gz',$ready['run'],$ready['artifact'],$ready['jobs'],$ready['envelope']);
-        $this->verifyPayload($stage,$v);
-        $old=$this->baseline();
-        $this->controls();
-        $this->operations($old,$v);
-        need(digest($stage.'/payload/public/.htaccess')===$old['files']['public/.htaccess'],'Apache rule change needs separate approval');
-        $assessment=$this->transitionPolicy($old,$v,$this->transitionOrigin($old,$v));
-        MainAutomation::change($this->c['main_automation'],$v,$assessment);
-    }
-    public function apply(string $stage): array {
-        $this->lock();
-        need(!is_file($this->journal()) || in_array(json(file_get_contents($this->journal()))['state'],['validated','recovered'],true),
-            'Pending journal: reconcile with apply --recover, never overwrite');
-        need(str_starts_with(str_replace(chr(92),'/',realpath($stage)?:''),str_replace(chr(92),'/',realpath($this->private)).'/stage-'),'Stage outside private root');
-        $ready=json(file_get_contents($stage.'/ready.json'));
         $v=$this->verify($stage.'/release.tar.gz',$ready['run'],$ready['artifact'],$ready['jobs'],$ready['envelope'])+['stage'=>$stage];
         $this->verifyPayload($stage,$v);
+        $old=$this->baseline();
+        $controls=$this->controls();
         foreach ($this->c['data_contracts'] as $contract)
             need(in_array($contract,$this->c['baseline_data_contracts']??[],true),'Baseline writer incompatible: stage approved compatible recovery before apply');
         $installedPath=$this->private.'/installed.json';
         if(($this->c['apply_enabled']??false) && is_file($installedPath) && !file_exists($this->marker())) {
             $installed=json(file_get_contents($installedPath));
             if($installed['artifact_id']===$v['artifact_id'] && $installed['package_sha256']===$v['package_sha256']) {
-                $this->baseline();$this->controls();$this->verifyRuntime($v['inventory']['files']);
-                return ['state'=>'validated','commit'=>$v['commit'],'already_installed'=>true];
+                return ['v'=>$v,'replay'=>true];
             }
         }
-        $request=$this->gate($v); $controls=$this->controls(); $old=$this->baseline(); $ops=$this->operations($old,$v);
-        // Never silently change Apache rules: public bridge and htaccess are pinned and preserved.
+        $ops=$this->operations($old,$v);
         need(digest($stage.'/payload/public/.htaccess')===$old['files']['public/.htaccess'],'Apache rule change needs separate approval');
-        $this->assertBackupPrerequisites();
+        $from=null;$assessment=null;$authorization=null;
+        if(isset($this->c['update_policy'])){
+            $from=$this->transitionOrigin($old,$v);
+            $assessment=$this->transitionPolicy($old,$v,$from);
+            need($assessment['class']!=='C','Class C requires separately proven exclusive window');
+        }
+        if(isset($this->c['main_automation'])){
+            need($assessment!==null,'Main automation requires transition policy');
+            MainAutomation::change($this->c['main_automation'],$v,$assessment);
+            // A manual backup, if required by the operator, is handled before
+            // the merge. The receiver never requests proof of a backup.
+            if($assessment['migrations']===[])$assessment['validation_only']=true;
+        }
+        $classA=isset($this->c['main_automation']) && ($assessment['class']??null)==='A';
+        // Database-changing transitions retain their own integrity safeguards.
+        // Class A has no backup homologation, evidence or dump prerequisite.
+        if(!$classA)need(($this->c['homologation']['backup']??false)===true,
+            'Database transition requires separately homologated recovery safeguards');
+        if(($this->c['main_automation']['ui001_bootstrap_request']??false)===true){
+            need($classA && ['commit'=>$v['commit'],'run_id'=>$v['run']['id'],
+                'artifact_id'=>$v['artifact_id']]===MainAutomation::UI001,
+                'UI-001 exception requires the exact pinned Class A release');
+        }
+        if($classA)MainAutomation::proof([],$v,time(),'A',$authorization);
+        return compact('v','old','controls','ops','from','assessment','authorization','classA');
+    }
+
+    public function apply(string $stage): array {
+        $prepared=$this->prepareApply($stage);
+        if(!isset($prepared['replay']))$this->assertBackupPrerequisites($prepared['classA']);
+        return $this->applyPrepared($stage,$prepared);
+    }
+
+    final protected function applyPrepared(string $stage,array $prepared): array {
+        if(isset($prepared['replay'])){
+            $v=$prepared['v'];
+            $this->verifyRuntime($v['inventory']['files']);
+            return ['state'=>'validated','commit'=>$v['commit'],'already_installed'=>true];
+        }
+        ['v'=>$v,'old'=>$old,'controls'=>$controls,'ops'=>$ops,'from'=>$from,
+            'assessment'=>$assessment,'authorization'=>$authorization,'classA'=>$classA]=$prepared;
+        $request=$this->gate($v,$assessment,$from);
         $id=bin2hex(random_bytes(16)); $backup=$this->private.'/backup-'.$id; privateDir($backup);
         $lockBytes=json_encode(['publisher'=>'rumo-pull-v1','project'=>$this->c['project'],'attempt'=>$id],JSON_THROW_ON_ERROR);
         $j=['state'=>'locking','attempt'=>$id,'lock_bytes'=>$lockBytes,'stage'=>$stage,'candidate'=>$v,
@@ -540,15 +582,19 @@ class Publisher {
             }
             atomic($backup.'/release.json',file_get_contents($this->c['current'].'/release.json'));
             if(is_file($this->c['current'].'/build-manifest.json'))atomic($backup.'/build-manifest.json',file_get_contents($this->c['current'].'/build-manifest.json'));
-            $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
-            // Main automation uses a verified transactional dump; legacy mode retains restore rehearsal.
-            $restoreRequired = !isset($this->c['main_automation']);
-            need(($b['consistent']??false) && (!$restoreRequired || ($b['restore_tested']??false)) &&
-                ($b['attempt']??null)===$id && isset($b['files']) && count($b['files'])>0,
-                'Consistent backup receipt missing');
-            foreach ($b['files'] as $p=>$h) need(str_starts_with(str_replace(chr(92),'/',$p),str_replace(chr(92),'/',$backup).'/') &&
-                digest($p)===$h,'Backup receipt digest invalid');
-            if(isset($this->c['main_automation']))MainAutomation::proof($b,$v,time());
+            if($classA){
+                MainAutomation::proof([],$v,time(),'A',$authorization);
+                $j['backup_policy']='operator-managed-before-merge';
+                $b=['attempt'=>$id,'files'=>[$backup.'/release.json'=>digest($backup.'/release.json')]];
+            }else{
+                $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
+                $restoreRequired=!isset($this->c['main_automation']);
+                need(($b['consistent']??false) && (!$restoreRequired || ($b['restore_tested']??false)) &&
+                    ($b['attempt']??null)===$id && !empty($b['files']),'Consistent backup receipt missing');
+                foreach($b['files'] as $p=>$h)need(str_starts_with(str_replace(chr(92),'/',$p),str_replace(chr(92),'/',$backup).'/') &&
+                    digest($p)===$h,'Backup receipt digest invalid');
+                if(isset($this->c['main_automation']))MainAutomation::proof($b,$v,time(),'B');
+            }
             $j['validation_only']=$request['update_policy']['validation_only']??false;
             $j['backup_receipt']=$b; $j['state']='installing'; $this->save($j);
             $this->checkpoint('after-backup');
@@ -567,8 +613,8 @@ class Publisher {
         $hasMigrationsToRun = !empty($request['update_policy']['migrations']) || !empty($requiredMigrations);
         if(!isset($j['migration_receipt']) && $hasMigrationsToRun) {
             if(isset($this->c['main_automation']) || ($j['validation_only']??false)===true)
-                MainAutomation::proof($j['backup_receipt']??[],$v,time());
-            $this->own($j);$j['state']='migrating';$this->save($j);
+                MainAutomation::proof($j['backup_receipt']??[],$v,time(),'B');
+            $this->own($j);$j['state']='migrating';$j['migration_started']=true;$this->save($j);
             $receipt=$this->hook('migrate',$request+['attempt'=>$id]);
             need(($receipt['compatible_expansion']??false)===true,'Incremental migration proof missing');
             if ($this->c['project']==='rumo10') {
@@ -728,12 +774,19 @@ class Publisher {
             return ['state'=>'validated','finalized'=>true];
         }
         need(in_array($j['state'],['locking','blocked','installing','maintenance','migrating','promoting-manifest'],true),'No recoverable pending attempt');
+        need(!($j['migration_started']??false) || isset($j['migration_receipt']), 'Unconfirmed migration retained for reconciliation');
         if(isset($this->c['update_policy']) && isset($j['backup_receipt']) && count(array_filter($j['operations'],fn($o)=>$o['state']!=='planned'))>0) {
             $ready=$j['candidate'];
             $v=$this->verify($j['stage'].'/release.tar.gz',$ready['run'],$ready['artifact'],$ready['jobs'],$ready['envelope'])+['stage'=>$j['stage']];
             $this->verifyPayload($j['stage'],$v);
             $policy=$this->transitionPolicy($j['old_manifest'],$v,$j['source_functional_commit']??null);
             need($policy['class']!=='C','Forward recovery requires approved compatible policy');
+            if(isset($this->c['main_automation'])){
+                MainAutomation::change($this->c['main_automation'],$v,$policy);
+                if($policy['class']==='A')MainAutomation::proof([],$v,time(),'A');
+                else need(isset($j['backup_receipt']['dump_sha256']) || isset($j['backup_receipt']['restored_dump_sha256']),
+                    'Class B recovery requires database backup evidence');
+            }
             if($policy['requires_full_drain'])$this->assertWriterDrain();
             $j['candidate']=$v;
             $request=['project'=>$this->c['project'],'candidate'=>$v,'private'=>$this->private,'update_policy'=>$policy];

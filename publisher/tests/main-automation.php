@@ -32,13 +32,14 @@ $assess=static function(array $new,?string $from=null,?string $to=null,array $ex
     $a=UpdatePolicy::assess($base,['files'=>$new],$policy+$extra,$jobs,$from,$to);
     $a['requires_full_drain']=true;return $a;
 };
-foreach(['app/view.php','public/assets/visual.css'] as $path){
+foreach(['app/view.php','public/assets/visual.css','public/assets/audio/match_start.ogg','public/assets/audio/no_goal.mp3'] as $path){
     MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],[$path=>'new'])));
-    check(true,'Two distinct ordinary changes, no SHA permit');
+    check(true,'Ordinary PHP, CSS and approved audio assets require no SHA permit');
 }
 // Class B with database migration is allowed without sensitive permit
-MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['database/009.sql'=>'new'])));
-check(true,'Class B release with migration allowed without manual SHA permit');
+MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['database/009.sql'=>'new','public/assets/audio/crowd.ogg'=>'new'])));
+check(true,'Class B release with migration and audio file allowed by scoped policy');
+check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['public/assets/audio/untrusted.php'=>'new']))),'Path outside ordinary automatic release policy'),'Executable file in public audio directory remains blocked');
 
 check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['publisher/Core.php'=>'new']))),'Infrastructure change'),'Infrastructure blocked');
 check(rejects(fn()=>MainAutomation::change($cfg,$v,$assess(array_replace($base['files'],['public/.htaccess'=>'new']))),'Infrastructure change'),'htaccess blocked');
@@ -84,6 +85,8 @@ check(rejects(fn()=>MainAutomation::change($cfg,$v,$unexpectedAssessment),'Path 
 $proof=['created_at'=>500,'artifact_id'=>123,'package_sha256'=>$v['package_sha256'],
     'consistent'=>true,'source_uuid'=>'s',
     'dump_sha256'=>str_repeat('d',64),'files'=>['dump'=>str_repeat('d',64)]];
+MainAutomation::proof([],$v,2299,'A');
+check(true,'Class A never requests database backup or a manual backup receipt at deploy');
 MainAutomation::proof($proof,$v,2299);check(true,'Proof fresh on single server');
 check(rejects(fn()=>MainAutomation::proof($proof,$v,2300),'Fresh consistent'),'Proof expires at 30 minutes');
 check(rejects(fn()=>MainAutomation::proof(array_replace($proof,['files'=>[]]),$v,2299),'Valid backup dump'),'Missing dump file');
@@ -118,10 +121,73 @@ try {
         }
         protected function report(array $run,string $state,string $reason):void{$this->reported[]=[$state,$reason];}
     };
-    $unused=(new ReflectionClass(Publisher::class))->newInstanceWithoutConstructor();
+    $unused=new class extends Publisher {
+        public function __construct(){}
+        public function verifyPublicAvailability(): void {}
+    };
     $out=$source->automatic($unused);
     check(($out['already_installed']??false)===true && $source->reported===[['success','Recibo UOL validado; artefato 123']],
         'Rerun reports validated production receipt without apply or download');
+    // Exact infrastructure-only PR #9 may follow the already deployed UI-001
+    // without pretending that an application artifact was installed.
+    $ui=MainAutomation::UI001;
+    $infraHead=str_repeat('d',40);$infraMerge=str_repeat('e',40);$infraTree=str_repeat('f',40);
+    $pr9=['number'=>9,'state'=>'closed','merged'=>true,'merged_at'=>'2026-11-16T22:00:00Z',
+        'merged_by'=>['id'=>35331184],'base'=>['repo'=>['full_name'=>$repo],'ref'=>'main'],
+        'merge_commit_sha'=>$infraMerge,'head'=>['sha'=>$infraHead]];
+    $merge9=['sha'=>$infraMerge,'parents'=>[['sha'=>$ui['commit']],['sha'=>$infraHead]],
+        'commit'=>['tree'=>['sha'=>$infraTree]]];
+    $review9=['sha'=>$infraHead,'commit'=>['tree'=>['sha'=>$infraTree]]];
+    $comparison9=['status'=>'ahead','merge_base_commit'=>['sha'=>$ui['commit']],
+        'files'=>[['filename'=>'publisher/lib/GitHub.php'],
+                  ['filename'=>'.github/workflows/manual-backup-approval.yml']]];
+    MainAutomation::infrastructureOnlyPr9($cfg2['main_automation'],$pr9,$merge9,$review9,$comparison9);
+    check(true,'Pinned infrastructure-only PR #9 identified');
+    check(rejects(fn()=>MainAutomation::infrastructureOnlyPr9($cfg2['main_automation'],$pr9,
+        $merge9,$review9,array_replace($comparison9,['files'=>[['filename'=>'app/view.php']]])),
+        'changes application'),'Infrastructure PR cannot silently change application');
+    check(rejects(fn()=>MainAutomation::infrastructureOnlyPr9($cfg2['main_automation'],$pr9,
+        $merge9,array_replace($review9,['commit'=>['tree'=>['sha'=>str_repeat('0',40)]]]),
+        $comparison9),'identity not proven'),'Infrastructure tree must match reviewed PR head');
+    check(rejects(fn()=>MainAutomation::infrastructureOnlyPr9($cfg2['main_automation'],
+        array_replace($pr9,['merged_by'=>['id'=>123]]),
+        $merge9,$review9,$comparison9),'identity not proven'),'Foreign infrastructure merger denied');
+    $uiV=['commit'=>$ui['commit'],'artifact_id'=>$ui['artifact_id'],
+        'run'=>['id'=>$ui['run_id']],'package_sha256'=>str_repeat('1',64)];
+    record($root.'/installed.json',['commit'=>$ui['commit'],'artifact_id'=>$ui['artifact_id'],
+        'run_id'=>$ui['run_id'],'package_sha256'=>$uiV['package_sha256']]);
+    record($root.'/journal.json',['state'=>'validated','stage'=>'ui-stage','candidate'=>$uiV]);
+    record($root.'/drain-session.json',['state'=>'validated','stage'=>'ui-stage']);
+    $infraSource=new class($cfg2,$infraMerge,$pr9,$merge9,$review9,$comparison9) extends GitHub {
+        public array $reported=[];
+        public function __construct(array $cfg,private string $head,
+            private array $pr,private array $merge,private array $review,private array $compare){
+            parent::__construct($cfg);
+        }
+        protected function request(string $url,bool $auth,int $limit,?string $out=null):array{
+            $path=parse_url($url,PHP_URL_PATH);
+            need($out===null,'Infrastructure-only merge cannot download a release');
+            $payload=match(true){
+                str_ends_with($path,'/git/ref/heads/main')=>['object'=>['sha'=>$this->head]],
+                str_ends_with($path,'/workflows/7/runs')=>['workflow_runs'=>[
+                    ['id'=>789,'head_sha'=>$this->head,'head_branch'=>'main','event'=>'push',
+                     'repository'=>['full_name'=>'rralvarez/rumo10'],'workflow_id'=>7,
+                     'status'=>'completed','conclusion'=>'success']]],
+                str_ends_with($path,'/commits/'.$this->head)=>$this->merge,
+                str_ends_with($path,'/pulls/9')=>$this->pr,
+                str_ends_with($path,'/commits/'.$this->review['sha'])=>$this->review,
+                str_contains($path,'/compare/')=>$this->compare,
+                default=>throw new RuntimeException('Unexpected infrastructure request: '.$path)
+            };
+            return ['status'=>200,'body'=>json_encode($payload,JSON_THROW_ON_ERROR)];
+        }
+        protected function report(array $run,string $state,string $reason):void{$this->reported[]=[$state,$reason];}
+    };
+    $held=$infraSource->automatic($unused);
+    check(($held['state']??null)==='infrastructure-held' &&
+        ($held['application_deployed']??null)===false &&
+        $infraSource->reported===[['pending','Infrastructure PR #9 retained without application deployment']],
+        'Infrastructure-only merge held without apply and without false success receipt');
     unlink($cfg2['token_file']);
 }finally{
     foreach(['installed.json','journal.json','drain-session.json','gate/writers.lock','gate/identity.json'] as $f)unlink($root.'/'.$f);

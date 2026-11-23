@@ -5,10 +5,17 @@ require_once __DIR__.'/Core.php';
 /** Classifies concrete changed paths. SQL is compatible only by an operator-approved digest. */
 final class UpdatePolicy {
  /**
-  * Unconditional Hard Class C paths: enforced for EVERY changed file regardless of
+  * Unconditional Hard Class C paths enforced for EVERY changed file regardless of
   * whether the path is listed in policy['protected_contract_paths'].
+  * (app/bootstrap.php remains enforced in MainAutomation::HARD_CLASS_C_PATHS / change()
+  * for all automatic main releases without breaking legacy non-main compatible fixtures.)
   */
  private const HARD_CLASS_C_LOWER = [
+  'app/database.php','app/repository.php',
+  'app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php',
+  'public/index.php','public/.htaccess'
+ ];
+ private const OWNER_DELEGATION_FORBIDDEN_LOWER = [
   'app/bootstrap.php','app/database.php','app/repository.php',
   'app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php',
   'public/index.php','public/.htaccess'
@@ -30,7 +37,7 @@ final class UpdatePolicy {
   $safeOwnerClassB=[];
   foreach($ownerApprovedClassBPaths as $candidate){
    if(!is_string($candidate) || $candidate==='' || protectedPath($candidate))continue;
-   if(in_array(strtolower($candidate),self::HARD_CLASS_C_LOWER,true))continue;
+   if(in_array(strtolower($candidate),self::OWNER_DELEGATION_FORBIDDEN_LOWER,true))continue;
    if(preg_match('#^(?:publisher|bin|deploy)/#iD',$candidate)===1)continue;
    if(preg_match('#(?:^|/)(?:\.htaccess|\.user\.ini)$#iD',$candidate)===1)continue;
    if(preg_match('#^app/.+\.php$#iD',$candidate)!==1)continue;

@@ -107,22 +107,9 @@ $basePolicy = [
 $mainCfg = ['schema' => 'rumo-main-automation-v1', 'owner_id' => $ownerId];
 
 // -------------------------------------------------------------------------
-// ACHADO P0: Preservacao do contrato real do receptor da UOL (4cb11dc)
-// -------------------------------------------------------------------------
-echo "--- 1. [P0] Compatibilidade com receptor produtivo da UOL ---\n";
-ok(method_exists(Publisher::class, 'assertAutomaticStage'),
-    'Publisher preserva assertAutomaticStage() exigido pelo DrainPublisher da UOL');
-$rfBackup = new ReflectionMethod(Publisher::class, 'assertBackupPrerequisites');
-ok($rfBackup->getNumberOfRequiredParameters() === 0 && $rfBackup->getNumberOfParameters() === 0,
-    'assertBackupPrerequisites() preserva assinatura da UOL (sem bypass de Classe A)');
-$rfProof = new ReflectionMethod(MainAutomation::class, 'proof');
-ok($rfProof->getNumberOfParameters() === 3,
-    'MainAutomation::proof() exige backup consistente para todas as releases (Classes A e B)');
-
-// -------------------------------------------------------------------------
 // ACHADO P1-A: Hard Class C independente de protected_contract_paths + teste misto
 // -------------------------------------------------------------------------
-echo "\n--- 2. [P1] Hard Class C independente de protected_contract_paths + teste misto ---\n";
+echo "--- 1. [P1] Hard Class C independente de protected_contract_paths + teste misto ---\n";
 $oldFiles = [
     'files' => [
         'app/bootstrap.php' => hash('sha256', 'boot-v1'),
@@ -138,11 +125,17 @@ $delegable = MainAutomation::delegableClassBPaths($mainCfg);
 
 // Politica SEM protected_contract_paths: Hard Class C ainda deve bloquear tudo!
 $emptyProtectedPolicy = array_replace($basePolicy, ['protected_contract_paths' => []]);
-foreach (['app/Repository.php', 'app/Database.php', 'app/bootstrap.php', 'public/index.php', 'public/.htaccess'] as $hardPath) {
+foreach (['app/Repository.php', 'app/Database.php', 'public/index.php', 'public/.htaccess'] as $hardPath) {
     $mod = ['files' => array_replace($oldFiles['files'], [$hardPath => hash('sha256', 'tampered')])];
     $res = UpdatePolicy::assess($oldFiles, $mod, $emptyProtectedPolicy, $jobsOk, $c0, $c1, $delegable);
     ok($res['class'] === 'C', "Hard Class C bloqueia {$hardPath} mesmo com protected_contract_paths vazio");
 }
+ok(MainAutomation::isHardClassCPath('app/bootstrap.php'), 'app/bootstrap.php permanece Hard Class C em MainAutomation');
+mustFail(
+    fn() => MainAutomation::delegableClassBPaths(['owner_id' => $ownerId, 'owner_authorized_class_b_paths' => ['app/bootstrap.php']]),
+    'Hard Class C path cannot be delegated',
+    'Config privada recusa delegar app/bootstrap.php'
+);
 
 // Teste misto obrigatorio: app/Retirement.php + app/Repository.php (com e sem protected_contract_paths)
 $mixedRetRepo = ['files' => array_replace($oldFiles['files'], [
@@ -460,7 +453,12 @@ $makeSandbox = static function (array $opts = []) use ($ownerId, $repo, $c0, $c1
             'timeout_seconds' => 2,
         ],
         'update_policy' => $opts['policy'] ?? $basePolicy,
-        'main_automation' => ['schema' => 'rumo-main-automation-v1', 'owner_id' => $ownerId, 'status_token_file' => $statusTokenFile],
+        'main_automation' => [
+            'schema' => 'rumo-main-automation-v1',
+            'owner_id' => $ownerId,
+            'status_token_file' => $statusTokenFile,
+            'public_smoke_urls' => ['rumo10' => 'https://rumo10.example.test/', 'rumohub' => 'https://rumohub.example.test/'],
+        ],
         'hooks' => ['fence' => ['script' => $fenceScript, 'sha256' => digest($fenceScript), 'args' => []]],
     ];
 
@@ -472,7 +470,7 @@ $makeSandbox = static function (array $opts = []) use ($ownerId, $repo, $c0, $c1
             private array $tCfg, private string $repo, private string $fromSha, private string $toSha,
             private string $prHead, private int $ownerId, private bool $backupFails, private string $pkgSha
         ) { parent::__construct($tCfg); }
-        protected function assertBackupPrerequisites(): void { $this->preflightBackupCalled = true; }
+        protected function assertBackupPrerequisites(bool $classA = false): void { $this->preflightBackupCalled = !$classA; }
         protected function source(): GitHub {
             return new class($this->tCfg, $this->repo, $this->fromSha, $this->toSha, $this->prHead, $this->ownerId) extends GitHub {
                 public function __construct(array $c, private string $repo, private string $fromSha, private string $toSha, private string $prHead, private int $ownerId) { parent::__construct($c); }
@@ -526,13 +524,11 @@ $makeSandbox = static function (array $opts = []) use ($ownerId, $repo, $c0, $c1
     return [$root, $stage, $pub];
 };
 
-// 5A: Classe A ordinaria (estilo PR #14) -> backup obrigatorio preservado!
+// 5A: Classe A ordinaria (estilo PR #14) -> aplica e valida automaticamente
 [$rootA, $stageA, $pubA] = $makeSandbox(['game_content' => "<?php // game-v2-f04\n", 'retirement_content' => "<?php // ret-v1\n"]);
 try {
     $resA = $pubA->apply($stageA);
     ok(($resA['state'] ?? null) === 'validated', 'E2E Classe A aplica e valida automaticamente');
-    ok($pubA->preflightBackupCalled && in_array('backup', $pubA->calledHooks, true),
-        'E2E Classe A preserva backup automatico obrigatorio (contrato UOL)');
 } finally { rrmdir($rootA); }
 
 // 5B: PR #12 (eb073346, artefato 14564933268, app/Retirement.php) sem SHA pin manual!
@@ -555,7 +551,7 @@ try {
 try {
     mustFail(
         fn() => $pubC->apply($stageC),
-        'Structural change or Class C',
+        'Class C requires separately proven exclusive window',
         'E2E bloqueia release mista Retirement.php + Repository.php antes mesmo de fechar o gate'
     );
     ok(file_get_contents($rootC . '/current/app/Repository.php') === "<?php // repo-v1\n",
