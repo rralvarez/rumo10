@@ -4,14 +4,22 @@ if (PHP_SAPI!=='cli') { http_response_code(404); exit(1); }
 $publisherLibrary = dirname(__DIR__).'/lib';
 require_once $publisherLibrary.'/DrainPublisher.php';
 require_once $publisherLibrary.'/GitHub.php';
+require_once $publisherLibrary.'/RuntimeIdentity.php';
 use Rumo\Publisher\DrainPublisher;
 use Rumo\Publisher\Publisher;
 use Rumo\Publisher\GitHub;
 use Rumo\Publisher\MainAutomation;
+use Rumo\Publisher\RuntimeIdentity;
 use function Rumo\Publisher\need;
 use function Rumo\Publisher\json;
+$runtimeIdentity = null;
 try {
-    $opts=getopt('',['config:','mode:','run:','artifact:','stage:','recover','discover','retire-testecodex','ui001-bootstrap']);
+    $runtimeIdentity = RuntimeIdentity::inspect($publisherLibrary);
+    $opts=getopt('',['config:','mode:','run:','artifact:','stage:','recover','discover','retire-testecodex','ui001-bootstrap','identity']);
+    if(isset($opts['identity'])){
+        echo json_encode(['ok'=>true,'runtime'=>$runtimeIdentity],JSON_THROW_ON_ERROR|JSON_PRETTY_PRINT).PHP_EOL;
+        exit(0);
+    }
     need(isset($opts['config'],$opts['mode']),'Usage: --config=private.json --mode=verify-only|stage|apply --run=ID --artifact=ID OR --stage=PATH OR --recover');
     $mode=$opts['mode']; need(in_array($mode,['verify-only','stage','apply'],true),'Unknown mode');
     $retireTesteCodex=isset($opts['retire-testecodex']);
@@ -79,8 +87,14 @@ try {
             'package_sha256'=>$result['package_sha256'],'files'=>count($result['inventory']['files']),
             'stage'=>$result['stage']??null,'operational_writes'=>false];
     }
+    if(is_array($result)){
+        $result['publisher_runtime']=$runtimeIdentity;
+    }
     echo json_encode($result,JSON_THROW_ON_ERROR|JSON_PRETTY_PRINT).PHP_EOL;
 } catch(Throwable $e) {
     // No curl headers, signed URLs, token or environment values are logged.
-    fwrite(STDERR,'BLOCKED: '.$e->getMessage().PHP_EOL); exit(1);
+    $rtTag = is_array($runtimeIdentity)
+        ? ' [publisher=' . $runtimeIdentity['version'] . ' lib=' . $runtimeIdentity['lib_path'] . ']'
+        : '';
+    fwrite(STDERR,'BLOCKED: '.$e->getMessage().$rtTag.PHP_EOL); exit(1);
 }
