@@ -73,11 +73,10 @@ class GitHub {
         need(count($found)===1,'No unique artifact for latest successful run; no fallback to old run');
         return [$run['id'],$found[0]['id']];
     }
-    public function automatic(Publisher $publisher, ?array $expected = null): array {
+    public function automatic(Publisher $publisher): array {
         $repo='/repos/'.$this->c['repository'];
         $head=$this->api($repo.'/git/ref/heads/main')['object']['sha']??'';
         need(preg_match('/^[a-f0-9]{40}$/D',$head)===1,'Invalid main tip');
-        if($expected!==null)need($head===$expected['commit'],'Explicit release is no longer the main tip');
         $runs=$this->api($repo.'/actions/workflows/'.$this->c['workflow_id'].'/runs?branch=main&event=push&head_sha='.$head.'&per_page=100');
         $items=$runs['workflow_runs']??[];
         need(is_array($items) && count($items)<=1,'No unique canonical run for main tip');
@@ -90,82 +89,39 @@ class GitHub {
             ($run['repository']['full_name']??null)===$this->c['repository'] &&
             ($run['workflow_id']??null)===$this->c['workflow_id'] && ($run['event']??null)==='push' &&
             is_int($run['id']??null) && $run['id']>0,'Unexpected canonical run identity');
-        if($expected!==null)need($run['id']===$expected['run_id'],'Unexpected run for explicit release');
         $checkpointPath=$this->c['private'].'/installed.json';
         $checkpoint=is_file($checkpointPath)?json(file_get_contents($checkpointPath)):[];
+        if(($checkpoint['commit']??null)===$head && is_int($checkpoint['artifact_id']??null) &&
+            MainAutomation::outcome($this->c,$run,['id'=>$checkpoint['artifact_id']])){
+            $this->report($run,'success','Recibo UOL validado; artefato '.$checkpoint['artifact_id']);
+            return ['state'=>'validated','commit'=>$head,'already_installed'=>true];
+        }
         $status='pending';$reason='Aguardando CI oficial';$result=['state'=>'waiting','commit'=>$head];
         try {
-            if(($checkpoint['commit']??null)===$head && is_int($checkpoint['artifact_id']??null) &&
-            ($expected===null || $checkpoint['artifact_id']===$expected['artifact_id']) &&
-            MainAutomation::outcome($this->c,$run,['id'=>$checkpoint['artifact_id']])){
-                $reason='Verificacao HTTP publica reprovada';
-                $publisher->verifyPublicAvailability();
-                $this->report($run,'success','Recibo UOL validado; artefato '.$checkpoint['artifact_id']);
-                return ['state'=>'validated','commit'=>$head,'already_installed'=>true];
-            }
             if(($run['status']??null)==='completed'){
                 need(($run['conclusion']??null)==='success','Official CI failed');
-                // PR #9 installs receiver infrastructure only. The prior UI-001 pilot
-                // must already be validated before that PR merges. Never apply or
-                // label its infrastructure-only artifact as an application release.
-                if($expected===null && isset($this->c['main_automation']) &&
-                    ($this->c['main_automation']['owner_id']??null)===35331184 &&
-                    ($checkpoint['commit']??null)===MainAutomation::UI001['commit']){
-                    $merge=$this->api($repo.'/commits/'.$head);
-                    $parents=$merge['parents']??[];
-                    if(count($parents)===2 &&
-                        ($parents[0]['sha']??null)===MainAutomation::UI001['commit']){
-                        $pr=$this->api($repo.'/pulls/9');
-                        if(($pr['merge_commit_sha']??null)===$head){
-                            $reviewHead=$pr['head']['sha']??'';
-                            need(is_string($reviewHead) &&
-                                preg_match('/^[a-f0-9]{40}$/D',$reviewHead)===1,
-                                'PR #9 reviewed head not proven');
-                            $review=$this->api($repo.'/commits/'.$reviewHead);
-                            $comparison=$this->api($repo.'/compare/'.MainAutomation::UI001['commit'].'...'.$head);
-                            MainAutomation::infrastructureOnlyPr9($this->c['main_automation'],
-                                $pr,$merge,$review,$comparison);
-                            need(MainAutomation::outcome($this->c,
-                                ['id'=>MainAutomation::UI001['run_id'],
-                                 'head_sha'=>MainAutomation::UI001['commit']],
-                                ['id'=>MainAutomation::UI001['artifact_id']]),
-                                'UI-001 production receipt must remain validated before PR #9');
-                            $publisher->verifyPublicAvailability();
-                            $reason='Infrastructure PR #9 retained without application deployment';
-                            $this->report($run,'pending',$reason);
-                            return ['state'=>'infrastructure-held','main_commit'=>$head,
-                                'installed_commit'=>MainAutomation::UI001['commit'],
-                                'application_deployed'=>false];
-                        }
-                    }
-                }
                 $reason='Artefato oficial indisponivel';
                 $a=$this->api($repo.'/actions/runs/'.$run['id'].'/artifacts?per_page=100');
                 need(($a['total_count']??101)<=100,'Artifact discovery pagination bound');
                 $found=array_values(array_filter($a['artifacts']??[],fn($v)=>
                     ($v['name']??null)==='release-'.$this->c['project'].'-'.$head && ($v['expired']??true)===false));
                 need(count($found)===1 && is_int($found[0]['id']??null),'No unique unexpired canonical artifact');
-                $artifact=$found[0];
-                if($expected!==null)need($artifact['id']===$expected['artifact_id'],'Unexpected artifact for explicit release');
-                $reason='Politica ou integridade do receptor bloqueou a publicacao';
+                $artifact=$found[0];$reason='Politica ou integridade do receptor bloqueou a publicacao';
                 if(MainAutomation::outcome($this->c,$run,$artifact)) {
                     $result=['state'=>'validated','commit'=>$head,'already_installed'=>true];
                 } else {
                     $input=$this->fetch($run['id'],$artifact['id'],$this->c['private'].'/downloads');
                     $staged=$publisher->stage(...$input);
                     $this->assertMainTip($staged['commit']);
+                    $this->assertApprovedMerge($staged['commit'],$staged['run']['merged_pr']);
                     $reason='Publicacao bloqueada pelo receptor';
                     $result=$publisher->apply($staged['stage']);
                     need(MainAutomation::outcome($this->c,$run,$artifact),'Validated production receipt not confirmed');
                 }
-                $reason='Verificacao HTTP publica reprovada';
-                $publisher->verifyPublicAvailability();
                 $status='success';$reason='Recibo UOL validado; artefato '.$artifact['id'];
             }
         } catch(\Throwable $e) {
             $details=[
-                'Authenticated owner backup statement'=>'Confirmacao autenticada de backup ausente',
-                'Required backup approval status'=>'Status da App de backup ausente ou invalido',
                 'Exact main merge by the approved owner not confirmed'=>'Merge nao autorizado pelo proprietario',
                 'Sensitive release requires an exact private permit and authenticated transition'=>'Transicao sensivel sem autorizacao especifica',
                 'Structural change or Class C'=>'Mudanca estrutural ou Classe C bloqueada',
@@ -202,7 +158,7 @@ class GitHub {
             if (is_file($journalPath)) {
                 $j = json(file_get_contents($journalPath));
                 $allPlanned = count(array_filter($j['operations'] ?? [], fn($o) => ($o['state'] ?? '') !== 'planned' || isset($o['temp']))) === 0;
-                $noMigrations = !($j['migration_started']??false) && !isset($j['migration_receipt']);
+                $noMigrations = !isset($j['migration_receipt']);
                 $isUntouched = $allPlanned && $noMigrations;
             }
             if ($isUntouched) {
@@ -244,66 +200,86 @@ class GitHub {
         $ref=$this->api('/repos/'.$this->c['repository'].'/git/ref/heads/main');
         need(($ref['object']['sha']??null)===$head,'Latest main commit has no eligible candidate');
     }
-    public function assertApprovedMerge(array $identity,int $number): BackupAuthorization {
+    public function assertApprovedMerge(string $head,int $number): void {
         $cfg=$this->c['main_automation'];
-        $name=$this->c['repository'];
-        $repo='/repos/'.$name;
-        $head=$identity['commit'];
+        $repo='/repos/'.$this->c['repository'];
         need($number>0 && preg_match('/^[a-f0-9]{40}$/D',$head)===1,'Invalid merge identity');
         $pr=$this->api($repo.'/pulls/'.$number);
         $commit=$this->api($repo.'/commits/'.$head);
-        MainAutomation::merge($cfg,$name,$head,$number,$pr,$commit);
-        if($identity===MainAutomation::UI001 && $number===8 && ($cfg['ui001_bootstrap_request']??false)===true){
-            $statement=MainAutomation::backupStatement($number,$pr['head']['sha'],true);
-            for($page=1;$page<=5;$page++){
-                $comments=$this->api($repo."/issues/{$number}/comments?per_page=100&direction=desc&page={$page}");
-                foreach($comments as $comment){
-                    if(($comment['body']??null)===$statement && ($comment['user']['id']??null)===$cfg['owner_id'])
-                        return BackupAuthorization::fromGitHub($cfg,$name,$identity,$pr,$comment,null);
-                }
-                if(count($comments)<100)break;
-            }
-            throw new \RuntimeException('Authenticated owner backup statement missing for UI-001 exception');
-        }
-        $ruleId=$cfg['backup_ruleset_id']??null;
-        $appId=$cfg['backup_app_id']??null;
-        need(is_int($ruleId) && $ruleId>0 && is_int($appId) && $appId>0,'Required backup ruleset and App pins missing');
-        $rule=$this->api($repo.'/rulesets/'.$ruleId);
-        MainAutomation::backupRule($rule,$ruleId,$appId);
-        $approval=$this->api($repo.'/commits/'.$pr['head']['sha'].'/status?per_page=100');
-        need(($approval['sha']??null)===$pr['head']['sha'],'Backup status does not belong to the approved head');
-        $statuses=array_values(array_filter($approval['statuses']??[],static fn($status)=>
-            ($status['context']??null)===MainAutomation::BACKUP_CONTEXT));
-        need(count($statuses)===1,'Required backup approval status missing or ambiguous');
-        $status=$statuses[0];
-        $target="https://github.com/{$name}/pull/{$number}#issuecomment-";
-        need(str_starts_with($status['target_url']??'',$target),'Required backup approval status points to another PR');
-        $commentId=substr($status['target_url'],strlen($target));
-        need(preg_match('/^[1-9][0-9]*$/D',$commentId)===1,'Required backup approval status lacks a comment ID');
-        $comment=$this->api($repo.'/issues/comments/'.$commentId);
-        return BackupAuthorization::fromGitHub($cfg,$name,$identity,$pr,$comment,$status);
+        MainAutomation::merge($cfg,$this->c['repository'],$head,$number,$pr,$commit);
     }
     /**
-     * Independently verifies via authenticated GitHub API that the exact merge commit
-     * on main was merged by the configured private owner_id (never trusts branch files).
+     * Traces the linear first-parent main history from $fromSha (installed) to $toSha (candidate)
+     * via authenticated GitHub API and proves that EVERY step that modified any path in
+     * $delegatedPaths was an exact main PR merge performed by the configured private owner_id.
+     * Prevents an earlier non-owner change from being laundered by a later owner merge.
      */
-    public function assertOwnerMergedPr(string $commitSha, int $prNumber): array {
+    public function assertOwnerMergedDelegatedPaths(string $fromSha, string $toSha, array $delegatedPaths): array {
         $cfg = $this->c['main_automation'] ?? null;
         need(is_array($cfg) && is_int($cfg['owner_id'] ?? null) && $cfg['owner_id'] > 0,
             'Owner merge authorization requires private main automation configuration');
-        $name = $this->c['repository'];
-        need($prNumber > 0 && preg_match('/^[a-f0-9]{40}$/D', $commitSha) === 1, 'Invalid owner merge identity');
-        $repo = '/repos/'.$name;
-        $pr = $this->api($repo.'/pulls/'.$prNumber);
-        $commit = $this->api($repo.'/commits/'.$commitSha);
-        MainAutomation::merge($cfg, $name, $commitSha, $prNumber, $pr, $commit);
-        return [
-            'pr' => $prNumber,
-            'commit' => $commitSha,
-            'head' => $pr['head']['sha'],
-            'owner_id' => $cfg['owner_id'],
-            'merged_at' => $pr['merged_at'],
-        ];
+        need(preg_match('/^[a-f0-9]{40}$/D', $fromSha) === 1 && preg_match('/^[a-f0-9]{40}$/D', $toSha) === 1 && $fromSha !== $toSha,
+            'Valid installed and candidate commits required for delegated Class B proof');
+        $targets = array_values(array_unique(array_filter($delegatedPaths, static fn($p) => is_string($p) && $p !== '')));
+        need($targets !== [], 'At least one delegated path required for owner merge proof');
+
+        $this->assertDescendant($fromSha, $toSha);
+        $repoName = $this->c['repository'];
+        $repo = '/repos/'.$repoName;
+        $proofs = [];
+        $cursor = $toSha;
+        $steps = 0;
+
+        while ($cursor !== $fromSha) {
+            $steps++;
+            need($steps <= 50, 'Delegated Class B history depth limit exceeded');
+            $commit = $this->api($repo.'/commits/'.$cursor);
+            need(($commit['sha']??null) === $cursor, 'Commit identity mismatch while tracing main history');
+            $parents = $commit['parents'] ?? [];
+            need(is_array($parents) && array_is_list($parents) && count($parents) >= 1 &&
+                preg_match('/^[a-f0-9]{40}$/D', $parents[0]['sha'] ?? '') === 1,
+                'Cannot trace linear main history from installed commit to candidate');
+            $prevSha = $parents[0]['sha'];
+
+            $stepCompare = $this->api($repo.'/compare/'.$prevSha.'...'.$cursor);
+            $stepFiles = $stepCompare['files'] ?? null;
+            need(is_array($stepFiles) && count($stepFiles) < 300,
+                'Step diff unavailable or truncated while verifying delegated Class B paths');
+
+            $touchedDelegated = [];
+            foreach ($stepFiles as $file) {
+                $fname = $file['filename'] ?? null;
+                $prevName = $file['previous_filename'] ?? null;
+                if (is_string($fname) && in_array($fname, $targets, true)) {
+                    $touchedDelegated[$fname] = true;
+                }
+                if (is_string($prevName) && in_array($prevName, $targets, true)) {
+                    $touchedDelegated[$prevName] = true;
+                }
+            }
+
+            if ($touchedDelegated !== []) {
+                $prNumber = $this->mergedMainPr($cursor);
+                $pr = $this->api($repo.'/pulls/'.$prNumber);
+                MainAutomation::merge($cfg, $repoName, $cursor, $prNumber, $pr, $commit);
+                foreach (array_keys($touchedDelegated) as $path) {
+                    $proofs[$path][] = [
+                        'commit' => $cursor,
+                        'pr' => $prNumber,
+                        'head' => $pr['head']['sha'],
+                        'owner_id' => $cfg['owner_id'],
+                        'merged_at' => $pr['merged_at'],
+                    ];
+                }
+            }
+            $cursor = $prevSha;
+        }
+
+        foreach ($targets as $path) {
+            need(!empty($proofs[$path]),
+                'No authenticated owner merge found introducing delegated Class B path: '.$path);
+        }
+        return $proofs;
     }
 
     private function mergedMainPr(string $head): int {
@@ -376,15 +352,7 @@ class GitHub {
         if($channel==='main'){
             $this->assertMainTip($run['head_sha']);
             $run['merged_pr']=$this->mergedMainPr($run['head_sha']);
-            if(isset($this->c['main_automation'])){
-                // The operator handles manual backup BEFORE merge. Publication checks
-                // the signed workflow artifact and actual owner merge, not a backup
-                // comment, GitHub App or database dump receipt.
-                $pr=$this->api('/repos/'.$this->c['repository'].'/pulls/'.$run['merged_pr']);
-                $merge=$this->api('/repos/'.$this->c['repository'].'/commits/'.$run['head_sha']);
-                MainAutomation::merge($this->c['main_automation'],$this->c['repository'],
-                    $run['head_sha'],$run['merged_pr'],$pr,$merge);
-            }
+            if(isset($this->c['main_automation']))$this->assertApprovedMerge($run['head_sha'],$run['merged_pr']);
         }
         // PharData reads ZIP; do not extract archive-controlled paths.
         $zipFinal=$dir.'/artifact-'.$artifactId.'.zip';

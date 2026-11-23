@@ -4,6 +4,10 @@ namespace Rumo\Publisher;
 require_once __DIR__.'/Core.php';
 /** Classifies concrete changed paths. SQL is compatible only by an operator-approved digest. */
 final class UpdatePolicy {
+ /**
+  * Unconditional Hard Class C paths: enforced for EVERY changed file regardless of
+  * whether the path is listed in policy['protected_contract_paths'].
+  */
  private const HARD_CLASS_C_LOWER = [
   'app/bootstrap.php','app/database.php','app/repository.php',
   'app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php',
@@ -22,12 +26,13 @@ final class UpdatePolicy {
   }
   $allowedProtected=$transition['allowed_protected_paths']??[];
   $allowedDeletions=$transition['allowed_deletions']??[];
-  // Defense-in-depth: even if a caller passes a Hard Class C path in $ownerApprovedClassBPaths,
-  // it is unconditionally stripped so only non-infra app/*.php domain files may be delegated.
+  // Defense-in-depth: Hard Class C paths can NEVER be delegated via $ownerApprovedClassBPaths.
   $safeOwnerClassB=[];
   foreach($ownerApprovedClassBPaths as $candidate){
    if(!is_string($candidate) || $candidate==='' || protectedPath($candidate))continue;
    if(in_array(strtolower($candidate),self::HARD_CLASS_C_LOWER,true))continue;
+   if(preg_match('#^(?:publisher|bin|deploy)/#iD',$candidate)===1)continue;
+   if(preg_match('#(?:^|/)(?:\.htaccess|\.user\.ini)$#iD',$candidate)===1)continue;
    if(preg_match('#^app/.+\.php$#iD',$candidate)!==1)continue;
    $safeOwnerClassB[]=$candidate;
   }
@@ -39,6 +44,9 @@ final class UpdatePolicy {
     $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
    }
    if(protectedPath($p)){$class='C';$reasons[]='destructive/protected contract: '.$p;continue;}
+   if(preg_match('#^(?:publisher|bin|deploy)/#iD',$p)===1 || preg_match('#(?:^|/)(?:\.htaccess|\.user\.ini)$#iD',$p)===1){
+    $class='C';$reasons[]='hard protected infrastructure path: '.$p;continue;
+   }
    // The public entrypoint is never a routine deploy path. An exact, private
    // from/to transition must explicitly permit it before Class B assessment.
    if($p==='public/index.php'){
@@ -46,6 +54,15 @@ final class UpdatePolicy {
      if($class==='A')$class='B';
     }else{
      $class='C';$reasons[]='unauthorized public entrypoint change: '.$p;
+    }
+    continue;
+   }
+   // Unconditional Hard Class C enforcement regardless of protected_contract_paths.
+   if(in_array(strtolower($p),self::HARD_CLASS_C_LOWER,true)){
+    if($transition!==null && in_array($p,$allowedProtected,true)){
+     if($class==='A')$class='B';
+    }else{
+     $class='C';$reasons[]='hard protected contract: '.$p;
     }
     continue;
    }
