@@ -6,6 +6,44 @@ require_once __DIR__.'/RequestDrain.php';
 final class MainAutomation {
     public const BACKUP_CONTEXT = 'rumo10/manual-backup';
     public const UI001 = ['commit'=>'fb03b614c337845671cf6cbf1eb36abe01308bfd','run_id'=>43929021873,'artifact_id'=>14257772333];
+    /** Protected domain files that may be promoted to Class B via authenticated owner merge on main (still requiring full drain + backup). */
+    public const OWNER_DELEGABLE_CLASS_B_PATHS = ['app/Retirement.php', 'app/RetiredCareer.php'];
+    /** Hard Class C surfaces that can NEVER be delegated via owner merge alone (always require explicit private authorized_transitions). */
+    public const HARD_CLASS_C_PATHS = [
+        'app/bootstrap.php',
+        'app/database.php',
+        'app/repository.php',
+        'app/canonicalidentity.php',
+        'app/f01drainer.php',
+        'app/f01telemetry.php',
+        'public/index.php',
+        'public/.htaccess',
+    ];
+
+    public static function isHardClassCPath(string $path): bool {
+        if (protectedPath($path)) return true;
+        $lower = strtolower($path);
+        if (in_array($lower, self::HARD_CLASS_C_PATHS, true)) return true;
+        if (preg_match('#^(?:publisher|bin|deploy)/#iD', $path) === 1) return true;
+        if (preg_match('#(?:^|/)(?:\.htaccess|\.user\.ini)$#iD', $path) === 1) return true;
+        return preg_match('#^app/.+\.php$#iD', $path) !== 1;
+    }
+
+    /**
+     * Resolves delegable Class B protected paths exclusively from private receiver config
+     * (never from repository/branch files) and unconditionally rejects any Hard Class C path.
+     */
+    public static function delegableClassBPaths(array $a): array {
+        $configured = $a['owner_authorized_class_b_paths'] ?? self::OWNER_DELEGABLE_CLASS_B_PATHS;
+        need(is_array($configured), 'Invalid private owner_authorized_class_b_paths configuration');
+        $out = [];
+        foreach ($configured as $path) {
+            need(is_string($path) && $path !== '' && !self::isHardClassCPath($path),
+                'Hard Class C path cannot be delegated via owner merge: '.(is_string($path) ? $path : gettype($path)));
+            $out[$path] = true;
+        }
+        return array_keys($out);
+    }
 
     public static function configuration(array $c): void {
         $a=$c['main_automation']??null;

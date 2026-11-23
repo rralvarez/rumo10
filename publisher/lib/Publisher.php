@@ -401,6 +401,20 @@ class Publisher {
             }
         }
         $result=UpdatePolicy::assess($old,$v['inventory'],$policy,$v['jobs'],$from,$to);
+        if($result['class']==='C' && isset($this->c['main_automation']) && $channel==='main'){
+            $delegable=MainAutomation::delegableClassBPaths($this->c['main_automation']);
+            if($delegable!==[]){
+                $candidate=UpdatePolicy::assess($old,$v['inventory'],$policy,$v['jobs'],$from,$to,$delegable);
+                if($candidate['class']==='B' && ($candidate['owner_authorized_protected_paths']??[])!==[]){
+                    $prNumber=$v['run']['merged_pr']??null;
+                    need(is_int($prNumber) && $prNumber>0,
+                        'Authenticated merged PR required for owner-authorized Class B transition');
+                    $proof=$this->source()->assertOwnerMergedPr($v['commit'],$prNumber);
+                    $candidate['owner_merge_proof']=$proof;
+                    $result=$candidate;
+                }
+            }
+        }
         if($channel!==null)$result['requires_full_drain']=true;
         $result['required_migrations']=$v['envelope']['required_migrations']??[];
         return $result;

@@ -283,6 +283,29 @@ class GitHub {
         $comment=$this->api($repo.'/issues/comments/'.$commentId);
         return BackupAuthorization::fromGitHub($cfg,$name,$identity,$pr,$comment,$status);
     }
+    /**
+     * Independently verifies via authenticated GitHub API that the exact merge commit
+     * on main was merged by the configured private owner_id (never trusts branch files).
+     */
+    public function assertOwnerMergedPr(string $commitSha, int $prNumber): array {
+        $cfg = $this->c['main_automation'] ?? null;
+        need(is_array($cfg) && is_int($cfg['owner_id'] ?? null) && $cfg['owner_id'] > 0,
+            'Owner merge authorization requires private main automation configuration');
+        $name = $this->c['repository'];
+        need($prNumber > 0 && preg_match('/^[a-f0-9]{40}$/D', $commitSha) === 1, 'Invalid owner merge identity');
+        $repo = '/repos/'.$name;
+        $pr = $this->api($repo.'/pulls/'.$prNumber);
+        $commit = $this->api($repo.'/commits/'.$commitSha);
+        MainAutomation::merge($cfg, $name, $commitSha, $prNumber, $pr, $commit);
+        return [
+            'pr' => $prNumber,
+            'commit' => $commitSha,
+            'head' => $pr['head']['sha'],
+            'owner_id' => $cfg['owner_id'],
+            'merged_at' => $pr['merged_at'],
+        ];
+    }
+
     private function mergedMainPr(string $head): int {
         $repo=$this->c['repository'];
         $pulls=$this->api('/repos/'.$repo.'/commits/'.$head.'/pulls?per_page=100');
