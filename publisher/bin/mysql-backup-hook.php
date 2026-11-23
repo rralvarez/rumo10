@@ -2,7 +2,17 @@
 declare(strict_types=1);
 // Isolated restore provider. UOL enablement requires administrative validation.
 // Restore target MUST be a separate isolated server, never the operational MySQL.
-require_once dirname(__DIR__).'/lib/Core.php';
+// Resolve Core.php from V9 single-file pointer (runtime-active.json) when present, falling back to lib/Core.php.
+$hookRoot = dirname(__DIR__);
+$hookCore = $hookRoot.'/lib/Core.php';
+$hookPtr = $hookRoot.'/runtime-active.json';
+if (is_file($hookPtr) && !is_link($hookPtr)) {
+    $ptrData = json_decode((string)file_get_contents($hookPtr), true);
+    if (is_array($ptrData) && is_string($ptrData['active'] ?? null) && preg_match('/^[A-Za-z0-9_.-]+$/D', $ptrData['active']) === 1) {
+        $hookCore = $hookRoot.'/runtime/'.$ptrData['active'].'/Core.php';
+    }
+}
+require_once $hookCore;
 use function Rumo\Publisher\{need,json,digest,record};
 $phase='profile';
 $tempDefaults=null;

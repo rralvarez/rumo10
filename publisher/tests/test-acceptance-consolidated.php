@@ -531,6 +531,41 @@ try {
     ok($valDb['ok'] === true && !in_array('rumohub_accounts', $valDb['tables'], true),
         'T11: Validacao estrutural do banco preserva tabelas do RumoHub intactas');
 
+    // Achado Backup Preflight: valida que mysql-backup-hook.php em publisher-v9/bin/ resolve Core.php via runtime-active.json
+    // e que assertBackupPrerequisites() rejeita hook legado sem full_data_tested=true
+    copy(dirname(__DIR__) . '/bin/mysql-backup-hook.php', $pubV9 . '/bin/mysql-backup-hook.php');
+    $hookProbeCmd = escapeshellarg(PHP_BINARY) . ' -l ' . escapeshellarg($pubV9 . '/bin/mysql-backup-hook.php');
+    ok(str_contains((string)shell_exec($hookProbeCmd), 'No syntax errors'),
+        'V9 mysql-backup-hook.php passa php -l dentro da estrutura publisher-v9/bin/');
+    // Executa o hook V9 sem lib/Core.php (apenas runtime/v9.0.0/Core.php via runtime-active.json)
+    // com argumento invalido para provar que Core.php foi carregado com sucesso via runtime-active.json
+    $hookRunOut = (string)shell_exec(escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($pubV9 . '/bin/mysql-backup-hook.php') . ' 2>&1');
+    ok(str_contains($hookRunOut, 'Backup provider blocked: profile - Private backup hook only') && !str_contains($hookRunOut, 'Failed to open stream'),
+        'V9 mysql-backup-hook.php carrega Core.php via runtime-active.json mesmo sem publisher-v9/lib/');
+
+    // Rejeicao de hook legado que retorna ok=true, preflight=true SEM full_data_tested=true
+    $legacyHook = $root . '/legacy-backup-hook.php';
+    file_put_contents($legacyHook, "<?php echo json_encode(['ok'=>true,'preflight'=>true]);\n");
+    $modernHook = $root . '/modern-backup-hook.php';
+    file_put_contents($modernHook, "<?php echo json_encode(['ok'=>true,'preflight'=>true,'full_data_tested'=>true]);\n");
+    $bpPriv = $root . '/bp-priv'; $bpCur = $root . '/bp-cur'; $bpPub = $root . '/bp-pub'; $bpCtl = $root . '/bp-ctl';
+    foreach ([$bpPriv, $bpCur, $bpPub, $bpCtl] as $d) mkdir($d, 0700, true);
+    $bpBaseCfg = [
+        'project' => 'rumo10', 'php' => PHP_BINARY, 'private' => $bpPriv, 'current' => $bpCur, 'public' => $bpPub, 'control' => $bpCtl,
+        'account_mutex' => $bpPriv . '/m.lock',
+        'main_automation' => ['schema' => 'rumo-main-automation-v1', 'owner_id' => $ownerId],
+    ];
+    $makeBpProbe = static fn(string $script) => new class($bpBaseCfg + ['hooks' => ['backup' => ['script' => $script, 'sha256' => digest($script), 'args' => []]]]) extends \Rumo\Publisher\Publisher {
+        public function checkPreflight(): void { $this->assertBackupPrerequisites(false); }
+    };
+    mustFail(
+        fn() => $makeBpProbe($legacyHook)->checkPreflight(),
+        'Backup preflight proof failed',
+        'assertBackupPrerequisites() rejeita hook legado sem full_data_tested=true'
+    );
+    $makeBpProbe($modernHook)->checkPreflight();
+    ok(true, 'assertBackupPrerequisites() aprova hook V9 com ok=true, preflight=true e full_data_tested=true');
+
     echo "\n=== TODOS OS {$passed} CHECKS DOS 12 TESTES DE ACEITACAO PASSARAM ===\n";
 } finally {
     rrmdir($root);
