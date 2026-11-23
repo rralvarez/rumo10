@@ -29,6 +29,13 @@ class Publisher {
         need(realpath($config['current'])!==realpath($config['public']),'Separate physical public root required');
     }
     public function __destruct() { if (is_resource($this->mutex)) { flock($this->mutex,LOCK_UN); fclose($this->mutex); } }
+    /** Adopts an already-locked account_mutex handle from controlled-pull.php for uninterrupted mutual exclusion. */
+    public function adoptLock(mixed $handle): void {
+        need(is_resource($handle), 'Valid locked account_mutex resource required');
+        if ($this->mutex === null) {
+            $this->mutex = $handle;
+        }
+    }
     public function acquire(): void { $this->lock(); }
     private function lock(): void {
         if (is_resource($this->mutex)) return;

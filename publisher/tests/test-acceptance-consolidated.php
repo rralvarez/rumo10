@@ -81,64 +81,121 @@ mkdir($root, 0700, true);
 
 try {
     // ---------------------------------------------------------------------
-    // TESTE 1 & 10 & 12: Instalacao limpa, identidade de runtime e recusa de receiver-bootstrap-*
+    // TESTE 1, 10, 12 & ACHADOS 1-2: Integridade obrigatoria ANTES do load,
+    // autoatualizacao integrada ao Cron (sem SSH), exclusao mutua na inicializacao
+    // e reversao de versao do Publisher via ponteiro unico runtime-active.json
     // ---------------------------------------------------------------------
-    echo "--- Testes 1, 10 e 12: Instalacao limpa, identidade ativa e independencia ---\n";
+    echo "--- Testes 1, 10 e 12: Integridade pre-load, autoatualizacao sem SSH e ponteiro unico ---\n";
     $pubV9 = $root . '/publisher-v9';
-    mkdir($pubV9 . '/lib', 0700, true);
+    $slot900 = $pubV9 . '/runtime/v9.0.0';
+    mkdir($slot900, 0700, true);
     mkdir($pubV9 . '/bin', 0700, true);
     foreach (glob(dirname(__DIR__) . '/lib/*.php') ?: [] as $f) {
-        copy($f, $pubV9 . '/lib/' . basename($f));
+        copy($f, $slot900 . '/' . basename($f));
     }
     copy(dirname(__DIR__) . '/bin/controlled-pull.php', $pubV9 . '/bin/controlled-pull.php');
     copy(dirname(__DIR__) . '/bin/self-update.php', $pubV9 . '/bin/self-update.php');
-    $manifestV9 = RuntimeIdentity::buildManifest($pubV9 . '/lib', RuntimeIdentity::VERSION, 'consolidated-test');
-    record($pubV9 . '/lib/version.json', $manifestV9);
+    $manifestV9 = RuntimeIdentity::buildManifest($slot900, RuntimeIdentity::VERSION, 'consolidated-test');
+    record($slot900 . '/version.json', $manifestV9);
+    $v900ManifestSha = digest($slot900 . '/version.json');
+    record($pubV9 . '/runtime-active.json', [
+        'schema' => RuntimeIdentity::POINTER_SCHEMA,
+        'active' => 'v9.0.0',
+        'manifest_sha256' => $v900ManifestSha,
+        'previous' => null,
+        'previous_manifest_sha256' => null,
+        'switched_at' => gmdate('c'),
+        'action' => 'initial',
+    ]);
 
-    $idV9 = RuntimeIdentity::inspect($pubV9 . '/lib', true);
+    $idV9 = RuntimeIdentity::inspect($slot900, true, true, $v900ManifestSha);
     ok($idV9['version'] === RuntimeIdentity::VERSION && $idV9['verified_files'] >= 11 && $idV9['legacy_bootstrap_path'] === false,
-        'T1: Instalacao limpa valida version.json e todos os arquivos da biblioteca unica');
+        'T1: Instalacao limpa valida version.json obrigatorio e todos os arquivos da biblioteca unica');
+
+    // Achado 1A: Ausencia de version.json DEVE ser rejeitada!
+    $noManifestDir = $root . '/no-manifest-lib';
+    mkdir($noManifestDir, 0700, true);
+    foreach (glob($slot900 . '/*.php') ?: [] as $f) copy($f, $noManifestDir . '/' . basename($f));
+    mustFail(
+        fn() => RuntimeIdentity::inspect($noManifestDir, true, true),
+        'Mandatory runtime manifest missing',
+        'Achado 1: RuntimeIdentity rejeita ausencia de version.json'
+    );
+
+    // Achado 1B: Arquivo PHP extra nao declarado DEVE ser rejeitado ANTES de carregar qualquer biblioteca!
+    $extraPhp = $slot900 . '/evil_extra.php';
+    file_put_contents($extraPhp, "<?php // undeclared file\n");
+    $cmdExtra = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($pubV9 . '/bin/controlled-pull.php') . ' --identity 2>&1';
+    $outExtra = (string)shell_exec($cmdExtra);
+    @unlink($extraPhp);
+    ok(str_contains($outExtra, 'Undeclared extra PHP files in publisher library before load'),
+        'Achado 1: controlled-pull.php rejeita arquivo PHP extra ANTES de qualquer require_once');
+
+    // Achado 1C: Adulteracao de arquivo da biblioteca DEVE ser rejeitada ANTES de carregar qualquer codigo PHP!
+    $origDrain = file_get_contents($slot900 . '/DrainPublisher.php');
+    file_put_contents($slot900 . '/DrainPublisher.php', "<?php echo 'SHOULD_NEVER_EXECUTE';\n");
+    $outTamper = (string)shell_exec($cmdExtra);
+    file_put_contents($slot900 . '/DrainPublisher.php', $origDrain);
+    ok(!str_contains($outTamper, 'SHOULD_NEVER_EXECUTE') && str_contains($outTamper, 'integrity mismatch before load'),
+        'Achado 1: controlled-pull.php bloqueia biblioteca adulterada ANTES de executar codigo mutavel');
 
     $cmdId = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($pubV9 . '/bin/controlled-pull.php') . ' --identity';
-    $outId = shell_exec($cmdId);
-    $parsedId = json((string)$outId);
+    $parsedId = json((string)shell_exec($cmdId));
     ok(($parsedId['ok'] ?? false) === true && ($parsedId['runtime']['version'] ?? null) === RuntimeIdentity::VERSION
-        && str_ends_with($parsedId['runtime']['lib_path'] ?? '', '/publisher-v9/lib'),
+        && str_ends_with($parsedId['runtime']['lib_path'] ?? '', '/publisher-v9/runtime/v9.0.0'),
         'T10: controlled-pull.php --identity comprova versao e caminho fisico real da biblioteca consolidada');
 
     // Recusa caminho legado receiver-bootstrap-*
     $legacyDir = $root . '/receiver/receiver-bootstrap-deadbeef/lib';
     mkdir($legacyDir, 0700, true);
-    foreach (glob($pubV9 . '/lib/*') ?: [] as $f) copy($f, $legacyDir . '/' . basename($f));
+    foreach (glob($slot900 . '/*') ?: [] as $f) copy($f, $legacyDir . '/' . basename($f));
     mustFail(
-        fn() => RuntimeIdentity::inspect($legacyDir, true),
+        fn() => RuntimeIdentity::inspect($legacyDir, true, true),
         'Obsolete receiver-bootstrap library path refused',
         'T12: RuntimeIdentity recusa caminhos obsoletos receiver-bootstrap-*'
     );
 
-    // Self-update atomico + rollback (Requisito 5.4)
-    $stagedNew = $root . '/staged-v901';
-    mkdir($stagedNew, 0700, true);
-    foreach (glob($pubV9 . '/lib/*.php') ?: [] as $f) copy($f, $stagedNew . '/' . basename($f));
-    $manifestV901 = RuntimeIdentity::buildManifest($stagedNew, '9.0.1-test', 'next-commit');
-    record($stagedNew . '/version.json', $manifestV901);
-    $manifestSha = digest($stagedNew . '/version.json');
+    // Achado 2A: Exclusao mutua cobrindo a inicializacao (antes de carregar bibliotecas)
+    $suMutex = $root . '/su.mutex';
     $suCfg = $root . '/su-config.json';
-    record($suCfg, ['account_mutex' => $root . '/su.mutex']);
+    record($suCfg, ['account_mutex' => $suMutex]);
+    $lockFh = fopen($suMutex, 'c+b');
+    ok(flock($lockFh, LOCK_EX | LOCK_NB), 'Lock de teste adquirido em account_mutex');
+    $cmdLocked = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($pubV9 . '/bin/controlled-pull.php')
+        . ' --config=' . escapeshellarg($suCfg) . ' --identity 2>&1';
+    $outLocked = (string)shell_exec($cmdLocked);
+    flock($lockFh, LOCK_UN);
+    fclose($lockFh);
+    ok(str_contains($outLocked, 'Concurrent publisher refused'),
+        'Achado 2: Exclusao mutua em account_mutex bloqueia execucao concorrente ja na inicializacao');
 
-    $cmdUp = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($pubV9 . '/bin/self-update.php')
-        . ' --config=' . escapeshellarg($suCfg)
-        . ' --source=' . escapeshellarg($stagedNew)
-        . ' --manifest-sha256=' . escapeshellarg($manifestSha);
-    $resUp = json((string)shell_exec($cmdUp));
-    ok(($resUp['state'] ?? null) === 'updated' && ($resUp['active_runtime']['version'] ?? null) === '9.0.1-test',
-        'T12/5.4: self-update.php atualiza biblioteca atomicamente com verificacao SHA-256');
+    // Achado 2B: Autoatualizacao integrada ao Cron (SEM SSH / SEM CLI manual) via pending-update/update.json
+    $pendingLib = $pubV9 . '/pending-update/lib';
+    mkdir($pendingLib, 0700, true);
+    foreach (glob($slot900 . '/*.php') ?: [] as $f) copy($f, $pendingLib . '/' . basename($f));
+    $manifestV901 = RuntimeIdentity::buildManifest($pendingLib, '9.0.1-cron-auto', 'next-commit');
+    record($pendingLib . '/version.json', $manifestV901);
+    $v901Sha = digest($pendingLib . '/version.json');
+    record($pubV9 . '/pending-update/update.json', [
+        'schema' => 'rumo-publisher-update-v1',
+        'slot' => 'v9.0.1',
+        'manifest_sha256' => $v901Sha,
+    ]);
+    $cmdCronUp = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($pubV9 . '/bin/controlled-pull.php')
+        . ' --config=' . escapeshellarg($suCfg) . ' --identity';
+    $resCronUp = json((string)shell_exec($cmdCronUp));
+    ok(($resCronUp['runtime']['version'] ?? null) === '9.0.1-cron-auto'
+        && ($resCronUp['runtime']['pointer_slot'] ?? null) === 'v9.0.1'
+        && ($resCronUp['control_events'][0]['action'] ?? null) === 'publisher_self_update',
+        'Achado 2: Cron aplica pending-update/update.json automaticamente sem SSH via ponteiro unico runtime-active.json');
 
-    $cmdRb = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($pubV9 . '/bin/self-update.php')
-        . ' --config=' . escapeshellarg($suCfg) . ' --rollback';
-    $resRb = json((string)shell_exec($cmdRb));
-    ok(($resRb['state'] ?? null) === 'rolled_back' && ($resRb['active_runtime']['version'] ?? null) === RuntimeIdentity::VERSION,
-        'T12/5.4: self-update.php --rollback reverte atomicamente para a versao anterior');
+    // Achado 3A: Reversao da versao do Publisher via pending-update/rollback.request (SEM SSH, sem tocar no jogo/banco)
+    file_put_contents($pubV9 . '/pending-update/rollback.request', "rollback requested\n");
+    $resCronRb = json((string)shell_exec($cmdCronUp));
+    ok(($resCronRb['runtime']['version'] ?? null) === RuntimeIdentity::VERSION
+        && ($resCronRb['runtime']['pointer_slot'] ?? null) === 'v9.0.0'
+        && ($resCronRb['control_events'][0]['action'] ?? null) === 'publisher_rollback',
+        'Achado 3A: pending-update/rollback.request reverte versao do Publisher via Cron sem SSH e sem tocar no jogo/banco');
 
     // ---------------------------------------------------------------------
     // Sandbox produtivo para Testes 2, 3, 4, 5, 6, 7, 8, 9
@@ -236,6 +293,7 @@ try {
         $stage = $prod . '/private/stage-' . $name;
         mkdir($stage . '/payload/app', 0700, true);
         mkdir($stage . '/payload/public', 0700, true);
+        mkdir($stage . '/payload/database', 0700, true);
         $hashes = [];
         foreach ($files as $rel => $content) {
             $hashes[$rel] = hash('sha256', $content);
@@ -379,17 +437,61 @@ try {
     ok(file_get_contents($prod . '/current/app/MatchParticipation.php') === "<?php // f04-r1\n",
         'T4: Novo arquivo de funcionalidade promovido atomicamente');
 
-    // T9: Falha mid-apply + recuperacao segura via recover()
+    // T9 + Achado 3B & 3C: Recuperacao de deploy interrompido + preservacao de alteracoes de banco ja aplicadas
     unset($pub14);
-    $filesV15 = array_replace($filesV14, ['app/Game.php' => "<?php // game-v15-recover\n"]);
+    $filesV15 = array_replace($filesV14, [
+        'app/Game.php' => "<?php // game-v15-recover\n",
+        'database/010-test-mig.sql' => "CREATE TABLE rumo10_test_keep (id INT);\n",
+    ]);
     [$stage15, $pkg15Sha, $art15Id] = $buildStage('pr15', str_repeat('5', 40), 45000000001, 71, 14600000002, 15, $filesV15);
-    $pubFail = $makePub($cfg, ['artifact_id' => $art15Id, 'pkg_sha' => $pkg15Sha, 'fail_promote_once' => true]);
-    mustFail(fn() => $pubFail->apply($stage15), 'Promotion rename failed', 'T9: Falha mid-apply detectada e bloqueada');
+    // Simula banco real (arquivo SQLite/marcador) que sofre alteracao na migracao e NAO pode ser revertido cegamente
+    $dbMarker = $prod . '/private/db-migrated.marker';
+    $pubFail = new class($cfg, $repo, $c11, $c12, $pr12Head, $ownerId, $pkg15Sha, $art15Id, $dbMarker) extends DrainPublisher {
+        public array $hooks = [];
+        private bool $failedOnce = false;
+        public function __construct(
+            array $tCfg, private string $repo, private string $c11, private string $c12,
+            private string $pr12Head, private int $ownerId, private string $pkgSha, private int $artId, private string $dbMarker
+        ) { parent::__construct($tCfg); }
+        protected function assertBackupPrerequisites(bool $classA = false): void {}
+        protected function promote(string $a, string $b): bool {
+            if (!$this->failedOnce) { $this->failedOnce = true; return false; }
+            return parent::promote($a, $b);
+        }
+        protected function hook(string $name, array $request): array {
+            $this->hooks[] = $name;
+            if ($name === 'fence') return ['ok' => true, 'legacy_publishers_fenced' => true];
+            if ($name === 'preflight') return ['legacy_publishers_fenced' => true, 'source_unchanged' => true];
+            if ($name === 'maintenance') return ['http_status' => 503, 'writes_blocked' => true, 'inflight_writers' => 0, 'new_requests_blocked' => true, 'publisher_exclusive' => true];
+            if ($name === 'backup') {
+                $dump = $request['backup'] . '/dump.sql';
+                file_put_contents($dump, "-- consistent dump\n");
+                $h = digest($dump);
+                return ['attempt' => $request['attempt'], 'created_at' => time(), 'artifact_id' => $this->artId,
+                    'package_sha256' => $this->pkgSha, 'consistent' => true, 'source_uuid' => 'uol-mysql',
+                    'dump_sha256' => $h, 'files' => [$dump => $h]];
+            }
+            if ($name === 'migrate') {
+                file_put_contents($this->dbMarker, "MIGRATION_010_APPLIED\n");
+                return ['ok' => true, 'compatible_expansion' => true, 'versions' => ['010']];
+            }
+            if ($name === 'smoke') return ['ok' => true, 'http_status' => 200];
+            return ['ok' => true];
+        }
+    };
+    mustFail(fn() => $pubFail->apply($stage15), 'Promotion rename failed', 'T9/3B: Falha mid-apply apos migracao detectada e bloqueada');
     $drain = new RequestDrain($prod . '/gate');
-    ok($drain->closed(), 'T9: Gate permanece fechado apos falha mid-apply');
+    ok($drain->closed(), 'T9/3B: Gate permanece fechado apos falha mid-apply');
+    $journalBlocked = json(file_get_contents($prod . '/private/journal.json'));
+    ok(($journalBlocked['migration_started'] ?? false) === true && is_file($dbMarker),
+        'Achado 3C: Journal registra migration_started=true e alteracao de banco ja aplicada');
     $rec = $pubFail->recover();
-    ok(in_array($rec['state'] ?? null, ['recovered', 'validated'], true) && !$drain->closed(),
-        'T9: Recuperacao oficial (--recover) conclui com estado estavel e reabre o gate');
+    ok(($rec['state'] ?? null) === 'validated' && !$drain->closed(),
+        'T9/3B: Recuperacao oficial (--recover) reconcilia forward-recovery e reabre o gate');
+    ok(file_get_contents($dbMarker) === "MIGRATION_010_APPLIED\n" && !in_array('restore', $pubFail->hooks, true),
+        'Achado 3C: Alteracao de banco ja aplicada e preservada integralmente (sem rollback destrutivo do banco)');
+    ok(file_get_contents($prod . '/current/app/Game.php') === "<?php // game-v15-recover\n",
+        'Achado 3C: Codigo compativel com o schema migrado mantido (sem restaurar codigo antigo incompativel)');
 
     // ---------------------------------------------------------------------
     // TESTE 6, 7 & 11: Seguranca do artefato, mudancas criticas e RumoHub
