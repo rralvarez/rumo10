@@ -86,7 +86,7 @@ if (!function_exists('rumoParseDbServerVersion')) {
   $isMysql8Plus = !$isMariaDB && $server['major'] >= 8;
   $supportsShowRoutine = !$isMariaDB && ($server['major'] > 8 || ($server['major'] === 8 && ($server['minor'] > 0 || $server['patch'] >= 20)));
 
-  $schemaTracked = ['TRIGGER', 'EVENT', 'CREATE ROUTINE', 'ALTER ROUTINE', 'LOCK TABLES', 'SHOW VIEW'];
+  $schemaTracked = ['TRIGGER', 'EVENT', 'CREATE ROUTINE', 'ALTER ROUTINE', 'EXECUTE', 'LOCK TABLES', 'SHOW VIEW'];
   $granted = [];
   $revoked = [];
   $globalSelectGranted = false;
@@ -139,16 +139,23 @@ if (!function_exists('rumoParseDbServerVersion')) {
   $effective = array_diff_key($granted, $revoked);
   $hasGlobalSelect = $globalSelectGranted && !$selectRevoked;
   $hasShowRoutine = $showRoutineGranted && !$showRoutineRevoked;
+  $hasSchemaExecute = isset($effective['EXECUTE']);
   $hasMysqlProcSelect = !$isMysql8Plus && $mysqlProcSelectGranted && !$mysqlProcSelectRevoked;
 
   if ($isMysql8Plus) {
-   $routineInventoryProvable = $hasGlobalSelect || ($supportsShowRoutine && $hasShowRoutine);
+   // Official MySQL 8.0 docs: schema-level EXECUTE grants full visibility of information_schema.ROUTINES
+   // for that schema (inventory), while mysqldump --routines still requires global SELECT for definitions.
+   $routineInventoryProvable = $hasGlobalSelect || ($supportsShowRoutine && $hasShowRoutine) || $hasSchemaExecute;
    $routineExportSupported = $hasGlobalSelect;
-   $routinePrivBasis = $hasGlobalSelect ? 'global:SELECT' : (($supportsShowRoutine && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : 'none');
+   $routinePrivBasis = $hasGlobalSelect
+    ? 'global:SELECT'
+    : (($supportsShowRoutine && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : ($hasSchemaExecute ? 'schema:EXECUTE' : 'none'));
   } else {
-   $routineInventoryProvable = $hasGlobalSelect || $hasMysqlProcSelect || ($isMariaDB && $hasShowRoutine);
+   $routineInventoryProvable = $hasGlobalSelect || $hasMysqlProcSelect || ($isMariaDB && $hasShowRoutine) || $hasSchemaExecute;
    $routineExportSupported = $hasGlobalSelect || $hasMysqlProcSelect;
-   $routinePrivBasis = $hasGlobalSelect ? 'global:SELECT' : ($hasMysqlProcSelect ? 'mysql.proc:SELECT' : (($isMariaDB && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : 'none'));
+   $routinePrivBasis = $hasGlobalSelect
+    ? 'global:SELECT'
+    : ($hasMysqlProcSelect ? 'mysql.proc:SELECT' : (($isMariaDB && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : ($hasSchemaExecute ? 'schema:EXECUTE' : 'none')));
   }
 
   return [
@@ -156,6 +163,7 @@ if (!function_exists('rumoParseDbServerVersion')) {
    'effective_privileges' => $effective,
    'has_global_select' => $hasGlobalSelect,
    'has_show_routine' => $hasShowRoutine,
+   'has_schema_execute' => $hasSchemaExecute,
    'has_trigger_priv' => isset($effective['TRIGGER']),
    'has_event_priv' => isset($effective['EVENT']),
    'routine_inventory_provable' => $routineInventoryProvable,
@@ -170,9 +178,13 @@ if (!function_exists('rumoParseDbServerVersion')) {
 
  function rumoCanProceedWithRoutines(array $privEval, int $routineCount): bool {
   if ($privEval['routine_export_supported'] === true) return true;
-  // SHOW_ROUTINE proves inventory completeness when zero routines exist;
+  // Schema-level EXECUTE or global SHOW_ROUTINE proves inventory completeness when zero routines exist;
   // exporting actual routines via mysqldump --routines requires global SELECT (or mysql.proc SELECT on MariaDB/5.x).
   return ($privEval['routine_inventory_provable'] === true) && $routineCount === 0;
+ }
+
+ function rumoAssertStableInventorySnapshot(array $before, array $after): void {
+  need($before === $after, 'Concurrent DDL detected during database dump: inventory changed between pre-dump and post-dump verification');
  }
 
  function rumoRoutinePrivilegeRequirementMessage(array $server, string $dbName, bool $routinesPresent = false): string {
@@ -445,22 +457,30 @@ try {
  }
 
  // Proven inventory counts (triggers, events and routine inventory visibility verified above)
- $evStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ?");
- $evStmt->execute([$name]);
- $evCount = (int)$evStmt->fetchColumn();
+ $readInventorySnapshot = static function () use ($source, $name): array {
+  $evStmt = $source->prepare("SELECT EVENT_NAME FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ? ORDER BY EVENT_NAME");
+  $evStmt->execute([$name]);
+  $events = $evStmt->fetchAll(\PDO::FETCH_COLUMN);
 
- $rtStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ?");
- $rtStmt->execute([$name]);
- $rtCount = (int)$rtStmt->fetchColumn();
+  $rtStmt = $source->prepare("SELECT CONCAT(ROUTINE_TYPE, ':', ROUTINE_NAME) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ? ORDER BY ROUTINE_TYPE, ROUTINE_NAME");
+  $rtStmt->execute([$name]);
+  $routines = $rtStmt->fetchAll(\PDO::FETCH_COLUMN);
+
+  $trStmt = $source->prepare("SELECT TRIGGER_NAME FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = ? ORDER BY TRIGGER_NAME");
+  $trStmt->execute([$name]);
+  $triggers = $trStmt->fetchAll(\PDO::FETCH_COLUMN);
+
+  return ['events' => $events, 'routines' => $routines, 'triggers' => $triggers];
+ };
+ $preDumpInventory = $readInventorySnapshot();
+ $evCount = count($preDumpInventory['events']);
+ $rtCount = count($preDumpInventory['routines']);
+ $trCount = count($preDumpInventory['triggers']);
 
  if (!rumoCanProceedWithRoutines($privEval, $rtCount)) {
   throw new \RuntimeException(rumoRoutinePrivilegeRequirementMessage($serverInfo, $name, true));
  }
  $routineVerificationMode = $privEval['routine_export_supported'] ? 'effective_export_privilege' : 'inventory_verified_zero_routines';
-
- $trStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = ?");
- $trStmt->execute([$name]);
- $trCount = (int)$trStmt->fetchColumn();
 
  $views = [];
  try {
@@ -571,6 +591,8 @@ try {
   $run($dryCmd, $null, $dryDump);
   // Evidence-based validation of test dump completeness across MySQL 8 and MariaDB 10
   validateDumpCompleteness($dryDump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  // Post-dump inventory check: detect concurrent DDL changes (routines/triggers/events) during dump
+  rumoAssertStableInventorySnapshot($preDumpInventory, $readInventorySnapshot());
   if (is_file($dryDump)) @unlink($dryDump);
   if ($tempDefaults !== null && is_file($tempDefaults)) {
    @unlink($tempDefaults);
@@ -628,6 +650,7 @@ try {
   $run(array_merge([$c['dump_bin'],'--defaults-file='.$c['source_mysql_defaults']],$options,[$name]),$null,$dump);
   need(filesize($dump)>0,'Empty database backup');
   validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  rumoAssertStableInventorySnapshot($preDumpInventory, $readInventorySnapshot());
   chmod($dump,0600);
 
   $phase='isolated-import';
@@ -649,6 +672,7 @@ try {
   $run(array_merge($dumpCmd, $options, [$name]), $null, $dump);
   need(is_file($dump) && filesize($dump) > 0, 'Empty database backup');
   validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  rumoAssertStableInventorySnapshot($preDumpInventory, $readInventorySnapshot());
   chmod($dump, 0600);
   $restoredAt = time();
   $restoredHash = digest($dump);
