@@ -187,6 +187,166 @@ if (!function_exists('rumoParseDbServerVersion')) {
   need($before === $after, 'Concurrent DDL detected during database dump: inventory changed between pre-dump and post-dump verification');
  }
 
+ function rumoSanitizeSubprocessStderr(string $errText): string {
+  $clean = preg_replace('/password\s*=\s*[^\s\'"]+/i', 'password=[REDACTED]', $errText);
+  $clean = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-\.]+/i', '$1 [REDACTED]', (string)$clean);
+  return trim((string)$clean);
+ }
+
+ function rumoResolveDumpTimeoutSeconds(array $profile, array $request = []): int {
+  $raw = $profile['dump_timeout_seconds'] ?? $request['dump_timeout_seconds'] ?? 300;
+  $timeout = is_int($raw) ? $raw : (is_numeric($raw) ? (int)$raw : 300);
+  if ($timeout < 10) $timeout = 10;
+  if ($timeout > 900) $timeout = 900;
+  $supRaw = $profile['supervisor_timeout_seconds'] ?? $request['hook_timeout_seconds'] ?? null;
+  if (is_int($supRaw) && $supRaw >= 30) {
+   $maxSafe = max(10, $supRaw - 15);
+   if ($timeout > $maxSafe) $timeout = $maxSafe;
+  }
+  return $timeout;
+ }
+
+ /**
+  * Pure classification of subprocess termination outcome so both live proc_open runs
+  * and unit tests share the exact same fail-closed decision matrix.
+  */
+ function rumoClassifySubprocessOutcome(
+  bool $timedOut,
+  bool $signaled,
+  int $termsig,
+  ?int $statusExitCode,
+  int $closeExitCode
+ ): array {
+  $exitCode = ($statusExitCode !== null && $statusExitCode >= 0)
+   ? $statusExitCode
+   : ($closeExitCode >= 0 ? $closeExitCode : -1);
+
+  if ($timedOut) {
+   return ['ok' => false, 'reason' => 'timeout', 'exit_code' => $exitCode, 'signaled' => $signaled, 'termsig' => $termsig];
+  }
+  if ($signaled) {
+   return ['ok' => false, 'reason' => 'signaled', 'exit_code' => $exitCode, 'signaled' => true, 'termsig' => $termsig];
+  }
+  if ($exitCode < 0) {
+   return ['ok' => false, 'reason' => 'exit_code_unavailable', 'exit_code' => -1, 'signaled' => false, 'termsig' => 0];
+  }
+  if ($exitCode !== 0) {
+   return ['ok' => false, 'reason' => 'non_zero_exit', 'exit_code' => $exitCode, 'signaled' => false, 'termsig' => 0];
+  }
+  return ['ok' => true, 'reason' => 'ok', 'exit_code' => 0, 'signaled' => false, 'termsig' => 0];
+ }
+
+ function rumoRunBackupSubprocess(
+  array $cmd,
+  string $inPath,
+  string $outPath,
+  string $errPath,
+  int $timeoutSeconds,
+  string $phase = 'source-dump',
+  ?string $logDir = null,
+  ?callable $onStarted = null
+ ): array {
+  $startedAt = microtime(true);
+  $p = proc_open($cmd, [0 => ['file', $inPath, 'rb'], 1 => ['file', $outPath, 'wb'], 2 => ['file', $errPath, 'wb']], $pipes);
+  need(is_resource($p), 'Backup command unavailable');
+
+  $initialStatus = proc_get_status($p);
+  if ($onStarted !== null && is_int($initialStatus['pid'] ?? null)) {
+   $onStarted($p, $initialStatus['pid']);
+  }
+
+  $deadline = $startedAt + max(1, $timeoutSeconds);
+  $timedOut = false;
+  $statusExit = null;
+  $signaled = false;
+  $termsig = 0;
+
+  while (true) {
+   $s = proc_get_status($p);
+   if (!$s['running']) {
+    $statusExit = is_int($s['exitcode'] ?? null) ? $s['exitcode'] : -1;
+    $signaled = (bool)($s['signaled'] ?? false);
+    $termsig = (int)($s['termsig'] ?? 0);
+    break;
+   }
+   if (microtime(true) >= $deadline) {
+    $timedOut = true;
+    @proc_terminate($p);
+    $graceEnd = microtime(true) + 3.0;
+    while (microtime(true) < $graceEnd) {
+     $gs = proc_get_status($p);
+     if (!$gs['running']) {
+      $statusExit = is_int($gs['exitcode'] ?? null) ? $gs['exitcode'] : -1;
+      $signaled = (bool)($gs['signaled'] ?? false);
+      $termsig = (int)($gs['termsig'] ?? 0);
+      break;
+     }
+     usleep(50000);
+    }
+    $afterGrace = proc_get_status($p);
+    if ($afterGrace['running']) {
+     @proc_terminate($p, 9);
+     usleep(100000);
+     $ks = proc_get_status($p);
+     $statusExit = is_int($ks['exitcode'] ?? null) ? $ks['exitcode'] : -1;
+     $signaled = (bool)($ks['signaled'] ?? false);
+     $termsig = (int)($ks['termsig'] ?? 0);
+    }
+    break;
+   }
+   usleep(50000);
+  }
+
+  $closeExit = proc_close($p);
+  $durationSeconds = round(microtime(true) - $startedAt, 3);
+  clearstatcache(true, $outPath);
+  $isNullOut = ($outPath === 'NUL' || $outPath === '/dev/null');
+  $outputBytes = (!$isNullOut && is_file($outPath)) ? (int)filesize($outPath) : 0;
+
+  $rawErr = is_file($errPath) ? (string)file_get_contents($errPath) : '';
+  if (is_file($errPath)) @unlink($errPath);
+  $cleanErr = rumoSanitizeSubprocessStderr($rawErr);
+
+  $outcome = rumoClassifySubprocessOutcome($timedOut, $signaled, $termsig, $statusExit, $closeExit);
+  $result = $outcome + [
+   'duration_seconds' => $durationSeconds,
+   'output_bytes' => $outputBytes,
+   'timeout_seconds' => $timeoutSeconds,
+   'status_exit_code' => $statusExit,
+   'close_exit_code' => $closeExit,
+   'stderr' => $cleanErr,
+  ];
+
+  if (!$outcome['ok']) {
+   $logPayload = date('c')
+    . " | Phase: {$phase} | Reason: {$outcome['reason']} | Exit: {$outcome['exit_code']}"
+    . " | StatusExit: " . ($statusExit ?? 'null') . " | CloseExit: {$closeExit}"
+    . " | Signal: {$outcome['termsig']} | Duration: {$durationSeconds}s | Timeout: {$timeoutSeconds}s | OutputBytes: {$outputBytes}\n"
+    . ($cleanErr !== '' ? $cleanErr : '(empty stderr)') . "\n"
+    . str_repeat('-', 60) . "\n";
+   if ($logDir !== null && is_dir($logDir)) {
+    @file_put_contents($logDir . '/backup-last-error.log', $logPayload, FILE_APPEND);
+    if (PHP_OS_FAMILY !== 'Windows') @chmod($logDir . '/backup-last-error.log', 0600);
+   }
+
+   $firstLine = $cleanErr !== '' ? (explode("\n", $cleanErr)[0] ?? '') : '';
+   $errSuffix = $firstLine !== '' ? ': ' . $firstLine . ($cleanErr !== $firstLine ? ' | ' . substr($cleanErr, 0, 400) : '') : '';
+
+   if ($outcome['reason'] === 'timeout') {
+    throw new \RuntimeException("mysqldump timed out after {$durationSeconds}s (limit {$timeoutSeconds}s, output {$outputBytes} bytes){$errSuffix}");
+   }
+   if ($outcome['reason'] === 'signaled') {
+    throw new \RuntimeException("mysqldump terminated by signal {$outcome['termsig']} after {$durationSeconds}s (output {$outputBytes} bytes){$errSuffix}");
+   }
+   if ($outcome['reason'] === 'exit_code_unavailable') {
+    throw new \RuntimeException("mysqldump exit code unavailable after {$durationSeconds}s (status=" . ($statusExit ?? 'null') . ", close={$closeExit}, output {$outputBytes} bytes){$errSuffix}");
+   }
+   throw new \RuntimeException("mysqldump failed (code {$outcome['exit_code']}, duration {$durationSeconds}s, output {$outputBytes} bytes){$errSuffix}");
+  }
+
+  return $result;
+ }
+
  function rumoRoutinePrivilegeRequirementMessage(array $server, string $dbName, bool $routinesPresent = false): string {
   if ($routinesPresent) {
    if ($server['is_mariadb']) {
@@ -529,39 +689,12 @@ try {
  }
 
  // Credentials are NEVER command-line values; option files are outside web roots.
- $run = static function(array $cmd, string $in, string $out) use (&$phase, $privateBase, $secureTempDir): void {
+ $dumpTimeoutSeconds = rumoResolveDumpTimeoutSeconds($c, $r);
+ $lastRunMetrics = null;
+ $run = static function(array $cmd, string $in, string $out) use (&$phase, &$lastRunMetrics, $privateBase, $secureTempDir, $dumpTimeoutSeconds): array {
   $errPath = $secureTempDir . '/bk-err-' . bin2hex(random_bytes(6)) . '.log';
-  $p = proc_open($cmd, [0 => ['file', $in, 'rb'], 1 => ['file', $out, 'wb'], 2 => ['file', $errPath, 'wb']], $pipes);
-  need(is_resource($p), 'Backup command unavailable');
-  $end = microtime(true) + 300;
-  $exit = -1;
-  do {
-   $s = proc_get_status($p);
-   if (!$s['running']) {
-    $exit = $s['exitcode'];
-    break;
-   }
-   if (microtime(true) > $end) {
-    proc_terminate($p);
-    break;
-   }
-   usleep(100000);
-  } while (true);
-  proc_close($p);
-  $errText = is_file($errPath) ? trim(file_get_contents($errPath)) : '';
-  if (is_file($errPath)) @unlink($errPath);
-  if ($exit !== 0) {
-   $clean = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errText);
-   $clean = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $clean);
-   $logPayload = date('c') . " | Phase: {$phase} | Exit: {$exit}\n" . $clean . "\n" . str_repeat('-', 60) . "\n";
-   if (is_dir($privateBase)) {
-    @file_put_contents($privateBase . '/backup-last-error.log', $logPayload, FILE_APPEND);
-    @chmod($privateBase . '/backup-last-error.log', 0600);
-   }
-
-   $firstLine = explode("\n", $clean)[0] ?? 'unknown mysqldump error';
-   throw new \RuntimeException('mysqldump failed (code ' . $exit . '): ' . $firstLine . ($clean !== $firstLine ? ' | ' . substr($clean, 0, 500) : ''));
-  }
+  $lastRunMetrics = rumoRunBackupSubprocess($cmd, $in, $out, $errPath, $dumpTimeoutSeconds, $phase, $privateBase);
+  return $lastRunMetrics;
  };
  $null = PHP_OS_FAMILY === 'Windows' ? 'NUL' : '/dev/null';
 
@@ -621,6 +754,10 @@ try {
    'views_count' => count($views),
    'full_data_tested' => true,
    'dry_run_success' => true,
+   'dump_timeout_seconds' => $dumpTimeoutSeconds,
+   'dump_duration_seconds' => $lastRunMetrics['duration_seconds'] ?? null,
+   'dump_output_bytes' => $lastRunMetrics['output_bytes'] ?? null,
+   'dump_exit_code' => $lastRunMetrics['exit_code'] ?? null,
   ], JSON_THROW_ON_ERROR);
   exit(0);
  }
