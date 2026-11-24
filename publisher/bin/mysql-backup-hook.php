@@ -45,17 +45,22 @@ if (!function_exists('rumoParseDbServerVersion')) {
  }
 
  function rumoParseShowGrantLine(string $grantLine): ?array {
-  if (preg_match('/^\s*GRANT\s+(.+?)\s+ON\s+(?:(?:PROCEDURE|FUNCTION)\s+)?(.+?)\s+TO\s+/i', $grantLine, $m) !== 1) {
+  if (preg_match('/^\s*(GRANT|REVOKE)\s+(.+?)\s+ON\s+(?:(?:PROCEDURE|FUNCTION)\s+)?(.+?)\s+(TO|FROM)\s+/i', $grantLine, $m) !== 1) {
+   return null;
+  }
+  $verb = strtoupper($m[1]);
+  $direction = strtoupper($m[4]);
+  if (($verb === 'GRANT' && $direction !== 'TO') || ($verb === 'REVOKE' && $direction !== 'FROM')) {
    return null;
   }
   $privs = [];
-  foreach (explode(',', $m[1]) as $token) {
+  foreach (explode(',', $m[2]) as $token) {
    $p = preg_replace('/\s+/', ' ', strtoupper(trim($token)));
    if ($p !== '') $privs[$p] = true;
   }
-  $target = trim($m[2]);
+  $target = trim($m[3]);
   if ($target === '*.*') {
-   return ['privs' => $privs, 'scope' => 'global', 'schema' => '*', 'object' => '*'];
+   return ['verb' => $verb, 'privs' => $privs, 'scope' => 'global', 'schema' => '*', 'object' => '*'];
   }
   if (preg_match('/^(`(?:[^`]|``)+`|[a-zA-Z0-9_\\\\$-]+)\s*\.\s*(`(?:[^`]|``)+`|\*|[a-zA-Z0-9_$-]+)$/', $target, $tm) !== 1) {
    return null;
@@ -63,16 +68,16 @@ if (!function_exists('rumoParseDbServerVersion')) {
   $schema = rumoUnescapeGrantIdentifier($tm[1]);
   $object = rumoUnescapeGrantIdentifier($tm[2]);
   $scope = ($object === '*') ? 'schema' : 'object';
-  return ['privs' => $privs, 'scope' => $scope, 'schema' => $schema, 'object' => $object];
+  return ['verb' => $verb, 'privs' => $privs, 'scope' => $scope, 'schema' => $schema, 'object' => $object];
  }
 
  /**
-  * Evaluates effective MySQL/MariaDB privileges for complete backup inventory and routine export.
-  * - Never assumes CREATE ROUTINE / ALTER ROUTINE / EXECUTE or schema-level ALL PRIVILEGES can read
-  *   ROUTINE_DEFINITION for arbitrary definers in MySQL 8 or MariaDB.
-  * - Differentiates MySQL 8.0.20+ (global SHOW_ROUTINE / SELECT / ALL PRIVILEGES),
-  *   MySQL 8.0.0-8.0.19 (global SELECT / ALL PRIVILEGES), MySQL 5.x and MariaDB (global SELECT /
-  *   ALL PRIVILEGES or SELECT on mysql.proc / mysql.*).
+  * Evaluates effective MySQL/MariaDB privileges from SHOW GRANTS, properly handling
+  * escaped schema names AND partial REVOKE lines.
+  * Separates:
+  * - routine_inventory_provable: can prove complete routine count (MySQL 8.0.20+: SHOW_ROUTINE or global SELECT)
+  * - routine_export_supported: satisfies mysqldump --routines contract (MySQL 8: global SELECT without partial revoke;
+  *   MariaDB / MySQL 5.x: global SELECT or SELECT on mysql.proc without revoke).
   */
  function rumoEvaluateMysqlPrivileges(array $grantLines, string $dbName, string $versionStr, string $versionComment = ''): array {
   $server = rumoParseDbServerVersion($versionStr, $versionComment);
@@ -81,143 +86,109 @@ if (!function_exists('rumoParseDbServerVersion')) {
   $isMysql8Plus = !$isMariaDB && $server['major'] >= 8;
   $supportsShowRoutine = !$isMariaDB && ($server['major'] > 8 || ($server['major'] === 8 && ($server['minor'] > 0 || $server['patch'] >= 20)));
 
-  $hasAllPrivOnDb = false;
-  $hasTriggerPriv = false;
-  $hasEventPriv = false;
-  $hasRoutineDefPriv = false;
-  $routinePrivBasis = 'none';
-  $hasSchemaRoutineDdlOnly = false;
-  $hasLockTablesPriv = false;
-  $hasShowViewPriv = false;
+  $schemaTracked = ['TRIGGER', 'EVENT', 'CREATE ROUTINE', 'ALTER ROUTINE', 'LOCK TABLES', 'SHOW VIEW'];
+  $granted = [];
+  $revoked = [];
+  $globalSelectGranted = false;
+  $selectRevoked = false;
+  $showRoutineGranted = false;
+  $showRoutineRevoked = false;
+  $mysqlProcSelectGranted = false;
+  $mysqlProcSelectRevoked = false;
 
   foreach ($grantLines as $rawLine) {
    $parsed = rumoParseShowGrantLine((string)$rawLine);
    if ($parsed === null) continue;
+   $isGrant = ($parsed['verb'] === 'GRANT');
    $privs = $parsed['privs'];
+   $all = isset($privs['ALL PRIVILEGES']) || isset($privs['ALL']);
    $isGlobal = ($parsed['scope'] === 'global');
    $isTargetSchema = ($parsed['scope'] === 'schema' && strtolower($parsed['schema']) === $dbLower);
    $isMysqlProc = (strtolower($parsed['schema']) === 'mysql' && ($parsed['object'] === '*' || strtolower($parsed['object']) === 'proc'));
 
    if ($isGlobal || $isTargetSchema) {
-    if (isset($privs['ALL PRIVILEGES']) || isset($privs['ALL'])) {
-     $hasAllPrivOnDb = true;
-     $hasTriggerPriv = true;
-     $hasEventPriv = true;
-     $hasLockTablesPriv = true;
-     $hasShowViewPriv = true;
-     if ($isTargetSchema) $hasSchemaRoutineDdlOnly = true;
+    $relevant = $all ? $schemaTracked : array_values(array_intersect($schemaTracked, array_keys($privs)));
+    foreach ($relevant as $p) {
+     if ($isGrant) $granted[$p] = true;
+     else $revoked[$p] = true;
     }
-    if (isset($privs['TRIGGER'])) $hasTriggerPriv = true;
-    if (isset($privs['EVENT'])) $hasEventPriv = true;
-    if (isset($privs['LOCK TABLES'])) $hasLockTablesPriv = true;
-    if (isset($privs['SHOW VIEW'])) $hasShowViewPriv = true;
-    if (isset($privs['CREATE ROUTINE']) || isset($privs['ALTER ROUTINE'])) {
-     $hasSchemaRoutineDdlOnly = true;
+    // Global SELECT (required by Oracle mysqldump --routines) is invalidated by ANY REVOKE SELECT/ALL on global or target schema.
+    if ($isGrant && $isGlobal && ($all || isset($privs['SELECT']))) {
+     $globalSelectGranted = true;
+    }
+    if (!$isGrant && ($all || isset($privs['SELECT']))) {
+     $selectRevoked = true;
+    }
+    // SHOW_ROUTINE is a dynamic global privilege (NOT implied by ALL PRIVILEGES).
+    if ($isGlobal && ($supportsShowRoutine || $isMariaDB) && (isset($privs['SHOW_ROUTINE']) || isset($privs['SHOW ROUTINE']))) {
+     if ($isGrant) $showRoutineGranted = true;
+     else $showRoutineRevoked = true;
     }
    }
 
-   // Effective routine definition visibility (cross-definer complete export):
-   if ($isGlobal) {
-    if (isset($privs['ALL PRIVILEGES']) || isset($privs['ALL'])) {
-     $hasRoutineDefPriv = true;
-     $routinePrivBasis = 'global:ALL_PRIVILEGES';
-    } elseif (isset($privs['SELECT'])) {
-     $hasRoutineDefPriv = true;
-     $routinePrivBasis = 'global:SELECT';
-    } elseif ($supportsShowRoutine && isset($privs['SHOW_ROUTINE'])) {
-     $hasRoutineDefPriv = true;
-     $routinePrivBasis = 'global:SHOW_ROUTINE';
-    } elseif ($isMariaDB && (isset($privs['SHOW ROUTINE']) || isset($privs['SHOW_ROUTINE']))) {
-     $hasRoutineDefPriv = true;
-     $routinePrivBasis = 'global:SHOW_ROUTINE';
+   if (!$isMysql8Plus && ($isGlobal || $isMysqlProc)) {
+    if ($isGrant && ($all || isset($privs['SELECT']))) {
+     $mysqlProcSelectGranted = true;
     }
-   } elseif (!$isMysql8Plus && $isMysqlProc) {
-    // MariaDB and MySQL 5.x store routine definitions in mysql.proc; MySQL 8+ removed mysql.proc.
-    if (isset($privs['SELECT']) || isset($privs['ALL PRIVILEGES']) || isset($privs['ALL'])) {
-     $hasRoutineDefPriv = true;
-     $routinePrivBasis = 'mysql.proc:SELECT';
+    if (!$isGrant && ($all || isset($privs['SELECT']))) {
+     $mysqlProcSelectRevoked = true;
     }
    }
+  }
+
+  $effective = array_diff_key($granted, $revoked);
+  $hasGlobalSelect = $globalSelectGranted && !$selectRevoked;
+  $hasShowRoutine = $showRoutineGranted && !$showRoutineRevoked;
+  $hasMysqlProcSelect = !$isMysql8Plus && $mysqlProcSelectGranted && !$mysqlProcSelectRevoked;
+
+  if ($isMysql8Plus) {
+   $routineInventoryProvable = $hasGlobalSelect || ($supportsShowRoutine && $hasShowRoutine);
+   $routineExportSupported = $hasGlobalSelect;
+   $routinePrivBasis = $hasGlobalSelect ? 'global:SELECT' : (($supportsShowRoutine && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : 'none');
+  } else {
+   $routineInventoryProvable = $hasGlobalSelect || $hasMysqlProcSelect || ($isMariaDB && $hasShowRoutine);
+   $routineExportSupported = $hasGlobalSelect || $hasMysqlProcSelect;
+   $routinePrivBasis = $hasGlobalSelect ? 'global:SELECT' : ($hasMysqlProcSelect ? 'mysql.proc:SELECT' : (($isMariaDB && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : 'none'));
   }
 
   return [
    'server' => $server,
-   'has_all_priv_on_db' => $hasAllPrivOnDb,
-   'has_trigger_priv' => $hasTriggerPriv,
-   'has_event_priv' => $hasEventPriv,
-   'has_routine_definition_priv' => $hasRoutineDefPriv,
+   'effective_privileges' => $effective,
+   'has_global_select' => $hasGlobalSelect,
+   'has_show_routine' => $hasShowRoutine,
+   'has_trigger_priv' => isset($effective['TRIGGER']),
+   'has_event_priv' => isset($effective['EVENT']),
+   'routine_inventory_provable' => $routineInventoryProvable,
+   'routine_export_supported' => $routineExportSupported,
+   'has_routine_definition_priv' => $routineExportSupported,
    'routine_priv_basis' => $routinePrivBasis,
-   'has_schema_routine_ddl_only' => $hasSchemaRoutineDdlOnly,
-   'has_lock_tables_priv' => $hasLockTablesPriv,
-   'has_show_view_priv' => $hasShowViewPriv,
+   'has_schema_routine_ddl_only' => (isset($effective['CREATE ROUTINE']) || isset($effective['ALTER ROUTINE'])) && !$routineInventoryProvable,
+   'has_lock_tables_priv' => isset($effective['LOCK TABLES']),
+   'has_show_view_priv' => isset($effective['SHOW VIEW']),
   ];
  }
 
- /**
-  * Strictly validates a private (0600 profile) administrative attestation proving zero routines exist
-  * in the exact connected database/server. Fail-closed: rejects missing fields, mismatches, future
-  * timestamps, expired attestations, or any contradiction with visible routines (> 0).
-  */
- function rumoValidateRoutineAbsenceAttestation(
-  mixed $attestation,
-  string $dbName,
-  array $serverInfo,
-  string $sourceUuid,
-  int $visibleRoutineCount,
-  ?int $now = null
- ): array {
-  $nowTs = $now ?? time();
-  need($visibleRoutineCount === 0,
-   "Routine absence attestation contradicted by {$visibleRoutineCount} visible routine(s) in '{$dbName}'; effective routine export privilege is mandatory");
-  need(is_array($attestation), 'Missing or invalid administrative routine absence attestation');
-  need(($attestation['schema'] ?? null) === 'rumo-routine-absence-attestation-v1',
-   'Unsupported routine absence attestation schema');
-  need(($attestation['database'] ?? null) === $dbName,
-   'Routine absence attestation database mismatch');
-  need(($attestation['server_engine'] ?? null) === ($serverInfo['engine'] ?? null),
-   'Routine absence attestation server engine mismatch');
-  need(($attestation['server_version'] ?? null) === ($serverInfo['raw'] ?? null),
-   'Routine absence attestation server version mismatch');
-  need(is_string($sourceUuid) && $sourceUuid !== '' && ($attestation['source_uuid'] ?? null) === $sourceUuid,
-   'Routine absence attestation source_uuid mismatch');
-  need(($attestation['attested_routine_count'] ?? null) === 0,
-   'Routine absence attestation requires attested_routine_count === 0');
-  need(is_string($attestation['verification_method'] ?? null) && trim($attestation['verification_method']) !== '',
-   'Routine absence attestation requires verification_method');
-  need(is_string($attestation['attested_by'] ?? null) && trim($attestation['attested_by']) !== '',
-   'Routine absence attestation requires attested_by');
-  $attestedAt = $attestation['attested_at'] ?? null;
-  $attestedTs = is_string($attestedAt) ? strtotime($attestedAt) : false;
-  need($attestedTs !== false && $attestedTs <= $nowTs,
-   'Routine absence attestation requires valid non-future attested_at timestamp');
-  if (isset($attestation['expires_at'])) {
-   $expTs = is_string($attestation['expires_at']) ? strtotime($attestation['expires_at']) : false;
-   need($expTs !== false && $expTs > $nowTs, 'Routine absence attestation has expired');
+ function rumoCanProceedWithRoutines(array $privEval, int $routineCount): bool {
+  if ($privEval['routine_export_supported'] === true) return true;
+  // SHOW_ROUTINE proves inventory completeness when zero routines exist;
+  // exporting actual routines via mysqldump --routines requires global SELECT (or mysql.proc SELECT on MariaDB/5.x).
+  return ($privEval['routine_inventory_provable'] === true) && $routineCount === 0;
+ }
+
+ function rumoRoutinePrivilegeRequirementMessage(array $server, string $dbName, bool $routinesPresent = false): string {
+  if ($routinesPresent) {
+   if ($server['is_mariadb']) {
+    return "Há rotinas em '{$dbName}': MariaDB ({$server['raw']}) exige 'SELECT' em `mysql`.`proc` ou 'SELECT' global ON *.* (sem revogação parcial) para exportar definições via mysqldump --routines.";
+   }
+   return "Há rotinas em '{$dbName}': o caminho mysqldump --routines no MySQL {$server['raw']} exige 'SELECT' global ON *.* (sem revogação parcial) ou um exportador de definições validado. 'SHOW_ROUTINE' sozinho comprova o inventário, mas não atende o requisito documentado do mysqldump --routines.";
   }
-  return [
-   'mode' => 'administrative_absence_attestation',
-   'database' => $dbName,
-   'server_engine' => $serverInfo['engine'],
-   'server_version' => $serverInfo['raw'],
-   'source_uuid' => $sourceUuid,
-   'attested_routine_count' => 0,
-   'attested_at' => $attestedAt,
-   'attested_by' => trim($attestation['attested_by']),
-   'verification_method' => trim($attestation['verification_method']),
-  ];
- }
-
- function rumoRoutinePrivilegeRequirementMessage(array $server, string $dbName): string {
   if ($server['is_mariadb']) {
-   return "MariaDB ({$server['raw']}) exige 'SELECT' em `mysql`.`proc` (ou 'SELECT'/'ALL PRIVILEGES' global ON *.*) para garantir visibilidade completa e exportação de definições de rotinas no database '{$dbName}'. 'CREATE ROUTINE', 'ALTER ROUTINE', 'EXECUTE' ou 'ALL PRIVILEGES ON `{$dbName}`.*' são insuficientes.";
+   return "Inventário de rotinas MariaDB ({$server['raw']}) sem visibilidade comprovada em '{$dbName}': requer 'SELECT' em `mysql`.`proc` ou 'SELECT' global ON *.* (sem revogação parcial). 'CREATE ROUTINE', 'ALTER ROUTINE' e 'ALL PRIVILEGES ON `{$dbName}`.*' são insuficientes.";
   }
   if ($server['major'] > 8 || ($server['major'] === 8 && ($server['minor'] > 0 || $server['patch'] >= 20))) {
-   return "MySQL {$server['raw']} exige privilégio global 'SHOW_ROUTINE ON *.*' (ou 'SELECT'/'ALL PRIVILEGES' ON *.*) para garantir visibilidade completa e exportação de definições de rotinas no database '{$dbName}'. 'CREATE ROUTINE', 'ALTER ROUTINE', 'EXECUTE' e 'ALL PRIVILEGES ON `{$dbName}`.*' não garantem leitura de definições de outros definers no MySQL 8.";
+   return "Inventário de rotinas MySQL {$server['raw']} sem visibilidade comprovada em '{$dbName}': requer 'SHOW_ROUTINE' ou 'SELECT' explicitamente global ON *.* (sem revogação parcial). 'CREATE ROUTINE', 'ALTER ROUTINE', 'EXECUTE' e 'ALL PRIVILEGES ON `{$dbName}`.*' são insuficientes.";
   }
-  if ($server['major'] === 8) {
-   return "MySQL {$server['raw']} (< 8.0.20) exige 'SELECT ON *.*' (ou 'ALL PRIVILEGES ON *.*') para garantir visibilidade completa e exportação de definições de rotinas no database '{$dbName}'. 'CREATE ROUTINE', 'ALTER ROUTINE', 'EXECUTE' e 'ALL PRIVILEGES ON `{$dbName}`.*' são insuficientes.";
-  }
-  return "MySQL {$server['raw']} exige 'SELECT' em `mysql`.`proc` (ou 'SELECT'/'ALL PRIVILEGES' ON *.*) para garantir visibilidade completa e exportação de definições de rotinas no database '{$dbName}'.";
+  return "Inventário de rotinas MySQL {$server['raw']} sem visibilidade comprovada em '{$dbName}': requer 'SELECT' global ON *.* (ou 'SELECT' em `mysql`.`proc` no MySQL 5.x), sem revogação parcial.";
  }
 }
 
@@ -455,10 +426,8 @@ try {
  }
 
  $privEval = rumoEvaluateMysqlPrivileges($grantLines, $name, $vStr, $vComment);
- $hasAllPrivOnDb = $privEval['has_all_priv_on_db'];
  $hasTriggerPriv = $privEval['has_trigger_priv'];
  $hasEventPriv = $privEval['has_event_priv'];
- $hasRoutinePriv = $privEval['has_routine_definition_priv'];
  $hasLockTablesPriv = $privEval['has_lock_tables_priv'];
  $hasShowViewPriv = $privEval['has_show_view_priv'];
 
@@ -469,8 +438,13 @@ try {
  if (!$hasEventPriv) {
   throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui o privilégio 'EVENT' no database '{$name}' (nem 'ALL PRIVILEGES'). Sem essa permissão, o inventário de eventos é filtrado pelo MySQL/MariaDB e a integridade da exportação não pode ser comprovada.");
  }
+ if (!$privEval['routine_inventory_provable']) {
+  // Fail-closed: static absence attestations are NOT accepted as a permanent guarantee
+  // without a live server-side mechanism that prevents or detects subsequent routine changes.
+  throw new \RuntimeException(rumoRoutinePrivilegeRequirementMessage($serverInfo, $name, false));
+ }
 
- // Proven inventory counts (triggers/events verified above; routines verified below with privilege or strict attestation)
+ // Proven inventory counts (triggers, events and routine inventory visibility verified above)
  $evStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ?");
  $evStmt->execute([$name]);
  $evCount = (int)$evStmt->fetchColumn();
@@ -479,25 +453,10 @@ try {
  $rtStmt->execute([$name]);
  $rtCount = (int)$rtStmt->fetchColumn();
 
- $routineVerificationMode = 'effective_privilege';
- $routineAttestationReceipt = null;
- if (!$hasRoutinePriv) {
-  if ($rtCount > 0) {
-   throw new \RuntimeException('Dependência de privilégio não atendida (rotinas presentes): ' . rumoRoutinePrivilegeRequirementMessage($serverInfo, $name));
-  }
-  if (isset($c['routine_absence_attestation'])) {
-   $routineAttestationReceipt = rumoValidateRoutineAbsenceAttestation(
-    $c['routine_absence_attestation'],
-    $name,
-    $serverInfo,
-    $sourceUuid,
-    $rtCount
-   );
-   $routineVerificationMode = 'administrative_absence_attestation';
-  } else {
-   throw new \RuntimeException('Dependência de privilégio não atendida (fail-closed: contagem zero em information_schema.ROUTINES não comprova ausência sem privilégio ou evidência administrativa): ' . rumoRoutinePrivilegeRequirementMessage($serverInfo, $name));
-  }
+ if (!rumoCanProceedWithRoutines($privEval, $rtCount)) {
+  throw new \RuntimeException(rumoRoutinePrivilegeRequirementMessage($serverInfo, $name, true));
  }
+ $routineVerificationMode = $privEval['routine_export_supported'] ? 'effective_export_privilege' : 'inventory_verified_zero_routines';
 
  $trStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = ?");
  $trStmt->execute([$name]);
@@ -636,7 +595,6 @@ try {
    'routines_count' => $rtCount,
    'routine_verification_mode' => $routineVerificationMode,
    'routine_priv_basis' => $privEval['routine_priv_basis'],
-   'routine_absence_attestation' => $routineAttestationReceipt,
    'triggers_count' => $trCount,
    'views_count' => count($views),
    'full_data_tested' => true,
