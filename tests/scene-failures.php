@@ -7,7 +7,7 @@ $authored=require dirname(__DIR__).'/database/scene-failures.php';$editorial=req
 $base=Game::legacyCreate('Teste de respostas','São Paulo','SP','centroavante');
 foreach(Scenes::catalog() as $id=>$scene){
     $g=$base;$g['stage']=$scene['stage'];
-    if($g['stage']==='partida'){$i=Game::currentIndex($g);$g['matches'][$i]['minute']=70;$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['entry']=0;$g['matches'][$i]['exit']=90;}
+    if($g['stage']==='partida'){$i=Game::currentIndex($g);$g['matches'][$i]['minute']=70;$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['lineup']='titular';$g['matches'][$i]['participation_state']=MatchParticipation::STATE_ON_FIELD;$g['matches'][$i]['entry']=0;$g['matches'][$i]['exit']=90;}
     $g['active_situation']=['id'=>$id,'key'=>Scenes::key($g)];$before=$g;
     $choices=Scenes::current($g)['options'];
     checkFailure($g===$before,'Consultar respostas não modifica a carreira.');

@@ -25,7 +25,7 @@ $tKnockout = [
     ],
     'matches' => [
         fixtureMatch(15, 'santos', 'sao-paulo', ['phase' => 'quartas', 'round' => 15, 'tie' => 0, 'status' => 'finalizada', 'minute' => 90, 'hg' => 1, 'ag' => 0]),
-        fixtureMatch(16, 'sao-paulo', 'santos', ['phase' => 'quartas', 'round' => 16, 'tie' => 0, 'status' => 'finalizada', 'minute' => 90, 'hg' => 1, 'ag' => 0]),
+        fixtureMatch(16, 'sao-paulo', 'santos', ['phase' => 'quartas', 'round' => 16, 'tie' => 0, 'status' => 'finalizada', 'minute' => 90, 'hg' => 1, 'ag' => 0, 'lineup' => 'titular', 'participation_state' => MatchParticipation::STATE_FULL_TIME, 'entry' => 0, 'exit' => 90, 'participated_on_field' => true, 'stats' => array_merge(Schedule::stats(), ['minutes' => 90])]),
     ]
 ];
 $gKnockout = Game::legacyCreate('Craque', 'sao-paulo', 'SP', 'meia');

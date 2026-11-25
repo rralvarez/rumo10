@@ -5,7 +5,7 @@ $checks=0;function checkScene(bool $ok,string $message):void{global $checks;$che
 $catalog=Scenes::catalog();checkScene(count(array_filter(array_keys($catalog),fn($id)=>$id<2000))===214,'214 situações anteriores preservadas');$prompts=[];$choices=0;
 foreach($catalog as $id=>$s){checkScene(!isset($prompts[$s['text']]),'Enunciado único '.$id);$prompts[$s['text']]=true;
     $g=Game::legacyCreate('Teste','São Paulo','SP','centroavante');$g['stage']=$s['stage'];
-    if($s['stage']==='partida'){$i=Game::currentIndex($g);$g['matches'][$i]['minute']=70;$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['entry']=0;$g['matches'][$i]['exit']=90;}
+    if($s['stage']==='partida'){$i=Game::currentIndex($g);$g['matches'][$i]['minute']=70;$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['lineup']='titular';$g['matches'][$i]['participation_state']=MatchParticipation::STATE_ON_FIELD;$g['matches'][$i]['entry']=0;$g['matches'][$i]['exit']=90;}
     $g['active_situation']=['id'=>$id,'key'=>Scenes::key($g)];$entry=Scenes::current($g);
     checkScene(count($entry['options'])===4,'Quatro escolhas '.$id);$choices+=count($entry['options']);
     foreach($entry['options'] as $o){checkScene(in_array($o['action'],['social','passe','chute','drible','desarme'],true),'Mecânica válida');foreach($o['effects'] as $key=>$value)checkScene(in_array($key,array_merge(Rules::SKILLS,Rules::STATES),true),'Atributo existente '.$key);}
@@ -13,7 +13,7 @@ foreach($catalog as $id=>$s){checkScene(!isset($prompts[$s['text']]),'Enunciado 
 checkScene($choices===4*count($catalog),'Quatro alternativas em todo o catálogo');
 $g=Game::legacyCreate('Teste','São Paulo','SP','centroavante');$g['stage']='treino';$seen=[];
 for($n=1;$n<=40;$n++){$g['round']=$n;Scenes::prepare($g);$id=Scenes::current($g)['id'];checkScene(!in_array($id,array_slice($seen,-10),true),'Sem repetição nos últimos dez treinos');$copy=$g;Scenes::prepare($copy);checkScene($copy===$g,'Preparação não sorteia de novo');checkScene(Game::situation($copy)===Game::situation($g),'Refresh mantém alternativas');Scenes::remember($g,Scenes::current($g));$seen[]=$id;}
-$g['round']=1;$g['stage']='partida';$i=Game::currentIndex($g);$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['minute']=15;$g['matches'][$i]['entry']=0;$g['matches'][$i]['exit']=90;
+$g['round']=1;$g['stage']='partida';$i=Game::currentIndex($g);$g['matches'][$i]['status']='em_andamento';$g['matches'][$i]['lineup']='titular';$g['matches'][$i]['participation_state']=MatchParticipation::STATE_ON_FIELD;$g['matches'][$i]['minute']=15;$g['matches'][$i]['entry']=0;$g['matches'][$i]['exit']=90;
 foreach(['centroavante','zagueiro'] as $position){$g['position']=$position;$pool=Scenes::eligible($g);foreach($pool as $id)checkScene($position==='centroavante'?!($id>=1125&&$id<=1139):!($id>=1100&&$id<=1124),'Contexto por posição');checkScene(!in_array(1143,$pool,true)&&!in_array(1149,$pool,true),'Lesão e substituição exigem contexto');}
 $g['stage']='pre_jogo';$g['round']=4;foreach(Scenes::eligible($g) as $id)checkScene($id<2000?in_array($id,[6,1200,1201],true):empty($catalog[$id]['gating']['starter']),'Reserva consistente');
 checkScene(TeamStrength::initial('Flamengo-RJ')>TeamStrength::initial('Palmeiras-SP'),'Campanha 2025 diferencia clubes na mesma divisão');

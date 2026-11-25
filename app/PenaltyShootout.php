@@ -45,8 +45,8 @@ final class PenaltyShootout {
         $firstTeam = random_int(0, 1) === 0 ? $home : $away;
         $secondTeam = $firstTeam === $home ? $away : $home;
 
-        // Participação do protagonista
-        $onPitch = (($m['entry'] ?? 0) <= 90) && (($m['exit'] ?? 0) === 0 || ($m['exit'] ?? 0) >= 90) && empty($m['stats']['cards_red']);
+        // Participação efetiva e permanência em campo do protagonista ao fim da partida
+        $onPitch = MatchParticipation::finishedOnField($m);
         $isGk = ($g['position'] ?? '') === 'goleiro';
 
         // Jogador de linha bate na 5ª cobrança (decisiva) se estiver em campo

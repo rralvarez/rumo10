@@ -12,10 +12,11 @@ final class NarrativeContext {
   $out['bench_confirmed']=$out['bench'] && $g['round']%4===0;
   if(in_array($g['stage'],['partida','fim_semana'],true)){
    $m=$g['matches'][Game::currentIndex($g)];$home=$m['home']===$g['club'];$diff=($home?$m['hg']-$m['ag']:$m['ag']-$m['hg']);
-   $out+=['home_away'=>$home?'home':'away','score_state'=>$diff>0?'ganhando':($diff<0?'perdendo':'empatando'),'margin'=>abs($diff),'minute'=>$m['minute'],'played_minutes'=>max(0,min($m['minute'],$m['exit'])-$m['entry']),'own_goals'=>$m['stats']['goals'],'own_cards'=>$m['stats']['cards'],'on_field'=>$m['status']==='em_andamento' && $m['minute']>=$m['entry'] && $m['minute']<$m['exit'],'finished'=>$m['status']==='finalizada'];
+   $out+=['home_away'=>$home?'home':'away','score_state'=>$diff>0?'ganhando':($diff<0?'perdendo':'empatando'),'margin'=>abs($diff),'minute'=>$m['minute'],'played_minutes'=>max(0,min($m['minute'],$m['exit'])-$m['entry']),'own_goals'=>$m['stats']['goals'],'own_cards'=>$m['stats']['cards'],'on_field'=>MatchParticipation::canActOnField($m),'finished'=>$m['status']==='finalizada'];
    foreach(['assists','shots','completed','tackles'] as $stat)$out['own_'.$stat]=$m['stats'][$stat];
    if($out['finished'])$out['played_minutes']=$m['stats']['minutes'];
-   foreach($m['log'] as $entry)foreach(['injury'=>'Lesão: você deixa o campo.','fatigue'=>'Substituído por desgaste.','red'=>'Expulso: segundo cartão.'] as $reason=>$marker)if(str_contains($entry['text'],$marker))$out['exit_reason']=$reason;
+   $exitInfo=MatchParticipation::resolveExit($m);
+   if(!$exitInfo['cause_conflict'] && $exitInfo['kind']!==null)$out['exit_reason']=$exitInfo['kind']==='sent_off'?'red':$exitInfo['kind'];
    $out['bench']=($m['lineup']??'')==='reserva';$out['starter']=($m['lineup']??'')==='titular';$out['bench_confirmed']=$out['bench'];
   }
   $teamPlayed=array_values(array_filter($g['matches'],fn($m)=>$m['status']==='finalizada' && in_array($g['club'],[$m['home'],$m['away']],true)));

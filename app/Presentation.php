@@ -160,9 +160,9 @@ final class Presentation {
         $partState = $m['participation_state'] ?? null;
         $lineup = $m['lineup'] ?? 'titular';
         $st = $m['stats'] ?? [];
-        $isRedCard = ($partState === 'SENT_OFF') || (!empty($st['red_cards']) && $st['red_cards'] > 0) || !empty($m['red_card_minute']);
-        $hasRedMinute = isset($m['red_card_minute']) && is_numeric($m['red_card_minute']) && (int)$m['red_card_minute'] > 0;
-        $redMinute = $hasRedMinute ? (int)$m['red_card_minute'] : null;
+        $exitInfo = MatchParticipation::resolveExit($m);
+        $isRedCard = !$exitInfo['cause_conflict'] && $exitInfo['kind'] === 'sent_off';
+        $redMinute = $isRedCard ? $exitInfo['minute'] : null;
 
         // 1. Atleta suspenso
         if ($partState === 'SUSPENDED' || $lineup === 'suspenso') {
@@ -177,7 +177,7 @@ final class Presentation {
         }
 
         // 2. Atleta não relacionado
-        if ($partState === 'NOT_SELECTED' || $lineup === 'não relacionado') {
+        if ($partState === 'NOT_SELECTED' || in_array($lineup, ['não relacionado', 'nao_relacionado'], true)) {
             return [
                 'type' => 'not_selected',
                 'label' => 'Não relacionado',
@@ -185,6 +185,18 @@ final class Presentation {
                 'note_icon' => '📋',
                 'note_title' => 'Não relacionado',
                 'note_desc' => 'Você não foi relacionado para esta partida e acompanha o jogo de fora.',
+            ];
+        }
+
+        // 2.5. Conflito irreconciliável de causa de saída: apresentação neutra de ausência de campo sem inventar classificação esportiva
+        if ($exitInfo['cause_conflict']) {
+            return [
+                'type' => 'off_field',
+                'label' => 'Fora de campo',
+                'class' => 'status-bench',
+                'note_icon' => 'ℹ️',
+                'note_title' => 'Fora de campo',
+                'note_desc' => 'Você não está em campo no momento e acompanha a sequência da partida.',
             ];
         }
 
@@ -217,27 +229,26 @@ final class Presentation {
             ];
         }
 
-        // 5. Atleta substituído (utiliza minuto real inclusive >= 90 para canonical SUBSTITUTED_OUT)
+        // 5. Atleta substituído (utiliza reconciliação canônica e preserva minuto >= 90 para SUBSTITUTED_OUT sem conflito)
         $isSubstituted = false;
         $exitMinute = null;
 
-        if ($partState === 'SUBSTITUTED_OUT') {
+        if ($exitInfo['status'] !== 'none' && $exitInfo['kind'] !== 'sent_off') {
             $isSubstituted = true;
-            if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
+            $exitMinute = $exitInfo['minute'];
+            if ($exitMinute === null
+                && !$exitInfo['time_conflict']
+                && $partState === MatchParticipation::STATE_SUBSTITUTED_OUT
+                && isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0
+            ) {
                 $exitMinute = (int)$m['exit'];
             }
-        } elseif (isset($m['exit']) && is_numeric($m['exit'])) {
+        } elseif (!$partState && isset($m['exit']) && is_numeric($m['exit'])) {
             // Inferência legada (sem estado canônico): exclusivamente quando exit < 90 e minute >= exit
             $rawExit = (int)$m['exit'];
             if ($rawExit > 0 && $rawExit < 90 && $minute >= $rawExit) {
                 $isSubstituted = true;
                 $exitMinute = $rawExit;
-            }
-        } elseif (($m['exit_reason'] ?? '') === 'fatigue' || !empty($m['substituido']) || ($m['lineup'] ?? '') === 'substituído') {
-            // Inferência legada sem estado canônico e sem minuto confiável
-            $isSubstituted = true;
-            if (isset($m['exit']) && is_numeric($m['exit']) && (int)$m['exit'] > 0) {
-                $exitMinute = (int)$m['exit'];
             }
         }
 
@@ -279,7 +290,8 @@ final class Presentation {
         }
 
         // 7. Atleta no banco de reservas durante a partida
-        $isOnBench = ($partState === 'ON_BENCH') || ($lineup === 'reserva' && $minute < $entry);
+        $isLegacyUnenteredBench = (!$partState && in_array($lineup, ['reserva', 'banco'], true) && !MatchParticipation::canActOnField($m));
+        $isOnBench = ($partState === 'ON_BENCH') || ($lineup === 'reserva' && $minute < $entry) || $isLegacyUnenteredBench;
         if ($isOnBench) {
             return [
                 'type' => 'bench',
@@ -303,7 +315,39 @@ final class Presentation {
             ];
         }
 
-        // 9. Em campo (padrão quando ativo no jogo, inclusive acréscimos)
+        // 9. Distinção entre estado visual F03 em acréscimos (90..105 em STATE_ON_FIELD) e elegibilidade esportiva
+        $isVisualStoppageOnField = ($status === 'em_andamento'
+            && $partState === MatchParticipation::STATE_ON_FIELD
+            && !MatchParticipation::isSentOff($m)
+            && !$isSubstituted
+            && isset($m['entry'], $m['exit'])
+            && is_numeric($m['entry']) && is_numeric($m['exit'])
+            && (int)$m['entry'] >= 0 && (int)$m['entry'] < 90
+            && (int)$m['exit'] >= 90 && (int)$m['exit'] <= MatchParticipation::MAX_VALID_MINUTE
+            && $minute >= 90 && $minute <= MatchParticipation::MAX_VALID_MINUTE);
+
+        if (!MatchParticipation::canActOnField($m) && !$isVisualStoppageOnField) {
+            if ($partState === 'STARTING') {
+                return [
+                    'type' => 'pre_jogo',
+                    'label' => 'Escalado (titular)',
+                    'class' => 'status-starting',
+                    'note_icon' => '👕',
+                    'note_title' => 'Aguardando entrada em campo',
+                    'note_desc' => 'Avance a partida para acompanhar a sequência do jogo.',
+                ];
+            }
+            return [
+                'type' => 'off_field',
+                'label' => 'Fora de campo',
+                'class' => 'status-bench',
+                'note_icon' => '⏱️',
+                'note_title' => 'Acompanhando a partida',
+                'note_desc' => 'Você não está em campo neste momento. Avance a partida para continuar.',
+            ];
+        }
+
+        // 10. Em campo (confirmado pela regra autoritativa, inclusive acréscimos)
         return [
             'type' => 'on_field',
             'label' => 'Em campo',

@@ -45,8 +45,7 @@ final class PlayMode {
             }
             if($g['stage']==='partida') {
                 $m=$g['matches'][Game::currentIndex($g)];
-                $advance=$m['status']!=='em_andamento' || $m['minute']<$m['entry'] || $m['minute']>=$m['exit'];
-                $action=$advance?'advance':'choice';
+                $action=MatchParticipation::canActOnField($m)?'choice':'advance';
             } elseif(in_array($g['stage'],['treino','pre_jogo','fim_semana'],true))$action='choice';
             else throw new LogicException('Etapa inesperada na simulação.');
             $input=[];

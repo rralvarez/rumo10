@@ -31,7 +31,7 @@ foreach($new as $id=>$scene){
  $i=Game::currentIndex($g);$m=&$g['matches'][$i];
  if(isset($gate['home_away'])){if(($m['home']===$g['club'])!==($gate['home_away']==='home')){[$m['home'],$m['away']]=[$m['away'],$m['home']];}}
  if(isset($gate['score_state'])){$d=match($gate['score_state']){'ganhando'=>1,'perdendo'=>-1,default=>0};$home=$m['home']===$g['club'];$m[$home?'hg':'ag']=max(0,$d);$m[$home?'ag':'hg']=max(0,-$d);}
- if(!empty($gate['bench'])){$m['lineup']='reserva';if($scene['stage']==='pre_jogo')$g['round']=4;}
+ if(!empty($gate['bench'])){$m['lineup']='reserva';if($scene['stage']==='pre_jogo')$g['round']=4;if($scene['stage']==='partida'){$m['participation_state']=MatchParticipation::STATE_ON_FIELD;$m['sub_in_recorded']=true;}}
  foreach(['goals','cards','assists','shots','completed','tackles'] as $stat)if(isset($gate['own_'.$stat.'_min']))$m['stats'][$stat]=$gate['own_'.$stat.'_min'];
  foreach(['injury_risk_min'=>'risco_lesao','disciplinary_risk_min'=>'risco_cartao'] as $key=>$state)if(isset($gate[$key]))$g['states'][$state]=$gate[$key];
  if(isset($gate['played_minutes_max']))$m['stats']['minutes']=$gate['played_minutes_max'];

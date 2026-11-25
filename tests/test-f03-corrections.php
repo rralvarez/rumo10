@@ -378,7 +378,7 @@ foreach ($scenarios as $key => $sc) {
     $htmlView = ob_get_clean();
     $g = $baseGame;
 
-    if ($matchData['status'] !== 'em_andamento' || $part['type'] !== 'on_field') {
+    if (!MatchParticipation::canActOnField($matchData) || $part['type'] !== 'on_field') {
         ok(str_contains($htmlView, 'class="match-advance-card panel"'), "Cenário {$key}: view.php renderiza card de avanço");
         ok(str_contains($htmlView, htmlspecialchars($part['note_title'], ENT_QUOTES, 'UTF-8')), "Cenário {$key}: Card de avanço reflete título consistente '{$part['note_title']}'");
     } else {
@@ -426,8 +426,8 @@ $r5Scenarios = [
             'participation_state' => 'ON_FIELD',
             'stats' => ['goals' => 1, 'assists' => 0]
         ],
-        'assert_contains' => ['r10-scoreboard', 'name="option"'],
-        'assert_not_contains' => ['pre-match-banner', 'class="panel post-match"']
+        'assert_contains' => ['r10-scoreboard', 'match-advance-card panel'],
+        'assert_not_contains' => ['pre-match-banner', 'class="panel post-match"', 'name="option"']
     ],
 
     // Cenário 3: status=em_andamento, stage=fim_semana (partida em andamento aos 93' com divergência de stage fim_semana)
@@ -442,8 +442,8 @@ $r5Scenarios = [
             'participation_state' => 'ON_FIELD',
             'stats' => ['goals' => 1, 'assists' => 0]
         ],
-        'assert_contains' => ['r10-scoreboard', 'name="option"'],
-        'assert_not_contains' => ['pre-match-banner', 'class="panel post-match"']
+        'assert_contains' => ['r10-scoreboard', 'match-advance-card panel'],
+        'assert_not_contains' => ['pre-match-banner', 'class="panel post-match"', 'name="option"']
     ],
 
     // Cenário 4A: status=pre_jogo, stage=pre_jogo (estado pré-jogo confirmado)

@@ -35,12 +35,17 @@ final class MatchDiscipline {
      * Aplica falta e avalia cartão no protagonista com distinção entre falta tática e infrações disciplinares.
      */
     public static function recordFoul(array &$g, array &$m, string $context, bool $severe = false): array {
+        if (MatchParticipation::resolveExit($m)['status'] !== 'none') {
+            return ['card' => null, 'text' => ''];
+        }
+
         $st = &$m['stats'];
-        $st['fouls'] = ($st['fouls'] ?? 0) + 1;
         $st['yellow_cards'] = $st['yellow_cards'] ?? 0;
         $st['red_cards'] = $st['red_cards'] ?? 0;
         $st['direct_red'] = $st['direct_red'] ?? 0;
         $st['second_yellow'] = $st['second_yellow'] ?? 0;
+
+        $st['fouls'] = ($st['fouls'] ?? 0) + 1;
 
         $minute = $m['minute'];
         $result = ['card' => null, 'text' => ''];
@@ -56,10 +61,7 @@ final class MatchDiscipline {
             $st['direct_red'] = 1;
             $st['red_cards'] = 1;
             $st['cards'] = $st['yellow_cards'] + 1;
-            $m['exit'] = $minute;
-            $m['participation_state'] = MatchParticipation::STATE_SENT_OFF;
-            $m['team_reduced'] = true;
-            $m['red_card_minute'] = $minute;
+            MatchParticipation::recordExit($m, $g, (int)$minute, 'sent_off');
             $result['card'] = 'direct_red';
             $result['text'] = "{$minute}' | Cartão vermelho direto! Você foi expulso da partida.";
             $result['sound_event_id'] = Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
@@ -82,10 +84,7 @@ final class MatchDiscipline {
             $st['second_yellow'] = 1;
             $st['red_cards'] = 1;
             $st['cards'] = 2;
-            $m['exit'] = $minute;
-            $m['participation_state'] = MatchParticipation::STATE_SENT_OFF;
-            $m['team_reduced'] = true;
-            $m['red_card_minute'] = $minute;
+            MatchParticipation::recordExit($m, $g, (int)$minute, 'sent_off');
             $result['card'] = 'second_yellow';
             $result['text'] = "{$minute}' | Segundo cartão amarelo! Você está expulso da partida.";
             $result['sound_event_id'] = Game::emitSoundEvent($m, $g, 'CARD_RED', (int)$minute);
@@ -96,11 +95,43 @@ final class MatchDiscipline {
     }
 
     /**
+     * Classificação disciplinar canônica da partida, unificada com MatchParticipation::resolveExit().
+     * Distingue: none, direct_red, second_yellow, sent_off_unspecified e conflict.
+     * Em conflito temporal sem prova estruturada independente (ou conflito causal/subtipo),
+     * sinaliza pending_reconciliation=true para impedir punição definitiva precipitada.
+     *
+     * @return array{outcome:string,minute:?int,pending_reconciliation:bool}
+     */
+    public static function classifyExpulsion(array $m): array {
+        $exitInfo = MatchParticipation::resolveExit($m);
+        if ($exitInfo['cause_conflict'] || !empty($exitInfo['subtype_conflict'])) {
+            return ['outcome' => 'conflict', 'minute' => null, 'pending_reconciliation' => true];
+        }
+        if ($exitInfo['kind'] !== 'sent_off') {
+            return ['outcome' => 'none', 'minute' => null, 'pending_reconciliation' => false];
+        }
+        if (!empty($exitInfo['time_conflict'])) {
+            // Caso B: prova estruturada independente confirma infração e subtipo (regra não depende do minuto)
+            if (!empty($exitInfo['has_structured_expulsion']) && !empty($exitInfo['structured_subtype'])) {
+                return ['outcome' => $exitInfo['structured_subtype'], 'minute' => null, 'pending_reconciliation' => false];
+            }
+            // Caso A: registro internamente contraditório sem prova estruturada independente -> pendente de reconciliação
+            return ['outcome' => 'conflict', 'minute' => null, 'pending_reconciliation' => true];
+        }
+        if ($exitInfo['subtype'] === 'direct_red') {
+            return ['outcome' => 'direct_red', 'minute' => $exitInfo['minute'], 'pending_reconciliation' => false];
+        }
+        if ($exitInfo['subtype'] === 'second_yellow') {
+            return ['outcome' => 'second_yellow', 'minute' => $exitInfo['minute'], 'pending_reconciliation' => false];
+        }
+        return ['outcome' => 'sent_off_unspecified', 'minute' => $exitInfo['minute'], 'pending_reconciliation' => false];
+    }
+
+    /**
      * Reconcilia disciplina ao fim da partida na competição correspondente.
-     * Segue estritamente a regulamentação por competição:
-     * - Se a competição não tiver regra explícita de suspensão, marca estado regulamentar pendente ('pending_tribunal')
-     *   sem aplicar suspensão automática cega.
-     * - Não contamina outras competições da mesma carreira.
+     * Consome exclusivamente a classificação canônica de expulsão (MatchDiscipline::classifyExpulsion /
+     * MatchParticipation::resolveExit), garantindo paridade entre log formal e campos estruturados
+     * e impedindo punição silenciosa em conflitos causais ou disciplinares irreconciliáveis.
      */
     public static function processMatchEnd(array &$g, array &$m): void {
         if (!empty($m['disciplinary_processed'])) {
@@ -134,12 +165,17 @@ final class MatchDiscipline {
 
         $rules = self::competitionRules($cid);
         $st = $m['stats'] ?? [];
-        $directRed = (int)($st['direct_red'] ?? 0);
-        $secondYellow = (int)($st['second_yellow'] ?? 0);
         $yellows = (int)($st['yellow_cards'] ?? 0);
+        $classification = self::classifyExpulsion($m);
 
-        // 1. Vermelho direto
-        if ($directRed > 0) {
+        // Evidência pendente (conflito causal, de subtipo ou temporal sem prova estruturada independente):
+        // preserva ledger sem punição e NÃO grava disciplinary_processed=true para permitir reconciliação posterior.
+        if ($classification['outcome'] === 'conflict' || !empty($classification['pending_reconciliation'])) {
+            return;
+        }
+
+        // 1. Vermelho direto comprovado (estrutura, log formal ou ambos concordantes)
+        if ($classification['outcome'] === 'direct_red') {
             if (isset($rules['direct_red_suspension'])) {
                 $games = (int)$rules['direct_red_suspension'];
                 if ($games > 0) {
@@ -162,8 +198,8 @@ final class MatchDiscipline {
             return;
         }
 
-        // 2. Segundo amarelo
-        if ($secondYellow > 0) {
+        // 2. Segundo amarelo comprovado (estrutura, log formal ou ambos concordantes)
+        if ($classification['outcome'] === 'second_yellow') {
             if (isset($rules['second_yellow_suspension'])) {
                 $games = (int)$rules['second_yellow_suspension'];
                 if ($games > 0) {
@@ -182,7 +218,20 @@ final class MatchDiscipline {
             return;
         }
 
-        // 3. Acúmulo de cartões amarelos
+        // 3. Expulsão comprovada sem subtipo confiável: não atribui subtipo nem infere pena pelo mínimo de regras
+        if ($classification['outcome'] === 'sent_off_unspecified') {
+            if (!empty($rules['has_disciplinary_code'])) {
+                $disp['regulatory_status'] = 'pending_tribunal';
+                $disp['suspension_reason'] = 'Expulsão sem subtipo especificado — aguardando julgamento desportivo';
+            } else {
+                $disp['regulatory_status'] = 'no_rule_recorded';
+                $disp['suspension_reason'] = 'Expulsão sem subtipo disciplinar especificado e sem regra documentada';
+            }
+            $m['disciplinary_processed'] = true;
+            return;
+        }
+
+        // 4. Acúmulo de cartões amarelos (sem expulsão)
         if ($yellows === 1) {
             $threshold = $rules['yellow_suspension_threshold'] ?? null;
             if ($threshold !== null && $threshold > 0) {
