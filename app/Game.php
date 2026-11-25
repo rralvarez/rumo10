@@ -254,11 +254,12 @@ final class Game {
             $g['market_draw']=TransferInterest::draw($g);$g['offers']=$g['market_draw']['offers'];
             $g['stage']='oferta';$g['feedback']=['text'=>count($g['offers']).' proposta(s) nesta janela. Escolha um clube ou permaneça.'];
         } elseif($action==='transfer' && $g['stage']==='oferta' && in_array($input['accept']??'', ['yes','no'],true)) {
-            $isSchema2=(($g['market_draw']['schema']??1)===2);
+            $isSchema2=(($g['market_draw']['schema']??1)>=2);
             $selected=$isSchema2?null:current(array_filter($g['offers'],fn($o)=>!empty($o['selected'])));
             if($input['accept']==='yes'){
                 if($isSchema2){
-                    $index=filter_var($input['option']??null,FILTER_VALIDATE_INT,['options'=>['min_range'=>0,'max_range'=>2]]);
+                    $maxIdx=max(0,count($g['offers'])-1);
+                    $index=filter_var($input['option']??null,FILTER_VALIDATE_INT,['options'=>['min_range'=>0,'max_range'=>$maxIdx]]);
                     if($index===false||$index===null||!isset($g['offers'][$index]))throw new InvalidArgumentException('Escolha uma proposta válida.');
                     $selected=$g['offers'][$index];
                 } elseif(isset($input['option']) && $input['option']!=='') {
@@ -519,16 +520,9 @@ final class Game {
         $m['log'][]=['minute'=>$next,'text'=>'Placar: '.$m['hg'].' × '.$m['ag'].'.'];
         if($next>=90) {
             $m['stats']['minutes']=MatchParticipation::playedMinutes($m);
-            $s=&$m['stats']; $def=in_array($g['position'],['zagueiro','volante','lateral'],true);
-            $rParams = class_exists('BalanceService') ? BalanceService::params('match.rating') : [];
-            $rBase = (float)($rParams['base'] ?? 6.0);
-            $wGoal = (float)($rParams['w_goal'] ?? 0.70);
-            $wAssist = (float)($rParams['w_assist'] ?? 0.50);
-            $wTackle = $def ? (float)($rParams['w_tackle_def'] ?? 0.35) : (float)($rParams['w_tackle_off'] ?? 0.15);
-            $wPassOk = (float)($rParams['w_pass_ok'] ?? 0.10);
-            $wPassErr = (float)($rParams['w_pass_err'] ?? 0.15);
-            $wCard = (float)($rParams['w_card'] ?? 0.60);
-            $s['rating']=$s['minutes']===0?0:round(max(0,min(10,$rBase+$s['goals']*$wGoal+$s['assists']*$wAssist+$s['tackles']*$wTackle+$s['completed']*$wPassOk-($s['passes']-$s['completed'])*$wPassErr-$s['cards']*$wCard)),1);
+            $s=&$m['stats'];
+            $s['rating']=$s['minutes']===0?0:MatchRating::calculate($m,$g);
+            $s['rating_version']=MatchRating::VERSION;
             $ledgerKey='bal001:confidence:'.$g['season'].':'.($g['competition_id']??'legacy').':'.$m['round'].':'.$m['home'].':'.$m['away'];
             if(!isset($g['reward_ledger'][$ledgerKey])){
                 $postRaw=0;$curConf=$g['states']['confianca'];$r=$s['rating'];
