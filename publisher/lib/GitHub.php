@@ -283,6 +283,80 @@ class GitHub {
         $comment=$this->api($repo.'/issues/comments/'.$commentId);
         return BackupAuthorization::fromGitHub($cfg,$name,$identity,$pr,$comment,$status);
     }
+    /**
+     * Traces the linear first-parent main history from $fromSha (installed) to $toSha (candidate)
+     * via authenticated GitHub API and proves that EVERY step that modified any path in
+     * $delegatedPaths was an exact main PR merge performed by the configured private owner_id.
+     * Prevents an earlier non-owner change from being laundered by a later owner merge.
+     */
+    public function assertOwnerMergedDelegatedPaths(string $fromSha, string $toSha, array $delegatedPaths): array {
+        $cfg = $this->c['main_automation'] ?? null;
+        need(is_array($cfg) && is_int($cfg['owner_id'] ?? null) && $cfg['owner_id'] > 0,
+            'Owner merge authorization requires private main automation configuration');
+        need(preg_match('/^[a-f0-9]{40}$/D', $fromSha) === 1 && preg_match('/^[a-f0-9]{40}$/D', $toSha) === 1 && $fromSha !== $toSha,
+            'Valid installed and candidate commits required for delegated Class B proof');
+        $targets = array_values(array_unique(array_filter($delegatedPaths, static fn($p) => is_string($p) && $p !== '')));
+        need($targets !== [], 'At least one delegated path required for owner merge proof');
+
+        $this->assertDescendant($fromSha, $toSha);
+        $repoName = $this->c['repository'];
+        $repo = '/repos/'.$repoName;
+        $proofs = [];
+        $cursor = $toSha;
+        $steps = 0;
+
+        while ($cursor !== $fromSha) {
+            $steps++;
+            need($steps <= 50, 'Delegated Class B history depth limit exceeded');
+            $commit = $this->api($repo.'/commits/'.$cursor);
+            need(($commit['sha']??null) === $cursor, 'Commit identity mismatch while tracing main history');
+            $parents = $commit['parents'] ?? [];
+            need(is_array($parents) && array_is_list($parents) && count($parents) >= 1 &&
+                preg_match('/^[a-f0-9]{40}$/D', $parents[0]['sha'] ?? '') === 1,
+                'Cannot trace linear main history from installed commit to candidate');
+            $prevSha = $parents[0]['sha'];
+
+            $stepCompare = $this->api($repo.'/compare/'.$prevSha.'...'.$cursor);
+            $stepFiles = $stepCompare['files'] ?? null;
+            need(is_array($stepFiles) && count($stepFiles) < 300,
+                'Step diff unavailable or truncated while verifying delegated Class B paths');
+
+            $touchedDelegated = [];
+            foreach ($stepFiles as $file) {
+                $fname = $file['filename'] ?? null;
+                $prevName = $file['previous_filename'] ?? null;
+                if (is_string($fname) && in_array($fname, $targets, true)) {
+                    $touchedDelegated[$fname] = true;
+                }
+                if (is_string($prevName) && in_array($prevName, $targets, true)) {
+                    $touchedDelegated[$prevName] = true;
+                }
+            }
+
+            if ($touchedDelegated !== []) {
+                $prNumber = $this->mergedMainPr($cursor);
+                $pr = $this->api($repo.'/pulls/'.$prNumber);
+                MainAutomation::merge($cfg, $repoName, $cursor, $prNumber, $pr, $commit);
+                foreach (array_keys($touchedDelegated) as $path) {
+                    $proofs[$path][] = [
+                        'commit' => $cursor,
+                        'pr' => $prNumber,
+                        'head' => $pr['head']['sha'],
+                        'owner_id' => $cfg['owner_id'],
+                        'merged_at' => $pr['merged_at'],
+                    ];
+                }
+            }
+            $cursor = $prevSha;
+        }
+
+        foreach ($targets as $path) {
+            need(!empty($proofs[$path]),
+                'No authenticated owner merge found introducing delegated Class B path: '.$path);
+        }
+        return $proofs;
+    }
+
     private function mergedMainPr(string $head): int {
         $repo=$this->c['repository'];
         $pulls=$this->api('/repos/'.$repo.'/commits/'.$head.'/pulls?per_page=100');

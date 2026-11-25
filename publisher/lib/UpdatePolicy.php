@@ -4,9 +4,25 @@ namespace Rumo\Publisher;
 require_once __DIR__.'/Core.php';
 /** Classifies concrete changed paths. SQL is compatible only by an operator-approved digest. */
 final class UpdatePolicy {
- public static function assess(array $old,array $new,array $policy,array $jobs=[],?string $fromCommit=null,?string $toCommit=null):array {
+ /**
+  * Unconditional Hard Class C paths enforced for EVERY changed file regardless of
+  * whether the path is listed in policy['protected_contract_paths'].
+  * (app/bootstrap.php remains enforced in MainAutomation::HARD_CLASS_C_PATHS / change()
+  * for all automatic main releases without breaking legacy non-main compatible fixtures.)
+  */
+ private const HARD_CLASS_C_LOWER = [
+  'app/database.php','app/repository.php',
+  'app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php',
+  'public/index.php','public/.htaccess'
+ ];
+ private const OWNER_DELEGATION_FORBIDDEN_LOWER = [
+  'app/bootstrap.php','app/database.php','app/repository.php',
+  'app/canonicalidentity.php','app/f01drainer.php','app/f01telemetry.php',
+  'public/index.php','public/.htaccess'
+ ];
+ public static function assess(array $old,array $new,array $policy,array $jobs=[],?string $fromCommit=null,?string $toCommit=null,array $ownerApprovedClassBPaths=[]):array {
   need(($policy['schema']??'')==='rumo-update-policy-v1','Unknown update policy');
-  $class='A';$reasons=[];$changed=[];$migrations=[];
+  $class='A';$reasons=[];$changed=[];$migrations=[];$ownerAuthorized=[];
 
   $transitionKey=($fromCommit!==null&&$toCommit!==null)?"{$fromCommit}:{$toCommit}":null;
   $transition=($transitionKey!==null)?($policy['authorized_transitions'][$transitionKey]??null):null;
@@ -17,6 +33,16 @@ final class UpdatePolicy {
   }
   $allowedProtected=$transition['allowed_protected_paths']??[];
   $allowedDeletions=$transition['allowed_deletions']??[];
+  // Defense-in-depth: Hard Class C paths can NEVER be delegated via $ownerApprovedClassBPaths.
+  $safeOwnerClassB=[];
+  foreach($ownerApprovedClassBPaths as $candidate){
+   if(!is_string($candidate) || $candidate==='' || protectedPath($candidate))continue;
+   if(in_array(strtolower($candidate),self::OWNER_DELEGATION_FORBIDDEN_LOWER,true))continue;
+   if(preg_match('#^(?:publisher|bin|deploy)/#iD',$candidate)===1)continue;
+   if(preg_match('#(?:^|/)(?:\.htaccess|\.user\.ini)$#iD',$candidate)===1)continue;
+   if(preg_match('#^app/.+\.php$#iD',$candidate)!==1)continue;
+   $safeOwnerClassB[]=$candidate;
+  }
 
   foreach(array_unique(array_merge(array_keys($old['files']),array_keys($new['files']))) as $p){
    if(($old['files'][$p]??null)===($new['files'][$p]??null))continue;$changed[]=$p;
@@ -25,6 +51,9 @@ final class UpdatePolicy {
     $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
    }
    if(protectedPath($p)){$class='C';$reasons[]='destructive/protected contract: '.$p;continue;}
+   if(preg_match('#^(?:publisher|bin|deploy)/#iD',$p)===1 || preg_match('#(?:^|/)(?:\.htaccess|\.user\.ini)$#iD',$p)===1){
+    $class='C';$reasons[]='hard protected infrastructure path: '.$p;continue;
+   }
    // The public entrypoint is never a routine deploy path. An exact, private
    // from/to transition must explicitly permit it before Class B assessment.
    if($p==='public/index.php'){
@@ -35,8 +64,18 @@ final class UpdatePolicy {
     }
     continue;
    }
+   // Unconditional Hard Class C enforcement regardless of protected_contract_paths.
+   if(in_array(strtolower($p),self::HARD_CLASS_C_LOWER,true)){
+    if($transition!==null && in_array($p,$allowedProtected,true)){
+     if($class==='A')$class='B';
+    }else{
+     $class='C';$reasons[]='hard protected contract: '.$p;
+    }
+    continue;
+   }
    if(in_array($p,$policy['protected_contract_paths']??[],true)){
     if(in_array($p,$allowedProtected,true)){if($class==='A')$class='B';continue;}
+    if(in_array($p,$safeOwnerClassB,true)){if($class==='A')$class='B';$ownerAuthorized[]=$p;continue;}
     $class='C';$reasons[]='destructive/protected contract: '.$p;continue;
    }
    if(str_starts_with($p,'database/')&&(str_ends_with($p,'.sql')||str_ends_with($p,'.php'))){
@@ -57,7 +96,8 @@ final class UpdatePolicy {
    'requires_full_drain'=>$requiresFullDrain,'compatible_writers_ci'=>$compatible,'transition'=>$transition['label']??null,
    'transition_from'=>$transition!==null?$fromCommit:null,
    'transition_to'=>$transition!==null?$toCommit:null,
-   'authorized_protected_paths'=>$transition!==null?array_values(array_intersect($changed,$allowedProtected)):[]];
+   'authorized_protected_paths'=>$transition!==null?array_values(array_intersect($changed,$allowedProtected)):[],
+   'owner_authorized_protected_paths'=>$ownerAuthorized];
  }
  public static function maintenance(array $receipt,array $policy):void{
   need(($receipt['http_status']??null)===503,'Maintenance HTTP503 required');

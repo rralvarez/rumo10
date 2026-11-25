@@ -6,6 +6,44 @@ require_once __DIR__.'/RequestDrain.php';
 final class MainAutomation {
     public const BACKUP_CONTEXT = 'rumo10/manual-backup';
     public const UI001 = ['commit'=>'fb03b614c337845671cf6cbf1eb36abe01308bfd','run_id'=>43929021873,'artifact_id'=>14257772333];
+    /** Protected domain files that may be promoted to Class B via authenticated owner merge on main (still requiring full drain + affected-file backup; DB backup is owner-managed before merge). */
+    public const OWNER_DELEGABLE_CLASS_B_PATHS = ['app/Retirement.php', 'app/RetiredCareer.php'];
+    /** Hard Class C surfaces that can NEVER be delegated via owner merge alone (always require explicit private authorized_transitions). */
+    public const HARD_CLASS_C_PATHS = [
+        'app/bootstrap.php',
+        'app/database.php',
+        'app/repository.php',
+        'app/canonicalidentity.php',
+        'app/f01drainer.php',
+        'app/f01telemetry.php',
+        'public/index.php',
+        'public/.htaccess',
+    ];
+
+    public static function isHardClassCPath(string $path): bool {
+        if (protectedPath($path)) return true;
+        $lower = strtolower($path);
+        if (in_array($lower, self::HARD_CLASS_C_PATHS, true)) return true;
+        if (preg_match('#^(?:publisher|bin|deploy)/#iD', $path) === 1) return true;
+        if (preg_match('#(?:^|/)(?:\.htaccess|\.user\.ini)$#iD', $path) === 1) return true;
+        return preg_match('#^app/.+\.php$#iD', $path) !== 1;
+    }
+
+    /**
+     * Resolves delegable Class B protected paths exclusively from private receiver config
+     * (never from repository/branch files) and unconditionally rejects any Hard Class C path.
+     */
+    public static function delegableClassBPaths(array $a): array {
+        $configured = $a['owner_authorized_class_b_paths'] ?? self::OWNER_DELEGABLE_CLASS_B_PATHS;
+        need(is_array($configured), 'Invalid private owner_authorized_class_b_paths configuration');
+        $out = [];
+        foreach ($configured as $path) {
+            need(is_string($path) && $path !== '' && !self::isHardClassCPath($path),
+                'Hard Class C path cannot be delegated via owner merge: '.(is_string($path) ? $path : gettype($path)));
+            $out[$path] = true;
+        }
+        return array_keys($out);
+    }
 
     public static function configuration(array $c): void {
         $a=$c['main_automation']??null;
@@ -115,13 +153,13 @@ final class MainAutomation {
             ($v['envelope']['functional_commit']??null)===$v['commit'] &&
             ($assessment['compatible_writers_ci']??false)===true,
             'Automatic release is outside the approved main contract');
-        need(in_array($assessment['class'],['A','B'],true),
-            'Structural change or Class C: separate authorized procedure required');
         foreach($assessment['changed'] as $path){
             need(!preg_match('#^(?:publisher|bin|deploy)/#iD',$path) &&
                 !preg_match('#(?:^|/)(?:\\.htaccess|\\.user\\.ini)$#iD',$path),
                 'Infrastructure change requires a separate authorized procedure');
         }
+        need(in_array($assessment['class'],['A','B'],true),
+            'Structural change or Class C: separate authorized procedure required');
         if($assessment['class']==='A'){
             need($assessment['migrations']===[] && ($assessment['required_migrations']??[])===[], 'Class A cannot contain migrations');
             foreach($assessment['changed'] as $path){
@@ -149,14 +187,23 @@ final class MainAutomation {
     }
 
     public static function proof(array $b,array $v,int $now, string $class = 'B', ?BackupAuthorization $authorization = null): void {
-        if ($class === 'A') {
-            // Class A is already constrained by the verified transition policy:
-            // no database migrations, no protected entrypoint, ordinary code/assets.
-            // The owner performs any manual backup before approving a merge.
-            // The receiver MUST NOT request another backup or backup evidence.
+        need(in_array($class, ['A', 'B'], true), 'Unknown database backup policy');
+        // Official policy (24/11/2026 addenda): full MySQL database backup, retention and
+        // full restore are the owner's responsibility, executed manually BEFORE merge.
+        // Automatic Class A and Class B publications do NOT execute or demand DB dumps,
+        // and must NEVER simulate dump receipts or declare unexecuted DB exports.
+        if ($b === []) {
             return;
         }
-        need($class === 'B', 'Unknown database backup policy');
+        if (($b['policy'] ?? null) === 'operator-managed-before-merge' || ($b['mode'] ?? null) === 'local-files-only') {
+            need(($b['database_exported'] ?? null) === false,
+                'Local-files backup receipt must not declare a database export');
+            need(is_array($b['files'] ?? null) && $b['files'] !== [],
+                'Local file backup inventory required');
+            need(!isset($b['dump_sha256']) && !isset($b['restored_dump_sha256']) && !isset($b['consistent']),
+                'Simulated database dump fields refused in local-files receipt');
+            return;
+        }
         $at=$b['created_at']??$b['restored_at']??null;
         need(is_int($at) && $at<=$now && $now-$at<1800 &&
             ($b['package_sha256']??null)===$v['package_sha256'] &&

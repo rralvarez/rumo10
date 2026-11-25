@@ -222,13 +222,21 @@ def main(root):
         policy["authorized_releases"][commit] = dict(runtime_inventory_sha256=sha(json.dumps(fs,sort_keys=True,separators=(",",":")).encode()),
              authorized_build_commits=[commit], mandatory_files={}, requires_migration=[])
     put(cfg_path,cfg)
+    # Under official policy (24/11/2026 addenda), full DB backup is performed manually
+    # by the owner before merge. Class B publishes with full drain + affected-file backup
+    # and NEVER invokes automatic DB preflight/dump or demands post-merge backup comments.
     fail.touch()
-    call("automatic",protected,1,"Hook failed: backup")
-    assert not (gate/"closed.json").exists() and not (roots["control"]/"deployment.lock").exists()
+    call("automatic",{**protected,"statuses":[],"comment":{**protected["comment"],"body":"Owner pre-merge backup policy"}})
     fail.unlink()
-    call("automatic",protected)
-    assert "backup:default" in trace.read_text()
-    print("Class B with no migrations: preflight rejection kept gate open, then real SQLite backup PASS")
+    assert load(roots["private"]/"installed.json")["commit"]=="e"*40
+    assert "backup:" not in trace.read_text()
+    assert "maintenance:verify-and-drain" in trace.read_text()
+    journal_b = load(roots["private"]/"journal.json")
+    assert journal_b["backup_policy"] == "operator-managed-before-merge"
+    assert journal_b["backup_receipt"]["mode"] == "local-files-only"
+    assert journal_b["backup_receipt"]["database_exported"] is False
+    assert "dump_sha256" not in journal_b["backup_receipt"]
+    print("Class B publishes with full drain + local file backup and NO automatic DB dump/preflight PASS")
 
     fault.touch()
     fourth = release(root, "fourth","e"*40,"1"*40,11,666,777,5,{**b_content,"app/view.php":b"<?php // interrupted"},"2"*40)

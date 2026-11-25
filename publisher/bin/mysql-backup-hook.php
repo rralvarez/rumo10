@@ -2,8 +2,371 @@
 declare(strict_types=1);
 // Isolated restore provider. UOL enablement requires administrative validation.
 // Restore target MUST be a separate isolated server, never the operational MySQL.
-require_once dirname(__DIR__).'/lib/Core.php';
+// Resolve Core.php from V9 single-file pointer (runtime-active.json) when present, falling back to lib/Core.php.
+$hookRoot = dirname(__DIR__);
+$hookCore = $hookRoot.'/lib/Core.php';
+$hookPtr = $hookRoot.'/runtime-active.json';
+if (is_file($hookPtr) && !is_link($hookPtr)) {
+    $ptrData = json_decode((string)file_get_contents($hookPtr), true);
+    if (is_array($ptrData) && is_string($ptrData['active'] ?? null) && preg_match('/^[A-Za-z0-9_.-]+$/D', $ptrData['active']) === 1) {
+        $hookCore = $hookRoot.'/runtime/'.$ptrData['active'].'/Core.php';
+    }
+}
+require_once $hookCore;
 use function Rumo\Publisher\{need,json,digest,record};
+
+if (!function_exists('rumoParseDbServerVersion')) {
+ function rumoParseDbServerVersion(string $versionStr, string $versionComment = ''): array {
+  $isMariaDB = (stripos($versionStr, 'MariaDB') !== false || stripos($versionComment, 'MariaDB') !== false);
+  $major = 0; $minor = 0; $patch = 0;
+  if (preg_match('/^(\d+)\.(\d+)\.(\d+)/', trim($versionStr), $m) === 1) {
+   $major = (int)$m[1];
+   $minor = (int)$m[2];
+   $patch = (int)$m[3];
+  }
+  return [
+   'engine' => $isMariaDB ? 'mariadb' : 'mysql',
+   'is_mariadb' => $isMariaDB,
+   'raw' => $versionStr,
+   'comment' => $versionComment,
+   'major' => $major,
+   'minor' => $minor,
+   'patch' => $patch,
+   'normalized' => "{$major}.{$minor}.{$patch}",
+  ];
+ }
+
+ function rumoUnescapeGrantIdentifier(string $raw): string {
+  $id = trim($raw);
+  if (strlen($id) >= 2 && $id[0] === '`' && $id[strlen($id) - 1] === '`') {
+   $id = str_replace('``', '`', substr($id, 1, -1));
+  }
+  return str_replace(['\\_', '\\%'], ['_', '%'], $id);
+ }
+
+ function rumoParseShowGrantLine(string $grantLine): ?array {
+  if (preg_match('/^\s*(GRANT|REVOKE)\s+(.+?)\s+ON\s+(?:(?:PROCEDURE|FUNCTION)\s+)?(.+?)\s+(TO|FROM)\s+/i', $grantLine, $m) !== 1) {
+   return null;
+  }
+  $verb = strtoupper($m[1]);
+  $direction = strtoupper($m[4]);
+  if (($verb === 'GRANT' && $direction !== 'TO') || ($verb === 'REVOKE' && $direction !== 'FROM')) {
+   return null;
+  }
+  $privs = [];
+  foreach (explode(',', $m[2]) as $token) {
+   $p = preg_replace('/\s+/', ' ', strtoupper(trim($token)));
+   if ($p !== '') $privs[$p] = true;
+  }
+  $target = trim($m[3]);
+  if ($target === '*.*') {
+   return ['verb' => $verb, 'privs' => $privs, 'scope' => 'global', 'schema' => '*', 'object' => '*'];
+  }
+  if (preg_match('/^(`(?:[^`]|``)+`|[a-zA-Z0-9_\\\\$-]+)\s*\.\s*(`(?:[^`]|``)+`|\*|[a-zA-Z0-9_$-]+)$/', $target, $tm) !== 1) {
+   return null;
+  }
+  $schema = rumoUnescapeGrantIdentifier($tm[1]);
+  $object = rumoUnescapeGrantIdentifier($tm[2]);
+  $scope = ($object === '*') ? 'schema' : 'object';
+  return ['verb' => $verb, 'privs' => $privs, 'scope' => $scope, 'schema' => $schema, 'object' => $object];
+ }
+
+ /**
+  * Evaluates effective MySQL/MariaDB privileges from SHOW GRANTS, properly handling
+  * escaped schema names AND partial REVOKE lines.
+  * Separates:
+  * - routine_inventory_provable: can prove complete routine count (MySQL 8.0.20+: SHOW_ROUTINE or global SELECT)
+  * - routine_export_supported: satisfies mysqldump --routines contract (MySQL 8: global SELECT without partial revoke;
+  *   MariaDB / MySQL 5.x: global SELECT or SELECT on mysql.proc without revoke).
+  */
+ function rumoEvaluateMysqlPrivileges(array $grantLines, string $dbName, string $versionStr, string $versionComment = ''): array {
+  $server = rumoParseDbServerVersion($versionStr, $versionComment);
+  $dbLower = strtolower($dbName);
+  $isMariaDB = $server['is_mariadb'];
+  $isMysql8Plus = !$isMariaDB && $server['major'] >= 8;
+  $supportsShowRoutine = !$isMariaDB && ($server['major'] > 8 || ($server['major'] === 8 && ($server['minor'] > 0 || $server['patch'] >= 20)));
+
+  $schemaTracked = ['TRIGGER', 'EVENT', 'CREATE ROUTINE', 'ALTER ROUTINE', 'EXECUTE', 'LOCK TABLES', 'SHOW VIEW'];
+  $granted = [];
+  $revoked = [];
+  $globalSelectGranted = false;
+  $selectRevoked = false;
+  $showRoutineGranted = false;
+  $showRoutineRevoked = false;
+  $mysqlProcSelectGranted = false;
+  $mysqlProcSelectRevoked = false;
+
+  foreach ($grantLines as $rawLine) {
+   $parsed = rumoParseShowGrantLine((string)$rawLine);
+   if ($parsed === null) continue;
+   $isGrant = ($parsed['verb'] === 'GRANT');
+   $privs = $parsed['privs'];
+   $all = isset($privs['ALL PRIVILEGES']) || isset($privs['ALL']);
+   $isGlobal = ($parsed['scope'] === 'global');
+   $isTargetSchema = ($parsed['scope'] === 'schema' && strtolower($parsed['schema']) === $dbLower);
+   $isMysqlProc = (strtolower($parsed['schema']) === 'mysql' && ($parsed['object'] === '*' || strtolower($parsed['object']) === 'proc'));
+
+   if ($isGlobal || $isTargetSchema) {
+    $relevant = $all ? $schemaTracked : array_values(array_intersect($schemaTracked, array_keys($privs)));
+    foreach ($relevant as $p) {
+     if ($isGrant) $granted[$p] = true;
+     else $revoked[$p] = true;
+    }
+    // Global SELECT (required by Oracle mysqldump --routines) is invalidated by ANY REVOKE SELECT/ALL on global or target schema.
+    if ($isGrant && $isGlobal && ($all || isset($privs['SELECT']))) {
+     $globalSelectGranted = true;
+    }
+    if (!$isGrant && ($all || isset($privs['SELECT']))) {
+     $selectRevoked = true;
+    }
+    // SHOW_ROUTINE is a dynamic global privilege (NOT implied by ALL PRIVILEGES).
+    if ($isGlobal && ($supportsShowRoutine || $isMariaDB) && (isset($privs['SHOW_ROUTINE']) || isset($privs['SHOW ROUTINE']))) {
+     if ($isGrant) $showRoutineGranted = true;
+     else $showRoutineRevoked = true;
+    }
+   }
+
+   if (!$isMysql8Plus && ($isGlobal || $isMysqlProc)) {
+    if ($isGrant && ($all || isset($privs['SELECT']))) {
+     $mysqlProcSelectGranted = true;
+    }
+    if (!$isGrant && ($all || isset($privs['SELECT']))) {
+     $mysqlProcSelectRevoked = true;
+    }
+   }
+  }
+
+  $effective = array_diff_key($granted, $revoked);
+  $hasGlobalSelect = $globalSelectGranted && !$selectRevoked;
+  $hasShowRoutine = $showRoutineGranted && !$showRoutineRevoked;
+  $hasSchemaExecute = isset($effective['EXECUTE']);
+  $hasMysqlProcSelect = !$isMysql8Plus && $mysqlProcSelectGranted && !$mysqlProcSelectRevoked;
+
+  if ($isMysql8Plus) {
+   // Official MySQL 8.0 docs: schema-level EXECUTE grants full visibility of information_schema.ROUTINES
+   // for that schema (inventory), while mysqldump --routines still requires global SELECT for definitions.
+   $routineInventoryProvable = $hasGlobalSelect || ($supportsShowRoutine && $hasShowRoutine) || $hasSchemaExecute;
+   $routineExportSupported = $hasGlobalSelect;
+   $routinePrivBasis = $hasGlobalSelect
+    ? 'global:SELECT'
+    : (($supportsShowRoutine && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : ($hasSchemaExecute ? 'schema:EXECUTE' : 'none'));
+  } else {
+   $routineInventoryProvable = $hasGlobalSelect || $hasMysqlProcSelect || ($isMariaDB && $hasShowRoutine) || $hasSchemaExecute;
+   $routineExportSupported = $hasGlobalSelect || $hasMysqlProcSelect;
+   $routinePrivBasis = $hasGlobalSelect
+    ? 'global:SELECT'
+    : ($hasMysqlProcSelect ? 'mysql.proc:SELECT' : (($isMariaDB && $hasShowRoutine) ? 'global:SHOW_ROUTINE' : ($hasSchemaExecute ? 'schema:EXECUTE' : 'none')));
+  }
+
+  return [
+   'server' => $server,
+   'effective_privileges' => $effective,
+   'has_global_select' => $hasGlobalSelect,
+   'has_show_routine' => $hasShowRoutine,
+   'has_schema_execute' => $hasSchemaExecute,
+   'has_trigger_priv' => isset($effective['TRIGGER']),
+   'has_event_priv' => isset($effective['EVENT']),
+   'routine_inventory_provable' => $routineInventoryProvable,
+   'routine_export_supported' => $routineExportSupported,
+   'has_routine_definition_priv' => $routineExportSupported,
+   'routine_priv_basis' => $routinePrivBasis,
+   'has_schema_routine_ddl_only' => (isset($effective['CREATE ROUTINE']) || isset($effective['ALTER ROUTINE'])) && !$routineInventoryProvable,
+   'has_lock_tables_priv' => isset($effective['LOCK TABLES']),
+   'has_show_view_priv' => isset($effective['SHOW VIEW']),
+  ];
+ }
+
+ function rumoCanProceedWithRoutines(array $privEval, int $routineCount): bool {
+  if ($privEval['routine_export_supported'] === true) return true;
+  // Schema-level EXECUTE or global SHOW_ROUTINE proves inventory completeness when zero routines exist;
+  // exporting actual routines via mysqldump --routines requires global SELECT (or mysql.proc SELECT on MariaDB/5.x).
+  return ($privEval['routine_inventory_provable'] === true) && $routineCount === 0;
+ }
+
+ function rumoAssertStableInventorySnapshot(array $before, array $after): void {
+  need($before === $after, 'Concurrent DDL detected during database dump: inventory changed between pre-dump and post-dump verification');
+ }
+
+ function rumoSanitizeSubprocessStderr(string $errText): string {
+  $clean = preg_replace('/password\s*=\s*[^\s\'"]+/i', 'password=[REDACTED]', $errText);
+  $clean = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-\.]+/i', '$1 [REDACTED]', (string)$clean);
+  return trim((string)$clean);
+ }
+
+ function rumoResolveDumpTimeoutSeconds(array $profile, array $request = []): int {
+  $raw = $profile['dump_timeout_seconds'] ?? $request['dump_timeout_seconds'] ?? 300;
+  $timeout = is_int($raw) ? $raw : (is_numeric($raw) ? (int)$raw : 300);
+  if ($timeout < 10) $timeout = 10;
+  if ($timeout > 900) $timeout = 900;
+  $supRaw = $profile['supervisor_timeout_seconds'] ?? $request['hook_timeout_seconds'] ?? null;
+  if (is_int($supRaw) && $supRaw >= 30) {
+   $maxSafe = max(10, $supRaw - 15);
+   if ($timeout > $maxSafe) $timeout = $maxSafe;
+  }
+  return $timeout;
+ }
+
+ /**
+  * Pure classification of subprocess termination outcome so both live proc_open runs
+  * and unit tests share the exact same fail-closed decision matrix.
+  */
+ function rumoClassifySubprocessOutcome(
+  bool $timedOut,
+  bool $signaled,
+  int $termsig,
+  ?int $statusExitCode,
+  int $closeExitCode
+ ): array {
+  $exitCode = ($statusExitCode !== null && $statusExitCode >= 0)
+   ? $statusExitCode
+   : ($closeExitCode >= 0 ? $closeExitCode : -1);
+
+  if ($timedOut) {
+   return ['ok' => false, 'reason' => 'timeout', 'exit_code' => $exitCode, 'signaled' => $signaled, 'termsig' => $termsig];
+  }
+  if ($signaled) {
+   return ['ok' => false, 'reason' => 'signaled', 'exit_code' => $exitCode, 'signaled' => true, 'termsig' => $termsig];
+  }
+  if ($exitCode < 0) {
+   return ['ok' => false, 'reason' => 'exit_code_unavailable', 'exit_code' => -1, 'signaled' => false, 'termsig' => 0];
+  }
+  if ($exitCode !== 0) {
+   return ['ok' => false, 'reason' => 'non_zero_exit', 'exit_code' => $exitCode, 'signaled' => false, 'termsig' => 0];
+  }
+  return ['ok' => true, 'reason' => 'ok', 'exit_code' => 0, 'signaled' => false, 'termsig' => 0];
+ }
+
+ function rumoRunBackupSubprocess(
+  array $cmd,
+  string $inPath,
+  string $outPath,
+  string $errPath,
+  int $timeoutSeconds,
+  string $phase = 'source-dump',
+  ?string $logDir = null,
+  ?callable $onStarted = null
+ ): array {
+  $startedAt = microtime(true);
+  $p = proc_open($cmd, [0 => ['file', $inPath, 'rb'], 1 => ['file', $outPath, 'wb'], 2 => ['file', $errPath, 'wb']], $pipes);
+  need(is_resource($p), 'Backup command unavailable');
+
+  $initialStatus = proc_get_status($p);
+  if ($onStarted !== null && is_int($initialStatus['pid'] ?? null)) {
+   $onStarted($p, $initialStatus['pid']);
+  }
+
+  $deadline = $startedAt + max(1, $timeoutSeconds);
+  $timedOut = false;
+  $statusExit = null;
+  $signaled = false;
+  $termsig = 0;
+
+  while (true) {
+   $s = proc_get_status($p);
+   if (!$s['running']) {
+    $statusExit = is_int($s['exitcode'] ?? null) ? $s['exitcode'] : -1;
+    $signaled = (bool)($s['signaled'] ?? false);
+    $termsig = (int)($s['termsig'] ?? 0);
+    break;
+   }
+   if (microtime(true) >= $deadline) {
+    $timedOut = true;
+    @proc_terminate($p);
+    $graceEnd = microtime(true) + 3.0;
+    while (microtime(true) < $graceEnd) {
+     $gs = proc_get_status($p);
+     if (!$gs['running']) {
+      $statusExit = is_int($gs['exitcode'] ?? null) ? $gs['exitcode'] : -1;
+      $signaled = (bool)($gs['signaled'] ?? false);
+      $termsig = (int)($gs['termsig'] ?? 0);
+      break;
+     }
+     usleep(50000);
+    }
+    $afterGrace = proc_get_status($p);
+    if ($afterGrace['running']) {
+     @proc_terminate($p, 9);
+     usleep(100000);
+     $ks = proc_get_status($p);
+     $statusExit = is_int($ks['exitcode'] ?? null) ? $ks['exitcode'] : -1;
+     $signaled = (bool)($ks['signaled'] ?? false);
+     $termsig = (int)($ks['termsig'] ?? 0);
+    }
+    break;
+   }
+   usleep(50000);
+  }
+
+  $closeExit = proc_close($p);
+  $durationSeconds = round(microtime(true) - $startedAt, 3);
+  clearstatcache(true, $outPath);
+  $isNullOut = ($outPath === 'NUL' || $outPath === '/dev/null');
+  $outputBytes = (!$isNullOut && is_file($outPath)) ? (int)filesize($outPath) : 0;
+
+  $rawErr = is_file($errPath) ? (string)file_get_contents($errPath) : '';
+  if (is_file($errPath)) @unlink($errPath);
+  $cleanErr = rumoSanitizeSubprocessStderr($rawErr);
+
+  $outcome = rumoClassifySubprocessOutcome($timedOut, $signaled, $termsig, $statusExit, $closeExit);
+  $result = $outcome + [
+   'duration_seconds' => $durationSeconds,
+   'output_bytes' => $outputBytes,
+   'timeout_seconds' => $timeoutSeconds,
+   'status_exit_code' => $statusExit,
+   'close_exit_code' => $closeExit,
+   'stderr' => $cleanErr,
+  ];
+
+  if (!$outcome['ok']) {
+   $logPayload = date('c')
+    . " | Phase: {$phase} | Reason: {$outcome['reason']} | Exit: {$outcome['exit_code']}"
+    . " | StatusExit: " . ($statusExit ?? 'null') . " | CloseExit: {$closeExit}"
+    . " | Signal: {$outcome['termsig']} | Duration: {$durationSeconds}s | Timeout: {$timeoutSeconds}s | OutputBytes: {$outputBytes}\n"
+    . ($cleanErr !== '' ? $cleanErr : '(empty stderr)') . "\n"
+    . str_repeat('-', 60) . "\n";
+   if ($logDir !== null && is_dir($logDir)) {
+    @file_put_contents($logDir . '/backup-last-error.log', $logPayload, FILE_APPEND);
+    if (PHP_OS_FAMILY !== 'Windows') @chmod($logDir . '/backup-last-error.log', 0600);
+   }
+
+   $firstLine = $cleanErr !== '' ? (explode("\n", $cleanErr)[0] ?? '') : '';
+   $errSuffix = $firstLine !== '' ? ': ' . $firstLine . ($cleanErr !== $firstLine ? ' | ' . substr($cleanErr, 0, 400) : '') : '';
+
+   if ($outcome['reason'] === 'timeout') {
+    throw new \RuntimeException("mysqldump timed out after {$durationSeconds}s (limit {$timeoutSeconds}s, output {$outputBytes} bytes){$errSuffix}");
+   }
+   if ($outcome['reason'] === 'signaled') {
+    throw new \RuntimeException("mysqldump terminated by signal {$outcome['termsig']} after {$durationSeconds}s (output {$outputBytes} bytes){$errSuffix}");
+   }
+   if ($outcome['reason'] === 'exit_code_unavailable') {
+    throw new \RuntimeException("mysqldump exit code unavailable after {$durationSeconds}s (status=" . ($statusExit ?? 'null') . ", close={$closeExit}, output {$outputBytes} bytes){$errSuffix}");
+   }
+   throw new \RuntimeException("mysqldump failed (code {$outcome['exit_code']}, duration {$durationSeconds}s, output {$outputBytes} bytes){$errSuffix}");
+  }
+
+  return $result;
+ }
+
+ function rumoRoutinePrivilegeRequirementMessage(array $server, string $dbName, bool $routinesPresent = false): string {
+  if ($routinesPresent) {
+   if ($server['is_mariadb']) {
+    return "Há rotinas em '{$dbName}': MariaDB ({$server['raw']}) exige 'SELECT' em `mysql`.`proc` ou 'SELECT' global ON *.* (sem revogação parcial) para exportar definições via mysqldump --routines.";
+   }
+   return "Há rotinas em '{$dbName}': o caminho mysqldump --routines no MySQL {$server['raw']} exige 'SELECT' global ON *.* (sem revogação parcial) ou um exportador de definições validado. 'SHOW_ROUTINE' sozinho comprova o inventário, mas não atende o requisito documentado do mysqldump --routines.";
+  }
+  if ($server['is_mariadb']) {
+   return "Inventário de rotinas MariaDB ({$server['raw']}) sem visibilidade comprovada em '{$dbName}': requer 'SELECT' em `mysql`.`proc` ou 'SELECT' global ON *.* (sem revogação parcial). 'CREATE ROUTINE', 'ALTER ROUTINE' e 'ALL PRIVILEGES ON `{$dbName}`.*' são insuficientes.";
+  }
+  if ($server['major'] > 8 || ($server['major'] === 8 && ($server['minor'] > 0 || $server['patch'] >= 20))) {
+   return "Inventário de rotinas MySQL {$server['raw']} sem visibilidade comprovada em '{$dbName}': requer 'SHOW_ROUTINE' ou 'SELECT' explicitamente global ON *.* (sem revogação parcial). 'CREATE ROUTINE', 'ALTER ROUTINE', 'EXECUTE' e 'ALL PRIVILEGES ON `{$dbName}`.*' são insuficientes.";
+  }
+  return "Inventário de rotinas MySQL {$server['raw']} sem visibilidade comprovada em '{$dbName}': requer 'SELECT' global ON *.* (ou 'SELECT' em `mysql`.`proc` no MySQL 5.x), sem revogação parcial.";
+ }
+}
+
+if (defined('RUMO_BACKUP_HOOK_LIB_ONLY') && RUMO_BACKUP_HOOK_LIB_ONLY === true) {
+ return;
+}
 $phase='profile';
 $tempDefaults=null;
 try {
@@ -183,14 +546,14 @@ try {
  }
 
  // Adaptive options detection: MariaDB vs MySQL, user grants and schema objects
- $isMariaDB = false;
+ $vStr = '';
+ $vComment = '';
  try {
   $vStr = (string)$source->query('SELECT VERSION()')->fetchColumn();
   $vComment = (string)$source->query('SELECT @@version_comment')->fetchColumn();
-  if (stripos($vStr, 'MariaDB') !== false || stripos($vComment, 'MariaDB') !== false) {
-   $isMariaDB = true;
-  }
  } catch (\Throwable) {}
+ $serverInfo = rumoParseDbServerVersion($vStr, $vComment);
+ $isMariaDB = $serverInfo['is_mariadb'];
 
  $phase='dump-bin-discovery';
  $dumpBin = $c['dump_bin'] ?? null;
@@ -224,43 +587,21 @@ try {
  $supportsSkipNoData = str_contains($binHelp, 'no-data');
 
  // Privilege verification: Do NOT infer absence of objects from zero visible objects
- $hasAllPrivOnDb = false;
- $hasTriggerPriv = false;
- $hasEventPriv = false;
- $hasRoutinePriv = false;
- $hasLockTablesPriv = false;
- $hasShowViewPriv = false;
-
+ $grantLines = [];
  try {
   $stmt = $source->query('SHOW GRANTS');
   while ($row = $stmt->fetchColumn()) {
-   $line = strtoupper((string)$row);
-   $appliesToDb = str_contains($line, 'ON *.*') || 
-                  str_contains($line, 'ON `' . strtoupper($name) . '`.*') ||
-                  str_contains($line, 'ON ' . strtoupper($name) . '.*');
-
-   if ($appliesToDb) {
-    if (str_contains($line, 'ALL PRIVILEGES')) {
-     $hasAllPrivOnDb = true;
-     $hasTriggerPriv = true;
-     $hasEventPriv = true;
-     $hasRoutinePriv = true;
-     $hasLockTablesPriv = true;
-     $hasShowViewPriv = true;
-    }
-    if (str_contains($line, 'TRIGGER')) $hasTriggerPriv = true;
-    if (str_contains($line, 'EVENT')) $hasEventPriv = true;
-    // Routine export requires CREATE ROUTINE, ALTER ROUTINE, SHOW_ROUTINE or ALL PRIVILEGES. EXECUTE is insufficient!
-    if (str_contains($line, 'CREATE ROUTINE') || str_contains($line, 'ALTER ROUTINE') || str_contains($line, 'SHOW_ROUTINE') || str_contains($line, 'ROUTINE')) {
-     $hasRoutinePriv = true;
-    }
-    if (str_contains($line, 'LOCK TABLES')) $hasLockTablesPriv = true;
-    if (str_contains($line, 'SHOW VIEW')) $hasShowViewPriv = true;
-   }
+   $grantLines[] = (string)$row;
   }
  } catch (\Throwable $e) {
   throw new \RuntimeException('Cannot verify user grants via SHOW GRANTS: ' . $e->getMessage());
  }
+
+ $privEval = rumoEvaluateMysqlPrivileges($grantLines, $name, $vStr, $vComment);
+ $hasTriggerPriv = $privEval['has_trigger_priv'];
+ $hasEventPriv = $privEval['has_event_priv'];
+ $hasLockTablesPriv = $privEval['has_lock_tables_priv'];
+ $hasShowViewPriv = $privEval['has_show_view_priv'];
 
  // Strict fail-closed: if the account lacks privileges to prove inventory integrity, declare the specific dependency
  if (!$hasTriggerPriv) {
@@ -269,22 +610,37 @@ try {
  if (!$hasEventPriv) {
   throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui o privilégio 'EVENT' no database '{$name}' (nem 'ALL PRIVILEGES'). Sem essa permissão, o inventário de eventos é filtrado pelo MySQL/MariaDB e a integridade da exportação não pode ser comprovada.");
  }
- if (!$hasRoutinePriv) {
-  throw new \RuntimeException("Dependência de privilégio não atendida: o usuário do banco de dados não possui privilégios para exportação de rotinas ('CREATE ROUTINE', 'ALTER ROUTINE', 'SHOW_ROUTINE' ou 'ALL PRIVILEGES') no database '{$name}'. O privilégio 'EXECUTE' é insuficiente para comprovar e exportar o código-fonte de rotinas.");
+ if (!$privEval['routine_inventory_provable']) {
+  // Fail-closed: static absence attestations are NOT accepted as a permanent guarantee
+  // without a live server-side mechanism that prevents or detects subsequent routine changes.
+  throw new \RuntimeException(rumoRoutinePrivilegeRequirementMessage($serverInfo, $name, false));
  }
 
- // Proven inventory counts (guaranteed complete because privileges were verified above)
- $evStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ?");
- $evStmt->execute([$name]);
- $evCount = (int)$evStmt->fetchColumn();
+ // Proven inventory counts (triggers, events and routine inventory visibility verified above)
+ $readInventorySnapshot = static function () use ($source, $name): array {
+  $evStmt = $source->prepare("SELECT EVENT_NAME FROM information_schema.EVENTS WHERE EVENT_SCHEMA = ? ORDER BY EVENT_NAME");
+  $evStmt->execute([$name]);
+  $events = $evStmt->fetchAll(\PDO::FETCH_COLUMN);
 
- $rtStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ?");
- $rtStmt->execute([$name]);
- $rtCount = (int)$rtStmt->fetchColumn();
+  $rtStmt = $source->prepare("SELECT CONCAT(ROUTINE_TYPE, ':', ROUTINE_NAME) FROM information_schema.ROUTINES WHERE ROUTINE_SCHEMA = ? ORDER BY ROUTINE_TYPE, ROUTINE_NAME");
+  $rtStmt->execute([$name]);
+  $routines = $rtStmt->fetchAll(\PDO::FETCH_COLUMN);
 
- $trStmt = $source->prepare("SELECT COUNT(*) FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = ?");
- $trStmt->execute([$name]);
- $trCount = (int)$trStmt->fetchColumn();
+  $trStmt = $source->prepare("SELECT TRIGGER_NAME FROM information_schema.TRIGGERS WHERE TRIGGER_SCHEMA = ? ORDER BY TRIGGER_NAME");
+  $trStmt->execute([$name]);
+  $triggers = $trStmt->fetchAll(\PDO::FETCH_COLUMN);
+
+  return ['events' => $events, 'routines' => $routines, 'triggers' => $triggers];
+ };
+ $preDumpInventory = $readInventorySnapshot();
+ $evCount = count($preDumpInventory['events']);
+ $rtCount = count($preDumpInventory['routines']);
+ $trCount = count($preDumpInventory['triggers']);
+
+ if (!rumoCanProceedWithRoutines($privEval, $rtCount)) {
+  throw new \RuntimeException(rumoRoutinePrivilegeRequirementMessage($serverInfo, $name, true));
+ }
+ $routineVerificationMode = $privEval['routine_export_supported'] ? 'effective_export_privilege' : 'inventory_verified_zero_routines';
 
  $views = [];
  try {
@@ -333,39 +689,12 @@ try {
  }
 
  // Credentials are NEVER command-line values; option files are outside web roots.
- $run = static function(array $cmd, string $in, string $out) use (&$phase, $privateBase, $secureTempDir): void {
+ $dumpTimeoutSeconds = rumoResolveDumpTimeoutSeconds($c, $r);
+ $lastRunMetrics = null;
+ $run = static function(array $cmd, string $in, string $out) use (&$phase, &$lastRunMetrics, $privateBase, $secureTempDir, $dumpTimeoutSeconds): array {
   $errPath = $secureTempDir . '/bk-err-' . bin2hex(random_bytes(6)) . '.log';
-  $p = proc_open($cmd, [0 => ['file', $in, 'rb'], 1 => ['file', $out, 'wb'], 2 => ['file', $errPath, 'wb']], $pipes);
-  need(is_resource($p), 'Backup command unavailable');
-  $end = microtime(true) + 300;
-  $exit = -1;
-  do {
-   $s = proc_get_status($p);
-   if (!$s['running']) {
-    $exit = $s['exitcode'];
-    break;
-   }
-   if (microtime(true) > $end) {
-    proc_terminate($p);
-    break;
-   }
-   usleep(100000);
-  } while (true);
-  proc_close($p);
-  $errText = is_file($errPath) ? trim(file_get_contents($errPath)) : '';
-  if (is_file($errPath)) @unlink($errPath);
-  if ($exit !== 0) {
-   $clean = preg_replace('/password=[^\s]+/i', 'password=[REDACTED]', $errText);
-   $clean = preg_replace('/(token|bearer)\s+[a-zA-Z0-9_\-]+/i', '$1 [REDACTED]', $clean);
-   $logPayload = date('c') . " | Phase: {$phase} | Exit: {$exit}\n" . $clean . "\n" . str_repeat('-', 60) . "\n";
-   if (is_dir($privateBase)) {
-    @file_put_contents($privateBase . '/backup-last-error.log', $logPayload, FILE_APPEND);
-    @chmod($privateBase . '/backup-last-error.log', 0600);
-   }
-
-   $firstLine = explode("\n", $clean)[0] ?? 'unknown mysqldump error';
-   throw new \RuntimeException('mysqldump failed (code ' . $exit . '): ' . $firstLine . ($clean !== $firstLine ? ' | ' . substr($clean, 0, 500) : ''));
-  }
+  $lastRunMetrics = rumoRunBackupSubprocess($cmd, $in, $out, $errPath, $dumpTimeoutSeconds, $phase, $privateBase);
+  return $lastRunMetrics;
  };
  $null = PHP_OS_FAMILY === 'Windows' ? 'NUL' : '/dev/null';
 
@@ -395,6 +724,8 @@ try {
   $run($dryCmd, $null, $dryDump);
   // Evidence-based validation of test dump completeness across MySQL 8 and MariaDB 10
   validateDumpCompleteness($dryDump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  // Post-dump inventory check: detect concurrent DDL changes (routines/triggers/events) during dump
+  rumoAssertStableInventorySnapshot($preDumpInventory, $readInventorySnapshot());
   if (is_file($dryDump)) @unlink($dryDump);
   if ($tempDefaults !== null && is_file($tempDefaults)) {
    @unlink($tempDefaults);
@@ -417,10 +748,16 @@ try {
    'is_mariadb' => $isMariaDB,
    'events_count' => $evCount,
    'routines_count' => $rtCount,
+   'routine_verification_mode' => $routineVerificationMode,
+   'routine_priv_basis' => $privEval['routine_priv_basis'],
    'triggers_count' => $trCount,
    'views_count' => count($views),
    'full_data_tested' => true,
    'dry_run_success' => true,
+   'dump_timeout_seconds' => $dumpTimeoutSeconds,
+   'dump_duration_seconds' => $lastRunMetrics['duration_seconds'] ?? null,
+   'dump_output_bytes' => $lastRunMetrics['output_bytes'] ?? null,
+   'dump_exit_code' => $lastRunMetrics['exit_code'] ?? null,
   ], JSON_THROW_ON_ERROR);
   exit(0);
  }
@@ -450,6 +787,7 @@ try {
   $run(array_merge([$c['dump_bin'],'--defaults-file='.$c['source_mysql_defaults']],$options,[$name]),$null,$dump);
   need(filesize($dump)>0,'Empty database backup');
   validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  rumoAssertStableInventorySnapshot($preDumpInventory, $readInventorySnapshot());
   chmod($dump,0600);
 
   $phase='isolated-import';
@@ -471,6 +809,7 @@ try {
   $run(array_merge($dumpCmd, $options, [$name]), $null, $dump);
   need(is_file($dump) && filesize($dump) > 0, 'Empty database backup');
   validateDumpCompleteness($dump, $tables, $views, $trCount, $rtCount, $evCount, $name);
+  rumoAssertStableInventorySnapshot($preDumpInventory, $readInventorySnapshot());
   chmod($dump, 0600);
   $restoredAt = time();
   $restoredHash = digest($dump);
