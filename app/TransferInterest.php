@@ -57,19 +57,13 @@ final class TransferInterest {
     }
 
     /**
-     * Classifica em quais faixas de qualidade (0..4) cada clube candidato é esportivamente compatível.
+     * Resolve o contexto de pirâmides/divisões e overalls de referência para classificação esportiva.
      */
-    private static function classifyCandidates(array $g, array $candidates): array {
-        $mp = class_exists('BalanceService') ? BalanceService::params('market.quality.tiers.v2') : [];
-        $destMinPlayer = (float)($mp['destaque_min_player_ovr'] ?? 54.0);
-        $destMinClub = (float)($mp['destaque_min_club_ovr'] ?? 62.0);
-        $eliteMinPlayer = (float)($mp['elite_min_player_ovr'] ?? 68.0);
-        $eliteMinClub = (float)($mp['elite_min_club_ovr'] ?? 76.0);
-
+    private static function classificationContext(array $g): array {
         $skills = $g['skills'] ?? [];
         $playerOvr = $skills ? array_sum(array_column($skills, 'value')) / max(1, count($skills)) : 50.0;
         $currentOvr = (float)($g['next_club_strengths'][$g['club']] ?? TeamStrength::rating($g['club'], $g));
-        $originCountry = !empty($g['official']) ? TransferMarket::country($g['club']) : 'BR';
+        $originCountry = !empty($g['official']) ? TransferMarket::country((string)$g['club']) : 'BR';
         $members = $g['next_memberships'] ?? $g['memberships'] ?? [];
 
         $currentDivs = [];
@@ -83,61 +77,89 @@ final class TransferInterest {
             }
         }
 
-        $buckets = [0 => [], 1 => [], 2 => [], 3 => [], 4 => []];
+        return [$playerOvr, $currentOvr, $originCountry, $currentDivs, $clubDivs];
+    }
 
-        foreach ($candidates as $c) {
-            $club = $c['club'];
-            $ovr = (float)($c['overall'] ?? 50.0);
-            $delta = (float)($c['overall_delta'] ?? ($ovr - $currentOvr));
-            $cc = $c['country'] ?? $originCountry;
+    /**
+     * Determina a classificação esportiva efetiva (0..4) de um clube candidato pelas suas próprias características,
+     * nunca herdando artificialmente a faixa sorteada na roleta.
+     */
+    public static function effectiveTier(array $g, array $c, ?array $ctx = null): int {
+        $mp = class_exists('BalanceService') ? BalanceService::params('market.quality.tiers.v2') : [];
+        $destMinPlayer = (float)($mp['destaque_min_player_ovr'] ?? 54.0);
+        $destMinClub = (float)($mp['destaque_min_club_ovr'] ?? 62.0);
+        $eliteMinPlayer = (float)($mp['elite_min_player_ovr'] ?? 68.0);
+        $eliteMinClub = (float)($mp['elite_min_club_ovr'] ?? 76.0);
 
-            $divStep = null;
-            if (!empty($g['official']) && $cc === $originCountry) {
-                foreach ($clubDivs[$club] ?? [$c['competition'] ?? ''] as $candComp) {
-                    $d = self::division((string)$candComp);
-                    foreach ($currentDivs as [$pyr, $lvl]) {
-                        if ($lvl !== null && $d[0] === $pyr && $d[1] !== null) {
-                            $step = $d[1] - $lvl; // -1 = divisão acima, 0 = mesma, +1 = divisão abaixo
-                            if ($divStep === null || abs($step) < abs($divStep)) {
-                                $divStep = $step;
-                            }
+        [$playerOvr, $currentOvr, $originCountry, $currentDivs, $clubDivs] = $ctx ?? self::classificationContext($g);
+
+        $club = (string)($c['club'] ?? '');
+        $ovr = (float)($c['overall'] ?? 50.0);
+        $delta = (float)($c['overall_delta'] ?? ($ovr - $currentOvr));
+        $cc = (string)($c['country'] ?? $originCountry);
+        $sportLvl = (int)($c['sporting_level'] ?? 1);
+
+        $divStep = null;
+        if (!empty($g['official']) && $cc === $originCountry) {
+            foreach ($clubDivs[$club] ?? [$c['competition'] ?? ''] as $candComp) {
+                $d = self::division((string)$candComp);
+                foreach ($currentDivs as [$pyr, $lvl]) {
+                    if ($lvl !== null && $d[0] === $pyr && $d[1] !== null) {
+                        $step = $d[1] - $lvl; // -1 = divisão acima, 0 = mesma, +1 = divisão abaixo
+                        if ($divStep === null || abs($step) < abs($divStep)) {
+                            $divStep = $step;
                         }
                     }
                 }
             }
-
-            // 0: Inferior
-            if ($delta <= -2.0 || ($divStep !== null && $divStep >= 1)) {
-                $buckets[0][$club] = $c + ['quality_tier' => 0];
-            }
-            // 1: Equivalente
-            if (abs($delta) <= 3.5 || ($divStep === 0 && abs($delta) <= 4.5)) {
-                $buckets[1][$club] = $c + ['quality_tier' => 1];
-            }
-            // 2: Superior
-            if (($delta >= 2.0 && $delta <= 9.5) || ($divStep === -1 && $delta >= 0.5) || ($currentOvr >= 88.0 && $ovr >= 85.0 && $delta >= -1.0)) {
-                $buckets[2][$club] = $c + ['quality_tier' => 2];
-            }
-            // 3: Destaque
-            $sportLvl = (int)($c['sporting_level'] ?? 1);
-            if ($playerOvr >= $destMinPlayer && $ovr >= $destMinClub && $sportLvl <= 2 && ($delta >= 4.5 || ($ovr >= 78.0 && $delta >= 1.5) || ($currentOvr >= 88.0 && $ovr >= 85.0 && $delta >= -1.0))) {
-                $buckets[3][$club] = $c + ['quality_tier' => 3];
-            }
-            // 4: Elite
-            if ($playerOvr >= $eliteMinPlayer && $ovr >= $eliteMinClub && $sportLvl === 1 && ($delta >= 7.5 || ($ovr >= 84.0 && $delta >= 1.5) || ($currentOvr >= 88.0 && $ovr >= 86.0 && $delta >= -1.5))) {
-                $buckets[4][$club] = $c + ['quality_tier' => 4];
-            }
         }
 
-        // Em ligas regionais enxutas onde todos os clubes têm exatamente o mesmo overall (ex.: 50.0),
-        // garante ao menos Inferior/Equivalente/Superior coerentes com os candidatos existentes.
-        if ($candidates !== [] && !$buckets[0] && !$buckets[1] && !$buckets[2]) {
-            foreach ($candidates as $c) {
-                $buckets[1][$c['club']] = $c + ['quality_tier' => 1];
-            }
+        // 4: Elite
+        if ($playerOvr >= $eliteMinPlayer && $ovr >= $eliteMinClub && $sportLvl === 1
+            && ($delta >= 7.5 || ($ovr >= 88.0 && $delta >= 5.0) || ($currentOvr >= 88.0 && $ovr >= 88.0 && $delta >= -2.5))) {
+            return 4;
         }
 
-        return [$buckets, $playerOvr, $currentOvr];
+        // 3: Destaque
+        if ($playerOvr >= $destMinPlayer && $ovr >= $destMinClub && $sportLvl <= 2
+            && ($delta >= 4.5 || ($ovr >= 80.0 && $delta >= 3.5) || ($currentOvr >= 88.0 && $ovr >= 85.0 && $delta >= -5.0))) {
+            return 3;
+        }
+
+        // 2: Superior
+        if ($delta >= 2.0 || ($divStep !== null && $divStep <= -1 && $delta >= 0.5) || ($currentOvr >= 88.0 && $ovr >= 84.0 && $delta >= -1.0)) {
+            return 2;
+        }
+
+        // 0: Inferior
+        if ($delta <= -2.5 || ($divStep !== null && $divStep >= 1 && $delta < 0.0)) {
+            return 0;
+        }
+
+        // 1: Equivalente
+        return 1;
+    }
+
+    /**
+     * Classifica todos os clubes candidatos em sua faixa esportiva efetiva (partição exata em 0..4).
+     */
+    private static function classifyCandidates(array $g, array $candidates): array {
+        $ctx = self::classificationContext($g);
+        [$playerOvr, $currentOvr] = $ctx;
+        $buckets = [0 => [], 1 => [], 2 => [], 3 => [], 4 => []];
+        $classifiedAll = [];
+
+        foreach ($candidates as $c) {
+            $club = (string)$c['club'];
+            $tier = self::effectiveTier($g, $c, $ctx);
+            $item = $c;
+            $item['quality_tier'] = $tier;
+            $item['quality_tier_label'] = self::TIERS[$tier];
+            $buckets[$tier][$club] = $item;
+            $classifiedAll[] = $item;
+        }
+
+        return [$buckets, $playerOvr, $currentOvr, $classifiedAll, $ctx];
     }
 
     /**
@@ -281,7 +303,9 @@ final class TransferInterest {
      */
     private static function selectOffers(array $g, int $drawnTier, array $scenarios, array $allCandidates, ?callable $rng): array {
         $mp = class_exists('BalanceService') ? BalanceService::params('market.quality.tiers.v2') : [];
-        $targetCount = max(1, (int)($mp['target_offers'] ?? 3));
+        // Garantia contratual mínima de 3 propostas externas distintas; parâmetros < 3 nunca reduzem a meta.
+        $targetCount = max(3, (int)($mp['target_offers'] ?? 3));
+        $ctx = self::classificationContext($g);
 
         $poolsByTier = [];
         foreach ($scenarios as $s) {
@@ -321,8 +345,16 @@ final class TransferInterest {
             }
         }
 
-        // Passo final: todos os demais candidatos compatíveis ordenados por proximidade esportiva
-        $fallbackItems = $allCandidates;
+        // Passo final: todos os demais candidatos compatíveis ordenados por proximidade esportiva, mantendo classificação própria
+        $fallbackItems = [];
+        foreach ($allCandidates as $cand) {
+            $effTier = isset($cand['quality_tier']) && isset(self::TIERS[(int)$cand['quality_tier']])
+                ? (int)$cand['quality_tier']
+                : self::effectiveTier($g, $cand, $ctx);
+            $cand['quality_tier'] = $effTier;
+            $cand['quality_tier_label'] = self::TIERS[$effTier];
+            $fallbackItems[] = $cand;
+        }
         usort($fallbackItems, static fn($a, $b) => (abs(($a['overall_delta'] ?? 0) - $targetDelta) <=> abs(($b['overall_delta'] ?? 0) - $targetDelta)) ?: strcmp($a['club'], $b['club']));
         if ($fallbackItems !== []) {
             $passes[] = ['kind' => 'compatible_fallback', 'items' => $fallbackItems];
@@ -396,10 +428,16 @@ final class TransferInterest {
                     $expandedUsed = true;
                 }
 
-                $offerTier = (int)($picked['quality_tier'] ?? $drawnTier);
+                // Classificação esportiva efetiva do clube ofertado (nunca herda $drawnTier por fallback)
+                $offerTier = isset($picked['quality_tier']) && isset(self::TIERS[(int)$picked['quality_tier']])
+                    ? (int)$picked['quality_tier']
+                    : self::effectiveTier($g, $picked, $ctx);
+                if ($offerTier !== $drawnTier) {
+                    $expandedUsed = true;
+                }
                 $picked['quality_tier'] = $offerTier;
-                $picked['quality_tier_label'] = self::TIERS[$offerTier] ?? self::TIERS[$drawnTier];
-                $picked['tier_match'] = $pass['kind'];
+                $picked['quality_tier_label'] = self::TIERS[$offerTier];
+                $picked['tier_match'] = ($offerTier === $drawnTier && $pass['kind'] === 'exact') ? 'exact' : $pass['kind'];
                 $picked['forecast'] = OpportunityForecast::estimate($g, $club);
                 $picked['selected'] = false;
                 $offers[] = $picked;
@@ -414,9 +452,9 @@ final class TransferInterest {
         $shortfallCause = null;
         if ($shortfall) {
             $shortfallCause = count($allCandidates) === 0
-                ? 'O catálogo elegível atual não possui outros clubes com continuidade válida além do seu clube atual.'
+                ? 'Nenhum clube externo com continuidade válida e overall esportivamente compatível está disponível nesta janela.'
                 : sprintf(
-                    'O catálogo elegível comporta apenas %d destino(s) válido(s) distinto(s) do seu clube atual com continuidade ativa.',
+                    'O catálogo elegível comporta apenas %d destino(s) válido(s) e esportivamente compatível(is) distinto(s) do seu clube atual.',
                     count($offers)
                 );
         }

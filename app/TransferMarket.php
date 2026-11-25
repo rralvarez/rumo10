@@ -164,30 +164,14 @@ final class TransferMarket {
             $groups[$bucket][] = $entry;
         }
 
-        // Se o país de origem tiver poucos clubes elegíveis (< 4), libera alcance continental/mundial dentro do teto de overall
+        // Preferência geográfica (não limite obrigatório): se o recorte geográfico inicial tiver < 6 clubes compatíveis,
+        // amplia os horizontes continental/intercontinental preservando estritamente o teto obrigatório de overall ($capacity).
         $totalCompatible = count($groups['country']) + count($groups['region']) + count($groups['world']);
         if ($totalCompatible < 6 && count($allValidCatalog) > $totalCompatible) {
             $groups = ['country' => [], 'region' => [], 'world' => []];
             foreach ($allValidCatalog as $entry) {
                 if ($entry['overall'] <= $capacity) {
                     $groups[$entry['region']][] = $entry;
-                }
-            }
-            $totalCompatible = count($groups['country']) + count($groups['region']) + count($groups['world']);
-        }
-
-        // Fallback extremo: se o teto estrito deixar < 3 clubes em catálogos reduzidos, toma os destinos válidos mais próximos em overall
-        if ($totalCompatible < 3 && $allValidCatalog !== []) {
-            usort($allValidCatalog, static fn($a, $b) => ($a['overall'] <=> $b['overall']) ?: strcmp($a['club'], $b['club']));
-            $existing = array_fill_keys(array_column(array_merge(...array_values($groups)), 'club'), true);
-            foreach ($allValidCatalog as $entry) {
-                if (isset($existing[$entry['club']])) {
-                    continue;
-                }
-                $groups[$entry['region']][] = $entry;
-                $existing[$entry['club']] = true;
-                if (count($existing) >= 3) {
-                    break;
                 }
             }
         }

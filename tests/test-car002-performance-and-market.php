@@ -582,6 +582,192 @@ $gVetRetired = Game::command($gVet39, 'retire', ['confirm' => 'retire']);
 ok($gVetRetired['stage'] === 'aposentado' && $gVetRetired['retirement']['reason'] === 'mandatory',
     'Aposentadoria obrigatória conclui encerramento com confirmação explícita');
 
+// =========================================================================
+// 6. VALIDAÇÃO DIRIGIDA PR #17: INVENTÁRIO, TARGET_OFFERS >= 3, TETO DE OVERALL E CLASSIFICAÇÃO EFETIVA
+// =========================================================================
+echo "\n6. Validando Pendências Dirigidas do PR #17 (Inventário, target_offers >= 3, Teto Estrito e Faixa Efetiva)...\n";
+
+// 6A: Inventário produtivo publisher/config/runtime-files.json registra app/MatchRating.php sem duplicatas
+$runtimeInventory = json_decode((string)file_get_contents(dirname(__DIR__) . '/publisher/config/runtime-files.json'), true, 512, JSON_THROW_ON_ERROR);
+ok(is_array($runtimeInventory)
+    && in_array('app/MatchRating.php', $runtimeInventory, true)
+    && count($runtimeInventory) === count(array_unique($runtimeInventory)),
+    'publisher/config/runtime-files.json registra app/MatchRating.php sem duplicidades');
+
+// 6B: target_offers < 3 configurado em parâmetros nunca reduz o mínimo contratual de 3 propostas
+$refBalanceCache = new ReflectionProperty('BalanceService', 'activeCache');
+$refBalanceCache->setAccessible(true);
+BalanceService::params('market.quality.tiers.v2'); // garante carregamento inicial
+$origBalanceCache = $refBalanceCache->getValue();
+try {
+    foreach ([0, 1, 2, -5] as $badTarget) {
+        $patched = $origBalanceCache;
+        $patched['market.quality.tiers.v2']['target_offers'] = $badTarget;
+        $refBalanceCache->setValue(null, $patched);
+        $gTarget = $populateSeasonMatches($makeOfficialCareer('meia', 72, 3, 'Santos-SP'), 18, 85, 7.2, 6, 5, 10, false);
+        $drawTarget = TransferInterest::draw($gTarget, makeSeededRng(900 + $badTarget));
+        ok($drawTarget['offer_guarantee']['target'] === 3 && count($drawTarget['offers']) === 3,
+            "target_offers={$badTarget} é travado em >= 3 (entregues=" . count($drawTarget['offers']) . ")");
+    }
+} finally {
+    $refBalanceCache->setValue(null, $origBalanceCache);
+}
+
+// 6C: Em catálogo reduzido, clubes acima do teto de overall compatível NUNCA entram por fallback apenas para fechar 3 ofertas
+$strictCeilingCatalog = [
+    'liga-curta' => [
+        'id' => 'liga-curta',
+        'name' => 'Liga Curta',
+        'family' => 'br',
+        'tier' => 1,
+        'format' => 'league',
+        'teams' => ['Base Modesta', 'Vizinho Compatível', 'Superpotência 92', 'Superpotência 94'],
+        'rules' => [],
+    ],
+];
+$strictCeilingClubs = [
+    'Base Modesta'       => ['name' => 'Base Modesta', 'country' => 'BR', 'competitions' => ['liga-curta'], 'reference_overall' => 50.0],
+    'Vizinho Compatível' => ['name' => 'Vizinho Compatível', 'country' => 'BR', 'competitions' => ['liga-curta'], 'reference_overall' => 55.0],
+    'Superpotência 92'   => ['name' => 'Superpotência 92', 'country' => 'ES', 'competitions' => ['liga-curta'], 'reference_overall' => 92.0],
+    'Superpotência 94'   => ['name' => 'Superpotência 94', 'country' => 'EN', 'competitions' => ['liga-curta'], 'reference_overall' => 94.0],
+];
+Competition::referenceScope($strictCeilingCatalog, static function (): void {
+    $gCap = Game::legacyCreate('Rookie Teto Estrito', 'São Paulo', 'SP', 'centroavante');
+    $gCap['official'] = true;
+    $gCap['season'] = 1;
+    $gCap['age'] = 18;
+    foreach ($gCap['skills'] as &$sk) {
+        $sk['value'] = 48; // compatibleOverallCeiling ~ 60.5 -> bloqueia 92 e 94 obrigatoriamente!
+    }
+    unset($sk);
+    $gCap['season_skill_baseline'] = 48.0;
+    $gCap['club'] = 'Base Modesta';
+    $gCap['competition_id'] = 'liga-curta';
+    $gCap['season_competitions'] = ['liga-curta'];
+    $gCap['memberships'] = ['liga-curta' => ['Base Modesta', 'Vizinho Compatível', 'Superpotência 92', 'Superpotência 94']];
+    $gCap['competitions'] = ['liga-curta' => ['id' => 'liga-curta', 'matches' => [], 'done' => true]];
+    $gCap['matches'] = [];
+
+    $poolCap = TransferMarket::pool($gCap, false, makeSeededRng(301));
+    $drawCap = TransferInterest::draw($gCap, makeSeededRng(302));
+    $offeredClubs = array_column($drawCap['offers'], 'club');
+
+    ok(count($poolCap) === 1 && $offeredClubs === ['Vizinho Compatível'],
+        'Teto obrigatório de overall preservado: clubes incompatíveis (OVR 92/94) não entram por fallback em catálogo reduzido');
+    ok($drawCap['offer_guarantee']['target'] === 3
+        && $drawCap['offer_guarantee']['delivered'] === 1
+        && $drawCap['offer_guarantee']['exceptional_shortfall'] === true,
+        'Escassez por bloqueio de incompatibilidade registra shortfall explícito (1/3) sem gerar ofertas incompatíveis');
+}, $strictCeilingClubs);
+
+// 6D: Preferências geográficas (continental/world na T1) relaxam legitimamente dentro do teto de overall quando o país tem < 6 clubes
+$prefRelaxCatalog = [
+    'liga-mista' => [
+        'id' => 'liga-mista',
+        'name' => 'Liga Mista Compatível',
+        'family' => 'br',
+        'tier' => 1,
+        'format' => 'league',
+        'teams' => ['Origem BR', 'Nacional BR', 'Vizinho AR', ' Asiático JP'],
+        'rules' => [],
+    ],
+];
+$prefRelaxClubs = [
+    'Origem BR'   => ['name' => 'Origem BR', 'country' => 'BR', 'competitions' => ['liga-mista'], 'reference_overall' => 52.0],
+    'Nacional BR' => ['name' => 'Nacional BR', 'country' => 'BR', 'competitions' => ['liga-mista'], 'reference_overall' => 53.0],
+    'Vizinho AR'  => ['name' => 'Vizinho AR', 'country' => 'AR', 'competitions' => ['liga-mista'], 'reference_overall' => 54.0],
+    'Asiático JP' => ['name' => 'Asiático JP', 'country' => 'JP', 'competitions' => ['liga-mista'], 'reference_overall' => 55.0],
+];
+$prefRelaxCatalog['liga-mista']['teams'] = array_keys($prefRelaxClubs);
+Competition::referenceScope($prefRelaxCatalog, static function (): void {
+    $gPref = Game::legacyCreate('Rookie Alcance', 'São Paulo', 'SP', 'meia');
+    $gPref['official'] = true;
+    $gPref['season'] = 1; // T1 normalmente restringe world_open por preferência
+    $gPref['age'] = 18;
+    foreach ($gPref['skills'] as &$sk) {
+        $sk['value'] = 50; // compatibleOverallCeiling ~ 62.5 -> todos os 3 externos (53, 54, 55) são compatíveis!
+    }
+    unset($sk);
+    $gPref['season_skill_baseline'] = 50.0;
+    $gPref['club'] = 'Origem BR';
+    $gPref['competition_id'] = 'liga-mista';
+    $gPref['season_competitions'] = ['liga-mista'];
+    $gPref['memberships'] = ['liga-mista' => array_keys([
+        'Origem BR' => 1, 'Nacional BR' => 1, 'Vizinho AR' => 1, 'Asiático JP' => 1,
+    ])];
+    $gPref['competitions'] = ['liga-mista' => ['id' => 'liga-mista', 'matches' => [], 'done' => true]];
+    $gPref['matches'] = [];
+
+    $drawPref = TransferInterest::draw($gPref, makeSeededRng(401));
+    ok(count($drawPref['offers']) === 3 && $drawPref['offer_guarantee']['exceptional_shortfall'] === false,
+        'Preferência geográfica relaxa dentro do teto de overall para entregar 3 propostas compatíveis');
+}, $prefRelaxClubs);
+
+// 6E: Expansão de busca / fallback mantém a classificação esportiva EFETIVA de cada clube (nunca rotula com a faixa sorteada)
+$effectiveTierCatalog = [
+    'faixas-1' => [
+        'id' => 'faixas-1',
+        'name' => 'Liga Multi-Patamar',
+        'family' => 'br',
+        'tier' => 1,
+        'format' => 'league',
+        'teams' => ['Clube Base 72', 'Potência Elite 84', 'Clube Paridade 72', 'Clube Acesso 62'],
+        'rules' => [],
+    ],
+];
+$effectiveTierClubs = [
+    'Clube Base 72'     => ['name' => 'Clube Base 72', 'country' => 'BR', 'competitions' => ['faixas-1'], 'reference_overall' => 72.0],
+    'Potência Elite 84' => ['name' => 'Potência Elite 84', 'country' => 'ES', 'competitions' => ['faixas-1'], 'reference_overall' => 84.0],
+    'Clube Paridade 72' => ['name' => 'Clube Paridade 72', 'country' => 'BR', 'competitions' => ['faixas-1'], 'reference_overall' => 72.0],
+    'Clube Acesso 62'   => ['name' => 'Clube Acesso 62', 'country' => 'BR', 'competitions' => ['faixas-1'], 'reference_overall' => 62.0],
+];
+Competition::referenceScope($effectiveTierCatalog, static function (): void {
+    $gEff = Game::legacyCreate('Craque Expansão', 'São Paulo', 'SP', 'meia');
+    $gEff['official'] = true;
+    $gEff['season'] = 4;
+    $gEff['age'] = 22;
+    foreach ($gEff['skills'] as &$sk) {
+        $sk['value'] = 76; // habilita Elite (ovr >= 68, ceiling >= 86)
+    }
+    unset($sk);
+    $gEff['season_skill_baseline'] = 74.0;
+    $gEff['club'] = 'Clube Base 72';
+    $gEff['next_club_strengths'] = [
+        'Clube Base 72' => 72.0,
+        'Potência Elite 84' => 84.0,
+        'Clube Paridade 72' => 72.0,
+        'Clube Acesso 62' => 62.0,
+    ];
+    $gEff['competition_id'] = 'faixas-1';
+    $gEff['season_competitions'] = ['faixas-1'];
+    $gEff['memberships'] = ['faixas-1' => ['Clube Base 72', 'Potência Elite 84', 'Clube Paridade 72', 'Clube Acesso 62']];
+    $gEff['competitions'] = ['faixas-1' => ['id' => 'faixas-1', 'matches' => [], 'done' => true]];
+    $gEff['matches'] = [];
+
+    // Força o sorteio do maior peso acumulado na roleta (último segmento elegível = Elite, id=4)
+    $rngMax = static fn(int $min, int $max): int => $max;
+    $drawEff = TransferInterest::draw($gEff, $rngMax);
+    $byClub = array_column($drawEff['offers'], null, 'club');
+
+    ok($drawEff['quality_tier'] === 4 && $drawEff['quality_tier_label'] === 'Elite' && $drawEff['expanded_search'] === true,
+        'Roleta sorteia Elite e aciona busca expandida por existir apenas 1 clube Elite no catálogo reduzido');
+    ok(($byClub['Potência Elite 84']['quality_tier_label'] ?? '') === 'Elite'
+        && ($byClub['Clube Paridade 72']['quality_tier_label'] ?? '') === 'Equivalente'
+        && ($byClub['Clube Acesso 62']['quality_tier_label'] ?? '') === 'Inferior',
+        'Cada proposta preserva sua classificação esportiva efetiva (Elite, Equivalente, Inferior) sem herdar o rótulo sorteado');
+
+    $gEff['stage'] = 'oferta';
+    $gEff['market_draw'] = $drawEff;
+    $gEff['offers'] = $drawEff['offers'];
+    ob_start();
+    TransferMarket::render($gEff);
+    $htmlEff = (string)ob_get_clean();
+    ok(str_contains($htmlEff, 'PATAMAR ELITE')
+        && str_contains($htmlEff, 'PATAMAR EQUIVALENTE')
+        && str_contains($htmlEff, 'PATAMAR INFERIOR'),
+        'UI renderiza a faixa esportiva efetiva individual em cada card após expansão/fallback');
+}, $effectiveTierClubs);
+
 // Salva artefato JSON com os resultados das simulações e exemplos concretos para documentação
 $reportData = [
     'generated_at' => gmdate('c'),
