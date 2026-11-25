@@ -1,5 +1,5 @@
 <?php
-require dirname(__DIR__).'/lib/LegacyFence.php';use Rumo\Publisher\LegacyFence;
+require dirname(__DIR__).'/lib/LegacyFence.php';use Rumo\Publisher\{FenceCheckFailed,LegacyFence};
 $tests=[];function ck($name,$ok){global $tests;if(!$ok)throw new RuntimeException($name);$tests[]=['test'=>$name,'status'=>'PASS'];}
 $profile=['manual_channels_fenced'=>true,'repositories'=>['rralvarez/rumo10'=>['branch'=>'main','approved_active'=>[]],'rralvarez/rumohub'=>['branch'=>'main','approved_active'=>[]]]];
 function metadata($repo,$path,$fault=''){
@@ -31,4 +31,34 @@ $fetch=function($repo,$path,$fault=''){
 };
 ck('active approved workflow hash and commit verified',LegacyFence::verify($active,fn($r,$p)=>$fetch($r,$p))['ok']);
 foreach(['moved','hash','inactivity','duplicate','pagination'] as $fault){$bad=false;try{LegacyFence::verify($active,fn($r,$p)=>$fetch($r,$p,$fault));}catch(Throwable){$bad=true;}ck('refuse workflow '.$fault,$bad);}
+$calls=0;$reposSeen=[];
+$brieflyBusy=static function($repo,$path)use(&$calls,&$reposSeen){
+ $reposSeen[$repo]=true;
+ if($repo==='rralvarez/rumo10' && str_contains($path,'status=in_progress&') && ++$calls===1)
+  return ['total_count'=>1,'workflow_runs'=>[['id'=>42]]];
+ return metadata($repo,$path);
+};
+$oldFailed=false;
+try{LegacyFence::verify($profile,$brieflyBusy);}catch(FenceCheckFailed $e){$oldFailed=$e->reason==='workflow_busy'&&str_contains($e->getMessage(),'run=42');}
+ck('single observation fails with repo, state and run', $oldFailed);
+$calls=0;$reposSeen=[];
+ck('retry repeats verification then fences both repositories',LegacyFence::verifyWithRetry($profile,$brieflyBusy,microtime(true)+8)['ok'] && $calls===2 && count($reposSeen)===2);
+$calls=0;$permanent=static function($repo,$path)use(&$calls){$calls++;return metadata($repo,$path,'unknown');};
+try{LegacyFence::verifyWithRetry($profile,$permanent,microtime(true)+8);ck('unapproved workflow is a hard block',false);}
+catch(FenceCheckFailed $e){ck('unapproved workflow is a hard block',$calls===1&&$e->reason==='workflow_unapproved'&&!$e->retryable);}
+$calls=0;
+try{
+ LegacyFence::verifyWithRetry($profile,static function($repo,$path)use(&$calls){
+  $calls++;
+  throw new FenceCheckFailed('api_unavailable',true,['repo'=>$repo,'http'=>503]);
+ },microtime(true)+8);
+ ck('API failure retries limited to three attempts',false);
+}catch(FenceCheckFailed $e){ck('API failure retries limited to three attempts',$calls===3&&$e->retryable);}
+$calls=0;
+try{
+ LegacyFence::verifyWithRetry($profile,static function()use(&$calls){
+  $calls++;throw new FenceCheckFailed('api_unavailable',true);
+ },microtime(true));
+ ck('expired retry budget exits without waiting for another probe',false);
+}catch(FenceCheckFailed $e){ck('expired retry budget exits without waiting for another probe',$calls===1&&$e->retryable);}
 file_put_contents(dirname(__DIR__).'/evidence/legacy-fence.json',json_encode(['results'=>$tests,'passed'=>count($tests),'network'=>'API responses mocked; no remote mutation'],JSON_PRETTY_PRINT));echo json_encode(['passed'=>count($tests)]).PHP_EOL;

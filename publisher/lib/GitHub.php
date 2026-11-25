@@ -24,10 +24,15 @@ class GitHub {
             preg_match('/^[a-z0-9-]+\.actions\.githubusercontent\.com$/D',$host)===1,'Untrusted redirect host');
         need(!$auth || $host==='api.github.com','Credentials must never follow storage redirect');
     }
+    protected function requestDeadline(): ?float { return null; }
+
     protected function request(string $url,bool $auth,int $limit,?string $out=null): array {
         self::checkUrl($url,$auth);
         $last=null;
         for ($attempt=0;$attempt<2;$attempt++) {
+            $deadline=$this->requestDeadline();
+            $remaining=$deadline===null?180000:(int)floor(($deadline-microtime(true))*1000);
+            if($remaining<1)throw new \RuntimeException('HTTPS GET deadline exceeded');
             $headers=[]; $body=''; $count=0; $fh=null;
             if ($out!==null) { need(!is_link($out),'Linked download target'); $fh=fopen($out,'wb'); need($fh!==false,'Download target failed'); chmod($out,0600); }
             $ch=curl_init($url);
@@ -35,7 +40,8 @@ class GitHub {
             if ($auth) $req[]='Authorization: Bearer '.$this->token;
             curl_setopt_array($ch,[CURLOPT_HTTPHEADER=>$req,CURLOPT_USERAGENT=>'Rumo-private-pull/1',
                 CURLOPT_SSL_VERIFYPEER=>true,CURLOPT_SSL_VERIFYHOST=>2,CURLOPT_PROTOCOLS=>CURLPROTO_HTTPS,
-                CURLOPT_FOLLOWLOCATION=>false,CURLOPT_CONNECTTIMEOUT=>15,CURLOPT_TIMEOUT=>180,
+                CURLOPT_FOLLOWLOCATION=>false,CURLOPT_CONNECTTIMEOUT_MS=>min(15000,$remaining),
+                CURLOPT_TIMEOUT_MS=>min(180000,$remaining),
                 CURLOPT_LOW_SPEED_LIMIT=>512,CURLOPT_LOW_SPEED_TIME=>30,
                 CURLOPT_HEADERFUNCTION=>static function($ch,$h)use(&$headers){ $i=strpos($h,':'); if($i!==false)$headers[strtolower(substr($h,0,$i))]=trim(substr($h,$i+1)); return strlen($h); },
                 CURLOPT_WRITEFUNCTION=>static function($ch,$chunk)use(&$body,&$count,$limit,$fh){
@@ -48,7 +54,9 @@ class GitHub {
             if ($ok!==false && $err===0) return ['status'=>$code,'headers'=>$headers,'body'=>$body,'bytes'=>$count];
             $last=$err;
             // Only safe GET retries. Never retain partial bytes and never downgrade TLS.
-            if (in_array($err,[CURLE_SSL_CACERT,CURLE_PEER_FAILED_VERIFICATION,CURLE_SSL_CONNECT_ERROR],true)) break;
+            // libcurl uses 60 for peer/certificate verification; older builds also
+            // used 51. Some PHP builds do not export the peer verification name.
+            if (in_array($err,[35,51,60],true)) break;
         }
         throw new \RuntimeException('HTTPS GET failed; partial output not trusted (curl '.$last.')');
     }
@@ -162,6 +170,10 @@ class GitHub {
                 $publisher->verifyPublicAvailability();
                 $status='success';$reason='Recibo UOL validado; artefato '.$artifact['id'];
             }
+        } catch(PublicationFenceDeferred $e) {
+            try{$this->report($run,'pending','Fence aguardando: '.$e->getMessage());}
+            catch(\Throwable){fwrite(STDERR,"GitHub status unavailable; receiver state retained\n");}
+            return ['state'=>'waiting','commit'=>$head,'reason'=>'publication_fence','condition'=>$e->getMessage()];
         } catch(\Throwable $e) {
             $details=[
                 'Authenticated owner backup statement'=>'Confirmacao autenticada de backup ausente',
@@ -181,6 +193,8 @@ class GitHub {
                 'Pending journal'=>'Journal pendente; recuperacao necessaria',
             ];
             foreach($details as $match=>$message)if(str_contains($e->getMessage(),$match)){$reason=$message;break;}
+            if(preg_match('/^Hook failed: fence \(FENCE_BLOCKED ([a-z_]+)\b/',$e->getMessage(),$fence)===1)
+                $reason='Fence bloqueado: '.$fence[1];
             try{$this->report($run,'failure',($run['conclusion']??null)!=='success'?'CI oficial reprovado':$reason);}
             catch(\Throwable){fwrite(STDERR,"GitHub status unavailable; receiver state retained\n");}
             $this->safeAutoRecoverPreTransfer($publisher);

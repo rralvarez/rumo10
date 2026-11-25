@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace Rumo\Publisher;
 
+final class PublicationFenceDeferred extends \RuntimeException {}
+
 function need(bool $condition, string $message): void {
     if (!$condition) throw new \RuntimeException($message);
 }
