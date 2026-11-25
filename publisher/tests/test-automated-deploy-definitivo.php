@@ -151,19 +151,18 @@ $candidateV = [
 MainAutomation::change($mainCfg, $candidateV, $assessmentA);
 assertCheck(true, 'MainAutomation::change aprovou release Classe A sem exigir PIN de SHA');
 
-// Backup de segurança verificado no mesmo servidor (sem exigência de 2º MySQL)
-$backupReceiptA = [
-    'created_at' => time(),
-    'artifact_id' => 202,
-    'package_sha256' => $candidateV['package_sha256'],
-    'consistent' => true,
-    'source_uuid' => 'uol-operational-mysql',
-    'dump_sha256' => str_repeat('d', 64),
-    'files' => ['/backup/database.sql' => str_repeat('d', 64)]
+// Política oficial vigente (adendos de 24/11/2026): backup integral do banco é pré-merge pelo proprietário;
+// o Publisher preserva os arquivos locais afetados sem exigir nem simular mysqldump.
+MainAutomation::proof([], $candidateV, time(), 'A');
+$honestReceiptA = [
+    'mode' => 'local-files-only',
+    'policy' => 'operator-managed-before-merge',
+    'database_exported' => false,
+    'files' => ['/backup/release.json' => str_repeat('1', 64), '/backup/file-0' => str_repeat('2', 64)],
 ];
-MainAutomation::proof($backupReceiptA, $candidateV, time());
-assertCheck(true, 'Backup produtivo verificado sem necessidade de segundo servidor MySQL');
-echo "  [OK] Nenhuma operação de migration executada desnecessariamente na Classe A\n\n";
+MainAutomation::proof($honestReceiptA, $candidateV, time(), 'A');
+assertCheck(true, 'Classe A validada sem exigir exportação automática do banco nem simular recibo de dump');
+echo "  [OK] Nenhuma operação de migration ou mysqldump executada na Classe A\n\n";
 
 // =========================================================================
 // DEMONSTRAÇÃO 3: RELEASE COM MIGRATION PENDENTE (CLASSE B)
@@ -185,6 +184,9 @@ assertCheck($assessmentB['migrations'] === ['database/010-future-feature.sql'], 
 
 MainAutomation::change($mainCfg, $candidateV, $assessmentB);
 assertCheck(true, 'MainAutomation::change aprovou Class B com migration sem exigir autorização manual por SHA');
+MainAutomation::proof([], $candidateV, time(), 'B');
+MainAutomation::proof($honestReceiptA, $candidateV, time(), 'B');
+assertCheck(true, 'Classe B validada sem exigir mysqldump automático e sem simular recibo de exportação');
 
 // Simular execução da migration no banco de dados
 $executedMigrations = [];

@@ -10,7 +10,7 @@ require_once __DIR__.'/Core.php';
  * pointer switching (runtime-active.json) without dual-directory rename races.
  */
 final class RuntimeIdentity {
-    public const VERSION = '9.0.0-consolidated';
+    public const VERSION = '9.0.1-consolidated';
     public const SCHEMA = 'rumo-publisher-runtime-v1';
     public const POINTER_SCHEMA = 'rumo-active-runtime-v1';
 

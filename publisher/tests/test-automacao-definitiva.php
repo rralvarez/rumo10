@@ -307,13 +307,14 @@ mustFail(
 );
 
 // -------------------------------------------------------------------------
-// 5. E2E DrainPublisher (base real UOL 4cb11dc):
-//    5A: Classe A (PR #14) executa backup obrigatorio + assertAutomaticStage
-//    5B: Classe B (PR #12 - Retirement.php) sem SHA pin manual executa backup obrigatorio
-//    5C: Misto Retirement.php + Repository.php bloqueado em assertAutomaticStage
-//    5D: Falha de backup em Classe B aborta fail-closed
+// 5. E2E DrainPublisher (politica oficial 24/11/2026):
+//    5A: Classe A (PR #14) publica sem mysqldump/preflight, com backup local dos arquivos afetados
+//    5B: Classe B (PR #12 - Retirement.php) publica sem SHA pin manual e sem mysqldump/preflight
+//    5C: Misto Retirement.php + Repository.php bloqueado como Hard Class C
+//    5D: Falha real de migration bloqueia fail-closed sem promover codigo incompativel
+//    5E: Rollback local de arquivos afetados restaura baseline quando necessario
 // -------------------------------------------------------------------------
-echo "\n--- 5. E2E DrainPublisher (UOL real: Classe A backup obrigatorio, PR #12, misto, fail-closed) ---\n";
+echo "\n--- 5. E2E DrainPublisher (Politica Oficial: sem mysqldump automatico, backup local de arquivos, Hard Class C, fail-closed) ---\n";
 
 $makeSandbox = static function (array $opts = []) use ($ownerId, $repo, $c0, $c1, $pr12Head, $basePolicy): array {
     $root = sys_get_temp_dir() . '/r10-uol-r3-' . bin2hex(random_bytes(6));
@@ -446,7 +447,7 @@ $makeSandbox = static function (array $opts = []) use ($ownerId, $repo, $c0, $c1
         'private' => $root . '/private', 'control' => $root . '/control',
         'current' => $root . '/current', 'public' => $root . '/public',
         'apply_enabled' => true,
-        'homologation' => ['maintenance' => true, 'recovery' => true, 'legacy_publishers_fenced' => true, 'backup' => true],
+        'homologation' => ['maintenance' => true, 'recovery' => true, 'legacy_publishers_fenced' => true],
         'request_gate' => [
             'root' => $root . '/gate', 'coverage_approved' => true, 'projects' => ['rumo10', 'rumohub'],
             'entrypoints' => [$root . '/public/index.php' => digest($root . '/public/index.php'), $rumohubEntry => digest($rumohubEntry)],
@@ -462,15 +463,56 @@ $makeSandbox = static function (array $opts = []) use ($ownerId, $repo, $c0, $c1
         'hooks' => ['fence' => ['script' => $fenceScript, 'sha256' => digest($fenceScript), 'args' => []]],
     ];
 
-    $backupFails = $opts['backup_fails'] ?? false;
-    $pub = new class($cfg, $repo, $c0, $targetCommit, $pr12Head, $ownerId, $backupFails, $pkgSha) extends DrainPublisher {
+    $migrateFails = $opts['migrate_fails'] ?? false;
+    $smokeFailsNoPolicy = $opts['smoke_fails_rollback'] ?? false;
+    if ($smokeFailsNoPolicy) {
+        unset($cfg['update_policy'], $cfg['main_automation'], $cfg['release_channel']);
+        $cfg['homologation']['backup'] = true;
+        $cfg['authorized_releases'] = [
+            $targetCommit => [
+                'authorized_build_commits' => [$targetCommit],
+                'mandatory_files' => ['app/Game.php' => $fileHashes['app/Game.php']],
+                'requires_migration' => [],
+            ],
+        ];
+        unset($envelope['release_channel']);
+        record($stage . '/ready.json', compact('run', 'artifact', 'jobs', 'envelope'));
+    }
+    if (!empty($opts['migration_sql'])) {
+        $migRel = 'database/010-test.sql';
+        $migContent = $opts['migration_sql'];
+        file_put_contents($stage . '/payload/' . $migRel, $migContent);
+        $pkgFiles[$migRel] = $migContent;
+        $fileHashes[$migRel] = hash('sha256', $migContent);
+        ksort($fileHashes);
+        $pkgFiles['release.json'] = json_encode([
+            'project' => 'rumo10', 'commit' => $targetCommit, 'functional_commit' => $targetCommit,
+            'data_contract' => 'rumo10-development-v3', 'data_contracts' => ['rumo10-development-v3'],
+            'required_migrations' => [], 'files' => $fileHashes,
+        ], JSON_THROW_ON_ERROR);
+        file_put_contents($stage . '/payload/release.json', $pkgFiles['release.json']);
+        makeTarGz($tarPath, $pkgFiles);
+        $pkgSha = digest($tarPath);
+        $envelope['package_sha256'] = $pkgSha;
+        record($stage . '/ready.json', compact('run', 'artifact', 'jobs', 'envelope'));
+    }
+
+    $pub = new class($cfg, $repo, $c0, $targetCommit, $pr12Head, $ownerId, $migrateFails, $smokeFailsNoPolicy, $pkgSha) extends DrainPublisher {
         public array $calledHooks = [];
-        public bool $preflightBackupCalled = false;
         public function __construct(
             private array $tCfg, private string $repo, private string $fromSha, private string $toSha,
-            private string $prHead, private int $ownerId, private bool $backupFails, private string $pkgSha
-        ) { parent::__construct($tCfg); }
-        protected function assertBackupPrerequisites(bool $classA = false): void { $this->preflightBackupCalled = !$classA; }
+            private string $prHead, private int $ownerId, private bool $migrateFails, private bool $smokeFailsNoPolicy, private string $pkgSha
+        ) {
+            if (!is_dir($tCfg['private'] . '/../stage-extra')) {
+                @mkdir(dirname($tCfg['private']) . '/private/stage-test/payload/database', 0700, true);
+            }
+            parent::__construct($tCfg);
+        }
+        protected function assertBackupPrerequisites(bool $skipAutomaticDbBackup = false): void {
+            if ($skipAutomaticDbBackup) return;
+            if ($this->smokeFailsNoPolicy) return;
+            parent::assertBackupPrerequisites($skipAutomaticDbBackup);
+        }
         protected function source(): GitHub {
             return new class($this->tCfg, $this->repo, $this->fromSha, $this->toSha, $this->prHead, $this->ownerId) extends GitHub {
                 public function __construct(array $c, private string $repo, private string $fromSha, private string $toSha, private string $prHead, private int $ownerId) { parent::__construct($c); }
@@ -506,38 +548,57 @@ $makeSandbox = static function (array $opts = []) use ($ownerId, $repo, $c0, $c1
         }
         protected function hook(string $name, array $request): array {
             $this->calledHooks[] = $name;
+            if ($name === 'fence') return ['ok' => true, 'legacy_publishers_fenced' => true];
             if ($name === 'preflight') return ['legacy_publishers_fenced' => true, 'source_unchanged' => true];
             if ($name === 'maintenance') return ['http_status' => 503, 'writes_blocked' => true, 'inflight_writers' => 0, 'new_requests_blocked' => true, 'publisher_exclusive' => true];
             if ($name === 'backup') {
-                if ($this->backupFails) throw new RuntimeException('Backup hook failed: mysqldump error');
-                $dumpFile = $request['backup'] . '/dump.sql';
-                file_put_contents($dumpFile, "-- consistent dump\n");
-                $h = digest($dumpFile);
-                return ['attempt' => $request['attempt'], 'created_at' => time(), 'artifact_id' => 14564933268,
-                    'package_sha256' => $this->pkgSha, 'consistent' => true, 'source_uuid' => 'uol-mysql',
-                    'dump_sha256' => $h, 'files' => [$dumpFile => $h]];
+                if (!$this->smokeFailsNoPolicy) {
+                    throw new RuntimeException('Automatic DB backup hook must NOT be called in main_automation');
+                }
+                $f = $request['backup'] . '/marker.bak';
+                file_put_contents($f, "ok\n");
+                return ['attempt' => $request['attempt'], 'consistent' => true, 'restore_tested' => true, 'files' => [$f => digest($f)]];
             }
-            if ($name === 'smoke') return ['ok' => true, 'http_status' => 200];
+            if ($name === 'migrate') {
+                if ($this->migrateFails) throw new RuntimeException('Hook failed: migrate (SQL error)');
+                return ['ok' => true, 'compatible_expansion' => true, 'versions' => ['010']];
+            }
+            if ($name === 'smoke') {
+                if ($this->smokeFailsNoPolicy && !isset($request['action'])) {
+                    throw new RuntimeException('Hook failed: smoke (HTTP 500)');
+                }
+                return ['ok' => true, 'http_status' => 200];
+            }
             return ['ok' => true];
         }
     };
     return [$root, $stage, $pub];
 };
 
-// 5A: Classe A ordinaria (estilo PR #14) -> aplica e valida automaticamente
+// 5A: Classe A ordinaria (estilo PR #14) -> aplica e valida automaticamente SEM mysqldump
 [$rootA, $stageA, $pubA] = $makeSandbox(['game_content' => "<?php // game-v2-f04\n", 'retirement_content' => "<?php // ret-v1\n"]);
 try {
     $resA = $pubA->apply($stageA);
-    ok(($resA['state'] ?? null) === 'validated', 'E2E Classe A aplica e valida automaticamente');
+    ok(($resA['state'] ?? null) === 'validated' && !in_array('backup', $pubA->calledHooks, true),
+        'E2E Classe A aplica e valida automaticamente SEM preflight/mysqldump do banco');
+    $jA = json_decode((string)file_get_contents($rootA . '/private/journal.json'), true);
+    ok(($jA['backup_receipt']['database_exported'] ?? null) === false && is_file($jA['backup'] . '/file-0'),
+        'E2E Classe A preserva backup local de app/Game.php e registra database_exported=false');
 } finally { rrmdir($rootA); }
 
-// 5B: PR #12 (eb073346, artefato 14564933268, app/Retirement.php) sem SHA pin manual!
+// 5B: PR #12 (eb073346, artefato 14564933268, app/Retirement.php) sem SHA pin manual e SEM mysqldump!
 [$rootB, $stageB, $pubB] = $makeSandbox();
 try {
     $resB = $pubB->apply($stageB);
     ok(($resB['state'] ?? null) === 'validated', 'E2E PR #12 (eb073346 / artefato 14564933268) publica sem SHA pin manual');
-    ok($pubB->preflightBackupCalled && in_array('backup', $pubB->calledHooks, true),
-        'E2E PR #12 executa preflight + backup obrigatorio + drenagem');
+    ok(in_array('maintenance', $pubB->calledHooks, true) && !in_array('backup', $pubB->calledHooks, true),
+        'E2E PR #12 executa drenagem completa (HTTP 503) SEM exigir preflight/mysqldump do banco');
+    $jB = json_decode((string)file_get_contents($rootB . '/private/journal.json'), true);
+    ok(($jB['backup_policy'] ?? null) === 'operator-managed-before-merge'
+        && ($jB['backup_receipt']['database_exported'] ?? null) === false
+        && !isset($jB['backup_receipt']['dump_sha256'])
+        && file_get_contents($jB['backup'] . '/file-0') === "<?php // ret-v1\n",
+        'E2E PR #12 preserva backup local verificavel de app/Retirement.php sem simular dump de banco');
     ok(file_get_contents($rootB . '/current/app/Retirement.php') === "<?php // ret-v2-pr12\n",
         'E2E PR #12 promove app/Retirement.php atomicamente');
 } finally { rrmdir($rootB); }
@@ -558,16 +619,59 @@ try {
         'Baseline intacto apos bloqueio de release mista');
 } finally { rrmdir($rootC); }
 
-// 5D: Falha de backup em Classe B -> fail-closed!
-[$rootD, $stageD, $pubD] = $makeSandbox(['backup_fails' => true]);
+// 5D: Falha real de migration em Classe B -> aborta fail-closed sem promover codigo e retendo trava de seguranca!
+[$rootD, $stageD, $pubD] = (static function () use ($makeSandbox) {
+    [$r, $s, $p] = $makeSandbox();
+    @mkdir($s . '/payload/database', 0700, true);
+    $migSql = "CREATE TABLE rumo10_broken (id INT);\n";
+    file_put_contents($s . '/payload/database/010-broken.sql', $migSql);
+    $ready = json_decode((string)file_get_contents($s . '/ready.json'), true);
+    $relJson = json_decode((string)file_get_contents($s . '/payload/release.json'), true);
+    $relJson['files']['database/010-broken.sql'] = hash('sha256', $migSql);
+    ksort($relJson['files']);
+    $rawRel = json_encode($relJson, JSON_THROW_ON_ERROR);
+    file_put_contents($s . '/payload/release.json', $rawRel);
+    $tarEntries = [];
+    foreach ($relJson['files'] as $rel => $_h) {
+        $tarEntries[$rel] = (string)file_get_contents($s . '/payload/' . $rel);
+    }
+    $tarEntries['release.json'] = $rawRel;
+    makeTarGz($s . '/release.tar.gz', $tarEntries);
+    $ready['envelope']['package_sha256'] = digest($s . '/release.tar.gz');
+    record($s . '/ready.json', $ready);
+    $ref = new ReflectionProperty($p, 'migrateFails');
+    $ref->setValue($p, true);
+    return [$r, $s, $p];
+})();
 try {
     mustFail(
         fn() => $pubD->apply($stageD),
-        'Backup hook failed',
-        'E2E aborta Classe B (fail-closed) quando backup falha'
+        'Hook failed: migrate',
+        'E2E aborta Classe B (fail-closed) quando migration falha sem promover codigo'
     );
     ok(file_get_contents($rootD . '/current/app/Retirement.php') === "<?php // ret-v1\n",
-        'Nenhum arquivo alterado quando backup falha');
+        'Nenhum arquivo operacional alterado quando migration falha');
+    mustFail(
+        fn() => $pubD->recover(),
+        'Unconfirmed migration retained for reconciliation',
+        'Recover recusa rollback automatico destrutivo de migration inconclusa'
+    );
 } finally { rrmdir($rootD); }
+
+// 5E: Rollback local dos arquivos afetados quando smoke falha apos promocao de arquivos!
+[$rootE, $stageE, $pubE] = $makeSandbox(['smoke_fails_rollback' => true]);
+try {
+    mustFail(
+        fn() => $pubE->apply($stageE),
+        'Hook failed: smoke',
+        'E2E bloqueia deploy quando smoke falha apos promocao de arquivos'
+    );
+    ok(file_get_contents($rootE . '/current/app/Retirement.php') === "<?php // ret-v2-pr12\n",
+        'Arquivo havia sido promovido antes da falha do smoke');
+    $recE = $pubE->recover();
+    ok(($recE['state'] ?? null) === 'recovered' && ($recE['database_restored'] ?? null) === false
+        && file_get_contents($rootE . '/current/app/Retirement.php') === "<?php // ret-v1\n",
+        'Rollback local restaura app/Retirement.php a partir de backup/file-0 e reabre o gate com seguranca');
+} finally { rrmdir($rootE); }
 
 echo "\n=== TODOS OS {$passed} TESTES DIRECIONADOS PASSARAM ===\n";

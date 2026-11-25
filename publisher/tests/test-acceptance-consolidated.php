@@ -274,7 +274,7 @@ try {
         'private' => $prod . '/private', 'control' => $prod . '/control',
         'current' => $prod . '/current', 'public' => $prod . '/public',
         'apply_enabled' => true,
-        'homologation' => ['maintenance' => true, 'recovery' => true, 'legacy_publishers_fenced' => true, 'backup' => true],
+        'homologation' => ['maintenance' => true, 'recovery' => true, 'legacy_publishers_fenced' => true],
         'request_gate' => [
             'root' => $prod . '/gate', 'coverage_approved' => true, 'projects' => ['rumo10', 'rumohub'],
             'entrypoints' => [$prod . '/public/index.php' => digest($prod . '/public/index.php'), $hubEntry => digest($hubEntry)],
@@ -343,7 +343,6 @@ try {
                 private array $tCfg, private string $repo, private string $c11, private string $c12,
                 private string $pr12Head, private int $ownerId, private array $opts
             ) { parent::__construct($tCfg); }
-            protected function assertBackupPrerequisites(bool $classA = false): void {}
             protected function promote(string $a, string $b): bool {
                 if (($this->opts['fail_promote_once'] ?? false) && !$this->failedOnce) {
                     $this->failedOnce = true;
@@ -386,20 +385,12 @@ try {
             }
             protected function hook(string $name, array $request): array {
                 $this->hooks[] = $name;
+                if ($name === 'backup') {
+                    throw new RuntimeException('Automatic DB backup hook must NOT be called for Class A or B');
+                }
                 if ($name === 'fence') return ['ok' => true, 'legacy_publishers_fenced' => true];
                 if ($name === 'preflight') return ['legacy_publishers_fenced' => true, 'source_unchanged' => true];
                 if ($name === 'maintenance') return ['http_status' => 503, 'writes_blocked' => true, 'inflight_writers' => 0, 'new_requests_blocked' => true, 'publisher_exclusive' => true];
-                if ($name === 'backup') {
-                    if ($this->opts['fail_backup'] ?? false) throw new RuntimeException('Simulated mysqldump failure');
-                    $dump = $request['backup'] . '/dump.sql';
-                    file_put_contents($dump, "-- consistent dump\n");
-                    $h = digest($dump);
-                    return ['attempt' => $request['attempt'], 'created_at' => time(),
-                        'artifact_id' => $this->opts['artifact_id'] ?? 14564933268,
-                        'package_sha256' => $this->opts['pkg_sha'] ?? '',
-                        'consistent' => true, 'source_uuid' => 'uol-mysql',
-                        'dump_sha256' => $h, 'files' => [$dump => $h]];
-                }
                 if ($name === 'smoke') return ['ok' => true, 'http_status' => 200];
                 return ['ok' => true];
             }
@@ -413,8 +404,16 @@ try {
     $res12 = $pub12->apply($stage12);
     ok(($res12['state'] ?? null) === 'validated' && ($res12['commit'] ?? null) === $c12,
         'T2/T3: Adota checkpoint PR #11 e publica PR #12 (eb073346 / 14564933268) como Classe B sem SHA pin manual');
-    ok(in_array('maintenance', $pub12->hooks, true) && in_array('backup', $pub12->hooks, true),
-        'T8: PR #12 executou drenagem completa (HTTP 503) e backup obrigatorio');
+    $journal12 = json(file_get_contents($prod . '/private/journal.json'));
+    ok(in_array('maintenance', $pub12->hooks, true) && !in_array('backup', $pub12->hooks, true),
+        'T8: PR #12 (Classe B) executou drenagem completa (HTTP 503) SEM exigir exportacao automatica do MySQL');
+    ok(($journal12['backup_policy'] ?? null) === 'operator-managed-before-merge'
+        && ($journal12['backup_receipt']['mode'] ?? null) === 'local-files-only'
+        && ($journal12['backup_receipt']['database_exported'] ?? null) === false
+        && !isset($journal12['backup_receipt']['dump_sha256'])
+        && is_file($journal12['backup'] . '/file-0')
+        && file_get_contents($journal12['backup'] . '/file-0') === "<?php // ret-v11\n",
+        'T8: Recibo honesto (database_exported=false) e backup local verificavel dos arquivos afetados preservado');
 
     // T5: Idempotencia (reexecutar mesmo artefato nao reinstala)
     unset($pub12);
@@ -423,7 +422,7 @@ try {
     ok(($resAgain['already_installed'] ?? false) === true && $pub12Again->hooks === [],
         'T5: Idempotencia confirmada — reexecucao do mesmo artefato nao reinstala');
 
-    // T4: Segunda publicacao automatica consecutiva (estilo PR #14 / Classe A) SEM tocar em receiver-config.json!
+    // T4: Segunda publicacao automatica consecutiva (estilo PR #14 / Classe A) SEM tocar em receiver-config.json e SEM mysqldump!
     unset($pub12Again);
     $filesV14 = array_replace($filesV12, [
         'app/Game.php' => "<?php // game-v14-f04\n",
@@ -432,12 +431,12 @@ try {
     [$stage14, $pkg14Sha, $art14Id] = $buildStage('pr14', $c14, 44946992958, 70, 14600000001, 14, $filesV14);
     $pub14 = $makePub($cfg, ['artifact_id' => $art14Id, 'pkg_sha' => $pkg14Sha]);
     $res14 = $pub14->apply($stage14);
-    ok(($res14['state'] ?? null) === 'validated' && ($res14['commit'] ?? null) === $c14,
-        'T4: Segunda publicacao consecutiva (PR #14 / Classe A) concluida sem qualquer ajuste manual no cPanel');
+    ok(($res14['state'] ?? null) === 'validated' && ($res14['commit'] ?? null) === $c14 && !in_array('backup', $pub14->hooks, true),
+        'T4: Segunda publicacao consecutiva (PR #14 / Classe A) concluida sem mysqldump e sem ajuste manual no cPanel');
     ok(file_get_contents($prod . '/current/app/MatchParticipation.php') === "<?php // f04-r1\n",
         'T4: Novo arquivo de funcionalidade promovido atomicamente');
 
-    // T9 + Achado 3B & 3C: Recuperacao de deploy interrompido + preservacao de alteracoes de banco ja aplicadas
+    // T9 + Achado 3B & 3C: Recuperacao de deploy interrompido + preservacao de alteracoes de banco ja aplicadas (sem exigir dump_sha256)
     unset($pub14);
     $filesV15 = array_replace($filesV14, [
         'app/Game.php' => "<?php // game-v15-recover\n",
@@ -453,24 +452,18 @@ try {
             array $tCfg, private string $repo, private string $c11, private string $c12,
             private string $pr12Head, private int $ownerId, private string $pkgSha, private int $artId, private string $dbMarker
         ) { parent::__construct($tCfg); }
-        protected function assertBackupPrerequisites(bool $classA = false): void {}
         protected function promote(string $a, string $b): bool {
             if (!$this->failedOnce) { $this->failedOnce = true; return false; }
             return parent::promote($a, $b);
         }
         protected function hook(string $name, array $request): array {
             $this->hooks[] = $name;
+            if ($name === 'backup') {
+                throw new RuntimeException('Automatic DB backup hook must NOT be called for Class B migration');
+            }
             if ($name === 'fence') return ['ok' => true, 'legacy_publishers_fenced' => true];
             if ($name === 'preflight') return ['legacy_publishers_fenced' => true, 'source_unchanged' => true];
             if ($name === 'maintenance') return ['http_status' => 503, 'writes_blocked' => true, 'inflight_writers' => 0, 'new_requests_blocked' => true, 'publisher_exclusive' => true];
-            if ($name === 'backup') {
-                $dump = $request['backup'] . '/dump.sql';
-                file_put_contents($dump, "-- consistent dump\n");
-                $h = digest($dump);
-                return ['attempt' => $request['attempt'], 'created_at' => time(), 'artifact_id' => $this->artId,
-                    'package_sha256' => $this->pkgSha, 'consistent' => true, 'source_uuid' => 'uol-mysql',
-                    'dump_sha256' => $h, 'files' => [$dump => $h]];
-            }
             if ($name === 'migrate') {
                 file_put_contents($this->dbMarker, "MIGRATION_010_APPLIED\n");
                 return ['ok' => true, 'compatible_expansion' => true, 'versions' => ['010']];
