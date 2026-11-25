@@ -29,6 +29,13 @@ class Publisher {
         need(realpath($config['current'])!==realpath($config['public']),'Separate physical public root required');
     }
     public function __destruct() { if (is_resource($this->mutex)) { flock($this->mutex,LOCK_UN); fclose($this->mutex); } }
+    /** Adopts an already-locked account_mutex handle from controlled-pull.php for uninterrupted mutual exclusion. */
+    public function adoptLock(mixed $handle): void {
+        need(is_resource($handle), 'Valid locked account_mutex resource required');
+        if ($this->mutex === null) {
+            $this->mutex = $handle;
+        }
+    }
     public function acquire(): void { $this->lock(); }
     private function lock(): void {
         if (is_resource($this->mutex)) return;
@@ -45,8 +52,8 @@ class Publisher {
     protected function assertWriterDrain(): void {
         need(false,'Exclusive request drain required for this transition');
     }
-    protected function assertBackupPrerequisites(bool $classA = false): void {
-        if($classA)return;
+    protected function assertBackupPrerequisites(bool $skipAutomaticDbBackup = false): void {
+        if($skipAutomaticDbBackup)return;
         $h=$this->c['hooks']['backup']??null;
         need(is_array($h) && digest($h['script'])===$h['sha256'],'Missing/changed trusted hook: backup');
 
@@ -379,6 +386,13 @@ class Publisher {
         ksort($files,SORT_STRING);
         return hash('sha256',json_encode($files,JSON_THROW_ON_ERROR|JSON_UNESCAPED_SLASHES));
     }
+    private function installedCommit(): ?string {
+        $receiptPath=$this->private.'/installed.json';
+        if(!is_file($receiptPath))return null;
+        $receipt=json(file_get_contents($receiptPath));
+        $from=$receipt['functional_commit']??$receipt['commit']??null;
+        return (is_string($from) && preg_match('/^[a-f0-9]{40}$/D',$from)===1)?$from:null;
+    }
     private function transitionPolicy(array $old,array $v,?string $from): array {
         $policy=$this->c['update_policy'];
         if(isset($this->c['main_automation']))$policy['allow_unpinned_migrations']=true;
@@ -401,6 +415,21 @@ class Publisher {
             }
         }
         $result=UpdatePolicy::assess($old,$v['inventory'],$policy,$v['jobs'],$from,$to);
+        if($result['class']==='C' && isset($this->c['main_automation']) && $channel==='main'){
+            $delegable=MainAutomation::delegableClassBPaths($this->c['main_automation']);
+            if($delegable!==[]){
+                $candidate=UpdatePolicy::assess($old,$v['inventory'],$policy,$v['jobs'],$from,$to,$delegable);
+                $ownerPaths=$candidate['owner_authorized_protected_paths']??[];
+                if($candidate['class']==='B' && $ownerPaths!==[]){
+                    $installedFrom=$from??$this->installedCommit();
+                    need(is_string($installedFrom) && preg_match('/^[a-f0-9]{40}$/D',$installedFrom)===1,
+                        'Verified installed commit required for delegated Class B transition');
+                    $proofs=$this->source()->assertOwnerMergedDelegatedPaths($installedFrom,$v['commit'],$ownerPaths);
+                    $candidate['owner_merge_proofs']=$proofs;
+                    $result=$candidate;
+                }
+            }
+        }
         if($channel!==null)$result['requires_full_drain']=true;
         $result['required_migrations']=$v['envelope']['required_migrations']??[];
         return $result;
@@ -500,27 +529,29 @@ class Publisher {
         if(isset($this->c['main_automation'])){
             need($assessment!==null,'Main automation requires transition policy');
             MainAutomation::change($this->c['main_automation'],$v,$assessment);
-            // A manual backup, if required by the operator, is handled before
-            // the merge. The receiver never requests proof of a backup.
+            // Official policy (24/11/2026 addenda): full MySQL database backup is
+            // performed manually by the owner BEFORE authorizing the merge on main.
+            // Neither Class A nor Class B executes or requests automatic DB dumps.
             if($assessment['migrations']===[])$assessment['validation_only']=true;
         }
         $classA=isset($this->c['main_automation']) && ($assessment['class']??null)==='A';
-        // Database-changing transitions retain their own integrity safeguards.
-        // Class A has no backup homologation, evidence or dump prerequisite.
-        if(!$classA)need(($this->c['homologation']['backup']??false)===true,
+        $ownerManagedDbBackup=isset($this->c['main_automation']) && in_array($assessment['class']??null,['A','B'],true);
+        // Non-automated flows retain explicit backup hook homologation.
+        // Under main_automation, Class A and Class B rely on owner pre-merge DB backup + local file backups.
+        if(!$ownerManagedDbBackup)need(($this->c['homologation']['backup']??false)===true,
             'Database transition requires separately homologated recovery safeguards');
         if(($this->c['main_automation']['ui001_bootstrap_request']??false)===true){
             need($classA && ['commit'=>$v['commit'],'run_id'=>$v['run']['id'],
                 'artifact_id'=>$v['artifact_id']]===MainAutomation::UI001,
                 'UI-001 exception requires the exact pinned Class A release');
         }
-        if($classA)MainAutomation::proof([],$v,time(),'A',$authorization);
-        return compact('v','old','controls','ops','from','assessment','authorization','classA');
+        if($ownerManagedDbBackup)MainAutomation::proof([],$v,time(),$assessment['class'],$authorization);
+        return compact('v','old','controls','ops','from','assessment','authorization','classA','ownerManagedDbBackup');
     }
 
     public function apply(string $stage): array {
         $prepared=$this->prepareApply($stage);
-        if(!isset($prepared['replay']))$this->assertBackupPrerequisites($prepared['classA']);
+        if(!isset($prepared['replay']))$this->assertBackupPrerequisites($prepared['ownerManagedDbBackup']??$prepared['classA']);
         return $this->applyPrepared($stage,$prepared);
     }
 
@@ -532,6 +563,7 @@ class Publisher {
         }
         ['v'=>$v,'old'=>$old,'controls'=>$controls,'ops'=>$ops,'from'=>$from,
             'assessment'=>$assessment,'authorization'=>$authorization,'classA'=>$classA]=$prepared;
+        $ownerManagedDbBackup=$prepared['ownerManagedDbBackup']??$classA;
         $request=$this->gate($v,$assessment,$from);
         $id=bin2hex(random_bytes(16)); $backup=$this->private.'/backup-'.$id; privateDir($backup);
         $lockBytes=json_encode(['publisher'=>'rumo-pull-v1','project'=>$this->c['project'],'attempt'=>$id],JSON_THROW_ON_ERROR);
@@ -552,7 +584,7 @@ class Publisher {
             $this->own($j);
             $j['private_backup']=PrivateBackup::capture($this->c['backup_roots']??[],$backup.'/private-files');
             $this->save($j);
-            // Include code, managed public files and manifest; DB hook has to snapshot AND rehearse a restore privately.
+            // Preserve affected operational files, managed public files and manifests for local rollback.
             foreach ($j['operations'] as $i=>$op) if ($op['before']!==null) {
                 need(sameFileState($op['dest'])===$op['before'],'Target changed before backup');
                 need(copy($op['dest'],$backup.'/file-'.$i),'Code backup failed');
@@ -560,10 +592,26 @@ class Publisher {
             }
             atomic($backup.'/release.json',file_get_contents($this->c['current'].'/release.json'));
             if(is_file($this->c['current'].'/build-manifest.json'))atomic($backup.'/build-manifest.json',file_get_contents($this->c['current'].'/build-manifest.json'));
-            if($classA){
-                MainAutomation::proof([],$v,time(),'A',$authorization);
+            if($ownerManagedDbBackup){
+                $localFiles=[$backup.'/release.json'=>digest($backup.'/release.json')];
+                if(is_file($backup.'/build-manifest.json')){
+                    $localFiles[$backup.'/build-manifest.json']=digest($backup.'/build-manifest.json');
+                }
+                foreach($j['operations'] as $i=>$op){
+                    if($op['before']!==null){
+                        $savedFile=$backup.'/file-'.$i;
+                        $localFiles[$savedFile]=digest($savedFile);
+                    }
+                }
                 $j['backup_policy']='operator-managed-before-merge';
-                $b=['attempt'=>$id,'files'=>[$backup.'/release.json'=>digest($backup.'/release.json')]];
+                $b=[
+                    'attempt'=>$id,
+                    'mode'=>'local-files-only',
+                    'policy'=>'operator-managed-before-merge',
+                    'database_exported'=>false,
+                    'files'=>$localFiles,
+                ];
+                MainAutomation::proof($b,$v,time(),$assessment['class']??'A',$authorization);
             }else{
                 $b=$this->hook('backup',$request+['backup'=>$backup,'attempt'=>$id]);
                 $restoreRequired=!isset($this->c['main_automation']);
@@ -591,7 +639,7 @@ class Publisher {
         $hasMigrationsToRun = !empty($request['update_policy']['migrations']) || !empty($requiredMigrations);
         if(!isset($j['migration_receipt']) && $hasMigrationsToRun) {
             if(isset($this->c['main_automation']) || ($j['validation_only']??false)===true)
-                MainAutomation::proof($j['backup_receipt']??[],$v,time(),'B');
+                MainAutomation::proof($j['backup_receipt']??[],$v,time(),$request['update_policy']['class']??'B');
             $this->own($j);$j['state']='migrating';$j['migration_started']=true;$this->save($j);
             $receipt=$this->hook('migrate',$request+['attempt'=>$id]);
             need(($receipt['compatible_expansion']??false)===true,'Incremental migration proof missing');
@@ -761,9 +809,9 @@ class Publisher {
             need($policy['class']!=='C','Forward recovery requires approved compatible policy');
             if(isset($this->c['main_automation'])){
                 MainAutomation::change($this->c['main_automation'],$v,$policy);
-                if($policy['class']==='A')MainAutomation::proof([],$v,time(),'A');
-                else need(isset($j['backup_receipt']['dump_sha256']) || isset($j['backup_receipt']['restored_dump_sha256']),
-                    'Class B recovery requires database backup evidence');
+                MainAutomation::proof($j['backup_receipt']??[],$v,time(),$policy['class']);
+                need(!empty($j['backup_receipt']['files']) && is_array($j['backup_receipt']['files']),
+                    'Recovery requires verified local file backup receipt');
             }
             if($policy['requires_full_drain'])$this->assertWriterDrain();
             $j['candidate']=$v;

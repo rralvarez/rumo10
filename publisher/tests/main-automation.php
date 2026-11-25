@@ -87,6 +87,15 @@ $proof=['created_at'=>500,'artifact_id'=>123,'package_sha256'=>$v['package_sha25
     'dump_sha256'=>str_repeat('d',64),'files'=>['dump'=>str_repeat('d',64)]];
 MainAutomation::proof([],$v,2299,'A');
 check(true,'Class A never requests database backup or a manual backup receipt at deploy');
+MainAutomation::proof([],$v,2299,'B');
+check(true,'Class B relies on owner pre-merge DB backup without automatic deploy-time dump');
+$honestFilesReceipt=['mode'=>'local-files-only','policy'=>'operator-managed-before-merge','database_exported'=>false,'files'=>['/backup/release.json'=>str_repeat('1',64)]];
+MainAutomation::proof($honestFilesReceipt,$v,2299,'A');
+MainAutomation::proof($honestFilesReceipt,$v,2299,'B');
+check(true,'Honest local-files-only receipt accepted for Class A and Class B');
+check(rejects(fn()=>MainAutomation::proof(array_replace($honestFilesReceipt,['database_exported'=>true]),$v,2299,'B'),'must not declare a database export'),'Refuses false declaration of database export');
+check(rejects(fn()=>MainAutomation::proof(array_replace($honestFilesReceipt,['dump_sha256'=>str_repeat('d',64)]),$v,2299,'B'),'Simulated database dump fields refused'),'Refuses simulated dump fields in local-files receipt');
+check(rejects(fn()=>MainAutomation::proof([],$v,2299,'C'),'Unknown database backup policy'),'Class C rejected by backup policy');
 MainAutomation::proof($proof,$v,2299);check(true,'Proof fresh on single server');
 check(rejects(fn()=>MainAutomation::proof($proof,$v,2300),'Fresh consistent'),'Proof expires at 30 minutes');
 check(rejects(fn()=>MainAutomation::proof(array_replace($proof,['files'=>[]]),$v,2299),'Valid backup dump'),'Missing dump file');
