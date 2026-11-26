@@ -37,9 +37,9 @@ foreach(Rules::POSITIONS as $position) {
         foreach($table as $row) check($row['played']===14 && $row['points']===$row['wins']*3+$row['draws'],'Classificação consistente');
         foreach($g['matches'] as $m) { check($m['status']==='finalizada' && $m['minute']===90,'Partida finalizada'); check($m['stats']['completed']<=$m['stats']['passes'],'Passes consistentes'); check($m['stats']['goals']<=($m['home']===$g['club']?$m['hg']:$m['ag']),'Gols do jogador no placar'); if($m['stats']['minutes']===0) check($m['stats']['goals']===0 && $m['stats']['shots']===0,'Sem estatística fora de campo'); }
         foreach($g['states'] as $v) check($v>=0 && $v<=100,'Estado na faixa');
-        $g=Game::command($g,'offers'); $offers=$g['offers']; check(count(array_filter($offers,fn($o)=>$o['selected']))===($g['market_draw']['selected']===null?0:1),'Uma proposta ou ausência explicitamente sorteada');
+        $g=Game::command($g,'offers'); $offers=$g['offers']; check(count($offers)===3 && ($g['market_draw']['schema']??0)>=3,'Três propostas distintas sorteadas na janela');
         try { Game::command($g,'offers'); check(false,'Proposta repetida proibida'); } catch(InvalidArgumentException) { check(true,'Proposta persistida'); }
-        $club=$g['club']; $g=Game::command($g,'transfer',['accept'=>$trial%2 && $g['market_draw']['selected']!==null?'yes':'no']); check($g['season']===2 && $g['stage']==='treino' && count($g['history'])===1,'Continuação da carreira'); if($trial%2===0) check($g['club']===$club,'Recusa mantém clube');
+        $club=$g['club']; $g=Game::command($g,'transfer',$trial%2?['accept'=>'yes','option'=>0]:['accept'=>'no']); check($g['season']===2 && $g['stage']==='treino' && count($g['history'])===1,'Continuação da carreira'); if($trial%2===0) check($g['club']===$club,'Recusa mantém clube');
     }
 }
 echo "OK: $checks verificações; 30 temporadas completas em seis posições.\n";
@@ -68,7 +68,7 @@ if(in_array('--mysql',$argv,true)) {
         $g=$again; $steps=0;
         while($g['stage']!=='resumo' && $steps++<300) { [$cmd,$input]=nextCommand($g); $g=$r->command($account,$cmd,$input,bin2hex(random_bytes(32)),$g['version']); $reload=$r->load($account); check($g===$reload,'Persistência/refresh exata'); $g=$reload; }
         check($g['stage']==='resumo','Temporada persistida concluída');
-        $g=$r->command($account,'offers',[],bin2hex(random_bytes(32)),$g['version']); $g=$r->command($account,'transfer',['accept'=>'yes'],bin2hex(random_bytes(32)),$g['version']); check($r->load($account)['season']===2,'Transferência persistida');
+        $g=$r->command($account,'offers',[],bin2hex(random_bytes(32)),$g['version']); $g=$r->command($account,'transfer',['accept'=>'yes','option'=>0],bin2hex(random_bytes(32)),$g['version']); check($r->load($account)['season']===2,'Transferência persistida');
         check($r->load(0)===null,'Isolamento de conta');
         check($r->load($account2)===$untouched,'Outra conta não sofreu mudanças');
         echo "OK: integração MySQL, replay, refresh, 14 rodadas e transferência.\n";

@@ -369,30 +369,51 @@ echo "\n5. Validando faixas de nota, monotonicidade e amortecimento diretamente 
 
 // Helper que executa o encerramento REAL no motor produtivo via Game::segment
 function runEngineMatchEnd(float $targetRating, int $startConf, int $minutes): array {
-    static $statsCache = null;
-    if ($statsCache === null) {
-        $statsCache = [];
-        for ($cards = 0; $cards <= 10; $cards++) {
-            for ($goals = 0; $goals <= 10; $goals++) {
-                for ($assists = 0; $assists <= 5; $assists++) {
-                    for ($ok = 0; $ok <= 40; $ok++) {
-                        for ($err = 0; $err <= 40; $err++) {
-                            $r = round(max(0, min(10, 6.0 + $goals*0.7 + $assists*0.5 + $ok*0.1 - $err*0.15 - $cards*0.6)), 1);
-                            $key = (string)$r;
-                            if (!isset($statsCache[$key])) {
-                                $statsCache[$key] = [
+    static $statsCache = [];
+    $targetKey = number_format(round($targetRating, 1), 1, '.', '');
+    $cacheKey = $minutes . ':' . $targetKey;
+    if ($minutes > 0 && !isset($statsCache[$minutes . ':_loaded'])) {
+        $probeGame = ['club' => 'Santos-SP', 'position' => 'meia'];
+        $probeMatch = [
+            'home' => 'Santos-SP',
+            'away' => 'Corinthians-SP',
+            'hg' => 0,
+            'ag' => 0,
+            'status' => 'finalizada',
+            'participation_state' => 'FULL_TIME',
+            'stats' => [],
+        ];
+        for ($cards = 0; $cards <= 1; $cards++) {
+            for ($fouls = $cards; $fouls <= 5; $fouls++) {
+                for ($goals = 0; $goals <= 4; $goals++) {
+                    for ($assists = 0; $assists <= 3; $assists++) {
+                        for ($ok = 0; $ok <= 8; $ok++) {
+                            for ($err = 0; $err <= 8; $err++) {
+                                $candStats = [
+                                    'minutes' => $minutes,
                                     'goals' => $goals,
+                                    'shots' => $goals,
                                     'assists' => $assists,
                                     'passes' => $ok + $err,
                                     'completed' => $ok,
-                                    'cards' => $cards
+                                    'tackles' => 0,
+                                    'fouls' => $fouls,
+                                    'cards' => $cards,
+                                    'yellow_cards' => $cards,
                                 ];
+                                $probeMatch['stats'] = $candStats;
+                                $r = MatchRating::calculate($probeMatch, $probeGame);
+                                $k = $minutes . ':' . number_format($r, 1, '.', '');
+                                if (!isset($statsCache[$k])) {
+                                    $statsCache[$k] = $candStats;
+                                }
                             }
                         }
                     }
                 }
             }
         }
+        $statsCache[$minutes . ':_loaded'] = true;
     }
 
     static $refSeg = null;
@@ -414,7 +435,10 @@ function runEngineMatchEnd(float $targetRating, int $startConf, int $minutes): a
     $m['stats']['minutes'] = $minutes;
     $m['evaluated_penalties'] = ['80-90'];
 
-    $st = $statsCache[(string)round($targetRating, 1)] ?? ['passes' => 0, 'completed' => 0, 'goals' => 0, 'assists' => 0, 'cards' => 0];
+    if ($minutes > 0 && !isset($statsCache[$cacheKey])) {
+        throw new RuntimeException("Combinação sintética de estatísticas não encontrada para {$cacheKey}");
+    }
+    $st = $statsCache[$cacheKey] ?? ['passes' => 0, 'completed' => 0, 'goals' => 0, 'assists' => 0, 'cards' => 0];
     foreach ($st as $k => $v) {
         $m['stats'][$k] = $v;
     }
