@@ -210,12 +210,7 @@ try {
 
 } catch(IdentityError $ex) { $status=$ex->status;$error=$ex->getMessage(); }
 catch(InvalidArgumentException $ex) { if($status===200) $status=422; $error=$ex->getMessage();if(in_array($path,['/carreira/criar','/carreira/nova'],true) && $status===422){$existingCareer=$g;$g=null;$path='/carreira/nova';} }
-catch(Throwable $ex) {
-    $status=503;
-    $error='Aplicação indisponível. Verifique a instalação e a conexão local com o banco.';
-    $httpDiagCtx = array_replace(['route'=>$path === '/carreira/simular' ? $path : null,'method'=>$method], Repository::$lastFailureDiagnostic ?? []);
-    error_log(F01Telemetry::formatDiagnosticLog($ex, $httpDiagCtx));
-}
+catch(Throwable $ex) { $status=503; $error='Aplicação indisponível. Verifique a instalação e a conexão local com o banco.'; error_log('rumo10: '.$ex::class.' code='.$ex->getCode()); }
 http_response_code($status);
 if(str_starts_with($path,'/api/')) { header('Content-Type: application/json; charset=utf-8'); echo json_encode(['error'=>$error]); exit; }
 if(config('RUMO10_TIMING')==='1'){$renderStart=RequestMetrics::start();ob_start();require dirname(__DIR__).'/app/view.php';$html=ob_get_clean();RequestMetrics::end('render',$renderStart);RequestMetrics::headers();echo $html;}
