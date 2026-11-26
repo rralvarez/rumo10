@@ -329,25 +329,46 @@ final class Game {
             }
         }
         if(!$roll['success']) {
+            $fp=SceneConsequences::failureParams();
+            $techNormal=$fp['tech_fail_normal'];
+            $techSevere=$fp['tech_fail_severe'];
+            $decNormal=$fp['decisive_fail_normal'];
+            $decSevere=$fp['decisive_fail_severe'];
             $isDecisive=!empty($choice['decisive_opportunity']) || !empty($choice['clear_chance']);
             $defaultFail=$isDecisive
-                ?['confianca'=>$roll['class']==='falha_grave'?-4:-2]
-                :['confianca'=>$roll['class']==='falha_grave'?-3:-1];
-            $failure=$choice['failure_effects']??$defaultFail;
-            if($roll['class']==='falha_grave')$failure=$choice['severe_failure_effects']??$failure;
+                ?['confianca'=>$roll['class']==='falha_grave'?$decSevere:$decNormal]
+                :['confianca'=>$roll['class']==='falha_grave'?$techSevere:$techNormal];
+            $failure=array_key_exists('failure_effects',$choice) && is_array($choice['failure_effects'])?$choice['failure_effects']:$defaultFail;
+            if($roll['class']==='falha_grave'){
+                if(array_key_exists('severe_failure_effects',$choice) && is_array($choice['severe_failure_effects'])){
+                    $failure=$choice['severe_failure_effects'];
+                } elseif(!array_key_exists('failure_effects',$choice)){
+                    $failure=$defaultFail;
+                }
+            }
             if(($g['stage']??'')==='partida' && !$isDecisive){
                 if(($choice['shot_kind']??'')==='long'){
-                    $failure=$roll['class']==='falha_grave'?['confianca'=>-2]:['foco'=>-1];
+                    if($roll['class']==='falha_grave'){
+                        $longSevere=min($techNormal,max($techSevere,-2));
+                        if(!array_key_exists('confianca',$failure) || $failure['confianca']===$techSevere || $failure['confianca']===-4 || $failure['confianca']===-3){
+                            $failure['confianca']=$longSevere;
+                        }
+                    } else {
+                        if(($failure['confianca']??null)===$techNormal || ($failure['confianca']??null)===-2 || ($failure['confianca']??null)===-1){
+                            unset($failure['confianca']);
+                        }
+                        $failure['foco']=min((int)($failure['foco']??0),-1);
+                    }
                 } elseif(in_array($choice['action']??'',['passe','chute','drible','desarme'],true)){
-                    if(($failure['confianca']??null)===-2)$failure['confianca']=-1;
-                    elseif(($failure['confianca']??null)===-4)$failure['confianca']=-3;
+                    if(($failure['confianca']??null)===-2 || ($failure['confianca']??null)===-1)$failure['confianca']=$techNormal;
+                    elseif(($failure['confianca']??null)===-4 || ($failure['confianca']??null)===-3)$failure['confianca']=$techSevere;
                 }
             }
             if(isset($failure['confianca']) && $failure['confianca']<0 && !isset($effects['confianca'])){
                 $curConf=$g['states']['confianca'];
                 $floorNormal=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','zero_trap_floor_normal',10):10;
                 $floorSevere=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','zero_trap_floor_severe',8):8;
-                if($roll['class']!=='falha_grave' && !$isDecisive && $failure['confianca']===-1 && $curConf<=$floorNormal){
+                if($roll['class']!=='falha_grave' && !$isDecisive && $failure['confianca']>=$techNormal && $curConf<=$floorNormal){
                     unset($failure['confianca']);
                 } elseif($curConf<=$floorSevere && $failure['confianca']<=-2){
                     $failure['confianca']=max(-2,(int)floor($failure['confianca']/2));
@@ -503,7 +524,8 @@ final class Game {
         if (!$wasSentOffBefore && MatchParticipation::isSentOff($m) && empty($st['red_card_confidence_penalized'])) {
             $st['red_card_confidence_penalized'] = true;
             $redPen = class_exists('BalanceService') ? (int)BalanceService::param('confidence.balance.v2', 'sent_off_penalty', -2) : -2;
-            if ($g['states']['confianca'] <= 8 && $redPen < -1) $redPen = -1;
+            $floorSev = class_exists('BalanceService') ? (int)BalanceService::param('confidence.balance.v2', 'zero_trap_floor_severe', 8) : 8;
+            if ($g['states']['confianca'] <= $floorSev && $redPen < -1) $redPen = -1;
             $g['states']['confianca'] = self::clamp($g['states']['confianca'] + $redPen);
         }
         $constructive=$onBall && in_array($type,['passe','drible','desarme'],true) && empty($o['end_sequence']);
@@ -786,7 +808,14 @@ final class Game {
             $raw = $conf < 35 ? 6 : ($conf < 58 ? 5 : ($conf < 75 ? 4 : ($conf < 84 ? 3 : ($conf < $ceiling ? 2 : 0))));
         }
         $factor = min(1.0, $mins / $fullMin);
-        return (int)round($raw * $factor);
+        $scaled = (int)round($raw * $factor);
+        if ($scaled > 0) {
+            if ($conf >= $ceiling) {
+                return 0;
+            }
+            $scaled = min($scaled, $ceiling - $conf);
+        }
+        return $scaled;
     }
 
     private static function applySeasonAchievementConfidence(array &$g): void {

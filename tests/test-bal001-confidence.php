@@ -556,11 +556,11 @@ check($resTeto['nominal'] === 0, 'Confiança >= 90 não recebe recuperação pó
 check($resTeto['applied'] === 0, 'Bônus aplicado registrado no ledger é 0 para C >= 90');
 
 $res89 = runEngineMatchEnd(8.8, 89, 90);
-check($res89['nominal'] === 2, 'Bônus nominal para R=8.8 e C=89 é 2');
-check($res89['conf_after'] === 91, 'Confiança final avança para 91 (89 + 2)');
-check($res89['applied'] === 2, 'Bônus aplicado registrado no ledger é exatamente 2');
+check($res89['nominal'] === 1, 'Bônus nominal pós-jogo para R=8.8 e C=89 respeita post_ceiling=90 (+1)');
+check($res89['conf_after'] === 90, 'Confiança pós-jogo limita-se a post_ceiling=90 (89 + 1 = 90)');
+check($res89['applied'] === 1, 'Bônus aplicado registrado no ledger é exatamente 1');
 check($res89['ledger']['conf_before'] === 89, 'Ledger registra conf_before=89');
-check($res89['ledger']['conf_after'] === 91, 'Ledger registra conf_after=91');
+check($res89['ledger']['conf_after'] === 90, 'Ledger registra conf_after=90');
 
 // Clamp estrito de confiança no teto de 100 via motor
 $refClamp = new ReflectionMethod('Game', 'clamp');

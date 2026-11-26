@@ -35,6 +35,21 @@ final class SceneConsequences {
     }
 
     /**
+     * Parâmetros configuráveis de penalidade de autoconfiança (BalanceService: confidence.balance.v2).
+     *
+     * @return array{tech_fail_normal:int,tech_fail_severe:int,decisive_fail_normal:int,decisive_fail_severe:int}
+     */
+    public static function failureParams():array {
+        $p=class_exists('BalanceService')?BalanceService::params('confidence.balance.v2'):[];
+        return [
+            'tech_fail_normal'=>(int)($p['tech_fail_normal']??-1),
+            'tech_fail_severe'=>(int)($p['tech_fail_severe']??-3),
+            'decisive_fail_normal'=>(int)($p['decisive_fail_normal']??-2),
+            'decisive_fail_severe'=>(int)($p['decisive_fail_severe']??-4),
+        ];
+    }
+
+    /**
      * Classifica penalidades de falha conforme natureza esportiva e psicológica da ação (R10-BAL-001-R2):
      * - erro técnico normal vs grave em campo;
      * - falha em oportunidade decisiva;
@@ -43,11 +58,16 @@ final class SceneConsequences {
      * - exposição egoica ('ousar') ou comportamento inadequado.
      */
     public static function contextualFailure(array $o,string $stage,int $id=0):array {
+        $fp=self::failureParams();
+        $techNormal=$fp['tech_fail_normal'];
+        $techSevere=$fp['tech_fail_severe'];
+        $decNormal=$fp['decisive_fail_normal'];
+        $decSevere=$fp['decisive_fail_severe'];
         $code=$o['code']??null;
         $act=$o['action']??'';
         $isDecisive=!empty($o['clear_chance']) || !empty($o['decisive_opportunity']) || $id===1300 || $id===1401 || ($stage==='partida' && $id===7 && $act==='chute');
         if($stage==='partida' && $isDecisive){
-            return [['confianca'=>-2],['confianca'=>-4]];
+            return [['confianca'=>$decNormal],['confianca'=>$decSevere]];
         }
         return match($code){
             'recuperar','reclamar'=>[[],[]],
@@ -58,17 +78,17 @@ final class SceneConsequences {
             'disciplina','tatico','visao'=>[['foco'=>-2],['foco'=>-4]],
             'posicionamento'=>[['foco'=>-1],['foco'=>-2,'confianca_treinador'=>-1]],
             'forca','resistencia','velocidade'=>[['ritmo_jogo'=>-1],['ritmo_jogo'=>-2]],
-            'tecnica'=>[['foco'=>-1],['foco'=>-2,'confianca'=>-1]],
+            'tecnica'=>[['foco'=>-1],['foco'=>-2,'confianca'=>$techNormal]],
             'passe','chute','drible','desarme'=>$stage==='partida'
-                ?[['confianca'=>-1],['confianca'=>-3]]
-                :[['foco'=>-1],['foco'=>-2,'confianca'=>-1]],
+                ?[['confianca'=>$techNormal],['confianca'=>$techSevere]]
+                :[['foco'=>-1],['foco'=>-2,'confianca'=>$techNormal]],
             'social'=>$stage==='partida'
                 ?[['foco'=>-1],['foco'=>-2,'confianca_treinador'=>-1]]
                 :(isset($o['effects']['entrosamento'])?[['entrosamento'=>-1],['entrosamento'=>-2]]:[['moral_pessoal'=>-1],['moral_pessoal'=>-2]]),
             'ousar'=>[['confianca'=>-2],['confianca'=>-4]],
             default=>match(true){
-                $stage==='partida' && in_array($act,['passe','chute','drible','desarme'],true)=>[['confianca'=>-1],['confianca'=>-3]],
-                $stage==='treino'=>[['foco'=>-1],['foco'=>-2,'confianca'=>-1]],
+                $stage==='partida' && in_array($act,['passe','chute','drible','desarme'],true)=>[['confianca'=>$techNormal],['confianca'=>$techSevere]],
+                $stage==='treino'=>[['foco'=>-1],['foco'=>-2,'confianca'=>$techNormal]],
                 default=>[['confianca'=>-2],['confianca'=>-4]],
             },
         };
@@ -76,33 +96,75 @@ final class SceneConsequences {
 
     /**
      * Reconcilia alternativas vindas de catálogos JSON (2000+) ou situações especiais em tempo de execução,
-     * substituindo apenas o fallback genérico herdado (-2/-4 em confiança) quando a semântica não é de autoconfiança.
+     * ajustando apenas o componente de autoconfiança sem descartar efeitos legítimos sobre outros estados/atributos.
      */
     public static function reconcileCatalogOption(array $o,string $stage,int $id=0):array {
+        $fp=self::failureParams();
+        $techNormal=$fp['tech_fail_normal'];
+        $techSevere=$fp['tech_fail_severe'];
+        $decNormal=$fp['decisive_fail_normal'];
+        $decSevere=$fp['decisive_fail_severe'];
         $code=$o['code']??null;
         $act=$o['action']??'';
         $isDecisive=!empty($o['clear_chance']) || !empty($o['decisive_opportunity']) || $id===1300 || $id===1401 || ($stage==='partida' && $id===7 && $act==='chute');
         if($stage==='partida' && $isDecisive){
             $o['decisive_opportunity']=true;
-            $o['failure_effects']=['confianca'=>-2];
-            $o['severe_failure_effects']=['confianca'=>-4];
+            $fe=is_array($o['failure_effects']??null)?$o['failure_effects']:[];
+            $sfe=is_array($o['severe_failure_effects']??null)?$o['severe_failure_effects']:$fe;
+            $fe['confianca']=$decNormal;
+            $sfe['confianca']=$decSevere;
+            $o['failure_effects']=$fe;
+            $o['severe_failure_effects']=$sfe;
             return $o;
         }
         if($stage==='partida' && in_array($act,['passe','chute','drible','desarme'],true)){
-            if(!isset($o['failure_effects']) || ($o['failure_effects']['confianca']??null)===-2)$o['failure_effects']=['confianca'=>-1];
-            if(!isset($o['severe_failure_effects']) || ($o['severe_failure_effects']['confianca']??null)===-4)$o['severe_failure_effects']=['confianca'=>-3];
+            if(!array_key_exists('failure_effects',$o) || !is_array($o['failure_effects'])){
+                $o['failure_effects']=['confianca'=>$techNormal];
+            } elseif(($o['failure_effects']['confianca']??null)===-2 || ($o['failure_effects']['confianca']??null)===-1){
+                $o['failure_effects']['confianca']=$techNormal;
+            }
+            if(!array_key_exists('severe_failure_effects',$o) || !is_array($o['severe_failure_effects'])){
+                $sfe=$o['failure_effects'];
+                if(($sfe['confianca']??null)===$techNormal){
+                    $sfe['confianca']=$techSevere;
+                }
+                $o['severe_failure_effects']=$sfe;
+            } elseif(($o['severe_failure_effects']['confianca']??null)===-4 || ($o['severe_failure_effects']['confianca']??null)===-3){
+                $o['severe_failure_effects']['confianca']=$techSevere;
+            }
             return $o;
         }
-        if(($o['failure_effects']??null)===['confianca'=>-2]){
+        $fe=$o['failure_effects']??null;
+        if(is_array($fe) && ($fe['confianca']??null)===-2 && !isset($o['effects']['confianca'])){
+            $sfe=is_array($o['severe_failure_effects']??null)?$o['severe_failure_effects']:$fe;
             if($code==='posicionamento' || ($code==='social' && $stage==='partida')){
-                $o['failure_effects']=['foco'=>-1];
-                $o['severe_failure_effects']=['foco'=>-2,'confianca_treinador'=>-1];
+                unset($fe['confianca']);
+                $fe['foco']=min((int)($fe['foco']??0),-1);
+                if(($sfe['confianca']??null)===-4 || ($sfe['confianca']??null)===-2){
+                    unset($sfe['confianca']);
+                }
+                $sfe['foco']=min((int)($sfe['foco']??0),-2);
+                $sfe['confianca_treinador']=min((int)($sfe['confianca_treinador']??0),-1);
+                $o['failure_effects']=$fe;
+                $o['severe_failure_effects']=$sfe;
             } elseif(in_array($code,['forca','resistencia','velocidade'],true)){
-                $o['failure_effects']=['ritmo_jogo'=>-1];
-                $o['severe_failure_effects']=['ritmo_jogo'=>-2];
+                unset($fe['confianca']);
+                $fe['ritmo_jogo']=min((int)($fe['ritmo_jogo']??0),-1);
+                if(($sfe['confianca']??null)===-4 || ($sfe['confianca']??null)===-2){
+                    unset($sfe['confianca']);
+                }
+                $sfe['ritmo_jogo']=min((int)($sfe['ritmo_jogo']??0),-2);
+                $o['failure_effects']=$fe;
+                $o['severe_failure_effects']=$sfe;
             } elseif($stage!=='partida' && in_array($code,['tecnica','passe','chute','drible','desarme'],true)){
-                $o['failure_effects']=['foco'=>-1];
-                $o['severe_failure_effects']=['foco'=>-2,'confianca'=>-1];
+                unset($fe['confianca']);
+                $fe['foco']=min((int)($fe['foco']??0),-1);
+                if(($sfe['confianca']??null)===-4 || ($sfe['confianca']??null)===-2 || !array_key_exists('confianca',$sfe)){
+                    $sfe['confianca']=$techNormal;
+                }
+                $sfe['foco']=min((int)($sfe['foco']??0),-2);
+                $o['failure_effects']=$fe;
+                $o['severe_failure_effects']=$sfe;
             }
         }
         return $o;

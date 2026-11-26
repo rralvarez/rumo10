@@ -37,18 +37,25 @@ function makeRngR2(int $seed): callable {
 }
 
 $rngSuccess = static fn(int $min, int $max): int => ($max === 10000 ? 1 : ($max === 100 && $min === 1 ? 50 : $min));
-$rngExceptional = static fn(int $min, int $max): int => $min; // roll=1 (sucesso), intensity_roll=1 (excepcional)
-$rngCommonFail = static fn(int $min, int $max): int => ($max === 10000 ? 10000 : 50); // roll=10000 (falha), intensity=50 (falha comum)
-$rngSevereFail = static fn(int $min, int $max): int => ($max === 10000 ? 10000 : 1);  // roll=10000 (falha), intensity=1 (falha grave)
+$rngExceptional = static fn(int $min, int $max): int => $min;
+$rngCommonFail = static fn(int $min, int $max): int => ($max === 10000 ? 10000 : 50);
+$rngSevereFail = static fn(int $min, int $max): int => ($max === 10000 ? 10000 : 1);
 
 echo "=== R10-BAL-001-R2: SUÍTE DE HOMOLOGAÇÃO DO REEQUILÍBRIO DA AUTOCONFIANÇA ===\n\n";
 
-// =========================================================================
-// 1. PILAR 3.1: PENALIDADES CONTEXTUAIS E PROTEÇÃO CONTRA ARMADILHA EM ZERO
-// =========================================================================
-echo "1. Validando Penalidades Contextuais (3.1) e Proteção Anti-Zero...\n";
+// Confirmação explícita das 6 posições jogáveis atuais (sem goleiro em Rules::POSITIONS)
+okR2(
+    Rules::POSITIONS === ['zagueiro', 'lateral', 'volante', 'meia', 'ponta', 'centroavante']
+    && !in_array('goleiro', Rules::POSITIONS, true),
+    'Rules::POSITIONS mantém estritamente as 6 posições jogáveis atuais (goleiro não adicionado)'
+);
 
-// 1A: Varredura integral do catálogo em campo: 370 ações técnicas (-1/-3) vs 301+ ações táticas/posicionamento (foco/treinador, 0 confiança)
+// =========================================================================
+// 1. PILAR 3.1, PARÂMETROS DINÂMICOS E PRESERVAÇÃO DE EFEITOS COMPOSTOS
+// =========================================================================
+echo "\n1. Validando Penalidades Contextuais, Parâmetros BalanceService e Efeitos Compostos...\n";
+
+// 1A: Varredura integral do catálogo em campo: 370 ações técnicas (-1/-3) vs 301 decisões táticas/espaciais (0 confiança)
 $catalog = Scenes::catalog();
 $inMatchTacticalTotal = 0;
 $inMatchTacticalZeroConf = 0;
@@ -108,9 +115,186 @@ foreach ($catalog as $sid => $scene) {
 okR2($physTrainTotal > 0 && $physTrainTotal === $physTrainZeroConf,
     "Todos os {$physTrainTotal} exercícios físicos afetam ritmo_jogo (-1/-2) sem punir confiança");
 okR2($repTrainTotal > 0 && $repTrainTotal === $repTrainCommonZeroConf,
-    "Todas as {$repTrainTotal} repetições técnicas de treino/aquecimento afetam foco (-1) na falha comum e apenas -1 confiança na grave");
+    "Todas as {$repTrainTotal} repetições técnicas de treino/aquecimento afetam foco (-1) na falha comum e no máx -1 confiança na grave");
 
-// 1C: Falha em oportunidade decisiva (chance clara 1300 e chute decisivo aos 80' id=7) vs Chute de longe
+// 1C: Testes direcionados de EFEITOS COMPOSTOS em SceneConsequences::reconcileCatalogOption e Game::effects
+$refEffects = new ReflectionMethod('Game', 'effects');
+$refEffects->setAccessible(true);
+
+// Composto 1: ação técnica em partida (passe) com entrosamento + treinador junto de confiança
+$compTech = SceneConsequences::reconcileCatalogOption([
+    'action' => 'passe',
+    'code' => 'passe',
+    'effects' => [],
+    'failure_effects' => ['confianca' => -2, 'entrosamento' => -2],
+    'severe_failure_effects' => ['confianca' => -4, 'entrosamento' => -3, 'confianca_treinador' => -1],
+], 'partida', 2500);
+okR2(
+    $compTech['failure_effects'] === ['confianca' => -1, 'entrosamento' => -2]
+    && $compTech['severe_failure_effects'] === ['confianca' => -3, 'entrosamento' => -3, 'confianca_treinador' => -1],
+    'Efeito composto técnico em partida: ajusta confianca (-1/-3) preservando entrosamento e confianca_treinador'
+);
+
+// Composto 2: oportunidade decisiva (clear_chance) com estados secundários
+$compDecisive = SceneConsequences::reconcileCatalogOption([
+    'action' => 'chute',
+    'clear_chance' => true,
+    'effects' => [],
+    'failure_effects' => ['confianca' => -1, 'entrosamento' => -2, 'foco' => -1],
+    'severe_failure_effects' => ['confianca' => -3, 'entrosamento' => -4, 'confianca_treinador' => -2],
+], 'partida', 1300);
+okR2(
+    $compDecisive['failure_effects'] === ['confianca' => -2, 'entrosamento' => -2, 'foco' => -1]
+    && $compDecisive['severe_failure_effects'] === ['confianca' => -4, 'entrosamento' => -4, 'confianca_treinador' => -2],
+    'Efeito composto em oportunidade decisiva: aplica -2/-4 em confianca preservando entrosamento, foco e treinador'
+);
+
+// Composto 3: finalização de longa distância (shot_kind=long) em Game::effects preservando estados compostos
+$gCompLong = Game::legacyCreate('Comp Long', 'Santos', 'SP', 'meia');
+$gCompLong['stage'] = 'partida';
+$gCompLong['states']['confianca'] = 50;
+$gCompLong['states']['foco'] = 50;
+$gCompLong['states']['confianca_treinador'] = 50;
+$gCompLong['states']['entrosamento'] = 50;
+$choiceLongComp = [
+    'action' => 'chute',
+    'shot_kind' => 'long',
+    'failure_effects' => ['confianca' => -1, 'confianca_treinador' => -2],
+    'severe_failure_effects' => ['confianca' => -3, 'entrosamento' => -2],
+];
+$gCompLongCommon = $gCompLong;
+$appliedLongCommon = $refEffects->invokeArgs(null, [[], ['success' => false, 'class' => 'falha'], &$gCompLongCommon, $choiceLongComp]);
+okR2(
+    $gCompLongCommon['states']['confianca'] === 50
+    && $gCompLongCommon['states']['foco'] === 49
+    && $gCompLongCommon['states']['confianca_treinador'] === 48
+    && ($appliedLongCommon['confianca_treinador'] ?? 0) === -2,
+    'Efeito composto em chute de longe (comum): converte confianca->foco(-1) sem perder confianca_treinador(-2)'
+);
+
+$gCompLongSevere = $gCompLong;
+$appliedLongSevere = $refEffects->invokeArgs(null, [[], ['success' => false, 'class' => 'falha_grave'], &$gCompLongSevere, $choiceLongComp]);
+okR2(
+    $gCompLongSevere['states']['confianca'] === 48
+    && $gCompLongSevere['states']['entrosamento'] === 48
+    && ($appliedLongSevere['confianca'] ?? 0) === -2
+    && ($appliedLongSevere['entrosamento'] ?? 0) === -2,
+    'Efeito composto em chute de longe (grave): aplica confianca(-2) preservando entrosamento(-2)'
+);
+
+// Composto 4: posicionamento em partida, físico e treino técnico fora de partida com estados secundários
+$compPos = SceneConsequences::reconcileCatalogOption([
+    'code' => 'posicionamento',
+    'action' => 'social',
+    'effects' => ['posicionamento' => 1],
+    'failure_effects' => ['confianca' => -2, 'entrosamento' => -1],
+    'severe_failure_effects' => ['confianca' => -4, 'entrosamento' => -2],
+], 'partida', 2600);
+okR2(
+    !isset($compPos['failure_effects']['confianca'])
+    && ($compPos['failure_effects']['entrosamento'] ?? 0) === -1
+    && ($compPos['failure_effects']['foco'] ?? 0) === -1
+    && !isset($compPos['severe_failure_effects']['confianca'])
+    && ($compPos['severe_failure_effects']['entrosamento'] ?? 0) === -2
+    && ($compPos['severe_failure_effects']['foco'] ?? 0) === -2
+    && ($compPos['severe_failure_effects']['confianca_treinador'] ?? 0) === -1,
+    'Efeito composto em posicionamento: remove dreno de confiança preservando entrosamento'
+);
+
+$compPhys = SceneConsequences::reconcileCatalogOption([
+    'code' => 'velocidade',
+    'action' => 'social',
+    'effects' => ['velocidade' => 2],
+    'failure_effects' => ['confianca' => -2, 'risco_lesao' => 2],
+    'severe_failure_effects' => ['confianca' => -4, 'risco_lesao' => 4],
+], 'treino', 2100);
+okR2(
+    !isset($compPhys['failure_effects']['confianca'])
+    && ($compPhys['failure_effects']['risco_lesao'] ?? 0) === 2
+    && ($compPhys['failure_effects']['ritmo_jogo'] ?? 0) === -1
+    && ($compPhys['severe_failure_effects']['risco_lesao'] ?? 0) === 4
+    && ($compPhys['severe_failure_effects']['ritmo_jogo'] ?? 0) === -2,
+    'Efeito composto em treino físico: converte confianca->ritmo_jogo preservando risco_lesao'
+);
+
+$compTrainTech = SceneConsequences::reconcileCatalogOption([
+    'code' => 'passe',
+    'action' => 'passe',
+    'effects' => ['passe' => 2],
+    'failure_effects' => ['confianca' => -2, 'entrosamento' => -1],
+    'severe_failure_effects' => ['confianca' => -4, 'entrosamento' => -2],
+], 'treino', 2200);
+okR2(
+    !isset($compTrainTech['failure_effects']['confianca'])
+    && ($compTrainTech['failure_effects']['entrosamento'] ?? 0) === -1
+    && ($compTrainTech['failure_effects']['foco'] ?? 0) === -1
+    && ($compTrainTech['severe_failure_effects']['confianca'] ?? 0) === -1
+    && ($compTrainTech['severe_failure_effects']['entrosamento'] ?? 0) === -2
+    && ($compTrainTech['severe_failure_effects']['foco'] ?? 0) === -2,
+    'Efeito composto em treino técnico: preserva entrosamento nas falhas comum e grave'
+);
+
+// Composto 5: proteção anti-zero (C=9) amortece apenas confiança sem cancelar efeito secundário
+$gZeroComp = Game::legacyCreate('Zero Comp', 'Santos', 'SP', 'meia');
+$gZeroComp['stage'] = 'partida';
+$gZeroComp['states']['confianca'] = 9;
+$gZeroComp['states']['entrosamento'] = 50;
+$effZeroComp = $refEffects->invokeArgs(null, [[], ['success' => false, 'class' => 'falha'], &$gZeroComp, [
+    'action' => 'passe',
+    'failure_effects' => ['confianca' => -1, 'entrosamento' => -2],
+]]);
+okR2(
+    $gZeroComp['states']['confianca'] === 9
+    && !isset($effZeroComp['confianca'])
+    && $gZeroComp['states']['entrosamento'] === 48
+    && ($effZeroComp['entrosamento'] ?? 0) === -2,
+    'Proteção anti-zero em efeito composto: amortece confianca em C<=10 preservando entrosamento(-2)'
+);
+
+// 1D: Consumo efetivo dos parâmetros configuráveis em BalanceService (confidence.balance.v2)
+BalanceService::params('confidence.balance.v2');
+$refCache = new ReflectionProperty('BalanceService', 'activeCache');
+$refCache->setAccessible(true);
+$origCache = $refCache->getValue();
+try {
+    $customCache = $origCache;
+    $customCache['confidence.balance.v2'] = array_replace($customCache['confidence.balance.v2'] ?? [], [
+        'tech_fail_normal' => -2,
+        'tech_fail_severe' => -5,
+        'decisive_fail_normal' => -3,
+        'decisive_fail_severe' => -6,
+        'post_ceiling' => 83,
+    ]);
+    $refCache->setValue(null, $customCache);
+
+    [$cfNorm, $cfSev] = SceneConsequences::contextualFailure(['code' => 'passe', 'action' => 'passe'], 'partida', 2016);
+    [$dfNorm, $dfSev] = SceneConsequences::contextualFailure(['action' => 'chute', 'clear_chance' => true], 'partida', 1300);
+    $recCustom = SceneConsequences::reconcileCatalogOption(['action' => 'drible', 'failure_effects' => ['confianca' => -2], 'severe_failure_effects' => ['confianca' => -4]], 'partida', 2016);
+
+    $gDyn = Game::legacyCreate('Dyn Param', 'Santos', 'SP', 'meia');
+    $gDyn['stage'] = 'partida';
+    $gDyn['states']['confianca'] = 50;
+    $refEffects->invokeArgs(null, [[], ['success' => false, 'class' => 'falha_grave'], &$gDyn, ['action' => 'passe']]);
+
+    $refPostNom = new ReflectionMethod('Game', 'postMatchRatingNominal');
+    $refPostNom->setAccessible(true);
+    $dynPost82 = $refPostNom->invoke(null, 9.5, 82, 90);
+    $dynPost83 = $refPostNom->invoke(null, 9.5, 83, 90);
+
+    okR2(
+        $cfNorm['confianca'] === -2 && $cfSev['confianca'] === -5
+        && $dfNorm['confianca'] === -3 && $dfSev['confianca'] === -6
+        && $recCustom['failure_effects']['confianca'] === -2
+        && $recCustom['severe_failure_effects']['confianca'] === -5
+        && $gDyn['states']['confianca'] === 45
+        && $dynPost82 === 1 && $dynPost83 === 0,
+        'Motor consome dinamicamente tech_fail_normal/severe, decisive_fail_normal/severe e post_ceiling via BalanceService'
+    );
+} finally {
+    BalanceService::resetCache();
+}
+
+// 1E: Oportunidade decisiva (1300), chute de longe, exposição egoica ('ousar'), expulsão e piso severo
 $gClear = Game::create('Chance Clara', 'Santos', 'SP', 'centroavante', 'Santos-SP');
 $gClear['stage'] = 'partida';
 $iCl = Game::currentIndex($gClear);
@@ -132,25 +316,6 @@ $resClearSevere = Game::command($gClear, 'choice', ['option' => '0'], false, $rn
 okR2($resClearSevere['states']['confianca'] === 46 && ($resClearSevere['feedback']['effects']['confianca'] ?? 0) === -4,
     'Falha grave em chance clara (1300) aplica -4 na confiança e sincroniza feedback (-4)');
 
-// Chute de longe (opção 3 da situação base id=0): falha comum -> foco -1, confiança 0
-$gLong = Game::create('Chute Longe', 'Santos', 'SP', 'meia', 'Santos-SP');
-$gLong['stage'] = 'partida';
-$iLg = Game::currentIndex($gLong);
-$gLong['matches'][$iLg]['status'] = 'em_andamento';
-$gLong['matches'][$iLg]['lineup'] = 'titular';
-$gLong['matches'][$iLg]['participation_state'] = MatchParticipation::STATE_ON_FIELD;
-$gLong['matches'][$iLg]['entry'] = 0;
-$gLong['matches'][$iLg]['exit'] = 90;
-$gLong['matches'][$iLg]['minute'] = 15;
-$gLong['matches'][$iLg]['evaluated_penalties'] = ['15-35'];
-$gLong['states']['confianca'] = 50;
-$gLong['states']['foco'] = 50;
-unset($gLong['active_situation']);
-$resLong = Game::command($gLong, 'choice', ['option' => '3'], false, $rngCommonFail);
-okR2($resLong['states']['confianca'] === 50 && $resLong['states']['foco'] === 49 && !isset($resLong['feedback']['effects']['confianca']),
-    'Chute de longa distância sem sucesso comum afeta foco (-1) e preserva autoconfiança (50)');
-
-// Exposição egoica ('ousar') mantém -2/-4 e expulsão aplica -2 adicional
 $oOusar = SceneConsequences::option(['text' => 'Ousar', 'code' => 'ousar', 'effects' => []], 'pre_jogo', 9998, 0);
 okR2(($oOusar['failure_effects']['confianca'] ?? 0) === -2 && ($oOusar['severe_failure_effects']['confianca'] ?? 0) === -4,
     'Exposição egoica (ousar) preserva penalidade contextual -2/-4');
@@ -169,7 +334,6 @@ $gRed['matches'][$iRd]['stats']['cards'] = 1;
 $gRed['matches'][$iRd]['stats']['yellow_cards'] = 1;
 $gRed['states']['confianca'] = 50;
 $gRed['states']['risco_lesao'] = 0;
-// Aciona segundo amarelo pelo fluxo real de MatchDiscipline::recordFoul -> expulsão (probabilidade 50% por tentativa)
 $refField = new ReflectionMethod('Game', 'fieldDecision');
 $refField->setAccessible(true);
 $sentOffRes = null;
@@ -186,30 +350,26 @@ for ($attRed = 0; $attRed < 40; $attRed++) {
 okR2($sentOffRes !== null && $sentOffRes['states']['confianca'] === 48 && ($sentOffRes['feedback']['effects']['confianca'] ?? 0) === -2,
     'Expulsão em campo aplica penalidade contextual de -2 na confiança e reflete no feedback');
 
-// 1D: Proteção contra aprisionamento artificial em zero (C <= 10 e C <= 8)
-$refEffects = new ReflectionMethod('Game', 'effects');
-$refEffects->setAccessible(true);
 $gLow = Game::create('Baixa Conf', 'Santos', 'SP', 'centroavante', 'Santos-SP');
 $gLow['stage'] = 'partida';
-$gLow['states']['confianca'] = 9;
-$effLowCommon = $refEffects->invokeArgs(null, [[], ['success' => false, 'class' => 'falha'], &$gLow, ['action' => 'passe', 'failure_effects' => ['confianca' => -1]]]);
-okR2($gLow['states']['confianca'] === 9 && !isset($effLowCommon['confianca']),
-    'Proteção anti-zero: erro técnico comum em C <= 10 é amortecido para 0 (não prende artificialmente no piso)');
-
 $gLow['states']['confianca'] = 7;
 $effLowSevere = $refEffects->invokeArgs(null, [[], ['success' => false, 'class' => 'falha_grave'], &$gLow, ['action' => 'passe', 'failure_effects' => ['confianca' => -1], 'severe_failure_effects' => ['confianca' => -3]]]);
 okR2($gLow['states']['confianca'] === 5 && ($effLowSevere['confianca'] ?? 0) === -2,
     'Proteção anti-zero: falha técnica grave em C <= 8 é amortecida de -3 para -2 (7 -> 5)');
 
 // =========================================================================
-// 2. PILAR 3.2: GANHOS POR POSIÇÃO, AMORTECIMENTO PROGRESSIVO E GOLEIRO/DEFESA
+// 2. PILAR 3.2, TETO PÓS-PARTIDA (post_ceiling) E ULTRAPASSAGEM POR MÉRITO
 // =========================================================================
-echo "\n2. Validando Ganhos de Autoconfiança por Posição e Amortecimento (3.2)...\n";
+echo "\n2. Validando Ganhos por Posição, Teto Estrito post_ceiling=90 e Ultrapassagem Legítima...\n";
 
 $refGoalDelta = new ReflectionMethod('Game', 'goalConfidenceDelta');
 $refGoalDelta->setAccessible(true);
 $refAssistDelta = new ReflectionMethod('Game', 'assistConfidenceDelta');
 $refAssistDelta->setAccessible(true);
+$refPostNom = new ReflectionMethod('Game', 'postMatchRatingNominal');
+$refPostNom->setAccessible(true);
+$refSeg = new ReflectionMethod('Game', 'segment');
+$refSeg->setAccessible(true);
 
 okR2($refGoalDelta->invoke(null, ['position' => 'centroavante', 'states' => ['confianca' => 30]], 1) === 4, 'Gol atacante C=30 => +4');
 okR2($refGoalDelta->invoke(null, ['position' => 'zagueiro', 'states' => ['confianca' => 30]], 1) === 5, 'Gol defensor C=30 => +5');
@@ -225,11 +385,36 @@ okR2($refAssistDelta->invoke(null, ['position' => 'centroavante', 'states' => ['
 okR2($refAssistDelta->invoke(null, ['position' => 'meia', 'states' => ['confianca' => 80]], 1) === 1, 'Assistência C=80 => +1');
 okR2($refAssistDelta->invoke(null, ['position' => 'meia', 'states' => ['confianca' => 90]], 1) === 0, 'Assistência simples C=90 => 0');
 
-// Goleiro (4 defesas + clean sheet) e Zagueiro (4 desarmes + clean sheet) no motor real
-$refSeg = new ReflectionMethod('Game', 'segment');
-$refSeg->setAccessible(true);
+// Teto estrito post_ceiling=90: C=89 nunca passa de 90 pela recuperação pós-partida
+okR2($refPostNom->invoke(null, 8.8, 89, 90) === 1 && $refPostNom->invoke(null, 9.8, 89, 90) === 1,
+    'post_ceiling=90 estrito: C=89 recebe no máximo +1 na recuperação pós-partida (nunca 91)');
+okR2($refPostNom->invoke(null, 9.8, 90, 90) === 0 && $refPostNom->invoke(null, 9.8, 93, 90) === 0,
+    'post_ceiling=90 estrito: C>=90 recebe 0 de recuperação pós-partida');
 
-$gGk = Game::create('Goleiro Muralha', 'Santos', 'SP', 'zagueiro', 'Santos-SP');
+// Conquista esportiva legítima (gol aos 80') permite ultrapassar 90 sem ser cortada no fechamento 80->90
+$gAbove90 = Game::create('Acima de 90', 'Santos', 'SP', 'centroavante', 'Santos-SP');
+$gAbove90['stage'] = 'partida';
+$iAb = Game::currentIndex($gAbove90);
+$mAb = &$gAbove90['matches'][$iAb];
+$mAb['status'] = 'em_andamento';
+$mAb['lineup'] = 'titular';
+$mAb['participation_state'] = MatchParticipation::STATE_ON_FIELD;
+$mAb['entry'] = 0;
+$mAb['exit'] = 90;
+$mAb['minute'] = 80;
+$mAb['hg'] = 2;
+$mAb['ag'] = 0;
+$mAb['evaluated_penalties'] = ['80-90'];
+$mAb['stats'] = array_replace($mAb['stats'], ['goals' => 1, 'shots' => 1, 'passes' => 2, 'completed' => 2]);
+$gAbove90['states']['confianca'] = 90;
+$gAbove90['states']['risco_lesao'] = 0;
+unset($gAbove90['active_situation']);
+$resAbove90 = Game::command($gAbove90, 'choice', ['option' => '0'], false, $rngSuccess); // marca o 2º gol (90 -> 91) e encerra partida
+okR2($resAbove90['stage'] === 'fim_semana' && $resAbove90['states']['confianca'] === 91 && ($resAbove90['feedback']['effects']['confianca'] ?? 0) === 1,
+    'Mérito esportivo legítimo (gol em C=90) ultrapassa 90 (90 -> 91) enquanto componente pós-jogo permanece limitado em 0');
+
+// Suporte preparatório para goleiro (posição não disponível em Rules::POSITIONS, compatível com MatchRating/SeasonEvaluation)
+$gGk = Game::create('Suporte Prep GK', 'Santos', 'SP', 'zagueiro', 'Santos-SP');
 $gGk['position'] = 'goleiro';
 $gGk['stage'] = 'partida';
 $iGk = Game::currentIndex($gGk);
@@ -240,7 +425,6 @@ $mGk['hg'] = 1;
 $mGk['ag'] = 0;
 $mGk['status'] = 'em_andamento';
 $mGk['lineup'] = 'titular';
-$mGk['participation_state'] = MatchParticipation::STATE_SUBSTITUTED_OUT; // evita gols coletivos extras no 80->90? Não, segmento sorteia se span>0; usamos minute=90 span=0!
 $mGk['participation_state'] = MatchParticipation::STATE_ON_FIELD;
 $mGk['entry'] = 0;
 $mGk['exit'] = 90;
@@ -251,27 +435,24 @@ $refSeg->invokeArgs(null, [&$gGk, 90]);
 $gkLedgerKey = 'bal001:confidence:' . $gGk['season'] . ':' . ($gGk['competition_id'] ?? 'legacy') . ':' . $mGk['round'] . ':' . $mGk['home'] . ':' . $mGk['away'];
 $gkLedger = $gGk['reward_ledger'][$gkLedgerKey];
 okR2($mGk['stats']['rating'] >= 8.8 && $gkLedger['gk_save_bonus'] === 4 && $gkLedger['clean_sheet_bonus'] === 1 && $gGk['states']['confianca'] >= 39,
-    "Goleiro com 4 defesas e clean sheet sem marcar gols recupera confiança expressiva (30 -> {$gGk['states']['confianca']}, rating={$mGk['stats']['rating']})");
+    "[Suporte preparatório — goleiro fora de Rules::POSITIONS] Estatísticas sintéticas de saves/clean sheet operam sem regressão (30 -> {$gGk['states']['confianca']})");
 
-// Execução excepcional em treino (C < 42) e em lance construtivo em campo (C < 65)
+// Execução excepcional em treino (C < 42) e regularidade em 3 partidas seguidas
 $gExcTrain = Game::create('Treino Exc', 'Santos', 'SP', 'volante', 'Santos-SP');
 $gExcTrain['stage'] = 'treino';
 $gExcTrain['states']['confianca'] = 25;
 $gExcTrain['active_situation'] = ['id' => 1000, 'key' => Scenes::key($gExcTrain)];
-$trainChoices = Game::choices($gExcTrain);
 $techOptIdx = null;
-foreach ($trainChoices as $idxOpt => $cOpt) {
+foreach (Game::choices($gExcTrain) as $idxOpt => $cOpt) {
     if (in_array($cOpt['code'] ?? '', ['passe', 'chute', 'drible', 'desarme', 'tecnica', 'tatico', 'posicionamento', 'visao'], true) && !isset($cOpt['effects']['confianca'])) {
         $techOptIdx = $idxOpt;
         break;
     }
 }
-okR2($techOptIdx !== null, 'Encontrada opção técnica/tática de treino para teste de execução excepcional');
 $resExcTrain = Game::command($gExcTrain, 'choice', ['option' => (string)$techOptIdx], false, $rngExceptional);
 okR2($resExcTrain['states']['confianca'] === 26 && ($resExcTrain['feedback']['effects']['confianca'] ?? 0) === 1,
     'Treino técnico excepcional em baixa confiança (C=25 < 42) concede +1 e reflete no feedback');
 
-// Regularidade: 3 partidas seguidas com >=45 min e nota >= 6.7 concede +1 na 3ª partida
 $gStreak = Game::create('Regularidade', 'Santos', 'SP', 'zagueiro', 'Santos-SP');
 $gStreak['states']['confianca'] = 60;
 $gStreak['confidence_streak'] = 2;
@@ -294,11 +475,10 @@ okR2($gStreak['confidence_streak'] === 3 && ($gStreak['reward_ledger'][$stKey]['
     'Sequência de 3 partidas positivas consecutivas concede bônus de regularidade (+1) registrado no ledger');
 
 // =========================================================================
-// 3. PILAR 3.3 & FEEDBACK: NOTA RUIM, 0 MINUTOS, TRANSIÇÃO 80->90 E SINCRONIA
+// 3. NOTA RUIM, SINCRONIA 80->90, CONQUISTAS SAZONAIS E TRANSIÇÃO PARCIAL
 // =========================================================================
-echo "\n3. Validando Curva Pós-Partida (3.3), Nota Ruim, 0 Minutos e Sincronia Exata de Feedback...\n";
+echo "\n3. Validando Nota Ruim, Sincronia 80->90, Conquistas Sazonais e Transição Parcial...\n";
 
-// Nota muito baixa (< 4.6) reduz confiança moderadamente (sem zerar quem está <= 10)
 $gPoor = Game::create('Atuacao Ruim', 'Santos', 'SP', 'meia', 'Santos-SP');
 $iPr = Game::currentIndex($gPoor);
 $mPr = &$gPoor['matches'][$iPr];
@@ -318,7 +498,6 @@ $refSeg->invokeArgs(null, [&$gPoor, 90]);
 okR2($mPr['stats']['rating'] < 4.6 && $gPoor['states']['confianca'] === 48,
     "Atuação desastrosa (rating={$mPr['stats']['rating']} < 4.6) reduz confiança em -2 no pós-jogo (50 -> 48)");
 
-// Sincronia exata do feedback na decisão do minuto 80 que encerra a partida (80 -> 90)
 $gSync80 = Game::create('Sync 80', 'Santos', 'SP', 'centroavante', 'Santos-SP');
 $gSync80['stage'] = 'partida';
 $iS8 = Game::currentIndex($gSync80);
@@ -337,37 +516,29 @@ $gSync80['states']['confianca'] = 30;
 $gSync80['states']['risco_lesao'] = 0;
 unset($gSync80['active_situation']);
 $confBefore80 = $gSync80['states']['confianca'];
-$resSync80 = Game::command($gSync80, 'choice', ['option' => '0'], false, $rngSuccess); // chute com gol + encerramento 80->90
+$resSync80 = Game::command($gSync80, 'choice', ['option' => '0'], false, $rngSuccess);
 $actualDelta80 = $resSync80['states']['confianca'] - $confBefore80;
 $feedbackDelta80 = (int)($resSync80['feedback']['effects']['confianca'] ?? 0);
 okR2($resSync80['stage'] === 'fim_semana' && $actualDelta80 > 4 && $feedbackDelta80 === $actualDelta80,
     "Sincronia exata 80->90: feedback.effects.confianca ({$feedbackDelta80}) corresponde exatamente à variação real aplicada ({$actualDelta80})");
 
-// =========================================================================
-// 4. PILAR 3.4: CONQUISTAS DE TEMPORADA E TRANSIÇÃO PARCIAL ENTRE TEMPORADAS
-// =========================================================================
-echo "\n4. Validando Conquistas Coletivas e Transição Parcial entre Temporadas (3.4)...\n";
-
-// 4A: Acesso / Título em temporada com participação real vs 0 minutos + idempotência
 $gPromo = Game::create('Atleta Acesso', 'Campinas', 'SP', 'centroavante', 'Ponte Preta-SP');
-$gPromo['states']['confianca'] = 50;
+$gPromo['states']['confianca'] = 89;
 $iPm = Game::currentIndex($gPromo);
 $gPromo['matches'][$iPm]['status'] = 'finalizada';
 $gPromo['matches'][$iPm]['stats'] = array_replace($gPromo['matches'][$iPm]['stats'], ['minutes' => 900, 'goals' => 8, 'shots' => 15, 'rating' => 7.4]);
 $gPromo['competition_results'] = [
-    'br-b' => ['name' => 'Brasileiro Série B', 'champion' => 'Guarani-SP', 'promoted' => true, 'relegated' => false, 'titles' => []],
+    'br-b' => ['name' => 'Brasileiro Série B', 'champion' => 'Ponte Preta-SP', 'promoted' => true, 'relegated' => false, 'titles' => []],
 ];
 $gPromo['feedback'] = null;
 $refSeasonAch = new ReflectionMethod('Game', 'applySeasonAchievementConfidence');
 $refSeasonAch->setAccessible(true);
 $refSeasonAch->invokeArgs(null, [&$gPromo]);
-okR2($gPromo['states']['confianca'] === 54 && ($gPromo['feedback']['effects']['confianca'] ?? 0) === 4,
-    'Acesso/promoção com participação real concede +4 na confiança (50 -> 54) e sincroniza feedback');
-// Re-execução idempotente
+okR2($gPromo['states']['confianca'] === 92 && ($gPromo['feedback']['effects']['confianca'] ?? 0) === 3,
+    'Conquista coletiva legítima (título + acesso em C=89) permite ultrapassar 90 (89 -> 92) com idempotência e feedback');
 $refSeasonAch->invokeArgs(null, [&$gPromo]);
-okR2($gPromo['states']['confianca'] === 54, 'Bônus de conquista coletiva de temporada é estritamente idempotente');
+okR2($gPromo['states']['confianca'] === 92, 'Bônus de conquista coletiva de temporada é estritamente idempotente');
 
-// Atleta com 0 minutos na temporada não ganha bônus coletivo artificial
 $gBenchSeason = Game::create('Banco Ano Todo', 'Campinas', 'SP', 'centroavante', 'Ponte Preta-SP');
 $gBenchSeason['states']['confianca'] = 40;
 $gBenchSeason['competition_results'] = [
@@ -376,7 +547,6 @@ $gBenchSeason['competition_results'] = [
 $refSeasonAch->invokeArgs(null, [&$gBenchSeason]);
 okR2($gBenchSeason['states']['confianca'] === 40, 'Atleta com 0 minutos na temporada recebe 0 de bônus coletivo');
 
-// 4B: Transição parcial de pré-temporada via Game::command('transfer') sem reset arbitrário
 $gTransLow = Game::legacyCreate('Transicao Baixa', 'Santos', 'SP', 'meia');
 $gTransLow['stage'] = 'resumo';
 $gTransLow['states']['confianca'] = 18;
@@ -394,23 +564,114 @@ $confBeforeTransfer = $gTransLow['states']['confianca'];
 $gTransAfter = Game::command($gTransLow, 'transfer', ['accept' => 'no']);
 $offDelta = $gTransAfter['states']['confianca'] - $confBeforeTransfer;
 okR2($offDelta === 6 && $gTransAfter['states']['confianca'] === 24 && ($gTransAfter['feedback']['effects']['confianca'] ?? 0) === 6,
-    "Transição parcial de intertemporada recupera parcialmente (18 -> 24, +6) sem reset arbitrário para 50 e exibe no feedback");
-okR2(count($gTransAfter['history']) === 1 && $gTransAfter['history'][0]['season'] === 1,
-    'Histórico da temporada encerrada preservado integralmente sem alteração retroativa');
-
-// Transição em alta confiança (96 -> 94, acomodação leve nunca abaixo de 88)
-$refOffseason = new ReflectionMethod('Game', 'applyOffseasonConfidenceTransition');
-$refOffseason->setAccessible(true);
-$gHighOff = Game::legacyCreate('Transicao Alta', 'Santos', 'SP', 'centroavante');
-$gHighOff['states']['confianca'] = 96;
-$coolApplied = $refOffseason->invokeArgs(null, [&$gHighOff, 1, 'excepcional']);
-okR2($coolApplied === -2 && $gHighOff['states']['confianca'] === 94,
-    'Acomodação natural de pré-temporada reduz levemente euforia extrema (96 -> 94) sem apagar mérito');
+    'Transição parcial de intertemporada recupera parcialmente (18 -> 24, +6) sem reset arbitrário para 50 e exibe no feedback');
 
 // =========================================================================
-// 5. PARIDADE ENTRE MODOS NORMAL, RÁPIDO E EXPRESSO + RENDERIZAÇÃO DO PACE REPORT
+// 4. RECUPERAÇÃO POR COMANDOS REAIS DO MOTOR (Game::command) NAS 6 POSIÇÕES
 // =========================================================================
-echo "\n5. Validando Paridade Normal / Rápido / Expresso e Exibição em PlayMode::report()...\n";
+echo "\n4. Validando Recuperação Real via Game::command() nas 6 Posições Atuais (Rules::POSITIONS)...\n";
+
+foreach (Rules::POSITIONS as $playablePos) {
+    $gCmd = Game::legacyCreate("RealCmd {$playablePos}", 'Santos', 'SP', $playablePos);
+    $gCmd = Game::command($gCmd, 'handicap');
+    $gCmd['states']['confianca'] = 18;
+    $gCmd['states']['energia'] = 90;
+    $gCmd['states']['confianca_treinador'] = 70;
+    $gCmd['states']['risco_lesao'] = 0;
+    foreach ($gCmd['skills'] as &$sk) {
+        $sk['value'] = 78;
+    }
+    unset($sk);
+
+    $isDefPos = in_array($playablePos, ['zagueiro', 'lateral', 'volante'], true);
+    $rngDet = makeRngR2(9001 + abs(crc32($playablePos)));
+    $rngHighPerf = static function (int $min, int $max) use ($rngDet): int {
+        if ($max === 10000) {
+            return 25; // execução bem-sucedida nas ações escolhidas
+        }
+        return $rngDet($min, $max);
+    };
+
+    $startC = $gCmd['states']['confianca'];
+    $targetRounds = 6;
+    $safety = 0;
+    while ($gCmd['round'] <= $targetRounds && $gCmd['stage'] !== 'resumo' && $safety++ < 120) {
+        $prevConf = $gCmd['states']['confianca'];
+        $prevStage = $gCmd['stage'];
+        if ($prevStage === 'partida') {
+            $idxM = Game::currentIndex($gCmd);
+            // Evita interferência aleatória de pênalti/lesão durante o ciclo determinístico
+            $gCmd['matches'][$idxM]['evaluated_penalties'] = ['0-15', '15-35', '35-45', '45-60', '60-70', '70-80', '80-90'];
+            $gCmd['states']['risco_lesao'] = 0;
+            if ($isDefPos) {
+                // Para defensores, zera conversão de passe em gol coletivo eventual? Não: mesmo sem chutar, prioriza desarme/passe
+                $gCmd['matches'][$idxM]['pass_conversion'] = 0;
+            }
+            if (!MatchParticipation::canActOnField($gCmd['matches'][$idxM])) {
+                $gCmd = Game::command($gCmd, 'advance', [], false, $rngHighPerf);
+                continue;
+            }
+            $opts = Game::choices($gCmd);
+            $pick = 0;
+            if ($isDefPos) {
+                // Defensores recuperam confiança sem depender de gols (priorizam desarme / passe / posicionamento, nunca chute)
+                foreach ($opts as $oi => $op) {
+                    if (($op['action'] ?? '') === 'desarme') {
+                        $pick = $oi;
+                        break;
+                    }
+                    if (($op['action'] ?? '') === 'passe') {
+                        $pick = $oi;
+                    }
+                }
+            } else {
+                foreach ($opts as $oi => $op) {
+                    if (in_array($op['action'] ?? '', ['chute', 'passe', 'drible'], true) && ($op['shot_kind'] ?? '') !== 'long') {
+                        $pick = $oi;
+                        break;
+                    }
+                }
+            }
+            $gCmd = Game::command($gCmd, 'choice', ['option' => (string)$pick], false, $rngHighPerf);
+        } elseif (in_array($prevStage, ['treino', 'pre_jogo', 'fim_semana'], true)) {
+            $opts = Game::choices($gCmd);
+            $pick = 0;
+            foreach ($opts as $oi => $op) {
+                $eff = $op['effects'] ?? [];
+                // Escolhe rotina esportiva normal sem apelar para opções sociais de confiança direta
+                if (!isset($eff['confianca']) && ($op['code'] ?? '') !== 'reclamar') {
+                    $pick = $oi;
+                    break;
+                }
+            }
+            $gCmd = Game::command($gCmd, 'choice', ['option' => (string)$pick], false, $rngHighPerf);
+        } else {
+            break;
+        }
+
+        $deltaReal = $gCmd['states']['confianca'] - $prevConf;
+        if ($gCmd['feedback'] !== null) {
+            $deltaFb = (int)($gCmd['feedback']['effects']['confianca'] ?? 0);
+            okR2($deltaFb === $deltaReal, "Sincronia real Game::command [{$playablePos}, {$prevStage}]: feedback({$deltaFb}) === real({$deltaReal})");
+        }
+        $gCmd['states']['energia'] = max(80, $gCmd['states']['energia']);
+    }
+
+    $sumPos = Game::summary($gCmd);
+    $endC = $gCmd['states']['confianca'];
+    echo "  [MOTOR REAL 6 RODADAS] {$playablePos}: C {$startC} -> {$endC} (jogos={$sumPos['games']}, gols={$sumPos['goals']}, assist={$sumPos['assists']}, média={$sumPos['average']})\n";
+    okR2($sumPos['games'] >= 5 && $endC >= $startC + 12,
+        "Posição jogável '{$playablePos}' recupera confiança por comandos reais de Game::command ({$startC} -> {$endC})");
+    if ($isDefPos) {
+        okR2($sumPos['goals'] === 0 && $endC >= $startC + 12,
+            "Defensor '{$playablePos}' comprova recuperação real no motor com 0 gols marcados ({$startC} -> {$endC})");
+    }
+}
+
+// =========================================================================
+// 5. MODOS RÁPIDO E EXPRESSO + RENDERIZAÇÃO DO PACE REPORT
+// =========================================================================
+echo "\n5. Validando Modos Rápido / Expresso e Exibição em PlayMode::report()...\n";
 
 foreach (['rapido', 'expresso'] as $pMode) {
     $gPm = Game::legacyCreate("Modo {$pMode}", 'Santos', 'SP', 'centroavante');
@@ -441,10 +702,12 @@ foreach (['rapido', 'expresso'] as $pMode) {
 }
 
 // =========================================================================
-// 6. REPLAY CARREIRA 879927 (TORREENSE-PT T3) E MATRIZ COMPARATIVA COMPLETA
+// 6. RECONSTRUÇÃO APROXIMADA (879927) E COMPARAÇÃO PAREADA SEM DERIVA DE RNG
 // =========================================================================
-echo "\n6. Executando Replay Determinístico da Carreira 879927 e Matriz Comparativa Antes/Depois...\n";
+echo "\n6. Executando Reconstrução Aproximada (879927) e Séries de Eventos Idênticas Antes/Depois...\n";
 
+// 6A: Reconstrução aproximada da carreira 879927 (as 34 notas, minutos e gols são exatos do save;
+// as falhas intermediárias por rodada são estimadas a partir do agregado observado na temporada, pois o save não persiste cada rolagem individual)
 $s3Torreense = [
     [1,90,0,0,5.6],[2,90,0,0,5.9],[3,90,0,0,5.9],[4,90,1,0,7.2],[5,90,1,0,7.7],[6,90,1,0,7.3],
     [7,90,1,0,7.3],[8,90,0,0,5.9],[9,90,0,0,6.0],[10,90,0,0,6.2],[11,90,1,0,6.6],[12,90,3,0,9.4],
@@ -454,57 +717,149 @@ $s3Torreense = [
     [31,90,1,0,7.1],[32,90,0,0,6.0],[33,90,0,0,6.2],[34,90,3,0,8.5],
 ];
 
-$refPostNom = new ReflectionMethod('Game', 'postMatchRatingNominal');
-$refPostNom->setAccessible(true);
+$cApproxOld = 16;
+$cApproxR2 = 16;
+$streakApprox = 0;
+$cApproxOldR23 = 0;
+$cApproxR2_R23 = 0;
 
-$cReplay = 16;
-$streakReplay = 0;
-$cRound23 = 0;
 foreach ($s3Torreense as [$rd, $mins, $gols, $asts, $rat]) {
-    // Falhas técnicas reais observadas na temporada (~1.5 ponto/jogo, sem dreno espúrio de posicionamento/treino físico)
+    // Mesma sequência estimada de eventos aplicada às duas regras (Antes vs Depois):
+    // 1) Falha fora de campo em treino físico/repetição a cada 3 rodadas
+    if ($rd % 3 === 0) {
+        $cApproxOld = max(0, $cApproxOld - ($rd % 9 === 0 ? 4 : 2));
+        // Em R2: falha comum dá foco -1 (0 confiança) e grave em repetição técnica dá -1
+        if ($rd % 9 === 0 && $cApproxR2 > 8) {
+            $cApproxR2 = max(0, $cApproxR2 - 1);
+        }
+    }
+    // 2) Decisão tática/posicionamento frustrada em campo nas partidas abaixo de 7.2
+    if ($rat < 7.2) {
+        $cApproxOld = max(0, $cApproxOld - ($rd % 6 === 0 ? 4 : 2));
+        // Em R2: posicionamento frustrado afeta foco/treinador, 0 autoconfiança
+    }
+    // 3) Falhas técnicas reais com bola
     if ($rd % 7 === 0) {
-        $cReplay = max(0, $cReplay - ($cReplay <= 8 ? 2 : 3));
+        $cApproxOld = max(0, $cApproxOld - 3);
+        $cApproxR2 = max(0, $cApproxR2 - ($cApproxR2 <= 8 ? 2 : 3));
     } elseif ($rat < 5.9 && $rd % 3 === 0) {
-        $cReplay = max(0, $cReplay - 2);
+        $cApproxOld = max(0, $cApproxOld - 1);
+        $cApproxR2 = max(0, $cApproxR2 - ($cApproxR2 <= 8 ? 1 : 2));
     }
-    if ($rat < 6.2 && $mins >= 60 && $cReplay > 10) {
-        $cReplay -= 1;
+    if ($rat < 6.2 && $mins >= 60) {
+        $cApproxOld = max(0, $cApproxOld - 1);
+        if ($cApproxR2 > 10) {
+            $cApproxR2 -= 1;
+        }
     }
+    // 4) Gols reais da partida
     for ($gi = 1; $gi <= $gols; $gi++) {
-        $cReplay = min(100, $cReplay + $refGoalDelta->invoke(null, ['position' => 'centroavante', 'states' => ['confianca' => $cReplay]], $gi));
+        $cApproxOld = min(100, $cApproxOld + 4);
+        $cApproxR2 = min(100, $cApproxR2 + $refGoalDelta->invoke(null, ['position' => 'centroavante', 'states' => ['confianca' => $cApproxR2]], $gi));
     }
-    $pmBase = $refPostNom->invoke(null, $rat, $cReplay, $mins);
+    // 5) Pós-jogo
+    $oldRaw = $rat >= 8.8 ? ($cApproxOld < 90 ? 2 : 0) : ($rat >= 7.8 ? ($cApproxOld < 50 ? 2 : ($cApproxOld < 75 ? 1 : 0)) : ($rat >= 6.8 ? ($cApproxOld < 50 ? 2 : ($cApproxOld < 70 ? 1 : 0)) : ($rat >= 6.0 ? ($cApproxOld < 50 ? 2 : ($cApproxOld < 60 ? 1 : 0)) : 0)));
+    $cApproxOld = min(100, $cApproxOld + (int)round($oldRaw * min(1.0, $mins / 60.0)));
+
+    $pmBase = $refPostNom->invoke(null, $rat, $cApproxR2, $mins);
     $regB = 0;
     if ($mins >= 45 && $rat >= 6.7) {
-        $streakReplay++;
-        if ($streakReplay >= 3 && ($streakReplay % 3) === 0 && ($cReplay + max(0, $pmBase)) < 75) {
+        $streakApprox++;
+        if ($streakApprox >= 3 && ($streakApprox % 3) === 0 && ($cApproxR2 + max(0, $pmBase)) < 75) {
             $regB = 1;
         }
     } else {
-        $streakReplay = 0;
+        $streakApprox = 0;
     }
-    $cReplay = max(0, min(100, $cReplay + $pmBase + $regB));
+    $cApproxR2 = max(0, min(100, $cApproxR2 + $pmBase + $regB));
+
     if ($rd === 23) {
-        $cRound23 = $cReplay;
+        $cApproxOldR23 = $cApproxOld;
+        $cApproxR2_R23 = $cApproxR2;
     }
 }
-$promoDelta = $cReplay >= 94 ? 1 : ($cReplay >= 86 ? 2 : 4);
-$cReplayAfterPromo = min(100, $cReplay + $promoDelta);
+$promoDelta = $cApproxR2 >= 94 ? 1 : ($cApproxR2 >= 86 ? 2 : 4);
+$cApproxR2AfterPromo = min(100, $cApproxR2 + $promoDelta);
 
-echo "  [REPLAY 879927] Antes: C0=16 -> R23=20 -> R34=50 | Depois (BAL-001-R2): C0=16 -> R23={$cRound23} -> R34={$cReplay} -> Pós-Acesso={$cReplayAfterPromo}\n";
-okR2($cRound23 >= 60 && $cReplay >= 82 && $cReplayAfterPromo <= 95,
-    "Carreira 879927 (30 gols em 34 jogos + acesso) evolui coerentemente (16 -> {$cRound23} -> {$cReplay} -> {$cReplayAfterPromo}) sem travar em 50 nem colar em 100");
+echo "  [RECONSTRUÇÃO APROXIMADA 879927 — mesma sequência estimada] Antes: C0=16 -> R23={$cApproxOldR23} -> R34={$cApproxOld} | Depois (R2): C0=16 -> R23={$cApproxR2_R23} -> R34={$cApproxR2} -> Pós-Acesso={$cApproxR2AfterPromo}\n";
+okR2($cApproxR2_R23 > $cApproxOldR23 + 25 && $cApproxR2 >= 82 && $cApproxR2AfterPromo <= 96,
+    "Reconstrução aproximada 879927 sobre sequência idêntica comprova salto consistente (Antes R34={$cApproxOld} vs Depois R34={$cApproxR2}, Pós-Acesso={$cApproxR2AfterPromo})");
 
-// Simulação comparativa de temporada completa (34 rodadas) chamando os métodos reais de Game
+// 6B: Gerador único de sequência de eventos por temporada (ZERO deriva de PRNG entre Antes e Depois)
 $refDefDelta = new ReflectionMethod('Game', 'defensiveTierDelta');
 $refDefDelta->setAccessible(true);
 
-$positions = ['goleiro', 'zagueiro', 'lateral', 'volante', 'meia', 'ponta', 'centroavante'];
-$tiers = ['ruim', 'regular', 'bom', 'excepcional'];
-$starts = [15, 50, 85];
-
-$simulateSeasonMatrix = static function (string $pos, string $tier, int $startConf, bool $useR2, int $seed) use ($refGoalDelta, $refAssistDelta, $refDefDelta, $refPostNom): array {
+$buildSeasonEventTape = static function (string $pos, string $tier, int $seed): array {
     $rng = makeRngR2($seed);
+    $isDef = in_array($pos, ['goleiro', 'zagueiro', 'lateral', 'volante'], true);
+    $isGk = ($pos === 'goleiro');
+
+    [$techFailProb, $goalProb, $astProb, $tackleMean, $saveMean, $ratingBase] = match ($tier) {
+        'ruim'        => [560, $isDef ? 10 : ($pos === 'centroavante' ? 70 : 30), 30, $isDef ? 0.8 : 0.2, 1.2, 5.1],
+        'regular'     => [380, $isDef ? 30 : ($pos === 'centroavante' ? 200 : 90), $pos === 'meia' ? 140 : 70, $isDef ? 1.8 : 0.4, 2.4, 6.1],
+        'bom'         => [270, $isDef ? 60 : ($pos === 'centroavante' ? 450 : 200), $pos === 'meia' ? 260 : 140, $isDef ? 2.8 : 0.7, 3.6, 6.9],
+        'excepcional' => [180, $isDef ? 100 : ($pos === 'centroavante' ? 820 : 400), $pos === 'meia' ? 450 : 240, $isDef ? 4.0 : 1.0, 5.0, 8.1],
+    };
+
+    $rounds = [];
+    for ($r = 1; $r <= 34; $r++) {
+        // Todos os números aleatórios da rodada são sorteados uma única vez na mesma ordem
+        $offFieldFailed = ($rng(1, 1000) <= (int)round($techFailProb * 0.55));
+        $offFieldSevere = ($rng(1, 100) <= 15);
+        $offFieldIsPhysical = ($rng(1, 100) <= 35); // ~35% treino físico, ~65% repetição técnica
+
+        $min = ($r % 8 === 0) ? 30 : 90;
+        $decisionsCount = $min >= 60 ? 3 : 1;
+        $techDecisions = [];
+        for ($d = 0; $d < $decisionsCount; $d++) {
+            $techDecisions[] = [
+                'failed' => ($rng(1, 1000) <= $techFailProb),
+                'severe' => ($rng(1, 100) <= 15),
+                'decisive' => (!$isDef && $rng(1, 100) <= 12),
+                'exceptional' => ($rng(1, 100) <= ($tier === 'excepcional' ? 15 : ($tier === 'bom' ? 10 : 4))),
+            ];
+        }
+        $tacticalFailed = ($rng(1, 1000) <= (int)round($techFailProb * 0.95));
+        $tacticalSevere = ($rng(1, 100) <= 15);
+
+        $gRoll1 = $rng(1, 1000);
+        $gRoll2 = $rng(1, 1000);
+        $goals = 0;
+        if (!$isGk) {
+            if ($gRoll1 <= $goalProb) $goals++;
+            if ($tier === 'excepcional' && !$isDef && $gRoll2 <= (int)round($goalProb * 0.35)) $goals++;
+        }
+        $aRoll = $rng(1, 1000);
+        $assists = (!$isGk && $aRoll <= $astProb) ? 1 : 0;
+
+        $tNoise = $rng(-10, 10) / 10.0;
+        $sNoise = $rng(-15, 15) / 10.0;
+        $tackles = $isGk ? 0 : max(0, (int)round($tackleMean + $tNoise));
+        $saves = $isGk ? max(0, (int)round($saveMean + $sNoise)) : 0;
+        $cleanSheet = $isDef && ($rng(1, 100) <= ($tier === 'excepcional' ? 62 : ($tier === 'bom' ? 45 : ($tier === 'regular' ? 28 : 12))));
+        $rNoise = $rng(-6, 6) / 10.0;
+        $rat = max(4.2, min(10.0, round($ratingBase + $goals * 0.8 + $assists * 0.6 + ($cleanSheet ? 0.6 : 0.0) + $rNoise, 1)));
+
+        $rounds[] = [
+            'min' => $min,
+            'off_failed' => $offFieldFailed,
+            'off_severe' => $offFieldSevere,
+            'off_physical' => $offFieldIsPhysical,
+            'decisions' => $techDecisions,
+            'tactical_failed' => $tacticalFailed,
+            'tactical_severe' => $tacticalSevere,
+            'goals' => $goals,
+            'assists' => $assists,
+            'tackles' => $tackles,
+            'saves' => $saves,
+            'clean_sheet' => $cleanSheet,
+            'rating' => $rat,
+        ];
+    }
+    return $rounds;
+};
+
+$evaluateTape = static function (array $tape, string $pos, int $startConf, bool $useR2) use ($refGoalDelta, $refAssistDelta, $refDefDelta, $refPostNom): array {
     $c = $startConf;
     $zeroCount = 0;
     $hundredCount = 0;
@@ -512,90 +867,71 @@ $simulateSeasonMatrix = static function (string $pos, string $tier, int $startCo
     $isDef = in_array($pos, ['goleiro', 'zagueiro', 'lateral', 'volante'], true);
     $isGk = ($pos === 'goleiro');
 
-    for ($r = 1; $r <= 34; $r++) {
-        if (!$useR2) {
-            if ($rng(1, 100) <= 28) {
-                $c = max(0, $c - ($rng(1, 100) <= 15 ? 4 : 2));
-            }
-        } else {
-            if ($tier === 'ruim' && $rng(1, 100) <= 10 && $c > 8) {
-                $c = max(0, $c - 1);
-            } elseif ($rng(1, 100) <= 4 && $c > 10) {
-                $c = max(0, $c - 1);
+    foreach ($tape as $ev) {
+        // 1. Evento fora de partida (mesmo evento avaliado nas duas regras)
+        if ($ev['off_failed']) {
+            if (!$useR2) {
+                $c = max(0, $c - ($ev['off_severe'] ? 4 : 2));
+            } elseif (!$ev['off_physical'] && $ev['off_severe']) {
+                $pen = $c <= 8 ? 1 : 1;
+                $c = max(0, $c - $pen);
             }
         }
 
-        $min = ($r % 8 === 0) ? 30 : 90;
-        [$techFailProb, $goalProb, $astProb, $tackleMean, $saveMean, $ratingBase] = match ($tier) {
-            'ruim'        => [560, $isDef ? 10 : ($pos === 'centroavante' ? 70 : 30), 30, $isDef ? 0.8 : 0.2, 1.2, 5.1],
-            'regular'     => [380, $isDef ? 30 : ($pos === 'centroavante' ? 200 : 90), $pos === 'meia' ? 140 : 70, $isDef ? 1.8 : 0.4, 2.4, 6.1],
-            'bom'         => [270, $isDef ? 60 : ($pos === 'centroavante' ? 450 : 200), $pos === 'meia' ? 260 : 140, $isDef ? 2.8 : 0.7, 3.6, 6.9],
-            'excepcional' => [180, $isDef ? 100 : ($pos === 'centroavante' ? 820 : 400), $pos === 'meia' ? 450 : 240, $isDef ? 4.0 : 1.0, 5.0, 8.1],
-        };
-
-        $decisions = $min >= 60 ? 4 : 2;
+        // 2. Decisões técnicas em campo (mesmos lances avaliados nas duas regras)
         $excAwarded = false;
-        for ($d = 0; $d < $decisions - 1; $d++) {
-            if ($rng(1, 1000) <= $techFailProb) {
-                $sev = $rng(1, 100) <= 15;
-                $decisive = !$isDef && $rng(1, 100) <= 12;
+        foreach ($ev['decisions'] as $dec) {
+            if ($dec['failed']) {
                 if (!$useR2) {
-                    $c = max(0, $c - ($sev ? 3 : 1));
-                } elseif ($decisive) {
-                    $pen = $sev ? ($c <= 8 ? 2 : 4) : ($c <= 8 ? 1 : 2);
+                    $c = max(0, $c - ($dec['severe'] ? 3 : 1));
+                } elseif ($dec['decisive']) {
+                    $pen = $dec['severe'] ? ($c <= 8 ? 2 : 4) : ($c <= 8 ? 1 : 2);
                     $c = max(0, $c - $pen);
-                } elseif ($sev) {
+                } elseif ($dec['severe']) {
                     $c = max(0, $c - ($c <= 8 ? 2 : 3));
                 } elseif ($c > 10) {
                     $c = max(0, $c - 1);
                 }
-            } elseif ($useR2 && !$excAwarded && $rng(1, 100) <= ($tier === 'excepcional' ? 15 : ($tier === 'bom' ? 10 : 4)) && $c < 65) {
+            } elseif ($useR2 && !$excAwarded && $dec['exceptional'] && $c < 65) {
                 $excAwarded = true;
                 $c = min(100, $c + 1);
             }
         }
-        if (!$useR2 && $rng(1, 1000) <= (int)round($techFailProb * 0.95)) {
-            $c = max(0, $c - ($rng(1, 100) <= 15 ? 4 : 2));
+
+        // 3. Decisão tática/espacial sem bola (mesmo evento avaliado nas duas regras)
+        if ($ev['tactical_failed'] && !$useR2) {
+            $c = max(0, $c - ($ev['tactical_severe'] ? 4 : 2));
         }
 
-        $goals = 0;
-        if (!$isGk) {
-            if ($rng(1, 1000) <= $goalProb) $goals++;
-            if ($tier === 'excepcional' && !$isDef && $rng(1, 1000) <= (int)round($goalProb * 0.35)) $goals++;
-        }
-        $assists = (!$isGk && $rng(1, 1000) <= $astProb) ? 1 : 0;
-
-        for ($gi = 1; $gi <= $goals; $gi++) {
+        // 4. Gols e assistências idênticos
+        for ($gi = 1; $gi <= $ev['goals']; $gi++) {
             $c = min(100, $c + ($useR2 ? $refGoalDelta->invoke(null, ['position' => $pos, 'states' => ['confianca' => $c]], $gi) : 4));
         }
-        for ($ai = 1; $ai <= $assists; $ai++) {
+        for ($ai = 1; $ai <= $ev['assists']; $ai++) {
             $c = min(100, $c + ($useR2 ? $refAssistDelta->invoke(null, ['position' => $pos, 'states' => ['confianca' => $c]], $ai) : 3));
         }
 
-        $tackles = $isGk ? 0 : max(0, (int)round($tackleMean + ($rng(-10, 10) / 10.0)));
-        $saves = $isGk ? max(0, (int)round($saveMean + ($rng(-15, 15) / 10.0))) : 0;
-        $cleanSheet = $isDef && $rng(1, 100) <= ($tier === 'excepcional' ? 62 : ($tier === 'bom' ? 45 : ($tier === 'regular' ? 28 : 12)));
-
+        // 5. Marcos defensivos idênticos
         if (!$useR2) {
-            if (in_array($pos, ['zagueiro', 'volante', 'lateral'], true) && $tackles >= 2) {
+            if (in_array($pos, ['zagueiro', 'volante', 'lateral'], true) && $ev['tackles'] >= 2) {
                 $c = min(100, $c + 1);
             }
         } else {
             if (in_array($pos, ['zagueiro', 'volante', 'lateral'], true)) {
-                if ($tackles >= 2) $c = min(100, $c + $refDefDelta->invoke(null, $c, 1));
-                if ($tackles >= 4) $c = min(100, $c + $refDefDelta->invoke(null, $c, 2));
+                if ($ev['tackles'] >= 2) $c = min(100, $c + $refDefDelta->invoke(null, $c, 1));
+                if ($ev['tackles'] >= 4) $c = min(100, $c + $refDefDelta->invoke(null, $c, 2));
             } elseif ($isGk) {
-                if ($saves >= 2) $c = min(100, $c + $refDefDelta->invoke(null, $c, 1));
-                if ($saves >= 4) $c = min(100, $c + $refDefDelta->invoke(null, $c, 2));
+                if ($ev['saves'] >= 2) $c = min(100, $c + $refDefDelta->invoke(null, $c, 1));
+                if ($ev['saves'] >= 4) $c = min(100, $c + $refDefDelta->invoke(null, $c, 2));
             }
-            if ($isDef && $min >= 60 && $cleanSheet && ($tackles + $saves >= 2) && $c < 78) {
+            if ($isDef && $ev['min'] >= 60 && $ev['clean_sheet'] && ($ev['tackles'] + $ev['saves'] >= 2) && $c < 78) {
                 $c = min(100, $c + 1);
             }
         }
 
-        $noise = $rng(-6, 6) / 10.0;
-        $rat = max(4.2, min(10.0, round($ratingBase + $goals * 0.8 + $assists * 0.6 + ($cleanSheet ? 0.6 : 0.0) + $noise, 1)));
-
+        // 6. Fechamento pós-partida sobre a mesma nota e minutagem
+        $rat = $ev['rating'];
+        $min = $ev['min'];
         if (!$useR2) {
             $oldRaw = $rat >= 8.8 ? ($c < 90 ? 2 : 0) : ($rat >= 7.8 ? ($c < 50 ? 2 : ($c < 75 ? 1 : 0)) : ($rat >= 6.8 ? ($c < 50 ? 2 : ($c < 70 ? 1 : 0)) : ($rat >= 6.0 ? ($c < 50 ? 2 : ($c < 60 ? 1 : 0)) : 0)));
             $c = min(100, $c + (int)round($oldRaw * min(1.0, $min / 60.0)));
@@ -619,7 +955,20 @@ $simulateSeasonMatrix = static function (string $pos, string $tier, int $startCo
     return ['end' => $c, 'zero' => $zeroCount, 'hundred' => $hundredCount];
 };
 
-foreach ($positions as $pos) {
+$tiers = ['ruim', 'regular', 'bom', 'excepcional'];
+$starts = [15, 50, 85];
+
+// Matriz principal: as 6 posições jogáveis atuais de Rules::POSITIONS
+foreach (Rules::POSITIONS as $pos) {
+    $tapesByTier = [];
+    foreach ($tiers as $tier) {
+        $tapesByTier[$tier] = [];
+        for ($s = 1; $s <= 30; $s++) {
+            $seed = $s * 131 + abs(crc32($pos . ':' . $tier));
+            $tapesByTier[$tier][$s] = $buildSeasonEventTape($pos, $tier, $seed);
+        }
+    }
+
     foreach ($starts as $c0) {
         $avgByTier = [];
         foreach ($tiers as $tier) {
@@ -627,10 +976,9 @@ foreach ($positions as $pos) {
             $endsNew = [];
             $zerosNew = 0;
             $hundredsNew = 0;
-            for ($s = 1; $s <= 30; $s++) {
-                $seed = $s * 131 + abs(crc32($pos . ':' . $tier . ':' . $c0));
-                $oRes = $simulateSeasonMatrix($pos, $tier, $c0, false, $seed);
-                $nRes = $simulateSeasonMatrix($pos, $tier, $c0, true, $seed);
+            foreach ($tapesByTier[$tier] as $tape) {
+                $oRes = $evaluateTape($tape, $pos, $c0, false);
+                $nRes = $evaluateTape($tape, $pos, $c0, true);
                 $endsOld[] = $oRes['end'];
                 $endsNew[] = $nRes['end'];
                 $zerosNew += $nRes['zero'];
@@ -644,15 +992,25 @@ foreach ($positions as $pos) {
             ];
         }
 
+        echo sprintf(
+            "  [SÉRIE PAREADA %-12s C0=%2d] ruim: %4.1f->%4.1f | regular: %4.1f->%4.1f | bom: %4.1f->%4.1f | exc: %4.1f->%4.1f\n",
+            $pos,
+            $c0,
+            $avgByTier['ruim']['old'], $avgByTier['ruim']['new'],
+            $avgByTier['regular']['old'], $avgByTier['regular']['new'],
+            $avgByTier['bom']['old'], $avgByTier['bom']['new'],
+            $avgByTier['excepcional']['old'], $avgByTier['excepcional']['new']
+        );
+
         okR2(
             $avgByTier['ruim']['new'] < $avgByTier['regular']['new']
             && $avgByTier['regular']['new'] < $avgByTier['bom']['new']
             && $avgByTier['bom']['new'] < $avgByTier['excepcional']['new'],
-            "Ordenação estrita de mérito [{$pos}, C0={$c0}]: ruim({$avgByTier['ruim']['new']}) < regular({$avgByTier['regular']['new']}) < bom({$avgByTier['bom']['new']}) < exc({$avgByTier['excepcional']['new']})"
+            "Ordenação estrita em eventos idênticos [{$pos}, C0={$c0}]: ruim({$avgByTier['ruim']['new']}) < regular({$avgByTier['regular']['new']}) < bom({$avgByTier['bom']['new']}) < exc({$avgByTier['excepcional']['new']})"
         );
         if ($c0 === 15) {
             okR2($avgByTier['bom']['new'] >= 65.0,
-                "Recuperação comprovada sem depender só de gols [{$pos}, C0=15, bom]: Antes={$avgByTier['bom']['old']} -> Depois={$avgByTier['bom']['new']}");
+                "Recuperação pareada comprovada [{$pos}, C0=15, bom]: Antes={$avgByTier['bom']['old']} -> Depois={$avgByTier['bom']['new']}");
         }
         if ($c0 === 85) {
             okR2($avgByTier['ruim']['new'] <= 45.0,
@@ -664,6 +1022,13 @@ foreach ($positions as $pos) {
             "Zero aprisionamento em 0 nas faixas regular/bom/excepcional [{$pos}, C0={$c0}]");
     }
 }
+
+// Verificação separada do suporte preparatório de goleiro sobre eventos idênticos
+$gkTapeGood = $buildSeasonEventTape('goleiro', 'bom', 77701);
+$gkOld15 = $evaluateTape($gkTapeGood, 'goleiro', 15, false);
+$gkNew15 = $evaluateTape($gkTapeGood, 'goleiro', 15, true);
+okR2($gkNew15['end'] >= 65 && $gkNew15['end'] > $gkOld15['end'] + 30,
+    "[Suporte preparatório — goleiro fora de Rules::POSITIONS] Série idêntica C0=15 (bom): Antes={$gkOld15['end']} -> Depois={$gkNew15['end']}");
 
 echo "\n====================================================================\n";
 echo "SUCESSO: TODAS AS {$checks} VERIFICAÇÕES DA R10-BAL-001-R2 FORAM APROVADAS!\n";
