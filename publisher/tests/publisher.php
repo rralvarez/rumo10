@@ -341,6 +341,21 @@ check('operational drain publisher integrates backup installation and release',f
  [$c,$i,$d]=drainFixture();$db=digest($d.'/save.sqlite');$p=new OpsFault($c);$s=$p->stage(...$i);yes($p->apply($s['stage'])['state']==='validated');
  yes(!file_exists($d.'/account-gate/closed.json')&&!file_exists($d.'/control/deployment.lock')&&digest($d.'/save.sqlite')===$db);
 });
+check('temporary fence subprocess exits before drain then exact stage can be reused',function(){
+ [$c,$i,$d]=drainFixture();
+ $db=digest($d.'/save.sqlite');$hub=digest($d.'/hub-sessions/qa.session');
+ $gateMarker=$d.'/fence-first-attempt';
+ $script=$d.'/retrying-fence.php';
+ file_put_contents($script,'<?php if (!is_file('.var_export($gateMarker,true).')) { touch('.var_export($gateMarker,true).'); fwrite(STDERR,"FENCE_DEFERRED workflow_busy repo=rralvarez/rumo10 run=42\\n"); exit(75); } echo \'{"ok":true,"legacy_publishers_fenced":true}\';');
+ $c['hooks']['fence']=['script'=>$script,'sha256'=>digest($script)];
+ $p=new OpsFault($c);$s=$p->stage(...$i);
+ try{$p->apply($s['stage']);throw new RuntimeException('Expected deferral');}
+ catch(\Rumo\Publisher\PublicationFenceDeferred $e){yes($e->getMessage()==='workflow_busy');}
+ yes(!is_file($d.'/account-gate/closed.json')&&!is_file($d.'/private/journal.json'));
+ unset($p);
+ $p=new OpsFault($c);yes($p->apply($s['stage'])['state']==='validated');
+ yes(digest($d.'/save.sqlite')===$db&&digest($d.'/hub-sessions/qa.session')===$hub);
+});
 foreach(['after-close','after-drain','after-backup','before-promotion-0','after-promotion-0','after-manifest','before-unlock','before-release'] as $point)check('operational failure retains gate and recovery '.$point,function()use($point){
  [$c,$i,$d]=drainFixture();$db=digest($d.'/save.sqlite');$old=digest($d.'/current/release.json');$p=new OpsFault($c);$s=$p->stage(...$i);$p->fault=$point;
  rejected(fn()=>$p->apply($s['stage']),'OPS_CRASH');yes(file_exists($d.'/account-gate/closed.json'));unset($p);

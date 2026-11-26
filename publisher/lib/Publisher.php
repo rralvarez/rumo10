@@ -118,6 +118,11 @@ class Publisher {
         $out=file_get_contents($output);
         $errContent=is_file($errPath)?trim(file_get_contents($errPath)):'';
         if(is_file($errPath))@unlink($errPath);
+        if($name==='fence' && $exit===75 &&
+            preg_match('/^FENCE_DEFERRED (api_unavailable|workflow_busy|inventory_changed)\b/',$errContent,$fence)===1){
+            fwrite(STDERR,$errContent.PHP_EOL);
+            throw new PublicationFenceDeferred($fence[1]);
+        }
         need($exit===0,'Hook failed: '.$name.($errContent!==''?' ('.$errContent.')':'')); $r=json($out);
         need(($r['ok']??false)===true,'Hook rejected: '.$name);
         return $r;

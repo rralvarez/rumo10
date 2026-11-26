@@ -41,7 +41,10 @@ class DrainPublisher extends Publisher {
   $this->acquire();
   need(!is_file($this->session)||in_array(json(file_get_contents($this->session))['state'],['validated','recovered'],true),'Pending drain session: recover first');
   $this->enroll();$prepared=$this->prepareApply($stage);
-  if(!isset($prepared['replay']))$this->assertBackupPrerequisites($prepared['ownerManagedDbBackup']??$prepared['classA']);
+  if(!isset($prepared['replay'])){
+   $this->assertBackupPrerequisites($prepared['ownerManagedDbBackup']??$prepared['classA']);
+   if(($this->ops['release_channel']??null)==='main')$this->source()->assertMainTip($prepared['v']['commit']);
+  }
   $owner=bin2hex(random_bytes(16));$receipt=['owner'=>$owner,'state'=>'closing','stage'=>$stage,'content_before'=>$this->content(),'journal_before'=>is_file($this->ops['private'].'/journal.json')?digest($this->ops['private'].'/journal.json'):null];record($this->session,$receipt);$this->sessionCheckpoint('before-close');$this->drain->close($owner);
   try{$this->sessionCheckpoint('after-close');$this->drain->drain((float)($this->ops['request_gate']['timeout_seconds']??30));$receipt['state']='installing';record($this->session,$receipt);$this->sessionCheckpoint('after-drain');
    $result=$this->applyPrepared($stage,$prepared);$this->drain->assertDrained();need($result['state']==='validated','Installation not validated');

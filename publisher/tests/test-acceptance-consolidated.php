@@ -351,10 +351,13 @@ try {
                 return parent::promote($a, $b);
             }
             protected function source(): GitHub {
-                return new class($this->tCfg, $this->repo, $this->c11, $this->c12, $this->pr12Head, $this->ownerId) extends GitHub {
-                    public function __construct(array $c, private string $repo, private string $c11, private string $c12, private string $pr12Head, private int $ownerId) { parent::__construct($c); }
+                return new class($this->tCfg, $this->repo, $this->c11, $this->c12, $this->pr12Head, $this->ownerId, $this->opts['main_head'] ?? null) extends GitHub {
+                    public function __construct(array $c, private string $repo, private string $c11, private string $c12, private string $pr12Head, private int $ownerId, private ?string $mainHead) { parent::__construct($c); }
                     protected function request(string $url, bool $auth, int $limit, ?string $out = null): array {
                         $path = parse_url($url, PHP_URL_PATH);
+                        if (str_ends_with($path, '/git/ref/heads/main')) {
+                            return ['status' => 200, 'body' => json_encode(['object' => ['sha' => $this->mainHead]], JSON_THROW_ON_ERROR)];
+                        }
                         if (str_contains($path, '/compare/')) {
                             return ['status' => 200, 'body' => json_encode([
                                 'status' => 'ahead', 'merge_base_commit' => ['sha' => $this->c11],
@@ -400,7 +403,12 @@ try {
     // T2 + T3: Adocao do checkpoint PR #11 (5d1052f9) e publicacao do PR #12 (eb073346 / 14564933268) como Classe B!
     $filesV12 = array_replace($filesV11, ['app/Retirement.php' => "<?php // ret-v12-pr12\n"]);
     [$stage12, $pkg12Sha, $art12Id] = $buildStage('pr12', $c12, 44595050257, 69, 14564933268, 12, $filesV12);
-    $pub12 = $makePub($cfg, ['artifact_id' => $art12Id, 'pkg_sha' => $pkg12Sha]);
+    $stale = $makePub($cfg, ['artifact_id' => $art12Id, 'pkg_sha' => $pkg12Sha, 'main_head' => $c14]);
+    mustFail(fn() => $stale->apply($stage12), 'Latest main commit has no eligible candidate',
+        'A main que mudou durante o fence bloqueia antes da drenagem');
+    ok(!is_file($cfg['request_gate']['root'] . '/closed.json'), 'O bloqueio de main obsoleta deixa a admissao aberta');
+    unset($stale);
+    $pub12 = $makePub($cfg, ['artifact_id' => $art12Id, 'pkg_sha' => $pkg12Sha, 'main_head' => $c12]);
     $res12 = $pub12->apply($stage12);
     ok(($res12['state'] ?? null) === 'validated' && ($res12['commit'] ?? null) === $c12,
         'T2/T3: Adota checkpoint PR #11 e publica PR #12 (eb073346 / 14564933268) como Classe B sem SHA pin manual');
@@ -417,10 +425,10 @@ try {
 
     // T5: Idempotencia (reexecutar mesmo artefato nao reinstala)
     unset($pub12);
-    $pub12Again = $makePub($cfg, ['artifact_id' => $art12Id, 'pkg_sha' => $pkg12Sha]);
+    $pub12Again = $makePub($cfg, ['artifact_id' => $art12Id, 'pkg_sha' => $pkg12Sha, 'main_head' => $c12]);
     $resAgain = $pub12Again->apply($stage12);
     ok(($resAgain['already_installed'] ?? false) === true && $pub12Again->hooks === [],
-        'T5: Idempotencia confirmada — reexecucao do mesmo artefato nao reinstala');
+        'T5: Idempotencia confirmada â€” reexecucao do mesmo artefato nao reinstala');
 
     // T4: Segunda publicacao automatica consecutiva (estilo PR #14 / Classe A) SEM tocar em receiver-config.json e SEM mysqldump!
     unset($pub12Again);
@@ -429,7 +437,7 @@ try {
         'app/MatchParticipation.php' => "<?php // f04-r1\n",
     ]);
     [$stage14, $pkg14Sha, $art14Id] = $buildStage('pr14', $c14, 44946992958, 70, 14600000001, 14, $filesV14);
-    $pub14 = $makePub($cfg, ['artifact_id' => $art14Id, 'pkg_sha' => $pkg14Sha]);
+    $pub14 = $makePub($cfg, ['artifact_id' => $art14Id, 'pkg_sha' => $pkg14Sha, 'main_head' => $c14]);
     $res14 = $pub14->apply($stage14);
     ok(($res14['state'] ?? null) === 'validated' && ($res14['commit'] ?? null) === $c14 && !in_array('backup', $pub14->hooks, true),
         'T4: Segunda publicacao consecutiva (PR #14 / Classe A) concluida sem mysqldump e sem ajuste manual no cPanel');
@@ -449,9 +457,17 @@ try {
         public array $hooks = [];
         private bool $failedOnce = false;
         public function __construct(
-            array $tCfg, private string $repo, private string $c11, private string $c12,
+            private array $testConfig, private string $repo, private string $c11, private string $c12,
             private string $pr12Head, private int $ownerId, private string $pkgSha, private int $artId, private string $dbMarker
-        ) { parent::__construct($tCfg); }
+        ) { parent::__construct($testConfig); }
+        protected function source(): GitHub {
+            return new class($this->testConfig) extends GitHub {
+                protected function request(string $url, bool $auth, int $limit, ?string $out = null): array {
+                    need(str_ends_with($url, '/git/ref/heads/main'), 'Unexpected API in recovery fixture');
+                    return ['status'=>200, 'body'=>json_encode(['object'=>['sha'=>str_repeat('5', 40)]], JSON_THROW_ON_ERROR)];
+                }
+            };
+        }
         protected function promote(string $a, string $b): bool {
             if (!$this->failedOnce) { $this->failedOnce = true; return false; }
             return parent::promote($a, $b);
