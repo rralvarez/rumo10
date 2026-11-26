@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 final class F01Telemetry {
     public const PROTOCOL_VERSION = 1;
-    public const MAX_EVENTS_LIMIT = 500; // Calibrado para temporada inteira no Expresso
+    public const CHUNK_TARGET_EVENTS = 200;
+    public const CHUNK_MAX_MATCHES = 25;
+    public const MAX_EVENTS_PER_MATCH = 500;
 
     /**
      * Extrai envelope canônico de partidas e eventos a partir das mutações de uma ação do jogo.
-     * Gera e reutiliza UUID v4 persistidos no estado/envelope da ocorrência.
+     * Gera e reutiliza UUID v4 persistidos no estado/envelope da ocorrência, sem truncar ou omitir eventos.
      */
     public static function extractEnvelope(array $before, array &$after, string $action, array $input, string $commandUid, string $key, ?string $receivedAtUtc = null): ?array {
         $matches = [];
@@ -20,8 +22,7 @@ final class F01Telemetry {
         // 1. MODO RÁPIDO OU EXPRESSO (Ação: simulate)
         if ($action === 'simulate' && isset($after['pace_report']['matches'])) {
             $simMatches = &$after['pace_report']['matches'];
-            $mode = $after['pace_report']['mode'] ?? PlayMode::name($after);
-            
+            $mode = (string)($after['pace_report']['mode'] ?? PlayMode::name($after));
             // Reutilizar ou persistir batch_uid no pace_report
             if (empty($after['pace_report']['canonical_batch_uid'])) {
                 $after['pace_report']['canonical_batch_uid'] = CanonicalIdentity::uuidV4();
@@ -58,19 +59,21 @@ final class F01Telemetry {
                         $m['canonical_appearance_uid'] = CanonicalIdentity::uuidV4();
                     }
                     $appUid = (string)$m['canonical_appearance_uid'];
-                    
+
                     // Condição de escalação real: preservar NULL se a fonte não informar escalação (elimina inferência de titularidade)
                     $condicao = !empty($m['lineup']) ? (string)$m['lineup'] : null;
-                    
+
                     $minutosJogados = $minutes;
                     $minutoEntrada = isset($m['entry']) && $m['entry'] !== null ? (int)$m['entry'] : null;
                     $minutoSaida = isset($m['exit']) && $m['exit'] !== null ? (int)$m['exit'] : null;
                     $estadoPart = (string)($m['participation_state'] ?? ($participated ? 'participou' : 'banco'));
 
                     $events = [];
+                    $matchEventsCount = 0;
                     $log = &$m['log'];
                     if (is_array($log)) {
                         foreach ($log as $seq => &$l) {
+                            $matchEventsCount++;
                             $totalEventsCount++;
                             $seqPartida = $seq + 1;
                             if (empty($l['canonical_event_uid'])) {
@@ -96,6 +99,7 @@ final class F01Telemetry {
                         $soundEvents = &$m['sound_events'];
                         $logCount = is_array($log) ? count($log) : 0;
                         foreach ($soundEvents as $sndIdx => &$snd) {
+                            $matchEventsCount++;
                             $totalEventsCount++;
                             $seqPartida = $logCount + $sndIdx + 1;
                             if (empty($snd['canonical_event_uid'])) {
@@ -113,8 +117,10 @@ final class F01Telemetry {
                         unset($snd);
                     }
 
-                    if ($totalEventsCount > self::MAX_EVENTS_LIMIT) {
-                        throw new RuntimeException("Limite de telemetria excedido no modo $mode ($totalEventsCount > " . self::MAX_EVENTS_LIMIT . "). Operação abortada sem persistência.");
+                    if ($matchEventsCount > self::MAX_EVENTS_PER_MATCH) {
+                        throw new RuntimeException(
+                            "[R10-F01-VOL:MATCH_EVENTS] Limite por partida excedido no modo {$mode} (seq={$seqBatch}, eventos={$matchEventsCount} > " . self::MAX_EVENTS_PER_MATCH . ")."
+                        );
                     }
 
                     $appearances[] = [
@@ -231,8 +237,10 @@ final class F01Telemetry {
                             unset($snd);
                         }
 
-                        if ($totalEventsCount > self::MAX_EVENTS_LIMIT) {
-                            throw new RuntimeException("Limite de telemetria excedido no modo normal ($totalEventsCount > " . self::MAX_EVENTS_LIMIT . ").");
+                        if ($totalEventsCount > self::MAX_EVENTS_PER_MATCH) {
+                            throw new RuntimeException(
+                                "[R10-F01-VOL:MATCH_EVENTS] Limite por partida excedido no modo normal ({$totalEventsCount} > " . self::MAX_EVENTS_PER_MATCH . ")."
+                            );
                         }
 
                         $appearances[] = [
@@ -282,6 +290,141 @@ final class F01Telemetry {
             'total_eventos' => $totalEventsCount,
             'matches' => $matches,
         ];
+    }
+
+    /**
+     * Particiona as partidas do envelope em lotes coesos (sem quebrar uma partida ao meio),
+     * preservando a hierarquia referencial partida -> aparição -> eventos durante a projeção SQL.
+     *
+     * @param array<int,array<string,mixed>> $matches
+     * @return array<int,array<int,array<string,mixed>>>
+     */
+    public static function partitionMatchesIntoChunks(
+        array $matches,
+        int $targetEvents = self::CHUNK_TARGET_EVENTS,
+        int $maxMatches = self::CHUNK_MAX_MATCHES
+    ): array {
+        if ($matches === []) {
+            return [];
+        }
+        $targetEvents = max(1, $targetEvents);
+        $maxMatches = max(1, $maxMatches);
+        $chunks = [];
+        $currentChunk = [];
+        $currentEvents = 0;
+
+        foreach ($matches as $match) {
+            $matchEvs = 0;
+            foreach (($match['appearances'] ?? []) as $app) {
+                $matchEvs += count($app['events'] ?? []);
+            }
+            if (
+                $currentChunk !== []
+                && (count($currentChunk) >= $maxMatches || ($currentEvents + $matchEvs) > $targetEvents)
+            ) {
+                $chunks[] = $currentChunk;
+                $currentChunk = [];
+                $currentEvents = 0;
+            }
+            $currentChunk[] = $match;
+            $currentEvents += $matchEvs;
+        }
+
+        if ($currentChunk !== []) {
+            $chunks[] = $currentChunk;
+        }
+        return $chunks;
+    }
+
+    /**
+     * Gera diagnóstico técnico estritamente sanitizado para distinção segura de exceções,
+     * sem expor dados pessoais, credenciais, SQL bruto, tokens ou conteúdo de saves.
+     *
+     * @param array<string,mixed> $context
+     * @return array<string,int|string|null>
+     */
+    public static function sanitizeDiagnostic(Throwable $e, array $context = []): array {
+        $category = 'unexpected_throwable';
+        $reasonCode = 'UNCLASSIFIED';
+
+        if ($e instanceof PDOException) {
+            $category = 'pdo_database';
+            $rawState = (string)($e->errorInfo[0] ?? $e->getCode());
+            $sqlState = preg_match('/^[A-Z0-9]{5}$/D', $rawState) ? $rawState : null;
+            $driverCode = isset($e->errorInfo[1]) && is_numeric($e->errorInfo[1]) ? (int)$e->errorInfo[1] : null;
+            $reasonCode = 'SQLSTATE_' . ($sqlState ?? 'UNKNOWN');
+        } elseif ($e instanceof JsonException) {
+            $category = 'json_serialization';
+            $reasonCode = 'JSON_ERROR_' . (int)$e->getCode();
+            $sqlState = null;
+            $driverCode = null;
+        } else {
+            $sqlState = null;
+            $driverCode = null;
+            $msg = $e->getMessage();
+            if (preg_match('/^\[R10-F01-VOL:([A-Z0-9_]+)\]/', $msg, $mVol)) {
+                $category = 'f01_telemetry_volume';
+                $reasonCode = $mVol[1];
+            } elseif (str_contains($msg, 'excedeu o limite seguro')) {
+                $category = 'simulation_guard';
+                $reasonCode = 'SIM_STEP_LIMIT';
+            } elseif ($e instanceof InvalidArgumentException) {
+                $category = 'domain_validation';
+                $reasonCode = 'INVALID_ARGUMENT';
+            } elseif ($e instanceof LogicException) {
+                $category = 'domain_logic';
+                $reasonCode = 'LOGIC_INVARIANT';
+            } elseif ($e instanceof RuntimeException) {
+                $category = 'runtime_exception';
+                $reasonCode = 'RUNTIME_FAILURE';
+            }
+        }
+
+        $safe = [
+            'category' => $category,
+            'reason_code' => $reasonCode,
+            'exception' => $e::class,
+            'code' => is_scalar($e->getCode()) ? substr((string)$e->getCode(), 0, 32) : '0',
+            'origin' => basename($e->getFile()) . ':' . $e->getLine(),
+            'sqlstate' => $sqlState,
+            'driver_code' => $driverCode,
+        ];
+
+        $allowedStringKeys = ['route', 'method', 'action', 'mode', 'stage'];
+        foreach ($allowedStringKeys as $k) {
+            if (isset($context[$k]) && is_string($context[$k]) && $context[$k] !== '') {
+                $clean = preg_replace('/[^a-zA-Z0-9_\/:-]/', '', $context[$k]) ?? '';
+                if ($clean !== '') {
+                    $safe[$k] = substr($clean, 0, 64);
+                }
+            }
+        }
+
+        $allowedIntKeys = ['career_id', 'outbox_id', 'season', 'version', 'matches', 'events'];
+        foreach ($allowedIntKeys as $k) {
+            if (isset($context[$k]) && is_numeric($context[$k])) {
+                $safe[$k] = (int)$context[$k];
+            }
+        }
+
+        return $safe;
+    }
+
+    /**
+     * Formata linha única sanitizada para log operacional ou coluna de erro da outbox.
+     *
+     * @param array<string,mixed> $context
+     */
+    public static function formatDiagnosticLog(Throwable $e, array $context = []): string {
+        $diag = self::sanitizeDiagnostic($e, $context);
+        $parts = ['rumo10_diag'];
+        foreach ($diag as $k => $v) {
+            if ($v === null || $v === '') {
+                continue;
+            }
+            $parts[] = $k . '=' . $v;
+        }
+        return implode(' ', $parts);
     }
 
     private static function inferEventType(string $text): string {

@@ -4,6 +4,14 @@ declare(strict_types=1);
 final class F01Drainer {
     public const DEFAULT_BATCH_SIZE = 20;
     public const MAX_BATCH_SIZE = 20; // Limitado a no máximo 20 envelopes por execução conforme OS-F01-P1-002 e OS-F01-P1-003
+    public const SQL_EVENTS_SUBBATCH = 150;
+
+    /**
+     * Gancho exclusivo para testes de falha controlada durante a projeção em lotes.
+     * NUNCA preenchido em produção.
+     * @var (callable(int $chunkIndex, int $totalChunks, int $careerId): void)|null
+     */
+    public static $testChunkHook = null;
 
     /**
      * Drena até $batchSize registros pendentes da rumo10_f01_outbox para as tabelas canônicas.
@@ -24,7 +32,7 @@ final class F01Drainer {
 
                 // Seleção transacional vinculada estritamente à titularidade da conta e carreira via JOIN com lock FOR UPDATE SKIP LOCKED
                 $stmt = $r->query(
-                    "SELECT o.id, o.carreira_id, o.command_uid, o.chave, o.payload_json, o.tentativas, o.engine_commit, o.received_at_utc 
+                    "SELECT o.id
                      FROM rumo10_f01_outbox o
                      WHERE o.carreira_id = ? 
                        AND o.estado = 'pendente'
@@ -40,9 +48,9 @@ final class F01Drainer {
                      FOR UPDATE SKIP LOCKED",
                     [$careerId, $account, $account]
                 );
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $lockedId = $stmt->fetchColumn();
 
-                if (!$row) {
+                if ($lockedId === false) {
                     // Verificar se a carreira sequer pertence à conta (para fornecer erro de autorização determinístico se aplicável)
                     $ownsCareer = $r->query(
                         "SELECT id FROM rumo10_carreiras 
@@ -59,7 +67,13 @@ final class F01Drainer {
                     break; // Carreira pertence à conta, mas não há mais itens pendentes
                 }
 
-                $outboxId = (int)$row['id'];
+                $outboxId = (int)$lockedId;
+                // Ordenar só os IDs evita incluir o JSON no buffer de ordenação do MySQL.
+                // O registro já está bloqueado e autorizado na mesma transação.
+                $row = $r->query(
+                    'SELECT carreira_id, command_uid, payload_json, engine_commit FROM rumo10_f01_outbox WHERE id=? FOR UPDATE',
+                    [$outboxId]
+                )->fetch(PDO::FETCH_ASSOC);
                 $payload = json_decode((string)$row['payload_json'], true, 512, JSON_THROW_ON_ERROR);
 
                 // Projetar tabelas canônicas
@@ -100,7 +114,15 @@ final class F01Drainer {
                         if ($cur && $cur['estado'] === 'pendente') {
                             $tentativas = ((int)$cur['tentativas']) + 1;
                             $status = $tentativas >= 5 ? 'falha' : 'pendente';
-                            $sanitizedMsg = mb_substr(preg_replace('/[\r\n\t]+/', ' ', $e->getMessage()), 0, 500);
+                            $sanitizedMsg = mb_substr(
+                                F01Telemetry::formatDiagnosticLog($e, [
+                                    'action' => 'drain',
+                                    'career_id' => $careerId,
+                                    'outbox_id' => $outboxId,
+                                ]),
+                                0,
+                                500
+                            );
                             $r->query(
                                 "UPDATE rumo10_f01_outbox 
                                  SET estado = ?, tentativas = ?, erro = ? 
@@ -124,78 +146,145 @@ final class F01Drainer {
 
     private static function processEnvelope(Repository $r, int $carreiraId, string $commandUid, array $envelope, ?string $envelopeCommit): void {
         $matches = $envelope['matches'] ?? [];
-        foreach ($matches as $match) {
-            $matchUid = (string)$match['match_uid'];
-            $temporadaNumero = (int)($match['temporada_numero'] ?? 1);
-            $competicaoCodigo = isset($match['competicao_codigo']) && $match['competicao_codigo'] !== '' ? (string)$match['competicao_codigo'] : null;
-            $rodadaFase = isset($match['rodada_fase']) && $match['rodada_fase'] !== '' ? (string)$match['rodada_fase'] : null;
-            $mandante = (string)($match['mandante'] ?? '');
-            $visitante = (string)($match['visitante'] ?? '');
-            $golsMandante = isset($match['gols_mandante']) && $match['gols_mandante'] !== null ? (int)$match['gols_mandante'] : null;
-            $golsVisitante = isset($match['gols_visitante']) && $match['gols_visitante'] !== null ? (int)$match['gols_visitante'] : null;
-            $modoResolucao = (string)($match['modo_resolucao'] ?? 'normal');
-            $batchUid = $match['batch_uid'] ?? null;
-            $seqBatch = isset($match['sequencia_no_batch']) && $match['sequencia_no_batch'] !== null ? (int)$match['sequencia_no_batch'] : null;
-            $engineCommit = $match['engine_commit'] ?? $envelopeCommit ?? CanonicalIdentity::currentEngineCommit();
+        if ($matches === []) {
+            return;
+        }
 
-            // Inserir partida canônica
-            $r->query(
-                "INSERT INTO rumo10_f01_partidas 
-                 (match_uid, carreira_id, temporada_numero, competicao_codigo, rodada_fase, mandante, visitante, gols_mandante, gols_visitante, modo_resolucao, batch_uid, sequencia_no_batch, engine_commit, projected_at_utc)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP(6))
-                 ON DUPLICATE KEY UPDATE 
-                    gols_mandante = VALUES(gols_mandante),
-                    gols_visitante = VALUES(gols_visitante),
-                    engine_commit = VALUES(engine_commit),
-                    projected_at_utc = CURRENT_TIMESTAMP(6)",
-                [$matchUid, $carreiraId, $temporadaNumero, $competicaoCodigo, $rodadaFase, $mandante, $visitante, $golsMandante, $golsVisitante, $modoResolucao, $batchUid, $seqBatch, $engineCommit]
-            );
+        $chunks = F01Telemetry::partitionMatchesIntoChunks($matches);
+        $totalChunks = count($chunks);
+        $defaultCommit = $envelopeCommit ?? CanonicalIdentity::currentEngineCommit();
 
-            // Inserir aparições reais
-            $appearances = $match['appearances'] ?? [];
-            foreach ($appearances as $app) {
-                $appearanceUid = (string)$app['appearance_uid'];
-                $appCarreiraId = (int)($app['carreira_id'] ?? $carreiraId);
-                $condicao = isset($app['condicao_escalacao']) && $app['condicao_escalacao'] !== null && $app['condicao_escalacao'] !== '' ? (string)$app['condicao_escalacao'] : null;
-                $minutoEntrada = isset($app['minuto_entrada']) && $app['minuto_entrada'] !== null ? (int)$app['minuto_entrada'] : null;
-                $minutoSaida = isset($app['minuto_saida']) && $app['minuto_saida'] !== null ? (int)$app['minuto_saida'] : null;
-                $minutosJogados = isset($app['minutos_jogados']) && $app['minutos_jogados'] !== null ? (int)$app['minutos_jogados'] : null;
-                $estadoParticipacao = (string)($app['estado_participacao'] ?? 'participou');
-                $notaAtuacao = array_key_exists('nota_atuacao', $app) && $app['nota_atuacao'] !== null ? (float)$app['nota_atuacao'] : null;
+        foreach ($chunks as $chunkIndex => $chunkMatches) {
+            $matchArgs = [];
+            $matchPlaceholders = [];
+            $appArgs = [];
+            $appPlaceholders = [];
+            $eventRows = [];
 
+            foreach ($chunkMatches as $match) {
+                $matchUid = (string)$match['match_uid'];
+                $temporadaNumero = (int)($match['temporada_numero'] ?? 1);
+                $competicaoCodigo = isset($match['competicao_codigo']) && $match['competicao_codigo'] !== '' ? (string)$match['competicao_codigo'] : null;
+                $rodadaFase = isset($match['rodada_fase']) && $match['rodada_fase'] !== '' ? (string)$match['rodada_fase'] : null;
+                $mandante = (string)($match['mandante'] ?? '');
+                $visitante = (string)($match['visitante'] ?? '');
+                $golsMandante = isset($match['gols_mandante']) && $match['gols_mandante'] !== null ? (int)$match['gols_mandante'] : null;
+                $golsVisitante = isset($match['gols_visitante']) && $match['gols_visitante'] !== null ? (int)$match['gols_visitante'] : null;
+                $modoResolucao = (string)($match['modo_resolucao'] ?? 'normal');
+                $batchUid = $match['batch_uid'] ?? null;
+                $seqBatch = isset($match['sequencia_no_batch']) && $match['sequencia_no_batch'] !== null ? (int)$match['sequencia_no_batch'] : null;
+                $engineCommit = $match['engine_commit'] ?? $defaultCommit;
+
+                $matchPlaceholders[] = '(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP(6))';
+                array_push(
+                    $matchArgs,
+                    $matchUid,
+                    $carreiraId,
+                    $temporadaNumero,
+                    $competicaoCodigo,
+                    $rodadaFase,
+                    $mandante,
+                    $visitante,
+                    $golsMandante,
+                    $golsVisitante,
+                    $modoResolucao,
+                    $batchUid,
+                    $seqBatch,
+                    $engineCommit
+                );
+
+                foreach (($match['appearances'] ?? []) as $app) {
+                    $appearanceUid = (string)$app['appearance_uid'];
+                    $appCarreiraId = (int)($app['carreira_id'] ?? $carreiraId);
+                    $condicao = isset($app['condicao_escalacao']) && $app['condicao_escalacao'] !== null && $app['condicao_escalacao'] !== '' ? (string)$app['condicao_escalacao'] : null;
+                    $minutoEntrada = isset($app['minuto_entrada']) && $app['minuto_entrada'] !== null ? (int)$app['minuto_entrada'] : null;
+                    $minutoSaida = isset($app['minuto_saida']) && $app['minuto_saida'] !== null ? (int)$app['minuto_saida'] : null;
+                    $minutosJogados = isset($app['minutos_jogados']) && $app['minutos_jogados'] !== null ? (int)$app['minutos_jogados'] : null;
+                    $estadoParticipacao = (string)($app['estado_participacao'] ?? 'participou');
+                    $notaAtuacao = array_key_exists('nota_atuacao', $app) && $app['nota_atuacao'] !== null ? (float)$app['nota_atuacao'] : null;
+
+                    $appPlaceholders[] = '(?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP(6))';
+                    array_push(
+                        $appArgs,
+                        $appearanceUid,
+                        $matchUid,
+                        $appCarreiraId,
+                        $condicao,
+                        $minutoEntrada,
+                        $minutoSaida,
+                        $minutosJogados,
+                        $estadoParticipacao,
+                        $notaAtuacao
+                    );
+
+                    foreach (($app['events'] ?? []) as $ev) {
+                        $eventRows[] = [
+                            (string)$ev['event_uid'],
+                            $matchUid,
+                            $appearanceUid,
+                            $appCarreiraId,
+                            $commandUid,
+                            (string)($ev['tipo_evento'] ?? 'lance'),
+                            isset($ev['sequencia_partida']) ? (int)$ev['sequencia_partida'] : null,
+                            isset($ev['minuto_jogo']) ? (int)$ev['minuto_jogo'] : null,
+                            json_encode($ev['dados_evento_json'] ?? [], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE),
+                        ];
+                    }
+                }
+            }
+
+            if ($matchPlaceholders !== []) {
+                $r->query(
+                    "INSERT INTO rumo10_f01_partidas
+                     (match_uid, carreira_id, temporada_numero, competicao_codigo, rodada_fase, mandante, visitante, gols_mandante, gols_visitante, modo_resolucao, batch_uid, sequencia_no_batch, engine_commit, projected_at_utc)
+                     VALUES " . implode(', ', $matchPlaceholders) . "
+                     ON DUPLICATE KEY UPDATE
+                        gols_mandante = VALUES(gols_mandante),
+                        gols_visitante = VALUES(gols_visitante),
+                        engine_commit = VALUES(engine_commit),
+                        projected_at_utc = CURRENT_TIMESTAMP(6)",
+                    $matchArgs
+                );
+            }
+
+            if ($appPlaceholders !== []) {
                 $r->query(
                     "INSERT INTO rumo10_f01_aparicoes
                      (appearance_uid, match_uid, carreira_id, condicao_escalacao, minuto_entrada, minuto_saida, minutos_jogados, estado_participacao, nota_atuacao, projected_at_utc)
-                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP(6))
+                     VALUES " . implode(', ', $appPlaceholders) . "
                      ON DUPLICATE KEY UPDATE
                         minuto_saida = VALUES(minuto_saida),
                         minutos_jogados = VALUES(minutos_jogados),
                         nota_atuacao = VALUES(nota_atuacao),
                         estado_participacao = VALUES(estado_participacao),
                         projected_at_utc = CURRENT_TIMESTAMP(6)",
-                    [$appearanceUid, $matchUid, $appCarreiraId, $condicao, $minutoEntrada, $minutoSaida, $minutosJogados, $estadoParticipacao, $notaAtuacao]
+                    $appArgs
                 );
+            }
 
-                // Inserir eventos associados
-                $events = $app['events'] ?? [];
-                foreach ($events as $ev) {
-                    $eventUid = (string)$ev['event_uid'];
-                    $tipoEvento = (string)($ev['tipo_evento'] ?? 'lance');
-                    $seqPartida = isset($ev['sequencia_partida']) ? (int)$ev['sequencia_partida'] : null;
-                    $minutoJogo = isset($ev['minuto_jogo']) ? (int)$ev['minuto_jogo'] : null;
-                    $dadosJson = json_encode($ev['dados_evento_json'] ?? [], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
-
+            if ($eventRows !== []) {
+                foreach (array_chunk($eventRows, self::SQL_EVENTS_SUBBATCH) as $evSlice) {
+                    $evPlaceholders = [];
+                    $evArgs = [];
+                    foreach ($evSlice as $er) {
+                        $evPlaceholders[] = '(?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP(6))';
+                        array_push($evArgs, ...$er);
+                    }
                     $r->query(
                         "INSERT INTO rumo10_f01_eventos
                          (event_uid, match_uid, appearance_uid, carreira_id, command_uid, tipo_evento, sequencia_partida, minuto_jogo, dados_evento_json, projected_at_utc)
-                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP(6))
+                         VALUES " . implode(', ', $evPlaceholders) . "
                          ON DUPLICATE KEY UPDATE
                             minuto_jogo = VALUES(minuto_jogo),
                             dados_evento_json = VALUES(dados_evento_json),
                             projected_at_utc = CURRENT_TIMESTAMP(6)",
-                        [$eventUid, $matchUid, $appearanceUid, $appCarreiraId, $commandUid, $tipoEvento, $seqPartida, $minutoJogo, $dadosJson]
+                        $evArgs
                     );
                 }
+            }
+
+            if (self::$testChunkHook !== null) {
+                (self::$testChunkHook)($chunkIndex, $totalChunks, $carreiraId);
             }
         }
     }
