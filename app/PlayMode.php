@@ -22,7 +22,7 @@ final class PlayMode {
     public static function simulate(array $g,string $plan): array {
         $mode=self::name($g);
         if($mode==='normal' || $g['stage']!=='treino' || !isset(self::PLANS[$plan]))throw new InvalidArgumentException('Estratégia incompatível com a etapa atual.');
-        $version=$g['version'];$season=$g['season'];$before=Game::summary($g);$skills=$g['skills'];$played=[];$decisions=0;$attempts=[];
+        $version=$g['version'];$season=$g['season'];$before=Game::summary($g);$skills=$g['skills'];$confBefore=(int)($g['states']['confianca']??50);$played=[];$decisions=0;$attempts=[];
         for($step=0;$step<3000;$step++) {
             if($g['season']!==$season)throw new LogicException('A simulação não pode renovar contratos.');
             if(in_array($g['stage'],['resumo','aposentado'],true))break;
@@ -62,7 +62,8 @@ final class PlayMode {
         if($step===3000)throw new RuntimeException('A simulação excedeu o limite seguro; nada foi salvo.');
         $after=Game::summary($g);$growth=[];
         foreach($skills as $key=>$s)if($g['skills'][$key]['value']!==$s['value'])$growth[$key]=$g['skills'][$key]['value']-$s['value'];
-        $g['pace_report']=['mode'=>$mode,'plan'=>$plan,'season'=>$season,'matches'=>$played,'decisions'=>$decisions,'attempts'=>$attempts,'growth'=>$growth,'before'=>$before,'after'=>$after];
+        $confAfter=(int)($g['states']['confianca']??50);
+        $g['pace_report']=['mode'=>$mode,'plan'=>$plan,'season'=>$season,'matches'=>$played,'decisions'=>$decisions,'attempts'=>$attempts,'growth'=>$growth,'before'=>$before,'after'=>$after,'confidence_before'=>$confBefore,'confidence_after'=>$confAfter,'confidence_delta'=>$confAfter-$confBefore];
         $g['feedback']=null;$g['version']=$version+1;
         return $g;
     }
@@ -109,6 +110,10 @@ final class PlayMode {
             self::renderSeasonSummary($r);
         }
         foreach($r['growth'] as $key=>$value)echo '<span class="effect-chip">'.e(ucfirst(str_replace('_',' ',$key))).' +'.e($value).'</span> ';
+        if(isset($r['confidence_delta']) && (int)$r['confidence_delta']!==0){
+            $cd=(int)$r['confidence_delta'];
+            echo '<span class="effect-chip">Confiança '.e($cd>0?'+'.$cd:(string)$cd).'</span> ';
+        }
         echo '<details><summary>Ver jogos e destaques</summary>';
         foreach($r['matches'] as $m) {
             echo '<p><b>'.e($m['home'].' '.$m['hg'].' × '.$m['ag'].' '.$m['away']).'</b><br><small>'.e($m['competition']).' · você: '.e($m['stats']['goals']).' gols, '.e($m['stats']['assists']).' assistências</small></p>';

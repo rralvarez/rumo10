@@ -58,8 +58,8 @@ check($opts2016[1]['failure_effects']['confianca'] === -1, 'Situação 2016 Opç
 check($opts2016[1]['severe_failure_effects']['confianca'] === -3, 'Situação 2016 Opção 1 (drible): falha grave reconciliada para -3');
 check($opts2016[2]['failure_effects']['foco'] === -2, 'Situação 2016 Opção 2 (tático): exceção narrativa preservada com foco -2');
 check($opts2016[2]['severe_failure_effects']['foco'] === -4, 'Situação 2016 Opção 2 (tático): falha grave preservada com foco -4');
-check($opts2016[3]['failure_effects']['confianca'] === -2, 'Situação 2016 Opção 3 (posicionamento): exceção narrativa preservada com confianca -2');
-check($opts2016[3]['severe_failure_effects']['confianca'] === -4, 'Situação 2016 Opção 3 (posicionamento): falha grave preservada com confianca -4');
+check(($opts2016[3]['failure_effects']['foco'] ?? null) === -1 && !isset($opts2016[3]['failure_effects']['confianca']), 'Situação 2016 Opção 3 (posicionamento): decisão tática frustrada afeta foco (-1) sem punir confiança');
+check(($opts2016[3]['severe_failure_effects']['foco'] ?? null) === -2 && ($opts2016[3]['severe_failure_effects']['confianca_treinador'] ?? null) === -1, 'Situação 2016 Opção 3 (posicionamento): falha grave afeta foco (-2) e treinador (-1)');
 
 // Execução real da situação técnica 2016 via Game::command()
 $rngCommonFail = static fn(int $min, int $max): int => ($max === 10000 ? 10000 : 50); // falha comum (intensity > 15)
@@ -326,7 +326,7 @@ $resPenMiss = Game::command($gPenMiss, 'choice', ['option' => '0'], false, $rngC
 $mPM_res = $resPenMiss['matches'][$iPM];
 check(!($resPenMiss['feedback']['success'] ?? true), 'Pênalti falho registrado com sucesso=false');
 $missDelta = $resPenMiss['states']['confianca'] - $confBeforeMiss;
-check($missDelta === -1 || $missDelta === -3, "Pênalti falho aplica penalidade técnica padrão ($missDelta)");
+check($missDelta === -2 || $missDelta === -4, "Pênalti falho (oportunidade decisiva) aplica penalidade contextual ($missDelta)");
 check(($mPM_res['active_match_penalty']['window'] ?? '') !== '15-35', 'Cobrança original de pênalti falho resolvida e não permanece pendente');
 check(($mPM_res['stats']['penalties_taken'] ?? 0) === 1, 'Estatística penalties_taken incrementada para 1 em falha');
 check(($mPM_res['stats']['penalties_missed'] ?? 0) === 1, 'Estatística penalties_missed incrementada para 1');
@@ -467,28 +467,28 @@ $res67 = runEngineMatchEnd(6.7, 30, 90);
 $res68 = runEngineMatchEnd(6.8, 30, 90);
 check($res67['rating'] === 6.7, "Motor real calculou rating exato de 6.7 ({$res67['rating']})");
 check($res68['rating'] === 6.8, "Motor real calculou rating exato de 6.8 ({$res68['rating']})");
-check($res67['nominal'] === 2, "Nota 6.7 e confiança 30: nominal é +2 ({$res67['nominal']})");
-check($res68['nominal'] === 2, "Nota 6.8 e confiança 30: nominal é +2 ({$res68['nominal']})");
+check($res67['nominal'] === 3, "Nota 6.7 e confiança 30: nominal é +3 ({$res67['nominal']})");
+check($res68['nominal'] === 3, "Nota 6.8 e confiança 30: nominal é +3 ({$res68['nominal']})");
 check($res68['nominal'] >= $res67['nominal'], "RESOLVIDA INVERSÃO NO MOTOR REAL: Nota 6.8 não diminui bônus em relação a 6.7 ({$res68['nominal']} >= {$res67['nominal']})");
 
-// Validação das faixas de nota diretamente pelo motor
+// Validação das faixas de nota diretamente pelo motor (curva calibrada R10-BAL-001-R2)
 $res55 = runEngineMatchEnd(5.5, 30, 90);
-check($res55['nominal'] === 0, 'Nota abaixo de 6.0 (5.5) não concede bônus');
+check($res55['nominal'] === 0, 'Nota 5.5 (faixa neutra 5.3..5.9) não concede bônus');
 
-$res60_c30 = runEngineMatchEnd(6.0, 30, 90);
-check($res60_c30['nominal'] === 2, 'Nota 6.0 com confiança < 50 concede bônus +2 no motor real');
+$res60_c25 = runEngineMatchEnd(6.0, 25, 90);
+check($res60_c25['nominal'] === 2, 'Nota 6.0 com confiança < 30 concede bônus +2 no motor real');
+
+$res60_c45 = runEngineMatchEnd(6.0, 45, 90);
+check($res60_c45['nominal'] === 1, 'Nota 6.0 com confiança 45 (< 52) concede bônus +1 no motor real');
 
 $res60_c55 = runEngineMatchEnd(6.0, 55, 90);
-check($res60_c55['nominal'] === 1, 'Nota 6.0 com confiança 55 (< 60) concede bônus +1 no motor real');
-
-$res60_c65 = runEngineMatchEnd(6.0, 65, 90);
-check($res60_c65['nominal'] === 0, 'Nota 6.0 com confiança >= 60 concede bônus 0 no motor real');
+check($res60_c55['nominal'] === 0, 'Nota 6.0 com confiança >= 52 estabiliza em bônus 0 no motor real');
 
 $res68_c65 = runEngineMatchEnd(6.8, 65, 90);
-check($res68_c65['nominal'] === 1, 'Nota 6.8 com confiança 65 (< 70) concede bônus +1 no motor real');
+check($res68_c65['nominal'] === 1, 'Nota 6.8 com confiança 65 (< 68) concede bônus +1 no motor real');
 
 $res78_c72 = runEngineMatchEnd(7.8, 72, 90);
-check($res78_c72['nominal'] === 1, 'Nota 7.8 com confiança 72 (< 75) concede bônus +1 no motor real');
+check($res78_c72['nominal'] === 1, 'Nota 7.8 com confiança 72 (< 78) concede bônus +1 no motor real');
 
 $res88_c85 = runEngineMatchEnd(8.8, 85, 90);
 check($res88_c85['nominal'] === 2, 'Nota 8.8 com confiança 85 (< 90) concede bônus +2 no motor real');
@@ -539,13 +539,13 @@ check($resZeroMin['applied'] === 0, 'Atleta que atuou 0 minutos recebe rigorosam
 check($resZeroMin['conf_after'] === 30, 'Confiança permanece inalterada em 30');
 
 $res60Min = runEngineMatchEnd(7.5, 55, 60);
-check($res60Min['nominal'] === 1, 'Atleta titular que atuou 60 minutos recebe bônus integral');
+check($res60Min['nominal'] === 3, 'Atleta titular que atuou 60 minutos (R=7.5, C=55) recebe bônus integral (+3)');
 
-$res60MinFast = runEngineMatchEnd(7.5, 40, 60);
-check($res60MinFast['nominal'] === 2, 'Atleta titular com confiança < 50 atuando 60 min recebe bônus acelerado (+2)');
+$res60MinFast = runEngineMatchEnd(7.5, 30, 60);
+check($res60MinFast['nominal'] === 4, 'Atleta titular com confiança < 35 atuando 60 min (R=7.5) recebe bônus acelerado (+4)');
 
 $res30Min = runEngineMatchEnd(7.5, 55, 30);
-check($res30Min['nominal'] === 1, 'Atleta que atuou 30 minutos recebe bônus modulado (30/60)');
+check($res30Min['nominal'] === 2, 'Atleta que atuou 30 minutos (R=7.5, C=55) recebe bônus modulado (30/60 => +2)');
 
 // -------------------------------------------------------------
 // 7. Teto de recuperação em 90 e integridade dos registros do ledger

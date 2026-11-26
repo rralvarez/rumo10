@@ -189,7 +189,7 @@ final class Game {
                     $m[$own]++; $st['goals']++; $st['penalties_scored'] = ($st['penalties_scored'] ?? 0) + 1;
                     $g['feedback']['highlight'] = 'goal';
                     $beforeConf = $g['states']['confianca'];
-                    $g['states']['confianca'] = self::clamp($beforeConf + 4);
+                    $g['states']['confianca'] = self::clamp($beforeConf + self::goalConfidenceDelta($g, (int)$st['goals']));
                     $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + ($g['states']['confianca'] - $beforeConf);
                     $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
                     $g['feedback']['text'] = 'GOL DE PÊNALTI! Você cobra com frieza e balança as redes!';
@@ -211,7 +211,11 @@ final class Game {
                         $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: finalização pela linha de fundo."];
                     }
                 }
+                $confBeforeSeg = $g['states']['confianca'];
                 self::nextSegment($g);
+                if ($g['states']['confianca'] !== $confBeforeSeg) {
+                    $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + ($g['states']['confianca'] - $confBeforeSeg);
+                }
             } else self::fieldDecision($g,$o,$roll,$s['id']??0,$n);
         } elseif($action==='shootout_start') {
             $i=self::currentIndex($g); $m=&$g['matches'][$i];
@@ -244,10 +248,16 @@ final class Game {
                 $g['version']++; return $g;
             }
             $i=self::currentIndex($g); $m=&$g['matches'][$i];
+            $confBeforeAdv=$g['states']['confianca'];
             if($m['status']==='pre_jogo') { $m['status']='em_andamento'; self::segment($g,15); }
             elseif($m['status']==='intervalo') { $m['status']='em_andamento'; self::segment($g,60); }
             elseif(!MatchParticipation::canActOnField($m)) { self::nextSegment($g); }
             else throw new InvalidArgumentException('Resolva a decisão em campo.');
+            unset($m);
+            if($g['stage']==='fim_semana' && $g['states']['confianca']!==$confBeforeAdv) {
+                $deltaAdv=$g['states']['confianca']-$confBeforeAdv;
+                $g['feedback']=['text'=>$deltaAdv>0?'Fim de jogo: sua atuação fortaleceu sua confiança.':'Fim de jogo: a atuação abaixo do esperado pesou na sua confiança.','effects'=>['confianca'=>$deltaAdv]];
+            }
         } elseif($action==='offers' && $g['stage']==='resumo') {
             if($g['age']>=39)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória com confirmação explícita.');
             CompetitionContinuity::reconcileAmazonas($g);
@@ -271,7 +281,7 @@ final class Game {
             }
             if($g['age']>=39)throw new InvalidArgumentException('Limite de idade atingido. Conclua a aposentadoria obrigatória com confirmação explícita.');
             unset($g['pace_report']);
-            $old=$g['club']; $summary=self::summary($g); $summary['season']=$g['season']; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
+            $old=$g['club']; $oldSeason=(int)$g['season']; $summary=self::summary($g); $summary['season']=$oldSeason; $summary['club']=$old; $summary['table']=Schedule::table($g['matches'],$g['teams']);
             $summary['evaluation']=SeasonEvaluation::evaluate($g);
             $summary['technical_average']=array_sum(array_column($g['skills'],'value'))/9;
             if(!empty($g['official']))$summary['competitions']=$g['competition_results'];
@@ -282,14 +292,17 @@ final class Game {
             $summary['next_club']=$g['club']; $g['history'][]=$summary;
             $teams=Rules::TEAMS; if(!in_array($g['club'],$teams,true)) $teams[0]=$g['club'];
             $g['teams']=$teams; $g['season']++; $g['age']++; $g['round']=1; $g['stage']='treino'; $g['matches']=Schedule::generate($teams); $g['offers']=[]; $g['states']['energia']=85;
+            unset($g['confidence_streak']);
             if(!empty($g['official']))Competition::newSeason($g);
             $ageEffects=Evolution::birthday($g);
+            $offseasonConf=self::applyOffseasonConfidenceTransition($g,$oldSeason,(string)($summary['evaluation']['band']??'regular'));
+            if($offseasonConf!==0)$ageEffects['confianca']=($ageEffects['confianca']??0)+$offseasonConf;
             $g['season_skill_baseline']=array_sum(array_column($g['skills'],'value'))/9;
             $g['feedback']=['text'=>'Contrato renovado para a temporada '.$g['season'].'. Clube: '.$g['club'],'effects'=>$ageEffects];
         } elseif($action==='continue' && $g['stage']==='competicao_resumo' && !empty($g['official'])) {
             Competition::continueSeason($g);
         } else throw new InvalidArgumentException('Comando incompatível com a etapa atual.');
-        if($g['stage']==='resumo')Progression::season($g);
+        if($g['stage']==='resumo'){Progression::season($g);self::applySeasonAchievementConfidence($g);}
         AchievementEvents::capture($g,$previousStage);
         $g['version']++;$selectionStart=RequestMetrics::start();Scenes::prepare($g);RequestMetrics::end('scene_selection',$selectionStart); return $g;
     }
@@ -305,12 +318,40 @@ final class Game {
                 else $applied['XP '.$k]=Evolution::gain($g,$k,$delta);
             } else { $before=$g['states'][$k]; $g['states'][$k]=self::clamp($before+$delta); $applied[$k]=$g['states'][$k]-$before; }
         }
+        if($roll['success'] && ($roll['class']??'')==='excepcional' && ($g['stage']??'')==='treino' && !isset($effects['confianca'])) {
+            $trainCode=$choice['code']??($choice['action']??'');
+            $trainCap=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','exceptional_training_cap',42):42;
+            $trainBonus=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','exceptional_training_bonus',1):1;
+            if(in_array($trainCode,['passe','chute','drible','desarme','tecnica','tatico','posicionamento','visao'],true) && $g['states']['confianca']<$trainCap && $trainBonus>0){
+                $before=$g['states']['confianca'];
+                $g['states']['confianca']=self::clamp($before+$trainBonus);
+                $applied['confianca']=($applied['confianca']??0)+($g['states']['confianca']-$before);
+            }
+        }
         if(!$roll['success']) {
-            $failure=$choice['failure_effects']??['confianca'=>$roll['class']==='falha_grave'?-3:-1];
+            $isDecisive=!empty($choice['decisive_opportunity']) || !empty($choice['clear_chance']);
+            $defaultFail=$isDecisive
+                ?['confianca'=>$roll['class']==='falha_grave'?-4:-2]
+                :['confianca'=>$roll['class']==='falha_grave'?-3:-1];
+            $failure=$choice['failure_effects']??$defaultFail;
             if($roll['class']==='falha_grave')$failure=$choice['severe_failure_effects']??$failure;
-            if(($g['stage']??'')==='partida' && in_array($choice['action']??'',['passe','chute','drible','desarme'],true)){
-                if(($failure['confianca']??null)===-2)$failure['confianca']=-1;
-                elseif(($failure['confianca']??null)===-4)$failure['confianca']=-3;
+            if(($g['stage']??'')==='partida' && !$isDecisive){
+                if(($choice['shot_kind']??'')==='long'){
+                    $failure=$roll['class']==='falha_grave'?['confianca'=>-2]:['foco'=>-1];
+                } elseif(in_array($choice['action']??'',['passe','chute','drible','desarme'],true)){
+                    if(($failure['confianca']??null)===-2)$failure['confianca']=-1;
+                    elseif(($failure['confianca']??null)===-4)$failure['confianca']=-3;
+                }
+            }
+            if(isset($failure['confianca']) && $failure['confianca']<0 && !isset($effects['confianca'])){
+                $curConf=$g['states']['confianca'];
+                $floorNormal=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','zero_trap_floor_normal',10):10;
+                $floorSevere=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','zero_trap_floor_severe',8):8;
+                if($roll['class']!=='falha_grave' && !$isDecisive && $failure['confianca']===-1 && $curConf<=$floorNormal){
+                    unset($failure['confianca']);
+                } elseif($curConf<=$floorSevere && $failure['confianca']<=-2){
+                    $failure['confianca']=max(-2,(int)floor($failure['confianca']/2));
+                }
             }
             foreach($failure as $key=>$value){$before=$g['states'][$key];$g['states'][$key]=self::clamp($before+$value);$applied[$key]=($applied[$key]??0)+$g['states'][$key]-$before;}
         }
@@ -320,6 +361,7 @@ final class Game {
         $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $m['entered_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
         $type=$o['action'];$clearChance=!empty($o['clear_chance']); $onBall=$clearChance || $sid===0 || $sid===7 || ($sid>=1100 && $sid<=1139) || !empty($o['match_event']);
         $text=$g['feedback']['text']; $beforeStates=$g['states'];
+        $wasSentOffBefore=MatchParticipation::isSentOff($m);
         $auditScore=$m[$own];$auditActions=MatchMomentum::builtActions($g);
         if($onBall) {
             $conversion=$m['pass_conversion']??(int)round(max(12,min(32,18+.25*(Probability::effective($g['skills'],'passe')-45))));
@@ -365,9 +407,26 @@ final class Game {
             if($sid>=1125 && $sid<=1139 && $roll['success'] && in_array($type,['passe','drible'],true)){
                 $st['tackles']++;foreach(self::effects(['desarme'=>1],$roll,$g) as $k=>$v)$g['feedback']['effects'][$k]=($g['feedback']['effects'][$k]??0)+$v;
             }
-            if(in_array($g['position'],['zagueiro','volante','lateral'],true) && $st['tackles']>=2 && empty($st['tackle_confidence_awarded'])) {
-                $st['tackle_confidence_awarded']=true;
-                $g['states']['confianca']=self::clamp($g['states']['confianca']+1);
+            if(in_array($g['position'],['zagueiro','volante','lateral'],true)) {
+                if($st['tackles']>=2 && empty($st['tackle_confidence_awarded'])) {
+                    $st['tackle_confidence_awarded']=true;
+                    $g['states']['confianca']=self::clamp($g['states']['confianca']+self::defensiveTierDelta($g['states']['confianca'],1));
+                }
+                if($st['tackles']>=4 && empty($st['tackle_dominance_awarded'])) {
+                    $st['tackle_dominance_awarded']=true;
+                    $g['states']['confianca']=self::clamp($g['states']['confianca']+self::defensiveTierDelta($g['states']['confianca'],2));
+                }
+            }
+            if($g['position']==='goleiro') {
+                $savesCount=(int)($st['saves']??0);
+                if($savesCount>=2 && empty($st['save_confidence_awarded'])) {
+                    $st['save_confidence_awarded']=true;
+                    $g['states']['confianca']=self::clamp($g['states']['confianca']+self::defensiveTierDelta($g['states']['confianca'],1));
+                }
+                if($savesCount>=4 && empty($st['save_dominance_awarded'])) {
+                    $st['save_dominance_awarded']=true;
+                    $g['states']['confianca']=self::clamp($g['states']['confianca']+self::defensiveTierDelta($g['states']['confianca'],2));
+                }
             }
             if($roll['success'] && in_array($type,['passe','chute','drible','desarme'],true)){
                 $skill=['passe'=>'passe','chute'=>'finalizacao','drible'=>'drible','desarme'=>'desarme'][$type];
@@ -380,6 +439,14 @@ final class Game {
                 $g['feedback']['highlight']='goal';
                 $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
                 $text.=' Gol do seu jogador!';
+            }
+            if($roll['success'] && ($roll['class']??'')==='excepcional' && in_array($type,['passe','drible','desarme'],true) && !isset($g['feedback']['highlight']) && empty($st['exceptional_play_awarded'])) {
+                $st['exceptional_play_awarded']=true;
+                $excCap=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','exceptional_play_cap',65):65;
+                $excBonus=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','exceptional_play_bonus',1):1;
+                if($g['states']['confianca']<$excCap && $excBonus>0) {
+                    $g['states']['confianca']=self::clamp($g['states']['confianca']+$excBonus);
+                }
             }
             // Simulação e agressão podem gerar falta/cartão; nunca dão gol automático.
             if($sid===7 && $choice===3 && !$roll['success'] && ($roll['class']==='falha_grave' || random_int(1,100)<=25)) {
@@ -410,11 +477,14 @@ final class Game {
             if ($foulRes['text'] !== '') $text .= ' ' . $foulRes['text'];
         }
         if(isset($g['feedback']['highlight'])){
-            $before=$g['states']['confianca'];$g['states']['confianca']=self::clamp($before+($g['feedback']['highlight']==='goal'?4:3));
+            $before=$g['states']['confianca'];
+            $hlDelta=$g['feedback']['highlight']==='goal'
+                ?self::goalConfidenceDelta($g,(int)($st['goals']??1))
+                :self::assistConfidenceDelta($g,(int)($st['assists']??1));
+            $g['states']['confianca']=self::clamp($before+$hlDelta);
         }
         $g['states']['energia']=self::clamp($g['states']['energia']-3);
-        $alreadySentOff = MatchParticipation::isSentOff($m);
-        if ($alreadySentOff) {
+        if (MatchParticipation::isSentOff($m)) {
             MatchParticipation::recordExit($m, $g, (int)$m['minute'], 'sent_off');
         } elseif ((int)($st['cards'] ?? 0) >= 2) {
             $st['red_cards'] = max(1, (int)($st['red_cards'] ?? 0));
@@ -430,6 +500,12 @@ final class Game {
             MatchParticipation::recordExit($m, $g, (int)$m['minute'], 'fatigue');
             $text .= ' Substituído por desgaste.';
         }
+        if (!$wasSentOffBefore && MatchParticipation::isSentOff($m) && empty($st['red_card_confidence_penalized'])) {
+            $st['red_card_confidence_penalized'] = true;
+            $redPen = class_exists('BalanceService') ? (int)BalanceService::param('confidence.balance.v2', 'sent_off_penalty', -2) : -2;
+            if ($g['states']['confianca'] <= 8 && $redPen < -1) $redPen = -1;
+            $g['states']['confianca'] = self::clamp($g['states']['confianca'] + $redPen);
+        }
         $constructive=$onBall && in_array($type,['passe','drible','desarme'],true) && empty($o['end_sequence']);
         $created=MatchMomentum::record($m,$roll['success'],$constructive,isset($g['feedback']['highlight']));
         if($m['minute']>=$m['exit'] || in_array($m['participation_state']??'',[MatchParticipation::STATE_SENT_OFF,MatchParticipation::STATE_SUBSTITUTED_OUT],true)){MatchMomentum::reset($m);$created=false;}
@@ -438,7 +514,13 @@ final class Game {
         $logEntry=['minute'=>$m['minute'],'text'=>$text];
         if(in_array($m['participation_state']??'',[MatchParticipation::STATE_SENT_OFF,MatchParticipation::STATE_SUBSTITUTED_OUT],true)){$logEntry['source']='engine';}
         $m['log'][]=$logEntry;
-        if(!$created)self::nextSegment($g);
+        if(!$created){
+            $confBeforeSeg=$g['states']['confianca'];
+            self::nextSegment($g);
+            if($g['states']['confianca']!==$confBeforeSeg){
+                $g['feedback']['effects']['confianca']=($g['feedback']['effects']['confianca']??0)+($g['states']['confianca']-$confBeforeSeg);
+            }
+        }
     }
     private static function nextSegment(array &$g): void {
         $m=$g['matches'][self::currentIndex($g)];
@@ -525,24 +607,69 @@ final class Game {
             $s['rating_version']=MatchRating::VERSION;
             $ledgerKey='bal001:confidence:'.$g['season'].':'.($g['competition_id']??'legacy').':'.$m['round'].':'.$m['home'].':'.$m['away'];
             if(!isset($g['reward_ledger'][$ledgerKey])){
-                $postRaw=0;$curConf=$g['states']['confianca'];$r=$s['rating'];
-                if($r>=8.8){$postRaw=($curConf<90)?2:0;}
-                elseif($r>=7.8){$postRaw=($curConf<50)?2:(($curConf<75)?1:0);}
-                elseif($r>=6.8){$postRaw=($curConf<50)?2:(($curConf<70)?1:0);}
-                elseif($r>=6.0){$postRaw=($curConf<50)?2:(($curConf<60)?1:0);}
-                $part=min(1.0,max(0,$s['minutes'])/60.0);
-                $nominalBonus=(int)round($postRaw*$part);
-                $beforeConf=$g['states']['confianca'];$appliedBonus=0;
-                if($s['minutes']>0 && $nominalBonus>0){
+                $beforeConf=$g['states']['confianca'];
+                $mins=(int)$s['minutes'];
+                $r=(float)$s['rating'];
+                $ratingNominal=self::postMatchRatingNominal($r,$beforeConf,$mins);
+                $gkSaveBonus=0;
+                $cleanSheetBonus=0;
+                $regularityBonus=0;
+                if($mins>0){
+                    $pos=strtolower((string)($g['position']??'meia'));
+                    $isDef=in_array($pos,['goleiro','zagueiro','lateral','volante'],true);
+                    $projConf=self::clamp($beforeConf+$ratingNominal);
+                    if($pos==='goleiro'){
+                        $saves=(int)($s['saves']??0);
+                        if($saves>=2 && empty($s['save_confidence_awarded'])){
+                            $s['save_confidence_awarded']=true;
+                            $d1=self::defensiveTierDelta($projConf,1);
+                            $gkSaveBonus+=$d1;$projConf=self::clamp($projConf+$d1);
+                        }
+                        if($saves>=4 && empty($s['save_dominance_awarded'])){
+                            $s['save_dominance_awarded']=true;
+                            $d2=self::defensiveTierDelta($projConf,2);
+                            $gkSaveBonus+=$d2;$projConf=self::clamp($projConf+$d2);
+                        }
+                    }
+                    $ga=($m['home']??'')===($g['club']??'')?(int)($m['ag']??0):(int)($m['hg']??0);
+                    $csCap=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','clean_sheet_cap',78):78;
+                    $csVal=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','clean_sheet_bonus',1):1;
+                    if($isDef && $mins>=60 && $ga===0 && !MatchParticipation::isSentOff($m) && (((int)($s['tackles']??0)+(int)($s['saves']??0))>=2) && $projConf<$csCap){
+                        $cleanSheetBonus=$csVal;
+                        $projConf=self::clamp($projConf+$cleanSheetBonus);
+                    }
+                    $regMinMins=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','regularity_min_minutes',45):45;
+                    $regMinRat=class_exists('BalanceService')?(float)BalanceService::param('confidence.balance.v2','regularity_min_rating',6.7):6.7;
+                    $regStep=max(2,class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','regularity_streak_step',3):3);
+                    $regCap=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','regularity_cap',75):75;
+                    $regVal=class_exists('BalanceService')?(int)BalanceService::param('confidence.balance.v2','regularity_bonus',1):1;
+                    if($mins>=$regMinMins && $r>=$regMinRat){
+                        $g['confidence_streak']=((int)($g['confidence_streak']??0))+1;
+                        if($g['confidence_streak']>=$regStep && ($g['confidence_streak']%$regStep)===0 && $projConf<$regCap){
+                            $regularityBonus=$regVal;
+                        }
+                    } elseif($mins>=$regMinMins || $r<5.8){
+                        $g['confidence_streak']=0;
+                    }
+                }
+                $nominalBonus=$ratingNominal+$gkSaveBonus+$cleanSheetBonus+$regularityBonus;
+                $appliedBonus=0;
+                if($mins>0 && $nominalBonus!==0){
                     $newConf=self::clamp($beforeConf+$nominalBonus);
                     $appliedBonus=$newConf-$beforeConf;
                     $g['states']['confianca']=$newConf;
                 }
                 $g['reward_ledger'][$ledgerKey]=[
+                    'schema'=>2,
                     'nominal'=>$nominalBonus,
+                    'rating_nominal'=>$ratingNominal,
+                    'gk_save_bonus'=>$gkSaveBonus,
+                    'clean_sheet_bonus'=>$cleanSheetBonus,
+                    'regularity_bonus'=>$regularityBonus,
+                    'streak'=>(int)($g['confidence_streak']??0),
                     'applied'=>$appliedBonus,
                     'rating'=>$r,
-                    'minutes'=>$s['minutes'],
+                    'minutes'=>$mins,
                     'conf_before'=>$beforeConf,
                     'conf_after'=>$g['states']['confianca'],
                     'ts'=>time()
@@ -580,6 +707,254 @@ final class Game {
             foreach(['goals','assists','minutes'] as $k) $out[$k]+=$m['stats'][$k]; if($m['stats']['minutes']>0) { $out['games']++; $sum+=$m['stats']['rating']; }
         }
         $out['average']=$out['games']?round($sum/$out['games'],2):0; return $out;
+    }
+
+    private static function goalConfidenceDelta(array $g, int $matchGoalsAfter = 1): int {
+        $p = class_exists('BalanceService') ? BalanceService::params('confidence.balance.v2') : [];
+        $conf = (int)($g['states']['confianca'] ?? 50);
+        $pos = strtolower((string)($g['position'] ?? 'meia'));
+        $isDef = in_array($pos, ['goleiro', 'zagueiro', 'lateral', 'volante'], true);
+        if ($conf >= 95) {
+            return $matchGoalsAfter >= 2 ? (int)($p['goal_very_high'] ?? 1) : 0;
+        }
+        if ($conf >= 88) {
+            return (int)($p['goal_very_high'] ?? 1);
+        }
+        if ($conf >= 75) {
+            return (int)($p['goal_high'] ?? 2);
+        }
+        if ($conf >= 55) {
+            return $isDef ? (int)($p['goal_def_mid'] ?? 4) : (int)($p['goal_att_mid'] ?? 3);
+        }
+        return $isDef ? (int)($p['goal_def_low'] ?? 5) : (int)($p['goal_att_low'] ?? 4);
+    }
+
+    private static function assistConfidenceDelta(array $g, int $matchAssistsAfter = 1): int {
+        $p = class_exists('BalanceService') ? BalanceService::params('confidence.balance.v2') : [];
+        $conf = (int)($g['states']['confianca'] ?? 50);
+        $pos = strtolower((string)($g['position'] ?? 'meia'));
+        $isCreator = in_array($pos, ['meia', 'lateral', 'volante', 'ponta'], true);
+        if ($conf >= 88) {
+            return $matchAssistsAfter >= 2 ? (int)($p['assist_high'] ?? 1) : 0;
+        }
+        if ($conf >= 75) {
+            return (int)($p['assist_high'] ?? 1);
+        }
+        if ($conf >= 55) {
+            return $isCreator ? (int)($p['assist_creator_mid'] ?? 3) : (int)($p['assist_other_mid'] ?? 2);
+        }
+        return ($isCreator && $conf < 40) ? (int)($p['assist_creator_very_low'] ?? 4) : (int)($p['assist_low'] ?? 3);
+    }
+
+    private static function defensiveTierDelta(int $conf, int $tier): int {
+        $p = class_exists('BalanceService') ? BalanceService::params('confidence.balance.v2') : [];
+        if ($tier === 1) {
+            $cap = (int)($p['def_tier1_cap'] ?? 75);
+            if ($conf >= $cap) {
+                return 0;
+            }
+            return $conf < 40 ? (int)($p['def_tier1_low'] ?? 2) : (int)($p['def_tier1_mid'] ?? 1);
+        }
+        $cap = (int)($p['def_tier2_cap'] ?? 85);
+        if ($conf >= $cap) {
+            return 0;
+        }
+        return $conf < 65 ? (int)($p['def_tier2_low'] ?? 2) : (int)($p['def_tier2_high'] ?? 1);
+    }
+
+    private static function postMatchRatingNominal(float $r, int $conf, int $mins): int {
+        if ($mins <= 0) {
+            return 0;
+        }
+        $ceiling = class_exists('BalanceService') ? (int)BalanceService::param('confidence.balance.v2', 'post_ceiling', 90) : 90;
+        $fullMin = max(30.0, class_exists('BalanceService') ? (float)BalanceService::param('confidence.balance.v2', 'post_full_minutes', 60.0) : 60.0);
+        if ($r < 4.6) {
+            $raw = $conf > 25 ? -2 : ($conf > 10 ? -1 : 0);
+        } elseif ($r < 5.3) {
+            $raw = $conf > 18 ? -1 : 0;
+        } elseif ($r < 6.0) {
+            $raw = 0;
+        } elseif ($r < 6.7) {
+            $raw = $conf < 30 ? 2 : ($conf < 52 ? 1 : 0);
+        } elseif ($r < 7.5) {
+            $raw = $conf < 35 ? 3 : ($conf < 55 ? 2 : ($conf < 68 ? 1 : 0));
+        } elseif ($r < 8.5) {
+            $raw = $conf < 35 ? 4 : ($conf < 58 ? 3 : ($conf < 72 ? 2 : ($conf < 78 ? 1 : 0)));
+        } elseif ($r < 9.3) {
+            $raw = $conf < 35 ? 5 : ($conf < 58 ? 4 : ($conf < 75 ? 3 : ($conf < $ceiling ? 2 : 0)));
+        } else {
+            $raw = $conf < 35 ? 6 : ($conf < 58 ? 5 : ($conf < 75 ? 4 : ($conf < 84 ? 3 : ($conf < $ceiling ? 2 : 0))));
+        }
+        $factor = min(1.0, $mins / $fullMin);
+        return (int)round($raw * $factor);
+    }
+
+    private static function applySeasonAchievementConfidence(array &$g): void {
+        $seasonNum = (int)($g['season'] ?? 1);
+        $ledgerKey = 'bal001:season_achievement:' . $seasonNum;
+        if (isset($g['reward_ledger'][$ledgerKey])) {
+            return;
+        }
+        $sum = self::summary($g);
+        $minutes = max(0, (int)($sum['minutes'] ?? 0));
+        $before = (int)($g['states']['confianca'] ?? 50);
+        if ($minutes <= 0) {
+            $g['reward_ledger'][$ledgerKey] = [
+                'schema' => 2,
+                'season' => $seasonNum,
+                'minutes' => 0,
+                'nominal' => 0,
+                'applied' => 0,
+                'conf_before' => $before,
+                'conf_after' => $before,
+                'ts' => time(),
+            ];
+            return;
+        }
+
+        $p = class_exists('BalanceService') ? BalanceService::params('confidence.balance.v2') : [];
+        $club = (string)($g['club'] ?? '');
+        $seasonTitles = [];
+        if (class_exists('Trophies')) {
+            foreach (Trophies::collect($g) as $t) {
+                if ((int)($t['season'] ?? 0) === $seasonNum && ($t['club'] ?? '') === $club) {
+                    $seasonTitles[] = $t;
+                }
+            }
+        }
+        if (empty($g['official']) && !$seasonTitles && !empty($g['teams']) && !empty($g['matches'])) {
+            $teams = array_values($g['teams']);
+            $expected = count($teams) >= 2 && count($teams) % 2 === 0 ? count($teams) * (count($teams) - 1) : 0;
+            $doneCount = count(array_filter($g['matches'], static fn($m) => ($m['status'] ?? '') === 'finalizada'));
+            if ($expected > 0 && $doneCount === $expected) {
+                $tbl = Schedule::table($g['matches'], $teams);
+                if (($tbl[0]['team'] ?? '') === $club) {
+                    $seasonTitles[] = ['season' => $seasonNum, 'club' => $club, 'title' => 'Liga regional', 'kind' => 'champion'];
+                }
+            }
+        }
+
+        $majorCount = 0;
+        $stageCount = 0;
+        foreach ($seasonTitles as $st) {
+            if (($st['kind'] ?? 'champion') === 'stage_title') {
+                $stageCount++;
+            } else {
+                $majorCount++;
+            }
+        }
+
+        $promoted = false;
+        $relegated = false;
+        foreach (($g['competition_results'] ?? []) as $res) {
+            if (!empty($res['promoted'])) {
+                $promoted = true;
+            }
+            if (!empty($res['relegated']) && empty($res['relegation_pending'])) {
+                $relegated = true;
+            }
+        }
+
+        $posRaw = 0;
+        if ($majorCount > 0) {
+            $posRaw += (int)($p['season_title_major'] ?? 5) + max(0, $majorCount - 1) * 2;
+        }
+        if ($stageCount > 0) {
+            $posRaw += $stageCount * (int)($p['season_title_stage'] ?? 2);
+        }
+        if ($promoted) {
+            $posRaw += (int)($p['season_promotion'] ?? 4);
+        }
+
+        $cap = (int)($p['season_achievement_cap'] ?? 6);
+        $presence = min(1.0, $minutes / 360.0);
+        $posScaled = (int)round(min($cap, $posRaw) * $presence);
+        if ($posScaled > 0) {
+            if ($before >= 94) {
+                $posScaled = min(1, $posScaled);
+            } elseif ($before >= 86) {
+                $posScaled = (int)ceil($posScaled * 0.5);
+            }
+        }
+
+        $negScaled = 0;
+        if ($relegated && $posScaled === 0 && $before > 12) {
+            $evalBand = class_exists('SeasonEvaluation') ? (string)(SeasonEvaluation::current($g)['band'] ?? 'regular') : 'regular';
+            if (in_array($evalBand, ['ruim', 'regular'], true)) {
+                $rawNeg = (int)($p['season_relegation_penalty'] ?? -2);
+                $negScaled = $before <= 20 ? -1 : (int)round($rawNeg * $presence);
+            }
+        }
+
+        $nominal = $posScaled + $negScaled;
+        $after = self::clamp($before + $nominal);
+        $applied = $after - $before;
+        $g['states']['confianca'] = $after;
+        $g['reward_ledger'][$ledgerKey] = [
+            'schema' => 2,
+            'season' => $seasonNum,
+            'minutes' => $minutes,
+            'major_titles' => $majorCount,
+            'stage_titles' => $stageCount,
+            'promoted' => $promoted,
+            'relegated' => $relegated,
+            'nominal' => $nominal,
+            'applied' => $applied,
+            'conf_before' => $before,
+            'conf_after' => $after,
+            'ts' => time(),
+        ];
+
+        if ($applied !== 0) {
+            if (isset($g['feedback']) && is_array($g['feedback'])) {
+                $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + $applied;
+            } else {
+                $g['feedback'] = [
+                    'text' => $applied > 0
+                        ? 'As conquistas coletivas da temporada fortaleceram sua confiança.'
+                        : 'O desfecho difícil da temporada pesou no ambiente.',
+                    'effects' => ['confianca' => $applied],
+                ];
+            }
+        }
+    }
+
+    private static function applyOffseasonConfidenceTransition(array &$g, int $closedSeason, string $evalBand): int {
+        $ledgerKey = 'bal001:offseason:' . $closedSeason;
+        if (isset($g['reward_ledger'][$ledgerKey])) {
+            return 0;
+        }
+        $p = class_exists('BalanceService') ? BalanceService::params('confidence.balance.v2') : [];
+        $before = (int)($g['states']['confianca'] ?? 50);
+        $targetRef = (int)($p['offseason_target_ref'] ?? 42);
+        $coolThreshold = (int)($p['offseason_cool_threshold'] ?? 88);
+        $nominal = 0;
+
+        if ($before < $targetRef) {
+            $isPoor = ($evalBand === 'ruim');
+            $rate = $isPoor ? (float)($p['offseason_rate_poor'] ?? 0.15) : (float)($p['offseason_rate_normal'] ?? 0.25);
+            $cap = $isPoor ? (int)($p['offseason_cap_poor'] ?? 3) : (int)($p['offseason_cap_normal'] ?? 6);
+            $nominal = min($cap, max(1, (int)round(($targetRef - $before) * $rate)));
+        } elseif ($before > $coolThreshold) {
+            $coolCap = (int)($p['offseason_cool_cap'] ?? 3);
+            $rawCool = min($coolCap, max(1, (int)round(($before - $coolThreshold) * 0.25)));
+            $nominal = -min($rawCool, $before - $coolThreshold);
+        }
+
+        $after = self::clamp($before + $nominal);
+        $applied = $after - $before;
+        $g['states']['confianca'] = $after;
+        $g['reward_ledger'][$ledgerKey] = [
+            'schema' => 2,
+            'closed_season' => $closedSeason,
+            'band' => $evalBand,
+            'nominal' => $nominal,
+            'applied' => $applied,
+            'conf_before' => $before,
+            'conf_after' => $after,
+            'ts' => time(),
+        ];
+        return $applied;
     }
 
     /**
