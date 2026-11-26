@@ -9,10 +9,7 @@ final class ActionResolution {
  public static function options(array $options,int $id):array {
   foreach($options as $index=>&$o){
    if($o['action']==='chute')$o['shot_kind']=self::SHOTS[$id][$index]??($id===0 && $index===3?'long':'normal');
-   if(in_array($o['action']??'',['passe','chute','drible','desarme'],true)){
-    if(($o['failure_effects']['confianca']??null)===-2)$o['failure_effects']['confianca']=-1;
-    if(($o['severe_failure_effects']['confianca']??null)===-4)$o['severe_failure_effects']['confianca']=-3;
-   }
+   $o=SceneConsequences::reconcileCatalogOption($o,'partida',$id);
   }
   unset($o);return $options;
  }
