@@ -15,6 +15,12 @@ final class Repository {
      */
     public static $testPreResponseHook = null;
 
+    /**
+     * Diagnóstico técnico sanitizado da última exceção ocorrida em command() (R10-INC-EXP-001 §6).
+     * @var array<string,int|string|null>|null
+     */
+    public static ?array $lastFailureDiagnostic = null;
+
     public function __construct(public PDO $db) {}
     public function query(string $sql,array $args=[]): PDOStatement { $start=RequestMetrics::start();try{$s=$this->db->prepare($sql); $s->execute($args); return $s;}finally{RequestMetrics::end('mysql',$start);} }
     public function load(int $account,bool $lock=false): ?array {
@@ -77,9 +83,11 @@ final class Repository {
         }catch(Throwable $e){if($this->db->inTransaction())$this->db->rollBack();throw $e;}
     }
     public function command(int $account,string $action,array $input,string $key,int $version,?string $receivedAtUtc=null): array {
+        self::$lastFailureDiagnostic = null;
         if(!preg_match('/^[a-f0-9]{64}$/',$key)) throw new InvalidArgumentException('Token inválido.');
         $receivedAt = $receivedAtUtc ?? CanonicalIdentity::utcMicroTimestamp();
         $hash=hash('sha256',json_encode([$action,$input],JSON_THROW_ON_ERROR));
+        $diagContext = ['action' => $action, 'version' => $version];
         $this->db->beginTransaction(); try {
             $this->query("SET time_zone = '+00:00'");
             $this->query('SELECT id FROM rumo10_contas WHERE id=? FOR UPDATE',[$account]);
@@ -95,6 +103,10 @@ final class Repository {
             }
 
             $start=RequestMetrics::start();$g=$this->load($account,true);RequestMetrics::end('load',$start); if(!$g) throw new InvalidArgumentException('Crie seu personagem.');
+            $diagContext['career_id'] = (int)($g['id'] ?? 0);
+            $diagContext['season'] = (int)($g['season'] ?? 1);
+            $diagContext['mode'] = PlayMode::name($g);
+            $diagContext['stage'] = (string)($g['stage'] ?? '');
             $closing=$g['retired_summary']['closing_command']??null;
             if($closing && hash_equals($closing['key'],$key)) {if(!hash_equals($closing['hash'],$hash))throw new InvalidArgumentException('Token já usado para outra ação.');$this->db->commit();return $g;}
 
@@ -103,6 +115,9 @@ final class Repository {
             if($version!==$g['version']) throw new InvalidArgumentException('Esta tela ficou desatualizada. Recarregue antes de escolher.');
             $before=['skills'=>$g['skills'],'states'=>$g['states'],'season'=>$g['season'],'round'=>$g['round'],'stage'=>$g['stage']];
             $careerId=$g['id'];$start=RequestMetrics::start();$next=Game::command($g,$action,$input);RequestMetrics::end('engine',$start);unset($g);
+            if ($action === 'simulate' && isset($next['pace_report']['matches']) && is_array($next['pace_report']['matches'])) {
+                $diagContext['matches'] = count($next['pace_report']['matches']);
+            }
 
             // Injeção de falha controlada exclusiva para testes de atomicidade (OS-F01-P1-006 §3)
             if (self::$testPostProcessHook !== null) {
@@ -122,10 +137,14 @@ final class Repository {
             $engineCommit=CanonicalIdentity::currentEngineCommit();
             if($telemetryEnvelope !== null) {
                 $totalEvs = (int)($telemetryEnvelope['total_eventos'] ?? 1);
+                $diagContext['events'] = $totalEvs;
+                $envelopeJson = json_encode($telemetryEnvelope, JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);
+                unset($telemetryEnvelope);
                 $this->query(
                     'INSERT INTO rumo10_f01_outbox (carreira_id, command_uid, chave, engine_commit, total_eventos, payload_json, estado, received_at_utc, persisted_at_utc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP(6))',
-                    [$careerId, $commandUid, $key, $engineCommit, $totalEvs, json_encode($telemetryEnvelope, JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE), 'pendente', $receivedAt]
+                    [$careerId, $commandUid, $key, $engineCommit, $totalEvs, $envelopeJson, 'pendente', $receivedAt]
                 );
+                unset($envelopeJson);
             }
 
             unset($telemetryEnvelope);
@@ -176,7 +195,11 @@ final class Repository {
             );
 
             $this->db->commit();return $persisted;
-        } catch(Throwable $e) { if($this->db->inTransaction()) $this->db->rollBack(); throw $e; }
+        } catch(Throwable $e) {
+            if($this->db->inTransaction()) $this->db->rollBack();
+            self::$lastFailureDiagnostic = F01Telemetry::sanitizeDiagnostic($e, $diagContext);
+            throw $e;
+        }
     }
     private function save(array $g): bool {
         $id=$g['id'];
