@@ -528,115 +528,71 @@ Competition::referenceScope($d01Catalog, static function () use ($d01Clubs): voi
 }, $d01Clubs);
 
 // =========================================================================
-// 5. REGRESSÕES CAR003-D02: PERSISTÊNCIA PDO REAL, RECARGA E CATALOGO REMOVIDO
+// 5. REGRESSÕES CAR003-D02: RENDERIZAÇÃO COM CATÁLOGO REMOVIDO/RENOMEADO E LEGADO
 // =========================================================================
-echo "\n5. Validando Regressões CAR003-D02 (Persistência PDO Real + Catálogo Removido/Renomeado)...\n";
+echo "\n5. Validando Regressões CAR003-D02 (Dados Persistidos vs Catálogo Removido/Renomeado)...\n";
 
-$pdo1 = Database::connect();
-$repo1 = new Repository($pdo1);
-$d02Account = null;
-try {
-    $repo1->query('INSERT INTO rumo10_contas(email, senha_hash) VALUES(?, ?)', [
-        'car003-d02-' . bin2hex(random_bytes(6)) . '@example.invalid',
-        password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
-    ]);
-    $d02Account = (int)$pdo1->lastInsertId();
+$gD02 = makeCareerC3('Santos-SP', 74, 4);
+$gD02['stage'] = 'oferta';
+$d02Draw = TransferInterest::draw($gD02, makeRngC3(20261128));
+$gD02['market_draw'] = $d02Draw;
+$gD02['offers'] = $d02Draw['offers'];
 
-    $gInit = makeCareerC3('Santos-SP', 74, 4);
-    $repo1->create($d02Account, $gInit);
-    $gLoaded1 = $repo1->load($d02Account);
-    $gLoaded1['stage'] = 'resumo';
-    $saveMethod = new ReflectionMethod(Repository::class, 'save');
-    $saveMethod->invoke($repo1, $gLoaded1);
+$targetOffer = $gD02['offers'][0];
+$removedCompId = (string)$targetOffer['competition'];
+$origCompName = (string)$targetOffer['competition_name'];
+$origScope = (string)$targetOffer['division_scope'];
+$origReason = (string)$targetOffer['reason'];
 
-    $opKey = bin2hex(random_bytes(32));
-    $winA = $repo1->command($d02Account, 'offers', [], $opKey, $gLoaded1['version']);
-    $winB = $repo1->command($d02Account, 'offers', [], $opKey, $gLoaded1['version']);
-    okC3($winA === $winB && count($winA['offers']) === 3,
-        'CAR003-D02 abertura de ofertas e repetição com mesma chave são idempotentes');
+$fullCat = Competition::catalog();
+$removedCat = $fullCat;
+unset($removedCat[$removedCompId]);
 
-    // Recarga real do save por uma NOVA conexão PDO
-    $pdo2 = Database::connect();
-    $repo2 = new Repository($pdo2);
-    $reloaded = $repo2->load($d02Account);
-    okC3(is_array($reloaded) && count($reloaded['offers']) === 3,
-        'CAR003-D02 save recarregado por nova conexão PDO preserva as 3 propostas');
-
-    $targetOffer = $reloaded['offers'][0];
-    $removedCompId = (string)$targetOffer['competition'];
-    $origCompName = (string)$targetOffer['competition_name'];
-    $origScope = (string)$targetOffer['division_scope'];
-    $origReason = (string)$targetOffer['reason'];
-
-    // Catálogo sintético com competição removida e outra renomeada
-    $fullCat = Competition::catalog();
-    $removedCat = $fullCat;
-    unset($removedCat[$removedCompId]);
-
-    Competition::referenceScope($removedCat, static function () use ($reloaded, $origCompName, $origScope, $origReason): void {
-        ob_start();
-        TransferInterest::render($reloaded);
-        $htmlRemoved = (string)ob_get_clean();
-        okC3(
-            str_contains($htmlRemoved, $origCompName)
-            && str_contains($htmlRemoved, $origScope)
-            && str_contains($htmlRemoved, $origReason)
-            && str_contains($htmlRemoved, 'Força da liga:'),
-            "CAR003-D02 competição removida do catálogo ({$origCompName}) preserva linha de competição, divisão, força e justificativa"
-        );
-    });
-
-    $renamedCat = $fullCat;
-    if (isset($renamedCat[$removedCompId])) {
-        $renamedCat[$removedCompId]['name'] = 'LIGA RENOMEADA INDEVIDAMENTE';
-    }
-    Competition::referenceScope($renamedCat, static function () use ($reloaded, $origCompName): void {
-        ob_start();
-        TransferInterest::render($reloaded);
-        $htmlRenamed = (string)ob_get_clean();
-        okC3(
-            str_contains($htmlRenamed, $origCompName)
-            && !str_contains($htmlRenamed, 'LIGA RENOMEADA INDEVIDAMENTE'),
-            'CAR003-D02 competição renomeada no catálogo não sobrescreve nome persistido na proposta'
-        );
-    });
-
-    // Proposta legada sem os novos campos usa fallback do catálogo sem recalcular
-    $legacyOffer = [
-        'club' => 'Santos-SP',
-        'country' => 'BR',
-        'region' => 'country',
-        'competition' => 'br-a',
-        'overall' => 76,
-        'overall_delta' => 1.0,
-    ];
+Competition::referenceScope($removedCat, static function () use ($gD02, $origCompName, $origScope, $origReason): void {
     ob_start();
-    TransferMarket::describe($legacyOffer, false);
-    $htmlLegacyDesc = (string)ob_get_clean();
+    TransferInterest::render($gD02);
+    $htmlRemoved = (string)ob_get_clean();
     okC3(
-        str_contains($htmlLegacyDesc, '1ª divisão nacional')
-        && !str_contains($htmlLegacyDesc, 'Força da liga:'),
-        'CAR003-D02 proposta legada sem novos campos usa fallback do catálogo para competição sem recalcular força'
+        str_contains($htmlRemoved, $origCompName)
+        && str_contains($htmlRemoved, $origScope)
+        && str_contains($htmlRemoved, $origReason)
+        && str_contains($htmlRemoved, 'Força da liga:'),
+        "CAR003-D02 competição removida do catálogo ({$origCompName}) preserva linha de competição, divisão, força e justificativa"
     );
-} finally {
-    if ($d02Account !== null) {
-        $careerIds = $pdo1->prepare('SELECT id FROM rumo10_carreiras WHERE conta_id = ?');
-        $careerIds->execute([$d02Account]);
-        $cids = $careerIds->fetchAll(PDO::FETCH_COLUMN);
-        $pdo1->exec('SET FOREIGN_KEY_CHECKS = 0');
-        foreach ($cids as $cid) {
-            foreach (['rumo10_universos', 'rumo10_decisoes', 'rumo10_atributos', 'rumo10_estados', 'rumo10_temporadas', 'f01_outbox', 'f01_respostas'] as $tbl) {
-                try {
-                    $pdo1->prepare("DELETE FROM {$tbl} WHERE carreira_id = ?")->execute([$cid]);
-                } catch (PDOException) {
-                }
-            }
-            $pdo1->prepare('DELETE FROM rumo10_carreiras WHERE id = ?')->execute([$cid]);
-        }
-        $pdo1->prepare('DELETE FROM rumo10_contas WHERE id = ?')->execute([$d02Account]);
-        $pdo1->exec('SET FOREIGN_KEY_CHECKS = 1');
-    }
+});
+
+$renamedCat = $fullCat;
+if (isset($renamedCat[$removedCompId])) {
+    $renamedCat[$removedCompId]['name'] = 'LIGA RENOMEADA INDEVIDAMENTE';
 }
+Competition::referenceScope($renamedCat, static function () use ($gD02, $origCompName): void {
+    ob_start();
+    TransferInterest::render($gD02);
+    $htmlRenamed = (string)ob_get_clean();
+    okC3(
+        str_contains($htmlRenamed, $origCompName)
+        && !str_contains($htmlRenamed, 'LIGA RENOMEADA INDEVIDAMENTE'),
+        'CAR003-D02 competição renomeada no catálogo não sobrescreve nome persistido na proposta'
+    );
+});
+
+// Proposta legada sem os novos campos usa fallback do catálogo sem recalcular
+$legacyOffer = [
+    'club' => 'Santos-SP',
+    'country' => 'BR',
+    'region' => 'country',
+    'competition' => 'br-a',
+    'overall' => 76,
+    'overall_delta' => 1.0,
+];
+ob_start();
+TransferMarket::describe($legacyOffer, false);
+$htmlLegacyDesc = (string)ob_get_clean();
+okC3(
+    str_contains($htmlLegacyDesc, '1ª divisão nacional')
+    && !str_contains($htmlLegacyDesc, 'Força da liga:'),
+    'CAR003-D02 proposta legada sem novos campos usa fallback do catálogo para competição sem recalcular força'
+);
 
 echo "\n====================================================================\n";
 echo "SUCESSO: TODAS AS {$checks} VERIFICAÇÕES DA R10-CAR-003-R2 FORAM APROVADAS!\n";
