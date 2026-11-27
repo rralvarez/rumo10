@@ -2453,6 +2453,9 @@ body.post-match-decision .season-recap {
 .transfer-offer-card .offer-header .club-badge, .transfer-stay-card .offer-header .club-badge { width: 44px; height: 44px; }
 .transfer-offer-card .offer-header h3, .transfer-stay-card .offer-header h3 { margin: 2px 0 0; font-size: 1.2rem; color: var(--text); overflow-wrap: anywhere; }
 .offer-overall-line { font-size: 0.95rem; color: var(--text); margin-bottom: 10px; overflow-wrap: anywhere; }
+.offer-competition-line { font-size: 0.94rem; color: var(--text); margin: 0 0 6px; overflow-wrap: anywhere; }
+.offer-league-line { font-size: 0.9rem; color: var(--muted); margin: 0 0 8px; overflow-wrap: anywhere; }
+.offer-reason-line { font-size: 0.86rem; line-height: 1.45; margin: 0 0 12px; overflow-wrap: anywhere; }
 .transfer-stay-card .btn-stay-priority { min-width: min(100%, 220px); }
 
 /* R10-CAR-002: Avaliação da Última Temporada e Roleta de Qualidade (5 Faixas) */
