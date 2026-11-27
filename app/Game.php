@@ -566,14 +566,24 @@ final class Game {
         }
     }
     private static function nextSegment(array &$g, ?string $resumeWindow = null): void {
-        $m=$g['matches'][self::currentIndex($g)];
-        $cur=(int)($m['minute']??0);
+        $i = self::currentIndex($g);
+        $m = &$g['matches'][$i];
+        $cur = (int)($m['minute'] ?? 0);
         if ($resumeWindow !== null && $resumeWindow !== '' && preg_match('/^\d+-(\d+)$/', $resumeWindow, $wm)) {
             $next = max($cur, (int)$wm[1]);
+            $effectiveWindowKey = $resumeWindow;
         } else {
-            $next=match($cur) {0=>15,15=>35,35=>45,45=>60,60=>70,70=>80,80=>90,default=>max(90,$cur)};
+            $next = match ($cur) {0=>15,15=>35,35=>45,45=>60,60=>70,70=>80,80=>90,default=>max(90,$cur)};
+            $effectiveWindowKey = $cur . '-' . $next;
         }
-        self::segment($g,$next);
+        if ($resumeWindow !== null && $next > $cur) {
+            $m['evaluated_penalties'] = $m['evaluated_penalties'] ?? [];
+            if (!in_array($effectiveWindowKey, $m['evaluated_penalties'], true)) {
+                $m['evaluated_penalties'][] = $effectiveWindowKey;
+            }
+        }
+        unset($m);
+        self::segment($g, $next);
     }
     private static function segment(array &$g,int $next): void {
         $i=self::currentIndex($g); $m=&$g['matches'][$i];

@@ -294,28 +294,72 @@ okF07(
     "Precedência da janela válida ('0-15'): chave 'teammate:15' do minuto 15 não bloqueia janela '0-15'"
 );
 
-// Retomada exata dos segmentos 0-15 e 45-60 em todos os 5 desfechos (sem saltar para 90)
-foreach ([
-    '0-15_convertido' => [0, '0-15', 'taking_kick', 1, true, 15],
-    '0-15_desperdicado' => [0, '0-15', 'taking_kick', 1, false, 15],
-    '0-15_respeitar' => [0, '0-15', 'pending_request', 1, true, 15],
-    '0-15_incentivar' => [0, '0-15', 'pending_request', 2, true, 15],
-    '45-60_convertido' => [45, '45-60', 'taking_kick', 1, true, 60],
-    '45-60_respeitar' => [45, '45-60', 'pending_request', 1, true, 60],
-] as $segCase => [$startMin, $winName, $statusInit, $opt, $succ, $expectedMin]) {
-    $gSeg = makeMatchCareerF07('centroavante', 75, 65, 80, 70, 75.0, 72.0);
-    $idxSeg = Game::currentIndex($gSeg);
-    $gSeg['matches'][$idxSeg]['minute'] = $startMin;
-    $gSeg['matches'][$idxSeg]['evaluated_penalties'] = [$winName];
-    $gSeg['matches'][$idxSeg]['active_match_penalty'] = ['status' => $statusInit, 'window' => $winName, 'victim' => 'companheiro'];
-    $gSegAfter = Game::command($gSeg, 'choice', ['option' => $opt], false, static fn(int $min, int $max): int => $succ ? $min : $max);
-    okF07(
-        (int)$gSegAfter['matches'][$idxSeg]['minute'] === $expectedMin
-        && $gSegAfter['matches'][$idxSeg]['status'] === 'em_andamento'
-        && empty($gSegAfter['matches'][$idxSeg]['active_match_penalty']),
-        "Retomada exata do segmento ({$segCase}): minuto {$startMin} -> {$expectedMin} (sem salto para 90)"
-    );
+// Matriz completa de retomada: 4 estados (com/sem window x com/sem marcador) x 2 segmentos (0-15, 45-60) x 5 desfechos
+$resumeStates = [
+    'com_window_com_marcador' => [true, true],
+    'sem_window_com_marcador' => [false, true],
+    'com_window_sem_marcador' => [true, false],
+    'sem_window_sem_marcador' => [false, false],
+];
+$resumeOutcomes = [
+    'convertido' => ['taking_kick', 1, true],
+    'desperdicado' => ['taking_kick', 1, false],
+    'pedido_recusado' => ['pending_request', 0, false],
+    'respeitar' => ['pending_request', 1, true],
+    'incentivar' => ['pending_request', 2, true],
+];
+foreach ([['0-15', 0, 15, '15-35'], ['45-60', 45, 60, '60-70']] as [$winName, $startMin, $expectedMin, $nextWin]) {
+    foreach ($resumeStates as $stateLabel => [$withWindow, $withMarker]) {
+        foreach ($resumeOutcomes as $outLabel => [$statusInit, $opt, $succ]) {
+            $gSeg = makeMatchCareerF07('centroavante', 75, 40, 80, 70, 75.0, 72.0);
+            $gSeg['states']['confianca_treinador'] = 40;
+            $gSeg['states']['lideranca'] = 40; // garante recusa em pedido_recusado (option 0)
+            $idxSeg = Game::currentIndex($gSeg);
+            $gSeg['matches'][$idxSeg]['minute'] = $startMin;
+            $gSeg['matches'][$idxSeg]['evaluated_penalties'] = $withMarker ? [$winName] : [];
+            $activePen = ['status' => $statusInit, 'victim' => 'companheiro'];
+            if ($withWindow) {
+                $activePen['window'] = $winName;
+            }
+            $gSeg['matches'][$idxSeg]['active_match_penalty'] = $activePen;
+
+            $gSegAfter = Game::command($gSeg, 'choice', ['option' => $opt], false, static fn(int $min, int $max): int => $succ ? $min : $max);
+            $mAfter = $gSegAfter['matches'][$idxSeg];
+            $evals = $mAfter['evaluated_penalties'] ?? [];
+            okF07(
+                (int)$mAfter['minute'] === $expectedMin
+                && $mAfter['status'] === 'em_andamento'
+                && empty($mAfter['active_match_penalty'])
+                && $evals === [$winName]
+                && !in_array($nextWin, $evals, true),
+                "Retomada ({$winName} | {$stateLabel} | {$outLabel}): minuto {$startMin}->{$expectedMin}, marcador único ['{$winName}']"
+            );
+        }
+    }
 }
+
+// Verificação controlada: retomada sem marcador prévio em 0-15 processa segmento uma única vez e mantém sorteio normal no seguinte (15-35)
+$gNextSeg = makeMatchCareerF07('centroavante', 75, 65, 80, 70, 75.0, 72.0);
+$idxNs = Game::currentIndex($gNextSeg);
+$gNextSeg['matches'][$idxNs]['minute'] = 0;
+$gNextSeg['matches'][$idxNs]['evaluated_penalties'] = [];
+$gNextSeg['matches'][$idxNs]['active_match_penalty'] = ['status' => 'taking_kick']; // sem window e sem marcador
+$gNextSeg = Game::command($gNextSeg, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $min);
+okF07(
+    (int)$gNextSeg['matches'][$idxNs]['minute'] === 15
+    && ($gNextSeg['matches'][$idxNs]['evaluated_penalties'] ?? []) === ['0-15'],
+    'Retomada sem window/marcador em 0-15 grava marcador único 0-15 sem marcar segmento futuro'
+);
+$gAfterNs = $gNextSeg;
+$nsGuard = 0;
+while ((int)$gAfterNs['matches'][$idxNs]['minute'] === 15 && $gAfterNs['stage'] === 'partida' && $nsGuard++ < 6) {
+    $chNs = Game::choices($gAfterNs);
+    $gAfterNs = $chNs ? Game::command($gAfterNs, 'choice', ['option' => 0]) : Game::command($gAfterNs, 'advance');
+}
+okF07(
+    in_array('15-35', $gAfterNs['matches'][$idxNs]['evaluated_penalties'] ?? [], true),
+    'Segmento seguinte (15-35) mantém sua avaliação normal após retomada controlada de 0-15'
+);
 
 // Reprodução do cenário do Codex: save legado sintético, titular, SEM participation_state, pênalti concedido pelo próprio motor em 0-15 e 45-60
 $legacyEngine015 = null;

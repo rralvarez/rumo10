@@ -331,7 +331,7 @@ try {
     $legEngineAcc = null;
     $legEngineIdx = 0;
     $legEngineAttempts = 0;
-    $maxLegEngineAttempts = 120;
+    $maxLegEngineAttempts = 250;
     for ($att = 1; $att <= $maxLegEngineAttempts; $att++) {
         $legEngineAttempts = $att;
         [$aidE, $idxE] = $makeCareer($repo1, $pdo1, "legeng{$att}", 74, 65, 80, [
@@ -355,14 +355,16 @@ try {
             break;
         }
     }
-    $legReloaded015 = $legEngineAcc !== null ? $repo2->load($legEngineAcc) : null;
+    if ($legEngineAcc === null) {
+        throw new RuntimeException("Esgotadas {$maxLegEngineAttempts} tentativas sem concessão de pênalti em 0-15 no cenário legado PDO.");
+    }
+    $legReloaded015 = $repo2->load($legEngineAcc);
     $repo1->command($legEngineAcc, 'choice', ['option' => 1], bin2hex(random_bytes(32)), (int)$legReloaded015['version']);
     $legAfter015 = $repo2->load($legEngineAcc);
     okF07Pdo(
-        $legEngineAcc !== null
-        && (int)$legAfter015['matches'][$legEngineIdx]['minute'] === 15
+        (int)$legAfter015['matches'][$legEngineIdx]['minute'] === 15
         && $legAfter015['matches'][$legEngineIdx]['status'] === 'em_andamento'
-        && in_array('0-15', $legAfter015['matches'][$legEngineIdx]['evaluated_penalties'] ?? [], true),
+        && ($legAfter015['matches'][$legEngineIdx]['evaluated_penalties'] ?? []) === ['0-15'],
         "Cenário legado sem participation_state em PDO (tentativas={$legEngineAttempts}/{$maxLegEngineAttempts}): pênalti 0-15 concedido pelo motor e retomado em 15'"
     );
 } finally {
