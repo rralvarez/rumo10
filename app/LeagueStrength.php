@@ -144,24 +144,27 @@ final class LeagueStrength {
             ];
         }
 
-        // 1. Contrato futuro RumoHub/RumoRating confirmado
+        // 1. Contrato futuro RumoHub/RumoRating explicitamente homologado
         $ratingStatus = strtolower((string)($comp['strength_status'] ?? $comp['rating_status'] ?? ''));
-        foreach (['confirmed_strength', 'league_strength', 'strength_rating', 'rating'] as $field) {
-            if (isset($comp[$field]) && is_numeric($comp[$field])) {
-                $val = (float)$comp[$field];
-                if ($val >= 20.0 && $val <= 99.0 && ($ratingStatus === '' || $ratingStatus === 'confirmed')) {
-                    return [
-                        'competition_id' => $id,
-                        'name' => $name,
-                        'strength' => round($val, 1),
-                        'status' => self::STATUS_CONFIRMED,
-                        'source' => 'catalog_' . $field,
-                        'kind' => $meta['kind'],
-                        'pyramid' => $meta['pyramid'],
-                        'division' => $meta['level'],
-                        'scope_label' => $meta['scope_label'],
-                        'conservative' => false,
-                    ];
+        $isExplicitlyConfirmed = ($ratingStatus === 'confirmed') || (($comp['strength_confirmed'] ?? false) === true);
+        if ($isExplicitlyConfirmed) {
+            foreach (['confirmed_strength', 'league_strength', 'strength_rating', 'rating'] as $field) {
+                if (isset($comp[$field]) && is_numeric($comp[$field])) {
+                    $val = (float)$comp[$field];
+                    if ($val >= 20.0 && $val <= 99.0) {
+                        return [
+                            'competition_id' => $id,
+                            'name' => $name,
+                            'strength' => round($val, 1),
+                            'status' => self::STATUS_CONFIRMED,
+                            'source' => 'catalog_' . $field,
+                            'kind' => $meta['kind'],
+                            'pyramid' => $meta['pyramid'],
+                            'division' => $meta['level'],
+                            'scope_label' => $meta['scope_label'],
+                            'conservative' => false,
+                        ];
+                    }
                 }
             }
         }
@@ -422,12 +425,10 @@ final class LeagueStrength {
             // Retrocesso de divisão na mesma pirâmide nacional sem salto expressivo de força
             $tier = 0;
         } else {
-            // Avaliação multidimensional integrada
-            $leagueSupportsElite = $targStr >= $eliteMinLeague
-                || ($targetLeague['status'] === self::STATUS_PROVISIONAL && $leagueDelta >= 0.0 && $ovr >= $eliteMinClub);
+            // Avaliação multidimensional integrada (piso da liga para Elite nunca é substituído pelo overall individual do clube)
             $isElite = $playerOvr >= $eliteMinPlayer
                 && $ovr >= $eliteMinClub
-                && $leagueSupportsElite
+                && $targStr >= $eliteMinLeague
                 && ($targetLeague['division'] ?? 1) === 1
                 && $leagueDelta >= -3.0
                 && ($compositeDelta >= 6.5 || ($ovr >= 88.0 && $targStr >= 84.0 && $compositeDelta >= 4.0) || ($currentOvr >= 88.0 && $ovr >= 88.0 && $leagueDelta >= -3.0 && $delta >= -2.5));

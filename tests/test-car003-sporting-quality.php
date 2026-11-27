@@ -209,14 +209,19 @@ okC3($assSimultaneous['origin_competition'] === 'br-a' && $assSimultaneous['orig
 echo "\n2. Validando Tratamento Conservador de Lacunas e Consumo Futuro Confirmado...\n";
 
 $gapCatalog = [
-    'orig-1' => ['id' => 'orig-1', 'name' => 'Liga Origem', 'family' => 'international', 'tier' => 5, 'format' => 'league', 'baseline' => 70, 'teams' => ['Clube Origem', 'Clube SemRef', 'Clube Confirmado'], 'rules' => []],
+    'orig-1' => ['id' => 'orig-1', 'name' => 'Liga Origem', 'family' => 'international', 'tier' => 5, 'format' => 'league', 'baseline' => 70, 'teams' => ['Clube Origem', 'Clube SemRef', 'Clube Confirmado', 'Clube GenRating', 'Clube ProvA', 'Clube ProvElite'], 'rules' => []],
     'semref-1' => ['id' => 'semref-1', 'name' => 'Liga Sem Referência', 'family' => 'international', 'tier' => 5, 'format' => 'league', 'teams' => ['Clube SemRef'], 'rules' => []],
     'conf-1' => ['id' => 'conf-1', 'name' => 'Liga Confirmada Futura', 'family' => 'international', 'tier' => 5, 'format' => 'league', 'confirmed_strength' => 86.5, 'strength_status' => 'confirmed', 'teams' => ['Clube Confirmado'], 'rules' => []],
+    'gen-1' => ['id' => 'gen-1', 'name' => 'Liga Rating Genérico Sem Status', 'family' => 'international', 'tier' => 5, 'format' => 'league', 'rating' => 91.0, 'teams' => ['Clube GenRating'], 'rules' => []],
+    'prov-1' => ['id' => 'prov-1', 'name' => 'Liga Provisória Média 72.5', 'family' => 'international', 'tier' => 5, 'format' => 'league', 'teams' => ['Clube ProvA', 'Clube ProvElite'], 'rules' => []],
 ];
 $gapClubs = [
     'Clube Origem' => ['name' => 'Clube Origem', 'country' => 'BR', 'competitions' => ['orig-1'], 'reference_overall' => 70.0],
     'Clube SemRef' => ['name' => 'Clube SemRef', 'country' => 'XY', 'competitions' => ['semref-1'], 'reference_overall' => 76.0],
     'Clube Confirmado' => ['name' => 'Clube Confirmado', 'country' => 'DE', 'competitions' => ['conf-1'], 'reference_overall' => 75.0],
+    'Clube GenRating' => ['name' => 'Clube GenRating', 'country' => 'IT', 'competitions' => ['gen-1'], 'reference_overall' => 74.0],
+    'Clube ProvA' => ['name' => 'Clube ProvA', 'country' => 'CL', 'competitions' => ['prov-1'], 'reference_overall' => 61.0],
+    'Clube ProvElite' => ['name' => 'Clube ProvElite', 'country' => 'CL', 'competitions' => ['prov-1'], 'reference_overall' => 84.0],
 ];
 Competition::referenceScope($gapCatalog, static function (): void {
     $gGap = Game::legacyCreate('Gap Test', 'São Paulo', 'SP', 'meia');
@@ -228,6 +233,8 @@ Competition::referenceScope($gapCatalog, static function (): void {
         'orig-1' => ['Clube Origem'],
         'semref-1' => ['Clube SemRef'],
         'conf-1' => ['Clube Confirmado'],
+        'gen-1' => ['Clube GenRating'],
+        'prov-1' => ['Clube ProvA', 'Clube ProvElite'],
     ];
     foreach ($gGap['skills'] as &$sk) {
         $sk['value'] = 76;
@@ -261,7 +268,36 @@ Competition::referenceScope($gapCatalog, static function (): void {
         $assConfirmed['target_league_status'] === LeagueStrength::STATUS_CONFIRMED
         && $assConfirmed['target_league_strength'] === 86.5
         && $assConfirmed['tier'] >= 3,
-        "Contrato futuro RumoHub/RumoRating (confirmed_strength=86.5) é consumido diretamente sem alterar a lógica central (tier={$assConfirmed['tier_label']})"
+        "Contrato futuro RumoHub/RumoRating (confirmed_strength=86.5 + strength_status=confirmed) é consumido como confirmed (tier={$assConfirmed['tier_label']})"
+    );
+
+    $assGenericRating = LeagueStrength::assess($gGap, [
+        'club' => 'Clube GenRating',
+        'country' => 'IT',
+        'competition' => 'gen-1',
+        'all_competitions' => ['gen-1'],
+        'overall' => 74.0,
+        'overall_delta' => 4.0,
+    ]);
+    okC3(
+        $assGenericRating['target_league_status'] !== LeagueStrength::STATUS_CONFIRMED
+        && $assGenericRating['target_league_status'] === LeagueStrength::STATUS_UNAVAILABLE,
+        "Campo genérico 'rating' sem status='confirmed' NÃO é tratado como confirmado (status={$assGenericRating['target_league_status']})"
+    );
+
+    $assProvEliteBlocked = LeagueStrength::assess($gGap, [
+        'club' => 'Clube ProvElite',
+        'country' => 'CL',
+        'competition' => 'prov-1',
+        'all_competitions' => ['prov-1'],
+        'overall' => 84.0,
+        'overall_delta' => 14.0,
+    ]);
+    okC3(
+        $assProvEliteBlocked['target_league_status'] === LeagueStrength::STATUS_PROVISIONAL
+        && $assProvEliteBlocked['target_league_strength'] === 72.5
+        && $assProvEliteBlocked['tier'] === 3,
+        "Liga provisória abaixo do piso Elite (72.5 < 76.0) NÃO é promovida a Elite pelo overall do clube (84.0) -> tier={$assProvEliteBlocked['tier_label']}"
     );
 }, $gapClubs);
 
