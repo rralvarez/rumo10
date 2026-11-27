@@ -74,39 +74,47 @@ final class MatchPenalty {
         $minute = (int)($m['minute'] ?? 0);
         $window = (string)($m['active_match_penalty']['window'] ?? '');
         $occId = $explicitId ?? self::occurrenceId($m);
-        $startMin = $minute;
-        if ($window !== '' && preg_match('/^(\d+)-\d+$/', $window, $wm)) {
-            $startMin = (int)$wm[1];
-        } elseif (preg_match('/^(\d+)-\d+$/', $occId, $om)) {
-            $startMin = (int)$om[1];
+        $hasFullWindow = preg_match('/^(\d+)-(\d+)$/', $window, $wm) === 1;
+        if (!$hasFullWindow && $explicitId !== null && preg_match('/^(\d+)-(\d+)$/', $explicitId, $em) === 1) {
+            $window = $explicitId;
+            $wm = $em;
+            $hasFullWindow = true;
         }
+        $startMin = $hasFullWindow ? (int)$wm[1] : $minute;
 
-        $legacyTeamKeys = [
-            'pen:' . $minute,
-            'teammate:' . $minute,
-            'protagonist:' . $minute,
-            'protagonist:pen:' . $minute,
+        $legacyMinuteKeys = [
             'pen:' . $startMin,
             'teammate:' . $startMin,
             'protagonist:' . $startMin,
             'protagonist:pen:' . $startMin,
         ];
+        if (!$hasFullWindow && $minute !== $startMin) {
+            $legacyMinuteKeys[] = 'pen:' . $minute;
+            $legacyMinuteKeys[] = 'teammate:' . $minute;
+            $legacyMinuteKeys[] = 'protagonist:' . $minute;
+            $legacyMinuteKeys[] = 'protagonist:pen:' . $minute;
+        }
 
         foreach ($resolved as $rk) {
             $key = (string)$rk;
             if (str_starts_with($key, 'opponent:')) {
                 continue;
             }
-            if ($key === $occId || $key === 'protagonist:' . $occId) {
+            if ($hasFullWindow) {
+                // Com janela válida, usar sua identidade completa; reconciliar por minuto apenas chaves legadas sem janela completa.
+                if ($key === $window || $key === 'protagonist:' . $window) {
+                    return true;
+                }
+                if (in_array($key, $legacyMinuteKeys, true)) {
+                    return true;
+                }
+                continue;
+            }
+            // Sem janela completa no estado ativo, reconciliar pelo minuto corrente com chaves legadas ou janelas iniciadas nele.
+            if ($key === $occId || $key === 'protagonist:' . $occId || in_array($key, $legacyMinuteKeys, true)) {
                 return true;
             }
-            if ($window !== '' && ($key === $window || $key === 'protagonist:' . $window)) {
-                return true;
-            }
-            if (in_array($key, $legacyTeamKeys, true)) {
-                return true;
-            }
-            if (preg_match('/^(?:protagonist:)?(\d+)-\d+$/', $key, $km) && (int)$km[1] === $startMin) {
+            if (preg_match('/^(?:protagonist:)?(\d+)-\d+$/', $key, $km) && (int)$km[1] === $minute) {
                 return true;
             }
         }

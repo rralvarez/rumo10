@@ -167,31 +167,33 @@ final class Game {
                 elseif($g['round']===14) $g['stage']='resumo'; else { $g['round']++; $g['stage']='treino'; }
             } elseif(($s['id']??0)===MatchPenalty::SITUATION_REQUEST) {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $m['entered_on_field']=true;
+                $resumeWindow = (string)($m['active_match_penalty']['window'] ?? '');
                 if($n===0) {
                     $conf = $g['states']['confianca'] ?? 50;
                     $coach = $g['states']['confianca_treinador'] ?? 50;
                     $lead = $g['states']['lideranca'] ?? 50;
                     $accepted = ($conf >= 55 || $coach >= 55 || $lead >= 55) && (random_int(1,100) <= 75);
                     if ($accepted) {
-                        $m['active_match_penalty'] = ['status' => 'taking_kick', 'window' => $m['active_match_penalty']['window'] ?? null, 'context_message' => 'O companheiro aceita seu pedido e entrega a bola. A cobrança é sua.'];
+                        $m['active_match_penalty'] = ['status' => 'taking_kick', 'window' => $resumeWindow !== '' ? $resumeWindow : null, 'context_message' => 'O companheiro aceita seu pedido e entrega a bola. A cobrança é sua.'];
                         $g['feedback']['text'] = 'O companheiro autorizou sua cobrança. Prepare-se para bater o pênalti.';
                     } else {
                         $g['feedback']['text'] = 'O cobrador oficial preferiu manter a responsabilidade da cobrança.';
                         MatchPenalty::resolveTeammatePenalty($g, $m, false);
-                        self::nextSegment($g);
+                        self::nextSegment($g, $resumeWindow);
                     }
                 } elseif($n===1) {
                     $g['feedback']['text'] = 'Você respeita a hierarquia da equipe.';
                     MatchPenalty::resolveTeammatePenalty($g, $m, false);
-                    self::nextSegment($g);
+                    self::nextSegment($g, $resumeWindow);
                 } else {
                     $g['feedback']['text'] = 'Você incentiva o companheiro na cobrança.';
                     MatchPenalty::resolveTeammatePenalty($g, $m, true);
-                    self::nextSegment($g);
+                    self::nextSegment($g, $resumeWindow);
                 }
             } elseif(($s['id']??0)===MatchPenalty::SITUATION_KICK) {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i];
                 $m['resolved_penalties'] = $m['resolved_penalties'] ?? [];
+                $resumeWindow = (string)($m['active_match_penalty']['window'] ?? '');
                 $occId = MatchPenalty::occurrenceId($m);
                 $alreadyResolved = MatchPenalty::isTeamOccurrenceResolved($m, $occId);
                 unset($m['active_match_penalty']);
@@ -231,7 +233,7 @@ final class Game {
                     }
                 }
                 $confBeforeSeg = $g['states']['confianca'];
-                self::nextSegment($g);
+                self::nextSegment($g, $resumeWindow);
                 if ($g['states']['confianca'] !== $confBeforeSeg) {
                     $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + ($g['states']['confianca'] - $confBeforeSeg);
                 }
@@ -563,10 +565,14 @@ final class Game {
             }
         }
     }
-    private static function nextSegment(array &$g): void {
+    private static function nextSegment(array &$g, ?string $resumeWindow = null): void {
         $m=$g['matches'][self::currentIndex($g)];
         $cur=(int)($m['minute']??0);
-        $next=match($cur) {15=>35,35=>45,60=>70,70=>80,80=>90,default=>max(90,$cur)};
+        if ($resumeWindow !== null && $resumeWindow !== '' && preg_match('/^\d+-(\d+)$/', $resumeWindow, $wm)) {
+            $next = max($cur, (int)$wm[1]);
+        } else {
+            $next=match($cur) {0=>15,15=>35,35=>45,45=>60,60=>70,70=>80,80=>90,default=>max(90,$cur)};
+        }
         self::segment($g,$next);
     }
     private static function segment(array &$g,int $next): void {

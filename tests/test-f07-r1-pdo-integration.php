@@ -326,6 +326,45 @@ try {
         && !empty($reloadedLeg['matches'][$idxLeg]['resolved_penalties']),
         'Save antigo sem resolved_penalties, penalties_* e window executa primeiro processamento legítimo e persiste via PDO2'
     );
+
+    // 6. Cenário do Codex em PDO: save legado titular sem participation_state recebe pênalti 0-15 pelo motor e retoma em 15'
+    $legEngineAcc = null;
+    $legEngineIdx = 0;
+    $legEngineAttempts = 0;
+    $maxLegEngineAttempts = 120;
+    for ($att = 1; $att <= $maxLegEngineAttempts; $att++) {
+        $legEngineAttempts = $att;
+        [$aidE, $idxE] = $makeCareer($repo1, $pdo1, "legeng{$att}", 74, 65, 80, [
+            'status' => 'pre_jogo',
+            'lineup' => 'titular',
+            'entry' => 0,
+            'exit' => 90,
+            'minute' => 0,
+        ]);
+        $gE = $repo2->load($aidE);
+        unset($gE['matches'][$idxE]['participation_state']);
+        TeamStrength::snapshot($gE['matches'][$idxE], $gE);
+        MatchBalance::prepare($gE['matches'][$idxE], $gE);
+        $saveM->invoke($repo1, $gE);
+        $gEReload = $repo2->load($aidE);
+        $afterAdv = $repo1->command($aidE, 'advance', [], bin2hex(random_bytes(32)), (int)$gEReload['version']);
+        $afterAdvReload = $repo2->load($aidE);
+        if (($afterAdvReload['matches'][$idxE]['active_match_penalty']['window'] ?? '') === '0-15') {
+            $legEngineAcc = $aidE;
+            $legEngineIdx = $idxE;
+            break;
+        }
+    }
+    $legReloaded015 = $legEngineAcc !== null ? $repo2->load($legEngineAcc) : null;
+    $repo1->command($legEngineAcc, 'choice', ['option' => 1], bin2hex(random_bytes(32)), (int)$legReloaded015['version']);
+    $legAfter015 = $repo2->load($legEngineAcc);
+    okF07Pdo(
+        $legEngineAcc !== null
+        && (int)$legAfter015['matches'][$legEngineIdx]['minute'] === 15
+        && $legAfter015['matches'][$legEngineIdx]['status'] === 'em_andamento'
+        && in_array('0-15', $legAfter015['matches'][$legEngineIdx]['evaluated_penalties'] ?? [], true),
+        "Cenário legado sem participation_state em PDO (tentativas={$legEngineAttempts}/{$maxLegEngineAttempts}): pênalti 0-15 concedido pelo motor e retomado em 15'"
+    );
 } finally {
     $pdo1 = null;
     $pdo2 = null;

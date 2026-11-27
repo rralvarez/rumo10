@@ -218,8 +218,8 @@ foreach ($crossCases as $caseName => [$baseState, $resolvedKey, $activePatch, $f
         && (int)$stReplay['goals'] === (int)$stBase['goals']
         && (int)$stReplay['shots'] === (int)$stBase['shots']
         && (int)$stReplay['penalties_taken'] === (int)$stBase['penalties_taken']
-        && (int)$stReplay['penalties_scored'] === (int)$stBase['penalties_scored']
-        && (int)$stReplay['penalties_missed'] === (int)$stBase['penalties_missed']
+        && (int)($stReplay['penalties_scored'] ?? 0) === (int)($stBase['penalties_scored'] ?? 0)
+        && (int)($stReplay['penalties_missed'] ?? 0) === (int)($stBase['penalties_missed'] ?? 0)
         && (int)$gAfterReplay['skills']['finalizacao']['xp'] === (int)$baseState['skills']['finalizacao']['xp']
         && (int)$gAfterReplay['states']['confianca'] === (int)$baseState['states']['confianca']
         && (int)$gAfterReplay['matches'][$idxS]['hg'] === (int)$baseState['matches'][$idxS]['hg']
@@ -277,7 +277,100 @@ foreach ([
     );
 }
 
-// 3b. Temporada oficial com múltiplas competições (F07-T05: pace_report preserva resolved_penalties sem associação posicional)
+// Separação estrita de janelas completas com mesmo minuto inicial (0-15 vs 0-90) e precedência da janela sobre o minuto
+$gWinSep = makeMatchCareerF07('centroavante', 75, 65, 80, 70, 75.0, 72.0);
+$idxW = Game::currentIndex($gWinSep);
+$gWinSep['matches'][$idxW]['minute'] = 0;
+$gWinSep['matches'][$idxW]['resolved_penalties'] = ['0-90'];
+$gWinSep['matches'][$idxW]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '0-15'];
+okF07(
+    !MatchPenalty::isTeamOccurrenceResolved($gWinSep['matches'][$idxW]),
+    "Janela completa '0-90' não bloqueia ocorrência distinta '0-15' com mesmo minuto inicial"
+);
+$gWinSep['matches'][$idxW]['minute'] = 15; // divergência intencional entre minuto corrente e janela '0-15'
+$gWinSep['matches'][$idxW]['resolved_penalties'] = ['teammate:15'];
+okF07(
+    !MatchPenalty::isTeamOccurrenceResolved($gWinSep['matches'][$idxW]),
+    "Precedência da janela válida ('0-15'): chave 'teammate:15' do minuto 15 não bloqueia janela '0-15'"
+);
+
+// Retomada exata dos segmentos 0-15 e 45-60 em todos os 5 desfechos (sem saltar para 90)
+foreach ([
+    '0-15_convertido' => [0, '0-15', 'taking_kick', 1, true, 15],
+    '0-15_desperdicado' => [0, '0-15', 'taking_kick', 1, false, 15],
+    '0-15_respeitar' => [0, '0-15', 'pending_request', 1, true, 15],
+    '0-15_incentivar' => [0, '0-15', 'pending_request', 2, true, 15],
+    '45-60_convertido' => [45, '45-60', 'taking_kick', 1, true, 60],
+    '45-60_respeitar' => [45, '45-60', 'pending_request', 1, true, 60],
+] as $segCase => [$startMin, $winName, $statusInit, $opt, $succ, $expectedMin]) {
+    $gSeg = makeMatchCareerF07('centroavante', 75, 65, 80, 70, 75.0, 72.0);
+    $idxSeg = Game::currentIndex($gSeg);
+    $gSeg['matches'][$idxSeg]['minute'] = $startMin;
+    $gSeg['matches'][$idxSeg]['evaluated_penalties'] = [$winName];
+    $gSeg['matches'][$idxSeg]['active_match_penalty'] = ['status' => $statusInit, 'window' => $winName, 'victim' => 'companheiro'];
+    $gSegAfter = Game::command($gSeg, 'choice', ['option' => $opt], false, static fn(int $min, int $max): int => $succ ? $min : $max);
+    okF07(
+        (int)$gSegAfter['matches'][$idxSeg]['minute'] === $expectedMin
+        && $gSegAfter['matches'][$idxSeg]['status'] === 'em_andamento'
+        && empty($gSegAfter['matches'][$idxSeg]['active_match_penalty']),
+        "Retomada exata do segmento ({$segCase}): minuto {$startMin} -> {$expectedMin} (sem salto para 90)"
+    );
+}
+
+// Reprodução do cenário do Codex: save legado sintético, titular, SEM participation_state, pênalti concedido pelo próprio motor em 0-15 e 45-60
+$legacyEngine015 = null;
+$leg015Attempts = 0;
+$maxLegAttempts = 120;
+for ($att = 1; $att <= $maxLegAttempts; $att++) {
+    $leg015Attempts = $att;
+    $gLeg = Game::create('Legado F07', 'São Paulo', 'SP', 'centroavante', 'Santos-SP');
+    foreach ($gLeg['skills'] as &$sk) {
+        $sk['value'] = 74;
+    }
+    unset($sk);
+    $gLeg['stage'] = 'partida';
+    $idxL = Game::currentIndex($gLeg);
+    $gLeg['matches'][$idxL]['status'] = 'pre_jogo';
+    $gLeg['matches'][$idxL]['lineup'] = 'titular';
+    $gLeg['matches'][$idxL]['entry'] = 0;
+    $gLeg['matches'][$idxL]['exit'] = 90;
+    $gLeg['matches'][$idxL]['minute'] = 0;
+    unset($gLeg['matches'][$idxL]['participation_state']);
+    TeamStrength::snapshot($gLeg['matches'][$idxL], $gLeg);
+    MatchBalance::prepare($gLeg['matches'][$idxL], $gLeg);
+
+    $gStep = Game::command($gLeg, 'advance');
+    if (!empty($gStep['matches'][$idxL]['active_match_penalty']) && ($gStep['matches'][$idxL]['active_match_penalty']['window'] ?? '') === '0-15') {
+        $legacyEngine015 = $gStep;
+        break;
+    }
+}
+okF07(
+    $legacyEngine015 !== null,
+    "Save legado sem participation_state: motor concedeu pênalti em 0-15 naturalmente (tentativas={$leg015Attempts}/{$maxLegAttempts})"
+);
+$idxL = Game::currentIndex($legacyEngine015);
+$optToResolve = ($legacyEngine015['matches'][$idxL]['active_match_penalty']['status'] ?? '') === 'pending_request' ? 1 : 1;
+$gLegResumed = Game::command($legacyEngine015, 'choice', ['option' => $optToResolve]);
+okF07(
+    (int)$gLegResumed['matches'][$idxL]['minute'] === 15
+    && $gLegResumed['matches'][$idxL]['status'] === 'em_andamento'
+    && in_array('0-15', $gLegResumed['matches'][$idxL]['evaluated_penalties'] ?? [], true)
+    && count($gLegResumed['matches'][$idxL]['evaluated_penalties'] ?? []) === 1,
+    'Save legado 0-15 retomado exatamente no minuto 15 sem segundo sorteio na mesma janela'
+);
+$guardLeg = 0;
+while ($gLegResumed['stage'] === 'partida' && $guardLeg++ < 30) {
+    $chLeg = Game::choices($gLegResumed);
+    $gLegResumed = $chLeg ? Game::command($gLegResumed, 'choice', ['option' => 0]) : Game::command($gLegResumed, 'advance');
+}
+okF07(
+    $gLegResumed['matches'][$idxL]['status'] === 'finalizada'
+    && (int)$gLegResumed['matches'][$idxL]['stats']['minutes'] === 90,
+    'Save legado conclui partida normalmente aos 90 minutos após pênalti em 0-15 (minutagem=90)'
+);
+
+// Temporada oficial com múltiplas competições (F07-T05: pace_report preserva resolved_penalties sem associação posicional)
 $gMulti = Game::create('Multi Comp F07', 'São Paulo', 'SP', 'centroavante', 'Palmeiras-SP');
 $gMulti['play_mode'] = 'expresso';
 $gMulti = Game::command($gMulti, 'handicap');
