@@ -361,6 +361,32 @@ okF07(
     'Segmento seguinte (15-35) mantém sua avaliação normal após retomada controlada de 0-15'
 );
 
+// Divergência entre janela original (15-35) e relógio aos 20': registra '20-35' em evaluated_penalties e preserva '15-35' em resolved_penalties
+foreach ([
+    'com_window_sem_marcador' => [20, '15-35', [], 35, '20-35', '15-35'],
+    'com_window_outro_marcador' => [20, '15-35', ['0-15'], 35, '20-35', '15-35'],
+    'sem_window_outro_marcador' => [15, null, ['0-15'], 35, '15-35', 'pen:15'],
+] as $divCase => [$curMin, $divWin, $initEvals, $expMin, $expEvalKey, $expectedResolved]) {
+    $gDiv = makeMatchCareerF07('centroavante', 75, 65, 80, 70, 75.0, 72.0);
+    $idxD = Game::currentIndex($gDiv);
+    $gDiv['matches'][$idxD]['minute'] = $curMin;
+    $gDiv['matches'][$idxD]['evaluated_penalties'] = $initEvals;
+    $activeDiv = ['status' => 'taking_kick'];
+    if ($divWin !== null) {
+        $activeDiv['window'] = $divWin;
+    }
+    $gDiv['matches'][$idxD]['active_match_penalty'] = $activeDiv;
+    $gDivAfter = Game::command($gDiv, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $min);
+    $mDiv = $gDivAfter['matches'][$idxD];
+    okF07(
+        (int)$mDiv['minute'] === $expMin
+        && empty($mDiv['active_match_penalty'])
+        && in_array($expEvalKey, $mDiv['evaluated_penalties'] ?? [], true)
+        && in_array($expectedResolved, $mDiv['resolved_penalties'] ?? [], true),
+        "Retomada ({$divCase}): relógio={$curMin}'->{$expMin}', evaluated_penalties contém '{$expEvalKey}', resolved_penalties preserva '{$expectedResolved}'"
+    );
+}
+
 // Reprodução do cenário do Codex: save legado sintético, titular, SEM participation_state, pênalti concedido pelo próprio motor em 0-15 e 45-60
 $legacyEngine015 = null;
 $leg015Attempts = 0;

@@ -367,6 +367,23 @@ try {
         && ($legAfter015['matches'][$legEngineIdx]['evaluated_penalties'] ?? []) === ['0-15'],
         "Cenário legado sem participation_state em PDO (tentativas={$legEngineAttempts}/{$maxLegEngineAttempts}): pênalti 0-15 concedido pelo motor e retomado em 15'"
     );
+
+    // 7. Divergência relógio=20' com window='15-35' e marcador de outra janela ['0-15'] em PDO
+    [$accDiv, $idxDiv] = $makeCareer($repo1, $pdo1, 'div20', 75, 65, 80, [
+        'minute' => 20,
+        'evaluated_penalties' => ['0-15'],
+        'active_match_penalty' => ['status' => 'taking_kick', 'window' => '15-35'],
+    ]);
+    $rDivBefore = $repo2->load($accDiv);
+    $repo1->command($accDiv, 'choice', ['option' => 1], bin2hex(random_bytes(32)), (int)$rDivBefore['version']);
+    $rDivAfter = $repo2->load($accDiv);
+    okF07Pdo(
+        (int)$rDivAfter['matches'][$idxDiv]['minute'] === 35
+        && empty($rDivAfter['matches'][$idxDiv]['active_match_penalty'])
+        && ($rDivAfter['matches'][$idxDiv]['evaluated_penalties'] ?? []) === ['0-15', '20-35']
+        && in_array('15-35', $rDivAfter['matches'][$idxDiv]['resolved_penalties'] ?? [], true),
+        "PDO2 divergência 15-35 aos 20': retoma aos 35', grava '20-35' em evaluated_penalties e preserva '15-35' em resolved_penalties"
+    );
 } finally {
     $pdo1 = null;
     $pdo2 = null;
