@@ -271,7 +271,42 @@ try {
         "Cobrança desperdiçada persistida via Repository e reenvio idempotente (tentativas={$missAttempts}/{$maxMissAttempts}, versão {$missVersionBefore}->{$missKickRes['version']})"
     );
 
-    // 3. Compatibilidade com estado legado sem resolved_penalties / penalties_* / window
+    // 3. Reenvio com NOVA chave HTTP sobre ocorrência já resolvida (sem window e com chaves legadas) + preservação de nova cobrança legítima
+    $gReplayHttp = $convAfterReload;
+    $gReplayHttp['matches'][$convIdx]['minute'] = 15;
+    $gReplayHttp['matches'][$convIdx]['active_match_penalty'] = ['status' => 'taking_kick']; // sem window, minuto 15 -> reconcilia com '15-35'
+    $saveM = new ReflectionMethod(Repository::class, 'save');
+    $saveM->invoke($repo1, $gReplayHttp);
+    $reloadedBeforeNewKey = $repo2->load($convAcc);
+    $achBeforeNewKey = $reloadedBeforeNewKey['achievement_events'] ?? [];
+    $newHttpKey = bin2hex(random_bytes(32));
+    $resNewKey = $repo1->command($convAcc, 'choice', ['option' => 1], $newHttpKey, (int)$reloadedBeforeNewKey['version']);
+    $reloadedAfterNewKey = $repo2->load($convAcc);
+    okF07Pdo(
+        empty($reloadedAfterNewKey['matches'][$convIdx]['active_match_penalty'])
+        && (int)$reloadedAfterNewKey['matches'][$convIdx]['stats']['penalties_taken'] === 1
+        && (int)$reloadedAfterNewKey['matches'][$convIdx]['stats']['penalties_scored'] === 1
+        && (int)$reloadedAfterNewKey['matches'][$convIdx]['stats']['goals'] === 1
+        && (int)$reloadedAfterNewKey['skills']['finalizacao']['xp'] === (int)$reloadedBeforeNewKey['skills']['finalizacao']['xp']
+        && ($reloadedAfterNewKey['achievement_events'] ?? []) === $achBeforeNewKey,
+        'Reenvio com NOVA chave HTTP sobre ocorrência já resolvida (sem window) não duplica gols/XP/estatísticas nem gera conquistas'
+    );
+
+    // 4. Preservação de uma nova cobrança legítima (janela 60-70 após 15-35 resolvida) em PDO
+    $gNewLegit = $reloadedAfterNewKey;
+    $gNewLegit['matches'][$convIdx]['minute'] = 60;
+    $gNewLegit['matches'][$convIdx]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '60-70'];
+    $saveM->invoke($repo1, $gNewLegit);
+    $rBeforeLegit = $repo2->load($convAcc);
+    $repo1->command($convAcc, 'choice', ['option' => 1], bin2hex(random_bytes(32)), (int)$rBeforeLegit['version']);
+    $rAfterLegit = $repo2->load($convAcc);
+    okF07Pdo(
+        (int)$rAfterLegit['matches'][$convIdx]['stats']['penalties_taken'] === 2
+        && in_array('60-70', $rAfterLegit['matches'][$convIdx]['resolved_penalties'] ?? [], true),
+        'Nova cobrança legítima (janela 60-70) após 15-35 é processada e persistida normalmente via PDO2'
+    );
+
+    // 5. Compatibilidade com estado legado sem resolved_penalties / penalties_* / window (primeiro processamento legítimo + replay)
     [$accLeg, $idxLeg] = $makeCareer($repo1, $pdo1, 'legado', 72, 60, 75, [
         'active_match_penalty' => ['status' => 'taking_kick'],
     ]);
@@ -282,7 +317,6 @@ try {
         $gLeg['matches'][$idxLeg]['stats']['penalties_scored'],
         $gLeg['matches'][$idxLeg]['stats']['penalties_missed']
     );
-    $saveM = new ReflectionMethod(Repository::class, 'save');
     $saveM->invoke($repo1, $gLeg);
     $gLegReload = $repo2->load($accLeg);
     $resLeg = $repo1->command($accLeg, 'choice', ['option' => 1], bin2hex(random_bytes(32)), (int)$gLegReload['version']);
@@ -290,7 +324,7 @@ try {
     okF07Pdo(
         (int)$reloadedLeg['matches'][$idxLeg]['stats']['penalties_taken'] === 1
         && !empty($reloadedLeg['matches'][$idxLeg]['resolved_penalties']),
-        'Estado legado sem resolved_penalties, penalties_* e window executa e persiste normalmente via PDO2'
+        'Save antigo sem resolved_penalties, penalties_* e window executa primeiro processamento legítimo e persiste via PDO2'
     );
 } finally {
     $pdo1 = null;

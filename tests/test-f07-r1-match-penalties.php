@@ -150,11 +150,23 @@ $gScore['age'] = 24;
 $gScore['progression_version'] = 2;
 $idxS = Game::currentIndex($gScore);
 $gScore['matches'][$idxS]['active_match_penalty'] = ['status' => 'pending_request', 'victim' => 'companheiro', 'window' => '15-35'];
-$gAfterReq = Game::command($gScore, 'choice', ['option' => 0], false, static fn(int $min, int $max): int => $min); // aceita pedido (<=75)
+// Transição 1400 -> 1401 usa random_int (75%): executada em tentativas estocásticas limitadas e contabilizadas
+$gAfterReq = null;
+$reqAttempts = 0;
+$maxReqAttempts = 16;
+for ($tryReq = 1; $tryReq <= $maxReqAttempts; $tryReq++) {
+    $reqAttempts = $tryReq;
+    $candReq = Game::command($gScore, 'choice', ['option' => 0], false, static fn(int $min, int $max): int => $min);
+    if (($candReq['matches'][$idxS]['active_match_penalty']['status'] ?? '') === 'taking_kick') {
+        $gAfterReq = $candReq;
+        break;
+    }
+}
 okF07(
-    ($gAfterReq['matches'][$idxS]['active_match_penalty']['status'] ?? '') === 'taking_kick'
+    $gAfterReq !== null
+    && ($gAfterReq['matches'][$idxS]['active_match_penalty']['status'] ?? '') === 'taking_kick'
     && ($gAfterReq['matches'][$idxS]['active_match_penalty']['window'] ?? '') === '15-35',
-    'Transição 1400 -> 1401 preserva exatamente o identificador da janela da ocorrência'
+    "Transição estocástica controlada 1400 -> 1401 preserva janela '15-35' (tentativas={$reqAttempts}/{$maxReqAttempts})"
 );
 
 $xpBefore = (int) $gAfterReq['skills']['finalizacao']['xp'];
@@ -174,16 +186,22 @@ okF07(
     "Pênalti convertido concede +2 XP em finalização ({$xpBefore} -> {$xpAfter}), 1 gol, 1 cobrança, chave canônica '15-35' e preserva confiança"
 );
 
-// Idempotência explícita de ocorrência já resolvida ANTES de sorteio/efeitos/avanço (sucesso forçado, falha forçada, chaves legadas e companheiro)
+// Idempotência e neutralidade pré-sorteio: cruzamento entre chaves canônicas/legadas, com/sem window, sucesso/falha, conquistas e preservação de nova cobrança
+$gMissKick = Game::command($gAfterReq, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $max);
 foreach ([
-    'sucesso_forcado_canonico' => ['15-35', true],
-    'falha_forcada_canonica' => ['15-35', false],
-    'chave_legada_protagonist' => ['protagonist:15-35', false],
-    'chave_legada_teammate' => ['teammate:' . (int)$gAfterKick['matches'][$idxS]['minute'], false],
-] as $caseName => [$resolvedKey, $forceSuccess]) {
-    $gReplay = $gAfterKick;
+    'conv_canonica_com_window' => [$gAfterKick, '15-35', ['status' => 'taking_kick', 'window' => '15-35'], true],
+    'miss_canonica_com_window' => [$gMissKick, '15-35', ['status' => 'taking_kick', 'window' => '15-35'], false],
+    'canonica_sem_window_no_ativo' => [$gAfterKick, '15-35', ['status' => 'taking_kick'], false],
+    'legada_protagonist_com_window' => [$gAfterKick, 'protagonist:15-35', ['status' => 'taking_kick', 'window' => '15-35'], false],
+    'legada_protagonist_sem_window' => [$gAfterKick, 'protagonist:15-35', ['status' => 'taking_kick'], false],
+    'legada_teammate_com_window' => [$gAfterKick, 'teammate:15', ['status' => 'taking_kick', 'window' => '15-35'], false],
+    'legada_teammate_sem_window' => [$gAfterKick, 'teammate:15', ['status' => 'taking_kick'], false],
+] as $caseName => [$baseState, $resolvedKey, $activePatch, $forceSuccess]) {
+    $gReplay = $baseState;
+    $gReplay['matches'][$idxS]['minute'] = 15;
     $gReplay['matches'][$idxS]['resolved_penalties'] = [$resolvedKey];
-    $gReplay['matches'][$idxS]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '15-35'];
+    $gReplay['matches'][$idxS]['active_match_penalty'] = $activePatch;
+    $achBefore = $gReplay['achievement_events'] ?? [];
     $rngCalls = 0;
     $spyRng = static function (int $min, int $max) use (&$rngCalls, $forceSuccess): int {
         $rngCalls++;
@@ -191,22 +209,38 @@ foreach ([
     };
     $gAfterReplay = Game::command($gReplay, 'choice', ['option' => 1], false, $spyRng);
     $stReplay = $gAfterReplay['matches'][$idxS]['stats'];
+    $stBase = $baseState['matches'][$idxS]['stats'];
     okF07(
         $rngCalls === 0
         && empty($gAfterReplay['matches'][$idxS]['active_match_penalty'])
-        && (int)$gAfterReplay['matches'][$idxS]['minute'] === (int)$gAfterKick['matches'][$idxS]['minute']
-        && (int)$stReplay['goals'] === (int)$stKick['goals']
-        && (int)$stReplay['shots'] === (int)$stKick['shots']
-        && (int)$stReplay['penalties_taken'] === (int)$stKick['penalties_taken']
-        && (int)$stReplay['penalties_scored'] === (int)$stKick['penalties_scored']
-        && (int)$stReplay['penalties_missed'] === (int)$stKick['penalties_missed']
-        && (int)$gAfterReplay['skills']['finalizacao']['xp'] === $xpAfter
-        && (int)$gAfterReplay['states']['confianca'] === (int)$gAfterKick['states']['confianca']
-        && (int)$gAfterReplay['matches'][$idxS]['hg'] === (int)$gAfterKick['matches'][$idxS]['hg']
-        && (int)$gAfterReplay['matches'][$idxS]['ag'] === (int)$gAfterKick['matches'][$idxS]['ag'],
-        "Idempotência pré-sorteio ({$caseName}): zero chamadas ao RNG, sem avanço da partida e estado integralmente preservado"
+        && empty($gAfterReplay['feedback']['sound_event_id'])
+        && ($gAfterReplay['achievement_events'] ?? []) === $achBefore
+        && (int)$gAfterReplay['matches'][$idxS]['minute'] === 15
+        && (int)$stReplay['goals'] === (int)$stBase['goals']
+        && (int)$stReplay['shots'] === (int)$stBase['shots']
+        && (int)$stReplay['penalties_taken'] === (int)$stBase['penalties_taken']
+        && (int)$stReplay['penalties_scored'] === (int)$stBase['penalties_scored']
+        && (int)$stReplay['penalties_missed'] === (int)$stBase['penalties_missed']
+        && (int)$gAfterReplay['skills']['finalizacao']['xp'] === (int)$baseState['skills']['finalizacao']['xp']
+        && (int)$gAfterReplay['states']['confianca'] === (int)$baseState['states']['confianca']
+        && (int)$gAfterReplay['matches'][$idxS]['hg'] === (int)$baseState['matches'][$idxS]['hg']
+        && (int)$gAfterReplay['matches'][$idxS]['ag'] === (int)$baseState['matches'][$idxS]['ag'],
+        "Idempotência e neutralidade ({$caseName}): 0 RNG, sem conquistas/som/avanço e estado intacto"
     );
 }
+
+// Cobrança adversária ou de outra janela NÃO bloqueia nova cobrança legítima da equipe
+$gNextLegit = $gAfterKick;
+$gNextLegit['matches'][$idxS]['minute'] = 35;
+$gNextLegit['matches'][$idxS]['resolved_penalties'] = ['15-35', 'opponent:35', 'opponent:35-45'];
+$gNextLegit['matches'][$idxS]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '35-45'];
+$gNextRes = Game::command($gNextLegit, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $min);
+okF07(
+    (int)$gNextRes['matches'][$idxS]['stats']['penalties_taken'] === 2
+    && (int)$gNextRes['matches'][$idxS]['stats']['penalties_scored'] === 2
+    && in_array('35-45', $gNextRes['matches'][$idxS]['resolved_penalties'] ?? [], true),
+    'Cobrança adversária e janela anterior (15-35) não bloqueiam nova cobrança legítima (35-45)'
+);
 
 // Cobrança de companheiro já resolvida pela janela '15-35' impede nova resolução de 1400/1401
 $gMate = makeMatchCareerF07('centroavante', 75, 65, 80, 70, 75.0, 72.0);
@@ -243,6 +277,22 @@ foreach ([
         "Elegibilidade bloqueia cobrança para atleta {$ineligLabel}"
     );
 }
+
+// 3b. Temporada oficial com múltiplas competições (F07-T05: pace_report preserva resolved_penalties sem associação posicional)
+$gMulti = Game::create('Multi Comp F07', 'São Paulo', 'SP', 'centroavante', 'Palmeiras-SP');
+$gMulti['play_mode'] = 'expresso';
+$gMulti = Game::command($gMulti, 'handicap');
+$gMulti = Game::command($gMulti, 'simulate', ['plan' => 'protagonismo']);
+$reportMatches = $gMulti['pace_report']['matches'] ?? [];
+$calendarClubCount = count(array_filter(
+    $gMulti['matches'] ?? [],
+    static fn(array $m): bool => in_array($gMulti['club'], [$m['home'], $m['away']], true)
+));
+$allHaveResolvedKey = $reportMatches !== [] && count(array_filter($reportMatches, static fn($pm): bool => array_key_exists('resolved_penalties', $pm) && is_array($pm['resolved_penalties']))) === count($reportMatches);
+okF07(
+    count($reportMatches) > $calendarClubCount && $calendarClubCount === 38 && $allHaveResolvedKey,
+    "Temporada oficial multicompetição (F07-T05): pace_report (" . count($reportMatches) . " jogos) > jogos do clube no calendário corrente ({$calendarClubCount}) e todos preservam resolved_penalties próprios"
+);
 
 // 4. Simulações estocásticas (random_int) com N=400 partidas por modo (Normal, Rápido e Expresso)
 echo "\n4. Executando Simulações Estocásticas (N=400 partidas/modo: Normal, Rápido, Expresso)...\n";
@@ -309,27 +359,20 @@ foreach (['rapido', 'expresso'] as $mode) {
         unset($sk);
         $gm = Game::command($gm, 'handicap');
         $gm = Game::command($gm, 'simulate', ['plan' => 'protagonismo']);
-        $finishedClubMatches = array_values(array_filter(
-            $gm['matches'],
-            static fn(array $mCand): bool => ($mCand['status'] ?? '') === 'finalizada'
-                && in_array($gm['club'], [$mCand['home'], $mCand['away']], true)
-        ));
         if ($mode === 'rapido') {
             $totMatches++;
             $last = end($gm['pace_report']['matches']);
-            $mRef = end($finishedClubMatches);
             $totGoals += (int)$last['hg'] + (int)$last['ag'];
             $pTaken += (int)($last['stats']['penalties_taken'] ?? 0);
             $pScored += (int)($last['stats']['penalties_scored'] ?? 0);
-            $totPens += is_array($mRef) ? count($mRef['resolved_penalties'] ?? []) : 0;
+            $totPens += count($last['resolved_penalties'] ?? []);
         } else {
-            foreach ($gm['pace_report']['matches'] as $idxPm => $pm) {
+            foreach ($gm['pace_report']['matches'] as $pm) {
                 $totMatches++;
                 $totGoals += (int)$pm['hg'] + (int)$pm['ag'];
                 $pTaken += (int)($pm['stats']['penalties_taken'] ?? 0);
                 $pScored += (int)($pm['stats']['penalties_scored'] ?? 0);
-                $mRef = $finishedClubMatches[$idxPm] ?? null;
-                $totPens += is_array($mRef) ? count($mRef['resolved_penalties'] ?? []) : 0;
+                $totPens += count($pm['resolved_penalties'] ?? []);
                 if ($totMatches >= $targetMatches) {
                     break;
                 }

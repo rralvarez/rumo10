@@ -53,7 +53,7 @@ final class PlayMode {
             // Capture o jogo antes de afterWeekend mudar calendário/fase.
             if($g['stage']==='fim_semana') {
                 $m=$g['matches'][Game::currentIndex($g)];
-                $played[]=['home'=>$m['home'],'away'=>$m['away'],'hg'=>$m['hg'],'ag'=>$m['ag'],'stats'=>$m['stats'],'log'=>$m['log'],'competition'=>Competition::label($g),'experience'=>$m['experience']??null];
+                $played[]=['round'=>$m['round']??null,'home'=>$m['home'],'away'=>$m['away'],'hg'=>$m['hg'],'ag'=>$m['ag'],'stats'=>$m['stats'],'log'=>$m['log'],'competition'=>Competition::label($g),'experience'=>$m['experience']??null,'resolved_penalties'=>$m['resolved_penalties']??[]];
             }
             $context=['stage'=>$g['stage'],'round'=>$g['round'],'competition'=>$g['competition_id']??'legacy','minute'=>$g['stage']==='partida'?$g['matches'][Game::currentIndex($g)]['minute']:null];
             $g=Game::command($g,$action,$input,true);

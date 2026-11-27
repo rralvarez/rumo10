@@ -140,15 +140,9 @@ final class Game {
             $s=self::situation($g);
             if($g['stage']==='partida' && in_array($s['id']??0,[MatchPenalty::SITUATION_REQUEST,MatchPenalty::SITUATION_KICK],true)) {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i];
-                $resolved=$m['resolved_penalties']??[];
-                $occId=(string)($m['active_match_penalty']['window']??('pen:'.($m['minute']??0)));
-                $alreadyResolved=in_array($occId,$resolved,true)
-                    || in_array('protagonist:'.$occId,$resolved,true)
-                    || in_array('teammate:'.($m['minute']??0),$resolved,true);
-                if($alreadyResolved) {
+                if(MatchPenalty::isTeamOccurrenceResolved($m)) {
                     unset($m['active_match_penalty']);
                     $g['feedback']=['text'=>'Ocorrência de pênalti já resolvida anteriormente; estado preservado.','effects'=>[],'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
-                    AchievementEvents::capture($g,$previousStage);
                     $g['version']++;
                     return $g;
                 }
@@ -198,11 +192,9 @@ final class Game {
             } elseif(($s['id']??0)===MatchPenalty::SITUATION_KICK) {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i];
                 $m['resolved_penalties'] = $m['resolved_penalties'] ?? [];
-                $occId = (string)($m['active_match_penalty']['window'] ?? ('pen:' . ($m['minute'] ?? 0)));
+                $occId = MatchPenalty::occurrenceId($m);
+                $alreadyResolved = MatchPenalty::isTeamOccurrenceResolved($m, $occId);
                 unset($m['active_match_penalty']);
-                $alreadyResolved = in_array($occId, $m['resolved_penalties'], true)
-                    || in_array('protagonist:' . $occId, $m['resolved_penalties'], true)
-                    || in_array('teammate:' . ($m['minute'] ?? 0), $m['resolved_penalties'], true);
                 if (!$alreadyResolved) {
                     $m['participated_on_field']=true; $m['entered_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
                     $m['resolved_penalties'][] = $occId;

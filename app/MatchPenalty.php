@@ -52,13 +52,70 @@ final class MatchPenalty {
     }
 
     /**
+     * Resolve a identidade canônica da ocorrência de pênalti da equipe na partida.
+     */
+    public static function occurrenceId(array $m): string {
+        $window = (string)($m['active_match_penalty']['window'] ?? '');
+        if ($window !== '') {
+            return $window;
+        }
+        return 'pen:' . (int)($m['minute'] ?? 0);
+    }
+
+    /**
+     * Verifica se a ocorrência atual da equipe já foi resolvida, reconciliando chaves canônicas
+     * e legadas pelo início da janela e minuto, sem confundir cobranças adversárias nem outras janelas.
+     */
+    public static function isTeamOccurrenceResolved(array $m, ?string $explicitId = null): bool {
+        $resolved = $m['resolved_penalties'] ?? [];
+        if ($resolved === []) {
+            return false;
+        }
+        $minute = (int)($m['minute'] ?? 0);
+        $window = (string)($m['active_match_penalty']['window'] ?? '');
+        $occId = $explicitId ?? self::occurrenceId($m);
+        $startMin = $minute;
+        if ($window !== '' && preg_match('/^(\d+)-\d+$/', $window, $wm)) {
+            $startMin = (int)$wm[1];
+        } elseif (preg_match('/^(\d+)-\d+$/', $occId, $om)) {
+            $startMin = (int)$om[1];
+        }
+
+        foreach ($resolved as $rk) {
+            $key = (string)$rk;
+            if (str_starts_with($key, 'opponent:')) {
+                continue;
+            }
+            if ($key === $occId || $key === 'protagonist:' . $occId) {
+                return true;
+            }
+            if ($window !== '' && ($key === $window || $key === 'protagonist:' . $window)) {
+                return true;
+            }
+            if (
+                $key === 'pen:' . $minute
+                || $key === 'teammate:' . $minute
+                || $key === 'protagonist:pen:' . $minute
+                || $key === 'pen:' . $startMin
+                || $key === 'teammate:' . $startMin
+            ) {
+                return true;
+            }
+            if (preg_match('/^(?:protagonist:)?(\d+)-\d+$/', $key, $km) && (int)$km[1] === $startMin) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Resolve a cobrança efetuada por um companheiro de equipe
      */
     public static function resolveTeammatePenalty(array &$g, array &$m, bool $encouraged = false, ?string $occurrenceId = null): void {
-        $minute = $m['minute'] ?? 0;
+        $minute = (int)($m['minute'] ?? 0);
         $m['resolved_penalties'] = $m['resolved_penalties'] ?? [];
-        $penKey = $occurrenceId ?? ($m['active_match_penalty']['window'] ?? ('teammate:' . $minute));
-        if (in_array($penKey, $m['resolved_penalties'], true)) {
+        $penKey = $occurrenceId ?? self::occurrenceId($m);
+        if (self::isTeamOccurrenceResolved($m, $penKey)) {
             unset($m['active_match_penalty']);
             return;
         }
