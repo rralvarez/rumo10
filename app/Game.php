@@ -137,8 +137,23 @@ final class Game {
                 $m=$g['matches'][self::currentIndex($g)];
                 if(!MatchParticipation::canActOnField($m)) throw new InvalidArgumentException('Você não está em campo.');
             }
-            $o=$choices[$n];$probabilityTrace=ActionResolution::trace($g,$o);$roll=Probability::roll($probabilityTrace['chance'],$rng); $effects=self::effects($o['effects'],$roll,$g,$o);
             $s=self::situation($g);
+            if($g['stage']==='partida' && in_array($s['id']??0,[MatchPenalty::SITUATION_REQUEST,MatchPenalty::SITUATION_KICK],true)) {
+                $i=self::currentIndex($g); $m=&$g['matches'][$i];
+                $resolved=$m['resolved_penalties']??[];
+                $occId=(string)($m['active_match_penalty']['window']??('pen:'.($m['minute']??0)));
+                $alreadyResolved=in_array($occId,$resolved,true)
+                    || in_array('protagonist:'.$occId,$resolved,true)
+                    || in_array('teammate:'.($m['minute']??0),$resolved,true);
+                if($alreadyResolved) {
+                    unset($m['active_match_penalty']);
+                    $g['feedback']=['text'=>'Ocorrência de pênalti já resolvida anteriormente; estado preservado.','effects'=>[],'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION];
+                    AchievementEvents::capture($g,$previousStage);
+                    $g['version']++;
+                    return $g;
+                }
+            }
+            $o=$choices[$n];$probabilityTrace=ActionResolution::trace($g,$o);$roll=Probability::roll($probabilityTrace['chance'],$rng); $effects=self::effects($o['effects'],$roll,$g,$o);
             Scenes::remember($g,$s);
             $outcome=isset($o['success_text'],$o['failure_text'])?NarrativeCatalog::outcome($o,$roll):($roll['success']?'a intenção deu certo.':'a intenção não teve o efeito esperado.');
             $g['feedback']=$roll+['text'=>$o['text'].': '.$outcome,'effects'=>$effects,'situation'=>$s['id']??0,'option'=>$n,'rules'=>Rules::VERSION,'probability_trace'=>$probabilityTrace];

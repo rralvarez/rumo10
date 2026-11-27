@@ -174,21 +174,57 @@ okF07(
     "Pênalti convertido concede +2 XP em finalização ({$xpBefore} -> {$xpAfter}), 1 gol, 1 cobrança, chave canônica '15-35' e preserva confiança"
 );
 
-// Idempotência explícita de ocorrência já resolvida (mesma janela '15-35', sem alterar placar, gols, chutes, XP ou confiança)
-$gReplay = $gAfterKick;
-$gReplay['matches'][$idxS]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '15-35'];
-$gAfterReplay = Game::command($gReplay, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $min);
-$stReplay = $gAfterReplay['matches'][$idxS]['stats'];
+// Idempotência explícita de ocorrência já resolvida ANTES de sorteio/efeitos/avanço (sucesso forçado, falha forçada, chaves legadas e companheiro)
+foreach ([
+    'sucesso_forcado_canonico' => ['15-35', true],
+    'falha_forcada_canonica' => ['15-35', false],
+    'chave_legada_protagonist' => ['protagonist:15-35', false],
+    'chave_legada_teammate' => ['teammate:' . (int)$gAfterKick['matches'][$idxS]['minute'], false],
+] as $caseName => [$resolvedKey, $forceSuccess]) {
+    $gReplay = $gAfterKick;
+    $gReplay['matches'][$idxS]['resolved_penalties'] = [$resolvedKey];
+    $gReplay['matches'][$idxS]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '15-35'];
+    $rngCalls = 0;
+    $spyRng = static function (int $min, int $max) use (&$rngCalls, $forceSuccess): int {
+        $rngCalls++;
+        return $forceSuccess ? $min : $max;
+    };
+    $gAfterReplay = Game::command($gReplay, 'choice', ['option' => 1], false, $spyRng);
+    $stReplay = $gAfterReplay['matches'][$idxS]['stats'];
+    okF07(
+        $rngCalls === 0
+        && empty($gAfterReplay['matches'][$idxS]['active_match_penalty'])
+        && (int)$gAfterReplay['matches'][$idxS]['minute'] === (int)$gAfterKick['matches'][$idxS]['minute']
+        && (int)$stReplay['goals'] === (int)$stKick['goals']
+        && (int)$stReplay['shots'] === (int)$stKick['shots']
+        && (int)$stReplay['penalties_taken'] === (int)$stKick['penalties_taken']
+        && (int)$stReplay['penalties_scored'] === (int)$stKick['penalties_scored']
+        && (int)$stReplay['penalties_missed'] === (int)$stKick['penalties_missed']
+        && (int)$gAfterReplay['skills']['finalizacao']['xp'] === $xpAfter
+        && (int)$gAfterReplay['states']['confianca'] === (int)$gAfterKick['states']['confianca']
+        && (int)$gAfterReplay['matches'][$idxS]['hg'] === (int)$gAfterKick['matches'][$idxS]['hg']
+        && (int)$gAfterReplay['matches'][$idxS]['ag'] === (int)$gAfterKick['matches'][$idxS]['ag'],
+        "Idempotência pré-sorteio ({$caseName}): zero chamadas ao RNG, sem avanço da partida e estado integralmente preservado"
+    );
+}
+
+// Cobrança de companheiro já resolvida pela janela '15-35' impede nova resolução de 1400/1401
+$gMate = makeMatchCareerF07('centroavante', 75, 65, 80, 70, 75.0, 72.0);
+$idxM = Game::currentIndex($gMate);
+$gMate['matches'][$idxM]['active_match_penalty'] = ['status' => 'pending_request', 'victim' => 'companheiro', 'window' => '15-35'];
+MatchPenalty::resolveTeammatePenalty($gMate, $gMate['matches'][$idxM], false);
+$goalsAfterMate = (int)$gMate['matches'][$idxM][$gMate['matches'][$idxM]['home'] === $gMate['club'] ? 'hg' : 'ag'];
+$gMate['matches'][$idxM]['active_match_penalty'] = ['status' => 'pending_request', 'victim' => 'companheiro', 'window' => '15-35'];
+$rngMateCalls = 0;
+$gMateReplay = Game::command($gMate, 'choice', ['option' => 0], false, static function (int $min, int $max) use (&$rngMateCalls): int {
+    $rngMateCalls++;
+    return $min;
+});
 okF07(
-    (int)$stReplay['goals'] === (int)$stKick['goals']
-    && (int)$stReplay['shots'] === (int)$stKick['shots']
-    && (int)$stReplay['penalties_taken'] === (int)$stKick['penalties_taken']
-    && (int)$stReplay['penalties_scored'] === (int)$stKick['penalties_scored']
-    && (int)$gAfterReplay['skills']['finalizacao']['xp'] === $xpAfter
-    && (int)$gAfterReplay['states']['confianca'] === (int)$gAfterKick['states']['confianca']
-    && (int)$gAfterReplay['matches'][$idxS]['hg'] === (int)$gAfterKick['matches'][$idxS]['hg']
-    && (int)$gAfterReplay['matches'][$idxS]['ag'] === (int)$gAfterKick['matches'][$idxS]['ag'],
-    'Ocorrência já resolvida (15-35) não altera placar, gols, finalizações, estatísticas, XP ou confiança'
+    $rngMateCalls === 0
+    && (int)$gMateReplay['matches'][$idxM][$gMateReplay['matches'][$idxM]['home'] === $gMateReplay['club'] ? 'hg' : 'ag'] === $goalsAfterMate
+    && empty($gMateReplay['matches'][$idxM]['active_match_penalty']),
+    'Idempotência: cobrança de companheiro já resolvida na janela 15-35 bloqueia reabertura de 1400 sem sorteio'
 );
 
 // Elegibilidade: substituído, expulso, suspenso e não relacionado não cobram 1401

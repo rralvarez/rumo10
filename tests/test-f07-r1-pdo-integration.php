@@ -144,7 +144,7 @@ try {
     $repo1 = new Repository($pdo1);
     $repo2 = new Repository($pdo2);
 
-    $makeCareer = static function (Repository $r1, PDO $p1, string $suffix, array $matchPatch): array {
+    $makeCareer = static function (Repository $r1, PDO $p1, string $suffix, int $skillVal, int $conf, int $ene, array $matchPatch): array {
         $r1->query('INSERT INTO rumo10_contas(email, senha_hash) VALUES(?, ?)', [
             "f07-pdo-{$suffix}-" . bin2hex(random_bytes(5)) . '@example.invalid',
             password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
@@ -154,9 +154,11 @@ try {
         $gInit['age'] = 24;
         $gInit['progression_version'] = 2;
         foreach ($gInit['skills'] as &$sk) {
-            $sk['value'] = 72;
+            $sk['value'] = $skillVal;
         }
         unset($sk);
+        $gInit['states']['confianca'] = $conf;
+        $gInit['states']['energia'] = $ene;
         $gInit['stage'] = 'partida';
         $idx = Game::currentIndex($gInit);
         $gInit['matches'][$idx] = array_replace($gInit['matches'][$idx], [
@@ -171,65 +173,106 @@ try {
         return [$aid, $idx];
     };
 
-    // 1. Transição real 1400 -> 1401 com persistência de janela, recarga por PDO2 e cobrança convertida + idempotência
-    [$acc1, $idx1] = $makeCareer($repo1, $pdo1, 'conv', [
-        'active_match_penalty' => ['status' => 'pending_request', 'victim' => 'companheiro', 'window' => '15-35'],
-    ]);
-    $reloaded1400 = $repo2->load($acc1);
-    okF07Pdo(
-        ($reloaded1400['matches'][$idx1]['active_match_penalty']['status'] ?? '') === 'pending_request'
-        && ($reloaded1400['matches'][$idx1]['active_match_penalty']['window'] ?? '') === '15-35',
-        'Recarga PDO2 preserva situação 1400 e janela 15-35'
-    );
+    // 1. Transição real 1400 -> 1401 na mesma carreira (com tentativas contabilizadas) + conversão persistida e reenvio idempotente
+    $convAcc = null;
+    $convIdx = 0;
+    $convReloaded1401 = null;
+    $convKickRes = null;
+    $convKickResend = null;
+    $convVersionBefore = 0;
+    $convAttempts = 0;
+    $maxConvAttempts = 16;
 
-    // Garante transição 1400 -> 1401 persistida via Repository::command (caso recuse no 25%, cria nova conta auxiliar ou usa estado 1401)
-    $afterReq = $repo1->command($acc1, 'choice', ['option' => 0], bin2hex(random_bytes(32)), (int)$reloaded1400['version']);
-    $reloadedAfterReq = $repo2->load($acc1);
-    if (($reloadedAfterReq['matches'][$idx1]['active_match_penalty']['status'] ?? '') !== 'taking_kick') {
-        [$acc1, $idx1] = $makeCareer($repo1, $pdo1, 'conv2', [
-            'active_match_penalty' => ['status' => 'taking_kick', 'window' => '15-35'],
+    for ($attempt = 1; $attempt <= $maxConvAttempts; $attempt++) {
+        $convAttempts = $attempt;
+        [$aid, $idx] = $makeCareer($repo1, $pdo1, "conv{$attempt}", 82, 80, 85, [
+            'active_match_penalty' => ['status' => 'pending_request', 'victim' => 'companheiro', 'window' => '15-35'],
         ]);
-        $reloadedAfterReq = $repo2->load($acc1);
+        $r1400 = $repo2->load($aid);
+        $afterReq = $repo1->command($aid, 'choice', ['option' => 0], bin2hex(random_bytes(32)), (int)$r1400['version']);
+        $r1401 = $repo2->load($aid);
+        if (($r1401['matches'][$idx]['active_match_penalty']['status'] ?? '') !== 'taking_kick') {
+            continue;
+        }
+        $vBefore = (int)$r1401['version'];
+        $opKey = bin2hex(random_bytes(32));
+        $resA = $repo1->command($aid, 'choice', ['option' => 1], $opKey, $vBefore);
+        $resB = $repo1->command($aid, 'choice', ['option' => 1], $opKey, $vBefore);
+        $rAfter = $repo2->load($aid);
+        if ((int)($rAfter['matches'][$idx]['stats']['penalties_scored'] ?? 0) === 1) {
+            $convAcc = $aid;
+            $convIdx = $idx;
+            $convReloaded1401 = $r1401;
+            $convKickRes = $resA;
+            $convKickResend = $resB;
+            $convVersionBefore = $vBefore;
+            break;
+        }
     }
+    $convAfterReload = $convAcc !== null ? $repo2->load($convAcc) : null;
     okF07Pdo(
-        ($reloadedAfterReq['matches'][$idx1]['active_match_penalty']['status'] ?? '') === 'taking_kick'
-        && ($reloadedAfterReq['matches'][$idx1]['active_match_penalty']['window'] ?? '') === '15-35',
-        'Transição 1400 -> 1401 preservada e recarregada por PDO2 com janela 15-35'
+        $convAcc !== null
+        && ($convReloaded1401['matches'][$convIdx]['active_match_penalty']['window'] ?? '') === '15-35'
+        && $convKickRes === $convKickResend
+        && (int)$convKickRes['version'] === $convVersionBefore + 1
+        && (int)$convAfterReload['version'] === (int)$convKickRes['version']
+        && (int)$convAfterReload['matches'][$convIdx]['stats']['penalties_taken'] === 1
+        && (int)$convAfterReload['matches'][$convIdx]['stats']['penalties_scored'] === 1
+        && (int)$convAfterReload['matches'][$convIdx]['stats']['shots'] === 1
+        && (int)$convAfterReload['matches'][$convIdx]['stats']['goals'] === 1
+        && (int)$convAfterReload['skills']['finalizacao']['xp'] > (int)$convReloaded1401['skills']['finalizacao']['xp']
+        && in_array('15-35', $convAfterReload['matches'][$convIdx]['resolved_penalties'] ?? [], true)
+        && $convAfterReload['feedback'] === $convKickRes['feedback'],
+        "Transição real 1400->1401 + cobrança convertida persistida via Repository e reenvio idempotente (tentativas={$convAttempts}/{$maxConvAttempts}, versão {$convVersionBefore}->{$convKickRes['version']})"
     );
 
-    // Cobrança convertida (chance >= 75%, força roll determinístico via seed ou testa resultado e reenvio idempotente)
-    $vBefore = (int)$reloadedAfterReq['version'];
-    $opKey = bin2hex(random_bytes(32));
-    $resA = $repo1->command($acc1, 'choice', ['option' => 1], $opKey, $vBefore);
-    $resB = $repo1->command($acc1, 'choice', ['option' => 1], $opKey, $vBefore);
-    $reloadedAfter = $repo2->load($acc1);
+    // 2. Cobrança desperdiçada efetivamente persistida pelo Repository + reenvio idempotente (tentativas limitadas e contabilizadas)
+    $missAcc = null;
+    $missIdx = 0;
+    $missKickRes = null;
+    $missKickResend = null;
+    $missVersionBefore = 0;
+    $missAttempts = 0;
+    $maxMissAttempts = 20;
 
+    for ($attempt = 1; $attempt <= $maxMissAttempts; $attempt++) {
+        $missAttempts = $attempt;
+        [$aid, $idx] = $makeCareer($repo1, $pdo1, "miss{$attempt}", 35, 15, 20, [
+            'home_overall' => 60.0,
+            'away_overall' => 92.0,
+            'active_match_penalty' => ['status' => 'taking_kick', 'window' => '60-70'],
+        ]);
+        $r1401 = $repo2->load($aid);
+        $vBefore = (int)$r1401['version'];
+        $opKey = bin2hex(random_bytes(32));
+        $resA = $repo1->command($aid, 'choice', ['option' => 3], $opKey, $vBefore);
+        $resB = $repo1->command($aid, 'choice', ['option' => 3], $opKey, $vBefore);
+        $rAfter = $repo2->load($aid);
+        if ((int)($rAfter['matches'][$idx]['stats']['penalties_missed'] ?? 0) === 1) {
+            $missAcc = $aid;
+            $missIdx = $idx;
+            $missKickRes = $resA;
+            $missKickResend = $resB;
+            $missVersionBefore = $vBefore;
+            break;
+        }
+    }
+    $missAfterReload = $missAcc !== null ? $repo2->load($missAcc) : null;
     okF07Pdo(
-        $resA === $resB
-        && (int)$resA['version'] === $vBefore + 1
-        && (int)$reloadedAfter['version'] === (int)$resA['version']
-        && (int)$reloadedAfter['matches'][$idx1]['stats']['penalties_taken'] === 1
-        && (int)$reloadedAfter['matches'][$idx1]['stats']['shots'] === 1
-        && in_array('15-35', $reloadedAfter['matches'][$idx1]['resolved_penalties'] ?? [], true)
-        && $reloadedAfter['feedback'] === $resA['feedback'],
-        "Cobrança 1401 e reenvio com mesma chave são idempotentes em PDO2 (versão {$vBefore} -> {$resA['version']}, efeitos e janela 15-35 preservados)"
-    );
-
-    // 2. Cobrança convertida vs desperdiçada explícitas + preservação de efeitos
-    $gConv = $reloadedAfterReq;
-    $gConv = Game::command($gConv, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $min);
-    $gMiss = $reloadedAfterReq;
-    $gMiss = Game::command($gMiss, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $max);
-    okF07Pdo(
-        (int)$gConv['matches'][$idx1]['stats']['penalties_scored'] === 1
-        && (int)$gConv['skills']['finalizacao']['xp'] > (int)$reloadedAfterReq['skills']['finalizacao']['xp']
-        && (int)$gMiss['matches'][$idx1]['stats']['penalties_missed'] === 1
-        && (int)$gMiss['matches'][$idx1]['stats']['goals'] === 0,
-        'Cobrança convertida (+XP/gol) e cobrança desperdiçada (penalties_missed=1, goals=0) preservam efeitos distintos'
+        $missAcc !== null
+        && $missKickRes === $missKickResend
+        && (int)$missKickRes['version'] === $missVersionBefore + 1
+        && (int)$missAfterReload['version'] === (int)$missKickRes['version']
+        && (int)$missAfterReload['matches'][$missIdx]['stats']['penalties_taken'] === 1
+        && (int)$missAfterReload['matches'][$missIdx]['stats']['penalties_missed'] === 1
+        && (int)$missAfterReload['matches'][$missIdx]['stats']['goals'] === 0
+        && in_array('60-70', $missAfterReload['matches'][$missIdx]['resolved_penalties'] ?? [], true)
+        && $missAfterReload['feedback'] === $missKickRes['feedback'],
+        "Cobrança desperdiçada persistida via Repository e reenvio idempotente (tentativas={$missAttempts}/{$maxMissAttempts}, versão {$missVersionBefore}->{$missKickRes['version']})"
     );
 
     // 3. Compatibilidade com estado legado sem resolved_penalties / penalties_* / window
-    [$accLeg, $idxLeg] = $makeCareer($repo1, $pdo1, 'legado', [
+    [$accLeg, $idxLeg] = $makeCareer($repo1, $pdo1, 'legado', 72, 60, 75, [
         'active_match_penalty' => ['status' => 'taking_kick'],
     ]);
     $gLeg = $repo2->load($accLeg);
