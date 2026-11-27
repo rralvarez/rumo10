@@ -394,6 +394,250 @@ foreach (['normal', 'rapido', 'expresso'] as $mode) {
     );
 }
 
+// =========================================================================
+// 4. REGRESSÕES CAR003-D01: PIRÂMIDE PRINCIPAL, ESTADUAL E INDEPENDÊNCIA DE ORDEM
+// =========================================================================
+echo "\n4. Validando Regressões CAR003-D01 (Pirâmide Principal vs Secundária)...\n";
+
+$d01Catalog = [
+    'br-a' => ['id' => 'br-a', 'name' => 'Brasileirão Série A', 'baseline' => 84.0, 'tier' => 1, 'family' => 'national', 'teams' => ['Clube A', 'Clube C']],
+    'br-b' => ['id' => 'br-b', 'name' => 'Brasileirão Série B', 'baseline' => 82.0, 'tier' => 2, 'family' => 'national', 'teams' => ['Clube B', 'Clube D']],
+    'sp-a1' => ['id' => 'sp-a1', 'name' => 'Paulistão A1', 'baseline' => 64.0, 'tier' => 1, 'family' => 'state', 'teams' => ['Clube A', 'Clube B', 'Clube SP1', 'Clube SP3']],
+    'sp-a2' => ['id' => 'sp-a2', 'name' => 'Paulistão A2', 'baseline' => 53.0, 'tier' => 2, 'family' => 'state', 'teams' => ['Clube SP2', 'Clube SP3']],
+    'rj-a1' => ['id' => 'rj-a1', 'name' => 'Carioca A1', 'baseline' => 64.0, 'tier' => 1, 'family' => 'state', 'teams' => ['Clube C', 'Clube RJ1']],
+    'am-a1' => ['id' => 'am-a1', 'name' => 'Amazonense A1', 'baseline' => 42.0, 'tier' => 1, 'family' => 'state', 'teams' => ['Clube AM', 'Clube AM2']],
+    'ar-1' => ['id' => 'ar-1', 'name' => 'Liga Argentina', 'baseline' => 81.0, 'tier' => 1, 'family' => 'national', 'teams' => ['Clube AR', 'Clube AR2']],
+];
+$d01Clubs = [
+    'Clube A' => ['country' => 'BR', 'reference_overall' => 78.0],
+    'Clube B' => ['country' => 'BR', 'reference_overall' => 78.0],
+    'Clube C' => ['country' => 'BR', 'reference_overall' => 78.0],
+    'Clube SP1' => ['country' => 'BR', 'reference_overall' => 65.0],
+    'Clube SP2' => ['country' => 'BR', 'reference_overall' => 65.0],
+    'Clube AM' => ['country' => 'BR', 'reference_overall' => 65.0],
+    'Clube AR' => ['country' => 'AR', 'reference_overall' => 78.0],
+];
+
+Competition::referenceScope($d01Catalog, static function () use ($d01Clubs): void {
+    // Cenário exato do Codex: 84 -> 82, overall equivalente, ambos no mesmo estadual, em múltiplas ordens
+    foreach ([['sp-a1', 'br-a'], ['br-a', 'sp-a1']] as $origOrder) {
+        foreach ([['sp-a1', 'br-b'], ['br-b', 'sp-a1']] as $targOrder) {
+            $gD01 = makeCareerC3('Clube A', 75, 4);
+            $gD01['official'] = true;
+            $gD01['competition_id'] = $origOrder[0];
+            $gD01['season_competitions'] = $origOrder;
+            $gD01['memberships'] = [
+                $origOrder[0] => ['Clube A', 'Clube C'],
+                $origOrder[1] => ['Clube A', 'Clube B'],
+            ];
+            $gD01['next_memberships'] = $gD01['memberships'];
+            $gD01['next_club_strengths'] = ['Clube A' => 78.0, 'Clube B' => 78.0, 'Clube C' => 78.0];
+
+            $resD01 = LeagueStrength::assess($gD01, [
+                'club' => 'Clube B',
+                'country' => 'BR',
+                'competition' => $targOrder[0],
+                'all_competitions' => $targOrder,
+                'overall' => 78.0,
+                'overall_delta' => 0.0,
+            ]);
+            okC3(
+                $resD01['div_step'] === 1 && $resD01['tier'] === 0,
+                "CAR003-D01 (ordem " . implode('/', $origOrder) . " -> " . implode('/', $targOrder) . "): estadual não mascara queda nacional (div_step={$resD01['div_step']}, tier={$resD01['tier_label']})"
+            );
+        }
+    }
+
+    // Progressão nacional (br-b + sp-a1 -> br-a + sp-a1)
+    $gProg = makeCareerC3('Clube B', 75, 4);
+    $gProg['official'] = true;
+    $gProg['competition_id'] = 'sp-a1';
+    $gProg['memberships'] = ['sp-a1' => ['Clube B', 'Clube A'], 'br-b' => ['Clube B']];
+    $gProg['next_memberships'] = $gProg['memberships'];
+    $gProg['next_club_strengths'] = ['Clube B' => 78.0, 'Clube A' => 78.0];
+    $resProg = LeagueStrength::assess($gProg, [
+        'club' => 'Clube A',
+        'country' => 'BR',
+        'competition' => 'sp-a1',
+        'all_competitions' => ['sp-a1', 'br-a'],
+        'overall' => 78.0,
+        'overall_delta' => 0.0,
+    ]);
+    okC3($resProg['div_step'] === -1 && $resProg['tier'] >= 1,
+        "CAR003-D01 progressão nacional br-b -> br-a preserva div_step=-1 (tier={$resProg['tier_label']})");
+
+    // Mesma divisão nacional (br-a + sp-a1 -> br-a + rj-a1)
+    $gSame = makeCareerC3('Clube A', 75, 4);
+    $gSame['official'] = true;
+    $gSame['competition_id'] = 'br-a';
+    $gSame['memberships'] = ['br-a' => ['Clube A', 'Clube C'], 'sp-a1' => ['Clube A']];
+    $gSame['next_memberships'] = $gSame['memberships'];
+    $gSame['next_club_strengths'] = ['Clube A' => 78.0, 'Clube C' => 78.0];
+    $resSame = LeagueStrength::assess($gSame, [
+        'club' => 'Clube C',
+        'country' => 'BR',
+        'competition' => 'rj-a1',
+        'all_competitions' => ['rj-a1', 'br-a'],
+        'overall' => 78.0,
+        'overall_delta' => 0.0,
+    ]);
+    okC3($resSame['div_step'] === 0 && $resSame['tier'] === 1,
+        "CAR003-D01 permanência na mesma divisão nacional preserva div_step=0 e Equivalente");
+
+    // Carreira exclusivamente estadual (sp-a2 -> sp-a1)
+    $gState = makeCareerC3('Clube SP2', 66, 2);
+    $gState['official'] = true;
+    $gState['competition_id'] = 'sp-a2';
+    $gState['memberships'] = ['sp-a2' => ['Clube SP2']];
+    $gState['next_memberships'] = $gState['memberships'];
+    $gState['next_club_strengths'] = ['Clube SP2' => 65.0, 'Clube SP1' => 65.0];
+    $resState = LeagueStrength::assess($gState, [
+        'club' => 'Clube SP1',
+        'country' => 'BR',
+        'competition' => 'sp-a1',
+        'all_competitions' => ['sp-a1'],
+        'overall' => 65.0,
+        'overall_delta' => 0.0,
+    ]);
+    okC3($resState['div_step'] === -1 && $resState['tier'] >= 2,
+        "CAR003-D01 carreira exclusivamente estadual sp-a2 -> sp-a1 usa pirâmide estadual (div_step=-1, tier={$resState['tier_label']})");
+
+    // Pirâmides distintas não inventam equivalência (sp-a1 -> am-a1 e nacional -> estadual)
+    $resDiffPyr = LeagueStrength::assess($gState, [
+        'club' => 'Clube AM',
+        'country' => 'BR',
+        'competition' => 'am-a1',
+        'all_competitions' => ['am-a1'],
+        'overall' => 65.0,
+        'overall_delta' => 0.0,
+    ]);
+    okC3($resDiffPyr['div_step'] === null,
+        'CAR003-D01 pirâmides estaduais distintas (sp-a2 -> am-a1) não inventam equivalência (div_step=null)');
+
+    // Competição internacional distinta (br-a -> ar-1)
+    $resIntl = LeagueStrength::assess($gSame, [
+        'club' => 'Clube AR',
+        'country' => 'AR',
+        'competition' => 'ar-1',
+        'all_competitions' => ['ar-1'],
+        'overall' => 78.0,
+        'overall_delta' => 0.0,
+    ]);
+    okC3($resIntl['div_step'] === null,
+        'CAR003-D01 competições internacionais distintas (br-a -> ar-1) mantêm div_step=null');
+}, $d01Clubs);
+
+// =========================================================================
+// 5. REGRESSÕES CAR003-D02: PERSISTÊNCIA PDO REAL, RECARGA E CATALOGO REMOVIDO
+// =========================================================================
+echo "\n5. Validando Regressões CAR003-D02 (Persistência PDO Real + Catálogo Removido/Renomeado)...\n";
+
+$pdo1 = Database::connect();
+$repo1 = new Repository($pdo1);
+$d02Account = null;
+try {
+    $repo1->query('INSERT INTO rumo10_contas(email, senha_hash) VALUES(?, ?)', [
+        'car003-d02-' . bin2hex(random_bytes(6)) . '@example.invalid',
+        password_hash(bin2hex(random_bytes(16)), PASSWORD_DEFAULT),
+    ]);
+    $d02Account = (int)$pdo1->lastInsertId();
+
+    $gInit = makeCareerC3('Santos-SP', 74, 4);
+    $repo1->create($d02Account, $gInit);
+    $gLoaded1 = $repo1->load($d02Account);
+    $gLoaded1['stage'] = 'resumo';
+    $saveMethod = new ReflectionMethod(Repository::class, 'save');
+    $saveMethod->invoke($repo1, $gLoaded1);
+
+    $opKey = bin2hex(random_bytes(32));
+    $winA = $repo1->command($d02Account, 'offers', [], $opKey, $gLoaded1['version']);
+    $winB = $repo1->command($d02Account, 'offers', [], $opKey, $gLoaded1['version']);
+    okC3($winA === $winB && count($winA['offers']) === 3,
+        'CAR003-D02 abertura de ofertas e repetição com mesma chave são idempotentes');
+
+    // Recarga real do save por uma NOVA conexão PDO
+    $pdo2 = Database::connect();
+    $repo2 = new Repository($pdo2);
+    $reloaded = $repo2->load($d02Account);
+    okC3(is_array($reloaded) && count($reloaded['offers']) === 3,
+        'CAR003-D02 save recarregado por nova conexão PDO preserva as 3 propostas');
+
+    $targetOffer = $reloaded['offers'][0];
+    $removedCompId = (string)$targetOffer['competition'];
+    $origCompName = (string)$targetOffer['competition_name'];
+    $origScope = (string)$targetOffer['division_scope'];
+    $origReason = (string)$targetOffer['reason'];
+
+    // Catálogo sintético com competição removida e outra renomeada
+    $fullCat = Competition::catalog();
+    $removedCat = $fullCat;
+    unset($removedCat[$removedCompId]);
+
+    Competition::referenceScope($removedCat, static function () use ($reloaded, $origCompName, $origScope, $origReason): void {
+        ob_start();
+        TransferInterest::render($reloaded);
+        $htmlRemoved = (string)ob_get_clean();
+        okC3(
+            str_contains($htmlRemoved, $origCompName)
+            && str_contains($htmlRemoved, $origScope)
+            && str_contains($htmlRemoved, $origReason)
+            && str_contains($htmlRemoved, 'Força da liga:'),
+            "CAR003-D02 competição removida do catálogo ({$origCompName}) preserva linha de competição, divisão, força e justificativa"
+        );
+    });
+
+    $renamedCat = $fullCat;
+    if (isset($renamedCat[$removedCompId])) {
+        $renamedCat[$removedCompId]['name'] = 'LIGA RENOMEADA INDEVIDAMENTE';
+    }
+    Competition::referenceScope($renamedCat, static function () use ($reloaded, $origCompName): void {
+        ob_start();
+        TransferInterest::render($reloaded);
+        $htmlRenamed = (string)ob_get_clean();
+        okC3(
+            str_contains($htmlRenamed, $origCompName)
+            && !str_contains($htmlRenamed, 'LIGA RENOMEADA INDEVIDAMENTE'),
+            'CAR003-D02 competição renomeada no catálogo não sobrescreve nome persistido na proposta'
+        );
+    });
+
+    // Proposta legada sem os novos campos usa fallback do catálogo sem recalcular
+    $legacyOffer = [
+        'club' => 'Santos-SP',
+        'country' => 'BR',
+        'region' => 'country',
+        'competition' => 'br-a',
+        'overall' => 76,
+        'overall_delta' => 1.0,
+    ];
+    ob_start();
+    TransferMarket::describe($legacyOffer, false);
+    $htmlLegacyDesc = (string)ob_get_clean();
+    okC3(
+        str_contains($htmlLegacyDesc, '1ª divisão nacional')
+        && !str_contains($htmlLegacyDesc, 'Força da liga:'),
+        'CAR003-D02 proposta legada sem novos campos usa fallback do catálogo para competição sem recalcular força'
+    );
+} finally {
+    if ($d02Account !== null) {
+        $careerIds = $pdo1->prepare('SELECT id FROM rumo10_carreiras WHERE conta_id = ?');
+        $careerIds->execute([$d02Account]);
+        $cids = $careerIds->fetchAll(PDO::FETCH_COLUMN);
+        $pdo1->exec('SET FOREIGN_KEY_CHECKS = 0');
+        foreach ($cids as $cid) {
+            foreach (['rumo10_universos', 'rumo10_decisoes', 'rumo10_atributos', 'rumo10_estados', 'rumo10_temporadas', 'f01_outbox', 'f01_respostas'] as $tbl) {
+                try {
+                    $pdo1->prepare("DELETE FROM {$tbl} WHERE carreira_id = ?")->execute([$cid]);
+                } catch (PDOException) {
+                }
+            }
+            $pdo1->prepare('DELETE FROM rumo10_carreiras WHERE id = ?')->execute([$cid]);
+        }
+        $pdo1->prepare('DELETE FROM rumo10_contas WHERE id = ?')->execute([$d02Account]);
+        $pdo1->exec('SET FOREIGN_KEY_CHECKS = 1');
+    }
+}
+
 echo "\n====================================================================\n";
-echo "SUCESSO: TODAS AS {$checks} VERIFICAÇÕES DA R10-CAR-003-R1 FORAM APROVADAS!\n";
+echo "SUCESSO: TODAS AS {$checks} VERIFICAÇÕES DA R10-CAR-003-R2 FORAM APROVADAS!\n";
 echo "====================================================================\n";

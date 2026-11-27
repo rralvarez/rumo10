@@ -308,12 +308,23 @@ final class TransferMarket {
             echo ' <span class="offer-scope-pill">' . e($scopeLabel) . '</span>';
         }
         echo '</p>';
-        if (isset($offer['competition']) && isset(Competition::catalog()[$offer['competition']])) {
-            $meta = LeagueStrength::competitionMeta($offer['competition']);
-            $compName = $offer['competition_name'] ?? Competition::catalog()[$offer['competition']]['name'];
-            echo '<p class="offer-competition-line">' . e($compName);
-            if (!empty($meta['scope_label'])) {
-                echo ' · ' . e($meta['scope_label']);
+        $assessment = is_array($offer['sporting_assessment'] ?? null) ? $offer['sporting_assessment'] : [];
+        $compId = (string)($offer['competition'] ?? ($assessment['target_competition'] ?? ''));
+        $compName = $offer['competition_name'] ?? ($assessment['target_league_name'] ?? null);
+        $divScope = $offer['division_scope'] ?? null;
+        if (($compName === null || $divScope === null) && $compId !== '') {
+            $catalogComp = Competition::catalog()[$compId] ?? null;
+            if ($compName === null && is_array($catalogComp)) {
+                $compName = $catalogComp['name'] ?? $compId;
+            }
+            if ($divScope === null && is_array($catalogComp)) {
+                $divScope = LeagueStrength::competitionMeta($compId, $catalogComp)['scope_label'] ?? null;
+            }
+        }
+        if ($compName !== null && $compName !== '') {
+            echo '<p class="offer-competition-line">' . e((string)$compName);
+            if (!empty($divScope)) {
+                echo ' · ' . e((string)$divScope);
             }
             echo '</p>';
         }
@@ -322,10 +333,14 @@ final class TransferMarket {
             $ovrSign = $ovrDelta >= 0 ? '+' : '';
             echo '<p class="offer-overall-line"><strong>Overall ' . e($offer['overall']) . '</strong> · diferença ' . e($ovrSign . number_format($ovrDelta, 1, ',', '.')) . ' em relação ao seu clube</p>';
         }
-        if (array_key_exists('league_strength', $offer) || !empty($offer['league_strength_status'])) {
-            $lStr = $offer['league_strength'] ?? null;
-            $lStatus = (string)($offer['league_strength_status'] ?? '');
-            $lDelta = $offer['league_delta'] ?? null;
+        $hasLeagueInfo = array_key_exists('league_strength', $offer)
+            || !empty($offer['league_strength_status'])
+            || array_key_exists('target_league_strength', $assessment)
+            || !empty($assessment['target_league_status']);
+        if ($hasLeagueInfo) {
+            $lStr = $offer['league_strength'] ?? ($assessment['target_league_strength'] ?? null);
+            $lStatus = (string)($offer['league_strength_status'] ?? ($assessment['target_league_status'] ?? ''));
+            $lDelta = $offer['league_delta'] ?? ($assessment['league_delta'] ?? null);
             if ($lStr !== null) {
                 $statusTag = $lStatus === LeagueStrength::STATUS_PROVISIONAL ? ' (referência provisória)' : ($lStatus === LeagueStrength::STATUS_CONFIRMED ? ' (confirmada)' : '');
                 echo '<p class="offer-league-line">Força da liga: <strong>' . e(number_format((float)$lStr, 1, ',', '.')) . '</strong>' . e($statusTag);
@@ -338,8 +353,9 @@ final class TransferMarket {
                 echo '<p class="offer-league-line">Força da liga: <strong>indisponível</strong> · classificação conservadora</p>';
             }
         }
-        if (!empty($offer['reason'])) {
-            echo '<p class="subtle offer-reason-line">' . e($offer['reason']) . '</p>';
+        $reason = $offer['reason'] ?? ($assessment['reason'] ?? null);
+        if (!empty($reason)) {
+            echo '<p class="subtle offer-reason-line">' . e((string)$reason) . '</p>';
         }
     }
 }

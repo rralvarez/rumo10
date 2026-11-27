@@ -369,18 +369,15 @@ final class LeagueStrength {
         ];
 
         $divStep = null;
-        if ($cc === $originCountry) {
-            foreach ($targetIds as $candComp) {
-                $d = TransferInterest::division((string)$candComp);
-                foreach ($currentDivs as [$pyr, $lvl]) {
-                    if ($lvl !== null && $d[0] === $pyr && $d[1] !== null) {
-                        $step = $d[1] - $lvl;
-                        if ($divStep === null || abs($step) < abs($divStep)) {
-                            $divStep = $step;
-                        }
-                    }
-                }
-            }
+        if (
+            $cc === $originCountry
+            && ($originLeague['kind'] ?? '') === ($targetLeague['kind'] ?? '')
+            && ($originLeague['pyramid'] ?? '') !== ''
+            && ($originLeague['pyramid'] ?? '') === ($targetLeague['pyramid'] ?? '')
+            && ($originLeague['division'] ?? null) !== null
+            && ($targetLeague['division'] ?? null) !== null
+        ) {
+            $divStep = (int)$targetLeague['division'] - (int)$originLeague['division'];
         }
 
         $origStr = $originLeague['strength'];
