@@ -181,12 +181,16 @@ final class Game {
                     self::nextSegment($g);
                 }
             } elseif(($s['id']??0)===MatchPenalty::SITUATION_KICK) {
-                $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $m['entered_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
+                $i=self::currentIndex($g); $m=&$g['matches'][$i];
                 $m['resolved_penalties'] = $m['resolved_penalties'] ?? [];
-                $penKey = 'protagonist:' . ($m['active_match_penalty']['window'] ?? (string)($m['minute'] ?? 0));
+                $occId = (string)($m['active_match_penalty']['window'] ?? ('pen:' . ($m['minute'] ?? 0)));
                 unset($m['active_match_penalty']);
-                if (!in_array($penKey, $m['resolved_penalties'], true)) {
-                    $m['resolved_penalties'][] = $penKey;
+                $alreadyResolved = in_array($occId, $m['resolved_penalties'], true)
+                    || in_array('protagonist:' . $occId, $m['resolved_penalties'], true)
+                    || in_array('teammate:' . ($m['minute'] ?? 0), $m['resolved_penalties'], true);
+                if (!$alreadyResolved) {
+                    $m['participated_on_field']=true; $m['entered_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
+                    $m['resolved_penalties'][] = $occId;
                     $st['shots']++;
                     $st['penalties_taken'] = ($st['penalties_taken'] ?? 0) + 1;
                     if($roll['success']) {

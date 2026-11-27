@@ -13,7 +13,8 @@ set_exception_handler(static function (Throwable $e): void {
 });
 
 $checks = 0;
-function okF07(bool $cond, string $msg): void {
+function okF07(bool $cond, string $msg): void
+{
     global $checks;
     $checks++;
     if (!$cond) {
@@ -22,7 +23,8 @@ function okF07(bool $cond, string $msg): void {
     echo "  [PASS] {$msg}\n";
 }
 
-function makeMatchCareerF07(string $pos, int $skillVal, int $conf, int $ene, int $rhythm, float $ownOvr, float $oppOvr): array {
+function makeMatchCareerF07(string $pos, int $skillVal, int $conf, int $ene, int $rhythm, float $ownOvr, float $oppOvr): array
+{
     $g = Game::create('Atleta F07', 'São Paulo', 'SP', $pos, 'Santos-SP');
     foreach ($g['skills'] as &$sk) {
         $sk['value'] = $skillVal;
@@ -51,8 +53,17 @@ echo "\n1. Validando shot_kind, Faixas de Probabilidade e Jogo Aberto...\n";
 
 $gOpen = makeMatchCareerF07('centroavante', 70, 60, 75, 60, 74.0, 74.0);
 $openChoices = Game::choices($gOpen);
-okF07(($openChoices[0]['shot_kind'] ?? '') === 'normal' && ($openChoices[3]['shot_kind'] ?? '') === 'long',
-    'Chutes em jogo aberto (id=0) preservam shot_kind normal/long sem interferência');
+$openNormalTrace = ActionResolution::trace($gOpen, $openChoices[0]);
+$openLongTrace = ActionResolution::trace($gOpen, $openChoices[3]);
+okF07(
+    ($openChoices[0]['shot_kind'] ?? '') === 'normal'
+    && ($openChoices[3]['shot_kind'] ?? '') === 'long'
+    && $openNormalTrace['kind'] === 'normal'
+    && $openLongTrace['kind'] === 'long'
+    && $openNormalTrace['chance'] < 45.0
+    && $openLongTrace['chance'] < 15.0,
+    "Chutes em jogo aberto (id=0) preservam shot_kind e probabilidades originais (normal={$openNormalTrace['chance']}%, long={$openLongTrace['chance']}%)"
+);
 
 $gInit = makeMatchCareerF07('centroavante', 45, 45, 65, 50, 65.0, 72.0);
 $idxInit = Game::currentIndex($gInit);
@@ -101,8 +112,10 @@ okF07(
 $gExtreme = makeMatchCareerF07('meia', 40, 15, 20, 40, 62.0, 90.0);
 $gExtreme['matches'][Game::currentIndex($gExtreme)]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '60-70'];
 $pExt = array_map(static fn($o) => Game::chance($gExtreme, $o), Game::choices($gExtreme));
-okF07($pExt[1] < 60.0 && $pExt[3] < $pExt[1],
-    'Condições extremas reduzem naturalmente abaixo de 60% sem piso artificial (' . implode('%, ', $pExt) . '%)');
+okF07(
+    $pExt[1] < 60.0 && $pExt[3] < $pExt[1],
+    'Condições extremas reduzem naturalmente abaixo de 60% sem piso artificial (' . implode('%, ', $pExt) . '%)'
+);
 
 // 2. Modos automatizados (1400 e 1401)
 echo "\n2. Validando Estratégias nos Modos Automatizados (1400 e 1401)...\n";
@@ -111,18 +124,24 @@ $pmOpt = new ReflectionMethod(PlayMode::class, 'option');
 $gReqAuto = makeMatchCareerF07('centroavante', 58, 65, 80, 60, 74.0, 74.0);
 $gReqAuto['play_mode'] = 'rapido';
 $gReqAuto['matches'][Game::currentIndex($gReqAuto)]['active_match_penalty'] = ['status' => 'pending_request', 'victim' => 'companheiro'];
-okF07($pmOpt->invoke(null, $gReqAuto, 'protagonismo') === 0,
-    'Situação 1400: estratégia Protagonismo prioriza solicitar a cobrança (opção 0)');
-okF07($pmOpt->invoke(null, $gReqAuto, 'coletivo') === 2,
-    'Situação 1400: estratégia Coletivo preserva identidade incentivando o companheiro (opção 2)');
+okF07(
+    $pmOpt->invoke(null, $gReqAuto, 'protagonismo') === 0,
+    'Situação 1400: estratégia Protagonismo prioriza solicitar a cobrança (opção 0)'
+);
+okF07(
+    $pmOpt->invoke(null, $gReqAuto, 'coletivo') === 2,
+    'Situação 1400: estratégia Coletivo preserva identidade incentivando o companheiro (opção 2)'
+);
 
 $gKickAuto = makeMatchCareerF07('centroavante', 70, 65, 80, 65, 74.0, 74.0);
 $gKickAuto['play_mode'] = 'expresso';
 $gKickAuto['matches'][Game::currentIndex($gKickAuto)]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '15-35'];
 $kickPickedEquil = $pmOpt->invoke(null, $gKickAuto, 'equilibrio');
 $kickPickedProt = $pmOpt->invoke(null, $gKickAuto, 'protagonismo');
-okF07($kickPickedEquil === 1 && in_array($kickPickedProt, [0, 1], true),
-    "Situação 1401: modos automatizados usam probabilidade efetiva + estratégia (equilibrio={$kickPickedEquil}, protagonismo={$kickPickedProt})");
+okF07(
+    $kickPickedEquil === 1 && in_array($kickPickedProt, [0, 1], true),
+    "Situação 1401: modos automatizados usam probabilidade efetiva + estratégia (equilibrio={$kickPickedEquil}, protagonismo={$kickPickedProt})"
+);
 
 // 3. Estatísticas, +2 XP finalização, nota, identidade 1400->1401 e idempotência
 echo "\n3. Validando XP (+2 finalização), Confiança, Nota, Identidade e Elegibilidade...\n";
@@ -131,25 +150,17 @@ $gScore['age'] = 24;
 $gScore['progression_version'] = 2;
 $idxS = Game::currentIndex($gScore);
 $gScore['matches'][$idxS]['active_match_penalty'] = ['status' => 'pending_request', 'victim' => 'companheiro', 'window' => '15-35'];
-$gAfterReq = null;
-for ($tryReq = 0; $tryReq < 12; $tryReq++) {
-    $candReq = Game::command($gScore, 'choice', ['option' => 0], false, static fn(int $min, int $max): int => $min);
-    if (($candReq['matches'][$idxS]['active_match_penalty']['status'] ?? '') === 'taking_kick') {
-        $gAfterReq = $candReq;
-        break;
-    }
-}
+$gAfterReq = Game::command($gScore, 'choice', ['option' => 0], false, static fn(int $min, int $max): int => $min); // aceita pedido (<=75)
 okF07(
-    $gAfterReq !== null
-    && ($gAfterReq['matches'][$idxS]['active_match_penalty']['status'] ?? '') === 'taking_kick'
+    ($gAfterReq['matches'][$idxS]['active_match_penalty']['status'] ?? '') === 'taking_kick'
     && ($gAfterReq['matches'][$idxS]['active_match_penalty']['window'] ?? '') === '15-35',
     'Transição 1400 -> 1401 preserva exatamente o identificador da janela da ocorrência'
 );
 
-$xpBefore = (int)$gAfterReq['skills']['finalizacao']['xp'];
-$confBefore = (int)$gAfterReq['states']['confianca'];
+$xpBefore = (int) $gAfterReq['skills']['finalizacao']['xp'];
+$confBefore = (int) $gAfterReq['states']['confianca'];
 $gAfterKick = Game::command($gAfterReq, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $min);
-$xpAfter = (int)$gAfterKick['skills']['finalizacao']['xp'];
+$xpAfter = (int) $gAfterKick['skills']['finalizacao']['xp'];
 $stKick = $gAfterKick['matches'][$idxS]['stats'];
 okF07(
     $xpAfter > $xpBefore
@@ -158,8 +169,26 @@ okF07(
     && (int)$stKick['shots'] === 1
     && (int)$stKick['penalties_taken'] === 1
     && (int)$stKick['penalties_scored'] === 1
+    && in_array('15-35', $gAfterKick['matches'][$idxS]['resolved_penalties'] ?? [], true)
     && (int)$gAfterKick['states']['confianca'] >= $confBefore,
-    "Pênalti convertido concede +2 XP em finalização ({$xpBefore} -> {$xpAfter}), 1 gol, 1 cobrança e preserva confiança"
+    "Pênalti convertido concede +2 XP em finalização ({$xpBefore} -> {$xpAfter}), 1 gol, 1 cobrança, chave canônica '15-35' e preserva confiança"
+);
+
+// Idempotência explícita de ocorrência já resolvida (mesma janela '15-35', sem alterar placar, gols, chutes, XP ou confiança)
+$gReplay = $gAfterKick;
+$gReplay['matches'][$idxS]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '15-35'];
+$gAfterReplay = Game::command($gReplay, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $min);
+$stReplay = $gAfterReplay['matches'][$idxS]['stats'];
+okF07(
+    (int)$stReplay['goals'] === (int)$stKick['goals']
+    && (int)$stReplay['shots'] === (int)$stKick['shots']
+    && (int)$stReplay['penalties_taken'] === (int)$stKick['penalties_taken']
+    && (int)$stReplay['penalties_scored'] === (int)$stKick['penalties_scored']
+    && (int)$gAfterReplay['skills']['finalizacao']['xp'] === $xpAfter
+    && (int)$gAfterReplay['states']['confianca'] === (int)$gAfterKick['states']['confianca']
+    && (int)$gAfterReplay['matches'][$idxS]['hg'] === (int)$gAfterKick['matches'][$idxS]['hg']
+    && (int)$gAfterReplay['matches'][$idxS]['ag'] === (int)$gAfterKick['matches'][$idxS]['ag'],
+    'Ocorrência já resolvida (15-35) não altera placar, gols, finalizações, estatísticas, XP ou confiança'
 );
 
 // Elegibilidade: substituído, expulso, suspenso e não relacionado não cobram 1401
@@ -173,13 +202,14 @@ foreach ([
     $idxI = Game::currentIndex($gInel);
     $gInel['matches'][$idxI] = array_replace($gInel['matches'][$idxI], $patch);
     $gInel['matches'][$idxI]['active_match_penalty'] = ['status' => 'taking_kick', 'window' => '15-35'];
-    okF07(Game::choices($gInel) === [] && !MatchPenalty::isProtagonistOfficialTaker($gInel, $gInel['matches'][$idxI]),
-        "Elegibilidade bloqueia cobrança para atleta {$ineligLabel}");
+    okF07(
+        Game::choices($gInel) === [] && !MatchPenalty::isProtagonistOfficialTaker($gInel, $gInel['matches'][$idxI]),
+        "Elegibilidade bloqueia cobrança para atleta {$ineligLabel}"
+    );
 }
 
-// 4. Simulação estatística de 400+ partidas por modo (Normal, Rápido e Expresso)
-echo "\n4. Executando Simulações de 400 Partidas por Modo (Normal, Rápido, Expresso)...\n";
-mt_srand(20261127);
+// 4. Simulações estocásticas (random_int) com N=400 partidas por modo (Normal, Rápido e Expresso)
+echo "\n4. Executando Simulações Estocásticas (N=400 partidas/modo: Normal, Rápido, Expresso)...\n";
 
 $simNormal = ['team_pens' => 0, 'opp_pens' => 0, 'protag_kicks' => 0, 'protag_goals' => 0, 'total_goals' => 0];
 for ($k = 0; $k < 400; $k++) {
@@ -203,23 +233,36 @@ for ($k = 0; $k < 400; $k++) {
         $ch = Game::choices($gn);
         $gn = $ch ? Game::command($gn, 'choice', ['option' => 0]) : Game::command($gn, 'advance', []);
     }
-    $mEnd = $gn['matches'][Game::currentIndex($gn)];
-    $simNormal['total_goals'] += (int)$mEnd['hg'] + (int)$mEnd['ag'];
+    $mEnd = $gn['matches'][$idxN];
+    $simNormal['total_goals'] += (int) $mEnd['hg'] + (int) $mEnd['ag'];
     foreach ($mEnd['resolved_penalties'] ?? [] as $rk) {
-        if (str_starts_with($rk, 'protagonist:') || str_starts_with($rk, 'teammate:')) $simNormal['team_pens']++;
-        if (str_starts_with($rk, 'opponent:')) $simNormal['opp_pens']++;
+        if (str_starts_with((string)$rk, 'opponent:')) {
+            $simNormal['opp_pens']++;
+        } else {
+            $simNormal['team_pens']++;
+        }
     }
 }
 $normalFreq = ($simNormal['team_pens'] + $simNormal['opp_pens']) / 400;
 $normalConv = $simNormal['protag_kicks'] > 0 ? 100 * $simNormal['protag_goals'] / $simNormal['protag_kicks'] : 0;
 okF07(
     $normalFreq >= 0.22 && $normalFreq <= 0.40 && $normalConv >= 70.0 && $normalConv <= 88.0,
-    sprintf('Normal (400 jogos): freq_penaltis=%.3f/jogo, conv_protag=%d/%d (%.1f%%), media_gols=%.2f/jogo',
-        $normalFreq, $simNormal['protag_goals'], $simNormal['protag_kicks'], $normalConv, $simNormal['total_goals'] / 400)
+    sprintf(
+        'Normal (400 jogos): freq_penaltis=%.3f/jogo, conv_protag=%d/%d (%.1f%%), media_gols=%.2f/jogo',
+        $normalFreq,
+        $simNormal['protag_goals'],
+        $simNormal['protag_kicks'],
+        $normalConv,
+        $simNormal['total_goals'] / 400
+    )
 );
 
 foreach (['rapido', 'expresso'] as $mode) {
-    $totMatches = 0; $totPens = 0; $pTaken = 0; $pScored = 0; $totGoals = 0;
+    $totMatches = 0;
+    $totPens = 0;
+    $pTaken = 0;
+    $pScored = 0;
+    $totGoals = 0;
     $targetMatches = 400;
     while ($totMatches < $targetMatches) {
         $gm = Game::create("Sim {$mode}", 'São Paulo', 'SP', 'centroavante', 'Santos-SP');
@@ -230,30 +273,27 @@ foreach (['rapido', 'expresso'] as $mode) {
         unset($sk);
         $gm = Game::command($gm, 'handicap');
         $gm = Game::command($gm, 'simulate', ['plan' => 'protagonismo']);
+        $finishedClubMatches = array_values(array_filter(
+            $gm['matches'],
+            static fn(array $mCand): bool => ($mCand['status'] ?? '') === 'finalizada'
+                && in_array($gm['club'], [$mCand['home'], $mCand['away']], true)
+        ));
         if ($mode === 'rapido') {
             $totMatches++;
             $last = end($gm['pace_report']['matches']);
+            $mRef = end($finishedClubMatches);
             $totGoals += (int)$last['hg'] + (int)$last['ag'];
             $pTaken += (int)($last['stats']['penalties_taken'] ?? 0);
             $pScored += (int)($last['stats']['penalties_scored'] ?? 0);
-            foreach ($gm['matches'] as $mCand) {
-                if (($mCand['status'] ?? '') === 'finalizada' && $mCand['home'] === $last['home'] && $mCand['away'] === $last['away']) {
-                    $totPens += count($mCand['resolved_penalties'] ?? []);
-                    break;
-                }
-            }
+            $totPens += is_array($mRef) ? count($mRef['resolved_penalties'] ?? []) : 0;
         } else {
-            foreach ($gm['pace_report']['matches'] as $pm) {
+            foreach ($gm['pace_report']['matches'] as $idxPm => $pm) {
                 $totMatches++;
                 $totGoals += (int)$pm['hg'] + (int)$pm['ag'];
                 $pTaken += (int)($pm['stats']['penalties_taken'] ?? 0);
                 $pScored += (int)($pm['stats']['penalties_scored'] ?? 0);
-                foreach ($gm['matches'] as $mCand) {
-                    if (($mCand['status'] ?? '') === 'finalizada' && $mCand['home'] === $pm['home'] && $mCand['away'] === $pm['away']) {
-                        $totPens += count($mCand['resolved_penalties'] ?? []);
-                        break;
-                    }
-                }
+                $mRef = $finishedClubMatches[$idxPm] ?? null;
+                $totPens += is_array($mRef) ? count($mRef['resolved_penalties'] ?? []) : 0;
                 if ($totMatches >= $targetMatches) {
                     break;
                 }
@@ -263,9 +303,17 @@ foreach (['rapido', 'expresso'] as $mode) {
     $mFreq = $totPens / $totMatches;
     $mConv = $pTaken > 0 ? 100 * $pScored / $pTaken : 0;
     okF07(
-        $mFreq >= 0.20 && $mFreq <= 0.42 && ($pTaken === 0 || ($mConv >= 60.0 && $mConv <= 92.0)),
-        sprintf("Modo %s (%d jogos): freq_penaltis=%.3f/jogo, conv_protag=%d/%d (%.1f%%), media_gols=%.2f/jogo",
-            $mode, $totMatches, $mFreq, $pScored, $pTaken, $mConv, $totGoals / $totMatches)
+        $mFreq >= 0.20 && $mFreq <= 0.42 && ($pTaken === 0 || ($mConv >= 65.0 && $mConv <= 92.0)),
+        sprintf(
+            "Modo %s (%d jogos): freq_penaltis=%.3f/jogo, conv_protag=%d/%d (%.1f%%), media_gols=%.2f/jogo",
+            $mode,
+            $totMatches,
+            $mFreq,
+            $pScored,
+            $pTaken,
+            $mConv,
+            $totGoals / $totMatches
+        )
     );
 }
 
