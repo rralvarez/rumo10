@@ -711,6 +711,7 @@ $effectiveTierCatalog = [
         'family' => 'br',
         'tier' => 1,
         'format' => 'league',
+        'baseline' => 78,
         'teams' => ['Clube Base 72', 'Potência Elite 84', 'Clube Paridade 72', 'Clube Acesso 62'],
         'rules' => [],
     ],

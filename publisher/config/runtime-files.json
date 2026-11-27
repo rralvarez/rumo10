@@ -36,6 +36,7 @@
   "app/IdentityError.php",
   "app/InitialProfile.php",
   "app/InternationalCompetition.php",
+  "app/LeagueStrength.php",
   "app/LocalCompetitionCatalog.php",
   "app/Maintenance.php",
   "app/MatchBalance.php",

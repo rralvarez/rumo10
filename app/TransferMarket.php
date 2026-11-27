@@ -20,13 +20,11 @@ final class TransferMarket {
     }
 
     public static function sportingLevel(string $id): int {
-        if (isset(['br-a' => 1, 'br-b' => 2, 'br-c' => 3, 'br-d' => 4][$id])) {
-            return ['br-a' => 1, 'br-b' => 2, 'br-c' => 3, 'br-d' => 4][$id];
+        $meta = LeagueStrength::competitionMeta($id);
+        if ($meta['kind'] === 'national_league' && $meta['level'] !== null) {
+            return min(5, max(1, (int)$meta['level']));
         }
-        if (str_starts_with($id, 'sp-') || str_ends_with($id, '-entrada')) {
-            return 5;
-        }
-        return preg_match('/-(\d+)$/', $id, $m) ? min(5, (int)$m[1]) : 5;
+        return 5;
     }
 
     public static function profile(array $g, ?array $evaluation = null): array {
@@ -121,8 +119,8 @@ final class TransferMarket {
             if (array_filter($ids, static fn($id) => empty($valid[$id]))) {
                 continue;
             }
-            usort($ids, static fn($a, $b) => (self::sportingLevel($a) <=> self::sportingLevel($b)) ?: strcmp($a, $b));
-            $id = $ids[0];
+            $id = LeagueStrength::primaryCompetition($ids, $catalog) ?? $ids[0];
+            $leagueInfo = LeagueStrength::resolveCompetition($id, $g, $catalog);
 
             $country = self::country($club);
             $confed = FootballGeography::region($country);
@@ -140,6 +138,10 @@ final class TransferMarket {
                 'country' => $country,
                 'confederation' => $confed,
                 'competition' => $id,
+                'competition_name' => $leagueInfo['name'],
+                'division_scope' => $leagueInfo['scope_label'],
+                'league_strength' => $leagueInfo['strength'],
+                'league_strength_status' => $leagueInfo['status'],
                 'all_competitions' => $ids,
                 'sporting_level' => self::sportingLevel($id),
                 'overall' => round($ovr, 1),
@@ -306,16 +308,54 @@ final class TransferMarket {
             echo ' <span class="offer-scope-pill">' . e($scopeLabel) . '</span>';
         }
         echo '</p>';
-        if (isset($offer['competition']) && isset(Competition::catalog()[$offer['competition']])) {
-            [$pyramid, $level] = TransferInterest::division($offer['competition']);
-            echo '<p>' . e(Competition::catalog()[$offer['competition']]['name']);
-            if ($level !== null) {
-                echo ' · ' . e($level) . 'ª divisão ' . (in_array($pyramid, ['sp', 'am'], true) ? 'estadual' : 'nacional');
+        $assessment = is_array($offer['sporting_assessment'] ?? null) ? $offer['sporting_assessment'] : [];
+        $compId = (string)($offer['competition'] ?? ($assessment['target_competition'] ?? ''));
+        $compName = $offer['competition_name'] ?? ($assessment['target_league_name'] ?? null);
+        $divScope = $offer['division_scope'] ?? null;
+        if (($compName === null || $divScope === null) && $compId !== '') {
+            $catalogComp = Competition::catalog()[$compId] ?? null;
+            if ($compName === null && is_array($catalogComp)) {
+                $compName = $catalogComp['name'] ?? $compId;
+            }
+            if ($divScope === null && is_array($catalogComp)) {
+                $divScope = LeagueStrength::competitionMeta($compId, $catalogComp)['scope_label'] ?? null;
+            }
+        }
+        if ($compName !== null && $compName !== '') {
+            echo '<p class="offer-competition-line">' . e((string)$compName);
+            if (!empty($divScope)) {
+                echo ' · ' . e((string)$divScope);
             }
             echo '</p>';
         }
         if (isset($offer['overall'])) {
-            echo '<p class="offer-overall-line"><strong>Overall ' . e($offer['overall']) . '</strong> · diferença ' . e(($offer['overall_delta'] ?? 0) >= 0 ? '+' : '') . e($offer['overall_delta'] ?? 0) . ' em relação ao seu clube</p>';
+            $ovrDelta = (float)($offer['overall_delta'] ?? 0);
+            $ovrSign = $ovrDelta >= 0 ? '+' : '';
+            echo '<p class="offer-overall-line"><strong>Overall ' . e($offer['overall']) . '</strong> · diferença ' . e($ovrSign . number_format($ovrDelta, 1, ',', '.')) . ' em relação ao seu clube</p>';
+        }
+        $hasLeagueInfo = array_key_exists('league_strength', $offer)
+            || !empty($offer['league_strength_status'])
+            || array_key_exists('target_league_strength', $assessment)
+            || !empty($assessment['target_league_status']);
+        if ($hasLeagueInfo) {
+            $lStr = $offer['league_strength'] ?? ($assessment['target_league_strength'] ?? null);
+            $lStatus = (string)($offer['league_strength_status'] ?? ($assessment['target_league_status'] ?? ''));
+            $lDelta = $offer['league_delta'] ?? ($assessment['league_delta'] ?? null);
+            if ($lStr !== null) {
+                $statusTag = $lStatus === LeagueStrength::STATUS_PROVISIONAL ? ' (referência provisória)' : ($lStatus === LeagueStrength::STATUS_CONFIRMED ? ' (confirmada)' : '');
+                echo '<p class="offer-league-line">Força da liga: <strong>' . e(number_format((float)$lStr, 1, ',', '.')) . '</strong>' . e($statusTag);
+                if ($lDelta !== null) {
+                    $lSign = ((float)$lDelta) >= 0 ? '+' : '';
+                    echo ' · diferença ' . e($lSign . number_format((float)$lDelta, 1, ',', '.')) . ' frente à sua liga';
+                }
+                echo '</p>';
+            } elseif ($lStatus === LeagueStrength::STATUS_UNAVAILABLE) {
+                echo '<p class="offer-league-line">Força da liga: <strong>indisponível</strong> · classificação conservadora</p>';
+            }
+        }
+        $reason = $offer['reason'] ?? ($assessment['reason'] ?? null);
+        if (!empty($reason)) {
+            echo '<p class="subtle offer-reason-line">' . e((string)$reason) . '</p>';
         }
     }
 }
