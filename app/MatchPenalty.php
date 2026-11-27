@@ -81,6 +81,17 @@ final class MatchPenalty {
             $startMin = (int)$om[1];
         }
 
+        $legacyTeamKeys = [
+            'pen:' . $minute,
+            'teammate:' . $minute,
+            'protagonist:' . $minute,
+            'protagonist:pen:' . $minute,
+            'pen:' . $startMin,
+            'teammate:' . $startMin,
+            'protagonist:' . $startMin,
+            'protagonist:pen:' . $startMin,
+        ];
+
         foreach ($resolved as $rk) {
             $key = (string)$rk;
             if (str_starts_with($key, 'opponent:')) {
@@ -92,13 +103,7 @@ final class MatchPenalty {
             if ($window !== '' && ($key === $window || $key === 'protagonist:' . $window)) {
                 return true;
             }
-            if (
-                $key === 'pen:' . $minute
-                || $key === 'teammate:' . $minute
-                || $key === 'protagonist:pen:' . $minute
-                || $key === 'pen:' . $startMin
-                || $key === 'teammate:' . $startMin
-            ) {
+            if (in_array($key, $legacyTeamKeys, true)) {
                 return true;
             }
             if (preg_match('/^(?:protagonist:)?(\d+)-\d+$/', $key, $km) && (int)$km[1] === $startMin) {

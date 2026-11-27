@@ -186,17 +186,16 @@ okF07(
     "Pênalti convertido concede +2 XP em finalização ({$xpBefore} -> {$xpAfter}), 1 gol, 1 cobrança, chave canônica '15-35' e preserva confiança"
 );
 
-// Idempotência e neutralidade pré-sorteio: cruzamento entre chaves canônicas/legadas, com/sem window, sucesso/falha, conquistas e preservação de nova cobrança
+// Idempotência e neutralidade pré-sorteio: matriz completa das 6 representações x (com/sem window)
 $gMissKick = Game::command($gAfterReq, 'choice', ['option' => 1], false, static fn(int $min, int $max): int => $max);
-foreach ([
-    'conv_canonica_com_window' => [$gAfterKick, '15-35', ['status' => 'taking_kick', 'window' => '15-35'], true],
+$crossCases = [
     'miss_canonica_com_window' => [$gMissKick, '15-35', ['status' => 'taking_kick', 'window' => '15-35'], false],
-    'canonica_sem_window_no_ativo' => [$gAfterKick, '15-35', ['status' => 'taking_kick'], false],
-    'legada_protagonist_com_window' => [$gAfterKick, 'protagonist:15-35', ['status' => 'taking_kick', 'window' => '15-35'], false],
-    'legada_protagonist_sem_window' => [$gAfterKick, 'protagonist:15-35', ['status' => 'taking_kick'], false],
-    'legada_teammate_com_window' => [$gAfterKick, 'teammate:15', ['status' => 'taking_kick', 'window' => '15-35'], false],
-    'legada_teammate_sem_window' => [$gAfterKick, 'teammate:15', ['status' => 'taking_kick'], false],
-] as $caseName => [$baseState, $resolvedKey, $activePatch, $forceSuccess]) {
+];
+foreach (['15-35', 'protagonist:15-35', 'protagonist:15', 'protagonist:pen:15', 'teammate:15', 'pen:15'] as $repKey) {
+    $crossCases["{$repKey}|com_window"] = [$gAfterKick, $repKey, ['status' => 'taking_kick', 'window' => '15-35'], true];
+    $crossCases["{$repKey}|sem_window"] = [$gAfterKick, $repKey, ['status' => 'taking_kick'], false];
+}
+foreach ($crossCases as $caseName => [$baseState, $resolvedKey, $activePatch, $forceSuccess]) {
     $gReplay = $baseState;
     $gReplay['matches'][$idxS]['minute'] = 15;
     $gReplay['matches'][$idxS]['resolved_penalties'] = [$resolvedKey];
