@@ -164,7 +164,7 @@ final class Game {
                     $lead = $g['states']['lideranca'] ?? 50;
                     $accepted = ($conf >= 55 || $coach >= 55 || $lead >= 55) && (random_int(1,100) <= 75);
                     if ($accepted) {
-                        $m['active_match_penalty'] = ['status' => 'taking_kick', 'context_message' => 'O companheiro aceita seu pedido e entrega a bola. A cobrança é sua.'];
+                        $m['active_match_penalty'] = ['status' => 'taking_kick', 'window' => $m['active_match_penalty']['window'] ?? null, 'context_message' => 'O companheiro aceita seu pedido e entrega a bola. A cobrança é sua.'];
                         $g['feedback']['text'] = 'O companheiro autorizou sua cobrança. Prepare-se para bater o pênalti.';
                     } else {
                         $g['feedback']['text'] = 'O cobrador oficial preferiu manter a responsabilidade da cobrança.';
@@ -182,33 +182,41 @@ final class Game {
                 }
             } elseif(($s['id']??0)===MatchPenalty::SITUATION_KICK) {
                 $i=self::currentIndex($g); $m=&$g['matches'][$i]; $m['participated_on_field']=true; $m['entered_on_field']=true; $st=&$m['stats']; $own=$m['home']===$g['club']?'hg':'ag';
-                $st['shots']++;
-                $st['penalties_taken'] = ($st['penalties_taken'] ?? 0) + 1;
+                $m['resolved_penalties'] = $m['resolved_penalties'] ?? [];
+                $penKey = 'protagonist:' . ($m['active_match_penalty']['window'] ?? (string)($m['minute'] ?? 0));
                 unset($m['active_match_penalty']);
-                if($roll['success']) {
-                    $m[$own]++; $st['goals']++; $st['penalties_scored'] = ($st['penalties_scored'] ?? 0) + 1;
-                    $g['feedback']['highlight'] = 'goal';
-                    $beforeConf = $g['states']['confianca'];
-                    $g['states']['confianca'] = self::clamp($beforeConf + self::goalConfidenceDelta($g, (int)$st['goals']));
-                    $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + ($g['states']['confianca'] - $beforeConf);
-                    $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
-                    $g['feedback']['text'] = 'GOL DE PÊNALTI! Você cobra com frieza e balança as redes!';
-                    $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | GOL DE PÊNALTI! Cobrança impecável!"];
-                } else {
-                    $st['penalties_missed'] = ($st['penalties_missed'] ?? 0) + 1;
-                    $g['feedback']['sound_event'] = 'NO_GOAL';
-                    $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'NO_GOAL', (int)$m['minute']);
-                    $missKind = match(random_int(1,3)) { 1 => 'saved', 2 => 'post', default => 'wide' };
-                    if ($missKind === 'saved') {
-                        $g['feedback']['text'] = 'DEFENDE O GOLEIRO! O arqueiro acerta o canto e espalma o pênalti!';
-                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: o goleiro defende sua finalização."];
-                    } elseif ($missKind === 'post') {
-                        self::emitSoundEvent($m, $g, 'BALL_HIT_POST', (int)$m['minute']);
-                        $g['feedback']['text'] = 'NA TRAVE! A bola explode no poste e não entra!';
-                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: finalização carimba o poste!"];
+                if (!in_array($penKey, $m['resolved_penalties'], true)) {
+                    $m['resolved_penalties'][] = $penKey;
+                    $st['shots']++;
+                    $st['penalties_taken'] = ($st['penalties_taken'] ?? 0) + 1;
+                    if($roll['success']) {
+                        $m[$own]++; $st['goals']++; $st['penalties_scored'] = ($st['penalties_scored'] ?? 0) + 1;
+                        $g['feedback']['highlight'] = 'goal';
+                        $beforeConf = $g['states']['confianca'];
+                        $g['states']['confianca'] = self::clamp($beforeConf + self::goalConfidenceDelta($g, (int)$st['goals']));
+                        $g['feedback']['effects']['confianca'] = ($g['feedback']['effects']['confianca'] ?? 0) + ($g['states']['confianca'] - $beforeConf);
+                        foreach (self::effects(['finalizacao' => 2], $roll, $g) as $k => $v) {
+                            $g['feedback']['effects'][$k] = ($g['feedback']['effects'][$k] ?? 0) + $v;
+                        }
+                        $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'GOAL_SCORED', (int)$m['minute']);
+                        $g['feedback']['text'] = 'GOL DE PÊNALTI! Você cobra com frieza e balança as redes!';
+                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | GOL DE PÊNALTI! Cobrança impecável!"];
                     } else {
-                        $g['feedback']['text'] = 'PRA FORA! A bola sai raspando a trave!';
-                        $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: finalização pela linha de fundo."];
+                        $st['penalties_missed'] = ($st['penalties_missed'] ?? 0) + 1;
+                        $g['feedback']['sound_event'] = 'NO_GOAL';
+                        $g['feedback']['sound_event_id'] = self::emitSoundEvent($m, $g, 'NO_GOAL', (int)$m['minute']);
+                        $missKind = match(random_int(1,3)) { 1 => 'saved', 2 => 'post', default => 'wide' };
+                        if ($missKind === 'saved') {
+                            $g['feedback']['text'] = 'DEFENDE O GOLEIRO! O arqueiro acerta o canto e espalma o pênalti!';
+                            $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: o goleiro defende sua finalização."];
+                        } elseif ($missKind === 'post') {
+                            self::emitSoundEvent($m, $g, 'BALL_HIT_POST', (int)$m['minute']);
+                            $g['feedback']['text'] = 'NA TRAVE! A bola explode no poste e não entra!';
+                            $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: finalização carimba o poste!"];
+                        } else {
+                            $g['feedback']['text'] = 'PRA FORA! A bola sai raspando a trave!';
+                            $m['log'][] = ['minute' => $m['minute'], 'text' => "{$m['minute']}' | Pênalti desperdiçado: finalização pela linha de fundo."];
+                        }
                     }
                 }
                 $confBeforeSeg = $g['states']['confianca'];
@@ -570,8 +578,10 @@ final class Game {
             if (empty($m['active_match_penalty']) && !in_array($windowKey, $m['evaluated_penalties'], true)) {
                 $m['evaluated_penalties'][] = $windowKey;
                 $isProtagonistOnField = MatchParticipation::canActOnField($m);
-                $penaltyRoll = random_int(1, 100);
-                if ($penaltyRoll <= 5) {
+                $segProb = class_exists('BalanceService') ? (float)BalanceService::param('match.penalties.in_match', 'segment_team_prob', 0.025) : 0.025;
+                $permille = max(0, min(499, (int)round($segProb * 1000)));
+                $penaltyRoll = random_int(1, 1000);
+                if ($permille > 0 && $penaltyRoll <= $permille) {
                     // Team penalty awarded!
                     self::emitSoundEvent($m, $g, 'WHISTLE_FOUL', (int)$m['minute']);
                     $victim = $g['name'];
@@ -596,7 +606,7 @@ final class Game {
                     } else {
                         MatchPenalty::resolveTeammatePenalty($g, $m, false);
                     }
-                } elseif ($penaltyRoll >= 96) {
+                } elseif ($permille > 0 && $penaltyRoll >= (1001 - $permille)) {
                     // Opponent penalty
                     MatchPenalty::resolveOpponentPenalty($g, $m);
                 }

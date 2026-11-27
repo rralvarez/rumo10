@@ -69,13 +69,27 @@ final class PlayMode {
     }
     private static function option(array $g,string $plan): int {
         $options=Game::choices($g);$scores=[];
+        $sid=($g['stage']==='partida')?(Game::situation($g)['id']??0):0;
         foreach($options as $i=>$o) {
             $score=0.;$effects=$o['effects'];
             if($g['stage']==='partida') {
-                $preferred=$plan==='coletivo'?'passe':(in_array($g['position'],['zagueiro','lateral','volante'],true)?'desarme':'chute');
-                if(in_array($plan,['protagonismo','coletivo'],true)||(PlayerDevelopment::enabled($g)&&$plan==='evolucao'))$score+=($o['action']===$preferred?30:0);
-                elseif($plan==='equilibrio')$score+=Game::chance($g,$o)/2;
-                // Evolução varia a prática e nunca força uma ação inexistente no contexto.
+                if($sid===MatchPenalty::SITUATION_REQUEST) {
+                    if($plan==='protagonismo')$score+=($i===0?50:0);
+                } elseif($sid===MatchPenalty::SITUATION_KICK) {
+                    $effChance=Game::chance($g,$o);
+                    $kind=(string)($o['shot_kind']??'');
+                    $styleBonus=match($plan){
+                        'protagonismo'=>($kind==='penalty_power'?0.6:($kind==='penalty_placement'?0.4:0.0)),
+                        'evolucao'=>($kind==='penalty_wait_keeper'?0.6:0.0),
+                        default=>0.0,
+                    };
+                    $score+=$effChance+$styleBonus;
+                } else {
+                    $preferred=$plan==='coletivo'?'passe':(in_array($g['position'],['zagueiro','lateral','volante'],true)?'desarme':'chute');
+                    if(in_array($plan,['protagonismo','coletivo'],true)||(PlayerDevelopment::enabled($g)&&$plan==='evolucao'))$score+=($o['action']===$preferred?30:0);
+                    elseif($plan==='equilibrio')$score+=Game::chance($g,$o)/2;
+                    // Evolução varia a prática e nunca força uma ação inexistente no contexto.
+                }
             }
             foreach($effects as $key=>$delta) {
                 if(isset($g['skills'][$key]))$score+=max(0,$delta)*($plan==='evolucao'?4:1);
