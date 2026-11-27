@@ -1,0 +1,77 @@
+{
+  "kind": "rumo10",
+  "clubs": {
+    "Metalac GM-RS": {
+      "path": "/assets/clubs/club-rec-1d7b05bc90e58f57.png",
+      "source": "https://www.playmakerstats.com/team/fk-metalac/13522",
+      "download_url": "https://cdn-img.zerozero.pt/img/logos/equipas/13522_imgbank_1690533132.png",
+      "retrieved": "2026-11-19",
+      "audit_status": "JA_TEM_TRANSPARENCIA",
+      "sha256_source": "787102a749f4c69e7485facf7de49fc61db7640c1ebc51dbd5e1c67b7ec78ec5"
+    },
+    "Hapoel Kfar Shalem-IL": {
+      "path": "/assets/clubs/club-rec-a46b0db4ead1d81d.png",
+      "source": "https://www.thesportsdb.com/team/141236-hapoel-kfar-shalem",
+      "download_url": "https://r2.thesportsdb.com/images/media/team/badge/adlzuy1617289221.png",
+      "retrieved": "2026-11-19",
+      "audit_status": "JA_TEM_TRANSPARENCIA",
+      "sha256_source": "abae371775c55936a48b3b9c64e8f64d93d47b5266e5ac262aa532df55679d4a"
+    },
+    "Hapoel Afula-IL": {
+      "path": "/assets/clubs/club-rec-77c01e92e25292c2.png",
+      "source": "https://www.ogol.com.br/equipe/hapoel-afula/91897",
+      "download_url": "https://www.ogol.com.br/img/logos/equipas/91897_imgbank_1690469507.png",
+      "retrieved": "2026-11-19",
+      "audit_status": "JA_TEM_TRANSPARENCIA",
+      "sha256_source": "ddced5c7fab94de3381aaf2bc8fc00cdd894832de9711985ba367508c5f0f070"
+    },
+    "Maccabi Kabilio Jaffa-IL": {
+      "path": "/assets/clubs/club-rec-f959f5fddfbcfc60.png",
+      "source": "https://www.playmakerstats.com/team/maccabi-kabili-jaffa/244929",
+      "download_url": "https://cdn-img.zerozero.pt/img/logos/equipas/244929_imgbank_1690468073.png",
+      "retrieved": "2026-11-19",
+      "audit_status": "JA_TEM_TRANSPARENCIA",
+      "sha256_source": "41cf8d4657cf61043aad90998c1d1f938531116ae6eac0d8a870b452080bcbef"
+    },
+    "Hapoel Acre-IL": {
+      "path": "/assets/clubs/club-rec-e174342e29479857.png",
+      "source": "https://www.fc-akko.com/",
+      "download_url": "https://static.wixstatic.com/media/019413_3dfc1d7754eb417c90a7aa3737221523~mv2.webp",
+      "retrieved": "2026-11-19",
+      "audit_status": "JA_TEM_TRANSPARENCIA",
+      "sha256_source": "537a14df5830d871406708a7ee781656b171a6a97f050bdfa040c31971458308"
+    },
+    "KCB-KE": {
+      "path": "/assets/clubs/club-rec-4d94d4eb6e31f01c.png",
+      "source": "https://www.kenyafootballdata.com/team_fixtures.php?t=uftm00034",
+      "download_url": "https://www.kenyafootballdata.com/images/uploads/teams/logos/uftm00034.jpg",
+      "retrieved": "2026-11-19",
+      "audit_status": "CORRIGIDO_PNG_MESMO_CAMINHO",
+      "sha256_source": "a2a00223bba2ea7481e1607f948a561cf98bad4785f3ee95122d5cac218b1857"
+    },
+    "Murang'a Seal FC-KE": {
+      "path": "/assets/clubs/club-rec-5f8615b187bd93e6.png",
+      "source": "https://sportpesaleague.ke/",
+      "download_url": "https://cdn.sportpesascore.com/teams/muranga_seal_fc_147552.png",
+      "retrieved": "2026-11-19",
+      "audit_status": "JA_TEM_TRANSPARENCIA",
+      "sha256_source": "de59c2d732f8c3a4a054ba15ad031c20d42d206b10c08c6e24539019e236cc7b"
+    },
+    "Shabana-KE": {
+      "path": "/assets/clubs/club-rec-dae000bc7445c402.png",
+      "source": "https://www.besoccer.com/team/shabana-fc",
+      "download_url": "https://cdn.resfu.com/img_data/equipos/156031.png",
+      "retrieved": "2026-11-19",
+      "audit_status": "JA_TEM_TRANSPARENCIA",
+      "sha256_source": "87a7aafc7e7bf34fbc2ae750d4ffe16d8c02bdeee5a4387072356b6419e488e6"
+    },
+    "Sofapaka-KE": {
+      "path": "/assets/clubs/club-rec-5bbeb3b2f61e1256.png",
+      "source": "https://seeklogo.com/vector-logo/480163/sofapaka-fc",
+      "download_url": "https://images.seeklogo.com/logo-png/48/1/sofapaka-fc-logo-png_seeklogo-480163.png",
+      "retrieved": "2026-11-19",
+      "audit_status": "CORRIGIDO_PNG_MESMO_CAMINHO",
+      "sha256_source": "8a2acf58ecc264985cfecfee089dfa89f96ee5a25dbecd9d3deee94d819fc239"
+    }
+  }
+}
