@@ -3,11 +3,11 @@ declare(strict_types=1);
 ini_set('memory_limit', '512M');
 
 /**
- * Teste de integração PDO isolado para R10-CAR-003-R2 (CAR003-D02 / CAR003-T01).
+ * Teste de integração PDO isolado para R10-CAR-003-R2 (CAR003-D02 / CAR003-T01-R2).
  *
- * Exige autorização explícita (--isolated-test-db) e banco descartável local
- * explicitamente identificado como ambiente de testes, recusando qualquer execução
- * contra o banco habitual do Rumo10, RumoHub ou produção antes de qualquer gravação.
+ * Exige autorização explícita (--isolated-test-db) e credenciais, host, porta e
+ * banco descartável específicos para o ambiente de testes, recusando execução
+ * contra banco habitual/produtivo, configuração incompleta ou banco preexistente.
  */
 
 if (!in_array('--isolated-test-db', $argv, true)) {
@@ -15,50 +15,81 @@ if (!in_array('--isolated-test-db', $argv, true)) {
     exit(2);
 }
 
-$envFile = dirname(__DIR__) . '/.env';
-$envVars = [];
-if (is_file($envFile)) {
-    foreach (file($envFile, FILE_IGNORE_NEW_LINES) as $line) {
-        if (preg_match('/^([A-Z_][A-Z0-9_]*)=(.*)$/', trim($line), $m)) {
-            $envVars[$m[1]] = trim($m[2], "\"'");
-        }
+$cliOpts = [];
+foreach ($argv as $arg) {
+    if (preg_match('/^--(test-host|test-port|test-user|test-pass|test-db)=(.*)$/', $arg, $m)) {
+        $cliOpts[$m[1]] = $m[2];
     }
 }
 
-$targetHost = getenv('RUMO10_TEST_DB_HOST') ?: ($envVars['DB_HOST'] ?? '127.0.0.1');
+$targetHost = $cliOpts['test-host'] ?? getenv('RUMO10_TEST_DB_HOST');
+$targetPort = $cliOpts['test-port'] ?? getenv('RUMO10_TEST_DB_PORT');
+$targetUser = $cliOpts['test-user'] ?? getenv('RUMO10_TEST_DB_USERNAME');
+$targetPass = $cliOpts['test-pass'] ?? getenv('RUMO10_TEST_DB_PASSWORD');
+
+if (
+    $targetHost === false || $targetHost === ''
+    || $targetPort === false || $targetPort === ''
+    || $targetUser === false || $targetUser === ''
+    || $targetPass === false
+) {
+    fwrite(STDERR, "RECUSADO: configuração incompleta. Informe explicitamente RUMO10_TEST_DB_HOST, RUMO10_TEST_DB_PORT, RUMO10_TEST_DB_USERNAME e RUMO10_TEST_DB_PASSWORD (ou --test-host/--test-port/--test-user/--test-pass).\n");
+    exit(2);
+}
+
 if (!in_array($targetHost, ['127.0.0.1', 'localhost', '::1'], true)) {
     fwrite(STDERR, "RECUSADO: host '{$targetHost}' não é local. Integração PDO permitida apenas em instância local descartável.\n");
     exit(2);
 }
-
-$targetDb = 'rumo10_test_car003';
-foreach ($argv as $arg) {
-    if (str_starts_with($arg, '--test-db=')) {
-        $targetDb = substr($arg, strlen('--test-db='));
-    }
+if (!ctype_digit((string)$targetPort) || (int)$targetPort <= 0 || (int)$targetPort > 65535) {
+    fwrite(STDERR, "RECUSADO: porta '{$targetPort}' inválida.\n");
+    exit(2);
 }
-$envTestDb = getenv('RUMO10_TEST_DB_DATABASE');
-if ($envTestDb !== false && $envTestDb !== '') {
-    $targetDb = $envTestDb;
+
+$targetDb = $cliOpts['test-db'] ?? getenv('RUMO10_TEST_DB_DATABASE');
+if ($targetDb === false || $targetDb === '') {
+    $targetDb = 'rumo10_test_car003_' . date('Ymd_His') . '_' . bin2hex(random_bytes(4));
+}
+
+$envFile = dirname(__DIR__) . '/.env';
+$habitualDb = 'rumohub';
+if (is_file($envFile)) {
+    foreach (file($envFile, FILE_IGNORE_NEW_LINES) as $line) {
+        if (preg_match('/^DB_DATABASE=(.*)$/', trim($line), $m)) {
+            $habitualDb = strtolower(trim($m[1], "\"'"));
+        }
+    }
 }
 
 $forbiddenDbs = ['rumohub', 'rumo10', 'rumorating', 'mysql', 'information_schema', 'performance_schema', 'sys', 'prod', 'production'];
-$habitualDb = strtolower((string)($envVars['DB_DATABASE'] ?? 'rumohub'));
 if (
     in_array(strtolower($targetDb), $forbiddenDbs, true)
     || strtolower($targetDb) === $habitualDb
     || !preg_match('/^(rumo10_test_[a-z0-9_]+|test_[a-z0-9_]+|[a-z0-9_]+_test)$/', $targetDb)
 ) {
-    fwrite(STDERR, "RECUSADO: banco '{$targetDb}' não é um banco descartável isolado de testes válido (ex.: rumo10_test_car003).\n");
+    fwrite(STDERR, "RECUSADO: banco '{$targetDb}' não é um banco descartável isolado de testes válido.\n");
     exit(2);
 }
 
 putenv('RUMOHUB_ENABLED=0');
 putenv('RUMOHUB_BENEFITS=0');
 putenv('DB_HOST=' . $targetHost);
+putenv('DB_PORT=' . $targetPort);
+putenv('DB_USERNAME=' . $targetUser);
+putenv('DB_PASSWORD=' . $targetPass);
 putenv('DB_DATABASE=' . $targetDb);
 
 require dirname(__DIR__) . '/app/bootstrap.php';
+
+if (
+    config('DB_HOST') !== $targetHost
+    || config('DB_PORT') !== (string)$targetPort
+    || config('DB_USERNAME') !== $targetUser
+    || config('DB_DATABASE') !== $targetDb
+) {
+    fwrite(STDERR, "RECUSADO: divergência na configuração efetiva antes de executar DDL.\n");
+    exit(2);
+}
 
 set_exception_handler(static function (Throwable $e): void {
     fwrite(STDERR, "\n[EXCEPTION] " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n");
@@ -75,25 +106,26 @@ function okD02(bool $cond, string $msg): void {
     echo "  [PASS] {$msg}\n";
 }
 
-echo "=== R10-CAR-003-R2: INTEGRAÇÃO PDO ISOLADA (CAR003-D02 / CAR003-T01) ===\n";
-echo "  Banco descartável autorizado: {$targetHost}/{$targetDb}\n";
-
-$port = config('DB_PORT', '3306');
-$user = config('DB_USERNAME');
-$pass = config('DB_PASSWORD');
-if ($user === '') {
-    throw new RuntimeException('Credenciais locais ausentes para criar banco descartável.');
-}
-
 $adminPdo = new PDO(
-    "mysql:host={$targetHost};port={$port};charset=utf8mb4",
-    $user,
-    $pass,
+    "mysql:host={$targetHost};port={$targetPort};charset=utf8mb4",
+    $targetUser,
+    (string)$targetPass,
     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false]
 );
 
-$adminPdo->exec("DROP DATABASE IF EXISTS `{$targetDb}`");
+$existsStmt = $adminPdo->prepare('SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = ?');
+$existsStmt->execute([$targetDb]);
+if ($existsStmt->fetchColumn() !== false) {
+    fwrite(STDERR, "RECUSADO: banco '{$targetDb}' já existe. Execução abortada sem modificar seu conteúdo.\n");
+    exit(2);
+}
+
+$createdByThisRun = false;
 $adminPdo->exec("CREATE DATABASE `{$targetDb}` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+$createdByThisRun = true;
+
+echo "=== R10-CAR-003-R2: INTEGRAÇÃO PDO ISOLADA (CAR003-D02 / CAR003-T01-R2) ===\n";
+echo "  Banco exclusivo criado nesta execução: {$targetHost}:{$targetPort}/{$targetDb}\n";
 
 try {
     $pdoSchema = Database::connect();
@@ -213,7 +245,9 @@ try {
     $pdo2 = null;
     $repo1 = null;
     $repo2 = null;
-    $adminPdo->exec("DROP DATABASE IF EXISTS `{$targetDb}`");
+    if ($createdByThisRun === true) {
+        $adminPdo->exec("DROP DATABASE `{$targetDb}`");
+    }
 }
 
 echo "\n====================================================================\n";
